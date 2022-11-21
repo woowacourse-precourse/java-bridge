@@ -12,11 +12,9 @@ public class BridgeGameResult {
     private static final String BRIDGE_NOT_MOVING = "X";
 
     private final Map<String, List<String>> result;
-    private int count;
 
     public BridgeGameResult() {
         this.result = new HashMap<>();
-        this.count = 0;
         initResult();
     }
 
@@ -37,10 +35,6 @@ public class BridgeGameResult {
                 .noneMatch(value -> value.contains(BRIDGE_NOT_MOVING));
     }
 
-    public void increaseCount() {
-        this.count++;
-    }
-
     public void clearResult() {
         result.get(BRIDGE_UP_SIDE_SHAPE).clear();
         result.get(BRIDGE_DOWN_SIDE_SHAPE).clear();
@@ -48,9 +42,5 @@ public class BridgeGameResult {
 
     public List<String> getBridgeByShape(String shape) {
         return result.get(shape);
-    }
-
-    public int getCount() {
-        return count;
     }
 }
