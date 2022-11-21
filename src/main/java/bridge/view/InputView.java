@@ -11,13 +11,18 @@ public class InputView {
     public static int readBridgeSize() {
         System.out.println(GET_BRIDGE_SIZE_MESSAGE);
         String input = Console.readLine();
+        System.out.println(EMPTY_LINE);
+        return validate(input);
+    }
+
+    private static int validate(String input) {
         try {
-           BridgeSizeValidator.validate(input);
+            BridgeSizeValidator.validate(input);
+            return Integer.parseInt(input);
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
             return readBridgeSize();
         }
-        return Integer.parseInt(input);
     }
 
 
