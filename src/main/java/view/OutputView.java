@@ -1,6 +1,9 @@
 package view;
 
-import bridge.Direction;
+import inMemoryDB.GameData;
+import utils.Direction;
+import utils.GameResult;
+
 import java.util.List;
 
 /**
@@ -24,8 +27,9 @@ public class OutputView {
     }
 
     public static void printFinalResultMessage() {
-
+        System.out.println("최종 게임 결과");
     }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -35,15 +39,15 @@ public class OutputView {
     public static void printMap(List<String> movingFloorDataSet, List<String> passDataSet, int dataSetSize) {
         StringBuilder firstFloorBridge = new StringBuilder("[");
         StringBuilder secondFloorBridge = new StringBuilder("[");
-        for(int stage = 0; stage < dataSetSize; stage++) {
-            addBrinkBridge(firstFloorBridge,secondFloorBridge);
-            addFirstFloorBridge(firstFloorBridge,movingFloorDataSet.get(stage), passDataSet.get(stage));
-            addSecondFloorBridge(secondFloorBridge,movingFloorDataSet.get(stage), passDataSet.get(stage));
-            if(stage != dataSetSize - 1) {
-                addSeparatorBridge(firstFloorBridge,secondFloorBridge);
+        for (int stage = 0; stage < dataSetSize; stage++) {
+            addBrinkBridge(firstFloorBridge, secondFloorBridge);
+            addFirstFloorBridge(firstFloorBridge, movingFloorDataSet.get(stage), passDataSet.get(stage));
+            addSecondFloorBridge(secondFloorBridge, movingFloorDataSet.get(stage), passDataSet.get(stage));
+            if (stage != dataSetSize - 1) {
+                addSeparatorBridge(firstFloorBridge, secondFloorBridge);
             }
         }
-        addEndBridge(firstFloorBridge,secondFloorBridge);
+        addEndBridge(firstFloorBridge, secondFloorBridge);
         printFloor(firstFloorBridge, secondFloorBridge);
     }
 
@@ -59,7 +63,7 @@ public class OutputView {
     }
 
     private static void addFirstFloorBridge(StringBuilder firstFloorBridge, String movingFloorData, String passData) {
-        if(movingFloorData.equals(Direction.UP.getFloor())) {
+        if (movingFloorData.equals(Direction.UP.getFloor())) {
             firstFloorBridge.append(passData);
             return;
         }
@@ -72,7 +76,7 @@ public class OutputView {
     }
 
     private static void addSecondFloorBridge(StringBuilder secondFloorBridge, String movingFloorData, String passData) {
-        if(movingFloorData.equals(Direction.DOWN.getFloor())) {
+        if (movingFloorData.equals(Direction.DOWN.getFloor())) {
             secondFloorBridge.append(passData);
             return;
         }
@@ -89,6 +93,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(GameData gameData, int count) {
+        OutputView.printMap(gameData.getMovingFloorDataSet(), gameData.getPassDataSet(), gameData.getDataSetSize());
+        System.out.println("게임 성공 여부: " + resultGameSuccess(gameData));
+        System.out.println("총 시도한 횟수: " + count);
+    }
+
+    private static String resultGameSuccess(GameData gameData) {
+        if (gameData.getPassDataSet().contains(GameResult.WRONG_FLOOR.getResultMessage())) {
+            return "실패";
+        }
+        return "성공";
     }
 }

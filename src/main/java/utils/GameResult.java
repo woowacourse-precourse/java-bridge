@@ -1,4 +1,4 @@
-package game;
+package utils;
 
 public enum GameResult {
 

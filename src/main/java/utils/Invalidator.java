@@ -1,6 +1,5 @@
 package utils;
 
-import bridge.Direction;
 import exception.UserInputException;
 
 public class Invalidator {
@@ -15,11 +14,17 @@ public class Invalidator {
         return Integer.parseInt(inputValue);
     }
 
+    public static String isValidRestartValue(String inputValue) throws UserInputException {
+        if (!inputValue.equals(Restart.RESTART.getRestartMessage()) && !inputValue.equals(Restart.END.getRestartMessage())) {
+            throw new UserInputException("[ERROR]");
+        }
+        return inputValue;
+    }
+
     public static String isValidMoveValue(String inputValue) throws UserInputException {
         if (!inputValue.equals(Direction.UP.getFloor()) && !inputValue.equals(Direction.DOWN.getFloor())) {
             throw new UserInputException("[ERROR]");
         }
-
         return inputValue;
     }
 
