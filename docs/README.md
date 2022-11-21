@@ -15,12 +15,17 @@
         - R 혹은 Q가 아닌 경우
 
 ### OutputView
-1. 게임 시작 문구
-2. 게임 종료 문구
-3. 이동할 때마다 다리 건너기 결과
-4. 예외 처리 메세지
+1. 게임 시작 문구 출력
+2. 게임 종료 문구 출력
+3. 이동할 때마다 다리 건너기 결과 출력
+4. 예외 처리 메세지 출력
 
 ## Controller
+
+### Application
+- InputView에서 입력값을 받아 Game으로 전달
+- OutputView를 통해 Game 결과 출력
+- 예외 발생시 catch 및 OutputView를 통해 출력
 
 ### BridgeGame
 - 사용자 입력에 따라 BridgeMaker로 다리 생성
@@ -35,3 +40,7 @@
 ### Bridge
 - U와 D로 구성되어있는 List<String>를 필드로 가지고 있음
 - 위치와 이동방향을 입력으로 받아 필드의 브릿지와 비교
+
+### Result
+- 이동 실행 결과를 저장
+- 결과를 Map으로 생성
