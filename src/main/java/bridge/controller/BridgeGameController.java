@@ -21,6 +21,7 @@ public class BridgeGameController {
 
     public List<String> makeBridge() {
         int size = InputView.readBridgeSize();
+        OutputView.printBlankLine();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(size);
     }
