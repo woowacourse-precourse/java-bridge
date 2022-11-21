@@ -1,23 +1,66 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final OutputView outputView = new OutputView();
+    private List<String> bridgeList;
+
+    private final List<String> upBridge;
+    private final List<String> downBridge;
+
+    private int moveCount;
+    private int gameAttemptCount;
+    private boolean progressStatus;
+
+    public BridgeGame(List<String> bridgeList) {
+        this.bridgeList = bridgeList;
+        this.moveCount = 0;
+        this.gameAttemptCount = 1;
+        this.progressStatus = true;
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
+    }
+    public void gameInProgress(String moving) {
+        progressStatus = true;
+        createBridgeResult(moving);
+        outputView.printMap(upBridge);
+        outputView.printMap(downBridge);
+        moveCount++;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public void createBridgeResult(String moving){
+        if (moving.equals("U")) {
+            createUpBridgeResult(moveCount);
+        }
+        if (moving.equals("D")) {
+            createDownBridgeResult(moveCount);
+        }
     }
+    public void createUpBridgeResult(int moveCount) {
+        downBridge.add(" ");
+        if (bridgeList.get(moveCount).equals("U")) {
+            upBridge.add("O");
+        }
+        if (bridgeList.get(moveCount).equals("D")) {
+            upBridge.add("X");
+            progressStatus = false;
+        }
+    }
+    public void createDownBridgeResult(int moveCount) {
+        upBridge.add(" ");
+        if (bridgeList.get(moveCount).equals("D")) {
+            downBridge.add("O");
+        }
+        if (bridgeList.get(moveCount).equals("U")) {
+            downBridge.add("X");
+            progressStatus = false;
+        }
+    }
+
 }
