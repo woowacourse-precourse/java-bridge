@@ -21,28 +21,25 @@ public class BridgeMaker {
     // 인자, 이름, 반환 타입이 변경 불가한 메서드
     // Test 완료, README 완료
     public List<String> makeBridge(int size) {
+        List<Integer> bridgeNumber = makeBridgeNumber(size); // 다리 숫자 생성
+        List<String> bridgeList = new ArrayList<>();
 
-        List<String> bridge = new ArrayList<>();
-        bridge.add("   ");
-        for (int i = 1; i < size; i++) {
-            bridge.add("|   ");
-        }
-//        bridge.add("|   ");
-        return bridge;
-    }
-
-    // Test 완료, README 완료
-    public List<Bridge> makeBridgeList(int size) {
-
-        List<Bridge> bridgeList = new ArrayList<>();
-        final int BRIDGE_DEPTH = 2;
-
-        for (int i = 0; i < BRIDGE_DEPTH; i++) {
-            List<String> makeBridge = makeBridge(size);
-            Bridge bridge = new Bridge(makeBridge);
-            bridgeList.add(bridge);
+        for (int number : bridgeNumber) {
+            String bridgeWord = makeBridgeWord(number);
+            bridgeList.add(bridgeWord);
         }
         return bridgeList;
     }
+
+
+    public List<Integer> makeBridgeNumber(int size) {
+        List<Integer> bridgeNumber = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            bridgeNumber.add(bridgeNumberGenerator.generate());
+        }
+        return bridgeNumber;
+    }
+
+ 
 
 }
