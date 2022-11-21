@@ -43,7 +43,7 @@ public class BridgeMaker {
         return false;
     }
 
-    private void checkRangeValidity(int size) throws IllegalArgumentException {
+    public void checkRangeValidity(int size) throws IllegalArgumentException {
         if (size < MIN_SIZE || size > MAX_SIZE) {
             valueError = true;
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
