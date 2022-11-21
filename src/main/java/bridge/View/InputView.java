@@ -1,5 +1,6 @@
 package bridge.View;
 
+import bridge.Util.VerificationUtil;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -15,17 +16,9 @@ public class InputView {
     public static int readBridgeSize() {
 
         OutputView.printEnterBridgeSize();
-        int bridgeSize;
-        try {
-            bridgeSize = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
-        }
 
-        if (bridgeSize < 3 || bridgeSize > 20)
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-
-        return bridgeSize;
+        String bridgeSize = Console.readLine();
+        return VerificationUtil.verifyBridgeSize(bridgeSize);
     }
 
     /**
@@ -34,11 +27,9 @@ public class InputView {
     public static String readMoving() {
 
         OutputView.printEnterMovingSpace();
-        String moving;
-        moving = Console.readLine();
+        String moving = Console.readLine();
 
-        if (!moving.equals("U") && !moving.equals("D"))
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D로 입력할 수 있습니다.");
+        VerificationUtil.verifyMoving(moving);
 
         return moving;
     }
@@ -49,12 +40,10 @@ public class InputView {
     public static String readGameCommand() {
 
         OutputView.printRetryOrQuit();
-        String retry;
-        retry = Console.readLine();
+        String command = Console.readLine();
 
-        if (!retry.equals("R") && !retry.equals("Q"))
-            throw new IllegalArgumentException("[ERROR] 재시작 여부는 R 또는 Q로 입력할 수 있습니다.");
+        VerificationUtil.verifyGameCommand(command);
 
-        return retry;
+        return command;
     }
 }
