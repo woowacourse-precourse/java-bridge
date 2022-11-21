@@ -16,7 +16,7 @@ class BridgeGameTest {
     @CsvSource(value = {"U, U, O,' '", "U, D,' ',X", "D, U,X,' '", "D, D,' ',O"})
     public void move_test(String bridgeValue, String playerValue, String firstResult,
             String secondResult) {
-        BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
+        BridgeMap bridgeMap = BridgeMap.from(List.of(bridgeValue));
         BridgeGame bridgeGame = BridgeGame.from(bridgeMap);
         bridgeGame.move(Moving.from(playerValue));
         List<List> estimatedResult = List.of(List.of(firstResult), List.of(secondResult));
@@ -25,7 +25,7 @@ class BridgeGameTest {
 
     @Test
     public void retry_R_0() {
-        BridgeGame bridgeGame = BridgeGame.from(new BridgeMap(List.of("U", "U", "U")));
+        BridgeGame bridgeGame = BridgeGame.from(BridgeMap.from(List.of("U", "U", "U")));
         bridgeGame.move(Moving.from("U"));
         bridgeGame.move(Moving.from("D"));
         bridgeGame.retry(GameCommand.from("R"));
@@ -34,7 +34,7 @@ class BridgeGameTest {
 
     @Test
     public void retry_Q_Test() {
-        BridgeGame bridgeGame = BridgeGame.from(new BridgeMap(List.of("U", "U", "U")));
+        BridgeGame bridgeGame = BridgeGame.from(BridgeMap.from(List.of("U", "U", "U")));
         bridgeGame.move(Moving.from("U"));
         bridgeGame.move(Moving.from("D"));
         bridgeGame.retry(GameCommand.from("Q"));
@@ -45,7 +45,7 @@ class BridgeGameTest {
     @ParameterizedTest(name = "[{index}] input {0} {1} \"{2}\"")
     @CsvSource(value = {"U, U, true", "U, D, true"})
     public void isEnd_test(String bridgeValue, String playerValue, boolean value) {
-        BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
+        BridgeMap bridgeMap = BridgeMap.from(List.of(bridgeValue));
         BridgeGame bridgeGame = BridgeGame.from(bridgeMap);
         bridgeGame.move(Moving.from(playerValue));
         assertThat(bridgeGame.isEnd()).isEqualTo(value);
@@ -54,7 +54,7 @@ class BridgeGameTest {
     @ParameterizedTest(name = "[{index}] input {0} {1} \"{2}\"")
     @CsvSource(value = {"U, U, true", "U, D, false"})
     public void isMove_test(String bridgeValue, String playerValue, boolean value) {
-        BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
+        BridgeMap bridgeMap = BridgeMap.from(List.of(bridgeValue));
         BridgeGame bridgeGame = BridgeGame.from(bridgeMap);
         assertThat(bridgeGame.move(Moving.from(playerValue))).isEqualTo(value);
     }

@@ -61,7 +61,7 @@ public class BridgeGameController {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> test = bridgeMaker.makeBridge(bridgeSize.getValue());
         System.out.println(test);
-        return new BridgeMap(test);
+        return BridgeMap.from(test);
     }
 
     private Moving inputMoving() {

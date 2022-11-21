@@ -6,8 +6,12 @@ public class BridgeMap {
 
     private final List<String> bridgeMap;
 
-    public BridgeMap(List<String> bridgeMap) {
+    private BridgeMap(List<String> bridgeMap) {
         this.bridgeMap = bridgeMap;
+    }
+
+    public static BridgeMap from(List<String> bridgeMap) {
+        return new BridgeMap(bridgeMap);
     }
 
     public boolean isMove(PlayerMap playerMap, Moving moving) {
