@@ -29,7 +29,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private String mapping(int way) {
+    public String mapping(int way) {
         if (way == 1) return "U";
         return "D";
     }
