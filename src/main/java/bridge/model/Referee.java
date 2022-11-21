@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.controller.BridgeGame;
+import bridge.controller.GameController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,13 @@ public class Referee {
     public void addPlayerChoiceResult(List<String> bridge, String choice, int index) {
         isBridgeAnswerMatch(bridge, choice, index);
         isBridgeNotMatch(bridge, choice, index);
+    }
+
+    public void resetHole(){
+        upSideBridgeResult = new ArrayList<>();
+        downSideBridgeResult = new ArrayList<>();
+        progressCount = 0;
+        succeed = true;
     }
 
     private boolean isBridgeAnswerMatch(List<String> bridge, String choice, int index) {
@@ -53,7 +60,7 @@ public class Referee {
     }
 
     public boolean isClear() {
-        return BridgeGame.BRIDGE_LENGTH == progressCount;
+        return GameController.BRIDGE_LENGTH == progressCount;
     }
 
     public List<String> getUpSideBridgeResult() {

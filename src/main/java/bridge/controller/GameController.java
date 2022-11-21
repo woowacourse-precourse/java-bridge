@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.model.Bridge;
+import bridge.model.BridgeGame;
 import bridge.model.Player;
 import bridge.model.Referee;
 import bridge.type.ErrorType;
@@ -8,24 +9,25 @@ import bridge.valid.Validation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
-
+public class GameController {
     public static int BRIDGE_LENGTH = 0;
-    private static int holeGameCount = 1;
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
+    private BridgeGame bridgeGame = new BridgeGame();
     private Bridge bridge = new Bridge();
     private Player player = new Player();
     private Referee referee = new Referee();
 
+    /**
+     * 초기화 작업 필요
+     */
+
     public void play() {
         outputView.printStartGame();
         generateBridge();
-        while (retry()) {
-            move();
+        while (isFlagTrue()) {
+            String moveType = moveCommand();
+            printMove(moveType);
             if (referee.isClear() && Referee.succeed) {
                 break;
             }
@@ -33,10 +35,30 @@ public class BridgeGame {
         printResult();
     }
 
-    private void printResult() {
+    public boolean isFlagTrue(){
+        if ((Referee.succeed && !referee.isClear()) || bridgeGame.retry(getCommand(),player, referee)) {
+            return true;
+        }
+        return false;
+    }
+
+    public String moveCommand(){
+        String moveType = "";
+        try {
+            moveType = inputView.readMoving();
+            Validation.inputMoveSquareValid(moveType);
+        } catch (IllegalArgumentException e) {
+            inputView.printError(ErrorType.INPUT_SQUARE_ERROR_TYPE.getText());
+            moveCommand();
+        }
+        bridgeGame.move(moveType, player);
+        return moveType;
+    }
+
+    public void printResult() {
         outputView.printEndGame();
         outputView.printMap(referee.getUpSideBridgeResult(), referee.getDownSideBridgeResult());
-        outputView.printResult(holeGameCount);
+        outputView.printResult(bridgeGame.holeGameCount);
     }
 
     public void generateBridge() {
@@ -49,44 +71,10 @@ public class BridgeGame {
         bridge.setBridge(BRIDGE_LENGTH);
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
-        String moveType = "";
-        try {
-            moveType = inputView.readMoving();
-            Validation.inputMoveSquareValid(moveType);
-            player.add(moveType);
-        } catch (IllegalArgumentException e) {
-            inputView.printError(ErrorType.INPUT_SQUARE_ERROR_TYPE.getText());
-            move();
-        }
-        printMove(moveType);
-    }
-
     private void printMove(String moveType) {
         referee.addPlayerChoiceResult(bridge.getBridge(), moveType, referee.getProgressCount());
         outputView.printMap(referee.getUpSideBridgeResult(), referee.getDownSideBridgeResult());
         referee.addProgressCount();
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean retry() {
-        if ((Referee.succeed && !referee.isClear())) {
-            return true;
-        }
-        if (getCommand().equals("R")) {
-            resetGame();
-            return true;
-        }
-        return false;
     }
 
     private String getCommand() {
@@ -95,14 +83,8 @@ public class BridgeGame {
             Validation.inputResumeCommandValid(command);
         } catch (IllegalArgumentException e) {
             System.out.println(ErrorType.INPUT_RESUME_COMMAND_ERROR_TYPE.getText());
-            retry();
+            bridgeGame.retry(command, player, referee);
         }
         return command;
-    }
-
-    private void resetGame() {
-        player = new Player();
-        referee = new Referee();
-        holeGameCount++;
     }
 }

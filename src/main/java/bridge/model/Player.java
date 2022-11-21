@@ -10,4 +10,8 @@ public class Player {
     public void add(String type) {
         choices.add(type);
     }
+
+    public void resetChoices(){
+        choices = new ArrayList<>();
+    }
 }
