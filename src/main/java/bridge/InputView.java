@@ -1,6 +1,5 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
 import static java.lang.Integer.parseInt;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -14,8 +13,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize = Console.readLine();
-        return parseInt(bridgeSize);
+        String size = Console.readLine();
+        return parseInt(size);
     }
 
     /**
