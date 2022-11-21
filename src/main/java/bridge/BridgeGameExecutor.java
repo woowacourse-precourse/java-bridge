@@ -3,6 +3,7 @@ package bridge;
 
 import bridge.enums.RoundResult;
 import bridge.enums.MoveResult;
+import bridge.enums.SystemOperation;
 
 public class BridgeGameExecutor {
     private static final BridgeGameExecutor instance = new BridgeGameExecutor();
@@ -14,6 +15,18 @@ public class BridgeGameExecutor {
 
     public static BridgeGameExecutor getInstance() {
         return instance;
+    }
+
+    public void start() {
+        BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
+
+        while (startNewRound(bridgeGame) == RoundResult.FAIL) {
+            if (inputView.readGameCommand() == SystemOperation.QUIT) {
+                break;
+            }
+            bridgeGame.retry();
+        }
+        outputView.printResult(bridgeGame);
     }
 
     private RoundResult startNewRound(BridgeGame bridgeGame) {
