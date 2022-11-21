@@ -2,18 +2,14 @@ package bridge;
 
 import java.util.List;
 
-import bridgeConstant.Constant;
-import dto.BridgeResponseDto;
 import util.Validator;
 
 public class Bridge {
 	private final List<String> bridge;
-	private final int bridgeSize;
 
 	public Bridge(List<String> bridge) {
 		validateBridge(bridge);
 		this.bridge = bridge;
-		this.bridgeSize = bridge.size();
 	}
 
 	private void validateBridge(List<String> bridge) {
@@ -25,7 +21,4 @@ public class Bridge {
 		return bridge;
 	}
 
-	public int getBridgeSize() {
-		return bridgeSize;
-	}
 }
