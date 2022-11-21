@@ -41,52 +41,53 @@ public class OutputView {
     }
     public static String printMove(boolean valid){
         if(valid){
-            return "O";
+            return " O ";
         }
-        return "X";
+        return " X ";
     }
     public static String printUp(String move, boolean valid){
         if(move.equals("U")){
             return printMove(valid);
         }
-        return " ";
+        return "   ";
     }
     public static String printDown(String move ,boolean valid){
         if(move.equals("D")){
             return printMove(valid);
         }
-        return " ";
+        return "   ";
     }
     public static void printRetry(){
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q");
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult( int trial, List<String> bridge, List<String> inputMove) {
+    public static void printResult(List<String> bridge, List<String> inputMove) {
+        System.out.println("최종 게임 결과");
         System.out.print("[");
-        for(int i = 0; i<(trial+1);i++){
+        for(int i = 0; i<(inputMove.size());i++){
             printIndex(i);
             System.out.print(printUp(inputMove.get(i), BridgeGame.validMove(bridge.get(i),inputMove.get(i))));
         }
         System.out.println("]");
         System.out.print("[");
-        for(int i = 0; i<(trial+1);i++){
+        for(int i = 0; i<(inputMove.size());i++){
             printIndex(i);
             System.out.print(printDown(inputMove.get(i), BridgeGame.validMove(bridge.get(i),inputMove.get(i))));
         }
         System.out.println("]");
     }
 
-    public void printSuccess(String success){
+    public static void printSuccess(String success){
         System.out.println("게임 성공 여부: "+success);
     }
-    public void printRetry(int retry){
+    public static void printRetry(int retry){
         System.out.println("총 시도한 횟수: "+ retry);
     }
-    public String success(boolean success){
+    public static String ifSuccess(boolean success){
         if(success){
             return "성공";
         }

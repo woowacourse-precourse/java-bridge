@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.Exception.checkBridgeSize;
+import static bridge.Exception.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -22,6 +22,7 @@ public class InputView {
      */
     public static String readMoving() {
         String move = readLine();
+        checkMoving(move);
         return move;
     }
 
@@ -30,6 +31,7 @@ public class InputView {
      */
     public static String readGameCommand() {
         String command = readLine();
+        checkCommand(command);
         return command;
     }
 }
