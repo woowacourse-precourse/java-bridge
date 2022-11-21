@@ -127,6 +127,10 @@ public class Bridge {
         return size;
     }
 
+    public GameStatistics getGameStatistics() {
+        return gameStatistics;
+    }
+
     private String makeSpace(String mark) {
         return " " + mark + " ";
     }
