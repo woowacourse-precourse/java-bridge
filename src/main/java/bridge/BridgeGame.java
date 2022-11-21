@@ -26,6 +26,7 @@ public class BridgeGame {
 
     public MovingType move(String userMove) {
         MovingType movingType = userMoveToChoice(userMove, index);
+        this.index += 1;
         if (userMove.equals(BridgeType.UP.getStringCode())) {
             moveLog.updateMoveLog(BridgeType.UP, movingType.getIsSuccess());
             moveLog.updateMoveLog(BridgeType.DOWN, NONE);
@@ -39,10 +40,8 @@ public class BridgeGame {
 
     public MovingType userMoveToChoice(String userMove, int index) {
         if (bridge.get(index).equals(userMove)) {
-            this.index += 1;
             return MovingType.SUCCESS;
         }
-        this.index += 1;
         return MovingType.FAIL;
     }
 
@@ -69,4 +68,7 @@ public class BridgeGame {
         return this.index;
     }
 
+    public void getResult(){
+        // return this.moveLog.
+    }
 }
