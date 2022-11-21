@@ -46,11 +46,13 @@ public class OutputView {
 
     private static String arrToString(List<String> availableCalced) {
         String result = "";
+        if (availableCalced.size()==0) {
+            return result;
+        }
         for (String availableOrEmpty : availableCalced) {
             result = result + availableOrEmpty + BRIDGE_SEP;
         }
-        result = result.substring(0, result.length() - BRIDGE_SEP.length());
-        return result;
+        return result.substring(0, result.length() - BRIDGE_SEP.length());
     }
 
     /**
