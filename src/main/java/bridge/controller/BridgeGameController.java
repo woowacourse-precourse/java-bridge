@@ -10,13 +10,17 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
+    InputView inputView;
+    OutputView outputView;
     BridgeGame bridgeGame;
     int gameCount;
     boolean play;
 
     public BridgeGameController() {
+        inputView = new InputView();
+        outputView = new OutputView();
         Bridge gameBridge = makeGameBridge();
-        System.out.println(gameBridge.getBridge());
+        //System.out.println(gameBridge.getBridge());
         this.bridgeGame = new BridgeGame(gameBridge);
         this.gameCount = 1;
         this.play = true;
@@ -36,18 +40,18 @@ public class BridgeGameController {
 
     private Bridge makeGameBridge() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
-        int bridgeSize = InputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void showBridge(List<List<String>> gameMap) {
-        OutputView.printNowBridge(gameMap);
+        outputView.printNowBridge(gameMap);
     }
 
     private void askRetry() {
-        String status = InputView.readGameCommand();
+        String status = inputView.readGameCommand();
         if ("R".equals(status)) {
             bridgeGame.retry();
             this.gameCount++;
@@ -57,6 +61,6 @@ public class BridgeGameController {
     }
 
     private void showResult(List<List<String>> gameMap, boolean life, int gameCount) {
-        OutputView.printResult(gameMap, life, gameCount);
+        outputView.printResult(gameMap, life, gameCount);
     }
 }

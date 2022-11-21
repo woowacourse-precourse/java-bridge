@@ -28,7 +28,7 @@ public class OutputView {
         }
     }
 
-    private static String toBridgeFormat(List<String> bridge) {
+    private String toBridgeFormat(List<String> bridge) {
         StringJoiner stringJoiner = new StringJoiner(FORMAT_MAP_DIVISION, FORMAT_MAP_START, FORMAT_MAP_END);
         for (String step : bridge) {
             stringJoiner.add(step);
@@ -41,7 +41,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<List<String>> gameMap, boolean life, int gameCount) {
+    public void printResult(List<List<String>> gameMap, boolean life, int gameCount) {
         System.out.println(MESSAGE_RESULT);
         for (List<String> gameBridge : gameMap) {
             System.out.println(toBridgeFormat(gameBridge));
@@ -50,14 +50,14 @@ public class OutputView {
         System.out.printf(MESSAGE_COUNT, gameCount);
     }
 
-    private static String resultLife(boolean life) {
+    private String resultLife(boolean life) {
         if (life) {
             return "성공";
         }
         return "실패";
     }
 
-    public static void printNowBridge(List<List<String>> gameMap) {
+    public void printNowBridge(List<List<String>> gameMap) {
         for (List<String> gameBridge : gameMap) {
             System.out.println(toBridgeFormat(gameBridge));
         }
