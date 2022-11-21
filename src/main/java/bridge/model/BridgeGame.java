@@ -27,18 +27,11 @@ public class BridgeGame {
     }
 
     public Column move(int step, String input) {
-        Column playerColumn = Column.valueOfCapitalLetter(input);
-        if (bridge.get(step) == playerColumn) {
-            return playerColumn;
+        Column inputColumn = Column.valueOfCapitalLetter(input);
+        if (bridge.get(step).equals(inputColumn)) {
+            return inputColumn;
         }
         return Column.NONE;
-    }
-
-    public boolean isPass(String answer, String input) {
-        if (answer.equals(input)) {
-            return true;
-        }
-        return false;
     }
 
     /**
