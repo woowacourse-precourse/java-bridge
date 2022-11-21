@@ -96,22 +96,6 @@ public class BridgeGame {
     }
 
     /**
-     * 게임에서 승리했는지 체크하는 메서드
-     *
-     * @return
-     */
-    public boolean checkWinOrDefeat() {
-
-        if (playerBridge.size() != bridge.size()) {
-            return false;
-        }
-        if (playerBridge.get(playerBridge.size() - 1).equals(bridge.get(bridge.size() - 1))) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * 전체 게임 동작 관리를 위해 사용하는 메서드
      */
     public void start() {
