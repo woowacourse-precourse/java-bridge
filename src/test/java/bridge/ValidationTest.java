@@ -1,6 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -10,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import bridge.Validation.InputType;
 
-class ValidationTest extends NsTest {
+class ValidationTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static final String NO_LINE_FOUND_ERROR_MESSAGE = "[ERROR] 값을 입력해주세요.";
@@ -78,10 +77,5 @@ class ValidationTest extends NsTest {
     void validateGameCommandMethodTest2(String lineInput) {
         InputType inputType = InputType.GAMECOMMAND;
         new Validation(lineInput, inputType);
-    }
-
-    @Override
-    protected void runMain() {
-        Application.main(new String[]{});
     }
 }
