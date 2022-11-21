@@ -25,7 +25,6 @@ public class Application {
 
         while (true) {
             gameCount++;
-            boolean matchingFlag = true;
             Bridge userBridge = new Bridge(new ArrayList<>(), new ArrayList<>());
             PlayerStatus playerStatus = null;
 
@@ -42,18 +41,32 @@ public class Application {
                 }
             }
 
-            if (!playerStatus.isMatchingFlag()) {
-                outputView.printResult(userBridge, gameCount, matchingFlag);
+            if (finishGamePlayerWin(gameCount, userBridge, playerStatus)) {
                 break;
             }
 
-            String retryCommand = inputView.readGameCommand();
-
-            if (bridgeGame.retry(retryCommand)) {
-                outputView.printResult(userBridge, gameCount, matchingFlag);
+            if (finishGamePlayerLose(gameCount, userBridge, playerStatus)) {
                 break;
             }
         }
+    }
+
+    private static boolean finishGamePlayerWin(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+        if (!playerStatus.isMatchingFlag()) {
+            outputView.printResult(userBridge, gameCount, playerStatus);
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean finishGamePlayerLose(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+        String retryCommand = inputView.readGameCommand();
+
+        if (bridgeGame.retry(retryCommand)) {
+            outputView.printResult(userBridge, gameCount, playerStatus);
+            return true;
+        }
+        return false;
     }
 
     private static PlayerStatus isMatchingWithBridge(Bridge bridge, String currentStep) {
