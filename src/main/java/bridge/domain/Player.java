@@ -31,6 +31,9 @@ public class Player {
     }
 
     public boolean isArrived(Bridge bridge) {
+        if (isDead()) {
+            return false;
+        }
         return currentSpaceIndex == bridge.size();
     }
 
