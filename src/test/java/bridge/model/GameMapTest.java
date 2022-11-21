@@ -21,4 +21,13 @@ class GameMapTest {
         gameMap.draw(new MoveResult(DrawType.FAIL, Direction.D));
         assertThat(gameMap.toString()).isEqualTo("[ O |   ]\n[   | X ]");
     }
+
+    @Test
+    void 재시작하면_지도가_초기화되어야_한다() {
+        GameMap gameMap = new GameMap();
+        gameMap.draw(new MoveResult(DrawType.SUCCESS, Direction.U));
+        gameMap.draw(new MoveResult(DrawType.FAIL, Direction.D));
+        gameMap.initialize();
+        assertThat(gameMap.toString()).isEqualTo("[  ]\n[  ]");
+    }
 }
