@@ -20,7 +20,7 @@ public class InputController {
 		}
 	}
 
-	public int validBridgeSize(int size) {
+	private int validBridgeSize(int size) {
 		if (size < MIN_SIZE || size > MAX_SIZE) {
 			throw new IllegalArgumentException(BRIDGE_SIZE_ERROR_MESSAGE);
 		}
@@ -37,6 +37,11 @@ public class InputController {
 		}
 	}
 
+	private String validMoveCommand(String inputCommand) {
+		MoveCommand command = MoveCommand.findCommand(inputCommand);
+		return command.getValue();
+	}
+
 	public boolean askRetry() {
 		try {
 			String retryInput = inputView.readGameCommand();
@@ -47,12 +52,7 @@ public class InputController {
 		}
 	}
 
-	public String validMoveCommand(String inputCommand) {
-		MoveCommand command = MoveCommand.findCommand(inputCommand);
-		return command.getValue();
-	}
-
-	public boolean validBranchCommand(String inputCommand) {
+	private boolean validBranchCommand(String inputCommand) {
 		BranchCommand branchCommand = BranchCommand.findCommand(inputCommand);
 		return BranchCommand.isRestartGame(branchCommand.getValue());
 	}
