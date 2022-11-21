@@ -1,9 +1,44 @@
 package bridge.service;
 
+import bridge.bo.Bridge;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final int INITIAL_TRI_NUMBER = 1;
+    private final List<String> userMoves;
+    private final List<Boolean> results;
+    private final Bridge bridge;
+    private Iterator<String> bridgeIterator;
+    private int tries;
+
+    public BridgeGame(Bridge bridge) {
+        this.results = new ArrayList<>();
+        this.userMoves = new ArrayList<>();
+        this.bridge = bridge;
+        this.tries = INITIAL_TRI_NUMBER;
+        this.bridgeIterator = bridge.getIterator();
+    }
+
+    public List<String> getUserMoves() {
+        return userMoves;
+    }
+
+    public List<Boolean> getResults() {
+        return results;
+    }
+
+    public Iterator<String> getBridgeIterator() {
+        return bridgeIterator;
+    }
+
+    public int getTries() {
+        return tries;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
