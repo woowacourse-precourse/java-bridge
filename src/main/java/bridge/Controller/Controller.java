@@ -6,8 +6,6 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -24,7 +22,7 @@ public class Controller {
         outputView = new OutputView();
     }
 
-    public void run(){
+    public void run(){ //함수 길이 줄이기
         inputView.printGameStartMessage();
 
         //다리 길이 입력 받기

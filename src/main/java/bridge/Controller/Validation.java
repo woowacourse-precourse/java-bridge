@@ -1,7 +1,6 @@
 package bridge.Controller;
 
 import bridge.Domain.BridgeRow;
-
 import java.util.regex.Pattern;
 
 public class Validation {
@@ -10,16 +9,17 @@ public class Validation {
     static final int BRIDGE_SIZE_RANGE_START = 3;
     static final int BRIDGE_SIZE_RANGE_END = 20;
 
-
     public static void validateReadBridgeSize(String bridgeSize){
         validateInputIsNumeric(bridgeSize);
         validateInputIsInRange(bridgeSize);
     }
     public static void validateReadMoving(String moving){
         validateInputIsAlphabetic(moving);
+        validateInputIsValidMoving(moving);
     }
     public static void validateReadGameCommand(String gameCommand){
-
+        validateInputIsAlphabetic(gameCommand);
+        validateGameCommand(gameCommand);
     }
 
     public static void validateInputIsNumeric(String input){

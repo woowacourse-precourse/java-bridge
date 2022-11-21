@@ -11,7 +11,6 @@ public class BridgeGame {
     public int gameTryCount = 1;
     public boolean gameSuccess = false;
     public List<String> mySelectBridge = new ArrayList<>();
-
     List<String> bridge;
 
     public BridgeGame(List<String> bridge){

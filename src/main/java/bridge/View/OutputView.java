@@ -16,7 +16,7 @@ public class OutputView {
     static final String PRINT_GAME_TRY_COUNT = "총 시도한 횟수: ";
 
 
-    public void printMap(List<String> bridge, boolean success, int position) {
+    public void printMap(List<String> bridge, boolean success, int position) { //depth줄이기, 함수길이 줄이기
         List<String> check = new ArrayList<>();
         check.add("U");
         check.add("D");
