@@ -39,6 +39,9 @@ public class BridgeController {
             if (!bridgeGame.getMoveState()) {
                 gameRetryOrQuit();
             }
+            if (bridgeGame.isClear()) {
+                playing = false;
+            }
         }
         outputView.printResult(bridgeGame, countTry);
     }

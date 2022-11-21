@@ -42,6 +42,13 @@ public class BridgeGame {
         moveState = false;
     }
 
+    public boolean isClear() {
+        if (answerBridge.getSize() == gameResult.getGameCount()) {
+            return true;
+        }
+        return false;
+    }
+
     public GameResult getGameResult() {
         return gameResult;
     }
