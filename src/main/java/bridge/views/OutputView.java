@@ -38,6 +38,7 @@ public class OutputView {
         String message = directions.stream()
                 .collect(Collectors.joining(FORMAT_MAP_DELIMITER));
         System.out.println(MessageFormat.format(FORMAT_MAP, message));
+        printSeparator();
     }
 
     /**
