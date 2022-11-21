@@ -22,7 +22,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int count = 0; count < size; count++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            BridgePosition position = BridgePosition.findPosition(randomNumber);
+            BridgeMakerStatistic position = BridgeMakerStatistic.findPosition(randomNumber);
             bridge.add(position.getLetter());
         }
         return bridge;

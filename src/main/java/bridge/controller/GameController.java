@@ -26,6 +26,7 @@ public class GameController {
 
     public void startGame() {
         outputView.printGameMessage(GameMessage.START);
+        outputView.printEmptyLine();
         BridgeGame bridgeGame = createNewGame();
         runGame(bridgeGame);
         endGame(bridgeGame);
