@@ -12,27 +12,39 @@ public class BridgeController {
     private Bridge bridge;
     private BridgeGame bridgeGame;
 
-    public int getBridgeSize() {
-        outputView.printRequestBridgeSize();
-        return inputView.readBridgeSize();
+    public int requestBridgeSize() {
+        try {
+            outputView.printRequestBridgeSize();
+            return inputView.readBridgeSize();
+        }catch (IllegalArgumentException e){
+            return requestBridgeSize();
+        }
     }
 
-    public void setGame(int size) {
+    public void setGame(int size) { // 서비스?
         bridge = new Bridge(size);
         bridgeGame = new BridgeGame(bridge);
     }
 
     public String requestMovingPoint() {
-        outputView.printRequestMove();
-        return inputView.readMoving();
+        try {
+            outputView.printRequestMove();
+            return inputView.readMoving();
+        }catch (IllegalArgumentException e){
+            return requestMovingPoint();
+        }
     }
 
     public boolean requestRetry() {
-        outputView.printRequestGameCommand();
-        return inputView.readGameCommand();
+        try {
+            outputView.printRequestGameCommand();
+            return inputView.readGameCommand();
+        }catch (IllegalArgumentException e){
+            return requestRetry();
+        }
     }
 
-    public boolean bridgeRound() {
+    public boolean bridgeRound() {  // 서비스?
         String movePlace = requestMovingPoint();
         boolean passable = bridgeGame.move(movePlace, bridge);
 
