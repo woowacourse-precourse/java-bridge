@@ -7,6 +7,7 @@ import java.util.List;
  * OutputView의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
  */
 public class OutputView {
+    private static final String START_EVENT_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String GAME_RESULT_TITLE = "최종 게임 결과";
@@ -43,5 +44,9 @@ public class OutputView {
         System.out.println(GAME_RESULT_EVENT_MESSAGE
                 .replace(REPLACE_GAME_RESULT_FROM, gameResult)
                 .replace(REPLACE_TRY_COUNT_FROM, Integer.toString(tryCount)));
+    }
+
+    public void printStartEventMessage() {
+        System.out.println(START_EVENT_MESSAGE);
     }
 }
