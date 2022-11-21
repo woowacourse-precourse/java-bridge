@@ -4,15 +4,18 @@ import java.util.Arrays;
 
 public class Values {
     public enum BridgeCase {
-        POSITIVE(1, "U"),
-        NEGATIVE(0, "D");
+        POSITIVE(1, "U", "성공", true),
+        NEGATIVE(0, "D", "실패", false);
         private int flag;
         private String value;
         private String message;
+        private boolean result;
 
-        private BridgeCase(int flag, String value) {
+        private BridgeCase(int flag, String value, String message, boolean result) {
             this.flag = flag;
             this.value = value;
+            this.message = message;
+            this.result = result;
         }
 
         public String getValue() {
@@ -25,6 +28,16 @@ public class Values {
 
         public String getMessage() {
             return message;
+        }
+
+        public boolean isResult() {
+            return result;
+        }
+
+        public static BridgeCase findByResult(boolean result) {
+            return Arrays.stream(BridgeCase.values())
+                    .filter(bridgeCase -> bridgeCase.isResult() == result)
+                    .findAny().orElse(NEGATIVE);
         }
 
     }
