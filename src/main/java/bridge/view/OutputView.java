@@ -34,8 +34,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(String result, int count) {
-        System.out.println("게임 성공 여부 : " + result);
-        System.out.println("총 시도한 횟수 :" + count);
+    public static void printResult(Bridge bridge, int count) {
+        System.out.println(Constant.FINAL_GAME_RESULT);
+        printBridgeResult(bridge);
+        System.out.println();
+        System.out.println(Constant.GAME_CLEAR_OR_FAIL + EndRule.isComplete(bridge));
+        System.out.println(Constant.TOTAL_TRY + count);
+    }
+
+    private static void printBridgeResult(Bridge bridge) {
+        String[] upperBridge = bridge.getUpperBridge().toArray(new String[0]);
+        String[] lowerBridge = bridge.getLowerBridge().toArray(new String[0]);
+        System.out.println(
+            Constant.BRACKETS_OPEN + String.join(Constant.DELIMITER, upperBridge) + Constant.BRACKETS_CLOSE);
+        System.out.println(
+            Constant.BRACKETS_OPEN + String.join(Constant.DELIMITER, lowerBridge) + Constant.BRACKETS_CLOSE);
+    }
+
+    public static void notifySelectMoveLocation(){
+        System.out.println(Constant.SELECT_MOVE_LOCATION);
     }
 }
