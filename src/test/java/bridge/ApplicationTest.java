@@ -9,6 +9,7 @@ import bridge.domain.bridge_maker.BridgeMaker;
 import bridge.domain.bridge_maker.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -59,8 +60,9 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @DisplayName("기능 테스트 : 실패 후 재시도 및 성공")
     @Test
-    void 기능_테스트_실패_후_재시도_성공() {
+    void applicationTestFailAndRetryAndSuccess() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U", "R", "U", "D", "U");
             assertThat(output()).contains(
@@ -77,8 +79,9 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @DisplayName("기능 테스트 : 실패 후 재시도 및 실패 종료")
     @Test
-    void 기능_테스트_실패_후_재시도_실패() {
+    void applicationTestFailAndRetryAndFail() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U", "R", "U", "D", "D", "Q");
             assertThat(output()).contains(
