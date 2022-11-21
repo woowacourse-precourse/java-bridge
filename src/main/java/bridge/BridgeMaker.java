@@ -15,10 +15,10 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             if (bridgeNumberGenerator.generate() == 0) {
-                bridge.add("D");
+                bridge.add(OutputConstants.DOWN);
                 continue;
             }
-            bridge.add("U");
+            bridge.add(OutputConstants.UP);
         }
         return bridge;
     }

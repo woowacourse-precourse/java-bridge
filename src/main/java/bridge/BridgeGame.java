@@ -25,24 +25,24 @@ public class BridgeGame {
     }
 
     public static void rightWayMove() {
-        if (StartGame.movingInput.equals("U")) {
-            upSide.upSideArr.add("O");
-            downSide.downSideArr.add(" ");
+        if (StartGame.movingInput.equals(OutputConstants.UP)) {
+            upSide.upSideArr.add(OutputConstants.CORRECT);
+            downSide.downSideArr.add(OutputConstants.BLANK);
         }
-        if (StartGame.movingInput.equals("D")) {
-            upSide.upSideArr.add(" ");
-            downSide.downSideArr.add("O");
+        if (StartGame.movingInput.equals(OutputConstants.DOWN)) {
+            upSide.upSideArr.add(OutputConstants.BLANK);
+            downSide.downSideArr.add(OutputConstants.CORRECT);
         }
     }
 
     public static void wrongWayMove() {
-        if (StartGame.movingInput.equals("U")) {
-            upSide.upSideArr.add("X");
-            downSide.downSideArr.add(" ");
+        if (StartGame.movingInput.equals(OutputConstants.UP)) {
+            upSide.upSideArr.add(OutputConstants.WRONG);
+            downSide.downSideArr.add(OutputConstants.BLANK);
         }
-        if (StartGame.movingInput.equals("D")) {
-            upSide.upSideArr.add(" ");
-            downSide.downSideArr.add("X");
+        if (StartGame.movingInput.equals(OutputConstants.DOWN)) {
+            upSide.upSideArr.add(OutputConstants.BLANK);
+            downSide.downSideArr.add(OutputConstants.WRONG);
         }
     }
 }
