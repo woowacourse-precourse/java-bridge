@@ -15,9 +15,10 @@ public class InputViewTest extends NsTest {
     @Test
     @DisplayName("게임의 진행 상항을 확인")
     void 게임의_진행_상항을_확인(){
-        List<String> map = List.of("O"," ","X");
-        outputView.printMap(map);
-        assertThat(output()).isEqualTo("[ O |   | X ]");
+        List<String> upMap = List.of("O"," ","X");
+        List<String> downMap = List.of(" ","O"," ");
+        outputView.printMap(upMap,downMap);
+        assertThat(output()).isEqualTo("[ O |   | X ]\n[   | O |   ]");
     }
 
     @Override

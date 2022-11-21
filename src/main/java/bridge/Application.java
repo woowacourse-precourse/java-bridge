@@ -25,8 +25,7 @@ public class Application {
         do {
             String userRemoveCommand = inputView.readMoving();
             gameChecked = bridgeGame.move(answerBridge,userRemoveCommand);
-            outputView.printMap(bridgeGame.upBridge);
-            outputView.printMap(bridgeGame.downBridge);
+            outputView.printMap(bridgeGame.upBridge,bridgeGame.downBridge);
             if(!gameChecked){
                 break;
             }
@@ -38,7 +37,9 @@ public class Application {
         String userGameCommand = inputView.readGameCommand();
         if (userGameCommand.equals("R")){
             bridgeGame.retry();
-            gameRound(answerBridge,brideSize);
+            if(!gameRound(answerBridge,brideSize)){
+                gameExit(answerBridge,brideSize);
+            }
         }
     }
 }
