@@ -43,11 +43,13 @@ public class BridgeGame {
         }
     }
     private boolean isFail(){
+        boolean result = false;
         for (int i=0;i<moveCount;i++){
             if (path.get("U").contains("X") || path.get("D").contains("X")){
-                retry();
+                result = true;
             }
         }
+        return result;
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
