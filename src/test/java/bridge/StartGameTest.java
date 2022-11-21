@@ -4,6 +4,8 @@ import bridge.controller.StartGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -14,14 +16,17 @@ public class StartGameTest {
 
     @DisplayName("bridge의 값이 U 또는 D의 값만 있는지 테스트")
     @Test
-    void checkUPDOWN() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void checkUPDOWN() {
         StartGame runGame = new StartGame();
         List<String> checkList;
-
-        Method method = runGame.getClass().getDeclaredMethod("getBridge", int.class);
-        method.setAccessible(true);
-        checkList = (List<String>)method.invoke(runGame,5);
+        InputStream in = generateUserInput("5");
+        System.setIn(System.in);
+        checkList = runGame.setBridgeSize().getBridge();
         assertThat(check(checkList)).isTrue();
+    }
+
+    public static InputStream generateUserInput(String input) {
+        return new ByteArrayInputStream(input.getBytes());
     }
 
     private boolean check(List<String> checkList) {
@@ -33,7 +38,7 @@ public class StartGameTest {
         return true;
     }
 
-    @DisplayName("bridge의 파라미터로 받은 length이 값을 기준으로 생성되는지 테스트")
+    @DisplayName("입력받은 length 기준으로 bridge가 생성되는지 테스트")
     @Test
     void checkLength() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         StartGame runGame = new StartGame();

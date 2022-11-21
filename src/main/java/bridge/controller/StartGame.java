@@ -10,7 +10,7 @@ import java.util.List;
 
 public class StartGame {
     private static InputView input = new InputView();
-    public BridgeGame getInput() {
+    public BridgeGame setBridgeSize() {
         System.out.println(PrintSentence.START.getSentence());
         int length = input.readBridgeSize();
         return new BridgeGame(getBridge(length));
