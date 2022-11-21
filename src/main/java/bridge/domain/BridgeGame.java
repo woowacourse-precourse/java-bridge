@@ -20,21 +20,35 @@ public class BridgeGame {
 
     public void move(String moving) {
         movingRecord.add(moving);
-        checkFail(stageCount, moving);
+        if (isFailed(stageCount, moving)) {
+            fail();
+        }
     }
 
     public void retry() {
         movingRecord.clear();
         stageCount = 0;
-        this.gameStatus = GameStatusType.PLAYING;
-    }
-
-    public void end() {
-        this.gameStatus = GameStatusType.END;
+        gameStatus = GameStatusType.PLAYING;
     }
 
     public void quit() {
-        this.gameStatus = GameStatusType.FAIL;
+        gameStatus = GameStatusType.FAIL;
+    }
+
+    public void end() {
+        gameStatus = GameStatusType.END;
+    }
+
+    private void fail() {
+        gameStatus = GameStatusType.FAIL;
+    }
+
+    public boolean isEnd() {
+        return stageCount == bridgeInfo.size() && gameStatus == GameStatusType.END;
+    }
+
+    public boolean isFailed(int index, String moving) {
+        return !bridgeInfo.get(index).equals(moving);
     }
 
     public void increaseStageCount() {
@@ -51,17 +65,5 @@ public class BridgeGame {
 
     public GameStatusType getGameStatus() {
         return gameStatus;
-    }
-
-    public void checkClear() {
-        if (stageCount == bridgeInfo.size() && gameStatus != GameStatusType.FAIL) {
-            end();
-        }
-    }
-
-    private void checkFail(int index, String moving) {
-        if (!bridgeInfo.get(index).equals(moving)) {
-            gameStatus = GameStatusType.FAIL;
-        }
     }
 }

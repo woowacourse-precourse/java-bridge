@@ -12,6 +12,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import bridge.type.ErrorType;
 
 public class InputView {
+
     private static final String REGEX = "[0-9]+";
 
     public int readBridgeSize() {

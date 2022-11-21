@@ -33,7 +33,7 @@ public class BridgeGameController {
         while (bridgeGame.getGameStatus().isPlaying()) {
             move();
             checkEnd();
-            if (checkFail()) {
+            if (isFailed()) {
                 requestRestartOrQuit();
             }
         }
@@ -67,12 +67,14 @@ public class BridgeGameController {
         }
     }
 
-    private boolean checkFail() {
-        return bridgeGame.getGameStatus() == GameStatusType.FAIL;
+    private void checkEnd() {
+        if (bridgeGame.isEnd()) {
+            bridgeGame.end();
+        }
     }
 
-    private void checkEnd() {
-        bridgeGame.checkClear();
+    private boolean isFailed() {
+        return bridgeGame.getGameStatus() == GameStatusType.FAIL;
     }
 
     private void printPlayingMap() {
