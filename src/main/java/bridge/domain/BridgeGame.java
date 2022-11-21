@@ -3,7 +3,6 @@ package bridge.domain;
 import java.util.List;
 
 import bridge.constant.Direction;
-import bridge.dto.TrialResult;
 
 public class BridgeGame {
 
@@ -23,9 +22,8 @@ public class BridgeGame {
         return new BridgeGame(Bridge.from(capitalLetters));
     }
 
-    public TrialResult move(Direction direction) {
-        boolean wasSuccessful = player.moveNext(direction);
-        return new TrialResult(direction, wasSuccessful);
+    public boolean move(Direction direction) {
+        return player.moveNext(direction);
     }
 
     public void retry() {
