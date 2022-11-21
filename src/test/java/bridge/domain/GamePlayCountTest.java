@@ -25,4 +25,11 @@ class GamePlayCountTest {
 
         assertThat(gamePlayCount.getCount()).isEqualTo(2);
     }
+
+    @Test
+    void getCount_메서드는_count_값을_반환한다() {
+        GamePlayCount gamePlayCount = GamePlayCount.firstGame();
+
+        assertThat(gamePlayCount.getCount()).isEqualTo(1);
+    }
 }
