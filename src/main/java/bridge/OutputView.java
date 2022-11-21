@@ -18,11 +18,9 @@ public class OutputView {
 
         for (String word : list) {
             System.out.print("[");
-
             printMiddle(bridge, word);
 
             printLast(location, result, word);
-
             System.out.println("]");
         }
     }
@@ -32,7 +30,6 @@ public class OutputView {
             if (i.equals(location)) {
                 System.out.print(" O ");
             }
-
             if (!(i.equals(location))) {
                 System.out.print("   ");
 
