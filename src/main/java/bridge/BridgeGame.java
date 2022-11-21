@@ -32,7 +32,6 @@ public class BridgeGame {
             result.update(CORRECT, moveTo);
             return true;
         }
-
         result.update(INCORRECT, moveTo);
 
         return false;
@@ -47,5 +46,19 @@ public class BridgeGame {
         user.returnStart();
         result.updateNumberOfTrial();
         result.reInit();
+    }
+
+    public boolean isLastMoving() {
+        if (user.getPosition() == bridge.getSize()) {
+            result.updateIsSuccess();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public Result getResult() {
+        return result;
     }
 }
