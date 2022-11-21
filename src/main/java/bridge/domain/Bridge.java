@@ -25,7 +25,7 @@ public class Bridge {
     }
 
     public void connect(BridgeShape bridgeShape) {
-        bridgeShapes.add(bridgeShape);
+        this.bridgeShapes.add(bridgeShape);
     }
 
     public BridgeGameResult compare(Bridge compareBridge) {
@@ -68,11 +68,11 @@ public class Bridge {
             return false;
         }
         Bridge bridge = (Bridge) o;
-        return Objects.equals(bridgeShapes, bridge.bridgeShapes);
+        return Objects.equals(this.bridgeShapes, bridge.bridgeShapes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bridgeShapes);
+        return Objects.hash(this.bridgeShapes);
     }
 }
