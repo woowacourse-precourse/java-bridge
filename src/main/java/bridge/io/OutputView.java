@@ -1,6 +1,5 @@
 package bridge.io;
 
-import bridge.MSG;
 import bridge.game.BridgeGame;
 import bridge.model.Model;
 
@@ -26,18 +25,18 @@ public class OutputView {
 
 
     public static void printResult() {
-        System.out.println(MSG.OUTPUT_GAME_RESULT.message);
+        System.out.println(IO_message.OUTPUT_GAME_RESULT.message);
         printMap();
-        System.out.println(MSG.OUTPUT_PASS_FAIL.message + printGameResult());
-        System.out.println(MSG.OUTPUT_TOTAL_TRY_COUNT.message + BridgeGame.tryCount);
+        System.out.println(IO_message.OUTPUT_PASS_FAIL.message + printGameResult());
+        System.out.println(IO_message.OUTPUT_TOTAL_TRY_COUNT.message + BridgeGame.tryCount);
     }
     private static String printGameResult() {
         int lastIndexOfBridge = Model.upperBridgeMap.size()-1;
         String upperLast = Model.upperBridgeMap.get(lastIndexOfBridge);
         String lowerLast = Model.lowerBridgeMap.get(lastIndexOfBridge);
         if (upperLast.equals("O") || lowerLast.equals("O")) {
-            return MSG.RESULT_SCECESS.message;
+            return IO_message.RESULT_SCECESS.message;
         }
-        return MSG.RESULT_FAIL.message;
+        return IO_message.RESULT_FAIL.message;
     }
 }

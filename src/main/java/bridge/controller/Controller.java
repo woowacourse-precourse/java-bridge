@@ -5,7 +5,7 @@ import bridge.io.OutputView;
 
 import static bridge.game.GameState.*;
 import static bridge.io.InputView.*;
-import static bridge.MSG.INPUT_START;
+import static bridge.io.IO_message.INPUT_START;
 
 public class Controller {
 

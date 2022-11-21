@@ -1,18 +1,17 @@
 package bridge.io;
 
-import bridge.MSG;
 import camp.nextstep.edu.missionutils.*;
 
 public class InputView {
 
     public static int readBridgeSize() {
-        System.out.println(MSG.INPUT_BRIDGE_SIZE.message);
+        System.out.println(IO_message.INPUT_BRIDGE_SIZE.message);
         String bridgeSizeCommand = Console.readLine();
         try {
             validateBridgeSize(bridgeSizeCommand);
             return Integer.parseInt(bridgeSizeCommand);
         }catch (IllegalArgumentException e) {
-            System.out.println(MSG.ERR_001.message);
+            System.out.println(IO_message.ERR_001.message);
             return readBridgeSize();
         }
     }
@@ -25,13 +24,13 @@ public class InputView {
 
 
     public static String readMoving() {
-        System.out.println(MSG.INPUT_MOVING.message);
+        System.out.println(IO_message.INPUT_MOVING.message);
         String movingCommand = Console.readLine();
         try {
             validateMoving(movingCommand);
             return movingCommand;
         }catch (IllegalArgumentException e) {
-            System.out.println(MSG.ERR_002.message);
+            System.out.println(IO_message.ERR_002.message);
             return readMoving();
         }
     }
@@ -44,13 +43,13 @@ public class InputView {
 
 
     public static String readGameCommand() {
-        System.out.println(MSG.INPUT_GAME.message);
+        System.out.println(IO_message.INPUT_GAME.message);
         String gameCommand = Console.readLine();
         try {
             validateGame(gameCommand);
             return gameCommand;
         }catch (IllegalArgumentException e) {
-            System.out.println(MSG.ERR_003.message);
+            System.out.println(IO_message.ERR_003.message);
             return readGameCommand();
         }
     }
