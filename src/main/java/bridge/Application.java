@@ -46,11 +46,11 @@ public class Application {
     public static boolean inputBridgeState(BridgeGame bridgeGame) {
     	for(int order = 0; order < bridgeSize; order++) {      	
         	inputMoving = inputView.readMoving();
-        	if(!bridgeGame.move(inputMoving, madeBridge, order)) {
+        	if(!bridgeGame.move(inputMoving, madeBridge, order)) { // 다리를 더 이상 이동할 수 없는 경우(실패 한 경우)
         		currentStateBridge = outputView.getAndPrintCurrentStateBridge(bridgeGame.getUpDownBridgeList()); // 재시도나 quit종료를 하기 전에 현재 다리 상태 저장
         		return bridgeGame.retry(inputView.getRestartOrQuit());                   // 재시도할 경우 return true. 게임 종료의 경우 return false.
         	}
-        	outputView.printCurrentStateBridge(bridgeGame.getUpDownBridgeList());  // 현재 다리의 상태를 출력해줌
+        	outputView.printCurrentStateBridge(bridgeGame.getUpDownBridgeList());  // 현재 다리의 상태를 출력해줌(다리를 맞출 때마다)
         }
     	successBridgeState(bridgeGame);
     	return false;   // 다리를 다 건넜을 때 성공이므로(재시도가 아니므로) return false.
