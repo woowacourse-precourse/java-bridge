@@ -6,19 +6,32 @@ import bridge.controller.GameStatus;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.player.Player;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
 
+    private static final Bridge bridge = new Bridge(List.of("D", "D", "U"));
+    private static final Player player = new Player();
+    private static final GameStatus gameStatus = new GameStatus();
+    private static final BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
+
+    @AfterEach
+    void resetAllStatus() {
+        player.resetPlayerLocation();
+        player.setCross(true);
+
+        gameStatus.setSuccess(false);
+        gameStatus.setRunning(true);
+        gameStatus.setAttempt(1);
+    }
+
     @Test
     @DisplayName("플레이어가 선택한 칸으로 이동시키고 이동 결과를 저장한다.")
     void moveTest() {
         //given
-        Bridge bridge = new Bridge(List.of("D", "D", "U"));
-        BridgeGame bridgeGame = new BridgeGame(bridge, new Player(), new GameStatus());
-
         String playerSelection1 = "D";
         String playerSelection2 = "U";
 
@@ -44,11 +57,6 @@ class BridgeGameTest {
         @DisplayName("플레이어가 건널 수 없는 칸으로 이동한 것이라면 상태는 실패이다.")
         void case1() {
             //given
-            Bridge bridge = new Bridge(List.of("D", "D", "U"));
-            Player player = new Player();
-            GameStatus gameStatus = new GameStatus();
-            BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
-
             String playerSelection = "U";
 
             //when
@@ -62,11 +70,6 @@ class BridgeGameTest {
         @DisplayName("플레이어가 건널 수 있는 칸으로 이동한 것이라면 상태는 성공이다.")
         void case2() {
             //given
-            Bridge bridge = new Bridge(List.of("D", "D", "U"));
-            Player player = new Player();
-            GameStatus gameStatus = new GameStatus();
-            BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
-
             String playerSelection = "D";
 
             //when
@@ -84,17 +87,9 @@ class BridgeGameTest {
         @Test
         @DisplayName("플레이어가 다리 끝까지 건너면 성공이다.")
         void case1() {
-            //given
-            Bridge bridge = new Bridge(List.of("D", "D", "U"));
-
-            Player player = new Player();
             player.movePlayerLocation();
             player.movePlayerLocation();
             player.movePlayerLocation();
-
-            GameStatus gameStatus = new GameStatus();
-
-            BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
 
             //when
             boolean clearResult = bridgeGame.isClear();
@@ -108,15 +103,8 @@ class BridgeGameTest {
         @DisplayName("플레이어가 다리 끝까지 건너지 못하면 실패이다.")
         void case2() {
             //given
-            Bridge bridge = new Bridge(List.of("D", "D", "U"));
-
-            Player player = new Player();
             player.movePlayerLocation();
             player.movePlayerLocation();
-
-            GameStatus gameStatus = new GameStatus();
-
-            BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
 
             //when
             boolean clearResult = bridgeGame.isClear();
@@ -131,12 +119,6 @@ class BridgeGameTest {
     @DisplayName("플레이어가 재시작 선택 시 게임 결과와 플레이어의 상태가 초기화 되고, 게임 시도 횟수가 증가한다.")
     void retryTest() {
         //given
-        Bridge bridge = new Bridge(List.of("D", "D", "U"));
-
-        Player player = new Player();
-
-        GameStatus gameStatus = new GameStatus();
-        BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
         bridgeGame.move("D");
 
         int beforeRetryPlayerLocation = player.getPlayerLocation();
