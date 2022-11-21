@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.exception.BridgeSizeException;
 import bridge.exception.UserException;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -12,7 +13,11 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println("다리의 길이를 입력해 주세요");
+        UserException bridgeSizeException = new BridgeSizeException();
+        String bridgeSize = checkInput(bridgeSizeException);
+        System.out.println();
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
