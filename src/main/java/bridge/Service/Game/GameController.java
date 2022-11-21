@@ -15,11 +15,11 @@ public class GameController {
     private InputView inputView = new InputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeGame bridgeGame;
-    private static int trials = 1;
+    private int trials = 1;
 
     public void start() {
         outputView.gameStartMessage(); //게임시작 메시지
-        int size = askBridgeSize(); //다리 사이즈 입력
+        int size = inputView.askBridgeSize(); //다리 사이즈 입력
         List<String> answer_bridge = bridgeMaker.makeBridge(size);//다리 생성
         bridgeGame = new BridgeGame(answer_bridge); //게임 관리 클래스 생성
         while (true) {
@@ -37,10 +37,12 @@ public class GameController {
         }
         return false;
     }
-    private boolean userRetry(){
-        String command = askRestart();
+
+    private boolean userRetry() {
+        String command = inputView.askRestart();
         return checkRetry(command);
     }
+
     private boolean checkRetry(String command) {
         if (command.equals("R")) {  //R 입력시 재시작
             bridgeGame.retry();
@@ -54,55 +56,15 @@ public class GameController {
     private void move() {
         boolean isEnd = false;
         while (!isEnd) {
-            String way = askMoving();   //input move 방향
+            String way = inputView.askMoving();   //input move 방향 입력
             move1Step(way);
             isEnd = bridgeGame.isEnd();
         }
     }
 
     private void move1Step(String way) {
-        //move
         bridgeGame.move(way);
-        //printMap
         outputView.printMap(bridgeGame);
     }
 
-    private int askBridgeSize() {
-        try {
-            outputView.bridgeSizeMessage();
-            return inputView.readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return askBridgeSize();
-        } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
-            return askBridgeSize();
-        }
-    }
-
-    private String askMoving() {
-        try {
-            outputView.moveMessage();//move message 출력
-            return inputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return askMoving();
-        } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
-            return askMoving();
-        }
-    }
-
-    private String askRestart() {
-        try {
-            outputView.restartMessage();
-            return inputView.readGameCommand();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return askRestart();
-        } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
-            return askRestart();
-        }
-    }
 }

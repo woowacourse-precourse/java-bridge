@@ -1,6 +1,6 @@
 package bridge.UI;
 
-import bridge.Exception.Exceptions;
+import bridge.UI.Exception.Exceptions;
 import bridge.Service.Validation.ValidCheck;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -9,10 +9,23 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private OutputView outputView;
 
     /**
      * 다리의 길이를 입력받는다.
      */
+    public int askBridgeSize() {
+        try {
+            outputView.bridgeSizeMessage();
+            return readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askBridgeSize();
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+            return askBridgeSize();
+        }
+    }
     public int readBridgeSize() {
         String size_str = readLine();
         if (!ValidCheck.isString_in_1to9(size_str))
@@ -26,6 +39,18 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
+    public String askMoving() {
+        try {
+            outputView.moveMessage();//move message 출력
+            return readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askMoving();
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+            return askMoving();
+        }
+    }
     public String readMoving() {
         String command = readLine();
         if (!ValidCheck.isUorD(command))
@@ -38,6 +63,18 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
+    public String askRestart() {
+        try {
+            outputView.restartMessage();
+            return readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askRestart();
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+            return askRestart();
+        }
+    }
     public String readGameCommand() {
         String command = readLine();
         if (!ValidCheck.isRorQ(command))
@@ -46,4 +83,6 @@ public class InputView {
             throw new IllegalArgumentException(Exceptions.NotCorrectSize.getMessage());
         return command;
     }
+
+
 }

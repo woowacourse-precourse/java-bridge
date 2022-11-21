@@ -9,6 +9,22 @@ import java.util.List;
  */
 public class OutputView {
 
+    public void gameStartMessage() {
+        System.out.println(Message.Game_Start.getMessage());
+    }
+
+    public void bridgeSizeMessage() {
+        System.out.println(Message.Bridge_Size_Input.getMessage());
+    }
+
+    public void moveMessage() {
+        System.out.println(Message.Move_Input.getMessage());
+    }
+
+    public void restartMessage() {
+        System.out.println(Message.Restart_Input.getMessage());
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -53,19 +69,4 @@ public class OutputView {
         System.out.println(Message.Trials.getMessage() + trials);
     }
 
-    public void gameStartMessage() {
-        System.out.println(Message.Game_Start.getMessage());
-    }
-
-    public void bridgeSizeMessage() {
-        System.out.println(Message.Bridge_Size_Input.getMessage());
-    }
-
-    public void moveMessage() {
-        System.out.println(Message.Move_Input.getMessage());
-    }
-
-    public void restartMessage() {
-        System.out.println(Message.Restart_Input.getMessage());
-    }
 }
