@@ -25,8 +25,8 @@ public class Controller {
         String quit;
         outputView.printGameStart();
          do{
-            outputView.printBridgeSize();
-            int size = inputView.readBridgeSize();
+            outputView.printBridgeSize(); //
+            int size = inputView.readBridgeSize();///
             List<String> bridge = bridgeMaker.makeBridge(size);
 
             quit = whileQuitIsR(bridge);
@@ -46,8 +46,8 @@ public class Controller {
     }
 
     public void printResult(String failed, int attempt) {
-        outputView.printResult(bridgeGame.toString());
-        outputView.gameAttemptCount(failed, attempt);
+        outputView.printResult(bridgeGame.toString());//
+        outputView.gameAttemptCount(failed, attempt);//
     }
     public String crossingBridge(List<String> bridge) {
         clearBridges();
@@ -60,10 +60,10 @@ public class Controller {
 
     public String successCrossingBridge(List<String> bridge) {
         for (String s : bridge) {
-            outputView.printWhereToMove();
-            String direction = inputView.readMoving();
+            outputView.printWhereToMove();//
+            String direction = inputView.readMoving();///
             List<List<String>> bridges = bridgeGame.move(direction, s);
-            outputView.printMap(bridgeGame.toString());
+            outputView.printMap(bridgeGame.toString());//
             if (endOfTheGame(bridges).equals(FAILED.getValue())) {
                 return FAILED.getValue();
             }
@@ -85,8 +85,8 @@ public class Controller {
         String quit;
 
         if(failed.equals(FAILED.getValue())) {
-            outputView.askRestartGame();
-            quit = inputView.readGameCommand();
+            outputView.askRestartGame();//
+            quit = inputView.readGameCommand();///
             return quit;
         }
         quit = QUIT.getValue();
