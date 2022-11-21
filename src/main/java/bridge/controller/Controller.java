@@ -53,4 +53,16 @@ public class Controller {
         System.out.println();
     }
 
+    public boolean askRestart(){
+        String command=inputView.readGameCommand();
+        if(command.matches("R")){
+            return true;
+        }
+        return false;
+    }
+
+    public void printResult(){
+        outputView.printResult(singleMap);
+    }
+
 }
