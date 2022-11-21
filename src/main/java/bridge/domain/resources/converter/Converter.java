@@ -1,4 +1,4 @@
-package bridge.utils.converter;
+package bridge.domain.resources.converter;
 
 public interface Converter<Integer, T> {
 
