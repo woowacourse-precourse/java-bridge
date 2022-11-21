@@ -1,36 +1,37 @@
 package bridge;
 
-import java.util.List;
-
-import static bridge.MoveType.X;
 
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
+    private int tryCount;
+    private String success;
 
     public Controller(InputView input, OutputView output, BridgeRandomNumberGenerator generator) {
         this.inputView = input;
         this.outputView = output;
         this.bridgeMaker = new BridgeMaker(generator);
+        this.tryCount = 0;
     }
 
     public void startGame() {
         outputView.printGameStart();
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
-        int tryCount = 0;
-        int index = 0;
-        List<String> upBridge;
-        List<String> downBridge;
-        while (index < bridgeSize) {
-            String move = inputView.readMoving();
-            bridgeGame.move(move, index);
-            index += 1;
-            upBridge = bridgeGame.getUpBridge();
-            downBridge = bridgeGame.getDownBridge();
-            outputView.printMap(upBridge);
-            outputView.printMap(downBridge);
+        tryGame(bridgeSize, bridgeGame);
+        tryCount += 1;
+    }
+
+    private void tryGame(int bridgeSize, BridgeGame bridgeGame) {
+        while (bridgeGame.getIndex() < bridgeSize && !bridgeGame.getIsQuit()) {
+            String direction = inputView.readMoving();
+            bridgeGame.move(direction);
+            outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+            if (!bridgeGame.isFailed()) continue;
+            String command = inputView.readGameCommand();
+            if (!isRetry(bridgeGame, command)) break;
+            bridgeGame.retry();
         }
     }
 
