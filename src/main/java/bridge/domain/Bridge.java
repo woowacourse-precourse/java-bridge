@@ -1,22 +1,32 @@
 package bridge.domain;
 
+import bridge.validator.PositionValidator;
+
 import java.util.List;
 
 public class Bridge {
-    final List<String> bridge; // U D U U
+    final List<String> bridge;
+    PositionValidator positionValidator;
 
-    public Bridge(List<String> bridge) {
+    private Bridge(List<String> bridge) {
         this.bridge = bridge;
+        this.positionValidator = new PositionValidator(bridge.size());
     }
 
-    boolean isEndOfBridge(int position) {// bridgeIndex
+    public static Bridge from(List<String> bridge){
+        return new Bridge(bridge);
+    }
+
+    boolean isEndOfBridge(int position) {
+        positionValidator.validatePosition(position);
         if (position == bridge.size()) {
             return true;
         }
         return false;
     }
 
-    boolean isMovable(String moveCommand, int position) { // U 1, D 2 : direction, bridgeIndex
+    boolean isMovable(String moveCommand, int position) {
+        positionValidator.validatePosition(position);
         if (bridge.get(position).equals(moveCommand)) {
             return true;
         }
@@ -24,6 +34,7 @@ public class Bridge {
     }
 
     MoveResult getMoveResult(String moveCommand, int position) {
+        positionValidator.validatePosition(position);
         if (isMovable(moveCommand, position)) {
             return MoveResult.SUCCESS;
         }

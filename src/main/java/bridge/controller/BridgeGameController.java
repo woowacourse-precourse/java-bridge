@@ -48,7 +48,7 @@ public class BridgeGameController {
         BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
         int bridgeSize = bridgeSizeValidator.getValidBridgeSize(inputView.readBridgeSize());
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        return Bridge.from(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public String getMoveCommand() {
