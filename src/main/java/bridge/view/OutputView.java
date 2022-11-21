@@ -1,7 +1,8 @@
-package bridge;
+package bridge.view;
+
+import bridge.information.PaintingInformation;
 
 import java.util.List;
-import java.util.Stack;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -23,6 +24,7 @@ public class OutputView {
      */
     public void printMap(List<String> line1, List<String> line2) {
         printLine1Middle(line1);
+        System.out.println();
         printLine2Middle(line2);
     }
 
@@ -34,7 +36,6 @@ public class OutputView {
             }
             System.out.print(line1.get(i));
         }
-        System.out.println();
     }
 
     private void printLine2Middle(List<String> line2){
@@ -70,6 +71,7 @@ public class OutputView {
     }
 
     public void printSuccessResult(int attemp){
+        System.out.println(RESULT_GAME);
         System.out.println(GAME_RESULT_SUCCESS_OR_FAILURE_MESSAGE + SUCCESS);
         System.out.println(TOTAL_ATTEMP_MESSAGE + attemp);
     }
