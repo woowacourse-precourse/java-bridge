@@ -6,6 +6,7 @@ import bridge.config.InvalidMoveException;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -55,6 +56,16 @@ public class BridgeGameTest {
         assertThatThrownBy(
                 () -> moveDirections.forEach(d -> bridgeGame.move(Direction.of(d)))
         ).isInstanceOf(InvalidMoveException.class);
+    }
+
+    @DisplayName("이동에 실패한 후 재시작하는 경우 상태 초기화")
+    @Test
+    public void gameRetryTest() {
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "D", "D")));
+        bridgeGame.move(Direction.DOWN);
+        assertThat(bridgeGame.getStatus()).isEqualTo(GameStatus.LOSE);
+        bridgeGame.retry();
+        assertThat(bridgeGame.getStatus()).isEqualTo(GameStatus.RUNNING);
     }
 
     private static Stream<Arguments> generateWinMoves() {
