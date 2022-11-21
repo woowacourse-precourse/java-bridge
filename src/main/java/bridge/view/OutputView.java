@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.Map;
 import bridge.Move;
 
 import java.util.List;
@@ -21,12 +22,6 @@ public class OutputView {
     public static final String failMessage = "실패";
     public static final String totalTriesMessage = "총 시도한 횟수: ";
 
-    public static final String mapStart = "[ ";
-    public static final String mapEnd = " ]";
-    public static final String mapSeparator = " | ";
-    public static final String mapRight = "O";
-    public static final String mapWrong = "X";
-    public static final String mapBlank = " ";
 
     public void printMessage(String message){
         System.out.println(message);
@@ -64,20 +59,26 @@ public class OutputView {
 
     public String createMapByLine(List<String> totalMove, List <String> bridge, String type){
         String mapResult = "";
-        mapResult = mapResult+mapStart;
+        mapResult = mapResult+ Map.MAP_START.getStringToAdd();
         for(int i=0; i<totalMove.size(); i++){
             String selectedCurMove = totalMove.get(i);
             String bridgeCurMove = bridge.get(i);
-            if(!selectedCurMove.equals(type))
-                mapResult = mapResult+mapBlank;
-            if(selectedCurMove.equals(type) && selectedCurMove.equals(bridgeCurMove))
-                mapResult = mapResult+mapRight;
-            if(selectedCurMove.equals(type) && !selectedCurMove.equals(bridgeCurMove))
-                mapResult = mapResult+mapWrong;
-            if(i!=(totalMove.size()-1))
-                mapResult = mapResult+mapSeparator;
+            mapResult = mapResult + getMapContent(selectedCurMove, bridgeCurMove, totalMove.size(), i, type);
         }
-        mapResult = mapResult+mapEnd;
+        mapResult = mapResult+Map.MAP_END.getStringToAdd();
         return mapResult;
     }
+    public String getMapContent(String selectedCurMove, String bridgeCurMove, int totalMoveSize, int curInd, String type) {
+        String content = "";
+        if(!selectedCurMove.equals(type))
+            content = content+Map.MAP_BLANK.getStringToAdd();
+        if(selectedCurMove.equals(type) && selectedCurMove.equals(bridgeCurMove))
+            content = content+Map.MAP_RIGHT.getStringToAdd();
+        if(selectedCurMove.equals(type) && !selectedCurMove.equals(bridgeCurMove))
+            content = content+Map.MAP_WRONG.getStringToAdd();
+        if(curInd!=(totalMoveSize-1))
+            content = content+Map.MAP_SEPARATOR.getStringToAdd();
+        return content;
+    }
+
 }
