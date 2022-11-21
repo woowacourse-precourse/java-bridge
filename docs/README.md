@@ -91,3 +91,6 @@
 - [x] InputValidatorTest 리팩토링
 
 - [x] routeMap -> playerMap 이름 변경
+
+- [x] 다리 건너기 게임을 초기화하는 클래스 추가
+- [ ] 게임 진행 클래스에서 게임 초기화 기능 분리
