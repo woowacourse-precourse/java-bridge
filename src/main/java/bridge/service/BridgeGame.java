@@ -17,6 +17,14 @@ public class BridgeGame {
     public void move() {
     }
 
+    private void isCorrectCell(String answer, String command) {
+        if (answer.equals(command)) {
+            return;
+        }
+
+        retry();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
