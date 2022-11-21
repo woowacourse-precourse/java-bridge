@@ -44,15 +44,15 @@ public class OutputView {
 
     private String compareBridgeBlock(String bridgeBlock, String comparatorBridgeBlock) {
         if (bridgeBlock.equals(comparatorBridgeBlock)) {
-            return "O";
+            return " O ";
         }
-        return " ";
+        return "   ";
     }
 
     private String compareFailBridgeBlock(String bridgeBlock, String comparatorBridgeBlock, boolean isFail) {
         if (bridgeBlock.equals(comparatorBridgeBlock) && isFail) {
-            return "X";
+            return " X ";
         }
-        return " ";
+        return "   ";
     }
 }
