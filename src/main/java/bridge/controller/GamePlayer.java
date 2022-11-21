@@ -22,23 +22,23 @@ public class GamePlayer {
     public void play() {
         this.bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         this.bridgeGame.setBridge(bridge);
+        System.out.println(this.bridge);
         bridgeStatus.initBridgeStatus();
         crossingBridge();
     }
     private void crossingBridge() {
-        boolean failFlag = true;
+        boolean successFlag = true;
         for(String space: this.bridge) {
-            failFlag = this.bridgeGame.move(inputView.readMoving(), space);
+            successFlag = this.bridgeGame.move(inputView.readMoving(), space);
             outputView.printMap(bridgeStatus.getUpBridgeStatus(), bridgeStatus.getDownBridgeStatus());
-            if(!failFlag) {
+            if(!successFlag) {
                 break;
             }
         }
-        retryOrExit(failFlag);
+        retryOrExit(successFlag);
     }
-
-    private void retryOrExit(boolean fail) {
-        if(fail) //성공
+    private void retryOrExit(boolean success) {
+        if(success) outputView.printResult();
         gameRetry.retryOrQuit(inputView.readGameCommand());
     }
 }
