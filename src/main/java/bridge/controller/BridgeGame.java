@@ -1,14 +1,19 @@
 package bridge.controller;
 
+import bridge.domain.Game;
+import bridge.service.GameService;
 import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public void start() {
+    private static GameService gameService;
+
+    public Game start() {
         OutputView.messageGameStart();
         OutputView.messageLengthInput();
+        return gameService.initializeGame();
     }
 
     /**
