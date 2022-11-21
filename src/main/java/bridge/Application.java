@@ -51,14 +51,14 @@ public class Application {
         tryCount++;
         tryGame();
 
-        if(BridgeGame.playerStep.size() < bridge.size())
+        if(bridgeGame.step.size() < bridge.size())
             checkRetry();
     }
 
     private static void tryGame(){
         stepCorrect = true;
 
-        while(stepCorrect && BridgeGame.playerStep.size() < bridge.size()){
+        while(stepCorrect && bridgeGame.step.size() < bridge.size()){
             moveBridge();
         }
     }
