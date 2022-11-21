@@ -27,7 +27,7 @@ public class BridgeMap {
     }
     public Boolean validate(String map){
         for(BridgeIngredient ingredient : BridgeIngredient.values()){
-            if(ingredient.getIngredient().equals(map)){ //TODO: 추후에 변경 예정
+            if(ingredient.getIngredient().equals(map)){ // TODO: 추후에 변경 예정
                 return true;
             }
         }

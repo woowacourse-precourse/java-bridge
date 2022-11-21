@@ -1,37 +1,45 @@
 package bridge.service;
 
+import bridge.dto.BridgeMapDto;
+import bridge.dto.PlayerDto;
+import bridge.dto.RetryCountDto;
 import bridge.model.entity.*;
 import bridge.model.value.BridgeIngredient;
 
 import java.util.List;
 
+import static bridge.model.value.BridgeIngredient.*;
+import static bridge.model.value.MatchMessage.*;
+import static bridge.model.value.RetryMessage.Quit;
+import static bridge.model.value.RetryMessage.Retry;
+
 /**
 
  */
-public class BridgeGame {
+public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한다.
 
     private Player player;
     private BridgeMap bridgeMap;
     private  Bridge bridge;
+    private RetryCount retryCount;
 
-
-    public Player getPlayer() {
+    public PlayerDto getPlayer() {
+        return PlayerDto.of(player);
         return player;
     }
-
-    public BridgeMap getBridgeMap() {
+    public BridgeMapDto getBridgeMap() {
+        return BridgeMapDto.of(bridgeMap);
         return bridgeMap;
     }
 
     public Bridge getBridge() {
         return bridge;
     }
+    public RetryCountDto getRetryCount() {
+        return RetryCountDto.of(retryCount);
+    }
 
-    /**
-     - [ ] `"U"`, `"D"` 문자 정답과 비교
-     - [ ] 일치, 불일치 맵 추가 "O", "X" , " "
-     *
-     */
+
     public void createBridge(List<String> answer) {
         this.bridge = Bridge.of(answer);
     }
@@ -41,12 +49,16 @@ public class BridgeGame {
     public void createPlayer() {
         this.player = Player.of();
     }
+    public void createCount() {
+        this.retryCount = RetryCount.of();
+    }
+
+
     public void move(String readMove) {
         //문자가 U, D를 입력 받고 일치하는지 확인
         Move move = Move.of(readMove);
         checkMove(bridgeMap.getIndex(), move.getMove());
     }
-
     public Boolean checkMove(int index, String move) { //정답과 일치하는지 확인
         updateIndex(index); //TODO: Refactoring 해줄 것 return type 없앨 수 있는 방향 생각하기
         if(bridge.getAnswer().get(index).equals(move)){
