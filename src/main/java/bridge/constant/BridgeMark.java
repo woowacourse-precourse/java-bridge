@@ -15,6 +15,10 @@ public enum BridgeMark {
         this.mark = mark;
     }
 
+    public static void validateInput(String mark) {
+        BridgeMark.of(mark);
+    }
+
     public static List<BridgeMark> of(List<String> marks) {
         return marks.stream()
                 .map(BridgeMark::of)
@@ -24,14 +28,6 @@ public enum BridgeMark {
     public static BridgeMark of(String mark) {
         return Arrays.stream(BridgeMark.values())
                 .filter(bridgeMark -> bridgeMark.isEqualMark(mark))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_MOVING_MARK));
-    }
-
-    public static void validateInput(String mark) {
-        Arrays.stream(BridgeMark.values())
-                .map(BridgeMark::getMark)
-                .filter(s -> s.equals(mark))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_MOVING_MARK));
     }
