@@ -22,14 +22,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(int result, int total, String resultStage) {
+    public void printResult(int result, int total, String resultStage) {
         System.out.println(GAME_FINAL.key());
         printMap(resultStage);
         successGamePrint(result);
         challengeTotal(total);
     }
 
-    public static void successGamePrint(int result) {
+    public void successGamePrint(int result) {
         if (result == GAME_WIN.num()) {
             System.out.println(SUCCESS_GAME.key() + "성공");
         }
@@ -38,23 +38,23 @@ public class OutputView {
         }
     }
 
-    public static void challengeTotal(int total) {
+    public void challengeTotal(int total) {
         System.out.println(CHALLENGE.key() + String.valueOf(total));
     }
 
-    public static void printGameStart() {
+    public void printGameStart() {
         System.out.println(GAME_START.key());
     }
 
-    public static void printAskMoving() {
+    public void printAskMoving() {
         System.out.println(ASK_MOVING.key());
     }
 
-    public static void printAskCommand() {
+    public void printAskCommand() {
         System.out.println(ASK_COMMAND.key());
     }
 
-    public static void printAskLength() {
+    public void printAskLength() {
         System.out.println(ASK_BRIDGE_LENGTH.key());
     }
 

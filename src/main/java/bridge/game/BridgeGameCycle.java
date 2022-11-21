@@ -1,19 +1,19 @@
 package bridge.game;
 
-import bridge.util.BridgeMaker;
-import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
-import java.util.List;
-
-import static bridge.enums.IntEnum.*;
-import static bridge.enums.StringEnum.*;
-import static bridge.view.OutputView.*;
+import static bridge.config.BridgeAppConfig.*;
+import static bridge.enums.IntEnum.GAME_LOSE;
+import static bridge.enums.IntEnum.GAME_WIN;
+import static bridge.enums.StringEnum.QUIT;
+import static bridge.view.OutputView.printMap;
 
 public class BridgeGameCycle {
+    private static final InputView inputView = inputView();
+    private static final OutputView outputView = outputView();
     private static final boolean CONTINUE = true;
     private static final boolean FINISH = false;
-    private static final InputView inputView = new InputView();
     private int coin = 1;
     private int bridgeLength;
     private int nowState;
@@ -27,74 +27,77 @@ public class BridgeGameCycle {
     }
 
     private void afterGame() {
-        printResult(nowState, coin, finalMap);
+        outputView.printResult(nowState, coin, finalMap);
     }
 
     private void beforeGame() {
-        printGameStart();
+        outputView.printGameStart();
         bridgeLength = checkReadBridgeSize();
     }
-    private int checkReadBridgeSize(){
-        while(CONTINUE){
-            try{
-                printAskLength();
+
+    private int checkReadBridgeSize() {
+        while (CONTINUE) {
+            try {
+                outputView.printAskLength();
                 return inputView.readBridgeSize();
-            }catch (IllegalArgumentException exception){
+            } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
-    private int oneTurnCycle(BridgeGame game) {
+
+    private int oneTurnCycle(BridgeGame bridgeGame) {
         String inputMoving = checkReadMoving();
-        int nowState = game.move(inputMoving);
-        finalMap = game.nowBridgeStage(nowState);
+        int nowState = bridgeGame.move(inputMoving);
+        finalMap = bridgeGame.nowBridgeStage(nowState);
         printMap(finalMap);
         return nowState;
     }
-    private String checkReadMoving(){
-        while(CONTINUE){
-            try{
-                printAskMoving();
+
+    private String checkReadMoving() {
+        while (CONTINUE) {
+            try {
+                outputView.printAskMoving();
                 return inputView.readMoving();
-            }catch (IllegalArgumentException exception){
+            } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
+
     private String askInputCommand() {
-        printAskCommand();
+        outputView.printAskCommand();
         return inputView.readGameCommand();
     }
 
-    private boolean loseCycle(BridgeGame game) {
+    private boolean loseCycle(BridgeGame bridgeGame) {
         if (nowState == GAME_LOSE.num()) {
             String inputCommand = checkInputCommand();
             if (inputCommand.equals(QUIT.key())) {
                 return FINISH;
             }
             coin++;
-            game.retry();
+            bridgeGame.retry();
         }
         return CONTINUE;
     }
 
     private String checkInputCommand() {
-        while(CONTINUE){
-            try{
-                return  askInputCommand();
-            }catch (IllegalArgumentException exception){
+        while (CONTINUE) {
+            try {
+                return askInputCommand();
+            } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
 
     private void brideGamePlay() {
-        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeLength);
-        BridgeGame game = new BridgeGame(bridge);
+        BridgeGame bridgeGame = bridgeGame(bridgeLength);
         while (CONTINUE) {
-            nowState = oneTurnCycle(game);
+            nowState = oneTurnCycle(bridgeGame);
             if (nowState == GAME_WIN.num()) break;
-            if (!loseCycle(game)) break;
+            if (!loseCycle(bridgeGame)) break;
         }
     }
 }

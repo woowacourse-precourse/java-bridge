@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.config.BridgeAppConfig;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ class InputViewTest {
     private InputView inputView;
     @BeforeEach
     public void beforeEach(){
-        inputView = new InputView();
+        inputView = BridgeAppConfig.inputView();
     }
     @Test
     public void bridgeInputRangeTest() throws Exception{
