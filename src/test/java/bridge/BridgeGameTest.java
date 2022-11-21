@@ -88,4 +88,17 @@ class BridgeGameTest {
         // then
         assertThat(bridgeGame.getCountOfRound()).isEqualTo(round);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4, 5})
+    void isCountOfRoundLessThan(int bridgeSize) {
+        // given
+        BridgeGame bridgeGame = new BridgeGame();
+
+        // when
+        boolean result = bridgeGame.isCountOfRoundLessThan(bridgeSize);
+
+        // then
+        assertTrue(result);
+    }
 }
