@@ -53,6 +53,7 @@ public class InputConfig {
     private void isUpOrDown(String input) {
         String up = Command.UP.getAbbreviation();
         String down = Command.DOWN.getAbbreviation();
+
         if (!(input.equals(up) || input.equals(down))) {
             String errMsg = String.format(INVALID_INPUT_ERROR, up, down);
             throw new IllegalArgumentException(errMsg);
@@ -62,6 +63,7 @@ public class InputConfig {
     private void isRetryOrQuit(String input) {
         String retry = Command.RETRY.getAbbreviation();
         String quit = Command.QUIT.getAbbreviation();
+
         if (!(input.equals(retry) || input.equals(quit))) {
             String errMsg = String.format(INVALID_INPUT_ERROR, retry, quit);
             throw new IllegalArgumentException(errMsg);
