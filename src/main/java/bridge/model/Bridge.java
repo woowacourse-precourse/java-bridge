@@ -16,9 +16,9 @@ public class Bridge {
         return Collections.unmodifiableList(bridge);
     }
 
-    public Boolean isFinalRound(int currentRoundNumber) {
-        int finalRound = bridge.size() - 1;
-        return currentRoundNumber <= finalRound;
+    public Boolean isRoundLeft(int currentRoundNumber) {
+        int finalRound = bridge.size();
+        return currentRoundNumber < finalRound;
     }
 
     public void addCurrentRoundNumber() {

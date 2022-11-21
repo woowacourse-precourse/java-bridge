@@ -1,8 +1,5 @@
 package bridge.model;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Score;
 
 import java.util.List;
@@ -71,9 +68,9 @@ public class BridgeGame {
         return !isFail();
     }
 
-    public Boolean isFinalRound() {
+    public Boolean isRoundLeft() {
         int currentRoundNumber = bridge.getCurrentRoundNumber();
-        return bridge.isFinalRound(currentRoundNumber);
+        return bridge.isRoundLeft(currentRoundNumber);
     }
 
     public Boolean isGameRestart(String userChoice) {
