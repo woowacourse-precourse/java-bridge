@@ -27,7 +27,6 @@ public class BridgeGame {
             move(history, bridge);
             historyCount++;
             if(historyCount == bridge.size() && history.get(step).equals(stair)){
-//                retry(bridge,true);
                 outputView.printResult(true,++gameCount);
             }
         }

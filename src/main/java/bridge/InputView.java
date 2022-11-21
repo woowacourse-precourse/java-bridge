@@ -1,5 +1,6 @@
 package bridge;
-import camp.nextstep.edu.missionutils.Console;
+
+import bridge.Validation.InputValidate;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -7,13 +8,21 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final InputValidate inputValidate;
+
+    public InputView() {
+        inputValidate = new InputValidate();
+    }
+
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        return Integer.parseInt(readLine());
+        int length = Integer.parseInt(readLine());
+        inputValidate.validateSizeFormat(length);
+        return length;
     }
 
     /**
@@ -21,7 +30,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return readLine();
+        String moving = readLine();
+        inputValidate.validateMovingFormat(moving);
+        return moving;
     }
 
     /**
@@ -29,6 +40,8 @@ public class InputView {
      */
     public String readGameCommand(){
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return readLine();
+        String gameCommend = readLine();
+        inputValidate.validateGameCommendFormat(gameCommend);
+        return gameCommend;
     }
 }
