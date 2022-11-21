@@ -1,4 +1,4 @@
-package bridge.util.validator;
+package bridge.util;
 
 @FunctionalInterface
 public interface Validator<T> {
