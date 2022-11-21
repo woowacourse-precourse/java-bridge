@@ -12,7 +12,7 @@ public class BridgeGame {
     private List<String> userList ; //
     private int bridgeSize;
     public BridgeGame() {
-        userList = new ArrayList<>(List.of());
+        this.userList = new ArrayList<>(List.of());
         this.bridgeSize = 0;
     }
 
@@ -67,5 +67,9 @@ public class BridgeGame {
     public Bridge getBridgeInstance(){
         setBridgeSize(bridge.getTargetBridge().size());
         return bridge;
+    }
+
+    public void resetUserList() {
+        this.userList = new ArrayList<>(List.of());
     }
 }

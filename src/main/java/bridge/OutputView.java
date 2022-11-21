@@ -33,7 +33,8 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + output);
     }
 
-    public void printResultTotalMap(List<String> result,int size) {
-
+    public void printResultTotalMap(List<String> result, int size) {
+        System.out.println(result);
+        System.out.println(size);
     }
 }

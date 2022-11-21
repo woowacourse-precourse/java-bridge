@@ -13,6 +13,7 @@ public class InputView {
         String userInputConsole=readUserInput();
         int userInput = Integer.parseInt(userInputConsole);
         //need validate
+        System.out.println(" ");
         return userInput;
     }
 
@@ -21,7 +22,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return readUserInput();
+        String userInput =readUserInput();
+        System.out.println(" ");
+        return userInput;
     }
 
     /**
