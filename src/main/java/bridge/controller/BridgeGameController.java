@@ -37,6 +37,14 @@ public class BridgeGameController {
                 outputView.printResult(movingType, bridgeGame.getTrial());
                 break;
             }
+            if (movingType.getState().equals("실패")) {
+                if (inputView.readGameCommand().equals(CommandType.QUIT.getCommands())) {
+                    System.out.println("최종 게임 결과");
+                    outputView.printMap(bridgeGame.getMoveLog());
+                    outputView.printResult(movingType, bridgeGame.getTrial());
+                    break;
+                }
+            }
         }
     }
 
