@@ -3,6 +3,8 @@ package bridge.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,31 +14,24 @@ class BridgeMakerTest {
 
 
     BridgeMaker bridgeMaker;
-    private final int size = 10;
+    private List<Integer> testNumbers;
 
     @BeforeEach
     void init(){
-        bridgeMaker = new BridgeMaker(new BridgeTestNumberGenerator());
+        testNumbers = new ArrayList<>(Arrays.asList(0,1,0,1));
+        bridgeMaker = new BridgeMaker(new BridgeTestNumberGenerator(testNumbers));
     }
 
     @Test
     void checkBridgeSize(){
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        assertThat(bridge.size()).isEqualTo(size);
+        List<String> bridge = bridgeMaker.makeBridge(testNumbers.size());
+        assertThat(bridge.size()).isEqualTo(4);
     }
 
     @Test
-    void checkBridgeHasOnlyD(){
-        int size = 10;
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        assertThat(bridge.contains("U")).isEqualTo(false);
-    }
-
-    @Test
-    void checkBridgeListBySameStringList(){
-        int size = 10;
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        assertThat(bridge).isEqualTo(List.of("D","D","D","D","D","D","D","D","D","D"));
+    void checkBridgeBySameStringList(){
+        List<String> bridge = bridgeMaker.makeBridge(testNumbers.size());
+        assertThat(bridge).isEqualTo(List.of("D","U","D","U"));
     }
 
 }
