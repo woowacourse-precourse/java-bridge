@@ -3,7 +3,8 @@ package bridge.view;
 import static bridge.view.ErrorMessage.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import bridge.model.BridgeControlType;
+import bridge.model.BridgeStatus;
+import bridge.model.GameStatus;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -25,7 +26,7 @@ public class InputView {
      */
     public String readMoving() {
         String move = readLine();
-        validateBridgeControlType(move, BridgeControlType.UP.getCommand(), BridgeControlType.DOWN.getCommand());
+        validateBridgeControlType(move);
         return move;
     }
 
@@ -34,7 +35,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = readLine();
-        validateGameRetryType(command, BridgeControlType.RETRY.getCommand(), BridgeControlType.QUIT.getCommand());
+        validateGameRetryType(command);
         return command;
     }
 
@@ -52,15 +53,15 @@ public class InputView {
         }
     }
 
-    private void validateBridgeControlType(String text, String word1, String word2) {
-        if (!text.equals(word1) || !text.equals(word2)) {
-            throw new IllegalArgumentException(String.format(ERROR_HEADER + VALIDATE_BRIDGE_MOVE, word1, word2));
+    private void validateBridgeControlType(String text) {
+        if (!text.equals(BridgeStatus.UP.getCommand()) && !text.equals(BridgeStatus.DOWN.getCommand())) {
+            throw new IllegalArgumentException(ERROR_HEADER + VALIDATE_BRIDGE_MOVE);
         }
     }
 
-    private void validateGameRetryType(String text, String word1, String word2) {
-        if (!text.equals(word1) || !text.equals(word2)) {
-            throw new IllegalArgumentException(String.format(ERROR_HEADER + VALIDATE_GAME_RETRY, word1, word2));
+    private void validateGameRetryType(String text) {
+        if (!text.equals(GameStatus.RETRY.getCommand()) && !text.equals(GameStatus.QUIT.getCommand())) {
+            throw new IllegalArgumentException(ERROR_HEADER + VALIDATE_GAME_RETRY);
         }
     }
 }
