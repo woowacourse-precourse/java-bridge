@@ -44,7 +44,7 @@ public class AnswerBridgeTest {
         user.addChoice("U");
         user.addChoice("D");
         user.addChoice("U");
-        boolean result = answerBridge.isApproachEndPoint(user);
+        boolean result = answerBridge.isApproachEndPoint(user.getChoices());
         assertThat(result).isTrue();
     }
 
@@ -52,11 +52,11 @@ public class AnswerBridgeTest {
     @Test
     void isCorrect() {
         user.addChoice("U");
-        boolean result = answerBridge.isCorrectChoice(user);
+        boolean result = answerBridge.isCorrectChoice(user.getStep(), user.getLastChoice());
         assertThat(result).isTrue();
 
         user.addChoice("U");
-        result = answerBridge.isCorrectChoice(user);
+        result = answerBridge.isCorrectChoice(user.getStep(), user.getLastChoice());
         assertThat(result).isFalse();
     }
 }

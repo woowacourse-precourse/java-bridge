@@ -5,42 +5,46 @@ import java.util.List;
 
 public class AnswerBridge {
 
-    List<String> answerBridge;
+    final List<String> answerBridge;
 
     public AnswerBridge(final List<String> bridge) {
         this.answerBridge = bridge;
     }
 
     public List<Boolean> compareTo(final List<String> choices) {
-        List<Boolean> result = new ArrayList<>();
+        List<Boolean> compareResults = new ArrayList<>();
         for (int index = 0; index < choices.size(); index++) {
-            if (isSame(answerBridge.get(index), choices.get(index))) {
-                result.add(true);
+            if (isSameWord(answerBridge.get(index), choices.get(index))) {
+                compareResults.add(true);
                 continue;
             }
-            result.add(false);
+            compareResults.add(false);
         }
-        return result;
+        return compareResults;
     }
 
-    private boolean isSame(final String answerBridgeWord, final String userBridgeWord) {
-        return answerBridgeWord.equals(userBridgeWord);
+    private boolean isSameWord(final String answerBridgeWord, final String userChoiceWord) {
+        return answerBridgeWord.equals(userChoiceWord);
     }
 
-    public boolean isCorrectChoice(final User user) {
-        int lastStep = user.getStep();
-        String lastChoice = user.getLastChoice();
+    public boolean isCorrectChoice(final int lastStep, final String lastChoice) {
         return answerBridge.get(lastStep).equals(lastChoice);
     }
 
-    public boolean isApproachEndPoint(final User user) {
-        List<String> userChoices = user.getChoices();
-        if (userChoices.size() == answerBridge.size()) {
-            if (isSame(userChoices.get(userChoices.size()-1), answerBridge.get(answerBridge.size()-1))) {
-                return true;
-            }
+    public boolean isApproachEndPoint(final List<String> userChoices) {
+        int userChoicesSize = userChoices.size();
+        int answerBridgeSize = answerBridge.size();
+        String userLastChoice = userChoices.get(userChoices.size() - 1);
+        String lastAnswer = answerBridge.get(answerBridge.size() - 1);
+
+        if (isSameSize(userChoicesSize, answerBridgeSize) && isSameWord(userLastChoice, lastAnswer)) {
+            return true;
         }
         return false;
+    }
+
+    private boolean isSameSize(final int userChoicesSize, final int answerBridgeSize) {
+        return userChoicesSize == answerBridgeSize;
     }
 
 }

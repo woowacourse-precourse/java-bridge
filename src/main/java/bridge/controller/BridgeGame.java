@@ -65,7 +65,7 @@ public class BridgeGame {
     }
 
     private boolean isCorrectChoice() {
-        return answerBridge.isCorrectChoice(user);
+        return answerBridge.isCorrectChoice(user.getStep(), user.getLastChoice());
     }
 
     public boolean retry() {
@@ -91,7 +91,7 @@ public class BridgeGame {
     }
 
     private void isApproachEndPoint() {
-        if (answerBridge.isApproachEndPoint(user)) {
+        if (answerBridge.isApproachEndPoint(user.getChoices())) {
             user.doSuccess();
         }
     }
