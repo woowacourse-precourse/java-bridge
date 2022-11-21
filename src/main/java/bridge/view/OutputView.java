@@ -14,8 +14,8 @@ public class OutputView {
     private static final String SEPARATOR = "|";
     private static final String OPEN_BRACKET = "[";
     private static final String CLOSED_BRACKET = "]";
-    private static final String RESULT_MESSAGE = "최종 게임 결과";
-    private static final String WIN_OR_LOSE_MESSAGE = "게임 성공 여부: %s" + LINE_SEPARATOR;
+    private static final String RESULT_MESSAGE = LINE_SEPARATOR + "최종 게임 결과";
+    private static final String WIN_OR_LOSE_MESSAGE = LINE_SEPARATOR + "게임 성공 여부: %s" + LINE_SEPARATOR;
     private static final String TOTAL_TRIES_MESSAGE = "총 시도한 횟수: %d";
 
     public void printMap(final List<String> upBridges, final List<String> downBridges) {

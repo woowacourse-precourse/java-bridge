@@ -12,7 +12,8 @@ public class InputView {
     public static final String LINE_SEPARATOR = System.lineSeparator();
     public static final String START_GAME_MESSAGE = "다리 건너기 게임을 시작합니다.";
     public static final String INPUT_BRIDGE_LENGTH = LINE_SEPARATOR + "다리의 길이를 입력해주세요.";
-    public static final String QUIT_OR_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    public static final String QUIT_OR_RETRY_MESSAGE = LINE_SEPARATOR + "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    public static final String CHOOSE_MOVE_COMMAND = LINE_SEPARATOR + "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     public int printStartMessage() {
         System.out.println(START_GAME_MESSAGE);
@@ -44,7 +45,7 @@ public class InputView {
     }
 
     public String printMoveMessage() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(CHOOSE_MOVE_COMMAND);
         return readMoving();
     }
 
