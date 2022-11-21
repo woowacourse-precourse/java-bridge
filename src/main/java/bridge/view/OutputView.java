@@ -34,4 +34,12 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(move);
     }
+
+    public static void printGameSuccess(boolean result){
+        if(result){
+            System.out.println("게임 성공 여부: 성공");
+            return;
+        }
+        System.out.println("게임 성공 여부: 실패");
+    }
 }
