@@ -25,6 +25,8 @@ public class InputView {
      */
     public static String readMoving() {
         String move_location = Console.readLine();
+        if(move_location.length()!=1 || (!move_location.contains("U") && !move_location.contains("D")))
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SELECT_ERROR.getErrormessage());
         return move_location;
     }
 
