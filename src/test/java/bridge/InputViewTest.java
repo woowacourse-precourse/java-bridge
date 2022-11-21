@@ -58,4 +58,26 @@ class InputViewTest {
         assertThat(inputView.readMoving(move)).isEqualTo(Move.valueOf(move));
 
     }
+
+    @ValueSource(strings = {"12", "A", "r", "q", "가", "a"})
+    @ParameterizedTest
+    void 재시작명령_입력_예외테스트(String command) {
+        //given
+        InputView inputView = new InputView();
+
+        //when, then
+        assertThatThrownBy(() -> inputView.readGameCommand(command))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void 재시작명령_입력_테스트(String command) {
+        //given
+        InputView inputView = new InputView();
+
+        //when, then
+        assertThat(inputView.readGameCommand(command)).isEqualTo(Continue.getEnum(command));
+
+    }
 }
