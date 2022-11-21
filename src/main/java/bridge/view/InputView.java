@@ -47,7 +47,7 @@ public class InputView {
                 CommandType.RESTART.getCommands()))) {
             throw new IllegalArgumentException(Message.ERROR_REGAME.getMessage());
         }
-        return Console.readLine();
+        return userInput;
     }
 
 }
