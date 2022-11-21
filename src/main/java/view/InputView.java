@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import exceptionHandler.BridgeLengthException;
 import exceptionHandler.InputException;
 
 /**
@@ -12,8 +13,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = Integer.valueOf(Console.readLine());
-        return bridgeSize;
+        String bridgeSize = Console.readLine();
+        BridgeLengthException.validate(bridgeSize);
+        return stringToInteger(bridgeSize);
     }
 
     /**
@@ -29,7 +31,11 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = Console.readLine().trim();
-        InputException.validateRestartInput(gameCommand);
+        InputException.validateGameCommand(gameCommand);
         return gameCommand;
+    }
+
+    private int stringToInteger(String value) {
+        return Integer.valueOf(value);
     }
 }
