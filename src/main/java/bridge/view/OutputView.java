@@ -1,6 +1,9 @@
 package bridge.view;
 
+import static bridge.utils.Constant.CLEAR_OR_NOT_MESSAGE;
 import static bridge.utils.Constant.ERROR;
+import static bridge.utils.Constant.FINAL_SCORE_MESSAGE;
+import static bridge.utils.Constant.RETRY_TOTAL_COUNT_MESSAGE;
 import static bridge.utils.Constant.SPACE;
 import static bridge.utils.Constant.START_MESSAGE;
 
@@ -23,7 +26,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int retryCount, String clearOrNot) {
+        System.out.println(CLEAR_OR_NOT_MESSAGE + clearOrNot);
+        System.out.println(RETRY_TOTAL_COUNT_MESSAGE + retryCount);
     }
 
     public void printStartMessage() {
@@ -32,5 +37,9 @@ public class OutputView {
 
     public void printErrorMessage(String errorMessage) {
         System.out.println(ERROR + SPACE + errorMessage);
+    }
+
+    public void printFinalScoreMessage() {
+        System.out.println(FINAL_SCORE_MESSAGE);
     }
 }

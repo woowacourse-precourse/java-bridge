@@ -29,4 +29,8 @@ public class Bridge {
     public boolean isCorrectLastPosition(int lastIndex, String nextMove) {
         return bridge.get(lastIndex).equals(nextMove);
     }
+
+    public int size() {
+        return bridge.size();
+    }
 }

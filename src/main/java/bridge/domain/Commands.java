@@ -6,7 +6,7 @@ import java.util.List;
 public class Commands {
 
     private static List<String> visited = new ArrayList<>();
-    private static int retryCount = 0;
+    private static int retryCount = 1;
 
     private static final Commands instance = new Commands();
 
@@ -32,5 +32,13 @@ public class Commands {
 
     public void retryCountPlus() {
         retryCount++;
+    }
+
+    public int size() {
+        return visited.size();
+    }
+
+    public int getRetryCount() {
+        return retryCount;
     }
 }

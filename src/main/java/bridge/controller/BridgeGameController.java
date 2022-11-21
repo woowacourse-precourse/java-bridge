@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import static bridge.domain.ClearInfo.ClEAR;
+import static bridge.domain.ClearInfo.NOT;
+
 import bridge.domain.BridgeSize;
 import bridge.domain.MoveCommand;
 import bridge.domain.ReGameCommand;
@@ -22,15 +25,32 @@ public class BridgeGameController {
     public void run() {
         startGame();
         insertBridgeSize();
-        operate();
+        boolean isGameClear = operate();
+        endGame(isGameClear);
     }
 
-    private void operate() {
+    private void endGame(boolean isGameOver) {
+        outputView.printFinalScoreMessage();
+        outputView.printMap(bridgeGame.printBridge());
+        outputView.printResult(bridgeGame.getRetryCount(), clearOrNot(isGameOver));
+    }
+
+    private String clearOrNot(boolean isGameClear) {
+        if (isGameClear) {
+            return ClEAR.getMessage();
+        }
+        return NOT.getMessage();
+    }
+
+    private boolean operate() {
         boolean isRetry = true;
+        boolean isClear = false;
         do {
             boolean correct = playGame();
             isRetry = retryGame(correct);
-        } while (isRetry);
+            isClear = bridgeGame.isClear();
+        } while (isRetry && !isClear);
+        return isRetry;
     }
 
     private boolean retryGame(boolean correct) {

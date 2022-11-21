@@ -63,4 +63,12 @@ public class BridgeGame {
     public boolean isCorrect(String nextMove) {
         return bridge.isCorrectLastPosition(commands.lastIndex(), nextMove);
     }
+
+    public boolean isClear() {
+        return bridge.size() == commands.size();
+    }
+
+    public int getRetryCount() {
+        return commands.getRetryCount();
+    }
 }
