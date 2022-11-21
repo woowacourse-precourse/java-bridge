@@ -23,7 +23,7 @@ public class Controller {
             moveToEndOfBridge(bridgeGame);
         } while (!bridgeGame.isWin() && doRetryOrNot(readGameCommand(), bridgeGame));
 
-        outputView.printResult();
+        outputView.printResult(bridgeGame);
     }
 
     private int readBridgeSize() {
