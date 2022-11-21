@@ -1,4 +1,4 @@
-package bridge.util;
+package bridge.system.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int bridgeSize) {
         List<String> randomBridge = new ArrayList<>();
         for (int i = 0; i < bridgeSize; i++) {
-            randomBridge.add(convertType(bridgeNumberGenerator.generate()));
+            randomBridge.add(convertTypeString(bridgeNumberGenerator.generate()));
         }
         return randomBridge;
     }

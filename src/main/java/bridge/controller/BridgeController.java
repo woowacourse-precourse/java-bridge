@@ -7,14 +7,13 @@ import bridge.domain.result.BridgeResult;
 import bridge.domain.result.GameState;
 import bridge.domain.result.MovingResult;
 import bridge.service.BridgeGame;
-import bridge.util.BridgeMaker;
-import bridge.util.BridgeRandomNumberGenerator;
+import bridge.system.util.BridgeMaker;
+import bridge.system.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.domain.bridge.BridgeBlock.convertType;
 import static bridge.domain.bridge.BridgeBlock.valueOf;
 
 public class BridgeController {
@@ -33,7 +32,7 @@ public class BridgeController {
     }
 
     public void playBridgeGame(Phase phase, BridgeResult bridgeResult, GameState gameState) {
-        Bridge bridge = new Bridge(convertType(makeBridgeByInputSize()));
+        Bridge bridge = new Bridge(BridgeBlock.convertTypeList(makeBridgeByInputSize()));
 
         while (gameState.isKeepGoing() && bridge.size() > phase.getCurrentPhase()) {
             MovingResult moveResult = bridgeGame.move(bridge, getInputBlock(), phase);
@@ -44,8 +43,9 @@ public class BridgeController {
         outputView.printResult(bridgeResult, gameState);
     }
 
-    private BridgeBlock getInputBlock() {
-        return valueOf(inputView.readMoving());
+    private List<String> makeBridgeByInputSize() {
+        int bridgeSize = inputView.readBridgeSize();
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void checkRetry(BridgeResult bridgeResult, GameState gameState, MovingResult moveResult) {
@@ -54,7 +54,7 @@ public class BridgeController {
         }
     }
 
-    private List<String> makeBridgeByInputSize() {
-        return bridgeMaker.makeBridge(inputView.readBridgeSize());
+    private BridgeBlock getInputBlock() {
+        return inputView.readMoving();
     }
 }
