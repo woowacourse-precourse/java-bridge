@@ -2,7 +2,12 @@ package bridge.utils;
 
 import static bridge.domain.ErrorMessage.BRIDGE_SIZE_INCORRECT_INPUT;
 import static bridge.domain.ErrorMessage.BRIDGE_INCORRECT_SIZE;
+import static bridge.domain.ErrorMessage.GAME_COMMAND_INCORRECT_INPUT;
 import static bridge.domain.ErrorMessage.MOVING_INCORRECT_INPUT;
+import static bridge.utils.Constants.BRIDGE_MAX_SIZE;
+import static bridge.utils.Constants.BRIDGE_MIN_SIZE;
+import static bridge.utils.Constants.QUIT;
+import static bridge.utils.Constants.RESTART;
 import static bridge.utils.Constants.UP;
 import static bridge.utils.Constants.DOWN;
 
@@ -23,16 +28,26 @@ public class Validation {
         }
     }
 
+    public static void validateGameCommand(String input) {
+        if (isNotRestartOrQuit(input)) {
+            throw new IllegalArgumentException(GAME_COMMAND_INCORRECT_INPUT.toString());
+        }
+    }
+
     private static boolean hasNonDigitCharacter(String input) {
         return !input.chars().allMatch(Character::isDigit);
     }
 
     private static boolean isOutOfRange(String input) {
         int bridgeSize = Integer.parseInt(input);
-        return bridgeSize > 20 || bridgeSize < 3;
+        return bridgeSize > BRIDGE_MAX_SIZE || bridgeSize < BRIDGE_MIN_SIZE;
     }
 
     private static boolean isNotUpOrDown(String input) {
         return !input.equals(UP) && !input.equals(DOWN);
+    }
+
+    private static boolean isNotRestartOrQuit(String input) {
+        return !input.equals(RESTART) && !input.equals(QUIT);
     }
 }
