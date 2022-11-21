@@ -1,6 +1,7 @@
 package bridge.game;
 
 import java.util.List;
+
 import static bridge.enums.IntEnum.*;
 import static bridge.enums.StringEnum.DOWN;
 import static bridge.enums.StringEnum.UP;
@@ -10,11 +11,13 @@ import static bridge.enums.StringEnum.UP;
  */
 public class BridgeGame {
     private final List<String> bridge;
+    private final int lastStage;
     private int stage;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         stage = RESET_STAGE.num();
+        lastStage = bridge.size() - 1;
     }
 
     /**
@@ -22,8 +25,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int move(String nowStage) {
-        if (bridge.get(stage).equals(nowStage)) {
+    public int move(String inputBridgeStage) {
+        if (bridge.get(stage).equals(inputBridgeStage)) {
             if (isGameWin()) return GAME_WIN.num();
             return GAME_CONTINUE.num();
         }
@@ -31,7 +34,7 @@ public class BridgeGame {
     }
 
     private boolean isGameWin() {
-        return bridge.size() - 1 == stage;
+        return lastStage == stage;
     }
 
     /**
@@ -43,7 +46,7 @@ public class BridgeGame {
         stage = RESET_STAGE.num();
     }
 
-    public String nowBridgeStage(int nowState){
+    public String nowBridgeStage(int nowState) {
         StringBuilder upPrint = new StringBuilder("[");
         StringBuilder downPrint = new StringBuilder("[");
         makeMap(nowState, upPrint, downPrint);
@@ -53,6 +56,7 @@ public class BridgeGame {
         upPrint.append("\n").append(downPrint);
         return upPrint.toString();
     }
+
     private void lastIndexPrint(int nowState, StringBuilder upPrint, StringBuilder downPrint) {
         if (nowState == GAME_WIN.num() || nowState == GAME_CONTINUE.num()) {
             continuePrint(stage, upPrint, downPrint);
@@ -72,6 +76,7 @@ public class BridgeGame {
             downPrint.append("   ");
         }
     }
+
     private void addBarPrint(StringBuilder upPrint, StringBuilder downPrint) {
         upPrint.append("|");
         downPrint.append("|");
@@ -87,6 +92,7 @@ public class BridgeGame {
             downPrint.append(" O ");
         }
     }
+
     private void duringPrint(StringBuilder upPrint, StringBuilder downPrint) {
         for (int duringIndex = 0; duringIndex < stage; duringIndex++) {
             if (duringIndex == RESET_STAGE.num()) {
@@ -98,13 +104,14 @@ public class BridgeGame {
             }
         }
     }
+
     private void makeMap(int result, StringBuilder upPrint, StringBuilder downPrint) {
         if (stage == RESET_STAGE.num()) {
             lastIndexPrint(result, upPrint, downPrint);
         }
         if (stage > RESET_STAGE.num()) {
             duringPrint(upPrint, downPrint);
-            addBarPrint(upPrint,downPrint);
+            addBarPrint(upPrint, downPrint);
             lastIndexPrint(result, upPrint, downPrint);
         }
     }

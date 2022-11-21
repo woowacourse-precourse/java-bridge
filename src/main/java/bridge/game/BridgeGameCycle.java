@@ -7,7 +7,6 @@ import static bridge.config.BridgeAppConfig.*;
 import static bridge.enums.IntEnum.GAME_LOSE;
 import static bridge.enums.IntEnum.GAME_WIN;
 import static bridge.enums.StringEnum.QUIT;
-import static bridge.view.OutputView.printMap;
 
 public class BridgeGameCycle {
     private static final InputView inputView = inputView();
@@ -50,7 +49,7 @@ public class BridgeGameCycle {
         String inputMoving = checkReadMoving();
         int nowState = bridgeGame.move(inputMoving);
         finalMap = bridgeGame.nowBridgeStage(nowState);
-        printMap(finalMap);
+        outputView.printMap(finalMap);
         return nowState;
     }
 
