@@ -4,12 +4,9 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.Command;
 import bridge.domain.Direction;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import java.util.List;
 
 public class BridgeGameController {
     OutputView outputView = new OutputView();
@@ -33,8 +30,7 @@ public class BridgeGameController {
 
     private void playGameUntilEnd(BridgeGame bridgeGame) {
         while (!bridgeGame.isEndGame()) {
-            Direction direction = inputView.readDirection();
-            bridgeGame.move(direction);
+            bridgeGame.move(inputView.readDirection());
             outputView.printMap(bridgeGame.getProgressUserState());
         }
     }
