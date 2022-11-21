@@ -1,6 +1,9 @@
 package bridge;
 
 import static bridge.OutputMsg.*;
+import static bridge.OutputView.printBridgeLengthMsg;
+import static bridge.OutputView.printMovingMsg;
+import static bridge.OutputView.printRetryQuitMsg;
 import static bridge.Validator.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -18,7 +21,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        System.out.println(BRIDGE_LENGTH_MSG.getMsg());
+        printBridgeLengthMsg();
         String bridgeLength = readLine();
         validateBridgeLength(bridgeLength);
         return Integer.parseInt(bridgeLength);
@@ -28,7 +31,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        System.out.println(CHOOSE_UPDOWN_MSG.getMsg());
+        printMovingMsg();
         String bridgeMoving = readLine();
         validateMoving(bridgeMoving);
         return bridgeMoving;
@@ -38,7 +41,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        System.out.println(CHOOSE_RETRY_QUIT_MSG.getMsg());
+        printRetryQuitMsg();
         String gameCheck = readLine();
         validateGameCheck(gameCheck);
         return gameCheck;

@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.DirectionType.DOWN;
+import static bridge.DirectionType.UP;
 import static bridge.ErrorGenerator.*;
 
 public class Validator {
@@ -7,8 +9,6 @@ public class Validator {
     private static final int BRIDGE_LEN_HIGHER_BOUND=20;
     private static final int BRIDGE_RANDOM_NUMBER_ZERO= 0;
     private static final int BRIDGE_RANDOM_NUMBER_ONE=1;
-    private static final char MOVING_UP='U';
-    private static final char MOVING_DOWN='D';
     private static final char GAME_RESTART='R';
     private static final char GAME_QUIT='Q';
     private static final int MOVING_INPUT_LENGTH=1;
@@ -21,7 +21,7 @@ public class Validator {
     public static void validateNumber(String str){
         try
         {
-            int number= Integer.parseInt(str);
+            int number = Integer.parseInt(str);
         }
         catch (NumberFormatException e) {
             ErrorGenerator.errorGenerate("숫자 포맷이 아닙니다.");
@@ -42,7 +42,7 @@ public class Validator {
     public static void validateMoving(String str){
         validateMovingLen(str);
         char bridgeChoose = str.charAt(0);
-        if (bridgeChoose!= MOVING_UP && bridgeChoose != MOVING_DOWN)
+        if (bridgeChoose!= UP.getNum() && bridgeChoose != DOWN.getNum())
             ErrorGenerator.errorGenerate("이동할 칸이 위 또는 아래가 아닙니다");
     }
 
@@ -50,6 +50,7 @@ public class Validator {
         if (str.length()!= GAME_CHECK_LENGTH)
             ErrorGenerator.errorGenerate("게임 재시작 또는 종료 키 길이가 1이 아닙니다");
     }
+
     public static void validateGameCheck(String str){
         validateGameCheckInputLen(str);
         char gameCheck = str.charAt(0);

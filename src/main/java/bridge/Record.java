@@ -28,7 +28,7 @@ public class Record {
     }
 
     public void printMap(List<String> bridge){
-        OutputView.printMap(movingRecord,bridge );
+        OutputView.printMap(movingRecord,bridge);
     }
     public void printResult(List<String> bridge, boolean successFlag) {
         OutputView.printResult(this, bridge,successFlag);
