@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.util.Constants.*;
+
 import bridge.util.CommandKeys;
 
 public class DownsideResults extends OneSideResults{
@@ -8,12 +10,12 @@ public class DownsideResults extends OneSideResults{
     }
 
     @Override
-    public void update(String currentMove, String moveResult, String blankSpace) {
-        if (CommandKeys.isDown(currentMove)) {
-            results.add(moveResult);
+    public void update(String playerMove, String matchResult) {
+        if (CommandKeys.isUp(playerMove)) {
+            results.add(BLANK_SPACE);
         }
-        if (CommandKeys.isUp(currentMove)) {
-            results.add(blankSpace);
+        if (CommandKeys.isDown(playerMove)) {
+            results.add(matchResult);
         }
     }
 }

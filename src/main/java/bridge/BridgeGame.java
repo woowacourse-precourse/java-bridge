@@ -12,8 +12,8 @@ import java.util.List;
  * 5. BridgeGame 클래스에서 InputView, OutputView 클래스를 사용하지 않는다.
  */
 public class BridgeGame {
-    private static final String CORRECT_MOVING = "O";
-    private static final String WRONG_MOVING = "X";
+    private static final String CORRECT_MOVE = "O";
+    private static final String WRONG_MOVE = "X";
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -22,9 +22,9 @@ public class BridgeGame {
      */
     public String move(String playerMove, String answerMove) {
         if (playerMove.equals(answerMove)) {
-            return CORRECT_MOVING;
+            return CORRECT_MOVE;
         }
-        return WRONG_MOVING;
+        return WRONG_MOVE;
     }
 
     /**

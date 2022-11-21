@@ -4,6 +4,7 @@ public class Constants {
     public static final int MINIMUM_BRIDGE_SIZE = 3;
     public static final int MAXIMUM_BRIDGE_SIZE = 20;
 
+    public static final String BLANK_SPACE = " ";
     public static final String ERROR_TITLE = "[ERROR] ";
     public static final String NON_ALPHABETIC_CHARACTER_FOUND = "알파벳 외의 값이 입력되었습니다.";
     public static final String EMPTY_INPUT = "입력된 값이 없습니다.";
