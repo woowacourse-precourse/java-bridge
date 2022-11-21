@@ -8,10 +8,7 @@ public enum NormalStatements {
     DECLARE_RESULT("최종 게임 결과"),
     RESULT_SUCCESS("게임 성공 여부: 성공"),
     RESULT_FAIL("게임 성공 여부: 실패"),
-    SHOW_GAME_TRIALS("총 시도한 횟수: "),
-    LEFT_TILE("[ "),
-    RIGHT_TILE(" ]"),
-    MIDDLE_TILE(" | ");
+    SHOW_GAME_TRIALS("총 시도한 횟수: ");
 
     private final String saying;
     NormalStatements(String saying){
