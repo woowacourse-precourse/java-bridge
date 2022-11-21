@@ -10,7 +10,7 @@ public class Controller {
     private final OutputView outputView;
     private final InputView inputView;
 
-    public Controller(OutputView outputView, InputView inputView) {
+    public Controller(final OutputView outputView, final InputView inputView) {
         this.outputView = outputView;
         this.inputView = inputView;
     }
@@ -68,8 +68,7 @@ public class Controller {
         return GameStatus.FAILURE;
     }
 
-    private void printResult(GameStatus gameResult, BridgeGame bridgeGame) {
+    private void printResult(final GameStatus gameResult, final BridgeGame bridgeGame) {
         outputView.printResult(gameResult, bridgeGame);
     }
-
 }
