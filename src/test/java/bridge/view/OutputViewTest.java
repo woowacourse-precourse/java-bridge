@@ -3,7 +3,7 @@ package bridge.view;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.view.outputview.OutputView;
 import bridge.vo.GameResult;
-import bridge.vo.Step;
+import bridge.vo.enums.Step;
 import bridge.vo.StepResult;
 import bridge.vo.TryCount;
 import org.junit.jupiter.api.*;

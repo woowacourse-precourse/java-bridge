@@ -1,5 +1,7 @@
 package bridge.vo;
 
+import bridge.vo.enums.Step;
+
 import java.util.Objects;
 
 public class StepResult {

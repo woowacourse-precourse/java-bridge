@@ -1,6 +1,6 @@
 package bridge.system.validation;
 
-import bridge.vo.Command;
+import bridge.vo.enums.Command;
 
 import java.util.List;
 

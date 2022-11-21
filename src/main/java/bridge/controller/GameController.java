@@ -5,7 +5,7 @@ import bridge.view.inputview.InputViewInterface;
 import bridge.view.outputview.OutputView;
 import bridge.vo.Bridge;
 import bridge.vo.GameResult;
-import bridge.vo.Step;
+import bridge.vo.enums.Step;
 
 import java.util.List;
 

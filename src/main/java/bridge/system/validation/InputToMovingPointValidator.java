@@ -1,6 +1,6 @@
 package bridge.system.validation;
 
-import bridge.vo.Step;
+import bridge.vo.enums.Step;
 
 import java.util.List;
 

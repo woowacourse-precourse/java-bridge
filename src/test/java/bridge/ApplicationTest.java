@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.mock.MockNumberGenerator;
-import bridge.vo.Step;
+import bridge.vo.enums.Step;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 

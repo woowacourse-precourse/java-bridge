@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.mock.MockNumberGenerator;
-import bridge.vo.Step;
+import bridge.vo.enums.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

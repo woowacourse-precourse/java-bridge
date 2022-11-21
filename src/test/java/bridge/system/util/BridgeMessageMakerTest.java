@@ -1,6 +1,6 @@
 package bridge.system.util;
 
-import bridge.vo.Step;
+import bridge.vo.enums.Step;
 import bridge.vo.StepResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

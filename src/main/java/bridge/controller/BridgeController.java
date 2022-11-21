@@ -4,6 +4,8 @@ import bridge.service.BridgeGame;
 import bridge.view.inputview.InputViewInterface;
 import bridge.view.outputview.OutputView;
 import bridge.vo.*;
+import bridge.vo.enums.Command;
+import bridge.vo.enums.Step;
 
 import java.util.ArrayList;
 import java.util.List;

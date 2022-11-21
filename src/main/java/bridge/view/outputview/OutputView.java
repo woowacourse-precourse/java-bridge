@@ -2,6 +2,8 @@ package bridge.view.outputview;
 
 import bridge.system.util.BridgeMessageMaker;
 import bridge.vo.*;
+import bridge.vo.enums.Command;
+import bridge.vo.enums.Step;
 
 import java.util.List;
 

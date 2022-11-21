@@ -1,4 +1,4 @@
-package bridge.vo;
+package bridge.vo.enums;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.vo.Step;
+import bridge.vo.enums.Step;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.vo.Step;
+import bridge.vo.enums.Step;
 import bridge.vo.StepResult;
 import bridge.vo.TryCount;
 
