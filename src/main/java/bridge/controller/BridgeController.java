@@ -29,6 +29,7 @@ public class BridgeController {
     }
 
     public void startGame() {
+        outputView.printStartGame();
         Length length = createLengthLoop();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
         Bridge bridge = createBridge(bridgeNumbers);

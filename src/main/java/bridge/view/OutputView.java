@@ -9,12 +9,18 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final String START_GAME = "다리 건너기 게임을 시작합니다.";
     private static final String FINAL_RESULT = "최종 게임 결과";
     private static final String GAME_SUCCESS_OR_NOT = "게임 성공 여부: ";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String TOTAL_ATTEMPT = "총 시도한 횟수: ";
     private static final String ERROR_PREFIX = "[ERROR] ";
+
+    public void printStartGame() {
+        System.out.println(START_GAME);
+        System.out.println();
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
