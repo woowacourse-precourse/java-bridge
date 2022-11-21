@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public enum Column {
     TOP_ROW("U", 1),
     DOWN_ROW("D", 0),
-    NONE("",-1);
+    NONE(" ",-1);
 
     private final int randomNumber;
     private final String capitalLetter;

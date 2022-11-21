@@ -1,7 +1,6 @@
 package bridge.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ public class BridgeMaker {
         validateSize(size);
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
-            bridge.add(Row.judge(generateNumber()));
+            bridge.add(Column.judge(generateNumber()));
         }
         return bridge;
     }
