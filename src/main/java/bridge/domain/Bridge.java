@@ -9,14 +9,8 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public static Bridge of(List<String> bridge) {
-        return new Bridge(bridge);
-    }
-
-    @Override
-    public String toString() {
-        return "Bridge{" +
-                "bridge=" + bridge +
-                '}';
+    public static Bridge make(int size) {
+        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return new Bridge(maker.makeBridge(size));
     }
 }

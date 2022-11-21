@@ -18,7 +18,8 @@ public class BridgeGame {
     public void start() {
         printStart();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = Bridge.of(bridgeMaker.makeBridge(InputView.readBridgeSize()));
+        bridge = Bridge.make(InputView.readBridgeSize());
+        printMoveOptionInput();
 
     }
 

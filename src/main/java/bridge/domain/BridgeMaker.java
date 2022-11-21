@@ -25,6 +25,10 @@ public class BridgeMaker {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 숫자 0을 D, 1을 U으로 매핑하는 메소드
+     * @return U 또는 D
+     */
     private String mapToUpDown() {
         int number = bridgeNumberGenerator.generate();
         if (number == 0) {
