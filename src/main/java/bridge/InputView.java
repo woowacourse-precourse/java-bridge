@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         try {
             int result = Integer.parseInt(Console.readLine());
             if (result < 3 || result > 20) {

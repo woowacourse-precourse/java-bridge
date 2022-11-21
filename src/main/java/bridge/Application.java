@@ -1,8 +1,13 @@
 package bridge;
 
+import static bridge.InputView.readBridgeSize;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(readBridgeSize()));
     }
 }
