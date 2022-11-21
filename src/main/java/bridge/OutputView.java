@@ -28,11 +28,11 @@ public class OutputView {
         System.out.println(BridgeGame.getUpSideBridge());
         System.out.println(BridgeGame.getDownSideBridge());
 
-        if(BridgeGame.getIsPlayerWin()){
-            System.out.println("게임 성공 여부: 성공");
-        }
-        if(!BridgeGame.getIsPlayerWin()){
+        if(BridgeGame.getIsPlayerFailed()){
             System.out.println("게임 성공 여부: 실패");
+        }
+        if(!BridgeGame.getIsPlayerFailed()){
+            System.out.println("게임 성공 여부: 성공");
         }
         System.out.println("총 시도한 횟수: " + BridgeGame.getGameCount());
     }
