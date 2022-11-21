@@ -14,6 +14,10 @@ public abstract class Command {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     protected abstract List<String> getCorrectValues();
 
     private void validate(String message,
@@ -27,9 +31,5 @@ public abstract class Command {
     private boolean isNotCorrectValue(String message, List<String> correctValues) {
         return correctValues.stream()
                 .noneMatch(Predicate.isEqual(message));
-    }
-
-    public String getMessage() {
-        return message;
     }
 }

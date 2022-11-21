@@ -11,12 +11,12 @@ public class RetryCommand extends Command {
         super(message);
     }
 
+    public boolean isRetry() {
+        return getMessage().equals(RETRY);
+    }
+
     @Override
     protected List<String> getCorrectValues() {
         return List.of(RETRY, QUIT);
-    }
-
-    public boolean isRetry() {
-        return getMessage().equals(RETRY);
     }
 }
