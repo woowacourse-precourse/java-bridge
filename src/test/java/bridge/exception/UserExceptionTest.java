@@ -2,6 +2,8 @@ package bridge.exception;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -24,6 +26,13 @@ public class UserExceptionTest {
     @DisplayName("공백을 입력하면 예외를 반환한다.")
     void isBlankTest() {
         assertThrows(IllegalArgumentException.class, () -> userException.isBlank(" "));
+    }
+
+    @ParameterizedTest
+    @DisplayName("공백을 포함한 값을 입력하면 예외를 반환한다.")
+    @ValueSource(strings = {"1 ", " U", " R "})
+    void hasBlankTest(String input) {
+        assertThrows(IllegalArgumentException.class, () -> userException.hasBlank(input));
     }
 
     private static class CustomUserException extends UserException {
