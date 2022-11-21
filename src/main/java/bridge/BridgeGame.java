@@ -21,16 +21,16 @@ public class BridgeGame {
     }
 
     public void startGame() {
+        int bridgeSize = inputView.readBridgeSize();
+        this.answerBridge = bridgeMaker.makeBridge(bridgeSize);
         boolean isContinue;
         do {
-            isContinue = eachGame();
+            isContinue = eachGame(bridgeSize);
         } while (isContinue);
     }
 
-    public boolean eachGame() {
+    public boolean eachGame(int bridgeSize) {
         this.curMap = new ArrayList<>();
-        int bridgeSize = inputView.readBridgeSize();
-        this.answerBridge = bridgeMaker.makeBridge(bridgeSize);
 
         boolean isQuit = false;
         for (int i = 0; i < bridgeSize; i++) {
