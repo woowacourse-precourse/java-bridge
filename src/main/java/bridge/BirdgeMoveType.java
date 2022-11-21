@@ -2,10 +2,10 @@ package bridge;
 
 public enum BirdgeMoveType {
 
-    upGoMovement(" O ",0),
-    downGoMovement(" O ",1),
-    upStopMovement(" X ",0),
-    downStopMovement(" X ",1);
+    upGoMovement("O",0),
+    downGoMovement("O",1),
+    upStopMovement("X",0),
+    downStopMovement("X",1);
 
     private String code;
     private int index;
