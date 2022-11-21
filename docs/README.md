@@ -71,10 +71,47 @@
 
 ## 👨🏻‍💻 기능 구현 세부사항 (Domain 별)
 ### Application
-
+ - 다리 게임 시작하는 함수 : `start()`
+   - 처음 시작 횟수 count
+   - BridgeGame 객체 선언 및 초기화
+   - 게임 진행
+ - 다리 게임 선언 및 초기화 하는 함수 : `gameInitProcess()`
+   - 게임 시작 메세지 출력
+   - 사용자로부터 다리 길이 입력
+   - BridgeGame 선언 및 초기화 : game.initBridge(bridgeSize)
+ - 다리 게임 실제 수행 로직 : `gameProcess()`
+   - 사용자로부터 이동 (U or D) 입력
+   - 사용자 입력 프로그래밍 요구사항 확인 : `checkGameStatus()`
+   - 게임 예외 발생 및 종료시까지 재귀로 호출 : 애매하게 짠 코드....
+ - 사용자로부터 이동 입력을 받고 로직 수행 : `checkGameStatus()`
+   - 중간에 일치하지 않는 경우에 대한 처리 : `리팩토링 대상`
+   - 다리 길이만큼 진행됐을 경우에 대한 처리 : `리팩토링 대상'`
+- 다리 게임 오답 발생 시 사용자에게 stop or go 로직 : `gameCommandProcess()`
+  - 사용자 입력에 따라 resetProcess() 또는 quitProcess()
+- 사용자가 종료를 선택한 경우 : `quitProcess()`
+  - 결과 출력하고 종료
+- 사용자가 재시도를 선택한 경우 : `resetProcess()`
+  - `BridgeGame.retry()` 호출
+  - 처음 과정부터 재시작
 ### BridgeGame
 
 ### BridgeMaker
+- 게임에서 사용할 다리 생성 로직
+  ```java
+  public List<String> makeBridge(int size){
+    return generatedBridge;
+  }
+  ```
+- bridgeNumberGenerator.generate() 통해 생성되는 숫자 문자로 전환
+  ```java
+  private String convertGeneratedRandomNumberIntoBridgeValue(Integer generatedRandomNumber) {
+        if (generatedRandomNumber.equals(0)) {
+            return "D";
+        }
+
+        return "U";
+    }
+  ```
 
 ### InputView
 ```java
@@ -111,9 +148,11 @@ public class InputView {
   - `INPUT_BRIDE_SIZE_RANGE_ERROR` : 사용자 입력 범위 에러
 
 
-### ValidationUtil
+### ValidationUtil (삭제)
 - 사용자 입력 및 비즈니스 모델 검증 Class
-  - `validateBridgeSizeInput` : 사용자 입력 다리 길이 범위 확인 
+  - `validateBridgeSizeInput` : 사용자 입력 다리 길이 범위 확인
+- **고려했으나, 객체 생성 비용 또는 static 메모리 비용 증가로 인한 삭제 결정**
+- 정적 팩토리 메소드를 사용하는 방식으로 변경
 
 
 ## 👨🏻‍💻 추가된 프로그래밍 요구사항
