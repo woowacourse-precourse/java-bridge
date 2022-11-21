@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.constant;
 
 public enum Bridge {
     O(" O "),
@@ -7,7 +7,7 @@ public enum Bridge {
 
     private final String location;
 
-    Bridge(String location) {
+    private Bridge(String location) {
         this.location = location;
     }
 

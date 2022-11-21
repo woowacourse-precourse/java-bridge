@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.constant;
 
 public enum ErrorMessage {
     SIZE_TYPE("[ERROR] 다리 길이는 숫자이어야 합니다."),
@@ -8,7 +8,7 @@ public enum ErrorMessage {
 
     private final String message;
 
-    ErrorMessage(String message) {
+    private ErrorMessage(String message) {
         this.message = message;
     }
 

@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.constant;
 
 public enum Direction {
     UP("U", 1),
@@ -7,7 +7,7 @@ public enum Direction {
     private final String direction;
     private final int directionNumber;
 
-    Direction(String direction, int directionNumber) {
+    private Direction(String direction, int directionNumber) {
         this.direction = direction;
         this.directionNumber = directionNumber;
     }
