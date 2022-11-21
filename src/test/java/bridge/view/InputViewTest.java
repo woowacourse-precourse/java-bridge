@@ -107,7 +107,7 @@ class InputViewTest {
 
     @Nested
     @DisplayName("이동 옵션 입력 검증")
-    class MovvingOption{
+    class MovingOption{
 
         @Nested
         @DisplayName("유효하지 않은 타입의 입력 검증")
@@ -221,4 +221,119 @@ class InputViewTest {
         }
     }
 
-}
+    @Nested
+    @DisplayName("재시작 옵션 입력 검증")
+    class RestartOption{
+
+        @Nested
+        @DisplayName("유효하지 않은 타입의 입력 검증")
+        class InValid{
+
+            @Test
+            @DisplayName("숫자 입력시 예외 출력")
+            void 숫자_입력(){
+                // given
+                String input = "1";
+                // when
+                setSetIn(input);
+                // then
+                assertThatThrownBy(() ->
+                        inputView.readGameCommand());
+            }
+
+            @Test
+            @DisplayName("한글 입력시 예외 출력")
+            void 한글_입력(){
+                // given
+                String input = "가";
+                // when
+                setSetIn(input);
+                // then
+                assertThatThrownBy(() ->
+                        inputView.readGameCommand());
+            }
+
+            @Test
+            @DisplayName("기호 입력시 예외 출력")
+            void 기호_입력(){
+                // given
+                String input = "*";
+                // when
+                setSetIn(input);
+                // then
+                assertThatThrownBy(() ->
+                        inputView.readGameCommand());
+            }
+        }
+
+        @Nested
+        @DisplayName("유효하지 않은 옵션의 입력")
+        class InvalidOption{
+
+            @Test
+            @DisplayName("Q나 R이 아닌 경우")
+            void 유효하지_않은_옵션(){
+                // given
+                String input = "X";
+                // when
+                setSetIn(input);
+                // then
+                assertThatThrownBy(() ->
+                        inputView.readGameCommand());
+            }
+        }
+
+        @Nested
+        @DisplayName("유효한 입력")
+        class ValidOption{
+
+            @Test
+            @DisplayName("Q 입력시 Q 반환")
+            void 입력_Q(){
+                // given
+                String input = "Q";
+                // when
+                setSetIn(input);
+                String result = inputView.readGameCommand();
+                // then
+                assertThat(result).isEqualTo("Q");
+            }
+
+            @Test
+            @DisplayName("q 입력시 Q 반환")
+            void 입력_q(){
+                // given
+                String input = "q";
+                // when
+                setSetIn(input);
+                String result = inputView.readGameCommand();
+                // then
+                assertThat(result).isEqualTo("Q");
+            }
+
+            @Test
+            @DisplayName("R 입력시 R 반환")
+            void 입력_R(){
+                // given
+                String input = "R";
+                // when
+                setSetIn(input);
+                String result = inputView.readGameCommand();
+                // then
+                assertThat(result).isEqualTo("R");
+            }
+
+            @Test
+            @DisplayName("r 입력시 R 반환")
+            void 입력_r(){
+                // given
+                String input = "r";
+                // when
+                setSetIn(input);
+                String result = inputView.readGameCommand();
+                // then
+                assertThat(result).isEqualTo("R");
+            }
+        }
+    }
+    }
