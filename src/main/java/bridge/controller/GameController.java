@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GameController {
     public static int gameCount = 1;
-    public static boolean failOrSuccess = false;
+    public static boolean failOrSuccess = true;
     public static List<String> bridgeResult = new ArrayList<>();
 
     public void gameStart() {
@@ -36,7 +36,6 @@ public class GameController {
             outputView.printMap(BridgeGame.moveIndex, moveInput, bridgeResult);
             BridgeGame.moveIndex++;
         }
-        GameController.failOrSuccess = true;
     }
 
     public void gameRetry(InputView inputView, OutputView outputView, String moveInput) {

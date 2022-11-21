@@ -27,6 +27,7 @@ public class BridgeGame {
      */
     public static boolean retry(String inputRestart) {
         if (inputRestart.equals("Q")) {
+            GameController.failOrSuccess = false;
             return true;
         }
         OutputView.first = new StringBuilder();
