@@ -6,9 +6,10 @@ import java.util.List;
 public class Bridge {
 
     private int bridgePosition;
-    private SafeSpot safeSpot;
 
     private final List<String> baseBridge;
+    private List<String> upperBridge = new ArrayList<>();
+    private List<String> lowerBridge = new ArrayList<>();
 
     public Bridge(int bridgePosition, List<String> baseBridge) {
         this.bridgePosition = bridgePosition;
