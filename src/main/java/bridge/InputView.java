@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.Messages.Error;
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,21 +11,59 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    static private int castInt(String str){
+        int num = 0;
+        try {
+            num = Integer.parseInt(str);
+        } catch (NumberFormatException ex){
+            throw new IllegalArgumentException(Error.INVALID_LENGTH.getMessage());
+        }
+        return num;
+    }
+    static public int readBridgeSize() {
+        int bridgeLength = 0;
+        try {
+            bridgeLength = castInt(Console.readLine());
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            bridgeLength = readBridgeSize();
+        }
+
+        return bridgeLength;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    static public String readMoving() {
+        String input = "";
+        try {
+            input = Console.readLine();
+            checkLetter(input, "U", "D");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            readMoving(); //Recursively execute to scan new input
+        }
+        return input;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    static public String readGameCommand() {
+        String input = "";
+        try {
+            input = Console.readLine();
+            checkLetter(input, "R", "Q");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            readGameCommand(); //Recursively execute to scan new input
+        }
+        return input;
+    }
+
+    static private void checkLetter(String check, String opt1, String opt2){
+        if (!check.equals(opt1) && !check.equals(opt2))
+            throw new IllegalArgumentException(Error.INVALID_LETTER.getMessage());
     }
 }
