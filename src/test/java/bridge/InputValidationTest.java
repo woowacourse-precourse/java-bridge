@@ -8,11 +8,19 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class InputValidationTest {
 
-    @DisplayName("예외 처리 : 올바르지 않은 다리 길이에 대한 유효성 검증")
+    @DisplayName("올바르지 않은 다리 길이에 대한 예외 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "0", "21", "999"})
-    void 다리_길이_유효성_테스트(String input) {
+    void 다리_길이_예외_테스트(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputValidation.validateReadBridgeSize(input));
+    }
+
+    @DisplayName("올바르지 않은 이동할 칸에 대한 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "1", "S", "BRO", " 우아한"})
+    void 이동할_칸_예외_테스트(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputValidation.validateReadMoving(input));
     }
 }
