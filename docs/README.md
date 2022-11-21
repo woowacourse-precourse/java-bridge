@@ -35,7 +35,7 @@
 
 
 # 테스트
-- [ ] BridgeMaker 테스트
-  - [ ] makeBridge
+- [x] BridgeMaker 테스트
+  - [x] makeBridge
     - 크기가 맞는지
     - 모든 원소가 "U"나 "D"인지
