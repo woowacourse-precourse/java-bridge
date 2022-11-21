@@ -74,7 +74,7 @@ public class BridgeGameController {
             String movingInput = getMovingInput();
             boolean isMovable = bridgeGame.isMovable(movingInput);
             position = moveOrNot(bridgeGame, isMovable);
-            if (retryOrQuit(bridgeGame,isMovable).equals(QUIT_GAME)) {
+            if (retryOrQuit(bridgeGame, isMovable).equals(QUIT_GAME)) {
                 return false;
             }
         } while (position < bridgeSize);
