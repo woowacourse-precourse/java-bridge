@@ -21,7 +21,7 @@ public class InputView {
         try {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(InputErrorCode.INVALID_BRIDGE_LENGTH.toString());
         }
     }
 
@@ -29,7 +29,7 @@ public class InputView {
         int number = readNumber();
 
         if (number < 3 || number > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(InputErrorCode.INVALID_BRIDGE_LENGTH.toString());
         }
         return number;
     }
@@ -52,7 +52,7 @@ public class InputView {
         String inputCommand = Console.readLine();
 
         if (!(inputCommand.equals("U") || inputCommand.equals("D")))
-            throw new IllegalArgumentException("[ERROR] 올바른 알파벳을 입력해주세요. (위: U, 아래: D)");
+            throw new IllegalArgumentException(InputErrorCode.INVALID_MOVING_COMMAND.toString());
         return inputCommand;
     }
 
