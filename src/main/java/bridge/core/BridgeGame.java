@@ -6,9 +6,6 @@ import bridge.type.GameStatus;
 import bridge.type.PassCondition;
 import bridge.type.ProcessCondition;
 
-import java.util.List;
-
-
 public class BridgeGame {
 
     private Bridge bridge;
