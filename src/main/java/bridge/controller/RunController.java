@@ -56,7 +56,7 @@ public class RunController {
 		try {
 			return checkMoving(new InputView().readMoving());
 		} catch (IllegalArgumentException e) {
-			new BridgeController().printNotice(Notice.ERROR.getMessage());
+			new BridgeController().printNotice(Notice.ERROR.getMessage() + Notice.EXCEPTION_MOVE.getMessage());
 		}
 		return choiceMoving();
 	}
