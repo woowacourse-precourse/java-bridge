@@ -13,6 +13,7 @@ public class Application {
     public static void main(String[] args) {
         init();
         if(!generateBridge()) playGame(true);
+        if(flag) gameFinish();
     }
     private static void playStage(){
         outputView.printCase("play");
