@@ -10,10 +10,8 @@ import java.util.Objects;
 public class BridgeGame {
 
     private final Bridge bridge;
-
-    private   List<String> movingPositions;
-    private   List<String> result;
-
+    private List<String> movingPositions;
+    private List<String> result;
     private int count;
     private boolean clear;
     private boolean failure;
@@ -22,9 +20,9 @@ public class BridgeGame {
         this.bridge = bridge;
         this.movingPositions = new ArrayList<>();
         this.result = new ArrayList<>();
-        clear = false;
-        failure = false;
-        count = 1;
+        this.clear = false;
+        this.failure = false;
+        this.count = 1;
     }
 
     /**
@@ -38,28 +36,31 @@ public class BridgeGame {
         comparedBridge();
     }
 
-    public void positionValidation(String position){
-        if(!Objects.equals(position, "U") && !Objects.equals(position, "D")){
-            throw new IllegalArgumentException("이동하는 칸은 \"U\"(위칸), \"D\"(아래칸) 만 가능합니다.");
+    public void positionValidation(String position) {
+        if (!Objects.equals(position, MoveOption.UP.getCommand())
+                && !Objects.equals(position, MoveOption.DOWN.getCommand())) {
+            throw new IllegalArgumentException("이동하는 칸은 \"" + MoveOption.UP.getCommand()
+                    + "\"(위칸), \"" + MoveOption.DOWN.getCommand() + "\"(아래칸) 만 가능합니다.");
         }
     }
 
-    public void comparedBridge(){
-        String bridgeValue = bridge.getBridge().get(movingPositions.size()-1);
-        String movingPosition = movingPositions.get(movingPositions.size()-1);
-        if(Objects.equals(bridgeValue, movingPosition)){
+    public void comparedBridge() {
+        String bridgeValue = bridge.getBridge().get(movingPositions.size() - 1);
+        String movingPosition = movingPositions.get(movingPositions.size() - 1);
+        if (Objects.equals(bridgeValue, movingPosition)) {
             result.add("O");
         }
 
-        if(!Objects.equals(bridgeValue, movingPosition)){
+        if (!Objects.equals(bridgeValue, movingPosition)) {
             result.add("X");
             failure = true;
         }
 
-        if(bridge.getBridge().size() == movingPositions.size()){
+        if (bridge.getBridge().size() == movingPositions.size()) {
             clear = true;
         }
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -67,20 +68,20 @@ public class BridgeGame {
      */
     public void retry(String command) {
         commandValidation(command);
-        if(Objects.equals(command, "R")){
+        if (Objects.equals(command, "R")) {
             setMovingPositions(new ArrayList<>());
             setResult(new ArrayList<>());
             setFailure(false);
             setClear(false);
             count++;
         }
-        if(Objects.equals(command, "Q")){
+        if (Objects.equals(command, "Q")) {
             setClear(true);
         }
     }
 
     private void commandValidation(String command) {
-        if(!Objects.equals(command, "R") && (!Objects.equals(command, "Q"))){
+        if (!Objects.equals(command, "R") && (!Objects.equals(command, "Q"))) {
             throw new IllegalArgumentException("재시도는 \"R\" , 종료는 \"Q\"를 누르셔야 합니다.");
         }
     }
