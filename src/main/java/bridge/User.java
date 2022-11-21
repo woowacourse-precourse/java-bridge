@@ -33,4 +33,11 @@ public class User {
             return true;
         return false;
     }
+
+    public boolean reTryGame() {
+        String reGame = new InputView().readGameCommand();
+        if (reGame.equals("R"))
+            return true;
+        return false;
+    }
 }
