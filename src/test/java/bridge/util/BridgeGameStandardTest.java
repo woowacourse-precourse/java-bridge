@@ -18,7 +18,7 @@ class BridgeGameStandardTest {
     @DisplayName("범위를 벗어난 다리 길이에 대해 false를 반환한다.")
     @ValueSource(ints = { 2, 21, 0 })
     @ParameterizedTest
-    void underLottoPrice(Integer input) {
+    void wrongBridgeSize(Integer input) {
         assertThat(bridgeGameStandard.isValidBridgeSize(input)).isEqualTo(false);
     }
 }
