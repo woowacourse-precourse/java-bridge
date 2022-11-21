@@ -34,11 +34,15 @@ public class BridgeGame {
     public void store(Boolean match, String move, int turn) {
         if (move.equals("U")) {
             upBridge.put(turn, match);
-            downBridge.put(turn, null);
+            if(!downBridge.containsKey(turn)){
+                downBridge.put(turn, null);
+            }
         }
         if (move.equals("D")) {
-            upBridge.put(turn, null);
             downBridge.put(turn, match);
+            if(!upBridge.containsKey(turn)){
+                upBridge.put(turn, null);
+            }
         }
     }
 

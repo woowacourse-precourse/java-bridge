@@ -1,5 +1,7 @@
 package view;
 
+import org.mockito.internal.matchers.Null;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,9 +62,13 @@ public class OutputView {
     }
 
     private void printOutput(int endTurn, HashMap<Integer, Boolean> bridge, int tryCount) {
-        if (bridge.get(endTurn - 1)) {
-            System.out.println("게임 성공 여부: 성공");
-            System.out.println(String.format("총 시도한 횟수: %s", endTurn));
+        try {
+            if (bridge.get(endTurn - 1)) {
+                System.out.println("게임 성공 여부: 성공");
+                System.out.println(String.format("총 시도한 횟수: %s", endTurn));
+                return;
+            }
+        } catch (NullPointerException NPE) {
             return;
         }
         System.out.println("게임 성공 여부: 실패");
