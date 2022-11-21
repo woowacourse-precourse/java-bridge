@@ -27,22 +27,13 @@ public class Player {
         return playerPosition;
     }
 
-    public void crossOverBridge(BridgeMovement playerMove, boolean crossable) {
+    public void crossBridge(BridgeMovement playerMove, boolean isCrossable) {
         for (Map.Entry<BridgeMovement, List<String>> route : movingRoute.entrySet()) {
-            String status = " ";
-            if (route.getKey() == playerMove) {
-                status = toStatusAfterCrossOver(crossable);
-            }
-            route.getValue().add(status);
+            boolean isSameBridgeMovement = route.getKey().equals(playerMove);
+            CrossState crossState = CrossState.findByStatus(isSameBridgeMovement, isCrossable);
+            route.getValue().add(crossState.getStatus());
         }
         playerPosition += 1;
-    }
-
-    public String toStatusAfterCrossOver(boolean isMoveble) {
-        if (isMoveble) {
-            return "O";
-        }
-        return "X";
     }
 
     @Override

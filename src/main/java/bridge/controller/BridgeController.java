@@ -3,9 +3,9 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.domain.BridgeMovement;
 import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
-import bridge.domain.BridgeMovement;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -48,7 +48,7 @@ public class BridgeController {
         outputView.inputPlayerMove();
         BridgeMovement playerMove = inputView.readMoving();
         gameStatus = bridgeGame.move(playerMove);
-        outputView.printMap(bridgeGame.crossOverResult());
+        outputView.printMap(bridgeGame.crossResult());
     }
 
     private void retryGame() {
@@ -59,7 +59,7 @@ public class BridgeController {
 
     private void end() {
         outputView.printGameOver();
-        outputView.printMap(bridgeGame.crossOverResult());
+        outputView.printMap(bridgeGame.crossResult());
         outputView.printResult(gameStatus, bridgeGame.getNumberOfAttempts());
     }
 }
