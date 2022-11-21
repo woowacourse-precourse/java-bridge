@@ -1,11 +1,10 @@
 package bridge.domain.game;
 
-import bridge.domain.GameStatus;
 import bridge.domain.bridge.Bridge;
 
-import static bridge.domain.GameStatus.FAILED;
-import static bridge.domain.GameStatus.PLAYING;
-import static bridge.domain.GameStatus.SUCCESS;
+import static bridge.domain.game.GameStatus.FAILED;
+import static bridge.domain.game.GameStatus.PLAYING;
+import static bridge.domain.game.GameStatus.SUCCESS;
 
 public class BridgeGame {
 

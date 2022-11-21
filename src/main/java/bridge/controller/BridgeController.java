@@ -3,12 +3,12 @@ package bridge.controller;
 import bridge.domain.Command;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.BridgeGameGenerator;
-import bridge.domain.GameStatus;
+import bridge.domain.game.GameStatus;
 import bridge.service.BridgeGameService;
 import bridge.view.OutputView;
 
-import static bridge.domain.GameStatus.PLAYING;
-import static bridge.domain.GameStatus.SUCCESS;
+import static bridge.domain.game.GameStatus.PLAYING;
+import static bridge.domain.game.GameStatus.SUCCESS;
 import static bridge.support.ErrorMessage.UNEXPECTED_EXCEPTION;
 
 public class BridgeController {

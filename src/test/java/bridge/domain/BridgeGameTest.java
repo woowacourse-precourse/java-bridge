@@ -4,6 +4,7 @@ import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeMaker;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameProgress;
+import bridge.domain.game.GameStatus;
 import bridge.support.FakeBridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static bridge.domain.GameStatus.FAILED;
-import static bridge.domain.GameStatus.PLAYING;
-import static bridge.domain.GameStatus.SUCCESS;
+import static bridge.domain.game.GameStatus.FAILED;
+import static bridge.domain.game.GameStatus.PLAYING;
+import static bridge.domain.game.GameStatus.SUCCESS;
 import static bridge.domain.Move.DOWN;
 import static bridge.domain.Move.UP;
 import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;

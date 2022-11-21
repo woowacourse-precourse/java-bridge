@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.game;
 
 public enum GameStatus {
     PLAYING("게임 중"),
