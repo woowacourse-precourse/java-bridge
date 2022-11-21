@@ -1,21 +1,31 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
+import bridge.model.BridgeMaker;
 import bridge.view.InputView;
+
+import java.util.List;
 
 public class BridgeController {
 
     private static final InputView inputView = new InputView();
+    private static List<String> bridges;
 
     public void init() {
 
         int inputSize = getBridgeSize();
-//        bridges = makeRandomBridges(inputSize);
+        bridges = makeRandomBridges(inputSize);
 //        triedNumber = getTriedNumber(inputSize);
 //        printResult();
     }
 
     private int getBridgeSize() {
         return inputView.readBridgeSize();
+    }
+
+    private List<String> makeRandomBridges(int inputSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return bridgeMaker.makeBridge(inputSize);
     }
 
 }
