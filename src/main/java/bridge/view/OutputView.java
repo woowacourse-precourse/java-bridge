@@ -14,7 +14,6 @@ public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String TOTAL_ATTEMPT = "총 시도한 횟수: ";
-
     private static final String ERROR_PREFIX = "[ERROR] ";
 
     /**
@@ -37,9 +36,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(Result result, int attempt) {
+        printFinalMap(result);
+        printFinalSuccessOrNot(result);
+        printFinalAttempt(attempt);
+    }
+
+    private void printFinalMap(Result result) {
         System.out.println(FINAL_RESULT);
         printMap(result);
+    }
 
+    private void printFinalSuccessOrNot(Result result) {
         System.out.print(GAME_SUCCESS_OR_NOT);
         if (result.isContainWrongAnswer()) {
             System.out.println(FAIL);
@@ -47,6 +54,9 @@ public class OutputView {
         if (!result.isContainWrongAnswer()) {
             System.out.println(SUCCESS);
         }
+    }
+
+    private void printFinalAttempt(int attempt) {
         System.out.print(TOTAL_ATTEMPT);
         System.out.println(attempt);
     }
