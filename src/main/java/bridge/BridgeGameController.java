@@ -29,23 +29,42 @@ public class BridgeGameController {
         BridgeAlgorithm();
     }
 
-    private void constructBridgeAlgorithm() {
-        String playerStep;
-        isSucess = true;
-        attepmtCnt += 1;
-        int _idx;
-        for (_idx = 0; _idx < bridgeSize; _idx++) {
-            playerStep = inputView.readMoving();
-            bridgeGame.move(playerBridgeMap, RandomBridgeMap, _idx, playerStep);
-            outputView.constructMap(playerBridgeMap);
-            if (!bridgeGame.checkSame(RandomBridgeMap, _idx, playerStep)) {
-                break;
-            }
-        }
-        if (_idx != bridgeSize) {
+    private void checkAllPass(int idx, int bridgeSize) {
+        if (idx != bridgeSize) {
             isSucess = false;
             showRestart();
         }
+    }
+
+    private boolean checkSameInBridgeAlogorithm(int idx,String playerStep) {
+        if (!bridgeGame.checkSame(RandomBridgeMap, idx, playerStep)) {
+            return true;
+        }
+        return false;
+    }
+
+    private String bridgeAlgorithm(int idx) {
+        String playerStep = inputView.readMoving();
+        bridgeGame.move(playerBridgeMap, RandomBridgeMap, idx, playerStep);
+        outputView.constructMap(playerBridgeMap);
+        return playerStep;
+    }
+
+    private void bridgeAlgorithmSetting() {
+        isSucess = true;
+        attepmtCnt += 1;
+    }
+
+    public void constructBridgeAlgorithm() {
+        bridgeAlgorithmSetting();
+        int idx;
+        for (idx = 0; idx < bridgeSize; idx++) {
+            String playerStep = bridgeAlgorithm(idx);
+            if (checkSameInBridgeAlogorithm(idx,playerStep)) {
+                break;
+            }
+        }
+        checkAllPass(idx, bridgeSize);
     }
 
     public void BridgeAlgorithm() {
