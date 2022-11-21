@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
 
@@ -95,12 +96,46 @@ class BridgeGameTest extends NsTest {
     }
 
     @Nested
+    @DisplayName("게임 재시작/종료로 올바른 입력이 들어오는지 테스트")
+    class GameCommandTest {
+        @Test
+        @DisplayName("올바르지 않은 command가 입력될 때")
+        void case1() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "U", "D", "D", "0");
+                assertThat(output()).contains(
+                        error,
+                        "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+                );
+            }, 1, 0, 1);
+        }
+
+        @Test
+        @DisplayName("올바르지 않은 command가 입력될 때")
+        void case2() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "U", "D", "D", "u");
+                assertThat(output()).contains(error);
+            }, 1, 0, 1);
+        }
+
+        @Test
+        @DisplayName("Command로 R(Restart)이 입력될 때")
+        void case3() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "U", "D", "D", "R");
+                assertThat(output()).doesNotContain(error);
+            }, 1, 0, 1);
+        }
+    }
+
+    @Nested
     @DisplayName("BridgeGame 클래스의 메소드를 테스트")
     class BridgeGameMethodTest {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U", "U", "D"));
 
         @Nested
-        class moveTest {
+        class MoveTest {
             @Test
             @DisplayName("move 메소드 테스트_1")
             void move1() {
@@ -128,7 +163,7 @@ class BridgeGameTest extends NsTest {
         }
 
         @Nested
-        class isGameEndTest {
+        class IsGameEndTest {
             @Test
             @DisplayName("isGameEnd 메소드 테스트_1")
             void isGameEnd1() {
@@ -160,9 +195,6 @@ class BridgeGameTest extends NsTest {
                 assertThat(bridgeGame.isGameEnd()).isEqualTo(false);
             }
         }
-
-
-
     }
 
     @Override
