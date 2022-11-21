@@ -48,7 +48,7 @@ public class InputView {
             return validation.checkGameCommand(validation.isBlank(gameCommand));
         } catch (IllegalArgumentException illegalArgumentException){
             System.out.println(ERROR_MESSAGE + illegalArgumentException.getMessage());
-            return readMoving();
+            return readGameCommand();
         }
     }
 
