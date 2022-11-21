@@ -2,15 +2,14 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private List<String> upBridge;
-    private List<String> downBridge;
+    private final List<String> upBridge;
+    private final List<String> downBridge;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -40,13 +39,15 @@ public class BridgeGame {
     public void move(String direction, int index) {
         String validBridge = bridge.get(index);
         DirectionType directionType = DirectionType.valueOfString(direction);
-        String[] moveResult = initializeMovingResult(validBridge, directionType);
-        addBridge(moveResult, index);
+        MoveType[] moveResult = initializeMovingResult(validBridge, directionType);
+        String downMove = moveResult[0].getValue();
+        String upMove = moveResult[1].getValue();
+        addBridge(downMove, upMove, index);
     }
 
-    private void addBridge(String[] moveResult, int index) {
-        downBridge.add(moveResult[0]);
-        upBridge.add(moveResult[1]);
+    private void addBridge(String downMove, String upMove, int index) {
+        downBridge.add(downMove);
+        upBridge.add(upMove);
         if (index < bridge.size()-1) {
             downBridge.add("|");
             upBridge.add("|");
@@ -56,15 +57,13 @@ public class BridgeGame {
         upBridge.add("]");
     }
 
-    private String[] initializeMovingResult(String validBridge, DirectionType directionType) {
-        final String X = " X ";
-        final String O = " O ";
-        final String SPACE = "   ";
+    private MoveType[] initializeMovingResult(String validBridge, DirectionType directionType) {
         int validNumber = Integer.parseInt(validBridge);
-        String[] moveResult = {SPACE, SPACE};
-        moveResult[directionType.getNumber()] = X;
+
+        MoveType[] moveResult = {MoveType.SPACE, MoveType.SPACE};
+        moveResult[directionType.getNumber()] = MoveType.X;
         if (directionType.getNumber() == validNumber) {
-            moveResult[directionType.getNumber()] = O;
+            moveResult[directionType.getNumber()] = MoveType.O;
         }
         return moveResult;
     }
