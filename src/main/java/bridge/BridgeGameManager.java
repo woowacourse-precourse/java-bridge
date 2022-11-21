@@ -9,6 +9,9 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameManager {
+    private static final String RETRY_COMMAND = "R";
+    private static final String QUIT_COMMAND = "Q";
+
     private final InputView input;
     private final OutputView output;
     private final BridgeMaker bridgeMaker;
@@ -67,20 +70,41 @@ public class BridgeGameManager {
             if (move) {
                 continue;
             }
-            if (!retryOrQuit()) {
+            if (!inputRetryOrQuitUntilNoError()) {
                 break;
             }
         }
     }
 
-    private boolean retryOrQuit() {
+    private boolean inputRetryOrQuitUntilNoError() {
+        while (true) {
+            if (checkInputError()) {
+                break;
+            }
+        }
+
+        return bridgeGame.getIsRunning();
+    }
+
+    private boolean checkInputError() {
         output.printInputRetryMessage();
-        String retryCommand = input.readGameCommand();
-        if (retryCommand.equals("Q")) {
+
+        try {
+            changeGameState(input.readGameCommand());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-        bridgeGame.retry();
 
         return true;
+    }
+
+    private void changeGameState(String retryCommand) {
+        if (retryCommand.equals(RETRY_COMMAND)) {
+            bridgeGame.retry();
+        }
+        if (retryCommand.equals(QUIT_COMMAND)) {
+            bridgeGame.isOver();
+        }
     }
 }
