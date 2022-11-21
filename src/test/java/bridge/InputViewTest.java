@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +28,39 @@ public class InputViewTest {
 
         InputView inputView = new InputView();
         assertThat(inputView.readBridgeSize()).isEqualTo(3);
+    }
+
+    @DisplayName("게임 재시도 여부가 'R'나 'Q'가 아닐 경우 예외 처리한다. (Case 1)")
+    @Test
+    void invalidRetryCommandCase1() {
+        InputStream in = mockUserInput("3");
+        System.setIn(in);
+
+        InputView inputView = new InputView();
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("게임 재시도 여부가 'R'나 'Q'가 아닐 경우 예외 처리한다. (Case 2)")
+    @Test
+    void invalidRetryCase2() {
+        InputStream in = mockUserInput("X");
+        System.setIn(in);
+
+        InputView inputView = new InputView();
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("게임 재시도 여부가 'R'나 'Q'가 아닐 경우 예외 처리한다. (Case 3)")
+    @Test
+    void invalidRetryCase3() {
+        InputStream in = mockUserInput("q");
+        System.setIn(in);
+
+        InputView inputView = new InputView();
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     private static InputStream mockUserInput(String input) {

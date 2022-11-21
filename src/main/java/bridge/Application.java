@@ -7,6 +7,7 @@ public class Application {
         InputView inputView = new InputView();
         outputView.printGreeting();
         BridgeGame bridgeGame = initialize(inputView, outputView);
+        run(inputView, outputView, bridgeGame);
     }
 
     private static void run(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
@@ -15,7 +16,7 @@ public class Application {
         }
         if (bridgeGame.getGameStatus().equals(GameStatus.LOSE)) {
             outputView.printRetryInputMessage();
-            bridgeGame.retry(inputView.readGameCommand());
+            String command = inputView.readGameCommand();
         }
     }
 
