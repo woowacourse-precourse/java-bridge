@@ -22,10 +22,21 @@ class BridgeTest {
     @Test
     @DisplayName("플레이어가 윗 방향 다리에 올바르게 이동할 경우 위의 다리에 O가 추가된다.")
     void testMoveUpBridgeCorrect() throws Exception {
-        //when
+        //when & then
         bridge.moveUpBridgeCorrect();
+        assertEquals(bridge.toString(), "[ O ]" + "\n" + "[   ]");
+
+        bridge.moveUpBridgeCorrect();
+        assertEquals(bridge.toString(), "[ O | O ]" + "\n" + "[   |   ]");
+    }
+
+    @Test
+    @DisplayName("플레이어가 윗 방향 다리에 올바르지 못하게 이동할 경우 위의 다리에 X가 추가된다.")
+    void testMoveDownBridgeCorrect() throws Exception {
+        //when
+        bridge.moveUpBridgeInCorrect();
 
         //then
-        assertEquals(bridge.toString(), "[ O ]" + "\n" + "[   ]");
+        assertEquals(bridge.toString(), "[ X ]" + "\n" + "[   ]");
     }
 }
