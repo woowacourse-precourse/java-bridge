@@ -17,9 +17,14 @@ public enum GameRecord {
         this.generator=generator;
     }
 
+    public List<String> generate(String result){
+        return new ArrayList<>(this.generator.apply(result));
+    }
+
     private static boolean isSameDirection(GameRecord gameRecord, BridgeDirection direction){
         return gameRecord.direction==direction;
     }
+
     public static GameRecord findLocation(BridgeDirection direction){
         return Arrays.stream(GameRecord.values())
                 .filter(gameRecord -> GameRecord.isSameDirection(gameRecord, direction))
