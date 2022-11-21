@@ -47,3 +47,17 @@
 
 </div>
 </details>
+
+-------------------------------
+
+<details>
+<summary>추가 요구 사항</summary>
+<div markdown="1">
+
+- BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
+
+- InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
+
+</div>
+</details>
+
