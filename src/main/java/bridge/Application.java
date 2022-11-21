@@ -15,7 +15,7 @@ public class Application {
     // q를 입력한 경우 while을 끝냄
     public static void main(String[] args) {
         inputView.readBridgeSize();
-        while (gameCommand || !allCorrect) {
+        while (gameCommand && !allCorrect) {
             isCorrect = inputView.readMoving();
             outputView.printMap();
             checkGame();
