@@ -9,19 +9,26 @@ public class Controller {
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     BridgeGame bridgeGame = BridgeGame.getInstance();
     String bridgeSize;
+    String command;
+    int bridgeCount;
 
     public void run() {
         outputView.printGameStart();
-
-        do {
-            bridgeSize = inputView.readBridgeSize();
-        } while (validate(bridgeSize));
-
+        tryInputBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
-        System.out.println(bridge);
+
+        command = inputView.readMoving();
+        bridgeCount = 0;
+
     }
 
-    private boolean validate(String bridgeSize) {
+    private void tryInputBridgeSize() {
+        do {
+            bridgeSize = inputView.readBridgeSize();
+        } while (validateNumberAndRange(bridgeSize));
+    }
+
+    private boolean validateNumberAndRange(String bridgeSize) {
         try {
             validateNumber(bridgeSize);
             validateRange(bridgeSize);
