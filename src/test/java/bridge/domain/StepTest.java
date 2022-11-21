@@ -18,4 +18,10 @@ public class StepTest {
     void findByGeneratedDirection() {
         assertThat(Step.findBySystemInputDirection(1)).isEqualTo(Step.UP);
     }
+
+    @DisplayName("정수 입력값과 매칭되는 문자열 값 찾기")
+    @Test
+    void findUserInputDirectionBySystemInputDirection() {
+        assertThat(Step.findUserInputDirectionBySystemInputDirection(1)).isEqualTo("U");
+    }
 }

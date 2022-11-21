@@ -20,6 +20,10 @@ public enum Step {
         return Step.findBy((step) -> step.userInputDirection.equals(userInputDirection));
     }
 
+    public static String findUserInputDirectionBySystemInputDirection(Integer systemInputDirection) {
+        return findBySystemInputDirection(systemInputDirection).userInputDirection;
+    }
+
     public static Step findBySystemInputDirection(Integer systemInputDirection) {
         return Step.findBy((step) -> step.systemInputDirection.equals(systemInputDirection));
     }
@@ -30,6 +34,7 @@ public enum Step {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR]"));
     }
+
 
     private interface Matcher {
 

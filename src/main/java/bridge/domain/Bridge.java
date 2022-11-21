@@ -5,10 +5,13 @@ import java.util.List;
 
 public class Bridge {
 
+    private static final int LOWER_INCLUSIVE = 3;
+    private static final int UPPER_INCLUSIVE = 20;
     private final List<Step> bridge;
     private int currentPosition;
 
     public Bridge(List<String> stringBridge) {
+        validate(stringBridge.size());
         this.bridge = transformStringToStep(stringBridge);
     }
 
@@ -18,6 +21,13 @@ public class Bridge {
             stepBridge.add(Step.findByUserInputDirection(stringStep));
         }
         return stepBridge;
+    }
+
+    public static void validate(int size) {
+        if (LOWER_INCLUSIVE <= size && size <= UPPER_INCLUSIVE) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR]");
     }
 
     public boolean move(Step to) {

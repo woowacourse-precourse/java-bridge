@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.Step;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +21,28 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        validateSize(size);
+
+        List<String> bridge = new ArrayList<>();
+        while (size-- > 0) {
+            bridge.add(generateUserInputDirection());
+        }
+        return bridge;
+    }
+
+    private void validateSize(int size) {
+        Bridge.validate(size);
+    }
+
+    private String generateUserInputDirection() {
+        return findUserInputDirectionBySystemInputDirection(generateSystemInputDirection());
+    }
+
+    private String findUserInputDirectionBySystemInputDirection(int systemInputDirection) {
+        return Step.findUserInputDirectionBySystemInputDirection(systemInputDirection);
+    }
+
+    private int generateSystemInputDirection() {
+        return bridgeNumberGenerator.generate();
     }
 }
