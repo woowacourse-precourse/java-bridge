@@ -9,6 +9,9 @@ import bridge.system.util.BridgeMaker;
 import bridge.system.util.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import java.util.Locale;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -46,6 +49,7 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U", "R", "U", "D", "D");
             assertThat(output()).contains(
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
                     "최종 게임 결과",
                     "[ O |   |   ]",
                     "[   | O | O ]",
@@ -75,6 +79,27 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[ O | X ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 0, 1, 0);
+    }
+
+    @Test
+    void 기능_테스트_잘못된_입력값_받은_후_실패() {
+        assertRandomNumberInRangeTest(() -> {
+            run("-1", "3", "asd", "U", "U", "U", "qwe", "Q");
+            assertThat(output()).contains(
+                    "[ERROR] D,U 중 하나만 입력할 수 있습니다.",
+                    "[ERROR] R,Q 중 하나만 입력할 수 있습니다.",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "최종 게임 결과",
+                    "[ O | O | X ]",
+                    "[   |   |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O | O | X ]");
+            int downSideIndex = output().indexOf("[   |   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 1, 0);
     }
 
     @Test
