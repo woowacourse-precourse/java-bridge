@@ -56,6 +56,10 @@ public class BridgeGame {
         downMap.clear();
     }
 
+    public void quit() {
+        playerLocationIndex = 21;
+    }
+
     public int getPlayerLocationIndex() {
         return playerLocationIndex;
     }
