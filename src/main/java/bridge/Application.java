@@ -2,21 +2,25 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.generator.BridgeMaker;
+import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.dto.GameResult;
 import bridge.dto.MoveResult;
 import bridge.view.InputView;
 import bridge.view.InputViewProxy;
 import bridge.view.OutputView;
 
+//TODO 객체 관계 그래프 작성
 public class Application {
 
+    private static final BridgeGame bridgeGame = new BridgeGame();
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static final InputView inputView = new InputViewProxy();
     private static final OutputView outputView = new OutputView();
-    private static final BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
         inputView.printStartMessage();
-        Bridge bridge = bridgeGame.getBridge(inputView.readBridgeSize());
+        Bridge bridge = bridgeGame.getBridge(bridgeMaker, inputView.readBridgeSize());
         GameResult gameResult = playBridgeGame(bridge);
         outputView.printResult(bridge,gameResult);
     }

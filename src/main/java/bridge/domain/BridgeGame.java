@@ -13,9 +13,10 @@ public class BridgeGame {
 
     private final BridgeGameRepository bridgeGameRepository = new BridgeGameRepository();
 
-    public Bridge getBridge(BridgeSize bridgeSize) {
+    public Bridge getBridge(BridgeMaker bridgeMaker,
+                            BridgeSize bridgeSize) {
         bridgeGameRepository.setBridgeGameInfo(bridgeSize);
-        List<String> blocks = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize.getSize());
+        List<String> blocks = bridgeMaker.makeBridge(bridgeSize.getSize());
         return new Bridge(blocks);
     }
 
@@ -24,6 +25,7 @@ public class BridgeGame {
         String message = command.getMessage();
         int round = bridgeGameRepository.findRound();
         boolean isSuccess = bridge.isMoveSuccess(round, message);
+
         return new MoveResult(message, isSuccess, round);
     }
 
