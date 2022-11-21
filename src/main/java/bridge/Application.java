@@ -6,7 +6,7 @@ public class Application {
         InputValidation inputValidation = new InputValidation();
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        BridgeGameRun bridgeGameRun = new BridgeGameRun(inputView, inputValidation, outputView);
-        bridgeGameRun.run();
+        BridgeGameUi bridgeGameUi = new BridgeGameUi(inputView, inputValidation, outputView);
+        bridgeGameUi.run();
     }
 }
