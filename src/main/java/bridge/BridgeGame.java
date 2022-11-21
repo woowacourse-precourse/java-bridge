@@ -12,33 +12,33 @@ public class BridgeGame {
 
     private List<String> bridge;
 
-    private int round = 1;
+    private int tryCount = 1;
 
-    private int location = 0 ;
+    private int location = 0;
 
-    public BridgeGame(Player player){
+    public BridgeGame(Player player) {
         this.player = player;
     }
 
-    public void generate(List<String> bridge){
+    public void generate(List<String> bridge) {
         this.bridge = bridge;
     }
 
     public void move(String moving) {
-        if(moving.equals("U")){
-            if(bridge.get(location).equals(moving)){
+        if (moving.equals("U")) {
+            if (bridge.get(location).equals(moving)) {
                 player.correctUpsideBridge(location);
             }
-            if(!(bridge.get(location).equals(moving))){
+            if (!(bridge.get(location).equals(moving))) {
                 player.wrongUpsideBridge(location);
             }
         }
 
-        if(moving.equals("D")){
-            if(bridge.get(location).equals(moving)){
+        if (moving.equals("D")) {
+            if (bridge.get(location).equals(moving)) {
                 player.correctDownsideBridge(location);
             }
-            if(!(bridge.get(location).equals(moving))){
+            if (!(bridge.get(location).equals(moving))) {
                 player.wrongDownsideBridge(location);
             }
         }
@@ -51,20 +51,19 @@ public class BridgeGame {
         location = 0;
     }
 
-    public int quit(){
-        return round;
+    public boolean isAllAnswer() {
+        return player.isAllAnswer(bridge.size());
     }
 
-    public void increaseRetry(){ // 재시도 횟수를 카운트 +1 해준다
-        round++;
+    public int showTryCount() {
+        return tryCount;
     }
 
-    public void increaseLocation(){ // 다리를 건널때마다 현재 위치에 대한 값을 올려준다.
+    private void increaseRetry() {
+        tryCount++;
+    }
+
+    private void increaseLocation() {
         location++;
     }
-
-    public boolean isAllAnswer(int size){
-        return player.isAllAnswer(size);
-    }
-
 }
