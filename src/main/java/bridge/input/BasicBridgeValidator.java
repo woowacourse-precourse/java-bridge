@@ -3,6 +3,7 @@ package bridge.input;
 import bridge.controller.GameCommand;
 import bridge.controller.MoveCommand;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import static bridge.controller.BridgeSize.MAXIMUM;
@@ -26,6 +27,18 @@ public class BasicBridgeValidator implements BridgeValidator {
     @Override
     public void validateGameCommand(String command) throws IllegalArgumentException {
         validateStringGameCommand(command);
+    }
+
+    @Override
+    public void validateBridge(List<String> bridge) throws IllegalArgumentException {
+        validateBridgeSize(String.valueOf(bridge.size()));
+        for (String command : bridge) {
+            if (!Pattern.matches("^[UD]$", command)) {
+                String errMessage = "[ERROR] 다리는 U, D만 포함하고 있어야 합니다.";
+                System.out.println(errMessage);
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     private void validateInteger(String size) {
