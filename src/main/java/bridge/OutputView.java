@@ -13,6 +13,7 @@ public class OutputView {
     public static final String GAME_ICON_BAR = " | ";
     public static final String GAME_ICON_O = "O";
     public static final String GAME_ICON_X = "X";
+    public static final String GAME_ICON_SPACE = " ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -28,9 +29,34 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+        System.out.println(FINAL_GAME_MESSAGE);
     }
 
     public void printStart() {
         System.out.println(START_GAME_MESSAGE);
+    }
+
+    public void printIconOpen() {
+        System.out.println(GAME_ICON_OPEN);
+    }
+
+    public void printIconClose() {
+        System.out.println(GAME_ICON_CLOSE);
+    }
+
+    public void printIconBar() {
+        System.out.println(GAME_ICON_BAR);
+    }
+
+    public void printIconO() {
+        System.out.println(GAME_ICON_O);
+    }
+
+    public void printIconX() {
+        System.out.println(GAME_ICON_X);
+    }
+
+    public void printIconSpace() {
+        System.out.println(GAME_ICON_SPACE);
     }
 }

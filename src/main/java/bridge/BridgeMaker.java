@@ -1,6 +1,10 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.OutputView.GAME_ICON_OPEN;
+import static bridge.OutputView.GAME_ICON_SPACE;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -8,6 +12,8 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static final String ICON_UP = "U";
+    private static final String ICON_DOWN = "D";
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -18,6 +24,36 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        List<String> randomCollect = makeRandomUpDown(size);
+        for(int i = 0; i<size; i++){
+            if(randomCollect.get(i) == ICON_UP)
+                bridge.add(ICON_UP);
+            bridge.add(GAME_ICON_SPACE);
+        }
+        for(int i = 0; i<size; i++){
+            if(randomCollect.get(i) == ICON_DOWN)
+                bridge.add(ICON_DOWN);
+            bridge.add(GAME_ICON_SPACE);
+        }
+
+        return bridge;
+    }
+
+    public List<String> makeRandomUpDown(int size){
+        List<String> inputRadomUpDown = new ArrayList<>();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeNumberGenerator() {
+            @Override
+            public int generate() {
+                return 0;
+            }
+        };
+        for (int i = 0; i < size; i++) {
+            if(bridgeNumberGenerator.generate() == 1)
+                inputRadomUpDown.add(ICON_UP);
+            if(bridgeNumberGenerator.generate() == 0)
+                inputRadomUpDown.add(ICON_DOWN);
+        }
+        return inputRadomUpDown;
     }
 }
