@@ -46,7 +46,7 @@ public class InputView {
         return inputGameCommand;
     }
 
-    private void validateBridgeSize(String inputBridgeSize) throws IllegalArgumentException {
+    private void validateBridgeSize(String inputBridgeSize) {
         try {
             int size = Integer.parseInt(inputBridgeSize);
             if (size < Constant.BRIDGE_MIN_SIZE.getValue() || size > Constant.BRIDGE_MAX_SIZE.getValue()) {
@@ -57,7 +57,7 @@ public class InputView {
         }
     }
 
-    private void validateMoving(String moving) throws IllegalArgumentException {
+    private void validateMoving(String moving) {
         try {
             Moving.valueOf(moving);
         } catch (IllegalArgumentException e) {
@@ -65,7 +65,7 @@ public class InputView {
         }
     }
 
-    private void validateGameCommand(String gameCommand) throws IllegalArgumentException {
+    private void validateGameCommand(String gameCommand) {
         try {
             GameCommand.valueOf(gameCommand);
         } catch (IllegalArgumentException e) {
