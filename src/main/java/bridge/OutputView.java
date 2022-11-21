@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class OutputView {
         OutputView outputView = new OutputView();
         outputView.printFinalResult();
         outputView.printIconOpen();
+        Collections.replaceAll(finalBridge, "o", "O");
         for(int i=0; i<finalBridge.size()/TWO-ONE; i++)
             System.out.print(finalBridge.get(i));
         outputView.printIconClose();

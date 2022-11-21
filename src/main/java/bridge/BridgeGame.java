@@ -68,9 +68,15 @@ public class BridgeGame {
 
     public int run() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeNumberGenerator() {
+            @Override
+            public int generate() {
+                return bridgeRandomNumberGenerator.generate();
+            }
+        };
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView.printStart();
         outputView.printInputBridgeLength();
         bridgeDraw.clear();
