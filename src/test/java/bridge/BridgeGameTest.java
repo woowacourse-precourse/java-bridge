@@ -22,7 +22,7 @@ class BridgeGameTest {
     @ParameterizedTest
     @CsvSource({"U, U, ' O |', '   |", "U, D, ' X |', '   |", "D, D, '   |', ' O |'", "D, U, '   |', ' X |"})
     void move2(String playerMove, String bridgeElement, String expected) {
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGame bridgeGame = new BridgeGame(1, true);
         List<String> upSideDownSideMove = new ArrayList<>(List.of("", ""));
         CompareBridge move = new CompareBridge(playerMove);
         assertThat(bridgeGame.move(move, upSideDownSideMove, bridgeElement))
@@ -41,7 +41,7 @@ class BridgeGameTest {
     @ParameterizedTest
     @MethodSource("parameterProvider")
     void isFailure(List<String> upSideDownSideMove) {
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGame bridgeGame = new BridgeGame(1, true);
         boolean actual = bridgeGame.isFailure(upSideDownSideMove);
         boolean expected = true;
         assertEquals(expected, actual);
@@ -51,9 +51,9 @@ class BridgeGameTest {
     @Test
     void retry() {
         assertSimpleTest(() -> {
-            BridgeGame bridgeGame = new BridgeGame();
-            bridgeGame.retry("R");
-            assertEquals(2, BridgeGame.retryCount);
+            BridgeGame bridgeGame = new BridgeGame(1, true);
+            bridgeGame = bridgeGame.retry("R");
+            assertEquals(2, bridgeGame.getRetryCount());
         });
     }
 }
