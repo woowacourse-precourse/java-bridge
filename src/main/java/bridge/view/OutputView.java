@@ -10,9 +10,9 @@ import java.util.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private Map<Unit, Stack<String>> userInputMap = Map.of(
-            Unit.UP, new Stack<String>(),
-            Unit.DOWN, new Stack<String>());
+    private Map<Unit, Deque<String>> userInputMap = Map.of(
+            Unit.UP, new LinkedList<>(),
+            Unit.DOWN, new LinkedList<>());
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -58,7 +58,7 @@ public class OutputView {
 
     public void save(Unit key, String result) {
         checkBrackets(key);
-        userInputMap.get(key).add(result);
+        userInputMap.get(key).addLast(result);
         addCloseBrackets(key);
 
     }
@@ -74,21 +74,25 @@ public class OutputView {
     public void checkBrackets(Unit key) {
         checkStackIsEmpty(key);
 
-        if(userInputMap.get(key).peek().equals("]")) {
-            userInputMap.get(key).pop();
-            userInputMap.get(key).add("|");
+        Deque<String> inputRecord = userInputMap.get(key);
+        if(inputRecord.peekLast().equals("]")) {
+            inputRecord.pollLast();
+            inputRecord.addLast("|");
         }
     }
 
     public void addCloseBrackets(Unit key) {
-        userInputMap.get(key).add("]");
+        userInputMap.get(key).addLast("]");
     }
 
     public void checkStackIsEmpty(Unit key) {
-        if(userInputMap.get(key).empty()) {
-            userInputMap.get(key).add("[");
+        Deque<String> inputRecord = userInputMap.get(key);
+
+        if(inputRecord.isEmpty()) {
+            inputRecord.addLast("[");
         }
     }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
