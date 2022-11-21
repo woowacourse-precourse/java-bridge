@@ -13,8 +13,9 @@ public class BridgeGame {
 
     Input input;
     Output output;
-
     Judge judge;
+
+    int gameCount;
 
     public BridgeGame(Input input, Output output) {
         this.input = input;
@@ -25,20 +26,20 @@ public class BridgeGame {
         BridgeSize bridgeSize = input.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         judge = new Judge(bridgeMaker.makeBridge(bridgeSize.getBridgeSize()));
-        play();
-
+        GameResult gameResult = play();
+        output.printResult(judge, gameResult, gameCount);
     }
 
-    private void play() {
+    private GameResult play() {
         GameResult gameResult;
         GameCommand gameCommand = null;
         do {
             judge.initUserBridge();
             gameResult = moveAndPrintResult();
-            if (gameResult == GameResult.LOSE) {
-                gameCommand = input.readGameCommand();
-            }
+            if (gameResult == GameResult.LOSE) gameCommand = input.readGameCommand();
+            gameCount++;
         } while (retry(gameResult, gameCommand));
+        return gameResult;
     }
 
 
