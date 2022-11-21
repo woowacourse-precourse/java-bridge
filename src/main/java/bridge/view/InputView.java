@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 import bridge.exception.ValidException;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -13,7 +13,7 @@ public class InputView {
     private static final String INPUT_MOVE_NEXT_STEP = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_GAME_RESTART_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-    InputView(ValidException exception){
+    public InputView(ValidException exception){
         this.validException = exception;
     }
 
@@ -38,7 +38,6 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(INPUT_MOVE_NEXT_STEP);
-
         String nextStep = Console.readLine();
         validException.validMoveNextStep(nextStep);
         return nextStep;
