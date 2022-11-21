@@ -3,6 +3,7 @@ package bridge.Controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.Bridge;
+import bridge.Domain.Player;
 import bridge.Domain.Result;
 import bridge.View.InputView;
 import bridge.View.OutputView;
@@ -12,12 +13,14 @@ import bridge.View.OutputView;
  */
 public class BridgeGame {
     private final Bridge bridge;
+    private final Player player;
     private final Result result;
     private final InputView inputView;
     private final OutputView outputView;
 
     public BridgeGame(){
         bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
+        player = new Player();
         result = new Result();
         inputView = new InputView();
         outputView = new OutputView();
@@ -41,7 +44,8 @@ public class BridgeGame {
     public void crossBridge(){
         move();
 
-        if(result.isSuccess(bridge.getSize(), bridge.getIndexOf(result.getMovesLastIndex()))){
+        if(player.isSuccess(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
+            result.setSuccess(true);
             return;
         }
 
@@ -54,10 +58,11 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        while(result.isMovable(bridge.getSize(), bridge.getIndexOf(result.getMovesLastIndex()))){
+        while(player.isMovable(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
             String moveTo = inputView.readMoving();
-            result.move(moveTo);
-            outputView.printMap();
+            player.move(moveTo);
+            result.makeMap(bridge.getSpaces(), player.getMoves());
+            outputView.printMap(result.getMap());
         }
     }
 
@@ -75,10 +80,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        result.clearMoves();
-
+        player.clearMoves();
         result.addTryCount();
-
         crossBridge();
     }
 

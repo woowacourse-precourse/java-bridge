@@ -4,58 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
-    private List<String> moves;
+    private List<List<String>> map;
     private boolean isSuccess;
     private int tryCount;
 
     public Result(){
-        moves = new ArrayList<>();
+        map = new ArrayList<>();
+
+        for(int i = 0;i<2;i++){
+            map.add(new ArrayList<>());
+        }
+
         isSuccess = false;
         tryCount = 1;
     }
 
-    public void move(String moveTo){
-        moves.add(moveTo);
-    }
+    public void makeMap(List<String> spaces, List<String> moves){
 
-    public void clearMoves(){
-        moves.clear();
     }
 
     public void addTryCount(){
         tryCount++;
     }
 
-    public boolean isMovable(int bridgeSize, String bridgeIndexOf){
-        if(moves.size() == 0){
-            return true;
-        }
-
-        return moves.size() < bridgeSize && compare(bridgeIndexOf);
+    public List<List<String>> getMap() {
+        return map;
     }
 
-    public boolean isSuccess(int bridgeSize, String bridgeIndexOf){
-        return isSuccess = moves.size() == bridgeSize && compare(bridgeIndexOf);
-    }
-
-    public boolean compare(String bridgeIndexOf){
-        return moves.get(getMovesLastIndex()).equals(bridgeIndexOf);
-    }
-
-    public int getMovesLastIndex(){
-        return moves.size() - 1;
-    }
-
-    public int getMovesCount(){
-        return moves.size();
-    }
-
-    public List<String> getMoves() {
-        return moves;
-    }
-
-    public void setMoves(List<String> moves) {
-        this.moves = moves;
+    public void setMap(List<List<String>> map) {
+        this.map = map;
     }
 
     public boolean isSuccess() {
