@@ -2,6 +2,8 @@ package bridge;
 
 import static bridge.OutputMessage.START_MESSAGE;
 import static bridge.OutputMessage.BRIDGE_LENGTH_MESSAGE;
+import static bridge.OutputMessage.CHOICE_REQUEST_MESSAGE;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -29,5 +31,9 @@ public class OutputView {
 
     public void printBridgeLengthRequest() {
         System.out.println(BRIDGE_LENGTH_MESSAGE.toString());
+    }
+
+    public void printChoiceRequest() {
+        System.out.println(CHOICE_REQUEST_MESSAGE);
     }
 }
