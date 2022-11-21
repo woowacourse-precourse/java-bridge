@@ -12,14 +12,14 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     private static BridgeGameController instance;
     private BridgeGame game;
-    private final BridgeMaker bridgeMaker; // static 클래스로 만들고 싶지만, 건들었다가 무슨 일이 생길지 모르겠음
+    private final BridgeMaker bridgeMaker;
 
     private BridgeGameController() {
         this.game = new BridgeGame();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    public static BridgeGameController init() {
+    public static BridgeGameController getInstance() {
         if (instance == null) {
             instance = new BridgeGameController();
         }
