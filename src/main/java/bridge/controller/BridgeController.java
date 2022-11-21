@@ -38,7 +38,7 @@ public class BridgeController {
             bridgeGame.resetUserMoving();
             bridgeGame.addAttemptCount();
             //System.out.println(bridgeGame.getBridge());
-            startMove();
+            proceedMove();
 
             if (decideEndOfGame()) break;
         }
@@ -57,13 +57,23 @@ public class BridgeController {
         return false;
     }
 
-    public void startMove() {
+    public void proceedMove() {
         while (true) {
-            if (bridgeGame.move(inputView.readMoving()) == false || bridgeGame.isEndOfBridge() == true) {
+            if (startMove() == false || bridgeGame.isEndOfBridge() == true) {
                 outputView.printMap(bridgeGame.getUserMoving());
                 break;
             }
             outputView.printMap(bridgeGame.getUserMoving());
         }
+    }
+
+    public boolean startMove(){
+        String moving;
+        boolean resultOfMove;
+
+        moving = inputView.readMoving();
+        resultOfMove = bridgeGame.move(moving);
+
+        return resultOfMove;
     }
 }
