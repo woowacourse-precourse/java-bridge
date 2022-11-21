@@ -8,18 +8,20 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
 
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int size = 0;
-        try{
-            size = validateSize(readLine());
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            size = readBridgeSize();
+        System.out.println(MSG_GET_LENGTH);
+        while(true){
+            try{
+                int size = validateSize(readLine());
+                return size;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
-        return size;
     }
 
     public int validateSize(String input){
@@ -32,16 +34,16 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_INT.getMessage(), e);
+            throw new IllegalArgumentException(ERROR_INT, e);
         }
     }
 
     private void validateRange(int size){
         if (size < 3){
-            throw new IllegalArgumentException(ERROR_LENGTH.getMessage());
+            throw new IllegalArgumentException(ERROR_LENGTH);
         }
         if (size > 20){
-            throw new IllegalArgumentException(ERROR_LENGTH.getMessage());
+            throw new IllegalArgumentException(ERROR_LENGTH);
         }
     }
 
@@ -49,24 +51,23 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        boolean isGood = false;
         String moving = "";
-        while(!isGood){
+        while(true){
             try{
                 moving = readLine();
-                isGood = validateMoving(moving);
+                validateMoving(moving);
+                return moving;
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
-        return moving;
     }
 
     public boolean validateMoving(String input){
         if(input.equals("U") || input.equals("D")){
             return true;
         }
-        throw new IllegalArgumentException(ERROR_MOVE.getMessage());
+        throw new IllegalArgumentException(ERROR_MOVE);
     }
 
     /**
