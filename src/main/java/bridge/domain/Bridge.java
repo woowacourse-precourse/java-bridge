@@ -35,7 +35,7 @@ public class Bridge {
     }
 
     public List<String> getBridgeSpace(){
-        return this.getBridgeSpace();
+        return this.bridgeSpace;
     }
 
 }
