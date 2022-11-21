@@ -9,6 +9,12 @@ public class Service {
 	private int count = 1;
 	private boolean successOrFail = true;
 
+	public void settingGame() {
+		int userInputSize = checkUserInputBridgeSize();
+		bridgeSize = new BridgeSize(userInputSize);
+		bridgeGame.setBridge(userInputSize);
+	}
+
 	public boolean getSuccessOrFail() {
 		return successOrFail;
 	}
