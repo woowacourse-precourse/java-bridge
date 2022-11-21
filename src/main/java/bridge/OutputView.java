@@ -13,6 +13,7 @@ public class OutputView {
     private static final String GAME_RESULT_PHRASES = "최종 게임 결과";
     private static final String GAME_STATUS_PHRASES = "게임 성공 여부: ";
     private static final String NUMBER_OF_TRYING_PHRASES = "총 시도한 횟수: ";
+    private static final String ASK_RETRY_PHRASES = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private final List<StringBuilder> map;
 
     public OutputView() {
@@ -180,5 +181,12 @@ public class OutputView {
     private void printNumOfTry(Integer numOfTrying) {
         System.out.print(NUMBER_OF_TRYING_PHRASES);
         System.out.println(numOfTrying);
+    }
+
+    /**
+     * 재시작할지 물어보는 문구를 출력한다.
+     */
+    public void printAskRetryPhrases() {
+        System.out.println(ASK_RETRY_PHRASES);
     }
 }

@@ -89,6 +89,16 @@ class OutputViewTest extends NsTest {
         );
     }
 
+    @DisplayName("재시작할지 물어보는 문구를 출력한다.")
+    @Test
+    void printAskRetryPhrases() {
+        OutputView outputView = new OutputView();
+
+        outputView.printAskRetryPhrases();
+
+        assertThat(output()).isEqualTo("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
     @Override
     protected void runMain() {
     }
