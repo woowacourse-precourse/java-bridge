@@ -20,36 +20,27 @@ public class BridgeGameEngine {
 
     public void playGame() {
         List<String> bridge = initBridge();
-
         int gameCount = 0;
-
         while (true) {
             gameCount++;
             Bridge userBridge = bridgeFactory.makeUserBridge();
-
-            PlayerStatus playerStatus = playerMoveBridge(bridge, userBridge, gameCount);
-
+            PlayerStatus playerStatus = playerMoveBridge(bridge, userBridge);
             if (isGameFinish(gameCount, userBridge, playerStatus)) {
                 break;
             }
         }
     }
 
-
-
-    public PlayerStatus playerMoveBridge(List<String> bridge, Bridge userBridge, int gameCount) {
+    public PlayerStatus playerMoveBridge(List<String> bridge, Bridge userBridge) {
         PlayerStatus playerStatus = null;
 
         for (String currentStep : bridge) {
             playerStatus = isMatchingWithBridge(currentStep);
-
             playerMove(userBridge, playerStatus);
-
             if (!playerStatus.isMatchingFlag()) {
                 break;
             }
         }
-
         return playerStatus;
     }
 
@@ -86,13 +77,11 @@ public class BridgeGameEngine {
         return false;
     }
 
-    private boolean finishGamePlayerLose(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
+    private void finishGamePlayerLose(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
         String retryCommand = ConsoleUtil.inputGameCommand();
 
         if (bridgeGame.retry(retryCommand)) {
             ConsoleUtil.outputGameResult(userBridge, gameCount, playerStatus);
-            return true;
         }
-        return false;
     }
 }
