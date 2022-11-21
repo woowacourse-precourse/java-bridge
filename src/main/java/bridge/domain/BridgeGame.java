@@ -24,22 +24,27 @@ public class BridgeGame {
     }
 
     public void move(BridgeShape moveBridgeShape) {
-        if (!bridge.isCanMove(playerMove)) {
+        validateCanMove();
+
+        this.playerMove.connect(moveBridgeShape);
+    }
+
+    private void validateCanMove() {
+        if (!this.bridge.isCanMove(this.playerMove)) {
             throw new CanNotMoveException();
         }
-        playerMove.connect(moveBridgeShape);
     }
 
     public BridgeGame retry() {
-        return new BridgeGame(bridge, tryCount.plusOne());
+        return new BridgeGame(this.bridge, this.tryCount.plusOne());
     }
 
     public BridgeGameResult result() {
-        return bridge.compare(playerMove);
+        return this.bridge.compare(this.playerMove);
     }
 
     public boolean isNotEnd() {
-        return !bridge.sizeEqual(playerMove);
+        return !this.bridge.sizeEqual(this.playerMove);
     }
 
     public TryCount tryCount() {
@@ -55,12 +60,12 @@ public class BridgeGame {
             return false;
         }
         BridgeGame that = (BridgeGame) o;
-        return Objects.equals(bridge, that.bridge) && Objects.equals(playerMove, that.playerMove)
-                && Objects.equals(tryCount, that.tryCount);
+        return Objects.equals(this.bridge, that.bridge) && Objects.equals(this.playerMove, that.playerMove)
+                && Objects.equals(this.tryCount, that.tryCount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bridge, playerMove, tryCount);
+        return Objects.hash(this.bridge, this.playerMove, this.tryCount);
     }
 }
