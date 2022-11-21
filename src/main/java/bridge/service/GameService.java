@@ -20,8 +20,10 @@ public class GameService {
     public static GameService createNewGame(ViewService viewService) {
         viewService.printStartMessage();
         int size = viewService.askBridgeLength();
+
         BridgeMakingService makingService = new BridgeMakingService(new BridgeMaker(new BridgeRandomNumberGenerator()));
         Bridge bridge = makingService.makeSizeOf(size);
+
         return new GameService(new BridgeGame(bridge));
     }
 
@@ -30,7 +32,6 @@ public class GameService {
         setBridgeDto(input);
         return move;
     }
-
 
     private void setReGame() {
         cache.clear();

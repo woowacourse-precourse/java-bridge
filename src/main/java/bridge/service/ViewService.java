@@ -26,6 +26,7 @@ public class ViewService {
         do {
             size = inputView.readBridgeSize();
         } while (size.isEmpty());
+
         return size.get();
     }
 
@@ -34,6 +35,7 @@ public class ViewService {
         do {
             move = inputView.readMoving();
         } while (move.isEmpty());
+
         return move.get();
     }
 
@@ -46,6 +48,7 @@ public class ViewService {
         do {
             cmd = inputView.readGameCommand();
         } while (cmd.isEmpty());
+
         return cmd.get();
     }
 

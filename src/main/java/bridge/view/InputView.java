@@ -30,6 +30,7 @@ public class InputView {
             String input = Console.readLine().trim();
             System.out.println();
             inputConfig.checkBridgeLength(input);
+
             return Optional.of(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -45,6 +46,7 @@ public class InputView {
         try {
             String input = Console.readLine().trim();
             inputConfig.checkMovingInput(input);
+
             return Optional.of(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -60,6 +62,7 @@ public class InputView {
         try {
             String input = Console.readLine().trim();
             inputConfig.checkAskReGameInput(input);
+
             return Optional.of(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -17,7 +17,6 @@ public class Bridge {
         return bridge.size() - 1 == idx;
     }
 
-
     public BridgeState getStateOf(int idx, String candidate) {
         if (matchWithIndex(idx, candidate)) {
             return BridgeState.CORRECT;
