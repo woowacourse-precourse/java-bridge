@@ -4,25 +4,36 @@ import java.util.List;
 
 public class BridgeGameInfo {
     private List<String> bridge;
-    private int player;
+    private int position;
+    private String player;
     private int trial;
+    private int end;
 
     BridgeGameInfo(int size){
         this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
-        this.player = -1;
-        this.trial = 0;
+        this.position = -1;
+        this.trial = 1;
+        this.end = bridge.size()-1;
     }
 
-    public int getPlayer() {
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getPlayer() {
         return player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
     public int getTrial() {
         return trial;
-    }
-
-    public void setPlayer(int player) {
-        this.player = player;
     }
 
     public void setTrial(int trial) {
