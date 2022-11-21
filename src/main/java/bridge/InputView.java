@@ -13,14 +13,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = 0;
-        try {
-            bridgeSize = checkBridgeSize(Integer.parseInt(Console.readLine()));
-        } catch(RuntimeException e) {
-            System.out.println(e.getMessage());
-            readBridgeSize();
+        while (true) {
+            try {
+                int bridgeSize = checkBridgeSize(Integer.parseInt(Console.readLine()));
+                return bridgeSize;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return bridgeSize;
     }
 
     public int checkBridgeSize(int bridgeSize) { // 문자로 들어왔을 경우에도 예외처리 해줘야한다.
@@ -34,14 +34,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String upOrDown = "";
-        try {
-            upOrDown = checkMoving(Console.readLine());
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-            readMoving();
+        while (true) {
+            try {
+                String upOrDown = checkMoving(Console.readLine());
+                return upOrDown;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return upOrDown;
     }
 
     public String checkMoving(String upOrDown) { // 숫자일 경우도 예외지만, 숫자는 그냥 String으로 받아올 수 있으니까 괜찮지 않을까?
