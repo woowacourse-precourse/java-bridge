@@ -63,8 +63,8 @@
     + [X] 게임 실패 시 입력 받은 재시작 여부를 통해 게임을 재시작할지를 판정
     + [X] 주어진 입력이 'R', 'Q'가 아닌 경우 예외 처리
     + [X] 재시작 시 새로 다리를 만들지 않고 처음부터 시작.
-
-#### BridgeMaker
+- - -
+### BridgeMaker
 > **제한사항**
 >+ 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다.
 >+ `BridgeMaker` 의 필드를 변경할 수 없다.
@@ -75,7 +75,32 @@
     + [X] `BridgeRandomNumberGenerator`의 `generate()`를 통해 반환된 정수를 `String`으로 변환
     + [X] 주어진 다리의 길이가 3미만, 20초과인 경우 예외 처리
 
-#### BridgeRandomNumberGenerator
+### BridgeRandomNumberGenerator
 > **제한사항**
 >+ Random 값 추출은 제공된 `bridge.BridgeRanomNumbeGenerator`의 `generate()`를 활용한다.
 >+ `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
+
+- - -
+
+### Controller Package
+#### Controller
++ [ ] 기능 목록
+  + [ ] 게임 시작
+  + [ ] 다리의 길이 입력
+    + [ ] OutputView) 입력 요청 메시지 출력
+    + [ ] InputView) 입력을 받음
+    + [ ] 입력을 BridgeGame으로 건넴
+  + [ ] 이동할 칸 선택
+    + [ ] OutputView) 입력 요청 메시지 출력
+    + [ ] InputView) 입력 받음
+    + [ ] 입력을 BridgeGame으로 건넴
+    + [ ] BridgeGame) 현재 진행 상황을 받아오기
+    + [ ] OutputView) 현재 진행 상황을 출력
+  + [ ] (실패 시)게임 재시도 여부 확인
+    + [ ] OutputView) 입력 요청 메시지 출력
+    + [ ] InputView) 입력 받음
+    + [ ] 입력을 BridgeGame으로 건넴
+  + [ ] (게임 종료 시) 최종 결과 확인
+    + [ ] BridgeGame) 게임 성공 여부와 총 시도 횟수 받음
+    + [ ] OutputView) 최종 결과 출력
+  + [ ] 잘못된 입력을 받았을 경우 해당 자리에서 재입력 받을 것
