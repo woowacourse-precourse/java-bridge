@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.exception.ExceptionMessage;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -11,12 +12,15 @@ public class BridgeController {
     private BridgeGame bridgeGame;
 
     public void run() {
-        String size = inputView.readBridgeSize();
-        validateBridgeSize(size);
+        try {
+            String size = inputView.readBridgeSize();
+            validateBridgeSize(size);
 
-        int bridgeSize = Integer.parseInt(size);
-        bridgeGame = new BridgeGame(bridgeSize);
+            int bridgeSize = Integer.parseInt(size);
+            bridgeGame = new BridgeGame(bridgeSize);
+        } catch (IllegalArgumentException e) {
 
+        }
     }
 
     // 검증 메서드
@@ -28,7 +32,7 @@ public class BridgeController {
 
     public void validateBridgeSizeIsNull(String size) {
         if (size == null || size.isEmpty()) {
-            throw new IllegalArgumentException("다리의 길이를 입력 해주세요");
+            throw new IllegalArgumentException(String.valueOf(ExceptionMessage.BRIDGE_SIZE_IS_NULL_ERROR));
         }
     }
 
@@ -36,7 +40,7 @@ public class BridgeController {
         try {
             Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("다리의 길이는 숫자만 가능합니다.");
+            throw new IllegalArgumentException(String.valueOf(ExceptionMessage.BRIDGE_SIZE_IS_NOT_NUMBER_ERROR));
         }
     }
 
@@ -44,7 +48,7 @@ public class BridgeController {
         int bridgeSize = Integer.parseInt(size);
 
         if (bridgeSize < 3 && bridgeSize > 20) {
-            throw new IllegalArgumentException("다리의 길이는 3 이상 20 이하의 정수이어야 합니다.");
+            throw new IllegalArgumentException(String.valueOf(ExceptionMessage.BRIDGE_SIZE_RANGE_ERROR));
         }
     }
 }
