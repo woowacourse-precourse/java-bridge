@@ -3,7 +3,6 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         try {
             int size = InputView.readBridgeSize();
             BridgeGame game = new BridgeGame();
@@ -20,17 +19,18 @@ public class Application {
                 String moving = InputView.readMoving();
                 game.move(moving);
             }
-            if (game.completeBridge) {
-                break;
-            }
-            String restart = InputView.readGameCommand();
-            game.retry(restart);
-            if (game.retry) {
-                game.gameOver = false;
-            }
-            if (!game.retry) {
-                break;
-            }
+            if (game.completeBridge) {break;}
+            if (afterGameOver(game)) {break;}
         }
+    }
+
+    private static boolean afterGameOver(BridgeGame game) {
+        String restart = InputView.readGameCommand();
+        game.retry(restart);
+        if (game.retry) {
+            game.gameOver = false;
+        }
+        if (!game.retry) {return true;}
+        return false;
     }
 }
