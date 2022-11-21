@@ -23,7 +23,7 @@ public class Validate {
     public static boolean notInRange(String length) {
         return Integer.parseInt(length) < 3 || Integer.parseInt(length) > 20;
     }
-    
+
     public static void checkMoveDirection(String direction) {
         if (invalidDirection(direction)) {
             throw new IllegalArgumentException(error + Error.MOVE_DIRECTION_INVALID.getMessage());
@@ -32,6 +32,16 @@ public class Validate {
 
     public static boolean invalidDirection(String direction) {
         return !(direction.equals("U") || direction.equals("D"));
+    }
+
+    public static void checkRestartCode(String code) {
+        if (invalidRestartCode(code)) {
+            throw new IllegalArgumentException(error + Error.RESTART_CODE_INVALID.getMessage());
+        }
+    }
+
+    public static boolean invalidRestartCode(String code) {
+        return !(code.equals("R") || code.equals("Q"));
     }
 
 }
