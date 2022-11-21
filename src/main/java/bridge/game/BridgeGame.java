@@ -1,12 +1,10 @@
 package bridge.game;
 
-import static bridge.exception.ErrorEnum.INVALID_BRIDGE_GAME_MOVE_STATUS;
-import static bridge.exception.ErrorEnum.INVALID_DIRECTION_INPUT;
 import static bridge.game.BridgeGameStatus.FINISH;
 import static bridge.game.BridgeGameStatus.RUNNING;
 import static bridge.game.BridgeGameStatus.STOP;
 
-import bridge.validation.Validator;
+import bridge.exception.Validator;
 import java.util.List;
 
 /**

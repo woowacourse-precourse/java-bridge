@@ -4,7 +4,7 @@ import static bridge.game.BridgeMoveResult.CORRECT;
 import static bridge.game.BridgeMoveResult.NONE;
 import static bridge.game.BridgeMoveResult.WRONG;
 
-import bridge.validation.Validator;
+import bridge.exception.Validator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

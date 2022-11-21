@@ -1,7 +1,6 @@
 package bridge.view.input;
 
-import bridge.exception.ErrorEnum;
-import bridge.validation.Validator;
+import bridge.exception.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

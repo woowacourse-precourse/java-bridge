@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.exception.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        validateSize(size);
+        Validator.validateBridgeSize(size);
         List<String> answerBridge = new ArrayList<>();
         for (int round = 0; round < size; round++) {
             answerBridge.add(convertNumberToUpDown(bridgeNumberGenerator.generate()));
@@ -27,19 +28,11 @@ public class BridgeMaker {
         return answerBridge;
     }
 
-    private void validateSize(int size) {
-        if(20 < size || size < 3){
-            throw new IllegalArgumentException("[ERROR]");
-        }
-    }
-
     private String convertNumberToUpDown(int number) {
+        Validator.validateRandomsInput(number);
         if (number == 1) {
             return "U";
         }
-        if (number == 0) {
-            return "D";
-        }
-        throw new IllegalArgumentException("[ERROR]");
+        return "D";
     }
 }
