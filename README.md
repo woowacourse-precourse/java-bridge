@@ -106,7 +106,7 @@ BUILD SUCCESSFUL in 0s
         - [x] private boolean isDigit(String size)
 - [ ] **CLASS5. OutputView**
     - **Class Methods**
-        - [ ] public void printMap(List<String> bridge, int currentUserPosition, boolean isFail)
+        - [x] public void printMap(List<String> bridge, int currentUserPosition, boolean isFail)
         - [ ] public void printResult(List<String> bridge, int currentUserPosition, boolean isFail)
         - [ ] public void printResultMessage(boolean getGameWinStatus, int totalTryCount)
         - [ ] public void printGameStartMessage()
