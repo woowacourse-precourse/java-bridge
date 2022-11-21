@@ -24,5 +24,13 @@ public class Constants {
     public static final int DOWN_VALUE = 0;
     public static final String UP_SITUATION = "U";
     public static final String DOWN_SITUATION = "D";
+    // Result Mark
+    public static final String CORRECT_MARK =  "O";
+    public static final String INCORRECT_MARK =  "X";
+    public static final String BLANK_MARK =  " ";
+    // print map element
+    public static final String MAP_PREFIX = "[ ";
+    public static final String MAP_DELIMITER = " | ";
+    public static final String MAP_SUFFIX = " ]\n";
 
 }

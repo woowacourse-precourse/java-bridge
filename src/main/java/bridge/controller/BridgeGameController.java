@@ -1,9 +1,10 @@
 package bridge.controller;
 
 import static bridge.BridgeGame.generateBridge;
+import static bridge.BridgeGame.move;
 
 import bridge.domain.Bridge;
-import bridge.domain.MovingCommand;
+import bridge.domain.BridgeGameResult;
 import bridge.domain.SizeOfBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -20,17 +21,24 @@ public class BridgeGameController {
 
     public void run() {
         outputView.printStartMessage();
-        set();
-        playGame();
+        Bridge bridge = set();
+        playGame(bridge);
     }
 
-    private void set() {
+    private Bridge set() {
         SizeOfBridge sizeOfBridge = inputView.readBridgeSize();
-        Bridge bridge = generateBridge(sizeOfBridge);
+
+        return generateBridge(sizeOfBridge);
     }
 
-    private void playGame() {
-        MovingCommand movingCommand = inputView.readMoving();
+    private void playGame(Bridge bridge) {
+        BridgeGameResult bridgeGameResult = new BridgeGameResult();
+
+        for (String bridgeStep : bridge.getBridge()) {
+            bridgeGameResult.append(move(bridgeStep, inputView.readMoving()));
+            outputView.printMap(bridgeGameResult);
+        }
     }
+
 
 }
