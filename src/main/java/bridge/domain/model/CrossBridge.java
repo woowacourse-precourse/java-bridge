@@ -5,7 +5,6 @@ import java.util.List;
 
 public class CrossBridge {
 
-
     private static final List<Way> crossBridge = new ArrayList<>();
     private static int totalTry;
     private static boolean success;
@@ -15,6 +14,7 @@ public class CrossBridge {
     public CrossBridge() {
         CrossBridge.totalTry = 0;
         CrossBridge.success = false;
+        crossBridge.clear();
     }
 
     public void addCrossBridge(String where) {
@@ -46,8 +46,11 @@ public class CrossBridge {
         return totalTry;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public String getSuccess() {
+        if (success) {
+            return "성공";
+        }
+        return "실패";
     }
 
     public void setSuccess(int bridgeSize) {
