@@ -65,4 +65,15 @@ public class BridgeGame {
     public boolean reachOppositeSide() {
         return answerBridge.size() == guessBridge.size();
     }
+
+    public List<Guess> getGuess() {
+        List<Guess> roundResult = new ArrayList<>();
+
+        for (int index = 0; index < guessBridge.size(); index++) {
+            Guess guessResult = Guess.getGuessResult(index, answerBridge.get(index), guessBridge.get(index));
+            roundResult.add(guessResult);
+        }
+
+        return roundResult;
+    }
 }
