@@ -74,4 +74,16 @@ public class BridgeTest {
 
         assertThat(failGame).isTrue();
     }
+
+    @Test
+    @DisplayName("게임 재시도 횟수 확인")
+    void 다리_게임_재시도_횟수_테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.retry("R");
+        bridgeGame.retry("R");
+        int retryCount = bridgeGame.checkRetryCount();
+
+        assertThat(retryCount).isEqualTo(3);
+    }
+
 }
