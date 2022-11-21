@@ -16,27 +16,23 @@ public class BridgeGame {
      */
     public static boolean move(List<String> bridge, String updown, int count) {
         if(updown.contains(bridge.get(count))){
-            if (updown.contains("U")) {
-                up_bridge.add("O");
-                down_bridge.add(" ");
-            } else {
-                down_bridge.add("O");
-                up_bridge.add(" ");
-            }
+            add_bridge(updown, "O");
             return true;
         }
         else{
-            if (updown.contains("U")) {
-                up_bridge.add("X");
-                down_bridge.add(" ");
-            } else {
-                down_bridge.add("X");
-                up_bridge.add(" ");
-            }
+            add_bridge(updown, "X");
             return false;
         }
     }
-
+    public static void add_bridge(String updown, String OX){
+        if (updown.contains("U")) {
+            up_bridge.add(OX);
+            down_bridge.add(" ");
+        } else {
+            down_bridge.add(OX);
+            up_bridge.add(" ");
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
