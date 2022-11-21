@@ -10,6 +10,8 @@ import java.util.Objects;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    static final String IS_CLEAR = "게임 성공 여부 : ";
+    static final String TOTAL_NUMBER_ATTEMPTS  = "총 시도한 횟수: ";
     static final String UP = "U";
     static final String DOWN = "D";
 
@@ -51,6 +53,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(BridgeGame bridgeGame) {
+        System.out.print(IS_CLEAR);
+        if(bridgeGame.isFailure()){
+            System.out.println("실패");
+        }
+        if(!bridgeGame.isFailure()){
+            System.out.println("성공");
+        }
+        System.out.println(TOTAL_NUMBER_ATTEMPTS + bridgeGame.getCount());
     }
 }

@@ -26,6 +26,7 @@ public class BridgeGameController {
                 bridgeGame.retry(restartCommand);
             }
         }
+        OutputView.printResult(bridgeGame);
     }
 
     private Bridge getBridge() {
