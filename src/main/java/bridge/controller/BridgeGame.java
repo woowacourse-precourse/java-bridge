@@ -31,14 +31,14 @@ public class BridgeGame {
 
     private void startGame() {
         OutputView.printStart();
-        buildAnswerBridge();
+        makeAnswerBridge();
     }
 
-    private void buildAnswerBridge() {
+    private void makeAnswerBridge() {
         while (true) {
             try {
                 int bridgeSize = InputView.readBridgeSize();
-                List<String> madeBridge = bridgeMaker.buildBridge(bridgeSize);
+                List<String> madeBridge = bridgeMaker.makeBridge(bridgeSize);
                 answerBridge = new AnswerBridge(madeBridge);
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
