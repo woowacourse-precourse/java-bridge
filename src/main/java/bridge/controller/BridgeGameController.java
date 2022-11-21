@@ -20,7 +20,8 @@ public class BridgeGameController {
         this.bridgeGame = bridgeGame;
     }
 
-    public static void start(BridgeGame bridgeGame) {
+    public static void start() {
+        BridgeGame bridgeGame = BridgeGameInitializer.initializeBridgeGame();
         BridgeGameController bridgeGameController = new BridgeGameController(bridgeGame);
         TotalResult result = bridgeGameController.progressByDistance(DEFAULT_DISTANCE);
         outputView.printResult(result);
