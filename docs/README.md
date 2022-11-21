@@ -117,7 +117,7 @@
 - BridgeGame
     - [ ✔ ] 게임을 시작한다. `BridgeGame#run`
     - [ ✔ ] 다리를 건넌다. `BridgeGame#move`
-    - [ ] 다리를 건너다 실패하면 게임을 재시작할 수 있다. `BridgeGame#retry`
+    - [ ✔ ] 다리를 건너다 실패하면 게임을 재시작할 수 있다. `BridgeGame#retry`
 
 ### Controller
 
@@ -126,20 +126,20 @@
     - [ ✔ ] 게임 시작 준비를 한다. `BridgeController#setupGame`
     - [ ✔ ] 게임 진행 여부를 파악한다. `BridgeController#getNowGameCodition`
     - [ ✔ ] 다리 건너기를 수행한다. `BridgeController#moveOneStep`
-    - [ ] 재시작 여부를 파악한다. `BridgeController#figureOutToRestartGame`
-    - [ ] 사용자에게 결과를 보여준다. `BridgeController#showResult`
+    - [ ✔ ] 재시작 여부를 파악한다. `BridgeController#figureOutToRestartGame`
+    - [ ✔ ] 사용자에게 결과를 보여준다. `BridgeController#showResult`
 
 ### View
 
 - InputView
     - [ ✔ ] 다리의 크기를 입력받는다. `InputView#readBridgeSize`
     - [ ✔ ] 어디로 이동할지 입력받는다. `InputView#readMoving`
-    - [ ] 재시작 여부를 입력받는다. `InputView#readGameCommand`
+    - [ ✔ ] 재시작 여부를 입력받는다. `InputView#readGameCommand`
 
 - OutputView
     - [ ✔ ] 시작 메시지를 출력한다. `OutputView#printGreeting`
     - [ ✔ ] 다리를 출력한다. `OutputView#printMap`
-    - [ ] 게임의 결과를 출력한다. `OutputView#printResult`
+    - [ ✔ ] 게임의 결과를 출력한다. `OutputView#printResult`
 
 ### Model
 
