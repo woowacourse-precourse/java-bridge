@@ -12,29 +12,28 @@ public class BridgeGame {
     private String res = SUCCESS.getValue();
     private Bridge arrangedBridge;
     private int tryCount = 1;
-    private final String SUCCESS = "성공";
-    private final String FAIL = "실패";
-    private final String X = "X";
-    private final String O = "O";
 
-    public void play() {
-        bridge = new Bridge();
-        String res = SUCCESS;
-        while(!bridge.checkResult()) {
-            if(move(InputView.readMoving())) {
-                OutputView.printMap(bridgeState);
+    public void play(List<String> bridge) {
+        this.arrangedBridge = new Bridge(bridge);
+        playAndPrint();
+        bridgeOutput.printResult(arrangedBridge, tryCount, res);
+    }
+
+    private void playAndPrint() {
+        while(!arrangedBridge.checkResult()) {
+            if(moveAndPrint()) {
                 continue;
             }
-            OutputView.printMap(bridgeState);
-            if(QUIT.isEqual(retry())) {
-                res = FAIL;
+            if(!retry(arrangedBridge.inputGameCommand())) {
                 break;
             }
-            removeBridgeState();
-            bridge.incorrect();
-            addTryCount();
         }
-        OutputView.printResult(bridgeState, tryCount, res);
+    }
+
+    private boolean moveAndPrint() {
+        boolean flag = move(arrangedBridge.inputMoving());
+        bridgeOutput.printMap(arrangedBridge, flag);
+        return flag;
     }
 
     private void addTryCount() {
