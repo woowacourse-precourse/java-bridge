@@ -36,6 +36,7 @@ public class InputViewValidator {
     private boolean isWrongCommand(String command) {
         return !(command.equals(RESTART) || command.equals(QUIT));
     }
+
     private boolean isWrongMoving(String moving) {
         return !(moving.equals(UP) || moving.equals(DOWN));
     }
