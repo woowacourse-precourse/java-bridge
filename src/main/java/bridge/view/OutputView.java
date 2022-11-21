@@ -17,6 +17,8 @@ public class OutputView {
     private static final String PRINT_SUCCESS_RESULT = "게임 성공 여부: 성공";
     private static final String PRINT_FAIL_RESULT = "게임 성공 여부: 실패";
     private static final String PRINT_TRY_COUNT = "총 시도한 횟수: ";
+    private static final int FIRST_LINE_INDEX = 0;
+    private static final int SECOND_LINE_INDEX = 1;
 
     public void printStartGame() {
         System.out.println(START_GAME);
@@ -59,10 +61,10 @@ public class OutputView {
     }
 
     private static void printFirstLine(List<String> map) {
-        System.out.print(map.get(0));
+        System.out.print(map.get(FIRST_LINE_INDEX));
     }
 
     private static void printSecondLine(List<String> map) {
-        System.out.print(map.get(1));
+        System.out.print(map.get(SECOND_LINE_INDEX));
     }
 }
