@@ -1,9 +1,6 @@
 package bridge.controller;
 
 import bridge.constants.InputMessage;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.User;
 import bridge.service.BridgeGame;
 import bridge.service.Validator;
 import bridge.view.InputView;
@@ -15,46 +12,34 @@ public class GameController {
     private final OutputView outputView = new OutputView();
     private final InputMessage inputMessage = new InputMessage();
     private final Validator validator = new Validator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final BridgeGame bridgeGame = new BridgeGame();
 
     public void startGame() {
-        User user = new User(1);
         inputView.printMessage(inputMessage.START_GAME);
-        int bridgeSize = setBridgeSize(inputView.readBridgeSize());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        crossBridge(bridge, user);
-        while (user.isRestartGame()) {
-            user = new User(user.getRetryCount());
-            crossBridge(bridge, user);
+        List<String> bridge = bridgeGame.makeResultBridge(setBridgeSize(inputView.readBridgeSize()));
+        crossBridge(bridge);
+        while (bridgeGame.userRestartGame()) {
+            crossBridge(bridge);
         }
     }
-    public void crossBridge(List<String> bridge, User user) {
-        int currentIndex = 0;
-        while (true) {
-            String direction = setDirection(inputView.readMoving());
-            String result = bridgeGame.move(direction, bridge.get(currentIndex));
-            addResultBridge(direction.equals("U"), result, user);
-            currentIndex++;
-            outputView.printMap(user.toString());
+    public void crossBridge(List<String> bridge) {
+        for(int currentIndex = 0; currentIndex < bridge.size(); currentIndex++) {
+            String result = bridgeGame.move(bridge.get(currentIndex), setDirection(inputView.readMoving()));
+            outputView.printMap(bridgeGame.userBridge());
             if(result.equals("X")) {
-                askRestartOrEnd(user.toString(), user.getRetryCount(), user);
-                return;
-            }
-            if(currentIndex == bridge.size()) {
-                outputView.printResult(user.toString(), false, user.getRetryCount());
+                askRestartOrEnd();
                 return;
             }
         }
+        outputView.printResult(bridgeGame.userBridge(), false, bridgeGame.userRetryCount() + "");
+        bridgeGame.turnOffFlag();
     }
-    public void askRestartOrEnd(String userBridge, int tryCount, User user) {
-        String retryOrQuit = setRetryOrQuit(inputView.readGameCommand());
-        if(retryOrQuit.equals("R")) {
-            user.plusRetryCount();
-            user.changeisRestartGame();
+    public void askRestartOrEnd() {
+        List<String> userResult = bridgeGame.calculateRestartOrEnd(setRetryOrQuit(inputView.readGameCommand()));
+        if(userResult == null) {
             return;
         }
-        outputView.printResult(userBridge, true, tryCount);
+        outputView.printResult(userResult.get(0), true, userResult.get(1));
     }
 
     private String setRetryOrQuit(String retryOrQuit) {
@@ -62,18 +47,10 @@ public class GameController {
             validator.validateRetryOfQuit(retryOrQuit);
         } catch (IllegalArgumentException e) {
             outputView.printMessage(e.getMessage());
-            retryOrQuit = inputView.readMoving();
-            setDirection(retryOrQuit);
+            retryOrQuit = inputView.readGameCommand();
+            setRetryOrQuit(retryOrQuit);
         }
         return retryOrQuit;
-    }
-
-    public void addResultBridge(boolean isUp, String result, User user) {
-        if(isUp) {
-            user.addUpperBridge(result);
-            return;
-        }
-        user.addLowerBridge(result);
     }
 
     public String setDirection(String direction) {
@@ -86,6 +63,7 @@ public class GameController {
         }
         return direction;
     }
+
     public int setBridgeSize(int bridgeSize) {
         try {
             validator.validateBridgeSize(bridgeSize);

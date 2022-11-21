@@ -3,19 +3,23 @@ package bridge.domain;
 public class User {
     private int retryCount;
     private final Bridge bridge;
-    private boolean isRestartGame = false;
+    private boolean restartFlag = false;
 
     public User(int retryCount) {
         this.retryCount = retryCount;
         this.bridge = new Bridge();
     }
 
-    public boolean isRestartGame() {
-        return isRestartGame;
+    public boolean isRestartFlag() {
+        return restartFlag;
     }
 
-    public void changeisRestartGame() {
-        isRestartGame = true;
+    public void setRestartGame() {
+        restartFlag = true;
+    }
+
+    public void turnOffFlag() {
+        restartFlag = false;
     }
 
     public void addUpperBridge(String resultBlock) {
