@@ -1,15 +1,14 @@
 package controller;
 
 import static model.BridgeGame.getTryNumber;
-
 import constant.BridgeConstant;
 import generator.BridgeRandomNumberGenerator;
-import java.util.ArrayList;
 import model.BridgeGame;
-import java.util.List;
 import service.BridgeMaker;
 import view.InputView;
 import view.OutputView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BridgeController {
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
