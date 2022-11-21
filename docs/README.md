@@ -167,7 +167,12 @@
 
 ### ErrorResponse
 - BridgeGame에서 발생하는 예외에 대한 Enum Class
-  - `INPUT_BRIDE_SIZE_RANGE_ERROR` : 사용자 입력 범위 에러
+  - `INPUT_BRIDE_SIZE_RANGE_ERROR` : 사용자 입력 다리 길이 범위 에러
+  - `INPUT_BRIDGE_SIZE_NOT_NUMBER_ERROR` : 사용자 입력 다리 길이 문자 예외 에러
+  - `INPUT_BRIDGE_SIZE_NULL_ERROR` : 사용자 입력 다리 길이 공백 예외 처리 
+  - `INPUT_MOVEMENT_ERROR` : 사용자 입력 이동 예외 처리 
+  - `INPUT_MOVEMENT_NULL_ERROR` : 사용자 입력 이동 공백 예외 처리 
+  - `INPUT_EXITCODE_ERROR` : 사용자 입력 종료 및 재시도 예외 처리 
 
 
 ### ValidationUtil (삭제)
