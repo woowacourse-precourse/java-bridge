@@ -1,6 +1,10 @@
 package bridge.Constant;
 
 public enum BridgeValue {
+
+    TRUE(" O "),
+    FALSE(" X "),
+    EMPTY("   "),
     UP("U"),
     DOWN("D");
 
