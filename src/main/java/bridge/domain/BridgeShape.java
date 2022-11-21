@@ -4,14 +4,19 @@ import bridge.view.OutputView;
 
 import java.util.HashMap;
 
-public class BridgeShape {
-    private final static String CORRECT = " O ";
-    private final static String INCORRECT = " X ";
-    private final static String BLANK = "   ";
-    private final static String SPLIT = "|";
-    private final static String START = "[";
-    private final static String END = "]";
+public enum BridgeShape {
+    CORRECT(" O "),
+    INCORRECT(" X "),
+    BLANK("   "),
+    SPLIT("|"),
+    START("["),
+    END("]");
+    private final String type;
     private static OutputView outputView = new OutputView();
+    BridgeShape(String type) {
+        this.type = type;
+    }
+
 
 
 
@@ -24,25 +29,25 @@ public class BridgeShape {
 
     private static String makeLine(MyBridge myBridge, String target) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(START);
+        stringBuilder.append(START.type);
         for(int i=0; i<myBridge.getInputList().size(); i++) {
             boolean match = myBridge.compareBridgeBlock(i);
             stringBuilder.append(choiceBlock(match, myBridge.getInputList().get(i), target));
         }
         stringBuilder.setLength(stringBuilder.length()-1);
-        stringBuilder.append(END);
+        stringBuilder.append(END.type);
         return stringBuilder.toString();
     }
 
 
     private static String choiceBlock(boolean match, String line, String target) {
         if (match && line.equals(target)) {
-            return CORRECT + SPLIT;
+            return CORRECT.type + SPLIT.type;
         }
         if (!match && line.equals(target)) {
-            return INCORRECT + SPLIT;
+            return INCORRECT.type + SPLIT.type;
         }
-        return BLANK + SPLIT;
+        return BLANK.type + SPLIT.type;
     }
 
 }
