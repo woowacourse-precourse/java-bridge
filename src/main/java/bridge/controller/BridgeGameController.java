@@ -10,9 +10,10 @@ import bridge.domain.Moving;
 public class BridgeGameController {
     private static final String SUCCESS_RESULT = "성공";
     private static final String FAIL_RESULT = "실패";
+    private static final int ZERO_TRIAL = 0;
 
-    private int trial = 0;
-    private boolean isRestart = true;
+    private int trial = ZERO_TRIAL;
+    private boolean isRun = true;
     private Moving moving;
     private GameCommand gameCommand;
     private BridgeGame bridgeGame;
@@ -24,15 +25,13 @@ public class BridgeGameController {
      */
     public void run(){
         init();
-        while(isRestart){
+        while(isRun){
             move();
             if (!bridgeGame.isRightResult(moving.getValue())){
                 restartOrQuit();
             }
-
             if (bridgeGame.isSuccess(moving.getValue())){
-                isRestart = false;
-                OutputView.printResult();
+                setQuit();
             }
         }
     }
@@ -47,7 +46,7 @@ public class BridgeGameController {
     }
 
     private void initTrial(){
-        trial += 1;
+        trial++;
     }
 
     private void makeBridge(){
@@ -87,12 +86,10 @@ public class BridgeGameController {
     private void restartOrQuit(){
         readGameCommand();
         if (isRestartResult()){
-            bridgeGame.retry();
-            trial++;
+            setRestart();
         }
         if (isQuitResult()){
-            isRestart = false;
-            OutputView.printResult();
+            setQuit();
         }
     }
 
@@ -114,5 +111,15 @@ public class BridgeGameController {
     private boolean isQuitResult(){
         String gameCommandValue = gameCommand.getValue();
         return gameCommandValue.equals(GameCommand.getQuitCharacter());
+    }
+
+    private void setRestart(){
+        bridgeGame.retry();
+        trial++;
+    }
+
+    private void setQuit(){
+        isRun = false;
+        OutputView.printResult();
     }
 }
