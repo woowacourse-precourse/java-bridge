@@ -8,7 +8,6 @@ public class Player {
     private int distance = 0;
     private List<Movement> route = new ArrayList<>();
     private List<Boolean> answer = new ArrayList<>();
-    public String result;
 
     public boolean matchPlayerAndBridge(Bridge bridge) {
         List<String> bridgeValues = bridge.getBridge();

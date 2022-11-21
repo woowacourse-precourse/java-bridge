@@ -7,6 +7,7 @@ import bridge.controller.InputController;
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
+import bridge.domain.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -20,6 +21,7 @@ class BridgeGameTest {
     Player player;
     InputController inputController;
     BridgeGame bridgeGame;
+    Result result;
 
     @BeforeEach
     void setUp() {
@@ -29,7 +31,7 @@ class BridgeGameTest {
         player.updateMovement(Movement.UP);
         player.updateMovement(Movement.DOWN);
         player.updateMovement(Movement.UP);
-        bridgeGame = new BridgeGame(bridge, player, inputController);
+        bridgeGame = new BridgeGame(bridge,result, inputController);
     }
 
 }

@@ -4,6 +4,7 @@ import bridge.controller.InputController;
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
+import bridge.domain.Result;
 import bridge.view.OutputView;
 
 /**
@@ -12,23 +13,24 @@ import bridge.view.OutputView;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private final Player player;
+    private final Result result;
     private final InputController inputController;
+    private final Player player = new Player();
 
-    public BridgeGame(Bridge bridge, Player player, InputController inputController) {
+    public BridgeGame(Bridge bridge, Result result, InputController inputController) {
         this.bridge = bridge;
-        this.player = player;
-        this.inputController =inputController;
+        this.result = result;
+        this.inputController = inputController;
     }
 
     public void move() {
         for (int trialNum = 0; trialNum < bridge.getBridgeSize(); trialNum++) {
             movePlayer();
             if (!checkAnswer()) {
-                retry(trialNum);
+                retry();
                 break;
             }
-            judgeTrue(trialNum);
+            judgeTrue();
         }
     }
 
@@ -45,14 +47,15 @@ public class BridgeGame {
         return true;
     }
 
-    private void judgeTrue(int trialNum) {
-        player.updateAnswer(Boolean.TRUE);
-        OutputView.printMap(trialNum, player);
+    private void judgeTrue() {
+
+        result.setGameResult(Boolean.TRUE);
+        OutputView.printMap(result, player);
     }
 
-    private void judgeFalse(int trialNum) {
-        player.updateAnswer(Boolean.FALSE);
-        OutputView.printMap(trialNum, player);
+    private void judgeFalse() {
+        result.setGameResult(Boolean.FALSE);
+        OutputView.printMap(result, player);
     }
 
 
@@ -61,10 +64,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(int trialNum) {
-        judgeFalse(trialNum);
+    public void retry() {
+        judgeFalse();
         if (inputController.retryCommandInput()) {
+            result.updateNumberOfTrials();
             player.resetPlayer();
+            result.resetGameResult();
             move();
         }
     }
