@@ -24,6 +24,7 @@ public class BridgeGameController {
         BridgeGame bridgeGame = new BridgeGame(bridgeScaffold);
 
         List<String> finalResult = bridgeGameLoop(bridgeGame, bridgeSize);
+
         outputView.printResult(finalResult);
     }
 
@@ -38,11 +39,11 @@ public class BridgeGameController {
     }
 
     private List<String> bridgeGameLoop(BridgeGame bridgeGame, int bridgeSize) {
-        for (int i = 1; ; i++) {
+        for (int count = 1; ; count++) {
             List<String> crossBridgeResult = crossBridge(bridgeGame, bridgeSize);
 
             if (checkGameEnd(crossBridgeResult.get(0))) {
-                crossBridgeResult.add(String.valueOf(i));
+                crossBridgeResult.add(String.valueOf(count));
                 return crossBridgeResult;
             }
             bridgeGame.retry();
@@ -61,6 +62,7 @@ public class BridgeGameController {
 
         for (int i = 0; i < bridgeSize; i++) {
             stepResult = moveOneStep(bridgeGame);
+
             if ("X".equals(stepResult.get(0))) {
                 return stepResult;
             }
@@ -72,12 +74,12 @@ public class BridgeGameController {
         outputView.printDirectionInput();
 
         String direction = inputView.readMoving();
+        List<String> stepResult = bridgeGame.move(direction);
 
-        List<String> movingProgress = bridgeGame.move(direction);
+        List<String> stepProgress = stepResult.subList(1, 3);
+        outputView.printMap(stepProgress);
 
-        outputView.printMap(movingProgress.subList(1, 3));
-
-        return movingProgress;
+        return stepResult;
     }
 
     private boolean isCommandQuit() {
