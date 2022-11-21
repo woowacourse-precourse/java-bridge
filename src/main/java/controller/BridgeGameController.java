@@ -19,8 +19,13 @@ public class BridgeGameController {
     }
 
     private void generateBridge() {
-        outputView.printMessage(Message.REQUEST_BRIDGE_SIZE);
-        String bridgeSize = inputView.readBridgeSize();
-        bridgeGame.generateBridge(bridgeSize);
+        try {
+            outputView.printMessage(Message.REQUEST_BRIDGE_SIZE);
+            bridgeGame.generateBridge(inputView.readBridgeSize());
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            generateBridge();
+        }
     }
+
 }
