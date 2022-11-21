@@ -22,7 +22,7 @@ public class BridgeGame {
         this.indexOfBridge++;
 
         if (canMove) {
-            if (this.indexOfBridge == bridge.size() - 1) {
+            if (this.indexOfBridge == bridge.size()) {
                 return Result.ARRIVED;
             }
             return Result.SUCCESS;
