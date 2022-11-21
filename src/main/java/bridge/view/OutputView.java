@@ -15,7 +15,7 @@ import static bridge.utils.message.FixedMessage.GAME_START;
 import static bridge.utils.message.FixedMessage.SUCCESS_OR_FAIL;
 import static bridge.utils.message.FixedMessage.TOTAL_ATTEMPTS;
 
-import bridge.BridgeGame;
+import bridge.domain.BridgeGame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

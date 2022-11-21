@@ -3,11 +3,11 @@ package bridge.controller;
 import static bridge.utils.command.GameCommand.QUIT;
 import static bridge.utils.command.GameCommand.RETRY;
 
-import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.Objects;
