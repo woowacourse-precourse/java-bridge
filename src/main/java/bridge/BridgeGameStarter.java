@@ -23,7 +23,7 @@ public class BridgeGameStarter {
         this.bridgeGame = bridgeGame;
     }
 
-    public void initialize() {
+    private void initialize() {
         outputView.printGameStartContext();
         outputView.printInputBridgeSize();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
@@ -32,7 +32,7 @@ public class BridgeGameStarter {
         outputView.printMap(movingLog);
     }
 
-    public void reInitialize() {
+    private void reInitialize() {
         tryCount++;
         outputView.printInputBridgeSize();
         outputView.printInputMoving();
@@ -41,7 +41,7 @@ public class BridgeGameStarter {
         outputView.printMap(movingLog);
     }
 
-    public int additionalInput(int index) {
+    private int additionalInput(int index) {
         outputView.printInputMoving();
         movingLog = bridgeGame.move(inputView.readMoving(), bridge, index);
         outputView.printMap(movingLog);
@@ -49,22 +49,22 @@ public class BridgeGameStarter {
         return index;
     }
 
-    public void notifySuccessGame() {
+    private void notifySuccessGame() {
         gameStatusFlag.put("successFlag", true);
         gameStatusFlag.put("retryFlag", false);
     }
 
-    public void notifyFailGameWithRetry() {
+    private void notifyFailGameWithRetry() {
         gameStatusFlag.put("successFlag", false);
         gameStatusFlag.put("retryFlag", true);
     }
 
-    public void notifyFailGameWithNotRetry() {
+    private void notifyFailGameWithNotRetry() {
         gameStatusFlag.put("successFlag", false);
         gameStatusFlag.put("retryFlag", false);
     }
 
-    public boolean proceed() {
+    private boolean proceed() {
         int index = 1;
         while (bridgeGame.canMove(movingLog)) {
             if (bridgeGame.isGameEnded(bridge, index)) {
@@ -76,7 +76,7 @@ public class BridgeGameStarter {
         return false;
     }
 
-    public void askToRetry() {
+    private void askToRetry() {
         outputView.printInputGameCommand();
         if (bridgeGame.retry(inputView.readGameCommand())) {
             notifyFailGameWithRetry();
@@ -85,7 +85,7 @@ public class BridgeGameStarter {
         notifyFailGameWithNotRetry();
     }
 
-    public void closeGame() {
+    private void closeGame() {
         outputView.printFinalMap(movingLog);
         outputView.printResult(gameStatusFlag.get("successFlag"), tryCount);
     }

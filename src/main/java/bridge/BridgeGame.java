@@ -21,46 +21,46 @@ public class BridgeGame {
         return result;
     }
 
-    public boolean checkBridge(String userMoving, String targetBridge) {
+    private boolean checkBridge(String userMoving, String targetBridge) {
         return userMoving.equals(targetBridge);
     }
 
-    public void upBridgeSuccessLogging(String moving, List<String> bridge, int index) {
+    private void upBridgeSuccessLogging(String moving, List<String> bridge, int index) {
         if (checkBridge(moving, bridge.get(index)) && moving.equals("U") && index < bridge.size() - 1) {
             upMovingLoggingResult.append(" O |");
             downMovingLoggingResult.append("   |");
         }
     }
 
-    public void upBridgeSuccessFinalLogging(String moving, List<String> bridge, int index) {
+    private void upBridgeSuccessFinalLogging(String moving, List<String> bridge, int index) {
         if (checkBridge(moving, bridge.get(index)) && moving.equals("U") && index == bridge.size() - 1) {
             upMovingLoggingResult.append(" O ]");
             downMovingLoggingResult.append("   ]");
         }
     }
 
-    public void downBridgeSuccessLogging(String moving, List<String> bridge, int index) {
+    private void downBridgeSuccessLogging(String moving, List<String> bridge, int index) {
         if (checkBridge(moving, bridge.get(index)) && moving.equals("D") && index < bridge.size() - 1) {
             upMovingLoggingResult.append("   |");
             downMovingLoggingResult.append(" O |");
         }
     }
 
-    public void downBridgeSuccessFinalLogging(String moving, List<String> bridge, int index) {
+    private void downBridgeSuccessFinalLogging(String moving, List<String> bridge, int index) {
         if (checkBridge(moving, bridge.get(index)) && moving.equals("D") && index == bridge.size() - 1) {
             upMovingLoggingResult.append("   ]");
             downMovingLoggingResult.append(" O ]");
         }
     }
 
-    public void upBridgeFailLogging(String moving, List<String> bridge, int index) {
+    private void upBridgeFailLogging(String moving, List<String> bridge, int index) {
         if (!checkBridge(moving, bridge.get(index)) && moving.equals("U")) {
             upMovingLoggingResult.append(" X ]");
             downMovingLoggingResult.append("   ]");
         }
     }
 
-    public void downBridgeFailLogging(String moving, List<String> bridge, int index) {
+    private void downBridgeFailLogging(String moving, List<String> bridge, int index) {
         if (!checkBridge(moving, bridge.get(index)) && moving.equals("D")) {
             upMovingLoggingResult.append("   ]");
             downMovingLoggingResult.append(" X ]");

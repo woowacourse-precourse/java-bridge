@@ -33,7 +33,7 @@ public class OutputView {
         }
     }
 
-    public void printSuccessStatus(boolean status) {
+    private void printSuccessStatus(boolean status) {
         if (status) {
             System.out.println("\n게임 성공 여부: 성공");
             return;
@@ -41,7 +41,7 @@ public class OutputView {
         System.out.println("\n게임 성공 여부: 실패");
     }
 
-    public void printTryCount(int gameProceedCount) {
+    private void printTryCount(int gameProceedCount) {
         System.out.printf("총 시도한 횟수: %d\n", gameProceedCount);
     }
 
