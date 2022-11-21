@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
+import bridge.validator.BridgeGameCommandValidator;
 import bridge.validator.BridgeValidator;
 import bridge.view.ErrorView;
 import bridge.view.InputView;
@@ -42,7 +43,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        this.userAnswerSheet.add(this.inputView.readMoving());
+        this.userAnswerSheet.add(getMoving());
         this.outputView.printMap(this.bridge, this.userAnswerSheet);
     }
 
@@ -52,7 +53,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        if (this.inputView.readGameCommand().equals(GAME_RETRY)) {
+        if (getGameRetry().equals(GAME_RETRY)) {
             this.userAnswerSheet.clear();
             ++this.tryCount;
             return true;
@@ -89,16 +90,35 @@ public class BridgeGame {
     private Bridge makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int bridgeSize = getBridgeSize();
-        BridgeValidator.checkBridgeSizeValid(bridgeSize);
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     private int getBridgeSize() {
         while (true) {
             try {
-                return this.inputView.readBridgeSize();
-            } catch (IllegalArgumentException illegalArgumentException) {
-                ErrorView.printException(illegalArgumentException);
+                return BridgeValidator.checkBridgeSizeValid(this.inputView.readBridgeSize());
+            } catch (IllegalStateException illegalStateException) {
+                ErrorView.printException(illegalStateException);
+            }
+        }
+    }
+
+    private String getMoving() {
+        while(true) {
+            try {
+                return BridgeGameCommandValidator.checkMovingCommandCharacter(this.inputView.readMoving());
+            } catch (IllegalStateException illegalStateException) {
+                ErrorView.printException(illegalStateException);
+            }
+        }
+    }
+
+    private String getGameRetry() {
+        while(true) {
+            try {
+                return BridgeGameCommandValidator.checkRetryGameCommandCharacter(this.inputView.readGameCommand());
+            } catch (IllegalStateException illegalStateException) {
+                ErrorView.printException(illegalStateException);
             }
         }
     }

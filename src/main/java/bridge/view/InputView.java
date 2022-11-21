@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.validator.BridgeValidator;
 import bridge.validator.UserInputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -12,7 +13,7 @@ public class InputView {
     private static final String EMPTY = "";
     private static final String PRINT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String PRINT_SELECT_MOVING_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String PRINT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String PRINT_SELECT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
 
     /**
@@ -58,20 +59,20 @@ public class InputView {
         System.out.println();
         System.out.println(PRINT_SELECT_MOVING_DIRECTION);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        return UserInputValidator.movingGameCommandValidation(userInput);
+        return UserInputValidator.gameCommandValidation(userInput);
     }
 
     private String getRetryCommand() {
         System.out.println();
-        System.out.println(PRINT_RETRY);
+        System.out.println(PRINT_SELECT_RETRY);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        return UserInputValidator.retryGameCommandValidation(userInput);
+        return UserInputValidator.gameCommandValidation(userInput);
     }
 
     private int getBridgeSize() {
         System.out.println();
         System.out.println(PRINT_BRIDGE_SIZE);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        return Integer.parseInt(UserInputValidator.ckeckBridgeSize(userInput));
+        return UserInputValidator.checkBridgeSize(userInput);
     }
 }

@@ -1,5 +1,6 @@
 package bridge.validator;
 
+import bridge.exception.BridgeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,9 +19,18 @@ class BridgeValidatorTest {
 
     @DisplayName("유효하지 않은 크기를 입력 했을 때 Exception 을 던지는 지 확인")
     @ParameterizedTest(name = "[{index}]번째 테스트 : {0}")
-    @ValueSource(ints = {-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 21, 22, 23})
+    @ValueSource(ints = {-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 21, 22, 23})
     void bridgeSizeWithInvalidSize(final int size) {
         assertThatThrownBy(() -> BridgeValidator.checkBridgeSizeValid(size))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    @DisplayName("인덱스 범위 밖을 접근 하려고 할 때 Exception 을 던지는 지 확인")
+    @ParameterizedTest(name = "[{index}]번째 테스트 : {0}")
+    @ValueSource(ints = {-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 4, 5, 6})
+    void bridgeIndexWithInvalidIndex(final int index) {
+        final int size = 3;
+        assertThatThrownBy(() -> BridgeValidator.checkBridgeIndexValid(size, index))
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 }
