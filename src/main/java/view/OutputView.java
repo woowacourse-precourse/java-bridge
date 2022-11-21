@@ -22,6 +22,7 @@ public class OutputView {
     public static final String SPACE = "   ";
     public static final String FAIL = "실패";
     public static final String SUCCESS = "성공";
+    public static boolean rightAfterFail = false;
 
     public void printStart() {
         System.out.println(START_GAME);
@@ -31,9 +32,10 @@ public class OutputView {
         System.out.println(BRIDGE_SIZE);
     }
 
-    public void printEnterMove(int trial) {
-        if (trial > 1) {
+    public void printEnterMove() {
+        if (rightAfterFail) {
             System.out.println(ENTER_MOVE);
+            rightAfterFail = false;
             return;
         }
         System.out.println(LINE_CHANGE + ENTER_MOVE);
@@ -76,7 +78,7 @@ public class OutputView {
 
     public void printResult(BridgeDto bridgeDto, ResultDto resultDto) {
         List<Boolean> result = resultDto.result;
-        if (result.contains(false)){
+        if (result.contains(false)) {
             FINAL_RESULT = FINAL_RESULT.substring(1);
         }
         System.out.println(FINAL_RESULT);

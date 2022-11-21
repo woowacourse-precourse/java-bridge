@@ -13,7 +13,7 @@ public class Application {
     public static void failGame(Bridge bridge) {
         String command;
         bridgeGame.initializeValues();
-        OutputView.afterFail = true;
+        OutputView.rightAfterFail = true;
         do {
             outputView.printRestart();
             command = inputView.readGameCommand();

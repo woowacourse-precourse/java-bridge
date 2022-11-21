@@ -5,18 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
-
     private List<Boolean> result = new ArrayList<>();
 
-    public void update(Boolean guessResult){
+    public void update(Boolean guessResult) {
         result.add(guessResult);
     }
 
-    public int size(){
+    public int size() {
         return result.size();
     }
 
-    public ResultDto sendDto(){
+    public ResultDto sendDto() {
         return new ResultDto(result);
     }
 }
