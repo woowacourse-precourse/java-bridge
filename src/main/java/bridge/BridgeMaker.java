@@ -27,7 +27,7 @@ public class BridgeMaker {
         validate(size);
         return IntStream.range(0, size)
                 .map(i -> bridgeNumberGenerator.generate())
-                .mapToObj(Direction::numberToDirection)
+                .mapToObj(Direction::by)
                 .map(Direction::getDirection)
                 .collect(Collectors.toList());
     }

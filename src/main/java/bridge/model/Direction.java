@@ -31,7 +31,7 @@ public enum Direction {
                         String.format("해당하는 방향이 존재하지 않습니다. 입력 : %s", input)));
     }
 
-    public static Direction numberToDirection(int code) {
+    public static Direction by(int code) {
         return Arrays.stream(Direction.values())
                 .filter(direction -> direction.getGenerateCode() == code)
                 .findFirst()
