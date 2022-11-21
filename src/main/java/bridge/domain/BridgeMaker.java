@@ -29,8 +29,8 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public String numberToKeyword(int number){
-        if(number==1){
+    public String numberToKeyword(int number) {
+        if (number == 1) {
             return "U";
         }
         return "D";
