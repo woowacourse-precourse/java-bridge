@@ -47,4 +47,13 @@ public class HandleException {
 
         return move;
     }
+
+    public String checkGameCommand(String gameCommand) {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            System.out.println(ERROR_MESSAGE + "게임을 다시 시도할지 여부는 R, Q 중에 하나여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+
+        return gameCommand;
+    }
 }

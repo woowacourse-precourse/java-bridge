@@ -77,18 +77,20 @@ public class Application {
     static String inputFinish() {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
+        HandleException handleException = new HandleException();
 
         outputView.printWantFinish();
         String gameCommand = inputView.readGameCommand();
+        String checkCommand = handleException.checkGameCommand(gameCommand);
 
-        return gameCommand;
+        return checkCommand;
     }
 
     /**
      * 게임을 종료하는 메서드
      */
     static Boolean gameEnd(List<List<String>> moveResult) {
-        String gameCommand = Application.inputFinish();
+        String checkCommand = Application.inputFinish();
 
         return false;
     }
