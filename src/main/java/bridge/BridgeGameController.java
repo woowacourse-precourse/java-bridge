@@ -25,6 +25,38 @@ public class BridgeGameController {
         bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         RandomBridgeMap = bridgeMaker.makeBridge(bridgeSize);
-//        BridgeAlgorithm();
+        BridgeAlgorithm();
+    }
+
+    private void constructBridgeAlgorithm() {
+        String playerStep;
+        isSucess = true;
+        attepmtCnt += 1;
+        int _idx;
+        for (_idx = 0; _idx < bridgeSize; _idx++) {
+            playerStep = inputView.readMoving();
+            bridgeGame.move(playerBridgeMap, RandomBridgeMap, _idx, playerStep);
+            outputView.constructMap(playerBridgeMap);
+            if (bridgeGame.check_same(RandomBridgeMap, _idx, playerStep)) {
+                break;
+            }
+        }
+        if (_idx != bridgeSize) {
+            isSucess = false;
+            showRestart();
+        }
+    }
+
+    public void BridgeAlgorithm() {
+        constructBridgeAlgorithm();
+//        showResult();
+    }
+
+    public void showRestart() {
+        String restartInput = inputView.readGameCommand();
+        if (bridgeGame.retry(restartInput)) {
+            playerBridgeMap = new ArrayList<String>();
+            constructBridgeAlgorithm();
+        }
     }
 }
