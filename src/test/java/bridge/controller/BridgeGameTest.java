@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
@@ -26,4 +27,13 @@ class BridgeGameTest {
             assertThat(result).isEqualTo(expectedUpSplit[i] + "\n" + expectedDownSplit[i]);
         }
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"R:true", "T:false"}, delimiter = ':')
+    void retry(String input, boolean expected) {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"), 0);
+        boolean result = bridgeGame.retry(input);
+        assertThat(result).isEqualTo(expected);
+    }
+
 }
