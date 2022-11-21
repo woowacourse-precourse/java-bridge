@@ -5,6 +5,9 @@ package bridge;
  */
 public class OutputView {
     private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    private final String SUCCESS_MESSAGE = "\n게임 성공 여부: 성공\n";
+    private final String FAIL_MESSAGE = "\n게임 성공 여부: 실패\n";
+    private final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
 
     public void printStartMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -15,7 +18,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String map) {
+        System.out.println(map);
     }
 
     /**
