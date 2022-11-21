@@ -36,6 +36,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = Console.readLine();
+        bridgeValidator.validateGameCommand(gameCommand);
         return gameCommand;
     }
 }
