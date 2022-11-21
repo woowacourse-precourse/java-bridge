@@ -2,19 +2,23 @@ package bridge;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
+import org.assertj.core.api.Assertions;
+import static bridge.domain.enums.BridgeConstants.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeMakerTest {
 
     @DisplayName("다리 생성 테스트")
     @Test
     void makeBridgeTest() {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        for(int i=0; i<5; i++)
-            System.out.println(bridgeRandomNumberGenerator.generate());
-
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        System.out.println(bridgeMaker.makeBridge(5));
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge.size()).isEqualTo(3);
+        assertThat(bridge.contains(UPSIDE.getValue()) || bridge.contains(DOWNSIDE.getValue())).isTrue();
     }
 }
