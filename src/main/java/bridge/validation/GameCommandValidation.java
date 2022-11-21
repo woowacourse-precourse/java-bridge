@@ -13,14 +13,18 @@ public class GameCommandValidation {
 
     public boolean isValidate(String gameCommand) {
         try {
-            isNull(gameCommand);
-            isBlank(gameCommand);
-            isUpperCaseRQ(gameCommand);
+            totalValidate(gameCommand);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return true;
         }
         return false;
+    }
+
+    public void totalValidate(String gameCommand) {
+        isNull(gameCommand);
+        isBlank(gameCommand);
+        isUpperCaseRQ(gameCommand);
     }
 
     public void throwError(String message) {
