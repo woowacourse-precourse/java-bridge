@@ -30,7 +30,7 @@ public class Application {
     }
 
     public void run() {
-        while(playing) {
+        while (playing) {
             move();
             checkCorrectChoice();
             checkApproachLast();
