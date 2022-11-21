@@ -16,7 +16,7 @@ class LogicUnitTest extends NsTest {
     // InputView 기능 테스트 추가
 
     @Test
-    void 다리길이_숫자아니면_예외처리() {
+    void 예외_다리길이_숫자아닌경우() {
             InputView inputView = new InputView();
             System.setIn(new ByteArrayInputStream("3".getBytes()));
             int test = inputView.handleCheckLengthValidate("a");
@@ -33,7 +33,7 @@ class LogicUnitTest extends NsTest {
 //    }
 
     @Test
-    void 다리길이_3미만_20초과이면_예외처리() {
+    void 예외_다리길이_3미만_20초과() {
         InputView inputView = new InputView();
         System.setIn(new ByteArrayInputStream("3".getBytes()));
         int test = inputView.handleCheckLengthRangeValidate(21);
@@ -41,7 +41,7 @@ class LogicUnitTest extends NsTest {
     }
 
     @Test
-    void 이동_UorD아니면_예외처리() {
+    void 예외_이동_UorD_아닌경우() {
         InputView inputView = new InputView();
         System.setIn(new ByteArrayInputStream("U".getBytes()));
         String test = inputView.handleCheckMoveValidate("E");
@@ -49,7 +49,7 @@ class LogicUnitTest extends NsTest {
     }
 
     @Test
-    void 재시작_RorQ아니면_예외처리() {
+    void 예외_재시작_RorQ아닌경우() {
         InputView inputView = new InputView();
         System.setIn(new ByteArrayInputStream("R".getBytes()));
         String test = inputView.handleCheckGameCommandValidate("E");
