@@ -34,4 +34,9 @@ public class Map {
     public String getDownMap() {
         return downMap + " ]";
     }
+
+    public void resetMap() {
+        upMap = "";
+        downMap = "";
+    }
 }
