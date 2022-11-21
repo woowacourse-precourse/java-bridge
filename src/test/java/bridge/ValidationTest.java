@@ -37,4 +37,12 @@ class ValidationTest {
         assertThatThrownBy(() -> Validation.validateMovingChoice(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("재시작 입력 예외 테스트")
+    @ParameterizedTest
+    @CsvSource({"a","A","에이","1","RQ"})
+    void validate_notROrQ(String userInput) {
+        assertThatThrownBy(() -> Validation.validateMovingChoice(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
