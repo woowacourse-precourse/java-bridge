@@ -1,5 +1,8 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -26,7 +29,7 @@ public class BridgeGameController {
             String sign = bridgeGame.move(movingCommand);
             bridgeGame.getBridgeGameResult().addResult(movingCommand, sign);
             outputView.printMap(bridgeGame.getBridgeGameResult());
-            if (crossingBridge(sign) == false) {
+            if (!crossingBridge(sign)) {
                 break;
             }
             if (bridgeGame.getBridge().compareLength(bridgeGame.getUser())) {
