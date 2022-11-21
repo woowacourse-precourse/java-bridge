@@ -9,18 +9,20 @@ import java.util.List;
 
 public class PlayGame {
     private List<String> crossAble;
+    private int endTurn;
+
     private final InputView inputView = new InputView();
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
 
-    public PlayGame(List<String> crossAble) {
+    public PlayGame(List<String> crossAble, int endTurn) {
         this.crossAble = crossAble;
+        this.endTurn = endTurn;
     }
 
     public void playGame() {
         int turn = 0;
         int tryCount = 1;
-        int endTurn = inputView.setBridgeSize();
         while(turn < endTurn) {
             Boolean matchResult = bridgeGame.move(crossAble, turn);
             if(!matchResult) {
