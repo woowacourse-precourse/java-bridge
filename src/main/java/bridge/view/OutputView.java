@@ -62,8 +62,8 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame, int countTry) {
         printMessage(FINAL_GAME_RESULT);
-        printBridge(bridgeGame.getGameResult().getUpperBridge(), bridgeGame.getGameResult()
-                .getLowerBridge());
+        GameResult gameResult = bridgeGame.getGameResult();
+        printBridge(gameResult.getUpperBridge(), gameResult.getLowerBridge());
         String messageFormat = MessageFormat.format(
                 GAME_SUCCESS_OR_NOT + TOTAL_COUNT_OF_TRY.getMessage(),
                 getResultMessage(bridgeGame), Integer.toString(countTry));

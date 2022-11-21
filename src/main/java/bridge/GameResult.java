@@ -1,6 +1,5 @@
 package bridge;
 
-import static bridge.constant.Direction.LOWER;
 import static bridge.constant.Direction.UPPER;
 
 import bridge.constant.Direction;

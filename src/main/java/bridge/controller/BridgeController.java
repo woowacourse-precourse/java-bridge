@@ -36,6 +36,17 @@ public class BridgeController {
         outputView.printResult(bridgeGame, countTry);
     }
 
+    private void setUpBridge() {
+        try {
+            outputView.printMessage(ENTER_BRIDGE_LENGTH);
+            bridgeGame = new BridgeGame(new Bridge(inputView.readBridgeSize()));
+            outputView.printNewLine();
+        } catch (IllegalArgumentException ex) {
+            outputView.printErrorMessage(ex.getMessage());
+            setUpBridge();
+        }
+    }
+
     private void playGame() {
         while (playing) {
             moveToDirection();
@@ -45,17 +56,6 @@ public class BridgeController {
             if (playing) {
                 playing = bridgeGame.isClearGame();
             }
-        }
-    }
-
-    private void setUpBridge() {
-        try {
-            outputView.printMessage(ENTER_BRIDGE_LENGTH);
-            bridgeGame = new BridgeGame(new Bridge(inputView.readBridgeSize()));
-            outputView.printNewLine();
-        } catch (IllegalArgumentException ex) {
-            outputView.printErrorMessage(ex.getMessage());
-            setUpBridge();
         }
     }
 
@@ -73,14 +73,14 @@ public class BridgeController {
     private void gameRetryOrQuit() {
         try {
             outputView.printMessage(ENTER_RETRY_OR_QUIT);
-            changeGameStatus(inputView.readGameCommand());
+            changeGameState(inputView.readGameCommand());
         } catch (IllegalArgumentException ex) {
             outputView.printErrorMessage(ex.getMessage());
             gameRetryOrQuit();
         }
     }
 
-    private void changeGameStatus(boolean retry) {
+    private void changeGameState(boolean retry) {
         if (retry) {
             bridgeGame.retry();
             countTry += 1;
