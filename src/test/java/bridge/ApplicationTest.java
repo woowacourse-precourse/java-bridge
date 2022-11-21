@@ -45,7 +45,7 @@ class ApplicationTest extends NsTest {
             run("3", "U", "U", "R", "U", "D", "U");
             assertThat(output()).contains(
                     "[ O | X ]",
-                    "[ O |   ]",
+                    "[   |   ]",
                     "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
                     "최종 게임 결과",
                     "[ O |   | O ]",
@@ -66,7 +66,7 @@ class ApplicationTest extends NsTest {
             run("3", "U", "U", "R", "U", "D", "D", "Q");
             assertThat(output()).contains(
                     "[ O | X ]",
-                    "[ O |   ]",
+                    "[   |   ]",
                     "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
                     "최종 게임 결과",
                     "[ O |   |   ]",
