@@ -3,6 +3,8 @@ package bridge.io;
 import bridge.game.BridgeGame;
 import bridge.model.Model;
 
+import static bridge.io.IO_msg.*;
+
 public class OutputView {
 
     public static void printMap() {
@@ -29,18 +31,18 @@ public class OutputView {
 
 
     public static void printResult() {
-        System.out.println(IO_msg.OUTPUT_GAME_RESULT.msg);
+        System.out.println(OUTPUT_GAME_RESULT.msg);
         printMap();
-        System.out.println(IO_msg.OUTPUT_PASS_FAIL.msg + printGameResult());
-        System.out.println(IO_msg.OUTPUT_TOTAL_TRY_COUNT.msg + BridgeGame.tryCount);
+        System.out.println(OUTPUT_PASS_FAIL.msg + printGameResult());
+        System.out.println(OUTPUT_TOTAL_TRY_COUNT.msg + BridgeGame.tryCount);
     }
     private static String printGameResult() {
         int lastIndexOfBridge = Model.upperBridgeMap.size()-1;
         String upperLast = Model.upperBridgeMap.get(lastIndexOfBridge);
         String lowerLast = Model.lowerBridgeMap.get(lastIndexOfBridge);
-        if (upperLast.equals("O") || lowerLast.equals("O")) {
-            return IO_msg.RESULT_SCECESS.msg;
+        if (upperLast.equals(O.msg) || lowerLast.equals(O.msg)) {
+            return RESULT_SCECESS.msg;
         }
-        return IO_msg.RESULT_FAIL.msg;
+        return RESULT_FAIL.msg;
     }
 }
