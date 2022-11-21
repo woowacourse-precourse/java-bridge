@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.config.UserInput;
 import bridge.message.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -24,7 +25,7 @@ public class InputView {
      */
     public String readMoving() {
         String moving = readOneCharacter();
-        if(moving.equals("U") || moving.equals("D"))
+        if(UserInput.isUpDown(moving))
             return moving;
 
         throw new IllegalArgumentException(ErrorMessage.INPUT_UD.getValue());
@@ -35,7 +36,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String moving = readOneCharacter();
-        if(moving.equals("R") || moving.equals("Q"))
+        if(UserInput.isRetryQuit(moving))
             return moving;
 
         throw new IllegalArgumentException(ErrorMessage.INPUT_RQ.getValue());
