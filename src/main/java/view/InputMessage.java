@@ -9,4 +9,8 @@ public enum InputMessage {
     InputMessage(String inputMessage) {
         this.inputMessage = inputMessage;
     }
+
+    public String getInputMessage() {
+        return inputMessage;
+    }
 }
