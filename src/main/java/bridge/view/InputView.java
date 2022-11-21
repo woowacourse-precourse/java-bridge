@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import java.util.regex.Pattern;
 
@@ -16,23 +16,9 @@ public class InputView {
     }
 
     private void validForSize(String readSize) {
-        isNumber(readSize);
-        validRange(readSize);
-    }
-
-    private void validRange(String readSize) {
-        int size = Integer.parseInt(readSize);
-        if (size < 3 || 20 < size) {
-            System.err.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        if (!Pattern.matches(Regex.RANGE.getPattern(), readSize)) {
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
-        }
-    }
-    private void isNumber(String size) {
-        for (char number : size.toCharArray()) {
-            if (!Character.isDigit(number)) {
-                System.err.println("[ERROR] 다리 길이는 숫자여야 합니다.");
-                throw new IllegalArgumentException();
-            }
         }
     }
 
@@ -46,7 +32,7 @@ public class InputView {
 
     private void validForMove(String move) {
         if (!Pattern.matches(Regex.MOVE.getPattern(), move)) {
-            System.err.println("[ERROR] 이동 명령은 U 혹은 D 중 하나를 입력해야만 합니다.");
+            System.out.println("[ERROR] 이동 명령은 U 혹은 D 중 하나를 입력해야만 합니다.");
             throw new IllegalArgumentException();
         }
     }
@@ -61,7 +47,7 @@ public class InputView {
 
     private void validForGameCommand(String command) {
         if (!Pattern.matches(Regex.CONTINUE.getPattern(), command)) {
-            System.err.println("[ERROR] 게임 재시작/종료 명령은 R 혹은 Q중 하나를 입력해야만 합니다.");
+            System.out.println("[ERROR] 게임 재시작/종료 명령은 R 혹은 Q중 하나를 입력해야만 합니다.");
             throw new IllegalArgumentException();
         }
     }
