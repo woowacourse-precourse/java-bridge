@@ -5,7 +5,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.GameStatus;
-import bridge.domain.User;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -16,7 +15,8 @@ public class BridgeGameController {
     private BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
     private GameStatus gameStatus;
-    private User user;
+    private Bridge bridge;
+    private Bridge copyBridge;
 
     public BridgeGameController() {
         inputView = new InputView();
@@ -24,31 +24,29 @@ public class BridgeGameController {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame();
         gameStatus = new GameStatus();
-        user = new User();
     }
 
     public void start() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        outputView.askBridgeSize();
         int bridgeLength = inputView.readBridgeSize();
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
-        Bridge copyBridge = new Bridge(bridge.copyBridge());
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
+        copyBridge = new Bridge(bridge.copyBridge());
 
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        outputView.printStart();
 
         while (true) {
-            //브릿지 복사본 만들기
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            outputView.askSpaceToMove();
             String moving = inputView.readMoving();
-            boolean check = bridgeGame.move(user, copyBridge, moving);
+            boolean check = bridgeGame.move(gameStatus, copyBridge, moving);
             String retry = "R";
-            outputView.printMap(user);
+            outputView.printMap(gameStatus);
 
             if (!check) {
-                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                outputView.askWhetherToRetry();
                 retry = inputView.readGameCommand();
 
                 if (retry.equals("R")) {
-                    user.resetUser();
+                    gameStatus.resetGameStatus();
                     copyBridge = new Bridge(bridge.copyBridge());
                     gameStatus.tryCount += 1;
                 }
@@ -63,6 +61,6 @@ public class BridgeGameController {
                 break;
             }
         }
-        outputView.printResult(gameStatus, user);
+        outputView.printResult(gameStatus);
     }
 }

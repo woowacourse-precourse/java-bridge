@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.domain.GameStatus;
-import bridge.domain.User;
 import java.util.List;
 
 public class OutputView {
@@ -11,14 +10,14 @@ public class OutputView {
     private static final String SPACE_TO_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String WHETHER_TO_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-    public void printMap(User user) {
-        System.out.printf("[ %s ]\n", bridgeToMap(user.topBridge));
-        System.out.printf("[ %s ]\n", bridgeToMap(user.bottomBridge));
+    public void printMap(GameStatus gameStatus) {
+        System.out.printf("[ %s ]\n", bridgeToMap(gameStatus.topBridge));
+        System.out.printf("[ %s ]\n", bridgeToMap(gameStatus.bottomBridge));
     }
 
-    public void printResult(GameStatus gameStatus, User user) {
+    public void printResult(GameStatus gameStatus) {
         System.out.println("최종 게임 결과");
-        printMap(user);
+        printMap(gameStatus);
         System.out.printf("게임 성공 여부: %s\n", gameStatus.gameResult);
         System.out.printf("총 시도한 횟수: %d", gameStatus.tryCount);
     }
