@@ -16,9 +16,13 @@ public class BridgeGameController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public BridgeGameController(InputView inputView, OutputView outputView) {
+    private BridgeGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+    }
+
+    public static BridgeGameController of(InputView inputView, OutputView outputView) {
+        return new BridgeGameController(inputView, outputView);
     }
 
     public void run() {
