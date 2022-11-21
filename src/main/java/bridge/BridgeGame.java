@@ -63,13 +63,14 @@ public class BridgeGame {
                 down.add(String.format("[ %s ", check));
             }
         }
+            giveFactor(opv,up,down);
+
+    }
+    public  void giveFactor(OutputView opv,List<String> up , List<String> down){
         this.up = up;
         this.down = down;
         opv.printMap(String.join("|", up), String.join("|", down));
-
     }
-
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
