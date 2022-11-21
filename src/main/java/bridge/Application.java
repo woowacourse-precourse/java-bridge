@@ -13,5 +13,6 @@ public class Application {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         Controller controller = new Controller(bridgeMaker, inputView, outputView);
+        controller.run();
     }
 }

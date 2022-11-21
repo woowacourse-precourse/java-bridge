@@ -17,19 +17,31 @@ public class BridgeGame {
     private Integer trialCount = 1;
     private GameState gameState = GameState.RUNNING;
 
+    private List<String> upperBlock;
+    private List<String> lowerBlock;
+
     public void move(String moveCommand) {
         validateMoveCommand(moveCommand);
+        this.bridgeProgress.add(moveCommand);
         if (isMovable(moveCommand)) {
-            this.bridgeProgress.add("O");
             currentBlockIndex += 1;
+            if (isClear()){
+                gameState = GameState.CLEAR;
+            }
             return;
         }
-        this.bridgeProgress.add("X");
         gameState = GameState.PAUSE;
     }
 
     private Boolean isMovable(String moveCommand){
         return bridge.get(currentBlockIndex + 1).equals(moveCommand);
+    }
+
+    private Boolean isClear(){
+        if (bridge.equals(bridgeProgress)){
+            return true;
+        }
+        return false;
     }
 
     private void validateMoveCommand(String command){
@@ -71,5 +83,7 @@ public class BridgeGame {
     public void setBridge(List<String> bridge){
         this.bridge = bridge;
     }
+
+
 
 }

@@ -25,7 +25,9 @@ public class Controller {
         inputBridgeLength();
         while (bridgeGame.getGameState() == GameState.RUNNING){
             move();
-            retry();
+            if (bridgeGame.getGameState() == GameState.PAUSE) {
+                retry();
+            }
         }
         showResult();
     }
