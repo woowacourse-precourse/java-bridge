@@ -96,4 +96,28 @@ class GameCommandTest {
         // then
         assertFalse(result);
     }
+
+    @Test
+    void isRestart() {
+        // given
+        GameCommand gameCommand = GameCommand.RESTART;
+
+        // when
+        boolean result = gameCommand.isRestart();
+
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    void isRestartByNotRestart() {
+        // given
+        GameCommand gameCommand = GameCommand.MISS;
+
+        // when
+        boolean result = gameCommand.isRestart();
+
+        // then
+        assertFalse(result);
+    }
 }
