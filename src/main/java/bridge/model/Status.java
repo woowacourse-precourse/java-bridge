@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Status {
-    private List<String> status;
+    private final List<String> status;
     private int tryNumber;
 
     public Status() {

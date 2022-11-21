@@ -3,7 +3,7 @@ package bridge.model;
 import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeGame {
-    private Status preStatus;
+    private final Status preStatus;
 
     public BridgeGame() {
         preStatus = new Status();
