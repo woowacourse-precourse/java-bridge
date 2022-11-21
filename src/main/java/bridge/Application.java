@@ -12,9 +12,9 @@ public class Application {
     public static int size;
     public static List<String> bridge;
     public static boolean success;
+    public static int totalTrial;
 
     public static void main(String[] args) {
-        StartGame.totalTrial = 1;
         BridgeGame bridgeGame = Initialization.init();
         while (StartGame.startGame(bridgeGame)) {
             if (bridgeGame.movingTurn == size) {

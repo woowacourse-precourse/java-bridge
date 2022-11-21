@@ -6,7 +6,6 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class StartGame {
-    public static int totalTrial;
     public static String movingInput;
 
     public static boolean startGame(BridgeGame bridgeGame) {

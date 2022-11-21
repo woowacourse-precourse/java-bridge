@@ -14,6 +14,7 @@ public class Initialization {
         OutputView.printRequestSize();
         Application.size = InputView.readBridgeSize();
         createBridge();
+        Application.totalTrial = 1;
         return new BridgeGame();
     }
 

@@ -3,7 +3,6 @@ package bridge.view;
 import bridge.Application;
 import bridge.domain.BridgeGame;
 import bridge.data.constant.OutputConstants;
-import bridge.domain.StartGame;
 
 public class OutputView {
 
@@ -19,7 +18,7 @@ public class OutputView {
         System.out.println(OutputConstants.RESULT);
         printMap(bridgeGame);
         printSuccess();
-        System.out.println(OutputConstants.TOTAL_TRY + StartGame.totalTrial);
+        System.out.println(OutputConstants.TOTAL_TRY + Application.totalTrial);
     }
 
     public static void printSuccess() {

@@ -31,10 +31,10 @@ class BridgeGameTest {
     @Test
     void retry_테스트2() {
         bridgeGame.movingTurn = 3;
-        StartGame.totalTrial = 6;
+        Application.totalTrial = 6;
         bridgeGame.retry();
         assertEquals(bridgeGame.movingTurn, 0);
-        assertEquals(StartGame.totalTrial, 7);
+        assertEquals(Application.totalTrial, 7);
     }
 
     @DisplayName("정답 시 결과가 객체에 올바르게 입려되는지 확인")

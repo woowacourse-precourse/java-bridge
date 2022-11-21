@@ -6,9 +6,15 @@ import bridge.data.way.DownSide;
 import bridge.data.way.UpSide;
 
 public class BridgeGame {
-    public UpSide upSide = new UpSide();
-    public DownSide downSide = new DownSide();
-    public int movingTurn = 0;
+    public UpSide upSide;
+    public DownSide downSide;
+    public int movingTurn;
+
+    public BridgeGame() {
+        this.upSide = new UpSide();
+        this.downSide = new DownSide();
+        this.movingTurn = 0;
+    }
 
     public void move() {
         if (isRightWay()) {
@@ -22,7 +28,7 @@ public class BridgeGame {
         this.upSide = new UpSide();
         this.downSide = new DownSide();
         this.movingTurn = 0;
-        StartGame.totalTrial++;
+        Application.totalTrial++;
     }
 
     public void rightWayMove() {
