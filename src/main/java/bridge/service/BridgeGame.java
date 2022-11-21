@@ -18,8 +18,8 @@ public class BridgeGame {
     private static final int COUNT = 1;
 
     private final GameAgent gameAgent;
-    private GameRecordMaker gameRecordMaker;
     private final GameRecordGenerator gameRecordGenerator;
+    private GameRecordMaker gameRecordMaker;
     private int numberOfTrial;
     private int currentBridgeLocation;
     private boolean gameState;
@@ -67,18 +67,21 @@ public class BridgeGame {
         numberOfTrial += COUNT;
     }
 
-    public int getTotalTrial(){
+    public int getTotalTrial() {
         return numberOfTrial;
     }
 
-    public boolean isFailedGame(){
+    public boolean isFailedGame() {
         return !gameState;
     }
 
-    public String getBridgeGameState(){
+    public String getBridgeGameState() {
         return CrossingState.getSuccessOrNot(gameState);
     }
 
+    public boolean isGameEnd() {
+        return currentBridgeLocation < bridgeLength;
+    }
 
 
 }
