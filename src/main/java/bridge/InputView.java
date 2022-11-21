@@ -9,13 +9,23 @@ import org.w3c.dom.ranges.RangeException;
  */
 public class InputView {
 
+    OutputView outputView = new OutputView();
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        String input = Console.readLine();
-        validateNotNumber(input);
-        validateNumberRange(input);
+    public int readBridgeLen(){
+        String input = "";
+        while(true){
+            outputView.printRequestSize();
+            try{
+                input = Console.readLine();
+                validateInputNumber(input);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
         return Integer.parseInt(input);
     }
 
@@ -37,19 +47,14 @@ public class InputView {
         return input;
     }
 
-    private static void validateNotNumber(String input){
+    private static void validateInputNumber(String input){
         for (int i = 0; i < input.length(); i++) {
             if(!Character.isDigit(input.charAt(i))){
-                System.out.println("[ERROR] 숫자를 입력해야 합니다.");
                 throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
             }
         }
-    }
-
-    private static void validateNumberRange(String input){
         int len = Integer.parseInt(input);
         if(len < 3 || len > 20){
-            System.out.println("[ERROR] 숫자는 3~20 범위로 입력해야 합니다.");
             throw new IllegalArgumentException("[ERROR] 숫자는 3~20 범위로 입력해야 합니다.");
         }
     }

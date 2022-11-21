@@ -13,7 +13,7 @@ public class BridgeController {
     }
 
     public List<String> bridgeMake(){
-        int bridgeSize = bridgeGame.requestBridgeSize();
+        int bridgeSize = inputView.readBridgeLen();
         return bridgeGame.makeBridge(bridgeSize);
     }
 

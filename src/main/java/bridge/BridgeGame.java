@@ -20,18 +20,6 @@ public class BridgeGame {
         System.out.println("");
     }
 
-    public int requestBridgeSize(){
-        System.out.println("다리 길이를 입력해주세요.");
-        System.out.println("");
-        try{
-            return inputView.readBridgeSize();
-        }catch (IllegalArgumentException e){
-            System.out.println("다리 길이를 입력해주세요");
-            inputView.readBridgeSize();
-        }
-        return inputView.readBridgeSize();
-    }
-
     public List<String> makeBridge(int step){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(step);
