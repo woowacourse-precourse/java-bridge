@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.BridgeMaker;
-import bridge.GameKeySet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +9,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final BridgeMaker bridgeMaker;
-    private final List<String> bridgeLine;
+    private final List<String> generateBridge;
     private final List<String> userCrossBridge;
     private final BridgeLog bridgeLog;
 
@@ -20,8 +18,7 @@ public class BridgeGame {
     }
 
     public BridgeGame(BridgeMaker bridgeMaker, int bridgeSize) {
-        this.bridgeMaker = bridgeMaker;
-        this.bridgeLine = bridgeMaker.makeBridge(bridgeSize);
+        this.generateBridge = bridgeMaker.makeBridge(bridgeSize);
         this.userCrossBridge = new ArrayList<>(bridgeSize);
         this.bridgeLog = new BridgeLog();
     }
@@ -31,13 +28,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(GameKeySet moveKey) {
-        move(moveKey.getKeySet());
-    }
-
     public void move(String moveKey) {
         userCrossBridge.add(moveKey);
-        bridgeLog.addLog(bridgeLine.get(userCrossBridge.size() - 1), moveKey);
+        bridgeLog.addLog(generateBridge.get(userCrossBridge.size() - 1), moveKey);
     }
 
     /**
@@ -58,14 +51,14 @@ public class BridgeGame {
      * 사용자가 건넌 다리가 건널수있는 다리인지 확인하는 메서드
      */
     public boolean isMovable(int userCrossBridgeIndex) {
-        return bridgeLine.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex)) && !isEnd();
+        return generateBridge.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex)) && !isEnd();
     }
 
     /**
      * 게임이 끝났는지 확인하는 메서드
      */
     public boolean isEnd() {
-        return bridgeLine.size() <= userCrossBridge.size();
+        return generateBridge.size() <= userCrossBridge.size();
     }
 
     public int getRound() {
