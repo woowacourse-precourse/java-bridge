@@ -1,16 +1,27 @@
+## 객체 생성 / 소멸 주기
+![image](https://www.notion.so/795b281f263d491faa3b7fb4007e2ea8#290f3f6e34474ac1a7e07f40ae2f23e8)
+1. []OutputView에서 게임 시작 안내 문구를 출력한다.
+2. []InputView에서 사용자에게 다리 길이를 입력 받는다.
+3. []입력자를 통해 FrontController에서 BridgeMaker를 생성한다.
+4. []생성된 BridgeMaker의 값을 BridgeGame에 전달하여 게임 진행을 연산한다.
+5. []BridgeGame은 GameRepository를 통해 GameEntity의 변경되는 GameEntity의 상태를 관리한다.
+6. []GameEntity의 현재 상태를 FrontController에게 전달한다.
+7. []FrontController는 결과 메시지를 OutputView 기능을 사용해 Application에 전달한다.
+
+
 ## 기능 재정의
-- 게임을 시작한다.
-- 사용자가 3~20 사이의 다리의 길이를 입력한다.(잘못된 값일 경우 예외 처리) / InputView
+- 게임 안내문구를 출력한다. / OutputView
+- 사용자가 3~20 사이의 다리의 길이를 입력한다.(잘못된 값일 경우 예외 처리) / InputView, Exception
 - 입력된 만큼의 길이의 다리를 위 or 아래 칸으로 생성한다. / BridgeMaker
   - 0과 1로 이루어진 랜덤 수 생성을 통해 위 or 아래 중 건널 수 있는 칸이 무작위로 정해진다. / BridgeNumberGenerator
-- 사용자가 위/ 아래를 선택자를 입력한다. / InputView
-- 0부터 1칸씩 칸을 이동한다. / BridgeGame
-  - 건널 수 있는 칸이면 O, 없는 칸일 경우 X를 표현한다. / Expression
-  - X칸으로 이동했을 경우 사용자에게 재시작 or 종료 여부를 입력받는다. (잘못된 값일 경우 예외 처리) / BridgeGame, InputView
-  - 게임을 재시작할 경우 다리를 재사용한다. / BridgeRepository
-- O칸으로 이동했을 경우 다음 라운드를 진행한다. / BridgeGame, InputView
-- 마지막까지 O칸을 선택하면 게임 종료 / BridgeGame, InputView
-- 게임 종료시 성공 여부와 시도 횟수를 출력한다. / OutputView
+- 이동할 칸 안내 문구를 출력한다. / OutputView
+- 사용자가 위/ 아래 선택자를 입력한다. / InputView, Exception
+- 이동 상태가 O 또는 X로 변환되어 출력된다. / GameEntity, FrontController
+- O일 경우 입력자를 반복 한다. / InputView, Exception
+- X일 경우 게임 '재시작 | 종료' 여부 출력 / OutputView, GameEntity
+  - R인 경우 입력자 반복
+  - Q인 경우 게임 상태 출력
+    - 게임 결과, 게임 성공 여부, 게임 시도 횟수
 
 - 
 

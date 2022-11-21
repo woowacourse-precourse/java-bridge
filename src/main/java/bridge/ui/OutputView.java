@@ -1,7 +1,7 @@
 package bridge;
 
 import static bridge.UserInterface.INSERT_SIZE;
-import static bridge.UserInterface.RETRY;
+import static bridge.UserInterface.RE_TRY;
 import static bridge.UserInterface.SELECT_ROW;
 import static bridge.UserInterface.START;
 import static bridge.UserInterface.SUCCESSFUL;
@@ -23,6 +23,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public List<String> printMap() {
+
         return frontController.bridgeRepository();
     }
 
@@ -36,13 +37,20 @@ public class OutputView {
         return userInterface;
     }
 
-
-    public void setPrint() {
-        printResult(START.interact());
-        printResult(INSERT_SIZE.interact());
-        printResult(SELECT_ROW.interact());
-        printResult(RETRY.interact());
-        printResult(SUCCESSFUL.interact());
-        printResult(TRY_COUNT.interact());
+    public void start() {
+        System.out.println(START.interact());
     }
+
+    public void insertBridgeSize() {
+        System.out.println(INSERT_SIZE.interact());
+    }
+
+    public void selectRow() {
+        System.out.println(SELECT_ROW.interact());
+    }
+
+    public void chooseRetry(){
+        System.out.println(RE_TRY.interact());
+    }
+
 }
