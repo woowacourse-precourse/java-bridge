@@ -33,6 +33,23 @@ class GameControllerTest extends NsTest{
         }, 1, 0, 1);
     }
 
+    @Test
+    void 게임_실패_기능_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "Q");
+            assertThat(output()).contains(
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
