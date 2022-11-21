@@ -31,9 +31,9 @@ public class BridgeGame {
      */
     public boolean retry(String retryOrNot) {
         if(retryOrNot.equals(StringEnum.Q.getStr())) {
-            usersAttempts();
             retryUsers();
             return false;}
+        usersAttempts();
         return true;
     }
     private void usersBridge(String userValue, int index){
