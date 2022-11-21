@@ -5,6 +5,7 @@ import bridge.dto.PathDTO;
 import bridge.dto.ResultDTO;
 import java.util.List;
 
+import static bridge.model.Boundary.*;
 import static bridge.model.Case.*;
 import static bridge.model.Direction.*;
 import static bridge.message.NoticeMessage.*;
@@ -13,9 +14,6 @@ import static bridge.message.NoticeMessage.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String START_BOUNDARY_MAP = "[";
-    private static final String END_BOUNDARY_MAP = "]";
-    private static final String MID_BOUNDARY_MAP = "|";
     private static final String SPACE = " ";
     private static final int SPACE_COUNT = 3;
 
@@ -30,8 +28,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(MapDTO mapDTO) {
-        StringBuilder upBridge = new StringBuilder(START_BOUNDARY_MAP);
-        StringBuilder downBridge = new StringBuilder(START_BOUNDARY_MAP);
+        StringBuilder upBridge = new StringBuilder(MAP_START_BOUNDARY.getName());
+        StringBuilder downBridge = new StringBuilder(MAP_START_BOUNDARY.getName());
         addBridge(mapDTO, upBridge, downBridge);
         System.out.println(upBridge);
         System.out.println(downBridge);
@@ -48,8 +46,8 @@ public class OutputView {
     }
 
     private void addEndBoundary(StringBuilder upBridge, StringBuilder downBridge) {
-        upBridge.append(END_BOUNDARY_MAP);
-        downBridge.append(END_BOUNDARY_MAP);
+        upBridge.append(MAP_END_BOUNDARY.getName());
+        downBridge.append(MAP_END_BOUNDARY.getName());
     }
 
     private void addPath(StringBuilder upBridge, StringBuilder downBridge, PathDTO pathDTO) {
@@ -73,8 +71,8 @@ public class OutputView {
 
     private void addMidBoundary(StringBuilder upBridge, StringBuilder downBridge, int round) {
         if (round != 0){
-            upBridge.append(MID_BOUNDARY_MAP);
-            downBridge.append(MID_BOUNDARY_MAP);
+            upBridge.append(MAP_MID_BOUNDARY.getName());
+            downBridge.append(MAP_MID_BOUNDARY.getName());
         }
     }
 
