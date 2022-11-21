@@ -22,16 +22,23 @@ public class BridgeController {
     }
 
     public void GameTest(){
-        boolean check = true;
+        boolean gameRunningCheck = true;
+        boolean gameEndCheck = false;
         BridgeGame bridgeGame = createBridgeGame(inputView);
-        while(check){
-            check = inputMoving(inputView,outputView,bridgeGame);
-            if(check==false){
-                check = bridgeGame.retry(inputView.readGameCommand());
+        while(gameRunningCheck){
+            gameRunningCheck = inputMoving(inputView,outputView,bridgeGame);
+            if(gameRunningCheck==false){
+                gameRunningCheck = bridgeGame.retry(inputView.readGameCommand());
+            }
+
+            if(bridgeGame.endGame()){
+                gameRunningCheck = false;
+                gameEndCheck = true;
             }
         }
         outputView.printResult();
         System.out.println(outputView.printMap(bridgeGame.currentBridge()));
+        System.out.println(outputView.printSuccessCheck(gameEndCheck));
     }
     private static BridgeGame createBridgeGame(InputView inputView) {
         return new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator())

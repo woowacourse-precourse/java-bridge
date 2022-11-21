@@ -15,6 +15,10 @@ public class OutputView {
     public static final String LOCATION_DOWN_SELECT = "D";
 
     public static final String GAME_FINAL_RESULT = "최종 게임 결과";
+    public static final String GAME_SUCCESS = "성공";
+    public static final String GAME_FAIL = "실패";
+
+    public static final String GAME_SUCCESS_CHECK = "\n게임 성공 여부: %s";
     public static void printGameStart(){
         System.out.println(GAME_START_MESSAGE);
     }
@@ -44,6 +48,13 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(GAME_FINAL_RESULT);
+    }
+
+    public String printSuccessCheck(boolean check1){
+        if(check1 ==true ){
+            return String.format(GAME_SUCCESS_CHECK,GAME_SUCCESS);
+        }
+        return String.format(GAME_SUCCESS_CHECK,GAME_FAIL);
     }
     }
 }

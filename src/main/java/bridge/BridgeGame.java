@@ -50,5 +50,7 @@ public class BridgeGame {
     private boolean countRetry(boolean retry) {
         return retry;
     }
+    public boolean endGame() {
+        return bridge.size() == userAnswer.size();
     }
 }
