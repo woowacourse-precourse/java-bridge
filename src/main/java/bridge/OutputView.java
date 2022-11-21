@@ -28,6 +28,9 @@ public class OutputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
+    /**
+     * 윗 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     */
     public void printUpMap(List<String> upMoveResult) {
         for (int i = 0; i < upMoveResult.size(); i++) {
             if (i == 0) { System.out.print("["); }
@@ -40,6 +43,9 @@ public class OutputView {
         System.out.println(" ]");
     }
 
+    /**
+     * 아랫 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     */
     public void printDownMap(List<String> downMoveResult) {
         for (int i = 0; i < downMoveResult.size(); i++) {
             if (i == 0) { System.out.print("["); }
@@ -60,6 +66,14 @@ public class OutputView {
     public void printMap(List<List<String>> moveResult) {
         printUpMap(moveResult.get(0));
         printDownMap(moveResult.get(1));
+    }
+
+    /**
+     * 게임을 끝낼건지 묻는 문구를 출력한다.
+     */
+    public void printWantFinish() {
+        System.out.println();
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
     /**

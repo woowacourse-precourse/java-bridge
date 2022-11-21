@@ -3,6 +3,8 @@ package bridge;
 import java.util.*;
 
 public class Application {
+    private int gameCount = 0;
+
     /**
      * 게임을 시작하는 메서드
      */
@@ -39,7 +41,7 @@ public class Application {
     }
 
     /**
-     * 사용자가 이동할 칸을 입력받는 메서드
+     * 사용자가 이동할 칸을 입력하는 메서드
      */
     static String inputMove() {
         OutputView outputView = new OutputView();
@@ -69,12 +71,36 @@ public class Application {
         }
     }
 
+    /**
+     * 사용자가 게임 지속 여부를 입력하는 메서드
+     */
+    static String inputFinish() {
+        OutputView outputView = new OutputView();
+
+        outputView.printWantFinish();
+
+        return "";
+    }
+
+    /**
+     * 게임을 종료하는 메서드
+     */
+    static Boolean gameEnd(List<List<String>> moveResult) {
+        String checkFinish = Application.inputFinish();
+
+        return false;
+    }
+
     public static void main(String[] args) {
+        Boolean wholeTry = true;
         try {
-            Application.gameStart();
-            int bridgeSize = Application.knowBridgeLength();
-            List<String> bridge = Application.makeBridge(bridgeSize);
-            List<List<String>> moveResult = Application.moveBridge(bridge);
+            while (wholeTry) {
+                Application.gameStart();
+                int bridgeSize = Application.knowBridgeLength();
+                List<String> bridge = Application.makeBridge(bridgeSize);
+                List<List<String>> moveResult = Application.moveBridge(bridge);
+                wholeTry = Application.gameEnd(moveResult);
+            }
         } catch (IllegalArgumentException e) {}
     }
 }
