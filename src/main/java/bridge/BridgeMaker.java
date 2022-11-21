@@ -15,27 +15,28 @@ public class BridgeMaker {
     }
 
     public List<Integer> makeNumberBridge(int size) {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         List<Integer> numberBridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            int randomNumber = bridgeRandomNumberGenerator.generate();
+            int randomNumber = bridgeNumberGenerator.generate();
             numberBridge.add(randomNumber);
         }
         return numberBridge;
     }
 
-    public void transferNumberToAlphabet(List<Integer> numberBridge) {
+    public List<String> transferNumberToAlphabet(List<Integer> numberBridge) {
         List<String> alphabetBridge = new ArrayList<>();
         for (int i = 0; i < numberBridge.size(); i++) {
             if (numberBridge.get(i) == 0) {alphabetBridge.add("U");}
             if (numberBridge.get(i) == 1) {alphabetBridge.add("D");}
         }
+        return alphabetBridge;
     }
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = transferNumberToAlphabet(makeNumberBridge(size));
+        return bridge;
     }
 }
