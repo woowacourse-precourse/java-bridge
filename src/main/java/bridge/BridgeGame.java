@@ -9,10 +9,8 @@ public class BridgeGame {
 
     private int position;
     private int count = 1;
-    private StringBuilder[] map = {new StringBuilder(),  new StringBuilder()};
-    private StringBuilder result=new StringBuilder();
-    private StringBuilder finalMap=new StringBuilder();
     private boolean canMove;
+    private final StringBuilder[] map = {new StringBuilder(), new StringBuilder()};
     private final List<String> bridge;
 
     BridgeGame(List<String> bridge, int position, boolean canMove) {
@@ -21,19 +19,19 @@ public class BridgeGame {
         this.canMove = canMove;
     }
 
+    public boolean checkToContinue() {
+        return position != bridge.size() && canMove;
+    }
+
+    public boolean checkSuccess() {
+        return !canMove;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean checkToContinue(){
-        return position != bridge.size() && canMove;
-    }
-
-    public boolean checkSuccess(){
-        return !canMove;
-    }
-
     public void move(String moving) {
         if (bridge.get(position).equals(moving)) {
             setMap(moving, "O");
@@ -45,7 +43,7 @@ public class BridgeGame {
         position++;
     }
 
-    public void setMap(String moving, String match) {
+    private void setMap(String moving, String match) {
         if (position != 0) {
             map[0].append("| ");
             map[1].append("| ");
@@ -60,9 +58,8 @@ public class BridgeGame {
         }
     }
 
-    public StringBuilder getMap(){
-        finalMap.append("[ ").append(map[0]).append("]\n[ ").append(map[1]).append("]");
-        return finalMap;
+    public StringBuilder getMap() {
+        return new StringBuilder().append("[ ").append(map[0]).append("]\n[ ").append(map[1]).append("]");
     }
 
     /**
@@ -75,11 +72,12 @@ public class BridgeGame {
         position = 0;
         canMove = true;
         map[0] = new StringBuilder();
-        map[1]  = new StringBuilder();
+        map[1] = new StringBuilder();
         Application.playGame(this);
     }
 
     public StringBuilder getResult() {
+        StringBuilder result = new StringBuilder();
         result.append("\n최종 게임 결과");
         result.append("[ ").append(map[0]).append("]\n[ ").append(map[1]).append("]");
         result.append("\n게임 성공 여부: ");
