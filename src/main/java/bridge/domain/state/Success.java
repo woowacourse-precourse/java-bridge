@@ -2,7 +2,7 @@ package bridge.domain.state;
 
 import bridge.domain.Bridge;
 
-public class Success extends MoveComplete {
+public class Success extends MovingComplete {
     public Success(final Bridge bridge, final String moving) {
         super(bridge, moving);
     }

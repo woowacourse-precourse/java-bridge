@@ -1,7 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.state.Ready;
-import bridge.domain.state.MoveResultState;
+import bridge.domain.state.MovingResultState;
 import bridge.dto.MovingDTO;
 
 import java.util.Collections;
@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MoveResultStates {
-    private final LinkedList<MoveResultState> moveResultStates;
+    private final LinkedList<MovingResultState> movingResultStates;
     
     public MoveResultStates() {
-        moveResultStates = new LinkedList<>();
+        movingResultStates = new LinkedList<>();
     }
     
     public void move(final MovingDTO movingDTO, final Bridge bridge) {
@@ -23,23 +23,23 @@ public class MoveResultStates {
     }
     
     private void readyState(final Bridge bridge) {
-        moveResultStates.add(new Ready(bridge));
+        movingResultStates.add(new Ready(bridge));
     }
     
     private void convertToNextState(final MovingDTO movingDTO) {
-        moveResultStates.set(statesLastIndex(), nextState(movingDTO));
+        movingResultStates.set(statesLastIndex(), nextState(movingDTO));
     }
     
-    private MoveResultState nextState(final MovingDTO movingDTO) {
+    private MovingResultState nextState(final MovingDTO movingDTO) {
         return lastState().move(statesLastIndex(), movingDTO.getMoving());
     }
     
     private int statesLastIndex() {
-        return moveResultStates.size() - 1;
+        return movingResultStates.size() - 1;
     }
     
-    private MoveResultState lastState() {
-        return moveResultStates.getLast();
+    private MovingResultState lastState() {
+        return movingResultStates.getLast();
     }
     
     public boolean isMoveFail() {
@@ -47,7 +47,7 @@ public class MoveResultStates {
     }
     
     public void initMovingStates() {
-        moveResultStates.clear();
+        movingResultStates.clear();
     }
     
     public boolean isGameFinished() {
@@ -55,27 +55,27 @@ public class MoveResultStates {
     }
     
     private boolean isAllSucceed() {
-        return lastState().isGameFinished(moveResultStates.size());
+        return lastState().isGameFinished(movingResultStates.size());
     }
     
     private boolean isStatesEmpty() {
-        return moveResultStates.isEmpty();
+        return movingResultStates.isEmpty();
     }
     
-    public List<MoveResultState> states() {
-        return Collections.unmodifiableList(moveResultStates);
+    public List<MovingResultState> states() {
+        return Collections.unmodifiableList(movingResultStates);
     }
     
     public List<String> movings() {
-        return moveResultStates.stream()
-                .map(MoveResultState::moving)
+        return movingResultStates.stream()
+                .map(MovingResultState::moving)
                 .collect(Collectors.toUnmodifiableList());
     }
     
     @Override
     public String toString() {
         return "MoveResultStates{" +
-                "states=" + moveResultStates +
+                "states=" + movingResultStates +
                 '}';
     }
 }

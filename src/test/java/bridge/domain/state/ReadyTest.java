@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 class ReadyTest {
-    private MoveResultState upperReady;
-    private MoveResultState lowerReady;
+    private MovingResultState upperReady;
+    private MovingResultState lowerReady;
     
     @BeforeEach
     void setUp() {
