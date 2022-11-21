@@ -54,16 +54,24 @@ class BridgeGameTest {
     }
 
     @Test
-    void 게임_시도_횟수_테스트_1() {
+    void 게임_시도_횟수_테스트1() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.move("D", Arrays.asList("U"));
         assertThat(bridgeGame.getGameCount()).isEqualTo(1);
     }
 
     @Test
-    void 게임_시도_횟수_테스트_2() {
+    void 게임_시도_횟수_테스트2() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.retry();
         assertThat(bridgeGame.getGameCount()).isEqualTo(2);
+    }
+
+    @Test
+    void 게임_재시작_테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("D", Arrays.asList("U"));
+        bridgeGame.retry();
+        assertThat(bridgeGame.getUp().size()).isEqualTo(0);
     }
 }
