@@ -34,14 +34,14 @@ class UserTest {
         assertThat(user.getTryCount()).isEqualTo(2);
     }
 
-    @DisplayName("게임 성공 테스트")
+    @DisplayName("게임 종료 및 성공 테스트")
     @Test
     public void isSuccessCompleteTest() {
         //given
         User user = new User();
 
         //when
-        user.winGame();
+        user.finishWithWin();
 
         //then
         assertThat(user.isSuccessComplete()).isEqualTo(true);
@@ -60,14 +60,14 @@ class UserTest {
     }
 
 
-    @DisplayName("게임 종료 테스트")
+    @DisplayName("게임 종료 및 실패 테스트")
     @Test
     public void isGameOverTest() {
         //given
         User user = new User();
 
         //when
-        user.finishGame();
+        user.finishWitFail();
 
         //then
         assertThat(user.isGameOver()).isEqualTo(true);
