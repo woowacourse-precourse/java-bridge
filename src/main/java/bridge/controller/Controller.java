@@ -1,10 +1,9 @@
 package bridge.controller;
 
-import bridge.domain.BridgeGame;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.error.Validator;
 import bridge.BridgeMaker;
-import bridge.view.InputView;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGame;
+import bridge.domain.Getter;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class Controller {
 
     public void run() {
         initialize();
-        gameStageStart(bridgeMaker.makeBridge(getBridgeSize()));
+        gameStageStart(bridgeMaker.makeBridge(Getter.getBridgeSize()));
         OutputView.printResult(movingSuccess, numberOfAttempts);
     }
 
@@ -28,16 +27,6 @@ public class Controller {
         this.bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         this.numberOfAttempts = 0;
         OutputView.printStartMessage();
-    }
-
-    private int getBridgeSize() {
-        try {
-            OutputView.printMessageForBridgeSize();
-            return Validator.validateLengthOfBridge(InputView.readBridgeSize());
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getBridgeSize();
-        }
     }
 
     private void gameStageStart(List<String> bridge) {
@@ -55,35 +44,15 @@ public class Controller {
         for (int indexOfBridge = 0; indexOfBridge < bridge.size(); indexOfBridge++) {
             moveOneSpace(bridge, indexOfBridge);
             if (BridgeGame.retry(presentResult)) {
-                this.restart = checkRestart(getGameCommand());
+                this.restart = checkRestart(Getter.getGameCommand());
                 break;
             }
         }
     }
 
     private void moveOneSpace(List<String> bridge, int indexOfBridge) {
-        this.movingSuccess.add(BridgeGame.move(bridge, indexOfBridge, getMoving()));
+        this.movingSuccess.add(BridgeGame.move(bridge, indexOfBridge, Getter.getMoving()));
         this.presentResult = OutputView.printMap(this.movingSuccess);
-    }
-
-    private String getMoving() {
-        try {
-            OutputView.printMessageForMoving();
-            return Validator.validateMoving(InputView.readMoving());
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getMoving();
-        }
-    }
-
-    public static String getGameCommand() {
-        try {
-            OutputView.printMessageForTermination();
-            return Validator.validateGameCommand(InputView.readGameCommand());
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getGameCommand();
-        }
     }
 
     private boolean checkRestart(String restart) {
