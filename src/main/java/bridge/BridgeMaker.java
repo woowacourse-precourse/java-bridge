@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.type.PositionType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class BridgeMaker {
         List<String> passBridges = new ArrayList<>();
 
         for (int index = 0; index < size; index++) {
-            String passBridge = Position.matchNumber(bridgeNumberGenerator.generate())
+            String passBridge = PositionType.matchNumber(bridgeNumberGenerator.generate())
                     .orElseThrow(IllegalArgumentException::new);
 
             passBridges.add(passBridge);
