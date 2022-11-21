@@ -36,6 +36,7 @@ public class BridgeGame {
         if (!bridge.get(index).equals(moving)) {
             moveWrong(moving);
         }
+        index++;
         return userInputBridge;
     }
 
