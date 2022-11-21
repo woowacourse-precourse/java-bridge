@@ -1,5 +1,7 @@
 package bridge.Domain;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,6 +24,13 @@ public enum BridgeRow {
 
     public String getRowPosition(){
         return this.rowPosition;
+    }
+
+    private static final List<String> rowPositions =
+            Stream.of(BridgeRow.values()).map(BridgeRow::getRowPosition).collect(Collectors.toList());
+
+    public static final List<String> getRowPositions(){
+        return rowPositions;
     }
 
     private static final Map<Integer, String> map =

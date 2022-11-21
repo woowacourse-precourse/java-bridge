@@ -1,5 +1,7 @@
 package bridge.View;
 
+import bridge.Controller.Validation;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
@@ -16,21 +18,21 @@ public class InputView {
         System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
         String bridgeSize = readLine();
         System.out.println();
-        //validation
+        Validation.validateReadBridgeSize(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
 
     public String readMoving() {
         System.out.println(INPUT_MOVING_MESSAGE);
         String moving = readLine();
-        //validation
+        Validation.validateReadMoving(moving);
         return moving;
     }
 
     public String readGameCommand() {
         System.out.println(INPUT_RETRY_MESSAGE);
         String gameCommand = readLine();
-        //validation
+        Validation.validateReadGameCommand(gameCommand);
         return gameCommand;
     }
 }
