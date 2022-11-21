@@ -8,5 +8,12 @@
 4. 게임 전체 흐름 - Application 구현
 5. 각종 입력 등에 대한 Validation 적용
    - 입력에 대한 Exception
+     - 다리 길이
+       - 숫자인지
+       - 3에서 20 사이의 숫자인지
+     - 칸 이동
+       - U 또는 D인지
+     - 재시도 여부
+       - R 또는 Q인지
 6. 구조 변경 및 Refactoring
    
