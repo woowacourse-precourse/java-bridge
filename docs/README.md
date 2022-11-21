@@ -79,7 +79,8 @@
 
 ### OutputView
 
-- [ ] 게임 처음 시작시 환영메세지 출력 - printWelcome
+- [x] 게임 처음 시작시 환영메세지 출력 - printWelcome
+  - "다리 건너기 게임을 시작합니다."
 
 - [ ] 사용자가 이동할 때마다 다리 건너기 결과를 출력한다 - printGame
     - [ ] 다리를 출력한다. - printMap
