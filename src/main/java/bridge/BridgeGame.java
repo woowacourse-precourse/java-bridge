@@ -108,16 +108,16 @@ public class BridgeGame {
     private boolean isDone(BridgeResult result) {
         return Arrays.stream(result.getResult())
                 .anyMatch(map ->
-                        map.get(map.size() - 1).equals(BridgeDisplay.toString(true)));
+                        map.get(map.size() - 1).equals(BridgeDisplay.getName(true)));
     }
 
     private boolean inputGameCommand() {
         String gameCommand = null;
         while (gameCommand == null) {
-            outputView.printgameCommandStatement();
+            outputView.printGameCommandStatement();
             gameCommand = getGameCommandOrNull();
         }
-        return BridgeGameCommand.toBoolean(gameCommand);
+        return BridgeGameCommand.getBool(gameCommand);
     }
 
     private String getGameCommandOrNull() {
@@ -129,7 +129,7 @@ public class BridgeGame {
         return null;
     }
 
-    public void exit() {
-
+    public void result(BridgeResult result) {
+        outputView.printResult(result.getResult(), result.isSuccess(), result.getCount());
     }
 }

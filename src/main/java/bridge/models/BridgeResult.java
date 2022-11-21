@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class BridgeResult {
 
     private int count;
-
+    private boolean success;
     private ArrayList<String>[] result;
 
     public BridgeResult() {
@@ -15,6 +15,13 @@ public class BridgeResult {
         result = new ArrayList[BridgeMoving.values().length];
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
     public int getResultSize() {
         return result[0].size();
     }
@@ -32,13 +39,14 @@ public class BridgeResult {
 
     public boolean add(String moving, boolean correct) {
         int index = BridgeMoving.valueOf(moving).getNumberNotation();
-        String display = BridgeDisplay.toString(correct);
+        String display = BridgeDisplay.getName(correct);
         result[index].add(display);
         for (int anotherIndex = 0; anotherIndex < result.length; anotherIndex++) {
             if (anotherIndex != index) {
                 result[anotherIndex].add(" ");
             }
         }
+        success = correct;
         return correct;
     }
 }

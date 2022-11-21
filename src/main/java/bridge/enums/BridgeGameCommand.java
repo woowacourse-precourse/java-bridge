@@ -14,7 +14,7 @@ public enum BridgeGameCommand {
         return bool;
     }
 
-    public static boolean toBoolean(String str) {
+    public static boolean getBool(String str) {
         return Arrays.stream(BridgeGameCommand.values())
                 .filter(command -> command.name().equals(str))
                 .findAny()

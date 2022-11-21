@@ -16,7 +16,7 @@ public enum BridgeMoving {
         return numberNotation;
     }
 
-    public static String toString(int number) {
+    public static String getName(int number) {
         return Arrays.stream(BridgeMoving.values())
                 .filter(cell -> cell.getNumberNotation() == number)
                 .findAny()

@@ -18,7 +18,7 @@ public class Application {
         while (ready) {
             ready = crossBridge(bridgeGame, bridge, result);
         }
-        bridgeGame.exit();
+        bridgeGame.result(result);
     }
 
     private static boolean crossBridge(BridgeGame bridgeGame, List<String> bridge, BridgeResult result) {
