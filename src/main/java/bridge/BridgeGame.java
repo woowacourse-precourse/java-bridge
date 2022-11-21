@@ -8,6 +8,8 @@ import bridge.domain.userInfo.Position;
  */
 public class BridgeGame {
 
+    private int attemptCount = 1;
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -24,6 +26,10 @@ public class BridgeGame {
      */
     public void retry(PassingPositions passingPositions) {
         passingPositions.resetPassingPosition();
+        attemptCount++;
+    }
 
+    public int getAttemptCount() {
+        return attemptCount;
     }
 }

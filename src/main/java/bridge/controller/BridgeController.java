@@ -34,7 +34,6 @@ public class BridgeController {
         Bridge bridge = createBridge(bridgeNumbers);
         PassingPositions passingPositions = createPassingPositions(bridge);
         Result result = null;
-        int attempt = 1;
 
         while (true) {
             result = playEachRound(length, passingPositions, result);
@@ -46,9 +45,8 @@ public class BridgeController {
                 break;
             }
             bridgeGame.retry(passingPositions);
-            attempt++;
         }
-        outputView.printResult(result, attempt);
+        outputView.printResult(result, bridgeGame.getAttemptCount());
     }
 
     private Result playEachRound(Length length, PassingPositions passingPositions, Result result) {
