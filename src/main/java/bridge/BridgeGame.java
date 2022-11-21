@@ -22,17 +22,24 @@ public class BridgeGame {
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        play(bridgeSize, bridge);
+        boolean gameClear = play(bridgeSize, bridge);
+        while (!gameClear) {
+            retry();
+        }
     }
 
     /**
      * 실제 게임이 진행되는 메서드
      */
-    private void play(int bridgeSize, List<String> bridge) {
+    private boolean play(int bridgeSize, List<String> bridge) {
         for (int i = 0; i < bridgeSize; ++i) {
             String moveDirection = move();
             outputView.printMap(i, moveDirection, bridge);
+            if (!isRightMove(moveDirection, bridge.get(i))) {
+                return false;
+            }
         }
+        return true;
     }
 
     /**
@@ -43,6 +50,10 @@ public class BridgeGame {
     public String move() {
         String moveDirection = inputView.readMoving();
         return moveDirection;
+    }
+
+    private boolean isRightMove(String movedDirection, String answerDirection) {
+        return movedDirection.equals(answerDirection);
     }
 
     /**
