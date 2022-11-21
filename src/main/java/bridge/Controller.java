@@ -1,9 +1,9 @@
 package bridge;
 
-import enumCollections.GameResult;
+import enumCollections.AvailableInput;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
-import enumCollections.Position;
+import enumCollections.Side;
 
 public class Controller {
     OutputView outputView;
@@ -48,7 +48,7 @@ public class Controller {
 
     private GameStatus askRepeatGame(GameStatus gameStatus, BridgeGame bridgeGame) {
         outputView.printAskGameCommand();
-        if (inputView.readGameCommand() == GameStatus.getMessage(GameStatus.RESTART)) {
+        if (inputView.readGameCommand() == AvailableInput.get(AvailableInput.RESTART_GAME)) {
             bridgeGame.retry();
             return GameStatus.CONTINUE;
         }
@@ -56,14 +56,15 @@ public class Controller {
     }
 
     private void getResult(GameStatus gameResult, BridgeGame bridgeGame, Map map) {
-        outputView.printGuideMessage(GuideMessage.RESULT, GameStatus.getMessage(gameResult));
+        outputView.printGuideMessage(GuideMessage.RESULT_PRINT);
+        outputView.printGuideMessage(GuideMessage.GAME_RESULT, GameStatus.get(gameResult));
         outputView.printMap(map);
         outputView.printNewline();
         outputView.printResult(gameResult);
         outputView.printGuideMessage(GuideMessage.GAME_TRIAL, bridgeGame.getTrial());
     }
 
-    private void addMap(Map map, Position availableSide, GameStatus gameStatus) {
+    private void addMap(Map map, Side availableSide, GameStatus gameStatus) {
         map.add(availableSide, gameStatus);
         outputView.printMap(map);
     }

@@ -12,7 +12,7 @@ public class BridgeTest {
     @Test
     void 이동_가능한_칸_확인_테스트() {
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
-        assertThat(bridge.isNextAvailable("U", 0))
+        assertThat(bridge.isAvailableToMove("U", 0))
                 .isTrue();
     }
 

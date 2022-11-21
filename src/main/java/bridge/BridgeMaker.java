@@ -1,6 +1,6 @@
 package bridge;
 
-import enumCollections.Position;
+import enumCollections.Side;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,6 @@ public class BridgeMaker {
     }
 
     public String getAvailablePosition(int positionNumber) {
-        return Position.getStatus(positionNumber);
+        return Side.getStatus(positionNumber);
     }
 }

@@ -1,8 +1,8 @@
 package bridge;
 
-import enumCollections.GameResult;
 import enumCollections.GameStatus;
-import enumCollections.Position;
+import enumCollections.Side;
+import enumCollections.UserInterfaceSymbol;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,23 +15,23 @@ public class Map {
         bridgeUserInterface.add(new ArrayList<>());
     }
 
-    private void add(Position position, String isSucceed) {
-        this.bridgeUserInterface.get(Position.getIndex(position))
+    private void add(Side side, String isSucceed) {
+        this.bridgeUserInterface.get(Side.getIndex(side))
                 .add(isSucceed);
-        this.bridgeUserInterface.get((Position.getIndex(position) + 1 ) % 2)
-                .add(GameResult.getUi(GameResult.EMPTY));
+        this.bridgeUserInterface.get((Side.getIndex(side) + 1 ) % 2)
+                .add(UserInterfaceSymbol.get(UserInterfaceSymbol.BLANK));
     }
 
     public List<List<String>> get() {
         return bridgeUserInterface;
     }
 
-    public void add(Position position, GameStatus gameStatus) {
+    public void add(Side side, GameStatus gameStatus) {
         String isSucceed = "O";
         if (gameStatus == GameStatus.FAILURE) {
             isSucceed = "X";
-            position = Position.getOppositePosition(position);
+            side = Side.getOppositePosition(side);
         }
-        add(position, isSucceed);
+        add(side, isSucceed);
     }
 }
