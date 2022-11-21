@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.domain.Constants.*;
+import static bridge.domain.exception.ErrorMessage.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -28,7 +29,7 @@ public class BridgeMaker {
 
     private void validateBrideSize(int size) {
         if (size < BRIDGE_SIZE_LOWER_INCLUSIVE || size > BRIDGE_SIZE_UPPER_INCLUSIVE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
         }
     }
 

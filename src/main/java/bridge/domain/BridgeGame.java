@@ -3,6 +3,7 @@ package bridge.domain;
 import java.util.List;
 
 import static bridge.domain.Constants.*;
+import static bridge.domain.exception.ErrorMessage.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -34,7 +35,7 @@ public class BridgeGame {
 
     private void validateBridgeArrow(String arrow) {
         if (!arrow.equals(UP) && !arrow.equals(DOWN)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MOVING_VALUE);
         }
     }
 
@@ -75,7 +76,7 @@ public class BridgeGame {
 
     private void validateGameCommnd(String command) {
         if (!command.equals(RETRY) && !command.equals(QUIT)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_GAME_COMMAND);
         }
     }
 

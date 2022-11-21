@@ -17,7 +17,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_READ_BRIDGE_SIZE);
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
         }
     }
 
@@ -32,7 +32,7 @@ public class InputView {
 
     private void validateMovingValueLength(String moving) {
         if (moving.length() > BRIDGE_ARROW_VALUE_LENGTH) {
-            throw new IllegalArgumentException(ERROR_READ_MOVING_VALUE);
+            throw new IllegalArgumentException(ERROR_MOVING_VALUE);
         }
     }
 
@@ -47,7 +47,7 @@ public class InputView {
 
     private void validateCommandValueLength(String command) {
         if (command.length() > BRIDGE_GAME_COMMAND_LENGTH) {
-            throw new IllegalArgumentException(ERROR_READ_GAME_COMMAND);
+            throw new IllegalArgumentException(ERROR_GAME_COMMAND);
         }
     }
 }
