@@ -5,14 +5,19 @@ import static bridge.ErrorGenerator.*;
 public class Validator {
     private static final int BRIDGE_LEN_LOWER_BOUND=3;
     private static final int BRIDGE_LEN_HIGHER_BOUND=20;
-
-    private static final int MOVING_UP='U';
-    private static final int MOVING_DOWN='D';
-    private static final int GAME_RESTART='R';
-    private static final int GAME_QUIT='Q';
+    private static final int BRIDGE_RANDOM_NUMBER_ZERO= 0;
+    private static final int BRIDGE_RANDOM_NUMBER_ONE=1;
+    private static final char MOVING_UP='U';
+    private static final char MOVING_DOWN='D';
+    private static final char GAME_RESTART='R';
+    private static final char GAME_QUIT='Q';
     private static final int MOVING_INPUT_LENGTH=1;
     private static final int GAME_CHECK_LENGTH=1;
 
+    public static void validateBridgeRandomNum(int num){
+        if (num != BRIDGE_RANDOM_NUMBER_ZERO || num != BRIDGE_RANDOM_NUMBER_ONE)
+            ErrorGenerator.errorGenerate("다리 생성 랜덤 숫자가 0또는 1이 아닙니다");
+    }
     public static void validateNumber(String str){
         try
         {
@@ -50,7 +55,6 @@ public class Validator {
         char gameCheck = str.charAt(0);
         if (gameCheck != GAME_RESTART || gameCheck != GAME_QUIT)
             ErrorGenerator.errorGenerate("게임 재시작 또는 종료 키가 아닙니다");
-
     }
 
 }
