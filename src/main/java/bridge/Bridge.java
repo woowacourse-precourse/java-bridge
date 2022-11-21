@@ -9,6 +9,11 @@ public class Bridge {
         this.bridge = bridge;
     }
 
+    public Bridge(int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridge = bridgeMaker.makeBridge(size);
+    }
+
     public int getSize() {
         return bridge.size();
     }
