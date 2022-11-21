@@ -19,7 +19,7 @@ public class Bridges {
         return player.isCompletedGame(bridges.size());
     }
 
-    public boolean isSuccess(Player player) {
+    boolean isSuccess(Player player) {
         return player.isSuccess(List.copyOf(bridges));
     }
 }
