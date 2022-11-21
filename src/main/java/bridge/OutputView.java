@@ -116,6 +116,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> playerBridge, List<String> bridge, int tryCount, int gameOverResult) {
+        System.out.println("최종 게임 결과");
+        printMap(playerBridge, bridge);
+        printWinOrDefeat(gameOverResult);
+        System.out.printf("총 시도한 횟수: %d\n", tryCount);
+    }
+
+    /**
+     * 게임의 성공 여부를 판단하는 메소드
+     *
+     * @param gameOverResult <p>1: 성공 <p>2: 실패
+     */
+    public void printWinOrDefeat(int gameOverResult) {
+        if (gameOverResult == 1) {
+            System.out.println("게임 성공 여부: 성공");
+            return;
+        }
+        if (gameOverResult == 2) {
+            System.out.println("게임 성공 여부: 실패");
+            return;
+        }
+        System.out.println("[ERROR] 게임 성공 여부 값은 1또는 2여야 합니다.");
+        throw new IllegalArgumentException();
     }
 }
