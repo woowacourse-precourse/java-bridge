@@ -2,8 +2,6 @@ package bridge.domain.game;
 
 import bridge.constant.Message.LogicExceptionMessage;
 
-import bridge.domain.game.BridgeGame;
-import bridge.domain.game.BridgeMap;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
