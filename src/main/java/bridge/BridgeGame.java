@@ -44,21 +44,16 @@ public class BridgeGame {
         user_bridge.clear();
     }
 
-    public boolean isEnd(){
+    public boolean isEnd() {
         int size = user_bridge.size();
-
-        //유저의 입력수와 다리의 길이가 같으면 종료
-        if( size == answer_bridge.size() )
-            return true;
-        //유저의 입력이 틀리면 종료
-        if(!user_bridge.get(size-1).equals(answer_bridge.get(size-1)))
-            return true;
-
-        //다리의 길이도 다르고, 입력이 맞았으면 아직 종료x
-        return false;
+        if (size == answer_bridge.size())
+            return true;    //유저의 입력수와 다리의 길이가 같으면 종료
+        if (!user_bridge.get(size - 1).equals(answer_bridge.get(size - 1)))
+            return true;    //유저의 입력이 틀리면 종료
+        return false;   //다리의 길이도 다르고, 틀리지 않았으면 아직 종료x
     }
 
-    public boolean isSuccess(){
-        return Arrays.equals(user_bridge.toArray(),answer_bridge.toArray());
+    public boolean isSuccess() {
+        return Arrays.equals(user_bridge.toArray(), answer_bridge.toArray());
     }
 }

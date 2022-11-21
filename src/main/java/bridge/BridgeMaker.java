@@ -20,14 +20,15 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        while(size-->0) {
+        while (size-- > 0) {
             int way = bridgeNumberGenerator.generate();
             bridge.add(mapping(way));
         }
         return bridge;
     }
-    private String mapping (int way){
-        if(way == 1) return "U";
+
+    private String mapping(int way) {
+        if (way == 1) return "U";
         return "D";
     }
 }

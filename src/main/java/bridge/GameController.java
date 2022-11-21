@@ -16,25 +16,26 @@ public class GameController {
         outputView.gameStartMessage(); //게임시작 메시지
         int size = askBridgeSize(); //다리 사이즈 입력
         List<String> answer_bridge = bridgeMaker.makeBridge(size);//다리 생성
-        //System.out.println(answer_bridge);
         bridgeGame = new BridgeGame(answer_bridge); //게임 관리 클래스 생성
         while (true) {
             move();//끝까지 성공하거나 중간에 실패하기전까지 이동
-            if(userWin()) return;//성공이면 결과출력하고 게임 종료
-            if(!doRetry()) return;//Q 입력하면 결과출력하고 게임 종료, R은 재시작
+            if (userWin()) return;//성공이면 결과출력하고 게임 종료
+            if (!doRetry()) return;//Q 입력하면 결과출력하고 게임 종료, R은 재시작
             trials++;
         }
     }
-    private boolean userWin(){
+
+    private boolean userWin() {
         if (bridgeGame.isSuccess()) {
             outputView.printResult("성공", bridgeGame, trials);
             return true;
         }
         return false;
     }
-    private boolean doRetry(){
+
+    private boolean doRetry() {
         String command = askRestart();
-        if (command.equals("R")) {  //R입력시 재시작
+        if (command.equals("R")) {  //R 입력시 재시작
             bridgeGame.retry();
             return true;
         }
