@@ -31,7 +31,7 @@ public class GameController {
         return new GameController(inputView, outputView, bridgeGame);
     }
 
-    public void play() {
+    public boolean play() {
         boolean alive;
         do {
             String move = inputView.readMoving();
@@ -39,5 +39,19 @@ public class GameController {
             BridgeStatus currStatus = bridgeGame.getStatus();
             outputView.printMap(currStatus);
         } while (alive && bridgeGame.ongoing());
+        return alive;
+    }
+
+    public boolean restart() {
+        boolean restart = inputView.readGameCommand();
+        if (!restart) {
+            finish(false);
+        }
+        bridgeGame.retry();
+        return restart;
+    }
+
+    public void finish(boolean alive) {
+        outputView.printResult(bridgeGame, alive);
     }
 }

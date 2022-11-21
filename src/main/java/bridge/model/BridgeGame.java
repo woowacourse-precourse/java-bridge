@@ -53,6 +53,13 @@ public class BridgeGame {
     }
 
     /**
+     * 다리를 건너는 중인지 여부를 반환하는 메서드
+     */
+    public boolean ongoing() {
+        return currPosition < bridge.size();
+    }
+
+    /**
      * 게임 반복 횟수를 반환하는 메서드
      */
     public int getRepeatCount() {
