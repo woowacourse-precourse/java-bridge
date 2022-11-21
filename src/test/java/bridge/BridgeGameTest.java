@@ -65,4 +65,19 @@ class BridgeGameTest {
         }
     }
 
+    @Test
+    void checkSuccess_테스트() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        Field field = bridgeGame.getClass().getDeclaredField("bridge");
+        field.setAccessible(true);
+        bridgeGame.start(3);
+        //when
+        List<String> bridge = (List<String>) field.get(bridgeGame);
+        for (String moving : bridge){
+            bridgeGame.move(moving);
+        }
+        //then
+        assertTrue(bridgeGame.checkSuccess());
+    }
+
 }
