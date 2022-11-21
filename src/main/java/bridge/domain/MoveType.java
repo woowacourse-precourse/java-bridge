@@ -28,4 +28,8 @@ public enum MoveType {
 
         throw new IllegalArgumentException(UNSUPPORTED_TYPE_ERROR);
     }
+
+    public boolean compareTo(String moveType) {
+        return moveType.equals(this.type);
+    }
 }
