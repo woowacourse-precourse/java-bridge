@@ -19,10 +19,9 @@ public class InputView {
         return direction;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        String gameCommand = Console.readLine();
+        // TODO: Q 또는 R이 아닌 입력이 들어왔을 때의 예외 처리
+        return gameCommand;
     }
 }
