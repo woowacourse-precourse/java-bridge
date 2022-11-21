@@ -39,4 +39,12 @@ public class BridgeGame {
         boolean result = retryCommand.equals("R");
         return result;
     }
+
+    public void end(int nowBridgeIndex, int retryCount) {
+        outputView.printResult(isSucceed(nowBridgeIndex), retryCount);
+    }
+
+    private boolean isSucceed(int nowBridgeIndex) {
+        return nowBridgeIndex == bridge.size();
+    }
 }

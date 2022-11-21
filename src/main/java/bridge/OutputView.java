@@ -85,7 +85,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean isSucceed, int retryCount) {
+        System.out.println("");
+        System.out.println("최종 게임 결과");
+        System.out.println(up);
+        System.out.println(down);
+        System.out.println("");
+
+        if (isSucceed) {
+            System.out.println("게임 성공 여부: 성공");
+            System.out.println("총 시도한 횟수: " + (retryCount + 1));
+        } else {
+            System.out.println("게임 성공 여부: 실패");
+            System.out.println("총 시도한 횟수: " + retryCount);
+        }
     }
 
     public static void printMessage(String message) {

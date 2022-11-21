@@ -18,11 +18,13 @@ public class Application {
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
         int nowBridgeIndex = 0;
+        int retryCount = 0; // 재시도 수
         while (nowBridgeIndex < bridgeSize) {
             boolean isMoved = bridgeGame.move(nowBridgeIndex, inputView.getMoving());
             if (isMoved) {
                 nowBridgeIndex++;
             } else {
+                retryCount++;
                 boolean isRetry = bridgeGame.retry(inputView.getGameCommand());
                 if (isRetry) {
                     nowBridgeIndex = 0;
@@ -31,6 +33,7 @@ public class Application {
                 }
             }
         }
+        bridgeGame.end(nowBridgeIndex, retryCount);
     }
 
 }
