@@ -20,7 +20,11 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> number = new LinkedList<>();
         for (int i =0;i<size;i++){
-            number.add(String.valueOf(bridgeNumberGenerator.generate()));
+            if (bridgeNumberGenerator.generate()==0){
+                number.add("D");
+                continue;
+            }
+            number.add("U");
         }
         return number;
     }
