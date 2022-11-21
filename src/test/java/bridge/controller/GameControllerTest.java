@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.Application;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -13,6 +14,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameControllerTest extends NsTest {
+
     private GameController gameController = new GameController();
     private static final String ERROR_MESSAGE = "[ERROR]";
 

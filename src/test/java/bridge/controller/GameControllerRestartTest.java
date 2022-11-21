@@ -56,6 +56,7 @@ public class GameControllerRestartTest extends NsTest {
             );
         }, 1, 1, 0, 0);
     }
+
     protected void runMain() {
         Application.main(new String[]{});
     }

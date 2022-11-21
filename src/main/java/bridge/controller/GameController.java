@@ -8,6 +8,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
+
     public static int BRIDGE_LENGTH = 0;
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();

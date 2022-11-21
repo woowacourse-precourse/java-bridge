@@ -24,19 +24,17 @@ public class Referee {
         succeed = true;
     }
 
-    private boolean isBridgeAnswerMatch(List<String> bridge, String choice, int index) {
+    private void isBridgeAnswerMatch(List<String> bridge, String choice, int index) {
         if (choice.equals("U") && bridge.get(index).equals(choice)) {
             addAnswer("O", " ");
             succeed = true;
-            return true;
+            return;
         }
 
         if (choice.equals("D") && bridge.get(index).equals(choice)) {
             addAnswer(" ", "O");
             succeed = true;
-            return true;
         }
-        return false;
     }
 
     private boolean isBridgeNotMatch(List<String> bridge, String choice, int index) {

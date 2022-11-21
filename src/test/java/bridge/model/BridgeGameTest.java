@@ -5,9 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class BridgeGameTest {
+
     private BridgeGame bridgeGame = new BridgeGame();
     private Player player = new Player();
     private Referee referee = new Referee();
