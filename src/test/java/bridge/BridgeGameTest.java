@@ -65,4 +65,31 @@ class BridgeGameTest {
             assertThat(bridgeGame.move(section, bridge)).isEqualTo(true);
         }
     }
+
+    @DisplayName("다리건너기_실패_길이차이")
+    @Test
+    void 다리건너기_실패_길이차이() {
+        List<String> userRoute = Arrays.asList("U", "D", "U", "D", "U", "D", "U", "D");
+        List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "D", "U", "U", "U");
+
+        assertThat(bridgeGame.checkCrossingBridge(userRoute, bridge)).isEqualTo(false);
+    }
+
+    @DisplayName("다리건너기_실패_방향차이")
+    @Test
+    void 다리건너기_실패_방향차이() {
+        List<String> userRoute = Arrays.asList("U", "D", "U", "D", "U", "D", "U", "U", "D");
+        List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "D", "U", "U", "U");
+
+        assertThat(bridgeGame.checkCrossingBridge(userRoute, bridge)).isEqualTo(false);
+    }
+
+    @DisplayName("다리건너기_성공")
+    @Test
+    void 다리건너기_성공() {
+        List<String> userRoute = Arrays.asList("U", "D", "U", "D", "U", "D", "U", "U", "U");
+        List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "D", "U", "U", "U");
+
+        assertThat(bridgeGame.checkCrossingBridge(userRoute, bridge)).isEqualTo(true);
+    }
 }
