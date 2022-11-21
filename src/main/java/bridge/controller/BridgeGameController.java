@@ -4,6 +4,8 @@ import bridge.model.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class BridgeGameController {
 
     BridgeGame bridgeGame;
@@ -18,21 +20,20 @@ public class BridgeGameController {
     }
 
     public void run() {
+        List<String[]> map;
         bridgeGame.makeBridge(iv.readBridgeSize());
         do {
-            iv.readMoving;
-            move();
-            printMap();
-            if(불일치 하면) {
-                if(재시작) {
-                    move()했던 기록 지워
+            String course = iv.readMoving();
+            bridgeGame.move(course);
+            map = ov.printMap(bridgeGame.getBridge(), bridgeGame.getMarks());
+            if(bridgeGame.isDiscord()) {
+                if(bridgeGame.retry(course)) {
+                    bridgeGame.backToFirstSection();
                     continue;
                 }
                 break;
             }
-        } while(끝까지 도달할 때까지)
-        최종결과;
+        } while(bridgeGame.isEndOfBridge());
+        ov.printResult(map, bridgeGame.getResultOfGame(), bridgeGame.getGameCount());
     }
-
-
 }

@@ -103,4 +103,7 @@ public class BridgeGame {
     public int getGameCount() {
         return gameCount;
     }
+    public String getResultOfGame() {
+        return resultOfGame;
+    }
 }
