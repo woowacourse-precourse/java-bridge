@@ -2,14 +2,14 @@ package bridge.Controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.Enum.CrossResult;
 import bridge.Enum.GameStatus;
 import bridge.Model.BridgeGame;
-import bridge.Model.WrappingType.BridgeSize;
-import bridge.Model.WrappingType.ChoiceDirection;
-import bridge.Model.WrappingType.Command;
+import bridge.Model.WrappingType.*;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainController {
@@ -22,7 +22,9 @@ public class MainController {
         System.out.println("다리 건너기 게임을 시작합니다.");
         BridgeSize bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
-        bridgeGame = new BridgeGame(bridge);
+        List<ChoiceDirection> choiceDirections = new ArrayList<>();
+        List<CrossResult> crossResults = new ArrayList<>();
+        bridgeGame = new BridgeGame(bridge, choiceDirections, crossResults);
     }
 
     public void run() {

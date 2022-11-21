@@ -6,6 +6,7 @@ import bridge.Enum.CrossResult;
 import bridge.Enum.GameStatus;
 import bridge.Model.WrappingType.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
@@ -14,9 +15,9 @@ public class BridgeGame {
     private Bridge bridge;
     private int tryCount;
 
-    public BridgeGame(List<String> bridge) {
-        this.choiceDirections = new ChoiceDirections();
-        this.crossResults = new CrossResults();
+    public BridgeGame(List<String> bridge, List<ChoiceDirection> choiceDirections, List<CrossResult> crossResults) {
+        this.choiceDirections = new ChoiceDirections(choiceDirections);
+        this.crossResults = new CrossResults(crossResults);
         this.bridge = new Bridge(bridge);
         this.tryCount = 1;
     }
@@ -29,26 +30,26 @@ public class BridgeGame {
 
     public GameStatus checkGameStatus() {
         GameStatus status = GameStatus.RUNNING;
-        if (isEndPoint()) {
+        if (isEndPoint(bridge.length(), choiceDirections.length())) {
             status =  GameStatus.SUCCESS;
         }
-        if (isFailed()) {
+        if (isFailed(crossResults)) {
             status =  GameStatus.FAIL;
         }
         return status;
     }
 
-    private boolean isEndPoint() {
-        return bridge.length() - crossResults.nextPosition() == 0;
+    private boolean isEndPoint(int bridgeLength, int currentPosition) {
+        return bridgeLength - currentPosition == 0;
     }
 
-    private boolean isFailed() {
+    private boolean isFailed(CrossResults crossResults) {
         return crossResults.contain(CrossResult.FAIL);
     }
 
     public void retry() {
-        choiceDirections = new ChoiceDirections();
-        crossResults = new CrossResults();
+        choiceDirections = new ChoiceDirections(new ArrayList<>());
+        crossResults = new CrossResults(new ArrayList<>());
         increaseTryCount();
     }
 
