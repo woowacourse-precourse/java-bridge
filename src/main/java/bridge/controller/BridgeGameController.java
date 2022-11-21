@@ -32,7 +32,6 @@ public class BridgeGameController {
         while (game.currentStatus.equals(GameStatus.CONTINUE)) {
             movePosition();
             if (game.currentStatus.equals(GameStatus.FAIL)) {
-                output.printResult(game);
                 retryOrEndGame();
             }
             if (game.currentStatus.equals(GameStatus.SUCCESS)) {
