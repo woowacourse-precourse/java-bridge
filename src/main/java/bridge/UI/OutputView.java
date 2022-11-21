@@ -1,8 +1,11 @@
 package bridge.UI;
 
+import static bridge.Constants.StandardTools.FAILED;
+import static bridge.Constants.StandardTools.SUCCEED;
+
+import bridge.Constants.FrontMan;
 import bridge.Constants.StandardTools;
 import bridge.Database.BridgeData;
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +26,7 @@ public class OutputView {
 
     private void printUpperBridge(List<String> bridgeDesignByUser, List<String> bridgeDesign) {
         System.out.print(StandardTools.BRIDGE_HEAD);
-        for(int i = 0; i < bridgeDesignByUser.size()-1; i++) {
+        for (int i = 0; i < bridgeDesignByUser.size() - 1; i++) {
             if (Objects.equals(bridgeDesignByUser.get(i), "U")) {
                 System.out.print(" O |");
             }
@@ -31,7 +34,8 @@ public class OutputView {
                 System.out.print("   |");
             }
         }
-        printUpperLastStep(bridgeDesign.get(bridgeDesignByUser.size()-1), bridgeDesignByUser.get(bridgeDesignByUser.size()-1));
+        printUpperLastStep(bridgeDesign.get(bridgeDesignByUser.size() - 1),
+                bridgeDesignByUser.get(bridgeDesignByUser.size() - 1));
     }
 
     private void printUpperLastStep(String lastStep, String lastStepByUser) {
@@ -49,7 +53,7 @@ public class OutputView {
 
     private void printLowerBridge(List<String> bridgeDesignByUser, List<String> bridgeDesign) {
         System.out.print(StandardTools.BRIDGE_HEAD);
-        for(int i = 0; i < bridgeDesignByUser.size()-1; i++) {
+        for (int i = 0; i < bridgeDesignByUser.size() - 1; i++) {
             if (Objects.equals(bridgeDesignByUser.get(i), "D")) {
                 System.out.print(" O |");
             }
@@ -57,7 +61,8 @@ public class OutputView {
                 System.out.print("   |");
             }
         }
-        printLowerLastStep(bridgeDesign.get(bridgeDesignByUser.size()-1), bridgeDesignByUser.get(bridgeDesignByUser.size()-1));
+        printLowerLastStep(bridgeDesign.get(bridgeDesignByUser.size() - 1),
+                bridgeDesignByUser.get(bridgeDesignByUser.size() - 1));
     }
 
     private void printLowerLastStep(String lastStep, String lastStepByUser) {
