@@ -30,4 +30,15 @@ public enum BridgeMapGenerator {
         bridgeMap.get(1).add(RIGHT_ANSWER_INPUT_DOWN.resultOfDown);
         return bridgeMap;
     }
+
+    public List<List<String>> generateWrongAnswerMap(String input, List<List<String>> bridgeMap) {
+        if (input.equals(Constant.UP)) {
+            bridgeMap.get(0).add(WRONG_ANSWER_INPUT_UP.resultOfUp);
+            bridgeMap.get(1).add(WRONG_ANSWER_INPUT_UP.resultOfDown);
+            return bridgeMap;
+        }
+        bridgeMap.get(0).add(WRONG_ANSWER_INPUT_DOWN.resultOfUp);
+        bridgeMap.get(1).add(WRONG_ANSWER_INPUT_DOWN.resultOfDown);
+        return bridgeMap;
+    }
 }
