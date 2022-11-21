@@ -15,4 +15,9 @@ public class Exception {
             throw new IllegalArgumentException();
         }
     }
+    public static void checkCommand(String command){
+        if(!(command.equals("R")&&command.equals("Q"))){
+            throw new IllegalArgumentException();
+        }
+    }
 }
