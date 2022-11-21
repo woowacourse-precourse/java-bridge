@@ -13,6 +13,7 @@ public class Application {
         BridgeGame bridgeGame = createBridge();
         OutputView printer = bridgeGameUI(bridgeGame);
         printer = retryProcess(printer, bridgeGame);
+        String result = quitProcess(printer);
     }
 
     // 다리를 생성
@@ -100,5 +101,17 @@ public class Application {
             printer = bridgeGameUI(bridgeGame);
         }
         return printer;
+    }
+
+    private static String quitProcess(OutputView printer) {
+        String result = "";
+        if (printer.getResult().contains(BROKEN)) {
+            result = Constants.Messages.FAIL.getMessage();
+        }
+
+        if (!printer.getResult().contains(BROKEN)) {
+            result = Constants.Messages.SUCCESS.getMessage();
+        }
+        return result;
     }
 }
