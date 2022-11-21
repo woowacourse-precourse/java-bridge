@@ -85,102 +85,56 @@ public class Bridge {
     /**
      *  @refactor 비즈니스 로직과 UI 로직을 분리하기 위해
      */
-    public String movingResultToString(String succesOrNot) {
-        return upperLineToString(succesOrNot) + "\n" +
-                lowerLineToString(succesOrNot);
+    public String movingResultToString(String successOrNot) {
+        return lineToString(successOrNot, UP) + NEWLINE +
+                lineToString(successOrNot, DOWN);
     }
-    private String upperLineToString(String successOrNot) {
-        String upperMovingResult = BRIDGE_BEGIN;
+
+    private String lineToString(String successOrNot, String upOrDown) {
+        return BRIDGE_BEGIN + createMovingResult(successOrNot, upOrDown)
+                + BRIDGE_END;
+    }
+
+    private String createMovingResult(String successOrNot, String inputUpOrDown) {
+        String movingResult = "";
+        if (inputUpOrDown == UP) {
+            for (int index = 0; index < getCurrentIndex(); index++) {
+                movingResult += getUpperMovableResult(SUCCESS, index) + BRIDGE_DIVIDING_LINE;
+            }
+            movingResult += getUpperMovableResult(successOrNot, getCurrentIndex());
+            return movingResult;
+        }
+
         for (int index = 0; index < getCurrentIndex(); index++) {
-            upperMovingResult = appendCrossingInUpperLine(upperMovingResult, index);
+            movingResult += getLowerMovableResult(SUCCESS, index) + BRIDGE_DIVIDING_LINE;
         }
+        movingResult += getLowerMovableResult(successOrNot, getCurrentIndex());
+        return movingResult;
+    }
 
+    private String getUpperMovableResult(String successOrNot, int index) {
         if (successOrNot == SUCCESS) {
-            upperMovingResult = appendCrossingInUpperLine(upperMovingResult,
-                    getCurrentIndex()) + BRIDGE_END;
+            if (isUpside(index)) {
+                return CORRECT;
+            }
+            return EMPTY;
         }
-        if (successOrNot == FAILURE) {
-            upperMovingResult = appendNotCrossingInUpperLine(upperMovingResult,
-                    getCurrentIndex()) + BRIDGE_END;
+        if(isUpside(index)) {
+            return EMPTY;
         }
-        return upperMovingResult;
+        return WRONG;
     }
 
-    private String lowerLineToString(String successOrNot) {
-        String lowerMovingResult = BRIDGE_BEGIN;
-        for (int index = 0; index < getCurrentIndex(); index++) {
-            lowerMovingResult = appendCrossingInLowerLine(lowerMovingResult, index);
-        }
-
+    private String getLowerMovableResult(String successOrNot, int index) {
         if (successOrNot == SUCCESS) {
-            lowerMovingResult = appendCrossingInLowerLine(lowerMovingResult,
-                    getCurrentIndex()) + BRIDGE_END;
-        }
-        if (successOrNot == FAILURE) {
-            lowerMovingResult = appendNotCrossingInLowerLine(lowerMovingResult,
-                    getCurrentIndex()) + BRIDGE_END;
-        }
-        return lowerMovingResult;
-    }
-
-    private String appendCrossingInLowerLine(String lowerMovingResult, int index) {
-        if (isDownside(index)) {
-            lowerMovingResult += CORRECT;
-            if (index != getCurrentIndex()) {
-                lowerMovingResult += BRIDGE_DIVIDING_LINE;
+            if (isDownside(index)) {
+                return CORRECT;
             }
-            return lowerMovingResult;
+            return EMPTY;
         }
-        lowerMovingResult += EMPTY;
-        if (index != getCurrentIndex()) {
-            lowerMovingResult += BRIDGE_DIVIDING_LINE;
+        if(isDownside(index)) {
+            return EMPTY;
         }
-        return lowerMovingResult;
-    }
-
-    private String appendNotCrossingInLowerLine(String lowerMovingResult, int index) {
-        if (isDownside(index)) {
-            lowerMovingResult += EMPTY;
-            if (index != getCurrentIndex()) {
-                lowerMovingResult += BRIDGE_DIVIDING_LINE;
-            }
-            return lowerMovingResult;
-        }
-        lowerMovingResult += WRONG;
-        if (index != getCurrentIndex()) {
-            lowerMovingResult += BRIDGE_DIVIDING_LINE;
-        }
-        return lowerMovingResult;
-    }
-
-
-    private String appendCrossingInUpperLine(String upperMovingResult, int index) {
-        if (isUpside(index)) {
-            upperMovingResult += CORRECT;
-            if (index != getCurrentIndex()) {
-                upperMovingResult += BRIDGE_DIVIDING_LINE;
-            }
-            return upperMovingResult;
-        }
-        upperMovingResult += EMPTY;
-        if (index != getCurrentIndex()) {
-            upperMovingResult += BRIDGE_DIVIDING_LINE;
-        }
-        return upperMovingResult;
-    }
-
-    private String appendNotCrossingInUpperLine(String upperMovingResult, int index) {
-        if (isUpside(index)) {
-            upperMovingResult += EMPTY;
-            if (index != getCurrentIndex()) {
-                upperMovingResult += BRIDGE_DIVIDING_LINE;
-            }
-            return upperMovingResult;
-        }
-        upperMovingResult += WRONG;
-        if (index != getCurrentIndex()) {
-            upperMovingResult += BRIDGE_DIVIDING_LINE;
-        }
-        return upperMovingResult;
+        return WRONG;
     }
 }
