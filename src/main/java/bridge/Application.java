@@ -25,6 +25,7 @@ public class Application {
 
         inputFunctions(outputView, controller::start);
         inputFunctions(outputView, controller::move);
+        inputFunctions(outputView, controller::askRetry);
 
 
 

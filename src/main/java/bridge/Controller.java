@@ -34,7 +34,16 @@ public class Controller {
             String command = iView.readMoving();
             List<String> user = bridgeGame.move(command);
             oView.printMap(user);
+            if (user.get(user.size()-1).length() > 1) {
+                break;
+            }
         }
+    }
+
+    public boolean askRetry() {
+        String command = iView.readGameCommand();
+        boolean re = command.equals("R");
+        return re;
     }
 
 

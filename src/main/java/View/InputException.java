@@ -1,6 +1,21 @@
 package View;
 
 public class InputException {
+
+    /**
+     * determine String is U, or D
+     * @param str String, input value
+     */
+    public static void isCorrectRetryCommand(String str) {
+        if (str.length() != 1) {
+            throw new IllegalArgumentException("하나의 문자만 입력해 주세요.");
+        }
+        if (!(str.contains("R") || str.contains("Q"))) {
+            throw new IllegalArgumentException("'R', 'Q'중 하나의 문자만 입력해 주세요.");
+        }
+    }
+
+
     /**
      * determine String is U, or D
      * @param str String, input value
