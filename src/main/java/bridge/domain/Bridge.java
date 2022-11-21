@@ -8,19 +8,15 @@ public class Bridge {
     private static List<String> bridgeLoad;
 
 
-    public void setBridgeSize(int size){
+    public void setBridgeSize(int size) {
         this.size = size;
     }
 
-    public int getBridgeSize(){
-        return this.size;
-    }
-
-    public void setBridgeLoad(List<String> bridgeLoad){
+    public void setBridgeLoad(List<String> bridgeLoad) {
         this.bridgeLoad = bridgeLoad;
     }
 
-    public List<String> getBridgeLoad(){
+    public List<String> getBridgeLoad() {
         return this.bridgeLoad;
     }
 }
