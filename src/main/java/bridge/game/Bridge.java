@@ -1,13 +1,10 @@
 package bridge.game;
 
-import static bridge.exception.ErrorEnum.INVALID_BRIDGE_DIRECTION_STATE;
-import static bridge.exception.ErrorEnum.INVALID_BRIDGE_INDEX;
-import static bridge.exception.ErrorEnum.INVALID_BRIDGE_SIZE_STATE;
-import static bridge.exception.ErrorEnum.INVALID_DIRECTION_INPUT;
 import static bridge.game.BridgeMoveResult.CORRECT;
 import static bridge.game.BridgeMoveResult.NONE;
 import static bridge.game.BridgeMoveResult.WRONG;
 
+import bridge.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +27,7 @@ public class Bridge {
     }
 
     private void parseDirectionAndUpdate(String value) {
-        validateDirectionInput(value);
+        Validator.validateDirectionInput(value);
         if (value.equals("U")) {
             updateUpperCorrect();
         }
@@ -39,38 +36,25 @@ public class Bridge {
         }
     }
 
-    private void validateDirectionInput(String input) {
-        if (!input.equals("U") && !input.equals("D")) {
-            throw new IllegalArgumentException(INVALID_DIRECTION_INPUT
-                    .messageWithCause(input));
-        }
-    }
 
     public int size() {
-        if (bridgeUpper.size() == bridgeLower.size()) {
-            return bridgeUpper.size();
-        }
-        throw new IllegalStateException(INVALID_BRIDGE_SIZE_STATE
-                .messageWithCause(bridgeUpper.size() + " != " + bridgeLower.size()));
+        Validator.validateListSizeEquals(bridgeUpper.size(), bridgeLower.size());
+        return bridgeUpper.size();
     }
 
     public String getDirectionAt(int index) {
-        try {
-            return parseUpDownAt(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(INVALID_BRIDGE_INDEX.message(), e);
-        }
+        Validator.validateBridgeIndex(size(), index);
+        return parseUpDownAt(index);
     }
 
     private String parseUpDownAt(int index) {
+        Validator.validateBridgeElement(bridgeUpper.get(index).text(), bridgeLower.get(index).text());
+
         if (List.of("O", "X").contains(bridgeUpper.get(index).text())) {
             return "U";
         }
-        if (List.of("O", "X").contains(bridgeLower.get(index).text())) {
-            return "D";
-        }
-        throw new IllegalStateException(INVALID_BRIDGE_DIRECTION_STATE
-                .messageWithCause(bridgeUpper + " " + bridgeLower));
+
+        return "D";
     }
 
     public void updateUpperCorrect() {
