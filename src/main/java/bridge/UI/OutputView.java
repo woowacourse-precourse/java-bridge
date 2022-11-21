@@ -22,6 +22,7 @@ public class OutputView {
     public void printMap(BridgeData bridgeData) {
         printUpperBridge(bridgeData.getBridgeDesignByUser(), bridgeData.getBridge());
         printLowerBridge(bridgeData.getBridgeDesignByUser(), bridgeData.getBridge());
+        System.out.println();
     }
 
     private void printUpperBridge(List<String> bridgeDesignByUser, List<String> bridgeDesign) {
@@ -79,13 +80,13 @@ public class OutputView {
     }
 
     public void printResult(BridgeData bridgeData, boolean isSucceedOrFail) {
-        System.out.println(FrontMan.FINAL_GAME_RESULT);
+        System.out.println("\n" + FrontMan.FINAL_GAME_RESULT);
         printMap(bridgeData);
         if (isSucceedOrFail == SUCCEED) {
-            System.out.println("\n" + FrontMan.SUCCEED_OR_FAIL + "성공");
+            System.out.println(FrontMan.SUCCEED_OR_FAIL + "성공");
         }
         if (isSucceedOrFail == FAILED) {
-            System.out.println("\n" + FrontMan.SUCCEED_OR_FAIL + "실패");
+            System.out.println(FrontMan.SUCCEED_OR_FAIL + "실패");
         }
         System.out.println(FrontMan.TOTAL_NUMBER_OF_ATTEMPT + bridgeData.getTotalAttempt());
     }
