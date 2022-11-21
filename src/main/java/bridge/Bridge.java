@@ -13,7 +13,7 @@ public class Bridge {
         return movableSides.get(nextPosition).equals(selectedSides);
     }
 
-    public int getLastIndex() {
+    private int getLastIndex() {
         return movableSides.size() - 1;
     }
 
@@ -21,4 +21,7 @@ public class Bridge {
         return movableSides.get(bridgeIndex);
     }
 
+    public boolean isLastPosition(int playerPosition) {
+        return getLastIndex() == playerPosition;
+    }
 }

@@ -1,7 +1,7 @@
 package bridge;
 
 import enumCollections.GameStatus;
-import enumCollections.Position;
+import enumCollections.Side;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -22,12 +22,12 @@ public class BridgeGame {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public GameStatus move() {
-        player.move();
-        if (bridge.getLastIndex() == player.getNextPosition()) {
-            return GameStatus.SUCCESS;
+    public boolean move(String sideToMove) {
+        boolean movable = bridge.isAvailableToMove(sideToMove, player.getNextPosition());
+        if (movable) {
+            player.move();
         }
-        return GameStatus.CONTINUE;
+        return movable;
     }
 
     public GameStatus tryMoveTo(String squareToMove) {
@@ -43,7 +43,7 @@ public class BridgeGame {
     }
 
     private boolean canMoveTo(String squareToMove) {
-        return bridge.isNextAvailable(squareToMove, player.getNextPosition());
+        return bridge.isAvailableToMove(squareToMove, player.getNextPosition());
     }
 
     public void retry() {
@@ -51,11 +51,11 @@ public class BridgeGame {
     }
 
     public int getCurrentPosition() {
-        return player.currentPosition;
+        return player.getCurrentPosition();
     }
 
-    public Position getAvailableSquare(int bridgeIndex) {
-        return Position.getPosition(bridge.getAvailableSquare(bridgeIndex));
+    public Side getAvailableSquare(int bridgeIndex) {
+        return Side.getPosition(bridge.getMovableSide(bridgeIndex));
     }
 
     public String getTrial() {
