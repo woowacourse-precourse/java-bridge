@@ -45,4 +45,8 @@ public class Bridge {
 	public boolean isEquals(String userSelectedCell, int index) {
 		return userSelectedCell.equals(bridgeLetters.get(index));
 	}
+
+	public String findLetter(int phase) {
+		return bridgeLetters.get(phase);
+	}
 }

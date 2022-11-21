@@ -62,4 +62,8 @@ public class BridgeGame {
 	public boolean isEnd() {
 		return currentPhase == totalPhase;
 	}
+
+	public String getBridgeLetter() {
+		return bridge.findLetter(currentPhase);
+	}
 }
