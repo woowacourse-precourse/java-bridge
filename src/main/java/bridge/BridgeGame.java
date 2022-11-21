@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.view.InputView;
+import bridge.view.Message;
 import bridge.view.OutputView;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class BridgeGame {
 
     public void run() {
         GameStatus gameStatus = GameStatus.startNewGame();
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(Message.INITIAL_MESSAGE.getMessage());
 
         int bridgeSize = getBridgeSize();
         List<String> realBridges = bridgeMaker.makeBridge(bridgeSize);
