@@ -25,11 +25,13 @@ public class BridgeGame {
     //사용자가 칸을 이동할 때 사용하는 메서드
     public boolean move(final String inputPosition) {
         boolean moveResult = inputPosition.equals(bridge.get(index));
-        bridgeMessageAdder.addBridgeMessage(inputPosition, moveResult);
         if (moveResult) {
+            bridgeMessageAdder.addPassBridgeMessage(inputPosition);
             index++;
+            return true;
         }
-        return moveResult;
+        bridgeMessageAdder.addFailBridgeMessage(inputPosition);
+        return false;
     }
 
     //사용자가 게임을 다시 시도할 때 사용하는 메서드
