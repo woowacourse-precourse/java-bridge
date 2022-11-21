@@ -17,14 +17,13 @@ public class Controller {
     }
 
     public void startGame(final BridgeGame bridgeGame) {
-        outputView.printGuideMessage(GuideMessage.START);
-        generateBridge(bridgeGame);
-        play(bridgeGame, GameStatus.CONTINUE);
-    }
-
-    private void generateBridge(final BridgeGame bridgeGame) {
-        outputView.printGuideMessage(GuideMessage.GET_BRIDGE_LENGTH);
-        bridgeGame.generateBridge(this.inputView.readBridgeSize());
+        try {
+            outputView.printGuideMessage(GuideMessage.START);
+            generateBridge(bridgeGame);
+            play(bridgeGame, GameStatus.CONTINUE);
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception);
+        }
     }
 
     public GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
@@ -36,6 +35,11 @@ public class Controller {
         }
         getResult(gameStatus, bridgeGame, bridgeGame.getMap());
         return gameStatus;
+    }
+
+    private void generateBridge(final BridgeGame bridgeGame) {
+        outputView.printGuideMessage(GuideMessage.GET_BRIDGE_LENGTH);
+        bridgeGame.generateBridge(this.inputView.readBridgeSize());
     }
 
     private void getProgress(BridgeGame bridgeGame) {

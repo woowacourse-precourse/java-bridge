@@ -48,4 +48,8 @@ public class OutputView {
     public void printNewline() {
         System.out.println();
     }
+
+    public void printException(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
 }

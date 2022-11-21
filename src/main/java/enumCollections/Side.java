@@ -14,11 +14,18 @@ public enum Side {
         this.index = index;
     }
 
-    public static String getStatus(int number) {
+    public static String getBridgeSavingFormat(int number) {
         if (UP.number == number) {
             return UP.bridgeSavingFormat;
         }
         return DOWN.bridgeSavingFormat;
+    }
+
+    public static boolean isBridgeSavingFormat(String input) {
+        if (!UP.bridgeSavingFormat.equals(input) && !DOWN.bridgeSavingFormat.equals(input)) {
+            return false;
+        }
+        return true;
     }
 
     public static int getIndex(Side side) {
