@@ -3,10 +3,6 @@ package bridge;
 import View.InputView;
 import View.OutputView;
 
-interface IFunction{
-    void execute();
-}
-
 public class Application {
 
     public static void inputFunctions(OutputView outputView, IFunction f) {
@@ -25,8 +21,7 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView  = new InputView();
         OutputView outputView = new OutputView();
-        BridgeGame bridgeGame = new BridgeGame();
-        Controller controller = new Controller(inputView, outputView, bridgeGame);
+        Controller controller = new Controller(inputView, outputView);
 
         inputFunctions(outputView, controller::start);
 
