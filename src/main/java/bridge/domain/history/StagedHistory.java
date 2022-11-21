@@ -14,6 +14,6 @@ public class StagedHistory {
     }
 
     public String resultSurviveStatusByBridgePosition(BridgePosition position) {
-        return surviveStatus.resultSurviveStatus(this.bridgePosition.equals(position));
+        return surviveStatus.convertStatusValueToCode(this.bridgePosition.equals(position));
     }
 }
