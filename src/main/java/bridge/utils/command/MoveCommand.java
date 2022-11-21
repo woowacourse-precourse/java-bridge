@@ -1,5 +1,7 @@
 package bridge.utils.command;
 
+import java.util.Objects;
+
 public enum MoveCommand {
     UP(1, "U"),
     DOWN(0, "D");
@@ -18,5 +20,13 @@ public enum MoveCommand {
 
     public int getNumber() {
         return number;
+    }
+
+    public boolean isLowerCaseCommand(String inputValue) {
+        return Objects.equals(command.toLowerCase(), inputValue);
+    }
+
+    public boolean isValidCommand(String inputValue) {
+        return Objects.equals(command, inputValue);
     }
 }
