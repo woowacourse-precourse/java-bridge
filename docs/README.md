@@ -35,46 +35,53 @@
       레벨을 낮춰 기능을 분리. Domain layer에선 명세만 정의하고 실제 구현은 Infrastructure layer에서 구현
       ! random, ui 작업이 필요한 InputView에선 테스트하기 어렵지만 기능을 떼어낸 ProcessHelper에선 쉽다.
 
-    <VO>
+    - VO
     - MatchResult : 게임 결과를 담고 결과를 산출하는 객체. upperSide와 downSide로 다리 위 아래를 표현하고
       생성 시 해당 필드들을 생성합니다. 필드는 String이 아닌 StringBuffer로 선언해 사용했습니다.
       이유는 결과를 출력하기 위해선 문자열을 유연하게 핸들링 할 수 있어야 하기 때문입니다.
-      - reset : upperSide와 downSide data reset
-      - printUpAndDownSides : upperSide와 downSide 출력 메서드
-        - printUpperSide : upperSide 출력 메서드
-        - printDownSide : downSide 출력 메서드
-        - matchProcess : 사용자의 입력 결과들과 매칭 결과를 갖고 출력을 입력하는 메서드
-          - appendPrefix : 문자열 맨 앞 "[" 붙이는 메서드
-          - appendMiddleAreaOfMatchers : 중간 부분 Matching 결과를 붙이는 메서드
-            - matchIsCapitalD : 입력 문자가 "D" 일 경우 붙이는 메서드
-            - matchIsCapitalU : 입력 문자가 "U" 일 경우 붙이는 메서드
-            - appendSeparator : 결과 값 사이에 존재하는 "|"를 붙이는 메서드
-            - matchIsTrueAndLastInputIsCapitalU : 마지막 문자가 hit이고 위치가 "U"일 경우
-            - matchIsTrueAndLastInputIsCapitalD : 마지막 문자가 hit이고 위치가 "D"일 경우
-            - matchIsFalseAndLastInputIsCapitalU : 마지막 문자가 Not hit이고 위치가 "U"일 경우
-            - matchIsFalseAndLastInputIsCapitalD : 마지막 문자가 Not hit이고 위치가 "D"일 경우
-            - appendPostfix : 맨 끝 문자열 붙이는 메서드
+        - reset : upperSide와 downSide data reset
+        - printUpAndDownSides : upperSide와 downSide 출력 메서드
+            - printUpperSide : upperSide 출력 메서드
+            - printDownSide : downSide 출력 메서드
+            - matchProcess : 사용자의 입력 결과들과 매칭 결과를 갖고 출력을 입력하는 메서드
+                - appendPrefix : 문자열 맨 앞 "[" 붙이는 메서드
+                - appendMiddleAreaOfMatchers : 중간 부분 Matching 결과를 붙이는 메서드
+                    - matchIsCapitalD : 입력 문자가 "D" 일 경우 붙이는 메서드
+                    - matchIsCapitalU : 입력 문자가 "U" 일 경우 붙이는 메서드
+                    - appendSeparator : 결과 값 사이에 존재하는 "|"를 붙이는 메서드
+                    - matchIsTrueAndLastInputIsCapitalU : 마지막 문자가 hit이고 위치가 "U"일 경우
+                    - matchIsTrueAndLastInputIsCapitalD : 마지막 문자가 hit이고 위치가 "D"일 경우
+                    - matchIsFalseAndLastInputIsCapitalU : 마지막 문자가 Not hit이고 위치가 "U"일 경우
+                    - matchIsFalseAndLastInputIsCapitalD : 마지막 문자가 Not hit이고 위치가 "D"일 경우
+                    - appendPostfix : 맨 끝 문자열 붙이는 메서드
 
-    <EXCEPTION> : domain layer에서 발생하는 예외 처리 모두 IllegalArgumentException을 상속받습니다.
-    요구 사항에서 "사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고" 나와있어
-    모든 예외는 IllegalArgumentException로 리팩토링을 진행했습니다.
-    아래 사항은 Custom Exception Class에 관한 명세입니다.
+    - EXCEPTION : domain layer에서 발생하는 예외 처리 모두 IllegalArgumentException을 상속받습니다.
+      요구 사항에서 "사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고" 나와있어
+      모든 예외는 IllegalArgumentException로 리팩토링을 진행했습니다.
+      아래 사항은 Custom Exception Class에 관한 명세입니다.
         - BridgeCorrectSizeInputException : 다리 사이즈 입력 예외처리
         - BridgeSizeOutOfBoundaryException : 다리 사이즈 범위 예외처리
         - GameCommandException : 게임 진행 여부 문자 예외처리
-        - ReadMovingException : 이동 여부 문자 예외처리
-
+        - ReadMovingException : 이동 여부 문자 예외처리.
 
 - Infrastructure layer
     - ProcessHelperImpl
+        - checkBridgeSize : 입력된 문자열을 확인하는 메서드
+            - isChars : 각각의 문자를 확인하는 메서드
+        - checkCharIsUOrD : 입력된 값이 U or D인지 확인하는 메서드
+        - checkCharIsROrQ : 입력된 값이 R or Q인지 확인하는 메서드
+
 - Application layer
     - BridgeGameProcess : Application 에서 호출해 게임을 총괄하는 역할을 담당하는 클래스
-        - run() : static으로 설정해 new 연산자 없이 호출해 사용 가능
+        - run() : 게임 실행 메서드
+          - 
+
 - Common
     - message : Bridge Game Process를 위한 메세지를 모아둔 Package
         - ConsoleOut : 상수로 메세지를 선언, 모든 Layer에서 사용할 수 있습니다.
         - ExceptionMessage : 상수로 예외처리 메세지 선언, 모든 Layer에서 사용할 수 있습니다.
+        - MatchFormComponent : 상수로 선언되어 MatchResult와 협력해 각 게임마다 출력 폼을 만들게 도와줍니다.
 
 <!> `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
-위 요구사항이 있어 BridgeNumberGenerator 와 이를 implement한 BridgeRandomNumberGenerator
+위 요구사항이 있어 BridgeNumberGenerator 와 이를 implement 한 BridgeRandomNumberGenerator
 의 package 위치 변경은 하지 않았습니다.
