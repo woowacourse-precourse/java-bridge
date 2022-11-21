@@ -47,7 +47,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String nextStep = Console.readLine();
+
+        if(!isBridgeInputNotDigit(nextStep)) {
+            throw new InvalidUserInputException("[ERROR] 문자를 입력해 주세요.");
+        } else if(!nextStep.equals("U") && !nextStep.equals("D")) {
+            throw new InvalidUserInputException("[ERROR] U, D 중 하나를 입력해 주세요.");
+        }
+
+        return nextStep;
     }
 
     /**

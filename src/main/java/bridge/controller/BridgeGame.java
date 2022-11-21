@@ -19,6 +19,7 @@ public class BridgeGame {
     // component
     private int bridgeSize; // 총 다리 개수
     private List<Integer> bridgeNumber = new ArrayList<>(); // 각 다리의 정답
+    private String nextStep; // 유저가 선택한 다음 위치
 
     // domain
     Computer computer = new Computer();
@@ -63,4 +64,12 @@ public class BridgeGame {
         bridgeNumber.add(computer.createRandomNumber());
         System.out.println(bridgeNumber.get(bridgeNumber.size()-1));
     }
+
+    /**
+     * 사용자가 이동할 다음 칸을 선택하는 기능
+     */
+    public void enterNextStep() {
+        this.nextStep = bridgeView.readNextStep();
+    }
+
 }

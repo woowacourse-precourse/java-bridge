@@ -17,6 +17,9 @@ public class Application {
             //3. 컴퓨터 랜덤 수 생성
             bridgeGame.createRandomNumber();
 
+            //4. 사용자가 다음에 이동할 칸을 입력
+            bridgeGame.enterNextStep();
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             throw e;
