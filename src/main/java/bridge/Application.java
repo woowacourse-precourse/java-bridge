@@ -8,5 +8,6 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = new InputView();
         int bridgeSize = inputView.readBridgeSize();
+        String bridgeCommand = inputView.readMoving();
     }
 }

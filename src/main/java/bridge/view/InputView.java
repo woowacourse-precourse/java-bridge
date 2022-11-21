@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     public static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
+    public static final String MOVING_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     private void printBridgeSizeMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -47,11 +48,26 @@ public class InputView {
         }
     }
 
+    private String readMovingCommand() throws IllegalArgumentException {
+        String inputCommand = Console.readLine();
+
+        if (!(inputCommand.equals("U") || inputCommand.equals("D")))
+            throw new IllegalArgumentException("[ERROR] 올바른 알파벳을 입력해주세요. (위: U, 아래: D)");
+        return inputCommand;
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        while (true) {
+            try {
+                System.out.println(MOVING_INPUT_MESSAGE);
+                return readMovingCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
