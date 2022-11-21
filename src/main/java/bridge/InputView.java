@@ -26,7 +26,7 @@ public class InputView {
     public static String readMoving() {
         String answer = Console.readLine();
         if(answer.equals("u")) {answer = "U";}
-        if(answer.equals("D")) {answer = "D";}
+        if(answer.equals("d")) {answer = "D";}
         Error.validateBridgeAnswer(answer);
         return answer;
     }
