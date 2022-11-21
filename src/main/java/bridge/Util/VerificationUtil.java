@@ -1,36 +1,37 @@
 package bridge.Util;
 
-import camp.nextstep.edu.missionutils.Console;
+import bridge.Domain.Key;
 
 public class VerificationUtil {
+    private static final int MIN_BRIDGE_SIZE = 3;
+    private static final int MAX_BRIDGE_SIZE = 20;
+    private static final String SIZE_NOT_NUMERIC = "[ERROR] 다리 길이는 숫자여야 합니다.";
+    private static final String SIZE_NOT_IN_RANGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String UNACCEPTABLE_MOVING = "[ERROR] 이동할 칸은 U 또는 D로 입력할 수 있습니다.";
+    private static final String UNACCEPTABLE_COMMAND = "[ERROR] 재시작 여부는 R 또는 Q로 입력할 수 있습니다.";
 
     private VerificationUtil() {}
 
-    public static int verifyBridgeSize(String size) {
+    public static int verifyNumeric(String size) {
+        int numericSize;
 
-        int bridgeSize;
         try {
-            bridgeSize = Integer.parseInt(size);
+            numericSize = Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
+            throw new IllegalArgumentException(SIZE_NOT_NUMERIC);
         }
-
-        if (bridgeSize < 3 || bridgeSize > 20)
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-
-        return bridgeSize;
+        if (numericSize < MIN_BRIDGE_SIZE || numericSize > MAX_BRIDGE_SIZE)
+            throw new IllegalArgumentException(SIZE_NOT_IN_RANGE);
+        return numericSize;
     }
 
     public static void verifyMoving(String moving) {
-
-        if (!moving.equals("U") && !moving.equals("D"))
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D로 입력할 수 있습니다.");
+        if (!moving.equals(Key.UP) && !moving.equals(Key.DOWN))
+            throw new IllegalArgumentException(UNACCEPTABLE_MOVING);
     }
 
     public static void verifyGameCommand(String command) {
-
-        if (!command.equals("R") && !command.equals("Q"))
-            throw new IllegalArgumentException("[ERROR] 재시작 여부는 R 또는 Q로 입력할 수 있습니다.");
-
+        if (!command.equals(Key.RETRY) && !command.equals(Key.QUIT))
+            throw new IllegalArgumentException(UNACCEPTABLE_COMMAND);
     }
 }
