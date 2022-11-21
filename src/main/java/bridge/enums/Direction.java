@@ -20,10 +20,20 @@ public enum Direction {
         return code;
     }
 
-    public static Integer getCode(String abbr) {
+    public static Integer getCodeByAbbr(String abbr) {
         for (Direction direction : Direction.values()) {
             if (direction.getAbbr().equals(abbr)) {
                 return direction.getCode();
+            }
+        }
+
+        return null;
+    }
+
+    public static String getAbbrByCode(Integer code) {
+        for (Direction direction : Direction.values()) {
+            if (direction.getCode() == code) {
+                return direction.getAbbr();
             }
         }
 
