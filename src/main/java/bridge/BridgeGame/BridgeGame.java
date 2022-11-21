@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class BridgeGame {
     InputView inputView = new InputView();
+    // To do : Main 메서드에서 주입하는 것으로 수정하기
     BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(generator);
     List<String> bridge;
