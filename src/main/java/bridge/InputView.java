@@ -61,6 +61,23 @@ public class InputView   {
         return result;
     }
 
+
+    // U와 D를 1 또는 0으로 바꾼다.
+    public  String changeToNum(String str){
+
+        String result = "";
+        for(char c : str.toCharArray()){
+
+            if(c == 'U'){
+                result += "1";
+                continue;
+            }
+            result += "0";
+        }
+        return result;
+    }
+
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
