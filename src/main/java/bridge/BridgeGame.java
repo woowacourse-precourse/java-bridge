@@ -9,12 +9,10 @@ import java.util.ArrayList;
 public class BridgeGame {
     private int tryCount = 1;
     private List<String> answer;
-    private int bridgeLength;
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private User user;
 
     public BridgeGame(int bridgeLength) {
-        this.bridgeLength = bridgeLength;
         this.answer = new BridgeMaker(bridgeNumberGenerator).makeBridge(bridgeLength);
         this.user = new User(answer, bridgeLength);
     }
@@ -62,18 +60,10 @@ public class BridgeGame {
 
     public void setGame() {
         tryCount++;
-        this.user = new User(answer, bridgeLength);
-    }
-
-    public int getBridgeLength() {
-        return bridgeLength;
+        this.user = new User(getAnswer(), getAnswer().size());
     }
 
     public List<String> getAnswer() {
         return answer;
-    }
-
-    public List<String> getUserBridge() {
-        return user.getUserBridge();
     }
 }
