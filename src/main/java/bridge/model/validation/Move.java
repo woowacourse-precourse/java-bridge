@@ -14,6 +14,14 @@ public enum Move {
         this.moveValue = moveValue;
     }
 
+    public String getMoveKey() {
+        return moveKey;
+    }
+
+    public int getMoveValue() {
+        return moveValue;
+    }
+
     // 사용자로부터 입력
     public static Move of(String input) {
         validate(input);
