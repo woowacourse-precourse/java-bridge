@@ -7,6 +7,7 @@ import static bridge.Constants.MapMark.*;
 import static bridge.Constants.MoveMark.*;
 
 public class BridgeGame {
+    private boolean isCorrect;
     private final List<String> correctBridge;
     private final List<List<String>> bridgeMap = new ArrayList<>();
 
@@ -17,16 +18,21 @@ public class BridgeGame {
 
     public List<List<String>> move(int bridgeNum, String moving) {
         String correctAnswer = correctBridge.get(bridgeNum);
+        isCorrect = moving.equals(correctAnswer);
 
-        if (moving.equals(correctAnswer))
-            mapIfCorrect(correctAnswer);
-        if (!moving.equals(correctAnswer))
-            mapIfWrong(correctAnswer);
+        if (isCorrect)
+            mapIfCorrect(moving);
+        if (!isCorrect)
+            mapIfWrong(moving);
         return this.bridgeMap;
     }
 
     public void retry() {
         newBridgePattern();
+    }
+
+    public boolean isCorrectMove() {
+        return isCorrect;
     }
 
     private void mapIfCorrect(String moving) {
