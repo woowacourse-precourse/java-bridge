@@ -18,13 +18,20 @@ class BridgeGameTest {
         assertTrue(bridgeGame.move("U", "U"));
     }
 
-    @DisplayName("")
+    @DisplayName("다리 건너기의 결과에 따라 O 또는 X를 이용하여 출력할 다리를 생성하는 메서드")
     @Test
     void moveBridge(){
         BridgeGame bridgeGame = new BridgeGame();
         Bridge bridge = new Bridge();
         bridge.setOutputBridge(new ArrayList<>(List.of(new ArrayList<>(List.of(" O ")), new ArrayList<>(List.of("   ")))));
         assertThat(bridgeGame.moveBridge("U", true)).usingRecursiveComparison().isEqualTo(bridge);
+    }
+
+    @DisplayName("사용자가 게임을 다시 시도할 때 사용하는 메서드")
+    @Test
+    void retry(){
+        BridgeGame bridgeGame = new BridgeGame();
+        assertTrue(bridgeGame.retry("R"));
     }
 
 }
