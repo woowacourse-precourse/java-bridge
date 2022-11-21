@@ -1,12 +1,12 @@
 package bridge;
 
-public enum Moving {
+public enum Move {
     DOWN("D"),
     UP("U");
 
     private final String value;
 
-    Moving(String value) {
+    Move(String value) {
         this.value = value;
     }
 

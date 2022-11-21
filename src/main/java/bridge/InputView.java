@@ -29,16 +29,16 @@ public class InputView {
         return bridgeSizeInput;
     }
 
-    public String readMoving() {
-        String moving;
+    public String readMove() {
+        String move;
 
         try {
-            moving = readLine();
+            move = readLine();
         } catch (NoSuchElementException exception) {
-            moving = EMPTY_STRING;
+            move = EMPTY_STRING;
         }
 
-        return moving;
+        return move;
     }
 
     public String readGameCommand() {
