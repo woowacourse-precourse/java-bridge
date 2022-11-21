@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.List;
 import java.util.StringJoiner;
 
 /**
@@ -37,16 +36,6 @@ public class BridgeGame {
         if (moving.equals(BridgeGameMark.DOWN_MARK.getMark())) {
             downSideBridge.add(BridgeGameMark.WRONG_ANSWER_MARK.getMark());
             upSideBridge.add(BridgeGameMark.BLANK_MARK.getMark());
-        }
-    }
-
-    public void checkAnswer(int moveingIndex, String move, List<String> bridge){
-        if(bridge.get(moveingIndex).equals(move)){
-            move(move);
-        }
-        if(!bridge.get(moveingIndex).equals(move)){
-            moveFailed(move);
-            switchResult();
         }
     }
 
