@@ -59,6 +59,16 @@ public class BridgeController {
         return 0;
     }
 
+    private void checkRetry(int size){
+        // 출력
+        String letter = inputView.readGameCommand();
+        validate.endLetter(letter);
+        if(letter == GameMessage.RETRY){
+            bridgeGame.retry(size);
+            playing(size);
+        }
+    }
+
 
 
 
