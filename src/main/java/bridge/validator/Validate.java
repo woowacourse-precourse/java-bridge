@@ -10,4 +10,10 @@ public class Validate {
         }
 
     }
+    public static void vaildateCheckRetry(String command){
+        if(!command.equals("Q") && !command.equals("R")){
+            throw new IllegalArgumentException();
+        }
+
+    }
 }
