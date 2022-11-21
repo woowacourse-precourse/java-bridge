@@ -52,6 +52,16 @@ public class InputView {
 	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 	 */
 	public String readGameCommand() {
-		return null;
+		Print.restartOrQuit();
+		String restartOrQuit = "";
+		while (!restartOrQuit.equals("Q") && !restartOrQuit.equals("R")){
+			try{
+				restartOrQuit = Console.readLine();
+				Validation.validationRestartOrQuit(restartOrQuit);
+			} catch (IllegalArgumentException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return restartOrQuit;
 	}
 }
