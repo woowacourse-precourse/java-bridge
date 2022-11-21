@@ -34,6 +34,10 @@ public class Application {
                 BridgeGame.retry();
             }
         }
+
+        Announcement.bridge_result();
+        OutputView.printMap(BridgeGame.getUp_bridge(), BridgeGame.getDown_bridge());
+        OutputView.printResult(success, try_count);
         // TODO: 프로그램 구현
     }
 }
