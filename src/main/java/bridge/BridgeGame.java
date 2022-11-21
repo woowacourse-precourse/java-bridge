@@ -13,7 +13,6 @@ public class BridgeGame {
     private int tryCount = 1;
 
     InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
 
     public void gameStart(){
         System.out.println("다리 건너기 게임을 시작합니다.");
