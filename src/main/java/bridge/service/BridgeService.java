@@ -11,7 +11,6 @@ public class BridgeService {
 
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     BridgeGame bridgeGame = new BridgeGame();
-    BridgePrinter bridgePrinter = new BridgePrinter();
 
 
     public void startBridgeGame() {
@@ -27,7 +26,7 @@ public class BridgeService {
         outputView.printInputMoveBridgeMessage();
         String userMove = inputView.readMoving();
         bridgeGame.move(userMove);
-        outputView.printMap(bridgePrinter);
+        outputView.printMap(bridgeGame.getUser(), bridgeGame.getBridge());
     }
 
 
