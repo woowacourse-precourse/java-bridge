@@ -23,4 +23,9 @@ public class InputException {
         return (bridgeLength<UNDER_RANGE || bridgeLength>OVER_RANGE);
     }
 
-   }
+    public static void validateProperNumbersRange(String userInput){
+        if(isProperNumbers(userInput)){
+            throw new IllegalArgumentException("not proper range");
+        }
+    }
+}
