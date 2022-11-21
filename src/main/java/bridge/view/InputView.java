@@ -18,7 +18,7 @@ public class InputView {
     public static int readBridgeSize() {
         try {
             bridgeSize = Console.readLine();
-            validateBridgeSize(bridgeSize);
+            Validator.validateBridgeSize(bridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
             readBridgeSize();
@@ -27,30 +27,13 @@ public class InputView {
         return Integer.parseInt(bridgeSize);
     }
 
-    public static void validateBridgeSize(String bridgeSize) {
-        if (isNotNumber(bridgeSize)) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_IS_NOT_DIGIT.getErrorMessage());
-        }
-        if (isLengthOutOfRange(Integer.parseInt(bridgeSize))) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_OUT_OF_RANGE.getErrorMessage());
-        }
-    }
-
-    private static boolean isNotNumber(String bridgeSize) {
-        return !bridgeSize.matches("^-?[0-9]+$");
-    }
-
-    private static boolean isLengthOutOfRange(int bridgeSize) {
-        return bridgeSize < 3 || bridgeSize > 20;
-    }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
         try {
             moving = Console.readLine();
-            validateMoving(moving);
+            Validator.validateMoving(moving);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
             readMoving();
@@ -59,38 +42,18 @@ public class InputView {
         return moving;
     }
 
-    public static void validateMoving(String moving) {
-        if (isNotUD(moving)) {
-            throw new IllegalArgumentException(ErrorMessage.MOVING_IS_NOT_U_D.getErrorMessage());
-        }
-    }
-
-    private static boolean isNotUD(String moving) {
-        return !moving.equals(Message.UP.getMessage()) && !moving.equals(Message.DOWN.getMessage());
-    }
-
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
         try {
             gameCommand = Console.readLine();
-            validateGameCommand(gameCommand);
+            Validator.validateGameCommand(gameCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
             readGameCommand();
         }
 
         return gameCommand;
-    }
-
-    private static void validateGameCommand(String gameCommand) {
-        if (isNotRQ(gameCommand)) {
-            throw new IllegalArgumentException(ErrorMessage.GAME_COMMAND_IS_NOT_Q_R.getErrorMessage());
-        }
-    }
-
-    private static boolean isNotRQ(String gameCommand) {
-        return !gameCommand.equals(Message.RETRY.getMessage()) && !gameCommand.equals(Message.QUIT.getMessage());
     }
 }
