@@ -5,10 +5,6 @@ public class SingleMap {
     BridgeGame bridgeGame;
     String recentMove;
 
-    static final String SUCCESS="O";
-    static final String FAIL="X";
-    static final String BLANK=" ";
-
     SingleMap(BridgeGame bridgeGame,String recentMove){
         this.bridgeGame=bridgeGame;
         this.recentMove=recentMove;
@@ -25,18 +21,18 @@ public class SingleMap {
 
     private String checkSuccess(String flag,int convertIndex){
         if(bridgeGame.checkSuccess(flag,convertIndex)){
-            return SUCCESS;
+            return Constant.SUCCESS;
         }
-        return BLANK;
+        return Constant.BLANK;
     }
 
     private String lastMoveCheck(String flag){
         if(flag.matches(recentMove)){
             if(bridgeGame.isSuccess()){
-                return SUCCESS;
+                return Constant.SUCCESS;
             }
-            return FAIL;
+            return Constant.FAIL;
         }
-        return BLANK;
+        return Constant.BLANK;
     }
 }
