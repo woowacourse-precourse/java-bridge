@@ -18,8 +18,7 @@ public class BridgeStatus {
         }
     }
 
-    public void update(String currBridge, String currPlayer) {
-        boolean correct = currBridge.equals(currPlayer);
+    public void update(String currPlayer, boolean correct) {
         for (BridgeBlock bridgeBlock : BridgeBlock.values()) {
             BlockStatus match = BlockStatus.UNSELECT;
             if (bridgeBlock == BridgeBlock.valueOf(currPlayer)) {
@@ -31,10 +30,6 @@ public class BridgeStatus {
 
     public void clear() {
         bridgeStatus.clear();
-    }
-
-    public int size() {
-        return bridgeStatus.get(BridgeBlock.U).size();
     }
 
     @Override

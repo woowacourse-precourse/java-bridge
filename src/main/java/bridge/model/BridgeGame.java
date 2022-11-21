@@ -8,11 +8,13 @@ import java.util.List;
 public class BridgeGame {
 
     private int repeatCount;
+    private int currPosition;
     private final List<String> bridge;
     private final BridgeStatus bridgeStatus;
 
     public BridgeGame(List<String> bridge) {
         repeatCount = 1;
+        currPosition = 0;
         this.bridge = bridge;
         bridgeStatus = new BridgeStatus();
     }
@@ -22,9 +24,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String move) {
-        String currBridge = bridge.get(bridgeStatus.size());
-        bridgeStatus.update(currBridge, move);
+    public boolean move(String move) {
+        String currBridge = bridge.get(currPosition);
+        boolean correct = currBridge.equals(move);
+        bridgeStatus.update(move, correct);
+        if (correct) {
+            currPosition++;
+        }
+        return correct;
     }
 
     /**
@@ -35,6 +42,7 @@ public class BridgeGame {
     public void retry() {
         bridgeStatus.clear();
         repeatCount++;
+        currPosition = 0;
     }
 
     /**
