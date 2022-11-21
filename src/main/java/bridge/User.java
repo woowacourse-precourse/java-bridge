@@ -7,21 +7,28 @@ public class User {
     private List<String> userBridge;
     private int bridgeLength;
     private List<String> answer;
+    private int nowBridgeLength;
 
     public User(List<String> answer, int bridgeLength) {
         this.userBridge = new ArrayList<>(bridgeLength);
         this.bridgeLength = bridgeLength;
         this.answer = answer;
+        this.nowBridgeLength = 0;
     }
 
-    public void userMove() {
+    public void userStateUpdate() {
         String direction = new InputView().readMoving();
-        this.userBridge.add(direction);
+        userMove(direction);
         new OutputView().printMap(answer,userBridge);
     }
 
+    public void userMove(String direction) {
+        this.userBridge.add(direction);
+        this.nowBridgeLength++;
+    }
+
     public boolean isSuccess(int tryCount) {
-        if (userBridge.size() == bridgeLength) {
+        if (nowBridgeLength == bridgeLength) {
             new OutputView().printResult(answer, userBridge, tryCount);
             return true;
         }
@@ -29,7 +36,7 @@ public class User {
     }
 
     public boolean isFailure() {
-        if (userBridge.size() > 0 && !answer.get(userBridge.size()-1).equals(userBridge.get(userBridge.size()-1)))
+        if (nowBridgeLength > 0 && !answer.get(nowBridgeLength-1).equals(userBridge.get(nowBridgeLength-1)))
             return true;
         return false;
     }
@@ -39,5 +46,9 @@ public class User {
         if (reGame.equals("R"))
             return true;
         return false;
+    }
+
+    public int getUserSize() {
+        return nowBridgeLength;
     }
 }
