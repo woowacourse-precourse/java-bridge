@@ -8,28 +8,14 @@ import model.BridgeState;
  */
 public class OutputView {
 
-    public void printMap() {
-        upperFix();
-        lowerFix();
-        System.out.println(BridgeState.upper);
-        System.out.println(BridgeState.lower);
+    public void printMap(String upper,String lower) {
+        System.out.println(upper);
+        System.out.println(lower);
     }
 
-    public void upperFix() {
-        BridgeState.upper = BridgeState.upper.replace(OutputMessage.END.getOutputMsg(),OutputMessage.BAR.getOutputMsg());
-        BridgeState.upper = BridgeState.upper.substring(0, BridgeState.upper.length()-1);
-        BridgeState.upper += OutputMessage.END.getOutputMsg();
-    }
-
-    public void lowerFix() {
-        BridgeState.lower = BridgeState.lower.replace(OutputMessage.END.getOutputMsg(),OutputMessage.BAR.getOutputMsg());
-        BridgeState.lower = BridgeState.lower.substring(0, BridgeState.lower.length()-1);
-        BridgeState.lower += OutputMessage.END.getOutputMsg();
-    }
-
-    public void printResult(BridgeGame bridgeGame) {
+    public void printResult(BridgeGame bridgeGame,String upper,String lower) {
         System.out.println(OutputMessage.GAME_RESULT.getOutputMsg());
-        printMap();
+        printMap(upper,lower);
         if(bridgeGame.getSuccess()) {
             System.out.println(OutputMessage.WIN_GAME.getOutputMsg());
             System.out.println(OutputMessage.TRY.getOutputMsg() + bridgeGame.getAttempts());
