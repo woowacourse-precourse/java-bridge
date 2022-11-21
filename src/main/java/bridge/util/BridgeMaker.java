@@ -9,11 +9,14 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+
+    private static final int DOWN_NUMBER = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
     private static List<String> computerBridges = new ArrayList<>();
 
-    private static final String UP = "U";
-    private static final String DOWN = "D";
+
 
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -24,7 +27,7 @@ public class BridgeMaker {
 
         for(int i=0;i<size;i++) {
             int number = bridgeNumberGenerator.generate();
-            if (number == 0) {
+            if (number == DOWN_NUMBER) {
                 computerBridges.add(DOWN);
                 continue;
             }
