@@ -53,7 +53,7 @@ public class ValidatorProcessorTest {
         validatorProcessor = new ValidatorProcessorImpl();
         return valueSource.stream()
                 .map(retryCommand -> DynamicTest.dynamicTest("성공케이스: 올바른 입력값", () -> {
-                    validatorProcessor.validateBridgeSizeInput(retryCommand);
+                    validatorProcessor.validateRetryInput(retryCommand);
                         })
                 );
     }
@@ -65,7 +65,7 @@ public class ValidatorProcessorTest {
         validatorProcessor = new ValidatorProcessorImpl();
         return valueSource.stream()
                 .map(NotRetryCommand -> DynamicTest.dynamicTest("실패케이스: 올바르지 못한 입력값", () -> {
-                                    assertThatThrownBy(()-> validatorProcessor.validateBridgeSizeInput(NotRetryCommand))
+                                    assertThatThrownBy(()-> validatorProcessor.validateRetryInput(NotRetryCommand))
                                             .isInstanceOf(IllegalArgumentException.class)
                                             .hasMessageContaining("[ERROR]");
                                 }

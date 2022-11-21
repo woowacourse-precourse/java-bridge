@@ -4,7 +4,7 @@ public interface ValidatorProcessor {
 
     Integer validateBridgeSizeInput(String input);
 
-    String validateRetryInput(String input);
+    void validateRetryInput(String input);
 
-    String validateCommandInput(String input);
+    void validateCommandInput(String input);
 }
