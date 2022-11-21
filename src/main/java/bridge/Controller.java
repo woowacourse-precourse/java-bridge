@@ -99,6 +99,9 @@ public class Controller {
                 outputView.printResult(movingRoute, "실패", gameCount);
             }
         }
+        if (inputCount == bridge.size()) {
+            outputView.printResult(movingRoute, "성공", gameCount);
+        }
     }
 
     private String getCommand() {
