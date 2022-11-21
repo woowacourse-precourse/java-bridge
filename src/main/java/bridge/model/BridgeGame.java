@@ -17,7 +17,7 @@ public class BridgeGame {
 	public void startMakingBridge(String bridgeSize) {
 		checkBridgeSizeError(bridgeSize);
 
-		int convertedSize = Utils.convertBridgeSize(bridgeSize);
+		int convertedSize = BridgeSizeConverter.convertBridgeSize(bridgeSize);
 		initializeBridge(convertedSize);
 	}
 

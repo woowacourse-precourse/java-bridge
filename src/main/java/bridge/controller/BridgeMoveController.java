@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.dto.MoveCommandDto;
 import bridge.model.BridgeGame;
+import bridge.utils.CommandChecker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

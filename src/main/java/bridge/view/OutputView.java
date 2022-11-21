@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.dto.GameResultDto;
 import bridge.dto.MoveCommandDto;
+import bridge.utils.MoveChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,91 @@ public class OutputView {
 		return buildMap().toString() + printSuccessOrFail() + printTotalTry();
 	}
 
+	private StringBuilder buildMap() {
+		StringBuilder upperMap = new StringBuilder();
+		StringBuilder lowerMap = new StringBuilder();
+
+		buildStartSign(upperMap, lowerMap);
+		buildProgression(upperMap, lowerMap);
+		buildEndSign(upperMap, lowerMap);
+
+		return mergeUpperAndLowerMap(upperMap, lowerMap);
+	}
+
+	private void buildStartSign(StringBuilder upperMap, StringBuilder lowerMap) {
+		upperMap.append(MapComponent.START_BRIDGE_BOARDER);
+		lowerMap.append(MapComponent.START_BRIDGE_BOARDER);
+	}
+
+	private void buildProgression(StringBuilder upperMap, StringBuilder lowerMap) {
+		int size = moveHistory.size();
+
+		for (int index = 0; index < size; index++) {
+			upperMap.append(buildUpperProgression(index));
+			lowerMap.append(buildLowerProgression(index));
+			appendSpaceDivider(upperMap, lowerMap, index);
+		}
+	}
+
+	private void buildEndSign(StringBuilder upperMap, StringBuilder lowerMap) {
+		upperMap.append(MapComponent.END_BRIDGE_BOARDER);
+		lowerMap.append(MapComponent.END_BRIDGE_BOARDER);
+	}
+
+	private StringBuilder mergeUpperAndLowerMap(StringBuilder upperMap, StringBuilder lowerMap) {
+		StringBuilder completeMap = new StringBuilder();
+		return completeMap.append(upperMap).append("\n").append(lowerMap).append("\n");
+	}
+
+	private String buildUpperProgression(int index) {
+		MoveCommandDto move = moveHistory.get(index);
+		String moveCommand = move.getMoveCommand();
+		boolean moveFlag = move.isAbleToMove();
+		return selectUpMove(moveCommand, moveFlag);
+	}
+
+	private String buildLowerProgression(int index) {
+		MoveCommandDto move = moveHistory.get(index);
+		String moveCommand = move.getMoveCommand();
+		boolean moveFlag = move.isAbleToMove();
+		return selectDownMove(moveCommand, moveFlag);
+	}
+
+	private String selectUpMove(String moveCommand, boolean moveFlag) {
+		if (isMoveToUp(moveCommand, moveFlag)) {
+			return MapComponent.ABLE_TO_MOVE;
+		} else if (MoveChecker.isEqualToUp(moveCommand)) {
+			return MapComponent.UNABLE_TO_MOVE;
+		}
+		return MapComponent.NO_SELECT_MOVE;
+	}
+
+	private boolean isMoveToUp(String moveCommand, boolean moveFlag) {
+		return moveCommand.equals("U") && moveFlag;
+	}
+
+	private String selectDownMove(String moveCommand, boolean moveFlag) {
+		if (isMoveToDown(moveCommand, moveFlag)) {
+			return MapComponent.ABLE_TO_MOVE;
+		} else if (MoveChecker.isEqualToDown(moveCommand)) {
+			return MapComponent.UNABLE_TO_MOVE;
+		}
+		return MapComponent.NO_SELECT_MOVE;
+	}
+
+	private boolean isMoveToDown(String moveCommand, boolean moveFlag) {
+		return MoveChecker.isEqualToDown(moveCommand) && moveFlag;
+	}
+
+	private void appendSpaceDivider(StringBuilder upperMap, StringBuilder lowerMap, int index) {
+		int limit = moveHistory.size() - 1;
+
+		if (index != limit) {
+			upperMap.append(MapComponent.SPACE_DIVIDER);
+			lowerMap.append(MapComponent.SPACE_DIVIDER);
+		}
+	}
+
 	private StringBuilder printSuccessOrFail() {
 		StringBuilder successOrFail = new StringBuilder();
 
@@ -70,82 +156,5 @@ public class OutputView {
 
 		totalTry.append(OutputMessages.TOTAL_TRY);
 		return totalTry.append(gameResult.getTotalTry()).append("\n");
-	}
-
-	private StringBuilder buildMap() {
-		StringBuilder upperMap = new StringBuilder();
-		StringBuilder lowerMap = new StringBuilder();
-
-		buildStartSign(upperMap, lowerMap);
-		buildProgression(upperMap, lowerMap);
-		buildEndSign(upperMap, lowerMap);
-
-		return mergeUpperAndLowerMap(upperMap, lowerMap);
-	}
-
-	private void buildProgression(StringBuilder upperMap, StringBuilder lowerMap) {
-		int size = moveHistory.size();
-
-		for (int index = 0; index < size; index++) {
-			upperMap.append(buildUpperProgression(index));
-			lowerMap.append(buildLowerProgression(index));
-			appendSpaceDivider(upperMap, lowerMap, index);
-		}
-	}
-
-	private String buildUpperProgression(int index) {
-		MoveCommandDto move = moveHistory.get(index);
-		String moveCommand = move.getMoveCommand();
-		boolean moveFlag = move.isAbleToMove();
-		return selectUpMove(moveCommand, moveFlag);
-	}
-
-	private String selectUpMove(String moveCommand, boolean moveFlag) {
-		if (moveCommand.equals("U") && moveFlag) {
-			return MapComponent.ABLE_TO_MOVE;
-		} else if (moveCommand.equals("U")) {
-			return MapComponent.UNABLE_TO_MOVE;
-		}
-		return MapComponent.NO_SELECT_MOVE;
-	}
-
-	private String buildLowerProgression(int index) {
-		MoveCommandDto move = moveHistory.get(index);
-		String moveCommand = move.getMoveCommand();
-		boolean moveFlag = move.isAbleToMove();
-		return selectDownMove(moveCommand, moveFlag);
-	}
-
-	private String selectDownMove(String moveCommand, boolean moveFlag) {
-		if (moveCommand.equals("D") && moveFlag) {
-			return MapComponent.ABLE_TO_MOVE;
-		} else if (moveCommand.equals("D")) {
-			return MapComponent.UNABLE_TO_MOVE;
-		}
-		return MapComponent.NO_SELECT_MOVE;
-	}
-
-	private void appendSpaceDivider(StringBuilder upperMap, StringBuilder lowerMap, int index) {
-		int limit = moveHistory.size() - 1;
-
-		if (index != limit) {
-			upperMap.append(MapComponent.SPACE_DIVIDER);
-			lowerMap.append(MapComponent.SPACE_DIVIDER);
-		}
-	}
-
-	private void buildStartSign(StringBuilder upperMap, StringBuilder lowerMap) {
-		upperMap.append(MapComponent.START_BRIDGE_BOARDER);
-		lowerMap.append(MapComponent.START_BRIDGE_BOARDER);
-	}
-
-	private void buildEndSign(StringBuilder upperMap, StringBuilder lowerMap) {
-		upperMap.append(MapComponent.END_BRIDGE_BOARDER);
-		lowerMap.append(MapComponent.END_BRIDGE_BOARDER);
-	}
-
-	private StringBuilder mergeUpperAndLowerMap(StringBuilder upperMap, StringBuilder lowerMap) {
-		StringBuilder completeMap = new StringBuilder();
-		return completeMap.append(upperMap).append("\n").append(lowerMap).append("\n");
 	}
 }
