@@ -2,8 +2,8 @@ package bridge.view;
 
 import bridge.domain.Status;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -46,22 +46,11 @@ public class OutputView {
     }
 
     private static String makeFirstRow(List<String> bridge, List<String> user) {
-        int size = bridge.size();
-        String[] status = new String[user.size()];
-        Arrays.fill(status, " ");
-        int index = 0;
+        String[] status = initializeArray(user.size());
 
-        for (; index < user.size(); index++) {
-            String bridgeValue = bridge.get(index);
-            String userValue = user.get(index);
-
-            if (bridgeValue.equals("U") && bridgeValue.equals(userValue)) {
-                status[index] = "O";
-                continue;
-            }
-
-            if (userValue.equals("U")) {
-                status[index] = "X";
+        for (int index = 0; index < user.size(); index++) {
+            status[index] = compareFirstRowValue(bridge.get(index), user.get(index));
+            if (status[index].equals("X")) {
                 break;
             }
         }
@@ -70,27 +59,42 @@ public class OutputView {
     }
 
     private static String makeSecondRow(List<String> bridge, List<String> user) {
-        int size = bridge.size();
-        String[] status = new String[user.size()];
-        Arrays.fill(status, " ");
-        int index = 0;
+        String[] status = initializeArray(user.size());
 
-        for (; index < user.size(); index++) {
-            String bridgeValue = bridge.get(index);
-            String userValue = user.get(index);
-
-            if (bridgeValue.equals("D") && bridgeValue.equals(userValue)) {
-                status[index] = "O";
-                continue;
-            }
-
-            if (userValue.equals("D")) {
-                status[index] = "X";
+        for (int index = 0; index < user.size(); index++) {
+            status[index] = compareSecondRowValue(bridge.get(index), user.get(index));
+            if (status[index].equals("X")) {
                 break;
             }
         }
 
         return joinByPipe(status);
+    }
+
+    private static String[] initializeArray(int size) {
+        return Stream.iterate(0, index -> index < size, index -> index + 1)
+                .map(string -> " ")
+                .toArray(String[]::new);
+    }
+
+    private static String compareFirstRowValue(String bridgeValue, String userValue) {
+        if (bridgeValue.equals("U") && bridgeValue.equals(userValue)) {
+            return "O";
+        }
+        if (userValue.equals("U")) {
+            return "X";
+        }
+        return " ";
+    }
+
+    private static String compareSecondRowValue(String bridgeValue, String userValue) {
+        if (bridgeValue.equals("D") && bridgeValue.equals(userValue)) {
+            return "O";
+        }
+        if (userValue.equals("D")) {
+            return "X";
+        }
+        return " ";
     }
 
     private static String joinByPipe(String[] status) {
