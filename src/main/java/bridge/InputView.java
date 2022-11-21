@@ -18,6 +18,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final InputView instance = new InputView();
+    private static final OutputView outputView = OutputView.getInstance();
 
     private InputView() {
     }
@@ -35,7 +36,7 @@ public class InputView {
             Validator.validateConditions(ConditionGenerator.getBridgeSizeCondition(), input);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(new OutOfRangeException(e));
+            outputView.printErrorMessage(new OutOfRangeException(e));
             return readBridgeSize();
         }
     }
@@ -49,7 +50,7 @@ public class InputView {
             Validator.validateConditions(ConditionGenerator.getGameActionCondition(), input);
             return input;
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(new NotAllowedDirectionException(e));
+            outputView.printErrorMessage(new NotAllowedDirectionException(e));
             return readMoving();
         }
     }
@@ -63,7 +64,7 @@ public class InputView {
             Validator.validateConditions(ConditionGenerator.getSystemActionCondition(), input);
             return SystemOperation.findByValue(input);
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(new NotAllowedSystemOperationException(e));
+            outputView.printErrorMessage(new NotAllowedSystemOperationException(e));
             return readGameCommand();
         }
     }
