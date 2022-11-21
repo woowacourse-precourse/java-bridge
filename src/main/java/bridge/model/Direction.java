@@ -16,7 +16,7 @@ public enum Direction {
         return number == direction.number;
     }
 
-    public static String getName(int number) {
+    public static String getFirstLetterByNumber(int number) {
         for (Direction direction : Direction.values()) {
             if (number == direction.number) {
                 return direction.firstLetter;

@@ -24,7 +24,7 @@ public class BridgeMaker {
         ArrayList<String> bridge = new ArrayList<>(size);
         for (int index = 0; index < size; index++) {
             int pickNumber = bridgeNumberGenerator.generate();
-            bridge.add(Direction.getName(pickNumber));
+            bridge.add(Direction.getFirstLetterByNumber(pickNumber));
         }
         return bridge;
     }
