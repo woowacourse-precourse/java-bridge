@@ -11,13 +11,14 @@ import java.util.List;
 
 public class BridgeController {
 
+    public static List<List<String>> upAndDown = new ArrayList<>();
     private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
+    private static BridgeGame bridgeGame = new BridgeGame();
     private static List<String> bridges;
     private static Boolean trueOrFalse = true;
     private static int triedNumber = 0;
-    public static List<List<String>> upAndDown = new ArrayList<>();
-    private static BridgeGame bridgeGame = new BridgeGame();
-    private static final OutputView outputView = new OutputView();
+    private static String successOrFail = "";
 
     public void init() {
 
@@ -45,6 +46,8 @@ public class BridgeController {
 
         int lengthOfBridge = 0;
         lengthOfBridge = startGame(inputSize, lengthOfBridge, inputMoving);
+        successOrFail = getSuccess(inputSize, lengthOfBridge);
+        trueOrFalse = getFalse();
 
         triedNumber++;
 
@@ -61,6 +64,7 @@ public class BridgeController {
     private static int startGame(int inputSize, int lengthOfBridge, String inputMoving) {
         while (lengthOfBridge < inputSize) {
             lengthOfBridge = bridgeGame.move(bridges, lengthOfBridge, inputMoving);
+
             List<String> toStringBridges = new ArrayList<>();
             toAddforBridges(toStringBridges);
             outputView.printMap(toStringBridges);
@@ -76,6 +80,26 @@ public class BridgeController {
         toStringBridges.add("[" + upToString + "]");
         toStringBridges.add("[" + downToString + "]");
     }
+
+    private static String getSuccess(int inputSize, int count) {
+        if (count == inputSize) {
+            return "성공";
+        }
+        return getSuccessOrFail();
+    }
+
+    private static String getSuccessOrFail() {
+        String startOrEnd = inputView.readGameCommand();
+        return bridgeGame.retry(startOrEnd);
+    }
+
+    private boolean getFalse() {
+        if (!successOrFail.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
 
 }
 
