@@ -2,6 +2,7 @@ package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -31,12 +32,12 @@ public class BridgeGame {
     public void retry(List<String> bridge, int bridgeSize) {
         index = 0;
         gameCount += 1;
-        Game reGame = new Game();
-        reGame.Start(bridge, bridgeSize);
+        Game reGame = new Game(bridge, bridgeSize);
+        reGame.Start();
     }
 
     public List<String> makeMap(String input, boolean move){
-        List<String> mapString = new ArrayList<>();
+        MapString mapString = new MapString();
         if (input.equals("U") && move){
             MapString.upstairs += "O";
             MapString.downstairs += " ";
@@ -53,8 +54,6 @@ public class BridgeGame {
             MapString.upstairs += " ";
             MapString.downstairs += "X";
         }
-        mapString.add(MapString.upstairs);
-        mapString.add(MapString.downstairs);
-        return (mapString);
+        return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
     }
 }

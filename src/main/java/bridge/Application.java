@@ -13,13 +13,14 @@ public class Application {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         InputView inputView = new InputView();
-        Game game = new Game();
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(bridge);
-        game.Start(bridge, bridgeSize);
+//        제출할때 지우기
+        Game game = new Game(bridge, bridgeSize);
+        game.Start();
         }
     }
 

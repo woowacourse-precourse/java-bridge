@@ -30,6 +30,7 @@ public class OutputView {
             System.out.print(" | ");
         }
         System.out.println(mapString.get(1).charAt(index) + " ]");
+        System.out.println();
     }
 
     /**
@@ -41,7 +42,6 @@ public class OutputView {
         String[] strResult = {"실패", "성공"};
         System.out.println("최종 게임 결과");
         printMap(mapString);
-        System.out.println();
         System.out.println("게임 성공 여부: " + strResult[result]);
         System.out.println("총 시도한 횟수: " + BridgeGame.gameCount);
     }
