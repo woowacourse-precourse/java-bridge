@@ -7,11 +7,13 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> userBridge;
-    private List<String> answerBridge;
+    private final List<String> answerBridge;
+    private int gameCount;
 
     public BridgeGame(int size){
         BridgeNumberGenerator bridgeNumberGenerator=new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker=new BridgeMaker(bridgeNumberGenerator);
+        this.gameCount=1;
         this.answerBridge=bridgeMaker.makeBridge(size);
     }
 
@@ -41,5 +43,13 @@ public class BridgeGame {
 
     public List<String> getAnswerBridge(){
         return answerBridge;
+    }
+
+    public void setGameCount(){
+        gameCount++;
+    }
+
+    public int getGameCount(){
+        return gameCount;
     }
 }
