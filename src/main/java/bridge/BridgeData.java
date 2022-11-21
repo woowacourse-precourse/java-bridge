@@ -22,4 +22,8 @@ public class BridgeData {
     public void updatePosition(){
         currentPosition++;
     }
+
+    public void reducePosition(){
+        currentPosition--;
+    }
 }
