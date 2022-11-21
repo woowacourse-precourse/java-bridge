@@ -15,17 +15,17 @@ public class Validation {
     private final static int UPPERBOUND = 20;
 
     public Validation(String lineInput, InputType inputType) {
-        checkNoLineFound(lineInput);
+        isBlankInput(lineInput);
         if (inputType == InputType.BRIDGESIZE) validateBridgeSize(lineInput);
         if (inputType == InputType.MOVINGCOMMAND) validateMovingCommand(lineInput);
         if (inputType == InputType.GAMECOMMAND) validateGameCommand(lineInput);
     }
 
     /**
-     * 공통 예외: 아무런 값도 입력하지 않고 엔터를 친 경우
+     * 공통 예외: 공백으로만 이루어진 경우
      */
-    private void checkNoLineFound(String lineInput) {
-        if (lineInput.equals(""))
+    private void isBlankInput(String lineInput) {
+        if (lineInput.isBlank())
             throw new IllegalArgumentException("[ERROR] 값을 입력해주세요.");
     }
 
