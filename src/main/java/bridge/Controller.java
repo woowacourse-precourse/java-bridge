@@ -30,13 +30,12 @@ public class Controller {
      * input user command, move user
      */
     public void move() {
-        while (true) {
+        boolean flag = true;
+        while (flag) {
             String command = iView.readMoving();
             List<String> user = bridgeGame.move(command);
             oView.printMap(user);
-            if (user.get(user.size()-1).length() > 1) {
-                break;
-            }
+            flag = !bridgeGame.getEndGame();
         }
     }
 

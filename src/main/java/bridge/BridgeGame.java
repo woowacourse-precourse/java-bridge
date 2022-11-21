@@ -25,6 +25,13 @@ public class BridgeGame {
         return tryCounts;
     }
 
+    public boolean getEndGame() {
+        if (user.get(user.size()-1).length() > 1) {
+            return true;
+        }
+        return user.size() == bridge.size();
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
