@@ -21,14 +21,17 @@ class BridgeGameTest {
         player = new Player();
     }
 
-    @ParameterizedTest(name = "이동 결과 테스트 [{index}] : {0}이동 - 성공 여부 {1}")
-    @CsvSource(value = {"UDDUD,true", "UDDUU,false"})
-    void moveTest(String movingPath, boolean expectedResult) {
-
+    private void movePlayerFromDirectionString(String movingPath) {
         for (String movingDirection : movingPath.split("")) {
             Tile targetTile = Tile.findByDirectionSign(movingDirection);
             bridgeGame.move(player, targetTile);
         }
+    }
+
+    @ParameterizedTest(name = "이동 결과 테스트 [{index}] : {0}이동 - 성공 여부 {1}")
+    @CsvSource(value = {"UDDUD,true", "UDDUU,false"})
+    void moveTest(String movingPath, boolean expectedResult) {
+        movePlayerFromDirectionString(movingPath);
 
         assertThat(player.isAlive()).isEqualTo(expectedResult);
     }
@@ -36,11 +39,7 @@ class BridgeGameTest {
     @ParameterizedTest(name = "다리건너기 성공 여부 테스트 [{index}] : 성공여부 - {1}")
     @CsvSource(value = {"UDDUDDUD,true", "UDDUD,false"})
     void isWinTest(String movingPath, boolean expectedResult) {
-
-        for (String movingDirection : movingPath.split("")) {
-            Tile targetTile = Tile.findByDirectionSign(movingDirection);
-            bridgeGame.move(player, targetTile);
-        }
+        movePlayerFromDirectionString(movingPath);
 
         assertThat(bridgeGame.isWin(player)).isEqualTo(expectedResult);
     }
@@ -50,10 +49,7 @@ class BridgeGameTest {
     void retryTest() {
         String movingPath = "UDDUDDUU";
 
-        for (String movingDirection : movingPath.split("")) {
-            Tile targetTile = Tile.findByDirectionSign(movingDirection);
-            bridgeGame.move(player, targetTile);
-        }
+        movePlayerFromDirectionString(movingPath);
         bridgeGame.retry(player);
 
         final int initialPosition = -1;
