@@ -32,7 +32,7 @@ public class BridgeGame {
     }
 
     private void isValidDirection(String inputDirection) throws IllegalArgumentException {
-        if (!inputDirection.equals(Constant.UP) && !inputDirection.equals(Constant.DOWN)) {
+        if (!Direction.isEqualToUp(inputDirection) && !Direction.isEqualToDown(inputDirection)) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
                     + ExceptionMessage.INVALID_DIRECTION);
         }

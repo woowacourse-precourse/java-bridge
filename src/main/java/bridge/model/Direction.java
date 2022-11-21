@@ -12,8 +12,14 @@ public enum Direction {
         this.number = number;
     }
 
-    public static boolean isEqual(int number, Direction direction) {
-        return number == direction.number;
+    public static boolean isEqualToDown(String input) {
+        return DOWN.firstLetter
+                .equals(input);
+    }
+
+    public static boolean isEqualToUp(String input) {
+        return UP.firstLetter
+                .equals(input);
     }
 
     public static String getFirstLetterByNumber(int number) {
@@ -24,4 +30,9 @@ public enum Direction {
         }
         return null;
     }
+
+    public static String getFirstLetterByName(Direction direction) {
+        return direction.firstLetter;
+    }
+
 }

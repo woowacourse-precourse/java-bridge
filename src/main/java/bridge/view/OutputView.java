@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.Direction;
 import bridge.model.Record;
 import bridge.util.Constant;
 import bridge.util.GuideMessage;
@@ -61,8 +62,9 @@ public class OutputView {
     }
 
     private void printUpperBlock(Record record, int index, List<String> bridge) {
-        String contentToPrint = getContent(compareToBridge(bridge,index, Constant.UP),
-                compareToBoard(record, index, Constant.UP));
+        String direction = Direction.getFirstLetterByName(Direction.UP);
+        String contentToPrint = getContent(Direction.isEqualToUp(bridge.get(index)),
+                compareToBoard(record, index, direction));
         printChoiceResult(contentToPrint);
         if (index < record.getBoardSize() - 1) {
             printMiddleOfBridge();
@@ -79,11 +81,6 @@ public class OutputView {
         return Constant.EMPTY;
     }
 
-    private boolean compareToBridge(List<String> bridge, int index, String direction) {
-        return bridge.get(index)
-                .equals(direction);
-    }
-
     private boolean compareToBoard(Record record, int index, String direction) {
         return record.equalsToBoard(index, direction);
     }
@@ -97,8 +94,9 @@ public class OutputView {
     }
 
     private void printLowerBlock(Record record, int index, List<String> bridge) {
-        String contentToPrint = getContent(compareToBridge(bridge,index, Constant.DOWN),
-                compareToBoard(record, index, Constant.DOWN));
+        String direction = Direction.getFirstLetterByName(Direction.DOWN);
+        String contentToPrint = getContent(Direction.isEqualToDown(bridge.get(index)),
+                compareToBoard(record, index, direction));
         printChoiceResult(contentToPrint);
         if (index < record.getBoardSize() - 1) {
             printMiddleOfBridge();
