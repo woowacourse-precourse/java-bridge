@@ -2,7 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.constant.Constant;
+import bridge.domain.util.Rules;
 import bridge.domain.Direction;
 import bridge.domain.GameCommand;
 import bridge.domain.BridgeGame;
@@ -43,10 +43,10 @@ public class BridgeGameTest {
 
     static Stream<Arguments> parameterProvider() {
         return Stream.of(
-                Arguments.arguments(Direction.D, Direction.U, Constant.CROSS_FAIL),
-                Arguments.arguments(Direction.D, Direction.D, Constant.CROSS),
-                Arguments.arguments(Direction.U, Direction.U, Constant.CROSS),
-                Arguments.arguments(Direction.U, Direction.D, Constant.CROSS_FAIL)
+                Arguments.arguments(Direction.D, Direction.U, Rules.CROSS_FAIL),
+                Arguments.arguments(Direction.D, Direction.D, Rules.CROSS),
+                Arguments.arguments(Direction.U, Direction.U, Rules.CROSS),
+                Arguments.arguments(Direction.U, Direction.D, Rules.CROSS_FAIL)
         );
     }
 }

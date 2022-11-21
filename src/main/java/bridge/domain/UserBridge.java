@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.domain.constant.Constant;
+import bridge.domain.util.Rules;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,30 +23,30 @@ public class UserBridge {
 
     public List<String> moveUpBridge(Direction direction) {
         if (Direction.isUp(direction)) {
-            upBridge.add(Constant.CROSS);
+            upBridge.add(Rules.CROSS);
         }
         if (Direction.isDown(direction)) {
-            upBridge.add(Constant.CROSS_FAIL);
+            upBridge.add(Rules.CROSS_FAIL);
         }
         return upBridge;
     }
 
     public List<String> moveDownBridge(Direction direction) {
         if (Direction.isUp(direction)) {
-            downBridge.add(Constant.CROSS_FAIL);
+            downBridge.add(Rules.CROSS_FAIL);
         }
         if (Direction.isDown(direction)) {
-            downBridge.add(Constant.CROSS);
+            downBridge.add(Rules.CROSS);
         }
         return downBridge;
     }
 
     public void addBlank(Direction now) {
         if (Direction.isUp(now)) {
-            downBridge.add(Constant.BLANK);
+            downBridge.add(Rules.BLANK);
         }
         if (Direction.isDown(now)) {
-            upBridge.add(Constant.BLANK);
+            upBridge.add(Rules.BLANK);
         }
     }
 

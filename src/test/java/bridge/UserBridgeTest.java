@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.constant.Constant;
+import bridge.domain.util.Rules;
 import bridge.domain.Direction;
 import bridge.domain.UserBridge;
 import org.junit.jupiter.api.Test;
@@ -13,18 +13,18 @@ public class UserBridgeTest {
     @Test
     void 위칸_이동_테스트() {
         userBridge.moveUpBridge(Direction.U);
-        assertThat(userBridge.getUpBridge().contains(Constant.CROSS)).isTrue();
+        assertThat(userBridge.getUpBridge().contains(Rules.CROSS)).isTrue();
 
         userBridge.moveUpBridge(Direction.D);
-        assertThat(userBridge.getUpBridge().contains(Constant.CROSS_FAIL)).isTrue();
+        assertThat(userBridge.getUpBridge().contains(Rules.CROSS_FAIL)).isTrue();
     }
 
     @Test
     void 아래칸_이동_테스트() {
         userBridge.moveDownBridge(Direction.U);
-        assertThat(userBridge.getDownBridge().contains(Constant.CROSS_FAIL)).isTrue();
+        assertThat(userBridge.getDownBridge().contains(Rules.CROSS_FAIL)).isTrue();
 
         userBridge.moveDownBridge(Direction.D);
-        assertThat(userBridge.getDownBridge().contains(Constant.CROSS)).isTrue();
+        assertThat(userBridge.getDownBridge().contains(Rules.CROSS)).isTrue();
     }
 }

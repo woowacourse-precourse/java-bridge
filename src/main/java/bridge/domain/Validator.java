@@ -1,4 +1,4 @@
-package bridge.domain.util;
+package bridge.domain;
 
 import bridge.domain.Direction;
 import bridge.domain.GameCommand;

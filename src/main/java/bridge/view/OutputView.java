@@ -1,6 +1,6 @@
 package bridge.view;
 
-import static bridge.view.Message.*;
+import static bridge.domain.util.Message.*;
 
 import bridge.domain.UserBridge;
 import bridge.service.BridgeGameService;
