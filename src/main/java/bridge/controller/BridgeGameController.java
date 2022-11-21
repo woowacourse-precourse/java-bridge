@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.InputValidator;
+import bridge.model.constant.MoveDirection;
 import bridge.model.constant.RetryIntention;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -42,7 +43,7 @@ public class BridgeGameController {
 
     public void processOneGame() {
         do {
-            bridgeGame.move(getMoving());
+            bridgeGame.move(getMoveDirection());
             outputView.printMap(bridgeGame.getSimpleGameResult());
         } while (bridgeGame.inProcess());
     }
@@ -63,14 +64,15 @@ public class BridgeGameController {
         }
     }
 
-    private String getMoving() {
+    private MoveDirection getMoveDirection() {
         try {
-            String moving = inputView.readMoving();
-            validator.validateMoveChoice(moving);
-            return moving;
+            String directionString = inputView.readMoving();
+            validator.validateMoveChoice(directionString);
+            return MoveDirection.getMatchDirection(directionString);
+
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return getMoving();
+            return getMoveDirection();
         }
     }
 

@@ -8,7 +8,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.GameResult;
-import bridge.model.constant.MoveChoice;
+import bridge.model.constant.MoveDirection;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,8 @@ import org.junit.jupiter.api.Test;
 public class BridgeGameTest extends NsTest {
 
     private final int SIZE = 3;
-    private final String UP = MoveChoice.UP.getMovingType();
-    private final String DOWN = MoveChoice.DOWN.getMovingType();
+    private final String UP = MoveDirection.UP.getDirectionString();
+    private final String DOWN = MoveDirection.DOWN.getDirectionString();
 
     private BridgeGame bridgeGame;
 
@@ -44,7 +44,7 @@ public class BridgeGameTest extends NsTest {
             GameResult gameResult = bridgeGame.getSimpleGameResult();
             assertThatThrownBy(() -> gameResult.tryCount()).isInstanceOf(NoSuchElementException.class);
             assertThat(gameResult.succeed()).isEqualTo(false);
-            List<MoveChoice> dummy = new ArrayList<>();
+            List<MoveDirection> dummy = new ArrayList<>();
             assertThat(gameResult.getMoveChoices()).isEqualTo(dummy);
         }
 
@@ -54,7 +54,7 @@ public class BridgeGameTest extends NsTest {
             GameResult gameResult = bridgeGame.getGameResult();
             assertThat(gameResult.tryCount()).isEqualTo(1);
             assertThat(gameResult.succeed()).isEqualTo(false);
-            List<MoveChoice> dummy = new ArrayList<>();
+            List<MoveDirection> dummy = new ArrayList<>();
             assertThat(gameResult.getMoveChoices()).isEqualTo(dummy);
         }
     }
@@ -66,7 +66,7 @@ public class BridgeGameTest extends NsTest {
         @Test
         @DisplayName("시도 횟수는 1증가하고, 이동 기록은 초기화된다.")
         void increaseTryCountAndResetMoveHistory() {
-            bridgeGame.move(UP);
+            bridgeGame.move(MoveDirection.UP);
             bridgeGame.retry();
             GameResult gameResult = bridgeGame.getGameResult();
             assertThat(gameResult.tryCount()).isEqualTo(2);

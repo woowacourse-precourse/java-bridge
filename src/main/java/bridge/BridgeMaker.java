@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.constant.MoveChoice;
+import bridge.model.constant.MoveDirection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,6 +22,6 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return Stream.generate(() -> bridgeNumberGenerator.generate()).limit(size)
-                .map((positionNumber) -> MoveChoice.getMatchChoice(positionNumber).getMovingType()).collect(Collectors.toUnmodifiableList());
+                .map((positionNumber) -> MoveDirection.getMatchDirection(positionNumber).getDirectionString()).collect(Collectors.toUnmodifiableList());
     }
 }

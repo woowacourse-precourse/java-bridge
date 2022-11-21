@@ -14,7 +14,7 @@ import static bridge.message.OutputMessage.SYMBOL_PARSER;
 import static bridge.message.OutputMessage.TOTAL_TRY_COUNT_FORMAT;
 
 import bridge.model.GameResult;
-import bridge.model.constant.MoveChoice;
+import bridge.model.constant.MoveDirection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class OutputView {
 
-    private final List<MoveChoice> displayOrder = List.of(MoveChoice.UP, MoveChoice.DOWN);
+    private final List<MoveDirection> displayOrder = List.of(MoveDirection.UP, MoveDirection.DOWN);
     private final Map<Boolean, String> gameSuccessMapper = Map.of(false, GAME_FAIL_COMMENT.getValue(), true,
             GAME_SUCCESS_COMMENT.getValue());
     private final Map<Boolean, String> moveSuccessMapper = Map.of(false, MOVE_FAIL_SYMBOL.getValue(), true,
@@ -41,18 +41,18 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(GameResult gameResult) {
-        for(MoveChoice moveChoice : displayOrder){
-            System.out.println(getFormattedRow(moveChoice, gameResult.getMoveChoices(),gameResult.succeed()));
+        for(MoveDirection moveDirection : displayOrder){
+            System.out.println(getFormattedRow(moveDirection, gameResult.getMoveChoices(),gameResult.succeed()));
         }
         System.out.println();
     }
 
-    private String getFormattedRow(MoveChoice userMoveChoice, List<MoveChoice> moveChoices, boolean succeed) {
+    private String getFormattedRow(MoveDirection userMoveDirection, List<MoveDirection> moveDirections, boolean succeed) {
         List<String> formattedRow = new ArrayList<>();
 
-        for(MoveChoice choice : moveChoices){
-            if(userMoveChoice == choice){
-                formattedRow.add(moveSuccessMapper.get(succeed || formattedRow.size() != moveChoices.size() - 1));
+        for(MoveDirection choice : moveDirections){
+            if(userMoveDirection == choice){
+                formattedRow.add(moveSuccessMapper.get(succeed || formattedRow.size() != moveDirections.size() - 1));
                 continue;
             }
             formattedRow.add(BLANK_SYMBOL.getValue());

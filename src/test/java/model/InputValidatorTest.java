@@ -4,7 +4,7 @@ import static bridge.model.BridgeGame.MAXIMUM_BRIDGE_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.model.InputValidator;
-import bridge.model.constant.MoveChoice;
+import bridge.model.constant.MoveDirection;
 import bridge.model.constant.RetryIntention;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -39,13 +39,13 @@ public class InputValidatorTest {
 
     @Nested
     @DisplayName("validateMoveChoice 메서드는 이동 방향을 입력받아")
-    class describe_validateMoveChoice {
+    class describe_validateMoveDirection {
 
         @Test
         @DisplayName("알맞은 입력인 경우 아무것도 하지 않는다.")
         void normalTest() {
-            inputValidator.validateMoveChoice(MoveChoice.UP.getMovingType());
-            inputValidator.validateMoveChoice(MoveChoice.DOWN.getMovingType());
+            inputValidator.validateMoveChoice(MoveDirection.UP.getDirectionString());
+            inputValidator.validateMoveChoice(MoveDirection.DOWN.getDirectionString());
         }
 
         @Test
