@@ -49,7 +49,8 @@ public class Application {
 
             if (retry == false) {
                 System.out.println("최종 게임 결과");
-                OutputView.printResult(upperBridge, lowerBridge, bridgeSize, movingIndex);
+                OutputView.printResult(upperBridge, bridgeSize, movingIndex);
+                OutputView.printResult(lowerBridge, bridgeSize, movingIndex);
                 System.out.println();
             }
 

@@ -13,7 +13,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<String> printBridge, int n, int i) {
-
         for (int j = 0; j < printBridge.size(); j++) {
             if (j == 0) {
                 System.out.print("[ " + printBridge.get(j) + " ");
@@ -30,10 +29,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> upperBridge, List<String> lowerBridge, int n, int i) {
-        printMap(upperBridge, n, i);
-        printMap(lowerBridge, n, i);
-
+    public static void printResult(List<String> Bridge, int n, int i) {
+        printMap(Bridge, n, i);
     }
 
     public static String isGameSuccess(boolean checkSuccess) {
