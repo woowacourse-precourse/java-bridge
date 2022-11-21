@@ -1,6 +1,7 @@
 package bridge.model.validation;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public enum Move {
     MOVE_UP("U", 1),
@@ -22,8 +23,8 @@ public enum Move {
         return moveValue;
     }
 
-    public boolean isEquals(int randomValue, Move move){
-        return move.getMoveValue() == randomValue;
+    public boolean isEquals(String randomKey, Move move){
+        return Objects.equals(move.getMoveKey(), randomKey);
     }
 
     // 사용자로부터 입력
