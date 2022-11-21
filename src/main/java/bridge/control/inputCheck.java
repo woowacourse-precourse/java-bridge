@@ -1,18 +1,19 @@
 package bridge.control;
 
-import bridge.Application;
+import org.mockito.internal.matchers.Null;
 
 public class inputCheck {
   private int change;
 
-  public boolean bridge_word_check(String input_size){
+  public int bridge_word_check(String input_size){
     if(!input_size.chars().allMatch(Character::isDigit)){
       System.out.println("[ERROR] 숫자를 입력해주세요.");
-      return false;
+      return 0;
     }
-    return true;
+    bridge_size_check(input_size);
+    return Integer.parseInt(input_size);
   }
-  public void bridge_size_check(String input_size){
+  private void bridge_size_check(String input_size){
     change = Integer.parseInt(input_size);
     if(change < 3 || change > 20){
       throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해주세요.");
