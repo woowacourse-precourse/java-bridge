@@ -1,14 +1,16 @@
-package bridge;
+package bridge.constant;
 
-public enum KeyBoardEvent {
+public enum InputKeyConstant {
 
     DOWN(0, "D"),
-    UP(1, "U");
+    UP(1, "U"),
+    RETRY(-1, "R"),
+    QUIT(-1, "Q");
 
     private final int code;
     private final String firstLetter;
 
-    KeyBoardEvent(int code, String firstLetter) {
+    InputKeyConstant(int code, String firstLetter) {
         this.code = code;
         this.firstLetter = firstLetter;
     }

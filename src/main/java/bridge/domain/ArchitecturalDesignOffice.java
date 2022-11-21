@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.List;
 
@@ -19,8 +19,17 @@ public final class ArchitecturalDesignOffice {
     }
 
     public CompareResult compare(String readDirection, int bridgeLocation) {
-        return new CompareResult(readDirection, bridgeLocation,
-                this.storedBridgeBlueprint.get(bridgeLocation).equals(readDirection));
+        boolean bridgeEndPoint = isBridgeEndPoint(bridgeLocation);
+
+        return new CompareResult(readDirection, isAppropriate(readDirection, bridgeLocation), bridgeEndPoint);
+    }
+
+    private boolean isAppropriate(String readDirection, int bridgeLocation) {
+        return this.storedBridgeBlueprint.get(bridgeLocation).equals(readDirection);
+    }
+
+    private boolean isBridgeEndPoint(int bridgeLocation) {
+        return this.storedBridgeBlueprint.size() - 1 == bridgeLocation;
     }
 
 }

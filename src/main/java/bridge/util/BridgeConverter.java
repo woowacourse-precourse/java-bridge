@@ -1,7 +1,8 @@
-package bridge;
+package bridge.util;
 
 import static bridge.exception.ExceptionHandler.NO_SUCH_ELEMENT;
 
+import bridge.constant.InputKeyConstant;
 import java.util.Arrays;
 
 public class BridgeConverter {
@@ -11,7 +12,7 @@ public class BridgeConverter {
 
     public static String covertToBridgeNumber(int bridgeNumber) {
         try {
-            return Arrays.stream(KeyBoardEvent.values())
+            return Arrays.stream(InputKeyConstant.values())
                          .filter(i -> i.getCode() == bridgeNumber)
                          .findAny()
                          .orElseThrow(ClassNotFoundException::new)

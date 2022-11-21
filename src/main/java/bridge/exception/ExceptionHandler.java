@@ -1,6 +1,7 @@
 package bridge.exception;
 
 import static bridge.constant.ErrorConstant.INPUT_DIRECTION_EXCEPTION;
+import static bridge.constant.ErrorConstant.INPUT_GAME_COMMAND_EXCEPTION;
 import static bridge.constant.ErrorConstant.INPUT_NUMBER_EXCEPTION;
 import static bridge.constant.ErrorConstant.NOT_FOUND_CODE;
 
@@ -25,6 +26,13 @@ public enum ExceptionHandler {
         @Override
         public void error() {
             throw new IllegalArgumentException(INPUT_DIRECTION_EXCEPTION.getMessage());
+        }
+    },
+
+    INPUT_GAME_COMMAND {
+        @Override
+        public void error() {
+            throw new IllegalArgumentException(INPUT_GAME_COMMAND_EXCEPTION.getMessage());
         }
     };
 

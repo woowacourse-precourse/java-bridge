@@ -10,6 +10,7 @@ public enum BridgeMaterialConstant {
     SECOND_TYPE_BLANK("|   ");
 
     final String bridgeMaterial;
+
     BridgeMaterialConstant(String bridgeMaterial) {
         this.bridgeMaterial = bridgeMaterial;
     }
