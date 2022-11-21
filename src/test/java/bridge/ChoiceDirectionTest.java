@@ -39,8 +39,8 @@ public class ChoiceDirectionTest {
 
     @DisplayName("compare 메소드 테스트(Input : String)")
     @ParameterizedTest
-    @CsvSource(value = { "U:U:true", "U:D:false", "D:D:true", "D:U:false" }, delimiter = ':')
-    void compareTest(String choice, String directionString, boolean result){
+    @CsvSource(value = {"U:U:true", "U:D:false", "D:D:true", "D:U:false"}, delimiter = ':')
+    void compareTest(String choice, String directionString, boolean result) {
         ChoiceDirection choiceDirection = new ChoiceDirection(choice);
         boolean actual = choiceDirection.compare(directionString);
         assertThat(actual).isEqualTo(result);
@@ -49,13 +49,13 @@ public class ChoiceDirectionTest {
     @DisplayName("compare 메소드 테스트(Input : Direction)")
     @ParameterizedTest
     @MethodSource("generateData")
-    void compareTest(String choice, Direction direction, boolean result){
+    void compareTest(String choice, Direction direction, boolean result) {
         ChoiceDirection choiceDirection = new ChoiceDirection(choice);
         boolean actual = choiceDirection.compare(direction);
         assertThat(actual).isEqualTo(result);
     }
 
-    static Stream<Arguments> generateData(){
+    static Stream<Arguments> generateData() {
         return Stream.of(
                 Arguments.of("U", Direction.UP, true),
                 Arguments.of("U", Direction.DOWN, false),
