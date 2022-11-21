@@ -45,4 +45,7 @@ public class OutputView {
     public static void printRetry() {
         System.out.println(OutputConstants.RETRY_REQUEST);
     }
+    public static void printError(IllegalArgumentException e){
+        System.out.println(e);
+    }
 }
