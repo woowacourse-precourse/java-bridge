@@ -1,6 +1,4 @@
-package bridge;
-
-import bridge.domain.Bridge;
+package bridge.domain;
 
 public class GameStatus {
     private int tryCount = 1;

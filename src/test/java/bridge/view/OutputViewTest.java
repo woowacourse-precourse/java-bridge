@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.GameStatus;
+import bridge.domain.GameStatus;
 import bridge.domain.Bridge;
 import bridge.domain.Result;
 import org.junit.jupiter.api.BeforeEach;

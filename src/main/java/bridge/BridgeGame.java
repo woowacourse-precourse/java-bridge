@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.domain.GameStatus;
 import bridge.domain.Result;
 import bridge.util.BridgeComparator;
 import bridge.view.InputView;
@@ -79,7 +80,6 @@ public class BridgeGame {
         gameStatus.addTryCount();
         return playOneTry(gameStatus);
     }
-
 
     private int requestBridgeSize() {
         try {

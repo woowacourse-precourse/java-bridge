@@ -1,6 +1,6 @@
 package bridge.view.util;
 
-import bridge.MovementType;
+import bridge.domain.MovementType;
 import bridge.domain.Bridge;
 import bridge.domain.Result;
 
