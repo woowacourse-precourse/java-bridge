@@ -1,12 +1,10 @@
 package bridge.domain.game;
 
+import bridge.domain.GameStatus;
 import bridge.domain.bridge.Bridge;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static bridge.domain.game.GameStatus.FAILED;
-import static bridge.domain.game.GameStatus.SUCCESS;
+import static bridge.domain.GameStatus.FAILED;
+import static bridge.domain.GameStatus.SUCCESS;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

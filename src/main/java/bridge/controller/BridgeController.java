@@ -2,11 +2,11 @@ package bridge.controller;
 
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.BridgeGameGenerator;
-import bridge.domain.game.GameStatus;
+import bridge.domain.GameStatus;
 import bridge.service.BridgeGameService;
 import bridge.view.OutputView;
 
-import static bridge.domain.game.GameStatus.FAILED;
+import static bridge.domain.GameStatus.FAILED;
 import static bridge.support.ErrorMessage.UNEXPECTED_EXCEPTION;
 
 public class BridgeController {

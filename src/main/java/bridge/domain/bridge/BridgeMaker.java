@@ -1,5 +1,7 @@
 package bridge.domain.bridge;
 
+import bridge.domain.Move;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

@@ -2,7 +2,6 @@ package bridge.domain;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeMaker;
-import bridge.domain.bridge.Move;
 import bridge.support.FakeBridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static bridge.domain.bridge.Move.DOWN;
-import static bridge.domain.bridge.Move.UP;
+import static bridge.domain.Move.DOWN;
+import static bridge.domain.Move.UP;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 

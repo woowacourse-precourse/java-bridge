@@ -1,10 +1,9 @@
 package bridge.domain;
 
-import bridge.domain.bridge.Move;
 import org.junit.jupiter.api.Test;
 
-import static bridge.domain.bridge.Move.DOWN;
-import static bridge.domain.bridge.Move.UP;
+import static bridge.domain.Move.DOWN;
+import static bridge.domain.Move.UP;
 import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

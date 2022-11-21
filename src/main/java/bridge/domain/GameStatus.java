@@ -1,4 +1,4 @@
-package bridge.domain.game;
+package bridge.domain;
 
 public enum GameStatus {
     FAILED("실패"),

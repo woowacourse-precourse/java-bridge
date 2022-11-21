@@ -1,15 +1,13 @@
 package bridge.service;
 
 import bridge.domain.Command;
-import bridge.domain.bridge.Move;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameProgress;
-import bridge.domain.game.GameStatus;
+import bridge.domain.GameStatus;
 import bridge.dto.MapDto;
 import bridge.dto.ResultDto;
 
 import static bridge.domain.Command.RETRY;
-import static bridge.support.MapConst.MAP_FORMAT;
 
 public class BridgeGameService {
 

@@ -1,6 +1,6 @@
 package bridge.dto;
 
-import bridge.domain.game.GameStatus;
+import bridge.domain.GameStatus;
 
 public class ResultDto {
 
