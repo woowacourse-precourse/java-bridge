@@ -43,6 +43,7 @@ public class OutputView {
         print_string = print_final(print_string, instruction, bridge.get(index_number));
         System.out.println(print_string[0]);
         System.out.println(print_string[1]);
+        System.out.println();
     }
 
     /**
