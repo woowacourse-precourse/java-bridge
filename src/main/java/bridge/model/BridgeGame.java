@@ -9,6 +9,10 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private static final int INIT_LOCATION=-1;
+    private static final int INIT_RETRY_COUNT=1;
+    private static final int COUNT_NUM=1;
     private final List<String> bridge;
     private final BridgeComparator bridgeComparator;
     private BridgeMap bridgeMap;
@@ -16,8 +20,8 @@ public class BridgeGame {
     private int retryCount;
 
     public BridgeGame(int size) {
-        this.location = -1;
-        this.retryCount = 1;
+        this.location = INIT_LOCATION;
+        this.retryCount = INIT_RETRY_COUNT;
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
         bridgeComparator = new BridgeComparator();
@@ -58,7 +62,7 @@ public class BridgeGame {
     }
 
     private void countLocation() {
-        location += 1;
+        location += COUNT_NUM;
     }
 
 
@@ -81,7 +85,7 @@ public class BridgeGame {
     }
 
     private void initLocation() {
-        location = -1;
+        location = INIT_LOCATION;
     }
 
     public boolean isClosed() {
@@ -89,7 +93,7 @@ public class BridgeGame {
     }
 
     public void countRetry() {
-        retryCount += 1;
+        retryCount += COUNT_NUM;
     }
 
 }

@@ -24,10 +24,10 @@ public class BridgeMap {
     }
 
     public void makeBridgeMap(int location, String moving, String expression) {
-        if (moving.equals("U")) {
+        if (moving.equals(Moving.UP.getDescription())) {
             makeBridgeUpMap(location, expression);
         }
-        if (moving.equals("D")) {
+        if (moving.equals(Moving.DOWN.getDescription())) {
             makeBridgeDownMap(location, expression);
         }
     }

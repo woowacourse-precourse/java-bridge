@@ -13,7 +13,7 @@ public class BridgeMoving {
         if (isMovingFormatCorrect(moving)) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 이동할 칸은 U,D 이어야만 합니다.");
+        throw new IllegalArgumentException(ExceptionMessage.MOVING_NON_FORMAT_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isMovingFormatCorrect(String moving) {

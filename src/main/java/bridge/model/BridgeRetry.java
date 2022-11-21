@@ -9,14 +9,14 @@ public class BridgeRetry {
         this.retry = retry;
     }
     public boolean isRetry(){
-        return retry.equals("R");
+        return retry.equals(Retry.RETRY.getDescription());
     }
 
     public void validateRetry(String retry) {
         if (isRetryFormatCorrect(retry)) {
             return;
         }
-        throw new IllegalArgumentException("ERROR 재시도 문자는 R,Q 이어야만 가능합니다.");
+        throw new IllegalArgumentException(ExceptionMessage.RETRY_NON_FORMAT_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isRetryFormatCorrect(String retry) {

@@ -5,6 +5,9 @@ import java.util.regex.Pattern;
 
 public class BridgeLength {
 
+    private static final String LENGTH_FORMAT = "^[1-2]?[1-9]$";
+    private static final int MIN_LENGTH=3;
+    private static final int MAX_LENGTH=20;
     private final int length;
 
     public BridgeLength(String length) {
@@ -25,11 +28,11 @@ public class BridgeLength {
         if (isLengthNumberCorrect(length)) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
+        throw new IllegalArgumentException(ExceptionMessage.LENGTH_NON_NUMBER_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isLengthNumberCorrect(String length) {
-        String regex = "^[1-2]?[1-9]$";
+        String regex = LENGTH_FORMAT;
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(length);
         return matcher.matches();
@@ -39,11 +42,11 @@ public class BridgeLength {
         if (isLengthRangeCorrect(length)) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        throw new IllegalArgumentException(ExceptionMessage.LENGTH_OVER_RANGE_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isLengthRangeCorrect(String length) {
         int lengthNumber = Integer.parseInt(length);
-        return lengthNumber >= 3 && lengthNumber <= 20;
+        return lengthNumber >= MIN_LENGTH && lengthNumber <= MAX_LENGTH;
     }
 }

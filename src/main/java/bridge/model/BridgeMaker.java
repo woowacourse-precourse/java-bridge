@@ -33,13 +33,13 @@ public class BridgeMaker {
 
     public void makeDown(int generatedNumber, List<String> bridge) {
         if (!isNumberOne(generatedNumber)) {
-            bridge.add("D");
+            bridge.add(Moving.DOWN.getDescription());
         }
     }
 
     public void makeUp(int generatedNumber, List<String> bridge) {
         if (isNumberOne(generatedNumber)) {
-            bridge.add("U");
+            bridge.add(Moving.UP.getDescription());
         }
     }
 

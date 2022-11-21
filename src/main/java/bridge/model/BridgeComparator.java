@@ -4,6 +4,9 @@ import java.util.List;
 
 public class BridgeComparator {
 
+    private static final String BRIDGE_CORRECT = "O";
+    private static final String BRIDGE_FAIL="X";
+
     public String compareBridge(List<String> bridge, String moving, int location) {
         if (bridge.get(location).equals(moving)) {
             return "O";
