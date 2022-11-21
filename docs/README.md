@@ -47,14 +47,18 @@
     - BridgeGame (Class)
         게임 진행을 위해 필요한 메서드를 가진 클래스
 
+* playStart()
+  - 처음 시작할때 사용하는 인수없는 play 메서드
+* play()
+  - Bridge 와 시도횟수 인수로 받아 모든 진행 메서드
 * move()
-    - 사용자가 칸을 이동할 때 사용하는 메서드
+  - 사용자가 칸을 이동할 때 사용하는 메서드
 * retry()
-    - 게임의 최종 결과를 정해진 형식에 맞춰 출력
-* checkAbleToMove()
-    - 이동 가능한지 확인
-* checkEnd()
-    - 끝인지 확인
+    - 재시도할지 종료할지 선택 후 해당 command 실행
+* draw()
+    - Bridge 의 drawResult 실행 메서드 
+* checkMoveAble()
+  - 이동 가능한지 확인
 
 
 <br/>
@@ -62,43 +66,43 @@
     - Bridge (Class)
         BridgeGame 등에 사용할 모델 클래스 
 
-* drawResult
+* drawResult()
   - 최종 게임 결과 OutputView.printResult 하기
-* move
+* move()
   - 이동 입력 후 moveStates 에 추가 후 그리기 
-* compareStates
+* compareStates()
   - 해당 길이의 다리 상태 비교
-* checkSuccess
+* checkSuccess()
   - 올바른 다리 상태와 비교 후 성공 여부 반환
-* checkRetru
+* checkRetry()
   - 재시도할지 종료할지 선택 후 재시도 여부 반환
-* addMoveState
+* addMoveState()
   - List<String> moveStates 에 값 추가
-* removeLastState
+* removeLastState()
   - List<String> moveStates 에 값 제거
-* getMapToString
+* getMapToString()
   - 다리 윗부분과 아랫부분의 map 합쳐서 String 값으로 반환
-* getSize
+* getSize()
   - List<String> moveStates 의 크기 반환
-* getLastIndex
+* getLastIndex()
   - List<String> moveStates 의 마지막 index 반환
-* getMoveStates
+* getMoveStates()
   - List<String> moveStates 반환
-* getMoveState
+* getMoveState()
   - 해당 index 값 state 반환
-* getUpMap
+* getUpMap()
   - 다리 윗부분 Bridge map 형식으로 String 값 반환
-* getDownMap
+* getDownMap()
   - 다리 아랫부분 Bridge map 형식으로 String 값 반환
-* getUpMoves
+* getUpMoves()
   - 다리 윗부분, 정답인 다리와 states 비교 후 List<String> 값으로 반환
-* getDownMoves
+* getDownMoves()
   - 다리 아랫부분, 정답인 다리와 states 비교 후 List<String> 값으로 반환
-* getUpMove
+* getUpMove()
   - 다리 윗부분, 정답인 다리와 해당 index 의 state 비교 후 List<String> 값 갱신 후 반환
-* getDownMove
+* getDownMove()
   - 다리 아랫부분, 정답인 다리와 해당 index 의 state 비교 후 List<String> 값 갱신 후 반환
-* updateMove
+* updateMove()
   - move 와 divisionOrNot 추가 후 List<String> 값 갱신 후 반환
 
 
@@ -108,7 +112,9 @@
         다리 만들기 위해 필요한 메서드를 가진 클래스
 
 * makeBridge()
-    - 다리 길이만큼 다리 만드는 메서드
+  - 다리 길이만큼 다리 만드는 메서드
+* makeState()
+  - 0,1 입력값을 D,U 로 전환해주는 메서드
 
 
 <br/>
@@ -116,10 +122,23 @@
     - BridgeValue (Class)
         다리 건너기 처리에 필요한 enum 모음 클래스 
 
+* getTryCounts()
+  - 시도 횟수 반환
+* getDivisionOrNot()
+  - size 와 index 의 따라 칸막이와 빈 값 반환
+* getMoveState()
+  - computerState 와 비교 후 O or X 반환
+* checkMoveState()
+  - state 가 up 인지 아닌지 비교 메서드
+* getDivision() , getNothing() , getSpace() , getComma
+* getMoveAble() , getMoveUnable() , getUp()
+  - 함수 10줄 이내의 코드 작성을 위한 get 함수
+* stringToInt
+  - String 값을 int 형으로 반환
 * Information
-    - 조건 상수 Enum
+  - 조건 상수 Enum
 * Drawing
-    - 다리 그리기에 필요한 상수 Enum
+  - 다리 그리기에 필요한 상수 Enum
 
 <br/>
 

@@ -15,13 +15,13 @@ public class BridgeGame {
 
     public void playStart() {
         int tryCounts = BridgeValue.getTryCounts();
-        Bridge nextBridge = move(new Bridge(new ArrayList<>()));
+        Bridge userBridge = move(new Bridge(new ArrayList<>()));
 
-        if (!checkMoveAble(nextBridge)) {
-            retry(nextBridge, tryCounts);
+        if (!checkMoveAble(userBridge)) {
+            retry(userBridge, tryCounts);
             return;
         }
-        play(nextBridge, tryCounts);
+        play(userBridge, tryCounts);
     }
 
     public void play(Bridge userBridge, int tryCounts) {
@@ -54,7 +54,7 @@ public class BridgeGame {
      */
     private void retry(Bridge userBridge, int tryCounts) {
 
-        boolean isRetry = checkRetry(userBridge);
+        boolean isRetry = userBridge.checkRetry();
 
         if (isRetry) {
             userBridge.removeLastState();
@@ -72,9 +72,5 @@ public class BridgeGame {
         int lastIndex = userBridge.getLastIndex();
         boolean checkMoveAble = computerBridge.compareStates(lastIndex, userBridge);
         return checkMoveAble;
-    }
-
-    private boolean checkRetry(Bridge userBridge) {
-        return userBridge.checkRetry();
     }
 }

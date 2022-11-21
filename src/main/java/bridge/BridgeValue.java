@@ -2,13 +2,7 @@ package bridge;
 
 public class BridgeValue {
 
-    public static final int BRIDGE_LINE = 2;
-
     public static int tryCounts = 1;
-
-    public void addTryCounts() {
-        tryCounts++;
-    }
 
     public static int getTryCounts() {
         return tryCounts;
@@ -21,8 +15,8 @@ public class BridgeValue {
         }
         return getDivision();
     }
-    public static String getMoveState(String rightState, String userState) {
-        if (rightState.equals(userState)) {
+    public static String getMoveState(String computerState, String userState) {
+        if (computerState.equals(userState)) {
             return getMoveAble();
         }
         return getMoveUnable();
@@ -69,12 +63,6 @@ public class BridgeValue {
         return Drawing
                 .MOVE_UNABLE_VALUE
                 .getStructure();
-    }
-
-    public static String getDown() {
-        return Information
-                .DOWN
-                .getValue();
     }
 
     public static String getUp() {
