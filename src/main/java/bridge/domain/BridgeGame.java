@@ -36,6 +36,14 @@ public class BridgeGame {
         return false;
     }
 
+    public void setMovingResult(String crossDirection, String movingInput) {
+        if (checkCanMoving(crossDirection, movingInput)) {
+            bridge.setMovingBridge(movingInput, CAN_MOVING);
+            return;
+        }
+        bridge.setMovingBridge(movingInput, CAN_NOT_MOVING);
+    }
+
     private boolean checkCanMoving(String crossDirection, String movingInput) {
         return crossDirection.equals(movingInput);
     }
