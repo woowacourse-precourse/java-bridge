@@ -1,6 +1,6 @@
 package bridge.validate;
 
-import bridge.view.GameCommand;
+import bridge.input.GameCommand;
 import bridge.generator.AreaStatus;
 import java.util.List;
 

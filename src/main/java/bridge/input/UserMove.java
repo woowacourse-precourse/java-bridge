@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.input;
 
 public enum UserMove {
     UP("U"),

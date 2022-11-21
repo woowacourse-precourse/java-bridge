@@ -1,8 +1,8 @@
 package bridge.game;
 
-import bridge.view.GameCommand;
+import bridge.input.GameCommand;
 import bridge.view.TotalView;
-import bridge.view.UserMove;
+import bridge.input.UserMove;
 
 public class BridgeGameMachine {
     private final TotalView totalView = new TotalView();

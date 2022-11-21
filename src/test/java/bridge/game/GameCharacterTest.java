@@ -2,7 +2,7 @@ package bridge.game;
 
 import static org.assertj.core.api.Assertions.*;
 
-import bridge.view.UserMove;
+import bridge.input.UserMove;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

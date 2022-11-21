@@ -1,6 +1,6 @@
 package bridge.game;
 
-import bridge.view.UserMove;
+import bridge.input.UserMove;
 
 public class GameCharacter {
     private final int MOVE = 1;

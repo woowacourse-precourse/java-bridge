@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.input.GameCommand;
+import bridge.input.UserMove;
 import bridge.validate.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
