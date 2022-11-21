@@ -18,7 +18,7 @@ class BridgeMapTest {
 		List<String> bridgeMocked = List.of("U", "U");
 		CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeMocked);
 
-		BridgeMap bridgeMap = BridgeMap.depictedBy(crossingDecision, movementCommand);
+		BridgeMap bridgeMap = BridgeMap.constructedBy(crossingDecision, movementCommand);
 
 		List<String> actual1 = bridgeMap.getUpperBridgeDescription();
 		List<String> actual2 = bridgeMap.getUnderBridgeDescription();
@@ -39,7 +39,7 @@ class BridgeMapTest {
 		List<String> bridgeMocked = List.of("U", "U");
 		CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeMocked);
 
-		BridgeMap bridgeMap = BridgeMap.depictedBy(crossingDecision, movementCommand);
+		BridgeMap bridgeMap = BridgeMap.constructedBy(crossingDecision, movementCommand);
 
 		List<String> actual1 = bridgeMap.getUpperBridgeDescription();
 		List<String> actual2 = bridgeMap.getUnderBridgeDescription();
@@ -60,8 +60,8 @@ class BridgeMapTest {
 		List<String> bridgeMocked = List.of("U", "U");
 		CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeMocked);
 
-		BridgeMap bridgeMap1 = BridgeMap.depictedBy(crossingDecision, movementCommand); // first call
-		BridgeMap bridgeMap2 = BridgeMap.depictedBy(crossingDecision, movementCommand); // second call
+		BridgeMap bridgeMap1 = BridgeMap.constructedBy(crossingDecision, movementCommand); // first call
+		BridgeMap bridgeMap2 = BridgeMap.constructedBy(crossingDecision, movementCommand); // second call
 
 		List<String> actual1 = bridgeMap2.getUpperBridgeDescription();
 		List<String> actual2 = bridgeMap2.getUnderBridgeDescription();
@@ -82,8 +82,8 @@ class BridgeMapTest {
 		List<String> bridgeMocked = List.of("U", "U");
 		CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeMocked);
 
-		BridgeMap bridgeMap1 = BridgeMap.depictedBy(crossingDecision, movementCommand); // first call
-		BridgeMap bridgeMap2 = BridgeMap.depictedBy(crossingDecision, movementCommand); // second call
+		BridgeMap bridgeMap1 = BridgeMap.constructedBy(crossingDecision, movementCommand); // first call
+		BridgeMap bridgeMap2 = BridgeMap.constructedBy(crossingDecision, movementCommand); // second call
 
 		List<String> actual1 = bridgeMap2.getUpperBridgeDescription();
 		List<String> actual2 = bridgeMap2.getUnderBridgeDescription();
