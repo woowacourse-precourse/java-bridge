@@ -20,21 +20,22 @@ public class BridgeGameController {
         outputView.printStatements("");
         return bridgeMaker;
     }
-    public static List<String> setBridgeGame(BridgeMaker bridgeMaker) {
-        try {
+    public static List<String> tryCatchSetBridgeGame(BridgeMaker bridgeMaker){
+        try{
+            return setBridgeGame(bridgeMaker);
+        }catch (IllegalArgumentException e){
+            return tryCatchSetBridgeGame(bridgeMaker);
+        }
+    }
+    private static List<String> setBridgeGame(BridgeMaker bridgeMaker) {
             outputView.printStatements(NormalStatements.ASK_BRIDGE_LENGTH.getNormalStatement());
             int bridgeLength = new InputView().readBridgeSize();
             return crossableBridge = bridgeMaker.makeBridge(bridgeLength);
-        }catch(IllegalArgumentException e){
-            return setBridgeGame(bridgeMaker);
-        }
     }
 
     public static BridgeGame chooseToMoveOn(List<String> crossableBridge){
-        try{
             outputView.printStatements(NormalStatements.ASK_BRIDGE_TO_MOVE_ON.getNormalStatement());
-        } catch (IllegalArgumentException e){
+            inputView.readMoving();
 
-        }
     }
 }
