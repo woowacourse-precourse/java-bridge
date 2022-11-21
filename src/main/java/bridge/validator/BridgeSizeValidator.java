@@ -3,10 +3,7 @@ package bridge.validator;
 public class BridgeSizeValidator {
     public static void validate(String input) {
         validateNumber(input);
-    }
-
-    public static void validate(int size){
-        validateRange(size);
+        validateRange(Integer.parseInt(input));
     }
 
     private static void validateNumber(String input) {
