@@ -26,7 +26,9 @@ public class ValidationChecker {
      /**
      * 입력 값이 특정 문자로 이루어져 있는지 확인한다.
      */
-    public void checkInputIsSpecificString(String target, List<String> specificString){return;}
-
-
+    public void checkInputIsSpecificString(String target, List<String> specificString) throws IllegalArgumentException{
+        if(!specificString.contains(target)){
+            throw new IllegalArgumentException();
+        }
+    }
 }
