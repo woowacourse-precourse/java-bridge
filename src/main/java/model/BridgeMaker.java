@@ -1,4 +1,6 @@
-package bridge;
+package model;
+
+import bridge.BridgeNumberGenerator;
 
 import java.util.List;
 
