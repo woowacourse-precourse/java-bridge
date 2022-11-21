@@ -21,6 +21,10 @@ public class GameData {
         return passDataSet;
     }
 
+    public int getDataSetSize() {
+        return passDataSet.size();
+    }
+
     public void setGameData(String movingFloorData, String passData) {
         movingFloorDataSet.add(movingFloorData);
         passDataSet.add(passData);

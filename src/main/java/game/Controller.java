@@ -18,6 +18,7 @@ public class Controller {
             try {
                 OutputView.printMoveChoiceMessage();
                 bridgeGame.move(Invalidator.isValidMoveValue(InputView.readMoving()), bridge.get(stage));
+                OutputView.printMap(gameData.getMovingFloorDataSet(),gameData.getPassDataSet(), gameData.getDataSetSize());
             } catch (UserInputException e) {
                 e.printStackTrace();
                 stage--;
