@@ -40,10 +40,10 @@ public class OutputView {
         return "  ";
     }
     private String printUpperUserChoice(List<String> bridgeInfo, int currentPos, String userChoice) {
-        if(bridgeGame.move(bridgeInfo, userChoice, currentPos)) {
-            return "O ";
-        }
-        if(userChoice.equals("U")) {
+        if(userChoice.equals("U")){
+            if(bridgeGame.move(bridgeInfo, userChoice, currentPos)) {
+                return "O ";
+            }
             return "X ";
         }
         return "  ";
@@ -69,10 +69,10 @@ public class OutputView {
         return "  ";
     }
     private String printLowerUserChoice(List<String> bridgeInfo, int currentPos, String userChoice) {
-        if(bridgeGame.move(bridgeInfo, userChoice, currentPos)) {
-            return "O ";
-        }
-        if(userChoice.equals("D")) {
+        if(userChoice.equals("D")){
+            if(bridgeGame.move(bridgeInfo, userChoice, currentPos)) {
+                return "O ";
+            }
             return "X ";
         }
         return "  ";

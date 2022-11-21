@@ -28,7 +28,7 @@ public class InputView {
     private int checkLenSize(String input) {
         int len;
 
-        len = Integer.valueOf(input);
+        len = Integer.parseInt(input);
         if(len < 3 || len > 20){
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
@@ -52,7 +52,7 @@ public class InputView {
         if(str.length() != 1){
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 입력입니다.");
         }
-        if(!str.equals("U") || !str.equals("D")){
+        if(!str.equals("U") && !str.equals("D")){
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 입력입니다.");
         }
     }
@@ -73,7 +73,7 @@ public class InputView {
         if(str.length() != 1){
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 입력입니다.");
         }
-        if(!str.equals("R") || !str.equals("Q")) {
+        if(!str.equals("R") && !str.equals("Q")) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 입력입니다.");
         }
     }
