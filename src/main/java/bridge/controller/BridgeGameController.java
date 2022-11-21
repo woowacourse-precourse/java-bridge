@@ -6,7 +6,6 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Constant;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
 import java.util.List;
 
 public class BridgeGameController {
@@ -17,11 +16,6 @@ public class BridgeGameController {
     public void run() {
         // TODO 메서드를 분리하자 / 메서드 길이는 최대 10줄 / else 사용하지 말 것
         OutputView.printStartGame();
-        int size = InputView.readBridgeSize();
-
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        System.out.println(bridge.toString());
 
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.initMap();
@@ -42,5 +36,11 @@ public class BridgeGameController {
             result = Constant.SUCCESS;
         }
         OutputView.printResult(map, result, bridgeGame.countTotalTry());
+    }
+
+    public void makeBridge() {
+        int size = InputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(size);
     }
 }
