@@ -19,6 +19,14 @@ public class BridgeGame {
         this.status = GameStatus.SUCCESS;
     }
 
+    public GameStatus getStatus() {
+        return this.status;
+    }
+
+    public boolean isEnd() {
+        return answerMove.equals(playerMove);
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -38,14 +46,6 @@ public class BridgeGame {
     public void retry() {
         this.playerMove = new ArrayList<>();
         this.status = GameStatus.SUCCESS;
-    }
-
-    public GameStatus getStatus() {
-        return this.status;
-    }
-
-    public boolean isEnd() {
-        return answerMove.equals(playerMove);
     }
 
     public List<List<String>> getGameMap() {

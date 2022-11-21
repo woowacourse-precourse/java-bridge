@@ -51,7 +51,7 @@ public class BridgeGameController {
     }
 
     private void showBridge(List<List<String>> gameMap) {
-        outputView.printNowBridge(gameMap);
+        outputView.printMap(gameMap);
     }
 
     private void askRetry() {

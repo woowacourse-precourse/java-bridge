@@ -50,10 +50,4 @@ public class OutputView {
         System.out.printf(MESSAGE_SUCCESS, status.getDetail());
         System.out.printf(MESSAGE_COUNT, gameCount);
     }
-
-    public void printNowBridge(List<List<String>> gameMap) {
-        for (List<String> gameBridge : gameMap) {
-            System.out.println(toBridgeFormat(gameBridge));
-        }
-    }
 }
