@@ -33,7 +33,7 @@ public enum Move {
 
     private static void validate(String input) {
         checkUppercase(input);
-        checkCorretKey(input);
+        checkCorrectKey(input);
     }
 
     private static void checkUppercase(String input) {
@@ -42,10 +42,14 @@ public enum Move {
         }
     }
 
-    private static void checkCorretKey(String input){
-        if (Arrays.stream(Move.values()).noneMatch(e -> e.moveKey.equals(input))) {
+    private static void checkCorrectKey(String input){
+        if (isIncorrect(input)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private static boolean isIncorrect(String input){
+        return Arrays.stream(Move.values()).noneMatch(e -> e.moveKey.equals(input));
     }
 
 }
