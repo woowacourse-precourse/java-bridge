@@ -1,6 +1,7 @@
 package view;
 
 import dto.MoveResultResponseDto;
+import dto.PlayCountResponseDto;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -18,31 +19,31 @@ public class OutputView {
 	/**
 	 * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
 	 */
-	public void printResult(String result, boolean isSuccess, int count) {
-		printFinalResultMap(result);
-		printSuccessOrFail(isSuccess);
-		printTotalPlayCount(count);
+	public void printResult(MoveResultResponseDto moveResultResponseDto, PlayCountResponseDto playCountResponseDto) {
+		printFinalResultMap(moveResultResponseDto);
+		printSuccessOrFail(moveResultResponseDto);
+		printTotalPlayCount(playCountResponseDto);
 	}
 
-	private void printFinalResultMap(String result) {
+	private void printFinalResultMap(MoveResultResponseDto moveResultResponseDto) {
 		System.out.println(ViewConstant.FINAL_RESULT_MESSAGE);
-		System.out.println(result);
+		System.out.println(moveResultResponseDto.getMap());
 		printEmptyLine();
 	}
 
-	private void printSuccessOrFail(boolean isSuccess) {
+	private void printSuccessOrFail(MoveResultResponseDto moveResultResponseDto) {
 		System.out.print(ViewConstant.SUCCESS_OR_FAIL_MESSAGE);
-		if (isSuccess) {
+		if (moveResultResponseDto.isSuccess()) {
 			System.out.println(ViewConstant.SUCCESS);
 		}
-		if (!isSuccess) {
+		if (moveResultResponseDto.isSuccess()) {
 			System.out.println(ViewConstant.FAIL);
 		}
 	}
 
-	private void printTotalPlayCount(int count) {
+	private void printTotalPlayCount(PlayCountResponseDto playCountResponseDto) {
 		System.out.printf(ViewConstant.TOTAL_PLAY_COUNT_MESSAGE);
-		System.out.println(count);
+		System.out.println(playCountResponseDto.getPlayCount());
 	}
 
 	public void printStartMessage() {
