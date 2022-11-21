@@ -36,7 +36,7 @@ public class User {
     }
 
     public boolean isFailure() {
-        if (nowBridgeLength > 0 && !answer.get(nowBridgeLength-1).equals(userBridge.get(nowBridgeLength-1)))
+        if (getUserSize() > 0 && !answer.get(getUserSize()-1).equals(userBridge.get(getUserSize()-1)))
             return true;
         return false;
     }
@@ -50,9 +50,5 @@ public class User {
 
     public int getUserSize() {
         return nowBridgeLength;
-    }
-
-    public List<String> getUserBridge() {
-        return userBridge;
     }
 }
