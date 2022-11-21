@@ -21,6 +21,8 @@ public class BridgeGame implements BridgeGameService {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.upStep = new ArrayList<>();
+        this.downStep = new ArrayList<>();
     }
 
     @Override
@@ -31,7 +33,7 @@ public class BridgeGame implements BridgeGameService {
 
 
     @Override
-    public void retry(String command) {
+    public void retry() {
         this.upStep.clear();
         this.downStep.clear();
     }
@@ -55,7 +57,9 @@ public class BridgeGame implements BridgeGameService {
     // break 조건 2
     @Override
     public Boolean isValidLastStep(String step) {
-        return Objects.equals(step, bridge.get(bridge.size() - 1));
+        // 이동 이후 유효한지 계산
+        int index = getUpStep().size() - 1;
+        return Objects.equals(step, bridge.get(index));
     }
 
 
@@ -75,8 +79,19 @@ public class BridgeGame implements BridgeGameService {
 
 
     private boolean isMovable(String step) {
-        int index = getUpStep().size();
+        int index = countStepBeforeMoving();
         return Objects.equals(step, bridge.get(index));
+    }
+
+
+    private int countStepBeforeMoving() {
+        if (getUpStep().isEmpty()) {
+            return 0;
+        }
+        if (getUpStep().size() < bridge.size()) {
+            return getUpStep().size();
+        }
+        return getUpStep().size() - 1;
     }
 
 
@@ -89,13 +104,13 @@ public class BridgeGame implements BridgeGameService {
 
 
     private void goToUpStep(String symbol) {
-        upStep.add(symbol);
-        downStep.add(" ");
+        this.upStep.add(symbol);
+        this.downStep.add(" ");
     }
 
     private void goToDownStep(String symbol) {
-        downStep.add(symbol);
-        upStep.add(" ");
+        this.downStep.add(symbol);
+        this.upStep.add(" ");
     }
 
     private List<String> getUpStep() {
