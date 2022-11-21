@@ -14,7 +14,7 @@ public class Moving {
     }
 
     private void validateMoving(String moving){
-        if (MOVING_UP_CHARACTER != moving || MOVING_DOWN_CHARACTER != moving){
+        if (!moving.equals(MOVING_UP_CHARACTER) || !moving.equals(MOVING_DOWN_CHARACTER)){
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_CHARACTER.getMessage());
         }
     }
