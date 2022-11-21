@@ -1,22 +1,23 @@
 package bridge;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Order {
-	UP(0, "U"),
-	DOWN(1, "D"),
-	RESTART(2, "R"),
-	QUIT(3, "Q");
+	MOVING("이동", Arrays.asList(Control.UP, Control.DOWN)),
+	CONTROL("제어", Arrays.asList(Control.RESTART, Control.QUIT));
 
-	private int orderId;
-	private String orderAlias;
+	private final String orderName;
+	private final List<Control> orders;
 
-	private Order(int orderId, String orderAlias) {
-		this.orderId = orderId;
-		this.orderAlias = orderAlias;
+	Order(String orderName, List<Control> orders) {
+		this.orderName = orderName;
+		this.orders = orders;
 	}
 
-	public static boolean isOrder(String orderAlias) {
-		for (Order order : Order.values()) {
-			if (order.orderAlias.equals(orderAlias)) {
+	public static boolean isOrderMoving(String input) {
+		for (Control control : MOVING.orders) {
+			if (control.getControlOrder().equals(input)) {
 				return true;
 			}
 		}
