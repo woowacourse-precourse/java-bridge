@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.information.PaintingInformation;
-import bridge.information.Position;
+import bridge.information.GameInInformation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class BridgePainting {
     }
 
     public void correctStep(String position){
-        if(position.equals(Position.UP)){
+        if(position.equals(GameInInformation.UP)){
             pushLine1Correct();
             return;
         }
@@ -42,7 +42,7 @@ public class BridgePainting {
     }
 
     public void inCorrectStep(String position){
-        if(position.equals(Position.UP)){
+        if(position.equals(GameInInformation.UP)){
             pushLine1InCorrect();
             pushCloseBRACKET();
             return;

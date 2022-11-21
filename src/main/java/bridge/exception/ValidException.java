@@ -1,6 +1,6 @@
 package bridge.exception;
 
-import bridge.information.Position;
+import bridge.information.GameInInformation;
 
 import java.util.NoSuchElementException;
 
@@ -50,15 +50,15 @@ public class ValidException {
     }
 
     private void validMoveStringType(String next){
-        if(!next.equals(Position.UP) && !next.equals(Position.DOWN)) {
+        if(!next.equals(GameInInformation.UP) && !next.equals(GameInInformation.DOWN)) {
             System.out.println(ERROR_MESSAGE + INPUT_NEXT_POSITION);
             throw new IllegalArgumentException();
         }
     }
 
     private void validOrderType(String order){
-        if(order.equals(Position.RESTART)) return;
-        if(order.equals(Position.QUIT)) return;
+        if(order.equals(GameInInformation.RESTART)) return;
+        if(order.equals(GameInInformation.QUIT)) return;
         System.out.println(ERROR_MESSAGE + INPUT_NEXT_GAME_MODE);
         throw new IllegalArgumentException();
     }
