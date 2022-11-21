@@ -14,4 +14,14 @@ public class BridgeMapTest {
         bridgeMap.concatComponent("]");
         assertThat(bridgeMap.toString()).isEqualTo("[]");
     }
+
+    @Test
+    @DisplayName("마지막 요소 삭제 테스트")
+    void validateDeleteLastComponent() {
+        BridgeMap bridgeMap = new BridgeMap(new StringBuilder());
+        bridgeMap.concatComponent("[ O | X |");
+        String separator = "|";
+        bridgeMap.deleteLastComponent(separator);
+        assertThat(bridgeMap.toString()).isEqualTo("[ O | X ");
+    }
 }
