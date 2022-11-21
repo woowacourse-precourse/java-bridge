@@ -133,7 +133,8 @@ class ApplicationTest extends NsTest {
         @DisplayName("게임 진행 완료")
         @CsvSource({"3", "9", "15"})
         void checkGameCompletionTest(int bridgeLength) {
-            BridgeGame bridgeGame = new BridgeGame(bridgeLength);
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker, bridgeLength);
             for (int step = 0; step < bridgeLength; step++) {
                 bridgeGame.move("U", player);
             }

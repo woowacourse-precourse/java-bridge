@@ -12,8 +12,7 @@ public class BridgeGame {
 
     private final List<String> bridge;
 
-    public BridgeGame(int bridgeLength) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    public BridgeGame(BridgeMaker bridgeMaker, int bridgeLength) {
         bridge = bridgeMaker.makeBridge(bridgeLength);
     }
 

@@ -22,7 +22,8 @@ public class Application {
 
     private static void initializeGame() {
         int bridgeLength = INPUT_VIEW.readBridgeSize();
-        bridgeGame = new BridgeGame(bridgeLength);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridgeGame = new BridgeGame(bridgeMaker, bridgeLength);
     }
 
     private static void play(Player player) {
