@@ -21,7 +21,7 @@ public class Bridge {
         return bridge.size();
     }
 
-    public Moving getMovingOf(int position) {
-        return bridge.get(position);
+    public boolean isSameMovingAt(int position, Moving moving) {
+        return bridge.get(position) == moving;
     }
 }

@@ -9,7 +9,6 @@ import bridge.model.GameCommand;
 import bridge.model.Moving;
 import bridge.model.MovingHistory;
 import bridge.model.MovingResult;
-import bridge.constant.GuidanceMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -29,16 +28,20 @@ public class BridgeGameController {
     }
 
     public void run() {
-        System.out.println(GuidanceMessage.GAME_INTRO);
-        System.out.println();
+        outputView.printGameIntro();
 
-        int bridgeSize = readBridgeSize();
-        Bridge bridge = Bridge.of(makeBridge(bridgeSize));
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = new BridgeGame(makeBridge());
         MovingHistory movingHistory = new MovingHistory();
 
         progressGame(bridgeGame, movingHistory);
+
         outputView.printResult(movingHistory, bridgeGame);
+    }
+
+    private Bridge makeBridge() {
+        int bridgeSize = readBridgeSize();
+
+        return Bridge.of(makeBridgeDirections(bridgeSize));
     }
 
     private void progressGame(BridgeGame bridgeGame, MovingHistory movingHistory) {
@@ -53,6 +56,7 @@ public class BridgeGameController {
         Moving moving = readMoving();
         MovingResult movingResult = bridgeGame.move(moving);
         movingHistory.save(movingResult);
+
         outputView.printMap(movingHistory);
 
         return movingResult;
@@ -93,10 +97,9 @@ public class BridgeGameController {
     }
 
     private boolean askRestart(BridgeGame bridgeGame, MovingHistory movingHistory) {
-        String command = inputView.readGameCommand();
-        GameCommand gameCommand = GameCommand.of(command);
+        GameCommand command = inputView.readGameCommand();
 
-        if (gameCommand.isRestart()) {
+        if (command.isRestart()) {
             bridgeGame.retry();
             movingHistory.reset();
             return IN_PROGRESS;
@@ -104,7 +107,7 @@ public class BridgeGameController {
         return GAME_OVER;
     }
 
-    private List<String> makeBridge(int bridgeSize) {
+    private List<String> makeBridgeDirections(int bridgeSize) {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 

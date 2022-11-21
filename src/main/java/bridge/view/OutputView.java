@@ -70,4 +70,9 @@ public class OutputView {
         System.out.print(ErrorMessage.PREFIX);
         System.out.println(error.getMessage());
     }
+
+    public void printGameIntro() {
+        System.out.println(GuidanceMessage.GAME_INTRO);
+        printNewLine();
+    }
 }

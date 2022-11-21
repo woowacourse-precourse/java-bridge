@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.constant.ErrorMessage;
 import bridge.constant.GuidanceMessage;
+import bridge.model.GameCommand;
 import bridge.model.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -34,12 +35,10 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public GameCommand readGameCommand() {
         System.out.println(GuidanceMessage.INPUT_GAME_COMMAND);
-        String command = Console.readLine();
-        validateNonBlank(command);
 
-        return command;
+        return GameCommand.of(Console.readLine());
     }
 
     private void validateNonBlank(String input) {
