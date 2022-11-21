@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeSize;
 import bridge.MapRenderer;
+import bridgeConstant.Constant;
 import dto.BridgeDto;
 import dto.BridgeSizeDto;
 import dto.GameCommandDto;
@@ -39,7 +40,7 @@ public class BridgeGame {
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
 	 */
 	public boolean retry(GameCommandDto gameCommandDto) {
-		if (gameCommandDto.getGameCommand().equals("R")) {
+		if (gameCommandDto.getGameCommand().equals(Constant.RESTART)) {
 			PlayCount.getInstance().addCount();
 			return true;
 		}
