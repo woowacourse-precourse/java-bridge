@@ -22,7 +22,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return IntStream.range(0,size).mapToObj(i->{
             int generate = bridgeNumberGenerator.generate();
-            if(generate == 0)
+            if(generate == 1)
                 return "U";
             return "D";
         }).collect(Collectors.toList());
