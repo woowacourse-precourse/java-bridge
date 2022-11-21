@@ -48,4 +48,5 @@
 2. [x] 다리를 만드는 기능과 테스트
 3. [x] Enum 작성
 4. [x] Validator Processor 기능과 테스트
-5. [ ] InputView 기능
+5. [x] InputView 기능
+6. [x] OutputView 기능
