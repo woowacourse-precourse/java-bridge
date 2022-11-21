@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.Move;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,16 +15,16 @@ public class MapTest {
         //given
         List<String> generatedMap = List.of("U","D","U");
 
-        Map map = new Map(generatedMap);
-        Map map2 = new Map(generatedMap);
+        Map map = new Map();
+        Map map2 = new Map();
 
         //when
-        map.insertMove(Move.U);
-        map.insertMove(Move.D);
-        map.insertMove(Move.U);
+        map.insertMove("O",0);
+        map.insertMove("O",1);
+        map.insertMove("O",0);
 
-        map2.insertMove(Move.U);
-        map2.insertMove(Move.U);
+        map2.insertMove("O",0);
+        map2.insertMove("X",0);
 
         //then
         assertThat(map.toString()).isEqualTo("[ O |   | O ]\n[   | O |   ]");
