@@ -1,2 +1,12 @@
-package bridge.service.impl;public enum GameServiceImpl {
+package bridge.service.impl;
+
+import bridge.type.ResultType;
+
+import java.util.List;
+
+public interface GameService {
+    boolean passThisRound(List<String> bridgeInfo);
+    boolean askOption();
+    boolean checkIsGameFinished(List<String> bridgeInfo, List<String> userDirection);
+    ResultType getEndType();
 }
