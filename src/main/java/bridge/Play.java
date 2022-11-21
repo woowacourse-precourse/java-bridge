@@ -24,22 +24,22 @@ public class Play {
         bridgeGame.move(moving);
         map.drawMap(bridgeGame.getUserPath(), bridgeGame.isCorrectPath());
         view.mapView(map.getMap());
-        if (isRetry()) {
-            bridgeGame.retry(map);
-            nextRound();
-        }
+        checkRetry();
+        nextRound();
     }
 
-    private boolean isRetry() {
+    private void checkRetry() {
         if (!bridgeGame.isCorrectPath()) {
             String retryCommand = view.retryView();
-            return retryCommand.equals(RETRY_COMMAND);
+            if (retryCommand.equals(RETRY_COMMAND)) {
+                bridgeGame.retry(map);
+                round();
+            }
         }
-        return true;
     }
 
     private void nextRound() {
-        if (bridgeGame.getUserPosition() < bridgeGame.getBridgeSize() - 1) {
+        if (bridgeGame.isCorrectPath() && bridgeGame.getUserPosition() < bridgeGame.getBridgeSize() - 1) {
             round();
         }
     }
