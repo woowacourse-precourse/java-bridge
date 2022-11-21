@@ -19,7 +19,8 @@ class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private final OutputView outputView = new OutputView();
 
     @Test
     void 다리_생성_테스트() {
@@ -129,7 +130,7 @@ class ApplicationTest extends NsTest {
         List<String> generatedBridge = List.of("U", "D", "D");
 
         // when
-        StringBuffer output = OutputView.printMap(nowBridge, generatedBridge);
+        StringBuffer output = outputView.printMap(nowBridge, generatedBridge);
 
         // then
         assertEquals("[ O |   | X ]\n[   | O |   ]\n", output.toString());

@@ -1,23 +1,23 @@
 package bridge;
 
 import bridge.controller.BridgeController;
-import bridge.view.OutputView;
+import bridge.service.BridgeGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.service.BridgeGame.*;
 
 public class Application {
 
     public static void main(String[] args) {
-        BridgeController bridgeController = new BridgeController();
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        int size = bridgeController.readBridgeSizeController();
-        List<String> nowBridge = new ArrayList<>();
+        final BridgeGame bridgeGame = new BridgeGame();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> generatedBridge = bridgeMaker.makeBridge(size);
-        int count = bridgeController.gameManagementController(nowBridge, generatedBridge);
-        bridgeController.printResultController(count, nowBridge, generatedBridge);
+        // 사이즈 길이만큼 다리 생성
+        List<String> generatedBridge = bridgeMaker.makeBridge(bridgeGame.readBridgeSizeService());
+        List<String> nowBridge = new ArrayList<>();
+        // 게임 시작
+        int count = bridgeGame.gameManagement(nowBridge, generatedBridge);
+        // 결과 출력
+        bridgeGame.printResultService(count, nowBridge, generatedBridge);
     }
 }

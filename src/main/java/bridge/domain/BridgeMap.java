@@ -5,7 +5,10 @@ public enum BridgeMap {
     END("]"),
     CORRECT(" O |"),
     INCORRECT(" X ]"),
-    BLANK("   |");
+    BLANK("   |"),
+    WIN("성공"),
+    LOSE("실패");
+
     String element;
 
     public String getElement() {
