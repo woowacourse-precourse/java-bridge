@@ -17,8 +17,6 @@ public class BridgeDrawer {
     private static final String WRONG_MOVING = " X ";
     private static final String BETWEEN_LINE = "|";
     private static final String SKETCH_FRAME = "%s\n%s";
-    private static final int COLUMN_SIZE_INCLUDING_BETWEEN_LINE = 4;
-    private static final int COLUMN_SIZE_EXCLUDING_BETWEEN_LINE = 3;
 
     public BridgeDrawer() {
         this.upperLine = new StringBuilder(BRACKETS);
@@ -43,12 +41,11 @@ public class BridgeDrawer {
         return sketch;
     }
 
-    public void turnBackOnce() {
-        if (haveAlready2Moving()) {
-            deleteLastMovingIncludingBetweenLine();
-            return;
-        }
-        deleteLastMovingExcludingBetweenLine();
+    public void reset() {
+        upperLine.setLength(0);
+        lowerLine.setLength(0);
+        upperLine.append(BRACKETS);
+        lowerLine.append(BRACKETS);
     }
 
     private void openBracket() {
@@ -99,22 +96,5 @@ public class BridgeDrawer {
             upperLine.append(EMPTY);
             lowerLine.append(CORRECT_MOVING);
         }
-    }
-
-    private boolean haveAlready2Moving() {
-        String upperLineSketch = upperLine.toString();
-        return upperLineSketch.contains(BETWEEN_LINE);
-    }
-
-    private void deleteLastMovingIncludingBetweenLine() {
-        int lastIndexOfLine = getLastIndexOfLine();
-        upperLine.delete(lastIndexOfLine - COLUMN_SIZE_INCLUDING_BETWEEN_LINE, lastIndexOfLine);
-        lowerLine.delete(lastIndexOfLine - COLUMN_SIZE_INCLUDING_BETWEEN_LINE, lastIndexOfLine);
-    }
-
-    private void deleteLastMovingExcludingBetweenLine() {
-        int lastIndexOfLine = getLastIndexOfLine();
-        upperLine.delete(lastIndexOfLine - COLUMN_SIZE_EXCLUDING_BETWEEN_LINE, lastIndexOfLine);
-        lowerLine.delete(lastIndexOfLine - COLUMN_SIZE_EXCLUDING_BETWEEN_LINE, lastIndexOfLine);
     }
 }

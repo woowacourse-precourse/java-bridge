@@ -70,7 +70,7 @@ public class BridgeGame {
         gameStatus = ON_WAY;
         tryCount += 1;
         bridgeReferee.resetLocation();
-        bridgeDrawer.turnBackOnce();
+        bridgeDrawer.reset();
     }
 
     private void validateMoving(String moving) {

@@ -64,7 +64,7 @@ class BridgeDrawerTest {
 
     @DisplayName("이동 기록을 되돌린다.")
     @Nested
-    class TurnBackMoving {
+    class Reset {
 
         @DisplayName("이동 1회 성공 후 이동 실패한 경우")
         @Test
@@ -72,7 +72,7 @@ class BridgeDrawerTest {
             bridgeDrawer.record(UPPER_SIDE, ON_WAY);
             bridgeDrawer.record(LOWER_SIDE, FAIL);
             assertThat(bridgeDrawer.getSketch()).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
-            bridgeDrawer.turnBackOnce();
+            bridgeDrawer.reset();
             assertThat(bridgeDrawer.getSketch()).isEqualTo("[]" + "\n" + "[]");
         }
 
@@ -81,7 +81,7 @@ class BridgeDrawerTest {
         void should_DeleteRecordOfWrongMoving_When_FailToMoveRightAfterStart() {
             bridgeDrawer.record(LOWER_SIDE, FAIL);
             assertThat(bridgeDrawer.getSketch()).isEqualTo("[   ]" + "\n" + "[ X ]");
-            bridgeDrawer.turnBackOnce();
+            bridgeDrawer.reset();
             assertThat(bridgeDrawer.getSketch()).isEqualTo("[]" + "\n" + "[]");
         }
     }
