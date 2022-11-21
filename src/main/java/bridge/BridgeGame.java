@@ -34,4 +34,12 @@ public class BridgeGame {
             userBridge.remove(index);
         }
     }
+
+    public List<String> getUserBridge(){
+        return userBridge;
+    }
+
+    public List<String> getAnswerBridge(){
+        return answerBridge;
+    }
 }
