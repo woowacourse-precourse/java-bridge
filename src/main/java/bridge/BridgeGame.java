@@ -27,6 +27,7 @@ public class BridgeGame {
 
             tryAnswer.add(i,pInput);
             outputView.printMap(tryAnswer,makeBridge);
+
         }
         outputView.printResult(count,0,tryAnswer,makeBridge);
     }

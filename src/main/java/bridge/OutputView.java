@@ -48,10 +48,8 @@ public class OutputView {
     public void printResult(int count,int sOrf,List<String> tryAnswer,List<String> makeBridge) {
         System.out.println("최종 게임 결과");
         printMap(tryAnswer,makeBridge);
-        if (sOrf == 0)
-            System.out.println("게임 성공 여부: 성공");
-        if (sOrf == 1)
-            System.out.println("게임 성공 여부: 실패");
+        if (sOrf == 0) System.out.println("게임 성공 여부: 성공");
+        if (sOrf == 1) System.out.println("게임 성공 여부: 실패");
         System.out.println("총 시도한 횟수: "+count);
     }
 }
