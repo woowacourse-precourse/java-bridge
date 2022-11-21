@@ -1,12 +1,15 @@
-package bridge;
+package controller;
 
+import bridge.BridgeGame;
+import bridge.Map;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
-import enumCollections.Side;
+import view.InputView;
+import view.OutputView;
 
 public class Controller {
     private final OutputView outputView;
-    private final InputView  inputView;
+    private final InputView inputView;
 
     public Controller(OutputView outputView, InputView inputView) {
         this.outputView = outputView;
