@@ -78,4 +78,8 @@ public class Slabs {
     public SlabDTO get(int index) {
         return this.database.get(index);
     }
+
+    public int size() {
+        return this.database.size();
+    }
 }

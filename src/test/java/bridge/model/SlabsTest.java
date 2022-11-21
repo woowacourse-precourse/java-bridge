@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SlabsTest {
 
     @Test
-    void 인스턴스_로드() {
+    void 인스턴스_가져오기() {
         Slabs getInstance = Slabs.getInstance();
         assertThat(getInstance).isInstanceOf(Slabs.class);
 
@@ -22,7 +22,7 @@ class SlabsTest {
 
 
     @Test
-    void 단일_삽입() {
+    void 단일_삽입하기() {
         Slabs database = Slabs.newInstance();
         SlabDTO dto = new SlabDTO(0, PositionType.DOWN, GlassType.TEMPERED);
 
@@ -30,7 +30,7 @@ class SlabsTest {
     }
 
     @Test
-    void 모두_삽입() {
+    void 모두_삽입하기() {
         Slabs database = Slabs.newInstance();
         List<SlabDTO> slabs = this.slabs();
 
@@ -38,7 +38,7 @@ class SlabsTest {
     }
 
     @Test
-    void 모두_로드() {
+    void 모두_가져오기() {
         Slabs database = Slabs.newInstance();
         List<SlabDTO> slabs = this.slabs();
         database.insertAll(slabs);
@@ -47,7 +47,7 @@ class SlabsTest {
     }
 
     @Test
-    void 업데이트() {
+    void 데이터_업데이트하기() {
         Slabs database = Slabs.newInstance();
         database.insert(new SlabDTO(0, PositionType.DOWN, GlassType.NORMAL));
 
@@ -56,6 +56,14 @@ class SlabsTest {
         database.update(dto);
 
         assertThat(database.get(0).isTread()).isTrue();
+    }
+
+    @Test
+    void 원소_크기_가져오기() {
+        Slabs database = Slabs.newInstance();
+        database.insertAll(this.slabs());
+
+        assertThat(database.size()).isEqualTo(6);
     }
 
     List<SlabDTO> slabs() {

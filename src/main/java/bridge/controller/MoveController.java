@@ -10,8 +10,12 @@ import bridge.type.PositionType;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MoveController {
 
@@ -35,22 +39,18 @@ public class MoveController {
 
     public boolean moveToDestination(PositionType destinationPosition) {
         int step = this.getLastTreadStep() + 1;
-        SlabDTO destinationSlab = this.getDestinationSlab(step, destinationPosition);
-        boolean canContinue = this.isTemperedGlass(destinationSlab);
+        SlabDTO destinationSlab = this.findSlabBy(step, destinationPosition);
 
-        this.updateTread(destinationSlab);
-        this.printSlabMap(step, canContinue);
-
-
-        return canContinue;
+        return this.updateAndPrintSlab(destinationSlab, step);
     }
 
-    public SlabDTO getDestinationSlab(int step, PositionType position) {
-        return this.database.findByStep(step)
-                .stream()
-                .filter(dto -> dto.getPosition().equals(position))
-                .findFirst()
-                .orElseThrow();
+    public boolean getMoveResult() {
+        int step = this.getLastTreadStep();
+
+        return Stream.of(
+                this.findSlabBy(step, PositionType.UP),
+                this.findSlabBy(step, PositionType.DOWN)
+        ).anyMatch(dto -> dto.isTread() && dto.getGlass() == GlassType.TEMPERED);
     }
 
     public int getLastTreadStep() {
@@ -62,6 +62,32 @@ public class MoveController {
                 .orElseThrow();
     }
 
+    public SlabDTO findSlabBy(int step, PositionType position) {
+        return this.database.findByStep(step)
+                .stream()
+                .filter(dto -> dto.getPosition().equals(position))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    private boolean updateAndPrintSlab(SlabDTO destinationSlab, int step) {
+        boolean canContinue = this.canContinue(destinationSlab);
+
+        if (canContinue) {
+            this.updateTread(destinationSlab);
+            this.outputView.printMap(this.getSlapMaps(step));
+        }
+
+        return canContinue;
+    }
+
+    private boolean canContinue(SlabDTO slab) {
+        int size = this.database.getAll().size() / 2;
+
+        return slab.getStep() < size
+                && slab.getGlass() == GlassType.TEMPERED;
+    }
+
     public void updateTread(SlabDTO slab) {
         slab.setTread(true);
 
@@ -70,23 +96,22 @@ public class MoveController {
         }
     }
 
-    private boolean isTemperedGlass(SlabDTO slab) {
-        return slab.getGlass() == GlassType.TEMPERED;
-    }
-
-    private void printSlabMap(int step, boolean canContinue) {
-        if (canContinue) {
-            this.outputView.printMap(this.getSlapMaps(step));
-        }
-    }
-
     public List<List<String>> getSlapMaps(int step) {
-        List<SlabDTO> slabs = this.database.findByStep(step);
-
         return List.of(
-                this.getSlabStatus(slabs, PositionType.UP),
-                this.getSlabStatus(slabs, PositionType.DOWN)
+                this.getSlabStatusInRange(step, PositionType.UP),
+                this.getSlabStatusInRange(step, PositionType.DOWN)
         );
+    }
+
+    private List<String> getSlabStatusInRange(int step, PositionType position) {
+        List<String> slabStatus = new LinkedList<>();
+
+        for (int index = 0; index <= step; index++) {
+            List<SlabDTO> slabs = this.database.findByStep(index);
+            slabStatus.addAll(this.getSlabStatus(slabs, position));
+        }
+
+        return slabStatus;
     }
 
     private List<String> getSlabStatus(List<SlabDTO> slabs, PositionType position) {
@@ -103,9 +128,5 @@ public class MoveController {
         }
 
         return glass.getTypeName();
-    }
-
-    public boolean getResult() {
-        return true;
     }
 }

@@ -17,28 +17,40 @@ class MoveControllerTest {
     public MoveController controller;
 
     @Test
-    void 가려는_슬래브_로드() {
-        SlabDTO slab = this.controller.getDestinationSlab(1, PositionType.DOWN);
+    void 슬래브_찾기() {
+        SlabDTO slab = this.controller.findSlabBy(1, PositionType.DOWN);
         assertThat(slab).isEqualTo(this.initData().get(3));
     }
 
     @Test
-    void 밟은_슬래브로_설정() {
+    void 밟은_슬래브로_설정하기() {
         assertDoesNotThrow(() -> this.controller.updateTread(this.initData().get(0)));
         assertDoesNotThrow(() -> this.controller.updateTread(this.initData().get(2)));
     }
 
     @Test
-    void 마지막_밟은_위치_로드() {
+    void 마지막_밟은_위치_불러오기() {
         this.controller.updateTread(this.initData().get(0));
         this.controller.updateTread(this.initData().get(2));
+
         int step = this.controller.getLastTreadStep();
 
         assertThat(step).isEqualTo(1);
     }
 
+    @Test
+    void 밟은_슬래브_데이터_가져오기() {
+        this.controller.updateTread(this.initData().get(0));
+        this.controller.updateTread(this.initData().get(2));
+
+        List<List<String>> maps = this.controller.getSlapMaps(1);
+
+        assertThat(maps.get(0)).containsExactly(" ", "O");
+        assertThat(maps.get(1)).containsExactly("O", " ");
+    }
+
     @BeforeEach
-    public void insertData() {
+    public void 초기_데이터_삽입하기() {
         Slabs database = Slabs.newInstance();
         database.insertAll(this.initData());
 

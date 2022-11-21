@@ -18,7 +18,7 @@ public class BridgeGame {
         MoveController moveController = new MoveController();
         this.repeatAskDestination(moveController);
 
-        return moveController.getResult();
+        return moveController.getMoveResult();
     }
 
     private void repeatAskDestination(MoveController moveController) {
