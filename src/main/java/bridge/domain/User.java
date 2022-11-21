@@ -35,32 +35,32 @@ public class User {
     }
 
     public boolean sameBridgeSize(int size) {
-        if(size == count){
+        if (size == count) {
             return true;
         }
         return false;
     }
 
     public boolean lessThanBridgeSize(int size) {
-        if(size > count){
+        if (size > count) {
             return true;
         }
         return false;
     }
 
     public String canMove(List<String> bridge, String userMoving) {
-        if(bridge.get(count).equals(userMoving)){
+        if (bridge.get(count).equals(userMoving)) {
             return "O";
         }
         return "X";
     }
 
     public void increaseTryCount() {
-        tryCount ++;
+        tryCount++;
     }
 
     public void increaseCount() {
-        count ++;
+        count++;
     }
 
     public int getTryCount() {

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class UserService {
 
-    public static User generateUserResult() {
+    public static User generateUser() {
         return new User(new ArrayList<>(), new ArrayList<>());
     }
 
 
-    public static void initUserResult(User user) {
+    public static void initUser(User user) {
         user.init();
     }
 }
