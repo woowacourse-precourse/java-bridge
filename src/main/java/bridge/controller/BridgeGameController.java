@@ -27,23 +27,20 @@ public class BridgeGameController {
     }
 
     public void start() {
-        outputView.askBridgeSize();
-        int bridgeLength = inputView.readBridgeSize();
+        int bridgeLength = getBridgeLength();
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
         copyBridge = new Bridge(bridge.copyBridge());
 
         outputView.printStart();
 
         while (true) {
-            outputView.askSpaceToMove();
-            String moving = inputView.readMoving();
+            String moving = getSpaceToMove();
             boolean check = bridgeGame.move(gameStatus, copyBridge, moving);
             String retry = "R";
             outputView.printMap(gameStatus);
 
             if (!check) {
-                outputView.askWhetherToRetry();
-                retry = inputView.readGameCommand();
+                retry = getWhetherToRetry();
 
                 if (retry.equals("R")) {
                     bridgeGame.retry(gameStatus);
@@ -61,5 +58,24 @@ public class BridgeGameController {
             }
         }
         outputView.printResult(gameStatus);
+    }
+
+    private String getWhetherToRetry() {
+        String retry;
+        outputView.askWhetherToRetry();
+        retry = inputView.readGameCommand();
+        return retry;
+    }
+
+    private String getSpaceToMove() {
+        outputView.askSpaceToMove();
+        String moving = inputView.readMoving();
+        return moving;
+    }
+
+    private int getBridgeLength() {
+        outputView.askBridgeSize();
+        int bridgeLength = inputView.readBridgeSize();
+        return bridgeLength;
     }
 }
