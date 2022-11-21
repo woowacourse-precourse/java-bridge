@@ -16,9 +16,11 @@ public class GamePlayer {
     private List<String> bridge = new ArrayList<>();
     private final BridgeGame bridgeGame = new BridgeGame();
     private BridgeStatus bridgeStatus = new BridgeStatus();
+    private int gameCount = 0;
     public void play() {
         this.bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         this.bridgeGame.setBridge(bridge);
+        this.gameCount++;
         System.out.println(this.bridge);
         bridgeStatus.initBridgeStatus();
         crossingBridge();
@@ -35,7 +37,10 @@ public class GamePlayer {
         retryOrExit(successFlag);
     }
     private void retryOrExit(boolean success) {
-        if(success) outputView.printResult();
+        if(success) {
+            outputView.printResult(success, this.gameCount);
+            return;
+        }
         bridgeGame.retry(inputView.readGameCommand());
     }
 }

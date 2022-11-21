@@ -13,4 +13,6 @@ public class Game {
     public static final String CROSS_NOT = " ";
     public static final String RETRY_GAME = "R";
     public static final String QUIT_GAME = "Q";
+    public static final String GAME_SUCCESS = "성공";
+    public static final String GAME_FAIL = "실패";
 }
