@@ -12,11 +12,11 @@ public class BridgeGame {
     private static final String MOVE_UP = "U";
     private static final int MAX_HEIGHT = 2;
 
-    int size;
-    List<String> bridge;
-    List<List<String>> bridgeMap;
-    int numberOfTries;
-    boolean isSuccess = true;
+    private final int size;
+    private final List<String> bridge;
+    private List<List<String>> bridgeMap;
+    private int numberOfTries;
+    private boolean isSuccess = true;
 
     public BridgeGame(int size, List<String> bridge) {
         this.size = size;
