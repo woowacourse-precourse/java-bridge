@@ -31,20 +31,32 @@ public class InputView {
     }
 
     private int validateBridgeSize(String input) throws IllegalArgumentException {
-         if (!Pattern.matches("(^\b?[3-9]{1}\b?$)|(^\b?1[0-9]+\b?$)|(^\b?20\b?$)", input))
-             throw new IllegalArgumentException();
-         return  Integer.parseInt(input);
+        if (!Pattern.matches("(^\b?[3-9]{1}\b?$)|(^\b?1[0-9]+\b?$)|(^\b?20\b?$)", input))
+            throw new IllegalArgumentException();
+        return Integer.parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String result = "";
+        while(true) {
+            try {
+                out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                result = validateMoving(Console.readLine());
+                break;
+            } catch (Exception e) {
+                out.println("[ERROR] 다리의 길이는 3부터 20사이의 숫자여야 합니다.");
+            }
+        }
+        return result;
     }
 
     private String validateMoving(String input) {
-        return null;
+        if(!Pattern.matches("^\b?[UD]{1}\b?$", input))
+            throw new IllegalArgumentException();
+        return input;
     }
 
     /**
