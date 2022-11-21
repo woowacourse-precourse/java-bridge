@@ -1,13 +1,18 @@
-package bridge.domain;
+package bridge.util;
 
+import bridge.domain.User;
 import bridge.view.ViewMaker;
 
 public class Client {
+
+    private Client(){
+    }
+
     public static void requestBridgeConstruction(final ViewMaker viewMaker) {
         viewMaker.receiveClientRequest();
     }
 
-    public static User introduceGameUser(ViewMaker viewMaker) {
+    public static User introduceGameUser(final ViewMaker viewMaker) {
         return new User(viewMaker);
     }
 
