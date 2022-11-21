@@ -43,7 +43,7 @@ public class OutputView {
     public void printResult(String gameStatus, int cnt, List<String> result, List<String> bridge) {
         System.out.println("최종 게임 결과");
         this.printMap(result, bridge);
-        System.out.printf("게임 성공 여부: $s\n", gameStatus);
-        System.out.printf("총 시도한 횟수: $d", cnt);
+        System.out.printf("게임 성공 여부: %s\n", gameStatus);
+        System.out.printf("총 시도한 횟수: %d", cnt);
     }
 }
