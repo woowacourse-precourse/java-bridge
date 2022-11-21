@@ -17,6 +17,13 @@ public class InputViewTest extends NsTest {
         Assertions.assertThat(inputView.validateBridgeSize(input)).isEqualTo(result);
     }
 
+    @DisplayName("이동할 칸 입력 받기 테스트")
+    @ParameterizedTest
+    @CsvSource({"U,true", "D,true", "1,false", "UP,false", "u,false", "d,false"})
+    void validateMoveTest(String input, boolean result) {
+        Assertions.assertThat(inputView.validateMove(input)).isEqualTo(result);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
