@@ -27,7 +27,7 @@ public enum BridgeWidth {
     private static final Map<Integer, String> map =
             Stream.of(values()).collect(Collectors.toMap(BridgeWidth::getNumber, BridgeWidth::getRowPosition));
 
-    private static final String getRowUsingNumber(int number){
+    public static final String getRowUsingNumber(int number){
         return map.get(number);
     }
 }
