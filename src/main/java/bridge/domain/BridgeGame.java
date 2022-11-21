@@ -1,14 +1,11 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.Stream;
+
+import static bridge.domain.BridgeEnum.*;
 
 public class BridgeGame {
-    public static String SUCCESS = "성공";
-    public static String FAILURE = "실패";
-    public static String MOVING = "이동";
     private final List<String> bridge;
     private final List<String> bridgeCrossingResult = new ArrayList<>();
     private int retryCount = 1;
@@ -19,10 +16,10 @@ public class BridgeGame {
 
     public List<String> move(String userInput) {
         if (bridge.get(bridgeCrossingResult.size()).equals(userInput)){
-            bridgeCrossingResult.add("O");
+            bridgeCrossingResult.add(MOVE_SUCCESS.getValue());
             return bridgeCrossingResult;
         }
-        bridgeCrossingResult.add("X");
+        bridgeCrossingResult.add(MOVE_FAILURE.getValue());
         return bridgeCrossingResult;
     }
 
@@ -33,17 +30,15 @@ public class BridgeGame {
 
     public List<List<String>> makeBridgeCrossingResult(){
         List<List<String>> maps = new ArrayList<>();
-        /*List<String> bridgeClass = bridge.stream().distinct().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        for (int i = 0; i < bridgeClass.size(); i++){
-            maps.add(makeBridgeCrossingResultEntry(bridgeClass.get(i)));
-        }*/
-        maps.add(makeBridgeCrossingResultEntry("U"));
-        maps.add(makeBridgeCrossingResultEntry("D"));
+        Stream.of(BridgePair.values()).map(BridgePair::getValue)
+                .forEach(m -> {
+                    List<String> map = new ArrayList<>();
+                    maps.add(BridgePair.findPair(m).getListIndex(),makeBridgeCrossingResultEntry(m, map));
+                });
         return maps;
     }
 
-    public List<String> makeBridgeCrossingResultEntry(String position){
-        List<String> map = new ArrayList<>();
+    public List<String> makeBridgeCrossingResultEntry(String position, List<String> map){
         for (int i = 0; i < bridgeCrossingResult.size(); i++){
             if (bridge.get(i).equals(position)){
                 map.add(bridgeCrossingResult.get(i));
@@ -56,11 +51,11 @@ public class BridgeGame {
 
     public String judgment(){
         if (bridgeCrossingResult.get(bridgeCrossingResult.size()-1).equals("O") && bridgeCrossingResult.size() == bridge.size()){
-            return SUCCESS;
+            return SUCCESS.getValue();
         } else if (bridgeCrossingResult.get(bridgeCrossingResult.size()-1).equals("O") && bridgeCrossingResult.size() != bridge.size()) {
-            return MOVING;
+            return MOVING.getValue();
         }
-        return FAILURE;
+        return FAILURE.getValue();
     }
 
     @Override
