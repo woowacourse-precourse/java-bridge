@@ -1,6 +1,7 @@
 package bridge.Service;
 
 import bridge.Model.BridgeShape;
+import bridge.Model.ErrorMessage;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class BridgeValidator {
                 .allMatch(s -> UP.equals(s) || DOWN.equals(s));
 
         if (result == false) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_CONTENT_ERROR.getMessage());
         }
     }
 }

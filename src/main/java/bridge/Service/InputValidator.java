@@ -1,6 +1,7 @@
 package bridge.Service;
 
 import bridge.Model.BridgeShape;
+import bridge.Model.ErrorMessage;
 import bridge.Model.GameResult;
 
 public class InputValidator {
@@ -14,7 +15,7 @@ public class InputValidator {
 
     public void validateSize(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_SIZE_ERROR.getMessage());
         }
     }
 
@@ -23,19 +24,19 @@ public class InputValidator {
                 .allMatch(Character::isDigit);
 
         if (result == false) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_DIGIT_ERROR.getMessage());
         }
     }
 
     public void validateMoving(String input) {
         if (!input.equals(UP) && !input.equals(DOWN)) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_MOVING_ERROR.getMessage());
         }
     }
 
     public void validateCommand(String input) {
         if (!input.equals(RETRY) && !input.equals(QUIT)) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_COMMAND_ERROR.getMessage());
         }
     }
 }
