@@ -39,9 +39,8 @@ public class InputView {
     public static String readMoving() {
         try {
             String input = readInput("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-            BridgeSizeValidator.validate(input);
-
             MovingValidator.validate(input);
+            
             return input;
         } catch (IllegalArgumentException e) {
             return readMoving();
