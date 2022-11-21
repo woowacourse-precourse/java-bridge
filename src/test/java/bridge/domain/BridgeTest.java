@@ -22,12 +22,12 @@ public class BridgeTest {
     @CsvSource({"U,KEEP","D,LOSE"})
     public void bridgeTest(String position, String result) {
         userTable.add(Position.of(position));
-        assertThat(bridge.play(userTable)).isEqualTo(Result.valueOf(result));
+        assertThat(bridge.play(userTable)).isEqualTo(GameResult.valueOf(result));
     }
     @Test
     public void bridgeTest() {
         userTable.add(Position.of("U"));
         userTable.add(Position.of("D"));
-        assertThat(bridge.play(userTable)).isEqualTo(Result.WIN);
+        assertThat(bridge.play(userTable)).isEqualTo(GameResult.WIN);
     }
 }

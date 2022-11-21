@@ -1,7 +1,14 @@
 package bridge.domain;
 
-public enum Result {
+public enum GameResult {
     KEEP, LOSE, WIN;
+
+    public static GameResult retryOrNot(String readGameCommand) {
+        if (readGameCommand.equals("R")) {
+            return GameResult.KEEP;
+        }
+        return GameResult.LOSE;
+    }
 
     public boolean isLose() {
         return this.equals(LOSE);
@@ -10,7 +17,7 @@ public enum Result {
         return this.equals(WIN);
     }
 
-    public boolean isEnd() {
+    public boolean isNotKeep() {
         return isLose()||isWin();
     }
 

@@ -1,8 +1,8 @@
 package bridge.viewer;
 
+import bridge.domain.GameResult;
 import bridge.domain.Position;
 import bridge.domain.PositionTable;
-import bridge.domain.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,26 +24,26 @@ public class OutputView {
     public static final String CLOSE = "]";
     public static final String SEPARATOR = "|";
 
-    public static void printMap(PositionTable userTable, Result result) {
-        if (result.isLose()) {
+    public static void printMap(PositionTable userTable, GameResult gameResult) {
+        if (gameResult.isLose()) {
             showReviseMap(userTable, Position::isUp);
             showReviseMap(userTable, Position::isDown);
         }
-        if (result.isWin()) {
+        if (gameResult.isWin()) {
             showMap(userTable, Position::isUp);
             showMap(userTable, Position::isDown);
         }
 
     }
 
-    public static void printResult(PositionTable userTable, Result result) {
-        if (result.isLose()) {
+    public static void printResult(PositionTable userTable, GameResult gameResult) {
+        if (gameResult.isLose()) {
             System.out.println(LOSE_MESSAGE);
         }
-        if (result.isWin()) {
+        if (gameResult.isWin()) {
             System.out.println(WIN_MESSAGE);
         }
-        printMap(userTable, result);
+        printMap(userTable, gameResult);
     }
 
     private static void showMap(PositionTable userTable, Predicate<Position> p) {

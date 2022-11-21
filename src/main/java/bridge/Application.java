@@ -10,27 +10,23 @@ public class Application {
         System.out.println("다리 건너기 게임을 시작합니다.");
         PositionTable userTable = PositionTable.newInstance();
         Bridge bridge = makeBridge();
-        Result result = Result.KEEP;
+        GameResult gameResult = GameResult.KEEP;
         int tryNumber = 1;
-        while (result.isKeep()) {
-            result = moveToEnd(userTable, bridge);
-            String gameCommand;
-            if (result.isLose()) {
-                gameCommand = readGameCommand();
-                if (gameCommand.equals("Q")) {
-                    showResult(userTable, result, tryNumber);
-                }
+        while (gameResult.isKeep()) {
+            gameResult = moveToEnd(userTable, bridge);
+            if (gameResult.isLose()) {
+                gameResult = GameResult.retryOrNot(readGameCommand());
             }
-            if (result.isWin()) {
-                showResult(userTable, result, tryNumber);
+            if (gameResult.isNotKeep()) {
+                showResult(userTable, gameResult, tryNumber);
             }
             tryNumber += 1;
         }
     }
 
-    private static void showResult(PositionTable userTable, Result result, int tryNumber) {
+    private static void showResult(PositionTable userTable, GameResult gameResult, int tryNumber) {
         System.out.println(OutputView.RESULT_MESSAGE);
-        OutputView.printResult(userTable, result);
+        OutputView.printResult(userTable, gameResult);
         System.out.println(OutputView.TRY_MESSAGE + tryNumber);
     }
 
@@ -40,17 +36,17 @@ public class Application {
         return bridge;
     }
 
-    private static Result moveToEnd(PositionTable userTable, Bridge bridge) {
-        Result gameResult;
+    private static GameResult moveToEnd(PositionTable userTable, Bridge bridge) {
+        GameResult gameResult;
         for (int i = 0; i< bridge.size(); i++) {
             userTable.add(Position.of(readMovingCommand()));
             gameResult = bridge.play(userTable);
             OutputView.printMap(userTable, gameResult);
-            if (gameResult.isEnd()) {
+            if (gameResult.isNotKeep()) {
                 return gameResult;
             }
         }
-        return Result.KEEP;
+        return GameResult.KEEP;
     }
     private static String readGameCommand() {
         System.out.println(InputView.GAME_COMMAND_MESSAGE);

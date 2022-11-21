@@ -19,14 +19,14 @@ public class Bridge {
         return new Bridge(generatedBridge);
     }
 
-    public Result play(PositionTable userTable) {
+    public GameResult play(PositionTable userTable) {
         if (bridgeTable.equals(userTable)) {
-            return Result.WIN;
+            return GameResult.WIN;
         }
         if (bridgeTable.matchLastOf(userTable)) {
-            return Result.KEEP;
+            return GameResult.KEEP;
         }
-        return Result.LOSE;
+        return GameResult.LOSE;
     }
 
     public int size() {
