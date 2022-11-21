@@ -49,4 +49,9 @@ public class DefaultBridgeGameService implements BridgeGameService {
     public boolean checkGameProgress() {
         return game.isEnd();
     }
+
+    @Override
+    public String createResult() {
+        return game.getResult();
+    }
 }

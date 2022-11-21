@@ -71,6 +71,7 @@ public class DefaultView implements View {
 
     private void outputResult() {
         String map = controller.createMap();
-        outputView.printResult(map);
+        String result = controller.createResult();
+        outputView.printResult(map, result);
     }
 }

@@ -12,4 +12,5 @@ public interface BridgeGameService {
     boolean retryGame();
     boolean endGame();
     boolean checkGameProgress();
+    String createResult();
 }

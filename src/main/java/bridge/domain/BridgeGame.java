@@ -61,4 +61,8 @@ public class BridgeGame {
     public boolean isEnd() {
         return history.size() == bridge.size();
     }
+
+    public String getResult() {
+        return ResultGenerator.generateResult(isEnd());
+    }
 }

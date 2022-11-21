@@ -40,4 +40,8 @@ public class BridgeGameController {
     public boolean checkGameProgress() {
         return service.checkGameProgress();
     }
+
+    public String createResult() {
+        return service.createResult();
+    }
 }
