@@ -17,8 +17,12 @@ public class GameManager {
         boolean status;
         do {
             status = moveForward();
-        } while (status && isRetry());
+        } while (status);
 
+        if(status && isRetry()) {
+            play();
+            return;
+        }
         OutputView.printResult(bridgeGame);
     }
 
