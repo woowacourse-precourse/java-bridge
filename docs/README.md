@@ -35,6 +35,14 @@
 - [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - [x] 재시작해도 처음에 만든 다리로 재사용한다.
 
+## MVC 패턴 적용 시 유의사항
+
+- [ ] Model 내부에 Controller와 View에 관련된 코드가 있으면 안 된다.
+- [ ] View는 내부에 Model의 코드만 있을 수 있고, Controller의 코드가 있으면 안 된다.
+- [ ] View가 Model로부터 데이터를 받을 때는, 사용자마다 다르게 보여줘야 하는 데이터에 대해서만 받아야 한다.
+- [ ] Controller 내부에는 Model과 View의 코드가 있어도 된다.
+- [ ] View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다.
+
 ## 클래스별 추가 요구사항
 
 - `InputView` 클래스
