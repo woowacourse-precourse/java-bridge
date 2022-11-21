@@ -31,7 +31,7 @@ public class OutputView {
      */
     public void printMap(BridgeHistory bridgeHistory) {
         Map<String, List<String>> history = bridgeHistory.getHistory();
-        for (int index = 0; index <= 1; index++) {
+        for (int index = 1; index >= 0; index--) {
             printMapByOneLine(history, index);
         }
     }
