@@ -29,7 +29,7 @@ public class BridgeMaker {
     }
 
     private String numberToBridge(int number) {
-        if (number == 1) {
+        if (number == BridgeGame.UPWARD) {
             return "U";
         }
         return "D";
