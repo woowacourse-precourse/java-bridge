@@ -9,6 +9,42 @@ import java.util.StringJoiner;
 public class OutputView {
     private static final String ERROR_MESSAGE_HEADER = "[ERROR]";
 
+    private static enum BridgeElement {
+        PREFIX("[ "),
+        DELIMITER(" | "),
+        SUFFIX(" ]"),
+        MOVE_SUCCESS("O"),
+        MOVE_FAILED("X"),
+        NOT_VISITED(" ");
+
+        private final String element;
+
+        BridgeElement(String element) {
+            this.element = element;
+        }
+
+        public String getElement() {
+            return this.element;
+        }
+    }
+
+    private static enum GameResultMessage {
+        HEADER("최종 게임 결과"),
+        SUCCESS("게임 성공 여부: 성공"),
+        FAILED("게임 성공 여부: 실패"),
+        ATTEMPTS_COUNT("총 시도한 횟수: ");
+
+        private final String message;
+
+        GameResultMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return this.message;
+        }
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -16,11 +52,13 @@ public class OutputView {
      */
     public void printMap(List<String> movingStatus, boolean isSuccess) {
         StringJoiner[] bridgeInfo = new StringJoiner[2];
-        bridgeInfo[0] = new StringJoiner(" | ", "[ ", " ]");
-        bridgeInfo[1] = new StringJoiner(" | ", "[ ", " ]");
+        bridgeInfo[0] = new StringJoiner(BridgeElement.DELIMITER.getElement(), BridgeElement.PREFIX.getElement(),
+                BridgeElement.SUFFIX.getElement());
+        bridgeInfo[1] = new StringJoiner(BridgeElement.DELIMITER.getElement(), BridgeElement.PREFIX.getElement(),
+                BridgeElement.SUFFIX.getElement());
         for (int i = 0; i < movingStatus.size() - 1; i++) {
-            bridgeInfo[getIndex(movingStatus.get(i))].add("O");
-            bridgeInfo[getReverseNumber(getIndex(movingStatus.get(i)))].add(" ");
+            bridgeInfo[getIndex(movingStatus.get(i))].add(BridgeElement.MOVE_SUCCESS.getElement());
+            bridgeInfo[getReverseNumber(getIndex(movingStatus.get(i)))].add(BridgeElement.NOT_VISITED.getElement());
         }
         addLastStatus(bridgeInfo, movingStatus.get(movingStatus.size() - 1), isSuccess);
         System.out.println(bridgeInfo[0].toString());
@@ -29,13 +67,13 @@ public class OutputView {
 
     private void addLastStatus(StringJoiner[] bridgeInfo, String lastMoving, boolean isSuccess) {
         if (isSuccess) { // 마지막 이동이 성공함
-            bridgeInfo[getIndex(lastMoving)].add("O");
-            bridgeInfo[getReverseNumber(getIndex(lastMoving))].add(" ");
+            bridgeInfo[getIndex(lastMoving)].add(BridgeElement.MOVE_SUCCESS.getElement());
+            bridgeInfo[getReverseNumber(getIndex(lastMoving))].add(BridgeElement.NOT_VISITED.getElement());
             return;
         }
         // 마지막 이동이 실패함
-        bridgeInfo[getIndex(lastMoving)].add("X");
-        bridgeInfo[getReverseNumber(getIndex(lastMoving))].add(" ");
+        bridgeInfo[getIndex(lastMoving)].add(BridgeElement.MOVE_FAILED.getElement());
+        bridgeInfo[getReverseNumber(getIndex(lastMoving))].add(BridgeElement.NOT_VISITED.getElement());
     }
 
     private int getReverseNumber(int number) {
@@ -58,31 +96,19 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String> movingStatus, boolean isSuccess, int attemptsCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GameResultMessage.HEADER.getMessage());
         printMap(movingStatus, isSuccess);
         System.out.println();
         printSuccessInfo(isSuccess);
-        System.out.println("총 시도한 횟수: " + attemptsCount);
-    }
-
-    private String buildBridgeStatusInfo(List<String> bridge, String location) {
-        StringJoiner bridgeStatus = new StringJoiner(" | ", "[ ", " ]");
-        for (String status : bridge) {
-            if (status.equals(location)) {
-                bridgeStatus.add("O");
-                continue;
-            }
-            bridgeStatus.add(" ");
-        }
-        return bridgeStatus.toString();
+        System.out.println(GameResultMessage.ATTEMPTS_COUNT.getMessage() + attemptsCount);
     }
 
     private void printSuccessInfo(boolean isSuccess) {
         if (isSuccess) {
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(GameResultMessage.SUCCESS.getMessage());
             return;
         }
-        System.out.println("게임 성공 여부: 실패");
+        System.out.println(GameResultMessage.FAILED.getMessage());
     }
 
     /*
