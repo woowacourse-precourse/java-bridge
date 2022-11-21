@@ -18,8 +18,7 @@ public class MyBridge {
         this.inputList = new ArrayList<>();
         this.answerBridge = answerBridge;
     }
-
-
+    
     public boolean matchBlocks() {
         int size = inputList.size();
         if (size == 0) {
@@ -35,18 +34,29 @@ public class MyBridge {
         return inputList.size() == answerBridge.size();
     }
 
+    // 수정 필요
     public void inputAlphabet() {
         String input = inputView.readMoving();
-        validateMove(input);
         addInputList(input);
+        try{validateMove(input);}
+        catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            popInputList();
+            inputAlphabet();
+        }
     }
+    
     private void validateMove(String input) {
         if (!input.equals("D") && !input.equals("U")) {
-            throw new IllegalArgumentException("[ERROR] D와 U만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] D와 U만 입력하실 수 있습니다.");
         }
     }
     private void addInputList(String alphabet) {
         inputList.add(alphabet);
+    }
+
+    private void popInputList() {
+        inputList.remove(inputList.size() - 1);
     }
 
     public List<String> getInputList() {
@@ -65,15 +75,26 @@ public class MyBridge {
         outputView.printResult(success, this, tryCnt);
 
     }
-    public boolean regame() {
+    public boolean reGame() {
         String input = inputView.readGameCommand();
-        if(input.equals("Q") ) {
-            return false;
+        boolean retry = false;
+        try{
+            retry = validateRetry(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return reGame();
         }
-        if(input.equals("R")) {
+        return retry;
+    }
+
+    private boolean validateRetry(String input) {
+        if (!input.equals("Q") && !input.equals("R")) {
+            throw new IllegalArgumentException("[ERROR] Q와 D만 입력하실 수 있습니다.");
+        }
+        if (input.equals("R")) {
             return true;
         }
-        throw new IllegalArgumentException("[ERROR] Q와 R만 입력하실 수 있습니다.");
+        return false;
     }
 
 }

@@ -14,7 +14,12 @@ public class InputView {
     public int readBridgeSize() {
         outputView.printInputSize();
         String input = Console.readLine();
-        checkDigit(input);
+        try{
+            checkDigit(input);
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
         return Integer.parseInt(input);
     }
 
@@ -29,8 +34,14 @@ public class InputView {
      */
     public String readMoving() {
         outputView.printMove();
-        String input = Console.readLine();
-        return input.toUpperCase();
+        String input;
+        try{
+            input = Console.readLine().toUpperCase();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+        return input;
     }
 
     /**
@@ -38,7 +49,21 @@ public class InputView {
      */
     public String readGameCommand() {
         outputView.printRetry();
-        String input = Console.readLine();
-        return input.toUpperCase();
+        String input;
+        try{
+            input = Console.readLine().toUpperCase();
+            checkAlphabet(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
+        return input;
+    }
+    //수정 고려
+
+    private void checkAlphabet(String input) {
+        if (!input.chars().allMatch(Character::isAlphabetic)) {
+            throw new IllegalArgumentException("[ERROR] 알파벳을 입력해 주세요.");
+        }
     }
 }
