@@ -19,19 +19,19 @@ public class OutputView {
 
 
     public void printGameStartMsg() {
-        System.out.println(GAME_START);
+        System.out.println(GAME_START + separateLine());
     }
 
     public void printBridgeSizeMsg() {
-        System.out.println(separateLine() + BRIDGE_SIZE);
+        System.out.println(BRIDGE_SIZE);
     }
 
     public void printMovingMsg() {
-        System.out.println(separateLine() + MOVING);
+        System.out.println(MOVING);
     }
 
     public void printGameCommandMsg() {
-        System.out.println(separateLine() + GAME_COMMAND);
+        System.out.println(GAME_COMMAND);
     }
 
     public void print(String msg) {
@@ -39,16 +39,16 @@ public class OutputView {
     }
 
     public void printResult(BridgeGameResult gameResult) {
-        System.out.println(separateLine() + GAME_RESULT);
+        System.out.println(GAME_RESULT);
         printMap(gameResult);
-        System.out.println(separateLine() + GAME_SUCCESS + gameResult.getResult());
+        System.out.println(GAME_SUCCESS + gameResult.getResult());
         System.out.println(GAME_TRY_COUNT + gameResult.getTryCount());
     }
 
     public void printMap(BridgeGameResult gameResult) {
         BridgeMoveState moveState = gameResult.getMoveState();
         System.out.println(format(moveState.getUpState()));
-        System.out.println(format(moveState.getDownState()));
+        System.out.println(format(moveState.getDownState()) + separateLine());
     }
 
     private String format(List<String> state) {
