@@ -138,7 +138,7 @@
 
 <br>
 
-### BridgeRandomNumberGanerator
+### BridgeRandomNumberGenerator
 
 > 미션에서 제공된 클래스 및 코드로, 위아래 중 어떤 칸으로 건널 수 있을지 정해주는 클래스
 
