@@ -1,6 +1,4 @@
-package bridge.util;
-
-import bridge.domain.Error;
+package bridge.domain;
 
 public class Validation {
     private static final String MOVE_UP = "U";

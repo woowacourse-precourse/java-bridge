@@ -1,4 +1,4 @@
-package bridge.util;
+package bridge.domain;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;

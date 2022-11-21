@@ -1,6 +1,4 @@
-package bridge.util;
-
-import bridge.BridgeNumberGenerator;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.HashMap;

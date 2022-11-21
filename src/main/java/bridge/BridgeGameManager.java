@@ -4,7 +4,6 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.Result;
 import bridge.domain.User;
-import bridge.util.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
