@@ -46,6 +46,13 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void 다리_사이즈_예외_테스트(){
+        assertSimpleTest(()->{
+            runException("30");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Override
     protected void runMain() {
