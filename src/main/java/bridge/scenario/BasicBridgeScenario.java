@@ -23,14 +23,7 @@ public class BasicBridgeScenario implements BridgeScenario {
 
         BridgeGame game = retryableReadSizeAndInitGame();
 
-        while (!game.status().equals(FINISH)) {
-            if (game.status().equals(RUNNING)) {
-                retryableMove(game);
-            }
-            if (game.status().equals(STOP) && askEndGame(game)) {
-                break;
-            }
-        }
+        loopTurn(game);
 
         endGame(game);
     }
@@ -43,6 +36,17 @@ public class BasicBridgeScenario implements BridgeScenario {
         } catch (IllegalArgumentException e) {
             output.printException(e);
             return retryableReadSizeAndInitGame();
+        }
+    }
+
+    private void loopTurn(BridgeGame game) {
+        while (!game.status().equals(FINISH)) {
+            if (game.status().equals(RUNNING)) {
+                retryableMove(game);
+            }
+            if (game.status().equals(STOP) && askEndGame(game)) {
+                break;
+            }
         }
     }
 
