@@ -38,9 +38,6 @@ public class BridgeResultLineView extends BridgeLineView {
     }
 
     private BridgeLineCharacter resultSquareCharacter() {
-//        if(isSuccess()) {
-//            return MOVABLE_SQUARE;
-//        }
         return resultCharacterFor(lineCharacter, bridgeCharacters.get(endLocation.value()));
     }
 
