@@ -7,16 +7,13 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    int inputBridgeSize, tryCount=0;
     boolean isSuccess=true;
     BridgeNumberGenerator numberGenerator=new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker=new BridgeMaker(numberGenerator);
+    UserMove user=new UserMove();
     public void start(){
-        OutputView.printStartGame();
-        OutputView.printRequireSize();
-        inputBridgeSize=InputView.readBridgeSize();
-        bridgeMaker.startMakeBridge(inputBridgeSize);
-        tryCount++;
+        prepare();
+        user.increaseMoveCount();
         move();
     }
     /**
@@ -25,25 +22,31 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
+    public void prepare(){
+        OutputView.printStartGame();
+        OutputView.printRequireSize();
+        user.setUserBridgeSize(InputView.readBridgeSize());
+        bridgeMaker.startMakeBridge(user.getUserBridgeSize());
+    }
+
     public void move() {
-        int moveCount=0;
-        List<String> userLocation=new ArrayList<>();
-        while(moveCount<inputBridgeSize){
+        user.initMove();
+        while(user.getMoveCount()<user.getUserBridgeSize()){
             String userMove=InputView.readMoving();
-            userLocation.add(userMove);
-            OutputView.printMap(userLocation, bridgeMaker.getBridge().getBridgeAnswer());
-            if(!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(moveCount))){
+            user.moveUser(userMove);
+            OutputView.printMap(user.getUserLocation(), bridgeMaker.getBridge().getBridgeAnswer());
+            if(!isBridge(bridgeMaker.getBridge().getBridgeAnswer().get(user.getMoveCount()))){
                 isSuccess=false;
                 break;
             }
-            moveCount++;
+            user.increaseMoveCount();
         }
         if(!isSuccess)
             askRetry();
     }
 
-    public boolean isBridge(String userMove, String bridgeShape){
-        if(userMove.equals(bridgeShape))
+    public boolean isBridge(String bridgeShape){
+        if(user.getUserLocation().equals(bridgeShape))
             return true;
         return false;
     }
@@ -53,21 +56,26 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        tryCount++;
+        user.increaseTryCount();
         move();
     }
 
     public void askRetry(){
         String userRetry=InputView.readGameCommand();
-        if(userRetry.equals("R"))
+        if(userRetry.equals("R")){
             retry();
-        else
-            OutputView.printResult(isBridgeEnd(), tryCount);
+            return;
+        }
+        meetEnd();
     }
 
     public Success isBridgeEnd(){
         if(isSuccess)
             return Success.SUCCESS;
         return Success.FAIL;
+    }
+
+    public void meetEnd(){
+        OutputView.printResult(isBridgeEnd(), user.getTryCount());
     }
 }
