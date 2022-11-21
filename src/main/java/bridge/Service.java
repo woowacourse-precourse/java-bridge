@@ -6,6 +6,15 @@ public class Service {
 	private BridgeGame bridgeGame = new BridgeGame();
 	private MessageQuestionPrint messageQuestionPrint = new MessageQuestionPrint();
 	private BridgeSize bridgeSize;
+	private boolean successOrFail = true;
+
+	public boolean getSuccessOrFail() {
+		return successOrFail;
+	}
+
+	public void setFail() {
+		successOrFail = false;
+	}
 
 	private String checkUserInputMove() {
 		try {
