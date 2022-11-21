@@ -54,7 +54,19 @@ class InputVerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void gameCommand() {
+    @DisplayName("재시작/종료 여부가 정상적으로 검증되는지 확인")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void gameCommand_올바른_값(String input) {
+        InputVerifier.gameCommand(input);
     }
+
+    @DisplayName("재시작/종료 여부가 정상적으로 검증되는지 확인")
+    @ValueSource(strings = {"Rr", "q", "DC", "", " ", "12", "테스트"})
+    @ParameterizedTest
+    void gameCommand_잘못된_값(String input) {
+        assertThatThrownBy(() -> InputVerifier.gameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
