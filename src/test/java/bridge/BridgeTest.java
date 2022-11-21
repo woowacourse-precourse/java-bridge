@@ -15,7 +15,10 @@ class BridgeTest {
 	static Stream<List<String>> lists() {
 		return Stream.of(
 			List.of("U", "D", "R"),
-			List.of("1", "U", "2"));
+			List.of("1", "U", "D"),
+			List.of("", "U", "D"),
+			List.of(" ", "U", "D"),
+			List.of("U", "D"));
 	}
 
 	@DisplayName("다리를 검증한다.")

@@ -20,5 +20,4 @@ public class Bridge {
 	public List<String> getBridge() {
 		return bridge;
 	}
-
 }
