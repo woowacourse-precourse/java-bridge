@@ -13,8 +13,8 @@ public class MovingService {
 	}
 
 	public String saveUserMoving(List<Integer> moving, List<Integer> top, List<Integer> bottom) {
-		top.add(moving.get(0));
-		bottom.add(moving.get(1));
+		top.add(moving.get(Bridge.TOP.getSecond()));
+		bottom.add(moving.get(Bridge.BOTTOM.getSecond()));
 
 		return convertListToString(top) + "\n" + convertListToString(bottom);
 	}
@@ -27,10 +27,10 @@ public class MovingService {
 	}
 
 	private String setWrongMoving(String moving) {
-		String move = "F";
+		String move = Bridge.UNKNOWN.getOrder();
 
-		if (moving.equals(Bridge.UP.getOrder())) {
-			move = "W";
+		if (moving.equals(Bridge.TOP.getOrder())) {
+			move = Bridge.WRONG.getOrder();
 		}
 
 		return move;
