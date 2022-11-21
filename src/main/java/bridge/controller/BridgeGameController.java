@@ -18,6 +18,7 @@ public class BridgeGameController {
         for(int count = 0; count < bridgeLen; count++){
             System.out.println("count" + count);
             String move = readMoving();
+            moveCheck(move);
             inputMove.add(move);
             moveResult(count, move, bridges, inputMove);
         }
