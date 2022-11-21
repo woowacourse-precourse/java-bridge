@@ -19,7 +19,7 @@ public class InputView {
             return n;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 다리 길이는 3 이상 20 이하의 숫자만 입력가능합니다.");
-            return -1;
+            return readBridgeSize();
         }
     }
 
@@ -34,7 +34,7 @@ public class InputView {
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return "-1";
+            return readMoving();
         }
         return userChoice;
     }
@@ -50,7 +50,7 @@ public class InputView {
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return "-1";
+            return readGameCommand();
         }
 
         return command;
