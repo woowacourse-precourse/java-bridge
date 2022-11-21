@@ -2,11 +2,8 @@ package bridge.domain.player;
 
 import bridge.view.input.InputException;
 import bridge.view.input.InputValidator;
-import bridge.view.output.OutputView;
 
 public class MovementCommand implements InputValidator {
-
-	private static final String REQUEST_MOVEMENT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
 	private static final String UPPER_SIDE_MOVEMENT = "U";
 	private static final String UNDER_SIDE_MOVEMENT = "D";
@@ -19,7 +16,6 @@ public class MovementCommand implements InputValidator {
 	}
 
 	public static MovementCommand valueOf(String movement) {
-		OutputView.withContentOf(REQUEST_MOVEMENT, true, false).ConsoleMessage();
 		return new MovementCommand(movement);
 	}
 

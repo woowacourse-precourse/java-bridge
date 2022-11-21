@@ -2,11 +2,8 @@ package bridge.domain.player;
 
 import bridge.view.input.InputException;
 import bridge.view.input.InputValidator;
-import bridge.view.output.OutputView;
 
 public class BridgeSizeCommand implements InputValidator {
-
-	private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 
 	private static final int BRIDGE_SIZE_MIN = 3;
 	private static final int BRIDGE_SIZE_MAX = 20;
@@ -24,7 +21,7 @@ public class BridgeSizeCommand implements InputValidator {
 	}
 
 	public static BridgeSizeCommand valueOf(String inputBridgeSize) {
-		OutputView.withContentOf(REQUEST_BRIDGE_SIZE, false, false).ConsoleMessage();
+
 		try {
 			return new BridgeSizeCommand(Integer.parseInt(inputBridgeSize));
 		} catch (NumberFormatException e) {
