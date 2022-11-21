@@ -7,4 +7,11 @@ public class Result {
         this.isDone = isDone;
         this. attemptCount = attemptCount;
     }
+    public boolean getIsDone(){
+        return isDone;
+    }
+
+    public int getAttemptCount(){
+        return attemptCount;
+    }
 }
