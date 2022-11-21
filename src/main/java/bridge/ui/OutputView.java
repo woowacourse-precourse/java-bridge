@@ -1,5 +1,7 @@
 package bridge.ui;
 
+import bridge.domain.Bridge;
+
 import java.util.List;
 
 /**
@@ -47,7 +49,7 @@ public class OutputView {
 
     private String makeDownStringIfFailed(List<String> route, StringBuilder downBridge) {
         makeDownString(route, downBridge, route.size() - 1);
-        if (route.get(route.size() - 1).equals("U")) {
+        if (route.get(route.size() - 1).equals(Bridge.UP)) {
             downBridge.append(" ").append(endMap);
             return downBridge.toString();
         }
@@ -56,7 +58,7 @@ public class OutputView {
 
     private String makeUpStringIfFailed(List<String> route, StringBuilder upBridge) {
         makeUpString(route, upBridge, route.size() - 1);
-        if (route.get(route.size() - 1).equals("D")) {
+        if (route.get(route.size() - 1).equals(Bridge.DOWN)) {
             upBridge.append(" ").append(endMap);
             return upBridge.toString();
         }
@@ -66,7 +68,7 @@ public class OutputView {
 
     private void makeUpString(List<String> route, StringBuilder upBridge, int size) {
         for (int i = 0; i < size; i++) {
-            if (route.get(i).equals("D")) {
+            if (route.get(i).equals(Bridge.DOWN)) {
                 upBridge.append(" " + separator);
                 continue;
             }
@@ -76,7 +78,7 @@ public class OutputView {
 
     private void makeDownString(List<String> route, StringBuilder downBridge, int size) {
         for (int i = 0; i < size; i++) {
-            if (route.get(i).equals("U")) {
+            if (route.get(i).equals(Bridge.UP)) {
                 downBridge.append(" " + separator);
                 continue;
             }

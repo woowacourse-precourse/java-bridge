@@ -8,6 +8,8 @@ import java.util.List;
 public class Bridge {
 
     private final List<String> bridge;
+    public static final String UP = "U";
+    public static final String DOWN = "D";
 
     /**
      * @param size                  다리의 사이즈를 입력 받는다.

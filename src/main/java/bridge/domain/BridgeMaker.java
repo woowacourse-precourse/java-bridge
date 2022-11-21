@@ -28,8 +28,8 @@ public class BridgeMaker {
 
     private String randomToBridge(int number) {
         if (number == 0) {
-            return "D";
+            return Bridge.DOWN;
         }
-        return "U";
+        return Bridge.UP;
     }
 }
