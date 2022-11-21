@@ -121,4 +121,8 @@ public class OutputView {
     private void breakLine() {
         System.out.println();
     }
+
+    public void printException(IllegalArgumentException exception) {
+        System.out.println(exception.getMessage());
+    }
 }

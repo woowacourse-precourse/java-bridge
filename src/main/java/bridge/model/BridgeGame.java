@@ -1,7 +1,6 @@
 package bridge.model;
 
 import bridge.util.Constant;
-import bridge.util.ExceptionMessage;
 
 import java.util.List;
 
@@ -26,16 +25,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(Record record, String direction) throws IllegalArgumentException {
-        isValidDirection(direction);
+    public void move(Record record, String direction) {
         record.addInBoard(direction);
-    }
-
-    private void isValidDirection(String inputDirection) throws IllegalArgumentException {
-        if (!Direction.isEqualToUp(inputDirection) && !Direction.isEqualToDown(inputDirection)) {
-            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
-                    + ExceptionMessage.INVALID_DIRECTION);
-        }
     }
 
     /**
@@ -43,22 +34,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(Record record,
-                         String retryOrQuit) throws IllegalArgumentException {
-        isValidGameCommand(retryOrQuit);
+    public boolean retry(Record record, String retryOrQuit) {
         if (retryOrQuit.equals(Constant.RETRY)) {
             count++;
             initialize(record);
             return true;
         }
         return false;
-    }
-
-    private void isValidGameCommand(String inputCommand) throws IllegalArgumentException {
-        if (!inputCommand.equals(Constant.RETRY) && !inputCommand.equals(Constant.QUIT)) {
-            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
-                    + ExceptionMessage.INVALID_GAME_COMMAND);
-        }
     }
 
     public int isSuccess(Record record, List<String> bridge) {

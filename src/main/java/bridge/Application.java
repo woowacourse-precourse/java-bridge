@@ -8,21 +8,16 @@ import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Application {
 
     public static void main(String[] args) {
-        try {
-            List<String> board = new ArrayList<>();
-            Map<String, Integer> resultBoard = new HashMap<>();
-            InputController inputController = new InputController(new InputView(), new OutputView());
-            BridgeGameController bridgeGameController = new BridgeGameController();
+        InputController inputController = new InputController(new InputView(), new OutputView());
+        BridgeGameController bridgeGameController = new BridgeGameController();
+        OutputView outputView = new OutputView();
 
-            bridgeGameController.start(inputController.getBridgeSize(), new Record(board, resultBoard));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        outputView.printGameStart();
+        bridgeGameController.start(inputController.getBridgeSize(),
+                new Record(new ArrayList<>(),new HashMap<>()));
     }
 }
