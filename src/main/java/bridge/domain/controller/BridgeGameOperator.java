@@ -17,14 +17,12 @@ public class BridgeGameOperator {
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
     private final BridgeMaker bridgeMaker;
-    private int bridgeSize;
 
     public BridgeGameOperator() {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeGame = new BridgeGame();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeSize = 0;
     }
 
     public void playBridgeGame() {
@@ -43,7 +41,7 @@ public class BridgeGameOperator {
 
     private void setBridge() {
         outputView.printInputBridgeLengthGuide();
-        bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
         outputView.printEmptyLine();
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -65,7 +63,7 @@ public class BridgeGameOperator {
         MovingPossibility MOVING_POSSIBILITY = MovingPossibility.CAN_MOVE;
         int space = 0;
 
-        while (MOVING_POSSIBILITY == MovingPossibility.CAN_MOVE && space < bridgeSize) {
+        while (MOVING_POSSIBILITY == MovingPossibility.CAN_MOVE && space < Bridge.getBridgeSize()) {
             MOVING_POSSIBILITY = moveOnce(space);
             outputView.printMap();
             space++;
@@ -82,10 +80,9 @@ public class BridgeGameOperator {
     }
 
     private Direction getDirection() {
-        final String UP = "U";
         String moveTo = inputView.readMoving();
 
-        if (moveTo.equals(UP)) {
+        if (moveTo.equals(Direction.UP.getDirection())) {
             return Direction.UP;
         }
         return Direction.DOWN;
