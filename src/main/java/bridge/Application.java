@@ -31,6 +31,7 @@ public class Application {
 
             if (re.contains("R")) {
                 try_count += 1;
+                BridgeGame.retry();
             }
         }
         // TODO: 프로그램 구현
