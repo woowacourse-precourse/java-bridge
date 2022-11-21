@@ -1,6 +1,6 @@
 package bridge.Entity;
 
-import bridge.Service.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 import java.util.List;
 

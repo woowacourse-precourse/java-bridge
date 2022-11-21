@@ -2,19 +2,20 @@
 
 ---
 ### Controller : `Application`과 직접적으로 상호작용하는 클래스들의 모음
+- `BridgeGame` : 다리 건너기 게임을 관리하는 클래스
 
 ### Entity : 객체 패키지
 - `Space` : 이동에 관한 객체
 - `BridgeMaker` : 다리 생성에 관한 객체
+- `BridgeSize` : 다리 길이에 관한 객체
 
 ### Service : 동작 관련 패키지
-- `BridgeGame` : 다리 건너기 게임을 관리하는 클래스
 - `BridgeNumberGenerator` : 다리 칸을 랜덤으로 생성하는 클래스
 
 ### View : 입력, 출력을 수행하는 클래스들의 모음 `UI`
 - `InputView` : 사용자로부터 입력을 받는 UI
 - `OutputView` : 사용자에게 출력을 하는 UI
-- `Validation` : 입력에 대한 예외 검증
+- `InputValidate` : 입력에 대한 예외 검증
 
 
 ---
