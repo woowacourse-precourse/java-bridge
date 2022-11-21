@@ -12,7 +12,6 @@ class InputTest {
         assertThat(true).isEqualTo(Validation.bridgeSizeVerification("10"));
         assertThat(false).isEqualTo(Validation.bridgeSizeVerification("a1"));
         assertThat(false).isEqualTo(Validation.bridgeSizeVerification("a"));
-        //TODO : -1를 \\d 에 속하지 않아서 숫자를 입력해달라고 나오는 것을 수정하자!
         assertThat(false).isEqualTo(Validation.bridgeSizeVerification("-1"));
         assertThat(false).isEqualTo(Validation.bridgeSizeVerification("50"));
     }
