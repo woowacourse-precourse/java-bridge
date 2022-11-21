@@ -26,7 +26,7 @@ class BridgeGameTest {
         MoveDirection direction = new MoveDirection("U");
         int index = 0;
 
-        BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeGameReferee());
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
         bridgeGame.move(result, direction, index);
         //then
@@ -41,7 +41,7 @@ class BridgeGameTest {
         MoveDirection direction = new MoveDirection("D");
         int index = 0;
 
-        BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeGameReferee());
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
         bridgeGame.move(result, direction, index);
         //then

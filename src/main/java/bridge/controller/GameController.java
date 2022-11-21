@@ -23,7 +23,7 @@ public class GameController {
     public void execute() {
         BridgeGameStatus status = new BridgeGameStatus(RETRY_COMMAND);
         while (status.isRunning()) {
-            BridgeGame bridgeGame = new BridgeGame(this.generateBridge(), new BridgeGameReferee());
+            BridgeGame bridgeGame = new BridgeGame(this.generateBridge());
             Result result = this.playGame(bridgeGame);
             if (bridgeGame.retry(result)) {
                 this.changeGameStatus(status);
@@ -38,6 +38,7 @@ public class GameController {
     private Result playGame(BridgeGame bridgeGame) {
         Bridge bridge = bridgeGame.getBridge();
         Result result = new Result();
+
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
             bridgeGame.move(result, this.readMoving(), i);
             if (result.hasWrong()) {
