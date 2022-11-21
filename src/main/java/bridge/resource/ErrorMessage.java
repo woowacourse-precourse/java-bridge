@@ -1,4 +1,4 @@
-package bridge.message;
+package bridge.resource;
 
 public final class ErrorMessage {
     private static final String ERROR = "[ERROR] ";

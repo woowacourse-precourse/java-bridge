@@ -1,6 +1,6 @@
 package bridge.game;
 
-import bridge.message.GameMessage;
+import bridge.resource.GameMessage;
 import bridge.view.OutputView;
 import java.util.StringJoiner;
 

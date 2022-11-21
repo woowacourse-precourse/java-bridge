@@ -1,4 +1,4 @@
-package bridge.message;
+package bridge.resource;
 
 public final class GameMessage {
     public static final String START_MSG = "다리 건너기 게임을 시작합니다.";
