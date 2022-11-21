@@ -2,15 +2,20 @@ package bridge.domain;
 
 import static bridge.constant.GameCommand.QUIT;
 import static bridge.constant.GameCommand.RETRY;
+import static bridge.constant.GameStatus.FAIL;
+import static bridge.constant.GameStatus.ON_WAY;
 import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeGameTest {
     BridgeGame bridgeGame;
@@ -18,6 +23,41 @@ class BridgeGameTest {
     @BeforeEach
     void initBridgeGame() {
         bridgeGame = new BridgeGame(List.of(UPPER_SIDE, LOWER_SIDE, UPPER_SIDE));
+    }
+
+    @DisplayName("입력 받은 이동 방향으로 1칸 이동한다.")
+    @Nested
+    class Move {
+
+        @DisplayName("이동에 1회 성공한 경우")
+        @Test
+        void should_ReturnBridgePicture_When_SuccessToMove() {
+            // given
+            String moving = UPPER_SIDE;
+            // when
+            String bridgePicture = bridgeGame.move(moving);
+            // then
+            assertThat(bridgePicture).isEqualTo("[ O ]" + "\n" + "[   ]");
+        }
+
+        @DisplayName("이동에 1회 실패한 경우")
+        @Test
+        void should_ReturnBridgePicture_When_FailToMove() {
+            // given
+            String moving = LOWER_SIDE;
+            // when
+            String bridgePicture = bridgeGame.move(moving);
+            // then
+            assertThat(bridgePicture).isEqualTo("[   ]" + "\n" + "[ X ]");
+        }
+
+        @DisplayName("올바르지 않은 이동 방향 입력 -> 예외 발생")
+        @ValueSource(strings = {"u", "d", "A", "123"})
+        @ParameterizedTest
+        void should_ThrowIllegalArgumentException_When_GiveWrongMoving(String input) {
+            assertThatThrownBy(() -> bridgeGame.move(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
     }
 
     @DisplayName("게임 상태가 진행 중인지 확인한다.")
