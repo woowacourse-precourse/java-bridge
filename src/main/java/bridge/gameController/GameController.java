@@ -35,6 +35,24 @@ public class GameController {
         outputView.startMessage();
         builtBridge = bridgeGame.makeBridge(inputView.readBridgeSize());
     }
+    public boolean moveBridge() {
+
+        boolean moveCheck = true;
+
+        while (moveCheck) {
+
+            String userMove = moveChoice();
+            moveCheck = bridgeGame.move(userMove, location, builtBridge);
+            outputView.printMap(moveCheck, userMove, location);
+
+            if (builtBridge.size() - 1 == location && moveCheck == true) {
+                outputView.printResult(moveCheck, cnt);
+                return true;
+            }
+            ++location;
+        }
+        return false;
+    }
 
 }
 
