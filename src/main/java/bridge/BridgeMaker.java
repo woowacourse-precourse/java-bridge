@@ -11,8 +11,6 @@ import static bridge.utils.ErrorMessages.*;
 public class BridgeMaker {
     private static final int LOWER_INCLUSIVE = 0;
     private static final int UPPER_INCLUSIVE = 1;
-    private static final int SIZE_MIN_RANGE = 3;
-    private static final int SIZE_MAX_RANGE = 20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -25,7 +23,6 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        validateBridgeSize(size);
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             bridge.add(makeBridgeShape());
@@ -49,12 +46,6 @@ public class BridgeMaker {
             return "D";
         }
         return "U";
-    }
-
-    private void validateBridgeSize(int bridgeSize) {
-        if (bridgeSize < SIZE_MIN_RANGE || bridgeSize > SIZE_MAX_RANGE) {
-            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
-        }
     }
 
     private void validateBridgeRandomNumber(int shape) {
