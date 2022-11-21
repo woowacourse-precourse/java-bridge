@@ -12,6 +12,10 @@ public class BridgeGame {
     private int currPosition = 0;
     private List<String> bridgeCurrStatus = new ArrayList<>();
 
+    public List<String> getBridgeCurrStatus() {
+        return bridgeCurrStatus;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
