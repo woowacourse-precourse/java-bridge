@@ -13,18 +13,28 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int i = validateInt(Console.readLine());
-        if (i < 3 || i > 20) {
-            throw new IllegalArgumentException(OUT_OF_RANGE.returnMessage());
+        try {
+            int i = validateInt(Console.readLine());
+            return validateRange(i);
+        } catch (IllegalArgumentException e) {
+            return readBridgeSize();
         }
-        return i;
     }
 
     public int validateInt(String s) {
         if (!s.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException(IS_NOT_NUMBER.returnMessage());
+            System.out.println(IS_NOT_NUMBER.returnMessage());
+            throw new IllegalArgumentException();
         }
         return Integer.parseInt(s);
+    }
+
+    public int validateRange(int i) {
+        if (i < 3 || i > 20) {
+            System.out.println(OUT_OF_RANGE.returnMessage());
+            throw new IllegalArgumentException();
+        }
+        return i;
     }
 
     /**
@@ -33,10 +43,12 @@ public class InputView {
     public String readMoving() {
         String s = Console.readLine();
         if (!(s.equals("U") || s.equals("D"))) {
-            throw new IllegalArgumentException(INVALID_MOVE.returnMessage());
+            System.out.println(INVALID_MOVE.returnMessage());
+            throw new IllegalArgumentException();
         }
         return s;
     }
+
 
 
     /**
@@ -45,7 +57,8 @@ public class InputView {
     public String readGameCommand() {
         String s = Console.readLine();
         if (!(s.equals("R") || s.equals("Q"))) {
-            throw new IllegalArgumentException(INVALID_RETRY.returnMessage());
+            System.out.println(INVALID_RETRY.returnMessage());
+            throw new IllegalArgumentException();
         }
         return s;
     }
