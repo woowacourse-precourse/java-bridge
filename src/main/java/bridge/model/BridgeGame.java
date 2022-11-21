@@ -6,6 +6,7 @@ import java.util.List;
 
 import static bridge.model.BridgeMaker.makeBridge;
 import static bridge.view.InputView.*;
+import static bridge.view.OutputView.printResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -115,6 +116,7 @@ public class BridgeGame {
             }
             if(input.equals("Q")){
                 //gameReStartFinal(resultFinal,startCount);
+                printResult(resultFinal, startCount, 1);
                 resultFinal.clear();
                 resultFinal.add(String.valueOf(bridgeLen));
             }
@@ -131,11 +133,11 @@ public class BridgeGame {
         System.out.println("successCount: " + successCount + ", bridgeLen:" + bridgeLen);
         if(successCount == bridgeLen){
             //gameResultFinal(resultFinal, startCount);
-
+            printResult(resultFinal, startCount, 0);
         }
 
     }
-/*
+    /*
     public static void gameResultFinal(ArrayList<String> resultFinal, int startCount){
         System.out.println("최종 게임 결과");
         System.out.println(resultFinal.get(1));
@@ -145,7 +147,8 @@ public class BridgeGame {
         System.out.println("총 시도한 횟수: " + startCount);
     }
 
- */
+
+     */
 
 
 
@@ -181,7 +184,7 @@ public class BridgeGame {
         return count;
 
     }
-/*
+    /*
     public static void gameReStartFinal(ArrayList<String> resultFinal, int startCount){
         System.out.println("최종 게임 결과");
         System.out.println(resultFinal.get(1));
@@ -191,6 +194,7 @@ public class BridgeGame {
         System.out.println("총 시도한 횟수: " + startCount);
     }
 
- */
+     */
+
 
 }

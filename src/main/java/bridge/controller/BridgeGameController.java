@@ -21,16 +21,16 @@ public class BridgeGameController {
         bridges = makeBridge(bridgeLen);
 
         for(int count = 0; count < bridgeLen; count++){
-            if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen){
-                check++;
-                break;
-            }
-
             String move = readMoving();
             moveCheck(move);
             inputMove.add(move);
             resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
 
+
+            if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen){
+                check++;
+                break;
+            }
         }
 
         if(check == 0){
