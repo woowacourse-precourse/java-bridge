@@ -58,10 +58,10 @@ public class BridgeGame {
 		if(command.equals("R")) {
 			mapMaker = new MapMaker();
 			move(bridge);
+			return;
 		}
 
 		ending(false);
-		return;
 	}
 
 	public void ending(boolean gameResult) {
