@@ -7,7 +7,6 @@ public class Application {
     private static boolean gameContinue;
 
     public static void main(String[] args) {
-        OutputView.printGameStartMsg();
         try {
             createGame();
         } catch (IllegalArgumentException e) {
@@ -17,6 +16,7 @@ public class Application {
     }
 
     static void createGame() {
+        OutputView.printGameStartMsg();
         GameController gameController = new GameController();
         do {
             gameContinue = gameController.run();
