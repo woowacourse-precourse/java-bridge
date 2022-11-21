@@ -26,12 +26,14 @@ public class BridgeMoveTest {
     @DisplayName("다음칸이 이동할 수 있는 칸인 경우 true 반환")
     @Test
     void caseBridgeMovable(){
-        assertThat(bridge.isMoveAble(player.getNextBridgePosition(), "U")).isTrue();
+        player.goFront();
+        assertThat(bridge.isMoveAble(player.getCurrentBridgePosition(), "U")).isTrue();
     }
 
     @DisplayName("다음칸이 이동할 수 없는 칸인 경우 false 반환")
     @Test
     void caseBridgeNotMovable(){
-        assertThat(bridge.isMoveAble(player.getNextBridgePosition(), "D")).isFalse();
+        player.goFront();
+        assertThat(bridge.isMoveAble(player.getCurrentBridgePosition(), "U")).isFalse();
     }
 }
