@@ -28,7 +28,14 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printResult() {
+	public void printResult(boolean select, int count) {
+		System.out.println(Constant.TOTAL_RESULT);
+		String replaceUpBridgeMap = String.join(Constant.BOARD, upBridgeMap);
+		String replaceDownBridgeMap = String.join(Constant.BOARD, downBridgeMap);
+		System.out.println(Constant.FIRST_BRACE + replaceUpBridgeMap + Constant.END_BRACE);
+		System.out.println(Constant.FIRST_BRACE + replaceDownBridgeMap + Constant.END_BRACE + Constant.LINE_BLANK);
+		successOrFailView(select);
+		countView(count);
 	}
 
 	public void storeMap(boolean isCross, String userMove) {
