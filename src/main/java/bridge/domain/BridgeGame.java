@@ -62,7 +62,7 @@ public class BridgeGame {
     }
 
     public boolean isGameComplete(String moving) {
-        if(moveResultJudgement.isGameComplete(moving, currentDistance)){
+        if (moveResultJudgement.isGameComplete(moving, currentDistance)) {
             isGame = true;
             return true;
         }
