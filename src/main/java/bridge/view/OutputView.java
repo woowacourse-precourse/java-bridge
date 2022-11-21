@@ -19,13 +19,13 @@ public class OutputView {
     }
 
     public void printResult(boolean isSuccess, int trials, List<String> map) {
-        String resultInKor = PrintMessage.FAIL_IN_KOR.getString();
+        PrintMessage resultInKor = PrintMessage.FAIL_IN_KOR;
         if (isSuccess) {
-            resultInKor = PrintMessage.SUCCEED_IN_KOR.getString();
+            resultInKor = PrintMessage.SUCCEED_IN_KOR;
         }
         System.out.println(PrintMessage.RESULT_MAP.getString());
         printMap(map);
-        System.out.printf(PrintMessage.RESULT_IS_SUCCESS.getString(), resultInKor);
+        System.out.printf(PrintMessage.RESULT_IS_SUCCESS.getString(), resultInKor.getString());
         System.out.printf(PrintMessage.RESULT_TRIALS.getString(), trials);
     }
 }
