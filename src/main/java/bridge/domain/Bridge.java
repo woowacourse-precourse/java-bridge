@@ -13,13 +13,20 @@ public class Bridge {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
+        System.out.println(bridge);
     }
 
-    public String getBridge() {
-        return bridge.get(stepCount);
+    public MoveResult createMoveResult(MoveSpace moveSpace){
+        String nowStep = this.bridge.get(this.stepCount);
+        boolean nowResult = false;
+        if(moveSpace.isItMovable(nowStep)){
+            nextStep();
+            nowResult = true;
+        }
+        return new MoveResult(nowResult, nowStep);
     }
 
-    public void netStep(){
+    public void nextStep(){
         this.stepCount +=1;
     }
 }

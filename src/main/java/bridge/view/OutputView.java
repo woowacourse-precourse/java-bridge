@@ -13,27 +13,33 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap() {
         System.out.println(createUpMap());
         System.out.println(createDownMap());
     }
 
-    private StringJoiner createUpMap(){
+    private static StringJoiner createUpMap(){
         StringJoiner stringjoiner = new StringJoiner("|", "[", "]");
         for (String history : MoveResult.history) {
             if (history == "U"){
                 stringjoiner.add("O");
             }
         }
+        if (MoveResult.step == "U"){
+            stringjoiner.add("X");
+        }
         return stringjoiner;
     }
 
-    private StringJoiner createDownMap(){
+    private static StringJoiner createDownMap(){
         StringJoiner stringjoiner = new StringJoiner("|", "[", "]");
         for (String history : MoveResult.history) {
             if (history == "D"){
-                stringjoiner.add("X");
+                stringjoiner.add("O");
             }
+        }
+        if (MoveResult.step == "D"){
+            stringjoiner.add("X");
         }
         return stringjoiner;
     }
