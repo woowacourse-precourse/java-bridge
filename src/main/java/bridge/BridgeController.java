@@ -1,11 +1,11 @@
 package bridge;
 
-import bridge.domain.bridge.BridgeGame;
+import bridge.service.Service;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
-    private final BridgeGame bridgeGame = new BridgeGame();
+    private final Service service = new Service();
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     public static int tryNumber = 0;
@@ -23,7 +23,7 @@ public class BridgeController {
     }
     void bridgeInit(){
         try {
-            bridgeGame.makeBridge(size);
+            service.makeBridge(size);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             bridgeInit();
@@ -34,36 +34,15 @@ public class BridgeController {
     void run(){
         tryNumber++;
         for (int i = 0 ;i<size;i++) {
-            makePlayer();
-            if (movePlayer(i)){
+            service.makePlayer();
+            if (service.movePlayer(i)){
                 continue;
             }
-            if (retryPlayer()){
+            if (service.retryPlayer()){
                 run();
                 return;
             }
         }
-        bridgeGame.endGame();
-    }
-    void makePlayer(){
-        try {
-            outputView.gamePrint();
-            bridgeGame.setPlayer(inputView.readMoving());
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            makePlayer();
-            return;
-        }
-    }
-    boolean movePlayer(int index){
-        return bridgeGame.move(index);
-    }
-    boolean retryPlayer(){
-        try {
-            return bridgeGame.retry();
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return retryPlayer();
-        }
+        service.endGame();
     }
 }
