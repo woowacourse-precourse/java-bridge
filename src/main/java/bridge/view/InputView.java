@@ -38,7 +38,7 @@ public class InputView {
         return input;
     }
 
-    public static boolean readGameCommand() {
+    public static String readGameCommand() {
         System.out.println(GET_GAME_COMMAND_MESSAGE);
         String input = Console.readLine();
         try {
@@ -47,7 +47,7 @@ public class InputView {
             System.out.println(error.getMessage());
             return readGameCommand();
         }
-        return input.equals(GAME_REPLAY);
+        return input;
     }
 
     private static void validate(String input, String option, String otherOption) {
