@@ -37,7 +37,6 @@ class CrossingBridgeTest extends NsTest {
 	void verify_CrossingBridge_WithPotentialSuccess() {
 		assertSimpleTest(() -> {
 			run("U", "U", "D");
-			System.out.println(crossingBridge.isCrossComplete());
 			assertThat(crossingBridge.isCrossComplete()).isEqualTo(BridgeGame.RESULT_SUCCESS);
 		});
 	}
