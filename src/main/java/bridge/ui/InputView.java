@@ -12,10 +12,15 @@ public class InputView {
     private static final String INPUT_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public int readBridgeSize() {
+        System.out.println(INPUT_BRIDGE_SIZE);
+        int bridgeSize = getBridgeSizeInputAfterParse();
+        System.out.println();
+        return bridgeSize;
+    }
+
+    private int getBridgeSizeInputAfterParse() {
         try {
-            System.out.println(INPUT_BRIDGE_SIZE);
             int bridgeSize = Integer.parseInt(Console.readLine());
-            System.out.println();
             return bridgeSize;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
