@@ -36,6 +36,10 @@ public class BridgeGame {
         return false;
     }
 
+    public List<List<String>> getBridgeMap() {
+        return bridgeMap;
+    }
+
     public boolean isWrongAnswer() {
         return wrongAnswer;
     }
