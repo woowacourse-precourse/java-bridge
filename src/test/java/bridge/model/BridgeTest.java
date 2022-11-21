@@ -10,22 +10,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 class BridgeTest {
 
     @Test
-    public void 위쪽_단일_다리_생성_테스트(){
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(1);
-        assertThat(bridge).containsExactly("U");
-    }
-
-    @Test
-    public void 아래쪽_단일_다리_생성_테스트(){
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(1);
-        assertThat(bridge).containsExactly("D");
-    }
-
-    @Test
     public void 네자리_다리_생성_테스트(){
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
