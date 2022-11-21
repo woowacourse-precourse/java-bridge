@@ -8,9 +8,12 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> path;
+    private List<String> bridge;
+    private int tryCount=0;
 
-    public BridgeGame(){
+    public BridgeGame(List<String> bridge){
         this.path=new ArrayList<>();
+        this.bridge=bridge;
     }
 
     /**
