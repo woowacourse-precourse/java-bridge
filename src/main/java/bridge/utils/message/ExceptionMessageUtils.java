@@ -8,7 +8,7 @@ public enum ExceptionMessageUtils {
             BridgeConst.MIN_BRIDGE_SIZE,
             BridgeConst.MAX_BRIDGE_SIZE),
 
-    WRONG_PLAYER_MOVE("이동할 칸은 %s(위 칸) 혹은 %s(아래 칸)만을 선택할 수 있습니다.",
+    WRONG_PLAYER_MOVE("이동할 칸은 %s(위) 혹은 %s(아래)만을 선택할 수 있습니다.",
             CommandConst.PLAYER_MOVE_UP,
             CommandConst.PLAYER_MOVE_DOWN),
 
