@@ -1,10 +1,12 @@
 package bridge;
 
+import javax.swing.text.Position;
 import java.text.MessageFormat;
 
 public class Result {
     private static final char O_SIGN = 'O';
     private static final char X_SIGN = 'X';
+    private static final char BLANK = ' ';
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
 
@@ -14,30 +16,24 @@ public class Result {
         this.resultInformation = new ResultInformation(size);
     }
 
-    void handleUpBridge(Key input, Position position) {
-        if (Key.matchUp(input)) {
-            resultInformation.updateUpBridge(position, O_SIGN);
-            return;
-        }
-        resultInformation.updateUpBridge(position, X_SIGN);
-        position.fail();
+    void handleUpBridge(int position, boolean isCorrect) {
+        resultInformation.updateUpBridge(position, isCorrect ? O_SIGN : X_SIGN);
+        resultInformation.updateDownBridge(position, BLANK);
+        return;
     }
 
-    void handleDownBridge(Key input, Position position) {
-        if (Key.matchDown(input)) {
-            resultInformation.updateDownBridge(position, O_SIGN);
-            return;
-        }
-        resultInformation.updateDownBridge(position, X_SIGN);
-        position.fail();
+    void handleDownBridge(int position, boolean isCorrect) {
+        resultInformation.updateUpBridge(position, BLANK);
+        resultInformation.updateDownBridge(position, isCorrect ? O_SIGN : X_SIGN);
+        return;
     }
 
     void clear() {
         resultInformation.clear();
     }
 
-    String printStatus(int tryCount) {
-        return resultInformation.makeMap(tryCount);
+    String printStatus(int position) {
+        return resultInformation.makeMap(position);
     }
 
     @Override

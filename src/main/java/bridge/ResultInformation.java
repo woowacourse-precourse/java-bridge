@@ -1,5 +1,6 @@
 package bridge;
 
+import javax.swing.text.Position;
 import java.util.StringJoiner;
 
 public class ResultInformation {
@@ -16,12 +17,12 @@ public class ResultInformation {
         this.downBridge = new char[size];
     }
 
-    void updateUpBridge(Position position, char sign) {
-        upBridge[position.getPosition()] = sign;
+    void updateUpBridge(int position, char sign) {
+        upBridge[position] = sign;
     }
 
-    void updateDownBridge(Position position, char sign) {
-        downBridge[position.getPosition()] = sign;
+    void updateDownBridge(int position, char sign) {
+        downBridge[position] = sign;
     }
 
     String makeMap(int tryCount) {

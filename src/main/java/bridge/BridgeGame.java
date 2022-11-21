@@ -1,5 +1,6 @@
 package bridge;
 
+import javax.swing.text.Position;
 import java.text.MessageFormat;
 
 /**
@@ -8,13 +9,11 @@ import java.text.MessageFormat;
 public class BridgeGame {
     private final Bridge bridge;
     private final Result result;
-    private final Position position;
-    int count = 0;
+    private int position = 0;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         result = new Result(bridge.size());
-        position = new Position(bridge.size());
     }
 
     /**
@@ -23,20 +22,15 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String input) {
-        increase();
-        Key answer = bridge.get(position.getNext());
         if (Key.matchUp(input)) {
-            result.handleUpBridge(answer, position);
+            result.handleUpBridge(position, isCorrect(input));
             return;
         }
-        result.handleDownBridge(answer, position);
-    }
-    void increase() {
-        count++;
+        result.handleDownBridge(position, isCorrect(input));
     }
 
-    int getPosition() {
-        return position.getPosition();
+    boolean isCorrect(String input) {
+        return bridge.get(position).getValue().equals(input);
     }
 
     /**
@@ -46,20 +40,6 @@ public class BridgeGame {
      */
     public void retry() {
         result.clear();
-        position.clear();
-        clear();
-    }
-
-    void clear() {
-        count = 0;
-    }
-
-    boolean isFail() {
-        return !position.arrive();
-    }
-
-    boolean canMove() {
-        return position.isNotArrive() && position.isNotReset();
     }
 
     public String printGameResult() {
@@ -68,6 +48,10 @@ public class BridgeGame {
 
     @Override
     public String toString() {
-        return result.printStatus(count);
+        return result.printStatus(position);
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
