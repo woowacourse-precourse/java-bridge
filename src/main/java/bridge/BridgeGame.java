@@ -24,7 +24,7 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         crossedBridge.add(direction);
-        if (bridge.get(crossedBridge.size()).equals(direction)) {
+        if (bridge.get(crossedBridge.size()-1).equals(direction)) {
             return true;
         }
         tries += 1;
