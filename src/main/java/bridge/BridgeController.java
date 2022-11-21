@@ -23,5 +23,15 @@ public class BridgeController {
         bridgeList = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame = new BridgeGame(bridgeList);
     }
+    public void run(){
+        init();
+        game();
 
+    }
+    public void game() {
+        while(!(bridgeGame.isOver())){
+            outputView.printMovingInputMessage();
+            bridgeGame.gameInProgress(inputView.readMoving());
+        }
+    }
 }

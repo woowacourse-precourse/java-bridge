@@ -68,4 +68,10 @@ public class BridgeGame {
         progressStatus=false;
     }
 
+    public boolean isOver() {
+        if (progressStatus && moveCount < bridgeList.size()) {
+            return false;
+        }
+        return true;
+    }
 }
