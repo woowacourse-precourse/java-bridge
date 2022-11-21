@@ -120,4 +120,12 @@ public class OutputView {
         System.out.println(lowerMap);
         System.out.println();
     }
+
+    public void printSuccess() {
+        System.out.println("게임 성공 여부: 성공");
+    }
+
+    public void printFailure() {
+        System.out.println("게임 성공 여부: 실패");
+    }
 }
