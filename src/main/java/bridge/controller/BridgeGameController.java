@@ -14,6 +14,7 @@ public class BridgeGameController {
 	private final OutputView outputView = new OutputView();
 
 	public void start() {
+		outputView.printIntroMessage();
 		BridgeGame bridgeGame = settingBridgeGame();
 		startBridgeGame(bridgeGame);
 	}

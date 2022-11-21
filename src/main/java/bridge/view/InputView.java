@@ -8,11 +8,6 @@ public class InputView {
 	private static final String INPUT_SIZE_ERROR_MESSAGE = "[ERROR] 다리의 길이는 숫자여야 합니다.";
 	private static final String INPUT_COMMAND_ERROR_MESSAGE = "[ERROR] 커맨드는 대문자 알파벳으로 입력해야 합니다.";
 
-	public void printIntroMessage() {
-		System.out.println("다리 건너기 게임을 시작합니다.");
-		lineSeparator();
-	}
-
 	public int readBridgeSize() {
 		System.out.println("다리의 길이를 입력해주세요.");
 		String input = Console.readLine();

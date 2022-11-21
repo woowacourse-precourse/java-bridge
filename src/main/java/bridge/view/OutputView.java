@@ -12,6 +12,11 @@ public class OutputView {
 	private static final String PRINT_MAP_LAST_LETTER = " ]";
 	private static final String PRINT_MAP_DELIMITER = " | ";
 
+	public void printIntroMessage() {
+		System.out.println("다리 건너기 게임을 시작합니다.");
+		lineSeparator();
+	}
+
 	public void printMap(ProgressMap result) {
 		List<List<String>> gameResult = result.getProgressMap();
 		String upBridge = createBridgeMap(gameResult.get(0));
@@ -54,5 +59,9 @@ public class OutputView {
 
 	private void printResultOutro(int count) {
 		System.out.printf("총 시도한 횟수: %d%n", count);
+	}
+
+	private void lineSeparator() {
+		System.out.println();
 	}
 }
