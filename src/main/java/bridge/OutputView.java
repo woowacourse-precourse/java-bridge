@@ -6,6 +6,13 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    private static final String GAME_RESULT = "최종 게임 결과";
+    private static final String SUCCESS_OR_FAILURE = "게임 성공 여부: ";
+    private static final String SUCCESS = "성공";
+    private static final String FAILURE = "실패";
+    private static final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
+
     private final List<String> bridge;
     private StringBuilder up;
     private StringBuilder down;
@@ -87,18 +94,30 @@ public class OutputView {
      */
     public void printResult(boolean isSucceed, int retryCount) {
         System.out.println("");
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULT);
         System.out.println(up);
         System.out.println(down);
         System.out.println("");
 
+        printIsSucceed(isSucceed, retryCount);
+    }
+
+    private void printIsSucceed(boolean isSucceed, int retryCount) {
         if (isSucceed) {
-            System.out.println("게임 성공 여부: 성공");
-            System.out.println("총 시도한 횟수: " + (retryCount + 1));
-        } else {
-            System.out.println("게임 성공 여부: 실패");
-            System.out.println("총 시도한 횟수: " + retryCount);
+            printSuccess(retryCount);
+            return;
         }
+        printFail(retryCount);
+    }
+
+    private void printSuccess(int retryCount) {
+        System.out.println(SUCCESS_OR_FAILURE + SUCCESS);
+        System.out.println(TOTAL_TRY_COUNT + (retryCount + 1));
+    }
+
+    private void printFail(int retryCount) {
+        System.out.println(SUCCESS_OR_FAILURE + FAILURE);
+        System.out.println(TOTAL_TRY_COUNT + retryCount);
     }
 
     public static void printMessage(String message) {
