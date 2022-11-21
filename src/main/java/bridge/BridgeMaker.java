@@ -3,6 +3,9 @@ package bridge;
 import static bridge.util.Constants.BRIDGE_SIZE_REGEX;
 import static bridge.util.Constants.MAX_BRIDGE_SIZE;
 import static bridge.util.Constants.MIN_BRIDGE_SIZE;
+import static bridge.util.ErrorMessage.ERROR_BRIDGE_SIZE_OVER_INT;
+import static bridge.util.ErrorMessage.ERROR_BRIDGE_SIZE_RANGE;
+import static bridge.util.ErrorMessage.ERROR_BRIDGE_SIZE_TYPE;
 
 import bridge.model.Position;
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.stream.IntStream;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -32,7 +36,7 @@ public class BridgeMaker {
 
     public static void validateBridgeSizeType(String input) {
         if (!BRIDGE_SIZE_REGEX.matcher(input).matches()) {
-            throw new IllegalArgumentException("자연수만 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_TYPE);
         }
     }
 
@@ -40,13 +44,13 @@ public class BridgeMaker {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new NumberFormatException("입력 범위를 초과하였습니다.");
+            throw new NumberFormatException(ERROR_BRIDGE_SIZE_OVER_INT);
         }
     }
 
     public static void validateBridgeSizeRange(int size) {
         if (size < MIN_BRIDGE_SIZE || size > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_RANGE);
         }
     }
 }

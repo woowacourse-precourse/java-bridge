@@ -1,5 +1,9 @@
 package bridge.model;
 
+import static bridge.util.Constants.BRIDGE_WHITE_SPACE;
+import static bridge.util.ErrorMessage.ERROR_GENERATED_NUMBER;
+import static bridge.util.ErrorMessage.ERROR_MOVING_INPUT;
+
 import java.util.Arrays;
 
 public enum Position {
@@ -7,6 +11,7 @@ public enum Position {
 
     UP("U", 1),
     DOWN("D", 0);
+
 
     private final String abbreviation;
     private final int generatedNumber;
@@ -23,13 +28,13 @@ public enum Position {
     private static Position from(int generatedNumber) {
         return Arrays.stream(Position.values())
                 .filter(position -> position.generatedNumber == generatedNumber)
-                .findFirst().orElseThrow(() -> new IllegalArgumentException("0, 1 중의 숫자로만 다리를 생성할 수 있습니다."));
+                .findFirst().orElseThrow(() -> new IllegalArgumentException(ERROR_GENERATED_NUMBER));
     }
 
     public static Position from(String abbreviation) {
         return Arrays.stream(Position.values())
                 .filter(position -> position.abbreviation.equals(abbreviation))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException("U/D 중 이동할 칸을 입력해 주세요."));
+                .findFirst().orElseThrow(() -> new IllegalArgumentException(ERROR_MOVING_INPUT));
     }
 
     public static boolean isSame(String string, Position position) {
@@ -40,6 +45,6 @@ public enum Position {
         if (position == diagramPosition) {
             return string;
         }
-        return " ";
+        return BRIDGE_WHITE_SPACE;
     }
 }

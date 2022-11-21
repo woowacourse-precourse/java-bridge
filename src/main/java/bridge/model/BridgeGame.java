@@ -1,11 +1,13 @@
 package bridge.model;
 
+import static bridge.util.Constants.INITIAL_ATTEMPTS;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final Bridge bridge;
-    private int attempts = 1;
+    private int attempts = INITIAL_ATTEMPTS;
     private SuccessAndFail successAndFail = SuccessAndFail.FAIL;
     private Diagram diagram;
 

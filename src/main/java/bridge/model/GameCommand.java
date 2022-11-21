@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static bridge.util.ErrorMessage.ERROR_GAME_COMMAND_INPUT;
+
 import java.util.Arrays;
 
 public enum GameCommand {
@@ -18,7 +20,7 @@ public enum GameCommand {
         return Arrays.stream(GameCommand.values())
                 .filter(command -> command.input.equals(input))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("R/Q 중 재시작 여부를 입력해 주세요."));
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_GAME_COMMAND_INPUT));
     }
 
     public static boolean isRetry(GameCommand command) {
