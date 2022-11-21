@@ -10,37 +10,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGenerateTest {
 
-    BridgeMaker bridgeMaker;
-
-    @BeforeEach
-    public void beforeEach() {
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    }
-
-    @DisplayName("다리 길이는 3이상 20이하여야 한다.")
+    @DisplayName("다리 생성 숫자는 0 또는 1이어야 합니다")
     @Test
     void 다리_길이_LOWER_테스트() {
         String bridgeLength = "2";
-        assertThatThrownBy(() -> Validator.validateBridgeLength(bridgeLength)).isInstanceOf(
+        assertThatThrownBy(() -> Validator.validateBridgeRandomNum(2)).isInstanceOf(
             IllegalArgumentException.class);
     }
-
-    @DisplayName("다리 길이는 3이상 20이하여야 한다.")
-    @Test
-    void 다리_길이_UPPER_테스트() {
-        String bridgeLength = "21";
-        assertThatThrownBy(() -> Validator.validateBridgeLength(bridgeLength)).isInstanceOf(
-            IllegalArgumentException.class);
-    }
-
-    @DisplayName("다리 길이는 정수여야 한다.")
-    @Test
-    void 다리_길이_정수_테스트() {
-        String bridgeLength = "SS";
-        assertThatThrownBy(() -> Validator.validateNumber(bridgeLength)).isInstanceOf(
-            IllegalArgumentException.class);
-    }
-
-
 
 }
