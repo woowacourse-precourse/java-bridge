@@ -3,6 +3,7 @@ package bridge;
 import static bridge.ErrorType.*;
 import static bridge.ValueType.BRIDGE_SIZE_END;
 import static bridge.ValueType.BRIDGE_SIZE_START;
+import static bridge.WordType.*;
 
 public class InputValidation {
 
@@ -25,13 +26,13 @@ public class InputValidation {
     }
 
     public void readMovingValidation(String move) {
-        if (!(move.equals("U") || move.equals("D"))) {
+        if (!(move.equals(UP.getWord()) || move.equals(DOWN.getWord()))) {
             throw new IllegalArgumentException(NOT_MOVING.getMessage());
         }
     }
 
     public void readGameCommandValidation(String command) {
-        if (!(command.equals("R") || command.equals("Q"))) {
+        if (!(command.equals(RESTART.getWord()) || command.equals(END.getWord()))) {
             throw new IllegalArgumentException(NOT_GAME_COMMAND.getMessage());
         }
     }
