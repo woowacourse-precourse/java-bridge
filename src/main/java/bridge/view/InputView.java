@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.DirectionValidator;
 import bridge.validator.GameCommandValidator;
+import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -24,9 +25,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        String bridgeSize = Console.readLine();
-        bridgeSizeValidator.validate(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        return Integer.parseInt(readInput(bridgeSizeValidator));
     }
 
     /**
@@ -34,9 +33,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String direction = Console.readLine();
-        directionValidator.validate(direction);
-        return direction;
+        return readInput(directionValidator);
     }
 
     /**
@@ -44,8 +41,21 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String gameCommand = Console.readLine();
-        gameCommandValidator.validate(gameCommand);
-        return gameCommand;
+        return readInput(gameCommandValidator);
+    }
+
+    private String readInput(Validator validator) {
+        String inputValue;
+
+        while (true) {
+            try {
+                inputValue = Console.readLine();
+                validator.validate(inputValue);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return inputValue;
     }
 }
