@@ -17,4 +17,15 @@ class PlayerTest {
         assertThat(player.getNumberOfChoice()).isEqualTo(1);
     }
 
+    @DisplayName("지정한 인덱스의 choice 를 가져온다.")
+    @Test
+    void getChoiceByPosition() {
+        Player player = new Player();
+        player.addChoice(UP);
+        player.addChoice(DOWN);
+        player.addChoice(UP);
+
+        assertThat(player.getChoiceIndex(1)).isEqualTo(DOWN);
+    }
+
 }

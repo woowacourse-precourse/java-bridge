@@ -19,4 +19,8 @@ public class Player {
         choice.add(bridgeChoice);
     }
 
+    public String getChoiceIndex(int index) {
+        return choice.get(index);
+    }
+
 }
