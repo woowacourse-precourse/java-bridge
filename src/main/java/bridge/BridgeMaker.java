@@ -9,13 +9,14 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-     Bridge bridge= new Bridge();
+    Bridge bridge = new Bridge();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
-    public void startMakeBridge(int size){
-        List<String> tmpBridgeShape=makeBridge(size);
+
+    public void startMakeBridge(int size) {
+        List<String> tmpBridgeShape = makeBridge(size);
         bridge.setBridgeAnswer(tmpBridgeShape);
     }
 
@@ -24,21 +25,21 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridgeShape=new ArrayList<>();
-        for(int i=0;i<size;i++){
-            int bridgeValue=bridgeNumberGenerator.generate();
+        List<String> bridgeShape = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int bridgeValue = bridgeNumberGenerator.generate();
             bridgeShape.add(numberToString(bridgeValue));
         }
-        Bridge bridge=new Bridge(bridgeShape);
+        Bridge bridge = new Bridge(bridgeShape);
         return bridgeShape;
     }
 
-    public Bridge getBridge(){
+    public Bridge getBridge() {
         return bridge;
     }
 
-    public String numberToString(int number){
-        if(number==1)
+    public String numberToString(int number) {
+        if (number == 1)
             return Constant.UP;
         return Constant.DOWN;
     }

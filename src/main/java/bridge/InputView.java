@@ -11,7 +11,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        String inputSize= Console.readLine();
+        String inputSize = Console.readLine();
         return Integer.parseInt(inputSize);
     }
 
@@ -20,7 +20,7 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println(Constant.SELECT_MOVE_MESSAGE);
-        String moveWord=Console.readLine();
+        String moveWord = Console.readLine();
         return moveWord;
     }
 
@@ -29,7 +29,7 @@ public class InputView {
      */
     public static String readGameCommand() {
         System.out.println(Constant.SELECT_RETRY_MESSAGE);
-        String retryWord=Console.readLine();
+        String retryWord = Console.readLine();
         return retryWord;
     }
 }

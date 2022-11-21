@@ -1,28 +1,27 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    boolean isSuccess=true;
-    BridgeNumberGenerator numberGenerator=new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker=new BridgeMaker(numberGenerator);
-    UserMove user=new UserMove();
-    public void start(){
+    boolean isSuccess = true;
+    BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+    BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+    UserMove user = new UserMove();
+
+    public void start() {
         prepare();
         user.increaseMoveCount();
         move();
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    public void prepare(){
+    public void prepare() {
         OutputView.printStartGame();
         OutputView.printRequireSize();
         user.setUserBridgeSize(InputView.readBridgeSize());
@@ -31,28 +30,29 @@ public class BridgeGame {
 
     public void move() {
         user.initMove();
-        while(user.getMoveCount()<user.getUserBridgeSize()){
-            String userMove=InputView.readMoving();
+        while (user.getMoveCount() < user.getUserBridgeSize()) {
+            String userMove = InputView.readMoving();
             user.moveUser(userMove);
             OutputView.printMap(user.getUserLocation(), bridgeMaker.getBridge().getBridgeAnswer());
-            if(!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(user.getMoveCount()))){
-                isSuccess=false;
+            if (!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(user.getMoveCount()))) {
+                isSuccess = false;
                 break;
             }
             user.increaseMoveCount();
         }
-        if(!isSuccess)
+        if (!isSuccess)
             askRetry();
-        if(isSuccess) {
+        if (isSuccess) {
             meetEnd();
         }
     }
 
-    public boolean isBridge(String currentUser, String currentBridge){
-        if(currentUser.equals(currentBridge))
+    public boolean isBridge(String currentUser, String currentBridge) {
+        if (currentUser.equals(currentBridge))
             return true;
         return false;
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -60,27 +60,27 @@ public class BridgeGame {
      */
     public void retry() {
         user.increaseTryCount();
-        isSuccess=true;
+        isSuccess = true;
         move();
     }
 
-    public void askRetry(){
-        String userRetry=InputView.readGameCommand();
-        if(userRetry.equals(Constant.RETRY)){
+    public void askRetry() {
+        String userRetry = InputView.readGameCommand();
+        if (userRetry.equals(Constant.RETRY)) {
             retry();
             return;
         }
         meetEnd();
     }
 
-    public Success isBridgeEnd(){
-        if(isSuccess)
+    public Success isBridgeEnd() {
+        if (isSuccess)
             return Success.SUCCESS;
         return Success.FAIL;
     }
 
-    public void meetEnd(){
-       OutputView.printResultMap(user, bridgeMaker);
+    public void meetEnd() {
+        OutputView.printResultMap(user, bridgeMaker);
         OutputView.printResult(isBridgeEnd(), user.getTryCount());
     }
 }
