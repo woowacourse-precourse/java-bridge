@@ -4,7 +4,7 @@ public enum UserInterfaceSymbol {
     START_OF_BRIDGE("[ "),
     END_OF_BRIDGE(" ]"),
     BLANK(" "),
-    BRIDGE_DELIMITER("|"),
+    BRIDGE_DELIMITER(" | "),
     AVAILABLE_TO_MOVE("O"),
     UNAVAILABLE_TO_MOVE("X");
 
