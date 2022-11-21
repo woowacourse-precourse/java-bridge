@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -9,12 +10,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeTest {
-    Bridge bridge = new Bridge(List.of("U","D","U"));
+    Bridge testBridge = new Bridge(List.of("U","D","U"));
 
     @DisplayName("정확한 길이가 반환되는 지 테스트 한다.")
     @Test
     void bridgeSizeTest() {
-        assertThat(bridge.size()).isEqualTo(3);
+        assertThat(testBridge.size()).isEqualTo(3);
     }
 
     @DisplayName("특정 위치로 이동 가능할때 참을 반환하는지 테스트한다.")
@@ -22,7 +23,7 @@ public class BridgeTest {
     @ParameterizedTest
     void bridgeMovableTest(String input) {
         String[] inputs = input.split(",");
-        assertThat(bridge.isMovable(inputs[0],Integer.parseInt(inputs[1]))).isTrue();
+        assertThat(testBridge.isMovable(inputs[0],Integer.parseInt(inputs[1]))).isTrue();
     }
 
     @DisplayName("특정 위치로 이동 불가능할때 거짓을 반환하는지 테스트한다.")
@@ -30,6 +31,6 @@ public class BridgeTest {
     @ParameterizedTest
     void bridgeNotMovableTest(String input) {
         String[] inputs = input.split(",");
-        assertThat(bridge.isMovable(inputs[0],Integer.parseInt(inputs[1]))).isFalse();
+        assertThat(testBridge.isMovable(inputs[0],Integer.parseInt(inputs[1]))).isFalse();
     }
 }
