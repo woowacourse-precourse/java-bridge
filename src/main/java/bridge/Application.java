@@ -28,5 +28,6 @@ public class Application {
         // 최종게임 결과
         outputView.printResult();
         // 게임 성공 여부 출력
+        outputView.printSuccessOrFailure();
     }
 }
