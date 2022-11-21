@@ -26,7 +26,7 @@ public class PlayerPathTest {
     void nextStepTest() {
         List<Plate> playerPlates = playerPath.getPlayerPath();
         assertThat(playerPlates)
-                .containsExactly(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.DOWN_PLATE);
+                .containsExactly(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
     }
 
     @DisplayName("경로에서 현재 위치와 발판을 가져오는 테스트")
