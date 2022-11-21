@@ -1,7 +1,9 @@
 package bridge.domain;
 
 import bridge.domain.bridgenumber.BridgeNumberGenerator;
+import bridge.domain.bridgenumber.BridgeRandomNumber;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,5 +23,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    private String convertRandomToDirection(int randomNumber) {
+        return Direction.findDirectionByNumber(randomNumber).getMovingDirection();
     }
 }
