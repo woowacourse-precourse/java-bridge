@@ -22,12 +22,27 @@ class BridgeTest {
         this.upDownUpBridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
     }
 
+    @Test
+    void create() {
+        assertThat(new Bridge(List.of())).isEqualTo(new Bridge());
+    }
+
     @DisplayName("위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 다리를 생성하는 테스트")
     @Test
     void createByBridgeShapeValue() {
         Bridge actual = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
 
         assertThat(actual).isEqualTo(new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP)));
+    }
+
+    @DisplayName("다리를 연결한다.")
+    @Test
+    void connect() {
+        Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
+        bridge.connect(BridgeShape.DOWN);
+
+        assertThat(bridge)
+                .isEqualTo(new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP, BridgeShape.DOWN)));
     }
 
     @MethodSource
@@ -97,5 +112,13 @@ class BridgeTest {
                     assertThat(bridge.sizeEqual(4))::isFalse
             );
         }
+    }
+
+    @DisplayName("다리에 사용된 BridgeShapes를 반환한다.")
+    @Test
+    void bridgeShapes() {
+        Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
+
+        assertThat(bridge.bridgeShapes()).containsExactly(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP);
     }
 }
