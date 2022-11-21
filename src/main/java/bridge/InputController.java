@@ -8,7 +8,7 @@ public class InputController {
 		try {
 			String userInput = InputView.readBridgeSize();
 			checkBridgeSize(userInput);
-			return parseBridgeSize(InputView.readBridgeSize());
+			return parseBridgeSize(userInput);
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			return getBridgeSize();
