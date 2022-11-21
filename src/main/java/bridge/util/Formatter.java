@@ -1,6 +1,6 @@
 package bridge.util;
 
-import bridge.domain.PassingDirectionType;
+import bridge.domain.result.PassingDirectionType;
 import java.util.List;
 import java.util.StringJoiner;
 

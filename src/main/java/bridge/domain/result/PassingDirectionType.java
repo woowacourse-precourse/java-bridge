@@ -1,9 +1,12 @@
-package bridge.domain;
+package bridge.domain.result;
 
+import bridge.domain.bridgeInfo.Bridge;
+import bridge.domain.userInfo.Position;
 import java.util.Arrays;
 import java.util.List;
 
 public enum PassingDirectionType {
+
     UP_MOVABLE("U", "O", true),
     UP_NOT_MOVABLE("U", "X", true),
     UP_NOT_SELECTED("U", " ", false),

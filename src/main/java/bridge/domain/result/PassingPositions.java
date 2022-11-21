@@ -1,5 +1,7 @@
-package bridge.domain;
+package bridge.domain.result;
 
+import bridge.domain.bridgeInfo.Bridge;
+import bridge.domain.userInfo.Position;
 import java.util.ArrayList;
 import java.util.List;
 

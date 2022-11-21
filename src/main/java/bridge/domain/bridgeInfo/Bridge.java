@@ -1,5 +1,7 @@
-package bridge.domain;
+package bridge.domain.bridgeInfo;
 
+import bridge.domain.userInfo.Direction;
+import bridge.domain.userInfo.Position;
 import java.util.List;
 import java.util.stream.Collectors;
 

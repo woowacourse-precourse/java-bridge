@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.userInfo;
 
 import java.util.HashMap;
 import java.util.List;

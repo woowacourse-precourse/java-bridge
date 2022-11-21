@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.domain.PassingPositions;
-import bridge.domain.Position;
+import bridge.domain.result.PassingPositions;
+import bridge.domain.userInfo.Position;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.userInfo;
 
 public class GameCommand {
 

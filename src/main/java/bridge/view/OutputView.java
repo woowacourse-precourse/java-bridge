@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.domain.PassingDirectionType;
-import bridge.domain.Result;
+import bridge.domain.result.PassingDirectionType;
+import bridge.domain.result.Result;
 import bridge.util.Formatter;
 import java.util.List;
 
