@@ -1,14 +1,12 @@
 package bridge.validate;
 
+import bridge.game.GameCommand;
+import bridge.generator.AreaStatus;
 import java.util.List;
 
 public class Validator {
     private static final int MIN_BRIDGE_LENGTH = 3;
     private static final int MAX_BRIDGE_LENGTH = 20;
-    private static final String MOVE_UP = "U";
-    private static final String MOVE_LOW = "D";
-    private static final String RETRY_COMMAND = "R";
-    private static final String QUIT_COMMAND = "Q";
 
     public static void isNum(String input) {
         input.chars().forEach(c -> {
@@ -33,7 +31,7 @@ public class Validator {
     }
 
     public static void isMove(String move) {
-        final List<String> properMoves = List.of(MOVE_UP, MOVE_LOW);
+        final List<String> properMoves = List.of(AreaStatus.UP.getSymbol(), AreaStatus.DOWN.getSymbol());
         if (!properMoves.contains(move)) {
             String errorMessage = ErrorMessage.ERROR.toString() + ErrorMessage.NOT_PROPER_MOVE;
             throw new IllegalArgumentException(errorMessage);
@@ -41,7 +39,7 @@ public class Validator {
     }
 
     public static void isProperGameCommand(String gameCommand) {
-        final List<String> properMoves = List.of(RETRY_COMMAND, QUIT_COMMAND);
+        final List<String> properMoves = List.of(GameCommand.RETRY.getSymbol(), GameCommand.QUIT.getSymbol());
         if (!properMoves.contains(gameCommand)) {
             String errorMessage = ErrorMessage.ERROR.toString() + ErrorMessage.NOT_PROPER_GAME_COMMAND;
             throw new IllegalArgumentException(errorMessage);
