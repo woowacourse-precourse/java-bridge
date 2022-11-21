@@ -14,6 +14,8 @@ public class InputView {
     private static final String PRINT_ASK_SIZE = "다리의 길이를 입력해주세요.";
     private static final String PRINT_ASK_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
+    private static final String PRINT_ASK_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
     public static String readBridgeSize() {
         printSentence(PRINT_ASK_START);
         printBlankLine();
@@ -34,7 +36,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        return null;
+        printBlankLine();
+        printSentence(PRINT_ASK_RETRY);
+        return getInput();
     }
 
     public static void printSentence(String s){
