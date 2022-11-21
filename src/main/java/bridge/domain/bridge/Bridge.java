@@ -16,7 +16,7 @@ public class Bridge {
     public void inputBridgeSize(int size){
         bridgeSize = new BridgeSize(size);
     }
-    public BridgeNumber getBridgeNumber(int index){
+    public BridgeNumber getBridgeNumber(){
         return bridgeNumber;
     }
     public BridgeSize getBridgeSize(){
