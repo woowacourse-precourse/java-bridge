@@ -45,12 +45,15 @@ public class OutputView {
      */
     public void printResult(List<String> moves, boolean isFail, int attempts) {
         printMap(moves, isFail);
-        System.out.println(OutputMessage.GAME_RESULT.message());
+        printSuccessOrFail(isFail);
+        System.out.printf(OutputMessage.ATTEMPT.message(), attempts);
+    }
+
+    private void printSuccessOrFail(boolean isFail){
         String result = OutputMessage.SUCCESS.message();
         if (isFail) {
             result = OutputMessage.FAIL.message();
         }
         System.out.printf(OutputMessage.SUCCESS_OR_FAIL.message(), result);
-        System.out.printf(OutputMessage.ATTEMPT.message(), attempts);
     }
 }
