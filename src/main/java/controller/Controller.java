@@ -11,7 +11,9 @@ public class Controller {
     public void run() {
         Bridge bridge = createBridge();
         bridge.print();
-        move(bridge);
+        while (true) {
+            move(bridge);
+        }
     }
 
     private Bridge createBridge() {
@@ -31,18 +33,23 @@ public class Controller {
         boolean isCorrect;
 
         do {
+            gameCommand = "";
             String movingPlace = inputView.readMoving();
             isCorrect = bridgeGame.move(movingPlace);
             outputView.printMap(bridge.toString());
             if (!isCorrect) {
                 gameCommand = inputView.readGameCommand();
             }
-        } while (isRetry(gameCommand, isCorrect));
+        } while (isRetry(gameCommand, isCorrect, bridgeGame));
     }
 
-    private boolean isRetry(String gameCommand, boolean isCorrect) {
+    private boolean isRetry(String gameCommand, boolean isCorrect, BridgeGame bridgeGame) {
         if (gameCommand.equals("Q")) {
             return false;
+        }
+
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry();
         }
 
         return gameCommand.equals("R") && !isCorrect;
