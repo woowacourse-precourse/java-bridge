@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    private List<String> getUpperBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail) {
+        List<String> upperBridgeResult = new ArrayList<>();
+        for (int bridgeIndex = 0; bridgeIndex < currentUserPosition - 1; bridgeIndex++) {
+            upperBridgeResult.add(compareBridgeBlock(bridge.get(bridgeIndex), "U"));
+        }
+        upperBridgeResult.add(compareFailBridgeBlock(bridge.get(currentUserPosition - 1), "U", isFail));
+        return upperBridgeResult;
     }
 
     private String compareBridgeBlock(String bridgeBlock, String comparatorBridgeBlock) {
