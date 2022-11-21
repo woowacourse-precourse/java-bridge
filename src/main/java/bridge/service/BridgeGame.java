@@ -36,8 +36,8 @@ public class BridgeGame {
         boolean isSuccessGame = currentBridge.isSuccessLastSection();
         boolean isLastSection = bridge.isLastBridgeSection(currentSection);
         if (!isSuccessGame || isLastSection) {
-            trialCount++;
             gameManager.putAll(Map.of("isOneGameEnd", true, "isSuccessGame", isSuccessGame));
+            trialCount++;
             return;
         }
         gameManager.put("isOneGameEnd", false);

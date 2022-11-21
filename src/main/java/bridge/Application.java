@@ -47,7 +47,7 @@ public class Application {
         if (!successGame) {
             gameStatus = restartOrQuit(bridgeGame);
         }
-        if (!gameStatus || successGame) {
+        if (gameStatus == QUIT || successGame) {
             outputView.printResult(gameBridge, successGame, bridgeGame.getTrialCount());
             gameStatus = QUIT;
         }

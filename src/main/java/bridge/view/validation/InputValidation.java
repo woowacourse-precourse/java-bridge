@@ -43,7 +43,7 @@ public enum InputValidation {
         this.validationGroup = validationGroup;
     }
 
-    public String getErrorMessage() {
+    private String getErrorMessage() {
         return "[ERROR] " + errorMessage;
     }
 
