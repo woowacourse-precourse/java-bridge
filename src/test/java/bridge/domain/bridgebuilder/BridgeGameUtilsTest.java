@@ -32,13 +32,6 @@ class BridgeGameUtilsTest {
         Assertions.assertThat(BridgeGameUtils.isEquals(inputUD, bridgeUD, answerBridgeIndex)).isEqualTo(result);
     }
 
-    @DisplayName("input으로 R이 들어오면 true, Q가 들어오면 false 반환")
-    @MethodSource("retryTestArgumentProvider")
-    @ParameterizedTest
-    void retryTest(String inputRQ, boolean result) {
-        Assertions.assertThat(BridgeGameUtils.retry(inputRQ)).isEqualTo(result);
-    }
-
     private static Stream<Arguments> rightArgumentProvider() {
         return Stream.of(
             Arguments.of("U", 0, true),
@@ -54,12 +47,4 @@ class BridgeGameUtilsTest {
             Arguments.of("D", 2, false)
         );
     }
-
-    private static Stream<Arguments> retryTestArgumentProvider() {
-        return Stream.of(
-            Arguments.of("R", true),
-            Arguments.of("Q", false)
-        );
-    }
-
 }
