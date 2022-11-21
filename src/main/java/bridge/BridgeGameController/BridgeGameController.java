@@ -42,4 +42,10 @@ public class BridgeGameController {
         }
         return false;
     }
+
+    public void run() {
+        init();
+        boolean isSuccess = playBridgeGame();
+        OutputView.printResult(isSuccess, BridgeGame.getGameCount(), BridgeGame.getCurrentBridge());
+    }
 }
