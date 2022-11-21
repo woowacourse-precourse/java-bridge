@@ -8,28 +8,35 @@ import java.util.List;
 public class Bridge {
     private final List<String> madeBridge;
     private final BridgeSize bridgeSize;
-    private Integer index;
+
+    private BridgeIndex bridgeIndex;
 
     public Bridge(BridgeMaker bridgeMaker, BridgeSize bridgeSize) {
         this.madeBridge = bridgeMaker.makeBridge(bridgeSize.size());
         this.bridgeSize = bridgeSize;
-        this.reset();
+        this.bridgeIndex = BridgeIndex.generateZeroIndex();
     }
 
     public void reset() {
-        this.index = 0;
+        this.bridgeIndex = BridgeIndex.generateZeroIndex();
     }
 
     public SurviveStatus next(BridgePosition targetPosition) {
-        var originalPosition = BridgePosition.convertCodeToPosition(madeBridge.get(index++));
-        return SurviveStatus.convertValueToStatus(originalPosition, targetPosition);
+        return SurviveStatus.getSurviveStatusByCompareBridgePosition(
+                BridgePosition.convertCodeToPosition(getNowBridgePositionCode()),
+                targetPosition
+        );
     }
 
     public boolean canMove() {
-        return index < bridgeSize.size();
+        return bridgeIndex.isLessThan(bridgeSize.size());
     }
 
     public boolean canNotMove() {
         return !canMove();
+    }
+
+    private String getNowBridgePositionCode() {
+        return madeBridge.get(bridgeIndex.getAndIncrement());
     }
 }
