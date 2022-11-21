@@ -1,20 +1,17 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
+import bridge.util.ExceptionMessage;
 import bridge.view.InputView;
-import bridge.view.OutputView;
-import bridge.view.Validation;
 
 import java.util.List;
 
 public class InputController {
     private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
 
-    public InputController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
+    public InputController(InputView inputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
-        this.outputView = outputView;
         this.bridgeMaker = bridgeMaker;
     }
 
@@ -22,33 +19,30 @@ public class InputController {
         return bridgeMaker.makeBridge(size);
     }
 
-    public int getBridgeSize(String inputSize) throws IllegalArgumentException {
-        Validation.checkOnlyNumber(inputSize);
-        Validation.isValidBridgeSize(inputSize);
-        return Integer.parseInt(inputSize);
+    public int getBridgeSize() throws IllegalArgumentException {
+        int result;
+        try {
+            result = Integer.parseInt(inputView.readBridgeSize());
+            isValidBridgeSize(result);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
+                    + ExceptionMessage.CANNOT_CONVERT_TO_NUMBER);
+        }
+        return result;
     }
 
-    public String getBridgeSizeInput() {
-        outputView.printGameStart();
-        outputView.printEnterSize();
-        return inputView.readBridgeSize();
+    private void isValidBridgeSize(int size) throws IllegalArgumentException {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
+                    + ExceptionMessage.BRIDGE_SIZE_OUT_OF_RANGE);
+        }
     }
 
-    public String getMovingDirection(String moving) throws IllegalArgumentException {
-        Validation.isValidDirection(moving);
-        return moving;
-    }
-
-    public String getMovingDirectionInput() {
+    public String getMovingDirection() {
         return inputView.readMoving();
     }
 
-    public String getGameCommand(String command) throws IllegalArgumentException {
-        Validation.isValidGameCommand(command);
-        return command;
-    }
-
-    public String getGameCommandInput() {
+    public String getGameCommand() {
         return inputView.readGameCommand();
     }
 }

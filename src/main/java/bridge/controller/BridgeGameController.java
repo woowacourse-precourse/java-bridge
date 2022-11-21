@@ -16,17 +16,14 @@ public class BridgeGameController {
     private final BridgeGame bridgeGame;
 
     public BridgeGameController() {
-        this.inputController = new InputController(
-                new InputView(),
-                new OutputView(),
-                new BridgeMaker(new BridgeRandomNumberGenerator())
-        );
+        this.inputController = new InputController(new InputView(),
+                new BridgeMaker(new BridgeRandomNumberGenerator()));
         this.outputController = new OutputController(new OutputView());
         this.bridgeGame = new BridgeGame();
     }
 
     public void start(Record record) throws IllegalArgumentException {
-        int size = inputController.getBridgeSize(inputController.getBridgeSizeInput());
+        int size = inputController.getBridgeSize();
         List<String> bridge = inputController.getBridge(size);
 
         bridgeGame.initialize(record);
@@ -37,8 +34,7 @@ public class BridgeGameController {
                       List<String> bridge) throws IllegalArgumentException {
         int result;
         while (isContinue(record, bridge)) {
-            bridgeGame.move(record,
-                    inputController.getMovingDirection(inputController.getMovingDirectionInput()));
+            bridgeGame.move(record, inputController.getMovingDirection());
             outputController.getChoiceResult(record, bridge);
         }
         result = bridgeGame.isSuccess(record, bridge);
@@ -53,7 +49,7 @@ public class BridgeGameController {
             return true;
         }
         if (!record.equalsToBoard(index, bridge.get(index))) {
-            String command = inputController.getGameCommand(inputController.getGameCommandInput());
+            String command = inputController.getGameCommand();
             return bridgeGame.retry(record, command);
         }
         return record.getBoardSize() != bridge.size();
