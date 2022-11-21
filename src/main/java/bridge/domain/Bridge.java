@@ -37,5 +37,9 @@ public class Bridge {
         return new BridgeResult(nowStep,nowResult);
     }
 
+    public void resetStep(){
+        this.step = ZERO;
+    }
+
 
 }

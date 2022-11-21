@@ -21,8 +21,4 @@ public class BridgeGameController {
         OutputView.printMap(bridgeResults);
     }
 
-    private void resetBridgeResults(List<BridgeResult> bridgeResults){
-        bridgeResults = new ArrayList<>();
-    }
-
 }
