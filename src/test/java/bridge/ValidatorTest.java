@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.error.ErrorMessage;
 import bridge.util.Validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +29,7 @@ public class ValidatorTest {
             String input = "adf";
 
             Assertions.assertThatThrownBy(() -> Validator.isNumber(input))
-                    .hasMessageContaining("[ERROR] 다리 길이는 숫자여야 합니다.")
+                    .hasMessageContaining(ErrorMessage.NOT_NUMBER_BRIDGE_SIZE.getMessage())
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -46,7 +47,7 @@ public class ValidatorTest {
         @Test
         void inputByString() {
             Assertions.assertThatThrownBy(() -> Validator.isInRange(24))
-                    .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+                    .hasMessageContaining(ErrorMessage.INVALID_BRIDGE_SIZE.getMessage())
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -64,7 +65,7 @@ public class ValidatorTest {
         @Test
         void movingNotOneString() {
             Assertions.assertThatThrownBy(() -> Validator.isOneStringMoving("ABC"))
-                    .hasMessageContaining("[ERROR] 이동할 칸은 한 문자여야 합니다.")
+                    .hasMessageContaining(ErrorMessage.NOT_ONE_STRING_MOVING.getMessage())
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -79,7 +80,7 @@ public class ValidatorTest {
         @Test
         void commandNotOneString() {
             Assertions.assertThatThrownBy(() -> Validator.isOneStringCommand("GEG"))
-                    .hasMessageContaining("[ERROR] 게임 재시도 여부는 한 문자여야 합니다.")
+                    .hasMessageContaining(ErrorMessage.NOT_ONE_STRING_COMMAND.getMessage())
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -97,7 +98,7 @@ public class ValidatorTest {
         @Test
         void movingNotOneString() {
             Assertions.assertThatThrownBy(() -> Validator.isUppercaseMoving("d"))
-                    .hasMessageContaining("[ERROR] 이동할 칸은 대문자여야 합니다.")
+                    .hasMessageContaining(ErrorMessage.NOT_UPPER_CASE_MOVING.getMessage())
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -112,7 +113,7 @@ public class ValidatorTest {
         @Test
         void commandNotOneString() {
             Assertions.assertThatThrownBy(() -> Validator.isUppercaseCommand("n"))
-                    .hasMessageContaining("[ERROR] 게임 재시도 여부는 대문자여야 합니다.")
+                    .hasMessageContaining(ErrorMessage.NOT_UPPER_CASE_COMMAND.getMessage())
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -130,7 +131,7 @@ public class ValidatorTest {
         @Test
         void inputNotOneString() {
             Assertions.assertThatThrownBy(() -> Validator.isUpOrDown("R"))
-                    .hasMessageContaining("[ERROR] 이동할 칸은 U 또는 D여야 합니다.")
+                    .hasMessageContaining(ErrorMessage.U_OR_D_MOVING.getMessage())
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -148,7 +149,7 @@ public class ValidatorTest {
         @Test
         void inputNotOneString() {
             Assertions.assertThatThrownBy(() -> Validator.isRestartOrQuit("C"))
-                    .hasMessageContaining("[ERROR] 게임 재시도 여부는 R 또는 Q여야 합니다.")
+                    .hasMessageContaining(ErrorMessage.R_OR_Q_COMMAND.getMessage())
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
