@@ -12,14 +12,9 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        final int RANDOM_UPPER_INCLUSIVE = 1;
         List<String> bridge = new ArrayList<>();
-        for (int index = 0; index < size; index++) {
-            String nextAnswer = Moving.D.toString();
-            if (bridgeNumberGenerator.generate() == RANDOM_UPPER_INCLUSIVE) {
-                nextAnswer = Moving.U.toString();
-            }
-            bridge.add(nextAnswer);
+        for (int position = 0; position < size; position++) {
+            bridge.add(Moving.getNextAnswer(bridgeNumberGenerator.generate()).toString());
         }
         return bridge;
     }
