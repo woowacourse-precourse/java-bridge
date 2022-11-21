@@ -26,11 +26,11 @@ public class InputView {
 
     public String getMoveString() {
         System.out.println(MOVE.getValue());
-        String inputDorU = Console.readLine();
-        if (!(inputDorU.equals(UP.getName()) || inputDorU.equals(DOWN.getName()))) {
-            throw new IllegalArgumentException(ER_NOT_D_OR_U.getMessage());
+        String inputUpOrDown = Console.readLine();
+        if (!(inputUpOrDown.equals(UP.getName()) || inputUpOrDown.equals(DOWN.getName()))) {
+            throw new IllegalArgumentException(ER_NOT_UP_OR_DOWN.getMessage());
         }
-        return inputDorU;
+        return inputUpOrDown;
     }
 
     public String getExitOrRestart() {

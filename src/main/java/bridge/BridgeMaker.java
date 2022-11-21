@@ -15,9 +15,8 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridgeWay = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            String upOrDown = numberConvertName(bridgeNumberGenerator.generate());
-            bridgeWay.add(upOrDown);
+        for (int stage = 0; stage < size; stage++) {
+            bridgeWay.add(numberConvertName(bridgeNumberGenerator.generate()));
         }
         return bridgeWay;
     }

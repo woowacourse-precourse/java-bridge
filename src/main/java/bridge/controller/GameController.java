@@ -28,9 +28,8 @@ public class GameController {
 
     public void gamingSet(List<String> bridge) {
         TRY_COUNT++;
-        for (int stage = 0; stage < bridge.size(); stage++) {
-            String userMoveInput = reEnter.reGetMoveString();
-            moving.moving(bridge.get(stage), userMoveInput);
+        for (String stage : bridge) {
+            moving.moving(stage, reEnter.reGetMoveString());
             Moving.printMoving();
             if (moving.checkWrong()) {
                 return;

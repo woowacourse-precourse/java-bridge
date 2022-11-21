@@ -57,7 +57,7 @@ class InputViewTest {
             System.setIn(in);
             IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
                     inputView.getMoveString());
-            assertEquals(ER_NOT_D_OR_U.getMessage(), illegalArgumentException.getMessage());
+            assertEquals(ER_NOT_UP_OR_DOWN.getMessage(), illegalArgumentException.getMessage());
         }
 
         @Test
@@ -69,7 +69,7 @@ class InputViewTest {
             System.setIn(in);
             IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
                     inputView.getMoveString());
-            assertEquals(ER_NOT_D_OR_U.getMessage(), illegalArgumentException.getMessage());
+            assertEquals(ER_NOT_UP_OR_DOWN.getMessage(), illegalArgumentException.getMessage());
         }
     }
 
