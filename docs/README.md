@@ -37,6 +37,7 @@
 
 - 진행과정을 기록 - #log
 - 진행 과정을 반환 - #toString
+- 초기화 - #clear
 
 ## 🛠️ 다리를 생성해준다. - `BridgeMaker`
 
