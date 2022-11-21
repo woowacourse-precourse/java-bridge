@@ -9,7 +9,6 @@ import bridge.constant.GameStatus;
 public class BridgeMonitor {
     private StringBuilder upperLine;
     private StringBuilder lowerLine;
-    private static final String START_BRACKET = "[";
     private static final String END_BRACKET = "]";
     private static final String BRACKETS = "[]";
     private static final String SPACE = "   ";
@@ -23,37 +22,14 @@ public class BridgeMonitor {
     }
 
     public void record(String moving, GameStatus gameStatusAfterMoving) {
-        int lastIndexOfLine = this.upperLine.length() - 1;
-        this.upperLine.deleteCharAt(lastIndexOfLine);
-        this.lowerLine.deleteCharAt(lastIndexOfLine);
-        if (lastIndexOfLine > 1) {
-            this.upperLine.append(BETWEEN_LINE);
-            this.lowerLine.append(BETWEEN_LINE);
-        }
-
+        openBracket();
         if (gameStatusAfterMoving.equals(FAIL)) {
-            if (moving.equals(UPPER_SIDE)) {
-                this.upperLine.append(WRONG_MOVING);
-                this.lowerLine.append(SPACE);
-            }
-            if (moving.equals(LOWER_SIDE)) {
-                this.upperLine.append(SPACE);
-                this.lowerLine.append(WRONG_MOVING);
-            }
+            recordFailOf(moving);
         }
-
         if (!gameStatusAfterMoving.equals(FAIL)) {
-            if (moving.equals(UPPER_SIDE)) {
-                this.upperLine.append(CORRECT_MOVING);
-                this.lowerLine.append(SPACE);
-            }
-            if (moving.equals(LOWER_SIDE)) {
-                this.upperLine.append(SPACE);
-                this.lowerLine.append(CORRECT_MOVING);
-            }
+            recordSuccessOf(moving);
         }
-        this.upperLine.append(END_BRACKET);
-        this.lowerLine.append(END_BRACKET);
+        closeBracket();
     }
 
     public String getPicture() {
@@ -70,5 +46,54 @@ public class BridgeMonitor {
         }
         this.upperLine.delete(lastIndexOfLine - 3, lastIndexOfLine);
         this.lowerLine.delete(lastIndexOfLine - 3, lastIndexOfLine);
+    }
+
+    private void openBracket() {
+        int lastIndexOfLine = getLastIndexOfLine();
+        this.upperLine.deleteCharAt(lastIndexOfLine);
+        this.lowerLine.deleteCharAt(lastIndexOfLine);
+        if (isNotFirstColumn()) {
+            addLine();
+        }
+    }
+
+    private boolean isNotFirstColumn() {
+        return getLastIndexOfLine() > 1;
+    }
+
+    private int getLastIndexOfLine() {
+        return this.upperLine.length() - 1;
+    }
+
+    private void addLine() {
+        this.upperLine.append(BETWEEN_LINE);
+        this.lowerLine.append(BETWEEN_LINE);
+    }
+
+    private void closeBracket() {
+        this.upperLine.append(END_BRACKET);
+        this.lowerLine.append(END_BRACKET);
+    }
+
+    private void recordFailOf(String moving) {
+        if (moving.equals(UPPER_SIDE)) {
+            this.upperLine.append(WRONG_MOVING);
+            this.lowerLine.append(SPACE);
+        }
+        if (moving.equals(LOWER_SIDE)) {
+            this.upperLine.append(SPACE);
+            this.lowerLine.append(WRONG_MOVING);
+        }
+    }
+
+    private void recordSuccessOf(String moving) {
+        if (moving.equals(UPPER_SIDE)) {
+            this.upperLine.append(CORRECT_MOVING);
+            this.lowerLine.append(SPACE);
+        }
+        if (moving.equals(LOWER_SIDE)) {
+            this.upperLine.append(SPACE);
+            this.lowerLine.append(CORRECT_MOVING);
+        }
     }
 }
