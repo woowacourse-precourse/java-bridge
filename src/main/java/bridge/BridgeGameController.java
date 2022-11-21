@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BridgeGameController {
 
     private final BridgeGame bridgeGame = new BridgeGame();
@@ -12,10 +15,18 @@ public class BridgeGameController {
         return size;
     }
 
-    public void move(int size) {
+    public boolean move(int size) {
+        boolean moved = false;
+        List<String> movement = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             String command = inputView.readMoving();
-            bridgeGame.move(command);
+            moved = bridgeGame.move(command, i);
+            movement.add(command);
+            outputView.printMap(movement, i, moved);
+            if (!moved) {
+                break;
+            }
         }
+        return moved;
     }
 }
