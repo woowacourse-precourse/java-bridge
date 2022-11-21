@@ -61,4 +61,8 @@ public class BridgeGame {
         guessBridge.clear();
         tryCount += 1;
     }
+
+    public boolean reachOppositeSide() {
+        return answerBridge.size() == guessBridge.size();
+    }
 }
