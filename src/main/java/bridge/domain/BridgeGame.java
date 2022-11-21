@@ -20,7 +20,6 @@ public class BridgeGame {
     private List<MoveAnswer> playerMoveWhetherAnswer;
     private StringBuilder printPlayerMoveUp;
     private StringBuilder printPlayerMoveDown;
-    private List<StringBuilder> printPlayerMove;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -45,56 +44,47 @@ public class BridgeGame {
             makePrintResultIfDown(bridgeIdx);
         }
         appendCloseSquareBrackets();
-        return;
     }
 
     public void makePrintResultIfUp(int bridgeIdx){
         if(bridgeIdx == 0) {
-            if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_TRUE)) {
-                printPlayerMoveUp.append(" O ");
-                return;
-            }
-            if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_FALSE)) {
-                printPlayerMoveUp.append(" X ");
-                return;
-            }
-            printPlayerMoveUp.append("   ");
+            appendPlayerMoveResultAtFirstMove(bridgeIdx , printPlayerMoveUp);
             return;
         }
+        appendPlayerMoveResultNotFirstMove(bridgeIdx , printPlayerMoveUp);
 
-        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_TRUE)) {
-            printPlayerMoveUp.append("| O ");
-            return;
-        }
-        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_FALSE)) {
-            printPlayerMoveUp.append("| X ");
-            return;
-        }
-        printPlayerMoveUp.append("|   ");
     }
 
     public void makePrintResultIfDown(int bridgeIdx){
         if(bridgeIdx == 0) {
-            if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_TRUE)) {
-                printPlayerMoveDown.append(" O ");
-                return;
-            }
-            if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_FALSE)) {
-                printPlayerMoveDown.append(" X ");
-                return;
-            }
-            printPlayerMoveDown.append("   ");
+            appendPlayerMoveResultAtFirstMove(bridgeIdx , printPlayerMoveDown);
             return;
         }
+        appendPlayerMoveResultNotFirstMove(bridgeIdx , printPlayerMoveDown);
+    }
+
+    private void appendPlayerMoveResultNotFirstMove(int bridgeIdx , StringBuilder playerMoveResult) {
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_TRUE)) {
-            printPlayerMoveDown.append("| O ");
+            playerMoveResult.append("| O ");
             return;
         }
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_FALSE)) {
-            printPlayerMoveDown.append("| X ");
+            playerMoveResult.append("| X ");
             return;
         }
-        printPlayerMoveDown.append("|   ");
+        playerMoveResult.append("|   ");
+    }
+
+    private void appendPlayerMoveResultAtFirstMove(int bridgeIdx , StringBuilder playerMoveResult) {
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_TRUE)) {
+            playerMoveResult.append(" O ");
+            return;
+        }
+        if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.DOWN_FALSE)) {
+            playerMoveResult.append(" X ");
+            return;
+        }
+        playerMoveResult.append("   ");
     }
 
     public void playerMoveWhetherAnswer(){
