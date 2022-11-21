@@ -21,7 +21,7 @@ public class InputView {
             return readBridgeSize();
         }
     }
-    public static void validateBridgeSize(String bridgeSizeCommand) {
+    private static void validateBridgeSize(String bridgeSizeCommand) {
         String regex = "^[3-9]$|^[1][0-9]$|^20$";
         if (!bridgeSizeCommand.matches(regex)) {
             throw new IllegalArgumentException();
@@ -42,7 +42,7 @@ public class InputView {
             return readMoving();
         }
     }
-    public static void validateMoving(String movingCommand) {
+    private static void validateMoving(String movingCommand) {
         String regex = "[UD]";
         if (!movingCommand.matches(regex)) {
             throw new IllegalArgumentException();
@@ -63,7 +63,7 @@ public class InputView {
             return readGameCommand();
         }
     }
-    public static void validateGame(String gameCommand) {
+    private static void validateGame(String gameCommand) {
         String regex = "[RQ]";
         if (!gameCommand.matches(regex)) {
             throw new IllegalArgumentException();
