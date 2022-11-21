@@ -13,13 +13,16 @@ public class OutputView {
     String BLANK = BridgeGameInfo.BLANK.getWord();
 
     public void printMap(List<Boolean> matchResult,List<String> bridge) {
+        printBridge(matchResult, bridge, UP);
+        printBridge(matchResult, bridge, DOWN);
+    }
+
+    public void printBridge(List<Boolean> matchResult,List<String> bridge,String way) {
         System.out.print("[");
-        printBridgeCell(matchResult,bridge,UP);
-        System.out.println("]");
-        System.out.print("[");
-        printBridgeCell(matchResult,bridge,DOWN);
+        printBridgeCell(matchResult,bridge,way);
         System.out.println("]");
     }
+
     public void printBridgeCell(List<Boolean> matchResult, List<String> bridge, String way) {
         for (int i = 0; i < matchResult.size(); i++) {
             printBridgeCellLoop(matchResult,bridge,way,i);

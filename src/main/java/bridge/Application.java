@@ -14,8 +14,8 @@ public class Application {
     static GameController gameController = new GameController(inputView,bridgeGame,bridgeMaker,outputView);
 
     public static void main(String[] args) {
-        GAMESTART();
         try {
+            GAMESTART();
             GAMEPROCESS();
             GAMESTOP();
         } catch (IllegalArgumentException e) {
