@@ -18,12 +18,14 @@ public class GameManager {
             System.out.println(e.getMessage());
         }
     }
+
     public void execution() {
         boolean checkSame = runMovePoint();
         if (runResult(checkSame)) {
             totalResult(checkSame);
         }
     }
+
     public void makeBridgeGame() {
         outputView.printStartGame();
         outputView.printMakeBridgeSize();
