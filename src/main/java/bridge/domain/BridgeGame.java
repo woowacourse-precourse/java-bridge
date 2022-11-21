@@ -39,13 +39,13 @@ public class BridgeGame {
         this.movements = new ArrayList<>();
     }
 
-    public List<String> getUpBridgeBlocks() {
+    public List<String> getUpBridgeResult() {
         return IntStream.range(0, movements.size())
                 .mapToObj(index -> getBlockResult(BridgePosition.UP, index))
                 .collect(Collectors.toList());
     }
 
-    public List<String> getDownBridgeBlocks() {
+    public List<String> getDownBridgeResult() {
         return IntStream.range(0, movements.size())
                 .mapToObj(index -> getBlockResult(BridgePosition.DOWN, index))
                 .collect(Collectors.toList());

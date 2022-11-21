@@ -29,11 +29,11 @@ public class BridgeGameProcessor {
 
     private boolean isContinueGame(BridgeGame bridgeGame) {
         if (!isContinueMoving(bridgeGame)) {
-            outputView.printResult(bridgeGame.getUpBridgeBlocks(), bridgeGame.getDownBridgeBlocks(), bridgeGame.getTrialCount(), InformationMessage.FAILURE);
+            outputView.printResult(bridgeGame.getUpBridgeResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.FAILURE);
             return false;
         }
         if (bridgeGame.isFinished()) {
-            outputView.printResult(bridgeGame.getUpBridgeBlocks(), bridgeGame.getDownBridgeBlocks(), bridgeGame.getTrialCount(), InformationMessage.SUCCESS);
+            outputView.printResult(bridgeGame.getUpBridgeResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.SUCCESS);
             return false;
         }
         return true;
@@ -41,7 +41,7 @@ public class BridgeGameProcessor {
 
     private boolean isContinueMoving(BridgeGame bridgeGame) {
         boolean isSuccessMoving = isSuccessMoving(bridgeGame);
-        outputView.printMap(bridgeGame.getUpBridgeBlocks(), bridgeGame.getDownBridgeBlocks());
+        outputView.printMap(bridgeGame.getUpBridgeResult(), bridgeGame.getDownBridgeResult());
         if (isSuccessMoving) {
             return true;
         }
