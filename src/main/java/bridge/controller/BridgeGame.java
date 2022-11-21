@@ -11,7 +11,6 @@ import bridge.model.BridgeMap;
 import bridge.model.Player;
 
 import static bridge.util.BridgeConstant.FALL_BLOCK;
-import static bridge.util.BridgeConstant.CONTINUE_GAME;
 import static bridge.util.BridgeConstant.QUIT_GAME;
 
 /**
@@ -61,7 +60,8 @@ public class BridgeGame {
     }
 
     private boolean reachFinalLine(Player player) {
-        return player.getXPosition() == bridge.getBridge()[0].length - 1 && getMoveSuccess(player);
+        return player.getXPosition() == bridge.getBridge()[0].length - 1
+                && getMoveSuccess(player);
     }
 
     private boolean getMoveSuccess(Player player) {
@@ -89,9 +89,8 @@ public class BridgeGame {
      */
     public void retry(Player player) {
         boolean continueCommand = bridgeRetry.getContinueCode(player);
-        if (continueCommand == CONTINUE_GAME) {
-            return;
+        if (continueCommand == QUIT_GAME) {
+            gameSet(LOSE);
         }
-        gameSet(LOSE);
     }
 }
