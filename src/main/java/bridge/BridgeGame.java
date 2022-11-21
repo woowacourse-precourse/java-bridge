@@ -15,25 +15,12 @@ public class BridgeGame {
         }
     }
 
-    public void move(String answer, String moving) {
+    public List<List<String>> move(String answer, String moving) {
         // TODO : 중복 제거해서 메서드 길이 줄일 것 / else 문 없애도록 노력할 것
         if (answer.equals(moving)) {
-            if (moving.equals(Constant.UP)) {
-                bridgeMap.get(0).add("O");
-                bridgeMap.get(1).add(" ");
-            } else {
-                bridgeMap.get(0).add(" ");
-                bridgeMap.get(1).add("O");
-            }
-        } else {
-            if (moving.equals(Constant.UP)) {
-                bridgeMap.get(0).add("X");
-                bridgeMap.get(1).add(" ");
-            } else {
-                bridgeMap.get(0).add(" ");
-                bridgeMap.get(1).add("X");
-            }
+            return BridgeMapGenerator.generateRightAnswerMap(moving, bridgeMap);
         }
+        return BridgeMapGenerator.generateWrongAnswerMap(moving, bridgeMap);
     }
 
     public void retry() {
