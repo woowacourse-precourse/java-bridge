@@ -23,11 +23,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-    }
-
-    public void printEmptyLine(){
-        System.out.println();
+    public void printResult(int count, boolean isCorrect) {
+        System.out.println(getResultString(count, isCorrect));
     }
 
     public void printStartGuide(){
@@ -75,6 +72,35 @@ public class OutputView {
 
     private String getEndBridgeNotation(){
         return " ]";
+    }
+
+    private String getResultString(int count, boolean isCorrect){
+        sb.setLength(0);
+
+        sb.append(getIsCorrectString(isCorrect))
+                .append("\n")
+                .append(getCountString(count))
+                .append("\n");
+        return sb.toString();
+    }
+
+    private String getCountString(int count){
+        tmp.setLength(0);
+        tmp.append("총 시도한 횟수: ").append(count);
+        return tmp.toString();
+    }
+
+    private String getIsCorrectString(boolean isCorrect){
+        tmp.setLength(0);
+        tmp.append("게임 성공 여부: ").append(changeIsCorrectToString(isCorrect));
+        return tmp.toString();
+    }
+
+    private String changeIsCorrectToString(boolean isCorrect){
+        if(isCorrect){
+            return "성공";
+        }
+        return "실패";
     }
 
 }
