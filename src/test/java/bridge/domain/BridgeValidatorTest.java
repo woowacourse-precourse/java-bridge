@@ -1,9 +1,7 @@
-package bridge;
+package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.domain.BridgeValidator;
-import bridge.domain.GameCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
