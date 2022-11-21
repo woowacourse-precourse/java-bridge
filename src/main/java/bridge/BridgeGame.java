@@ -50,4 +50,11 @@ public class BridgeGame {
         this.trial = 1;
         this.success = false;
     }
+
+    public boolean hasFail() {
+        if (record.contains(2) || record.contains(3)) {
+            return true;
+        }
+        return false;
+    }
 }
