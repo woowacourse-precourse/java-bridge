@@ -1,11 +1,12 @@
 package bridge.view;
 
+import bridge.BridgeController;
 import bridge.domain.GameResultType;
-import bridge.domain.Result;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -33,22 +34,44 @@ public class OutputView {
             e.printStackTrace();
         }
     }
-    public void printMap(GameResultType gameResultType){
-        saveUpBuffer += gameResultType.getUpString();
-        saveDownBuffer += gameResultType.getDownString();
+    public void startPrint(){
         try {
-            bw.append(saveUpBuffer + SUFFIX);
-            bw.append(saveDownBuffer + SUFFIX);
+            bw.append("다리 건너기 게임을 시작합니다.\n\n다리의 길이를 입력해주세요.\n");
             flushCall();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void printInput(){
+    public void gamePrint(){
         try {
-            bw.append("다리의 길이를 입력해주세요");
+            bw.append("이동할 칸을 선택해주세요. (위: U, 아래: D)\n");
             flushCall();
-        }catch (IOException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void printRetry(){
+        try {
+            bw.append("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R,종료: Q)\n");
+            flushCall();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void plusResult(GameResultType gameResultType, int index){
+        if(index!=0) {
+            saveUpBuffer+=MIDFIX;
+            saveDownBuffer+=MIDFIX;
+        }
+        saveUpBuffer += gameResultType.getUpString();
+        saveDownBuffer += gameResultType.getDownString();
+    }
+    public void printMap(){
+        try {
+            bw.append(saveUpBuffer).append(SUFFIX);
+            bw.append(saveDownBuffer).append(SUFFIX).append("\n");
+            flushCall();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -57,7 +80,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-
+    public void printResult(GameResultType gameResultType) {
+        try {
+            bw.append("최종 게임 결과\n");
+            printMap();
+            bw.append("게임 성공 여부: ").append(gameResultType.getWinLoseKr());
+            bw.append("총 시도한 횟수: "+ BridgeController.tryNumber);
+            flushCall();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

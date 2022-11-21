@@ -6,8 +6,8 @@ public class Player {
     private PlayerCommand playerCommand;
     private GameCommand gameCommand;
     private final InputView inputView = new InputView();;
-    public void getInputMoving(){
-        playerCommand = new PlayerCommand(inputView.readMoving());
+    public void getInputMoving(String command){
+        playerCommand = new PlayerCommand(command);
     }
     public void setGameCommand(){
         gameCommand = new GameCommand(inputView.readGameCommand());

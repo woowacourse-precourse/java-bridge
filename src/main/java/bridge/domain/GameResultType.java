@@ -3,22 +3,24 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum GameResultType {
-    WIN_DOWN(true,true,"   "," O "),
-    WIN_UP(true,false," O ","   "),
-    LOSE_DOWN(false,true,"   "," X "),
-    LOSE_UP(false,false," X ","   ");
+    WIN_DOWN(true,true,"   "," O ","성공"),
+    WIN_UP(true,false," O ","   ","성공"),
+    LOSE_DOWN(false,true,"   "," X ","실패"),
+    LOSE_UP(false,false," X ","   ","실패");
     private final boolean winLose;
     private final boolean upDown;
     private final String upString;
     private final String downString;
+    private final String winLoseKr;
 
-    GameResultType(boolean winLose,boolean upDown,String upString,String downString){
+    GameResultType(boolean winLose,boolean upDown,String upString,String downString,String winLoseKr){
         this.downString = downString;
         this.upDown = upDown;
         this.upString = upString;
         this.winLose = winLose;
+        this.winLoseKr = winLoseKr;
     }
-        public boolean getWinLose(){
+    public boolean getWinLose(){
         return winLose;
     }
     public boolean getUpDown(){
@@ -29,6 +31,9 @@ public enum GameResultType {
     }
     public String getDownString(){
         return downString;
+    }
+    public String getWinLoseKr(){
+        return winLoseKr;
     }
     public static GameResultType getGameResultType(boolean winLose,boolean upDown){
         return Arrays.stream(GameResultType.values())

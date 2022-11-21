@@ -1,12 +1,13 @@
 package bridge.domain.bridge;
 
-import java.util.List;
+import bridge.BridgeRandomNumberGenerator;
 
 public class Bridge {
     private BridgeNumber bridgeNumber;
     private BridgeSize bridgeSize;
-    public void inputBridgeNumber(List<String> number){
-        bridgeNumber = new BridgeNumber(number);
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    public void inputBridgeNumber(){
+        bridgeNumber = new BridgeNumber(bridgeMaker.makeBridge(bridgeSize.getSize()));
     }
     public void inputBridgeSize(int size){
         bridgeSize = new BridgeSize(size);
