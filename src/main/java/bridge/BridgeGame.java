@@ -13,6 +13,7 @@ public class BridgeGame {
     private InputView inputView;
     private OutputView outputView;
     private int tryCount = 0;
+    private final String termination = "Q";
     private final boolean willRetry = true;
     private final boolean willNotRetry = false;
 
@@ -73,7 +74,7 @@ public class BridgeGame {
      */
     public boolean retry(int bridgeSize, List<String> bridge, List<String> moves) {
         String retryInput = inputView.readGameCommand();
-        if (retryInput.equals("Q")) {
+        if (retryInput.equals(termination)) {
             return false;
         }
         return play(bridgeSize, bridge, moves);
