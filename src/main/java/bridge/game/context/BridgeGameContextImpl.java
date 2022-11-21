@@ -2,6 +2,7 @@ package bridge.game.context;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.code.BridgePosition;
+import bridge.domain.code.GameStatus;
 import bridge.game.BridgeGame;
 
 public class BridgeGameContextImpl implements BridgeGameContext {
@@ -49,5 +50,10 @@ public class BridgeGameContextImpl implements BridgeGameContext {
     public void movePlayerUnit(BridgePosition movePosition) {
         var history = bridgeGame.move(movePosition);
         this.writeHistory(history.resultByPositions());
+    }
+
+    @Override
+    public GameStatus gameStatus() {
+        return this.gameStatus();
     }
 }
