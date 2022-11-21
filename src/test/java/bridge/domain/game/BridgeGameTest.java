@@ -1,8 +1,10 @@
 package bridge.domain.game;
 
+import bridge.domain.bridge.Bridge;
 import bridge.domain.direction.Direction;
 import bridge.domain.factory.BridgeFactory;
 import bridge.domain.pedestrian.Pedestrian;
+import bridge.domain.referee.Referee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,8 +28,9 @@ class BridgeGameTest {
     void setUp() {
         int size = 5;
         BridgeFactory bridgeFactory = new BridgeFactory();
+        Bridge bridge = bridgeFactory.createBridge(size);
         pedestrian = new Pedestrian();
-        game = BridgeGame.from(bridgeFactory.createBridge(size));
+        game = BridgeGame.from(Referee.from(bridge));
     }
 
     @DisplayName("move 메소드에 방향을 입력하였을 때 방향이 Pedestrian 객체의 필드에 기록되는지 확인")

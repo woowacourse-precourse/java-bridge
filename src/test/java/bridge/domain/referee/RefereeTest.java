@@ -21,18 +21,18 @@ class RefereeTest {
 
     @BeforeEach
     void setUp() {
-        referee = new Referee();
         List<Direction> directions = Stream.of("U", "D", "U", "D", "U")
                 .map(Direction::new)
                 .collect(Collectors.toList());
         bridge = new Bridge(directions);
+        referee = Referee.from(bridge);
     }
 
     @DisplayName("checkDirection 메소드에 다리, 방향, 위치가 입력되었을 때 방향이 맞는지 판단한 Judgement 객체를 반환하는지 확인")
     @ParameterizedTest
     @MethodSource("provideArgumentsForCheckingTest")
     void checkDirection_test(Direction direction, int location, boolean expected) {
-        Judgement judgement = referee.checkDirection(bridge, direction, location);
+        Judgement judgement = referee.checkDirection(direction, location);
 
         assertThat(judgement.isTrue()).isEqualTo(expected);
     }

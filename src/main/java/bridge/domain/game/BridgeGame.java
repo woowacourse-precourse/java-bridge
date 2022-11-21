@@ -8,21 +8,20 @@ import bridge.domain.referee.Referee;
 
 public class BridgeGame {
 
-    private final Bridge bridge;
+    private final Referee referee;
     private int attempt;
 
-    private BridgeGame(Bridge bridge) {
+    private BridgeGame(Referee referee) {
         this.attempt = 0;
-        this.bridge = bridge;
+        this.referee = referee;
     }
 
-    public static BridgeGame from(Bridge bridge) {
-        return new BridgeGame(bridge);
+    public static BridgeGame from(Referee referee) {
+        return new BridgeGame(referee);
     }
 
     public void move(Pedestrian pedestrian, Direction direction) {
-        Referee referee = new Referee();
-        Judgement judgement = referee.checkDirection(bridge, direction, pedestrian.findLocation());
+        Judgement judgement = referee.checkDirection(direction, pedestrian.findLocation());
         pedestrian.move(judgement, direction);
     }
 
@@ -35,6 +34,6 @@ public class BridgeGame {
     }
 
     public boolean isSuccess(Pedestrian pedestrian) {
-        return bridge.isEnd(pedestrian.findLocation());
+        return referee.isEnd(pedestrian.findLocation());
     }
 }
