@@ -52,14 +52,14 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean isFail(){
+    public boolean isFailed(){
         if(this.lines[0].contains("X") || this.lines[1].contains("X")){
             return true;
         }
         return false;
     }
 
-    public boolean isSuccess(int answerSize){
+    public boolean isSucceed(int answerSize){
         if(answerSize == getLines()[0].length()){
             return true;
         }
