@@ -12,7 +12,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("\n다리의 길이를 입력해주세요.");
+        System.out.println(Message.REQUEST_BRIDGE_SIZE.getMessage());
         String size = Console.readLine().trim();
         return Validator.validateBridgeSize(size);
     }
@@ -21,7 +21,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(Message.REQUEST_MOVEMENT.getMessage());
         String moving = Console.readLine().trim();
         return Validator.validateMoving(moving);
     }
@@ -30,7 +30,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(Message.REQUEST_GAME_COMMAND.getMessage());
         String gameCommand = Console.readLine().trim();
         return Validator.validateGameCommand(gameCommand);
     }
