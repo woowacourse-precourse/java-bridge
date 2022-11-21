@@ -20,8 +20,8 @@ public class GameController {
         System.out.println(answer_bridge);
 
         BridgeGame bridgeGame = new BridgeGame(answer_bridge);
-        boolean keepGoing = true;
-        while(keepGoing) {
+        //boolean keepGoing = true;
+        while(true/*keepGoing*/) {
             boolean isEnd = false;
             while (!isEnd) {
                 moveStep(bridgeGame);
@@ -32,7 +32,7 @@ public class GameController {
                 return;
             }
             outputView.restartMessage();
-            String command = inputView.readGameCommand();
+            String command = readRestartStep();
             if (command.equals("R"))
                 bridgeGame.retry();
 
@@ -47,7 +47,7 @@ public class GameController {
         //move message 출력
         outputView.moveMessage();
         //input move
-        String way = inputView.readMoving();
+        String way = readMovingStep();
         //move
         bridgeGame.move(way);
         //printMap
@@ -63,6 +63,28 @@ public class GameController {
         }catch (IllegalStateException e){
             System.out.println(e.getMessage());
             return readBridgeSizeStep();
+        }
+    }
+    private String readMovingStep(){
+        try{
+            return inputView.readMoving();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readMovingStep();
+        }catch (IllegalStateException e){
+            System.out.println(e.getMessage());
+            return readMovingStep();
+        }
+    }
+    private String readRestartStep(){
+        try{
+            return inputView.readGameCommand();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readRestartStep();
+        }catch (IllegalStateException e){
+            System.out.println(e.getMessage());
+            return readRestartStep();
         }
     }
 }
