@@ -88,5 +88,8 @@ public class OutputView {
     public static void printIntro() {
         System.out.println(INTRO_MSG);
     }
-    
+
+    public static void printNewLine() {
+        System.out.println();
+    }
 }
