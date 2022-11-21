@@ -4,6 +4,7 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeNumberGenerator;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
+import bridge.view.OrderView;
 import bridge.view.OutputView;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class BridgeController {
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     OutputView outputView = new OutputView();
+    OrderView orderView = new OrderView();
     List<String> bridgeData = new ArrayList<>();
 
     public void run() {

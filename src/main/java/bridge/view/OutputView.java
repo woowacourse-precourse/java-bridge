@@ -18,12 +18,21 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridgeData) {
-        for(int index = 0 ; index < bridgeData.size(); index++) {
-            System.out.println(orderView.MOVE_STEP);
-            bridgeGame.move(inputView.readMoving(), bridgeData.get(index), index);
+        while(true){
+            orderView.retryCount++;
+            stepBridge(bridgeData);
+            if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) break;
         }
     }
 
+    private void stepBridge(List<String> bridgeData) {
+        for(int index = 0 ; index < bridgeData.size(); index++) {
+            System.out.println(orderView.MOVE_STEP);
+            bridgeGame.move(inputView.readMoving(), bridgeData.get(index), index);
+            if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) break;
+        }
+        orderView.checkAnswerIndex = 2;
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>

@@ -1,6 +1,7 @@
 package bridge.view;
 
 public class OrderView {
+    InputView inputView = new InputView();
     public final String START_ORDER = "다리 건너기 게임을 시작합니다.";
     public final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
     public final String ERROR_ORDER = "[ERROR]";
@@ -9,6 +10,10 @@ public class OrderView {
     public final String THE_GAME_RESULT = "최종 게임 결과";
     public final String SUCCESS_OR_FAIL = "게임 성공 여부:";
     public final String TOTAL_COUNT = "총 시도한 횟수:";
+    public final String FAIL = "실패";
+    public final String SUCCESS = "성공";
+    public static int checkAnswerIndex = 0;
+    public static int retryCount = 0;
     public void lineSkip(){
         System.out.println();
     }
@@ -20,5 +25,10 @@ public class OrderView {
     }
     public String space() {
         return "[   ]";
+    }
+
+    public String continueOrExit() {
+        String pickRestart = inputView.readGameCommand();
+        return pickRestart;
     }
 }

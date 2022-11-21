@@ -3,7 +3,6 @@ package bridge.handler;
 import bridge.view.OrderView;
 
 public class InputBridgeLengthHandler {
-    OrderView orderView = new OrderView();
 
     public String checkException(String bridgeLength){
         checkNonInput(bridgeLength);
@@ -15,6 +14,7 @@ public class InputBridgeLengthHandler {
     }
 
     private void checkOverRange(String bridgeLength) {
+        OrderView orderView = new OrderView();
         long length = Long.parseLong(bridgeLength);
 
         if(length > Integer.MAX_VALUE) {
@@ -23,12 +23,16 @@ public class InputBridgeLengthHandler {
     }
 
     private void checkNonInput(String bridgeLength) {
+        OrderView orderView = new OrderView();
+
         if(bridgeLength.length() == 0) {
             throw new IllegalArgumentException(orderView.ERROR_ORDER+" 다리 길이의 값이 입력되지 않았습니다.");
         }
     }
 
     private void checkIsNumber(String bridgeLength) {
+        OrderView orderView = new OrderView();
+
         boolean checkNumeric = bridgeLength.matches("[+-]?\\d*(\\.\\d+)?");
 
         if(!checkNumeric) {
@@ -37,6 +41,8 @@ public class InputBridgeLengthHandler {
     }
 
     private void checkInRange(String bridgeLength) {
+        OrderView orderView = new OrderView();
+
         int bridgeLengthNumber = Integer.parseInt(bridgeLength);
 
         if(bridgeLengthNumber < 3 || bridgeLengthNumber > 20){
