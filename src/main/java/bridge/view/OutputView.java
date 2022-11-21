@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.service.BridgeGame;
 import java.util.List;
 
 import static bridge.util.MapMaker.makeMap;
@@ -14,7 +15,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> userMoves, List<Boolean> results) {
+    public void printMap(BridgeGame bridgeGame) {
+        List<String> userMoves = bridgeGame.getUserMoves();
+        List<Boolean> results = bridgeGame.getResults();
         System.out.println(makeMap(userMoves, results));
     }
 
@@ -23,14 +26,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int tries, List<String> userMoves, List<Boolean> results) {
+    public void printResult(BridgeGame bridgeGame) {
         System.out.println("\n최종 게임 결과");
-        printMap(userMoves, results);
+        printMap(bridgeGame);
         String result = "실패";
-        if (results.get(results.size() - 1)) {
+        if (bridgeGame.getResults().get(bridgeGame.getResults().size() - 1)) {
             result = "성공";
         }
         System.out.printf("게임 성공 여부: %s\n", result);
-        System.out.printf("총 시도한 횟수: %d\n", tries);
+        System.out.printf("총 시도한 횟수: %d\n", bridgeGame.getTries());
     }
 }
