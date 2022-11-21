@@ -41,7 +41,7 @@ public class InputView {
     }
 
     private void validateSingleCharacter(String input) {
-        if (Pattern.compile("\\w").matcher(input).matches()) {
+        if (!Pattern.compile("[A-z]").matcher(input).matches()) {
             throw new IllegalArgumentException("한 글자가 아닙니다");
         }
     }
