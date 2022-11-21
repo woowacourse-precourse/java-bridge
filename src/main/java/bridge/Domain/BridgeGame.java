@@ -6,10 +6,12 @@ import bridge.Constants.FrontMan;
 import bridge.Database.BridgeData;
 import bridge.UI.InputView;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static bridge.Constants.StandardTools.FAILED;
+import static bridge.Constants.StandardTools.RETRY;
 import static bridge.Constants.StandardTools.SUCCEED;
 import static bridge.Constants.StandardTools.POSSIBLE_ZONE;
 import static bridge.Constants.StandardTools.IMPOSSIBLE_ZONE;
@@ -72,7 +74,18 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        String gameCommand = inputView.readGameCommand();
+        if (Objects.equals(gameCommand, "R")) {
+            initializeBridgeDesignByUser();
+            bridgeData.increaseAttempts();
+            return RETRY;
+        }
+        return !RETRY;
+    }
+
+    public void initializeBridgeDesignByUser() {
+        bridgeData.updateBridgeDesignByUser(Collections.emptyList());
     }
 
     public boolean getIsGameSucceed() {
