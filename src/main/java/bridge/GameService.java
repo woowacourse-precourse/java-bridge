@@ -15,18 +15,18 @@ public class GameService {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridges = bridgeMaker.makeBridge(size);    // 다리 "UDU" String 으로 List에 담김
 
-        String correctBridge="";
+        String correctOrFailSign="";
         int indexOfBridge=0;
         while (gameStartOrNot){
             outputView.printUpOrDownMessage();
             String upOrDown=inputView.readMoving();
             boolean stillgameSign=bridgeGame.move(bridges.get(0), upOrDown, indexOfBridge);
             if(!stillgameSign){
-                correctBridge+="X";
-
+                correctOrFailSign+="X";
             }else{
-                correctBridge+="O";
+                correctOrFailSign+="O";
             }
+            outputView.printMap(bridges.get(0), correctOrFailSign);
             if(!stillgameSign){
                 bridgeGame.retry();
             }
