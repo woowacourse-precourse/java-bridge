@@ -1,8 +1,15 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
+import bridge.view.InputView;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGame bridgeGame= new BridgeGame();
+        InputView.readBridgeSize();
+        new Bridge();
+        bridgeGame.start();
     }
 }
