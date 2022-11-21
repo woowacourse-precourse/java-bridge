@@ -9,8 +9,8 @@ import java.util.List;
 public class BridgeMaker {
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
-    private static final String BRIDGE_SIZE_IS_OUT_OF_RANGE = "다리 길이가 범위 밖입니다.";
-    private static final String NUMBER_IS_NOT_LOWER_UPPER_NUMBER = "입력값이 0 또는 1이 아닙니다.";
+    private static final String BRIDGE_SIZE_IS_OUT_OF_RANGE = "[ERROR] 다리 길이가 범위 밖입니다.";
+    private static final String NUMBER_IS_NOT_LOWER_UPPER_NUMBER = "[ERROR] 입력값이 0 또는 1이 아닙니다.";
     private static final int RANDOM_LOWER_INCLUSIVE = 0;
     private static final int RANDOM_UPPER_INCLUSIVE = 1;
     private static final String LOWER_BRIDGE = "D";
