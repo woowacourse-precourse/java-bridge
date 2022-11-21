@@ -45,7 +45,7 @@ public class BridgeGame {
         outputView.startGuide();
     }//startSetUp
 
-    public boolean isSuccess(List<String> userSelectResult, List<String> computerBridge) {
+    public boolean isUnitSuccess(List<String> userSelectResult, List<String> computerBridge) {
         boolean success = compareBridge.isSame(userSelectResult, computerBridge);
         outputView.printMap(userSelectResult, success);
         return success;
