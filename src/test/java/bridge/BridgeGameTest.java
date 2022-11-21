@@ -1,7 +1,6 @@
 package bridge;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 
 class BridgeGameTest extends NsTest {
-
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
     void 재시작_패배_기능_테스트() {
@@ -34,17 +31,6 @@ class BridgeGameTest extends NsTest {
         }, 1, 0, 1, 1, 1);
     }
 
-    @Test
-    void 사용자_이동_입력_예외_테스트(){
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.move();
-        assertSimpleTest(() -> {
-            runException("!@EAB");
-            runException("21");
-            runException(" ");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
 
     protected void runMain() {
         Application.main(new String[]{});
