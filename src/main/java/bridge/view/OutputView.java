@@ -19,6 +19,20 @@ public class OutputView {
     private static final String RETRY_COUNT_OUTPUT_MESSAGE = "총 시도한 횟수: %d";
     private static final String Final_OUTPUT_MESSAGE = "최종 게임 결과";
 
+    private static String getResult(int index, Bridge bridge) {
+        if (Result.getCode(bridge.getPosition()) == index) {
+            return bridge.getResult();
+        }
+        return " ";
+    }
+
+    private static String isSuccess(boolean result) {
+        if (result) {
+            return SUCCESS_OUTPUT_MESSAGE;
+        }
+        return FAIL_OUTPUT_MESSAGE;
+    }
+
     public static void printStart() {
         System.out.println(START_OUTPUT_MESSAGE);
     }
@@ -34,13 +48,7 @@ public class OutputView {
         List<String> result = new ArrayList<>();
         IntStream.range(0, width).forEach(i -> {
             List<String> bridge = new ArrayList<>();
-            map.stream().forEach(e -> {
-                if (Result.getCode(e.getPosition()) == i) {
-                    bridge.add(e.getResult());
-                } else {
-                    bridge.add(" ");
-                }
-            });
+            map.stream().forEach(e -> bridge.add(getResult(i, e)));
             result.add(String.format("[ %s ]\n", String.join(" | ", bridge)));
         });
         Collections.reverse(result);
@@ -49,13 +57,6 @@ public class OutputView {
 
     public static void printFinal() {
         System.out.println(Final_OUTPUT_MESSAGE);
-    }
-
-    public static String isSuccess(boolean result) {
-        if (result) {
-            return SUCCESS_OUTPUT_MESSAGE;
-        }
-        return FAIL_OUTPUT_MESSAGE;
     }
 
     /**
