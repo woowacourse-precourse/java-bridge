@@ -24,20 +24,7 @@ public class BridgeGameController {
             String movingCommand = inputView.readMoving();
             String sign = bridgeGame.move(movingCommand);
             bridgeGame.getBridgeGameResult().addResult(movingCommand, sign);
-//            System.out.println(bridgeGame.getBridgeGameResult().getUpBridge());
-//            System.out.println(bridgeGame.getBridgeGameResult().getUpBridge());
-
             outputView.printMap(bridgeGame.getBridgeGameResult());
-//            if (!bridgeGame.getBridgeGameResult().getSuccess()) {
-////                restartOrQuit(inputView.readGameCommand());
-//                String gameCommand = inputView.readGameCommand();
-//                if (gameCommand.equals("R")) {
-//                    bridgeGame.retry();
-//                }
-//                if (gameCommand.equals("Q")) {
-//                    break;
-//                }
-//            }
             if (crossingBridge(sign) == false) {
                 break;
             }
@@ -58,16 +45,6 @@ public class BridgeGameController {
             return false;
         }
         return true;
-    }
-
-//    public void restartOrQuit(String gameCommand) {
-//        if (isRestart(gameCommand)) {
-//            bridgeGame.retry();
-//        }
-//    }
-
-    public void printResult() {
-        outputView.printResult(bridgeGame.getBridgeGameResult(), bridgeGame);
     }
 
     public boolean isRestart(String sign) {
