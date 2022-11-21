@@ -1,10 +1,10 @@
 package bridge.controller;
 
-import bridge.model.generator.BridgeMaker;
-import bridge.model.generator.BridgeRandomNumberGenerator;
+import bridge.model.BridgeGame;
 import bridge.model.Command;
 import bridge.model.Direction;
-import bridge.model.BridgeGame;
+import bridge.model.generator.BridgeMaker;
+import bridge.model.generator.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,7 +17,7 @@ public class BridgeGameController {
     private final BridgeMaker bridgeMaker;
 
     public BridgeGameController() {
-        this.inputView =  new InputView();
+        this.inputView = new InputView();
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -37,20 +37,20 @@ public class BridgeGameController {
 
     private void initGame() {
         try {
-        outputView.askSize();
-        int size = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        bridgeGame.setBridge(bridge);
-        } catch (IllegalArgumentException iae){
+            outputView.askSize();
+            int size = inputView.readBridgeSize();
+            List<String> bridge = bridgeMaker.makeBridge(size);
+            bridgeGame.setBridge(bridge);
+        } catch (IllegalArgumentException iae) {
             outputView.printError(iae);
             initGame();
         }
     }
 
     private void play() {
-        while(!bridgeGame.isEnd()){
+        while (!bridgeGame.isEnd()) {
             move();
-            if(bridgeGame.isFail()){
+            if (bridgeGame.isFail()) {
                 askRetry();
             }
         }
@@ -61,7 +61,7 @@ public class BridgeGameController {
             outputView.askRetry();
             Command command = inputView.readGameCommand();
             command.exec(bridgeGame);
-        }catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             outputView.printError(iae);
             askRetry();
         }
@@ -74,7 +74,7 @@ public class BridgeGameController {
             Direction direction = inputView.readMoving();
             bridgeGame.move(direction);
             outputView.printHistory(bridgeGame.getHistory());
-        }catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             outputView.printError(iae);
             move();
         }

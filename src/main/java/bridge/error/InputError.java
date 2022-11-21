@@ -6,11 +6,11 @@ public enum InputError implements Error {
     INVALID_COMMAND_SYMBOL("올바른 명령어를 기호로 입력해주세요."),
     ;
 
+    private final String message;
+
     InputError(String message) {
         this.message = message;
     }
-
-    private final String message;
 
     @Override
     public String getMessage() {

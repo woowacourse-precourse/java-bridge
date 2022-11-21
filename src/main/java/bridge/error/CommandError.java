@@ -5,11 +5,11 @@ public enum CommandError implements Error {
     INVALID_NUMBER("올바르지 않은 숫자입니다."),
     ;
 
+    private final String message;
+
     CommandError(String message) {
         this.message = message;
     }
-
-    private final String message;
 
     @Override
     public String getMessage() {

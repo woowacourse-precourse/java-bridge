@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.error.DirectionError;
+
 public enum Direction {
     DOWN(0, "D"), UP(1, "U");
 
@@ -11,24 +13,24 @@ public enum Direction {
         this.symbol = symbol;
     }
 
-    public static Direction fromBridgeNumber(int bridgeNumber){
+    public static Direction fromBridgeNumber(int bridgeNumber) {
         for (Direction direction : values()) {
             if (direction.bridgeNumber == bridgeNumber) {
                 return direction;
             }
         }
 
-        throw new IllegalArgumentException(bridgeNumber + "는 유효하지 않은 값입니다.");
+        throw new IllegalArgumentException(DirectionError.INVALID_NUMBER.getMessage());
     }
 
     public static Direction fromSymbol(String symbol) {
         for (Direction direction : values()) {
-            if (direction.symbol.equals(symbol)){
+            if (direction.symbol.equals(symbol)) {
                 return direction;
             }
         }
 
-        throw new IllegalArgumentException(symbol + "는 유효하지 않은 값입니다.");
+        throw new IllegalArgumentException(DirectionError.INVALID_SYMBOL.getMessage());
     }
 
     public String getSymbol() {

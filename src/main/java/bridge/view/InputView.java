@@ -13,10 +13,10 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException{
-        try{
+    public int readBridgeSize() throws IllegalArgumentException {
+        try {
             return Integer.parseUnsignedInt(Console.readLine());
-        }catch (NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             throw new IllegalArgumentException(InputError.INVALID_SIZE.getMessage());
         }
     }
@@ -25,9 +25,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public Direction readMoving() {
-        try{
+        try {
             return Direction.fromSymbol(Console.readLine());
-        }catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             throw new IllegalArgumentException(InputError.INVALID_DIRECTION_SYMBOL.getMessage());
         }
     }
@@ -36,9 +36,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public Command readGameCommand() {
-        try{
+        try {
             return Command.fromSymbol(Console.readLine());
-        }catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             throw new IllegalArgumentException(InputError.INVALID_COMMAND_SYMBOL.getMessage());
         }
     }

@@ -1,9 +1,9 @@
 package bridge.view;
 
+import bridge.model.BridgeGame;
 import bridge.model.Command;
 import bridge.model.Direction;
 import bridge.model.Round;
-import bridge.model.BridgeGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +48,10 @@ public class OutputView {
         printHistory(bridgeGame.getHistory());
 
         System.out.print("게임 성공 여부: ");
-        if(bridgeGame.isSuccess()){
+        if (bridgeGame.isSuccess()) {
             System.out.println("성공");
         }
-        if(!bridgeGame.isSuccess()){
+        if (!bridgeGame.isSuccess()) {
             System.out.println("실패");
         }
 
@@ -73,7 +73,7 @@ public class OutputView {
         newLine();
     }
 
-    public void newLine(){
+    public void newLine() {
         System.out.println();
     }
 

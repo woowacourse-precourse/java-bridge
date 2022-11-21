@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.model.Direction;
-
 public class Round {
 
     private final Direction selection;

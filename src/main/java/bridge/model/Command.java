@@ -1,13 +1,15 @@
 package bridge.model;
 
+import bridge.error.CommandError;
+
 import java.util.function.Function;
 
 public enum Command {
-    RETRY((BridgeGame bridgeGame)-> {
+    RETRY((BridgeGame bridgeGame) -> {
         bridgeGame.retry();
         return null;
     }, "R"),
-    QUIT((BridgeGame bridgeGame)-> {
+    QUIT((BridgeGame bridgeGame) -> {
         bridgeGame.setGiveUp(true);
         return null;
     }, "Q");
@@ -22,7 +24,7 @@ public enum Command {
 
     public static Command fromSymbol(String symbol) {
         for (Command command : values()) {
-            if (command.symbol.equals(symbol)){
+            if (command.symbol.equals(symbol)) {
                 return command;
             }
         }
@@ -30,7 +32,7 @@ public enum Command {
         throw new IllegalArgumentException(CommandError.INVALID_SYMBOL.getMessage());
     }
 
-    public void exec(BridgeGame bridgeGame){
+    public void exec(BridgeGame bridgeGame) {
         this.expression.apply(bridgeGame);
     }
 

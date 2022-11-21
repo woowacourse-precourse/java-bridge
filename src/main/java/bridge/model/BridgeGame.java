@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
  */
 public class BridgeGame {
 
-    private List<Direction> bridge;
     private final List<Round> history = new ArrayList<>();
+    private List<Direction> bridge;
     private int trial = 1;
     private boolean giveUp = false;
 
@@ -43,32 +43,26 @@ public class BridgeGame {
         history.clear();
     }
 
-    public void setBridge(List<String> bridge) {
-        this.bridge = bridge.stream()
-                .map(Direction::fromSymbol)
-                .collect(Collectors.toList());
-    }
-
     public boolean isSuccess() {
         return history.size() == bridge.size() && !isFail();
     }
 
-
     public boolean isFail() {
-        boolean hasFail = history.stream().anyMatch(round -> !round.isPass());
-        return hasFail;
+        return history.stream().anyMatch(round -> !round.isPass());
     }
 
     public boolean isEnd() {
         return giveUp || isSuccess();
     }
 
-    public void setGiveUp(boolean b) {
-        this.giveUp = b;
-    }
-
     public List<Direction> getBridge() {
         return bridge;
+    }
+
+    public void setBridge(List<String> bridge) {
+        this.bridge = bridge.stream()
+                .map(Direction::fromSymbol)
+                .collect(Collectors.toList());
     }
 
     public List<Round> getHistory() {
@@ -81,5 +75,9 @@ public class BridgeGame {
 
     public boolean isGiveUp() {
         return giveUp;
+    }
+
+    public void setGiveUp(boolean b) {
+        this.giveUp = b;
     }
 }
