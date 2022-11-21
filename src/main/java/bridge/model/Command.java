@@ -1,8 +1,6 @@
 package bridge.model;
 
 public enum Command {
-    UP("U"),
-    DOWN("D"),
     RETRY("R"),
     QUIT("Q");
 

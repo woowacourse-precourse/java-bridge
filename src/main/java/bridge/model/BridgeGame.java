@@ -49,8 +49,8 @@ public class BridgeGame {
     }
 
     public List<List<String>> getGameMap() {
-        List<String> upMap = makeEachBridge(Command.UP.getCommand(), playerMove, answerMove);
-        List<String> downMap = makeEachBridge(Command.DOWN.getCommand(), playerMove, answerMove);
+        List<String> upMap = makeEachBridge(Move.UP.getCommand(), playerMove, answerMove);
+        List<String> downMap = makeEachBridge(Move.DOWN.getCommand(), playerMove, answerMove);
 
         return new ArrayList<>(Arrays.asList(upMap, downMap));
     }
@@ -63,11 +63,11 @@ public class BridgeGame {
         return result;
     }
 
-    private String checkEachStep(String way, String playerStep, String answerStage) {
+    private String checkEachStep(String way, String playerStep, String answerStep) {
         if (!way.equals(playerStep)) {
             return " ";
         }
-        if (!answerStage.equals(playerStep)) {
+        if (!answerStep.equals(playerStep)) {
             this.status = GameStatus.FAIL;
             return "X";
         }

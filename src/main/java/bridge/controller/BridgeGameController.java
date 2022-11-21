@@ -4,7 +4,6 @@ import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Command;
 import bridge.util.BridgeMaker;
-import bridge.util.BridgeNumberGenerator;
 import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -48,11 +47,9 @@ public class BridgeGameController {
     private Bridge makeGameBridge() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         int bridgeSize = inputView.readBridgeSize();
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(bridgeSize);
     }
-
 
     private void askRetry() {
         String status = inputView.readGameCommand();
