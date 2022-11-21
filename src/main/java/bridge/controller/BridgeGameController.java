@@ -9,7 +9,6 @@ import bridge.MoveLog;
 import bridge.util.Message;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeGameController {
     OutputView outputView = new OutputView();
@@ -24,24 +23,31 @@ public class BridgeGameController {
         play(bridgeGame);
     }
 
-    public void play(BridgeGame bridgeGame) {
+    private void play(BridgeGame bridgeGame) {
         while (true) {
             String userMove = inputView.readMoving();
             ResultType resultType = bridgeGame.move(userMove);
             outputView.printMap(bridgeGame.getMoveLog());
-            if (resultType.getState().equals(ResultType.FAIL.getState())) {
-                if (inputView.readGameCommand().equals(CommandType.QUIT.getCommands())) {
-                    outputView.printResult(bridgeGame, resultType);
-                    break;
-                }
-                bridgeGame.retry();
-                play(bridgeGame);
-            }
-            if (bridgeGame.getIndex() == bridgeGame.getBridgeSize()) {
-                outputView.printResult(bridgeGame, resultType);
+            if (isGameFinshed(bridgeGame, resultType)) {
                 break;
             }
         }
     }
 
+    private boolean isGameFinshed(BridgeGame bridgeGame, ResultType resultType) {
+        if (bridgeGame.getIndex() == bridgeGame.getBridgeSize()) {
+            outputView.printResult(bridgeGame, resultType);
+            return true;
+        }
+        if (resultType.getState().equals(ResultType.FAIL.getState())) {
+            String reGame = inputView.readGameCommand();
+            if (reGame.equals(CommandType.QUIT.getCommands())) {
+                outputView.printResult(bridgeGame, resultType);
+                return true;
+            }
+            bridgeGame.retry();
+            play(bridgeGame);
+        }
+        return false;
+    }
 }
