@@ -26,10 +26,7 @@ public class BridgeGame {
     }
 
     public boolean isFinished() {
-        if (player.isArrived(bridge) || player.isDead()) {
-            return true;
-        }
-        return false;
+        return (player.isArrived(bridge) || player.isDead());
     }
 
     public boolean isFailed() {
