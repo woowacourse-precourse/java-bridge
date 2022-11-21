@@ -54,3 +54,25 @@
   * [X] 건넜던 기록 출력 하는 기능
   * [X] 게임 성공 여부 출력 하는 기능
   * [X] 총 시도한 횟수 출력 하는 기능
+
+# 프로그램 흐름 설명
+1. Application 에서 게임을 시작하는 메서드를 실행한다.
+2. InputView 를 통해 다리 길이를 입력 받음
+   1. 3이상 20이하 숫자가 들어올때 까지 반복함
+3. BridgeGame createBridge 를 통해 다리를 생성함
+   1. 지나왔던 다리를 기록하기 위해 BridgeHistory 를 초기화 해준다
+   2. BridgeMaker 를 통해 랜덤으로 다리를 생성한다.
+4. InputView 를 통해 게임 종료시까지 이동할 칸을 입력받는것을 반복한다
+   1. U 또는 D 문자열이 들어올때 까지 반복함
+   2. 이동한 칸을 출력
+      1. BridgeGameAnswer 을 통해 다리 모양을 받아서 OutputView 로 출력
+   3. 다리 건너기에 실패할 시 BridgeHistory status 를 종료 상태로 변경
+      1. R 또는 Q 문자열이 들어올때 까지 반복함
+      2. R 입력시 BridgeHistory status 를 초기화 하고 시도횟수를 1 더한다
+      3. Q 입력시 반복을 종료한다.
+5. 게임 결과를 출력한다.
+   1. 이 때까지 건넜던 기록을 출력한다. 
+      1. BridgeGameHistory 에서 기록을 가져온다
+      2. 가져온 기록과 BridgeGameAnswer 에 있는 다리를 비교하여 다리 모양을 가져온다.
+   2. BridgeGameStatus 를 통해 게임이 실패 , 성공인지 가져온다.
+   3. 시도횟수를 BridgeGameHistory 에서 가져와 출력한다.
