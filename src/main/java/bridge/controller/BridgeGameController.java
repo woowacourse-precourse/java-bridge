@@ -46,9 +46,8 @@ public class BridgeGameController {
                 retry = inputView.readGameCommand();
 
                 if (retry.equals("R")) {
-                    gameStatus.resetGameStatus();
-                    copyBridge = new Bridge(bridge.copyBridge());
-                    gameStatus.tryCount += 1;
+                    bridgeGame.retry(gameStatus);
+                    copyBridge = new Bridge(bridge.copyBridge()); // Call by value, Call by reference
                 }
             }
 
