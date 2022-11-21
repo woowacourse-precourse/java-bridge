@@ -20,11 +20,14 @@ public class BridgeGameController {
     }
 
     public void go() {
-        int size = start();
+        int bridgeSize = start();
         do {
+            if(bridgeGame.checkEndPoint()){
+                break;
+            }
             play();
             outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), bridgeGame.getLocation());
-        } while (retryGame(size) && !bridgeGame.checkEndPoint());
+        } while (retryGame(bridgeSize));
         end();
     }
 
