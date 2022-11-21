@@ -1,5 +1,7 @@
 package bridge.util;
 
+import java.util.List;
+
 public class Message {
 
     public static final String ILLEGAL_BRIDGE_SIZE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n";
@@ -14,6 +16,7 @@ public class Message {
 
     public static final String GAME_RESULT_MESSAGE = "\n최종 게임 결과\n";
     public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n\n";
+    private static final String BRIDGE_MAP_DELIMITER = " | ";
 
     public static String getGameFinishMessage(boolean isFinish) {
         String messageFormat = "게임 성공 여부: %s";
@@ -26,4 +29,7 @@ public class Message {
         return String.format("총 시도한 횟수: %d\n", count);
     }
 
+    public static String getBridgeMapComponentMessage(List<String> bridgeMapComponent) {
+        return "[ " + String.join(BRIDGE_MAP_DELIMITER, bridgeMapComponent) + " ]\n";
+    }
 }

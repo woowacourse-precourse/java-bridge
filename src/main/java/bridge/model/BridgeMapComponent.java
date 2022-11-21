@@ -1,10 +1,11 @@
 package bridge.model;
 
+import bridge.util.Message;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMapComponent {
-    private static final String DELIMITER = " | ";
     private final List<String> bridgeMapComponent;
 
     public BridgeMapComponent() {
@@ -23,7 +24,7 @@ public class BridgeMapComponent {
 
     @Override
     public String toString() {
-        return "[ " + String.join(DELIMITER, bridgeMapComponent) + " ]\n";
+        return Message.getBridgeMapComponentMessage(bridgeMapComponent);
     }
 
 
