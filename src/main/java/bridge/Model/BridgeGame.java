@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class BridgeGame {
-
-
     private static int bridgeSize;
     private static List<String> bridgeAnswer;
     private static int gameCount = 0;
@@ -37,7 +35,15 @@ public class BridgeGame {
         return Collections.unmodifiableList(currentBridge);
     }
 
-    public void move() {
+    public static void move(String nextPosition, int currentBridgeSize) {
+        String answerPosition = bridgeAnswer.get(currentBridgeSize);
+        boolean isEqual = nextPosition.equals(answerPosition);
+        if (isEqual) {
+
+        }
+        if (!isEqual) {
+
+        }
     }
 
     public void retry() {
