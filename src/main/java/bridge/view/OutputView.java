@@ -23,36 +23,47 @@ public class OutputView {
     }
 
     public static void printMap(BridgeGame bridgeGame) {
-        int bridgeSize=bridgeGame.getUpPresentBridge().size();
+        int bridgeSize = bridgeGame.getUpPresentBridge().size();
 
         System.out.print("[");
-        for(int i=0;i<bridgeSize-1;i++) {
-            if(bridgeGame.getUserMoveList().get(i).equals("U")){
-                System.out.printf(" %s |",bridgeGame.getUpPresentBridge().get(i));
-            } else{
+        for (int i = 0; i < bridgeSize - 1; i++) {
+            if (bridgeGame.getUserMoveList().get(i).equals("U")) {
+                System.out.printf(" %s |", bridgeGame.getUpPresentBridge().get(i));
+            } else {
                 System.out.print("   |");
             }
         }
-        if(bridgeGame.getUserMoveList().get(bridgeSize-1).equals("U")){
-            System.out.printf(" %s ]\n",bridgeGame.getUpPresentBridge().get(bridgeSize-1));
-        }else{
+        if (bridgeGame.getUserMoveList().get(bridgeSize - 1).equals("U")) {
+            System.out.printf(" %s ]\n", bridgeGame.getUpPresentBridge().get(bridgeSize - 1));
+        } else {
             System.out.printf("   ]\n");
         }
 
         System.out.print("[");
-        for(int i=0;i<bridgeSize-1;i++) {
-            if(bridgeGame.getUserMoveList().get(i).equals("D")){
-                System.out.printf(" %s |",bridgeGame.getDownPresentBridge().get(i-1));
-            } else{
+        for (int i = 0; i < bridgeSize - 1; i++) {
+            if (bridgeGame.getUserMoveList().get(i).equals("D")) {
+                System.out.printf(" %s |", bridgeGame.getDownPresentBridge().get(i - 1));
+            } else {
                 System.out.print("   |");
             }
         }
-        if(bridgeGame.getUserMoveList().get(bridgeSize-1).equals("D")){
-            System.out.printf(" %s ]\n",bridgeGame.getDownPresentBridge().get(bridgeSize-1));
-        }else{
+        if (bridgeGame.getUserMoveList().get(bridgeSize - 1).equals("D")) {
+            System.out.printf(" %s ]\n", bridgeGame.getDownPresentBridge().get(bridgeSize - 1));
+        } else {
             System.out.printf("   ]\n");
         }
-}
+
+        if (bridgeGame.getUserMoveList().get(bridgeSize - 1).equals("D")) {
+            if (bridgeGame.getUpPresentBridge().get(bridgeSize - 1).equals("X")) {
+                throw new IllegalArgumentException();
+            }
+        }
+        if (bridgeGame.getUserMoveList().get(bridgeSize - 1).equals("U")) {
+            if (bridgeGame.getUpPresentBridge().get(bridgeSize - 1).equals("X")) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
