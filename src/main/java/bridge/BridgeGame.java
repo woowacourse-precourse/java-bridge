@@ -1,9 +1,28 @@
 package bridge;
 
+import bridge.controller.BridgeGameController;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final BridgeGameController bridgeGameController = new BridgeGameController();
+
+    public void run() {
+        try {
+            start();
+            do {
+                move();
+            } while (retry());
+            end();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+    }
+
+    public void start() {
+        bridgeGameController.start();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -11,6 +30,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        while (bridgeGameController.move());
     }
 
     /**
@@ -18,6 +38,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        return bridgeGameController.retry();
+    }
+
+    public void end() {
+        bridgeGameController.end();
     }
 }
