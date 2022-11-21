@@ -19,11 +19,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Map<String, Bridge> move(Bridge bridge, Moving input) {
+    public void move(Bridge bridge, Moving input) {
         if (input.isUpper()) {
-            return getMovedBridge(bridge.compareTo(upperBridge.getSize(), input), MovingType.BLANK.getResult());
+            moveBridge(input.isMoving(bridge, upperBridge.getSize()), MovingType.BLANK.getResult());
         }
-        return getMovedBridge(MovingType.BLANK.getResult(), bridge.compareTo(lowerBridge.getSize(), input));
+        moveBridge(MovingType.BLANK.getResult(), input.isMoving(bridge, lowerBridge.getSize()));
     }
 
     /**
@@ -40,21 +40,20 @@ public class BridgeGame {
         return new Bridge(bridgeMaker.makeBridge(size));
     }
 
-    private Map<String, Bridge> getMovedBridge(String upper, String lower) {
-        addBridge(upper, lower);
+    public Map<String, Bridge> getMovedBridge() {
         Map<String, Bridge> bridges = new HashMap<>();
         bridges.put("upperBridge", upperBridge);
         bridges.put("lowerBridge", lowerBridge);
         return bridges;
     }
 
-    private void addBridge(String upper, String lower) {
+    private void moveBridge(String upper, String lower) {
         upperBridge.addBridge(upper);
         lowerBridge.addBridge(lower);
     }
 
     public boolean isMoving(Bridge bridge, Moving input) {
-        if (input.isMoving(bridge,upperBridge.getSize() - 1).equals(MovingType.MOVE.getResult()))
+        if (input.isMoving(bridge, upperBridge.getSize() - 1).equals(MovingType.MOVE.getResult()))
             return true;
         return false;
     }

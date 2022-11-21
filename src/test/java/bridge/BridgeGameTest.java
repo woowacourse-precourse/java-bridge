@@ -24,7 +24,8 @@ public class BridgeGameTest {
     @ParameterizedTest
     @CsvSource({"U,upperBridge,O", "D,lowerBridge,X"})
     void 칸을_이동했을_때_위_아래_다리_반환(String input, String bridgeName, String result) {
-        Map<String, Bridge> bridges = game.move(bridge, new Moving(input));
+        game.move(bridge, new Moving(input));
+        Map<String, Bridge> bridges = game.getMovedBridge();
         assertThat(bridges.get(bridgeName).getBridge(0)).isEqualTo(result);
     }
 }
