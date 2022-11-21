@@ -18,7 +18,7 @@ public class InputView {
     public static final String ENTER_NUMBER = "숫자를 입력해주세요.";
     public static final String BRIDGE_SIZE_BETWEEN_3_AND_20 = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     public static final String ENTER_U_OR_D = "위(U) 또는 아래(D)만 선택할 수 있습니다.";
-    public static final String ENTER_R_OR_Q = "재시작(R) 또는 종료(Q)만 선택할 수 있습니다.";
+    public static final String ENTER_R_OR_Q = "재시도(R) 또는 종료(Q)만 선택할 수 있습니다.";
 
     /**
      * 다리의 길이를 입력받는다.
