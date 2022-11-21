@@ -41,4 +41,35 @@ class InputViewTest {
         inputStream("abc");
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 이동할_칸_입력(){
+        String answer = "U";
+        inputStream("U");
+        assertThat(inputView.readMoving()).isEqualTo(answer);
+    }
+
+    @Test
+    void 이동할_칸_입력_예외처리1(){
+        inputStream("u");
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 이동할_칸_입력_예외처리2(){
+        inputStream("1");
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 이동할_칸_입력_예외처리3(){
+        inputStream("down");
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 이동할_칸_입력_예외처리4(){
+        inputStream("Up");
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+    }
 }
