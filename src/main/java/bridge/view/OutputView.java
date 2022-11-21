@@ -14,9 +14,9 @@ public class OutputView {
     private GameStatistics gameStatistics;
     private Bridge bridge;
 
-    public OutputView(GameStatistics gameStatistics, Bridge bridge) {
-        this.gameStatistics = gameStatistics;
+    public OutputView(Bridge bridge) {
         this.bridge = bridge;
+        this.gameStatistics = bridge.getGameStatistics();
     }
 
     /**
