@@ -153,9 +153,12 @@
 [] 단위테스트하기 어려운 코드를 적절히 리팩터링 했는가?
 [] view가 domain을 모르는가?
 [] domain이 view를 모르는가?
+[] controller가 domain을 모르는가?
+[] view와 domain 사이에 dto만 주고 받는가?
 [] controller와 service가 dto를 통해 값을 주고 받는가?
 [] service가 view를 모르는가?
 [] service에서 호출되는 domain의 public 메소드 파라미터들이 dto뿐인가?
+[] dto가 service에서 변환되고 있는가? (controllers는 dto를 주고 받는 역할만 하고 있는가?, 즉 서비스 로직이 컨트롤러에 포함되어있지는 않은가?)
 
 ## 리펙터링 완료 클래스 체크
 - Application
