@@ -116,7 +116,33 @@ class InputExceptionTest {
         assertThat(checkInputPosition).isFalse();
     }
 
+    @DisplayName("재시도, 종료 여부 입력값 길이가 1이 아닌 경우 예외 처리 테스트")
+    @Test
+    void validateReadGameCommandLength() {
+        String inputCommand = "UU";
+        assertThatIllegalArgumentException().isThrownBy(() -> inputException.validateReadGameCommand(inputCommand));
+    }
 
+    @DisplayName("재시도, 종료 여부 입력값이 R 또는 Q가 아닌 경우 예외 처리 테스트")
+    @Test
+    void validateReadGameCommandRight() {
+        String inputCommand = "A";
+        assertThatIllegalArgumentException().isThrownBy(() -> inputException.validateReadGameCommand(inputCommand));
+    }
 
+    @DisplayName("재시도, 종료 여부 입력값이 R 또는 Q인 경우 테스트")
+    @Test
+    void isInputCommandRight() {
+        String inputCommand = "R";
+        boolean checkInputCommand = inputException.isInputCommandRight(inputCommand);
+        assertThat(checkInputCommand).isTrue();
+    }
 
+    @DisplayName("재시도, 종료 여부 입력값이 R 또는 Q가 아닌 경우 테스트")
+    @Test
+    void isNotInputCommandRight() {
+        String inputCommand = "A";
+        boolean checkInputCommand = inputException.isInputCommandRight(inputCommand);
+        assertThat(checkInputCommand).isFalse();
+    }
 }
