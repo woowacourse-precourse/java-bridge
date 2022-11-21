@@ -39,14 +39,19 @@ public class BridgeApplication {
         }
     }
 
-    private void bridgeGameMoveAction(int idx) {
-        bridgeGame.move(inputMoving(), idx);
+    private boolean isSelectExit() {
+        bridgeGame.retry(getGameCommand());
+        if (bridgeGame.isExit()) return true;
+        return false;
     }
 
-    private boolean isSelectExit() {
-        bridgeGame.retry(inputView);
-        if(bridgeGame.isExit()) return true;
-        return false;
+    private String getGameCommand() {
+        System.out.println(Message.INPUT_GAME_RETRY_OR_EXIT);
+        return inputView.readGameCommand();
+    }
+
+    private void bridgeGameMoveAction(int idx) {
+        bridgeGame.move(inputMoving(), idx);
     }
 
     private void plusGameCnt() {
