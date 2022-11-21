@@ -11,4 +11,12 @@ public enum Direction {
         MovingDirection = movingDirection;
         MovingNumber = movingNumber;
     }
+
+    public String getMovingDirection() {
+        return MovingDirection;
+    }
+
+    public int getMovingNumber() {
+        return MovingNumber;
+    }
 }

@@ -1,8 +1,8 @@
 package bridge.exception;
 
+import bridge.domain.Direction;
+
 public class Moving {
-    private static final String MOVING_UP = "U";
-    private static final String MOVING_DOWN = "D";
     private final String movingInput;
 
     public Moving(String movingInput) {
@@ -24,6 +24,9 @@ public class Moving {
     }
 
     private boolean checkInvalidMoving() {
-        return movingInput.equals(MOVING_UP) || movingInput.equals(MOVING_DOWN);
+        String up = Direction.MOVING_UP.getMovingDirection();
+        String down = Direction.MOVING_DOWN.getMovingDirection();
+
+        return movingInput.equals(up) || movingInput.equals(down);
     }
 }
