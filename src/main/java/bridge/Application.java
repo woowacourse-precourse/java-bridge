@@ -17,6 +17,7 @@ public class Application {
         Player player = new Player();
         initializeGame();
         play(player);
+        OUTPUT_VIEW.printResult(player, gameCount);
     }
 
     private static void initializeGame() {
