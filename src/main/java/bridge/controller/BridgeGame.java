@@ -19,10 +19,14 @@ public class BridgeGame {
     private boolean moveSuccess;
 
     public void start(BridgeNumberGenerator bridgeNumberGenerator) {
-        init(bridgeNumberGenerator);
-        tryGame();
-        OutputView.printResult(bridge.getPlayerMovingHistory(), isGameEndWithSuccess(),
-                statistics.getTryCount());
+        try {
+            init(bridgeNumberGenerator);
+            tryGame();
+            OutputView.printResult(bridge.getPlayerMovingHistory(), isGameEndWithSuccess(),
+                    statistics.getTryCount());
+        } catch (RuntimeException e) {
+            OutputView.printError(e.getMessage());
+        }
     }
 
     private void tryGame() {
