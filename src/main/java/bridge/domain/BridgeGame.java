@@ -41,7 +41,7 @@ public class BridgeGame {
         int nowBridgeIndex = gameRound.getBridgeIndex();
         String correctResult = checkBridge(movingCommand, bridge.get(nowBridgeIndex));
         gameRound.recordResult(movingCommand, bridge.get(nowBridgeIndex));
-        if(correctResult.equals("O")) {
+        if (correctResult.equals("O")) {
             gameRound.setBridgeIndex(gameRound.getBridgeIndex() + 1);
         }
         checkGameWin();
@@ -49,27 +49,27 @@ public class BridgeGame {
     }
 
     private void checkGameWin() {
-        if(gameRound.getBridgeIndex() == bridge.size()) {
+        if (gameRound.getBridgeIndex() == bridge.size()) {
             gameRound.setWin(true);
         }
     }
 
     private String checkBridge(String command, String bridgeLocation) {
-        if(command.equals(bridgeLocation)) {
+        if (command.equals(bridgeLocation)) {
             return "O";
         }
         return "X";
     }
 
     public boolean isBeAbleProceed(String correctResult) {
-        if(gameRound.getIsWin() || correctResult.equals("X")) {
+        if (gameRound.getIsWin() || correctResult.equals("X")) {
             return false;
         }
         return true;
     }
 
     public boolean isSuccess() {
-        if(gameRound.getIsWin()) {
+        if (gameRound.getIsWin()) {
             return true;
         }
         return false;
@@ -81,7 +81,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String command) {
-        if(command.equals("R") && !gameRound.getIsWin()) {
+        if (command.equals("R") && !gameRound.getIsWin()) {
             return true;
         }
         return false;

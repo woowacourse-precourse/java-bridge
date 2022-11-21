@@ -19,21 +19,15 @@ public class GameController {
     }
 
     public void start() {
-        // 게임 시작
         outputView.printStartGame();
-        // 다리 길이 입력받음, 다리 생성
         generateBridge();
         System.out.println();
-        // 게임 종료할 때 까지의 사이클
         do {
             // U, D 입력 받으며 다리 위 이동
             gameRecord.setPlayTimes(gameRecord.getPlayTimes() + 1);
             bridgeGame.generateNewRound();
             play();
         } while (isRetry());
-
-        // 결과 출력 및 종료
-
     }
 
     private void generateBridge() {
@@ -68,7 +62,7 @@ public class GameController {
     }
 
     private boolean isRetry() {
-        if(isWin()) return false;
+        if (isWin()) return false;
         try {
             outputView.printRetryCommand();
             return bridgeGame.retry(inputView.readGameCommand());
@@ -80,7 +74,7 @@ public class GameController {
     }
 
     private boolean isWin() {
-        if(bridgeGame.isSuccess()){
+        if (bridgeGame.isSuccess()) {
             outputView.printResult(bridgeGame.getGameRound(), gameRecord);
             return true;
         }

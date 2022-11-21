@@ -8,7 +8,7 @@ public class BridgeSizeValidator {
     private static final String ERROR_BRIDGE_SIZE_RANGE = "[ERROR] 다리 길이는 3~20 이어야 합니다.";
 
     public void validate(String size) {
-        if(!isNumber(size)){
+        if (!isNumber(size)) {
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_NUMBER);
         }
         validateRange(size);
@@ -25,7 +25,7 @@ public class BridgeSizeValidator {
 
     private void validateRange(String input) {
         int size = Integer.parseInt(input);
-        if(size < BRIDGE_SIZE_MIN || size > BRIDGE_SIZE_MAX){
+        if (size < BRIDGE_SIZE_MIN || size > BRIDGE_SIZE_MAX) {
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_RANGE);
         }
     }
