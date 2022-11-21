@@ -10,9 +10,12 @@ import java.util.Objects;
 public class BridgeGame {
 
     //인스턴스 변수 추가 가능
-    public final List<String> movingPositions;
-    public final List<String> result;
     public final Bridge bridge;
+
+    public  List<String> movingPositions;
+    public  List<String> result;
+
+    public int count;
     public boolean clear;
     public boolean failure;
 
@@ -22,6 +25,7 @@ public class BridgeGame {
         this.result = new ArrayList<>();
         clear = false;
         failure = false;
+        count = 0;
     }
 
     /**
@@ -30,12 +34,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String movePosition) {
-        validation(movePosition);
+        positionValidation(movePosition);
         movingPositions.add(movePosition);
         comparedBridge();
     }
 
-    public void validation(String position){
+    public void positionValidation(String position){
         if(!Objects.equals(position, "U") && !Objects.equals(position, "D")){
             throw new IllegalArgumentException("이동하는 칸은 \"U\"(위칸), \"D\"(아래칸) 만 가능합니다.");
         }
@@ -62,15 +66,28 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String command) {
+        commandValidation(command);
+        count++;
+        if(Objects.equals(command, "R")){
+            setMovingPositions(new ArrayList<>());
+            setResult(new ArrayList<>());
+            setFailure(false);
+            setClear(false);
+        }
+        if(Objects.equals(command, "Q")){
+            setClear(true);
+        }
+    }
+
+    private void commandValidation(String command) {
+        if(!Objects.equals(command, "R") && (!Objects.equals(command, "Q"))){
+            throw new IllegalArgumentException("재시도는 \"R\" , 종료는 \"Q\"를 누르셔야 합니다.");
+        }
     }
 
     public List<String> getMovingPositions() {
         return movingPositions;
-    }
-
-    public Bridge getBridge() {
-        return bridge;
     }
 
     public boolean isClear() {
@@ -83,5 +100,25 @@ public class BridgeGame {
 
     public List<String> getResult() {
         return result;
+    }
+
+    public void setMovingPositions(List<String> movingPositions) {
+        this.movingPositions = movingPositions;
+    }
+
+    public void setResult(List<String> result) {
+        this.result = result;
+    }
+
+    public void setClear(boolean clear) {
+        this.clear = clear;
+    }
+
+    public void setFailure(boolean failure) {
+        this.failure = failure;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
