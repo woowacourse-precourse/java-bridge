@@ -33,10 +33,10 @@ public class MainController {
 
     private GameStatus checkKeepRunning(GameStatus gameStatus) {
         if (gameStatus.equals(GameStatus.FAIL)) {
-            Command userCommand = inputView.readGameCommand();
-            if (userCommand.isQuit()) {
+            Command command = inputView.readGameCommand();
+            if (command.isQuit()) {
                 //pass
-            } else if (userCommand.isRetry()) {
+            } else if (command.isRetry()) {
                 bridgeGame.retry();
                 gameStatus = GameStatus.RUNNING;
             }
