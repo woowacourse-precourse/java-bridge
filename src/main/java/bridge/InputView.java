@@ -129,6 +129,8 @@ public class InputView {
         return false;
     }
 
-
+    public void initGameResult() {
+        bridge.setGame(true);
+    }
 
 }
