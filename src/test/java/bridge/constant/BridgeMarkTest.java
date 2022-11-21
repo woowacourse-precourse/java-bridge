@@ -3,6 +3,8 @@ package bridge.constant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -23,5 +25,12 @@ class BridgeMarkTest {
         assertThatThrownBy(() -> BridgeMark.of("e"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이동할 칸의 입력의 경우 U와 D 뿐이어야 합니다.");
+    }
+
+    @DisplayName("여러개의 U, D가 주어질 때 BridgeMarks 생성")
+    @Test
+    void createBridges() {
+        List<BridgeMark> bridges = BridgeMark.of(List.of("U", "U", "D"));
+        assertThat(bridges).containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
     }
 }
