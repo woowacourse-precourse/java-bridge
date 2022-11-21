@@ -80,6 +80,7 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
+        isEnd = false;
         player.reset();
         movingMap.clear();
     }
