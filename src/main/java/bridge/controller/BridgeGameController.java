@@ -48,8 +48,8 @@ public class BridgeGameController {
         boolean proceed = true;
 
         while (proceed) {
-            String move = inputView.printMoveMessage();
-            boolean success = bridgeGameService.moveAndReturnSuccess(move);
+            final String move = inputView.printMoveMessage();
+            final boolean success = bridgeGameService.moveAndReturnSuccess(move);
             printMap();
             proceed = judgeProceed(success);
         }
@@ -57,7 +57,7 @@ public class BridgeGameController {
 
     private boolean judgeProceed(final boolean success) {
         if (isLose(success)) {
-            String gameCommand = inputView.printGameCommand();
+            final String gameCommand = inputView.printGameCommand();
             return proceedOrQuitGame(gameCommand);
         }
 
@@ -107,8 +107,8 @@ public class BridgeGameController {
     }
 
     private void printMap() {
-        List<String> upBridges = bridgeGameService.getUpBridges();
-        List<String> downBridges = bridgeGameService.getDownBridges();
+        final List<String> upBridges = bridgeGameService.getUpBridges();
+        final List<String> downBridges = bridgeGameService.getDownBridges();
         outputView.printMap(upBridges, downBridges);
     }
 }

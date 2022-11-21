@@ -21,8 +21,8 @@ public class BridgeGameService {
     }
 
     public boolean moveAndReturnSuccess(final String move) {
-        int currentPosition = positionRepository.getPosition();
-        List<String> result = bridgeGame.move(currentPosition, move);
+        final int currentPosition = positionRepository.getPosition();
+        final List<String> result = bridgeGame.move(currentPosition, move);
         bridgeRepository.save(result);
 
         return bridgeGame.isSuccess(result);
