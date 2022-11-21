@@ -51,7 +51,7 @@ public class Application {
         }
 
         // 5.
-        //outputView.printResult(gameStatus, cnt, bridgeGame.getResult(), bridge);
+        outputView.printResult(gameStatus, cnt, result, bridge);
     }
 
     private static String tryGame(BridgeGame bridgeGame, List<String> bridge, List<String> result) {
