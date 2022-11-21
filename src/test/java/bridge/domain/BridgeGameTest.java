@@ -174,6 +174,14 @@ class BridgeGameTest {
             assertThat(isFail).isTrue();
             assertThat(isEnd).isTrue();
         }
+
+        @DisplayName("올바르지 않은 게임 재시작 여부 입력 -> 예외 발생")
+        @ValueSource(strings = {"r", "q", "A", "123"})
+        @ParameterizedTest
+        void should_ThrowIllegalArgumentException_When_GiveWrongGameCommand(String input) {
+            assertThatThrownBy(() -> bridgeGame.retry(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
     }
 
     @DisplayName("다리 건너기를 성공했는지 확인한다.")
