@@ -54,4 +54,15 @@ public class MovingStatusSaverTest {
         }
         assertThat(saver.getStatusSize()).isEqualTo(sizeResult);
     }
+
+    @Test
+    @DisplayName("이동상태를 초기화하는 테스트")
+    void validateClearStatus() {
+        final List<String> movingStatus = List.of("U", "D", "U");
+        for (String moving : movingStatus) {
+            saver.saveMovingStatus(moving);
+        }
+        saver.clearMovingStatus();
+        assertThat(saver.getMovingStatus()).isEmpty();
+    }
 }
