@@ -41,16 +41,20 @@ public class BridgeGame {
         System.out.print(downSide);
         orderView.lineSkip();
     }
-
+    //Todo 문자열 바꾸기
     private void restResult(List<String> upSide, List<String> downSide) {
-        for(int i = 0; i < upSide.size(); i++) {
-            System.out.print(upSide.get(i));
-        }
+        System.out.print(changeToBracket(upSide));
         orderView.lineSkip();
-        for(int i = 0; i < downSide.size(); i++) {
-            System.out.print(downSide.get(i));
-        }
+        System.out.print(changeToBracket(downSide));
         orderView.lineSkip();
+    }
+
+    private String changeToBracket(List<String> extractBracket){
+        String bridgeData = "";
+        for(int i = 0; i < extractBracket.size() ; i++){
+            bridgeData += extractBracket.get(i);
+        }
+        return bridgeData.replaceAll("]\\[","|");
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
