@@ -48,7 +48,6 @@ public class BridgeGameContextImpl implements BridgeGameContext {
     @Override
     public void movePlayerUnit(BridgePosition movePosition) {
         var history = bridgeGame.move(movePosition);
-        var resultHistory = history.resultByPositions();
-        this.writeHistory(resultHistory);
+        this.writeHistory(history.resultByPositions());
     }
 }

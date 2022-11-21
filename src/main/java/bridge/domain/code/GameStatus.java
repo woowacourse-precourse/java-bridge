@@ -11,7 +11,6 @@ public enum GameStatus {
 
     GameStatus(final String code) {
         this.code = code;
-
     }
 
     public static GameStatus generateGameStatus(SurviveStatus surviveStatus, Bridge bridge) {
