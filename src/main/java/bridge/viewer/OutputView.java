@@ -29,7 +29,7 @@ public class OutputView {
             showReviseMap(userTable, Position::isUp);
             showReviseMap(userTable, Position::isDown);
         }
-        if (gameResult.isWin()) {
+        if (gameResult.isWin()||gameResult.isKeep()) {
             showMap(userTable, Position::isUp);
             showMap(userTable, Position::isDown);
         }
