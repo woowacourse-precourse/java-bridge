@@ -8,6 +8,7 @@ public enum BridgeBlock {
     D(0), U(1);
 
     public static final String ERROR_NOT_FOUND_BLOCK_VALUE = "[ERROR] D,U 중 하나만 입력할 수 있습니다.";
+    public static final String ERROR_BRIDGE_STRUCTURE = "[ERROR] 다리의 구조는 1(Up), 0(Down)만 가능합니다.";
     public static final String ERROR_NOT_FOUND = "[ERROR] 올바르지 않은 입력값입니다.";
 
     private final int block;
@@ -29,7 +30,7 @@ public enum BridgeBlock {
                 .map(block -> Arrays.stream(BridgeBlock.values())
                         .filter(value -> block.equals(value.name()))
                         .findFirst()
-                        .orElseThrow(IllegalAccessError::new))
+                        .orElseThrow(() -> new IllegalArgumentException(ERROR_BRIDGE_STRUCTURE)))
                 .collect(Collectors.toList());
     }
 
