@@ -121,7 +121,7 @@ D
 
 ### readGameCommandCheck
 - [x] gameCommandRegularExpression에 소대문자 r,q 둘 중에 하나인지를 검사하는 정교표현식을 저장
-- [ ] 매개변수가 gameCommandRegularExpression에 들어맞는지, 확인
+- [x] 매개변수가 gameCommandRegularExpression에 들어맞는지, 확인
 - [ ] false이면, 예외 던짐
 
 ## 출력
