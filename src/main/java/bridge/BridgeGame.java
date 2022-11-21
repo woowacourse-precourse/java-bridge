@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.InputView.readGameCommand;
+import static bridge.OutputView.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +11,19 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> BRIDGEANSWER;
+    private Boolean success = false;
     private Integer tryCount = 0;
     private Integer count = 0;
 
     public BridgeGame(List<String> BRIDGEANSWER) {
         this.BRIDGEANSWER = BRIDGEANSWER;
-        this.tryCount = tryCount;
 
         Boolean keepPlay = true;
         while (keepPlay) {
             keepPlay = Play();
         }
+        printResult(success, tryCount);
+        printMap(playerList, BRIDGEANSWER);
 
     }
 
@@ -63,7 +66,7 @@ public class BridgeGame {
     public void move(String playerInput, List<String> playerList) {
         playerList.add(playerInput);
         System.out.println(playerInput);
-        OutputView.printMap(playerList, BRIDGEANSWER);
+        printMap(playerList, BRIDGEANSWER);
     }
 
     /**
