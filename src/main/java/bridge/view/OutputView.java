@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.constant.BridgeMessage.GAME_START_MESSAGE;
+import static bridge.constant.BridgeMessage.MOVE_BRIDGE_MESSAGE;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -25,6 +26,10 @@ public class OutputView {
 
     public void printStartMessage() {
         System.out.println(GAME_START_MESSAGE);
+    }
+
+    public void printMoveDirectionSelectMessage() {
+        System.out.println(MOVE_BRIDGE_MESSAGE);
     }
 
     public void printErrorMessage(String message) {

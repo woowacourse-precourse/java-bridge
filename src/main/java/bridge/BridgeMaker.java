@@ -49,4 +49,9 @@ public class BridgeMaker {
         }
         return bridges;
     }
+
+    public void moveBridge(List<String> bridges) {
+        OutputView outputView = new OutputView();
+        outputView.printMoveDirectionSelectMessage();
+    }
 }
