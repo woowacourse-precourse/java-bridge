@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.service.BridgeService;
+
 import java.util.List;
 
 /**
@@ -41,5 +43,9 @@ public class OutputView {
             return;
         }
         System.out.println("게임 성공 여부: 실패");
+    }
+
+    public static void printTryCount(){
+        System.out.println("총 시도한 횟수: " + BridgeService.getTryCount());
     }
 }
