@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public final List<String> bridge;
+    private final List<String> bridge;
 
     public BridgeGame(int size) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -43,5 +43,9 @@ public class BridgeGame {
 
     public int getSize() {
         return bridge.size();
+    }
+
+    public String getValue(int position) {
+        return bridge.get(position);
     }
 }

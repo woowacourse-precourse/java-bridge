@@ -35,7 +35,7 @@ public class Application {
     private static boolean moveAndPrint(int position) {
         String moving = input.readMoving();
         boolean available = bridgeGame.move(moving, position);
-        output.printMap(position, available, bridgeGame.bridge);
+        output.printMap(position, available, bridgeGame);
         return available;
     }
 
