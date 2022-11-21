@@ -30,4 +30,16 @@ public class InputValidator {
         }
     }
 
+    /**
+     * 입력받은 이동할 칸이 올바른 값인지 검사한다.
+     */
+    public void checkMoving(String input) {
+        if (input.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U와 D 중 하나의 문자여야 합니다.");
+        }
+        if (!input.equals("U") && !input.equals("D")){
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U와 D 중 하나의 문자여야 합니다.");
+        }
+    }
+
 }
