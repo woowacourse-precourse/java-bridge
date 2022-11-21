@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.service.validator;
 
 import bridge.exception.BridgeIllegalArgumentException;
 import bridge.setting.Setting;
@@ -6,8 +6,13 @@ import bridge.view.InputView;
 
 public class BridgeLength {
 
+    private final InputView inputView;
+
+    public BridgeLength(InputView inputView) {
+        this.inputView = inputView;
+    }
+
     public int inputBridgeSize() {
-        InputView inputView = new InputView();
         String input = "";
 
         do {
@@ -38,10 +43,10 @@ public class BridgeLength {
 
     private void checkIsRightRange(int bridgeSize) {
         if (bridgeSize < Setting.MIN_BRIDGE_SIZE) {
-            throw new BridgeIllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new BridgeIllegalArgumentException("다리 길이는 "+Setting.MIN_BRIDGE_SIZE+"부터 "+Setting.MAX_BRIDGE_SIZE+" 사이의 숫자여야 합니다.");
         }
         if (bridgeSize > Setting.MAX_BRIDGE_SIZE) {
-            throw new BridgeIllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new BridgeIllegalArgumentException("다리 길이는 "+Setting.MIN_BRIDGE_SIZE+"부터 "+Setting.MAX_BRIDGE_SIZE+" 사이의 숫자여야 합니다.");
         }
     }
 }
