@@ -83,4 +83,34 @@ class BridgeGameTest {
         assertThat(bridgeGame.getBridgeState().getLowerBridge().size()).isEqualTo(0);
         assertThat(bridgeGame.getBridgeState().getUpperBridge().size()).isEqualTo(0);
     }
+
+    @DisplayName("다리를 통과한 경우, 게임 종료 조건이 충족된다.")
+    @Test
+    void getGameEndSuccessCondition() {
+        // given
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), new User());
+
+        // when
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+
+        // then
+        assertThat(bridgeGame.canContinue()).isEqualTo(false);
+    }
+
+    @DisplayName("다리를 통과하지 못한경우, 게임 종료 조건을 만족하지 않는다.")
+    @Test
+    void getGameEndFailCondition() {
+        // given
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "U", "U")), new User());
+
+        // when
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+
+        // then
+        assertThat(bridgeGame.canContinue()).isEqualTo(true);
+    }
 }
