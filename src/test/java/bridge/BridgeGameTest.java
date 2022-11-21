@@ -25,6 +25,7 @@ public class BridgeGameTest {
     @DisplayName("설정된 다리에 따라 이동 방향에 따른 결과를 반환한다.")
     @Test
     void moveBridge() {
+
         assertThat(bridgeGame.move(bridge, "U")).isEqualTo("O");
         assertThat(bridgeGame.move(bridge, "U")).isEqualTo("X");
     }

@@ -7,20 +7,27 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public int bridgeIndex = 0;
+    private int bridgeIndex = 0;
+    private final GameData gameData = new GameData();
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private List<String> bridge;
+    private int bridgeSize;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(List<String> bridge, String direction) {
+    public String move(String direction) {
         
         if (bridge.get(this.bridgeIndex).equals(direction)) {
             increaseBridgeIndex();
+            gameData.updateStatus(direction, "O");
             return "O";
         }
-        
+
+        gameData.updateStatus(direction, "X");
         return "X";
     }
 
@@ -32,21 +39,33 @@ public class BridgeGame {
     public boolean retry(String retryFlag) {
         if (retryFlag.equals("R")) {
             resetBridgeIndex();
-            return true;
+            gameData.restartGame();
+            return false;
         }
-
-        return false;
+        return true;
     }
 
-    public String checkGameResult(int bridgeSize) {
-        if (bridgeSize == this.bridgeIndex) { return "성공"; }
+    public String checkGameResult() {
+        if (this.bridgeSize == this.bridgeIndex) { return "성공"; }
 
         return "실패";
     }
 
-    public int getBridgeIndex() { return this.bridgeIndex; }
+    public void startGame(int bridgeSize) {
+        this.bridgeSize = bridgeSize;
+        this.bridge = bridgeMaker.makeBridge(this.bridgeSize);
+    }
+
+    public boolean checkArrive() {
+        if (this.bridgeIndex == this.bridgeSize) {
+            return true;
+        }
+        return false;
+    }
     
     public void increaseBridgeIndex() { this.bridgeIndex += 1; }
 
     public void resetBridgeIndex() { this.bridgeIndex = 0; }
+
+    public GameData getGameData() { return this.gameData; }
 }
