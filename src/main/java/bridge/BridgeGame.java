@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,15 @@ public class BridgeGame {
         Boolean keepPlay = true;
         while (keepPlay) {
             Play();
+        }
+    }
+
+    private Boolean Play() {
+        List<String> playerList = new ArrayList<>();
+        Boolean retry = true;
+
+        while (retry) {
+            Proceed();
         }
     }
 
