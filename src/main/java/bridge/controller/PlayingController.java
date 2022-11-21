@@ -28,7 +28,7 @@ public class PlayingController {
 
     public void play() {
         Life life = bridgeGame.getLife(move());
-        outputView.printMap(movings, life);
+        outputView.printMap(List.copyOf(movings), life);
         if (life == Life.SAFE) {
             playByClear();
         }
