@@ -14,10 +14,19 @@ public class Game {
     public void run() {
         OutputView.printInit();
         makeBridge();
+        startGame();
     }
 
     private void makeBridge() {
         BridgeGame.saveBridgeSize(InputView.readBridgeSize());
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(BridgeGame.getBridgeSize()));
+        System.out.println(); // 한줄 엔터
+    }
+
+    private void startGame() {
+        boolean isStart = true;
+        while(isStart) {
+            BridgeGame.plusPlayCount();
+        }
     }
 }
