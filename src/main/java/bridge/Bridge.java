@@ -12,4 +12,12 @@ public class Bridge {
     public List<String> getBridge() {
         return bridge;
     }
+
+    public boolean isEqualByIndex(String playerChoice, int index) {
+        return playerChoice.equals(bridge.get(index));
+    }
+
+    public boolean isEqual(List<String> playerChoices) {
+        return playerChoices.equals(bridge);
+    }
 }
