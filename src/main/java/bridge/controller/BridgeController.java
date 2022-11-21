@@ -38,7 +38,7 @@ public class BridgeController {
         outputView.printResult(resultDTO);
     }
 
-    public ResultDTO crossBridge(int size, Bridge bridge) {
+    private ResultDTO crossBridge(int size, Bridge bridge) {
         int count = 1;
         while (true) {
             List<PathDTO> pathDTO = new ArrayList<>();
@@ -65,7 +65,7 @@ public class BridgeController {
         }
     }
 
-    public boolean isCross(int size, Bridge bridge, List<PathDTO> pathDTO) {
+    private boolean isCross(int size, Bridge bridge, List<PathDTO> pathDTO) {
         boolean end = false;
         for (int round = 0; round < size; round++) {
             if (!isMove(bridge, pathDTO, round)) {
@@ -106,7 +106,7 @@ public class BridgeController {
         }
     }
 
-    public String inputGameCommand() {
+    private String inputGameCommand() {
         try {
             String input = inputView.readGameCommand();
             validator.validateGameCommand(input);
