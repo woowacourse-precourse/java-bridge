@@ -13,7 +13,7 @@ public class OutputView {
     private static final String FAIL_MESSAGE = "게임 성공 여부: 실퍠";
     private static final String SUCCESS_MESSAGE = "게임 성공 여부: 성공";
 
-    private static final String COUNT_MESSAGE = "총 시도한 횟수:";
+    private static final String COUNT_MESSAGE = "총 시도한 횟수: ";
 
     public static void printStart() {
         System.out.println(START_MESSAGE);
@@ -24,7 +24,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> playerBridge, List<String> answerBridge) {
+    public static void printMap(List<String> playerBridge, List<String> answerBridge) {
         BridgeResult bridgeResult = new BridgeResult(answerBridge);
         System.out.println(bridgeResult.matchBridge(playerBridge));
         System.out.println();
@@ -35,10 +35,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String bridgeResult, int count) {
+    public static void printResult(List<String> playerBridge, List<String> answerBridge, int count) {
         System.out.println(END_MESSAGE);
-        System.out.println(bridgeResult);
-        printSuccessFail(bridgeResult);
+        BridgeResult bridgeResult = new BridgeResult(answerBridge);
+        System.out.println(bridgeResult.matchBridge(playerBridge));
+        printSuccessFail(bridgeResult.matchBridge(playerBridge));
         System.out.println(COUNT_MESSAGE + count);
     }
 
