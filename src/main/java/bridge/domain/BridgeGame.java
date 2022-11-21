@@ -9,8 +9,6 @@ public class BridgeGame {
     public static final String CROSSABLE = "O";
     public static final String UNCROSSABLE = "X";
     public static final String NONE = " ";
-    public static final String RETRY = "R";
-    public static final String END = "Q";
 
     private final Bridge bridge;
     private List<String> top;
@@ -33,8 +31,8 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean retry(String input) {
-        if (input.equals(RETRY)) {
+    public boolean retry(Command command) {
+        if (command.equals(Command.RETRY)) {
             top.clear();
             bottom.clear();
             playCount += 1;
