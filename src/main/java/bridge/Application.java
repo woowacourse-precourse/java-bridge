@@ -1,21 +1,18 @@
 package bridge;
 
 public class Application {
-
+    static int bridgeLength;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         printAppInst();
         BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker newBridge = new BridgeMaker(generator);
-
-        int bridgeLength = InputView.readBridgeSize();
+        bridgeLength = InputView.readBridgeSize();
 
         newBridge.makeBridge(bridgeLength);
-
         BridgeGame newGame = new BridgeGame();
-        while (BridgeGame.bridge.size() <= bridgeLength-1) {
-            newGame.move(bridgeLength);
-        }
+        newGame.move(bridgeLength, newGame);
+
     }
 
     public static void printAppInst() {

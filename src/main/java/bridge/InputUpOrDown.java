@@ -18,4 +18,10 @@ InputUpOrDown {
     public static int getZeroOrOne(String upOrDown) {
         return Arrays.stream(InputUpOrDown.values()).filter(inputUpOrDown -> inputUpOrDown.upOrDown.equals(upOrDown)).map(inputUpOrDown -> inputUpOrDown.zeroOrOne).findAny().orElseThrow(() -> new IllegalArgumentException());
     }
+
+    public static String getUpOrDown(int zeroOrOne){
+        return Arrays.stream(InputUpOrDown.values()).filter(inputUpOrDown -> inputUpOrDown.zeroOrOne==zeroOrOne).map(inputUpOrDown -> inputUpOrDown.upOrDown).findAny().orElseThrow(() -> new IllegalArgumentException());
+    }
+
+
 }

@@ -20,6 +20,7 @@ public class InputView {
      */
     public static String readMoving() {
         printMoveInst();
+
         String upDown = camp.nextstep.edu.missionutils.Console.readLine();
         System.out.println();
         // should check error here
