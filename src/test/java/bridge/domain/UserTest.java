@@ -53,6 +53,18 @@ public class UserTest {
         assertThat(user.isEnd()).isEqualTo(true);
     }
 
+    @Test
+    void checkMoveByFailed() {
+        systemInput("U");
+        assertThat(user.move()).isEqualTo(false);
+    }
+
+    @Test
+    void checkMoveBySuccess() {
+        systemInput("D");
+        assertThat(user.move()).isEqualTo(true);
+    }
+
     void systemInput(String input) {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
