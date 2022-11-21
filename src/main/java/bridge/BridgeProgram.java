@@ -3,6 +3,7 @@ package bridge;
 import bridge.io.InputView;
 import bridge.io.Message;
 import bridge.io.OutputView;
+import bridge.utils.GameStatus;
 
 import java.util.List;
 
@@ -24,16 +25,15 @@ public class BridgeProgram {
         Bridge bridge = new Bridge(bridgeRoute);
         int movingCount = 0;
 
-        boolean isRunning = true;
-        while (isRunning) {
+        while (GameStatus.isRunning) {
             Mark mark = bridge.matchRoute(getInputDirection(), movingCount++);
             List<List<String>> route = bridgeGame.move(mark);
 
             output.printMap(route);
 
-            //if(direction 틀림) 게임 종료여부 물어보기
-            //종료선택 시 결과출력 + isRunning = false;
-            //재시작 시 route reset
+            if (!mark.isRight()) {
+                restartOrStop();
+            }
 
             //if(다 맞춤) 결과출력
         }
@@ -47,5 +47,18 @@ public class BridgeProgram {
     private String getInputDirection() {
         output.printMessage(Message.REQUEST_DIRECTION);
         return input.readMoving();
+    }
+
+    private void restartOrStop() {
+        if (getGameCommand().equals("Q")) {
+            GameStatus.quitGame();
+            return;
+        }
+        bridgeGame.retry();
+    }
+
+    private String getGameCommand() {
+        output.printMessage(Message.RESTART_OR_EXIT);
+        return input.readGameCommand();
     }
 }
