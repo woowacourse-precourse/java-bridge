@@ -34,11 +34,11 @@ public class Direction {
     }
 
     public boolean isSameUp() {
-        return direction.equals("U");
+        return direction.equals(UP);
     }
 
     public boolean isSameDown() {
-        return direction.equals("D");
+        return direction.equals(DOWN);
     }
 
     public boolean isSameDirection(Direction other) {
