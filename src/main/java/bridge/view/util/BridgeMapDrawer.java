@@ -61,7 +61,6 @@ public class BridgeMapDrawer {
             String bridge = bridges.get(count);
             updateLine(stringBuilder, bridge, movementType);
         }
-//        return stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         return stringBuilder;
     }
 

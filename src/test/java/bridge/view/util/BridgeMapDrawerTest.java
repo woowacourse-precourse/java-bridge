@@ -2,7 +2,6 @@ package bridge.view.util;
 
 import bridge.domain.Bridge;
 import bridge.domain.Result;
-import bridge.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -86,5 +85,4 @@ class BridgeMapDrawerTest {
                 "[   | O | O |   ]"
         );
     }
-
 }

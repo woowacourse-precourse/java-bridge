@@ -1,7 +1,8 @@
 package bridge;
 
 public enum MovementType {
-    UP(1, "U"), DOWN(0, "D");
+    UP(1, "U"),
+    DOWN(0, "D");
 
     private final int index;
     private final String code;
