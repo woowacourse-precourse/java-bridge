@@ -64,4 +64,9 @@ public class BridgeGame {
         bridgeIterator = bridge.getIterator();
     }
 
+    public void finish() {
+        while (bridgeIterator.hasNext()) {
+            bridgeIterator.next();
+        }
+    }
 }
