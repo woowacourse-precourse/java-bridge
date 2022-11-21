@@ -5,13 +5,24 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeLengthTest {
+    @DisplayName("다리의 길이를 잘 반환하는지 테스트")
+    @Test
+    void validateReturnBridgeLength() {
+        final String inputLength = "5";
+        final BridgeLength bridgeLength
+                = BridgeLength.createBridgeLength(inputLength);
+        final int result = 5;
+        assertThat(bridgeLength.getLength()).isEqualTo(result);
+    }
+
     @DisplayName("아무것도 입력하지 않은 경우")
     @Test
     void validateNullInput() {
-        String inputLength = "";
+        final String inputLength = "";
         assertThatThrownBy(() -> BridgeLength.createBridgeLength(inputLength))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다시 입력해주세요.");
