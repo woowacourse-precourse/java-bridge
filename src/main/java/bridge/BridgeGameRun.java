@@ -35,6 +35,16 @@ public class BridgeGameRun {
         } while (!isGameEnd());
     }
 
+    private boolean isGameEnd() {
+        if (!result && !isRetry()) {
+            return true;
+        }
+        if (bridgeGame.isEndBridge()) {
+            return true;
+        }
+        return false;
+    }
+
     private boolean isRetry() {
         String command = inputView.readGameCommand();
         inputValidation.readGameCommandValidation(command);
