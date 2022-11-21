@@ -78,16 +78,21 @@ public class BridgeGame {
     }
 
     public List<String> getMap() {
-        List<String> totalMap = new ArrayList<>(fullUpperMap.subList(0, currentPosition));
-        totalMap.addAll(fullLowerMap.subList(0, currentPosition));
+        List<String> totalMap = generateFullMapForRightAnswer();
         if (!isCorrect) {
-            totalMap.set(currentPosition - 1, changeSymbol(totalMap.get(currentPosition - 1)));
-            totalMap.set(2 * currentPosition - 1, changeSymbol(totalMap.get(2 * currentPosition - 1)));
+            totalMap.set(currentPosition - 1, changeSymbolForWrongAnswer(totalMap.get(currentPosition - 1)));
+            totalMap.set(2 * currentPosition - 1, changeSymbolForWrongAnswer(totalMap.get(2 * currentPosition - 1)));
         }
         return totalMap;
     }
 
-    private String changeSymbol(String s) {
+    private List<String> generateFullMapForRightAnswer() {
+        List<String> fullMap = new ArrayList<>(fullUpperMap.subList(0, currentPosition));
+        fullMap.addAll(fullLowerMap.subList(0, currentPosition));
+        return fullMap;
+    }
+
+    private String changeSymbolForWrongAnswer(String s) {
         if (s.equals(PrintMessage.MAP_RIGHT.getString())) {
             return PrintMessage.MAP_BLANK.getString();
         }
