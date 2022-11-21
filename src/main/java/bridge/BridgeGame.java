@@ -12,7 +12,6 @@ public class BridgeGame {
         this.attempts =1;
         this.users = new ArrayList<>();
     }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -25,7 +24,6 @@ public class BridgeGame {
         }
         return false;
     }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -44,17 +42,12 @@ public class BridgeGame {
     private void usersAttempts(){
         this.attempts +=1;
     }
-
-    public List<String> getUsers() {
-        return users;
-    }
     private void retryUsers() {
         this.users.clear();
     }
     public int getAttempts() {
         return attempts;
     }
-
     public boolean result(){
         if(movable.equals(users)) return true;
         return false;
