@@ -13,9 +13,8 @@ public class BridgeGame {
         current=0;
     }
 
-    public void getBridge(BridgeRandomNumberGenerator bridgeRandomNumberGenerator, int size){
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        bridge = new Bridge(bridgeMaker.makeBridge(size));
+    public void getBridge(BridgeNumberGenerator bridgeNumberGenerator, int size){
+        bridge = new Bridge(bridgeNumberGenerator, size);
     }
 
     public void move(String move) {

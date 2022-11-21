@@ -5,11 +5,12 @@ import java.util.List;
 public class Bridge {
     private final List<String> bridge;
 
-    public Bridge(List<String> bridge){
-        this.bridge=bridge;
+    public Bridge(BridgeNumberGenerator bridgeNumberGenerator, int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        bridge = bridgeMaker.makeBridge(size);
     }
 
-    public boolean canGo(int index, String ud){
+    public boolean canGo(int index, String ud) {
         return bridge.get(index).equals(ud);
     }
 }
