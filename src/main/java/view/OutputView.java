@@ -68,15 +68,15 @@ public class OutputView {
         }
     }
 
-    public void printResult(List<List<String>> bothSide, int tryNumber) {
+    public void printResult(List<List<String>> bothSide) {
         printFinalResult();
         printMap(bothSide);
 
         if (isWin(bothSide)) {
-            printWin(tryNumber);
+            printWin();
         }
         if (isFail(bothSide)) {
-            printFail(tryNumber);
+            printFail();
         }
     }
 
@@ -106,21 +106,19 @@ public class OutputView {
                 || bothSide.get(1).contains(PrintConstant.WRONG_PATH.getConstant());
     }
 
-    private void printWin(int tryNumber) {
+    private void printWin() {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
         System.out.println(PrintConstant.WIN.getConstant());
-
-        System.out.print(View.TOTAL_TRY_NUMBER.message());
-        System.out.print(View.BLANK.message());
-        System.out.println(tryNumber);
     }
 
-    private void printFail(int tryNumber) {
+    private void printFail() {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
         System.out.println(PrintConstant.FAIL.getConstant());
+    }
 
+    public void printTryNumber(int tryNumber) {
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.print(View.BLANK.message());
         System.out.println(tryNumber);
