@@ -1,13 +1,18 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
     private static final int BRIDGE_SIZE_MIN = 3;
     private static final int BRIDGE_SIZE_MAX = 20;
 
-    private int length;
+    private int length = 0;
     private List<String> bridge;
+
+    public Bridge() {
+        bridge = new ArrayList<String>();
+    }
 
     public Bridge(int length, List<String> bridge) {
         validate(length, bridge);
