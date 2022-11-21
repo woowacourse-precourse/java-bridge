@@ -9,7 +9,9 @@ import java.util.List;
 public class BridgeGame {
     private final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private List<String> bridge = new ArrayList<>();
+    private List<String> bridge;
+    private List<String> up = new ArrayList<>();
+    private List<String> down = new ArrayList<>();
 
     public void init() {
         OutputView.startGameMessage();
