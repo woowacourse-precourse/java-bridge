@@ -9,6 +9,14 @@ public class OutputView {
 
     private static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
     private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final String LEFT_BRACKET = "[";
+    private static final String RIGHT_BRACKET = "}";
+    private static final String END_RESULT = "최종 게임 결과";
+    private static final String SUCCESS = "SUCCESS";
+    private static final String FAIL = "FAIL";
+    private static final String PRINT_SUCCESS_RESULT = "게임 성공 여부: 성공";
+    private static final String PRINT_FAIL_RESULT = "게임 성공 여부: 실패";
+    private static final String PRINT_TRY_COUNT = "총 시도한 횟수: ";
 
     public void printStartGame() {
         System.out.println(START_GAME);
@@ -20,12 +28,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> map) {
-        System.out.print("[");
+        System.out.print(LEFT_BRACKET);
         map.stream().forEach(OutputView::printFirstLine);
-        System.out.println("]");
-        System.out.print("[");
+        System.out.println(RIGHT_BRACKET);
+        System.out.print(LEFT_BRACKET);
         map.stream().forEach(OutputView::printSecondLine);
-        System.out.println("]");
+        System.out.println(RIGHT_BRACKET);
         System.out.println();
     }
 
@@ -35,15 +43,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<List<String>> map, String status, int tryCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println(END_RESULT);
         printMap(map);
-        if (status.equals("SUCCESS")) {
-            System.out.println("게임 성공 여부: 성공");
+        if (status.equals(SUCCESS)) {
+            System.out.println(PRINT_SUCCESS_RESULT);
         }
-        if (status.equals("FAIL")) {
-            System.out.println("게임 성공 여부: 실패");
+        if (status.equals(FAIL)) {
+            System.out.println(PRINT_FAIL_RESULT);
         }
-        System.out.println("총 시도한 횟수: " + tryCount);
+        System.out.println(PRINT_TRY_COUNT + tryCount);
     }
 
     public void printError(String error) {
