@@ -14,5 +14,11 @@ public class BridgeGameTest {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThat(game.move("D",0)).isFalse();
     }
+    @DisplayName("게임을 계속할건지 확인")
+    @Test
+    void bridgeGameRetry() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        assertThat(game.retry("Q")).isFalse();
+    }
 
 }
