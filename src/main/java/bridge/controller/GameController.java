@@ -3,15 +3,16 @@ package bridge.controller;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeRandomNumberGenerator;
-import bridge.model.Comparison;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.OutputView.ErrorMessage;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
     public static int gameCount = 1;
     public static boolean failOrSuccess = false;
+    public static List<String> bridgeResult = new ArrayList<>();
 
     public void gameStart() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -19,10 +20,32 @@ public class GameController {
         OutputView outputView = new OutputView();
         outputView.gameStart();
         int size = InputView.readBridgeSize();
-        List<String> bridgeResult = bridgeMaker.makeBridge(size);
-        System.out.println(bridgeResult);
-        BridgeGame.move(inputView, outputView, bridgeResult);
+        bridgeResult = bridgeMaker.makeBridge(size);
+        gameProgress(inputView, outputView);
         outputView.printResult();
+    }
+
+    public void gameProgress(InputView inputView, OutputView outputView) {
+        while (bridgeResult.size() > BridgeGame.moveIndex) {
+            outputView.moveSpace();
+            String moveInput = inputView.readMoving();
+            if (BridgeGame.move(moveInput)) {
+                gameRetry(inputView, outputView, moveInput);
+                continue;
+            }
+            outputView.printMap(BridgeGame.moveIndex, moveInput, bridgeResult);
+            BridgeGame.moveIndex++;
+        }
+        GameController.failOrSuccess = true;
+    }
+
+    public void gameRetry(InputView inputView, OutputView outputView, String moveInput) {
+        outputView.printMap(BridgeGame.moveIndex, moveInput, bridgeResult);
+        outputView.restart();
+        String inputRestart = inputView.readGameCommand();
+        if (BridgeGame.retry(inputRestart)) {
+            BridgeGame.moveIndex = bridgeResult.size();
+        }
     }
 
     public static boolean isValidBridgeNumber(String input) {
