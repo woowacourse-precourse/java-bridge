@@ -18,22 +18,33 @@ public class Bridge {
     }
 
     public GameStatus cross(int round, BridgeMark playerMark) {
-        BridgeMark bridgeMark = get(round);
-
-        if (bridgeMark.equals(playerMark) && isLastRound(round)) {
+        if (isSuccess(playerMark, round)) {
             return GameStatus.SUCCESS;
         }
-        if (bridgeMark.equals(playerMark)) {
+        if (isContinue(playerMark, round)) {
             return GameStatus.CONTINUE;
         }
         return GameStatus.FAIL;
+    }
+
+    private boolean isSuccess(BridgeMark playerMark, int round) {
+        return isContinue(playerMark, round) && isLastRound(round);
+    }
+
+    private boolean isContinue(BridgeMark playerMark, int round) {
+        BridgeMark answerMark = get(round);
+        return answerMark.equals(playerMark);
+    }
+
+    private boolean isLastRound(int round) {
+        return size() == round;
     }
 
     private BridgeMark get(int round) {
         return bridge.get(round - CRITERION_ROUND_START);
     }
 
-    private boolean isLastRound(int round) {
-        return bridge.size() == round;
+    private int size() {
+        return bridge.size();
     }
 }
