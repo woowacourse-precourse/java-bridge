@@ -37,7 +37,7 @@
     - BridgeGame - retry() 구현 [X]
     - 처음에 생성한 다리를 재사용 [X]
     - BridgeResult - clear() 구현 [X]
-    - BridgeResult - getLastResult() 구현 [ ]
+    - BridgeResult - getLastResult() 구현 [X]
 
 
 8. **다리를 모두 건너거나 게임을 종료했을 경우 최종결과를 출력한다** [ ]
