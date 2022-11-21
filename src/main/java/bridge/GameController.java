@@ -36,35 +36,58 @@ public class GameController {
     public static void crossBridge() {
         movingCount = 0;
         BridgeMap.reset();
+        crossBridgeProcess();
+    }
 
-        while(successOrFail) {
-            ViewMessage.printMovingInputRequest();
-
-            String moving = InputView.readMoving();
-            String bridgeBlock = bridge.get(movingCount);
-
-            bridgeGame.move(moving, bridgeBlock);
-            OutputView.printMap(BridgeMap.getUpRecord(), BridgeMap.getDownRecord());
-
-            if(!moving.equals(bridgeBlock)) {
-                ViewMessage.printGameCommandInputRequest();
-                String gameCommand = InputView.readGameCommand();
-
-                if(gameCommand.equals("R")) {
-                    tryNumber++;
-                    successOrFail = true;
-                    bridgeGame.retry();
-                }
-                if(gameCommand.equals("Q")) {
-                    successOrFail = false;
-                }
-            }
+    private static void crossBridgeProcess() {
+        while (successOrFail) {
+            moveAndCheck();
 
             movingCount++;
 
-            if(movingCount >= bridge.size()) {
+            if (movingCount >= bridge.size()) {
                 break;
             }
+        }
+    }
+
+    private static void moveAndCheck() {
+        String moving = getMoving();
+        String bridgeBlock = bridge.get(movingCount);
+
+        bridgeGame.move(moving, bridgeBlock);
+        OutputView.printMap(BridgeMap.getUpRecord(), BridgeMap.getDownRecord());
+
+        moveWrongBlock(moving, bridgeBlock);
+    }
+
+    private static String getMoving() {
+        ViewMessage.printMovingInputRequest();
+
+        return InputView.readMoving();
+    }
+
+    private static void moveWrongBlock(String moving, String bridgeBlock) {
+        if (!moving.equals(bridgeBlock)) {
+            ViewMessage.printGameCommandInputRequest();
+            String gameCommand = InputView.readGameCommand();
+
+            isGameCommandR(gameCommand);
+            isGameCommandQ(gameCommand);
+        }
+    }
+
+    private static void isGameCommandR(String gameCommand) {
+        if (gameCommand.equals("R")) {
+            tryNumber++;
+            successOrFail = true;
+            bridgeGame.retry();
+        }
+    }
+
+    private static void isGameCommandQ(String gameCommand) {
+        if (gameCommand.equals("Q")) {
+            successOrFail = false;
         }
     }
 
