@@ -15,7 +15,7 @@
 ### Player: 사용자의 이동 선택
 - [ ] 사용자의 답을 추가한다. #addChoice
 - [ ] 사용자의 특정 인덱스번째 답을 반환한다. #getChoiceIndex
-- [ ] 사용자의 선택 수를 반환한다. #getChoiceIndex
+- [ ] 사용자의 선택 수를 반환한다. #getNumberOfChoice
 - [ ] 사용자의 마지막 선택을 반환한다. #getLastChoice
 
 ### ClearStatus: 최종 결과 출력시 성공, 실패를 반환하기 위한 논리 기반의 열거형 클래스
