@@ -32,7 +32,7 @@ public class InputStringValidator {
 	}
 
 	private void isOnlyAlphabet(String input){
-		if (Character.isAlphabetic(input.charAt(0))) {
+		if (!Character.isAlphabetic(input.charAt(0))) {
 			throw new IllegalArgumentException("You should input alphabet");
 		}
 	}

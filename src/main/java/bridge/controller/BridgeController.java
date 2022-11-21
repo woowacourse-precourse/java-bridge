@@ -4,7 +4,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.enums.Message;
 import bridge.enums.UpDown;
-import bridge.model.Player;
 import bridge.view.InputNumValidator;
 import bridge.view.InputStringValidator;
 import bridge.view.InputView;
@@ -21,18 +20,16 @@ public class BridgeController {
 		outputView.printMessage(Message.GAME_START_MSG);
 		List<String> bridge = initBridge();
 		bridgeGame = new BridgeGame(bridge);
-//		Player gamePlayer = new Player();
 		do {
 			bridgeGame.move(getDirection());
-			outputView.printMap(bridgeGame); // TODO
-		} while (!bridgeGame.isGameEnd());
+			outputView.printMap(bridgeGame);
+		} while (bridgeGame.isMatchDirection());
 	}
 
 	private String getDirection() {
-		InputStringValidator moveCommandValidator = new InputStringValidator(inputView.readGameCommand());
+		InputStringValidator moveCommandValidator = new InputStringValidator(inputView.readMoving());
 		moveCommandValidator.isValidateAlphabet(UpDown.getStrValues());
-		String direction = moveCommandValidator.getInputValue();
-		return direction;
+		return moveCommandValidator.getInputValue();
 	}
 
 	private List<String> initBridge() {

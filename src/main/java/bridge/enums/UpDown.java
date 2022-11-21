@@ -1,6 +1,8 @@
 package bridge.enums;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum UpDown {
 	UP(1, "U"),
@@ -25,6 +27,20 @@ public enum UpDown {
 
 	public String getStrValue() {
 		return strValue;
+	}
+
+	public static List<String> getStrValues(){
+		return Arrays.stream(values())
+				.map(UpDown::getStrValue)
+				.collect(Collectors.toList());
+	}
+
+	public static boolean isUp(String src) {
+		return src.equals(UP.getStrValue());
+	}
+
+	public static boolean isDown(String src) {
+		return src.equals(DOWN.getStrValue());
 	}
 
 

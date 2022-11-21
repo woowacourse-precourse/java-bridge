@@ -1,19 +1,22 @@
 package bridge.enums;
 
-public enum Bridge {
+public enum BridgeFrame {
 	FRONT("["),
 	BACK("]"),
 	DIV("|"),
-	DEFAULT("   ");
+	BLANK("   "),
+	TRUE(" O "),
+	FALSE(" X ");
 
 
 	private String value;
 
-	Bridge(String value) {
+	BridgeFrame(String value) {
 		this.value = value;
 	}
 
 	public String getValue() {
 		return value;
 	}
+
 }
