@@ -8,4 +8,8 @@ public class MessageQuestionPrint {
 	public void inputBridgeSizeQuestion() {
 		System.out.println(Constant.NUMBER_INPUT_MESSAGE_QUESTION);
 	}
+
+	public void userMoveQuestion() {
+		System.out.println(Constant.MOVE_INPUT_MESSAGE_QUESTION);
+	}
 }
