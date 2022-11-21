@@ -36,7 +36,7 @@ public class Bridge {
         String[] bridgeMap = new String[userKeyList.size()];
         for (int index = 0; index < userKeyList.size(); index++) {
             String bridgeIndex = bridge.get(index);
-            String keyIndex = userKeyList.get(index);
+            String keyIndex = getUserKeyListIndex(index);
             bridgeMap[index] = compareKey(bridgeIndex, keyIndex);
         }
         return bridgeMap;
