@@ -17,8 +17,7 @@ public class StartGameTest {
     void checkUPDOWN() {
         StartGame runGame = new StartGame();
         List<String> checkList;
-        InputStream in = generateUserInput("5");
-        System.setIn(in);
+        setInput("9");
         checkList = runGame.setBridgeSize().getBridge();
         assertThat(check(checkList)).isTrue();
     }
@@ -39,13 +38,16 @@ public class StartGameTest {
         StartGame runGame = new StartGame();
         List<String> checkList;
         int lenght = 10;
-        InputStream in = generateUserInput(String.valueOf(lenght));
-        System.setIn(in);
+        setInput(String.valueOf(lenght));
         checkList = runGame.setBridgeSize().getBridge();
         assertThat(checkList).hasSize(lenght);
     }
+    private void setInput(String input) {
+        InputStream in = generateUserInput(input);
+        System.setIn(in);
+    }
 
-    public static InputStream generateUserInput(String input) {
+    private static InputStream generateUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
 }
