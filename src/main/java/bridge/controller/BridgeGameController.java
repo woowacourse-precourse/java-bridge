@@ -39,7 +39,7 @@ public class BridgeGameController {
             outputView.printResult(bridgeGame, crossBridgeResult);
             return true;
         }
-        if (crossBridgeResult.getState().equals(ResultType.FAIL.getState())) {
+        if (isDefeated(crossBridgeResult)) {
             return isGivedUp(bridgeGame, crossBridgeResult);
         }
         return false;
@@ -54,4 +54,9 @@ public class BridgeGameController {
         bridgeGame.retry();
         return false;
     }
+
+    private boolean isDefeated(ResultType crossBridgeResult) {
+        return crossBridgeResult.getState().equals(ResultType.FAIL.getState());
+    }
+
 }
