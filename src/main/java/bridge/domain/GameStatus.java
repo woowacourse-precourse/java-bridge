@@ -1,6 +1,7 @@
 package bridge.domain;
 
 public enum GameStatus {
+    PLAYING("게임 중"),
     FAILED("실패"),
     SUCCESS("성공");
 

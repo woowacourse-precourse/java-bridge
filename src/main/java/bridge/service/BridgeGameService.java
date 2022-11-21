@@ -21,19 +21,10 @@ public class BridgeGameService {
     }
 
     public GameStatus crossBridgeUnit(String moving) {
-        bridgeGame.move(moving);
-        return bridgeGame.getGameResult();
+        return bridgeGame.move(moving);
     }
 
-    public boolean isPlaying() {
-        return bridgeGame.isPlaying();
-    }
-
-    public boolean executeGameCommand(Command command) {
-        return executeIfRetry(command);
-    }
-
-    private boolean executeIfRetry(Command command) {
+    public boolean executeIfRetry(Command command) {
         if (RETRY.equals(command)) {
             bridgeGame.retry();
             return true;

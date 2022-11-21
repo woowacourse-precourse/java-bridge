@@ -7,7 +7,8 @@ import bridge.domain.GameStatus;
 import bridge.service.BridgeGameService;
 import bridge.view.OutputView;
 
-import static bridge.domain.GameStatus.FAILED;
+import static bridge.domain.GameStatus.PLAYING;
+import static bridge.domain.GameStatus.SUCCESS;
 import static bridge.support.ErrorMessage.UNEXPECTED_EXCEPTION;
 
 public class BridgeController {
@@ -42,36 +43,23 @@ public class BridgeController {
         GameStatus status;
         do {
             status = crossBridge();
-        } while (isPlaying(status));
+        } while (!(SUCCESS.equals(status) || isRetry()));
         return status;
     }
 
     private GameStatus crossBridge() {
-        GameStatus status = FAILED;
-        while (service.isPlaying()) {
-            status = crossBridgeUnit();
+        GameStatus status = PLAYING;
+        while (PLAYING.equals(status)) {
+            String moving = readController.readMoving();
+            status = service.crossBridgeUnit(moving);
+
             outputView.printMap(service.getMapDto());
         }
         return status;
     }
 
-    private GameStatus crossBridgeUnit() {
-        String moving = readController.readMoving();
-        return service.crossBridgeUnit(moving);
-    }
-
-    private boolean isPlaying(GameStatus status) {
-        if (service.isPlaying()) {
-            return true;
-        }
-        return isRetryIfFailed(status);
-    }
-
-    private boolean isRetryIfFailed(GameStatus status) {
-        if (!FAILED.equals(status)) {
-            return false;
-        }
+    private boolean isRetry() {
         Command command = readController.readGameCommand();
-        return service.executeGameCommand(command);
+        return service.executeIfRetry(command);
     }
 }

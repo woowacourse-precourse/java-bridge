@@ -16,19 +16,6 @@ public class GameProgress {
         return gameProgress.size();
     }
 
-    public boolean isSuccessToCrossBridge(int bridgeSize) {
-        return isLastOfBridge(bridgeSize) && isLastMoveSuccess();
-    }
-
-    private boolean isLastOfBridge(int bridgeSize) {
-        return getPosition() == bridgeSize;
-    }
-
-    private boolean isLastMoveSuccess() {
-        int lastPosition = gameProgress.size() - 1;
-        return gameProgress.get(lastPosition).isSuccess();
-    }
-
     public Stream<MoveResult> stream() {
         return gameProgress.stream();
     }
