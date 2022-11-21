@@ -15,7 +15,16 @@ public class Application {
     private static Result result;
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        initialize();
+        outputView.printStart();
+        int bridgeSize = makeBridgeWithUserInput();
+
+        boolean gameOn = true;
+        while (gameOn) {
+            result.initialize();
+            gameOn = proceedGame(bridgeSize);
+        }
+        outputView.printResult(result);
     }
 
     private static void initialize() {
