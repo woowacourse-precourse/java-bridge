@@ -15,13 +15,24 @@ public class OutputViewTest {
     }
 
     @Test
-    void 다리_출력_정상_테스트() {
+    void 다리_라인_출력_정상_테스트() {
         List<String> bridge = Arrays.asList("U", "U", "D", "U", "D", "U", "U");
         List<String> crossed = Arrays.asList("U", "U", "D", "U", "D", "D");
         String lineName = "U";
         String correctResult = "[ o | o |   | o |   | x ]";
 
         String result = outputView.getCrossedLine(lineName, bridge, crossed);
+
+        Assertions.assertThat(result).isEqualTo(correctResult);
+    }
+
+    @Test
+    void 다리_출력_정상_테스트() {
+        List<String> bridge = Arrays.asList("U", "U", "D", "U", "D", "U", "U");
+        List<String> crossed = Arrays.asList("U", "U", "D", "U", "D", "D");
+        String correctResult = "[ o | o |   | o |   | x ]\n[   |   | o |   | o |   ]";
+
+        String result = outputView.getMap(bridge, crossed);
 
         Assertions.assertThat(result).isEqualTo(correctResult);
     }
