@@ -1,4 +1,4 @@
-package bridge.vo;
+package bridge.domain;
 
 public class BridgeSize {
     private static final int MIN_SIZE = 3;
