@@ -1,5 +1,9 @@
-package bridge.domain;
+package bridge.service;
 
+import bridge.domain.Bridge;
+import bridge.domain.GameRecord;
+import bridge.domain.GameSituation;
+import bridge.domain.Player;
 import java.util.List;
 
 /**

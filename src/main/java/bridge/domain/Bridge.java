@@ -19,7 +19,7 @@ public class Bridge {
 		}
 	}
 
-	boolean canWalk(int position, String direction) {
+	public boolean canWalk(int position, String direction) {
 		validatePosition(position);
 		return value.get(position).equals(direction);
 	}
@@ -30,7 +30,7 @@ public class Bridge {
 		}
 	}
 
-	int getLength() {
+	public int getLength() {
 		return value.size();
 	}
 }

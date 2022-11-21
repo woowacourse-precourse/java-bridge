@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.service;
 
 import static bridge.Constants.DOWN;
 import static bridge.Constants.UP;
@@ -7,6 +7,9 @@ import static bridge.domain.GameSituation.ON_GOING;
 import static bridge.domain.GameSituation.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.Bridge;
+import bridge.domain.GameSituation;
+import bridge.domain.Player;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;

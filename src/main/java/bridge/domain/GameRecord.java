@@ -21,7 +21,7 @@ public class GameRecord {
 		downLog = new ArrayList<>();
 	}
 
-	void recordSuccess(String direction) {
+	public void recordSuccess(String direction) {
 		final String SUCCESS = "O";
 		if (direction.equals(Constants.UP)) {
 			recordUpLog(SUCCESS);
@@ -40,7 +40,7 @@ public class GameRecord {
 		upLog.add(EMPTY);
 	}
 
-	void recordFail(String direction) {
+	public void recordFail(String direction) {
 		final String FAIL = "X";
 		if (direction.equals(Constants.UP)) {
 			recordUpLog(FAIL);
@@ -49,7 +49,7 @@ public class GameRecord {
 		recordDownLog(FAIL);
 	}
 
-	void retry() {
+	public void retry() {
 		initLog();
 		tryAttempts++;
 	}
