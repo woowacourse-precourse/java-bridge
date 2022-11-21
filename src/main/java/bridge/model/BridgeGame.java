@@ -54,4 +54,17 @@ public class BridgeGame {
         bridge.resetCurrentRoundNumber();
         record.deleteBridgeRecord();
     }
+
+    public Boolean isFail() {
+        String moveDirection = user.getMoveDirection();
+        Boolean isFail = referee.isFail(moveDirection);
+        if (isFail) {
+            bridge.resetCurrentRoundNumber();
+        }
+        return isFail;
+    }
+
+    public Boolean isPass() {
+        return !isFail();
+    }
 }
