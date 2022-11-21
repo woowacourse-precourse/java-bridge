@@ -1,4 +1,4 @@
-package repository;
+package bridge;
 
 public class PlayCount {
 	private static final int INITIAL_VALUE = 1;
