@@ -2,11 +2,10 @@ package bridge.domain;
 
 import bridge.system.ExceptionMessage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    List<String> bridge;
+    private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
         validate(bridge);
@@ -19,7 +18,7 @@ public class Bridge {
     }
 
     public void reset() {
-        bridge = new ArrayList<>();
+        bridge.clear();
     }
 
     public int length() {
