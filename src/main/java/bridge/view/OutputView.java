@@ -23,10 +23,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> results) {
-//        String str = results.get(0).toString();
-//        System.out.println(str.replace(","," |").replace("NO","").replace("[", "[ ").replace("]"," ]"));
-//        String str2 = results.get(1).toString();
-//        System.out.println(str2.replace(","," |").replace("NO","").replace("[", "[ ").replace("]"," ]"));
         for(List<String> result: results){
             String str = result.toString();
             System.out.println(str.replace(","," |").replace("NO","").replace("[", "[ ").replace("]"," ]"));
