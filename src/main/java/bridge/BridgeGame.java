@@ -10,25 +10,11 @@ public class BridgeGame {
 
     private final List<String> user;
     private final List<String> bridge;
-    private final InputView inputView;
-    private final OutputView outputView;
-    private int attempts = 0;
+    private int attempts = 1;
 
-    public BridgeGame(BridgeMaker bridgeMaker) {
+    public BridgeGame(List<String> bridge) {
         this.user = new ArrayList<>();
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.bridge = createBridge(bridgeMaker);
-    }
-
-    public List<String> createBridge(BridgeMaker bridgeMaker) {
-        try {
-            int bridgeSize = inputView.readBridgeSize();
-            return bridgeMaker.makeBridge(bridgeSize);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return createBridge(bridgeMaker);
-        }
+        this.bridge = bridge;
     }
 
     /**
@@ -36,14 +22,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        try {
-            String moving = inputView.readMoving();
-            user.add(moving);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            move();
-        }
+    public void move(String moving) {
+        user.add(moving);
     }
 
     /**
@@ -51,17 +31,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        try {
-            if (inputView.readGameCommand().equals("R")) {
-                resetGame();
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return retry();
+    public boolean retry(String gameCommand) {
+        if (gameCommand.equals("R")) {
+            resetGame();
+            return true;
         }
+        return false;
     }
 
     public void resetGame() {
@@ -74,15 +49,15 @@ public class BridgeGame {
         return user.get(lastIndex).equals(bridge.get(lastIndex));
     }
 
-    public void play() {
-        attempts++;
-        while (true) {
-            move();
-            outputView.printMap(user, bridge);
-            if ((!isCorrect() && !retry()) || user.equals(bridge)) {
-                outputView.printResult(attempts, user, bridge);
-                break;
-            }
-        }
+    public List<String> getUser() {
+        return user;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getAttempts() {
+        return attempts;
     }
 }
