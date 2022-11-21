@@ -16,7 +16,7 @@ public class BridgeGame {
     private final List<String> path = new ArrayList<>();
     private int attemptTimes = 1;
 
-    public BridgeGame(int size) {
+    public BridgeGame(String size) {
         bridge = new Bridge(size);
     }
 
