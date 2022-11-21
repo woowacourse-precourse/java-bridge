@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,12 +8,23 @@ import java.util.List;
  */
 public class OutputView {
 
+    private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+
+    private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String currStr) {        // 현재 상황을 프린트한다.
+
+        List<String> bridges = bridgeMaker.change(currStr);
+
+        for (String bridge : bridges) {
+            System.out.println(bridge);
+        }
+
     }
 
     /**
