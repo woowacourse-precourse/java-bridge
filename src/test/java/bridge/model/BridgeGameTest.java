@@ -52,4 +52,18 @@ class BridgeGameTest {
         bridgeGame.move("U", Arrays.asList("U","U"));
         assertThat(bridgeGame.isGameContinue()).isEqualTo(true);
     }
+
+    @Test
+    void 게임_시도_횟수_테스트_1() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("D", Arrays.asList("U"));
+        assertThat(bridgeGame.getGameCount()).isEqualTo(1);
+    }
+
+    @Test
+    void 게임_시도_횟수_테스트_2() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.retry();
+        assertThat(bridgeGame.getGameCount()).isEqualTo(2);
+    }
 }
