@@ -29,23 +29,32 @@ public class Game {
     private String retryOrQuit;
 
     public void play() {
-        try {
+
             outputView.printStart();
             viewBridgeSize();
             resetGameStatus();
             gameControll.plusCnt();
             playBridgeGame();
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-        }
+
     }
 
-    private void viewBridgeSize() {
+    private void inputBridgeSize() {
         outputView.printRequestBridgeSize();
         String inputSize = inputView.readBridgeSize();
         size = ChangeStringToInteger(inputSize);
         valification.verifyBridgeSize(size);
         makeBridge();
+    }
+
+    private void viewBridgeSize(){
+        while(true){
+            try{
+                inputBridgeSize();
+                break;
+            }catch(IllegalArgumentException exception){
+                outputView.printErrorMessage(exception.getMessage());
+            }
+        }
     }
 
     private void makeBridge() {
@@ -64,9 +73,16 @@ public class Game {
     }
 
     private void viewMove() {
-        outputView.printRequestMove();
-        move = inputView.readMoving();
-        valification.verifyUorD(move);
+        while(true){
+            try{
+                outputView.printRequestMove();
+                move = inputView.readMoving();
+                valification.verifyUorD(move);
+                break;
+            }catch(IllegalArgumentException exception){
+                outputView.printErrorMessage(exception.getMessage());
+            }
+        }
     }
 
     private void checkMoveBridge() {
@@ -103,9 +119,16 @@ public class Game {
     }
 
     private void viewRetry() {
-        outputView.printRequestRetry();
-        retryOrQuit = inputView.readGameCommand();
-        valification.verifyQorR(retryOrQuit);
+        while(true){
+            try {
+                outputView.printRequestRetry();
+                retryOrQuit = inputView.readGameCommand();
+                valification.verifyQorR(retryOrQuit);
+                break;
+            }catch(IllegalArgumentException exception){
+                outputView.printErrorMessage(exception.getMessage());
+            }
+        }
     }
 
     private void checkRetry() {
