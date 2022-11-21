@@ -11,20 +11,20 @@ import static org.assertj.core.api.Assertions.*;
 
 class BridgeGameTest {
 
-    List<String> bridge;
+    Bridge bridge;
     BridgeGame bridgeGame;
 
     @BeforeEach
     void setUp() {
-        bridge = List.of("U", "D", "D");
-        bridgeGame = new BridgeGame(bridge.size());
+        bridge = Bridge.of(List.of("U", "D", "D"));
+        bridgeGame = new BridgeGame(bridge);
     }
 
     @DisplayName("플레이어 이동 테스트")
     @Test
     void createMovingTest() {
-        MovingResult firstResult = bridgeGame.move(bridge, Moving.UP);
-        MovingResult secondResult = bridgeGame.move(bridge, Moving.UP);
+        MovingResult firstResult = bridgeGame.move(Moving.UP);
+        MovingResult secondResult = bridgeGame.move(Moving.UP);
 
         assertThat(firstResult)
                 .usingRecursiveComparison()
@@ -38,9 +38,8 @@ class BridgeGameTest {
     @DisplayName("게임 결과 확인 테스트 - 실패")
     @Test
     void createFailTest() {
-        bridgeGame.move(bridge, Moving.DOWN);
-
-        MovingResult movingResult = bridgeGame.move(bridge, Moving.DOWN);
+        bridgeGame.move(Moving.DOWN);
+        bridgeGame.move(Moving.DOWN);
 
         assertThat(bridgeGame.getGameResult()).isEqualTo(Result.FAIL);
     }
@@ -48,10 +47,9 @@ class BridgeGameTest {
     @DisplayName("게임 결과 확인 테스트 - 성공")
     @Test
     void createSuccessTest() {
-        bridgeGame.move(bridge, Moving.UP);
-        bridgeGame.move(bridge, Moving.DOWN);
-
-        MovingResult movingResult = bridgeGame.move(bridge, Moving.DOWN);
+        bridgeGame.move(Moving.UP);
+        bridgeGame.move(Moving.DOWN);
+        bridgeGame.move(Moving.DOWN);
 
         assertThat(bridgeGame.getGameResult()).isEqualTo(Result.SUCCESS);
     }

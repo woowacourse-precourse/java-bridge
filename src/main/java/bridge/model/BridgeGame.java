@@ -1,9 +1,5 @@
 package bridge.model;
 
-import bridge.constant.ErrorMessage;
-
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -13,13 +9,13 @@ public class BridgeGame {
     public static final int FIRST_TRIAL = 1;
 
     private int currentPosition;
-    private int bridgeSize;
+    private final Bridge bridge;
     private int trialCount;
 
-    public BridgeGame(int bridgeSize) {
+    public BridgeGame(Bridge bridge) {
         currentPosition = STARTING_POINT;
         trialCount = FIRST_TRIAL;
-        this.bridgeSize = bridgeSize;
+        this.bridge = bridge;
     }
 
     /**
@@ -27,18 +23,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MovingResult move(List<String> bridge, Moving moving) {
-        String direction = bridge.get(currentPosition);
+    public MovingResult move(Moving playerMoving) {
+        Moving bridgeMoving = bridge.getMovingOf(currentPosition);
 
-        if (moving.isSameDirection(direction)) {
+        if (playerMoving == bridgeMoving) {
             currentPosition++;
-            return MovingResult.of(moving, Result.SUCCESS);
+            return MovingResult.of(playerMoving, Result.SUCCESS);
         }
-        return MovingResult.of(moving, Result.FAIL);
+        return MovingResult.of(playerMoving, Result.FAIL);
     }
 
     public Result getGameResult() {
-        if (bridgeSize == currentPosition) {
+        if (bridge.size() == currentPosition) {
             return Result.SUCCESS;
         }
         return Result.FAIL;

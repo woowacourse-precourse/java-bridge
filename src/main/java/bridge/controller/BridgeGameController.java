@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeNumberGenerator;
@@ -32,25 +33,25 @@ public class BridgeGameController {
         System.out.println();
 
         int bridgeSize = readBridgeSize();
-        List<String> bridge = makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+        Bridge bridge = Bridge.of(makeBridge(bridgeSize));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         MovingHistory movingHistory = new MovingHistory();
 
-        progressGame(bridge, bridgeGame, movingHistory);
+        progressGame(bridgeGame, movingHistory);
         outputView.printResult(movingHistory, bridgeGame);
     }
 
-    private void progressGame(List<String> bridge, BridgeGame bridgeGame, MovingHistory movingHistory) {
+    private void progressGame(BridgeGame bridgeGame, MovingHistory movingHistory) {
         boolean inProgress = IN_PROGRESS;
         while (inProgress) {
-            MovingResult movingResult = move(bridge, bridgeGame, movingHistory);
+            MovingResult movingResult = move(bridgeGame, movingHistory);
             inProgress = updateGameStatus(bridgeGame, movingResult, movingHistory);
         }
     }
 
-    private MovingResult move(List<String> bridge, BridgeGame bridgeGame, MovingHistory movingHistory) {
+    private MovingResult move(BridgeGame bridgeGame, MovingHistory movingHistory) {
         Moving moving = readMoving();
-        MovingResult movingResult = bridgeGame.move(bridge, moving);
+        MovingResult movingResult = bridgeGame.move(moving);
         movingHistory.save(movingResult);
         outputView.printMap(movingHistory);
 
