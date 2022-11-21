@@ -59,6 +59,7 @@
 
 - [x] "[ERROR] 3 이상 20 이하의 숫자를 입력해주세요."를 출력 - ErrorMessage#inputBridgeNumber
 - [x] "[ERROR] 위 칸은 'U', 아래 칸은 'D'를 입력해주세요."를 출력 - ErrorMessage#inputMoveBridgeError
+- [x] "[ERROR] 재시작은 'R', 종료는 'Q'를 입력해주세요."를 출력 - ErrorMessage#inputRetryError
 
 ## 예외 사항
 - [x] 다리의 길이 입력이 숫자가 아닌 경우
