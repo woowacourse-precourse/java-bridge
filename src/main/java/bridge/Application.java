@@ -28,6 +28,10 @@ public class Application {
                     game.retry();
                 }
             }
+            if (game.currentStatus == gameStatus.SUCCESS) {
+                // TODO: 게임 결과 출력
+                break;
+            }
         }
     }
 }
