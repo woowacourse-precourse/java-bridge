@@ -23,10 +23,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static boolean retry(String command) {
-        if (command.equals("R")) {
-            return true;
-        }
-        return false;
+        return command.equals("R");
     }
 
     public static int countGameNum(String command, int cnt) {
@@ -44,10 +41,7 @@ public class BridgeGame {
     }
 
     public static boolean upperOrLower(String userChoice) {
-        if (userChoice.equals("U")) {
-            return true;
-        }
-        return false;
+        return userChoice.equals("U");
     }
 
     public static String isBlank(boolean isUpper, String s) {
