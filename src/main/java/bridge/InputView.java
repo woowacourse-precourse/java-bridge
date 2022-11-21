@@ -1,10 +1,10 @@
 package bridge;
 
-import static bridge.Bridge.*;
-import static bridge.Controller.*;
+import static bridge.Bridge.UP_BLOCK_MARK;
+import static bridge.Bridge.DOWN_BLOCK_MARK;
 import static bridge.ErrorMessage.INVALID_BRIDGE_SIZE_ERROR;
-import static bridge.ErrorMessage.INVALID_GAME_COMMAND_ERROR;
 import static bridge.ErrorMessage.INVALID_MOVE_DIRECTION_ERROR;
+import static bridge.GameCommand.getEnum;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -37,11 +37,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(Runnable printInputMessage) {
+    public GameCommand readGameCommand(Runnable printInputMessage) {
         printInputMessage.run();
-        String gameCommand = readLine();
-        validateGameCommand(gameCommand);
-        return gameCommand;
+        return getEnum(readLine());
     }
 
     public void validateBridgeSize(String bridgeSizeInput) {
@@ -49,14 +47,6 @@ public class InputView {
 
         if (!bridgeSizeInput.matches(IN_3_TO_20_PATTERN)) {
             throw new IllegalArgumentException(INVALID_BRIDGE_SIZE_ERROR);
-        }
-    }
-
-    public void validateGameCommand(String gameCommand) {
-        final List<String> validGameCommands = List.of(RETRY_GAME_COMMAND, QUIT_GAME_COMMAND);
-
-        if (!validGameCommands.contains(gameCommand)) {
-            throw new IllegalArgumentException(INVALID_GAME_COMMAND_ERROR);
         }
     }
 

@@ -1,7 +1,8 @@
 package bridge;
 
-import static bridge.ErrorMessage.*;
-import static org.assertj.core.api.Assertions.*;
+import static bridge.ErrorMessage.INVALID_BRIDGE_SIZE_ERROR;
+import static bridge.ErrorMessage.INVALID_MOVE_DIRECTION_ERROR;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
@@ -41,19 +42,5 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.validateMoveDirection(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_MOVE_DIRECTION_ERROR);
-    }
-
-    @ParameterizedTest(name = "게임 커멘드를 {0}로 입력하면 성공한다.")
-    @ValueSource(strings = {"R", "Q"})
-    void validateGameCommandTest(String input) {
-        inputView.validateGameCommand(input);
-    }
-
-    @ParameterizedTest(name = "게임 커멘드를 {0}로 잘못 입력한 경우 예외가 발생한다.")
-    @ValueSource(strings = {"RR", "U", "", " ", "q"})
-    void validateGameCommandExceptionTest(String input) {
-        assertThatThrownBy(() -> inputView.validateGameCommand(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_GAME_COMMAND_ERROR);
     }
 }

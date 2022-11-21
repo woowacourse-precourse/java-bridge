@@ -1,9 +1,8 @@
 package bridge;
 
-public class Controller {
+import static bridge.GameCommand.RETRY;
 
-    public static final String RETRY_GAME_COMMAND = "R";
-    public static final String QUIT_GAME_COMMAND = "Q";
+public class Controller {
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -36,7 +35,7 @@ public class Controller {
         );
     }
 
-    private String readGameCommand() {
+    private GameCommand readGameCommand() {
         return inputView.readGameCommand(outputView::printGameCommandInput);
     }
 
@@ -49,8 +48,8 @@ public class Controller {
         }
     }
 
-    private boolean doRetryOrNot(String gameCommand, BridgeGame bridgeGame) {
-        if (RETRY_GAME_COMMAND.equals(gameCommand)) {
+    private boolean doRetryOrNot(GameCommand gameCommand, BridgeGame bridgeGame) {
+        if (RETRY.equals(gameCommand)) {
             bridgeGame.retry();
             return true;
         }

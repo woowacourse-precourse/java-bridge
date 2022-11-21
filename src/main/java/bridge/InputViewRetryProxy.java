@@ -23,7 +23,7 @@ public class InputViewRetryProxy extends InputView {
     }
 
     @Override
-    public String readGameCommand(Runnable printInputMessage) {
+    public GameCommand readGameCommand(Runnable printInputMessage) {
         return retryWhenFail(() -> target.readGameCommand(printInputMessage));
     }
 
