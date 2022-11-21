@@ -1,9 +1,7 @@
 package bridge.validation;
 
-import bridge.game.Player;
 import bridge.resource.ErrorMessage;
 import bridge.resource.GameConstant;
-import bridge.view.OutputView;
 import java.util.List;
 
 public class RetryValidator {

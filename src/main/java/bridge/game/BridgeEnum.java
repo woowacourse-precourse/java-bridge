@@ -1,7 +1,5 @@
 package bridge.game;
 
-import bridge.resource.ErrorMessage;
-
 public enum BridgeEnum {
     U(1),
     D(0);

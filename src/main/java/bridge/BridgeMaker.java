@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.game.BridgeEnum;
-import bridge.resource.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
 
