@@ -24,7 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int bridgeLocation = bridgeNumberGenerator.generate();
-            if (bridgeLocation == 1){
+            if (bridgeLocation == 1) {
                 bridge.add("U");
                 continue;
             }
