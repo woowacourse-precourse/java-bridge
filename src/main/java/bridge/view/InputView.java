@@ -10,6 +10,8 @@ public class InputView {
     private static final int BRIDGE_SIZE_MAX = 20;
     private static final String MOVE_COMMAND_UP = "U";
     private static final String MOVE_COMMAND_DOWN = "D";
+    private static final String FAIL_COMMAND_RETRY = "R";
+    private static final String FAIL_COMMAND_QUIT = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -93,6 +95,12 @@ public class InputView {
 
     private void validateMoveFormat(String moveCommand) {
         if (!moveCommand.equals(MOVE_COMMAND_UP) && !moveCommand.equals(MOVE_COMMAND_DOWN)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateGameFailFormat(String failCommand) {
+        if (!failCommand.equals(FAIL_COMMAND_RETRY) && !failCommand.equals(FAIL_COMMAND_QUIT)) {
             throw new IllegalArgumentException();
         }
     }
