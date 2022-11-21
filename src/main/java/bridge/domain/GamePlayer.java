@@ -36,7 +36,7 @@ public class GamePlayer {
                 break;
             }
 
-        } while (!movable().equals(GameKeySet.QUIT.getKeySet()));
+        } while (isGameSustainable());
 
         outputView.printResult(bridgeGame.getLog(), bridgeGame.isEnd(), retryCount);
     }
@@ -46,18 +46,21 @@ public class GamePlayer {
         outputView.printMap(bridgeGame.getLog());
     }
 
-    private String movable() {
-        String restartOrQuit = "";
+    private boolean isGameSustainable() {
+        String gameCommand = inputView.readGameCommand();
 
-        if (!bridgeGame.isMovable()) {
-            restartOrQuit = inputView.readGameCommand();
-
-            if (restartOrQuit.equals(GameKeySet.RESTART.getKeySet())) {
-                retry();
-            }
+        if (gameCommand.equals(GameKeySet.QUIT.getKeySet())) {
+            return false;
         }
 
-        return restartOrQuit;
+        isRetry(gameCommand);
+        return true;
+    }
+
+    private void isRetry(String gameCommand) {
+        if (gameCommand.equals(GameKeySet.RESTART.getKeySet())) {
+            retry();
+        }
     }
 
     private void retry() {
