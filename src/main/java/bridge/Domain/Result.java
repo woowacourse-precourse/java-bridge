@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Result {
     private List<List<String>> map;
-    private boolean isSuccess;
+    private String isSuccess;
     private int tryCount;
 
     public Result(){
@@ -15,7 +15,7 @@ public class Result {
             map.add(new ArrayList<>());
         }
 
-        isSuccess = false;
+        isSuccess = "실패";
         tryCount = 1;
     }
 
@@ -31,23 +31,28 @@ public class Result {
         return map;
     }
 
-    public void setMap(List<List<String>> map) {
-        this.map = map;
+    public void setIsSuccess(String isSuccess) {
+        this.isSuccess = isSuccess;
     }
 
-    public boolean isSuccess() {
-        return isSuccess;
+    @Override
+    public String toString() {
+        return "최종 게임 결과\n" +
+                replaceMapStringForm() +
+                "\n게임 성공 여부: " + isSuccess +
+                "\n총 시도한 횟수: " + tryCount;
     }
 
-    public void setSuccess(boolean success) {
-        isSuccess = success;
-    }
+    public String replaceMapStringForm(){
+        StringBuffer sb = new StringBuffer();
 
-    public int getTryCount() {
-        return tryCount;
-    }
+        for(List<String> row : map){
+            sb.append(row.toString()
+                    .replace("[", "[ ")
+                    .replaceAll(",", " |")
+                    .replace("]", " ]\n"));
+        }
 
-    public void setTryCount(int tryCount) {
-        this.tryCount = tryCount;
+        return sb.toString();
     }
 }
