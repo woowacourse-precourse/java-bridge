@@ -142,22 +142,6 @@
 - 사용자 종료 및 재시도 입력 : `readGameCommand()`
   - 사용자로부터 종료 및 재시도 입력받고 검증 진행
   - 검증 내용: R 또는 Q만을 입력했는지 여부
-```java
-public class InputView {
-    
-    public int readBridgeSize() {
-        return 0;
-    }
-    
-    public String readMoving() {
-        return null;
-    }
-    
-    public String readGameCommand() {
-        return null;
-    }
-}
-```
 
 ### OutputView
 
@@ -166,6 +150,16 @@ public class InputView {
 - `ErrorResponse`를 인자로 받는 생성자 오버로딩
 - ```java
   public BridgeException(ErrorResponse errorResponse) {
+        super(errorResponse.getErrorMessage());
+    }
+  ```
+  
+### GameException
+- `IllegalStateException` 상속받는 Exception
+- 비정상 코드 반복 및 종료에 대한 예외 처리
+- `ErrorResponse`를 인자로 받는 생성자 오버로딩
+- ```java
+  public GameException(ErrorResponse errorResponse) {
         super(errorResponse.getErrorMessage());
     }
   ```
