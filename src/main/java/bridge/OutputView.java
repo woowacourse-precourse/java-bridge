@@ -1,7 +1,9 @@
 package bridge;
 
 import bridge.constant.State;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -14,48 +16,48 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> input, List<String> answer) {
-        int size = input.size();
-        printTop(input, answer, size);
-        printBottom(input, answer, size);
+        print(input, answer, "U", "D");
+        print(input, answer, "D", "U");
     }
 
-    private void printBottom(List<String> input, List<String> answer, int size) {
+    private void print(List<String> input, List<String> answer, String correct, String wrong) {
         System.out.print("[");
-        for (int i = 0; i < size; i++) {
-            if ("D".equals(input.get(i)) && "D".equals(answer.get(i))) {
-                System.out.print(" O ");
-            }
-            else if ("D".equals(input.get(i)) && "U".equals(answer.get(i))) {
-                System.out.print(" X ");
-            }
-            else {
-                System.out.print("   ");
-            }
-            if (i != size - 1) {
-                System.out.print("|");
-            }
-        }
+        printContent(input, answer, correct, wrong);
         System.out.print("]\n");
     }
 
-    private void printTop(List<String> input, List<String> answer, int size) {
-        System.out.print("[");
+    private void printContent(List<String> input, List<String> answer, String correct, String wrong) {
+        Map<String, String > map = new HashMap<>();
+        map.put(correct, " O ");
+        map.put(wrong, " X ");
+        int size = input.size();
         for (int i = 0; i < size; i++) {
-            if ("U".equals(input.get(i)) && "U".equals(answer.get(i))) {
-                System.out.print(" O ");
+            if (notCorrectPosition(input, correct, i)) {
+                printBlank(size, i);
+                continue;
             }
-            else if ("U".equals(input.get(i)) && "D".equals(answer.get(i))) {
-                System.out.print(" X ");
-            }
-            else {
-                System.out.print("   ");
-            }
-            if (i != size - 1) {
-                System.out.print("|");
-            }
+            printOX(answer.get(i), map);
+            printBar(size, i);
         }
-        System.out.print("]");
-        System.out.println();
+    }
+
+    private void printOX(String s, Map<String, String> map) {
+        System.out.print(map.get(s));
+    }
+
+    private void printBlank(int size, int i) {
+        System.out.print("   ");
+        printBar(size, i);
+    }
+
+    private boolean notCorrectPosition(List<String> input, String trg, int i) {
+        return !trg.equals(input.get(i));
+    }
+
+    private void printBar(int size, int i) {
+        if (i != size - 1) {
+            System.out.print("|");
+        }
     }
 
     /**
