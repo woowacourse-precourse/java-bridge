@@ -10,7 +10,7 @@ public class OutputView {
     private static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String LEFT_BRACKET = "[";
-    private static final String RIGHT_BRACKET = "}";
+    private static final String RIGHT_BRACKET = "]";
     private static final String END_RESULT = "최종 게임 결과";
     private static final String SUCCESS = "SUCCESS";
     private static final String FAIL = "FAIL";
