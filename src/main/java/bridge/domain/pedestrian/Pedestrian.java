@@ -30,4 +30,8 @@ public class Pedestrian {
     public void clearRecord() {
         movingRecord.clear();
     }
+
+    public boolean hasIncorrectDirection() {
+        return movingRecord.hasFalseJudgement();
+    }
 }

@@ -31,6 +31,11 @@ public class MovingRecord {
         record.clear();
     }
 
+    public boolean hasFalseJudgement() {
+        return record.keySet().stream()
+                .anyMatch(Judgement::isFalse);
+    }
+
     @Override
     public String toString() {
         return "MovingRecord{" +
