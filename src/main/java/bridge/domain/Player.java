@@ -1,14 +1,12 @@
 package bridge.domain;
 
-import bridge.Errors;
-
 import java.util.Arrays;
 
 public class Player {
     private String nextCurrent;
     public Player(String s) {
-            validationPlay(s);
-            this.setNextCurrent(s);
+        validationPlay(s);
+        this.setNextCurrent(s);
     }
 
     public void setNextCurrent(String nextCurrent) {
