@@ -1,6 +1,5 @@
 package bridge.domain;
 
-
 import bridge.Application;
 import bridge.data.constant.OutputConstants;
 import bridge.data.way.DownSide;
