@@ -63,6 +63,5 @@ public class BridgeGameRunner {
 
     private void exit(Result result) {
         OutputView.printResult(result);
-        OutputView.printMap(result);
     }
 }
