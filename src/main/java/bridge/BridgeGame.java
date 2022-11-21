@@ -1,10 +1,10 @@
 package bridge;
 
+import static bridge.Bridge.IMPOSSIBLE_CROSS_NEXT;
 import static bridge.Bridge.JUST_CROSSED;
 import static bridge.Bridge.JUST_CROSSED_AND_CROSS_OVER;
 import static constant.Message.*;
 
-import constant.Message;
 import view.InputView;
 import view.OutputView;
 
@@ -24,23 +24,16 @@ public class BridgeGame {
     }
 
     public void start() {
-        int result = 0;
+        int result = move();
 
-        do {
+        while (result == JUST_CROSSED) {
+            outputView.printMap(bridge.movingResultToString(SUCCESS));
             result = move();
-            if (result == JUST_CROSSED) {
-                outputView.printMap(bridge.movingResultToString(SUCCESS));
-                continue;
-            }
-            break;
-        } while (true);
-
+        }
         if (result == JUST_CROSSED_AND_CROSS_OVER) {
             outputView.printResult(bridge, SUCCESS);
-            return;
         }
-        outputView.printMap(bridge.movingResultToString(FAILURE));
-        retry();
+        retry(result);
     }
 
     /**
@@ -59,13 +52,19 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        String gameCommand = inputView.readGameCommand();
-        if (gameCommand.equals(REGAME)) {
-            bridge.reset();
-            start();
-            return;
+    public void retry(int result) {
+        if (result == IMPOSSIBLE_CROSS_NEXT) {
+            outputView.printMap(bridge.movingResultToString(FAILURE));
+            if (inputView.readGameCommand().equals(REGAME)) {
+                resetAndRegame();
+                return;
+            }
+            outputView.printResult(bridge, FAILURE);
         }
-        outputView.printResult(bridge, FAILURE);
+    }
+
+    public void resetAndRegame() {
+        bridge.reset();
+        start();
     }
 }
