@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.messages.InputMessage;
+import bridge.messages.ResultMessage;
 
 import java.util.List;
 
@@ -11,6 +12,29 @@ public class OutputView {
 
     private final String upperSideCharacter = "U";
     private final String lowerSideCharacter = "D";
+
+    public void printStartMessage() {
+        System.out.println(InputMessage.START_MESSAGE.getMessage());
+    }
+
+    public void printBridgeSizeInputMessage() {
+        System.out.println();
+        System.out.println(InputMessage.BRIDGE_SIZE_INPUT_MESSAGE.getMessage());
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
+    public void printChooseMovingInputMessage() {
+        System.out.println();
+        System.out.println(InputMessage.MOVE_DIRECTION_INPUT_MESSAGE.getMessage());
+    }
+
+    public void printRetryInputMessage() {
+        System.out.println();
+        System.out.println(InputMessage.RETRY_INPUT_MESSAGE.getMessage());
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -54,29 +78,30 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> moves, List<String> bridge, int tryCount) {
+        System.out.println(ResultMessage.FINAL_GAME_RESULT_MAP.getMessage());
+        printMap(moves, bridge);
+        boolean succeeded = isSucceeded(moves, bridge);
+        System.out.println(getSuccessOrFailMessage(succeeded));
+        System.out.println(ResultMessage.TRY_COUNT_MESSAGE.getMessage() + tryCount);
     }
 
-    public void printStartMessage() {
-        System.out.println(InputMessage.START_MESSAGE.getMessage());
+    private boolean isSucceeded(List<String> moves, List<String> bridge) {
+        if (moves.size() != bridge.size()) {
+            return false;
+        }
+        for (int i = 0; i < moves.size(); ++i) {
+            if (!moves.get(i).equals(bridge.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public void printBridgeSizeInputMessage() {
-        System.out.println();
-        System.out.println(InputMessage.BRIDGE_SIZE_INPUT_MESSAGE.getMessage());
-    }
-
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
-    public void printChooseMovingInputMessage() {
-        System.out.println();
-        System.out.println(InputMessage.MOVE_DIRECTION_INPUT_MESSAGE.getMessage());
-    }
-
-    public void printRetryInputMessage() {
-        System.out.println();
-        System.out.println(InputMessage.RETRY_INPUT_MESSAGE.getMessage());
+    private String getSuccessOrFailMessage(boolean succeeded) {
+        if (succeeded) {
+            return ResultMessage.SUCCESS.getMessage();
+        }
+        return ResultMessage.FAIL.getMessage();
     }
 }
