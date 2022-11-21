@@ -42,7 +42,7 @@
 
 
 ### BridgeMaker
-- [ ] BridgeSizeRequest의 size만큼 Bridge를 생성한다.
+- [x] BridgeSizeRequest의 size만큼 Bridge를 생성한다.
 ---
 
 ## 🚀 기능 요구 사항
