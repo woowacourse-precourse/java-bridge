@@ -12,7 +12,6 @@ public class BridgeSize {
     private final InputView inputView = new InputView();
 
     public BridgeSize(String size) {
-        isValidate(String.valueOf(size));
         this.size = size;
     }
 
@@ -20,10 +19,4 @@ public class BridgeSize {
         return size;
     }
 
-    public static void isValidate(String size) {
-        InputValidate inputValidate = new InputValidate();
-        inputValidate.IsCorrectFormatBridgeSize(size);
-        inputValidate.IsNoneInputBridgeSize(size);
-        inputValidate.IsOverRangeBridgeSize(size);
-    }
 }

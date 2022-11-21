@@ -10,12 +10,16 @@
 - `BridgeSize` : 다리 길이에 관한 객체
 
 ### Service : 동작 관련 패키지
-- `BridgeNumberGenerator` : 다리 칸을 랜덤으로 생성하는 클래스
+- `GenerateBridgeSize` : 다리 길이를 생성하기 위한 클래스
 
 ### View : 입력, 출력을 수행하는 클래스들의 모음 `UI`
 - `InputView` : 사용자로부터 입력을 받는 UI
 - `OutputView` : 사용자에게 출력을 하는 UI
 - `InputValidate` : 입력에 대한 예외 검증
+
+### 그외
+- `BridgeNumberGenerator`
+- `BridgeRandomNumberGenerator`
 
 
 ---

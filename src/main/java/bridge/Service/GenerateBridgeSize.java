@@ -12,10 +12,25 @@ public class GenerateBridgeSize {
 
     public int getBridgeSize() {
         outputView.guideEnterBridgeSize();
-        String size = inputView.readBridgeSize();
+        String size;
+        while (!isValidate(size = inputView.readBridgeSize())) {
+            outputView.guideEnterBridgeSize();
+            size = inputView.readBridgeSize();
+        }
         BridgeSize bridgeSize = new BridgeSize(size);
         int convertSize = Integer.parseInt(bridgeSize.getSize());
         return convertSize;
     }
 
+    public boolean isValidate(String size) {
+        try {
+            InputValidate inputValidate = new InputValidate();
+            inputValidate.IsCorrectFormatBridgeSize(size);
+            inputValidate.IsNoneInputBridgeSize(size);
+            inputValidate.IsOverRangeBridgeSize(size);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
+    }
 }
