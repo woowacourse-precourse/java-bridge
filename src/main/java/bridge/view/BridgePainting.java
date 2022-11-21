@@ -1,13 +1,15 @@
-package bridge;
+package bridge.view;
+
+import bridge.information.PaintingInformation;
+import bridge.information.Position;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class BridgePainting {
     private ArrayList<String> line1, line2;
 
-    BridgePainting(){
+    public BridgePainting(){
         line1 = new ArrayList<>();
         line2 = new ArrayList<>();
     }
