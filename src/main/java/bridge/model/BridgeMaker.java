@@ -15,9 +15,9 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeBridge(final int size) {
+    public List<String> makeBridge(final int bridgeSize) {
         List<String> bridge = new ArrayList<>();
-        for (int repeat = 0; repeat < size; repeat++) {
+        for (int repeat = 0; repeat < bridgeSize; repeat++) {
             bridge.add(generateAnswer());
         }
         return bridge;
