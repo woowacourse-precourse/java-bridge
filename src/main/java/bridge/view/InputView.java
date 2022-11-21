@@ -8,6 +8,7 @@ import static bridge.constant.NumberConstant.MAXIMUM_BRIDGE_SIZE;
 import static bridge.constant.NumberConstant.MINIMUM_BRIDGE_SIZE;
 import static bridge.exception.ExceptionHandler.BRIDGE_SIZE;
 import static bridge.exception.ExceptionHandler.INPUT_DIRECTION;
+import static bridge.exception.ExceptionHandler.INPUT_GAME_COMMAND;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -54,7 +55,7 @@ public class InputView {
 
     private void validateGameCommand(String gameCommand) {
         if (!(gameCommand.equals(RETRY.getFirstLetter()) || gameCommand.equals(QUIT.getFirstLetter()))) {
-            INPUT_DIRECTION.error();
+            INPUT_GAME_COMMAND.error();
         }
     }
 
