@@ -40,28 +40,33 @@ public class OutputView {
         System.out.println(output);
     }
 
-    private StringBuilder printMapOneLine(BridgeGame bridgeGame, String upDown) {
+    private StringBuilder printMapOneLine(BridgeGame bridgeGame, String upOrDown) {
         StringBuilder output = new StringBuilder();
         Bridge bridge = bridgeGame.getBridge();
         UserPath userPath = bridgeGame.getUserPath();
-        int userPosition = bridgeGame.getUserPosition();
 
         output.append(BRIDGE_PREFIX);
-        for (int i = 0; i < userPosition; i++) {
-            if (userPath.find(i).equals(upDown)) {
-                if (bridge.compareWithPosition(i, upDown)) {
+        output.append(printGameState(upOrDown, bridge, userPath));
+        output.append(BRIDGE_SUFFIX);
+        output.append("\n");
+
+        return output;
+    }
+
+    private StringBuilder printGameState(String upOrDown, Bridge bridge, UserPath userPath) {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < userPath.size(); i++) {
+            if (userPath.find(i).equals(upOrDown)) {
+                if (bridge.compareWithPosition(i, upOrDown)) {
                     output.append(PASS);
                 }
                 else output.append(NO_PASS);
             }
             else output.append(EMPTY);
 
-            if (i != userPosition - 1)
+            if (i != userPath.size() - 1)
                 output.append(DELIMITER);
         }
-        output.append(BRIDGE_SUFFIX);
-        output.append("\n");
-
         return output;
     }
 
@@ -75,13 +80,13 @@ public class OutputView {
         printMap(bridgeGame);
 
         System.out.print(IS_SUCCESS);
-        System.out.println(IsSuccess(bridgeGame));
+        System.out.println(successOrNot(bridgeGame));
 
         System.out.print(TRY_NUMBER);
         System.out.println(bridgeGame.getTryNumber());
     }
 
-    private String IsSuccess(BridgeGame bridgeGame) {
+    private String successOrNot(BridgeGame bridgeGame) {
         if (bridgeGame.checkSuccess()) {
             return SUCCESS;
         }

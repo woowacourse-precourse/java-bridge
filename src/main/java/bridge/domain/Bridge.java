@@ -16,4 +16,8 @@ public class Bridge {
     public boolean compareWithPosition(int position, String str) {
         return bridge.get(position).equals(str);
     }
+
+    public int size() {
+        return bridge.size();
+    }
 }

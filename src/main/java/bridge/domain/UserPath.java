@@ -18,4 +18,8 @@ public class UserPath {
     public String find(int position) {
         return userPath.get(position);
     }
+
+    public int size() {
+        return userPath.size();
+    }
 }
