@@ -15,12 +15,21 @@ public class Application {
     private final BridgeGame bridgeGame = new BridgeGame();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final Player player = new Player();
-    private Bridge bridge;
+    private final Bridge bridge;
     private boolean playing = true;
 
-    public void run() {
-        startGame();
+    public Application() {
+        System.out.println(Message.START_MESSAGE);
+        bridge = makeBridge();
+    }
 
+    private Bridge makeBridge() {
+        int bridgeSize = InputView.readBridgeSize();
+        List<String> madeBridge = bridgeMaker.makeBridge(bridgeSize);
+        return new Bridge(madeBridge);
+    }
+
+    public void run() {
         while(playing) {
             move();
             checkCorrectChoice();
@@ -28,17 +37,6 @@ public class Application {
         }
 
         finishGame();
-    }
-
-    private void startGame() {
-        System.out.println(Message.START_MESSAGE);
-        makeBridge();
-    }
-
-    private void makeBridge() {
-        int bridgeSize = InputView.readBridgeSize();
-        List<String> madeBridge = bridgeMaker.makeBridge(bridgeSize);
-        bridge = new Bridge(madeBridge);
     }
 
     private void move() {
