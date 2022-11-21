@@ -6,6 +6,10 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    //private static final String UP = "O";
+    //private static final String UP = "O";
+    private static final String RIGHT = "O";
+    private static final String WRONG = "X";
     List<List<String>> dashBoard;
     List<String> bridgeDown;
     List<String> bridgeUp;
@@ -25,9 +29,31 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String input, List<String> bridge) {
-
+        if(input.equals("D")){
+            moveDown(bridge);
+            this.count += 1;
+            return;
+        }
+        moveUp(bridge);
+        this.count += 1;
+        return;
     }
-
+    private void moveDown(List<String> bridge){
+        if(bridge.get(count).equals("D")){
+            this.dashBoard.get(0).set(count, RIGHT);
+            return;
+        }
+        this.dashBoard.get(0).set(count, WRONG);
+        return;
+    }
+    private void moveUp(List<String> bridge){
+        if(bridge.get(count).equals("U")){
+            this.dashBoard.get(1).set(count, RIGHT);
+            return;
+        }
+        this.dashBoard.get(1).set(count, WRONG);
+        return;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
