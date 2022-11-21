@@ -32,7 +32,8 @@ public class BridgeGameController {
 
         String inputLength = inputView.readBridgeSize();
         BridgeLengthValidator.validate(inputLength);
-        List<String> createdBridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(Integer.parseInt(inputLength));
+        List<String> createdBridge = new BridgeMaker(bridgeNumberGenerator)
+                .makeBridge(Integer.parseInt(inputLength));
 
         bridgeGame = new BridgeGame(createdBridge);
         outputView.printSpace();

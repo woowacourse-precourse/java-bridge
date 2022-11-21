@@ -12,7 +12,8 @@ public class InputMoveValidator {
     }
 
     public static boolean isNotUAndIsNotB(String input) {
-        return !(input.equals(StepDirectionCommand.U.toString()) || input.equals(StepDirectionCommand.D.toString()));
+        return !(input.equals(StepDirectionCommand.U.toString())
+                || input.equals(StepDirectionCommand.D.toString()));
     }
 
 }

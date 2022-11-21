@@ -12,7 +12,8 @@ public class CurrentBridgeStatusMaker {
     private static final int DOWN_INDEX = 0;
     private List<StringBuilder> currentBridgeStatus;
 
-    public List<StringBuilder> convertCurrentBridgeStatus(List<String> currentPlayerBridge, List<String> createdBridge) {
+    public List<StringBuilder> convertCurrentBridgeStatus(List<String> currentPlayerBridge,
+                                                          List<String> createdBridge) {
         makeStartPartBridge();
         for (int length = 0; length < currentPlayerBridge.size(); length++) {
             compare(currentPlayerBridge.get(length), createdBridge.get(length));
@@ -29,7 +30,7 @@ public class CurrentBridgeStatusMaker {
     }
 
     private void compare(String currentPlayerPosition, String playerEqualPosition) {
-        if(currentPlayerPosition.equals(playerEqualPosition)) {
+        if (currentPlayerPosition.equals(playerEqualPosition)) {
             markBridge(currentPlayerPosition, BridgeDrawing.O);
             return;
         }
@@ -45,7 +46,7 @@ public class CurrentBridgeStatusMaker {
     private void updateBridge(int index, String partOfBridge) {
         StringBuilder bridgeLine = currentBridgeStatus.get(index);
 
-        if(partOfBridge.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
+        if (partOfBridge.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
             bridgeLine.replace(bridgeLine.length() - 1, bridgeLine.length(), partOfBridge);
             return;
         }
@@ -53,9 +54,9 @@ public class CurrentBridgeStatusMaker {
         bridgeLine.append(partOfBridge);
     }
 
-    void markBridge(String currentPlayerPosition, BridgeDrawing bridgeDrawing) {
-        String drawingBridge = String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(), bridgeDrawing.toString());
-        if(currentPlayerPosition.equals(StepDirectionCommand.U.toString())) {
+    private void markBridge(String currentPlayerPosition, BridgeDrawing bridgeDrawing) {
+        String drawingBridge = getPartOfBridge(bridgeDrawing);
+        if (currentPlayerPosition.equals(StepDirectionCommand.U.toString())) {
             updateBridge(UP_INDEX, drawingBridge);
             updateBridge(DOWN_INDEX, BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
             return;
@@ -63,6 +64,11 @@ public class CurrentBridgeStatusMaker {
 
         updateBridge(UP_INDEX, BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
         updateBridge(DOWN_INDEX, drawingBridge);
+    }
+
+    private String getPartOfBridge(BridgeDrawing bridgeDrawing) {
+        return String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(),
+                bridgeDrawing.toString());
     }
 
 }
