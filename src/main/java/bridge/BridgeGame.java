@@ -29,6 +29,16 @@ public class BridgeGame {
         return makeMap(mapType);
     }
 
+    public boolean isFinishWithAllCollect() {
+        if (cnt == bridge.size()) {
+            return true;
+        }
+        if (cnt != bridge.size()) {
+            return false;
+        }
+        throw new IllegalStateException("[ERROR] 다리 길이 또는 cnt 숫자가 잘못 되었습니다");
+    }
+
     private List<Stack> makeMap(MapType mapType) {
         List<Stack> stairs;
         bridgeMap.make(mapType);
