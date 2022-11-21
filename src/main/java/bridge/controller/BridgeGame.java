@@ -1,4 +1,7 @@
-package bridge.domain;
+package bridge.controller;
+
+import bridge.domain.Bridge;
+import bridge.domain.PositionTable;
 
 public class BridgeGame {
     private Bridge bridge;
