@@ -53,6 +53,9 @@ public class OutputView {
 
     /** 추가 출력 메세지
      */
+    public void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
+    }
     public void printStartGameMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
