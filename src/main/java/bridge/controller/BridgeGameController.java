@@ -11,7 +11,6 @@ public class BridgeGameController {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final BridgeCombinator bridgeCombinator = new BridgeCombinator();
-    private static BridgeCase bridgeCase;
 
     private static BridgeGame bridgeGame;
     private static int bridgeSize;
@@ -23,10 +22,11 @@ public class BridgeGameController {
         run();
     }
 
-    public void run() {
+    public void run() {   // ** refactoring
         bridgeInit();
+
         for (int index = 0; index < bridgeSize; index++) {
-            bridgeCase = bridgeGame.move(getBridgeToMove(), index);
+            BridgeCase bridgeCase = bridgeGame.move(getBridgeToMove(), index);
             sendBridgeShape(bridgeCase);
             if (!bridgeCase.isAnswer()) {
                 handlingWrongAnswer(); return;

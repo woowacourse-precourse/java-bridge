@@ -1,19 +1,11 @@
 package bridge;
 
-import bridge.constant.BridgeMakerComponent;
+import bridge.constant.BridgeDirection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- *
- * 요구사항
- * 1. 제공된 BridgeMaker 클래스를 활용해 구현해야 한다.
- * 2. BridgeMaker 의 필드(인스턴스 변수)를 변경할 수 없다.
- * 3. BridgeMaker 의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
- */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -32,10 +24,9 @@ public class BridgeMaker {
         for (int count = 0; count < size; count++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
 
-            Arrays.stream(BridgeMakerComponent.values())
-                    .filter(bridgeMakerComponent -> bridgeNumber  == bridgeMakerComponent.getRandomNumber())
-                    .forEach(bridgeMakerComponent -> bridge.add(bridgeMakerComponent.getMark()));
-            System.out.print(bridge.get(count) +" ");
+            Arrays.stream(BridgeDirection.values())
+                    .filter(bridgeDirection -> bridgeNumber  == bridgeDirection.getRandomNumber())
+                    .forEach(bridgeDirection -> bridge.add(bridgeDirection.getMark()));
         }
         return bridge;
     }
