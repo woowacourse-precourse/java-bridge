@@ -21,6 +21,12 @@ public class BridgeException {
         checkBridgeInputAlphabetOnlyEnglish(gameOption);
     }
 
+    public void checkBridgeLength(int number) {
+        if(number < 3 || number > 20) {
+            throw new IllegalArgumentException("3~20 사이의 숫자를 입력해주세요. ");
+        }
+    }
+
 
 
 
