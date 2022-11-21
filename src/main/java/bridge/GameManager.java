@@ -49,6 +49,7 @@ public class GameManager {
         if (result.get(0).contains(" X ") || result.get(1).contains(" X ")) {
             activation = isRetried();
             bridgeGame.retry();
+            round = 0;
             upTryCount();
         }
     }
