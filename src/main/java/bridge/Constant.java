@@ -9,8 +9,7 @@ public enum Constant {
     STOP_CONTROL_ASCII(81),
     UP_CONTROL(1),
     DOWN_CONTROL(0),
-    MOVE_DISTANCE(1)
-    ;
+    MOVE_DISTANCE(1);
     final int constant;
 
     public int getConstant() {

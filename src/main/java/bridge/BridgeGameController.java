@@ -7,14 +7,14 @@ public class BridgeGameController {
     private final BridgeGame bridgeGame;
     private final InputView inputView;
     private final OutputView outputView;
-    private int bridgeSize, attepmtCnt;
+    private int bridgeSize, attemptCnt;
     private final BridgeMaker bridgeMaker;
-    private boolean isSucess;
+    private boolean isSuccess;
     private List<String> playerBridgeMap, RandomBridgeMap;
 
     public BridgeGameController() {
         bridgeGame = new BridgeGame();
-        inputView = new InputView(new CheckNum());
+        inputView = new InputView();
         playerBridgeMap = new ArrayList<>();
         RandomBridgeMap = new ArrayList<>();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -22,7 +22,7 @@ public class BridgeGameController {
     }
 
     public void start() {
-        attepmtCnt = 0;
+        attemptCnt = 0;
         bridgeSize = inputView.readBridgeSize();
 
         RandomBridgeMap = bridgeMaker.makeBridge(bridgeSize);
@@ -31,12 +31,12 @@ public class BridgeGameController {
 
     private void checkAllPass(int idx, int bridgeSize) {
         if (idx != bridgeSize) {
-            isSucess = false;
+            isSuccess = false;
             showRestart();
         }
     }
 
-    private boolean checkSameInBridgeAlogorithm(int idx, String playerStep) {
+    private boolean checkSameInBridgeAlgorithm(int idx, String playerStep) {
         return !bridgeGame.checkSame(RandomBridgeMap, idx, playerStep);
     }
 
@@ -48,8 +48,8 @@ public class BridgeGameController {
     }
 
     private void bridgeAlgorithmSetting() {
-        isSucess = true;
-        attepmtCnt += 1;
+        isSuccess = true;
+        attemptCnt += 1;
     }
 
     public void constructBridgeAlgorithm() {
@@ -57,7 +57,7 @@ public class BridgeGameController {
         int idx;
         for (idx = 0; idx < bridgeSize; idx += Constant.MOVE_DISTANCE.getConstant()) {
             String playerStep = bridgeAlgorithm(idx);
-            if (checkSameInBridgeAlogorithm(idx, playerStep)) {
+            if (checkSameInBridgeAlgorithm(idx, playerStep)) {
                 break;
             }
         }
@@ -78,6 +78,6 @@ public class BridgeGameController {
     }
 
     public void showResult() {
-        outputView.printResult(playerBridgeMap, isSucess, attepmtCnt);
+        outputView.printResult(playerBridgeMap, isSuccess, attemptCnt);
     }
 }

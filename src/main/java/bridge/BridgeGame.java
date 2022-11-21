@@ -8,10 +8,7 @@ import java.util.List;
 public class BridgeGame {
 
     public boolean checkSame(List<String> RandomBridgeMap, int idx, String playrerStep) {
-        if (RandomBridgeMap.get(idx).equals(playrerStep)) {
-            return true;
-        }
-        return false;
+        return RandomBridgeMap.get(idx).equals(playrerStep);
     }
 
     public void moveWrongWay(List<String> playerBridgeMap, String OpenWay) {
@@ -24,7 +21,7 @@ public class BridgeGame {
     }
 
     public void move(List<String> playerBridgeMap, List<String> RandomBridgeMap, int idx, String playerStep) {
-        if (checkSame(RandomBridgeMap,idx, playerStep)) {
+        if (checkSame(RandomBridgeMap, idx, playerStep)) {
             playerBridgeMap.add(RandomBridgeMap.get(idx));
             return;
         }
@@ -32,9 +29,6 @@ public class BridgeGame {
     }
 
     public boolean retry(String _input) {
-        if (_input.equals("R")) {
-            return true;
-        }
-        return false;
+        return _input.equals("R");
     }
 }
