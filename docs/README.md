@@ -2,7 +2,7 @@
 
 ### 다리 건너기
 `Application.java`   
-- [ ] 다리 건너기 게임 실행  
+- [x] 다리 건너기 게임 실행  
 
 `InputView.java`    
 - [x] 입력 처리 기능 수행  
