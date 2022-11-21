@@ -55,6 +55,21 @@ public class InputView {
         return moveBridgePosition;
     }
 
+    private void validateMoving(String moveBridgePosition){
+        try {
+            checkMoving(moveBridgePosition);
+        }catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] ");
+            readMoving();
+        }
+    }
+
+    private void checkMoving(String moveBridgePosition) {
+        if (moveBridgePosition != "U" && moveBridgePosition != "D") {
+            throw new IllegalArgumentException();
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
