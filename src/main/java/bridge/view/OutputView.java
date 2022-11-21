@@ -13,6 +13,7 @@ public class OutputView {
         for (List<String> map : maps) {
             System.out.println(MAP_OPEN_MARK + String.join(MAP_DELIMITER, map) + MAP_CLOSE_MARK);
         }
+        System.out.println();
     }
 
     public static void printResult(List<List<String>> maps, String isSuccess, int tryCount) {
