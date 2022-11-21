@@ -49,8 +49,8 @@ public class BridgeGame {
     }
 
     public List<List<String>> getGameMap() {
-        List<String> upMap = makeEachBridge("U", playerMove, answerMove);
-        List<String> downMap = makeEachBridge("D", playerMove, answerMove);
+        List<String> upMap = makeEachBridge(Command.UP.getCommand(), playerMove, answerMove);
+        List<String> downMap = makeEachBridge(Command.DOWN.getCommand(), playerMove, answerMove);
 
         return new ArrayList<>(Arrays.asList(upMap, downMap));
     }

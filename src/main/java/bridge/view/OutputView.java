@@ -29,14 +29,6 @@ public class OutputView {
         }
     }
 
-    private String toBridgeFormat(List<String> bridge) {
-        StringJoiner stringJoiner = new StringJoiner(FORMAT_MAP_DIVISION, FORMAT_MAP_START, FORMAT_MAP_END);
-        for (String step : bridge) {
-            stringJoiner.add(step);
-        }
-        return stringJoiner.toString();
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -49,5 +41,13 @@ public class OutputView {
         }
         System.out.printf(MESSAGE_SUCCESS, status.getDetail());
         System.out.printf(MESSAGE_COUNT, gameCount);
+    }
+
+    private String toBridgeFormat(List<String> bridge) {
+        StringJoiner stringJoiner = new StringJoiner(FORMAT_MAP_DIVISION, FORMAT_MAP_START, FORMAT_MAP_END);
+        for (String step : bridge) {
+            stringJoiner.add(step);
+        }
+        return stringJoiner.toString();
     }
 }

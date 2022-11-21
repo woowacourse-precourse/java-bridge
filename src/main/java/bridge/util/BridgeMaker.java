@@ -1,6 +1,7 @@
 package bridge.util;
 
 import bridge.model.Bridge;
+import bridge.model.Command;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -28,8 +29,8 @@ public class BridgeMaker {
 
     private static String converStage(int stageStatus) {
         if (stageStatus == 0) {
-            return "D";
+            return Command.DOWN.getCommand();
         }
-        return "U";
+        return Command.UP.getCommand();
     }
 }
