@@ -1,9 +1,8 @@
 package bridge.controller;
 
-import bridge.constant.GameState;
-import bridge.domain.JudgeDestination;
+import bridge.domain.BridgeDestination;
+import bridge.domain.BridgeProcess;
 import bridge.domain.BridgePrinting;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,19 +11,10 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-
-    private List<String> moving = new ArrayList<>();
-    private List<Boolean> upState = new ArrayList<>();
-    private List<Boolean> downState = new ArrayList<>();
-    private OutputView outputView = new OutputView();
-
-    private InputView inputView = new InputView();
-
-    GameState GameState = new GameState();
-    JudgeDestination judgeDestination = new JudgeDestination();
+    
+    private BridgeProcess bridgeProcess = new BridgeProcess();
+    private BridgeDestination bridgeDestination = new BridgeDestination();
     private int gameCount = 1;
-    private static int idx = 0;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -33,62 +23,25 @@ public class BridgeGame {
      */
 
     public void start(List<String> bridgeState, int bridgeSize) {
-        move(bridgeState, bridgeSize);
-        afterMove(bridgeState, bridgeSize);
+        int moveIndex = move(bridgeState, bridgeSize);
+        afterMove(bridgeState, bridgeSize,moveIndex);
     }
 
-    public void move(List<String> bridgeState, int bridgeSize) {
-        clearInfo();
-        while (idx < bridgeSize && !BridgePrinting.isMoveStop()) {
-            System.out.println("bridgeState = " + bridgeState); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
-            moving.add(inputView.readMoving());
-            setPrintState(upState, downState, convertNowIndex(bridgeState.get(idx)));
-            makeUserBridge(upState, downState, moving.get(idx));
-            idx++;
-        }
+    public int move(List<String> bridgeState, int bridgeSize) {
+        int idx = bridgeProcess.moveProcess(bridgeState, bridgeSize);
+        return idx;
     }
 
-    public void clearInfo() {
-        moving.clear();
-        upState.clear();
-        downState.clear();
-        idx = 0;
-        BridgePrinting.clearUpDownLocation();
-    }
 
-    private void makeUserBridge(List<Boolean> upState  , List<Boolean> downState,
-        String nowIndex) {
-        BridgePrinting bridgePrinting = new BridgePrinting(upState, downState, convertNowIndex(nowIndex));
-        bridgePrinting.makeList();
-    }
-
-    private int convertNowIndex(String nowIndex) {
-        if (nowIndex.equals(GameState.UP)) {
-            return GameState.UP_STATEMENT;
-        }
-        return GameState.DOWN_STATEMENT;
-    }
-
-    private void setPrintState(List<Boolean> upState, List<Boolean> downState, int upDown) {
-        if (upDown == GameState.UP_STATEMENT) {
-            upState.add(true);
-            downState.add(false);
-        }
-        if (upDown == GameState.DOWN_STATEMENT) {
-            upState.add(false);
-            downState.add(true);
-        }
-    }
-
-    public void afterMove(List<String> bridgeState, int bridgeSize) {
-        if (isReachFinal(bridgeSize)) {
+    public void afterMove(List<String> bridgeState, int bridgeSize, int index) {
+        if (bridgeDestination.isReachFinal(bridgeSize, index, gameCount)) {
             return;
         }
-        if (judgementRetry()) {
+        if (bridgeDestination.judgeRestartOrOver()) {
             retry(bridgeSize, bridgeState);
             return;
         }
-        setQuit(bridgeSize);
+        bridgeDestination.setQuit(bridgeSize, index, gameCount);
     }
 
 
@@ -105,28 +58,5 @@ public class BridgeGame {
         return;
     }
 
-
-    private boolean isReachFinal(int bridgeSize) {
-        if (!BridgePrinting.isMoveStop()) {
-            setQuit(bridgeSize);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean judgementRetry() {
-        return judgeDestination.judgeRestartOrOver(inputView.readGameCommand());
-    }
-
-    private void setQuit(int bridgeSize) {
-        final int final_idx=idx-1;
-        int nowIndex = convertNowIndex(moving.get(final_idx));
-        BridgePrinting resultBridgePrinting = new BridgePrinting(upState, downState, nowIndex);
-        if (bridgeSize == idx && !BridgePrinting.isMoveStop()) {
-            outputView.printResult(gameCount, resultBridgePrinting, true);
-            return;
-        }
-        outputView.printResult(gameCount, resultBridgePrinting, false);
-    }
 
 }
