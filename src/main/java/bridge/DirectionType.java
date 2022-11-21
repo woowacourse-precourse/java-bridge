@@ -5,16 +5,26 @@ public enum DirectionType {
     DOWN("D",0);
 
     private int num;
-    private String  str;
+    private String str;
 
     DirectionType(String str, int num){
         this.str= str;
         this.num =num;
     }
-    public int findByStr(String str){
+
+    public int getNum(){
         return this.num;
     }
-    public String findByNum(int num){
+    public String getStr(){
         return this.str;
     }
+
+    public static DirectionType findByNum (int num){
+        for(DirectionType v : values()){
+            if( v.getNum() == num) return v;
+        }
+        return null;
+    }
+
+
 }

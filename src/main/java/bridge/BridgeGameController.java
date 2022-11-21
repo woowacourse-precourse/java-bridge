@@ -10,7 +10,7 @@ public class BridgeGameController {
 
     private final BridgeGame bridgeGame;
 
-    BridgeGameController(BridgeGame bridgeGame) {this.bridgeGame = bridgeGame;}
+    BridgeGameController(BridgeGame bridgeGame) { this.bridgeGame = bridgeGame; }
 
     public void setBridge() {
         bridgeGame.setBridge(readBridgeSize());

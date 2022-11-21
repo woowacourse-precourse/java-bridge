@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.DirectionType.*;
 import static bridge.Validator.validateBridgeRandomNum;
 
 import java.util.ArrayList;
@@ -25,8 +26,7 @@ public class BridgeMaker {
         for (int i = 0 ; i < size ; i++) {
             int num = bridgeRandomNumberGenerator.generate();
             validateBridgeRandomNum(num);
-            if (num == 0) { bridge.add("D"); continue;}
-            bridge.add("U");
+            bridge.add(DirectionType.findByNum(num).getStr());
         }
         return bridge;
     }
