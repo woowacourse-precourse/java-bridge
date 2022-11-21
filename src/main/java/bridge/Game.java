@@ -28,8 +28,9 @@ public class Game {
                     break;
                 }
                 bridgeGame.retry();
+                bridgeGame.setGameCount();
             }
         }
-        outputView.printResult(userBridge,answerBridge,1);
+        outputView.printResult(userBridge,answerBridge,bridgeGame.getGameCount());
     }
 }
