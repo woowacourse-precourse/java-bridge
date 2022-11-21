@@ -23,6 +23,9 @@ public class OutputView {
         System.out.println(CLOSE_BRACKET.get());
     }
 
-    public void printResult() {
+    public void printResult(List<String> upSideProgress, List<String> downSideProgress) {
+        System.out.println(LINE_BREAK.get() + MSG_OUTPUT_END_GAME.get());
+        printMap(upSideProgress);
+        printMap(downSideProgress);
     }
 }
