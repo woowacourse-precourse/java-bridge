@@ -7,6 +7,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -22,7 +23,7 @@ public class Controller {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView = new OutputView();
     }
-    
+
     public void run(){
         inputView.printGameStartMessage();
 
@@ -34,10 +35,20 @@ public class Controller {
 
         bridgeGame = new BridgeGame(bridge, bridgeLen);
         //게임 시작
-        boolean gameContinue;
-        do{
-            gameContinue = bridgeGame.play();
-        }while(gameContinue);
+
+        boolean gameContinue = true;
+        while(gameContinue){
+            String position = inputView.readMoving();
+            boolean gameStatus = bridgeGame.gamePlayOnce(position);
+            if(!gameStatus){
+                //실패한 맵 표시
+                String gameCommand = inputView.readGameCommand();
+                gameContinue = bridgeGame.retry(gameCommand);
+                continue;
+            }
+            //성공한 맵 표시
+            gameContinue = bridgeGame.move();
+        }
 
         //결과 출력
         outputView.printResult(bridgeGame.gameSuccess, bridgeGame.gameTryCount);
