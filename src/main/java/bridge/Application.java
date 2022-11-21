@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.controller.BridgeGame;
+import bridge.model.SuccessOrFail;
 import bridge.util.Message;
 import bridge.view.OutputView;
 
@@ -10,7 +11,7 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.createBridge();
         int count = 0;
-        boolean success = false;
+        boolean complete = false;
         do {
             int position = 0;
             count++;
@@ -18,15 +19,10 @@ public class Application {
                 position++;
             }
             if (bridgeGame.complete(position)) {
-                success = true;
+                complete = true;
                 break;
             }
         } while (bridgeGame.retry());
-        if (success) {
-            bridgeGame.gameExit(Message.SUCCESS_MESSAGE, count);
-        }
-        if (!success) {
-            bridgeGame.gameExit(Message.FAIL_MESSAGE, count);
-        }
+        bridgeGame.gameExit(SuccessOrFail.getSuccessOrFailMessage(complete), count);
     }
 }
