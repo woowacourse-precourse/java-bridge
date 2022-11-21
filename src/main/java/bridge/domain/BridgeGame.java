@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ public class BridgeGame {
     private final String REGAME = "R";
 
 
-    BridgeGame() {
+    public BridgeGame() {
         upperBridge = new ArrayList<>();
         lowerBridge = new ArrayList<>();
     }
@@ -32,7 +34,7 @@ public class BridgeGame {
     public void move(List<String> rightBridgeWay, String inputMoveValue) {
         String answer = rightBridgeWay.get(bridgeIndex);
 
-        makeProgressBridge(answer,inputMoveValue);
+        makeProgressBridge(answer, inputMoveValue);
         bridgeIndex++;
     }
 

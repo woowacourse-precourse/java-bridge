@@ -1,8 +1,8 @@
-package bridge;
+package bridge.domain;
 
 public enum Direction {
-    UP(1,"U"),
-    DOWN(0,"D");
+    UP(1, "U"),
+    DOWN(0, "D");
 
     private final int number;
 

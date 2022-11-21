@@ -1,4 +1,10 @@
-package bridge;
+package bridge.controller;
+
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -12,7 +18,7 @@ public class GameController {
         List<String> rightBridgeWay = bridgeMaker.makeBridge(inputBridgeSize());
 
         BridgeGame bridgeGame = new BridgeGame();
-        makeUpperAndLowerBridge(rightBridgeWay,bridgeGame);
+        makeUpperAndLowerBridge(rightBridgeWay, bridgeGame);
 
         printResult(bridgeGame);
     }
@@ -25,9 +31,9 @@ public class GameController {
         return InputView.readBridgeSize();
     }
 
-    public void makeUpperAndLowerBridge (List<String> rightBridgeWay, BridgeGame bridgeGame) {
+    public void makeUpperAndLowerBridge(List<String> rightBridgeWay, BridgeGame bridgeGame) {
         boolean keepGoing = true;
-        while(keepGoing && bridgeGame.bridgeIndex < rightBridgeWay.size()) {
+        while (keepGoing && bridgeGame.bridgeIndex < rightBridgeWay.size()) {
             String inputMoveValue = readMoving();
             bridgeGame.move(rightBridgeWay, inputMoveValue);
             printMap(bridgeGame.upperBridge, bridgeGame.lowerBridge);

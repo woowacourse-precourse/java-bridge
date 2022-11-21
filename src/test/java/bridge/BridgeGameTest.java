@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class BridgeGameTest {
     private List<String> rightBridgeWay;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         bridgeGame = new BridgeGame();
         rightBridgeWay = Arrays.asList("D", "D", "U");
     }
@@ -25,7 +26,7 @@ class BridgeGameTest {
         String movingValue = "D";
 
         List<String> upperBridgeTest = bridgeGame.makeUpperBridge(answer, movingValue);
-        assertEquals(1,upperBridgeTest.size());
+        assertEquals(1, upperBridgeTest.size());
     }
 
     @Test
@@ -34,12 +35,12 @@ class BridgeGameTest {
         String movingValue = "D";
 
         List<String> lowerBridgeTest = bridgeGame.makeLowerBridge(answer, movingValue);
-        assertEquals(1,lowerBridgeTest.size());
+        assertEquals(1, lowerBridgeTest.size());
     }
 
     @Test
     void 입력값에_따른_오엑스_테스트() {
-        String answer = bridgeGame.compareValue("D","D");
+        String answer = bridgeGame.compareValue("D", "D");
         assertThat(answer).contains("O");
     }
 

@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +30,8 @@ public class BridgeMaker {
     }
 
     public String changeNumber(int randomNumber) {
-
         String rightWay = null;
+
         if (randomNumber == Direction.UP.getNumber()) {
             rightWay = Direction.UP.getWord();
         }
