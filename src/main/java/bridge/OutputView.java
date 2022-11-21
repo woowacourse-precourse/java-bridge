@@ -75,7 +75,8 @@ public class OutputView {
     }
 
     public void printGameSuccess(boolean result) {
-        System.out.println("\n" + String.format(GAME_SUCCESS.getMessage(), BridgeCase.findByResult(result).getMessage()));
+        System.out.println(
+                "\n" + String.format(GAME_SUCCESS.getMessage(), BridgeCase.findByResult(result).getMessage()));
     }
 
     public void printGameTry(BridgeGame bridgeGame) {

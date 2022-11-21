@@ -70,10 +70,10 @@ public class Checker {
     }
 
     public boolean checkGameSuccess(BridgeGame bridgeGame) {
-        boolean success=false;
-        success=bridgeGame.getIndex()==bridgeGame.getBridge().size();
-        for(MoveCase result:bridgeGame.getResults()){
-            success=success&&result.isResult();
+        boolean success = false;
+        success = bridgeGame.getIndex() == bridgeGame.getBridge().size();
+        for (MoveCase result : bridgeGame.getResults()) {
+            success = success && result.isResult();
         }
         return success;
     }

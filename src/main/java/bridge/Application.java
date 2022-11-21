@@ -70,7 +70,7 @@ public class Application {
     private String inputRetry() {
         outputView.printSelectRetry();
         String gameCommand = null;
-        while (gameCommand==null) {
+        while (gameCommand == null) {
             try {
                 gameCommand = inputView.readGameCommand();
             } catch (IllegalArgumentException illegalArgumentException) {
