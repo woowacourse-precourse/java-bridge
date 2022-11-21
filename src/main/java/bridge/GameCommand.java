@@ -20,7 +20,7 @@ public enum GameCommand {
     throw new InvalidGameCommandException();
   }
 
-  public String getCommand(){
+  public String getCommand() {
     return this.command;
   }
 }

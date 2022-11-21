@@ -35,7 +35,7 @@ public class User {
     return this.moveStatus;
   }
 
-  public int getTryCount(){
+  public int getTryCount() {
     return this.tryCount;
   }
 }

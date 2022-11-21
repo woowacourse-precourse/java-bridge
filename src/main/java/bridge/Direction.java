@@ -20,7 +20,7 @@ public enum Direction {
     throw new InvalidDirectionException();
   }
 
-  public String getDirection(){
+  public String getDirection() {
     return dir;
   }
 }

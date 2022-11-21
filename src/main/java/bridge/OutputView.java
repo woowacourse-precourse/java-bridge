@@ -1,8 +1,8 @@
 package bridge;
 
-import java.util.List;
-
 import static bridge.GameMessage.*;
+
+import java.util.List;
 
 /** 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다. */
 public class OutputView {
@@ -41,16 +41,17 @@ public class OutputView {
     System.out.println(CHECK_RETRY_INPUT_MESSAGE.getMessage());
   }
 
-  public static void printGameSuccessOrFailure(boolean isSuccess){
-    System.out.println(GAME_SUCCESS_OR_FAILURE_MESSAGE.getMessage() + getSuccessOrFailure(isSuccess));
+  public static void printGameSuccessOrFailure(boolean isSuccess) {
+    System.out.println(
+        GAME_SUCCESS_OR_FAILURE_MESSAGE.getMessage() + getSuccessOrFailure(isSuccess));
   }
 
-  public static void printTotalTryCount(int count){
+  public static void printTotalTryCount(int count) {
     System.out.println(TOTAL_TRY_COUNT_MESSAGE.getMessage() + count);
   }
 
-  private static String getSuccessOrFailure(boolean isSuccess){
-    if(isSuccess) return GAME_SUCCESS_STRING;
+  private static String getSuccessOrFailure(boolean isSuccess) {
+    if (isSuccess) return GAME_SUCCESS_STRING;
     return GAME_FAIL_STRING;
   }
 

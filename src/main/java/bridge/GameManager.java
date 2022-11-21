@@ -33,7 +33,7 @@ public class GameManager {
     printTotalTryCount(user.getTryCount());
   }
 
-  private int getLengthInput(){
+  private int getLengthInput() {
     printLengthInputMessage();
     return readBridgeSize();
   }
