@@ -1,5 +1,6 @@
-package bridge;
+package bridge.domain;
 
+import bridge.domain.BridgeGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
