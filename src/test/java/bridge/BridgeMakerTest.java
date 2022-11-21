@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeMakerTest {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator= new BridgeRandomNumberGenerator();;
+    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     List<String> bridge;
 
