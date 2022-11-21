@@ -1,28 +1,65 @@
 package bridge.domain;
 
-import bridge.util.BridgeNumberGenerator;
 import bridge.util.BridgeRandomNumberGenerator;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- * InputView, OutputView를 사용하지 않는다.
- */
+import java.util.List;
+
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    ViewController viewController;
+    BridgeMaker bridgeMaker;
+    List<String> bridge;
+    int count;
+    int bridgeIndex;
+    boolean isSuccess;
 
+    public void init(){
+        viewController = new ViewController();
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        count = 1;
+        bridgeIndex = 0;
+        isSuccess = true;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void run(){
+        makeBridge();
+        do{
+            int result = move(bridgeIndex);
+            if (result == 1)
+                bridgeIndex++;
+            if (result == 0)
+                retry();
+        }while(isSuccess ==true && bridgeIndex < bridge.size());
+        viewController.printResult(isSuccess, count);
+    }
+
+    public void makeBridge(){
+        init();
+        viewController.printBeginning();
+        int bridgeSize = viewController.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    public int move(int index) {
+        String answer = viewController.readMoving();
+        if(bridge.get(index).equals(answer)){
+            viewController.printMap(bridge, index+1, true);
+            return 1;
+        }
+        if(!bridge.get(index).equals(answer))
+            viewController.printMap(bridge, index+1, false);
+        return 0;
+    }
+
     public void retry() {
+        String command = viewController.readGameCommand();
+        if(command.equals("R")){
+            bridgeIndex = 0;
+            count++;
+        }
+        if(command.equals("Q")){
+            isSuccess = false;
+        }
     }
+
 }
