@@ -19,7 +19,10 @@ public class GamePlayer {
     }
     private void crossingBridge() {
         for(String space: this.bridge) {
-            this.bridgeGame.move(inputView.readMoving(), space);
+            if(this.bridgeGame.move(inputView.readMoving(), space)) {
+                // 성공
+            }
+            //실패
         }
     }
 }
