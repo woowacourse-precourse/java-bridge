@@ -107,4 +107,8 @@ public class OutputView {
     public void printNewLine() {
         System.out.println();
     }
+
+    public void printException(String message) {
+        System.out.println(message);
+    }
 }
