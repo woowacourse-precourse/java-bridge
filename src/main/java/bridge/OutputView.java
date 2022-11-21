@@ -35,6 +35,22 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + totalTryCount);
     }
 
+    public void printGameStartMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
+    public void printReadBridgeSizeMessage() {
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    public void printReadMovingMessage() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public void printReadGameCommandMessage() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
     private void printBridgeResult(List<String> bridgeResult) {
         System.out.println(String.join("|", bridgeResult));
     }

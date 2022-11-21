@@ -104,15 +104,15 @@ BUILD SUCCESSFUL in 0s
         - [x] public String readMoving() throws IllegalArgumentException
         - [x] public String readGameCommand() throws IllegalArgumentException
         - [x] private boolean isDigit(String size)
-- [ ] **CLASS5. OutputView**
+- [x] **CLASS5. OutputView**
     - **Class Methods**
         - [x] public void printMap(List<String> bridge, int currentUserPosition, boolean isFail)
         - [x] public void printResult(List<String> bridge, int currentUserPosition, boolean isFail)
         - [x] public void printResultMessage(boolean gameWinStatus, int totalTryCount)
-        - [ ] public void printGameStartMessage()
-        - [ ] public void printReadBridgeSizeMessage()
-        - [ ] public void printReadMovingMessage()
-        - [ ] public void printReadGameCommandMessage()
+        - [x] public void printGameStartMessage()
+        - [x] public void printReadBridgeSizeMessage()
+        - [x] public void printReadMovingMessage()
+        - [x] public void printReadGameCommandMessage()
         - [x] private void printBridgeResult(List<String> bridgeResult)
         - [x] private List<String> getUpperBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail)
         - [x] private List<String> getLowerBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail)
