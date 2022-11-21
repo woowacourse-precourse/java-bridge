@@ -25,13 +25,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        String string = Console.readLine();
-        string = string.toUpperCase();
+    public Integer readMoving() {
+        Integer result = 0;
+        String string = Console.readLine().toUpperCase();
         if (!(string.equals("U") || string.equals("D"))) {
-            throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다.");
-        }
-        return string;
+            throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다."); }
+        if (string.equals("U")) { return result = 1; }
+        if (string.equals("D")) { return result = 0; }
+        return result;
     }
 
     /**
