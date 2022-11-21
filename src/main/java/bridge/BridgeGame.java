@@ -23,20 +23,16 @@ public class BridgeGame {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public boolean move(String sideToMove) {
-        boolean movable = bridge.isAvailableToMove(sideToMove, player.getNextPosition());
-        if (movable) {
-            player.move();
-        }
-        return movable;
+    public void move(String sideToMove) {
+        player.move(sideToMove);
+    }
+
+    public boolean isPlayerInRightSide() {
+        return bridge.isAvailableToMove(player.getLastMoving(), player.getCurrentPosition());
     }
 
     private void addTrial() {
         this.trial++;
-    }
-
-    private boolean canMoveTo(String squareToMove) {
-        return bridge.isAvailableToMove(squareToMove, player.getNextPosition());
     }
 
     public GameStatus retry(String gameCommand) {
@@ -47,7 +43,7 @@ public class BridgeGame {
         return GameStatus.FAILURE;
     }
 
-    public GameStatus getGameStatus() {
+    public GameStatus isSuccess() {
         if (bridge.isLastPosition(player.getCurrentPosition())) {
             return GameStatus.SUCCESS;
         }

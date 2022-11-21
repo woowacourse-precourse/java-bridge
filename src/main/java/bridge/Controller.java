@@ -1,9 +1,7 @@
 package bridge;
 
-import enumCollections.AvailableInput;
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
-import enumCollections.Side;
 
 public class Controller {
     OutputView outputView;
@@ -19,17 +17,12 @@ public class Controller {
         play(bridgeGame, GameStatus.CONTINUE);
     }
 
-    private int getBridgeSize() {
-        new OutputView().printGuideMessage(GuideMessage.START);
-        return this.inputView.readBridgeSize();
-    }
-
     public GameStatus play(BridgeGame bridgeGame, GameStatus gameStatus) {
         Map map = new Map();
         while (gameStatus == GameStatus.CONTINUE) {
-            boolean moved = movePlayer(bridgeGame);
-            map.add(bridgeGame.getCurrentAvailableSide(), moved);
-            gameStatus = getGameStatus(bridgeGame, moved);
+            movePlayer(bridgeGame);
+            map.add(bridgeGame.getCurrentAvailableSide(), bridgeGame.isPlayerInRightSide());
+            gameStatus = getGameStatus(bridgeGame, bridgeGame.isPlayerInRightSide());
         }
         getResult(gameStatus, bridgeGame, map);
         return gameStatus;
@@ -37,19 +30,24 @@ public class Controller {
 
     private boolean movePlayer(BridgeGame bridgeGame) {
         outputView.printGuideMessage(GuideMessage.GET_MOVING);
-        return bridgeGame.move(inputView.readMoving());
+        bridgeGame.move(inputView.readMoving());
     }
 
     private GameStatus getGameStatus(BridgeGame bridgeGame, boolean moved) {
         if (!moved) {
             return askRestartGame(bridgeGame);
         }
-        return bridgeGame.getGameStatus();
+        return bridgeGame.isSuccess();
     }
 
     private GameStatus askRestartGame(BridgeGame bridgeGame) {
         outputView.printAskGameCommand();
         return bridgeGame.retry(inputView.readGameCommand());
+    }
+
+    private int getBridgeSize() {
+        new OutputView().printGuideMessage(GuideMessage.START);
+        return this.inputView.readBridgeSize();
     }
 
     private void getResult(GameStatus gameResult, BridgeGame bridgeGame, Map map) {
@@ -59,10 +57,5 @@ public class Controller {
         outputView.printNewline();
         outputView.printResult(gameResult);
         outputView.printGuideMessage(GuideMessage.GAME_TRIAL, bridgeGame.getTrial());
-    }
-
-    private void addMap(Map map, Side availableSide, GameStatus gameStatus) {
-        map.add(availableSide, false);
-        outputView.printMap(map);
     }
 }
