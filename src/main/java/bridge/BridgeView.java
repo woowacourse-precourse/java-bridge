@@ -16,7 +16,9 @@ public class BridgeView {
 
     public int inputBridgeSizeMessage() {
         outputView.inputBridgeSizeMessage();
-        return inputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
+        outputView.printNewLine();
+        return bridgeSize;
     }
 
     public String inputMoveCommandMessage() {
@@ -27,5 +29,9 @@ public class BridgeView {
     public String inputRetryCommandMessage() {
         outputView.inputRetryCommandMessage();
         return inputView.readGameCommand();
+    }
+
+    public void printMoveResult(BridgeResult bridgeResult) {
+        outputView.printMap(bridgeResult.getUpLine(), bridgeResult.getDownLine());
     }
 }
