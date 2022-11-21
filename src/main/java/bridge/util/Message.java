@@ -8,7 +8,8 @@ public enum Message {
     MOVING_CHOOSE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
     ERROR_MOVE("[ERROR] U 혹은 D만 입력가능합니다. "),
     ERROR_REGAME("[ERROR] R 혹은 Q만 입력가능합니다. "),
-    REGAME("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    REGAME("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
+    FINAL_RESULT("최종 게임 결과");
 
     private final String message;
 
