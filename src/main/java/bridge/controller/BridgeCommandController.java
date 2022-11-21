@@ -30,7 +30,7 @@ public class BridgeCommandController {
 	}
 
 	private boolean isNotMove(MoveCommandDto moveCommandDto) {
-		return !moveCommandDto.getMoveFlag();
+		return !moveCommandDto.isAbleToMove();
 	}
 
 	private String getInputCommand() {
@@ -72,6 +72,6 @@ public class BridgeCommandController {
 	}
 
 	private boolean isQuit(String gameCommand, MoveCommandDto moveCommandDto) {
-		return CommandChecker.isEqualToQuit(gameCommand) || moveCommandDto.getGameClear();
+		return CommandChecker.isEqualToQuit(gameCommand) || moveCommandDto.isGameClear();
 	}
 }

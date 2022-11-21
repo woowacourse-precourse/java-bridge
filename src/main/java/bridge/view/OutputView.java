@@ -98,7 +98,7 @@ public class OutputView {
 	private String buildUpperProgression(int index) {
 		MoveCommandDto move = moveHistory.get(index);
 		String moveCommand = move.getMoveCommand();
-		boolean moveFlag = move.getMoveFlag();
+		boolean moveFlag = move.isAbleToMove();
 		return selectUpMove(moveCommand, moveFlag);
 	}
 
@@ -114,7 +114,7 @@ public class OutputView {
 	private String buildLowerProgression(int index) {
 		MoveCommandDto move = moveHistory.get(index);
 		String moveCommand = move.getMoveCommand();
-		boolean moveFlag = move.getMoveFlag();
+		boolean moveFlag = move.isAbleToMove();
 		return selectDownMove(moveCommand, moveFlag);
 	}
 

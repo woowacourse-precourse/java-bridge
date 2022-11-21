@@ -23,7 +23,7 @@ public class BridgeGameTest {
 		System.out.println(bridgeGame + "\n");
 
 		Assertions.assertThat(moveCommandDto.getMoveCommand()).isEqualTo("U");
-		Assertions.assertThat(moveCommandDto.getMoveFlag()).isInstanceOf(Boolean.class);
+		Assertions.assertThat(moveCommandDto.isAbleToMove()).isInstanceOf(Boolean.class);
 	}
 
 	@DisplayName("게임 재시작 테스트") @Test public void retryTest1() {
@@ -51,7 +51,7 @@ public class BridgeGameTest {
 
 		for (int i = 0; i < 3; i++) {
 			moveCommandDto = bridgeGame.move("U");
-			if (!moveCommandDto.getMoveFlag()) {
+			if (!moveCommandDto.isAbleToMove()) {
 				moveCommandDto = bridgeGame.move("D");
 			}
 		}
@@ -59,9 +59,9 @@ public class BridgeGameTest {
 		System.out.println(bridgeGame);
 
 		Assertions.assertThat(moveCommandDto.getMoveCommand()).isNotEqualTo("");
-		Assertions.assertThat(moveCommandDto.getMoveFlag()).isNotEqualTo(false);
+		Assertions.assertThat(moveCommandDto.isAbleToMove()).isNotEqualTo(false);
 		Assertions.assertThat(moveCommandDto.getMoveCommand()).containsAnyOf("U", "D");
-		Assertions.assertThat(moveCommandDto.getGameClear()).isTrue();
+		Assertions.assertThat(moveCommandDto.isGameClear()).isTrue();
 	}
 
 	@DisplayName("게임 클리어 실패 테스트") @Test public void clearTest2() {
@@ -77,8 +77,8 @@ public class BridgeGameTest {
 		System.out.println(bridgeGame);
 
 		Assertions.assertThat(moveCommandDto.getMoveCommand()).isNotEqualTo("");
-		Assertions.assertThat(moveCommandDto.getMoveFlag()).isEqualTo(false);
+		Assertions.assertThat(moveCommandDto.isAbleToMove()).isEqualTo(false);
 		Assertions.assertThat(moveCommandDto.getMoveCommand()).containsAnyOf("U", "D");
-		Assertions.assertThat(moveCommandDto.getGameClear()).isFalse();
+		Assertions.assertThat(moveCommandDto.isGameClear()).isFalse();
 	}
 }

@@ -52,7 +52,7 @@ public class BridgeMoveController {
 	}
 
 	private boolean isContinueMove(MoveCommandDto moveCommandDto) {
-		return moveCommandDto.getMoveFlag() && !moveCommandDto.getGameClear();
+		return moveCommandDto.isAbleToMove() && !moveCommandDto.isGameClear();
 	}
 
 	private MoveCommandDto readUserInput() {

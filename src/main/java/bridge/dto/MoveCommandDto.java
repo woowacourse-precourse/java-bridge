@@ -2,24 +2,24 @@ package bridge.dto;
 
 public class MoveCommandDto {
 	private final String moveCommand;
-	private final boolean moveFlag;
-	private final boolean gameClear;
+	private final boolean isAbleToMove;
+	private final boolean isGameClear;
 
-	public MoveCommandDto(String moveCommand, boolean moveFlag, boolean gameClear) {
+	public MoveCommandDto(String moveCommand, boolean isAbleToMove, boolean isGameClear) {
 		this.moveCommand = moveCommand;
-		this.moveFlag = moveFlag;
-		this.gameClear = gameClear;
+		this.isAbleToMove = isAbleToMove;
+		this.isGameClear = isGameClear;
 	}
 
 	public String getMoveCommand() {
 		return moveCommand;
 	}
 
-	public boolean getMoveFlag() {
-		return moveFlag;
+	public boolean isAbleToMove() {
+		return isAbleToMove;
 	}
 
-	public boolean getGameClear() {
-		return gameClear;
+	public boolean isGameClear() {
+		return isGameClear;
 	}
 }
