@@ -6,8 +6,8 @@ import java.util.List;
 public class Player {
     private List<String> footprints;
 
-    public Player() {
-        this.footprints = new ArrayList<>();
+    public Player(List<String> footprints) {
+        this.footprints = footprints;
     }
 
     public void move(String movedSide) {
@@ -24,6 +24,5 @@ public class Player {
 
     public String getLastMoving() {
         return footprints.get(getCurrentPosition());
-
     }
 }
