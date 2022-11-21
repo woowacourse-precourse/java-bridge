@@ -4,9 +4,7 @@ public enum CommandKeys {
     UP("U"),
     DOWN("D"),
     RETRY("R"),
-    QUIT("Q"),
-    CORRECT("O"),
-    WRONG("X");
+    QUIT("Q");
 
     private final String letter;
 

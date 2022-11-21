@@ -2,6 +2,7 @@ package bridge;
 
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.util.CommandKeys;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -9,13 +10,21 @@ import java.util.List;
 
 public class Application {
     private static final int INITIAL_COUNT = 1;
-    private final static String BRIDGE_HEAD = "[";
-    private final static String BRIDGE_TAIL = "]";
     private final static String BLANK_SPACE = " ";
-    private final static String BRIDGE_PARTITION = "|";
     private final static String SUCCESS = "성공";
     private final static String FAILURE = "실패";
 
+    public static void updateOneSideResults(List<String> oneSideResults, String moveResult) {
+        oneSideResults.add(moveResult);
+    }
+
+    public static boolean isMovingUp(String currentMoving) {
+        return CommandKeys.isSame(CommandKeys.UP, currentMoving);
+    }
+
+    public static boolean isMovingDown(String currentMoving) {
+        return CommandKeys.isSame(CommandKeys.DOWN, currentMoving);
+    }
 
     public static void main(String[] args) {
         OutputView.printGameStart();
@@ -27,8 +36,8 @@ public class Application {
         final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(answerBridge);
 
-        List<String> upSideResult = new ArrayList<>();
-        List<String> downSideResult = new ArrayList<>();
+        List<String> upSideResults = new ArrayList<>();
+        List<String> downSideResults = new ArrayList<>();
         final BridgeGame bridgeGame = new BridgeGame(answerBridge);
 
         int index = 0;
@@ -36,25 +45,25 @@ public class Application {
             final String currentMoving = InputView.readMoving();
             final String moveResult = bridgeGame.move(currentMoving, index);
 
-            if (currentMoving.equals("U")) {
-                upSideResult.add(moveResult);
-                downSideResult.add(BLANK_SPACE);
+            if (isMovingUp(currentMoving)) {
+                updateOneSideResults(upSideResults, moveResult);
+                updateOneSideResults(downSideResults, BLANK_SPACE);
             }
 
-            if (currentMoving.equals("D")) {
-                upSideResult.add(BLANK_SPACE);
-                downSideResult.add(moveResult);
+            if (isMovingDown(currentMoving)) {
+                updateOneSideResults(upSideResults, BLANK_SPACE);
+                updateOneSideResults(downSideResults, moveResult);
             }
 
-            OutputView.printMap(index, upSideResult, downSideResult);
+            OutputView.printMap(index, upSideResults, downSideResults);
             index++;
 
             if (moveResult.equals("X")) {
                 final String playerCommand = InputView.readGameCommand();
                 if (playerCommand.equals("R")) {
                     index = 0;
-                    upSideResult = new ArrayList<>();
-                    downSideResult = new ArrayList<>();
+                    upSideResults = new ArrayList<>();
+                    downSideResults = new ArrayList<>();
                     bridgeGame.retry();
                 }
                 if (playerCommand.equals("Q")) {
@@ -64,11 +73,11 @@ public class Application {
             }
         }
         if (gameResult.equals(SUCCESS)) {
-            OutputView.printResult(index - 1, upSideResult, downSideResult, gameResult);
+            OutputView.printResult(index - 1, upSideResults, downSideResults, gameResult);
             OutputView.printTotalTrialCount(bridgeGame.trialCount);
         }
         if (gameResult.equals(FAILURE)) {
-            OutputView.printResult(index - 1, upSideResult, downSideResult, gameResult);
+            OutputView.printResult(index - 1, upSideResults, downSideResults, gameResult);
             OutputView.printTotalTrialCount(bridgeGame.trialCount);
         }
     }
