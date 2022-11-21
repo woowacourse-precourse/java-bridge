@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UpSideTest {
 
-    @DisplayName("정답 시 다리 윗부분을 제대로 생성하는 지 확인한다.")
+    @DisplayName("다리 윗부분을 제대로 생성하는 지 확인한다.")
     @Test
     void UpSide_생성_테스트() {
         UpSide upSide = new UpSide();
