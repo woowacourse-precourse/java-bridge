@@ -43,12 +43,15 @@ public class BridgeGame {
         bridgeLog.clear();
     }
 
+    /**
+     * 사용자가 건넌 다리가 건널수있는 다리인지 확인하는 메서드
+     */
     public boolean isMovable() {
         return isMovable(userCrossBridge.size() - 1);
     }
 
     /**
-     * 사용자가 건넌 다리가 건널수있는 다리인지 확인하는 메서드
+     * 사용자가 건넌 다리가 건널수있는 다리인지 인덱스별로 확인하는 메서드
      */
     public boolean isMovable(int userCrossBridgeIndex) {
         return generateBridge.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex)) && !isEnd();
@@ -61,10 +64,17 @@ public class BridgeGame {
         return generateBridge.size() <= userCrossBridge.size();
     }
 
+    /**
+     * 게임 라운드 확인 메서드
+     * [ O | O | O ] => 3라운드
+     */
     public int getRound() {
         return userCrossBridge.size();
     }
 
+    /**
+     * 사용자 다리 건넌 기록 반환 메서드
+     */
     public BridgeLog getLog() {
         return bridgeLog;
     }
