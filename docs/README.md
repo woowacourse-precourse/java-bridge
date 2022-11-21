@@ -155,6 +155,7 @@
 [] domain이 view를 모르는가?
 [] controller와 service가 dto를 통해 값을 주고 받는가?
 [] service가 view를 모르는가?
+[] service에서 호출되는 domain의 public 메소드 파라미터들이 dto뿐인가?
 
 ## 리펙터링 완료 클래스 체크
 - Application
