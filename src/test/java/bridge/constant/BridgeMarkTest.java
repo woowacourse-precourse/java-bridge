@@ -50,4 +50,13 @@ class BridgeMarkTest {
         assertThat(upMark.isUp()).isTrue();
         assertThat(downMark.isDown()).isTrue();
     }
+
+    @DisplayName("BridgeMark가 가지고 있는 필드 값 검증")
+    @Test
+    void getMark() {
+        BridgeMark upMark = BridgeMark.UP;
+        BridgeMark downMark = BridgeMark.DOWN;
+        assertThat(upMark.getMark()).isEqualTo("U");
+        assertThat(downMark.getMark()).isEqualTo("D");
+    }
 }
