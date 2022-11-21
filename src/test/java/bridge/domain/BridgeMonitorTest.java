@@ -20,7 +20,7 @@ class BridgeMonitorTest {
 
         @DisplayName("위 방향 이동에 성공")
         @Test
-        void should_RecordCorrectMoving_When_MoveCorrectly() {
+        void should_RecordCorrectMoving_When_SuccessToMove() {
             // given
             BridgeMonitor bridgeMonitor = new BridgeMonitor();
             String moving = UPPER_SIDE;
@@ -33,7 +33,7 @@ class BridgeMonitorTest {
 
         @DisplayName("아래 방향 이동에 실패")
         @Test
-        void should_RecordWrongMoving_When_MoveWrong() {
+        void should_RecordWrongMoving_When_FailToMove() {
             // given
             BridgeMonitor bridgeMonitor = new BridgeMonitor();
             String moving = LOWER_SIDE;
@@ -46,7 +46,7 @@ class BridgeMonitorTest {
 
         @DisplayName("위, 아래 방향 이동 성공 후, 아래 방향 이동에 실패")
         @Test
-        void should_RecordWrongMoving_When_MoveWrongAfter2Moving() {
+        void should_RecordWrongMoving_When_FailToMoveAfterSuccessTwice() {
             // given
             BridgeMonitor bridgeMonitor = new BridgeMonitor();
             bridgeMonitor.record(UPPER_SIDE, ON_WAY);
@@ -81,7 +81,7 @@ class BridgeMonitorTest {
 
         @DisplayName("이동 1회 성공 후 이동 실패한 경우")
         @Test
-        void should_DeleteRecordOfWrongMoving_When_FailAfterMoveOnce() {
+        void should_DeleteRecordOfWrongMoving_When_FailToMoveAfterSuccessOnce() {
             // given
             BridgeMonitor bridgeMonitor = new BridgeMonitor();
             bridgeMonitor.record(UPPER_SIDE, ON_WAY);
@@ -97,7 +97,7 @@ class BridgeMonitorTest {
 
         @DisplayName("시작 후 바로 이동 실패한 경우")
         @Test
-        void should_DeleteRecordOfWrongMoving_When_FailRightAfterStart() {
+        void should_DeleteRecordOfWrongMoving_When_FailToMoveRightAfterStart() {
             // given
             BridgeMonitor bridgeMonitor = new BridgeMonitor();
             bridgeMonitor.record(LOWER_SIDE, FAIL);
