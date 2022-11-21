@@ -19,10 +19,15 @@ public class BridgeGameController {
     }
 
     static List<String> startSettingBridge(){
-        outputView.printStart();
-        outputView.printReadBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
-        return bridgemaker.makeBridge(bridgeSize);
+        while(true){
+            outputView.printReadBridgeSize();
+            try{
+                int bridgeSize = inputView.readBridgeSize();
+                return bridgemaker.makeBridge(bridgeSize);
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     List<List<String>> start() {
