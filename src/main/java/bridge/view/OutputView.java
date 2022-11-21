@@ -36,6 +36,7 @@ public class OutputView {
     }
 
     public static void printResult(ProcessCondition finishCondition, BridgeGame bridgeGame) {
+        System.out.println();
         System.out.println(RESULT);
         if (finishCondition == FinishCondition.FINISHED) {
             printWhetherFinished(PassCondition.PASS, FINISHED, bridgeGame);
