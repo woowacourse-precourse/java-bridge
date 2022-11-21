@@ -25,7 +25,7 @@ class BridgeGameTest {
             if(bridgeGame.isFail()) break;
             bridgeGame.move(s, "U");
             System.out.println(count++ + "회차");
-            outputView.printMap(bridgeGame.getFirstLine(), bridgeGame.getSecondLine());
+            outputView.printMap(bridgeGame.getLines());
         }
     }
 }
