@@ -40,6 +40,11 @@ public class BridgeMaker {
         return bridgeNumber;
     }
 
- 
+    public String makeBridgeWord(int bridgeNumber) {
+        if (bridgeNumber == 1) {
+            return "U";
+        }
+        return "D";
+    }
 
 }
