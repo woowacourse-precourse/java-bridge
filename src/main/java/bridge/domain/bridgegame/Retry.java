@@ -10,13 +10,6 @@ public enum Retry {
         this.retryValue = retryValue;
     }
 
-    public static Retry findRetry(String input) {
-        if (!input.equals(RESTART.getRetryValue())) {
-            return QUIT;
-        }
-        return RESTART;
-    }
-
     public String getRetryValue() {
         return retryValue;
     }
