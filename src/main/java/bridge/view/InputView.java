@@ -7,6 +7,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final String UP = "U";
+    private final String DOWN = "D";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -22,7 +24,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+
+        String input = Console.readLine();
+        validateMovingInput(input);
+
+        return input;
     }
 
     /**
@@ -30,6 +37,14 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void validateMovingInput(String input) {
+        if(input.length()!=1)
+            throw new IllegalStateException(InputError.INVALID_MOVING_LENGTH.getMessage());
+
+        if(!input.equals(UP) && !input.equals(DOWN))
+            throw new IllegalArgumentException(InputError.INVALID_MOVING_INPUT.getMessage());
     }
 
     private int parseToNumber(String input) {
