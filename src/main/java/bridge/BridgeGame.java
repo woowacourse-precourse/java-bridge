@@ -9,15 +9,10 @@ import java.util.Map;
  */
 public class BridgeGame {
 
-    public int getGameIndex() {
-        return gameIndex;
-    }
-
-    public void setGameIndex(int gameIndex) {
-        this.gameIndex = gameIndex;
-    }
-
+    private int bridgeSize;
     private int gameIndex;
+    private int tryCount = 1;
+    private boolean gameResult;
     private InputView inputView;
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
@@ -33,21 +28,24 @@ public class BridgeGame {
 
     public void initGame() {
         int bridgeSize = inputView.readBridgeSize();
+        setBridgeSize(bridgeSize);
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridgeMaker.makeBridge(bridgeSize);
         setGameIndex(0);
+        setGameResult(true);
     }
 
     public void startGame() {
         initGame();
         boolean flag = true;
-        while (flag) {
-             flag = move(getGameIndex());
+        while (flag && getGameIndex() != getBridgeSize()) {
+            flag = move(getGameIndex());
         }
+        endGame();
     }
 
     public void endGame() {
-//        outputView.printResult();
+        outputView.printResult(bridgeMaker.getPresentBridge(), isGameResult(), getTryCount());
     }
 
     /**
@@ -57,11 +55,12 @@ public class BridgeGame {
      */
     public boolean move(int bridgeIndex) {
         String moveCommand = inputView.readMoving();
-
         if (judgeMove(moveCommand, bridgeIndex)) {
             recordBridge(moveCommand);
             return true;
         }
+        setGameResult(false);
+        setGameIndex(getGameIndex() + 1);
         return judgeContinue();
     }
 
@@ -72,6 +71,7 @@ public class BridgeGame {
      */
     public void retry() {
         initGame();
+        setTryCount(getTryCount() + 1);
     }
 
     public void recordBridge(String moveCommand) {
@@ -99,7 +99,38 @@ public class BridgeGame {
             retry();
             return true;
         }
-        endGame();
         return false;
+    }
+
+    public int getGameIndex() {
+        return gameIndex;
+    }
+
+    public void setGameIndex(int gameIndex) {
+        this.gameIndex = gameIndex;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public void setTryCount(int tryCount) {
+        this.tryCount = tryCount;
+    }
+
+    public boolean isGameResult() {
+        return gameResult;
+    }
+
+    public void setGameResult(boolean gameResult) {
+        this.gameResult = gameResult;
+    }
+
+    public int getBridgeSize() {
+        return bridgeSize;
+    }
+
+    public void setBridgeSize(int bridgeSize) {
+        this.bridgeSize = bridgeSize;
     }
 }
