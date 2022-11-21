@@ -9,9 +9,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String firstLine, String secondLine) {
-        firstLine = trimLine(firstLine);
-        secondLine = trimLine(secondLine);
+    public void printMap(String[] lines) {
+        String firstLine = trimLine(lines[0]);
+        String secondLine = trimLine(lines[1]);
         System.out.println(firstLine);
         System.out.println(secondLine);
     }
@@ -28,6 +28,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String[] lines, String result, int count) {
+        System.out.println("최종 게임 결과");
+        printMap(lines);
+        System.out.println("\n게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수: " + 2);
     }
 }
