@@ -91,11 +91,7 @@ public class OutputView {
     public void addXAndFinishMap(List<String> bridge, List<String> bridgeStatus, int idx) {
         if (bridgeStatus.get(idx) == "X") {
             addXAndFinishWhenBridgeIsUpper(bridge, idx);
-
-            if (bridge.get(idx) == "D") {
-                upperMap += " X ]";
-                lowerMap += "   ]";
-            }
+            addXAndFinishWhenBridgeIsLower(bridge, idx);
         }
     }
 
@@ -103,6 +99,13 @@ public class OutputView {
         if (bridge.get(idx) == "U") {
             upperMap += "   ]";
             lowerMap += " X ]";
+        }
+    }
+
+    private void addXAndFinishWhenBridgeIsLower(List<String> bridge, int idx) {
+        if (bridge.get(idx) == "D") {
+            upperMap += " X ]";
+            lowerMap += "   ]";
         }
     }
 
