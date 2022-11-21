@@ -6,7 +6,8 @@ import java.util.List;
 
 public class ExceptionTestHelper {
 
-    public static void testIllegalArgumentException(TotalExceptionHandler exceptionHandler, String input) {
+    public static void testIllegalArgumentException(TotalExceptionHandler exceptionHandler,
+            String input) {
         assertThatThrownBy(() -> {
             exceptionHandler.handleException(input);
         })
@@ -14,7 +15,17 @@ public class ExceptionTestHelper {
                 .hasMessageContaining("[ERROR]");
     }
 
-    public static void testIllegalStateException(TotalExceptionHandler exceptionHandler, List<String> input) {
+    public static void testIllegalArgumentException(TotalExceptionHandler exceptionHandler,
+            int input) {
+        assertThatThrownBy(() -> {
+            exceptionHandler.handleException(input);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    public static void testIllegalStateException(TotalExceptionHandler exceptionHandler,
+            List<String> input) {
         assertThatThrownBy(() -> {
             exceptionHandler.handleException(input);
         })
@@ -22,7 +33,8 @@ public class ExceptionTestHelper {
                 .hasMessageContaining("[ERROR]");
     }
 
-    public static void testIllegalStateException(TotalExceptionHandler exceptionHandler, boolean input) {
+    public static void testIllegalStateException(TotalExceptionHandler exceptionHandler,
+            boolean input) {
         assertThatThrownBy(() -> {
             exceptionHandler.handleException(input);
         })
@@ -30,7 +42,8 @@ public class ExceptionTestHelper {
                 .hasMessageContaining("[ERROR]");
     }
 
-    public static void testIllegalStateException(TotalExceptionHandler exceptionHandler, int input) {
+    public static void testIllegalStateException(TotalExceptionHandler exceptionHandler,
+            int input) {
         assertThatThrownBy(() -> {
             exceptionHandler.handleException(input);
         })
