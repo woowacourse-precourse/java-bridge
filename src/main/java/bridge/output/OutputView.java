@@ -42,4 +42,16 @@ public class OutputView {
         }
     }
 
+    public static void printResult(boolean isSuccess, StringBuilder upperRoad, StringBuilder lowerRoad, int round) {
+        System.out.println(FINAL_RESULT);
+        printMap(upperRoad, lowerRoad);
+        System.out.print(SUCCESS_OR_NOT);
+        if (isSuccess) {
+            System.out.println(SUCCESS);
+            System.out.println(ATTEMPT_COUNT + round);
+            return;
+        }
+        System.out.println(FAIL);
+        System.out.println(ATTEMPT_COUNT + round);
+    }
 }
