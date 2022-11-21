@@ -3,7 +3,6 @@ package bridge;
 import java.util.List;
 
 import bridgeConstant.Constant;
-import dto.MapResponseDto;
 
 public class MapRenderer {
 	private static final String ENTRANCE = "[";
@@ -44,10 +43,6 @@ public class MapRenderer {
 		return bridge.subList(0, movingStack.size()).equals(movingStack);
 	}
 
-	public MapResponseDto toMapResponseDto() {
-		return new MapResponseDto(map);
-	}
-
 	private String renderWhenSizeIsOne() {
 		addLastCell();
 		addExit();
@@ -55,8 +50,8 @@ public class MapRenderer {
 	}
 
 	private String renderWhenSizeBiggerThanOne() {
-		for (int index = FIRST_INDEX; index < movingStack.size(); index++) {
-			addCircle();
+		for (int index = FIRST_INDEX; index < lastIndex; index++) {
+			addCircle(index);
 			addDivisionLine();
 		}
 		addLastCell();
@@ -86,17 +81,17 @@ public class MapRenderer {
 
 	private void addLastCell() {
 		if (isCorrectMoving()) {
-			addCircle();
+			addCircle(lastIndex);
 		}
 		if (!isCorrectMoving()) {
 			addCross();
 		}
 	}
 
-	private void addCircle() {
-		if (movingStack.get(lastIndex).equals(Constant.UPPER_POSITION))
+	private void addCircle(int index) {
+		if (movingStack.get(index).equals(Constant.UPPER_POSITION))
 			addCircleToUpperRow();
-		if (movingStack.get(lastIndex).equals(Constant.LOWER_POSITION))
+		if (movingStack.get(index).equals(Constant.LOWER_POSITION))
 			addCircleToLowerRow();
 	}
 
@@ -127,5 +122,9 @@ public class MapRenderer {
 	private void addCrossToUpperRow() {
 		upperRow.append(CROSS);
 		lowerRow.append(SPACE);
+	}
+
+	public String getMap() {
+		return map;
 	}
 }
