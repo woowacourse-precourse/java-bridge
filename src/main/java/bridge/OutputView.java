@@ -17,6 +17,10 @@ public class OutputView {
 	 */
 	public void printMap(boolean isCross, String userMove) {
 		storeMap(isCross, userMove);
+		String replaceUpBridgeMap = String.join(Constant.BOARD, upBridgeMap);
+		String replaceDownBridgeMap = String.join(Constant.BOARD, downBridgeMap);
+		System.out.println(Constant.FIRST_BRACE + replaceUpBridgeMap + Constant.END_BRACE);
+		System.out.println(Constant.FIRST_BRACE + replaceDownBridgeMap + Constant.END_BRACE + Constant.LINE_BLANK);
 	}
 
 	/**
