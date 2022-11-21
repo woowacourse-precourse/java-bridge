@@ -15,14 +15,14 @@ public class BridgeSizeException {
 
     private static void validateNumeric(String size) {
         if (!size.matches(NUMERIC)) {
-            throw new IllegalArgumentException(ExceptionMessage.getMessage(ExceptionMessage.NOT_NUMERIC));
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NUMERIC.getMessage());
         }
     }
 
     private static void validateMinimumRange(int size) {
         if (size < AvailableInput.getBridgeMinimumSizeValue()) {
             throw new IllegalArgumentException(
-                    ExceptionMessage.getMessage(ExceptionMessage.SMALLER_THAN_MINIMUM_BRIDGE_LENGTH)
+                    ExceptionMessage.SMALLER_THAN_MINIMUM_BRIDGE_LENGTH.getMessage()
             );
         }
     }
@@ -30,7 +30,7 @@ public class BridgeSizeException {
     private static void validateMaximumRange(int size) {
         if (size > AvailableInput.getBridgeMaximumSizeValue()) {
             throw new IllegalArgumentException(
-                    ExceptionMessage.getMessage(ExceptionMessage.BIGGER_THAN_MAXIMUM_BRIDGE_LENGTH)
+                    ExceptionMessage.BIGGER_THAN_MAXIMUM_BRIDGE_LENGTH.getMessage()
             );
         }
     }

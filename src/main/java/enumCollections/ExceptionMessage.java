@@ -14,7 +14,7 @@ public enum ExceptionMessage {
         this.message = "[ERROR] ".concat(message);
     }
 
-    public static String getMessage(ExceptionMessage situation) {
-        return situation.message;
+    public String getMessage() {
+        return this.message;
     }
 }

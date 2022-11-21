@@ -9,25 +9,25 @@ public class InputException {
 
     public static void validateGameCommand(String gameCommand) {
         if (!AvailableInput.isGameCommand(gameCommand)) {
-            throw new IllegalArgumentException(ExceptionMessage.getMessage(ExceptionMessage.RESTART));
+            throw new IllegalArgumentException(ExceptionMessage.RESTART.getMessage());
         }
     }
 
     public static void validateSideSelection(String side) {
         if (!Side.isBridgeSavingFormat(side)) {
-            throw new IllegalArgumentException(ExceptionMessage.getMessage(ExceptionMessage.SELECT_SIDE));
+            throw new IllegalArgumentException(ExceptionMessage.SELECT_SIDE.getMessage());
         }
     }
 
     protected static void validateCharactersOnly(String value) {
         if (value.matches(regularExpression)) {
-            throw new IllegalArgumentException(ExceptionMessage.getMessage(ExceptionMessage.NOT_CHARACTER));
+            throw new IllegalArgumentException(ExceptionMessage.NOT_CHARACTER.getMessage());
         }
     }
 
     protected static void validateNumbersOnly(String value) {
         if (!value.matches(regularExpression)) {
-            throw new IllegalArgumentException(ExceptionMessage.getMessage(ExceptionMessage.NOT_NUMERIC));
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NUMERIC.getMessage());
         }
     }
 }
