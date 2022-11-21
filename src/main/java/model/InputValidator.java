@@ -1,5 +1,7 @@
 package model;
 
+import static model.BridgeGame.MAXIMUM_BRIDGE_SIZE;
+import static model.BridgeGame.MINIMUM_BRIDGE_SIZE;
 import static model.BridgeGameExceptions.NOT_A_MOVE_CHOICE;
 import static model.BridgeGameExceptions.NOT_A_RETRY_INTENTION;
 import static model.BridgeGameExceptions.OUT_OF_RANGE;
@@ -11,7 +13,7 @@ import model.enums.RetryIntention;
 public class InputValidator {
 
     public void validateBridgeLength(int bridgeLength) {
-        if (Bridge.LOWER_BOUND <= bridgeLength && bridgeLength <= Bridge.UPPER_BOUND) {
+        if (MINIMUM_BRIDGE_SIZE <= bridgeLength && bridgeLength <= MAXIMUM_BRIDGE_SIZE) {
             return;
         }
         throw new IllegalArgumentException(OUT_OF_RANGE);

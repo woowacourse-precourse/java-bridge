@@ -13,7 +13,8 @@ import model.enums.MoveResult;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
+    public static final int MINIMUM_BRIDGE_SIZE = 3;
+    public static final int MAXIMUM_BRIDGE_SIZE = 20;
     private List<MoveInformation> bridgeMoveInformation;
     private List<String> bridge;
     private int tryCount;

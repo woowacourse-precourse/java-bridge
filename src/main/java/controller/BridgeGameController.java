@@ -2,7 +2,6 @@ package controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import model.Bridge;
 import model.BridgeGame;
 import model.InputValidator;
 import model.enums.GameStatus;
@@ -17,6 +16,7 @@ public class BridgeGameController {
     private final OutputView outputView = new OutputView();
 
     private BridgeGame bridgeGame;
+
     public void run() {
         process();
         end();
@@ -30,12 +30,10 @@ public class BridgeGameController {
     }
 
     public void process() {
-        GameStatus status;
         while (true) {
             processOneGame();
-            status = bridgeGame.getGameStatus();
 
-            if (status.succeed() || !RetryIntention.wantRetry(getRetryIntention())) {
+            if (bridgeGame.getGameStatus().succeed() || !RetryIntention.wantRetry(getRetryIntention())) {
                 return;
             }
 

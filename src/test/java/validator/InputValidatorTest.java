@@ -1,8 +1,9 @@
 package validator;
 
+import static model.BridgeGame.MAXIMUM_BRIDGE_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import model.Bridge;
+import model.BridgeGame;
 import model.InputValidator;
 import model.enums.MoveChoice;
 import model.enums.RetryIntention;
@@ -21,7 +22,7 @@ public class InputValidatorTest {
         @Test
         @DisplayName("알맞은 입력인 경우 아무것도 하지 않는다.")
         void normalTest() {
-            for (int i = Bridge.LOWER_BOUND; i <= Bridge.UPPER_BOUND; i++) {
+            for (int i = MAXIMUM_BRIDGE_SIZE; i <= MAXIMUM_BRIDGE_SIZE; i++) {
                 inputValidator.validateBridgeLength(i);
             }
         }
