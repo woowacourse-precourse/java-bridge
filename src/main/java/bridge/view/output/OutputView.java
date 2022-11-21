@@ -34,8 +34,20 @@ public class OutputView {
     public void printResult(UserStatus userStatus) {
         print(OutputMessage.GAME_RESULT);
         printMap(userStatus);
-        print(userStatus.getStatusMessage());
-        print(userStatus.getTryCountMessage());
+        printStatusMessage(userStatus);
+        printTryCountMessage(userStatus);
+    }
+
+    private void printStatusMessage(UserStatus userStatus) {
+        if (userStatus.isAvailable()) {
+            print(OutputMessage.STATUS_SUCCESS);
+        }
+
+        print(OutputMessage.STATUS_FAILED);
+    }
+
+    private void printTryCountMessage(UserStatus userStatus) {
+        print(OutputMessage.TRY_COUNT + userStatus.getTryCount());
     }
 
     private String makeMap(UserStatus userStatus, String directionToDraw) {
@@ -43,7 +55,7 @@ public class OutputView {
         sb.append("[");
 
         for (int position = 0; position <= userStatus.getPosition(); position++) {
-            sb.append(userStatus.getUserScoreByDirectionOrElseSpace(directionToDraw, position));
+            sb.append(getScore(userStatus, directionToDraw, position));
             sb.append("|");
         }
 
@@ -51,6 +63,20 @@ public class OutputView {
         sb.append("]");
 
         return sb.toString();
+    }
+
+    private String getScore(UserStatus userStatus, String directionToDraw, int position) {
+        String userDirection = userStatus.getDirection(position);
+
+        if (!userDirection.equals(directionToDraw)) {
+            return OutputMessage.ON_NOTHING;
+        }
+
+        if (userStatus.getPosition() == position && !userStatus.isAvailable()) {
+            return OutputMessage.ON_FAILED;
+        }
+
+        return OutputMessage.ON_SUCCESS;
     }
 
     private void print(String message) {

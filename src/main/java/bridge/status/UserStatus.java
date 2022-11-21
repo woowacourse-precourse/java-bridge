@@ -22,6 +22,10 @@ public class UserStatus {
         this.position++;
     }
 
+    public String getDirection(int index) {
+        return this.directions.get(index);
+    }
+
     public int getPosition() {
         return this.position - 1;
     }
@@ -43,16 +47,8 @@ public class UserStatus {
         this.available = false;
     }
 
-    public String getStatusMessage() {
-        if (isAvailable()) {
-            return StatusMessage.STATUS_SUCCESS;
-        }
-
-        return StatusMessage.STATUS_FAILED;
-    }
-
-    public String getTryCountMessage() {
-        return StatusMessage.TRY_COUNT + this.tryCount;
+    public long getTryCount() {
+        return this.tryCount;
     }
 
     public void tryAgain() {
@@ -62,23 +58,6 @@ public class UserStatus {
         this.tryCount++;
     }
 
-    public String getUserScoreByDirectionOrElseSpace(String compareDirection, int position) {
-        String userDirection = this.directions.get(position);
-
-        if (userDirection.equals(compareDirection) && getPosition() > position) {
-            return StatusMessage.ON_SUCCESS;
-        }
-
-        if (userDirection.equals(compareDirection) && isAvailable() && getPosition() == position) {
-            return StatusMessage.ON_SUCCESS;
-        }
-
-        if (userDirection.equals(compareDirection) && !isAvailable() && getPosition() == position) {
-            return StatusMessage.ON_FAILED;
-        }
-
-        return StatusMessage.ON_NOTHING;
-    }
 
     public void changeNextStep(StepType stepType) {
         this.nowStep = stepType;
