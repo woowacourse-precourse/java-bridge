@@ -9,11 +9,7 @@ import java.util.Objects;
 public class OutputView {
     public String mapU = "[";
     public String mapD = "[";
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     public void printMap(int bridgeCount, ArrayList<String> currentCoordinate) {
         if (bridgeCount > 0) {
             mapU += "|";
@@ -30,27 +26,42 @@ public class OutputView {
         BoilerPlates.printMap(mapU,mapD);
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult(int gameCount, ArrayList<String> currentCoordinate) {
+    public void printFinalResult(ArrayList<String> currentCoordinate, int gameCount) {
         int lastChar = currentCoordinate.size()-1;
         if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
-            BoilerPlates.printCompleteUp(mapU,mapD);
+            BoilerPlates.printCompleteUp(mapU,mapD,gameCount);
         }
         if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
-            BoilerPlates.printCompleteDown(mapU,mapD);
+            BoilerPlates.printCompleteDown(mapU,mapD,gameCount);
         }
     }
-    public void printFailed(int gameCount, ArrayList<String> currentCoordinate) {
+
+    public void printFinalFailed(ArrayList<String> currentCoordinate, int gameCount) {
         int lastChar = currentCoordinate.size()-1;
         if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
-            BoilerPlates.printFailedUp(mapU,mapD);
+            BoilerPlates.printFinalFailedUp(mapU,mapD,gameCount);
         }
         if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
-            BoilerPlates.printFailedDown(mapU,mapD);
+            BoilerPlates.printFinalFailedDown(mapU,mapD,gameCount);
         }
     }
+    public void printFailedMap(ArrayList<String> currentCoordinate, int gameCount) {
+        int lastChar = currentCoordinate.size()-1;
+        if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
+            BoilerPlates.printFailedUp(mapU,mapD,gameCount);
+        }
+        if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
+            BoilerPlates.printFailedDown(mapU,mapD,gameCount);
+        }
+    }
+    public void printResultMap(ArrayList<String> currentCoordinate, int gameCount) {
+        int lastChar = currentCoordinate.size()-1;
+        if (Objects.equals(currentCoordinate.get(lastChar), "U")) {
+            BoilerPlates.printResultUp(mapU,mapD,gameCount);
+        }
+        if (Objects.equals(currentCoordinate.get(lastChar), "D")) {
+            BoilerPlates.printResultDown(mapU,mapD,gameCount);
+        }
+    }
+
 }
