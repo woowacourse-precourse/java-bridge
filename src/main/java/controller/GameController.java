@@ -24,8 +24,14 @@ public class GameController {
 
 	private BridgeDto init() {
 		outputView.printStartMessage();
-		BridgeSizeDto bridgeSizeDto = new BridgeSizeDto(inputView.readBridgeSize());
-		return bridgeGame.initBridge(bridgeSizeDto);
+		while (true) {
+			try {
+				BridgeSizeDto bridgeSizeDto = new BridgeSizeDto(inputView.readBridgeSize());
+				return bridgeGame.initBridge(bridgeSizeDto);
+			} catch (IllegalArgumentException e) {
+				outputView.printErrorLog(e);
+			}
+		}
 	}
 
 	private MapDto run(BridgeDto bridgeDto) {
@@ -39,18 +45,23 @@ public class GameController {
 	}
 
 	private boolean isRetry(BridgeDto bridgeDto, MapDto finalMapDto) {
-		if (!isSuccess(bridgeDto, finalMapDto)) {
-			GameCommandDto gameCommandDto = new GameCommandDto(inputView.readGameCommand());
-			return bridgeGame.retry(gameCommandDto);
+		while (true) {
+			try {
+				if (!isSuccess(bridgeDto, finalMapDto)) {
+					GameCommandDto gameCommandDto = new GameCommandDto(inputView.readGameCommand());
+					return bridgeGame.retry(gameCommandDto);
+				}
+				return false;
+			} catch (IllegalArgumentException e) {
+				outputView.printErrorLog(e);
+			}
 		}
-		return false;
 	}
 
 	private MapDto play(BridgeDto bridgeDto) {
 		MapDto mapDto = null;
 		for (int index = 0; index < bridgeDto.getBridgeSize(); index++) {
 			mapDto = move(bridgeDto, index);
-
 			if (isSuccess(bridgeDto, mapDto) || mapDto.getNumberOfCorrect() == index) {
 				break;
 			}
@@ -59,10 +70,16 @@ public class GameController {
 	}
 
 	private MapDto move(BridgeDto bridgeDto, int index) {
-		MovingDto movingDto = new MovingDto(inputView.readMoving());
-		MapDto mapDto = bridgeGame.move(bridgeDto, new IndexDto(index), movingDto);
-		outputView.printMap(mapDto.getMap());
-		return mapDto;
+		while (true) {
+			try {
+				MovingDto movingDto = new MovingDto(inputView.readMoving());
+				MapDto mapDto = bridgeGame.move(bridgeDto, new IndexDto(index), movingDto);
+				outputView.printMap(mapDto.getMap());
+				return mapDto;
+			} catch (IllegalArgumentException e) {
+				outputView.printErrorLog(e);
+			}
+		}
 	}
 
 	private void finish(BridgeDto bridgeDto, MapDto mapDto) {
