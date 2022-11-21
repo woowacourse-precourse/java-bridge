@@ -4,9 +4,11 @@
    - [x] 입력값에 대해 유효성 검사를 해야한다. - view.InputView.validateBridgeSize()
      - [x] 입력값은 정수 여야 한다. - view.InputView.validateInteger();
      - [x] 입력값은 3 ~ 24 여야 한다. - view.InputView.validateBridgeSizeRange();
-- [ ]사용자의 입력값에 따라 이동할 수 있어야한다.
-   - [ ]이동 값을 입력 받아야한다.
-     - [ ]입력값 의 유효성 검사를 해야한다. .
+- [ ] 사용자의 입력값에 따라 이동할 수 있어야한다. - BridgeGame.move()
+   - [ ] 이동 값을 입력 받아야한다. - readMoving
+     - [ ] 입력값 의 유효성 검사를 해야한다. - InputView.validateMoveCommand()
+       - [ ] 입력값은 한글자 여야 한다. - InputView.validateOneWord()
+       - [ ] 입력값이 "U" 또는 "D" 이어야 한다. - InputView.validateFormat()
 - 잘못된 값을 입력한경우 [ERROR] 로 시작하는 에러 메세지를 출력 하고 입력을 다시 받아야한다.
 - 게임 실패시 사용자가 입력한 값에 따라 재시작 또는 게임 종료를 해야한다.
    - 재시작시 사용자의 위치 와 이동위치 표시를 초기화 한다.
