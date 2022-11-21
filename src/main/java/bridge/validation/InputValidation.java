@@ -10,7 +10,7 @@ public class InputValidation {
     public InputValidation() {
     }
 
-    public int getValue(String input) {
+    public int getValue(String input) throws IllegalArgumentException {
         if (!input.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(BRIDGE_LENGTH_IS_NOT_DIGIT_ERROR_MESSAGE);
         }

@@ -1,16 +1,33 @@
 package bridge;
 
+import bridge.validation.InputValidation;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+    }
+
+    /**
+     * @return 사용자가 입력한 다리의 길이를 반환한다.
+     */
+    public int gameStart() {
+        OutputView outputView = new OutputView();
+        outputView.printStartMessage();
+        while (true) {
+            try {
+                return new InputValidation().getValue(new InputView().readBridgeSize());
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception.getMessage());
+            }
+        }
     }
 
     /**
