@@ -120,4 +120,18 @@ public class InputViewTest {
             assertThat(e.getMessage()).isEqualTo("[ERROR]: U과 D만 입력");
         }
     }
+    @DisplayName("값이 R,Q가 아닐 경우 테스트")
+    @Test
+    void isValidateRQ() {
+        //given
+        InputView inputView = new InputView();
+        String size = "U";
+        //when
+        try {
+            inputView.isValidateRQ(size);
+        } catch (IllegalArgumentException e) {
+            //then
+            assertThat(e.getMessage()).isEqualTo("[ERROR]: R과 Q만 입력");
+        }
+    }
 }
