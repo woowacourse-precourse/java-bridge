@@ -30,23 +30,18 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(strings = {"a,1", " ,3"})
     void 잘못된_다리의크기_입력시_예외발생(String input) {
-        final byte[] buf = String.join("\n", input.split(",")).getBytes();
-        System.setIn(new ByteArrayInputStream(buf));
-        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(newConsole));
+        manyInputToConsole(input.split(","));
+        ByteArrayOutputStream newConsole = checkToConsole();
 
         inputView.readBridgeSize();
         Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.INPUT_IS_NUMERIC);
-
     }
 
     @Test
     void 다리의크기는_0이될수_없다() {
         String[] input = {"0", "1"};
-        final byte[] buf = String.join("\n", input).getBytes();
-        System.setIn(new ByteArrayInputStream(buf));
-        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(newConsole));
+        manyInputToConsole(input);
+        ByteArrayOutputStream newConsole = checkToConsole();
 
         inputView.readBridgeSize();
         Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.BRIDGE_SIZE_NOT_ZERO);
@@ -55,22 +50,18 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(strings = {"U", "D"})
     void 다리를_이동할때는_U또는D만_입력할수있다(String input) {
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        inputToConsole(input);
 
-        InputView inputView = new InputView();
         Assertions.assertThat(inputView.readMoving()).isEqualTo(input);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"A,U", "1234,U"})
     void 다리를_이동할때_정해진값이_아니면_에러를발생한다(String input) {
-        final byte[] buf = String.join("\n", input.split(",")).getBytes();
-        System.setIn(new ByteArrayInputStream(buf));
-        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(newConsole));
+        manyInputToConsole(input.split(","));
+        ByteArrayOutputStream newConsole = checkToConsole();
 
-        new InputView().readMoving();
+        inputView.readMoving();
 
         Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.BRIDGE_INPUT_ONLY_UP_AND_DOWN);
     }
@@ -78,10 +69,8 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(strings = {"A,R", "1234,Q"})
     void 재시작할때__정해진값이_아니면_에러를발생한다(String input) {
-        final byte[] buf = String.join("\n", input.split(",")).getBytes();
-        System.setIn(new ByteArrayInputStream(buf));
-        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(newConsole));
+        manyInputToConsole(input.split(","));
+        ByteArrayOutputStream newConsole = checkToConsole();
 
         inputView.readGameCommand();
 
@@ -97,5 +86,21 @@ class BridgeGameTest {
         bridgeGame.move(user, bridge, position);
 
         Assertions.assertThat(user.getUserCrossing(0)).isEqualTo(BridgeState.convertToBridgeState(position, isAlive));
+    }
+
+    public void inputToConsole(String input) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+    }
+
+    public void manyInputToConsole(String[] input) {
+        final byte[] buf = String.join("\n", input).getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
+    }
+
+    private ByteArrayOutputStream checkToConsole() {
+        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(newConsole));
+        return newConsole;
     }
 }
