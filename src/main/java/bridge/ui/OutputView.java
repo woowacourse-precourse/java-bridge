@@ -36,9 +36,9 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.bridge);
         gameStatus gameResult = bridgeGame.currentStatus;
-        if (gameResult == gameStatus.SUCCESS) {
+        if (gameResult.equals(gameStatus.SUCCESS)) {
             System.out.println("게임 성공 여부: 성공");
-        } if (gameResult == gameStatus.FAIL) {
+        } if (gameResult.equals(gameStatus.FAIL)) {
             System.out.println("게임 성공 여부: 실패");
         }
 
