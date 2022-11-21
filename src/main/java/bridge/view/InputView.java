@@ -31,44 +31,50 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return repeatInputUntilSuccess(() -> {
-            println("다리의 길이를 입력해주세요.");
+        return repeatInputUntilSuccess(this::inputBridgeSize);
+    }
 
-            int bridgeSize = parser.parseNumber(readLine());
-            validator.validateBridgeSize(bridgeSize);
+    private int inputBridgeSize() {
+        println("다리의 길이를 입력해주세요.");
 
-            return bridgeSize;
-        });
+        int bridgeSize = parser.parseNumber(readLine());
+        validator.validateBridgeSize(bridgeSize);
+
+        return bridgeSize;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return repeatInputUntilSuccess(() -> {
-            println("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", UP_BRIDGE, DOWN_BRIDGE);
+        return repeatInputUntilSuccess(this::inputMoving);
+    }
 
-            String moving = readLine();
-            validator.validateMoving(moving);
+    private String inputMoving() {
+        println("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", UP_BRIDGE, DOWN_BRIDGE);
 
-            return moving;
-        });
+        String moving = readLine();
+        validator.validateMoving(moving);
+
+        return moving;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        return repeatInputUntilSuccess(this::inputGameCommand);
+    }
+
+    private String inputGameCommand() {
         final String QUIT = "Q";
         final String RETRY = "R";
 
-        return repeatInputUntilSuccess(() -> {
-            println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", RETRY, QUIT);
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", RETRY, QUIT);
 
-            String gameCommand = readLine();
-            validator.validateGameCommand(gameCommand);
-            return gameCommand;
-        });
+        String gameCommand = readLine();
+        validator.validateGameCommand(gameCommand);
+        return gameCommand;
     }
 
     private <T> T repeatInputUntilSuccess(Supplier<T> callback) {
