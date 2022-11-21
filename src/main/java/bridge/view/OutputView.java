@@ -8,18 +8,18 @@ import static bridge.view.OutputConstants.*;
 
 public class OutputView {
 
-    public void printStartMessage() {
+    public static void printStartMessage() {
         System.out.println(GAME_START_MESSAGE);
         System.out.println();
     }
 
-    public void printMap(BridgeGame bridgeGame) {
+    public static void printMap(BridgeGame bridgeGame) {
         printDependOn(UP_STAIR, bridgeGame);
         printDependOn(DOWN_STAIR, bridgeGame);
         System.out.println();
     }
 
-    private void printDependOn(String stair, BridgeGame bridgeGame) {
+    private static void printDependOn(String stair, BridgeGame bridgeGame) {
         StringBuilder sb = new StringBuilder(START_PREFIX);
         List<String> bridge = bridgeGame.getBridge();
         int maxStage = bridgeGame.getStageNumber();
@@ -58,7 +58,7 @@ public class OutputView {
         return BLANK;
     }
 
-    public void printResult(BridgeGame bridgeGame) {
+    public static void printResult(BridgeGame bridgeGame) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(bridgeGame);
         System.out.println(String.format(SUCCESS_OR_FAILURE, isSuccess(bridgeGame)));
