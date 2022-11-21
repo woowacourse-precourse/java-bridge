@@ -26,15 +26,15 @@ public class BridgeGame {
     }
 
     private MatchResult match() {
-        int bound = myBridge.size() - 1;
-        if (bridge.matchWithIndex(bound, myBridge.get(bound))) {
-            return isLastMatch(bound);
+        int index = myBridge.size() - 1;
+        if (bridge.matchWithIndex(index, myBridge.get(index))) {
+            return isLastMatch(index);
         }
         return MatchResult.FAILURE;
     }
 
-    private MatchResult isLastMatch(int idx) {
-        if (bridge.isFinish(idx)) {
+    private MatchResult isLastMatch(int index) {
+        if (bridge.isFinish(index)) {
             return MatchResult.FINISH;
         }
         return MatchResult.SUCCESS;
