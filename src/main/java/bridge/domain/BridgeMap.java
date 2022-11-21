@@ -1,66 +1,25 @@
 package bridge.domain;
 
-import java.util.stream.IntStream;
+import java.util.Arrays;
 
-import static bridge.domain.BridgeMapConstant.*;
-import static bridge.ui.ViewConstant.LINE_FEED;
+public class BridgeMap2 {
+    public BridgeStatus[][] bridgeStatuses;
 
-public class BridgeMap {
-    private final Bridge bridge;
-    private final int mapCoordinate;
-    private final boolean winning;
-
-    public BridgeMap(Bridge bridge, int mapCoordinate, boolean winning) {
-        this.bridge = bridge;
-        this.mapCoordinate = mapCoordinate;
-        this.winning = winning;
+    public BridgeMap2(int bridgeSize) {
+        this.bridgeStatuses = new BridgeStatus[2][bridgeSize];
+        Arrays.stream(bridgeStatuses).forEach(row -> Arrays.fill(row, BridgeStatus.INIT));
     }
 
-    public String getMap() {
-        String bridgeMap = makeBridgeMap(new StringBuilder(), new StringBuilder());
-        return replaceDivisionMark(bridgeMap);
-    }
-
-    private String makeBridgeMap(StringBuilder upBridge, StringBuilder downBridge) {
-        IntStream.range(START_INDEX, this.mapCoordinate)
-                .forEach(value -> convertBridgeToMap(this.bridge.getBridge().get(value), upBridge, downBridge));
-        checkWinningAndExchangeFailMap(upBridge, downBridge);
-        return upBridge + LINE_FEED + downBridge;
-    }
-
-    private void checkWinningAndExchangeFailMap(StringBuilder upBridge, StringBuilder downBridge) {
-        if (!this.winning) {
-            exchangeToFailMap(upBridge, downBridge);
-            exchangeToFailMap(downBridge, upBridge);
+    public void reflectAtMap(String direction, int currentBridgeBlock, BridgeStatus bridgeBlockStatus) {
+        if (direction.equals("U")) {
+            bridgeStatuses[0][currentBridgeBlock] = bridgeBlockStatus;
+        }
+        if (direction.equals("D")) {
+            bridgeStatuses[1][currentBridgeBlock] = bridgeBlockStatus;
         }
     }
 
-    private void exchangeToFailMap(StringBuilder firstBridge, StringBuilder secondBridge) {
-        if (firstBridge.toString().endsWith(INCLUDE_END_WITH)) {
-            firstBridge.setCharAt(getExchangeIndex(firstBridge), BLANK_SPACE);
-            secondBridge.setCharAt(getExchangeIndex(secondBridge), FAIL_MARK);
-        }
-    }
-
-    private int getExchangeIndex(StringBuilder bridge) {
-        return bridge.length() - EXCHANGE_LOCATION_INDEX;
-    }
-
-    private void convertBridgeToMap(String bridgeStatus, StringBuilder upBridge, StringBuilder downBridge) {
-        if (bridgeStatus.equals(UP)) {
-            appendBridgeContext(upBridge, downBridge);
-        }
-        if (!bridgeStatus.equals(UP)) {
-            appendBridgeContext(downBridge, upBridge);
-        }
-    }
-
-    private void appendBridgeContext(StringBuilder upBridge, StringBuilder downBridge) {
-        upBridge.append(SUCCESS_BRIDGE);
-        downBridge.append(BLANK_BRIDGE);
-    }
-
-    private String replaceDivisionMark(String bridge) {
-        return bridge.replace(DIVISION, REPLACE);
+    public void clear() {
+        Arrays.stream(bridgeStatuses).forEach(row -> Arrays.fill(row, BridgeStatus.INIT));
     }
 }
