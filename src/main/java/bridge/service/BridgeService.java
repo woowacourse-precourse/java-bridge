@@ -19,6 +19,8 @@ public class BridgeService {
 
     private static List<String>[] presentMoveBridge;
 
+    private static int tryCount = 1;
+
     public static List<String>[] getPresentMoveBridge(){
         return presentMoveBridge;
     }
@@ -97,6 +99,7 @@ public class BridgeService {
         try {
             checkRetryQuit(input);
             if(input.equals("R")){
+                tryCount++;
                 BridgeGame.retry();
                 BridgeController.makeBridge();
                 BridgeController.initMoveRow();
