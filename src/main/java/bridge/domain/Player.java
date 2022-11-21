@@ -13,9 +13,11 @@ public class Player {
     }
 
     public boolean moveNext(Direction direction) {
-        boolean isMovable = bridge.isMovable(position, direction);
-        increasePosition();
-        return isMovable;
+        if (bridge.isMovable(position, direction)) {
+            increasePosition();
+            return true;
+        }
+        return false;
     }
 
     private void increasePosition() {
