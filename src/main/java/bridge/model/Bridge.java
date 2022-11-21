@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Bridge {
 
-    final List<String> answers;
+    private final List<String> answers;
 
     public Bridge(final List<String> answers) {
         this.answers = answers;

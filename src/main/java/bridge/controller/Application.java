@@ -12,9 +12,9 @@ import java.util.List;
 
 public class Application {
 
-    private BridgeGame bridgeGame = new BridgeGame();
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private Player player = new Player();
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final Player player = new Player();
     private Bridge bridge;
     private boolean playing = true;
 
