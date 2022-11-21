@@ -58,4 +58,8 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
+
+    public void readMovingCommandCheck(String userCommand){
+        String moveCommandRegularExpression = "^[U|u|D|d]{1}$";
+    }
 }
