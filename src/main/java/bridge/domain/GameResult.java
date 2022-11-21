@@ -1,5 +1,6 @@
-package bridge;
+package bridge.domain;
 
+import bridge.domain.Bridge;
 import bridge.utils.constants.Comments;
 import bridge.utils.constants.Commons;
 import java.util.ArrayList;

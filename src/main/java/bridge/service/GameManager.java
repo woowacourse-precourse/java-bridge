@@ -1,6 +1,12 @@
-package bridge;
+package bridge.service;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.domain.GameResult;
 import bridge.utils.constants.Comments;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class GameManager {
 

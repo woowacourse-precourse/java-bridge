@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.utils.constants.Comments;
 import bridge.utils.constants.Commons;

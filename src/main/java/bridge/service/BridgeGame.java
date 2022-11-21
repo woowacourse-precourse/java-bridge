@@ -1,5 +1,7 @@
-package bridge;
+package bridge.service;
 
+import bridge.domain.Bridge;
+import bridge.domain.GameResult;
 import bridge.utils.constants.Comments;
 
 /**

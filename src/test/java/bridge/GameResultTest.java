@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.GameResult;
 import bridge.utils.constants.Comments;
 import java.util.List;
 import org.assertj.core.api.Assertions;

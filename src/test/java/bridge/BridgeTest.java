@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import bridge.utils.constants.ErrorMessages;
 import java.util.List;
 import org.assertj.core.api.Assertions;
