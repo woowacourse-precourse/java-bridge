@@ -14,6 +14,34 @@ class GameControllerTest extends NsTest {
     @Nested
     @DisplayName("GameController 테스트")
     class GameController {
+
+        @Test
+        void 하한_경계값_테스트() {
+            assertRandomNumberInRangeTest(() -> {
+                run("3", "U", "D", "D");
+                assertThat(output()).contains(
+                        "[ O |   |   ]",
+                        "[   | O | O ]",
+                        "게임 성공 여부: 성공",
+                        "총 시도한 횟수: 1"
+                );
+            }, 1, 0, 0);
+        }
+
+        @Test
+        void 상한_경계값_테스트() {
+            assertRandomNumberInRangeTest(() -> {
+                run("20", "U", "D", "D", "U", "D", "U", "U", "U", "U",
+                        "D", "U", "D", "U", "U", "U", "D", "U", "D", "D", "D");
+                assertThat(output()).contains(
+                        "[ O |   |   | O |   | O | O | O | O |   | O |   | O | O | O |   | O |   |   |   ]",
+                        "[   | O | O |   | O |   |   |   |   | O |   | O |   |   |   | O |   | O | O | O ]",
+                        "게임 성공 여부: 성공",
+                        "총 시도한 횟수: 1"
+                );
+            }, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0);
+        }
+
         @Test
         void 리셋_기능_제외_최종_통합_테스트() {
             assertRandomNumberInRangeTest(() -> {
