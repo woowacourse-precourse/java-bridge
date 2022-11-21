@@ -5,16 +5,16 @@ import bridge.enums.GameStatus;
 
 import java.util.List;
 
-public class BridgeMapViewCreator {
+import static bridge.view.BridgeMapConstant.BLANK_MARK;
+import static bridge.view.BridgeMapConstant.END_SUFFIX;
+import static bridge.view.BridgeMapConstant.FAIL_MARK;
+import static bridge.view.BridgeMapConstant.PREFIX_IDX_VALUE;
+import static bridge.view.BridgeMapConstant.ROUND_SUFFIX;
+import static bridge.view.BridgeMapConstant.START_PREFIX;
+import static bridge.view.BridgeMapConstant.SUCCESS_MARK;
+import static bridge.view.BridgeMapConstant.SUFFIX_IDX_VALUE;
 
-    private static final String BRIDGE_START_PREFIX = "[";
-    private static final String BRIDGE_ROUND_SUFFIX = "|";
-    private static final String BRIDGE_END_SUFFIX = "]";
-    private static final String BRIDGE_SUCCESS_MARK = " O ";
-    private static final String BRIDGE_BLANK_MARK = "   ";
-    private static final String BRIDGE_FAIL_MARK = "X";
-    public static final int PREFIX_IDX_VALUE = 1;
-    public static final int SUFFIX_IDX_VALUE = 2;
+public class BridgeMapViewCreator {
 
     private BridgeMapViewCreator() {
     }
@@ -52,8 +52,8 @@ public class BridgeMapViewCreator {
     }
 
     private static void appendStartPrefix(StringBuilder upBridge, StringBuilder downBridge) {
-        upBridge.append(BRIDGE_START_PREFIX);
-        downBridge.append(BRIDGE_START_PREFIX);
+        upBridge.append(START_PREFIX);
+        downBridge.append(START_PREFIX);
     }
 
     private static void appendUpRound(BridgeMark record, StringBuilder upBridge) {
@@ -77,15 +77,15 @@ public class BridgeMapViewCreator {
     }
 
     private static void appendSuccessRound(StringBuilder bridge) {
-        bridge.append(BRIDGE_SUCCESS_MARK);
+        bridge.append(SUCCESS_MARK);
     }
 
     private static void appendBlankRound(StringBuilder bridge) {
-        bridge.append(BRIDGE_BLANK_MARK);
+        bridge.append(BLANK_MARK);
     }
 
     private static void appendRoundSuffix(StringBuilder bridge) {
-        bridge.append(BRIDGE_ROUND_SUFFIX);
+        bridge.append(ROUND_SUFFIX);
     }
 
     private static void performEndSuffix(GameStatus gameStatus, StringBuilder upBridge, StringBuilder downBridge) {
@@ -97,24 +97,24 @@ public class BridgeMapViewCreator {
     }
 
     private static void changeLastMark(StringBuilder upBridge, StringBuilder downBridge) {
-        int upLastIdx = upBridge.lastIndexOf(BRIDGE_SUCCESS_MARK);
-        int downLastIdx = downBridge.lastIndexOf(BRIDGE_SUCCESS_MARK);
+        int upLastIdx = upBridge.lastIndexOf(SUCCESS_MARK);
+        int downLastIdx = downBridge.lastIndexOf(SUCCESS_MARK);
 
         if (upLastIdx > downLastIdx) {
-            upBridge.replace(upLastIdx + PREFIX_IDX_VALUE, upLastIdx + SUFFIX_IDX_VALUE, BRIDGE_FAIL_MARK);
+            upBridge.replace(upLastIdx + PREFIX_IDX_VALUE, upLastIdx + SUFFIX_IDX_VALUE, FAIL_MARK);
         }
         if (upLastIdx < downLastIdx) {
-            downBridge.replace(downLastIdx + PREFIX_IDX_VALUE, downLastIdx + SUFFIX_IDX_VALUE, BRIDGE_FAIL_MARK);
+            downBridge.replace(downLastIdx + PREFIX_IDX_VALUE, downLastIdx + SUFFIX_IDX_VALUE, FAIL_MARK);
         }
     }
 
     private static void deleteLastRoundSuffix(StringBuilder upBridge, StringBuilder downBridge) {
-        upBridge.deleteCharAt(upBridge.lastIndexOf(BRIDGE_ROUND_SUFFIX));
-        downBridge.deleteCharAt(downBridge.lastIndexOf(BRIDGE_ROUND_SUFFIX));
+        upBridge.deleteCharAt(upBridge.lastIndexOf(ROUND_SUFFIX));
+        downBridge.deleteCharAt(downBridge.lastIndexOf(ROUND_SUFFIX));
     }
 
     private static void performEndSuffix(StringBuilder upBridge, StringBuilder downBridge) {
-        upBridge.append(BRIDGE_END_SUFFIX);
-        downBridge.append(BRIDGE_END_SUFFIX);
+        upBridge.append(END_SUFFIX);
+        downBridge.append(END_SUFFIX);
     }
 }
