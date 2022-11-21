@@ -1,7 +1,5 @@
 package bridge.view.util;
 
-import bridge.domain.MessageStorage;
-
 public class CheckUtil {
     private static final String UP = "U";
     private static final String DOWN = "D";
