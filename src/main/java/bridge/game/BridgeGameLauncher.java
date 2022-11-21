@@ -25,9 +25,9 @@ public class BridgeGameLauncher {
                 status = status.next(context, inputView, outputView);
             } catch (IllegalStateException exception) {
                 status = new GameEndStatus();
-                System.out.println(exception.getMessage());
+                outputView.printError(exception.getMessage());
             } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
+                outputView.printError(exception.getMessage());
             }
         }
     }
