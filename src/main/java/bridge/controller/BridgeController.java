@@ -64,12 +64,18 @@ public class BridgeController {
             if (length.isSameLength(++distance)) {
                 return result;
             }
-            Direction direction = createDirectionLoop();
-            Position position = createPosition(distance, direction);
-            bridgeGame.move(position, passingPositions);
-            result = passingPositions.makeResult(distance);
+            result = getResult(passingPositions, distance);
         } while (!outputView.printMap(result));
         result.rollbackDistance();
+        return result;
+    }
+
+    private Result getResult(PassingPositions passingPositions, int distance) {
+        Result result;
+        Direction direction = createDirectionLoop();
+        Position position = createPosition(distance, direction);
+        bridgeGame.move(position, passingPositions);
+        result = passingPositions.makeResult(distance);
         return result;
     }
 
