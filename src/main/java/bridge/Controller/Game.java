@@ -13,6 +13,7 @@ public class Game {
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeGame bridgeGame;
     private BridgeMap bridgeMap;
+    private boolean isStart = true;
 
     public void run() {
         OutputView.printInit();
@@ -27,7 +28,6 @@ public class Game {
     }
 
     private void startGame() {
-        boolean isStart = true;
         while (isStart) {
             BridgeGame.plusPlayCount();
             isStart = crossBridge();
