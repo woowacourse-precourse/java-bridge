@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 public enum Continue {
     RESTART("R"), QUIT("Q");
