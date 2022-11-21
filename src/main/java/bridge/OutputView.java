@@ -20,6 +20,10 @@ public class OutputView {
         System.out.println(ENTER_BRIDGE_SIZE);
     }
 
+    public void enterMoveDirection() {
+        System.out.println(ENTER_MOVE_DIRECTION);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

@@ -15,6 +15,7 @@
 
 ### BridgeGame
 1. move
+- List로 결과값을 뽑는다.
 2. Retry
 
 ### BridgeMaker
