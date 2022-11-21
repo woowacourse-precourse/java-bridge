@@ -70,7 +70,7 @@ public class BridgeGame {
      *     3. 플레이어의 이동 방향이 건널 수 있는지 여부를 확인한다.{@link Processor#askMoving()} <br/>
      *     4. 플레이어의 이동 성공 여부를 기호로 변환한다.{@link ResultConverter#convertToMark(boolean)} <br/>
      *     5. 이동 결과를 PlayerBoard에 반영한다.{@link #move(String, String)} <br/>
-     *     6. 반영된 해당 라운드에 대한 PlayerBoard 결과를 출력한다.{@link Processor#getRoundResult(String, String)} <br/>
+     *     6. 반영된 해당 라운드에 대한 PlayerBoard 결과를 출력한다.{@link #showRoundResult(PlayerBoard)} <br/>
      *     7. 게임 진행 여부를 위한 3번 과정의 결과를 반환한다.
      * </p>
      * @return {@link #isComplete} : 해당 라운드에서 다리를 건너는 것에 대한 성공/실패 여부
@@ -82,15 +82,18 @@ public class BridgeGame {
     private boolean startRound() {
         String inputMoving = processor.askMoving();
         int recentRound = playerBoard.getGameRound();
-
         boolean isCrossable = bridgeCalculator.isCrossable(recentRound, inputMoving);
-        String resultValue = resultConverter.convertToMark(isCrossable);
-
-        move(inputMoving, resultValue);
+        String roundResult = resultConverter.convertToMark(isCrossable) ;
+        
+        move(inputMoving, roundResult);
+        showRoundResult(playerBoard);
+        return isCrossable;
+    }
+    
+    private void showRoundResult(PlayerBoard playerBoard){
         String upsideBridge = playerBoard.getBridgeStatus(Directions.UP.getValue());
         String downsideBridge = playerBoard.getBridgeStatus(Directions.DOWN.getValue());
         processor.getRoundResult(upsideBridge, downsideBridge);
-        return isCrossable;
     }
 
 
