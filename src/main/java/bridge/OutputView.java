@@ -5,6 +5,36 @@ package bridge;
  */
 public class OutputView {
 
+
+    /**
+     * 게임 시작 메시지를 출력한다.
+     */
+    public void printStartGame() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
+    /**
+     * 다리 길이를 입력받는 메시지를 출력한다.
+     */
+    public void printInputBridgeSize(){
+        System.out.println("\n다리의 길이를 입력해주세요.");
+    }
+
+    /**
+     * 이동할 칸을 입력받는 메시지를 출력한다.
+     */
+    public void printInputMove(){
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    /**
+     * 게임을 다시 시도할지 여부 메시지를 출력한다.
+     */
+    public void printInputRetry(){
+        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
