@@ -33,13 +33,24 @@ public class OutputView {
     private void printBridge(int endTurn, HashMap<Integer, Boolean> bridge) {
         System.out.print(START);
         for (int key : bridge.keySet()) {
-            System.out.print(String.format(" %s ", bridge.get(key)));
+            System.out.print(String.format(" %s ", convertBooleanToString(bridge.get(key))));
             if (key + 1 == endTurn) {
                 continue;
             }
             System.out.print(MIDDLE);
         }
         System.out.println(END);
+    }
+
+    private String convertBooleanToString(Boolean convertTarget) {
+        try {
+            if (convertTarget) {
+                return "O";
+            }
+            return "X";
+        } catch (NullPointerException NPE) {
+            return " ";
+        }
     }
 
     public void store(Boolean match, String move, int turn) {
