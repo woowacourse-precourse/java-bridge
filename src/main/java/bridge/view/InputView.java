@@ -6,21 +6,21 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    public static int getInputBridgeSize() {
+    public static int readBridgeSize() {
         OutputView.printInputBridgeSize();
         String input = readLine();
         ExceptionHandler.checkBridgeSize(input);
         return Integer.parseInt(input);
     }
 
-    public static String getInputChoice() {
+    public static String readChoice() {
         OutputView.printInputMoving();
         String input = readLine();
         ExceptionHandler.checkMoving(input);
         return input;
     }
 
-    public static String getInputRetryCommand() {
+    public static String readRetryCommand() {
         OutputView.printInputRetryCommand();
         String input = readLine();
         ExceptionHandler.checkRetryCommand(input);

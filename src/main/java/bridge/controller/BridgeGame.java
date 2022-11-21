@@ -37,7 +37,7 @@ public class BridgeGame {
     private void buildAnswerBridge() {
         while (true) {
             try {
-                int bridgeSize = InputView.getInputBridgeSize();
+                int bridgeSize = InputView.readBridgeSize();
                 List<String> madeBridge = bridgeMaker.buildBridge(bridgeSize);
                 answerBridge = new AnswerBridge(madeBridge);
                 break;
@@ -54,7 +54,7 @@ public class BridgeGame {
     public void move() {
         while (true) {
             try {
-                String choice = InputView.getInputChoice();
+                String choice = InputView.readChoice();
                 user.addChoice(choice);
                 OutputView.printMap(user.getChoices(), answerBridge.compareTo(user.getChoices()));
                 break;
@@ -72,7 +72,7 @@ public class BridgeGame {
         String retryCommand;
         while (true) {
             try {
-                retryCommand = InputView.getInputRetryCommand();
+                retryCommand = InputView.readRetryCommand();
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
                 OutputView.printError(illegalArgumentException);
