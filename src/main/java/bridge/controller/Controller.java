@@ -19,19 +19,9 @@ public class Controller {
     private final BridgeGame bridgeGame;
 
     public Controller() {
-        bridgeSize = setBridgeSize();
-        bridgeGame = new BridgeGame(createAnswerBridge(bridgeSize));
-    }
-
-    private int setBridgeSize() {
         OutputView.printGameStart();
-        return InputView.readBridgeSize();
-    }
-
-    private List<String> createAnswerBridge(int bridgeSize) {
-        final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize); // 추후 삭제
-        return answerBridge;
+        bridgeSize = InputView.readBridgeSize();
+        bridgeGame = new BridgeGame(bridgeSize);
     }
 
     public void play() {

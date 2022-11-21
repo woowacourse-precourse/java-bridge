@@ -17,8 +17,14 @@ public class BridgeGame {
 
     private final List<String> answerBridge;
 
-    public BridgeGame(List<String> answerBridge) {
-        this.answerBridge = answerBridge;
+    public BridgeGame(int bridgeSize) {
+        this.answerBridge = createAnswerBridge(bridgeSize);
+    }
+
+    private List<String> createAnswerBridge(int bridgeSize) {
+        final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize); // 추후 삭제
+        return answerBridge;
     }
 
     /**
