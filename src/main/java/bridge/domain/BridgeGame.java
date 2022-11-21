@@ -3,9 +3,11 @@ package bridge.domain;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Direction;
+import bridge.constant.MoveStatus;
 import bridge.constant.RetryCommand;
-import bridge.dto.CurrentGameResultResponse;
 import bridge.dto.FinishedGameResultResponse;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -41,8 +43,8 @@ public class BridgeGame {
         return result.isSuccess(bridge);
     }
 
-    public final CurrentGameResultResponse resultOfMoving() {
-        return new CurrentGameResultResponse(result.getMoveStatuses());
+    public final List<MoveStatus> resultOfMoving() {
+        return Collections.unmodifiableList(result.getMoveStatuses());
     }
 
     public final FinishedGameResultResponse resultOfFinishedGame() {
@@ -58,8 +60,8 @@ public class BridgeGame {
         if (!RetryCommand.canRetry(userInput)) {
             return false;
         }
-        prepareRetry();
 
+        prepareRetry();
         return true;
     }
 
