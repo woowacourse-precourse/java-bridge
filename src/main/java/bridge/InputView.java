@@ -8,8 +8,29 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public int readBridgeSize(String readSize) {
+        validForSize(readSize);
+        return Integer.parseInt(readSize);
+    }
+
+    private void validForSize(String readSize) {
+        isNumber(readSize);
+        validRange(readSize);
+    }
+
+    private void validRange(String readSize) {
+        int size = Integer.parseInt(readSize);
+        if (size < 3 || 20 < size) {
+            System.err.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+    private void isNumber(String size) {
+        for (char number : size.toCharArray()) {
+            if (!Character.isDigit(number)) {
+                System.err.println("[ERROR] 다리 길이는 숫자여야 합니다.");
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     /**
