@@ -1,7 +1,9 @@
 package bridge.constant;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -17,5 +19,12 @@ public class DirectionTest {
     @CsvSource(value = {"1=UPPER", "0=LOWER"}, delimiter = '=')
     void 숫자로_방향을_찾을_수_있다(int bridgeNumber, Direction expected) {
         assertThat(Direction.from(bridgeNumber)).isEqualTo(expected);
+    }
+
+    @Test
+    void 잘못된_방향_문자열은_예외를_던진다() {
+        String anomalyDirection = "ASDF";
+
+        assertThatIllegalArgumentException().isThrownBy(() -> Direction.from(anomalyDirection));
     }
 }
