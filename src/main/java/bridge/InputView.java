@@ -20,9 +20,13 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
         String readLine = Console.readLine();
-        validateRange(readLine);
-        validateType(readLine);
-        return Integer.parseInt(readLine);
+        try {
+            validateRange(readLine);
+            validateType(readLine);
+            return Integer.parseInt(readLine);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR]");
+        }
     }
 
     private void validateRange(String readLine){
