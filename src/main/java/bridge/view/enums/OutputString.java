@@ -3,7 +3,7 @@ package bridge.view.enums;
 public enum OutputString {
     START("다리 건너기 게임을 시작합니다."),
     INPUT("다리의 길이를 입력해주세요."),
-    MOVE("이동할 칸을 선택해주세요. (위 : U, 아래 : D"),
+    MOVE("이동할 칸을 선택해주세요. (위 : U, 아래 : D)"),
     RESULT("게임 성공 여부: "),
     TRY("총 시도한 횟수: "),
     SUCCESS("성공"),
