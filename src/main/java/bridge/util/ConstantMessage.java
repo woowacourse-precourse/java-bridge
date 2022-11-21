@@ -8,4 +8,5 @@ public class ConstantMessage {
     public static final String GAME_RESULT_PHRASE = "최종 게임 결과";
     public static final String BRIDGE_LENGTH_ERROR_MESSAGE = "[ERROR] 3이상 20이하의 숫자만 입력하세요.";
     public static final String MOVING_BLOCK_ERROR_MESSAGE = "[ERROR] 'U' 또는 'D'만 입력하세요.";
+    public static final String RESTART_GAME_ERROR_MESSAGE = "[ERROR] 'R' 또는 'Q'만 입력하세요.";
 }
