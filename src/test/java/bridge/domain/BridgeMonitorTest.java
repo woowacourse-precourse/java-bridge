@@ -16,7 +16,7 @@ class BridgeMonitorTest {
 
     @DisplayName("한 턴의 이동에 대한 현황을 기록한다.")
     @Nested
-    class recordMoving {
+    class RecordMoving {
 
         @DisplayName("위 방향 이동에 성공")
         @Test
@@ -77,7 +77,7 @@ class BridgeMonitorTest {
 
     @DisplayName("이동 기록을 1회 되돌린다.")
     @Nested
-    class turnBackMoving {
+    class TurnBackMoving {
 
         @DisplayName("이동 1회 성공 후 이동 실패한 경우")
         @Test
