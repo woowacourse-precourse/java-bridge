@@ -29,10 +29,10 @@ public class BridgeGame {
             }
         }
         if (isEnd) {
-            outputView.printResult(count, true);
+            outputView.printResult(count, idx,bridge,true);
             return;
         }
-        outputView.printResult(count, false);
+        outputView.printResult(count,idx, bridge, false);
     }
 
     public boolean move(List<String> bridge) {
@@ -46,6 +46,7 @@ public class BridgeGame {
         outputView.printMap(idx,bridge,false);
         return false;
     }
+
     public boolean retry() {
         String command = inputView.readGameCommand();
         if (command.equals("R")){
