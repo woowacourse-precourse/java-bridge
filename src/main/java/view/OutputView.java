@@ -61,13 +61,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(BridgeGame bridgeGame) {
-        System.out.println(FINAL_RESULT);
-        printMap(bridgeGame);
-        successStatus(bridgeGame);
+        printFinalBridge(bridgeGame);
+        printSuccessStatus(bridgeGame);
         System.out.println(TOTAL_NUMBER_ATTEMPTS + bridgeGame.getCount());
     }
 
-    private static void successStatus(BridgeGame bridgeGame) {
+    private static void printFinalBridge(BridgeGame bridgeGame) {
+        System.out.println(FINAL_RESULT);
+        printMap(bridgeGame);
+    }
+
+    private static void printSuccessStatus(BridgeGame bridgeGame) {
         System.out.print(IS_CLEAR);
         if(bridgeGame.isFailure()){
             System.out.println("실패");
