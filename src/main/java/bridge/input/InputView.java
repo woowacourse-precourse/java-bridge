@@ -22,6 +22,12 @@ public class InputView {
         return readBridgeSize();
     }
 
+    public static String readMoving() {
+        String input = getCommandInput(MOVE_INPUT, UP, DOWN, ERROR_MOVE_INPUT);
+        if (input != null) return input;
+        return readMoving();
+    }
+
     private static String getCommandInput(String printInput, String command1, String command2, String errorName) {
         System.out.println(printInput);
         String input = Console.readLine();
