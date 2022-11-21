@@ -15,7 +15,7 @@ public class Application {
     static int tryCount;
 
     public static void main(String[] args) {
-        System.out.println(Message.GAME_COMMAND);
+        System.out.println(Message.GAME_START_COMMENT);
         initialize();
         getBridge();
         gameStart();
