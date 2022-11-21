@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.ArrayList;
@@ -20,22 +21,38 @@ public class BridgeGame {
     List<String> up = new ArrayList<>();
     List<String> down = new ArrayList<>();
     private static final OutputView outputView = new OutputView();
+    private static final InputView inputView = new InputView();
+    private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    List<String> bridge;
+    List<List<String>> results = new ArrayList<>();
+    private int count = 0;
+    boolean isRight = true;
+
+    public void start(){
+        outputView.printStartMessage();
+        int size = inputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(size);
+        System.out.println(bridge);
+        while (isRight){
+            String moving = inputView.readMoving();
+            move(bridge,moving,count);
+            count++;
+            outputView.printMap(results);
+        }
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      * @return
      */
-    public List<List<String>> move(List<String> bridge, String moving, int count) {
-        List<List<String>> results = new ArrayList<>();
+    public void move(List<String> bridge, String moving, int count) {
         checkUp(bridge,moving,count);
         checkDown(bridge,moving,count);
-
-        System.out.println("up: "+up);
-        System.out.println("down: "+down);
         results.add(up);
         results.add(down);
-        return results;
+        if(up.contains("X") || down.contains("X"))
+            isRight = false;
     }
 
     /**
