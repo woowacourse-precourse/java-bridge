@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 
