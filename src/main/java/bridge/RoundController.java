@@ -67,7 +67,7 @@ public class RoundController {
     }
 
     public void bridgeRound() {
-        System.out.println(bridgeShape);
+        //System.out.println(bridgeShape);
 
         while (position < bridgeShape.size()) {
             if (!retryProgress()) {
