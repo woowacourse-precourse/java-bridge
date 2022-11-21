@@ -1,14 +1,11 @@
 package bridge.output;
 
 import bridge.map.Map;
-import bridge.output.message.Error;
-import bridge.output.message.Read;
-import bridge.output.message.Status;
 
 public class OutputView {
 
     public static void printStartMessage() {
-        System.out.println(Status.START.getMessage());
+        System.out.println(Guide.START.getMessage());
     }
 
     public static void printReadBridgeSizeMessage() {
@@ -40,18 +37,18 @@ public class OutputView {
     }
     
     public static void printResult(Map map, boolean success, int totalTry) {
-        System.out.println(Status.FINISH.getMessage());
+        System.out.println(Guide.FINISH.getMessage());
         printMap(map);
-        System.out.print(Status.SUCCESS_OR_NOT.getMessage());
-        System.out.println(successOrNotToString(success));
-        System.out.print(Status.TOTAL_TRY.getMessage());
+        System.out.print(Guide.RESULT.getMessage());
+        System.out.println(toMessage(success));
+        System.out.print(Guide.TOTAL_TRY.getMessage());
         System.out.println(totalTry);
     }
 
-    private static String successOrNotToString(boolean success) {
+    private static String toMessage(boolean success) {
         if (success) {
-            return Status.SUCCESS.getMessage();
+            return Guide.SUCCESS.getMessage();
         }
-        return Status.FAIL.getMessage();
+        return Guide.FAIL.getMessage();
     }
 }

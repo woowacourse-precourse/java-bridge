@@ -1,4 +1,4 @@
-package bridge.output.message;
+package bridge.output;
 
 public enum Read {
 
