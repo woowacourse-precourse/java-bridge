@@ -26,6 +26,9 @@ public class PlayerMapTest {
             List.of("O", " ", "X")
     );
 
+    /*
+    * toStringsByFormat 메서드 테스트
+    * */
     @DisplayName("PlayerMap 객체를 알맞는 형식의 문자열로 반환한다")
     @Test
     void toStringsByFormatTest() {
@@ -36,6 +39,9 @@ public class PlayerMapTest {
                 ));
     }
 
+    /*
+    * isFailure 메서드 테스트
+    * */
     @DisplayName("X를 포함한 경로는 true를 반환한다")
     @Test
     void failureTest() {
@@ -48,6 +54,10 @@ public class PlayerMapTest {
         assertThat(playerMap1.isFailure()).isFalse();
     }
 
+
+    /*
+    * PlayerMap 가공 메서드(subMapBy, elementOf, join) 테스트
+    * */
     @DisplayName("playerMap1의 n번째 칸까지의 subMap을 반환한다")
     @ParameterizedTest
     @MethodSource("subMapTestSource")
@@ -76,6 +86,9 @@ public class PlayerMapTest {
                 .isEqualTo(expected);
     }
 
+    /*
+    * equals 메서드 테스트
+    * */
     @DisplayName("같은 경로를 가진 playerMap1과 playerMap2는 동일하다")
     @Test
     void equalsTest() {
@@ -88,6 +101,9 @@ public class PlayerMapTest {
         assertThat(playerMap1).isNotEqualTo(failureMap);
     }
 
+    /*
+    * hashCode 메서드 테스트
+    * */
     @DisplayName("같은 경로를 가진 playerMap1과 playerMap2는 동일한 해시코드를 가진다")
     @Test
     void sameHashCodeTest() {
@@ -101,6 +117,7 @@ public class PlayerMapTest {
         assertThat(playerMap1.hashCode())
                 .isNotEqualTo(failureMap.hashCode());
     }
+
 
     private static Stream<Arguments> subMapTestSource() {
         return Stream.of(
