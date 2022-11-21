@@ -32,4 +32,20 @@ public class BridgeGame {
         }
         return ConstValue.FAIL;
     }
+
+    public boolean gameContinue(Bridge bridge, boolean isQuit) {
+        return !bridge.isCompleted() && !isQuit;
+    }
+
+    public boolean isRetry(String gameCommand, boolean isCorrect, BridgeGame bridgeGame) {
+        if (gameCommand.equals(ConstValue.RETRY)) {
+            bridgeGame.retry();
+        }
+
+        return gameCommand.equals(ConstValue.RETRY) && !isCorrect;
+    }
+
+    public boolean isQuit(String gameCommand) {
+        return gameCommand.equals(ConstValue.QUIT);
+    }
 }

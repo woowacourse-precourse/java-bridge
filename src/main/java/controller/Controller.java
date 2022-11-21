@@ -12,12 +12,7 @@ public class Controller {
     public void run() {
         Bridge bridge = createBridge();
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean isQuit;
-
-        do {
-            isQuit = onePlaceMove(bridge, bridgeGame);
-        } while (gameContinue(bridge, isQuit));
-
+        gameStart(bridge, bridgeGame);
         outputView.printResult(bridgeGame, bridge.toString());
     }
 
@@ -32,6 +27,14 @@ public class Controller {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
+    private void gameStart(Bridge bridge, BridgeGame bridgeGame) {
+        boolean isQuit;
+
+        do {
+            isQuit = onePlaceMove(bridge, bridgeGame);
+        } while (bridgeGame.gameContinue(bridge, isQuit));
+    }
+
     private boolean onePlaceMove(Bridge bridge, BridgeGame bridgeGame) {
         String gameCommand;
         boolean isCorrect;
@@ -39,9 +42,9 @@ public class Controller {
         do {
             isCorrect = move(bridge, bridgeGame);
             gameCommand = getGameCommand(isCorrect);
-        } while (isRetry(gameCommand, isCorrect, bridgeGame));
+        } while (bridgeGame.isRetry(gameCommand, isCorrect, bridgeGame));
 
-        return isQuit(gameCommand);
+        return bridgeGame.isQuit(gameCommand);
     }
 
     private boolean move(Bridge bridge, BridgeGame bridgeGame) {
@@ -59,21 +62,5 @@ public class Controller {
             return inputView.readGameCommand();
         }
         return "";
-    }
-
-    private boolean isRetry(String gameCommand, boolean isCorrect, BridgeGame bridgeGame) {
-        if (gameCommand.equals(ConstValue.RETRY)) {
-            bridgeGame.retry();
-        }
-
-        return gameCommand.equals(ConstValue.RETRY) && !isCorrect;
-    }
-
-    private boolean isQuit(String gameCommand) {
-        return gameCommand.equals(ConstValue.QUIT);
-    }
-
-    private boolean gameContinue(Bridge bridge, boolean isQuit) {
-        return !bridge.isCompleted() && !isQuit;
     }
 }
