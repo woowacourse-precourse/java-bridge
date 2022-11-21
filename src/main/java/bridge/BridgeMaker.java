@@ -27,7 +27,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private void setBridgeList(List<String> bridge, int num){
+    private void setBridgeList(List<String> bridge, int num) {
         if (num == 1) {
             bridge.add("U");
         } else if (num == 0) {

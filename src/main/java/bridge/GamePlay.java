@@ -4,34 +4,51 @@ import java.util.List;
 
 public class GamePlay {
 
-    InputView inputView = new InputView();
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    BridgeGame bridgeGame = new BridgeGame();
-    OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private final OutputView outputView = new OutputView();
+
+    private static int gameCount = 0;
 
     public void run() {
-        outputView.printStart();
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge); // 삭제
+        List<String> correctBridge = setBridgeGame();
+        String gameCommand = "R";
         String result = null;
-        String restart = "R";
-        int gameCount = 0;
-        while (restart.equals("R")) {
+        while (gameCommand.equals("R")) {
             gameCount++;
-            for (int i = 0; i < bridgeSize; i++) {
-                String moving = inputView.readMoving();
-                result = bridgeGame.move(moving, bridge, i);
-                outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), i);
-                if (result.equals("X")) {
-                    restart = inputView.readGameCommand();
-                    bridgeGame.retry(restart);
-                    break;
-                }
-                restart = "Q";
-            }
+            result = playBridgeGame(correctBridge);
+            gameCommand = setRestartGame(result);
         }
         outputView.printResult(result, gameCount, bridgeGame);
+    }
+
+    private List<String> setBridgeGame() {
+        outputView.printStart();
+        int bridgeSize = inputView.readBridgeSize();
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private String playBridgeGame(List<String> correctBridge) {
+        for (int i = 0; i < correctBridge.size(); i++) {
+            String moving = inputView.readMoving();
+            String result = bridgeGame.move(moving, correctBridge, i);
+            outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), i);
+            if (result.equals("X")) {
+                return "X";
+            }
+        }
+        return "O";
+    }
+
+    private String setRestartGame(String result) {
+        if (result.equals("X")) {
+            String gameCommand = inputView.readGameCommand();
+            if (gameCommand.equals("R")) {
+                bridgeGame.retry();
+                return "R";
+            }
+        }
+        return "Q";
     }
 }

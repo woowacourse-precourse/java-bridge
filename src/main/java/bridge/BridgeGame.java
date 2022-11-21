@@ -16,8 +16,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String moving, List<String> bridge, int currentIndex) {
-        if (moving.equals(bridge.get(currentIndex))) {
+    public String move(String moving, List<String> correctBridge, int currentLocation) {
+        if (moving.equals(correctBridge.get(currentLocation))) {
             setCorrectBridge(moving);
             return "O";
         }
@@ -30,11 +30,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String restart) {
-        if (restart.equals("R")) {
-            upBridge.clear();
-            downBridge.clear();
-        }
+    public void retry() {
+        upBridge.clear();
+        downBridge.clear();
     }
 
     public List<String> getUpBridge() {
@@ -45,7 +43,7 @@ public class BridgeGame {
         return downBridge;
     }
 
-    private void setCorrectBridge(String moving){
+    private void setCorrectBridge(String moving) {
         if (moving.equals("U")) {
             upBridge.add("O");
             downBridge.add(" ");
@@ -55,7 +53,7 @@ public class BridgeGame {
         }
     }
 
-    private void setWrongBridge(String moving){
+    private void setWrongBridge(String moving) {
         if (moving.equals("U")) {
             upBridge.add("X");
             downBridge.add(" ");

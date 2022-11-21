@@ -16,7 +16,6 @@ public class OutputView {
         int limit = currentSize + 1;
         bridgePrint(upBridge, limit);
         bridgePrint(downBridge, limit);
-        System.out.println();
     }
 
     /**
@@ -50,7 +49,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printGameResult(String result){
+    private void printGameResult(String result) {
         if (result.equals("O")) {
             System.out.println("성공");
         } else if (result.equals("X")) {
