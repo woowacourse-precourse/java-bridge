@@ -14,7 +14,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        return handleCheckLengthValidate(input);
+        int number = handleCheckLengthValidate(input);
+        return handleCheckLengthRangeValidate(number);
     }
 
     private int checkLengthValidate(String input) {
@@ -25,6 +26,11 @@ public class InputView {
         }
     }
 
+    private void checkLenghtRangeValidate(int number) {
+        if (number < 3 || number > 20) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_LENGTH_RANGE);
+        }
+    }
     private int handleCheckLengthValidate(String input) {
         try {
             return checkLengthValidate(input);
@@ -34,13 +40,31 @@ public class InputView {
         }
     }
 
+    private int handleCheckLengthRangeValidate(int number) {
+        try {
+            checkLenghtRangeValidate(number);
+            return number;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE_LENGTH_RANGE);
+            return readBridgeSize();
+        }
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        String input = Console.readLine();
         return null;
     }
 
+//    public String checkMoveValidate(String input) {
+//        if (!input.equals("U") || !input.equals("D")) {
+//            throw new IllegalArgumentException(ERROR_MESSAGE_MOVE_STRING);
+//        }
+//        return null;
+//    }
+//
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
