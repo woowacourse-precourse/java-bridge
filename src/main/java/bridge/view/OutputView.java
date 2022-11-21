@@ -34,32 +34,32 @@ public class OutputView {
     public void printResult(Result result) {
         List<String> upBridge = new ArrayList<>();
         List<String> downBridge = new ArrayList<>();
-        System.out.println(NEW_LINE);
-        System.out.println(RESULT_HEADER);
+        System.out.println(NEW_LINE.message);
+        System.out.println(RESULT_HEADER.message);
         makeUpAndDownBridge(result.getSteps(),upBridge,downBridge);
         System.out.println(convertBridgeToMessage(upBridge,downBridge));
-        System.out.println(NEW_LINE);
+        System.out.println(NEW_LINE.message);
         System.out.println(String.format(RESULT_IS_SUCCESS.message,result.getIsSuccess()));
         System.out.println(String.format(RESULT_TOTAL_TRIAL.message,result.getTrial()));
     }
 
     public void printStart() {
-        System.out.println(GAME_START);
+        System.out.println(GAME_START.message);
     }
 
     public void printBridgeSize() {
-        System.out.println(NEW_LINE);
-        System.out.println(BRIDGE_MAKER);
+        System.out.println(NEW_LINE.message);
+        System.out.println(BRIDGE_MAKER.message);
     }
 
     public void printMoving() {
-        System.out.println(NEW_LINE);
-        System.out.println(MOVING);
+        System.out.println(NEW_LINE.message);
+        System.out.println(MOVING.message);
     }
 
     public void printRetry() {
-        System.out.println(NEW_LINE);
-        System.out.println(RETRY);
+        System.out.println(NEW_LINE.message);
+        System.out.println(RETRY.message);
     }
 
     public void printErrorMessage(String message){
