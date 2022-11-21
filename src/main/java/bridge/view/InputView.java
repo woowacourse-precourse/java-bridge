@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.model.Command;
+import bridge.model.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

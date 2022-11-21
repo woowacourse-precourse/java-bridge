@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 public enum Direction {
     DOWN(0, "D"), UP(1, "U");
@@ -11,7 +11,7 @@ public enum Direction {
         this.symbol = symbol;
     }
 
-    static Direction fromBridgeNumber(int bridgeNumber){
+    public static Direction fromBridgeNumber(int bridgeNumber){
         for (Direction direction : values()) {
             if (direction.bridgeNumber == bridgeNumber) {
                 return direction;

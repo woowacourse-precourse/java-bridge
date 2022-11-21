@@ -1,4 +1,6 @@
-package bridge;
+package bridge.model.generator;
+
+import bridge.model.Direction;
 
 import java.util.ArrayList;
 import java.util.List;

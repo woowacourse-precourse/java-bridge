@@ -1,4 +1,9 @@
-package bridge;
+package bridge.view;
+
+import bridge.model.Command;
+import bridge.model.Direction;
+import bridge.model.Round;
+import bridge.model.BridgeGame;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,11 @@
-package bridge;
+package bridge.model;
+
+import bridge.model.Direction;
 
 public class Round {
 
-    private Direction selection;
-    private boolean pass;
+    private final Direction selection;
+    private final boolean pass;
 
     public Round(Direction selection, boolean pass) {
         this.selection = selection;

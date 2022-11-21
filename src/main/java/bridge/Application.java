@@ -1,6 +1,6 @@
 package bridge;
 
-import java.util.List;
+import bridge.controller.BridgeController;
 
 public class Application {
 
