@@ -118,6 +118,36 @@ class BridgeGameTest extends NsTest {
         }
     }
 
+    @Nested
+    @DisplayName("BridgeGame 클래스의 메소드를 테스트")
+    class BridgeGameMethodTest {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U", "U", "D"));
+        @Test
+        @DisplayName("move 메소드 테스트_1")
+        void move1() {
+            bridgeGame.move("U");
+            assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of("O"));
+            assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of(" "));
+        }
+
+        @Test
+        @DisplayName("move 메소드 테스트_2")
+        void move2() {
+            bridgeGame.move("D");
+            assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of("X"));
+            assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of(" "));
+        }
+
+        @Test
+        @DisplayName("move 메소드 테스트_3")
+        void move3() {
+            bridgeGame.move("U");
+            bridgeGame.move("U");
+            assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of("O", "X"));
+            assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of(" ", " "));
+        }
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
