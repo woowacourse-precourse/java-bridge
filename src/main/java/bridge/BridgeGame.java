@@ -54,4 +54,15 @@ public class BridgeGame {
     public String getUserPath() {
         return this.userPath;
     }
+    public int getUserPosition() {
+        return this.userPosition;
+    }
+
+    public int getBridgeSize() {
+        return this.bridge.size();
+    }
+
+    public int getTryCount() {
+        return this.tryCount;
+    }
 }
