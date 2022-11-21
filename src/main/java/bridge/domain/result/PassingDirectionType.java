@@ -14,6 +14,10 @@ public enum PassingDirectionType {
     DOWN_NOT_MOVABLE("D", "X", true),
     DOWN_NOT_SELECTED("D", " ", false);
 
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String MOVABLE = "O";
+    private static final String NOT_MOVABLE = "X";
     private final String direction;
     private final String isMovable;
     private final boolean isSelected;
@@ -49,23 +53,23 @@ public enum PassingDirectionType {
 
     private static boolean moveToUp(PassingDirectionType type, Position position, Bridge bridge) {
         if (bridge.compare(position)) {
-            return type.direction.equals("U") && type.isMovable.contains("O");
+            return type.direction.equals(UP) && type.isMovable.contains(MOVABLE);
         }
-        return type.direction.equals("U") && type.isMovable.contains("X");
+        return type.direction.equals(UP) && type.isMovable.contains(NOT_MOVABLE);
     }
 
     private static boolean moveToDown(PassingDirectionType type, Position position, Bridge bridge) {
         if (bridge.compare(position)) {
-            return type.direction.equals("D") && type.isMovable.contains("O");
+            return type.direction.equals(DOWN) && type.isMovable.contains(MOVABLE);
         }
-        return type.direction.equals("D") && type.isMovable.contains("X");
+        return type.direction.equals(DOWN) && type.isMovable.contains(NOT_MOVABLE);
     }
 
     private static boolean findNotSelectedDir(PassingDirectionType type, Position position) {
         if (position.getDirection().isSameUp()) {
-            return type.direction.equals("U");
+            return type.direction.equals(UP);
         }
-        return type.direction.equals("D");
+        return type.direction.equals(DOWN);
     }
 
     public String getIsMovable() {
@@ -74,6 +78,6 @@ public enum PassingDirectionType {
 
     public static boolean isContainNotMovable(List<PassingDirectionType> types) {
         return types.stream()
-                .anyMatch(type -> type.isMovable.contains("X"));
+                .anyMatch(type -> type.isMovable.contains(NOT_MOVABLE));
     }
 }
