@@ -16,8 +16,12 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(PRINT_INPUT_SIZE_BRIDGE.getMessage());
-
         int bridgeSize = 0;
+        bridgeSize = checkSize(bridgeSize);
+        return bridgeSize;
+    }
+
+    public int checkSize(int bridgeSize) {
         try {
             bridgeSize = Integer.parseInt(Console.readLine());
             if (bridgeSize < 3 || bridgeSize > 20) {
