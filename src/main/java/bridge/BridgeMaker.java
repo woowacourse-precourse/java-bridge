@@ -20,7 +20,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List bridge = new ArrayList<>();
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             int num = bridgeNumberGenerator.generate();
             bridge.add(upOrDown(num));
         }
@@ -28,7 +28,7 @@ public class BridgeMaker {
     }
 
     public String upOrDown(int oneOrZero) {
-        if(oneOrZero == 0) {
+        if (oneOrZero == 0) {
             return "D";
         }
         return "U";
