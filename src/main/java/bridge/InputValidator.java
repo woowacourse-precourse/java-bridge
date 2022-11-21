@@ -8,20 +8,12 @@ public class InputValidator {
     static final int BRIDGE_MAX_LENGTH = 20;
 
     public static String getValidateInput(InputType inputType) {
-        if (inputType == InputType.BRIDGE) return checkValidateBridge(getLine());
-        if (inputType == InputType.MOVE) return checkValidateMove(getLine());
-        if (inputType == InputType.REPLAY) return checkValidateRePlay(getLine());
+        if (inputType == InputType.BRIDGE) return checkValidateBridge(Console.readLine());
+        if (inputType == InputType.MOVE) return checkValidateMove(Console.readLine());
+        if (inputType == InputType.REPLAY) return checkValidateRePlay(Console.readLine());
         return null;
     }
 
-
-    public static String getLine(){
-        try{
-            return Console.readLine();
-        }catch (Exception e){
-            throw new IllegalArgumentException(Message.NONE_INPUT_ERROR);
-        }
-    }
     public static String checkValidateBridge(String input){
         int num = checkIsDigit(input);
         checkIsValidBridgeRange(num);
