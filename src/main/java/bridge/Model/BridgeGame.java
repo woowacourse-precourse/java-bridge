@@ -10,6 +10,7 @@ public class BridgeGame {
     private static final String NOTHING = " ";
     private static final String RIGHT_POSITION = "O";
     private static final String WRONG_POSITION = "X";
+    private static final String RETRY = "R";
     private static int bridgeSize;
     private static List<String> bridgeAnswer;
     private static int gameCount = 0;
@@ -71,7 +72,15 @@ public class BridgeGame {
             currentBridge.get(0).add(NOTHING);
             currentBridge.get(1).add(WRONG_POSITION);
         }
-
-        public void retry () {
-        }
     }
+
+    public static boolean retry(String userInput) {
+        if (userInput.equals(RETRY)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void retry() {
+    }
+}
