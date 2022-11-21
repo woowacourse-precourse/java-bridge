@@ -16,7 +16,7 @@ class BridgeSizeValidatorTest {
     private final BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
 
     @Test
-    public void isNumericFailure() {
+    void isNumericFailure() {
         String wrongNumberTarget = "1j";
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
@@ -26,7 +26,7 @@ class BridgeSizeValidatorTest {
     }
 
     @Test
-    public void isValidRangeFailure() {
+    void isValidRangeFailure() {
         int input = BridgeInfo.MAX_SIZE.getInfo() + 1;
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
