@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 public class BridgeGame {
     public ArrayList<String> bridge = new ArrayList<>();
     public ArrayList<String> currentCoordinate = new ArrayList<>();
+    public int gameCount = 0;
+    public boolean gameOver = false;
     public void makeBridge(int size) {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
@@ -21,8 +24,18 @@ public class BridgeGame {
      */
     public void move(String moving) {
         this.currentCoordinate.add(moving);
+        bridgeCheck();
     }
 
+    public void bridgeCheck() {
+        System.out.println(this.bridge);
+        System.out.println(this.currentCoordinate);
+        if (!Objects.equals(this.bridge.get(gameCount), this.currentCoordinate.get(gameCount))){
+            this.gameOver = true;
+        }
+        System.out.println(this.gameCount+"게임카운트");
+        this.gameCount += 1;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
