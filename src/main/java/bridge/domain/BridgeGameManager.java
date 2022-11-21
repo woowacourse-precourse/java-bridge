@@ -3,13 +3,15 @@ package bridge.domain;
 import bridge.view.input.InputView;
 import bridge.view.output.OutputView;
 
+import static bridge.domain.Constants.BRIDGE_LENGTH_INIT;
+
 public class BridgeGameManager {
 
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeState bridgeState = new BridgeState();
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
-    private int bridgeLength = 0;
+    private int bridgeLength = BRIDGE_LENGTH_INIT;
 
     public void start() {
         introBridgeGame();
@@ -29,7 +31,7 @@ public class BridgeGameManager {
 
     private void mainProgress(BridgeGame bridgeGame) {
         initBrigeLength(bridgeGame);
-        while (bridgeLength --> 0) {
+        while (bridgeLength --> BRIDGE_LENGTH_INIT) {
             moveProgress(bridgeGame);
             if (!bridgeGame.isWon() && isQuit(bridgeGame)) {
                 break;
