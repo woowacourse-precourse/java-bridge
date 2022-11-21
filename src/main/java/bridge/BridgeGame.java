@@ -34,7 +34,7 @@ public class BridgeGame {
         return moveResult;
     }
 
-    public void changeStatusByMoveResult(MoveResult moveResult) {
+    private void changeStatusByMoveResult(MoveResult moveResult) {
         if (moveResult.compareDrawType(DrawType.FAIL)) {
             setStatus(GameStatus.FAIL);
             return;
