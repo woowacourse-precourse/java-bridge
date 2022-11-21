@@ -13,6 +13,9 @@ public class Game {
     public List<String> GameBoard;
     private BridgeGame bridgegame;
 
+    private boolean ExitNum = true;
+    private String RetryVal = "S";
+
     public Game() {
         TryNum = 1;
         inputview = new InputView();
@@ -42,34 +45,38 @@ public class Game {
         ouputview.printResult(Result, TryNum);
         return false;
     }
-    public void GameStart() {
-        boolean ExitNum = true;
-        String RetryVal = "S";
+    public int MovingBorad(String NowMoving) {
+        int ReturnValue = bridgegame.move(NowMoving,GameBoard);
+        ouputview.printMap(bridgegame.NowBorad,ReturnValue);
+        return ReturnValue;
+    }
+    public void MoveResult(int ReturnValue) {
+        if (ReturnValue == 2)
+            ExitNum = GameEnd("성공",ReturnValue);
 
-        while (ExitNum) {
+        if (ReturnValue == 0) {
+            ouputview.PrintText("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            RetryVal = inputview.readGameCommand();
+        }
+    }
+    public void GameOver(int ReturnValue) {
+        if (RetryVal.contains("Q")) {
+            ExitNum = GameEnd("실패",ReturnValue);;
+        }
+        if (RetryVal.contains("R")) {
+            RetryVal = "S";
+            bridgegame.retry();
+            TryNum += 1;
+        }
+    }
+    public void GameStart() {
+        while (ExitNum) { // 0은 게임 오버,1은 성공, 2는 클리어
             String NowMoving = InsertMove();
             if (NowMoving.contains("EXIT"))  break;
-            // 0은 게임 오버,1은 성공, 2는 클리어
-            int ReturnValue = bridgegame.move(NowMoving,GameBoard);
-            ouputview.printMap(bridgegame.NowBorad,ReturnValue);
-
-            if (ReturnValue == 2)
-                ExitNum = GameEnd("성공",ReturnValue);
-
-            if (ReturnValue == 0) {
-                ouputview.PrintText("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-                RetryVal = inputview.readGameCommand();
-            }
+            int ReturnValue = MovingBorad(NowMoving);
+            MoveResult(ReturnValue);
             if (RetryVal.contains("EXIT")) break; // 강제종료
-            if (RetryVal.contains("Q")) {
-                ExitNum = GameEnd("실패",ReturnValue);;
-            }
-            if (RetryVal.contains("R")) {
-                RetryVal = "S";
-                bridgegame.retry();
-                TryNum += 1;
-            }
+            GameOver(ReturnValue);
         }
-
     }
 }

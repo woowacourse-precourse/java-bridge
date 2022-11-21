@@ -20,8 +20,7 @@ public class OutputView {
             vstr = vstr.concat(tmpstr);
             if (i<NowBorad.size()-1) vstr = vstr.concat("|");
         }
-        vstr = vstr.concat("]");
-        return vstr;
+        return vstr.concat("]");
     }
 
     /**
