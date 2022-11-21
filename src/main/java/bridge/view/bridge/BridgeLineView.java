@@ -1,13 +1,14 @@
 package bridge.view.bridge;
 
 import static bridge.domain.bridge.BridgeLocation.initBridgeLocation;
+import static bridge.util.StringBufferUtility.popLastCharacter;
 import static bridge.value.BridgeLineCharacter.BRIDGE_SEPARATOR;
 import static bridge.value.BridgeLineCharacter.END_LINE;
 import static bridge.value.BridgeLineCharacter.START_LINE;
 import static bridge.value.BridgeLineCharacter.characterFor;
 
-import bridge.domain.bridge.BridgeLocation;
 import bridge.domain.bridge.BridgeAndPasser;
+import bridge.domain.bridge.BridgeLocation;
 import bridge.value.BridgeCharacter;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class BridgeLineView {
     protected void addSeparator() {
         renderBuffer.append(BRIDGE_SEPARATOR.getCharacter());
     }
+
     protected void addEndCharacter() {
         renderBuffer.append(END_LINE.getCharacter());
     }
@@ -67,9 +69,5 @@ public class BridgeLineView {
 
     protected String squareCharacter(BridgeLocation currLocation) {
         return characterFor(lineCharacter, bridgeCharacters.get(currLocation.value())).getCharacter();
-    }
-
-    public static void popLastCharacter(StringBuffer stringBuffer) {
-        stringBuffer.deleteCharAt(stringBuffer.length() - 1);
     }
 }

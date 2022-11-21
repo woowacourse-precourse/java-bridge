@@ -1,6 +1,7 @@
 package bridge.view.bridge;
 
 import static bridge.domain.bridge.BridgeLocation.initBridgeLocation;
+import static bridge.util.StringBufferUtility.popLastCharacter;
 import static bridge.value.BridgeLineCharacter.resultCharacterFor;
 
 import bridge.domain.bridge.BridgeLocation;
