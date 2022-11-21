@@ -1,10 +1,16 @@
 package bridge.controller;
 
+import bridge.domain.GameCommand;
+import bridge.domain.Moving;
 import bridge.service.BridgeMaker;
 import bridge.util.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.domain.GameCommand.QUIT;
+import static bridge.domain.GameCommand.RESTART;
+import static bridge.exception.ExceptionType.INPUT_WRONG_COMMAND;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -28,20 +34,29 @@ public class BridgeGame {
     public void initialize(int bridgeSize) {
         gameBridge = bridgeMaker.makeBridge(bridgeSize);
     }
-
+    
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param moving
+     * <p>입력 받은 Moving 객체의 방향을 playerMove 변수에 추가한다</p>
      */
-    public void move() {
+    public void move(Moving moving) {
+        playerMove.add(moving.getDirection());
     }
-
+    
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param retryCommand
+     * @return
+     * <p>RESTART : return true</p>
+     * <p>QUIT : false</p>
      */
-    public void retry() {
+    public boolean retry(GameCommand retryCommand) {
+        if (retryCommand == RESTART) {
+            playerMove.clear();
+            return true;
+        }
+        if (retryCommand == QUIT) return false;
+        throw new IllegalArgumentException(INPUT_WRONG_COMMAND.getMessage());
     }
 }
