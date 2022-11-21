@@ -52,21 +52,19 @@ public class Controller {
 
     private void run() {
         List<String> movement = new ArrayList<>();
-        int inputCount = 0;
         gameCount++;
-        while (inputCount < bridge.size()) {
+        while (movement.size() < bridge.size()) {
             try {
                 movement.add(getMove());
                 createMovingRoute(bridge, movement);
                 if (isContainX(movingRoute)) {
                     break;
                 }
-                inputCount++;
             } catch (IllegalArgumentException e) {
                 systemMessage.error("이동경로는 U 또는 D여야 합니다.");
             }
         }
-        result(inputCount);
+        result(movement);
     }
 
     private String getMove() throws IllegalArgumentException {
@@ -95,11 +93,11 @@ public class Controller {
         return false;
     }
 
-    public void result(int inputCount) {
-        if (inputCount != bridge.size()) {
+    public void result(List<String> movement) {
+        if (isContainX(movingRoute)) {
             fail();
         }
-        if (inputCount == bridge.size()) {
+        if (bridge.size() == movement.size()) {
             outputView.printResult(movingRoute, "성공", gameCount);
         }
     }
