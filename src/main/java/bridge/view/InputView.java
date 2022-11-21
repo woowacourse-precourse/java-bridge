@@ -9,7 +9,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    //TODO: InputView의 출력 사이에 개행을 맞춰야함
     public static final String INPUT_FOR_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     public static final String INPUT_FOR_MOVING_BRIDGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String INPUT_FOR_RETRY_OR_END = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
@@ -18,12 +17,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(INPUT_FOR_BRIDGE_SIZE);
-        String input = Console.readLine();
-
-        int result = convertBridgeSizeToInteger(input);
-        validateBridgeSizeIsZero(result);
-        System.out.println();
+        int result = 0;
+        try {
+            System.out.println(INPUT_FOR_BRIDGE_SIZE);
+            result = convertBridgeSizeToInteger(Console.readLine());
+            validateBridgeSizeIsZero(result);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            readBridgeSize();
+        }
         return result;
     }
 
