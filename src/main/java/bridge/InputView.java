@@ -38,7 +38,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public InputType readMoving() {
+    public Command readMoving() {
         String input;
         do {
             input = inputMoveCommand();
@@ -63,7 +63,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public InputType readGameCommand() {
+    public Command readGameCommand() {
         String input;
         do {
             input = inputRetryCommand();
@@ -85,7 +85,7 @@ public class InputView {
         return input;
     }
 
-    private InputType getInputType(String command) {
-        return InputType.getType(command.charAt(0));
+    private Command getInputType(String command) {
+        return Command.getType(command.charAt(0));
     }
 }

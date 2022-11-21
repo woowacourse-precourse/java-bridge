@@ -23,9 +23,9 @@ public class BridgeMap {
         downStair.add(BridgeShape.ENDING_POINT);
     }
 
-    public void moveSuccess(InputType inputType) {
+    public void moveSuccess(Command command) {
         inputDivision();
-        if (inputType.equals(InputType.UP)) {
+        if (command.equals(Command.UP)) {
             upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
             downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
             return;
@@ -34,9 +34,9 @@ public class BridgeMap {
         downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
     }
 
-    public void moveFail(InputType inputType) {
+    public void moveFail(Command command) {
         inputDivision();
-        if (inputType.equals(InputType.UP)) {
+        if (command.equals(Command.UP)) {
             upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
             downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
             return;

@@ -8,7 +8,7 @@ public class GamePlayer {
     private BridgeGame bridgeGame;
     private int tryCount = 0;
     private int position = 0;
-    private InputType isExit = InputType.RETRY;
+    private Command isExit = Command.RETRY;
     private boolean isGameClear = false;
     private BridgeMap bridgeMap = new BridgeMap();
     public void play() {
@@ -20,7 +20,7 @@ public class GamePlayer {
     }
 
     private boolean playGame() {
-        while (isExit != InputType.QUIT) {
+        while (isExit != Command.QUIT) {
             bridgeMap = new BridgeMap();
             tryCount++;
             cross();
@@ -42,7 +42,7 @@ public class GamePlayer {
 
     private void cross() {
         while (position < bridgeSize) {
-            InputType moveCommand = inputView.readMoving();
+            Command moveCommand = inputView.readMoving();
             if (isMoveFail(moveCommand)) break;
             bridgeMap.moveSuccess(moveCommand);
             outputView.printMap(bridgeMap);
@@ -50,7 +50,7 @@ public class GamePlayer {
         }
     }
 
-    private boolean isMoveFail(InputType moveCommand) {
+    private boolean isMoveFail(Command moveCommand) {
         if (!bridgeGame.move(moveCommand)) {
             bridgeMap.moveFail(moveCommand);
             outputView.printMap(bridgeMap);

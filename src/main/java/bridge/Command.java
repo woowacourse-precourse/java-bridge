@@ -3,7 +3,7 @@ package bridge;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum InputType {
+public enum Command {
     UP('U'),
     DOWN('D'),
     RETRY('R'),
@@ -11,7 +11,7 @@ public enum InputType {
 
     private final Character value;
 
-    private static Map<Character, InputType> mapping = new HashMap<>();
+    private static Map<Character, Command> mapping = new HashMap<>();
 
     static {
         mapping.put(UP.value, UP);
@@ -20,11 +20,11 @@ public enum InputType {
         mapping.put(QUIT.value, QUIT);
     }
 
-    InputType(Character value) {
+    Command(Character value) {
         this.value = value;
     }
 
-    public static InputType getType(Character value) {
+    public static Command getType(Character value) {
         return mapping.get(value);
     }
 

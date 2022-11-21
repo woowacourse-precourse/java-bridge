@@ -34,7 +34,7 @@ public class InputValidator {
     }
 
     private boolean isNotRetryCommand(char command) {
-        return command != InputType.RETRY.getValue() && command != InputType.QUIT.getValue();
+        return command != Command.RETRY.getValue() && command != Command.QUIT.getValue();
     }
 
     private void validateIsMoveCommand(char command) {
@@ -44,7 +44,7 @@ public class InputValidator {
     }
 
     private static boolean isNotMoveCommand(char command) {
-        return command != InputType.UP.getValue() && command != InputType.DOWN.getValue();
+        return command != Command.UP.getValue() && command != Command.DOWN.getValue();
     }
 
     private void validateNumber(String number) {
