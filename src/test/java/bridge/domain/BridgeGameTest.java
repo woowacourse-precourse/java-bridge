@@ -57,11 +57,20 @@ class BridgeGameTest {
         assertThat(result.getNumberOfTrial()).isEqualTo(2);
     }
 
+    @DisplayName("다리를 모두 건넌 후 더 이상 이동할 수 없는 지 확인")
     @Test
     void isLastMoving() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertTrue(bridgeGame.isLastMoving());
+        assertTrue(result.getIsSuccess());
     }
 
+    @DisplayName("게임이 끝난 후 게임이 진행중인지 확인")
     @Test
     void isOver() {
+        bridgeGame.isOver();
+        assertFalse(bridgeGame.getIsRunning());
     }
 }
