@@ -9,6 +9,7 @@ import java.util.Objects;
 public class BridgeGame {
     public ArrayList<String> bridge = new ArrayList<>();
     public ArrayList<String> currentCoordinate = new ArrayList<>();
+    public int bridgeCount = 0;
     public int gameCount = 0;
     public boolean gameOver = false;
     public boolean retry = true;
@@ -32,18 +33,18 @@ public class BridgeGame {
     public void bridgeCheck() {
         System.out.println(this.bridge);
         System.out.println(this.currentCoordinate);
-        if (!Objects.equals(this.bridge.get(gameCount), this.currentCoordinate.get(gameCount))){
-            boolean success = false;
-            bridgeShape.printResult(gameCount, currentCoordinate, success);
-            this.gameOver = true;
+        if (this.bridge == this.currentCoordinate){
+           bridgeShape.printResult(bridgeCount,currentCoordinate);
+           this.gameOver = true;
+           return;
         }
-        bridgeShape.printMap(this.gameCount,this.currentCoordinate);
-        this.gameCount += 1;
-        if(gameCount == this.bridge.size()){
-            boolean success = true;
-            bridgeShape.printResult(gameCount, currentCoordinate,success);
-            this.gameOver = true;
-        }
+       if (!Objects.equals(this.bridge.get(bridgeCount), this.currentCoordinate.get(bridgeCount))) {
+           bridgeShape.printFailed(bridgeCount, currentCoordinate);
+           this.gameOver = true;
+           return;
+       }
+       bridgeShape.printMap(bridgeCount, currentCoordinate);
+       bridgeCount += 1;
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -53,6 +54,10 @@ public class BridgeGame {
     public void retry(String restart) {
         if (Objects.equals(restart, "Q")){
             this.retry = false;
+        }
+        if (Objects.equals(restart, "R")){
+            this.gameCount += 1;
+            this.currentCoordinate.remove(currentCoordinate.size()-1);
         }
     }
 }

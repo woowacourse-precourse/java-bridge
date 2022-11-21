@@ -14,16 +14,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int gameCount, ArrayList<String> currentCoordinate) {
-        if (gameCount > 0) {
+    public void printMap(int bridgeCount, ArrayList<String> currentCoordinate) {
+        if (bridgeCount > 0) {
             mapU += "|";
             mapD += "|";
         }
-        if (Objects.equals(currentCoordinate.get(gameCount), "U")){
+        if (Objects.equals(currentCoordinate.get(bridgeCount), "U")){
             mapU += " O ";
             mapD += "   ";
         }
-        if (Objects.equals(currentCoordinate.get(gameCount), "D")){
+        if (Objects.equals(currentCoordinate.get(bridgeCount), "D")){
             mapU += "   ";
             mapD += " O ";
         }
@@ -36,20 +36,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int gameCount, ArrayList<String> currentCoordinate, boolean success) {
-        if (success){
-            if(Objects.equals(currentCoordinate.get(gameCount), "U")){
-                mapU += " O ]";
-                mapD += "   ]";
-            }
-            if (Objects.equals(currentCoordinate.get(gameCount), "U")){
-                mapU += "   ";
-                mapD += " O ";
-            }
-            System.out.println("최종 게임 결과");
-            System.out.println("게임 성공 여부: 성공");
-            System.out.println("총 시도한 횟수:");
-        }
-
+    public void printResult(int gameCount, ArrayList<String> currentCoordinate) {
+        System.out.println(mapU + "]");
+        System.out.println(mapD + "]");
+    }
+    public void printFailed(int gameCount, ArrayList<String> currentCoordinate) {
+        System.out.println(mapU + "]");
+        System.out.println(mapD + "]");
     }
 }
