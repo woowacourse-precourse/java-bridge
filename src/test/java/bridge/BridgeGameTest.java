@@ -78,4 +78,32 @@ public class BridgeGameTest {
         bridgeGame.move("U");
         assertThat(bridgeGame.getUserPath()).isEqualTo(List.of("U", "D", "U"));
     }
+
+    @DisplayName("게임 승리 시 게임 진행 상태가 적절하게 바뀌어야 한다.")
+    @Test
+    void gameStatusWinAfterCorrectMoves() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getGameStatus()).isEqualTo(GameStatus.WIN);
+    }
+
+    @DisplayName("게임 패배 시 게임 진행 상태가 적절하게 바뀌어야 한다.")
+    @Test
+    void gameStatusLoseAfterIncorrectMoves() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.getGameStatus()).isEqualTo(GameStatus.LOSE);
+    }
+
+    @DisplayName("게임이 종료되기 전까지 게임 진행 상태는 '진행중'을 나타내야 한다.")
+    @Test
+    void gameStatusOngoingWhenGameNotOver() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getGameStatus()).isEqualTo(GameStatus.ONGOING);
+    }
 }
