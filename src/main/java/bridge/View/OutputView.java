@@ -41,11 +41,13 @@ public class OutputView {
     private void printCorrectOrNot(Field field, String position){
         if(field.getLocation().equals(position) && field.isCorrection()){
             System.out.print(CORRECT.getValue());
-        } else if(field.getLocation().equals(position) && !field.isCorrection()){
-            System.out.print(INCORRECT.getValue());
-        } else{
-            System.out.print(BLANK.getValue());
+            return;
         }
+        if(field.getLocation().equals(position) && !field.isCorrection()){
+            System.out.print(INCORRECT.getValue());
+            return;
+        }
+        System.out.print(BLANK.getValue());
     }
 
     public boolean returnCorrectOrNot(Field field, String position){
