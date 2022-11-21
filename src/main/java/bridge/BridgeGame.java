@@ -17,14 +17,14 @@ import bridge.Constants.Command;
 public class BridgeGame {
     private static List<String> bridge;
     private static int attemptCount = 0;
-    private List<String> upLine;
-    private List<String> downLine;
+    private List<String> upline;
+    private List<String> downline;
     private int bridgeIndex;
     private String result;
 
     BridgeGame() {
-        this.upLine = new ArrayList<String>();
-        this.downLine = new ArrayList<String>();
+        this.upline = new ArrayList<String>();
+        this.downline = new ArrayList<String>();
         this.result = Result.FAIL;
         this.bridgeIndex = 0;
     }
@@ -55,13 +55,13 @@ public class BridgeGame {
     }
 
 
-    public String getUpLineForm() {
-        return BridgeShape.START_LINE + String.join(BridgeShape.SEPERATOR, this.upLine) + BridgeShape.END_LINE;
+    public String uplineToString() {
+        return BridgeShape.START_LINE + String.join(BridgeShape.SEPERATOR, this.upline) + BridgeShape.END_LINE;
 
     }
 
-    public String getDownLineForm() {
-        return BridgeShape.START_LINE + String.join(BridgeShape.SEPERATOR, this.downLine) + BridgeShape.END_LINE;
+    public String downlineToString() {
+        return BridgeShape.START_LINE + String.join(BridgeShape.SEPERATOR, this.downline) + BridgeShape.END_LINE;
     }
 
 
@@ -94,11 +94,11 @@ public class BridgeGame {
     }
 
     public boolean move(String direction) {
-        List<String> mainLine = this.upLine;
-        List<String> oppositeLine = this.downLine;
+        List<String> mainLine = this.upline;
+        List<String> oppositeLine = this.downline;
         if (direction.equals(Command.DOWN)) {
-            mainLine = this.downLine;
-            oppositeLine = this.upLine;
+            mainLine = this.downline;
+            oppositeLine = this.upline;
         }
         return isCorrectMovement(mainLine, oppositeLine, direction);
     }

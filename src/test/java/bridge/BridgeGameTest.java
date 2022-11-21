@@ -5,9 +5,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.Constants.Command;
-import java.util.Arrays;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,14 +31,14 @@ public class BridgeGameTest {
     void getUpLineFormTest() {
         bridgeGame.move(Command.UP);
         bridgeGame.move(Command.UP);
-        assertThat(bridgeGame.getUpLineForm()).isEqualTo("[ O | X ]");
+        assertThat(bridgeGame.uplineToString()).isEqualTo("[ O | X ]");
     }
 
     @DisplayName("두번째 줄 다리의 출력 포맷을 리턴한다")
     @Test
     void getDonwLineFormTest() {
         bridgeGame.move(Command.DOWN);
-        assertThat(bridgeGame.getDownLineForm()).isEqualTo("[ X ]");
+        assertThat(bridgeGame.downlineToString()).isEqualTo("[ X ]");
     }
 
     @DisplayName("성공적으로 움직였으면 true를 실패했으면 false를 리턴한다.")

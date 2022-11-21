@@ -4,7 +4,6 @@ package bridge;
  * 패키지 변경 가능 메서드 이름 변경 불가 인자 변경 가능 반환 타입 변경 가능 추가 메서드 구현 가능 BridgeGame 클래스에서 사용 불가
  */
 
-import bridge.Constants.BridgeShape;
 import bridge.Constants.OutputState;
 
 /**
@@ -38,8 +37,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        String upLineForm = bridgeGame.getUpLineForm();
-        String downLineForm = bridgeGame.getDownLineForm();
+        String upLineForm = bridgeGame.uplineToString();
+        String downLineForm = bridgeGame.downlineToString();
         System.out.println(upLineForm);
         System.out.println(downLineForm);
     }
