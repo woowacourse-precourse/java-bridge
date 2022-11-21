@@ -16,5 +16,6 @@ public class Application {
         BridgeGame.retry(InputView.readGameCommand());
         OutputView.printMap(moving);
         OutputView.printResult(1,4);
+        System.out.println(BridgeMaker.makeBridge(5));
     }
 }
