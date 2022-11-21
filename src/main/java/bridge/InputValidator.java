@@ -5,6 +5,8 @@ public class InputValidator {
     private final String invalidBridgeSizeMessage = "다리의 길이는 3부터 20 사이의 숫자여야 합니다.";
     private final String invalidMoveDirectionMessage = "이동할 방향은 U 또는 D여야 합니다.";
     private final String invalidGameCommandMessage = "게임 재시도 여부는 R 또는 Q를 입력해야 합니다.";
+    private final int minBridgeSize = 3;
+    private final int maxBridgeSize = 20;
 
 
     /* 입력받은 문자열이 숫자인지 그리고 3이상 20이하인지 확인한다. */
@@ -28,9 +30,10 @@ public class InputValidator {
     }
 
     private boolean isValidBridgeSize(int bridgeSize) {
-        return bridgeSize >= 3 && bridgeSize <= 20;
+        return bridgeSize >= minBridgeSize && bridgeSize <= maxBridgeSize;
     }
 
+    /* 입력받은 문자열이 U 또는 D인지 확인한다. */
     public void validateMoveDirection(String input) {
         if (!isMoveDirection(input)) {
             throw new IllegalArgumentException(invalidMoveDirectionMessage);
@@ -38,9 +41,10 @@ public class InputValidator {
     }
 
     private boolean isMoveDirection(String input) {
-        return "U".equals(input) || "D".equals(input);
+        return Direction.UP.getValue().equals(input) || Direction.DOWN.getValue().equals(input);
     }
 
+    /* 입력받은 문자열이 R 또는 Q인지 확인한다. */
     public void validateGameCommand(String input) {
         if (!isGameCommand(input)) {
             throw new IllegalArgumentException(invalidGameCommandMessage);
@@ -48,6 +52,7 @@ public class InputValidator {
     }
 
     private boolean isGameCommand(String input) {
-        return "R".equals(input) || "Q".equals(input);
+        return GameCommand.RETRY.getValue().equals(input)
+                || GameCommand.QUIT.getValue().equals(input);
     }
 }
