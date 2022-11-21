@@ -24,6 +24,10 @@ public class GameController {
 
 	private BridgeDto init() {
 		outputView.printStartMessage();
+		return makeBridge();
+	}
+
+	private BridgeDto makeBridge() {
 		while (true) {
 			try {
 				BridgeSizeDto bridgeSizeDto = new BridgeSizeDto(inputView.readBridgeSize());
@@ -47,15 +51,19 @@ public class GameController {
 	private boolean isRetry(BridgeDto bridgeDto, MapDto finalMapDto) {
 		while (true) {
 			try {
-				if (!isSuccess(bridgeDto, finalMapDto)) {
-					GameCommandDto gameCommandDto = new GameCommandDto(inputView.readGameCommand());
-					return bridgeGame.retry(gameCommandDto);
-				}
-				return false;
+				return gameCommandIsRetry(bridgeDto, finalMapDto);
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorLog(e);
 			}
 		}
+	}
+
+	private boolean gameCommandIsRetry(BridgeDto bridgeDto, MapDto finalMapDto) {
+		if (!isSuccess(bridgeDto, finalMapDto)) {
+			GameCommandDto gameCommandDto = new GameCommandDto(inputView.readGameCommand());
+			return bridgeGame.retry(gameCommandDto);
+		}
+		return false;
 	}
 
 	private MapDto play(BridgeDto bridgeDto) {
@@ -72,14 +80,18 @@ public class GameController {
 	private MapDto move(BridgeDto bridgeDto, int index) {
 		while (true) {
 			try {
-				MovingDto movingDto = new MovingDto(inputView.readMoving());
-				MapDto mapDto = bridgeGame.move(bridgeDto, new IndexDto(index), movingDto);
-				outputView.printMap(mapDto.getMap());
-				return mapDto;
+				return renderMapAddMoving(bridgeDto, index);
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorLog(e);
 			}
 		}
+	}
+
+	private MapDto renderMapAddMoving(BridgeDto bridgeDto, int index) {
+		MovingDto movingDto = new MovingDto(inputView.readMoving());
+		MapDto mapDto = bridgeGame.move(bridgeDto, new IndexDto(index), movingDto);
+		outputView.printMap(mapDto.getMap());
+		return mapDto;
 	}
 
 	private void finish(BridgeDto bridgeDto, MapDto mapDto) {
