@@ -43,6 +43,7 @@ public class OutputView {
 
     private void printSecondBridge(Result result) {
         StringBuilder sb = new StringBuilder();
+
         appendOpenSquareBracket(sb);
         ResultSignResolver resolver = new ResultSignResolver(result, new SecondBridgeSignStrategy(result, sb));
         sb.append(resolver.resolveResult());
