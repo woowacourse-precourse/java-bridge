@@ -2,8 +2,6 @@ package model;
 
 import java.util.List;
 
-import static controller.Util.validateMoving;
-
 public class User {
 
 
@@ -19,7 +17,6 @@ public class User {
     }
 
     public void setCurrentMoving(String currentMoving) {
-        validateMoving(currentMoving);
         this.currentMoving = currentMoving;
     }
 
