@@ -1,8 +1,9 @@
-package bridge.controller;
+package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.Statistics;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -14,12 +15,29 @@ public class BridgeGame {
 
     private BridgeNumberGenerator bridgeNumberGenerator;
     private Bridge bridge;
+    private Statistics statistics;
+    private boolean moveSuccess;
 
     public void start(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
         init();
-        while (isGameDone()) {
+        tryGame();
+        OutputView.printResult(bridge.getPlayerMovingHistory(), isGameSuccess(),
+                statistics.getTryCount());
+    }
+
+    private void tryGame() {
+        while (!moveSuccess && isGameSuccess()) {
             move();
+        }
+        if (!isGameSuccess()) {
+            checkGameCommand();
+        }
+    }
+
+    private void checkGameCommand() {
+        if (readGameCommand().equals("R")) {
+            retry();
         }
     }
 
@@ -28,13 +46,13 @@ public class BridgeGame {
         int size = readBridgeSize();
         List<String> bridges = makeBridge(size);
         this.bridge = new Bridge(size, bridges);
+        this.statistics = new Statistics();
     }
 
     private int readBridgeSize() {
         try {
             OutputView.readBridgeSize();
-            int size = InputView.readBridgeSize();
-            return size;
+            return InputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return readBridgeSize();
@@ -55,16 +73,27 @@ public class BridgeGame {
         try {
             OutputView.readMoving();
             String moving = InputView.readMoving();
-            boolean moveSuccess = bridge.updateMoving(moving);
-            OutputView.printMap(bridge.getPlayerMovingHistory(), moveSuccess);
+            this.moveSuccess = bridge.updateMoving(moving);
+            statistics.update();
+            OutputView.printMap(bridge.getPlayerMovingHistory(), this.moveSuccess);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             move();
         }
     }
 
-    private boolean isGameDone() {
-        return true;
+    private boolean isGameSuccess() {
+        return bridge.reachEndOfBridge() && this.isGameSuccess();
+    }
+
+    private String readGameCommand() {
+        try {
+            OutputView.readGameCommand();
+            return InputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     /**
@@ -73,5 +102,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        bridge.clearPlayerMovingHistory();
+        tryGame();
     }
 }

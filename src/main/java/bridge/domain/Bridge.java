@@ -7,7 +7,7 @@ public class Bridge {
 
     private final int size;
     private final List<String> bridges;
-    private final List<String> playerMovingHistory;
+    private List<String> playerMovingHistory;
 
     public Bridge(int size, List<String> bridges) {
         this.size = size;
@@ -22,6 +22,14 @@ public class Bridge {
 
     private int currentLocation() {
         return playerMovingHistory.size() - 1;
+    }
+
+    public boolean reachEndOfBridge() {
+        return playerMovingHistory.size() == size;
+    }
+
+    public void clearPlayerMovingHistory() {
+        this.playerMovingHistory.clear();
     }
 
     public List<String> getPlayerMovingHistory() {

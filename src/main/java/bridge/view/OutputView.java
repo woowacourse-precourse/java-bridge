@@ -13,6 +13,7 @@ public class OutputView {
     private static final String MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String MOVE_SUCCUESS = "O";
     private static final String MOVE_FAIL = "X";
+    private static final String ENTER_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public static void startBridgeGame() {
         System.out.println(START_MESSAGE);
@@ -83,11 +84,21 @@ public class OutputView {
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param playerMovingHistory
+     * @param gameSuccess
+     * @param statistics
      */
-    public static void printResult() {
+    public static void printResult(List<String> playerMovingHistory, boolean gameSuccess,
+            int tryCount) {
+        printMap(playerMovingHistory, gameSuccess);
     }
 
     private static void printNewLine() {
         System.out.println();
+    }
+
+    public static void readGameCommand() {
+        System.out.println(ENTER_GAME_COMMAND_MESSAGE);
     }
 }
