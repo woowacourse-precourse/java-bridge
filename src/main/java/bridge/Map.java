@@ -33,7 +33,7 @@ public class Map {
     }
 
     public void resetMap() {
-        upMap = "";
-        downMap = "";
+        upMap = "[ ";
+        downMap = "[ ";
     }
 }
