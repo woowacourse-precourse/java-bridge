@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class BridgeGame {
 
 	private final Bridge generateBridge;
-	private final int NumberOfAttempts = 1;
+	private int numberOfAttempts = 1;
 	private final InputView inputView = new InputView();
 	private final OutputView outputView = new OutputView();
 
@@ -24,6 +24,7 @@ public class BridgeGame {
 	 */
 	public void move() {
 		System.out.println("generateBridge.getBridge() = " + generateBridge.getBridge());
+		boolean exitByQuit = true;
 
 		for(int i=0; i<generateBridge.getBridge().size();i++){
 			String block = inputView.readMoving();
@@ -38,19 +39,23 @@ public class BridgeGame {
 			String restartOrQuit = inputView.readGameCommand();
 			//Q면, outputView.printResult()하고 끝낸다.
 			if (restartOrQuit.equals("Q")){
-				outputView.printResult(generateBridge,i,block,false);
+				outputView.printResult(generateBridge,i,block,false,numberOfAttempts);
+				exitByQuit = false;
 				break;
 			}
 			//R이면 재시작. -> retry 호출한다.
-			if (restartOrQuit.equals("R")){
+			if (restartOrQuit.equals("R")) {
 				retry();
+				return;
 			}
 		}
 
 		//다 끝났어도 , printResult.
-		outputView.printResult(
-			generateBridge,generateBridge.getBridge().size()-1,
-			generateBridge.getBridge().get(generateBridge.getBridge().size()-1), true);
+		if (exitByQuit){
+			outputView.printResult(
+				generateBridge,generateBridge.getBridge().size()-1,
+				generateBridge.getBridge().get(generateBridge.getBridge().size()-1), true,numberOfAttempts);
+		}
 	}
 
 	/**
@@ -59,6 +64,7 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public void retry() {
+		numberOfAttempts+=1;
 		move();
 	}
 }

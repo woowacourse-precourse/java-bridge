@@ -18,17 +18,30 @@ public class OutputView {
 	public void printUp(Bridge bridge, int idx , String block,boolean correct){
 		System.out.print("[");
 
-
 		for (int i=0;i<=idx;i++){
-			if (i==0){
+			if (i==0 && idx==0){
+				if (bridge.getBridge().get(idx).equals("U") && block.equals("U")){
+					System.out.print(" O ");
+				}
+				if (bridge.getBridge().get(idx).equals("U") && block.equals("D")){
+					System.out.print("   ");
+				}
+				if (bridge.getBridge().get(idx).equals("D") && block.equals("D")){
+					System.out.print("   ");
+				}
+				if (bridge.getBridge().get(idx).equals("D") && block.equals("U")){
+					System.out.print(" X ");
+				}
+			}
+			if (i==0 && idx!=0){
 				if (bridge.getBridge().get(0).equals("U")){
 					System.out.print(" O ");
 				}
 				if (bridge.getBridge().get(0).equals("D")){
 					System.out.print("   ");
 				}
-				continue;
 			}
+
 			if (0<i && i<idx) {
 				if (bridge.getBridge().get(i).equals("U")) {
 					System.out.print("| O ");
@@ -38,7 +51,7 @@ public class OutputView {
 				}
 			}
 
-			if (i == idx){
+			if (i == idx && idx != 0){
 				if (correct){
 					if (block.equals("U")){
 						System.out.print("| O ");
@@ -64,15 +77,29 @@ public class OutputView {
 		System.out.print("[");
 
 		for (int i=0;i<=idx;i++){
-			if (i == 0){
+			if (i==0 && idx==0){
+				if (bridge.getBridge().get(idx).equals("D") && block.equals("D")){
+					System.out.print(" O ");
+				}
+				if (bridge.getBridge().get(idx).equals("D") && block.equals("U")){
+					System.out.print("   ");
+				}
+				if (bridge.getBridge().get(idx).equals("U") && block.equals("U")){
+					System.out.print("   ");
+				}
+				if (bridge.getBridge().get(idx).equals("U") && block.equals("D")){
+					System.out.print(" X ");
+				}
+			}
+			if (i==0 && idx!=0){
 				if (bridge.getBridge().get(0).equals("D")){
 					System.out.print(" O ");
 				}
 				if (bridge.getBridge().get(0).equals("U")){
 					System.out.print("   ");
 				}
-				continue;
 			}
+
 			if (0<i && i < idx) {
 				if (bridge.getBridge().get(i).equals("D")) {
 					System.out.print("| O ");
@@ -81,7 +108,8 @@ public class OutputView {
 					System.out.print("|   ");
 				}
 			}
-			if (i == idx){
+
+			if (i == idx && idx != 0){
 				if (correct){
 					if (block.equals("D")){
 						System.out.print("| O ");
@@ -109,12 +137,17 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printResult(Bridge bridge, int idx , String block,boolean correct) {
+	public void printResult(Bridge bridge, int idx , String block,boolean correct, int numberOfAttempts) {
 		System.out.println("최종 게임 결과");
 		printUp(bridge,idx,block,correct);
 		printDown(bridge,idx,block,correct);
 
-		System.out.println("게임 성공 여부: ");
-		System.out.println("총 시도한 횟수: ");
+		if (correct){
+			System.out.println("게임 성공 여부: 성공");
+		}
+		else{
+			System.out.println("게임 성공 여부: 실패");
+		}
+		System.out.println("총 시도한 횟수: "+ numberOfAttempts);
 	}
 }
