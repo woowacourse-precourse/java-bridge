@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.ErrorMessage;
 
 import java.util.ArrayList;
@@ -13,7 +16,9 @@ public class Bridge {
 
     public Bridge(int size){
         validateSize(size);
-        this.bridge = new ArrayList<>();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridge = bridgeMaker.makeBridge(size);
     }
 
     private void validateSize(int size){
