@@ -27,7 +27,19 @@ public class BridgeGame {
     public boolean move(String userChoice) {
         increaseOrder();
         increaseAttemptCount();
-        return bridge.isCorrectPanel(panelOrder, userChoice);
+        boolean isUserChoiceCorrect = bridge.isCorrectPanel(panelOrder, userChoice);
+        modifyStatusAfterChoice(isUserChoiceCorrect);
+        return  isUserChoiceCorrect;
+    }
+
+    private void modifyStatusAfterChoice(boolean isUserChoiceCorrect) {
+        if (isUserChoiceCorrect && bridge.isEnd(panelOrder)) {
+            status = GameStatus.SUCCESS;
+        }
+
+        if (!isUserChoiceCorrect) {
+            status = GameStatus.FAIL;
+        }
     }
 
     /**
