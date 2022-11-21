@@ -7,14 +7,22 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String number = Console.readLine();
-        BridgeSize bridgeSize = new BridgeSize(number);
-        return bridgeSize.getBridgeSize();
-    }
+        System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
+        try {
+            String number = Console.readLine();
+            BridgeSize bridgeSize = new BridgeSize(number);
+            return bridgeSize.getBridgeSize();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return readBridgeSize();
+        }
+     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
