@@ -1,5 +1,8 @@
 package bridge.value;
 
+import static bridge.validate.BridgeValidation.validateBridgeCharacter;
+import static bridge.validate.BridgeValidation.validateBridgeValue;
+
 import java.util.Arrays;
 
 public enum BridgeCharacter {
@@ -10,15 +13,21 @@ public enum BridgeCharacter {
     private final String character;
 
     public static BridgeCharacter makeBridgeCharacter(int value) {
+        validateBridgeValue(value);
         return Arrays.stream(BridgeCharacter.values())
                 .filter(bridgeCharacter -> bridgeCharacter.value == value)
-                .findAny().orElseThrow(() -> new IllegalArgumentException("입력한 값에 해당하는 위치 문자가 존재하지 않습니다."));
+                .findAny().get();
     }
 
     public static BridgeCharacter makeBridgeCharacter(String character) {
+        validateBridgeCharacter(character);
         return Arrays.stream(BridgeCharacter.values())
                 .filter(bridgeCharacter -> bridgeCharacter.character.equals(character))
-                .findAny().orElseThrow(() -> new IllegalArgumentException("입력한 위치 문자가 존재하지 않습니다."));
+                .findAny().get();
+    }
+
+    public int getValue() {
+        return value;
     }
 
     BridgeCharacter(int value, String character) {
