@@ -28,4 +28,7 @@ public class InputVerify {
 			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_SIZE_BOUNDARY);
 		}
 	}
+
+	public static void verifyOrderMove(String order) {
+	}
 }
