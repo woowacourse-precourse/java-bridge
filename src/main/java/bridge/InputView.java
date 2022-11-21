@@ -15,26 +15,26 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public void readBridgeSize() {
+    public int readBridgeSize() {
         getBrideSize();
         dtoClass.sizeValue(Integer.parseInt(bridgeSize));
-//        return Integer.parseInt(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public void readMoving() {
+    public String readMoving() {
         getReadMoving();
         dtoClass.movingValue(movingCommand);
-//        return movingCommand;
+        return movingCommand;
     }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public void readGameCommand(){
+    public String readGameCommand(){
         getReadCommand();
         dtoClass.restartValue(restartCommand);
-//        return restartCommand;
+        return restartCommand;
     }
     public void getBrideSize() {
         try {

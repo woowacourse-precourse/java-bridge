@@ -1,8 +1,12 @@
 package bridge;
 
 public class Controller {
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
+    private final OutputView outputView;
+    private final InputView inputView;
+    public Controller(){
+        outputView = new OutputView();
+        inputView = new InputView();
+    }
     public int inputBridgeSize(){
       return inputView.readBridgeSize();
     }
@@ -12,8 +16,9 @@ public class Controller {
     public String inputReadGameCommand(){
         return inputView.readGameCommand();
     }
-    public void startMessage(){
+    public Controller startMessage(){
         outputView.printStart();
+        return this;
     }
     public void bridgeSizeMessage(){
         outputView.printAskBridgeLength();

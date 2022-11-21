@@ -30,4 +30,10 @@ public class BridgeMaker {
         }
         return bridge;
     }
+
+    public static void main(String[] args) {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.play();
+
+    }
 }
