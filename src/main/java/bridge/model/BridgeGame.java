@@ -48,8 +48,9 @@ public class BridgeGame {
     /**
      * 현재 게임의 상태를 반환하는 메서드
      */
-    public BridgeStatus getStatus() {
-        return bridgeStatus;
+    @Override
+    public String toString() {
+        return bridgeStatus.toString();
     }
 
     /**

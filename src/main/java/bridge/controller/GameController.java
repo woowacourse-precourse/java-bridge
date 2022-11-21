@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
-import bridge.model.BridgeStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -36,8 +35,7 @@ public class GameController {
         do {
             String move = inputView.readMoving();
             alive = bridgeGame.move(move);
-            BridgeStatus currStatus = bridgeGame.getStatus();
-            outputView.printMap(currStatus);
+            outputView.printMap(bridgeGame);
         } while (alive && bridgeGame.ongoing());
         return alive;
     }
