@@ -30,10 +30,4 @@ public class BridgeMaker {
             bridge.add("U");
         }
     }
-
-    public StringBuilder makeInitialBridge() {
-        String bridgeFrame = "[ ]";
-        StringBuilder initialBridge = new StringBuilder(bridgeFrame);
-        return initialBridge;
-    }
 }
