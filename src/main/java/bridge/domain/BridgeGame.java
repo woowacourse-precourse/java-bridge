@@ -27,7 +27,7 @@ public class BridgeGame {
     public void move(String moveCommand) {
         validateMoveCommand(moveCommand);
         if (isMovable(moveCommand)) {
-            this.bridgeProgress.add("O");
+            this.bridgeProgress.add("O" );
             currentBlockIndex += 1;
             return;
         }
