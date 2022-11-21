@@ -10,9 +10,9 @@ public class BridgeGame {
     private GameStatistics gameStatistics;
     private Bridge bridge;
 
-    public BridgeGame(Player player, GameStatistics gameStatistics, Bridge bridge) {
+    public BridgeGame(Player player, Bridge bridge) {
         this.player = player;
-        this.gameStatistics = gameStatistics;
+        this.gameStatistics = bridge.getGameStatistics();
         this.bridge = bridge;
     }
 
