@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.service.Service;
 import bridge.utils.GameState;
+import bridge.utils.RetryFormat;
 import bridge.utils.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -63,9 +64,19 @@ public class Controller {
         outputView.printMap(currentResult);
     }
 
+    private void proceedDependsOnResult(String playResult) {
+        if (GameState.LOOSE.isEqual(playResult)) {
+            decideRetry();
+        }
+
+        if (GameState.PLAYING.isEqual(playResult)) {
+            playGame();
+        }
+    }
+
     private void decideRetry() {
         String retryInput = requestRetryInput();
-        if (retryInput.equals("R")) {
+        if (RetryFormat.RETRY.isEqual(retryInput)) {
             retry();
         }
     }
@@ -84,15 +95,5 @@ public class Controller {
     private void retry() {
         service.resetForRetry();
         playGame();
-    }
-
-    private void proceedDependsOnResult(String playResult) {
-        if (GameState.LOOSE.isEqual(playResult)) {
-            decideRetry();
-        }
-
-        if (GameState.PLAYING.isEqual(playResult)) {
-            playGame();
-        }
     }
 }
