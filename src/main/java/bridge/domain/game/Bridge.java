@@ -42,14 +42,14 @@ public class Bridge {
         return bridgeTiles.get(playerPosition) == playerStep;
     }
 
-    public boolean calculatePassingBridge(int playerPosition, BridgeTile playerStep) {
+    public boolean calculatePassingBridge(int playerPosition, final BridgeTile playerStep) {
         int lastBridgeTileIndex = bridgeTiles.size() - 1;
 
         return isEndOfBridge(lastBridgeTileIndex, playerPosition)
                 && isMovable(lastBridgeTileIndex, playerStep);
     }
 
-    private boolean isMovable(int lastBridgeTileIndex, BridgeTile playerStep) {
+    private boolean isMovable(int lastBridgeTileIndex, final BridgeTile playerStep) {
         return bridgeTiles.get(lastBridgeTileIndex) == playerStep;
     }
 

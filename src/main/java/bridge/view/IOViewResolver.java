@@ -17,24 +17,24 @@ public class IOViewResolver {
     private final Map<Class<?>, Consumer<Object>> outputViewMappings = new HashMap<>();
     private final Map<Class<?>, Supplier<Object>> inputViewMappings = new HashMap<>();
 
-    public IOViewResolver(InputView inputView, OutputView outputView) {
+    public IOViewResolver(final InputView inputView, final OutputView outputView) {
         initInputViewMappings(inputView);
         initOutputViewMappings(outputView);
     }
 
-    private void initInputViewMappings(InputView inputView) {
+    private void initInputViewMappings(final InputView inputView) {
         inputViewMappings.put(ReadBridgeSizeDto.class, inputView::readBridgeSize);
         inputViewMappings.put(ReadMovingDto.class, inputView::readMoving);
         inputViewMappings.put(ReadGameCommandDto.class, inputView::readGameCommand);
     }
 
-    private void initOutputViewMappings(OutputView outputView) {
+    private void initOutputViewMappings(final OutputView outputView) {
         outputViewMappings.put(PrintMapDto.class, dto -> outputView.printMap((PrintMapDto) dto));
         outputViewMappings.put(PrintResultDto.class, dto -> outputView.printResult((PrintResultDto) dto));
         outputViewMappings.put(PrintExceptionDto.class, dto -> outputView.printException((PrintExceptionDto) dto));
     }
 
-    public <T> T inputViewResolve(Class<T> type) {
+    public <T> T inputViewResolve(final Class<T> type) {
         try {
             return type.cast(inputViewMappings.get(type).get());
         } catch (NullPointerException e) {
@@ -42,7 +42,7 @@ public class IOViewResolver {
         }
     }
 
-    public void outputViewResolve(Object dto) {
+    public void outputViewResolve(final Object dto) {
         try {
             outputViewMappings.get(dto.getClass()).accept(dto);
         } catch (NullPointerException e) {

@@ -15,11 +15,11 @@ public class OutputView {
 
     private final Consumer<String> print;
 
-    public OutputView(Consumer<String> print) {
+    public OutputView(final Consumer<String> print) {
         this.print = print;
     }
 
-    public void printMap(PrintMapDto printMapDto) {
+    public void printMap(final PrintMapDto printMapDto) {
         String upBridgeHistory = printMapDto.getUpBridgeHistory();
         String downBridgeHistory = printMapDto.getDownBridgeHistory();
 
@@ -28,7 +28,7 @@ public class OutputView {
         print.accept(NULL_STRING);
     }
 
-    public void printResult(PrintResultDto printResultDto) {
+    public void printResult(final PrintResultDto printResultDto) {
         PrintMapDto printMapDto = printResultDto.getPrintMapDto();
         printMap(printMapDto);
 
@@ -40,7 +40,7 @@ public class OutputView {
         print.accept(OutputViewMessage.GAME_TRY_COUNT.getFullMessage(tryCount));
     }
 
-    public void printException(PrintExceptionDto printExceptionDto) {
+    public void printException(final PrintExceptionDto printExceptionDto) {
         String exceptionMessage = printExceptionDto.getMessage();
 
         print.accept(OutputViewMessage.EXCEPTION.getFullMessage(exceptionMessage));

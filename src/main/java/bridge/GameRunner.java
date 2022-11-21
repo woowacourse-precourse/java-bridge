@@ -21,7 +21,7 @@ public final class GameRunner {
         }
     }
 
-    private static IOViewResolver createIOViewManager(Consumer<String> print) {
+    private static IOViewResolver createIOViewManager(final Consumer<String> print) {
         InputView inputView = new InputView(print);
         OutputView outputView = new OutputView(print);
 

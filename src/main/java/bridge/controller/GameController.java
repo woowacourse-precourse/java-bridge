@@ -26,7 +26,7 @@ public class GameController {
     private final Map<GameStatus, Supplier<GameStatus>> gameStatusMappings;
     private BridgeGame bridgeGame;
 
-    public GameController(IOViewResolver ioViewResolver) {
+    public GameController(final IOViewResolver ioViewResolver) {
         this.ioViewResolver = ioViewResolver;
         gameStatusMappings = new EnumMap<>(GameStatus.class);
 
