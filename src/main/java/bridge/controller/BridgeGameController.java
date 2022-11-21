@@ -73,7 +73,7 @@ public class BridgeGameController {
             outputView.askDirection();
             Direction direction = inputView.readMoving();
             bridgeGame.move(direction);
-            outputView.printHistory(bridgeGame.getHistory());
+            outputView.printMap(bridgeGame.getHistory());
         } catch (IllegalArgumentException iae) {
             outputView.printError(iae);
             move();
