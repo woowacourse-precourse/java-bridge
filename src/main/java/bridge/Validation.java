@@ -1,8 +1,8 @@
 package bridge;
 
 public class Validation {
-    private static final int NUMBER_MIN = 3;
-    private static final int NUMBER_MAX = 20;
+    private static final int NUMBER_MIN = ValueCollection.VALUE_MIN.getValue();
+    private static final int NUMBER_MAX = ValueCollection.VALUE_MAX.getValue();
     private static final String NUMBER_REMOVE_REGEX = "[0-9]";
     private static final String REGEX_CHANGE_WORD = "";
     private static final String WORD_UP = WordCollection.WORD_UP.getWord();
