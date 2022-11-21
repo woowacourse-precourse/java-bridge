@@ -31,8 +31,7 @@ public class BridgeGame {
     public void gameInProgress(String moving) {
         progressStatus = true;
         createBridgeResult(moving);
-        outputView.printMap(upBridge);
-        outputView.printMap(downBridge);
+        outputView.printBridge(upBridge, downBridge);
         moveCount++;
     }
 
@@ -96,8 +95,7 @@ public class BridgeGame {
     }
     public void lastMapResult(){
         outputView.printResultPrefixMessage();
-        outputView.printMap(upBridge);
-        outputView.printMap(downBridge);
+        outputView.printBridge(upBridge, downBridge);
         outputView.printGameSuccessOrNot(gameSuccess());
         outputView.printNumberOfAttempts(gameAttemptCount);
     }
