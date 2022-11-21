@@ -1,8 +1,8 @@
 package bridge.enums;
 
 public enum Direction {
-    UP(0, "U"),
-    DOWN(1, "D");
+    DOWN(0, "D"),
+    UP(1, "U");
 
     private String abbr;
     private Integer code;
@@ -18,5 +18,15 @@ public enum Direction {
 
     public Integer getCode() {
         return code;
+    }
+
+    public static Integer getCode(String abbr) {
+        for (Direction direction : Direction.values()) {
+            if (direction.getAbbr().equals(abbr)) {
+                return direction.getCode();
+            }
+        }
+
+        return null;
     }
 }
