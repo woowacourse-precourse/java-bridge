@@ -27,12 +27,8 @@ public class Bridge {
                 .collect(Collectors.toList());
     }
 
-    // Bridge (정답) 과 input 을 비교해 O 또는 X 를 반환
-    public boolean compare(Position position) {
-        if (position.canMove(directions)) {
-            return true;
-        }
-        return false;
+    public boolean canMove(Position position) {
+        return position.compareDirection(directions);
     }
 
     private void checkComponent(List<String> directions) {

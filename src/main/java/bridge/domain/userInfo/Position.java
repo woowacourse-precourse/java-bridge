@@ -18,7 +18,7 @@ public class Position {
         return position.get(distance);
     }
 
-    public boolean canMove(List<Direction> directions) {
+    public boolean compareDirection(List<Direction> directions) {
         return directions.get(distance)
                 .isSameDirection(position.get(distance));
     }
