@@ -1,6 +1,7 @@
 package validation;
 
 
+import net.bytebuddy.dynamic.scaffold.TypeInitializer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +43,25 @@ public class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         assertThatThrownBy(() -> validator.validateMoving(numberInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateGameCommandTest() {
+        String validInput = "Q";
+        String lowercaseInput = "r";
+        String wrongAlphabetInput = "S";
+        String numberInput = "1";
+
+        InputValidation validator = new InputValidation();
+
+        assertThatThrownBy(() -> validator.validateGameCommand(lowercaseInput))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.validateGameCommand(wrongAlphabetInput))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.validateGameCommand(numberInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
