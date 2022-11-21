@@ -1,13 +1,21 @@
 package bridge.exception;
 
 public class BrideSize {
-    private final String brideSize;
+    private static final int MIN_BRIDE_SIZE = 3;
+    private static final int MAX_BRIDE_SIZE = 20;
 
-    public BrideSize(String brideSize) {
-        this.brideSize = brideSize;
+    private final String brideSizeInput;
+    private final int brideSize;
+
+    public BrideSize(String brideSizeInput) {
+        this.brideSizeInput = brideSizeInput;
+        isNotNumeric();
+        this.brideSize = Integer.parseInt(brideSizeInput);
     }
 
-    private boolean isNotNumeric(String brideSize) {
-        return !brideSize.chars().allMatch(Character::isDigit);
+    private void isNotNumeric() {
+        if (!brideSizeInput.chars().allMatch(Character::isDigit)) {
+            throw new ErrorException(BrideError.IS_NOT_NUMERIC);
+        }
     }
 }
