@@ -11,8 +11,15 @@ public class InputView {
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
+    private final InputValueConverter inputValueConverter;
+
+    public InputView(InputValueConverter inputValueConverter) {
+        this.inputValueConverter = inputValueConverter;
+    }
+
     public BridgeSize bridgeSize() {
-        return repeatInputUntilSuccess(() -> new BridgeSize(valueForBridgeSize()));
+        return repeatInputUntilSuccess(() ->
+                inputValueConverter.bridgeSize(valueForBridgeSize()));
     }
 
     private String valueForBridgeSize() {
@@ -21,7 +28,8 @@ public class InputView {
     }
 
     public MoveCommands moveCommand() {
-        return repeatInputUntilSuccess(() -> MoveCommands.of(valueForMoveCommand()));
+        return repeatInputUntilSuccess(() ->
+                inputValueConverter.moveCommands(valueForMoveCommand()));
     }
 
     private String valueForMoveCommand() {
@@ -30,7 +38,8 @@ public class InputView {
     }
 
     public GameCommands gameCommand() {
-        return repeatInputUntilSuccess(() -> GameCommands.of(valueForGameCommand()));
+        return repeatInputUntilSuccess(() ->
+                inputValueConverter.gameCommands(valueForGameCommand()));
     }
 
     private String valueForGameCommand() {
@@ -38,7 +47,7 @@ public class InputView {
         return readLine();
     }
 
-    private <T> T repeatInputUntilSuccess(final Supplier<T> supplier) {
+    private <T> T repeatInputUntilSuccess(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();
