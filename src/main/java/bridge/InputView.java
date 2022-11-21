@@ -9,6 +9,10 @@ import java.util.List;
  */
 public class InputView {
 
+    final List<Command> RETRY_COMMAND = List.of(Command.RETRY, Command.EXIT);
+    final List<Command> MOVE_COMMAND = List.of(Command.UP, Command.DOWN);
+    final int VALID_SIZE = 1;
+
     /**
      * 다리의 길이를 입력받는다.
      * */
@@ -29,32 +33,28 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public Command readMoving() {
-        final List<Command> commands = List.of(Command.UP, Command.DOWN);
         String inputCommand = Console.readLine();
-        int validSize = 1;
         try {
-            validateCommand(commands, inputCommand, validSize);
+            validateCommand(MOVE_COMMAND, inputCommand, VALID_SIZE);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]" + e.getMessage());
             readMoving();
         }
-        return convertInputToCommand(inputCommand, commands);
+        return convertInputToCommand(inputCommand, MOVE_COMMAND);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public Command readGameCommand() {
-        final List<Command> commands = List.of(Command.RETRY, Command.EXIT);
-        final int validSize = 1;
         String inputCommand = Console.readLine();
         try {
-            validateCommand(commands, inputCommand, validSize);
+            validateCommand(RETRY_COMMAND, inputCommand, VALID_SIZE);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]" + e.getMessage());
             readGameCommand();
         }
-        return convertInputToCommand(inputCommand, commands);
+        return convertInputToCommand(inputCommand, RETRY_COMMAND);
     }
 
     private void validateCommand(List<Command> commands, String inputCommand, int validSize) {
