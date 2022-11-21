@@ -2,123 +2,37 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.WordType.*;
-
 public class BridgeGameRun {
 
-    private final InputView inputView;
-    private final InputValidation inputValidation;
-    private final OutputView outputView;
     private BridgeGame bridgeGame;
-    private boolean result;
 
-    public BridgeGameRun(InputView inputView, InputValidation inputValidation, OutputView outputView) {
-        this.inputView = inputView;
-        this.inputValidation = inputValidation;
-        this.outputView = outputView;
-    }
-
-    public void run() {
-        outputView.printGameStart();
-        int size = getBridgeSizeByValidation();
-
-        bridgeGameGenerate(size);
-        bridgeGameStart();
-        bridgeGameEnd();
-    }
-
-    private int getBridgeSizeByValidation() {
-        while (true) {
-            try {
-                String bridgeSize = inputView.readBridgeSize();
-                return inputValidation.readBridgeSizeValidation(bridgeSize);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void bridgeGameGenerate(int size) {
+    public void bridgeGameGenerate(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(size);
         bridgeGame = new BridgeGame(bridge);
     }
 
-    private void bridgeGameStart() {
-        do {
-            String direct = getReadMovingByValidation();
-            gameRun(direct);
-
-            List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
-            outputView.printMap(bridgeMap);
-
-        } while (!isGameEnd());
-    }
-
-    private String getReadMovingByValidation() {
-        while (true) {
-            try {
-                String direct = inputView.readMoving();
-                inputValidation.readMovingValidation(direct);
-                return direct;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void gameRun(String direct) {
-        result = bridgeGame.move(direct);
+    public boolean gameRun(String direct) {
+        boolean result = bridgeGame.move(direct);
         bridgeGame.bridgeMark(direct, result);
+        return result;
     }
 
-    private boolean isGameEnd() {
-        if (!result && !isRetry()) {
-            return true;
-        }
-        if (bridgeGame.isEndBridge()) {
-            return true;
-        }
-        return false;
+    public List<List<String>> bridgeMapGenerate() {
+        return bridgeGame.getBridgeMap();
     }
 
-    private boolean isRetry() {
-        String command = getGameCommandByValidation();
-
-        if (command.equals(RESTART.getWord())) {
-            bridgeGame.retry();
-            return true;
-        }
-        return false;
+    public boolean isEndBridge() {
+        return bridgeGame.isEndBridge();
     }
 
-    private String getGameCommandByValidation() {
-        while (true) {
-            try {
-                String command = inputView.readGameCommand();
-                inputValidation.readGameCommandValidation(command);
-                return command;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public void retry() {
+        bridgeGame.retry();
     }
 
-    private void bridgeGameEnd() {
-        outputView.printResultTitle();
-        List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
-        outputView.printMap(bridgeMap);
-
-        int retryCount = bridgeGame.getRetryCount();
-        String message = getResultMessage();
-        outputView.printResult(message, retryCount);
+    public int getRetryCount() {
+        return bridgeGame.getRetryCount();
     }
 
-    private String getResultMessage() {
-        if (result) {
-            return SUCCESS.getWord();
-        }
-        return FAIL.getWord();
-    }
 }
