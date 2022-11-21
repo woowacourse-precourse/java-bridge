@@ -1,7 +1,7 @@
 package bridge;
 
 public class BridgeGameManager {
-    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
 
     private BridgeGame bridgeGame = new BridgeGame();
     private InputView inputView = new InputView();
@@ -11,7 +11,8 @@ public class BridgeGameManager {
     }
 
     public void GameStart() {
-        System.out.println(START_MESSAGE + "\n");
+        System.out.println(START_MESSAGE);
         inputView.readBridgeSize();
+        inputView.readMoving();
     }
 }

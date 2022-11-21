@@ -46,7 +46,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(GAME_RETRY_INPUT_MESSAGE);
+        System.out.println("\n" + GAME_RETRY_INPUT_MESSAGE);
         String input = Console.readLine();
         if (!validation.CharValidate(input, USER_RETRY, USER_OVER)) {
             throw new IllegalArgumentException();
