@@ -14,21 +14,20 @@ import java.util.stream.Collectors;
  */
 public class OutputView extends DefaultView{
 
-    private static String MSG_WELCOME = "다리 건너기 게임을 시작합니다.";
-    private static String FORMAT_MAP = "[ {0} ]";
-    private static String FORMAT_MAP_DELIMITER = " | ";
-    private static String MSG_CORRECT_DIRECTION = "O";
-    private static String MSG_WRONG_DIRECTION = "X";
-    private static String MSG_NONE_DIRECTION = " ";
-
-    private static String MSG_FINAL_RESULT = "최종 게임 결과";
-    private static String FORMAT_WHETHER_SUCCESS = "게임 성공 여부: {0}";
-    private static String MSG_GAME_SUCCESS = "성공";
-    private static String MSG_GAME_FAILURE = "실패";
-    private static String FORMAT_ATTEMPT_COUNT = "총 시도한 횟수: {0}";
+    private static final String FORMAT_MAP = "[ {0} ]";
+    private static final String FORMAT_MAP_DELIMITER = " | ";
+    private static final String FORMAT_WHETHER_SUCCESS = "게임 성공 여부: {0}";
+    private static final String FORMAT_ATTEMPT_COUNT = "총 시도한 횟수: {0}";
+    private static final String MSG_WELCOME = "다리 건너기 게임을 시작합니다.";
+    private static final String MSG_CORRECT_DIRECTION = "O";
+    private static final String MSG_WRONG_DIRECTION = "X";
+    private static final String MSG_NONE_DIRECTION = " ";
+    private static final String MSG_FINAL_RESULT = "최종 게임 결과";
+    private static final String MSG_GAME_SUCCESS = "성공";
+    private static final String MSG_GAME_FAILURE = "실패";
 
     public void printWelcome() {
-        System.out.println(MSG_WELCOME);
+        output(MSG_WELCOME);
         printLineSeparator();
     }
 
@@ -39,8 +38,8 @@ public class OutputView extends DefaultView{
      */
     public void printMap(List<Direction> playerPath, boolean isGameOver) {
         Map<Direction, List<String>> messageParts = makeMessagePartsByDirection(playerPath, isGameOver);
-        System.out.println(applyMapFormat(messageParts.get(Direction.UP)));
-        System.out.println(applyMapFormat(messageParts.get(Direction.DOWN)));
+        output(applyMapFormat(messageParts.get(Direction.UP)));
+        output(applyMapFormat(messageParts.get(Direction.DOWN)));
         printLineSeparator();
     }
 
@@ -90,10 +89,10 @@ public class OutputView extends DefaultView{
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<Direction> playerPath, boolean isGameOver, boolean isSuccess, int countAttempt) {
-        System.out.println(MSG_FINAL_RESULT);
+        output(MSG_FINAL_RESULT);
         printMap(playerPath, isGameOver);
-        System.out.println(makeWhetherSuccessMessage(isSuccess));
-        System.out.println(makeAttemptCountMessage(countAttempt));
+        output(makeWhetherSuccessMessage(isSuccess));
+        output(makeAttemptCountMessage(countAttempt));
     }
 
     private String makeWhetherSuccessMessage(boolean isSuccess){

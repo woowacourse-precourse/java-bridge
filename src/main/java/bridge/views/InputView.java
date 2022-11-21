@@ -22,7 +22,7 @@ public class InputView extends DefaultView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(MSG_REQUEST_BRIDGE_SIZE);
+        output(MSG_REQUEST_BRIDGE_SIZE);
         String input = Console.readLine();
         validateBridgeSize(input);
         printLineSeparator();
@@ -43,8 +43,8 @@ public class InputView extends DefaultView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(MSG_REQUEST_MOVING_DIRECTION);
-        String input = Console.readLine();
+        output(MSG_REQUEST_MOVING_DIRECTION);
+        String input = input();
         validateMovingDirection(input);
         return input;
     }
@@ -57,8 +57,8 @@ public class InputView extends DefaultView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(MSG_REQUEST_GAME_COMMAND);
-        String input = Console.readLine();
+        output(MSG_REQUEST_GAME_COMMAND);
+        String input = input();
         validateGameCommand(input);
         return input;
     }
