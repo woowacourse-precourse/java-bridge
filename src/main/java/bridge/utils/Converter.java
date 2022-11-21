@@ -5,7 +5,7 @@ public class Converter {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(Errors.NOT_NUMBER.getMessage());
         }
     }
 
