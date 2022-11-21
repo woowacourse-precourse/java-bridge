@@ -33,6 +33,10 @@ public class Player {
         bridgeMap.add(answer);
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
+
     public void resetPlayer() {
         tryCount++;
         correctAnswerCount = 0;

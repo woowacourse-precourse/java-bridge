@@ -19,6 +19,8 @@ public class GameController {
         do {
             if (move().equals("SUCCESS")) break;
         } while (bridgeGame.retry(inputController.readGameCommand()));
+
+        outputView.printResult(player);
     }
 
     private String move() {
