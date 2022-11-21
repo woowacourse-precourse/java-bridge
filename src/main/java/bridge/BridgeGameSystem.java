@@ -41,6 +41,15 @@ public class BridgeGameSystem {
         return FAILURE_LOWER;
     }
 
+    public static boolean isAvailableGame(Bridge block){
+        if(BridgeGame.retry(block)){
+            boolean gameCommand = BridgeGame.getGameCommand();
+            return isExit(gameCommand);
+        }
+        index++;
+        return true;
+    }
+
     public static boolean isExit(boolean gameCommand){
         if(gameCommand){
             index = 0;
