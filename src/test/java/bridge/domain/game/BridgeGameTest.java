@@ -1,6 +1,5 @@
 package bridge.domain.game;
 
-import bridge.domain.bridge.BridgeSize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
