@@ -1,5 +1,6 @@
 package bridge.config;
 
+import bridge.util.BridgeMaker;
 import bridge.util.BridgeNumberGenerator;
 import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
@@ -16,5 +17,9 @@ public class BridgeAppConfig {
 
     public static BridgeNumberGenerator bridgeNumberGenerator() {
         return new BridgeRandomNumberGenerator();
+    }
+
+    public static BridgeMaker bridgeMaker() {
+        return new BridgeMaker(bridgeNumberGenerator());
     }
 }
