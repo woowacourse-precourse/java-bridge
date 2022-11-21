@@ -42,7 +42,27 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String userInput = readLine();
+        try {
+            validateMove(userInput);
+            return userInput;
+        } catch (IllegalArgumentException e) {
+            return readMoving();
+        }
+    }
+
+    /**
+     * 이동할 칸의 입력이 적절한지 판단한다.
+     * 예외 발생시 IllegalArgumentException을 발생시킨다.
+     *
+     * @param userInput 사용자가 입력한 문자열
+     * @return <p>[U,D] - 올바른 값
+     * <p>-1 - 올바르지 않은 값
+     */
+    public void validateMove(String userInput) {
+        if (userInput.equals("U") || userInput.equals("D")) return;
+        System.out.println("[ERROR] 입력 값은 \"U\" 또는 \"D\"여야 합니다.");
+        throw new IllegalArgumentException();
     }
 
     /**
