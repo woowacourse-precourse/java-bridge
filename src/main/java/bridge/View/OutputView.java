@@ -75,9 +75,10 @@ public class OutputView {
 
     private String buildSuccessOrFail(boolean success, int trial) {
         StringBuilder output = new StringBuilder();
-        if (!success) {
+        if (success) {
             output.append("게임 성공 여부: 성공\n");
             output.append("총 시도한 횟수: ").append(trial);
+            return output.toString();
         }
         output.append("게임 성공 여부: 실패\n");
         return output.toString();
