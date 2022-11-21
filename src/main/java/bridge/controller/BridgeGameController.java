@@ -33,9 +33,13 @@ public class BridgeGameController {
                 restartOrQuit();
                 continue;
             }
-            if (bridgeGame.isSuccess(moving.getValue())){
-                setQuit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), SUCCESS_RESULT, trial);
-            }
+            validateSuccess();
+        }
+    }
+
+    private void validateSuccess(){
+        if (bridgeGame.isSuccess(moving.getValue())){
+            setQuit(BridgeResultData.getBridgeUpResults(), BridgeResultData.getBridgeDownResults(), SUCCESS_RESULT, trial);
         }
     }
 
@@ -49,7 +53,7 @@ public class BridgeGameController {
     }
 
     private void initTrial(){
-        trial++;
+        countTrial();
     }
 
     private void makeBridge(){
@@ -118,11 +122,19 @@ public class BridgeGameController {
 
     private void setRestart(){
         bridgeGame.retry();
-        trial++;
+        countTrial();
     }
 
     private void setQuit(List<String> bridgeUpResults, List<String> bridgeDownResults, String gameResult, int trial){
-        isRun = false;
+        stop();
         OutputView.printResult(bridgeUpResults, bridgeDownResults, gameResult, trial);
+    }
+
+    private void countTrial(){
+        trial++;
+    }
+
+    private void stop(){
+        isRun = false;
     }
 }
