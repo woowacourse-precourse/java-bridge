@@ -31,7 +31,7 @@
   - 올바른 값이 아니면 예외 처리한다.
 
 ### 출력
-- 게임 시작 문구 `다리 건너기 게임을 시작합니다.` viewMessage#START_MESSAGE
+- [x] 게임 시작 문구 `다리 건너기 게임을 시작합니다.` viewMessage#START_MESSAGE
 - 게임 종료 문구 viewMessage#END_REPORT
   - `게임 성공 여부: 성공`
   - `총 시도한 횟수: 2`
