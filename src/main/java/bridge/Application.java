@@ -24,6 +24,9 @@ public class Application {
             if(success == false)
                 break;
         }
+
+        Announcement.restart();
+        InputView.readGameCommand();
         // TODO: 프로그램 구현
     }
 }
