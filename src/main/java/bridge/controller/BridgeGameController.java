@@ -1,6 +1,8 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
 import bridge.domain.BridgeSize;
+import bridge.domain.MoveCommand;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -20,6 +22,17 @@ public class BridgeGameController {
     public void run() {
         startGame();
         insertBridgeSize();
+        insertMoveCommand();
+    }
+
+    private void insertMoveCommand() {
+        try {
+            String command = inputView.readGameCommand();
+            new MoveCommand(command);
+        } catch (IllegalArgumentException ie) {
+            OutputView.printErrorMessage(ie.getMessage());
+            insertMoveCommand();
+        }
     }
 
     private void insertBridgeSize() {
