@@ -30,7 +30,15 @@ public class InputView {
     }
 
     public String readMoving() {
-        return null;
+        String moving;
+
+        try {
+            moving = readLine();
+        } catch (NoSuchElementException exception) {
+            moving = EMPTY_STRING;
+        }
+
+        return moving;
     }
 
     public String readGameCommand() {
