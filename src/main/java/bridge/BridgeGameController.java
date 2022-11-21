@@ -2,18 +2,20 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.InputView.*;
-import static bridge.OutputView.*;
 
 public class BridgeGameController {
 
     private final BridgeGame bridgeGame = new BridgeGame();
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
 
     public void start() {
-        OutputView.printStart();
-        int size = InputView.readBridgeSize();
+        outputView.printStart();
+        int size = inputView.readBridgeSize();
         List<String> bridgeList = new BridgeMaker(bridgeNumberGenerator).makeBridge(size);
-        System.out.println(bridgeList);
+        MyBridge myBridge = new MyBridge(bridgeList, size);
+        bridgeGame.move(myBridge);
     }
+
 }

@@ -7,12 +7,12 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-
+    OutputView outputView = new OutputView();
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
-        OutputView.printInputSize();
+    public int readBridgeSize() {
+        outputView.printInputSize();
         int input = Integer.parseInt(Console.readLine());
         return input;
     }
@@ -21,7 +21,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        outputView.printMove();
+        String input = Console.readLine();
+        return input;
     }
 
     /**
