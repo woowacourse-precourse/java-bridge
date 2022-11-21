@@ -55,16 +55,25 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        return null;
+        return handleCheckMoveValidate(input);
     }
 
-//    public String checkMoveValidate(String input) {
-//        if (!input.equals("U") || !input.equals("D")) {
-//            throw new IllegalArgumentException(ERROR_MESSAGE_MOVE_STRING);
-//        }
-//        return null;
-//    }
-//
+    public String checkMoveValidate(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_MOVE_STRING);
+        }
+        return input;
+    }
+
+    public String handleCheckMoveValidate(String input) {
+        try {
+            return checkMoveValidate(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE_MOVE_STRING);
+            return readMoving();
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
