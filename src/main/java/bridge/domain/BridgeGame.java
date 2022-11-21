@@ -3,29 +3,29 @@ package bridge.domain;
 import java.util.List;
 
 public class BridgeGame {
-	private final List<String> bridge;
+	private final Bridge bridge;
 	private int repeatCount;
 
-	public BridgeGame(List<String> bridge) {
+	public BridgeGame(Bridge bridge) {
 		this.bridge = bridge;
 		this.repeatCount = 1;
 	}
 
 	public void move(String input, ProgressMap gameProgress) {
-		int index = gameProgress.getMapSize();
-		gameProgress.updateProgressMap(input, isCorrectMove(input, index));
+		int moveCount = gameProgress.getMapSize();
+		gameProgress.updateProgressMap(input, isCorrectMove(input, moveCount));
 	}
 
-	private boolean isCorrectMove(String input, int index) {
-		return bridge.get(index).equals(input);
+	private boolean isCorrectMove(String input, int moveCount) {
+		return bridge.isCorrectMoving(input, moveCount);
 	}
 
 	public boolean isNotFinish(ProgressMap progressMap) {
-		return bridge.size() != progressMap.getMapSize() || progressMap.isMoveFailed();
+		return bridge.getBridgeSize() != progressMap.getMapSize() || progressMap.isMoveFailed();
 	}
 
 	public int getBridgeSize() {
-		return bridge.size();
+		return bridge.getBridgeSize();
 	}
 
 	public boolean retry(boolean userChoice) {

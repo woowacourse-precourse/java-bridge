@@ -13,28 +13,24 @@ public class InputController {
 	public int receiveBridgeSize() {
 		try {
 			int size = InputView.readBridgeSize();
-			return checkBridgeSize(size);
+			return validBridgeSize(size);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return receiveBridgeSize();
 		}
 	}
 
-	public int checkBridgeSize(int size) {
-		validSize(size);
-		return size;
-	}
-
-	private void validSize(int size) {
+	public int validBridgeSize(int size) {
 		if (size < MIN_SIZE || size > MAX_SIZE) {
 			throw new IllegalArgumentException(BRIDGE_SIZE_ERROR_MESSAGE);
 		}
+		return size;
 	}
 
 	public String receiveMoveCommand() {
 		try {
 			String moving = InputView.readMoving();
-			return checkMoveCommand(moving);
+			return validMoveCommand(moving);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return receiveMoveCommand();
@@ -44,19 +40,19 @@ public class InputController {
 	public boolean askRetry() {
 		try {
 			String retryInput = InputView.readGameCommand();
-			return retryOrEnd(retryInput);
+			return validBranchCommand(retryInput);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return askRetry();
 		}
 	}
 
-	public String checkMoveCommand(String inputCommand) {
+	public String validMoveCommand(String inputCommand) {
 		MoveCommand command = MoveCommand.findCommand(inputCommand);
 		return command.getValue();
 	}
 
-	public boolean retryOrEnd(String inputCommand) {
+	public boolean validBranchCommand(String inputCommand) {
 		BranchCommand branchCommand = BranchCommand.findCommand(inputCommand);
 		return BranchCommand.isRestartGame(branchCommand.getValue());
 	}
