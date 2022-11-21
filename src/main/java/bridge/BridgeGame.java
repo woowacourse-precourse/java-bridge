@@ -38,12 +38,12 @@ public class BridgeGame {
     public void move(String moving) {
         MovingData.add(moving);
         BridgeResultData.add(
-                getBridgeResult(moving, BridgeMaker.getUpBridgeLetter()),
-                getBridgeResult(moving, BridgeMaker.getDownBridgeLetter())
+                convertMovingToAnswer(moving, BridgeMaker.getUpBridgeLetter()),
+                convertMovingToAnswer(moving, BridgeMaker.getDownBridgeLetter())
         );
     }
 
-    private String getBridgeResult(String moving, String bridgeSide) {
+    private String convertMovingToAnswer(String moving, String bridgeSide) {
         if (!lose(moving) && moving.equals(bridgeSide)) {
             return RIGHT_ANSWER;
         }
@@ -51,10 +51,6 @@ public class BridgeGame {
             return WRONG_ANSWER;
         }
         return NOT_CHOSEN;
-    }
-
-    public boolean lose(String moving) {
-        return !bridge.get(MovingData.getLastIndex()).equals(moving);
     }
 
     /**
@@ -77,6 +73,13 @@ public class BridgeGame {
     public void quit() {
         BridgeResultData.reset();
         MovingData.reset();
+    }
+
+    /**
+     * 게임 승리 여부를 확인할 때 사용하는 메서드
+     */
+    public boolean lose(String moving) {
+        return !bridge.get(MovingData.getLastIndex()).equals(moving);
     }
 
     public boolean win(String moving) {
