@@ -10,16 +10,16 @@ public enum InGameCommandType {
     MOVE_UP("U", "위"),
     MOVE_DOWN("D", "아래");
 
-    private final String command;
+    private final String input;
     private final String name;
 
-    InGameCommandType(String command, String name) {
-        this.command = command;
+    InGameCommandType(String input, String name) {
+        this.input = input;
         this.name = name;
     }
 
-    public String getCommand() {
-        return command;
+    public String getInput() {
+        return input;
     }
 
     public String getName() {
@@ -28,15 +28,15 @@ public enum InGameCommandType {
 
     public static String getDescription() {
         return Arrays.stream(values())
-                .map(value -> value.getName() + ": " + value.getCommand())
+                .map(value -> value.getName() + ": " + value.getInput())
                 .collect(Collectors.joining(", "));
     }
 
     private static final Map<String, InGameCommandType> commands =
             Arrays.stream(InGameCommandType.values())
-                    .collect(Collectors.toUnmodifiableMap(InGameCommandType::getCommand, Function.identity()));
+                    .collect(Collectors.toUnmodifiableMap(InGameCommandType::getInput, Function.identity()));
 
-    public static InGameCommandType find(String command) {
-        return commands.get(command);
+    public static InGameCommandType find(String input) {
+        return commands.get(input);
     }
 }
