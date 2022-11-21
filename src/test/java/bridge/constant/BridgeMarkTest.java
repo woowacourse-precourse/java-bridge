@@ -33,4 +33,12 @@ class BridgeMarkTest {
         List<BridgeMark> bridges = BridgeMark.of(List.of("U", "U", "D"));
         assertThat(bridges).containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
     }
+
+    @DisplayName("BridgeMark U, D 이외의 입력 값 검증 시 예외 발생")
+    @Test
+    void validateInput() {
+        assertThatThrownBy(() -> BridgeMark.validateInput("s"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이동할 칸의 입력의 경우 U와 D 뿐이어야 합니다.");
+    }
 }
