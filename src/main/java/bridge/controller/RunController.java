@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bridge.domain.Bridge;
+import bridge.domain.Challenger;
 import bridge.service.BridgeGame;
-import bridge.service.MovingService;
 import bridge.utils.Notice;
 import bridge.view.InputView;
 
@@ -20,42 +20,53 @@ public class RunController {
 		return isClear;
 	}
 
-	public String getMovingResult(List<String> bridge) {
-		List<Integer> top = new ArrayList<>();
-		List<Integer> bottom = new ArrayList<>();
+	public String crossBridge(List<String> bridge) {
+		Challenger challenger = new Challenger(new ArrayList<>(), new ArrayList<>());
 
-		String movingResult = crossBridge(bridge, top, bottom);
+		compare(bridge, challenger);
 
-		return movingResult;
+		return challenger.getResult();
 	}
 
-	private String crossBridge(List<String> bridge, List<Integer> top, List<Integer> bottom) {
-		String movingResult = "";
-
+	private void compare(List<String> bridge, Challenger challenger) {
 		for (String shape : bridge) {
-			movingResult = compareMovingAndBridge(shape, top, bottom);
+			checkForCorrectMovements(shape, challenger);
+			saveUserMoving(challenger);
 
-			if (movingResult.contains(Bridge.WRONG.getResult())) {
+			if (challenger.getResult().contains(Bridge.WRONG.getResult())) {
 				break;
 			}
 		}
-		return movingResult;
 	}
 
-	private String compareMovingAndBridge(String shape, List<Integer> top, List<Integer> bottom) {
-		String initialMoving = choiceMoving();
-		String changedMoving = new MovingService().changeMoving(shape, initialMoving);
-		String movingResult = new MovingService().saveUserMoving(new BridgeGame().move(changedMoving), top, bottom);
+	private void saveUserMoving(Challenger challenger) {
+		challenger.setResult();
 
-		new BridgeController().printNotice(movingResult);
+		new BridgeController().printNotice(challenger.getResult());
+	}
 
-		return movingResult;
+	private void checkForCorrectMovements(String shape, Challenger challenger) {
+		challenger.setMoving(shape, choiceMoving());
+		challenger.setUserMoving(new BridgeGame().move(challenger.getMoving()));
 	}
 
 	private String choiceMoving() {
 		new BridgeController().printNotice(Notice.CHOICE_MOVE.getMessage());
 
-		return new InputView().readMoving();
+		try {
+			return checkMoving(new InputView().readMoving());
+		} catch (IllegalArgumentException e) {
+			new BridgeController().printNotice(Notice.ERROR.getMessage());
+		}
+		return choiceMoving();
+	}
+
+	public String checkMoving(String move) {
+		if (!(move.equals(Bridge.TOP.getOrder()) || move.equals(Bridge.BOTTOM.getOrder()))) {
+			throw new IllegalArgumentException();
+		}
+
+		return move;
 	}
 
 }
