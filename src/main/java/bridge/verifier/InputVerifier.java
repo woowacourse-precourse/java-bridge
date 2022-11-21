@@ -1,11 +1,10 @@
 package bridge.verifier;
 
 import bridge.constant.ExceptionMessage;
+import bridge.constant.Moving;
 
 public class InputVerifier {
     private static final String REGEX_BRIDGE_SIZE_RANGE = "^[3-9]{1}$|^1{1}[0-9]{1}$|^2{1}0{1}$";
-    private static final String MOVING_UP = "U";
-    private static final String MOVING_DOWN = "D";
     private static final String GameCommand_RESTART = "R";
     private static final String GameCommand_QUIT = "Q";
 
@@ -16,7 +15,7 @@ public class InputVerifier {
     }
 
     public static void moving(String moving) {
-        if (!(moving.equals(MOVING_UP) || moving.equals(MOVING_DOWN))) {
+        if (!(moving.equals(Moving.UP) || moving.equals(Moving.DOWN))) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_MOVING);
         }
     }

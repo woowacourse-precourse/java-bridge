@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.Moving;
 import bridge.domain.Player;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class OutputView {
     private String makeUpBridge(Player player) {
         List<String> upBridge = new ArrayList<>();
         for (int i = 0; i < player.getBridgeRoute().size(); i++) {
-            if (player.getBridgeRoute().get(i).equals("U")) {
+            if (player.getBridgeRoute().get(i).equals(Moving.UP)) {
                 upBridge.add(player.getBridgeMap().get(i));
                 continue;
             }
@@ -41,7 +42,7 @@ public class OutputView {
     private String makeDownBridge(Player player) {
         List<String> downBridge = new ArrayList<>();
         for (int i = 0; i < player.getBridgeRoute().size(); i++) {
-            if (player.getBridgeRoute().get(i).equals("D")) {
+            if (player.getBridgeRoute().get(i).equals(Moving.DOWN)) {
                 downBridge.add(player.getBridgeMap().get(i));
                 continue;
             }
