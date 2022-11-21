@@ -1,4 +1,8 @@
-package bridge;
+package bridge.Model;
+
+import bridge.*;
+import bridge.View.InputView;
+import bridge.View.OutputView;
 
 import java.util.List;
 import java.util.Stack;
@@ -10,23 +14,29 @@ import java.util.Stack;
 public class BridgeGame {
     public int idx;
     public int runCount=1;
+    public static List<String> bridge;
+    public static Stack<String> user = new Stack<>();
+    public static String upperResult = "[]";
+    public static String lowerResult = "[]";
+
+    public static int size;
     public BridgeGame() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
-        Model.size = new InputView().readBridgeSize();
-        new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(Model.size); // 다리 생성
+        size = new InputView().readBridgeSize();
+        new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(BridgeGame.size);
         run(runCount);
     }
 
     public void run(int runCount) {
-        Model.user = new Stack<>();
+        user = new Stack<>();
         this.idx = 0;
         do {
             move();
             new VisualizeController(idx);
             new OutputView().printMap();
-        } while (runCondition(Model.user, Model.bridge));
+        } while (runCondition(user, bridge));
 
-        if (idx == Model.size) {
+        if (idx == size) {
             new OutputView().printResult(true,runCount);
             return;
         }
@@ -34,13 +44,13 @@ public class BridgeGame {
     }
 
     public void move() {
-        Model.user.add(new InputView().readMoving());
+        user.add(new InputView().readMoving());
     }
 
     public boolean runCondition(Stack<String> user, List<String> bridge) {
         if (user.peek().equals(bridge.get(idx))) {
             this.idx++;
-            return idx < Model.size;
+            return idx < size;
         }
         return false;
     }
@@ -48,10 +58,12 @@ public class BridgeGame {
     public void retry() {
         if (new InputView().readGameCommand().equals("Q")) {
             new OutputView().printResult(false,runCount);
+            lowerResult="[]";
+            upperResult="[]";
             return;
         }
-        Model.lowerResult="[]";
-        Model.upperResult="[]";
+        lowerResult="[]";
+        upperResult="[]";
         runCount++;
         run(runCount);
     }
