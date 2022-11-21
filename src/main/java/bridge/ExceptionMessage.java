@@ -6,13 +6,13 @@ public enum ExceptionMessage {
     MOVING_COMMAND("[ERROR] 윗칸(U)과 아래칸(D) 중 하나를 입력해야 합니다."),
     RESTART_COMMAND("[ERROR] 재시작(R)과 종료(Q) 중 하나를 입력해야 합니다.");
 
-    private final String message;
+    private final String errorMessage;
 
-    ExceptionMessage(String message) {
-        this.message = message;
+    ExceptionMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
-    public String getMessage() {
-        return message;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

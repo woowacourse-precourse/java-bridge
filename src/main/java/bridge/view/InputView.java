@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.ExceptionMessage;
+import bridge.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,8 +13,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(InputMessage.GAME_START.getInputMessage());
+        System.out.println(InputMessage.INPUT_BRIDGE_LENGTH.getInputMessage());
         String bridgeSize = Console.readLine();
         isNumber(bridgeSize);
         checkScope(bridgeSize);
@@ -24,7 +25,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(InputMessage.INPUT_MOVING_COMMAND.getInputMessage());
         String upDown = Console.readLine();
         isMovingCommand(upDown);
         return upDown;
@@ -34,7 +35,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(InputMessage.INPUT_RESTART_COMMAND.getInputMessage());
         String command = Console.readLine();
         checkCommand(command);
         return command;
@@ -42,25 +43,25 @@ public class InputView {
 
     public void isNumber(String number) {
         if (!number.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NUMBER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.IS_NUMBER.getErrorMessage());
         }
     }
 
     public void checkScope(String number) {
         if (Integer.parseInt(number) < 3 || Integer.parseInt(number) > 20) {
-            throw new IllegalArgumentException(ExceptionMessage.SCOPE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.SCOPE.getErrorMessage());
         }
     }
 
     public void isMovingCommand(String alphabet) {
         if (!(alphabet.equals("U") || alphabet.equals("D"))) {
-            throw new IllegalArgumentException(ExceptionMessage.MOVING_COMMAND.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.MOVING_COMMAND.getErrorMessage());
         }
     }
 
     public void checkCommand(String command) {
         if (!(command.equals("R") || command.equals("Q"))) {
-            throw new IllegalArgumentException(ExceptionMessage.RESTART_COMMAND.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.RESTART_COMMAND.getErrorMessage());
         }
     }
 }
