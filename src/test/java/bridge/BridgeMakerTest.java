@@ -12,10 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class BridgeMakerTest {
 
     BridgeMaker bridgeMaker;
+    BridgeNumberGenerator bridgeNumberGenerator;
 
     @BeforeEach
     void setUp() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
