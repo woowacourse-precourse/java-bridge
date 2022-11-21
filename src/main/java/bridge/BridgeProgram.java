@@ -23,10 +23,9 @@ public class BridgeProgram {
     public void run() {
         List<String> bridgeRoute = bridgeMaker.makeBridge(getBridgeSize());
         Bridge bridge = new Bridge(bridgeRoute);
-        int movingCount = 0;
 
         while (GameStatus.isRunning) {
-            Mark mark = bridge.matchRoute(getInputDirection(), movingCount++);
+            Mark mark = bridge.matchRoute(getInputDirection(), bridgeGame.countMoving());
             List<List<String>> route = bridgeGame.move(mark);
 
             output.printMap(route);
