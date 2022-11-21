@@ -3,6 +3,7 @@ package bridge.domain.model;
 import bridge.constants.GameResult;
 
 public class GameResultInformation {
+
     private static GameResult GAME_RESULT;
     private static int countOfTry = 1;
 

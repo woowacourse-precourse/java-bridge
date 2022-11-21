@@ -3,6 +3,7 @@ package bridge.exception;
 import bridge.constants.Direction;
 
 public class GameOperatorExceptionHandler {
+
     public static void handleBridgeSizeOutOfRangeException(int bridgeSize) {
         if (!(3 <= bridgeSize && bridgeSize <= 20)) {
             throw new IllegalArgumentException("[ERROR] 입력된 다리의 길이가 범위(3~20)에 해당하지 않습니다.");

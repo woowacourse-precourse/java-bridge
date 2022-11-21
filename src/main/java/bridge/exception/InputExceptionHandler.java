@@ -1,6 +1,7 @@
 package bridge.exception;
 
 public class InputExceptionHandler {
+
     public static void handleEmptyInputException(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력이 비어있습니다.");
