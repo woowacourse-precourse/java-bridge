@@ -5,7 +5,7 @@ import bridge.constant.ErrorMessage;
 
 public class Validation {
 
-    public static boolean bridgeSizeValidationTest(String input){
+    public static boolean bridgeSizeVerification(String input){
         try{
             valueInRange(isNumber(input));
             return true;
@@ -14,18 +14,18 @@ public class Validation {
             return false;
         }
     }
-    public static boolean moveDirectionTest(String input){
+    public static boolean moveDirectionVerification(String input){
         try{
-            directionInputValueTest(formatTest(input));
+            directionInputValueVerification(formatVerification(input));
             return true;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return false;
         }
     }
-    public static boolean retryTest(String input){
+    public static boolean retryValueVerification(String input){
         try{
-            retryInputValueTest(formatTest(input));
+            retryInputValueVerification(formatVerification(input));
             return true;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -43,7 +43,7 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_IS_WRONG.getErrorMessage());
         }
     }
-    private static String formatTest(String input) throws IllegalArgumentException{
+    private static String formatVerification(String input) throws IllegalArgumentException{
         if(input.length()!=1){
             throw new IllegalArgumentException(ErrorMessage.WRONG_LENGTH.getErrorMessage());
         }
@@ -52,7 +52,7 @@ public class Validation {
         }
         return input;
     }
-    private static void directionInputValueTest(String input) throws IllegalArgumentException{
+    private static void directionInputValueVerification(String input) throws IllegalArgumentException{
         if(input.equals(BridgeConstant.CAN_GO_UP.getString())){
             return;
         }
@@ -61,7 +61,7 @@ public class Validation {
         }
         throw new IllegalArgumentException(ErrorMessage.WRONG_FORMAT.getErrorMessage());
     }
-    private static void retryInputValueTest(String input) throws IllegalArgumentException{
+    private static void retryInputValueVerification(String input) throws IllegalArgumentException{
         if(input.equals(BridgeConstant.RETRY.getString())){
             return;
         }

@@ -7,7 +7,7 @@ public class InputView {
 
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        while (!Validation.bridgeSizeValidationTest(bridgeSize)){
+        while (!Validation.bridgeSizeVerification(bridgeSize)){
             bridgeSize = Console.readLine();
         }
         return Integer.parseInt(bridgeSize);
@@ -15,7 +15,7 @@ public class InputView {
 
     public String readMoving() {
         String moveDirection = Console.readLine();
-        while (!Validation.moveDirectionTest(moveDirection)){
+        while (!Validation.moveDirectionVerification(moveDirection)){
             moveDirection = Console.readLine();
         }
         return moveDirection;
@@ -23,7 +23,7 @@ public class InputView {
 
     public String readGameCommand() {
         String retry = Console.readLine();
-        while (!Validation.retryTest(retry)){
+        while (!Validation.retryValueVerification(retry)){
             retry = Console.readLine();
         }
         return retry;
