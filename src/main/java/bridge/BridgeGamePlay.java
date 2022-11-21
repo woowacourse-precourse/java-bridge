@@ -5,11 +5,8 @@ public class BridgeGamePlay {
 
     private final InputView inputView = new InputView();
 
-    public void startGame() {
+    public void playGame() {
         System.out.println(GAME_START_MESSAGE);
-        playGame();
-    }
-    private void playGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()), new Player());
         BridgeGame bridgeGame = new BridgeGame(bridge);
@@ -17,17 +14,6 @@ public class BridgeGamePlay {
         playLoop(bridge, bridgeGame, outputView);
         outputView.printResult();
     }
-
-//    private void playLoop(Bridge bridge, BridgeGame bridgeGame, OutputView outputView) {
-//        while (!bridge.getGameResult()) {
-//            if (!moveAndPrint(bridgeGame, outputView)) {
-//                break ;
-//            }
-//        }
-//        if (!bridge.getGameResult() && bridgeGame.retry(inputView.readGameCommand())) {
-//            playLoop(bridge, bridgeGame, outputView);
-//        }
-//    }
 
     private void playLoop(Bridge bridge, BridgeGame bridgeGame, OutputView outputView) {
         while (!bridge.getGameResult()) {
