@@ -9,30 +9,43 @@ import bridge.view.OutputView;
 public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
+    private BridgeMaker bridgeMaker;
+    private BridgeGame bridgeGame;
 
     public BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void run() throws IllegalArgumentException {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        while (true) {
-            bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.getResult());
-            if (bridgeGame.isEnd()) {
-                outputView.printResult(bridgeGame.getResult(), bridgeGame.isGameFail(), BridgeGame.tryCount);
+    public void run() {
+        bridgeInit();
+        while (!bridgeGame.isEnd()) {
+            move();
+            if (gameFailCheck()) {
                 return;
             }
-            if (bridgeGame.isGameFail()) {
-                if (inputView.readGameCommand().equals("Q")) {
-                    outputView.printResult(bridgeGame.getResult(), true, BridgeGame.tryCount);
-                    return;
-                }
-                bridgeGame.retry();
-            }
         }
-
+        gameEnd();
+    }
+    private void bridgeInit() {
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+    }
+    private void move() {
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getResult());
+    }
+    private void gameEnd() {
+        outputView.printResult(bridgeGame.getResult(), bridgeGame.isGameFail(), BridgeGame.tryCount);
+    }
+    private boolean gameFailCheck() {
+        if (bridgeGame.isGameFail()) {
+            if (inputView.readGameCommand().equals("Q")) {
+                gameEnd();
+                return true;
+            }
+            bridgeGame.retry();
+        }
+        return false;
     }
 }
