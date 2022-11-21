@@ -24,18 +24,21 @@ public class BridgeGame {
         position = position + 1;
     }
 
-    public boolean isClear(Moving moving) {
-        return isSafe(moving)
-                && position == bridge.size();
-    }
-
-    public boolean isDead(Moving moving) {
-        return !bridge.get(position-1).equals(moving.name());
+    public Life getLife(Moving moving) {
+        if (isSafe(moving)) {
+            return Life.SAFE;
+        }
+        return Life.DEAD;
     }
 
     public boolean isSafe(Moving moving) {
         return bridge.get(position-1).equals(moving.name());
     }
+
+    public boolean isClear() {
+        return position == bridge.size();
+    }
+
 
 
     /**
