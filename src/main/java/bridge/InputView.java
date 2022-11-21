@@ -67,13 +67,13 @@ public class InputView {
 
     private void validateMove(String target) {
         if (!Objects.equals(target, Input.UP.toString()) && !Objects.equals(target, Input.DOWN.toString())) {
-            throw new IllegalArgumentException(Error.UP_OR_DOWN.toString());
+            throw new IllegalArgumentException(Error.U_OR_D.toString());
         }
     }
 
     private void validateEnd(String target) {
         if (!Objects.equals(target, Input.RETRY.toString()) && !Objects.equals(target, Input.QUIT.toString())) {
-            throw new IllegalArgumentException(Error.UP_OR_DOWN.toString());
+            throw new IllegalArgumentException(Error.R_OR_Q.toString());
         }
     }
 }

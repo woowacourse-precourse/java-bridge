@@ -34,6 +34,6 @@ public class BridgeMaker {
         if (number == Input.UP.toInteger()) {
             return Input.UP.toString();
         }
-        throw new IllegalArgumentException(Error.UP_OR_DOWN.toString());
+        throw new IllegalArgumentException(Error.U_OR_D.toString());
     }
 }
