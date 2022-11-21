@@ -1,10 +1,8 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.constant.Game;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeStatus;
-import bridge.model.GameRetry;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -18,7 +16,6 @@ public class GamePlayer {
     private List<String> bridge = new ArrayList<>();
     private final BridgeGame bridgeGame = new BridgeGame();
     private BridgeStatus bridgeStatus = new BridgeStatus();
-    private GameRetry gameRetry = new GameRetry();
     public void play() {
         this.bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         this.bridgeGame.setBridge(bridge);
@@ -39,6 +36,6 @@ public class GamePlayer {
     }
     private void retryOrExit(boolean success) {
         if(success) outputView.printResult();
-        gameRetry.retryOrQuit(inputView.readGameCommand());
+        bridgeGame.retry(inputView.readGameCommand());
     }
 }
