@@ -10,6 +10,10 @@ public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
 
+    private int size;
+    private boolean success;
+    private List<String> bridge;
+
     BridgeGame(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         this.bridgeMaker = bridgeMaker;
         this.inputView = inputView;
@@ -17,30 +21,16 @@ public class BridgeGame {
     }
 
     public void startGame() {
-        boolean gameContinue = true;
         outputView.printStartGameMessage();
 
-        while(gameContinue) {
-            int size;
-            List<String> bridge;
-
-            // get bridge size
+        do {
             outputView.printInputSizeMessage();
             size = inputView.readBridgeSize();
-
-            // create bridge
             bridge = bridgeMaker.makeBridge(size);
+            success = move(bridge);
+        } while(!success && retry());
 
-            // cross bridge & check success
-            if(move(bridge)) {
-                break;
-            }
-
-            // ask retry
-            if(!retry()) {
-                break;
-            }
-        }
+        outputView.printResult();
     }
 
     /**
