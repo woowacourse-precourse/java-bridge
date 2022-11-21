@@ -34,15 +34,15 @@ public class GameController {
         do {
             do {
                 bridgeGame.move(getNextMove());
-                outputView.printMap(bridgeGame);
+                outputView.printMap(bridgeGame.getUpperMap(), bridgeGame.getLowerMap());
             } while (bridgeGame.canTakeNextMove());
         } while (checkRetry(bridgeGame));
     }
 
     public void endGame(BridgeGame bridgeGame) {
         outputView.printGameMessage(GameMessage.GAME_RESULT_HEADER);
-        outputView.printMap(bridgeGame);
-        outputView.printResult(bridgeGame);
+        outputView.printMap(bridgeGame.getUpperMap(), bridgeGame.getLowerMap());
+        outputView.printResult(bridgeGame.hasReachedEnd(), bridgeGame.getNumberOfAttempts());
     }
 
     public BridgeGame createNewGame() {

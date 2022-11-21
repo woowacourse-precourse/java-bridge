@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.model.BridgeGame;
 import bridge.view.constant.ErrorMessage;
 import bridge.view.constant.GameMapInterface;
 import bridge.view.constant.GameMessage;
@@ -24,9 +23,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame bridgeGame) {
-        List<String> upperMap = bridgeGame.getCurrentUpperMap();
-        List<String> lowerMap = bridgeGame.getCurrentLowerMap();
+    public void printMap(List<String> upperMap, List<String> lowerMap) {
         System.out.println(transformToString(upperMap));
         System.out.println(transformToString(lowerMap));
     }
@@ -42,11 +39,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGame bridgeGame) {
-        boolean reachedEnd = bridgeGame.hasReachedEnd();
+    public void printResult(boolean reachedEnd, int attempts) {
         System.out.println(getResultString(reachedEnd));
-
-        int attempts = bridgeGame.getNumberOfAttempts();
         System.out.println(getAttemptString(attempts));
     }
 

@@ -54,11 +54,11 @@ public class BridgeGame {
         increaseNumberOfAttempts();
     }
 
-    public List<String> getCurrentUpperMap() {
+    public List<String> getUpperMap() {
         return getCurrentMap(bridge, Direction.UP);
     }
 
-    public List<String> getCurrentLowerMap() {
+    public List<String> getLowerMap() {
         return getCurrentMap(bridge, Direction.DOWN);
     }
 
