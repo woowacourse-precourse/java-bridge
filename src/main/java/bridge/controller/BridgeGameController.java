@@ -69,8 +69,7 @@ public class BridgeGameController {
 
     private Bridge makeBridge(BridgeMaker bridgeMaker, int bridgeSize) {
         List<String> strings = bridgeMaker.makeBridge(bridgeSize);
-        Bridge bridge = new Bridge(strings);
-        return bridge;
+        return new Bridge(strings);
     }
 
     private String getMovingInput() {
@@ -82,8 +81,8 @@ public class BridgeGameController {
 
     private String getGameCommandInput() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String s = inputView.readGameCommand();
-        System.out.println(s);
-        return s;
+        String gameCommand = inputView.readGameCommand();
+        System.out.println(gameCommand);
+        return gameCommand;
     }
 }

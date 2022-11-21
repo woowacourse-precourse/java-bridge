@@ -45,7 +45,6 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + bridgeGame.getAttempts());
     }
 
-
     private void printCrossedUp(List<String> crossedUpsideRecords, boolean isMovable) {
         StringBuilder recordForPrint = new StringBuilder();
         recordForPrint.append("[");
