@@ -34,7 +34,7 @@ public class BridgeGame {
         return Life.DEAD;
     }
 
-    public boolean isSafe(Moving moving) {
+    private boolean isSafe(Moving moving) {
         return bridge.get(position-1).equals(moving.name());
     }
 
