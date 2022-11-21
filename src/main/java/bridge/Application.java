@@ -13,7 +13,7 @@ public class Application {
         Bridge bridge = new Bridge(gameStatistics);
         BridgeGame bridgeGame = new BridgeGame(new Player(), gameStatistics, bridge);
         OutputView outputView = new OutputView(gameStatistics, bridge);
-        InputView inputView = new InputView(bridge, bridgeGame, new BridgeException(), gameStatistics, outputView);
+        InputView inputView = new InputView(bridgeGame, new BridgeException(), outputView);
         new GameMachine(inputView, outputView);
     }
 }
