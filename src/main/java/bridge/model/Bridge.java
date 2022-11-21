@@ -19,9 +19,4 @@ public class Bridge {
     public int getBridgeSize() {
         return bridge.size();
     }
-
-    public boolean survivedToTheLast(int index) {
-        return index == bridge.size();
-    }
-
 }

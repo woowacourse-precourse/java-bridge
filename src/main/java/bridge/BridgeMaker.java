@@ -1,13 +1,10 @@
 package bridge;
 
-import static bridge.model.Position.findAbbreviationByNumber;
 import static bridge.util.Constants.BRIDGE_SIZE_REGEX;
 import static bridge.util.Constants.MAX_BRIDGE_SIZE;
 import static bridge.util.Constants.MIN_BRIDGE_SIZE;
 
 import bridge.model.Position;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

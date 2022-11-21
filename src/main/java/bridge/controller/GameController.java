@@ -23,15 +23,15 @@ public class GameController {
 
     public void play() {
         outputView.printStartGame();
-        bridge = createBridge();
+        createBridge();
         bridgeGame = new BridgeGame(bridge);
         attempt();
         printResult();
     }
 
-    private Bridge createBridge() {
+    private void createBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
     }
 
     public void attempt() {

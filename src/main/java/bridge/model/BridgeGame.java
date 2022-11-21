@@ -14,7 +14,6 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         diagram = new Diagram();
-
     }
 
     /**
