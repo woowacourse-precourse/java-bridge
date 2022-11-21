@@ -13,7 +13,7 @@ public class BridgeService {
     static final InputValidation inputValidation = new InputValidation();
     static final InputView inputView = new InputView();
     static final OutputView outputView = new OutputView();
-    
+
     public void inputBridgeLength(){
         while(true){
             outputView.printRequestBridgeLengthMessage();
@@ -36,6 +36,11 @@ public class BridgeService {
             return false;
         }
         return true;
+    }
+
+    public void makeBridge(){
+        List<String> bridge = bridgeMaker.makeBridge(bridgeGame.getBridgeLength());
+        bridgeGame.initializeBridgeGame(bridge);
     }
 
 
