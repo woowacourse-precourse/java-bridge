@@ -7,11 +7,15 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    BridgeGame bridgeGame;
 
     public BridgeGameController() {
         outputView.gameStartPrint();
-        BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
-        while (shouldIMove(bridgeGame)){
+        bridgeGame = new BridgeGame(inputView.readBridgeSize());
+    }
+
+    public void gameStart() {
+        while (shouldIMove(bridgeGame)) {
             
         }
     }
