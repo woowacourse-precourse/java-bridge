@@ -12,23 +12,28 @@ public class Game {
 	private static List<String> bridge = new ArrayList<>();
 	private static List<String> result = new ArrayList<>();
 
+	private int countOfGame = 1;
+
 	View view = new View();
 
 	public void start() {
 		view.start();
 		makeBridge();
 		while (!process()) {
-			if (bridgeGame.retry(view.readRetry())) {
-				result = new ArrayList<>();
+			if (!bridgeGame.retry(view.readRetry())) {
+				break;
 			}
+			addCount();
+			result = new ArrayList<>();
 		}
+		end();
 	}
 
-	public void makeBridge() {
+	private void makeBridge() {
 		bridge = bridgeMaker.makeBridge(view.readBridgeSize());
 	}
 
-	public boolean process() {
+	private boolean process() {
 		do {
 			result.add(bridgeGame.move(view.readMoving(), bridge, result.size()));
 			view.printMap(result, bridge);
@@ -39,4 +44,11 @@ public class Game {
 		return true;
 	}
 
+	private void end() {
+		view.printResult(result, bridge, countOfGame);
+	}
+
+	private void addCount() {
+		countOfGame++;
+	}
 }

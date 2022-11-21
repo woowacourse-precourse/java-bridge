@@ -27,4 +27,8 @@ public class View {
 		outputView.printMap(result, bridge);
 	}
 
+	public void printResult(List<String> result, List<String> bridge, int count) {
+		outputView.printResult(result, bridge, count);
+	}
+
 }
