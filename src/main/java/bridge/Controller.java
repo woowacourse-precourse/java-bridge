@@ -12,7 +12,8 @@ public class Controller {
     List<String> bridgeList;
 
     public void start() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        AppConfig appConfig = new AppConfig();
+        BridgeMaker bridgeMaker = appConfig.bridgeMaker();
         inputView.printStart();
         bridgeList = bridgeMaker.makeBridge(inputView.readBridgeSize());
         Game(Start_Point, "");
