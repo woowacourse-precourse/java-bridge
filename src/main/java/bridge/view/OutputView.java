@@ -62,7 +62,7 @@ public class OutputView {
     }
 
     // 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-    public void printResult(List<String> userSelectList,boolean isSuccess,int gameCount) {
+    public void printResult(boolean isSuccess,int gameCount) {
         System.out.println(ProgressMessage.GAME_RESULT_MESSAGE);
         printMapForm(upList);
         printMapForm(downList);

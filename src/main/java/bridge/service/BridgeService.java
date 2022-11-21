@@ -89,8 +89,7 @@ public class BridgeService {
 
     // 최종 결과
     public void exitGame() {
-        List<String> userSelectList = bridgeGame.getUserSelectList();
-        outputView.printResult(userSelectList,isSuccess(),gameCount);
+        outputView.printResult(isSuccess(),gameCount);
     }
 
     // 유저 결과와 다리 결과가 같은지 확인
