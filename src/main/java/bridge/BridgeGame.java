@@ -8,7 +8,7 @@ import java.util.List;
 public class BridgeGame {
 
     public boolean checkSame(List<String> RandomBridgeMap, int idx, String playrerStep) {
-        if (!RandomBridgeMap.get(idx).equals(playrerStep)) {
+        if (RandomBridgeMap.get(idx).equals(playrerStep)) {
             return true;
         }
         return false;
