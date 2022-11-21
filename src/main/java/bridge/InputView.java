@@ -7,14 +7,22 @@ import java.util.List;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    ValidationChecker validationChecker = new ValidationChecker();
+    static ValidationChecker validationChecker = new ValidationChecker();
+    static OutputView outputView = new OutputView();
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        validationChecker.checkInputIsInteger(bridgeSize);
-        validationChecker.checkIntegerRange(Integer.parseInt(bridgeSize), 3, 20);
+        try {
+            validationChecker.checkInputIsInteger(bridgeSize);
+            validationChecker.checkIntegerRange(Integer.parseInt(bridgeSize), 3, 20);
+        }catch (NumberFormatException e){ outputView.printBridgeSizeIntegerError();
+            return readBridgeSize();
+        }catch (IllegalArgumentException e) { outputView.printBridgeSizeIntegerRangeError();
+            return readBridgeSize();
+        }
         return Integer.parseInt(bridgeSize);
     }
 
