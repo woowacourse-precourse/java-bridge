@@ -38,7 +38,7 @@ public class UserConsole {
 
     public void move(boolean result) {
         bridgeGame.move(result);
-        outputView.printMap();
+        outputView.printMap(bridgeGame.getUserList(),bridge.getTargetBridge());
         if (!result) {
             round--;
             retry(inputView.readGameCommand());
@@ -46,7 +46,7 @@ public class UserConsole {
     }
 
     public void endGame() {
-        outputView.printResultTotalMap(bridgeGame.getUserList(), bridgeGame.getBridgeSize());
+        outputView.printResultTotalMap(bridgeGame.getUserList(),bridge.getTargetBridge());
         outputView.printResultSuccess(round, bridgeGame.getBridgeSize());
         outputView.printResultTotalNumber(totalNumber);
     }

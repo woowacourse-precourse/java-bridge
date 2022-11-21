@@ -4,8 +4,13 @@ public class Application {
 
     public static void main(String[] args) {
         UserConsole userConsole = new UserConsole();
-        userConsole.initGame();
-        userConsole.startGame();
-        userConsole.endGame();
+        try {
+            userConsole.initGame();
+            userConsole.startGame();
+            userConsole.endGame();
+        }catch (IllegalArgumentException e)
+        {
+            System.out.println(e);
+        }
     }
 }
