@@ -1,3 +1,7 @@
+/**
+ * BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
+ */
+
 package bridge;
 
 /**
@@ -19,5 +23,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public void printStartMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
     }
 }
