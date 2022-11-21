@@ -97,6 +97,10 @@ public class BridgeGame {
         return upBoardCheckList;
     }
 
+    public boolean getMoveSuccess() {
+        return moveSuccess;
+    }
+
     public List<String> getDownBoardCheckList() {
         return downBoardCheckList;
     }
