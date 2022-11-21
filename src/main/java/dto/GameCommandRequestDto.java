@@ -1,9 +1,9 @@
 package dto;
 
-public class GameCommandDto {
+public class GameCommandRequestDto {
 	private final String gameCommand;
 
-	public GameCommandDto(String gameCommand) {
+	public GameCommandRequestDto(String gameCommand) {
 		this.gameCommand = gameCommand;
 	}
 

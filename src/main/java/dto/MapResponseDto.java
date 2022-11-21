@@ -1,10 +1,10 @@
 package dto;
 
-public class MapDto {
+public class MapResponseDto {
 	private final String map;
 	private final int numberOfCorrect;
 
-	public MapDto(String map) {
+	public MapResponseDto(String map) {
 		this.map = map;
 		this.numberOfCorrect = (int)map.chars().filter(cell -> cell == 'O').count();
 	}

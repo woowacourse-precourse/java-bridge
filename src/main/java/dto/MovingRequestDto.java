@@ -1,9 +1,9 @@
 package dto;
 
-public class MovingDto {
+public class MovingRequestDto {
 	private final String moving;
 
-	public MovingDto(String moving) {
+	public MovingRequestDto(String moving) {
 		this.moving = moving;
 	}
 

@@ -1,9 +1,9 @@
 package dto;
 
-public class BridgeSizeDto {
+public class BridgeSizeRequestDto {
 	private final int bridgeSize;
 
-	public BridgeSizeDto(int bridgeSize) {
+	public BridgeSizeRequestDto(int bridgeSize) {
 		this.bridgeSize = bridgeSize;
 	}
 
