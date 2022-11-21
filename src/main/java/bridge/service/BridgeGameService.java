@@ -13,6 +13,8 @@ import java.util.List;
 public class BridgeGameService {
     private final BridgeMaker bridgeMaker;
     private List<String> userMoving;
+    private final String RESTART = "R";
+    private final String EMPTY = "";
 
     public BridgeGameService() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -57,8 +59,8 @@ public class BridgeGameService {
     }
 
     private String getMoving() {
-        String moving = "";
-        while (moving.equals("")) {
+        String moving = EMPTY;
+        while (moving.equals(EMPTY)) {
             try {
                 OutputView.printInputMoving();
                 moving = InputView.readMoving();
@@ -86,15 +88,15 @@ public class BridgeGameService {
      * @return Command
     * */
     public Command restartGame() {
-        if (getCommand().equals("R")) {
+        if (getCommand().equals(RESTART)) {
             return Command.RESTART;
         }
         return Command.QUIT;
     }
 
     private String getCommand() {
-        String command = "";
-        while (command.equals("")) {
+        String command = EMPTY;
+        while (command.equals(EMPTY)) {
             try {
                 OutputView.printInputCommand();
                 command = InputView.readGameCommand();
