@@ -22,6 +22,10 @@ public class BridgeGame {
         bridge = new Bridge(makeBridge);
     }
 
+    public Bridge getBridge() {
+        return bridge;
+    }
+
     public void setUser(){
         user = new User();
     }
