@@ -7,6 +7,17 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private Space bridge;
+
+    public BridgeGame() {}
+
+    public void createSpace(List<String> bridgeSpace) {
+        Space bridge = new Space();
+        for(String block : bridgeSpace) {
+            bridge.expandBlock(block);
+        }
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -29,5 +40,9 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public String toString() {
+        return bridge.toString();
     }
 }
