@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.Collections;
 import java.util.List;
 
 import static bridge.Constant.MOVING_DOWN;
@@ -22,6 +23,10 @@ public class Bridge {
 
     public List<String> getCrossedBridge(int position) {
         return movableBlocks.subList(0, position + 1);
+    }
+
+    public List<String> getMovableBlocks() {
+        return Collections.unmodifiableList(this.movableBlocks);
     }
 
     private void validate(List<String> movableBlocks) {
