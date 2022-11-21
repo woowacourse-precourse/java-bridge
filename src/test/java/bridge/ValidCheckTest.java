@@ -30,4 +30,9 @@ public class ValidCheckTest {
     void isRorQTest(String str, boolean output) {
         assertThat(ValidCheck.isRorQ(str)).isEqualTo(output);
     }
+    @ParameterizedTest
+    @CsvSource({"abc,false","1,true","R,true","QQ,false","RR,false","DD,false","UUU,false"})
+    void isLength1Test(String str, boolean output) {
+        assertThat(ValidCheck.isLength1(str)).isEqualTo(output);
+    }
 }
