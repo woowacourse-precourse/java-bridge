@@ -36,20 +36,16 @@ public class BridgeGame {
         isPlayerMoveSuccess = false;
     }
 
-    public List<StringBuilder> makePrintResult(){
+    public void makePrintResult(){
         initializeBuilder();
         playerMoveWhetherAnswer();
-        printPlayerMoveUp.append("[");
-        printPlayerMoveDown.append("[");
+        appendOpenSquareBrackets();
         for (; bridgeIdx < playerMoveRecord.size() ; bridgeIdx++) {
             makePrintResultIfUp(bridgeIdx);
             makePrintResultIfDown(bridgeIdx);
         }
-        printPlayerMoveUp.append("]");
-        printPlayerMoveDown.append("]");
-        printPlayerMove.add(printPlayerMoveUp);
-        printPlayerMove.add(printPlayerMoveDown);
-        return printPlayerMove;
+        appendCloseSquareBrackets();
+        return;
     }
 
     public void makePrintResultIfUp(int bridgeIdx){
@@ -118,6 +114,17 @@ public class BridgeGame {
         return MoveAnswer.DOWN_FALSE;
     }
 
+    public void appendOpenSquareBrackets(){
+        printPlayerMoveUp.append("[");
+        printPlayerMoveDown.append("[");
+    }
+
+    public void appendCloseSquareBrackets(){
+        printPlayerMoveUp.append("]");
+        printPlayerMoveDown.append("]");
+    }
+    
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -180,4 +187,6 @@ public class BridgeGame {
         this.bridgeLength = bridgeLength;
         this.tryCount = tryCount;
     }
+
+
 }
