@@ -13,12 +13,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class BridgeMonitorTest {
-    BridgeMonitor bridgeMonitor;
+class BridgeDrawerTest {
+    BridgeDrawer bridgeDrawer;
 
     @BeforeEach
-    void initBridgeMonitor() {
-        bridgeMonitor = new BridgeMonitor();
+    void initBridgeDrawer() {
+        bridgeDrawer = new BridgeDrawer();
     }
 
     @DisplayName("한 턴의 이동에 대한 현황을 기록한다.")
@@ -30,8 +30,8 @@ class BridgeMonitorTest {
         void should_RecordCorrectMoving_When_SuccessToMove() {
             String moving = UPPER_SIDE;
             GameStatus gameStatusAfterMoving = ON_WAY;
-            bridgeMonitor.record(moving, gameStatusAfterMoving);
-            assertThat(bridgeMonitor.getPicture()).isEqualTo("[ O ]" + "\n" + "[   ]");
+            bridgeDrawer.record(moving, gameStatusAfterMoving);
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
 
         @DisplayName("아래 방향 이동에 실패")
@@ -39,26 +39,26 @@ class BridgeMonitorTest {
         void should_RecordWrongMoving_When_FailToMove() {
             String moving = LOWER_SIDE;
             GameStatus gameStatusAfterMoving = FAIL;
-            bridgeMonitor.record(moving, gameStatusAfterMoving);
-            assertThat(bridgeMonitor.getPicture()).isEqualTo("[   ]" + "\n" + "[ X ]");
+            bridgeDrawer.record(moving, gameStatusAfterMoving);
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[   ]" + "\n" + "[ X ]");
         }
 
         @DisplayName("위, 아래 방향 이동 성공 후, 아래 방향 이동에 실패")
         @Test
         void should_RecordWrongMoving_When_FailToMoveAfterSuccessTwice() {
-            bridgeMonitor.record(UPPER_SIDE, ON_WAY);
-            bridgeMonitor.record(LOWER_SIDE, ON_WAY);
-            bridgeMonitor.record(LOWER_SIDE, FAIL);
-            assertThat(bridgeMonitor.getPicture()).isEqualTo("[ O |   |   ]" + "\n" + "[   | O | X ]");
+            bridgeDrawer.record(UPPER_SIDE, ON_WAY);
+            bridgeDrawer.record(LOWER_SIDE, ON_WAY);
+            bridgeDrawer.record(LOWER_SIDE, FAIL);
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O |   |   ]" + "\n" + "[   | O | X ]");
         }
 
         @DisplayName("위, 아래 방향 이동 성공 후, 아래 방향 이동에 성공하며 다리를 모두 건너기 완료")
         @Test
         void should_RecordCorrectMoving_When_CrossBridgeCompletely() {
-            bridgeMonitor.record(UPPER_SIDE, ON_WAY);
-            bridgeMonitor.record(LOWER_SIDE, ON_WAY);
-            bridgeMonitor.record(LOWER_SIDE, END);
-            assertThat(bridgeMonitor.getPicture()).isEqualTo("[ O |   |   ]" + "\n" + "[   | O | O ]");
+            bridgeDrawer.record(UPPER_SIDE, ON_WAY);
+            bridgeDrawer.record(LOWER_SIDE, ON_WAY);
+            bridgeDrawer.record(LOWER_SIDE, END);
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O |   |   ]" + "\n" + "[   | O | O ]");
         }
     }
 
@@ -69,20 +69,20 @@ class BridgeMonitorTest {
         @DisplayName("이동 1회 성공 후 이동 실패한 경우")
         @Test
         void should_DeleteRecordOfWrongMoving_When_FailToMoveAfterSuccessOnce() {
-            bridgeMonitor.record(UPPER_SIDE, ON_WAY);
-            bridgeMonitor.record(LOWER_SIDE, FAIL);
-            assertThat(bridgeMonitor.getPicture()).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
-            bridgeMonitor.turnBackOnce();
-            assertThat(bridgeMonitor.getPicture()).isEqualTo("[ O ]" + "\n" + "[   ]");
+            bridgeDrawer.record(UPPER_SIDE, ON_WAY);
+            bridgeDrawer.record(LOWER_SIDE, FAIL);
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
+            bridgeDrawer.turnBackOnce();
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
 
         @DisplayName("시작 후 바로 이동 실패한 경우")
         @Test
         void should_DeleteRecordOfWrongMoving_When_FailToMoveRightAfterStart() {
-            bridgeMonitor.record(LOWER_SIDE, FAIL);
-            assertThat(bridgeMonitor.getPicture()).isEqualTo("[   ]" + "\n" + "[ X ]");
-            bridgeMonitor.turnBackOnce();
-            assertThat(bridgeMonitor.getPicture()).isEqualTo("[]" + "\n" + "[]");
+            bridgeDrawer.record(LOWER_SIDE, FAIL);
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[   ]" + "\n" + "[ X ]");
+            bridgeDrawer.turnBackOnce();
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[]" + "\n" + "[]");
         }
     }
 }

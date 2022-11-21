@@ -6,7 +6,7 @@ import static bridge.constant.Moving.UPPER_SIDE;
 
 import bridge.constant.GameStatus;
 
-public class BridgeMonitor {
+public class BridgeDrawer {
     private StringBuilder upperLine;
     private StringBuilder lowerLine;
     private static final String END_BRACKET = "]";
@@ -20,7 +20,7 @@ public class BridgeMonitor {
     private static final int ONE_COLUMN_INCLUDING_BETWEEN_LINE = 4;
     private static final int ONE_COLUMN_EXCLUDING_BETWEEN_LINE = 3;
 
-    public BridgeMonitor() {
+    public BridgeDrawer() {
         this.upperLine = new StringBuilder(BRACKETS);
         this.lowerLine = new StringBuilder(BRACKETS);
     }

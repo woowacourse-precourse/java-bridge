@@ -16,21 +16,21 @@ public class BridgeGame {
     private GameStatus gameStatus;
     private int tryCount;
     private BridgeMover bridgeMover;
-    private BridgeMonitor bridgeMonitor;
+    private BridgeDrawer bridgeDrawer;
 
     public BridgeGame(List<String> bridge) {
         this.gameStatus = ON_WAY;
         this.tryCount = 1;
         this.bridgeMover = new BridgeMover(bridge);
-        this.bridgeMonitor = new BridgeMonitor();
+        this.bridgeDrawer = new BridgeDrawer();
     }
 
     public String move(String moving) {
         validateMoving(moving);
         GameStatus gameStatusAfterMoving = this.bridgeMover.go(moving);
         this.gameStatus = gameStatusAfterMoving;
-        this.bridgeMonitor.record(moving, gameStatusAfterMoving);
-        return this.bridgeMonitor.getPicture();
+        this.bridgeDrawer.record(moving, gameStatusAfterMoving);
+        return this.bridgeDrawer.getPicture();
     }
 
     public void retry(String gameCommand) {
@@ -38,7 +38,7 @@ public class BridgeGame {
         if (gameCommand.equals(RETRY)) {
             this.gameStatus = ON_WAY;
             this.tryCount += 1;
-            this.bridgeMonitor.turnBackOnce();
+            this.bridgeDrawer.turnBackOnce();
         }
         if (gameCommand.equals(QUIT)) {
             this.gameStatus = END;
@@ -62,7 +62,7 @@ public class BridgeGame {
     }
 
     public String getPicture() {
-        return this.bridgeMonitor.getPicture();
+        return this.bridgeDrawer.getPicture();
     }
 
     public int getTryCount() {

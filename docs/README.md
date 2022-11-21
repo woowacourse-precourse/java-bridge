@@ -14,7 +14,7 @@
 >- BridgeNumberGenerator : 다리 생성에 필요한 숫자를 생성
 >- BridgeGame : 게임 진행 동작(이동, 재시작, 종료)을 수행
 >- BridgeCalculator : 이동 결과를 계산하고 저장
->- BridgeMonitor : 화면(콘솔) 출력 용 다리 이동 현황 기록
+>- BridgeDrawer : 화면(콘솔) 출력 용 다리 이동 현황 기록
 ---
 
 # 기능 구현 목록
@@ -67,7 +67,7 @@
 ### BridgeMover
 - [x] 이동 결과 반환
 
-### BridgeMonitor
+### BridgeDrawer
 - [x] 한 턴의 이동 후 현황 기록
 - [x] 이동 현황 반환
 - [x] 최근 이동 기록 1회 제거
