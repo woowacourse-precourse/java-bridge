@@ -20,9 +20,7 @@ public class Application {
         user.addUserAttempt();
         while(true){
             String direction = inputView.readMoving();
-            bridgeGame.move(user);
-            boolean checkDirection = bridgeGame.checkBridgeValueInUserPosition(user, direction, bridge);
-            outputView.printMap(user.getUserPosition(), direction, checkDirection, bridge);
+            boolean checkDirection = progressGame(direction, bridge);
             if(checkDirection){
                 if(bridgeGame.checkGameIsOver(user, direction, size, bridge)){
                     outputView.printResult(user, direction, true, bridge, true);
@@ -38,5 +36,13 @@ public class Application {
                 }
             }
         }
+    }
+
+    public static boolean progressGame(String direction, List<String> bridge){
+        bridgeGame.move(user);
+        boolean checkDirection = bridgeGame.checkBridgeValueInUserPosition(user, direction, bridge);
+        outputView.printMap(user.getUserPosition(), direction, checkDirection, bridge);
+
+        return checkDirection;
     }
 }
