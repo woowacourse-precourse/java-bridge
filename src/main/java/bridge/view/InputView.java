@@ -1,6 +1,8 @@
 package bridge.view;
 
+import bridge.constant.BridgeChoice;
 import bridge.constant.ExceptionMessage;
+import bridge.constant.GameCommand;
 import bridge.constant.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -54,13 +56,13 @@ public class InputView {
     }
 
     public void isMovingCommand(String alphabet) {
-        if (!(alphabet.equals("U") || alphabet.equals("D"))) {
+        if (!(alphabet.equals(BridgeChoice.UP.getDirection()) || alphabet.equals(BridgeChoice.DOWN.getDirection()))) {
             throw new IllegalArgumentException(ExceptionMessage.MOVING_COMMAND.getErrorMessage());
         }
     }
 
     public void checkCommand(String command) {
-        if (!(command.equals("R") || command.equals("Q"))) {
+        if (!(command.equals(GameCommand.RESTART.getCommand()) || command.equals(GameCommand.QUIT.getCommand()))) {
             throw new IllegalArgumentException(ExceptionMessage.RESTART_COMMAND.getErrorMessage());
         }
     }

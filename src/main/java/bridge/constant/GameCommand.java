@@ -24,4 +24,8 @@ public enum GameCommand {
     public boolean getRestart() {
         return restart;
     }
+
+    public String getCommand() {
+        return command;
+    }
 }

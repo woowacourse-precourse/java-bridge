@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class BridgeGameResult {
+    private final String blank = " ";
+
     private Map<String, List<String>> resultMap;
     private List<String> upBridge;
     private List<String> downBridge;
@@ -38,7 +40,7 @@ public class BridgeGameResult {
         resultMap.get(movingCommand).add(sign);
         for (String key : resultMap.keySet()) {
             if (!key.equals(movingCommand)) {
-                resultMap.get(key).add(" ");
+                resultMap.get(key).add(blank);
             }
         }
         Success = getComparison(sign);
