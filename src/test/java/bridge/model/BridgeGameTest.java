@@ -34,8 +34,22 @@ class BridgeGameTest {
     @Test
     void 진행중_다리_횟수_테스트2() {
         BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("U", Arrays.asList("U","U","U"));
+        bridgeGame.move("D", Arrays.asList("U","U","U"));
+        assertThat(bridgeGame.getCurrentCount()).isEqualTo(3);
+    }
+
+    @Test
+    void 다리_실패_여부_테스트1() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("D", Arrays.asList("U"));
+        assertThat(bridgeGame.isGameContinue()).isEqualTo(false);
+    }
+
+    @Test
+    void 다리_실패_여부_테스트2() {
+        BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.move("U", Arrays.asList("U","U"));
-        bridgeGame.move("D", Arrays.asList("U","U"));
-        assertThat(bridgeGame.getCurrentCount()).isEqualTo(2);
+        assertThat(bridgeGame.isGameContinue()).isEqualTo(true);
     }
 }
