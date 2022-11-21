@@ -44,7 +44,6 @@ public class InputView {
         return bridgeSize < 3 || bridgeSize > 20;
     }
 
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
