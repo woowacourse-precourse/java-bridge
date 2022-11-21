@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final int BRIDGE_MIN_SIZE = 3;
+    private static final int BRIDGE_MAX_SIZE = 20;
     private static final String UP_BRIDGE_LETTER = "U";
     private static final String DOWN_BRIDGE_LETTER = "D";
     private static final int UP_BRIDGE_NUMBER = 1;
@@ -17,6 +19,14 @@ public class BridgeMaker {
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+    }
+
+    public static int getBridgeMinSize() {
+        return BRIDGE_MIN_SIZE;
+    }
+
+    public static int getBridgeMaxSize() {
+        return BRIDGE_MAX_SIZE;
     }
 
     public static String getUpBridgeLetter() {

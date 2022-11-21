@@ -2,7 +2,6 @@ package bridge.systemMessage;
 
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
-import bridge.domain.Bridge;
 
 public enum ErrorMessage {
 
@@ -10,8 +9,8 @@ public enum ErrorMessage {
     NOT_VALID_INPUT_TYPE_ERROR("다리 길이는 숫자만 입력 가능합니다."),
     NOT_VALID_SIZE_ERROR(
             String.format("다리 길이는 %d부터 %d 사이의 숫자여야 합니다.",
-                    Bridge.getBridgeMinSize(),
-                    Bridge.getBridgeMaxSize())
+                    BridgeMaker.getBridgeMinSize(),
+                    BridgeMaker.getBridgeMaxSize())
     ),
     NOT_VALID_MOVING_INPUT_ERROR(
             String.format("이동할 칸은 %s 또는 %s만 입력 가능합니다.",

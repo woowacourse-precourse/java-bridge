@@ -12,11 +12,9 @@ public class InputValidator {
         }
     }
 
-    public static void validateInteger(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException ne) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_INPUT_TYPE_ERROR.getMessage());
+    public static void validateSize(int size) {
+        if (size < BridgeMaker.getBridgeMinSize() || size > BridgeMaker.getBridgeMaxSize()) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_SIZE_ERROR.getMessage());
         }
     }
 
