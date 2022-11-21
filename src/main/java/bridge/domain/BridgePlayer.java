@@ -18,7 +18,9 @@ public class BridgePlayer {
         validateBridgeSize(playerBridge);
         validateBridgeSize(bridgeMoveTypes);
         int currentLocation = playerBridge.size() - 1;
-        return playerBridge.get(currentLocation) != bridgeMoveTypes.get(currentLocation);
+        BridgeMoveType playerMoveType = playerBridge.get(currentLocation);
+        BridgeMoveType bridgeMoveType = bridgeMoveTypes.get(currentLocation);
+        return playerMoveType != bridgeMoveType;
     }
 
     public boolean isAllMoveTypeSameAs(List<BridgeMoveType> bridgeMoveTypes) {
