@@ -25,6 +25,8 @@ public class BridgeGame {
         size = new InputView().readBridgeSize();
         new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(BridgeGame.size);
         run(runCount);
+        lowerResult="[]";
+        upperResult="[]";
     }
 
     public void run(int runCount) {
@@ -35,7 +37,6 @@ public class BridgeGame {
             new VisualizeController(idx);
             new OutputView().printMap();
         } while (runCondition(user, bridge));
-
         if (idx == size) {
             new OutputView().printResult(true,runCount);
             return;
