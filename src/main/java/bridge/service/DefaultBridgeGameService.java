@@ -29,4 +29,9 @@ public class DefaultBridgeGameService implements BridgeGameService {
     public boolean moveBridge(BridgeCell cell) {
         return game.move(cell);
     }
+
+    @Override
+    public String createMap() {
+        return game.getMap();
+    }
 }

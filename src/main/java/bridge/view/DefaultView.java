@@ -21,6 +21,7 @@ public class DefaultView implements View {
         outputWelcome();
         inputBridgeSize();
         inputMove();
+        outputBridgeMap();
     }
 
     private void outputWelcome() {
@@ -40,4 +41,9 @@ public class DefaultView implements View {
         controller.moveBridge(move);
     }
 
+    private void outputBridgeMap() {
+        String map = controller.createMap();
+        outputView.printMap(map);
+        System.out.println();
+    }
 }

@@ -22,4 +22,8 @@ public class BridgeGameController {
         BridgeCell cell = BridgeCell.getBridgeCell(move);
         return service.moveBridge(cell);
     }
+
+    public String createMap() {
+        return service.createMap();
+    }
 }
