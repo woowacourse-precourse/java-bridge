@@ -37,7 +37,7 @@ public class BridgeController {
         }
     }
 
-    public void restartGame() {
+    public void resetGame() {
         bridgeService.clearPlayerBridge();
     }
 
