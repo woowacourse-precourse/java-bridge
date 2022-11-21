@@ -19,7 +19,7 @@ public class OutputView {
         if (nowProgress == GameProgress.SUCCESS || nowProgress == GameProgress.FAILURE) {
             System.out.println("최종 게임 결과");
             printMap();
-            printResult();
+            printResult(nowProgress, gameResult.getNumberOfAttempts());
         }
     }
 
@@ -36,11 +36,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-        String yesOrNo = "";
-        String chance = "";
-
-        System.out.println("게임 성공 여부:" + yesOrNo);
-        System.out.println("총 시도한 횟수:" + chance);
+    public void printResult(GameProgress progress, int attempt) {
+        System.out.println("게임 성공 여부: " + progress.getProgress());
+        System.out.println("총 시도한 횟수: " + attempt);
     }
 }
