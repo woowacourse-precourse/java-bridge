@@ -1,5 +1,7 @@
 package bridge.util;
 
+import static bridge.constant.BridgeConstant.BRIDGE_LENGTH_MAXIMUM;
+import static bridge.constant.BridgeConstant.BRIDGE_LENGTH_MINIMUM;
 import static bridge.constant.BridgeConstant.QUIT;
 import static bridge.constant.BridgeConstant.RETRY;
 import static bridge.type.MovingType.DOWN;
@@ -27,6 +29,12 @@ public class InputValidator {
     public static void validateRetryOrExit(String input) {
         if (!input.equals(RETRY) && !input.equals(QUIT)) {
             throw new IllegalArgumentException(ErrorType.COMMAND_ERROR.printError());
+        }
+    }
+
+    public static void validateBridgeSize(int size) throws IllegalArgumentException {
+        if (size < BRIDGE_LENGTH_MINIMUM || size > BRIDGE_LENGTH_MAXIMUM) {
+            throw new IllegalArgumentException(ErrorType.BRIDGE_SIZE_ERROR.printError());
         }
     }
 }

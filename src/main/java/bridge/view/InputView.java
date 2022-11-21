@@ -8,7 +8,6 @@ import static bridge.util.InputValidator.validateMoving;
 import static bridge.util.InputValidator.validateRetryOrExit;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-
 public class InputView {
 
     public int readBridgeSize() {
