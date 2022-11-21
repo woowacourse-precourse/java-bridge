@@ -23,7 +23,7 @@ public class BridgeController {
         outputView.printResult(bridgeGame.getUserMoving(), resultOfGame, bridgeGame.getAttemptCount());
     }
 
-    public void initBridgeGame(){
+    public void initBridgeGame() {
         List<String> bridge;
 
         outputView.printStartingPhrase();
@@ -67,7 +67,7 @@ public class BridgeController {
         }
     }
 
-    public boolean move(){
+    public boolean move() {
         String moving;
         boolean resultOfMove;
 

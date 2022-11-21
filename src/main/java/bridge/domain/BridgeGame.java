@@ -78,7 +78,7 @@ public class BridgeGame {
         return isEndOfBridge() && (userMoving.get(userMoving.size() - 1).equals(UP) || userMoving.get(userMoving.size() - 1).equals(DOWN));
     }
 
-    public void addAttemptCount(){
+    public void addAttemptCount() {
         attemptCount++;
     }
 
