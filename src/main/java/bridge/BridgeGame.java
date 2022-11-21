@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.model.BridgeMaker;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +51,7 @@ public class BridgeGame {
     }
 
     public void endGame() {
-        outputView.printResult(bridgeMaker.getPresentBridge(), isGameResult(), getTryCount());
+//        outputView.printResult(bridgeMaker.getPresentBridge(), isGameResult(), getTryCount());
     }
 
     /**
@@ -61,7 +62,7 @@ public class BridgeGame {
     public boolean move(int bridgeIndex) {
         String moveCommand = inputView.readMoving();
         recordBridge(moveCommand, judgeMove(moveCommand, bridgeIndex));
-        outputView.printMap(bridgeMaker.getPresentBridge());
+//        outputView.printMap(bridgeMaker.getPresentBridge());
         if (judgeMove(moveCommand, bridgeIndex)) {
             setGameIndex(getGameIndex() + 1);
             return true;
@@ -76,21 +77,21 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        bridgeMaker.initPresentBridge();
+//        bridgeMaker.initPresentBridge();
         setGameIndex(0);
         setGameResult(true);
         setTryCount(getTryCount() + 1);
     }
 
     public void recordBridge(String moveCommand, boolean isSuccess) {
-        HashMap<String, List<String>> presentBridge = bridgeMaker.getPresentBridge();
-        List<String> moveLine = presentBridge.get(moveCommand);
-        moveLine.add(MOVE_OX.get(isSuccess));
-        presentBridge.replace(moveCommand, moveLine);
-        List<String> reverseLine = presentBridge.get(REVERSE_MOVE.get(moveCommand));
-        reverseLine.add(" ");
-        presentBridge.replace(REVERSE_MOVE.get(moveCommand), reverseLine);
-        bridgeMaker.setPresentBridge(presentBridge);
+//        HashMap<String, List<String>> presentBridge = bridgeMaker.getPresentBridge();
+//        List<String> moveLine = presentBridge.get(moveCommand);
+//        moveLine.add(MOVE_OX.get(isSuccess));
+//        presentBridge.replace(moveCommand, moveLine);
+//        List<String> reverseLine = presentBridge.get(REVERSE_MOVE.get(moveCommand));
+//        reverseLine.add(" ");
+//        presentBridge.replace(REVERSE_MOVE.get(moveCommand), reverseLine);
+//        bridgeMaker.setPresentBridge(presentBridge);
     }
 
     public boolean judgeMove(String moveCommand, int bridgeIndex) {
