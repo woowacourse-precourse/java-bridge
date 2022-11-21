@@ -7,7 +7,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.model.BridgeGame;
-import bridge.model.MoveInformation;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import bridge.model.GameResult;
 import java.util.ArrayList;
@@ -40,13 +39,13 @@ public class BridgeGameTest extends NsTest {
     class describe_getGameResult {
 
         @Test
-        @DisplayName("getGameResult는 이동 기록만을 담아 반환한다.")
+        @DisplayName("getGameResult는 이동 기록과 마지막 이동의 성공여부만을 담아 반환한다.")
         void onlyContainsMoveResult() {
             GameResult gameResult = bridgeGame.getSimpleGameResult();
             assertThatThrownBy(() -> gameResult.tryCount()).isInstanceOf(NoSuchElementException.class);
-            assertThatThrownBy(() -> gameResult.succeed()).isInstanceOf(NoSuchElementException.class);
-            List<MoveInformation> dummy = new ArrayList<>();
-            assertThat(gameResult.getBridgeMoveInformation()).isEqualTo(dummy);
+            assertThat(gameResult.succeed()).isEqualTo(false);
+            List<MoveChoice> dummy = new ArrayList<>();
+            assertThat(gameResult.getMoveChoices()).isEqualTo(dummy);
         }
 
         @Test
@@ -55,8 +54,8 @@ public class BridgeGameTest extends NsTest {
             GameResult gameResult = bridgeGame.getGameResult();
             assertThat(gameResult.tryCount()).isEqualTo(1);
             assertThat(gameResult.succeed()).isEqualTo(false);
-            List<MoveInformation> dummy = new ArrayList<>();
-            assertThat(gameResult.getBridgeMoveInformation()).isEqualTo(dummy);
+            List<MoveChoice> dummy = new ArrayList<>();
+            assertThat(gameResult.getMoveChoices()).isEqualTo(dummy);
         }
     }
 
@@ -73,7 +72,7 @@ public class BridgeGameTest extends NsTest {
             assertThat(gameResult.tryCount()).isEqualTo(2);
             assertThat(bridgeGame.inProcess()).isEqualTo(true);
 
-            assertThat(gameResult.getBridgeMoveInformation()).isEmpty();
+            assertThat(gameResult.getMoveChoices()).isEmpty();
 
         }
     }

@@ -18,7 +18,7 @@ public class InputValidator {
     }
 
     public void validateMoveChoice(String moving) {
-        if (Arrays.stream(MoveChoice.values()).anyMatch((choice) -> choice.movingType.equals(moving))) {
+        if (Arrays.stream(MoveChoice.values()).anyMatch((choice) -> choice.getMovingType().equals(moving))) {
             return;
         }
         throw new IllegalArgumentException(NOT_A_MOVE_CHOICE.getValue());

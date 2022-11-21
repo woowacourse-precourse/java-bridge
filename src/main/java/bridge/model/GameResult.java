@@ -1,20 +1,20 @@
 package bridge.model;
 
-import bridge.model.MoveInformation;
+import bridge.model.enums.MoveChoice;
 import java.util.List;
 import java.util.Optional;
 
 public class GameResult {
 
     private Optional<Integer> tryCount;
-    private Optional<Boolean> succeed;
-    private List<MoveInformation> bridgeMoveInformation;
+    private boolean succeed;
+    private List<MoveChoice> moveChoices;
 
-    public GameResult(Optional<Integer> tryCount, Optional<Boolean> succeed,
-            List<MoveInformation> bridgeMoveInformation) {
+    public GameResult(Optional<Integer> tryCount, boolean succeed,
+            List<MoveChoice> moveChoices) {
         this.tryCount = tryCount;
         this.succeed = succeed;
-        this.bridgeMoveInformation = bridgeMoveInformation;
+        this.moveChoices = moveChoices;
     }
 
     public Integer tryCount() {
@@ -22,10 +22,10 @@ public class GameResult {
     }
 
     public boolean succeed() {
-        return succeed.get();
+        return succeed;
     }
 
-    public List<MoveInformation> getBridgeMoveInformation() {
-        return bridgeMoveInformation;
+    public List<MoveChoice> getMoveChoices() {
+        return moveChoices;
     }
 }

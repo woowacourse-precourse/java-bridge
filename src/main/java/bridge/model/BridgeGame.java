@@ -14,7 +14,7 @@ public class BridgeGame {
 
     public static final int MINIMUM_BRIDGE_SIZE = 3;
     public static final int MAXIMUM_BRIDGE_SIZE = 20;
-    private List<MoveInformation> bridgeMoveInformation;
+    private List<MoveChoice> moveChoices;
     private List<MoveChoice> bridge;
     private int tryCount;
 
@@ -22,7 +22,7 @@ public class BridgeGame {
         this.bridge = bridge.stream().map((point) -> MoveChoice.getMatchChoice(point))
                 .collect(Collectors.toUnmodifiableList());
         this.tryCount = 1;
-        this.bridgeMoveInformation = new ArrayList<>();
+        this.moveChoices = new ArrayList<>();
     }
 
     /**
@@ -33,7 +33,7 @@ public class BridgeGame {
     public void move(String movingType) {
         MoveChoice choice = MoveChoice.getMatchChoice(movingType);
 
-        int targetColumn = bridgeMoveInformation.size();
+        int targetColumn = moveChoices.size();
         updateMoveResults(movable(targetColumn, choice), choice);
     }
 
@@ -44,15 +44,15 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
-        this.bridgeMoveInformation = new ArrayList<>();
+        this.moveChoices = new ArrayList<>();
     }
 
     public GameResult getGameResult() {
-        return new GameResult(Optional.of(tryCount), Optional.of(succeed()), getBridgeMoveResults());
+        return new GameResult(Optional.of(tryCount), succeed(), getMoveChoices());
     }
 
     public GameResult getSimpleGameResult() {
-        return new GameResult(Optional.empty(), Optional.empty(), getBridgeMoveResults());
+        return new GameResult(Optional.empty(), succeed(), getMoveChoices());
     }
 
     public boolean inProcess() {
@@ -60,26 +60,26 @@ public class BridgeGame {
     }
 
     public boolean succeed() {
-        if (gameOver() || bridge.size() != bridgeMoveInformation.size()) {
+        if (gameOver() || bridge.size() != moveChoices.size()) {
             return false;
         }
         return true;
     }
 
     public boolean gameOver() {
-        int lastIndex = bridgeMoveInformation.size() - 1;
-        if (lastIndex < 0) {
+        if (moveChoices.isEmpty()) {
             return false;
         }
-        return bridgeMoveInformation.get(lastIndex).moveSucceed() != true;
+        int lastIndex = moveChoices.size() - 1;
+        return moveChoices.get(lastIndex) != bridge.get(lastIndex);
     }
 
     private void updateMoveResults(boolean succeed, MoveChoice moveChoice) {
-        bridgeMoveInformation.add(new MoveInformation(succeed, moveChoice));
+        moveChoices.add(moveChoice);
     }
 
-    private List<MoveInformation> getBridgeMoveResults() {
-        return Collections.unmodifiableList(bridgeMoveInformation);
+    private List<MoveChoice> getMoveChoices() {
+        return Collections.unmodifiableList(moveChoices);
     }
 
     private boolean movable(int position, MoveChoice moveChoice) {
