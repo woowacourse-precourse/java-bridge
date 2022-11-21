@@ -5,6 +5,7 @@ package View;
 import camp.nextstep.edu.missionutils.Console;
 import data.ExceptionData;
 import data.BridgeData;
+import data.InputGuide;
 import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 /*
@@ -24,6 +25,7 @@ public class InputView {
         String rawData;
         while(true){
             try{
+                InputGuide.SIZE.printGuideWithLine();
                 rawData = readLine();
                 return validateSize(rawData);
             }catch(IllegalArgumentException e){
@@ -55,18 +57,19 @@ public class InputView {
     public String readMoving() {
         while(true) {
             try {
+                InputGuide.MOVE.printGuideWithLine();
                 String moving = readLine();
                 validateMove(moving);
                 return moving;
             } catch (IllegalArgumentException e) {
-                // U D만 입력하게 만드는 에러 출력
+                System.out.println("U or D");
             }
         }
     }
 
     private void validateMove(String moving){
         try {
-            if (!moving.equals(BridgeData.UP) || !moving.equals(BridgeData.DOWN)) {
+            if (!moving.equals(BridgeData.UP) && !moving.equals(BridgeData.DOWN)) {
                 throw new IllegalArgumentException(ExceptionData.EXCEPTION_MOVE.name());
             }
         }catch (IllegalArgumentException e) {

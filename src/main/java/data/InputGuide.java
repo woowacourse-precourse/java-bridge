@@ -26,6 +26,5 @@ public enum InputGuide {
     public static void printWelcomeMessage(){
         System.out.println(WELCOME.guider);
         System.out.println();
-        System.out.println(SIZE.guider);
     }
 }

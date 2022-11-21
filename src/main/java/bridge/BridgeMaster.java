@@ -12,32 +12,37 @@ public class BridgeMaster {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
-    int attempt = 0;
-    boolean isSuccess = false;
     void startGame(){
-        boolean starter = true;
-        while(starter){
-            List<String> bridge = startFirstPhase();
-            System.out.println(bridge);
-            startSecondPhase();
-            starter = startThirdPhase();
-        }
+        boolean isSuccess = false;
+        int attempt = 0;
+        List<String> bridge = constructBridge();
+        isSuccess = crossBridge(bridge);
+        printResult();
+        printAttempt();
     }
 
-    List<String> startFirstPhase(){
+    private List<String> constructBridge(){
         InputGuide.printWelcomeMessage();
         int size = inputView.readBridgeSize();
-
-        System.out.println();
         return bridgeMaker.makeBridge(size);
     }
 
-    void startSecondPhase(){
-
+    private boolean crossBridge(List<String> bridge){
+        boolean isCorrect = true;
+        int bridgePieceCount = 0;
+        while(bridgePieceCount != bridge.size()){
+            String bridgePiece = bridge.get(bridgePieceCount);
+            isCorrect = bridgeGame.move(bridgePiece, inputView.readMoving());
+            outputView.printMap(bridge, isCorrect, bridgePieceCount++);
+        }
+        return true;
     }
 
-    boolean startThirdPhase(){
+    private boolean printResult(){
         return false;
     }
 
+    private void printAttempt(){
+
+    }
 }
