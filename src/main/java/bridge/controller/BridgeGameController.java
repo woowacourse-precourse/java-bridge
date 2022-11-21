@@ -28,6 +28,7 @@ public class BridgeGameController {
 
     public void startGame(List<String> bridge) {
         bridgeGame.initMap();
+        System.out.println(bridge.toString());
         crossBridge(bridge);
     }
 
@@ -40,7 +41,7 @@ public class BridgeGameController {
                 restartGame(bridge);
             }
         }
-        OutputView.printResult(map, Constant.SUCCESS, bridgeGame.countTotalTry());
+        quitGame(Constant.SUCCESS);
     }
 
     public void restartGame(List<String> bridge) {
@@ -49,6 +50,11 @@ public class BridgeGameController {
             startGame(bridge);
             return;
         }
-        OutputView.printResult(map, Constant.FAIL, bridgeGame.countTotalTry());
+        quitGame(Constant.FAIL);
+    }
+
+    public void quitGame(String successOrFail) {
+        int totalTry = bridgeGame.countTotalTry();
+        OutputView.printResult(map, successOrFail, totalTry);
     }
 }
