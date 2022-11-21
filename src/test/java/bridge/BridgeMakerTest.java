@@ -15,16 +15,17 @@ class BridgeMakerTest {
 
     private static BridgeRandomNumberGenerator BRIDGE_RANDOM_NUMBER_GENERATOR;
     private static BridgeMaker BRIDGE_MAKER;
+
     @BeforeEach
     void setUp() {
-        BRIDGE_RANDOM_NUMBER_GENERATOR= new BridgeRandomNumberGenerator();
+        BRIDGE_RANDOM_NUMBER_GENERATOR = new BridgeRandomNumberGenerator();
         BRIDGE_MAKER = new BridgeMaker(BRIDGE_RANDOM_NUMBER_GENERATOR);
     }
 
     @DisplayName("makeBridge 함수 테스트")
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9, 20})
-    void makeBridge_test(int inputSize){
+    void makeBridge_test(int inputSize) {
         List<String> result = BRIDGE_MAKER.makeBridge(inputSize);
         assertThat(result).hasSize(inputSize)
                 .doesNotContain("0")
