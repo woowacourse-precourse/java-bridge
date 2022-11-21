@@ -69,6 +69,27 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String userInput = readLine();
+        try {
+            validateGameCommand(userInput);
+            return userInput;
+        } catch (IllegalArgumentException e) {
+            return readGameCommand();
+        }
     }
+
+    /**
+     * 다시 시도 입력값이 적절한지 판단한다.
+     * 예외 발생시 IllegalArgumentException을 발생시킨다.
+     *
+     * @param userInput 사용자가 입력한 문자열
+     * @return [R, Q] - 올바른 값
+     */
+    public void validateGameCommand(String userInput) {
+        if (userInput.equals("R") || userInput.equals("Q")) return;
+        System.out.println("[ERROR] 입력 값은 \"R\" 또는 \"Q\"여야 합니다.");
+        throw new IllegalArgumentException();
+    }
+
+
 }
