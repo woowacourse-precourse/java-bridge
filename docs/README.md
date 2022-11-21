@@ -30,7 +30,7 @@
 - [ o ] U, D 둘 중 하나 인가
 - [ o ] R, Q 둘 중 하나 인가
 
-# GameControll (게임을 전반적으로 컨트롤 하는 요소들이 모여있는 클래스)
+# GameControll (게임을 전반적 조종 해주는 요소들이 모여있는 클래스)
 - [ o ] cnt -> 게임을 몇번 시도했는지
 - [ o ] idx -> 몇번째 다리를 건너는지 -> idx ==  size 일때 게임 성공
 - [ o ] gamePower -> 게임 전원 버튼 -> 게임성공, 실패 시 게임의 반복문 끄는 역할
@@ -41,7 +41,12 @@
 # GameRest (게임에 필요한 요소들 리셋 시켜주는 클래스 (리셋버튼))
 - [  ] idx, canMove, gamePower 리셋 기능
 
+# Bridge (size 값을 던져주면 BridgeMaker를 이용하여 다리를 생성해주고 그 다리를 가지고 있는 클래스)
 
+# Game (게임 전반적으로 컨트롤 하는 클래스)
+
+# TypeChange (입력 받은 값을 형 변환 하는 클래스)
+- [ ] 입력 받은 size를 integer 형으로 변환
 
 # 패키지
 # domain - 비즈니스에 관련된거 - BridgeMaker, ...
@@ -63,11 +68,7 @@
 - OutputView
 - 
 # controller - view와 model를 이어주는 패키지
-- BridgeSize -> size를 입력받아서 다리를 만든다.
-- BridgeMove -> 어디로 갈지 입력 받고 처리한다.
-- BridgeRetry -> 다시시작할지 입력 받고 처리한다.
-- GameController -> 전반적으로 게임 진행을 해주는 역할.
-- GameResultPrint -> 게임의 다리 모양, 최종 결과를 출력해주는 역할
+- Game
 
 # service
 - valification
