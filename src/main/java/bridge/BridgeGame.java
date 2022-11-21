@@ -14,6 +14,8 @@ public class BridgeGame {
     private List<String> bridge;
     private List<String> playerBridge;
 
+    private int tryCount;
+
     /**
      * BridgeGame 필드 초기화 생성자
      */
@@ -23,6 +25,7 @@ public class BridgeGame {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = new ArrayList<>();
         playerBridge = new ArrayList<>();
+        tryCount = 0;
     }
 
     /**
@@ -39,23 +42,38 @@ public class BridgeGame {
     /**
      * 다리 건너기 게임이 끝나는지 체크하는 메서드
      *
-     * @return true - 실패
-     * <p>false - 성공</p>
+     * @return 0 - 게임이 끝나지 않음
+     * 1 - 게임이 성공적으로 끝남
+     * 2- 게임이 실패로 끝남
      */
-    public boolean checkGameOver() {
-        if (playerBridge.get(playerBridge.size() - 1).equals(bridge.get(playerBridge.size() - 1))) return false;
-        return true;
+    public int checkGameOver() {
+        if (playerBridge.size() == bridge.size()) {
+            if (playerBridge.get(playerBridge.size() - 1).equals(bridge.get(playerBridge.size() - 1))) return 1;
+            return 2;
+        }
+        if (playerBridge.get(playerBridge.size() - 1).equals(bridge.get(playerBridge.size() - 1))) return 0;
+        return 2;
     }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @return true - 재시작
+     * false-  게임 종료
      */
     public boolean retry() {
         outputView.printInputRetry();
-        inputView.readGameCommand();
-        return true;
+        String input = inputView.readGameCommand();
+        if (input.equals("R")) {
+            playerBridge.clear();
+            tryCount++;
+            return true;
+        }
+        if (input.equals("Q")) return false;
+        System.out.println("[ERROR] 입력 값은 \"R\" 또는 \"Q\"여야 합니다.");
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -67,11 +85,30 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    /**
-     * 게임오버 처리 메서드
-     */
-    public void gameOver() {
 
+    /**
+     * 게임 오버 처리 메서드
+     *
+     * @param gameOverResult 1: 게임이 성공적으로 끝남 <p>2: 게임이 실패로 끝남
+     */
+    public void gameOver(int gameOverResult) {
+        outputView.printResult(playerBridge, bridge, tryCount, gameOverResult);
+    }
+
+    /**
+     * 게임에서 승리했는지 체크하는 메서드
+     *
+     * @return
+     */
+    public boolean checkWinOrDefeat() {
+
+        if (playerBridge.size() != bridge.size()) {
+            return false;
+        }
+        if (playerBridge.get(playerBridge.size() - 1).equals(bridge.get(bridge.size() - 1))) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -79,13 +116,14 @@ public class BridgeGame {
      */
     public void start() {
         outputView.printStartGame();
+        int gameOverResult = -1;
         buildBridge();
         while (true) {
             move();
-            if (checkGameOver()) {
-                if (!retry()) break;
-            }
+            gameOverResult = checkGameOver();
+            if (gameOverResult == 0) continue;
+            if (!retry()) break;
         }
-        gameOver();
+        gameOver(gameOverResult);
     }
 }
