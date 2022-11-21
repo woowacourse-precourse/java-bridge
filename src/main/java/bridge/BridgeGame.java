@@ -3,9 +3,7 @@ package bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import javax.xml.crypto.dom.DOMCryptoContext;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,6 +27,7 @@ public class BridgeGame {
     private int count = 0;
     boolean isRight = true;
     String gameResult = "";
+    boolean keepGoing = true;
 
     public void start(){
         outputView.printStartMessage();
@@ -36,8 +35,9 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(size);
         System.out.println(bridge);
         judgeGame();
-        if(!isRight)
+        while(keepGoing){
             retry();
+        }
         System.out.println(gameResult);
 
     }
@@ -49,9 +49,20 @@ public class BridgeGame {
             count++;
             outputView.printMap(results);
         }
+        judgeResult();
+    }
+    private void initVariable(){
+        up.clear();
+        down.clear();
+        count = 0;
+        isRight = true;
+    }
+    private void judgeResult(){
+        System.out.println(isRight);
         if(isRight)
             gameResult = "성공";
-
+        if(!isRight)
+            gameResult = "실패";
     }
 
     /**
@@ -77,13 +88,12 @@ public class BridgeGame {
     public void retry() {
         String restart = inputView.readGameCommand();
         if(restart.equals("R")){
-            up = new ArrayList<>();
-            down = new ArrayList<>();
+            initVariable();
+            System.out.println("게임 재시작");
             judgeGame();
         }
         if(restart.equals("Q"))
-            gameResult = "실패";
-
+            keepGoing = false;
     }
 
     public void checkUp(List<String> bridge, String moving, int count){
