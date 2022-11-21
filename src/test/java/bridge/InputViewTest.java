@@ -50,4 +50,14 @@ class InputViewTest {
                 .hasMessage(INVALID_MOVE.returnMessage());
     }
 
+    @Test
+    @DisplayName("유효하지 않은 재시작 문자 예외처리한다.")
+    void 유효하지_않은_재시작값_예외처리(){
+        InputStream is = new ByteArrayInputStream("X".getBytes());
+        System.setIn(is);
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_RETRY.returnMessage());
+    }
+
 }
