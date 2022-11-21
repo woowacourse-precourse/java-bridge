@@ -11,9 +11,22 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int input;
         System.out.println("다리의 길이를 입력해주세요.");
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+
+        if(!isNumber(input)){
+            throw  new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+        }
+        return Integer.parseInt(input);
+    }
+    // 다리길이 입력이 숫자인지 예외처리
+    private static boolean isNumber(String input){
+        try {
+            Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            return false;
+        }
+        return true;
     }
 
     /**
