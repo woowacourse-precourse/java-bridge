@@ -21,6 +21,12 @@ public class InputView {
         startGame(bridge); // 반복
     }
 
+    public void startGame(List<String> bridgeList){
+        OutputView outputView = new OutputView();
+        loopGame(bridgeList); // 게임 재시도 여부에 따라 반복
+        outputView.printResult(bridge); // 최종 결과 출력
+    }
+
 
 
     /**
