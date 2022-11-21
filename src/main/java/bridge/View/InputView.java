@@ -19,11 +19,7 @@ public class InputView {
 
     public String readMoving() {
         System.out.println(Message.INPUT_MOVE_MESSAGE.getMessage());
-        String inputMoving = Console.readLine();
-        if(!validator.validateMoving(inputMoving)){
-            return readMoving();
-        }
-        return inputMoving;
+        return Console.readLine();
     }
 
     public String readGameCommand() {

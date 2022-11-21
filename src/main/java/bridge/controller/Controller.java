@@ -40,7 +40,8 @@ public class Controller {
 
     void runGame() {
         while (true) {
-            inputMovement();
+            String movement = inputMovement();
+            bridgeGame.move(movement);
             outputView.printMap(bridgeGame.getBridgeMap());
             if (isAnswer())
                 break;
@@ -50,9 +51,12 @@ public class Controller {
         outputView.printResult(bridgeGame);
     }
 
-    void inputMovement() {
+    String inputMovement() {
         String movement = inputView.readMoving();
-        bridgeGame.move(movement);
+        if(!bridgeGame.validateMoving(movement)){
+            return inputMovement();
+        }
+        return movement;
     }
 
     boolean isAnswer() {
