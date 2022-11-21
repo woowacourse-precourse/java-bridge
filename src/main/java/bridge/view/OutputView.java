@@ -25,8 +25,8 @@ public class OutputView {
 
     private void printOneSideBridge(List<Integer> bridgeMap, boolean isRightLastBridgePick, int bridgeTypeToPrint) {
         List<String> bridgesSign = collectSign(bridgeMap, isRightLastBridgePick, bridgeTypeToPrint);
-        String bridgeToPrint = String.join(Message.BRIDGE_JOINING_DELIMITER, bridgesSign);
-        System.out.printf(Message.BRIDGE_MAP_FORM, bridgeToPrint);
+        String oneSideBridgeToPrint = String.join(Message.BRIDGE_JOINING_DELIMITER, bridgesSign);
+        System.out.printf(Message.BRIDGE_MAP_FORM, oneSideBridgeToPrint);
     }
 
     private List<String> collectSign(List<Integer> bridgeMap, boolean isRightLastBridgePick, int bridgeTypeToPrint) {
