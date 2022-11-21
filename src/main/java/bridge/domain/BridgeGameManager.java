@@ -14,19 +14,26 @@ public class BridgeGameManager {
     private int bridgeSize = BRIDGE_SIZE_INIT;
 
     public void start() {
-        introBridgeGame();
+        outputView.printGameStartNotification();
         BridgeGame bridgeGame = makeBridgeGame();
         mainProgress(bridgeGame);
         printGameResult(bridgeGame);
     }
 
-    private void introBridgeGame() {
-        outputView.printGameStartNotification();
-        outputView.printInputBridgeSizeNotification();
+    private BridgeGame makeBridgeGame() {
+        return new BridgeGame(bridgeMaker.makeBridge(readBridgeSize()), bridgeState);
     }
 
-    private BridgeGame makeBridgeGame() {
-        return new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()), bridgeState);
+    private int readBridgeSize() {
+        while (true) {
+            outputView.printInputBridgeSizeNotification();
+            try {
+                bridgeSize = inputView.readBridgeSize();
+                return bridgeSize;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void mainProgress(BridgeGame bridgeGame) {

@@ -5,6 +5,7 @@
 #### 📥 입력
 - [X] 다리 길이 입력 - InputView#readBridgeSize()
   - [X] 입력 값 예외처리(수로 변환될 수 있는 값인지 검증)
+  - [X] 다리 길이 유효성 검증 및 예외처리 - InputView#validateBrideSize()
 - [X] 이동할 칸 입력 (위: U, 아래: D) - InputView#readMoving()
   - [X] 입력 값 예외처리(길이 1의 문자를 입력했는지 검증) - InputView#validateMovingValueLength()
 - [X] 게임 재시도 여부 입력 (재시도: R, 종료: Q) - InputView#readGameCommand()
@@ -24,12 +25,12 @@
 ### ⚙️ Domain
 
 - [X] 게임 시작 - BridgeGameManager#start()
-  - [X] 다리 건너기 게임 인트로 - BridgeGameManager#introBridgeGame()
-    - [X] 게임 시작 안내 메시지 출력
-    - [X] 다리 길이 입력 안내 메시지 출력
-  - [X] BridgeGame 생성 - BridgeGameManager#makeBridgeGame()
-    - [X] 다리 생성
-  - [X] 게임 주요 흐름 제어 - BridgeGameManager#mainProgress()
+- [X] 게임 시작 안내 메시지 출력
+- [X] BridgeGame 생성 - BridgeGameManager#makeBridgeGame()
+  - [X] 다리 길이 입력 안내 메시지 출력
+  - [X] 다리 길이 입력 처리 - BridgeGameManager#readBridgeSize() 
+  - [X] 다리 생성
+- [X] 게임 주요 흐름 제어 - BridgeGameManager#mainProgress()
     - [X] 다리 길이 초기화 - BridgeGameManager#initBridgeLength()
     - [X] 다리 길이만큼 아래 작업 반복
       - [X] 다리 건너기 및 현재 다리 출력 - BridgeGameManager#moveProgress()
@@ -38,13 +39,12 @@
         - [X] 현재 다리 상태 출력
       - [X] 다리를 건널 수 없는 경우이면서 게임 종료를 원하는 경우 게임 종료 처리 - BridgeGameManager#isQuit()
         - [X] 다리를 건널 수 없는 경우이면서 게임 재시도를 원하는 경우 재시도 처리
-  - [X] 게임 결과 출력 - BridgeGameManager#printGameResult()
+- [X] 게임 결과 출력 - BridgeGameManager#printGameResult()
     - [X] 최종 게임 결과 출력 (다리 상태)
     - [X] 게임 성공 여부 출력
     - [X] 총 시도 횟수 출력
 ***
 - [X] 다리 생성 - BridgeMaker#makeBridge()
-  - [X] 다리 길이 유효성 검증 및 예외처리 - BridgeMaker#validateBrideSize()
   - [X] 0 또는 1 중 무작위 값 생성 - BridgeMaker#BridgeNumberGenerator#generate()
   - [X] 무작위 값(0 또는 1)에 대해 각각 아래 칸(D), 위 칸(U)으로 변환 - BridgeMaker#convertBridgeRandomNumberToUpDownMark()
   - [X] 생성된 다리에 각 다리 지점 별로 이동할 수 있는 방향 값 배치 - BridgeMaker#addBridgeArrow()

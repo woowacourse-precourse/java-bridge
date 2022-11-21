@@ -14,9 +14,21 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        int bridgeSize = parseBridgeSizeToInt(Console.readLine());
+        validateBrideSize(bridgeSize);
+        return bridgeSize;
+    }
+
+    private int parseBridgeSizeToInt(String bridgeSize) {
         try {
-            return Integer.parseInt(Console.readLine());
+            return Integer.parseInt(bridgeSize);
         } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
+        }
+    }
+
+    private void validateBrideSize(int size) {
+        if (size < BRIDGE_SIZE_LOWER_INCLUSIVE || size > BRIDGE_SIZE_UPPER_INCLUSIVE) {
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
         }
     }
