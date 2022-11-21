@@ -21,4 +21,11 @@ class BridgeTest {
     void getBridgeLengthTest() {
         assertThat(bridge.length()).isEqualTo(testBlocks.size());
     }
+
+    @DisplayName("다리 한 칸 찾는 테스트")
+    @Test
+    void findBlockByIndexTest() {
+        int index = 2;
+        assertThat(bridge.findBlockByIndex(index)).isEqualTo(testBlocks.get(index));
+    }
 }
