@@ -10,6 +10,10 @@ import java.util.regex.Pattern;
 public class InputView {
     private final Pattern BRIDGE_SIZE_REGX = Pattern.compile("\\d");
     private final String NOT_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private final String NOT_MOVING = "[ERROR] 이동할 칸은 \"U\" 또는 \"D\"만 가능합니다.";
+    private final String BRIDGE_UP = "U";
+    private final String BRIDGE_DOWN = "D";
+
 
     /**
      * 다리의 길이를 입력받는다.
@@ -27,7 +31,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String position = Console.readLine();
+        validateMoving(position);
+        return position;
     }
 
     /**
@@ -40,6 +46,12 @@ public class InputView {
     private void validateBridgeSize(String bridgeSize) {
         if (!BRIDGE_SIZE_REGX.matcher(bridgeSize).matches()) {
             throw new IllegalArgumentException(NOT_BRIDGE_SIZE);
+        }
+    }
+
+    private void validateMoving(String moving) {
+        if (!(moving.equals(BRIDGE_UP) || moving.equals(BRIDGE_DOWN))) {
+            throw new IllegalArgumentException(NOT_MOVING);
         }
     }
 }
