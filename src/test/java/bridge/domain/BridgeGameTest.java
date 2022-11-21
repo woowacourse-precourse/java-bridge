@@ -27,7 +27,7 @@ class BridgeGameTest {
     @Nested
     class Move {
 
-        @DisplayName("이동에 1회 성공한 경우")
+        @DisplayName("이동에 1회 성공한 경우 -> 해당하는 문자열 반환")
         @Test
         void should_ReturnBridgePicture_When_SuccessToMove() {
             String moving = UPPER_SIDE;
@@ -35,7 +35,7 @@ class BridgeGameTest {
             assertThat(bridgePicture).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
 
-        @DisplayName("이동에 1회 실패한 경우")
+        @DisplayName("이동에 1회 실패한 경우 -> 해당하는 문자열 반환")
         @Test
         void should_ReturnBridgePicture_When_FailToMove() {
             String moving = LOWER_SIDE;
@@ -56,7 +56,7 @@ class BridgeGameTest {
     @Nested
     class IsOnWay {
 
-        @DisplayName("진행 중인 경우")
+        @DisplayName("진행 중인 경우 -> True 반환")
         @Test
         void should_ReturnTrue_When_StatusIsOnWay() {
             bridgeGame.move(UPPER_SIDE);
@@ -64,7 +64,7 @@ class BridgeGameTest {
             assertThat(isOnWay).isTrue();
         }
 
-        @DisplayName("실패 상태인 경우")
+        @DisplayName("실패 상태인 경우 -> False 반환")
         @Test
         void should_ReturnFalse_When_StatusIsFail() {
             bridgeGame.move(LOWER_SIDE);
@@ -77,7 +77,7 @@ class BridgeGameTest {
     @Nested
     class IsFail {
 
-        @DisplayName("실패 상태인 경우")
+        @DisplayName("실패 상태인 경우 -> True 반환")
         @Test
         void should_ReturnTrue_When_StatusIsFail() {
             bridgeGame.move(LOWER_SIDE);
@@ -85,7 +85,7 @@ class BridgeGameTest {
             assertThat(isOnWay).isTrue();
         }
 
-        @DisplayName("진행 중인 경우")
+        @DisplayName("진행 중인 경우 -> False 반환")
         @Test
         void should_ReturnFalse_When_StatusIsOnWay() {
             bridgeGame.move(UPPER_SIDE);
@@ -98,7 +98,7 @@ class BridgeGameTest {
     @Nested
     class IsEnd {
 
-        @DisplayName("종료 상태인 경우")
+        @DisplayName("종료 상태인 경우 -> True 반환")
         @Test
         void should_ReturnTrue_When_StatusIsEnd() {
             bridgeGame.move(UPPER_SIDE);
@@ -108,7 +108,7 @@ class BridgeGameTest {
             assertThat(isOnWay).isTrue();
         }
 
-        @DisplayName("진행 중인 경우")
+        @DisplayName("진행 중인 경우 -> False 반환")
         @Test
         void should_ReturnFalse_When_StatusIsOnWay() {
             bridgeGame.move(UPPER_SIDE);
@@ -121,7 +121,7 @@ class BridgeGameTest {
     @Nested
     class Retry {
 
-        @DisplayName("게임을 재시작하는 경우")
+        @DisplayName("재시작(RETRY)에 해당하는 문자를 입력하는 경우 -> 게임 상태가 \"ON_WAY\"로 변경")
         @Test
         void should_BeOnWay_When_Input_Retry() {
             bridgeGame.move(LOWER_SIDE);
@@ -132,7 +132,7 @@ class BridgeGameTest {
             assertThat(gameStatusAfter).isTrue();
         }
 
-        @DisplayName("게임을 종료하는 경우")
+        @DisplayName("종료(QUIT)에 해당하는 문자를 입력하는 경우 -> 게임 상태가 \"END\"로 변경")
         @Test
         void should_BeEnd_When_Input_Quit() {
             bridgeGame.move(LOWER_SIDE);
@@ -143,7 +143,7 @@ class BridgeGameTest {
             assertThat(gameStatusAfter).isTrue();
         }
 
-        @DisplayName("올바르지 않은 게임 재시작 여부 입력 -> 예외 발생")
+        @DisplayName("올바르지 않은 게임 재시작 여부를 입력한 경우 -> 예외 발생")
         @ValueSource(strings = {"r", "q", "A", "123"})
         @ParameterizedTest
         void should_ThrowIllegalArgumentException_When_GiveWrongGameCommand(String input) {
@@ -156,7 +156,7 @@ class BridgeGameTest {
     @Nested
     class CheckIsCrossBridgeCompletely {
 
-        @DisplayName("성공한 경우")
+        @DisplayName("성공한 경우 -> True 반환")
         @Test
         void should_ReturnTrue_When_SuccessToCrossBridge() {
             bridgeGame.move(UPPER_SIDE);
@@ -166,7 +166,7 @@ class BridgeGameTest {
             assertThat(isSuccess).isTrue();
         }
 
-        @DisplayName("실패한 경우")
+        @DisplayName("실패한 경우 -> False 반환")
         @Test
         void should_ReturnFalse_When_FailToCrossBridge() {
             bridgeGame.move(UPPER_SIDE);
@@ -191,7 +191,7 @@ class BridgeGameTest {
     @Nested
     class GetTryCount {
 
-        @DisplayName("시도 횟수가 1번인 경우")
+        @DisplayName("시도 횟수가 1번인 경우 -> 1 반환")
         @Test
         void should_Be1_When_SuccessToCrossWithNoFail() {
             bridgeGame.move(UPPER_SIDE);
@@ -201,7 +201,7 @@ class BridgeGameTest {
             assertThat(tryCount).isEqualTo(1);
         }
 
-        @DisplayName("시도 횟수가 2번인 경우")
+        @DisplayName("시도 횟수가 2번인 경우 -> 2 반환")
         @Test
         void should_Be3_When_SuccessToCrossWith3TimesTry() {
             bridgeGame.move(UPPER_SIDE);
