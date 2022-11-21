@@ -8,10 +8,14 @@ public class Application {
 		// TODO: 프로그램 구현
 		InputView inputView = new InputView();
 		int bridgeSize = inputView.readBridgeSize();
-		String upDown = inputView.readMoving();
+		// String upDown = inputView.readMoving();
 
-		// BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		// List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+		Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+
+		BridgeGame bridgeGame = new BridgeGame(bridge);
+
+		bridgeGame.move();
 
 
 
