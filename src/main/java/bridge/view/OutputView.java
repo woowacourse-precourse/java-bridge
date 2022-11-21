@@ -14,8 +14,8 @@ public class OutputView {
             markAtTopLine(topLine, userChoices.get(index), compareResults.get(index));
             markAtBottomLine(bottomLine, userChoices.get(index), compareResults.get(index));
         }
-
         closeMap(topLine, bottomLine);
+
         System.out.println(topLine + Message.NEXT_LINE + bottomLine);
     }
 
@@ -25,6 +25,7 @@ public class OutputView {
                 topLine.append(Message.CORRECT_LOG);
                 return;
             }
+
             topLine.append(Message.FAIL_LOG);
             return;
         }
@@ -37,6 +38,7 @@ public class OutputView {
                 bottomLine.append(Message.CORRECT_LOG);
                 return;
             }
+
             bottomLine.append(Message.FAIL_LOG);
             return;
         }
