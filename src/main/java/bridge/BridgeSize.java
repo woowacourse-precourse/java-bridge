@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.utils.Converter;
+import bridge.utils.Validator;
+
 public class BridgeSize {
     private int bridgeSize;
 

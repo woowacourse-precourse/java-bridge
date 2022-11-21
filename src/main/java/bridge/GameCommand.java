@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.utils.Validator;
+
 public class GameCommand {
     private static String gameCommand;
 

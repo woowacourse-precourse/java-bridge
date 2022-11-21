@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.MovingRandomNumber;
+
 public class Map {
     private String START = "[ ";
     private String END = " ]";

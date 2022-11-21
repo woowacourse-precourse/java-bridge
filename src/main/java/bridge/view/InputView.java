@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.enums.GameMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

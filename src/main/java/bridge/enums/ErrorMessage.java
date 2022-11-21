@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 public enum ErrorMessage {
     NUMBER_ERROR("[ERROR] 숫자를 입력해야 합니다."),

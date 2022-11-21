@@ -1,4 +1,6 @@
-package bridge;
+package bridge.utils;
+
+import bridge.enums.ErrorMessage;
 
 public class Validator {
 

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.utils.Validator;
+
 public class Moving {
     private static String moving;
 

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.MovingRandomNumber;
+
 import java.util.ArrayList;
 import java.util.List;
 

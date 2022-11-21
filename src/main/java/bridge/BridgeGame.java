@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.GameCommandResult;
+
 import java.util.List;
 
 /**
