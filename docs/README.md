@@ -3,9 +3,9 @@
 ## View
 
 ### InputView
-- [x] 다리 길이를 입력받는 기능
-- [x] 이동할 칸을 입력받는 기능 
-- [x] 재시작/ 종료 여부를 입력받는 기능 
+- [x] 다리 길이를 입력받는 기능 readBridgeSize
+- [x] 이동할 칸을 입력받는 기능  readMoving
+- [x] 재시작/ 종료 여부를 입력받는 기능 readGameCommand
 
 ### OutputView
 - [ ] 현재까지 이동한 다리의 상태를 정해진 형식에 맞게 출력하는 기능
@@ -19,7 +19,7 @@
 
 ### request
 - [ ] View로 부터 받은값에 대해 Shape & types에 대해 검증하는 기능 
-     - [ ] 다리 길이는 숫자만 가능하고 범위는 3 ~ 20 이어야 한다. - > BridgeSizeRequest
+     - [x] 다리 길이는 숫자만 가능하고 범위는 3 ~ 20 이어야 한다. - > BridgeSizeRequest
      - [ ] 사용자가 이동하기를 위한 입력값으로 "U" or "D" 인지 검증하는 기능 - > MoveRequest
      - [ ] 재시도 여부를 묻는 입력값으로 "R" or "Q" 인지 검증하는 기능 - > GameRequest
 
