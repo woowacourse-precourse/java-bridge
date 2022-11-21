@@ -10,10 +10,7 @@ public class Application {
         boolean restart;
         do {
             alive = gameController.play();
-            if (alive) {
-                break;
-            }
-            restart = gameController.restart();
+            restart = gameController.restart(alive);
         } while (restart);
         gameController.finish(alive);
     }

@@ -42,7 +42,8 @@ public class GameController {
         return alive;
     }
 
-    public boolean restart() {
+    public boolean restart(boolean isStopped) {
+        if (isStopped) return false;
         boolean restart = inputView.readGameCommand();
         if (restart) {
             bridgeGame.retry();
