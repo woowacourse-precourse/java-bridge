@@ -1,53 +1,24 @@
 package bridge.game;
 
-import bridge.Application;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.convertor.InputConvertor;
-import bridge.message.GameMessage;
-import bridge.view.OutputView;
 import java.util.List;
-import java.util.StringJoiner;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String U = "U";
-    private static final String D = "D";
-    private static final String R = "R";
-    private static final String Q = "Q";
-    private static final String O = "O";
-    private static final String X = "X";
-    private static final String SPACE = " ";
-    private static final String MID_SYMBOL = " | ";
-    private final OutputView outputView = new OutputView();
+
     private final List<String> bridge;
-    private int currentLocation = 0;
-    private int retryCount = 1;
-    private boolean clear = false;
-    private StringJoiner topMap;
-    private StringJoiner bottomMap;
-
-    // singleton test
-    /*public static BridgeGame getInstance() {
-        if (game == null) {
-            game = new BridgeGame();
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            bridge = bridgeMaker.makeBridge(
-                    InputConvertor.inputParseNumber(
-                            Application.sizeValidation()
-                    )
-            );
-        }
-        return game;
-    }*/
-
+    private final Function function = new Function();
+    private final BridgeStatus status = new BridgeStatus();
+    private static String MOVE;
 
     public BridgeGame() {
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator())
                 .makeBridge(
                         InputConvertor.inputParseNumber(
-                                Application.sizeValidation()
+                                function.sizeValidation()
                         )
                 );
         clearMap();
@@ -59,58 +30,56 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move() {
-        String move = Application.moveValidation();
-        if (!goMove(move)) {
-            callResultPrint();
+        MOVE = function.moveValidation();
+        if (!goMove()) {
+            printBridgeStatus();
             return false;
         }
         return true;
     }
 
-    private boolean goMove(String move) {
-        if (compare(move)) {
-            bridgeUpdate(move, O);
-            callBridgeMapPrint();
-        }
-
-        if (!compare(move)) {
-            bridgeUpdate(move, X);
-            callBridgeMapPrint();
-            String s = Application.retryValidation();
-            if (s.equals(R)) {
-                retry();
-                return true;
-            }
-
-            if (s.equals(Q)) {
-                System.out.println(GameMessage.GAME_FINISH_MSG);
-                callBridgeMapPrint();
-                return false;
-            }
-        }
+    private boolean goMove() {
+        crossingSuccess();
+        boolean b = crossingFailure();
         plusCurrentLocation();
-        clearBridge();
-        if (clear) {
-            System.out.println(GameMessage.GAME_FINISH_MSG);
-            callBridgeMapPrint();
-            return false;
+        return b;
+    }
+
+    private void crossingSuccess() { // 다리 건너기 성공
+        if (compare(MOVE)) {
+            drawingBridge("O");
+        }
+    }
+
+    private boolean crossingFailure() { // 다리 건너기 실패
+        if (!compare(MOVE)) {
+            drawingBridge("X");
+            return confirmRetry();
         }
         return true;
     }
 
-    private void bridgeUpdate(String move, String OXBox) {
-        if (move.equals(U)) {
-            topMap.add(OXBox);
-            bottomMap.add(SPACE);
+    private boolean confirmRetry() {
+        String retry = function.retryValidation();
+        if (retry.equals("R")) {
+            retry();
+            return true;
         }
-        if (move.equals(D)) {
-            topMap.add(SPACE);
-            bottomMap.add(OXBox);
-        }
+
+        finish();
+        return false;
     }
 
-    public boolean compare(String move) {
-        return bridge.get(currentLocation).equals(move);
+    private void drawingBridge(String division) { // 이동 경로에 맞게 현재 다리 상황을 그린다.
+        status.drawingBridge(MOVE, division);
+        printBridgeStatus();
+    }
+
+
+    private void finish() {
+        status.checkGameOver(bridge.size());
+        status.printGameOver();
+
     }
 
     /**
@@ -124,34 +93,30 @@ public class BridgeGame {
         clearMap();
     }
 
-    private void clearMap() {
-        topMap = new StringJoiner(MID_SYMBOL);
-        bottomMap = new StringJoiner(MID_SYMBOL);
+
+    public boolean compare(String move) {
+        return bridge.get(status.getCurrentLocation()).equals(move);
     }
 
-    private void clearBridge() {
-        if (bridge.size() == currentLocation) {
-            clear = true;
-        }
+    private void plusCurrentLocation() { // 상태 업데이트
+        status.plusCurrentLocation();
     }
 
-    private void plusCurrentLocation() {
-        currentLocation++;
+    private void plusRetryCount() { //  // 상태 업데이트
+        status.plusRetryCount();
     }
 
-    private void clearCurrentLocation() {
-        currentLocation = 0;
+    private void clearCurrentLocation() { // retry 관련
+        status.clearCurrentLocation();
+    }
+    // retry 관련
+
+    private void clearMap() { // retry 관련
+        status.clearMap();
     }
 
-    private void plusRetryCount() {
-        retryCount++;
-    }
 
-    private void callBridgeMapPrint() {
-        outputView.printMap(topMap.toString(), bottomMap.toString());
-    }
-
-    private void callResultPrint() {
-        outputView.printResult(clear, retryCount);
+    private void printBridgeStatus() { // 현 다리 상태 프린팅
+        status.printBridgeStatus();
     }
 }
