@@ -50,7 +50,8 @@ class BridgeGameControllerTest {
                 Arguments.of(List.of("U\n", "D\n", "D\n", "Q"), FinishCondition.NOT_FINISHED),
                 Arguments.of(List.of("U\n", "D\n", "D\n", "R\n", "U\n", "D\n", "U\n", "D"), FinishCondition.FINISHED),
                 Arguments.of(List.of("D\n", "Q"), FinishCondition.NOT_FINISHED),
-                Arguments.of(List.of("U\n", "U\n", "R\n", "D\n", "Q"), FinishCondition.NOT_FINISHED)
+                Arguments.of(List.of("U\n", "U\n", "R\n", "D\n", "Q"), FinishCondition.NOT_FINISHED),
+                Arguments.of(List.of("U\n", "D\n", "U\n", "U\n", "Q"), FinishCondition.NOT_FINISHED)
         );
     }
 
