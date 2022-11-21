@@ -1,5 +1,6 @@
 package bridge.utils.parser;
 
+import bridge.constant.BridgePhrase;
 import bridge.domain.resources.Move;
 
 import bridge.utils.EmptyAndNullChecker;
@@ -24,6 +25,6 @@ public class MoveInputParser {
             .filter(str -> str.matches("^[A-Z]*$"))
             .map(Function)
             .findFirst()
-            .orElseThrow(()-> new IllegalArgumentException("[ERROR]"));
+            .orElseThrow(()-> new IllegalArgumentException(BridgePhrase.ERROR_PARSER_MOVE.getMessage()));
     }
 }

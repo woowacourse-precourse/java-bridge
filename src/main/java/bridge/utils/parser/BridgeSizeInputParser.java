@@ -1,5 +1,6 @@
 package bridge.utils.parser;
 
+import bridge.constant.BridgePhrase;
 import bridge.domain.resources.bridge.BridgeSize;
 
 import bridge.utils.EmptyAndNullChecker;
@@ -25,6 +26,6 @@ public class BridgeSizeInputParser {
             .map(Integer::parseInt)
             .map(function::apply)
             .findFirst()
-            .orElseThrow(()-> new IllegalArgumentException("[ERROR]"));
+            .orElseThrow(()-> new IllegalArgumentException(BridgePhrase.ERROR_PARSER_BRIDGE_SIZE.getMessage()));
     }
 }

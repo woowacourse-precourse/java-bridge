@@ -1,5 +1,6 @@
 package bridge.utils.parser;
 
+import bridge.constant.BridgePhrase;
 import bridge.domain.resources.GameCommand;
 import bridge.utils.EmptyAndNullChecker;
 import java.util.function.Function;
@@ -22,6 +23,6 @@ public class GameCommandInputParser {
             .filter(str -> str.matches("^[A-Z]*$"))
             .map(function)
             .findFirst()
-            .orElseThrow(()-> new IllegalArgumentException("[ERROR]"));
+            .orElseThrow(()-> new IllegalArgumentException(BridgePhrase.ERROR_PARSER_GAME_COMMAND.getMessage()));
     }
 }

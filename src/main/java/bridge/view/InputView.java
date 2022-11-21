@@ -2,6 +2,7 @@ package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import bridge.constant.BridgePhrase;
 import bridge.domain.resources.GameCommand;
 import bridge.domain.resources.Move;
 import bridge.domain.resources.bridge.BridgeSize;
@@ -12,7 +13,7 @@ import bridge.utils.parser.MoveInputParser;
 public class InputView {
 
     public BridgeSize readBridgeSize() {
-        String bridgeSizeInput = inputWithMessage("다리의 길이를 입력해주세요.");
+        String bridgeSizeInput = inputWithMessage(BridgePhrase.INPUT_BRIDGE_SIZE);
         BridgeSize bridgeSize;
         try {
             bridgeSize = BridgeSizeInputParser.parseBridgeSize(bridgeSizeInput);
@@ -24,7 +25,7 @@ public class InputView {
     }
 
     public Move readMoving() {
-        String moveInput = inputWithMessage("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String moveInput = inputWithMessage(BridgePhrase.INPUT_MOVE);
         Move move;
         try {
             move = MoveInputParser.parseMove(moveInput);
@@ -36,7 +37,7 @@ public class InputView {
     }
 
     public GameCommand readGameCommand() {
-        String gameCommandInput = inputWithMessage("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String gameCommandInput = inputWithMessage(BridgePhrase.INPUT_GAME_COMMAND);
         GameCommand gameCommand;
         try {
             gameCommand = GameCommandInputParser.parseGameCommand(gameCommandInput);
@@ -46,8 +47,9 @@ public class InputView {
         }
         return gameCommand;
     }
-    private String inputWithMessage(final String message) {
-        System.out.println(message);
+
+    private String inputWithMessage(final BridgePhrase message) {
+        System.out.println(message.getMessage());
         return inputBasicLine();
     }
 

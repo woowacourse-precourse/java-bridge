@@ -1,5 +1,6 @@
 package bridge.domain.resources.bridge;
 
+import bridge.constant.BridgePhrase;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class Bridge {
         bridge.stream()
             .filter(str -> str.equals("U") || str.equals("D"))
             .findFirst()
-            .orElseThrow(()-> new IllegalArgumentException("[ERROR]"));
+            .orElseThrow(()-> new IllegalArgumentException(BridgePhrase.ERROR_BRIDGE_GENERATION.getMessage()));
     }
 
     public boolean isStepOk(String input, int index){
