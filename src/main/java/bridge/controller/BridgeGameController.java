@@ -3,7 +3,9 @@ package bridge.controller;
 import bridge.*;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
+import bridge.resource.ErrorType;
 import bridge.resource.InputType;
+import bridge.view.Error;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -39,11 +41,14 @@ public class BridgeGameController {
     }
 
     private void makeBridge(int size) {
-        BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(generator);
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-        this.bridgeGame = new BridgeGame(bridge);
+        try {
+            Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
+            this.bridgeGame = new BridgeGame(bridge);
+        } catch (IllegalArgumentException e) {
+            makeBridge(InputView.readBridgeSize());
+        }
     }
 
     private void move() {
@@ -63,6 +68,7 @@ public class BridgeGameController {
     private void retry() {
         bridgeGame.retry();
         isContinue = true;
+
         playGame();
     }
 

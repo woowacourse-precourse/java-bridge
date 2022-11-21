@@ -1,11 +1,15 @@
 package bridge;
 
+import bridge.resource.ErrorType;
 import bridge.resource.InputType;
+import bridge.view.Error;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
+    private static final int MIN_BRIDGE_LENGTH = 3;
+    private static final int MAX_BRIDGE_LENGTH = 20;
     private static final int DOWN = 0;
     private static final int UP = 1;
 
@@ -16,6 +20,7 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
+        validateSize(size);
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
@@ -35,4 +40,10 @@ public class BridgeMaker {
             return;
         }
     }
+
+    private static void validateSize(int size) {
+        if (size < MIN_BRIDGE_LENGTH || size > MAX_BRIDGE_LENGTH)
+            Error.printException(ErrorType.RANGE);
+    }
+
 }

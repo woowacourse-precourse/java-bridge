@@ -1,18 +1,13 @@
 package bridge.view;
 
-import bridge.resource.ErrorType;
 import bridge.resource.InputType;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private static final int MIN_BRIDGE_LENGTH = 3;
-    private static final int MAX_BRIDGE_LENGTH = 20;
 
     public static int readBridgeSize() {
         try {
-            int number = convertStringToInt(readInput());
-            validateSize(number);
-            return number;
+            return convertStringToInt(readInput());
         } catch (IllegalArgumentException e) {
             return readBridgeSize();
         }
@@ -36,11 +31,6 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             return readGameCommand();
         }
-    }
-
-    private static void validateSize(int size) {
-        if (size < MIN_BRIDGE_LENGTH || size > MAX_BRIDGE_LENGTH)
-            Error.printException(ErrorType.RANGE);
     }
 
     private static int convertStringToInt(String input) {
