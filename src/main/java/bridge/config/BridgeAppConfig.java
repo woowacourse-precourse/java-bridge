@@ -6,6 +6,8 @@ import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class BridgeAppConfig {
     public static InputView inputView() {
         return new InputView();
@@ -21,5 +23,9 @@ public class BridgeAppConfig {
 
     public static BridgeMaker bridgeMaker() {
         return new BridgeMaker(bridgeNumberGenerator());
+    }
+
+    public static List<String> generateBridge(int bridgeLength) {
+        return bridgeMaker().makeBridge(bridgeLength);
     }
 }
