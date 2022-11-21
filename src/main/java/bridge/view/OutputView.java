@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.core.BridgeGame;
 import bridge.domain.Bridge;
+import bridge.type.BridgeBlock;
 import bridge.type.PassCondition;
 import bridge.type.ProcessCondition;
 
@@ -11,11 +12,18 @@ import java.util.stream.IntStream;
 
 public class OutputView {
 
+    private static final String OPEN_BRACKET = "[";
+    private static final String CLOSE_BRACKET = "]";
+    private static final String DELIMITER = "|";
+    private static final String CIRCLE_MARK = " O ";
+    private static final String CROSS_MARK = " X ";
+    private static final String SPACE = "   ";
+
     public static void printMap(ProcessCondition passCondition, BridgeGame bridgeGame) {
         Bridge bridge = bridgeGame.getBridge();
         Integer currentPosition = bridgeGame.getGameStatusOperator().getCurrentPosition();
-        List<Integer> upIndexes = getPrintIndexes(bridge, currentPosition, "U");
-        List<Integer> downIndexes = getPrintIndexes(bridge, currentPosition, "D");
+        List<Integer> upIndexes = getPrintIndexes(bridge, currentPosition, BridgeBlock.UP);
+        List<Integer> downIndexes = getPrintIndexes(bridge, currentPosition, BridgeBlock.DOWN);
         if (passCondition == PassCondition.PASS) printPass(currentPosition, upIndexes, downIndexes);
         if (passCondition == PassCondition.FAIL) printFail(currentPosition, upIndexes, downIndexes);
     }
@@ -28,10 +36,10 @@ public class OutputView {
     public static void printResult() {
     }
 
-    private static List<Integer> getPrintIndexes(Bridge bridge, Integer currentPosition, String bridgeBlockDirection) {
+    private static List<Integer> getPrintIndexes(Bridge bridge, Integer currentPosition, BridgeBlock bridgeBlock) {
         List<String> passedBridgeMap = bridge.getBridgeMapUntil(currentPosition);
         List<Integer> printIndexes = IntStream.range(0, passedBridgeMap.size())
-                .filter(idx -> passedBridgeMap.get(idx).equals(bridgeBlockDirection))
+                .filter(idx -> passedBridgeMap.get(idx).equals(bridgeBlock.getBlockSymbol()))
                 .boxed()
                 .collect(Collectors.toList());
         return printIndexes;
@@ -58,29 +66,30 @@ public class OutputView {
     }
 
     private static void printPreviousPath(Integer currentPosition, List<Integer> indexes) {
-        System.out.print("[");
+        System.out.print(OPEN_BRACKET);
         for (int idx = 0; idx < currentPosition; idx++) {
             if (indexes.contains(idx)) {
-                System.out.print(" O |");
+                System.out.print(CIRCLE_MARK + DELIMITER);
                 continue;
             }
-            System.out.print("   |");
+            System.out.print(SPACE + DELIMITER);
         }
     }
 
     private static void printCurrentBlockOrNot(Integer currentPosition, List<Integer> indexes) {
         if (indexes.contains(currentPosition)) {
-            System.out.println(" O ]");
+            System.out.println(CIRCLE_MARK + CLOSE_BRACKET);
             return;
         }
-        System.out.println("   ]");
+        System.out.println(SPACE + CLOSE_BRACKET);
     }
 
     private static void printFailedBlockOrNot(Integer currentPosition, List<Integer> indexes) {
-        if (!indexes.contains(currentPosition)) {
-            System.out.println(" X ]");
+        if (indexes.contains(currentPosition)) {
+            System.out.println(SPACE + CLOSE_BRACKET);
             return;
         }
-        System.out.println("   ]");
+        System.out.println(CROSS_MARK + CLOSE_BRACKET);
+
     }
 }

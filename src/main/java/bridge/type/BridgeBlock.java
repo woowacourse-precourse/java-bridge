@@ -13,9 +13,15 @@ public enum BridgeBlock {
         this.blockSymbol = blockSymbol;
     }
 
-    public static String getBlockSymbol(Integer blockNumber) {
+    public static String getBlockSymbolByNumber(Integer blockNumber) {
         if (blockNumber == DOWN.blockNumber) return DOWN.blockSymbol;
         if (blockNumber == UP.blockNumber) return UP.blockSymbol;
+        return null;
+    }
+
+    public String getBlockSymbol() {
+        if (this == DOWN) return DOWN.blockSymbol;
+        if (this == UP) return UP.blockSymbol;
         return null;
     }
 }
