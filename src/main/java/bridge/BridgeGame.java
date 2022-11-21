@@ -33,11 +33,17 @@ public class BridgeGame {
         System.out.println(this.bridge);
         System.out.println(this.currentCoordinate);
         if (!Objects.equals(this.bridge.get(gameCount), this.currentCoordinate.get(gameCount))){
+            boolean success = false;
+            bridgeShape.printResult(gameCount, currentCoordinate, success);
             this.gameOver = true;
         }
         bridgeShape.printMap(this.gameCount,this.currentCoordinate);
         this.gameCount += 1;
-        System.out.println(this.gameCount+"게임카운트");
+        if(gameCount == this.bridge.size()){
+            boolean success = true;
+            bridgeShape.printResult(gameCount, currentCoordinate,success);
+            this.gameOver = true;
+        }
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
