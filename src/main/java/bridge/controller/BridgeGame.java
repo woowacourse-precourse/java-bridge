@@ -39,6 +39,12 @@ public class BridgeGame {
     public void retry() {
     }
 
+    public void playGame() {
+        bridgeSize = readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(bridge);
+    }
+
     public int readBridgeSize() {
         int inputBridgeSize = inputView.readBridgeSize();
         Validator.checkValueOfReadBridgeSize(inputBridgeSize);
