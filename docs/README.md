@@ -2,6 +2,30 @@
 ## 🎯 프로젝트 설명
 
 ## 📁 디렉토리 구조
+```bash
+├── controller
+│   └── BridgeController
+└── domain
+│   ├── bridgeInfo
+│   |   ├── Bridge : U 와 D 로 이루어진 다리
+│   |   └── Length : 다리의 길이
+│   ├── result
+│   |   ├── PassingDirectionType : 지나간 칸에 대한 Direction 타입 (U/D 그리고 O/X 그리고 selected/not)
+│   |   ├── PassingPositions : 지나간 위치들 (Position 리스트)
+│   |   └── Result : 게임 결과 (윗 칸과 아랫 칸 정보)
+│   └── userInfo
+│       ├── Direction : 사용자 방향 (U 또는 D)
+│       ├── GameCommand : 게임 재시작 혹은 종료
+│       └── Position : 사용자 위치 (방향과 거리 정보)
+└── view
+│   ├── InputView : 입력
+│   └── OutputView : 출력
+├── Application
+├── BridgeGame : 다리 건너기 게임을 관리하는 클래스
+├── BridgeMaker : 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
+├── BridgeNumberGenerator : 인터페이스
+└── BridgeRandomNumberGenerator : 0 또는 1 을 랜덤으로 생성하는 역할을 한다.
+``` 
 
 ## ✅ 기능 목록
 - [x] 입력받은 다리의 길이만큼 0 과 1 로 이루어진 랜덤 값을 생성한다.
