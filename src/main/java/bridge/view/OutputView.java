@@ -10,6 +10,10 @@ public class OutputView {
     private static final String UP_PATH = "U";
     private static final String DOWN_PATH = "D";
 
+    public void printGameMessage(String message) {
+        System.out.println(message);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

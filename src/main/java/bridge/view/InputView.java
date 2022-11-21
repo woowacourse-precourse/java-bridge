@@ -1,8 +1,9 @@
 package bridge.view;
 
-import static bridge.validator.BridgeSizeValidator.validateBridgeSize;
-import static bridge.validator.MoveValidator.validateMovingPath;
-import static bridge.validator.RetryValidator.validateRetryCommand;
+import static bridge.utils.ErrorConstants.ERROR_NOT_NUMBER;
+import static bridge.utils.ErrorConstants.ERROR_OUT_OF_BRIDGE_RANGE;
+import static bridge.utils.ErrorConstants.ERROR_NOT_U_OR_D;
+import static bridge.utils.ErrorConstants.ERROR_NOT_R_OR_Q;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -14,15 +15,32 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        while (true) {
-            try {
-                System.out.println("다리의 길이를 입력해주세요.");
-                String input = Console.readLine();
-                validateBridgeSize(input);
-                return Integer.parseInt(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String input = Console.readLine();
+            validateBridgeSize(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
+    }
+
+    private void validateBridgeSize(String input) {
+        validateIsNumber(input);
+        validateBridgeSizeRange(Integer.parseInt(input));
+    }
+
+    private void validateIsNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_NOT_NUMBER);
+        }
+    }
+
+    private void validateBridgeSizeRange(int size) {
+        if (!(size >= 3 && size <= 20)) {
+            throw new IllegalArgumentException(ERROR_OUT_OF_BRIDGE_RANGE);
         }
     }
 
@@ -30,15 +48,19 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        while (true) {
-            try {
-                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-                String movingPath = Console.readLine();
-                validateMovingPath(movingPath);
-                return movingPath;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String movingPath = Console.readLine();
+            validateMovingPath(movingPath);
+            return movingPath;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+    }
+
+    private static void validateMovingPath(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException(ERROR_NOT_U_OR_D);
         }
     }
 
@@ -46,15 +68,19 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        while (true) {
-            try {
-                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-                String retryCommand = Console.readLine();
-                validateRetryCommand(retryCommand);
-                return retryCommand;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String retryCommand = Console.readLine();
+            validateRetryCommand(retryCommand);
+            return retryCommand;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
+    }
+
+    private void validateRetryCommand(String retryCommand) {
+        if (!(retryCommand.equals("R") || retryCommand.equals("Q"))) {
+            throw new IllegalArgumentException(ERROR_NOT_R_OR_Q);
         }
     }
 }
