@@ -23,6 +23,7 @@ public class OutputView {
 
         System.out.println(closeTopBridge(topBridge));
         System.out.println(closeBottomBridge(bottomBridge));
+        System.out.println();
     }
 
     /**
@@ -98,7 +99,6 @@ public class OutputView {
         System.out.println("최종 게임 결과");
 
         printMap(game.getBridge(), game.getUserInput());
-        System.out.println();
 
         if (successOrNot) {
             printSuccessMessage(game.getTrialCount());
@@ -106,6 +106,7 @@ public class OutputView {
         }
 
         printFailureMessage(game.getTrialCount());
+        System.out.println();
     }
 
     /**
