@@ -14,7 +14,6 @@ public class BridgeGame {
         this.player = player;
         this.gameStatistics = gameStatistics;
         this.bridge = bridge;
-
     }
 
     /**
@@ -35,11 +34,19 @@ public class BridgeGame {
     public void retry() {
         gameStatistics.increaseTotalTryCount();
         bridge.resetBridge();
-        getPlayer().initCurrentLocation();
+        player.initCurrentLocation();
         gameStatistics.initCheckRoad();
     }
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public GameStatistics getGameStatistics() {
+        return gameStatistics;
     }
 }
