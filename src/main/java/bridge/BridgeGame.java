@@ -43,7 +43,7 @@ public class BridgeGame {
         );
     }
 
-    public String getBridgeResult(String moving, String bridgeSide) {
+    private String getBridgeResult(String moving, String bridgeSide) {
         if (!movingIsWrong(moving) && moving.equals(bridgeSide)) {
             return RIGHT_ANSWER;
         }
