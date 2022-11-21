@@ -43,7 +43,7 @@ public class BridgeController {
         GameStatus status;
         do {
             status = crossBridge();
-        } while (!(SUCCESS.equals(status) || isRetry()));
+        } while (PLAYING.equals(status) || isRetry(status));
         return status;
     }
 
@@ -58,7 +58,10 @@ public class BridgeController {
         return status;
     }
 
-    private boolean isRetry() {
+    private boolean isRetry(GameStatus status) {
+        if (SUCCESS.equals(status)) {
+            return false;
+        }
         Command command = readController.readGameCommand();
         return service.executeIfRetry(command);
     }
