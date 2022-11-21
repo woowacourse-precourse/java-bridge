@@ -1,3 +1,11 @@
+# 순서도
+
+![flowchart.png](flowchart.png)
+
+# 다이어그램
+
+![diagram](diagram.png)
+
 # 📚 기능목록
 
 # ⌨️ 사용자 입력을 받는다. - `InputView`
