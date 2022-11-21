@@ -33,6 +33,14 @@ public class BridgeGame {
         OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
         resetBridge();
         resetStatus();
+        return checkInputAndBridge(checkFalse);
+    }
+
+    private static boolean checkInputAndBridge(String checkFalse) {
+        if (checkFalse.charAt(0) != checkFalse.charAt(1)) {
+            return retry();
+        }
+        return false;
     }
 
     private static void resetStatus() {
