@@ -29,4 +29,18 @@ class ValidateTest {
         String length = "15";
         assertThat(Validate.notInRange(length)).isEqualTo(false);
     }
+
+    @Test
+    void 이동_방향_올바르지_않은_입력() {
+        String direction = "T";
+        assertThat(Validate.invalidDirection(direction)).isEqualTo(true);
+    }
+
+    @Test
+    void 이동_방향_올바른_입력() {
+        String direction = "U";
+        String direction1 = "D";
+        assertThat(Validate.invalidDirection(direction)).isEqualTo(false);
+        assertThat(Validate.invalidDirection(direction1)).isEqualTo(false);
+    }
 }
