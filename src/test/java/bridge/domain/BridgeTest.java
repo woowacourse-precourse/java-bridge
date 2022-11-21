@@ -33,4 +33,18 @@ public class BridgeTest {
         String[] inputs = input.split(",");
         assertThat(testBridge.isMovable(inputs[0],Integer.parseInt(inputs[1]))).isFalse();
     }
+
+    @DisplayName("3부터 20 사이가 아닌 길이로 다리를 생성할 경우 예외가 발생한다.")
+    @Test
+    void bridgeValidSizeTest() {
+        assertThatThrownBy(() -> new Bridge(List.of("U","U")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("U 혹은 D가 아닌 원소로 다리를 생성할 경우 예외가 발생한다.")
+    @Test
+    void bridgeValidElementTest() {
+        assertThatThrownBy(() -> new Bridge(List.of("a","b","c","d")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
