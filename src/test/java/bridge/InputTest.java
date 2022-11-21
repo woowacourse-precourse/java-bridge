@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.util.MessageConstant;
 import bridge.view.InputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,31 +21,44 @@ public class InputTest {
     @ValueSource(strings = {"", " ", "   "})
     @DisplayName("아무것도 입력하지 않았을 때 예외가 발생한다.")
     void 입력값이_없으면_예외발생(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsNotEmpty(input))
-                .withMessage("[ERROR] 입력이 비어있습니다.");
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> inputView.readBridgeSize(input))
+                .withMessage(MessageConstant.ERROR_EMPTY.getValue());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "   "})
+    @DisplayName("U or D대신 아무것도 입력하지 않았을 때 예외가 발생한다.")
+    void U_OR_D_대신_아무것도_입력하지_않았을때_예외가_발생한다(String direction) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> inputView.readMoving(direction))
+                .withMessage(MessageConstant.ERROR_EMPTY.getValue());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"!", "base", "15a", "10.", "020", "05"})
     @DisplayName("NULL 을 포함하여 숫자가 아닌 값이 입력됐을 때 예외가 발생한다.")
     void 입력값이_숫자가아니면_예외발생(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsNumber(input))
-                .withMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> inputView.readBridgeSize(input))
+                .withMessage(MessageConstant.ERROR_BRIDGE_LENGTH.getValue());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "-1", "2", "21", "22"})
     @DisplayName("다리 길이 범위를 벗어난 값이 입력됐을 때 예외가 발생한다.")
     void 입력값이_다리길이범위_벗어나면_예외발생(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsLengthRange(input))
-                .withMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> inputView.readBridgeSize(input))
+                .withMessage(MessageConstant.ERROR_BRIDGE_LENGTH.getValue());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "a", "b", "1", "2", "UD"})
     @DisplayName("사용자가 U or D가 아닌 다른 값을 입력하면 예외가 발생한다.")
     void 입력값이_U_OR_D가_아닐때_예외발생(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateDirection(input));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> inputView.readMoving(input));
     }
 
     @ParameterizedTest
