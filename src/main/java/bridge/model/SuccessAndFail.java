@@ -1,7 +1,5 @@
 package bridge.model;
 
-import java.util.Arrays;
-
 public enum SuccessAndFail {
     SUCCESS("성공", true),
     FAIL("실패", false);

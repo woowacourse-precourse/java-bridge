@@ -21,7 +21,7 @@ public enum GameCommand {
                 .orElseThrow(() -> new IllegalArgumentException("R/Q 중 재시작 여부를 입력해 주세요."));
     }
 
-    public static boolean selectedRetry(GameCommand command) {
+    public static boolean isRetry(GameCommand command) {
         return command == GameCommand.RETRY;
     }
 

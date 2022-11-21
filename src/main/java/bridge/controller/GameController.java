@@ -1,7 +1,7 @@
 package bridge.controller;
 
-import static bridge.model.GameCommand.selectedRetry;
-import static bridge.model.SurviveAndDie.die;
+import static bridge.model.GameCommand.isRetry;
+import static bridge.model.SurviveAndDie.isDie;
 import static bridge.model.SuccessAndFail.isSuccess;
 
 import bridge.BridgeMaker;
@@ -34,39 +34,39 @@ public class GameController {
     }
 
     public void attempt() {
-        SuccessAndFail successAndFail = moving();
-        handleSuccess(successAndFail);
-        handleFail(successAndFail);
+        SuccessAndFail successAndFail = moveUntilSuccessOrFail();
+        if (isSuccess(successAndFail)) {
+            handleSuccess();
+            return;
+        }
+        handleRetryAfterFail();
     }
-    private SuccessAndFail moving() {
+
+    private SuccessAndFail moveUntilSuccessOrFail() {
         for (int index = 0; index < bridge.getBridgeSize(); index++) {
-            SurviveAndDie surviveAndDie = moveOnce(index);
-            if (die(surviveAndDie)) {
+            SurviveAndDie surviveAndDie = moveToDecideSurviveOrDie(index);
+            if (isDie(surviveAndDie)) {
                 return SuccessAndFail.FAIL;
             }
         }
         return SuccessAndFail.SUCCESS;
     }
 
-    private SurviveAndDie moveOnce(int index) {
+    private SurviveAndDie moveToDecideSurviveOrDie(int index) {
         Position position = inputView.readMoving();
         SurviveAndDie surviveAndDie = bridgeGame.move(index, position);
         outputView.printMap(bridgeGame.getDiagram());
         return surviveAndDie;
     }
 
-    private void handleSuccess(SuccessAndFail successAndFail) {
-        if (isSuccess(successAndFail)) {
-            bridgeGame.setSuccess();
-        }
+    private void handleSuccess() {
+        bridgeGame.setSuccess();
     }
 
-    private void handleFail(SuccessAndFail successAndFail) {
-        if (!isSuccess(successAndFail)) {
-            if (selectedRetry(inputView.readGameCommand())) {
-                bridgeGame.retry();
-                attempt();
-            }
+    private void handleRetryAfterFail() {
+        if (isRetry(inputView.readGameCommand())) {
+            bridgeGame.retry();
+            attempt();
         }
     }
 

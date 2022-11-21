@@ -24,7 +24,7 @@ public enum SurviveAndDie {
     public static String getDisplay(SurviveAndDie surviveAndDie) {
         return surviveAndDie.display;
     }
-    public static boolean die(SurviveAndDie surviveAndDie){
+    public static boolean isDie(SurviveAndDie surviveAndDie){
         return surviveAndDie == SurviveAndDie.DIE;
     }
 
