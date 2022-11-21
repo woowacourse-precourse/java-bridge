@@ -204,9 +204,9 @@ class BridgeGameTest {
         @DisplayName("시도 횟수가 2번인 경우 -> 2 반환")
         @Test
         void should_Be3_When_SuccessToCrossWith3TimesTry() {
-            bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.retry(RETRY);
+            bridgeGame.move(UPPER_SIDE);
             bridgeGame.move(LOWER_SIDE);
             bridgeGame.move(UPPER_SIDE);
             assertThat(bridgeGame.getTryCount()).isEqualTo(2);

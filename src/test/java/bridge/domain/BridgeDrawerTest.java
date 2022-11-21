@@ -62,7 +62,7 @@ class BridgeDrawerTest {
         }
     }
 
-    @DisplayName("이동 기록을 1회 되돌린다.")
+    @DisplayName("이동 기록을 되돌린다.")
     @Nested
     class TurnBackMoving {
 
@@ -73,7 +73,7 @@ class BridgeDrawerTest {
             bridgeDrawer.record(LOWER_SIDE, FAIL);
             assertThat(bridgeDrawer.getSketch()).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
             bridgeDrawer.turnBackOnce();
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[ O ]" + "\n" + "[   ]");
+            assertThat(bridgeDrawer.getSketch()).isEqualTo("[]" + "\n" + "[]");
         }
 
         @DisplayName("시작 후 바로 이동 실패한 경우")

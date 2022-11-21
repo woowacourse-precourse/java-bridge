@@ -71,4 +71,13 @@ class BridgeRefereeTest {
             assertThat(isCrossCompletely).isFalse();
         }
     }
+
+    @DisplayName("위치를 초기화한다.")
+    @Test
+    void should_ResetLocationToZero_When_Request() {
+        bridgeReferee.judge(UPPER_SIDE);
+        bridgeReferee.resetLocation();
+        GameStatus gameStatusAfterMoving = bridgeReferee.judge(LOWER_SIDE);
+        assertThat(gameStatusAfterMoving).isEqualTo(FAIL);
+    }
 }
