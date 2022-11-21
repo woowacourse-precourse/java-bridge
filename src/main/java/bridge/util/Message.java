@@ -9,9 +9,9 @@ public class Message {
     public static final String ALREADY_FINISH_PLAYER_ERROR_MESSAGE = "[ERROR] 이미 완주한 플레이어 입니다.\n";
 
     public static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.\n";
-    public static final String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
+    public static final String MOVE_INPUT_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
     public static final String GAME_COMMAND_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
 
-    public static final String GAME_RESULT_MESSAGE = "최종 게임 결과\n";
-    public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    public static final String GAME_RESULT_MESSAGE = "\n최종 게임 결과\n";
+    public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n\n";
 }

@@ -4,7 +4,6 @@ public class OutputView {
 
     public void printMessage(String message)
     {
-        System.out.print("\n");
         System.out.print(message);
     }
 
