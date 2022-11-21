@@ -1,5 +1,7 @@
 package bridge.utils;
 
+import bridge.utils.enums.Errors;
+
 public class Converter {
     public int toIntFromString(String input) {
         try {

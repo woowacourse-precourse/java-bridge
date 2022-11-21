@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.enums;
 
 public enum Errors {
     RANGE("%d 이상 %d 이하의 숫자만 입력가능합니다."),

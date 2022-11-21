@@ -1,5 +1,10 @@
 package bridge.utils;
 
+import bridge.utils.enums.BridgeRule;
+import bridge.utils.enums.Errors;
+import bridge.utils.enums.MoveFormat;
+import bridge.utils.enums.RetryFormat;
+
 public class Validator {
     public static void checkSizeInRange(int size) {
         int minLength = BridgeRule.MIN_LENGTH.getValue();

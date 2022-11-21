@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.utils.MoveFormat;
+import bridge.utils.enums.MoveFormat;
 import bridge.utils.Validator;
 
 import java.util.ArrayList;

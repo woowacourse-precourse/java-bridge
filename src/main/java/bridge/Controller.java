@@ -1,8 +1,8 @@
 package bridge;
 
 import bridge.service.Service;
-import bridge.utils.GameState;
-import bridge.utils.RetryFormat;
+import bridge.utils.enums.GameState;
+import bridge.utils.enums.RetryFormat;
 import bridge.utils.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;

@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.utils.GameState;
+import bridge.utils.enums.GameState;
 import bridge.utils.Validator;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package bridge.domain;
 
 import bridge.utils.Converter;
-import bridge.utils.GameState;
-import bridge.utils.MoveFormat;
-import bridge.utils.MoveResults;
+import bridge.utils.enums.GameState;
+import bridge.utils.enums.MoveFormat;
+import bridge.utils.enums.MoveResults;
 
 import java.util.ArrayList;
 import java.util.List;
