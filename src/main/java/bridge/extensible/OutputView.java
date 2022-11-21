@@ -6,5 +6,5 @@ public interface OutputView {
 
     void printMap(List<List<String>> map);
 
-    void printResult();
+    void printResult(List<List<String>> map, String result, Integer retryCount);
 }
