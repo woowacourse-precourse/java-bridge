@@ -5,6 +5,7 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.CommandType;
 import bridge.domain.Result;
 import bridge.presentation.InputView;
+import bridge.presentation.Message;
 import bridge.presentation.OutputView;
 
 public class BridgeGameRunner {
@@ -27,27 +28,54 @@ public class BridgeGameRunner {
     }
 
     public void run() {
-        int bridgeSize = InputView.readBridgeSize();
-        bridgeGame.initBridge(bridgeSize);
-
+        createBridge();
         crossTheBridge();
+    }
+
+    private void createBridge() {
+        try {
+            int bridgeSize = InputView.readBridgeSize();
+            bridgeGame.initBridge(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(Message.ERROR_HEADER + e.getMessage());
+            createBridge();
+        }
     }
 
     private void crossTheBridge() {
         Result result;
-        do {
-            result = bridgeGame.move(InputView.readMoving());
-            OutputView.printMap(result);
-        } while (!bridgeGame.isTerminate());
-        checkBridgeState(result);
+        try {
+            do {
+                result = moveAndPrintMap();
+            } while (!bridgeGame.isTerminate());
+            checkBridgeState(result);
+        } catch (IllegalArgumentException e) {
+            System.out.println(Message.ERROR_HEADER + e.getMessage());
+            crossTheBridge();
+        }
+    }
+
+    private Result moveAndPrintMap() {
+        Result result = bridgeGame.move(InputView.readMoving());
+        OutputView.printMap(result);
+        return result;
     }
 
     private void checkBridgeState(Result result) {
+        exitIfVictoryAtGame(result);
+        if (!result.isVictory()) {
+            try {
+                takeCommandAndExecute(result);
+            } catch (IllegalArgumentException e) {
+                System.out.println(Message.ERROR_HEADER + e.getMessage());
+                checkBridgeState(result);
+            }
+        }
+    }
+
+    private void exitIfVictoryAtGame(Result result) {
         if (result.isVictory()) {
             exit(result);
-        }
-        if (!result.isVictory()) {
-            takeCommandAndExecute(result);
         }
     }
 

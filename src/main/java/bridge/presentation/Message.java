@@ -10,4 +10,6 @@ public class Message {
     public static final String OUTRO = "최종 게임 결과";
     public static final String OUTPUT_GAME_RESULT = "게임 성공 여부: ";
     public static final String OUTPUT_GAME_COUNT = "총 시도한 횟수: ";
+
+    public static final String ERROR_HEADER = "[ERROR] ";
 }
