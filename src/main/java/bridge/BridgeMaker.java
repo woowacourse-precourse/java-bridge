@@ -31,16 +31,9 @@ public class BridgeMaker {
     }
 
     public String numberToUpDown(int number) {
-        String road = "";
+        BridgeType bridgeType;
+        bridgeType = BridgeType.valueOfNumber(number);
 
-        if (number == 0) {      // TODO: 리팩토링 필요(enum 클래스 써야할 듯)
-            road = "D";
-        }
-
-        if (number == 1) {
-            road = "U";
-        }
-
-        return road;
+        return bridgeType.getType();
     }
 }
