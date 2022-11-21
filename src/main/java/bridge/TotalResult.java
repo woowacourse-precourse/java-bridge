@@ -1,20 +1,20 @@
 package bridge;
 
 public class TotalResult {
-    private final RouteMap routeMap;
+    private final PlayerMap playerMap;
     private final int tryCnt;
 
-    public TotalResult(RouteMap routeMap, int tryCnt) {
-        this.routeMap = routeMap;
+    public TotalResult(PlayerMap playerMap, int tryCnt) {
+        this.playerMap = playerMap;
         this.tryCnt = tryCnt;
     }
 
-    public RouteMap getRouteMap() {
-        return routeMap;
+    public PlayerMap getPlayerMap() {
+        return playerMap;
     }
 
     public boolean win() {
-        return !routeMap.fail();
+        return !playerMap.isFailure();
     }
 
     public int getTryCnt() {

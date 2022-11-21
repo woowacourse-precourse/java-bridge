@@ -88,3 +88,5 @@
 - [ ] OutputView 싱글턴 구현
 
 - [x] InputValidatorTest 리팩토링
+
+- [x] routeMap -> playerMap 이름 변경

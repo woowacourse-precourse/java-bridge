@@ -22,8 +22,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(RouteMap routeMap) {
-        routeMap.format().forEach(System.out::println);
+    public void printMap(PlayerMap routeMap) {
+        routeMap.toStringsByFormat().forEach(System.out::println);
     }
 
     /**
@@ -33,7 +33,7 @@ public class OutputView {
      */
     public void printResult(TotalResult totalResult) {
         System.out.println(TOTAL_RESULT_HEADER_MESSAGE);
-        printMap(totalResult.getRouteMap());
+        printMap(totalResult.getPlayerMap());
         printWinOrLose(totalResult);
         printTotalTryCnt(totalResult);
     }

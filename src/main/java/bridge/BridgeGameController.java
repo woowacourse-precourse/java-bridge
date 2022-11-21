@@ -50,7 +50,7 @@ public class BridgeGameController {
     private TotalResult move(int distance) {
         String movingSide = inputView.readMoving();
         TotalResult result = bridgeGame.move(movingSide, distance);
-        outputView.printMap(result.getRouteMap());
+        outputView.printMap(result.getPlayerMap());
         return result;
     }
 

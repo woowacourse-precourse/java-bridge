@@ -1,14 +1,10 @@
 package bridge;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIfSystemProperties;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -22,17 +18,17 @@ public class BridgeGameTest {
     @DisplayName("위 다리로 이동한 경로를 반환한다")
     @ParameterizedTest
     @MethodSource("moveUpSideTestSource")
-    void moveUpSideTest(int distance, RouteMap expected) {
+    void moveUpSideTest(int distance, PlayerMap expected) {
         TotalResult actual = bridgeGame.move("U", distance);
-        assertThat(actual.getRouteMap()).isEqualTo(expected);
+        assertThat(actual.getPlayerMap()).isEqualTo(expected);
     }
 
     @DisplayName("위 다리로 이동한 경로를 반환한다")
     @ParameterizedTest
     @MethodSource("moveDownSideTestSource")
-    void moveDownSideTest(int distance, RouteMap expected) {
+    void moveDownSideTest(int distance, PlayerMap expected) {
         TotalResult actual = bridgeGame.move("D", distance);
-        assertThat(actual.getRouteMap()).isEqualTo(expected);
+        assertThat(actual.getPlayerMap()).isEqualTo(expected);
     }
 
     @DisplayName("게임을 2번 재시작하면 총 시도 횟수 3을 반환한다")
@@ -47,15 +43,15 @@ public class BridgeGameTest {
 
     private static Stream<Arguments> moveUpSideTestSource() {
         return Stream.of(
-                Arguments.of(1, new RouteMap(
+                Arguments.of(1, new PlayerMap(
                         List.of("O"),
                         List.of(" ")
                 )),
-                Arguments.of(2, new RouteMap(
+                Arguments.of(2, new PlayerMap(
                         List.of("O", "X"),
                         List.of(" ", " ")
                 )),
-                Arguments.of(3, new RouteMap(
+                Arguments.of(3, new PlayerMap(
                         List.of("O", " ", "X"),
                         List.of(" ", "O", " ")
                 ))
@@ -64,15 +60,15 @@ public class BridgeGameTest {
 
     private static Stream<Arguments> moveDownSideTestSource() {
         return Stream.of(
-                Arguments.of(1, new RouteMap(
+                Arguments.of(1, new PlayerMap(
                         List.of(" "),
                         List.of("X")
                 )),
-                Arguments.of(2, new RouteMap(
+                Arguments.of(2, new PlayerMap(
                         List.of("O", " "),
                         List.of(" ", "O")
                 )),
-                Arguments.of(3, new RouteMap(
+                Arguments.of(3, new PlayerMap(
                         List.of("O", " ", " "),
                         List.of(" ", "O", "O")
                 ))
