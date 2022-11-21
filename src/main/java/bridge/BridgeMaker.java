@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.utils.BridgeSize;
 import bridge.utils.Pass;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        validateBridgeSize(size);
-
-        return getPassableBridge(size);
+        return getPassableBridge(new BridgeSize(size).getSize());
     }
 
     private List<String> getPassableBridge(int size) {
@@ -38,11 +37,5 @@ public class BridgeMaker {
 
     private String getPassableText(int number) {
         return Pass.getPassableByNumber(number);
-    }
-
-    private void validateBridgeSize(int size) {
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("다리의 길이는 3 ~ 20이어야 합니다");
-        }
     }
 }
