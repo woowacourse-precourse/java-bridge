@@ -14,6 +14,9 @@ public class BridgeGame {
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private final int size;
     private final List<String> bridge;
+    int bridgeCount = 0;
+
+    String alphabet;
     boolean wrongMovement = true;
     boolean playMore = true;
 
@@ -35,18 +38,23 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move() {
-        int count = 0;
-        while (bridge.get(count).equals(inputView.readMoving())) {
-            count += 1;
-            checkCount(count);
-            if (count == size) {break;}
-        }
+    public void move() {
+        bridgeCount = -1;
+        do {
+            alphabet = inputView.readMoving();
+            bridgeCount += 1;
+            if (bridgeCount == size - 1) {break;}
+        } while (bridge.get(bridgeCount).equals(alphabet));
+    }
+
+    public boolean getMove() {
+        move();
+        checkCount(bridgeCount);
         return wrongMovement;
     }
 
-    public void checkCount(int count) {
-        if (count == size) {
+    public void checkCount(int bridgeCount) {
+        if (bridgeCount == size - 1) {
             wrongMovement = false;
         }
     }
@@ -66,7 +74,7 @@ public class BridgeGame {
     public void resultPrint() {
         int tryCount = 0;
         while (playMore && wrongMovement) {
-            wrongMovement = move();
+            wrongMovement = getMove();
             if (wrongMovement) {playMore = retry();}
             tryCount += 1;
         }
