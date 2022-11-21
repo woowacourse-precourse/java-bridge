@@ -5,7 +5,7 @@ public class OutputView {
     private static final String END_GAME_ANNOUNCEMENT = "최종 게임 결과";
     private static final String SUCCESS_GAME_ANNOUNCEMENT = "게임 성공 여부: 성공";
     private static final String FAIL_GAME_ANNOUNCEMENT = "게임 성공 여부: 실패";
-    private static final String TRY_COUNT_ANNOUNCEMENT = "총 시도한 횟수: %d";
+    private static final String TRY_COUNT_ANNOUNCEMENT_FORMAT = "총 시도한 횟수: %d";
 
     public void announceStartGame() {
         System.out.println(START_GAME_ANNOUNCEMENT);
@@ -23,7 +23,7 @@ public class OutputView {
         if (!isSuccess) {
             System.out.println(FAIL_GAME_ANNOUNCEMENT);
         }
-        System.out.printf(TRY_COUNT_ANNOUNCEMENT, tryCount);
+        System.out.printf(TRY_COUNT_ANNOUNCEMENT_FORMAT, tryCount);
     }
 
     public void announceEndGame() {

@@ -74,7 +74,7 @@ public class BridgeGame {
             return;
         }
         throw new IllegalArgumentException(String.format(
-                ErrorMessage.WRONG_MOVING.getValue(), UPPER_SIDE, LOWER_SIDE
+                ErrorMessage.WRONG_MOVING_FORMAT.getValue(), UPPER_SIDE, LOWER_SIDE
         ));
     }
 
@@ -83,7 +83,7 @@ public class BridgeGame {
             return;
         }
         throw new IllegalArgumentException(String.format(
-                ErrorMessage.WRONG_GAME_COMMAND.getValue(), RETRY, QUIT
+                ErrorMessage.WRONG_GAME_COMMAND_FORMAT.getValue(), RETRY, QUIT
         ));
     }
 }

@@ -41,7 +41,7 @@ public class BridgeMaker {
             return;
         }
         throw new IllegalArgumentException(String.format(
-                ErrorMessage.WRONG_BRIDGE_SIZE.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE
+                ErrorMessage.WRONG_BRIDGE_SIZE_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE
         ));
     }
 }
