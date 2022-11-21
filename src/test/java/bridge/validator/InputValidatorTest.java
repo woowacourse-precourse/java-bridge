@@ -18,10 +18,11 @@ public class InputValidatorTest {
     }
 
     @DisplayName("다리 길이를 입력할 때 3미만이면 예외 처리")
-    @ValueSource(strings = {"2", "-1", "2.5", "1"})
+    @ValueSource(ints = {2, 1})
     @ParameterizedTest
-    void minBridgeSize(String bridgeSize) {
+    void minBridgeSize(Integer size) {
         final String NOT_MIN_SIZE = "다리의 길이는 최소 3이상이어야 합니다.";
+        String bridgeSize = String.valueOf(size);
         assertThatThrownBy(() -> InputValidator.checkBridgeSize(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_MIN_SIZE);
@@ -53,24 +54,38 @@ public class InputValidatorTest {
             "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"})
     @ParameterizedTest
     void notFormatBlock(String block) {
-        assertThatThrownBy(() -> InputValidator.checkBridgeSize(block))
-                .isInstanceOf(IllegalArgumentException.class);
+        final String NOT_FORMAT = "입력 형식이 맞지 않습니다.";
+        assertThatThrownBy(() -> InputValidator.checkBlock(block))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NOT_FORMAT);
     }
 
     @DisplayName("칸을 선택할 때 크기가 1이 아니라면 예외 처리")
     @ValueSource(strings = {"AG", "FDSFK", "231231", ",,.#@"})
     @ParameterizedTest
     void oneLengthBlock(String block) {
-        assertThatThrownBy(() -> InputValidator.checkBridgeSize(block))
-                .isInstanceOf(IllegalArgumentException.class);
+        final String NOT_ONLY_ONE_SIZE = "크기는 1이어야 합니다.";
+        assertThatThrownBy(() -> InputValidator.checkBlock(block))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NOT_ONLY_ONE_SIZE);
     }
 
-    @DisplayName("게임 재시작 여부 입력할 때 1이 아니라면 예외 처리")
+    @DisplayName("칸을 올바르게 선택하면 그대로 반환")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void should_GetBlock_When_inputBlock(String block) {
+        String moving = InputValidator.checkBlock(block);
+        assertThat(moving).isEqualTo(block);
+    }
+
+    @DisplayName("게임 재시작 여부 입력할 때 크기가 1이 아니라면 예외 처리")
     @ValueSource(strings = {"AG", "FDSFK", "231231", ",,.#@"})
     @ParameterizedTest
     void oneLengthRetry(String retry) {
+        final String NOT_ONLY_ONE_SIZE = "크기는 1이어야 합니다.";
         assertThatThrownBy(() -> InputValidator.checkGameRetry(retry))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NOT_ONLY_ONE_SIZE);
     }
 
     @DisplayName("게임 재시작 여부를 입력할 때 형식(R 또는 Q)에 맞지 않다면 예외 처리")
@@ -81,7 +96,17 @@ public class InputValidatorTest {
             "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"})
     @ParameterizedTest
     void notFormatRetry(String retry) {
-        assertThatThrownBy(() -> InputValidator.checkBridgeSize(retry))
-                .isInstanceOf(IllegalArgumentException.class);
+        final String NOT_FORMAT = "입력 형식이 맞지 않습니다.";
+        assertThatThrownBy(() -> InputValidator.checkGameRetry(retry))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NOT_FORMAT);
+    }
+
+    @DisplayName("게임 재시작 여부를 입력할 때 올바른 값이 들어왔을 때 그대로 반환")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void correctRetry(String retry) {
+        String inputRetry = InputValidator.checkGameRetry(retry);
+        assertThat(inputRetry).isEqualTo(retry);
     }
 }
