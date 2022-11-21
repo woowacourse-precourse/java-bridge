@@ -27,9 +27,7 @@ public class BridgeGameController {
     public void run() {
         try {
             init();
-            while (gameService.inProgress()) {
-                playGame();
-            }
+            playGame();
             printFinalResult();
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
@@ -47,13 +45,15 @@ public class BridgeGameController {
     }
 
     protected void playGame() {
-        SquareResult squareResult = getUpToNowMoveResult();
-        outputView.printMap(gameService.getFormattedEachMoveResult(squareResult));
+        while (gameService.inProgress()) {
+            SquareResult squareResult = getUpToNowMoveResult();
+            outputView.printMap(gameService.getFormattedEachMoveResult(squareResult));
 
-        gameService.isSuccessMoveBridge(squareResult);
-        gameService.isEndOfBridgeExit();
+            gameService.isSuccessMoveBridge(squareResult);
+            gameService.isEndOfBridgeExit();
 
-        isFailRestartOrExit(squareResult);
+            isFailRestartOrExit(squareResult);
+        }
     }
 
     private SquareResult getUpToNowMoveResult() {

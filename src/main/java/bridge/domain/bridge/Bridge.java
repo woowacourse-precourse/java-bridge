@@ -12,11 +12,11 @@ public class Bridge {
     }
 
     public static Bridge valueOf(List<String> bridge) {
-        List<Square> collect = bridge.stream()
+        List<Square> squares = bridge.stream()
                 .map(Square::of)
                 .collect(Collectors.toList());
 
-        return new Bridge(collect);
+        return new Bridge(squares);
     }
 
     public boolean canMoveForward(Square other, int position) {
