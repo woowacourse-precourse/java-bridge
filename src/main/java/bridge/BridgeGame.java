@@ -10,6 +10,7 @@ import java.util.List;
 public class BridgeGame {
 
     private int position = 0;
+    private int time = 1;
     private State state = State.Progress;
 
     /**
@@ -17,15 +18,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(final List<String> result, final String direction) {
+    public boolean move(final List<String> answer, final String direction) {
         require(isNotUpOrDown(direction), Error.MOVE);
         require(isNotProgress(), Error.STATE);
-        if (isSame(result.get(position), direction)) {
+        if (isSame(answer.get(position), direction)) {
             state = State.Loss;
             return false;
         }
         position++;
-        if (isEnd(result)) state = State.Win;
+        if (isEnd(answer)) state = State.Win;
         return true;
     }
 
@@ -57,9 +58,14 @@ public class BridgeGame {
     public void retry() {
         state = State.Progress;
         position = 0;
+        time++;
     }
 
     public State getGameState() {
         return state;
+    }
+
+    public int getTime() {
+        return time;
     }
 }
