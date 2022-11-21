@@ -3,7 +3,6 @@ package bridge.application;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeType;
 import bridge.domain.Result;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,10 +29,16 @@ public class BridgeGame {
     }
 
     public List<String> initBridge(int size) {
+        validateBridge();
         bridge = bridgeMaker.makeBridge(size);
         return bridge;
     }
 
+    private void validateBridge() {
+        if (bridge != null) {
+            throw new IllegalStateException("이미 다리가 생성되었습니다.");
+        }
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -45,29 +50,11 @@ public class BridgeGame {
         validateMoveCommand(command);
 
         if (bridge.get(position).equals(command)) {
-            Result result = Result.of(bridge.subList(0, position + 1), true, isEnd(), gameCount);
+            Result result = Result.of(bridge.subList(0, position + 1), true, isEndOfBridge(), gameCount);
             continueGame();
             return result;
         }
         terminateGame();
-        return Result.of(bridge.subList(0, position + 1), false, false, gameCount);
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
-        gameCount++;
-        position = 0;
-        terminate = false;
-    }
-
-    public Result exitGame() {
-        if (bridge.size() == position) {
-            return Result.of(new ArrayList<>(bridge), true, true, gameCount);
-        }
         return Result.of(bridge.subList(0, position + 1), false, false, gameCount);
     }
 
@@ -84,7 +71,7 @@ public class BridgeGame {
         }
     }
 
-    private boolean isEnd() {
+    private boolean isEndOfBridge() {
         return bridge.size() == position + 1;
     }
 
@@ -97,5 +84,16 @@ public class BridgeGame {
 
     private void terminateGame() {
         terminate = true;
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     * <p>
+     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void retry() {
+        gameCount++;
+        position = 0;
+        terminate = false;
     }
 }
