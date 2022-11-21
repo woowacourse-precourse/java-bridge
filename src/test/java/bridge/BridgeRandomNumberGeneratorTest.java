@@ -17,15 +17,10 @@ class BridgeRandomNumberGeneratorTest {
     void generate() {
         //given
         int testCase=1000;
-        int correctCount=0;
         //when
-        int generate = bridgeRandomNumberGenerator.generate();
-        for (int count = 0; count < testCase; count++) {
-            if (generate == ONE_RANGE_BRIDGE || generate == ZERO_RANGE_BRIDGE) {
-                correctCount++;
-            }
-        }
         //then
-        assertThat(correctCount).isEqualTo(testCase);
+        for (int count = 0; count < testCase; count++) {
+            assertThat(bridgeRandomNumberGenerator.generate()).isIn(ZERO_RANGE_BRIDGE, ONE_RANGE_BRIDGE);
+        }
     }
 }
