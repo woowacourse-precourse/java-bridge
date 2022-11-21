@@ -1,12 +1,12 @@
 package bridge;
 
-import bridge.controller.BridgeController;
-import bridge.domain.BridgeGame;
+import bridge.controller.BridgeGame;
 
 public class Application {
 
     public static void main(String[] args) {
-        BridgeController bridgeController = new BridgeController();
-        bridgeController.start();
+        BridgeGame bridgeGame = new BridgeGame();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeGame.start(bridgeNumberGenerator);
     }
 }

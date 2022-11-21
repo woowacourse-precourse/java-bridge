@@ -14,7 +14,7 @@ public class OutputView {
         printNewLine();
     }
     
-    public static void enterBridgeSize() {
+    public static void readBridgeSize() {
         System.out.println(ENTER_BRIDGE_SIZE_MESSAGE);
     }
 
