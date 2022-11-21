@@ -42,7 +42,12 @@ public class OutputView {
         }
         return bridgeMap;
     }
-    public void printResult(int result,boolean answer) {
-
+    private void printBridge(List<String> bridge,String direction, boolean result){
+        System.out.println("최종 게임 결과");
+        printMap(bridge,direction,result);
+    }
+    public void printResult(int count,String result) {
+        System.out.println("게임 성공 여부: "+result);
+        System.out.println("총 시도한 횟수: "+count);
     }
 }
