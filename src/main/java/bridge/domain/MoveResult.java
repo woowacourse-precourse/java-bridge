@@ -6,13 +6,11 @@ public enum MoveResult {
 
     final String symbol;
 
-
-    MoveResult(String symbol){
+    MoveResult(String symbol) {
         this.symbol = symbol;
     }
 
-    public String getSymbol(){
+    public String getSymbol() {
         return symbol;
     }
-
 }

@@ -12,9 +12,9 @@ public enum GameCommand {
         this.command = command;
     }
 
-    public static GameCommand findByCommand(String command){
+    public static GameCommand findByCommand(String command) {
         return Arrays.stream(GameCommand.values())
-                .filter(gameCommand -> gameCommand.command == command)
+                .filter(gameCommand -> gameCommand.command.equals(command))
                 .findAny()
                 .orElseThrow();
     }

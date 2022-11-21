@@ -2,7 +2,7 @@ package bridge.domain;
 
 import java.util.Arrays;
 
-public enum BridgeLine { // BridgeDirectionType?
+public enum BridgeLine {
     UP(1, "U"),
     DOWN(0, "D");
 
@@ -16,14 +16,14 @@ public enum BridgeLine { // BridgeDirectionType?
 
     public static BridgeLine findByNumber(int number) {
         return Arrays.stream(BridgeLine.values())
-                .filter(bridgeDirectionType -> bridgeDirectionType.number == number)
+                .filter(bridgeLine -> bridgeLine.number == number)
                 .findAny()
                 .orElseThrow();
     }
 
-    public static BridgeLine findByCommand(String command){
+    public static BridgeLine findByCommand(String command) {
         return Arrays.stream(BridgeLine.values())
-                .filter(bridgeLine -> bridgeLine.command == command)
+                .filter(bridgeLine -> bridgeLine.command.equals(command))
                 .findAny()
                 .orElseThrow();
     }
