@@ -15,11 +15,8 @@ public class BridgeGame {
     public static final String WRONG = "X ";
     public static final String SPACE_BRIDGE = "  ";
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public static final String RESTART = "R";
+    public static final String QUIT = "Q";
 
     static List<String> upstairsBridge = new ArrayList<>();
     static List<String> downstairsBridge = new ArrayList<>();
@@ -66,16 +63,12 @@ public class BridgeGame {
         getDownstairsBridge(direction, bridge, numberOfTrying);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     public static boolean retry(String command) {
-        if(Objects.equals(command, "Q")) {
+        if(Objects.equals(command, QUIT)) {
             return false;
         }
-        if(Objects.equals(command, "R")) {
+        if(Objects.equals(command, RESTART)) {
             return true;
         }
         return true;

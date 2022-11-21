@@ -12,11 +12,22 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        String size = Console.readLine();
-        return parseInt(size);
-    }
+//    public int readBridgeSize() {
+//        try {
+//            String size = Console.readLine();
+//            return Integer.parseInt(size);
+//        } catch (NumberFormatException e) {
+//            throw new IllegalArgumentException("[ERROR]: 3 - 20사이에 숫자만 가능합니다.", e);
+//        }
+//    }
 
+    public int readBridgeSize() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
