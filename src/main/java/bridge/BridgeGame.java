@@ -1,12 +1,11 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.domain.Result;
+import bridge.util.BridgeComparator;
 import bridge.view.InputView;
 import bridge.view.Message;
 import bridge.view.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -79,20 +78,19 @@ public class BridgeGame {
     }
 
     public Bridge playOneTry(GameStatus gameStatus, Bridge realBridges) {
-        Bridge selectBridges = new Bridge();
+        Bridge selectedBridges = new Bridge();
         for (int index = 0; index < realBridges.getSize(); index++) {
-            String realBridge = realBridges.getBridgeByIndex(index);
-            String selectedBridge = getSelectBridge(selectBridges);
-            outputView.printMap(realBridges, selectBridges);
-            if (!realBridge.equals(selectedBridge)) return selectBridges;
+            addNewSelectedBridge(selectedBridges);
+            Result result = BridgeComparator.compareBridges(realBridges, selectedBridges);
+            outputView.printMap(realBridges, selectedBridges);
+            if (!result.isSuccess()) return selectedBridges;
         }
         gameStatus.setSuccess(true);
-        return selectBridges;
+        return selectedBridges;
     }
 
-    private String getSelectBridge(Bridge selectedBridges) {
+    private void addNewSelectedBridge(Bridge selectedBridges) {
         String selectedBridge = move();
         selectedBridges.addNewBridge(selectedBridge);
-        return selectedBridge;
     }
 }
