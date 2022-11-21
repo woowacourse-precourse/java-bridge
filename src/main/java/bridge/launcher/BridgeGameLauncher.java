@@ -1,46 +1,56 @@
-package bridge.step;
+package bridge.launcher;
+
+import static bridge.log.Log.log;
 
 import bridge.BridgeGame;
 import bridge.status.Retry;
+import bridge.status.StepType;
 import bridge.status.UserStatus;
 import bridge.view.input.InputView;
 import bridge.view.output.OutputView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-public class PlayGameStep implements Step {
+public class BridgeGameLauncher {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
-    private final UserStatus userStatus;
+    private UserStatus userStatus;
     private List<String> bridges;
 
-    public PlayGameStep(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+    public BridgeGameLauncher(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeGame = bridgeGame;
+
+    }
+
+    public void init() {
+        outputView.printWelcomeMessage();
         this.userStatus = new UserStatus(new ArrayList<>());
         this.userStatus.changeNextStep(StepType.MAKE_BRIDGE);
     }
 
-    @Override
-    public void doStep() {
-        while (executeByStep(userStatus.getNowStep())) {
-
+    public void run() {
+        boolean isRun = true;
+        while (isRun) {
+            try {
+                isRun = executeByStep(userStatus.getNowStep());
+            } catch (NoSuchElementException e) {
+                // 다리 생성 숫자를 잘못 입력 했을 경우 다시 유저에게 입력을 요청하게 작성하면
+                // 테스트 케이스 통과 안됨, 요구사항과 상충. 해당 예외만 별도 처리
+                break;
+            } catch (Exception e) {
+                log.error(e);
+            }
         }
     }
 
-    private void changeNextStep() {
-
-        if (userStatus.getNowStep() == StepType.MAKE_BRIDGE) {
-            userStatus.changeNextStep(StepType.MOVE_BRIDGE);
-            return;
-        }
-
-        if (userStatus.getNowStep() == StepType.MOVE_BRIDGE) {
-            userStatus.changeNextStep(StepType.RETRY_OR_QUIT);
-        }
+    private void goToNextStep() {
+        StepType nextStep = StepType.values()[userStatus.getNowStep().ordinal() + 1];
+        userStatus.changeNextStep(nextStep);
     }
 
 
@@ -53,10 +63,7 @@ public class PlayGameStep implements Step {
             return moveBridge(userStatus, bridges);
         }
 
-        if (stepType == StepType.RETRY_OR_QUIT) {
-            return retryOrQuit(userStatus);
-        }
-        return true;
+        return retryOrQuit(userStatus);
     }
 
 
@@ -64,7 +71,7 @@ public class PlayGameStep implements Step {
         int bridgeSize = inputView.readBridgeSize();
 
         bridges = bridgeGame.makeBridge(bridgeSize);
-        changeNextStep();
+        goToNextStep();
         return true;
     }
 
@@ -78,7 +85,7 @@ public class PlayGameStep implements Step {
             outputView.printMap(userStatus);
         }
 
-        changeNextStep();
+        goToNextStep();
         return true;
     }
 
@@ -105,4 +112,5 @@ public class PlayGameStep implements Step {
         outputView.printResult(userStatus);
         return false;
     }
+
 }

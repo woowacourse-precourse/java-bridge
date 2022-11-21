@@ -1,22 +1,17 @@
 package bridge;
 
 
-import bridge.step.Step;
-import bridge.step.StepFactory;
-import bridge.step.StepFactoryType;
-import bridge.step.StepLauncher;
-import java.util.ArrayList;
+import bridge.launcher.BridgeGameLauncher;
+import bridge.view.input.InputView;
+import bridge.view.output.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        StepLauncher stepLauncher = new StepLauncher(new ArrayList<>());
-        Step init = StepFactory.makeStep(StepFactoryType.INIT);
-        Step game = StepFactory.makeStep(StepFactoryType.GAME);
+        BridgeGameLauncher launcher = new BridgeGameLauncher(new InputView(), new OutputView(),
+                new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator())));
 
-        stepLauncher.addStep(init);
-        stepLauncher.addStep(game);
-
-        stepLauncher.run();
+        launcher.init();
+        launcher.run();
     }
 }

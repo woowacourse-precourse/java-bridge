@@ -1,6 +1,5 @@
 package bridge.status;
 
-import bridge.step.StepType;
 import java.util.List;
 
 public class UserStatus {
