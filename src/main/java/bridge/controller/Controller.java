@@ -15,33 +15,28 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class Controller {
+    private static final InputView INPUT_VIEW = new InputView();
+    private static final OutputView OUTPUT_VIEW = new OutputView();
 
     private static final int INITIAL_TRIAL_COUNT = 1;
     private static final int RETRY_ADD_COUNT = 1;
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private final List<TrialResult> trialResults = new ArrayList<>();
     private BridgeGame game;
 
-    public Controller(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-    }
-
     public void play() {
-        this.game = makeGame();
+        game = makeGame();
         int trialCount = doGame();
-        outputView.printResult(trialResults, trialCount, game.isFinished());
+        OUTPUT_VIEW.printResult(trialResults, trialCount, game.isFinished());
     }
 
     private BridgeGame makeGame() {
         try {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+            List<String> bridge = bridgeMaker.makeBridge(INPUT_VIEW.readBridgeSize());
             return BridgeGame.from(bridge);
         } catch (IllegalArgumentException exception) {
-            outputView.printException(exception.getMessage());
+            OUTPUT_VIEW.printException(exception.getMessage());
             return makeGame();
         }
     }
@@ -57,7 +52,7 @@ public class Controller {
     }
 
     private int retryOrExit() {
-        if (askForRetry().equals(RETRY)) {
+        if (askCommand().equals(RETRY)) {
             game.retry();
             trialResults.clear();
             return doGame() + RETRY_ADD_COUNT;
@@ -67,9 +62,9 @@ public class Controller {
 
     private TrialResult tryToMove() {
         try {
-            return move(inputView.readDirection());
+            return move(INPUT_VIEW.readDirection());
         } catch (IllegalArgumentException exception) {
-            outputView.printException(exception.getMessage());
+            OUTPUT_VIEW.printException(exception.getMessage());
             return tryToMove();
         }
     }
@@ -77,16 +72,16 @@ public class Controller {
     private TrialResult move(Direction direction) {
         TrialResult trialResult = new TrialResult(direction, game.move(direction));
         trialResults.add(trialResult);
-        outputView.printMap(trialResults);
+        OUTPUT_VIEW.printMap(trialResults);
         return trialResult;
     }
 
-    private GameCommand askForRetry() {
+    private GameCommand askCommand() {
         try {
-            return inputView.readGameCommand();
+            return INPUT_VIEW.readGameCommand();
         } catch (IllegalArgumentException exception) {
-            outputView.printException(exception.getMessage());
-            return askForRetry();
+            OUTPUT_VIEW.printException(exception.getMessage());
+            return askCommand();
         }
     }
 }
