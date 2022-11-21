@@ -28,6 +28,17 @@ public class BridgeGame {
         return fillBridge(count,bridge,upOrDown + bridge.get(count));
     }
 
+    private static boolean fillBridge(int count,List<String> bridge,String checkFalse) {
+        upBridge += " | " + resultStatus.charAt(count*2);
+        downBridge += " | " + resultStatus.charAt(count*2+1) ;
+        OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
+        if (count == bridge.size() - 1 && resultStatus.contains("O")) {
+            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]","성공",attempt);
+            return true;
+        }
+        return checkInputAndBridge(checkFalse);
+    }
+
     private static boolean fillFirstBridge(String checkFalse) { //여기서 다리를 완성하고 출력은 OutputView에서 해주고 싶은데
         fillOneBlcok(String.valueOf(resultStatus.charAt(0)),String.valueOf(resultStatus.charAt(1)));
         OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
