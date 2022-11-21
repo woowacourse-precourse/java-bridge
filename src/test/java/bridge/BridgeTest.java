@@ -34,7 +34,8 @@ class BridgeTest {
 
         try {
             bridgeController.generateBridge();
-        } catch (NoSuchElementException ignore) {}
+        } catch (NoSuchElementException ignore) {
+        }
 
         assertThat(out.toString()).contains(ERROR_MESSAGE);
     }
@@ -44,6 +45,6 @@ class BridgeTest {
     void isBridgeBlockPassable() {
         bridgeService.initBridge(BridgeDto.from(List.of("U", "D")));
         assertThat(bridgeService.isPassable(0, "U")).isTrue();
-        assertThat(bridgeService.isPassable(1,"U")).isFalse();
+        assertThat(bridgeService.isPassable(1, "U")).isFalse();
     }
 }
