@@ -53,7 +53,7 @@ public class BridgeController {
         return outputView.printMap(nowBridge, generatedBridge);
     }
 
-    public void printResultController(int count, StringBuffer bridgeScreen, String gameSuccess) {
-        outputView.printResult(count, bridgeScreen, gameSuccess);
+    public String printResultController(int count, StringBuffer bridgeScreen, String gameSuccess) {
+        return outputView.printResult(count, bridgeScreen, gameSuccess);
     }
 }

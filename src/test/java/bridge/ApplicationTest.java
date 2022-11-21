@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.domain.BridgeMap.LOSE;
 import static bridge.domain.BridgeMap.WIN;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -8,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import bridge.controller.BridgeController;
 import bridge.exception.BridgeException;
 import bridge.service.BridgeGame;
 import bridge.view.OutputView;
@@ -23,6 +25,7 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     private final BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeController bridgeController = new BridgeController();
     private final OutputView outputView = new OutputView();
     private final BridgeException bridgeException = new BridgeException();
 
@@ -52,6 +55,7 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    // 예외처리 테스트
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -92,6 +96,22 @@ class ApplicationTest extends NsTest {
                 .hasMessageContaining("[ERROR] R, Q 중에서 하나의 문자를 입력하시오.");
     }
 
+
+    // 게임 서비스 동작 확인
+    @Test
+    void 다리_이동_후_가장_최근에_건넌_다리_검사() {
+        // given
+        List<String> bridge = new ArrayList<>();
+        bridge.add("U");
+
+        // when
+        bridgeGame.move("U", bridge);
+
+        // then
+        assertEquals(2, bridge.size());
+        assertEquals("U", bridge.get(1));
+    }
+
     @Test
     void 게임_재시작() {
         // given
@@ -106,29 +126,16 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 생성된_다리_사이즈() {
+    void 게임_승리_여부() {
         // given
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> nowBridge = List.of("U", "D", "D");
+        List<String> generatedBridge = List.of("U", "D", "D");
 
         // when
-        List<String> bridge = bridgeMaker.makeBridge(10);
+        String result = bridgeGame.isGameWin(nowBridge, generatedBridge);
 
         // then
-        assertEquals(10, bridge.size());
-    }
-
-    @Test
-    void 다리_이동_후_가장_최근에_건넌_다리_검사() {
-        // given
-        List<String> bridge = new ArrayList<>();
-        bridge.add("U");
-
-        // when
-        bridgeGame.move("U", bridge);
-
-        // then
-        assertEquals(2, bridge.size());
-        assertEquals("U", bridge.get(1));
+        assertEquals(WIN.getElement(), result);
     }
 
     @Test
@@ -148,19 +155,7 @@ class ApplicationTest extends NsTest {
         assertEquals(false, gameSuccess);
     }
 
-    @Test
-    void 게임_승리_여부() {
-        // given
-        List<String> nowBridge = List.of("U", "D", "D");
-        List<String> generatedBridge = List.of("U", "D", "D");
-
-        // when
-        String result = bridgeGame.isGameWin(nowBridge, generatedBridge);
-
-        // then
-        assertEquals(WIN.getElement(), result);
-    }
-
+    // 출력 기능 동작 확인
     @Test
     void 지금까지_건넌_다리_출력_화면() {
         // given
@@ -174,6 +169,35 @@ class ApplicationTest extends NsTest {
         assertEquals("[ O |   | X ]\n[   | O |   ]\n", output.toString());
     }
 
+    @Test
+    void 게임_최종_결과_화면() {
+        // given
+        List<String> nowBridge = List.of("U", "D", "U");
+        List<String> generatedBridge = List.of("U", "D", "D");
+
+        // when
+        StringBuffer bridgeScreen = bridgeController.printMapController(nowBridge, generatedBridge);
+        String output = outputView.printResult(2, bridgeScreen, LOSE.getElement());
+
+        // then
+        assertEquals("최종 게임 결과\n" + "[ O |   | X ]\n[   | O |   ]\n"
+                + "\n" + "게임 성공 여부: 실패\n" + "총 시도한 횟수: 2", output);
+    }
+
+
+    // 랜덤 다리 생성 사이즈 확인
+
+    @Test
+    void 생성된_다리_사이즈() {
+        // given
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        // when
+        List<String> bridge = bridgeMaker.makeBridge(10);
+
+        // then
+        assertEquals(10, bridge.size());
+    }
 
     @Override
     protected void runMain() {

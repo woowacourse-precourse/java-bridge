@@ -18,6 +18,6 @@ public class Application {
         // 게임 시작
         int count = bridgeGame.gameManagement(nowBridge, generatedBridge);
         // 결과 출력
-        bridgeGame.printResultService(count, nowBridge, generatedBridge);
+        System.out.println(bridgeGame.printResultService(count, nowBridge, generatedBridge));
     }
 }
