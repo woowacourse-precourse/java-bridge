@@ -7,10 +7,10 @@ import java.util.StringJoiner;
  */
 public class BridgeGame {
 
-    private static StringJoiner upSideBridge = new StringJoiner("|", "[", "]");
-    private static StringJoiner downSideBridge = new StringJoiner("|", "[", "]");
+    private static StringJoiner upSideBridge = new StringJoiner(" | ", "[ ", " ]");
+    private static StringJoiner downSideBridge = new StringJoiner(" | ", "[ ", " ]");
     private static int gameCount;
-    private static boolean isPlayerWin;
+    private static boolean isPlayerFailed = false;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -56,8 +56,8 @@ public class BridgeGame {
         if (doRestart.equals("Q")) {
             return false;
         }
-        upSideBridge = new StringJoiner("|", "[", "]");
-        downSideBridge = new StringJoiner("|", "[", "]");
+        upSideBridge = new StringJoiner(" | ", "[ ", " ]");
+        downSideBridge = new StringJoiner(" | ", "[ ", " ]");
         return true;
     }
 
@@ -65,16 +65,16 @@ public class BridgeGame {
         gameCount += 1;
     }
 
-    public void gameSuccess() {
-        isPlayerWin = true;
+    public void switchResult() {
+        isPlayerFailed = !isPlayerFailed;
     }
 
     public static int getGameCount() {
         return gameCount;
     }
 
-    public static boolean getIsPlayerWin() {
-        return isPlayerWin;
+    public static boolean getIsPlayerFailed() {
+        return isPlayerFailed;
     }
 
     public static StringJoiner getUpSideBridge() {
