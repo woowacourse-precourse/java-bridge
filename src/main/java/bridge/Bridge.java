@@ -86,40 +86,42 @@ public class Bridge {
      *  비즈니스 로직과 UI 로직을 분리하기 위해
      */
     public String movingResultToString(String successOrNot) {
-        return lineToString(successOrNot, UP) + NEWLINE +
-                lineToString(successOrNot, DOWN);
+        return lineToString(successOrNot, UP).concat(NEWLINE)
+                .concat(lineToString(successOrNot, DOWN));
     }
 
     private String lineToString(String successOrNot, String upOrDown) {
-        return BRIDGE_BEGIN + createMovingResult(successOrNot, upOrDown)
-                + BRIDGE_END;
+        return BRIDGE_BEGIN.concat(createMovingResult(successOrNot, upOrDown))
+                .concat(BRIDGE_END);
     }
 
     private String createMovingResult(String successOrNot, String inputUpOrDown) {
         if (inputUpOrDown.equals(UP)) {
-            return getUpperMovableResultBeforeCurrent(getCurrentIndex()) +
-                    getUpperMovableResult(successOrNot, getCurrentIndex());
+            return getUpperMovableResultBeforeCurrent(getCurrentIndex())
+                    .concat(getUpperMovableResult(successOrNot, getCurrentIndex()));
         }
 
-        return getLowerMovableResultBeforeCurrent(getCurrentIndex()) +
-                getLowerMovableResult(successOrNot, getCurrentIndex());
+        return getLowerMovableResultBeforeCurrent(getCurrentIndex())
+                .concat(getLowerMovableResult(successOrNot, getCurrentIndex()));
     }
 
     // success 라는 가정하에 range만 인자로 전달
     private String getUpperMovableResultBeforeCurrent(int current) {
-        String movingResult = "";
+        StringBuilder movingResult = new StringBuilder();
         for (int index = 0; index < current; index++) {
-            movingResult += getUpperMovableResult(SUCCESS, index) + BRIDGE_DIVIDING_LINE;
+            movingResult.append(getUpperMovableResult(SUCCESS, index))
+                    .append(BRIDGE_DIVIDING_LINE);
         }
-        return movingResult;
+        return movingResult.toString();
     }
 
     private String getLowerMovableResultBeforeCurrent(int current) {
-        String movingResult = "";
+        StringBuilder movingResult = new StringBuilder();
         for (int index = 0; index < current; index++) {
-            movingResult += getLowerMovableResult(SUCCESS, index) + BRIDGE_DIVIDING_LINE;
+            movingResult.append(getLowerMovableResult(SUCCESS, index))
+                    .append(BRIDGE_DIVIDING_LINE);
         }
-        return movingResult;
+        return movingResult.toString();
     }
 
     private String getUpperMovableResult(String successOrNot, int index) {
