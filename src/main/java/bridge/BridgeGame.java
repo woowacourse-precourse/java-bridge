@@ -82,6 +82,21 @@ public class BridgeGame {
         return " ";
     }
 
+    public Boolean isSuccess() {
+        if (this.locationNumber == bridge.size()) {
+            this.isSuccess = true;
+            return true;
+        }
+        return false;
+    }
+
+    public String getSuccess() {
+        if (this.isSuccess) {
+            return "성공";
+        }
+        return "실패";
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
