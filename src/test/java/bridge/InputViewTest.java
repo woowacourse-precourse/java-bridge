@@ -24,5 +24,13 @@ public class InputViewTest {
         assertThatThrownBy(() -> input.validateBridgeSize("25"))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이동할 칸이 U나 D가 아닐 때 예외 발생")
+    @Test
+    void movingIsNotUpOrDown() {
+        InputView input = new InputView();
+        assertThatThrownBy(() -> input.validateUpOrDown("S"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
