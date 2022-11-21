@@ -4,13 +4,13 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
+    @DisplayName("다리 사이즈가 3이고, 위-아래-위 순으로 이동했을 때 성공한 경우")
     @Test
-    void 기능_테스트() {
+    void enterBridgeSize3AndMovementUDUBySuccessful() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
@@ -24,15 +24,7 @@ class ApplicationTest extends NsTest {
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
-        }, 1, 0, 1);
-    }
-
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+        }, 0, 1, 0);
     }
 
     @Override

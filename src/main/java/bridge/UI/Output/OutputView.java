@@ -28,8 +28,8 @@ public class OutputView {
 
         if(move.equals("D")) flag = compareBottom(currentLocation);
 
-        System.out.println(formattingBridge(this.top));
-        System.out.println(formattingBridge(this.bottom));
+        System.out.println(formattingBridge(top));
+        System.out.println(formattingBridge(bottom));
 
         return flag;
     }
