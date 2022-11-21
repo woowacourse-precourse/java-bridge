@@ -23,7 +23,8 @@ public class BridgeMap {
         if (move == Move.UP) {
             ups.add(O);
             downs.add(BLANK);
-        } else if (move == Move.DOWN) {
+        }
+        if (move == Move.DOWN) {
             ups.add(BLANK);
             downs.add(O);
         }
@@ -33,7 +34,8 @@ public class BridgeMap {
         if (move == Move.UP) {
             ups.add(X);
             downs.add(BLANK);
-        } else if (move == Move.DOWN) {
+        }
+        if (move == Move.DOWN) {
             ups.add(BLANK);
             downs.add(X);
         }
