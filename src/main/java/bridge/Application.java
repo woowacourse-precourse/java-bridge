@@ -12,9 +12,7 @@ public class Application {
 
 
     public static BridgeGame initiateBridgeGame() {
-        inputView.printStartMessage();
-
-        while(true) {
+        while (true) {
             try {
                 int size = inputView.readBridgeSize();
 
@@ -26,7 +24,7 @@ public class Application {
     }
 
     public static void inputMoving(BridgeGame bridgeGame) {
-        while(true) {
+        while (true) {
             try {
                 String selection = inputView.readMoving();
                 bridgeGame.move(selection);
@@ -39,7 +37,7 @@ public class Application {
     }
 
     public static void inputCommand(BridgeGame bridgeGame) {
-        while(true) {
+        while (true) {
             try {
                 String command = inputView.readGameCommand();
                 bridgeGame.retry(command);
@@ -52,22 +50,23 @@ public class Application {
     }
 
     public static void run(BridgeGame bridgeGame) {
-        while(!bridgeGame.winGame() && !bridgeGame.isPlayerDead()) {
+        while (!bridgeGame.isGameOver()) {
             inputMoving(bridgeGame);
             outputView.printMap(bridgeGame, bridgeGame.getPassedCount());
             bridgeGame.updatePlayer();
+
+            if (bridgeGame.isPlayerDead()) {
+                inputCommand(bridgeGame);
+            }
         }
     }
 
     public static void main(String[] args) {
+        inputView.printStartMessage();
+
         BridgeGame bridgeGame = initiateBridgeGame();
 
-        do {
-            run(bridgeGame);
-            if (bridgeGame.isPlayerDead()) {
-                inputCommand(bridgeGame);
-            }
-        } while(!bridgeGame.winGame() && !bridgeGame.isPlayerDead());
+        run(bridgeGame);
 
         outputView.printResult(bridgeGame);
     }

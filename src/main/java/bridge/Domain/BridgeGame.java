@@ -1,7 +1,6 @@
 package bridge.Domain;
 
 import bridge.Constant.InputValue;
-
 import java.util.List;
 
 
@@ -58,6 +57,14 @@ public class BridgeGame {
         if (bridgeStates.size() <= playerNextLocation) {    // 다음에 이동할 곳이 인덱스를 벗어날 경우 끝에 도달한 것
             this.maxPassedCount = playerNextLocation - 1;
 
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isGameOver() {
+        if (isPlayerDead() || winGame()) {
             return true;
         }
 
