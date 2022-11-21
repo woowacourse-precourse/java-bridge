@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.domain.game.GameStatus.FAILED;
-import static bridge.domain.game.GameStatus.PLAYING;
 import static bridge.domain.game.GameStatus.SUCCESS;
 import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 

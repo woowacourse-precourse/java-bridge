@@ -16,7 +16,6 @@ import java.util.List;
 import static bridge.domain.bridge.Move.DOWN;
 import static bridge.domain.bridge.Move.UP;
 import static bridge.domain.game.GameStatus.FAILED;
-import static bridge.domain.game.GameStatus.PLAYING;
 import static bridge.domain.game.GameStatus.SUCCESS;
 import static bridge.support.ErrorMessage.INVALID_COMMAND_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
