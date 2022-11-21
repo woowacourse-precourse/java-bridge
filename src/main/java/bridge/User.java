@@ -28,7 +28,7 @@ public class User {
     }
 
     public boolean isSuccess(int tryCount) {
-        if (nowBridgeLength == bridgeLength) {
+        if (getUserSize() == bridgeLength) {
             new OutputView().printResult(answer, userBridge, tryCount);
             return true;
         }
