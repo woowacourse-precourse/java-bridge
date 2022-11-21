@@ -13,7 +13,7 @@ public class BridgeGame {
         player.addTryCount();
     }
 
-    public boolean isCorrect(List<String> bridge, List<String> choices, int index) {
+    public boolean isCorrectChoice(List<String> bridge, List<String> choices, int index) {
         String answer = bridge.get(index);
         String choice = choices.get(index);
         return answer.equals(choice);

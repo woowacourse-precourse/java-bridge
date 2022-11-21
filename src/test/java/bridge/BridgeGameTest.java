@@ -26,11 +26,11 @@ public class BridgeGameTest {
     @Test
     void isCorrect() {
         player.addChoice("U");
-        boolean result = bridgeGame.isCorrect(bridge.getAnswers(), player.getChoices(), 0);
+        boolean result = bridgeGame.isCorrectChoice(bridge.getAnswers(), player.getChoices(), 0);
         assertThat(result).isTrue();
 
         player.addChoice("U");
-        result = bridgeGame.isCorrect(bridge.getAnswers(), player.getChoices(), 1);
+        result = bridgeGame.isCorrectChoice(bridge.getAnswers(), player.getChoices(), 1);
         assertThat(result).isFalse();
     }
 

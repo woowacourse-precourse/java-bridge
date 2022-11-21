@@ -24,7 +24,7 @@ public class Application {
         while(playing) {
             move();
             checkCorrectChoice();
-            checkApproachEndPoint();
+            checkApproachLast();
         }
 
         finishGame();
@@ -32,10 +32,10 @@ public class Application {
 
     private void startGame() {
         System.out.println(Message.START_MESSAGE);
-        makeAnswerBridge();
+        makeBridge();
     }
 
-    private void makeAnswerBridge() {
+    private void makeBridge() {
         int bridgeSize = InputView.readBridgeSize();
         List<String> madeBridge = bridgeMaker.makeBridge(bridgeSize);
         bridge = new Bridge(madeBridge);
@@ -64,7 +64,7 @@ public class Application {
         List<String> choices = player.getChoices();
         int lastStep = player.getStep();
 
-        return bridgeGame.isCorrect(answers, choices, lastStep);
+        return bridgeGame.isCorrectChoice(answers, choices, lastStep);
     }
 
     private boolean isRestart(String retryCommand) {
@@ -74,7 +74,7 @@ public class Application {
         return false;
     }
 
-    private void checkApproachEndPoint() {
+    private void checkApproachLast() {
         boolean isApproachLast = bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
         if (playing && isApproachLast) {
             player.setSuccess(true);
