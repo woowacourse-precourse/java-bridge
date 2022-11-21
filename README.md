@@ -64,6 +64,7 @@ BUILD SUCCESSFUL in 0s
     - **Class Methods**
         - [x] public BridgeBlock(String bridgeBlock)
         - [x] public String getBridgeBlock()
+        - [x] public static BridgeBlock getBridgeBlockType(String bridgeBlock)
 - [x] **CLASS2. enum RetrySelector**
     - **Class Variables**
         - [x] RETRY("R")
@@ -72,6 +73,7 @@ BUILD SUCCESSFUL in 0s
     - **CLASS Methods**
         - [x] public RetrySelector(String retrySelector)
         - [x] public String getRetrySelect()
+        - [x] public static RetrySelector getRetrySelectorType(String retrySelector)
 - [x] **CLASS2. BridgeMaker**
     - **Class Variables**
         - [x] private final BridgeNumberGenerator bridgeNumberGenerator
