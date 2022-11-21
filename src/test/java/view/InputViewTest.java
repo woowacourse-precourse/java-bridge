@@ -7,24 +7,28 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
 
     private static final InputView inputView = new InputView();
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"21", "2", "-1"})
     @DisplayName("다리의 길이가 3에서 20사이의 숫자가 아닐 경우 예외를 발생시킵니다.")
-    void readBridgeSizeTest1() {
-        setTestInput("21");
+    void readBridgeSizeTest1(String input) {
+        setTestInput(input);
 
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"ab", "*^", "a1b"})
     @DisplayName("다리의 길이가 숫자가 아닐경우 예외를 발생시킵니다.")
-    void readBridgeSizeTest2() {
-        setTestInput("ab");
+    void readBridgeSizeTest2(String input) {
+        setTestInput(input);
 
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(
                 IllegalArgumentException.class);
@@ -38,19 +42,21 @@ public class InputViewTest {
         assertThat(inputView.readBridgeSize()).isEqualTo(14);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"Q", "R", "u", "d"})
     @DisplayName("이동 방향의 입력이 잘못된 문자일 경우 예외를 발생시킵니다.")
-    void readMovingTest1() {
-        setTestInput("Q");
+    void readMovingTest1(String input) {
+        setTestInput(input);
 
         assertThatThrownBy(inputView::readMoving).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "2", "-1", "0"})
     @DisplayName("이동 방향의 입력이 문자가 아닐 경우 예외를 발생시킵니다.")
-    void readMovingTest2() {
-        setTestInput("1");
+    void readMovingTest2(String input) {
+        setTestInput(input);
 
         assertThatThrownBy(inputView::readMoving).isInstanceOf(
                 IllegalArgumentException.class);
@@ -64,19 +70,21 @@ public class InputViewTest {
         assertThat(inputView.readMoving()).isEqualTo("U");
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"q", "r", "U", "D"})
     @DisplayName("게임 종료 여부 커맨드의 입력이 잘못된 문자일 경우 예외를 발생시킵니다.")
-    void readGameCommandTest1() {
-        setTestInput("U");
+    void readGameCommandTest1(String input) {
+        setTestInput(input);
 
         assertThatThrownBy(inputView::readGameCommand).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "0", "-1"})
     @DisplayName("게임 종료 여부 커맨드의 입력이 문자가 아닐 경우 예외를 발생시킵니다.")
-    void readGameCommandTest2() {
-        setTestInput("1");
+    void readGameCommandTest2(String input) {
+        setTestInput(input);
 
         assertThatThrownBy(inputView::readGameCommand).isInstanceOf(
                 IllegalArgumentException.class);
