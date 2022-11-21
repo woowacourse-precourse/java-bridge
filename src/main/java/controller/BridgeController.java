@@ -30,24 +30,14 @@ public class BridgeController {
             outputView.printMovingSelect();
             String move = inputView.readMoving();
 
-            moveingControl(i,move);
+            bridgeGame.checkAnswer(i,move,bridge);
+            outputView.printMap();
 
             if(BridgeGame.getIsPlayerFailed()){
                 return false;
             }
         }
         return true;
-    }
-
-    public void moveingControl(int moveingIndex, String move){
-        if (bridgeGame.checkAnswer(bridge.get(moveingIndex), move)) {
-            bridgeGame.move(move);
-        }
-        if (!bridgeGame.checkAnswer(bridge.get(moveingIndex), move)) {
-            bridgeGame.moveFailed(move);
-            bridgeGame.switchResult();
-        }
-        outputView.printMap();
     }
 
     public void makeBridge(){
@@ -64,6 +54,6 @@ public class BridgeController {
             startGame();
             return;
         }
-        outputView.printMap();
+        outputView.printResult();
     }
 }

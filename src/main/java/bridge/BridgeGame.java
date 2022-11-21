@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.List;
 import java.util.StringJoiner;
 
 /**
@@ -39,9 +40,14 @@ public class BridgeGame {
         }
     }
 
-    // 정답 다리와 맞는지 체크하는 기능
-    public boolean checkAnswer(String answer, String moving) {
-        return answer.equals(moving);
+    public void checkAnswer(int moveingIndex, String move, List<String> bridge){
+        if(bridge.get(moveingIndex).equals(move)){
+            move(move);
+        }
+        if(!bridge.get(moveingIndex).equals(move)){
+            moveFailed(move);
+            switchResult();
+        }
     }
 
     /**
