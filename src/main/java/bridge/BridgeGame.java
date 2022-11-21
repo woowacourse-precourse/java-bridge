@@ -24,8 +24,9 @@ public class BridgeGame {
         return checkUserMove();
     }
 
-    public void retry(String retry) {
+    public boolean retry(String retry) {
         this.retry = retry;
+        return checkRetry();
     }
 
     public void bridge(List<String> bridge) {
@@ -135,6 +136,28 @@ public class BridgeGame {
         }
     }
 
+    public boolean checkRetry() {
+        try {
+            checkRetryInputRange();
+            checkRetryInputSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    public void checkRetryInputSize() {
+        if (retry.length() != 1) {
+            throw new IllegalArgumentException(Message.USER_RETRY_INPUT_SIZE_ERROR.getMessage());
+        }
+    }
+
+    public void checkRetryInputRange() {
+        if (!(retry.contains("R") || retry.contains("Q"))) {
+            throw new IllegalArgumentException(Message.USER_RETRY_INPUT_RANGE_ERROR.getMessage());
+        }
+    }
 
 
 
