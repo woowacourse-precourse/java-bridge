@@ -7,7 +7,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeSize;
 import bridge.GameCommand;
-import bridge.MapRenderer;
+import bridge.MoveResult;
 import bridge.Moving;
 import bridge.MovingStack;
 import dto.BridgeResponseDto;
@@ -15,7 +15,7 @@ import dto.BridgeSizeRequestDto;
 import dto.GameCommandRequestDto;
 import dto.MapResponseDto;
 import dto.MovingRequestDto;
-import repository.PlayCount;
+import bridge.PlayCount;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -56,7 +56,7 @@ public class BridgeGame {
 
 	public MapResponseDto renderMap(BridgeResponseDto bridgeResponseDto) {
 		List<String> bridge = bridgeResponseDto.getBridge();
-		return new MapResponseDto(new MapRenderer(bridge, movingStack.getMovingStack()));
+		return new MapResponseDto(new MoveResult(bridge, movingStack.getMovingStack()));
 	}
 
 	/**

@@ -4,7 +4,7 @@ import java.util.List;
 
 import bridgeConstant.Constant;
 
-public class MapRenderer {
+public class MoveResult {
 	private static final String ENTRANCE = "[";
 	private static final String EXIT = "]";
 	private static final String DIVISION_LINE = "|";
@@ -19,8 +19,9 @@ public class MapRenderer {
 	private StringBuilder upperRow;
 	private StringBuilder lowerRow;
 	private String map;
+	private int numberOfCorrect;
 
-	public MapRenderer(List<String> bridge, List<String> movingStack) {
+	public MoveResult(List<String> bridge, List<String> movingStack) {
 		this.bridge = bridge;
 		this.movingStack = movingStack;
 		this.lastIndex = movingStack.size() - 1;
@@ -28,6 +29,10 @@ public class MapRenderer {
 		init();
 		addEntrance();
 		render();
+	}
+
+	private void calculateNumberOfCorrect() {
+		numberOfCorrect = (int)map.chars().filter(cell -> cell == 'O').count();
 	}
 
 	private void render() {
@@ -126,5 +131,10 @@ public class MapRenderer {
 
 	public String getMap() {
 		return map;
+	}
+
+	public int getNumberOfCorrect() {
+		calculateNumberOfCorrect();
+		return numberOfCorrect;
 	}
 }

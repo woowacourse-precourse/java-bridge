@@ -5,7 +5,7 @@ import dto.BridgeSizeRequestDto;
 import dto.GameCommandRequestDto;
 import dto.MapResponseDto;
 import dto.MovingRequestDto;
-import repository.PlayCount;
+import bridge.PlayCount;
 import service.BridgeGame;
 import view.InputView;
 import view.OutputView;

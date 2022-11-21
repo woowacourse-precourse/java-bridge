@@ -1,14 +1,14 @@
 package dto;
 
-import bridge.MapRenderer;
+import bridge.MoveResult;
 
 public class MapResponseDto {
 	private final String map;
 	private final int numberOfCorrect;
 
-	public MapResponseDto(MapRenderer mapRenderer) {
-		this.map = mapRenderer.getMap();
-		this.numberOfCorrect = (int)map.chars().filter(cell -> cell == 'O').count();
+	public MapResponseDto(MoveResult moveResult) {
+		this.map = moveResult.getMap();
+		this.numberOfCorrect = moveResult.getNumberOfCorrect();
 	}
 
 	public String getMap() {
