@@ -17,7 +17,6 @@ public class BridgeGame {
         UserBridgeCorrector userBridgeCorrector = new UserBridgeCorrector();
         outputView.moveGuide();
         String movement = inputView.readMoving();
-        // 입력에 대한 예외 검사 추가
         userSelectResult = userBridgeCorrector.addBridge(movement, userSelectResult);
         return userSelectResult;
     }//move
@@ -27,7 +26,6 @@ public class BridgeGame {
         if (!(gameSuccess) && !(UnitSuccess)) {
             outputView.restartGuide();
             String command = inputView.readGameCommand();
-            // 입력에 대한 예외 검사 추가
             GameRestarter gameRestarter = new GameRestarter();
             restart = gameRestarter.isRestart(command);
         }//if
@@ -37,7 +35,6 @@ public class BridgeGame {
     public List<String> make() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int size = inputView.readBridgeSize();
-        // 길이에 대한 에외 검사 추가
         return bridgeMaker.makeBridge(size);
     }//make
 
@@ -49,11 +46,10 @@ public class BridgeGame {
         boolean success = compareBridge.isSame(userSelectResult, computerBridge);
         outputView.printMap(userSelectResult, success);
         return success;
-    }//isSuccess
+    }//isUnitSuccess
 
     public boolean isGameSuccess(List<String> userSelectResult, List<String> computerBridge, boolean UnitSuccess) {
         GameJudge gameJudge = new GameJudge();
         return gameJudge.isOver(userSelectResult, computerBridge, UnitSuccess);
     }//isGameSuccess
-
 } // end class
