@@ -47,6 +47,46 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_다리_길이_테스트() {
+        assertSimpleTest(() -> {
+            runException("2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_이동_문자_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 예외_이동_소문자_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "u");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 예외_재시도_문자_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "D", "j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 예외_재시도_소문자_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "D", "r");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
