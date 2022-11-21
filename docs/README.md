@@ -56,7 +56,7 @@
   - Q이면 Status 변경
 - void reinitialize()
   - 현재 상태(List<String>,현재 위치)를 재시작을 위해 초기화
-- void isCrossBridge()
+- void checkCrossBridge()
   - 현재 위치와 총 다리의 길이를 비교하여 현재 다리를 전부 다 건넌 상태인지 건너는 중인지, 실패하였는지 상태값 업데이트
 - boolean isEnd()
   - 현재 status가 DOING이 아니면 마지막 결과를 출력하고, False 반환
