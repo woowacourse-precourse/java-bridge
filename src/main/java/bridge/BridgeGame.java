@@ -18,17 +18,31 @@ public class BridgeGame {
         System.out.println("게임 시작");
         int bridgeSize = inputView.readBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        move();
+        crossBridge(bridge);
         retry();
     }
 
-    public void move() {
-        System.out.println("이동 입력");
-        String moving = inputView.readMoving();
+    private void crossBridge(Bridge bridge) {
+        int index = 0;
+        while (true) {
+            String moving = move();
+            if (!bridge.canMove(index, moving)) {
+                outputView.printMap();
+                retry();
+                break;
+            }
+        }
     }
 
-    public void retry() {
+    public String move() {
+        System.out.println("이동 입력");
+        String moving = inputView.readMoving();
+        return moving;
+    }
+
+    public String retry() {
         System.out.println("게임 재시작 유무");
         String answer = inputView.readGameCommand();
+        return answer;
     }
 }
