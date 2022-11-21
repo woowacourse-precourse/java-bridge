@@ -30,12 +30,12 @@ public class BridgeGame {
         ResultType resultType = userMoveToChoice(userMove, index);
         this.index += 1;
         if (userMove.equals(BridgeType.UP.getStringCode())) {
-            moveLog.updateMoveLog(BridgeType.UP, resultType.getIsSuccess());
+            moveLog.updateMoveLog(BridgeType.UP, resultType.getShape());
             moveLog.updateMoveLog(BridgeType.DOWN, NONE);
         }
         if (userMove.equals(BridgeType.DOWN.getStringCode())) {
             moveLog.updateMoveLog(BridgeType.UP, NONE);
-            moveLog.updateMoveLog(BridgeType.DOWN, resultType.getIsSuccess());
+            moveLog.updateMoveLog(BridgeType.DOWN, resultType.getShape());
         }
         return resultType;
     }

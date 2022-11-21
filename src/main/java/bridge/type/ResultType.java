@@ -5,18 +5,18 @@ public enum ResultType {
     FAIL("실패", "X");
 
     private final String state;
-    private final String isSuccess;
+    private final String shape;
 
-    ResultType(String state, String success) {
+    ResultType(String state, String shape) {
         this.state = state;
-        this.isSuccess = success;
+        this.shape = shape;
     }
 
     public String getState() {
         return this.state;
     }
 
-    public String getIsSuccess() {
-        return this.isSuccess;
+    public String getShape() {
+        return this.shape;
     }
 }
