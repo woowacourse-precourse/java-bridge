@@ -1,4 +1,4 @@
-package bridge;
+package bridge.views;
 
 import bridge.messages.ErrorMessage;
 import bridge.validators.InputValidator;

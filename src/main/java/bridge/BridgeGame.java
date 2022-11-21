@@ -1,6 +1,7 @@
 package bridge;
 
-import bridge.messages.InputMessage;
+import bridge.views.InputView;
+import bridge.views.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
