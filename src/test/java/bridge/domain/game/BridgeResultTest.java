@@ -48,4 +48,12 @@ class BridgeResultTest {
         assertThat(down.get(1)).isEqualTo(MoveResult.NOTHING.symbol());
         assertThat(down.get(2)).isEqualTo(MoveResult.FAIL.symbol());
     }
+
+    @DisplayName("게임의 최종 성공 여부를 판별한다.")
+    @Test
+    void validateFinalSuccess() {
+        String finalResult = bridgeResult.getMoveSuccessResult();
+
+        assertThat(finalResult).isEqualTo(MoveResult.FAIL.value());
+    }
 }
