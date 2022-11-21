@@ -67,4 +67,15 @@ public class OutputView {
     public static void String(String message) {
         System.out.println(message);
     }
+
+    public static String Success(Boolean boo) {
+        String result = "";
+        if (boo.equals(true)) {
+            result = "성공";
+        }
+        if (boo.equals(false)) {
+            result = "실패";
+        }
+        return result;
+    }
 }
