@@ -21,4 +21,10 @@ public abstract class UserException {
             throw new IllegalArgumentException(ExceptionCode.HAS_BLANK.getMessage());
         }
     }
+
+    void isNotLengthOne(String input) {
+        if (input.length() != 1) {
+            throw new IllegalArgumentException(ExceptionCode.IS_NOT_LENGTH_ONE.getMessage());
+        }
+    }
 }
