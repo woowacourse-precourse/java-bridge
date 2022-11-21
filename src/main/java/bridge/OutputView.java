@@ -41,6 +41,11 @@ public class OutputView {
         }
     }
 
+    public void printRequestRetry(){
+        System.out.println("");
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
     public void printTryCount(int count){
         System.out.println("총 시도한 횟수: " + count);
     }

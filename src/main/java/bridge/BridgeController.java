@@ -27,4 +27,17 @@ public class BridgeController {
             bridgeGame.nextStep();
         }
     }
+
+    public boolean isFinish(String input){
+        if(input.contains("X")){
+            String strRetry = inputView.readGameCommand();
+            if(strRetry.equals("R")){
+                gameRestart;
+            }
+            if(strRetry.equals("Q")){
+                return false;
+            }
+        }
+        return true;
+    }
 }
