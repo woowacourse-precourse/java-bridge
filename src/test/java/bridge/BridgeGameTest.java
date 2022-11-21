@@ -29,4 +29,22 @@ public class BridgeGameTest {
         //then
         assertThat(resultMap.get(0).contains("O") || resultMap.get(0).contains("X")).isTrue();
     }
+    @DisplayName("compare 메소드 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"Q"})
+    void compareValue(String input) {
+        //given
+        List<List<String>> userMap = new ArrayList<>(2);
+        userMap.add(new ArrayList<>());
+        userMap.add(new ArrayList<>());
+        bridge.BridgeGame bridgeGame = new bridge.BridgeGame(3);
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        OutputStream out = new ByteArrayOutputStream();
+        //when
+        System.setIn(in);
+        System.setOut(new PrintStream(out));
+        List<List<String>> resultMap = bridgeGame.compareValue(userMap, "U",0);
+        //then
+        assertThat(out.toString().contains("[ O ]") || out.toString().contains("[ X ]")).isTrue();
+    }
 }
