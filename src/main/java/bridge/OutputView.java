@@ -51,7 +51,6 @@ public class OutputView {
             }
         }
         System.out.print("]\n");
-        System.out.println();
     }
 
     /**
@@ -62,6 +61,7 @@ public class OutputView {
     public void printResult(List<String> input, List<String> answer, State state, int time) {
         System.out.println("최종 게임 결과");
         printMap(input, answer);
+        System.out.println();
         System.out.println("게임 성공 여부: "+state.getMsg());
         System.out.println("총 시도한 횟수: "+time);
     }
