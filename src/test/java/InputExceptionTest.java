@@ -1,7 +1,7 @@
 import static bridge.util.Constants.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.view.InputValidator;
+import bridge.util.InputValidator;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

@@ -1,11 +1,7 @@
 package bridge.view;
 
-import bridge.BridgeGame;
-import bridge.DownsideResults;
-import bridge.OneSideResults;
-import bridge.UpsideResults;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import bridge.domain.BridgeGame;
+import bridge.domain.OneSideResults;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;

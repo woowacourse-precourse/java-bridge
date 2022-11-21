@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.util.CommandKeys;
 import java.util.ArrayList;

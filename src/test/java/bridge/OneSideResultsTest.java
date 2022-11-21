@@ -3,6 +3,9 @@ package bridge;
 import static bridge.util.Constants.COLON;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.DownsideResults;
+import bridge.domain.OneSideResults;
+import bridge.domain.UpsideResults;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

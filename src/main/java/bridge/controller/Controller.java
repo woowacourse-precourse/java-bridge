@@ -2,12 +2,12 @@ package bridge.controller;
 
 import static bridge.util.Constants.*;
 
-import bridge.BridgeGame;
-import bridge.BridgeMaker;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.DownsideResults;
-import bridge.OneSideResults;
-import bridge.UpsideResults;
+import bridge.domain.DownsideResults;
+import bridge.domain.OneSideResults;
+import bridge.domain.UpsideResults;
 import bridge.util.CommandKeys;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -34,7 +34,7 @@ public class Controller {
         return answerBridge;
     }
 
-    public void play() {
+    public void start() {
         for (int index = 0; index < answerBridge.size(); index++) {
             final String playerMove = InputView.readMoving();
             final String matchResult = bridgeGame.move(playerMove, answerBridge.get(index));

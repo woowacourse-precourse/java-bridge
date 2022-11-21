@@ -1,21 +1,23 @@
-package bridge;
+package bridge.domain;
 
 import static bridge.util.Constants.*;
 
+import bridge.domain.OneSideResults;
 import bridge.util.CommandKeys;
 
-public class DownsideResults extends OneSideResults{
-    public DownsideResults() {
+public class UpsideResults extends OneSideResults {
+
+    public UpsideResults() {
         super();
     }
 
     @Override
     public void update(String playerMove, String matchResult) {
         if (CommandKeys.isUp(playerMove)) {
-            results.add(BLANK_SPACE);
+            results.add(matchResult);
         }
         if (CommandKeys.isDown(playerMove)) {
-            results.add(matchResult);
+            results.add(BLANK_SPACE);
         }
     }
 }
