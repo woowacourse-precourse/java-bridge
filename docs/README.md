@@ -7,7 +7,7 @@
     - [] retry
 
 - [] BridgeMaker
-  - [] 
+  - [] makeBridge
 
 ## Validation logic
 - [] InputValidation
