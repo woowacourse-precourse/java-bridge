@@ -1,19 +1,18 @@
 package view;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+import util.Constants;
+
 public class OutputView {
     public static void printStartBridgeGame() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println(Constants.PRINT_START_BRIDGEGAME);
     }
 
     public static void printBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(Constants.PRINT_BRIDGESIZE);
     }
 
     public static void printToChoicePlace() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)\n");
+        System.out.println(Constants.PRINT_TO_CHOICE_PLACE);
     }
 
     public static void printMap(String upBridge, String downBridge) {
@@ -22,13 +21,13 @@ public class OutputView {
     }
 
     public static void printChoiceRetry() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(Constants.PRINT_CHOICE_RETRY);
     }
-    
+
     public static void printResult(String bridge, String failOrPass, int count) {
-        System.out.println("\n최종 게임 결과");
+        System.out.println(Constants.FINAL_RESULT);
         System.out.println(bridge);
-        System.out.println("게임 성공 여부: " + failOrPass);
-        System.out.println("총 시도한 횟수: " + String.valueOf(count));
+        System.out.println(Constants.SUCCESS_OR_FAILURE + failOrPass);
+        System.out.println(Constants.TOTAL_RESULT + String.valueOf(count));
     }
 }
