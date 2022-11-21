@@ -22,7 +22,6 @@ public class GameController {
     public void GAMESTART() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         int input = inputView.readBridgeSize();
-        bridgeGame.setBridgeSize(input);
         bridgeGame.setBridge(bridgeMaker.makeBridge(input));
     }
 

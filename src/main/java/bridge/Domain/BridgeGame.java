@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
-    private int bridgeSize;
     private List<String> bridge;
     private List<Boolean> matchResult = new ArrayList<>();
     private int gameCount = 0;
@@ -31,10 +30,7 @@ public class BridgeGame {
     }
 
     public int getBridgeSize() {
-        return bridgeSize;
-    }
-    public void setBridgeSize(int bridgeSize) {
-        this.bridgeSize = bridgeSize;
+        return bridge.size();
     }
     public List<String> getBridge() {
         return bridge;
