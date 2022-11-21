@@ -13,7 +13,7 @@ class LogicUnitTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 예외_테스트() {
+    void 다리길이_숫자아니면_예외처리() {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
