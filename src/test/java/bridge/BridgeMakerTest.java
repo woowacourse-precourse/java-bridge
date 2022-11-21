@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeMakerTest {
 
@@ -33,5 +32,14 @@ class BridgeMakerTest {
                         .collect(Collectors.toList())
                         .size())
                 .isEqualTo(20);
+    }
+
+    @DisplayName("범위를 벗어난 길이인 경우, 오류가 발생한다.")
+    @Test
+    void createBridgeBySizeOverRange() {
+        BridgeMaker bridgeMaker = new BridgeMaker(generator);
+
+        Assertions.assertThatThrownBy(() -> bridgeMaker.makeBridge(44))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
