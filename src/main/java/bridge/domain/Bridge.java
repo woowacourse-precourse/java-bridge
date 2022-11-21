@@ -8,4 +8,8 @@ public class Bridge {
         this.blocks = blocks;
         this.crossStatuses = crossStatuses;
     }
+
+    public void moveNextBlock(final String inputBlock) {
+        blocks.moveNextBlock(inputBlock, crossStatuses);
+    }
 }

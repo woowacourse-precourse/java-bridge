@@ -40,7 +40,12 @@ public class BridgeGame {
      */
     public boolean move(final String inputBlock) {
         InputValidator.validateBlock(inputBlock);
+        getBridge().moveNextBlock(inputBlock);
         return true;
+    }
+
+    private Bridge getBridge() {
+        return bridgeGameRepository.findBridge();
     }
 
     /**

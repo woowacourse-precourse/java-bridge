@@ -56,4 +56,7 @@ public enum BlockStatus {
     }
 
 
+    public boolean contains(final String inputBlock) {
+        return crossableSymbol.equals(inputBlock);
+    }
 }

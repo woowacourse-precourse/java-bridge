@@ -9,4 +9,13 @@ public class CrossStatuses {
     public CrossStatuses(final List<CrossStatus> crossStatuses) {
         this.crossStatuses = crossStatuses;
     }
+
+    public int findUncrossedIndex() {
+        return crossStatuses.indexOf(CrossStatus.YET);
+    }
+
+    public void updateStatus(final CrossStatus crossedStatus, final int uncrossedIndex) {
+        crossStatuses.set(uncrossedIndex, crossedStatus);
+        System.out.println(crossStatuses);
+    }
 }
