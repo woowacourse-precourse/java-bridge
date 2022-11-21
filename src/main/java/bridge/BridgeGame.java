@@ -15,6 +15,7 @@ public class BridgeGame {
     private final int size;
     private final List<String> bridge;
     boolean wrongMovement = true;
+    boolean playMore = true;
 
     public BridgeGame() {
         this.size = getSize();
@@ -55,6 +56,25 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        if (inputView.readGameCommand().equals("Q")) {
+            playMore = false;
+        }
+        return playMore;
+    }
+
+    public void resultPrint() {
+        int tryCount = 0;
+        while (playMore && wrongMovement) {
+            wrongMovement = move();
+            if (wrongMovement) {playMore = retry();}
+            tryCount += 1;
+        }
+        outputView.printResult(wrongMovement, tryCount);
+    }
+
+    public void play() {
+        inputView.gameStart();
+        resultPrint();
     }
 }
