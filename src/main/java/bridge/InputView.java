@@ -37,7 +37,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(BRIDGE_DIRECTION_SELECT_MESSAGE);
+        return validateDirectionType(Console.readLine());
+    }
+
+    private String validateDirectionType(String direction) {
+        if (!direction.equals(LOWER_BRIDGE) && !direction.equals(UPPER_BRIDGE)) {
+            throw new RuntimeException(INPUT_TYPE_IS_NOT_PROPER);
+        }
+        return direction;
     }
 
     /**
