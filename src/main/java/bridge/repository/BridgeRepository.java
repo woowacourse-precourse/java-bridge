@@ -8,16 +8,14 @@ import java.util.List;
 
 public class BridgeRepository {
 
-    private int size;
     private List<String> bridge;
 
     public BridgeRepository(int size) {
         validBridgeLength(size);
-        this.size = size;
-        setBridge();
+        setBridge(size);
     }
 
-    public void setBridge() {
+    public void setBridge(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(size);
     }
