@@ -7,6 +7,6 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeRandomNumberGenerator  bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         Controller controller = new Controller(inputView, outputView, bridgeRandomNumberGenerator);
-        controller.start();
+        controller.startGame();
     }
 }
