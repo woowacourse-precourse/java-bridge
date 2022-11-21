@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Domain.Key;
 import bridge.Domain.UserBridges;
 import bridge.Domain.State;
 
@@ -15,24 +16,27 @@ public class BridgeGame {
      */
     public static State move(String moveTo, String space, UserBridges userBridges) {
 
-        if(space.equals("U") && moveTo.equals("U")) {
-            userBridges.saveMove("O", " ");
-            return State.RIGHT_CHOICE;
-        }
-        if(space.equals("U") && moveTo.equals("D")) {
-            userBridges.saveMove(" ", "X");
-            return State.WRONG_CHOICE;
-        }
-        if(space.equals("D") && moveTo.equals("U")) {
-            userBridges.saveMove("X", " ");
-            return State.WRONG_CHOICE;
-        }
-        if(space.equals("D") && moveTo.equals("D")) {
-            userBridges.saveMove(" ", "O");
+        if (moveTo.equals(space)) {
+            saveRightMove(moveTo, userBridges);
             return State.RIGHT_CHOICE;
         }
 
-        return State.QUIT;
+        saveWrongMove(moveTo, userBridges);
+        return State.WRONG_CHOICE;
+    }
+
+    public static void saveRightMove(String moveTo, UserBridges userBridges) {
+        if (moveTo.equals(Key.UP))
+            userBridges.saveMove("O", " ");
+        if (moveTo.equals(Key.DOWN))
+            userBridges.saveMove(" ", "O");
+    }
+
+    public static void saveWrongMove(String moveTo, UserBridges userBridges) {
+        if (moveTo.equals(Key.UP))
+            userBridges.saveMove("X", " ");
+        if (moveTo.equals(Key.DOWN))
+            userBridges.saveMove(" ", "X");
     }
 
     /**
