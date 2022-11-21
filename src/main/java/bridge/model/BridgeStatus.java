@@ -9,8 +9,10 @@ public class BridgeStatus {
     public void initBridgeStatus() {
         bridgeStatus = new ArrayList<>();
     }
-
     public void addStatus(String status) {
         bridgeStatus.add(status);
+    }
+    public List<String> getStatus() {
+        return bridgeStatus;
     }
 }
