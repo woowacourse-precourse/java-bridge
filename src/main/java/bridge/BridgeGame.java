@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private Positions positions = new Positions();
+   // private Positions positions = new Positions();
     public static String game_status = "playing";
 
     /**
@@ -16,37 +16,34 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String inputPosition, List<String> bridge, int count) {
+    public String move(String inputPosition, List<String> bridge, int count) {
         if (inputPosition.equals("U")) {
             if (inputPosition.equals(bridge.get(count))) {
-                positions.set_UpPositions("O");
-                positions.set_downPositions(" ");
+                Positions.set_UpPositions("O");
+                Positions.set_downPositions(" ");
+                return "pass";
             }
             if (!inputPosition.equals(bridge.get(count))) {
-                positions.set_UpPositions("X");
-                positions.set_downPositions(" ");
+                Positions.set_UpPositions("X");
+                Positions.set_downPositions(" ");
                 game_status = "END";
+                return "call";
             }
         }
         if (inputPosition.equals("D")) {
             if (inputPosition.equals(bridge.get(count))) {
-                positions.set_downPositions("O");
-                positions.set_UpPositions(" ");
+                Positions.set_downPositions("O");
+                Positions.set_UpPositions(" ");
+                return "pass";
             }
             if (!inputPosition.equals(bridge.get(count))) {
-                positions.set_downPositions("X");
-                positions.set_UpPositions(" ");
+                Positions.set_downPositions("X");
+                Positions.set_UpPositions(" ");
                 game_status = "END";
+                return "call";
             }
         }
-
-
-      /*
-        for (int i = 0; i < bridge.size(); i++) {
-            if (!bridge.get(i).equals(position)) retry(position);
-        }
-*/
-
+        return "pass";
     }
 
     /**
@@ -54,14 +51,23 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String command) {
-        if (command.equals("R")) positions = get_instance();
-        if (command.equals("Q")) game_status = "End";
+    public String retry(String command) {
+        if (command.equals("R")) {
+            Positions.reset();
+            game_status="playing";
+            return "playing";
+        }
+
+        if (command.equals("Q")) {
+            game_status = "End";
+            return "End";
+        }
+        return "playing";
     }
 
-    public Positions getPositions() {
-        return positions;
-    }
+  //  public Positions getPositions() {
+    //    return positions;
+    //}
 
     public Positions get_instance() {
         return new Positions();
