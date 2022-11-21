@@ -3,7 +3,7 @@ package bridge.enummodel;
 public enum CommandEnum {
     UP("U"),
     DOWN("D"),
-    RESTART_COMMAND("R"),
+    RESTART("R"),
     QUIT("Q");
 
     private final String value;
