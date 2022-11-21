@@ -2,8 +2,24 @@
 <br/>
 
 ![ClassDiagram](https://user-images.githubusercontent.com/96610382/202952542-991e098f-fecc-4414-8a5a-3a9b55bc1d4a.jpg)
+- BridgeGame은 비즈니스 로직만을 담당하는 service layer
+- BridgeController는 입력 출력 검증 로직 담당
+- BridgeGame과 BridgeController 그리고 BridgeController와 OutputView 사이의 데이터 전달은 dto를 활용
 
-<br/>
+## :bulb: 클래스 설명
+#### BridgeNumberGenerator
+- int를 반환하는 함수형 인터페이스
+#### BridgeRandomNumberGenerator
+- BridgeNumberGenerator의 구현체\
+- 
+
+
+
+
+
+
+
+
 <br/>
 
 ## < 기능 구현 사항 >
