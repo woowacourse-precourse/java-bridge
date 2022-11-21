@@ -28,12 +28,11 @@ class OutputViewTest {
     }
 
     @Test
-    void printMap() {
+    void testPrintMap() {
         List<String> bridge = List.of("U","D","D");
         List<String> userInput = List.of("U","D","D");
 
         outputView.printMap(bridge,userInput);
         assertThat(output.toString()).contains("[ O |   |   ]\n[   | O | O ]");
-
     }
 }

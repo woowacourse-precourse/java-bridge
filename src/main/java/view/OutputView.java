@@ -16,40 +16,63 @@ public class OutputView {
         StringBuilder firstRow = new StringBuilder("[");
         StringBuilder secondRow = new StringBuilder("[");
 
-        for (int i = 0; i < userInput.size(); i++) {
-            if (userInput.get(i).equals("U")) {
-                if (userInput.get(i).equals(bridge.get(i))){
-                    firstRow.append(" O ");
-                    firstRow.append("|");
-                    secondRow.append("   ");
-                    secondRow.append("|");
-                    continue;
-                }
-                firstRow.append(" X ");
-                firstRow.append("|");
-                secondRow.append("   ");
-                secondRow.append("|");
-            } else if (userInput.get(i).equals("D")) {
-                if (userInput.get(i).equals(bridge.get(i))){
-                    secondRow.append(" O ");
-                    secondRow.append("|");
-                    firstRow.append("   ");
-                    firstRow.append("|");
-                    continue;
-                }
-                secondRow.append(" X ");
-                secondRow.append("|");
-                firstRow.append("   ");
-                firstRow.append("|");
-            }
-        }
+        firstRow = drawFirstRowInMap(bridge, userInput, firstRow);
+        secondRow = drawSecondRowInMap(bridge, userInput, secondRow);
 
-        firstRow.deleteCharAt(firstRow.length()-1);
-        secondRow.deleteCharAt(secondRow.length()-1);
-        firstRow.append("]");
+        System.out.println(wrapUpMap(firstRow,secondRow));
+    }
+
+    private StringBuilder drawFirstRowInMap(List<String> bridge, List<String> userInput, StringBuilder map) {
+        for (int i = 0; i < userInput.size(); i++) {
+
+            if (userInput.get(i).equals("U")) {
+                boolean isCorrect = userInput.get(i).equals(bridge.get(i));
+                map = markMap(map, isCorrect);
+                continue;
+            }
+            map = fillMap(map);
+        }
+        return map;
+    }
+
+    private StringBuilder drawSecondRowInMap(List<String> bridge, List<String> userInput, StringBuilder map) {
+        for (int i = 0; i < userInput.size(); i++) {
+
+            if (userInput.get(i).equals("D")) {
+                boolean isCorrect = userInput.get(i).equals(bridge.get(i));
+                map = markMap(map, isCorrect);
+                continue;
+            }
+            map = fillMap(map);
+        }
+        return map;
+    }
+
+    private StringBuilder markMap(StringBuilder row, boolean isCorrect) {
+        if (isCorrect) {
+            row.append(" O ");
+            row.append("|");
+            return row;
+        }
+        row.append(" X ");
+        row.append("|");
+        return row;
+    }
+
+    private StringBuilder fillMap(StringBuilder row) {
+        row.append("   ");
+        row.append("|");
+        return row;
+    }
+
+    private String wrapUpMap(StringBuilder fisrtRow, StringBuilder secondRow) {
+        fisrtRow.deleteCharAt(fisrtRow.length() - 1);
+        fisrtRow.append("]");
+
+        secondRow.deleteCharAt(secondRow.length() - 1);
         secondRow.append("]");
 
-        System.out.println(firstRow.toString()+"\n"+secondRow.toString());
+        return fisrtRow.toString()+"\n"+secondRow.toString();
     }
 
     /**
