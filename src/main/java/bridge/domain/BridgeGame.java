@@ -34,13 +34,22 @@ public class BridgeGame {
 
     private void fillMap(boolean isAnswerUp) {
         if (isAnswerUp) {
-            fullUpperMap.add(PrintMessage.MAP_RIGHT.getString());
-            fullLowerMap.add(PrintMessage.MAP_BLANK.getString());
+            fillMapForAnswerUp();
             return;
         }
+        fillMapForAnswerDown();
+    }
+
+    private void fillMapForAnswerUp() {
+        fullUpperMap.add(PrintMessage.MAP_RIGHT.getString());
+        fullLowerMap.add(PrintMessage.MAP_BLANK.getString());
+    }
+
+    private void fillMapForAnswerDown() {
         fullUpperMap.add(PrintMessage.MAP_BLANK.getString());
         fullLowerMap.add(PrintMessage.MAP_RIGHT.getString());
     }
+
 
     public boolean move(String moving) {
         isCorrect = bridge.get(currentPosition++).equals(moving);
