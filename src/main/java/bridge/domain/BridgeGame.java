@@ -98,7 +98,7 @@ public class BridgeGame {
 
     private void check() {
         if (movementRecord == null) {
-            throw new IllegalArgumentException("게임이 진행 중이지 않습니다.");
+            throw new IllegalStateException("게임이 진행 중이지 않습니다.");
         }
     }
 }

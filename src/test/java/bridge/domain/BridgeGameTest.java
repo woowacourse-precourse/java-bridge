@@ -27,7 +27,7 @@ class BridgeGameTest {
     void playGameWithoutBridge() {
          BridgeGame bridgeGame = new BridgeGame();
          assertThatThrownBy(() -> bridgeGame.move(UP))
-                 .isInstanceOf(IllegalArgumentException.class);
+                 .isInstanceOf(IllegalStateException.class);
     }
 
     private boolean isEqual(String[][] map1, String[][] map2) {
