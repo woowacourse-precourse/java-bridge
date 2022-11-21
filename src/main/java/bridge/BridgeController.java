@@ -29,7 +29,7 @@ public class BridgeController {
             game();
         }
         while(gameOver());
-
+        bridgeGame.lastMapResult();
     }
     public void game() {
         while(!(bridgeGame.isOver())){

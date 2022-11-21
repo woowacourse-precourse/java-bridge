@@ -92,4 +92,17 @@ public class BridgeGame {
     public boolean isSuccess(){
         return progressStatus && moveCount == bridgeList.size();
     }
+    public void lastMapResult(){
+        outputView.printResultPrefixMessage();
+        outputView.printMap(upBridge);
+        outputView.printMap(downBridge);
+        outputView.printGameSuccessOrNot(gameSuccess());
+        outputView.printNumberOfAttempts(gameAttemptCount);
+    }
+    public String gameSuccess(){
+        if(progressStatus) {
+            return "성공";
+        }
+        return "실패";
+    }
 }

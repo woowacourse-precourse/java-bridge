@@ -51,6 +51,4 @@ public class InputView {
             return readGameCommand();
         }
     }
-
-
 }
