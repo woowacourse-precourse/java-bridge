@@ -129,6 +129,11 @@ public class BridgeGame {
         System.out.println(printPlayerMoveDown);
     }
 
+    public void printFinalResult(){
+        System.out.println(GAME_RESULT_SUCCESS_OR_FAIL_MESSAGE + isSuccessGame);
+        System.out.println(GAME_RETRY_COUNT_MESSAGE + tryCount);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
