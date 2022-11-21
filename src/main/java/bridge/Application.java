@@ -13,6 +13,9 @@ public class Application {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         System.out.println("다리의 길이를 입력해주세요.");
         n = InputView.readBridgeSize();
+        if (n == -1) {
+            return;
+        }
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(n);
         upperBridge = new ArrayList<>();
         lowerBridge = new ArrayList<>();
@@ -20,6 +23,10 @@ public class Application {
         do {
             System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String userChoice = InputView.readMoving();
+            if (userChoice.equals("-1")) {
+                return;
+            }
+
             boolean isCorrectChoice = userChoice.equals(bridge.get(i));
             boolean isUpper = BridgeGame.upperOrLower(userChoice);
 
@@ -37,6 +44,9 @@ public class Application {
             if (!isCorrectChoice) {
                 System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
                 String s = InputView.readGameCommand();
+                if (s.equals("-1")) {
+                    return;
+                }
                 retry = BridgeGame.retry(s);
                 i = 0;
                 cnt = BridgeGame.countGameNum(s, cnt);
