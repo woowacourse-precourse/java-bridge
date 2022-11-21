@@ -11,4 +11,14 @@ public class GameResult {
     public void addBlock(String upDown) {
         bridge.addBlock(upDown);
     }
+
+    public int getNumberOfAttempts() {
+        return numberOfAttempts;
+    }
+    public Bridge getBridge() {
+        return bridge;
+    }
+    public GameProgress getProgress() {
+        return progress;
+    }
 }
