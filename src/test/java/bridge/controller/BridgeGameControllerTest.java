@@ -27,6 +27,24 @@ class BridgeGameControllerTest {
         assertThat(bridge.getLocation()).isEqualTo(1);
     }
 
+    @DisplayName("통과 테스트")
+    @Test
+    public void runSuccessCompleteTest() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        User user = new User();
+        boolean pass = true;
+        bridgeGameController.runPassOrFailCase(pass, bridge, user);
+        bridgeGameController.runPassOrFailCase(pass, bridge, user);
+
+        //when
+        bridgeGameController.runPassOrFailCase(pass, bridge, user);
+
+        //then
+        assertThat(user.isSuccessComplete()).isEqualTo(true);
+        assertThat(user.isGameOver()).isEqualTo(true);
+    }
+
     @DisplayName("통과 실패 후 종료 테스트")
     @Test
     public void runFailCaseWithEndTest() {
