@@ -11,6 +11,8 @@ public class BridgeGame {
     private final int MAXBRIDGELEN = 20;
     private final String UP = "U";
     private final String DOWN = "D";
+    private final String RESTART = "R";
+    private final String QUIT = "Q";
     InputView inputview = new InputView();
     OutputView outputView = new OutputView();
     List<String> visited = new ArrayList<>();
@@ -81,6 +83,7 @@ public class BridgeGame {
      */
     public boolean retry() {
         String select = inputview.readGameCommand();
+        validate.validateContainWord(select, RESTART, QUIT);
         if(select.equals("R")) {
             reStartInit();
             return true;
