@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 import bridge.enums.Step;
 import org.junit.jupiter.api.Test;
