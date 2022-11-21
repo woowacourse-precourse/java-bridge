@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class OutputView {
     private static final String START_EVENT_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String BRIDGE_SIZE_EVENT_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String GAME_RESULT_TITLE = "최종 게임 결과";
@@ -48,5 +49,9 @@ public class OutputView {
 
     public void printStartEventMessage() {
         System.out.println(START_EVENT_MESSAGE);
+    }
+
+    public void printBridgeSizeEventMessage() {
+        System.out.println(BRIDGE_SIZE_EVENT_MESSAGE);
     }
 }
