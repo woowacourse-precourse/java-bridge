@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.CompareBridge;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
