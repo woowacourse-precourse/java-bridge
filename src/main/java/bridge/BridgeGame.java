@@ -15,9 +15,6 @@ public class BridgeGame {
 
     private int trial;
 
-    private int size;
-    private boolean success;
-
     private List<String> savedBridge;
     private int savedPos;
     private boolean savedCorrect;
@@ -37,13 +34,14 @@ public class BridgeGame {
     }
 
     public void playGame() {
+        boolean success;
         startGame();
 
         do {
-            crossBridge();
+            success = crossBridge();
         } while(!success && retry());
 
-        gameResult();
+        gameResult(success);
     }
 
     private void startGame() {
@@ -51,16 +49,17 @@ public class BridgeGame {
         trial = 0;
     }
 
-    private void crossBridge() {
+    private boolean crossBridge() {
+        int size;
         trial++;
 
         outputView.printAskSizeMessage();
         size = inputView.readBridgeSize();
 
-        success = move(bridgeMaker.makeBridge(size));
+        return move(bridgeMaker.makeBridge(size));
     }
 
-    private void gameResult() {
+    private void gameResult(boolean success) {
         outputView.printFinalState(savedBridge, savedPos, savedCorrect);
         outputView.printResult(success, trial);
     }
@@ -73,10 +72,10 @@ public class BridgeGame {
     public boolean move(List<String> bridge) {
         boolean correct = true;
         saveBridgeState(bridge);
-        for(int pos = 0; pos < size && correct; pos++) {
+        for(int pos = 0; pos < bridge.size() && correct; pos++) {
             outputView.printAskMoveMessage();
-
             correct = inputView.readMoving().equals(bridge.get(pos));
+
             outputView.printMap(bridge, pos, correct);
             saveState(pos, correct);
         }
