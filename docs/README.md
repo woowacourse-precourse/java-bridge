@@ -42,10 +42,10 @@
 
 ### BridgeBroker
 
-- [ ] 값으로 이루어진 다리를 Bridge 클래스로 변환하여 반환한다. - makeBridge
-    - [ ] 다리 생성을 요청한다. - requestBridge
+- [x] 값으로 이루어진 다리를 Bridge 클래스로 변환하여 반환한다. - makeBridge
+    - [x] 다리 생성을 요청한다. - requestBridge
         - BridgeMaker 연계
-    - [ ] 값으로 이루어진 다리를 Bridge 클래스로 변환한다. - packageBridge
+    - [x] 값으로 이루어진 다리를 Bridge 클래스로 변환한다. - packageBridge
 
 ### BridgeMaker
 
