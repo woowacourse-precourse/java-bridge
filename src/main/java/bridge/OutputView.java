@@ -30,6 +30,11 @@ public class OutputView {
         printMap(bridge, currentUserPosition, isFail);
     }
 
+    public void printResultMessage(boolean gameWinStatus, int totalTryCount) {
+        System.out.println("최종 게임 결과: " + getGameWinStatusMessage(gameWinStatus));
+        System.out.println("총 시도한 횟수: " + totalTryCount);
+    }
+
     private void printBridgeResult(List<String> bridgeResult) {
         System.out.println(String.join("|", bridgeResult));
     }
