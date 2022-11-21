@@ -58,4 +58,15 @@ public class BridgeGame {
         bridgeCurrStatus = new ArrayList<>();
         currPosition = 0;
     }
+
+    public boolean isSuccess(List<String> bridge) {
+        int moveCnt = bridgeCurrStatus.size();
+        int lastIdx = moveCnt - 1;
+
+        if (moveCnt == bridge.size() && bridgeCurrStatus.get(lastIdx) == "O") {
+            return true;
+        }
+
+        return false;
+    }
 }
