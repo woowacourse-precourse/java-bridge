@@ -6,7 +6,6 @@ import java.util.List;
 public class BridgeMap {
     private static final List<String> upRecord = new ArrayList<>();
     private static final List<String> downRecord = new ArrayList<>();
-    private static boolean crossingFail = false;
 
     public static void reset() {
         upRecord.clear();
@@ -38,14 +37,12 @@ public class BridgeMap {
     public static void isMovingUpBridgeDown(boolean isBridgeDown) {
         if (isBridgeDown) {
             upRecord.add("X");
-            crossingFail = true;
         }
     }
 
     public static void isMovingDownBridgeUp(boolean isBridgeUp) {
         if (isBridgeUp) {
             downRecord.add("X");
-            crossingFail = true;
         }
     }
 
@@ -61,9 +58,5 @@ public class BridgeMap {
 
     public static List<String> getDownRecord() {
         return downRecord;
-    }
-
-    public boolean getCrossingFail() {
-        return crossingFail;
     }
 }
