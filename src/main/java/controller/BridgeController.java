@@ -14,24 +14,35 @@ public class BridgeController {
     List<String> bridge;
 
     public void startGame(){
-        for(int i = 0; i < bridge.size(); i++){
+        bridgeGame.addGameCount();
+
+        if(!repeatGame()) {
+            askRetryGame();
+            return;
+        }
+        bridgeGame.gameSuccess();
+        outputView.printResult();
+    }
+
+    public boolean repeatGame() {
+        for (int i = 0; i < bridge.size(); i++) {
             String move = inputView.readMoving();
-            if(bridgeGame.checkAnswer(bridge.get(i),move)){
+
+            if (bridgeGame.checkAnswer(bridge.get(i), move)) {
                 bridgeGame.move(move);
                 outputView.printMap();
             }
-            if(!bridgeGame.checkAnswer(bridge.get(i),move)){
+            if (!bridgeGame.checkAnswer(bridge.get(i), move)) {
                 bridgeGame.moveFailed(move);
                 outputView.printMap();
-                askRetryGame();
-                break;
+                return false;
             }
         }
+        return true;
     }
 
     public void makeBridge(){
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        System.out.println("확인용 : " + bridge);
     }
 
     public void askRetryGame(){
@@ -40,9 +51,6 @@ public class BridgeController {
 
         if(retry){
             startGame();
-        }
-        if(!retry){
-            outputView.printResult();
         }
     }
 }
