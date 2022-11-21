@@ -1,6 +1,7 @@
 package bridge.Domain;
 
-import bridge.Constant.InputValue;
+import static bridge.Constant.InputValue.COMMAND_RETRY;
+
 import java.util.List;
 
 
@@ -36,7 +37,7 @@ public class BridgeGame {
     public void retry(String command) {
         updateMaxPassedCount();
 
-        if (command.equals(InputValue.COMMAND_RETRY)) {
+        if (command.equals(COMMAND_RETRY)) {
             player.revive();
             this.retryCount++;
         }
@@ -101,5 +102,4 @@ public class BridgeGame {
     public int getPassedCount() {
         return player.getPassedCount();
     }
-
 }

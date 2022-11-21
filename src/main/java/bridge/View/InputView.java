@@ -30,8 +30,6 @@ public class InputView {
         } catch (IllegalArgumentException illegalArgumentException) {
             throw illegalArgumentException;
         }
-
-
     }
 
     public String readMoving() throws IllegalArgumentException {
