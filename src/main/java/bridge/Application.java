@@ -21,9 +21,10 @@ public class Application {
 
     public static void playGame(int size, BridgeGame Game) {
         int index = 0;
+        String nowResult = "";
         while (index != size) {
             String userDirection = InputView.readMoving();
-            String nowResult = String.valueOf(Game.move(userDirection,index));
+            nowResult = String.valueOf(Game.move(userDirection,index));
             OutputView.printMap(nowResult);
             index += 1;
             if (nowResult.contains("X")) {
@@ -35,5 +36,11 @@ public class Application {
                 Game.retry();
             }
         }
+        endGame(nowResult);
+    }
+
+    public static void endGame(String finalResult) {
+        OutputView.printResult(finalResult);
+
     }
 }
