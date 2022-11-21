@@ -47,10 +47,30 @@ public class BridgeGame {
         while (true){
             try {
                  movingList.add(inputManager.readMoving());
-                 outputView.printMap(movingList);
+                List<String> movingResult = getMovingResult(movingList, bridge);
+                System.out.println("다리 : "+bridge);
+                outputView.printMap(movingResult);
                  break;
             }catch (IllegalArgumentException e){System.out.println(e.getMessage());}
         }
+    }
+
+    public List<String> getMovingResult(List<String> movingList,List<String > bridge){
+        List<String> movingResult = new ArrayList<>();
+
+        for (int i = 0; i < movingList.size(); i++) {
+            String correctAnswer = bridge.get(i);
+            String userAnswer = movingList.get(i);
+            movingResult.add(getResult(correctAnswer, userAnswer));
+        }
+        return movingResult;
+    }
+
+    private String getResult(String correctAnswer, String userAnswer) {
+        if(correctAnswer.equals(userAnswer)){
+            return userAnswer+",O";
+        }
+        return userAnswer+",X";
     }
 
 
