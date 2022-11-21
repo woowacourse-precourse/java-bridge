@@ -12,14 +12,12 @@ public enum BridgeType {
         this.intCode = intCode;
     }
 
-    public String getStringCode(){
+    public String getStringCode() {
         return stringCode;
     }
 
-    public int getIntCode(){
+    public int getIntCode() {
         return intCode;
     }
-
-
 
 }
