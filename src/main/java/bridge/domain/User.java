@@ -11,43 +11,29 @@ public class User {
         this.isGameWin = false;
     }
 
-    public boolean isGameWin() {
-        return this.isGameWin;
-    }
-
-    public void setGameSuccess(boolean gameSuccess) {
-        isGameWin = gameSuccess;
-    }
-
-    public void gameWin() {
-        setGameSuccess(true);
-    }
-
-    public void gameFail() {
-        setGameSuccess(false);
-    }
-
-    public boolean isGameDoneStatus() {
-        return this.isGameDoneStatus;
-    }
-
-    public void setGameDoneStatus(boolean gameDoneStatus) {
-        isGameDoneStatus = gameDoneStatus;
-    }
-
-    public void gameDoneSuccess() {
-        setGameDoneStatus(true);
-    }
-
     public int getGameTryCount() {
         return gameTryCount;
     }
 
-    public void setGameTryCount(int gameTryCount) {
-        this.gameTryCount = gameTryCount;
+    public void gameRetry() {
+        gameTryCount += 1;
     }
 
-    public void gameRetry() {
-        setGameTryCount(this.getGameTryCount() + 1);
+    public void gameDoneWithWin() {
+        isGameDoneStatus = true;
+        isGameWin = true;
+    }
+
+    public void gameDoneWithLose() {
+        isGameDoneStatus = true;
+        isGameWin = false;
+    }
+
+    public boolean isGameDoneStatus() {
+        return isGameDoneStatus;
+    }
+
+    public boolean isGameWin() {
+        return isGameWin;
     }
 }
