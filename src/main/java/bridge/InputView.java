@@ -12,10 +12,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public String readBridgeSize() {
         String userInput = readLine();
-        errorCheckReadBridgeSize(userInput);
-        return Integer.parseInt(userInput);
+        return userInput;
     }
 
     public void errorCheckReadBridgeSize(String userInput) {
@@ -25,7 +24,6 @@ public class InputView {
             }
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            throw e;
         }
     }
 
@@ -60,7 +58,7 @@ public class InputView {
 
     public void errorCheckReadMovig(String userInput) {
         try{
-            if(!userInput.equals("U")||!userInput.equals("D")){
+            if(!(userInput.equals("U")||userInput.equals("D"))){
                 throw new IllegalArgumentException("[ERROR]");
             }
         }catch (IllegalArgumentException e){
@@ -80,7 +78,7 @@ public class InputView {
 
     public void errorCheckReadGameCommand(String userInput) {
         try{
-            if(!userInput.equals("R")||!userInput.equals("Q")){
+            if(!(userInput.equals("R")||userInput.equals("Q"))){
                 throw new IllegalArgumentException("[ERROR]");
             }
         }catch (IllegalArgumentException e){

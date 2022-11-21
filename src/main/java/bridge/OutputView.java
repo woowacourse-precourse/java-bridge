@@ -20,12 +20,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String bridge, String correctOrFailsign) {
+    public void printMap(List<String> bridge, String correctOrFailsign) {
         String upBridge="[";
         String downBridge="[";
         for (int i = 0; i < correctOrFailsign.length(); i++) {
             if(correctOrFailsign.substring(i, i+1).equals("O")){
-                if(bridge.substring(i, i+1).equals("U")){
+                if(bridge.get(i).equals("U")){
                     upBridge+=" O ";
                     downBridge+="   ";
                 }else{
@@ -33,7 +33,7 @@ public class OutputView {
                     downBridge+=" O ";
                 }
             }else{
-                if(bridge.substring(i, i+1).equals("U")){
+                if(bridge.get(i).equals("U")){
                     upBridge+="   ";
                     downBridge+=" X ";
                 }else{
@@ -59,6 +59,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    public void printfinalResult(){
+        System.out.println("최종 게임 결과");
+    }
     public void printResult(String succesOrNot, int tryNumber) {
         System.out.println("게임 성공 여부: "+succesOrNot);
         System.out.println("총 시도한 횟수: "+tryNumber);
