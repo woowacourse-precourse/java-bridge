@@ -50,8 +50,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> upstairsBridge, List<String> downstairsBridge) {
+        BridgeGame bridgeGame = new BridgeGame();
         System.out.println(ANNOUNCEMENT_GAME_RESULT);
+        printMap(upstairsBridge, downstairsBridge);
+        if(bridgeGame.whetherGameSuccess(upstairsBridge, downstairsBridge)) {
+            System.out.println(GAME_RESULT + GAME_SUCCESS);
+        };
+        if(!bridgeGame.whetherGameSuccess(upstairsBridge, downstairsBridge)) {
+            System.out.println(GAME_RESULT + AME_FAIL);
+        }
+        System.out.println(br);
+    }
 
+
+    public void getRestartButton() {
+        System.out.println(ENTER_WHETHER_RESTART_OR_NOT);
     }
 }

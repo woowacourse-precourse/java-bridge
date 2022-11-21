@@ -78,7 +78,7 @@ public class BridgeGame {
         if(Objects.equals(command, "R")) {
             return true;
         }
-        return false;
+        return true;
     }
 
     public static int getAnswerCount(String direction) {
@@ -86,13 +86,15 @@ public class BridgeGame {
         return triedAnswers.size();
     }
 
-    public static int getGameCount(String command) {
-        int gameCount = 1;
-        if(Objects.equals(command, "Q")) {
-            ++gameCount;
-        }
-        return gameCount;
+    public static void returnToPreviousStatus(List<String> upstairsBridge, List<String> downstairsBridge) {
+        upstairsBridge.remove(upstairsBridge.size()-1);
+        downstairsBridge.remove(upstairsBridge.size()-1);
     }
+
+    public static boolean whetherGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge) {
+        return !upstairsBridge.contains(WRONG) && !downstairsBridge.contains(WRONG);
+    }
+
 }
 
 

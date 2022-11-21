@@ -1,12 +1,10 @@
 package bridge;
 
-import static bridge.BridgeGame.WRONG;
 import static bridge.BridgeGame.downstairsBridge;
 import static bridge.BridgeGame.upstairsBridge;
 
 import java.util.List;
-import java.util.Objects;
-import bridge.BridgeGame.*;
+
 
 public class Application {
 
@@ -17,6 +15,7 @@ public class Application {
 //        }
 //        while (i < 3);
         // TODO: 프로그램 구현
+        int GameCount = 1;
         OutputView outputView = new OutputView();
         outputView.gameStart();
 
@@ -24,6 +23,7 @@ public class Application {
         int size = inputView.readBridgeSize();
 
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(size);
 
@@ -38,16 +38,20 @@ public class Application {
             bridgeGame.move(direction, bridge, numberOfTriedAnswers);
             outputView.printMap(upstairsBridge, downstairsBridge);
 
-            if (upstairsBridge.contains(WRONG) || downstairsBridge.contains(WRONG)) {
-                System.out.println("게임 더할래?");
+            if (!bridgeGame.whetherGameSuccess(upstairsBridge,downstairsBridge)) {
+                outputView.getRestartButton();
                 String command = inputView.readGameCommand();
-                bridgeGame.retry(command);
-                System.out.println("게임 성공 여부");
-                System.out.println("총 시도 횟수");
+                if (bridgeGame.retry(command)) {
+                    GameCount ++;
+                    bridgeGame.returnToPreviousStatus(upstairsBridge, downstairsBridge);
+                }
+                if (!bridgeGame.retry(command))
+                    return;
             }
         }
-        while (upstairsBridge.contains(WRONG) || downstairsBridge.contains(WRONG) ||size > numberOfTriedAnswers);
-        System.out.println("게임종료");
+        while (!bridgeGame.whetherGameSuccess(upstairsBridge,downstairsBridge) || size > numberOfTriedAnswers);
+
+        outputView.printResult(upstairsBridge, downstairsBridge);
 
     }
 }
