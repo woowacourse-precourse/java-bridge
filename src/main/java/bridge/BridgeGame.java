@@ -13,12 +13,14 @@ public class BridgeGame {
     private List<String> bridge;
     private int tryCount;
     private int moveCount;
+    private boolean success;
 
     public BridgeGame(List<String> bridge){
         this.tryCount=1;
         this.moveCount=0;
         this.path=new HashMap<>(Map.of("U", new ArrayList<>(), "D",new ArrayList<>()));
         this.bridge=bridge;
+        this.success=false;
     }
 
     public HashMap<String, List<String>> getPath() {
@@ -32,7 +34,9 @@ public class BridgeGame {
     public int getMoveCount() {
         return moveCount;
     }
-
+    public boolean getSuccess(){
+        return success;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -65,6 +69,7 @@ public class BridgeGame {
         boolean result = false;
         if (moveCount==bridge.size()-1 && !isFail()){
             result = true;
+            success=true;
         }
         return result;
     }
@@ -78,6 +83,7 @@ public class BridgeGame {
             path=new HashMap<>(Map.of("U", new ArrayList<>(), "D",new ArrayList<>()));
             moveCount=0;
             tryCount++;
+            success=false;
             return true;
         }
         return false;
