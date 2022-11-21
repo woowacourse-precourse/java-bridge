@@ -18,7 +18,7 @@ class BridgeGameTest {
         List<Direction> directions = List.of(UPPER, LOWER, UPPER, LOWER);
         BridgeGame bridgeGame = BridgeGame.fromDirections(directions);
 
-        TrialResult trialResult = bridgeGame.move(UPPER.capitalLetter());
+        TrialResult trialResult = bridgeGame.move(UPPER);
 
         assertThat(trialResult.wasSuccessful()).isTrue();
         assertThat(trialResult.getDirection()).isEqualTo(UPPER);
@@ -28,7 +28,7 @@ class BridgeGameTest {
     void 게임이_끝났는지_알_수_있다() {
         BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER));
 
-        bridgeGame.move(UPPER.capitalLetter());
+        bridgeGame.move(UPPER);
         assertThat(bridgeGame.isFinished()).isTrue();
     }
 
@@ -43,7 +43,7 @@ class BridgeGameTest {
     void 게임을_재시도한다() {
         BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER));
 
-        bridgeGame.move(UPPER.capitalLetter());
+        bridgeGame.move(UPPER);
         assertThat(bridgeGame.isFinished()).isTrue();
 
         bridgeGame.retry();

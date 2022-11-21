@@ -23,8 +23,7 @@ public class BridgeGame {
         return new BridgeGame(Bridge.from(capitalLetters));
     }
 
-    public TrialResult move(String capitalLetter) {
-        Direction direction = Direction.from(capitalLetter);
+    public TrialResult move(Direction direction) {
         boolean wasSuccessful = player.moveNext(direction);
         return new TrialResult(direction, wasSuccessful);
     }

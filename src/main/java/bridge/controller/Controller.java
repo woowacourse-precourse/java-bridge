@@ -64,8 +64,7 @@ public class Controller {
 
     private TrialResult move() {
         try {
-            String direction = inputView.readDirection();
-            TrialResult trialResult = game.move(direction);
+            TrialResult trialResult = game.move(inputView.readDirection());
             trialResults.add(trialResult);
             outputView.printMap(trialResults);
             return trialResult;

@@ -1,6 +1,5 @@
 package bridge.view;
 
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import bridge.constant.Direction;
@@ -18,12 +17,11 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public String readDirection() {
+    public Direction readDirection() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
         validateSingleCharacter(input);
-        validateDirection(input);
-        return input;
+        return Direction.from(input);
     }
 
     public String readGameCommand() {
@@ -44,13 +42,6 @@ public class InputView {
         if (!SINGLE_CHARACTER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException("한 글자가 아닙니다");
         }
-    }
-
-    private void validateDirection(String input) {
-        Arrays.stream(Direction.values())
-                .filter(direction -> direction.capitalLetter().equals(input))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 방향입니다"));
     }
 
     private void validateCommand(String input) {
