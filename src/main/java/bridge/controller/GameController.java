@@ -37,6 +37,12 @@ public class GameController {
         }
     }
 
+    private BridgePattern selectMove() {
+        outputView.printSelectMsg();
+        return inputView.readMoving();
+    }
+
+
 }
 
 
