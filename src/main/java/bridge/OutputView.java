@@ -11,6 +11,7 @@ public class OutputView {
     private static final String START_BRIDGE = "[ ";
     private static final String END_BRIDGE = " ]";
     private static final String BRIDGE_DIVISION = " | ";
+    private static final String ERROR_MESSAGE = "[ERROR}";
 
     /**
      *
@@ -37,5 +38,9 @@ public class OutputView {
             System.out.println("게임 성공 여부: 실패");
             System.out.println("총 시도한 횟수: " + gameCount);
         }
+    }
+
+    public void errorMessageUpOrDown() {
+        System.out.println(ERROR_MESSAGE + " U와 D만 선택이 가능합니다. ");
     }
 }
