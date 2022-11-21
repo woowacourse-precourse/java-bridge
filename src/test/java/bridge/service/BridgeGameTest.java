@@ -1,21 +1,16 @@
 package bridge.service;
 
-import bridge.dto.BridgeMapDto;
-import bridge.model.entity.Bridge;
 import bridge.model.entity.BridgeMap;
+import bridge.model.value.Bridge;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 
@@ -44,22 +39,21 @@ class BridgeGameTest {
         assertThat(bridge.getAnswer().size()).isEqualTo(except);
     }
 
-//    @Disabled
-//    @DisplayName("createBridgeMap 테스트")
-//    @Test
-//    void createBridgeMap() {
-//        //Given
-//        int expectSize = 1;
-//        String input1 = "O";
-//        String input2 = " ";
-//        BridgeMapDto bridgeMap = bridgeGame.getBridgeMap();
-//        //When
-//        bridgeMap.add(input1, input2);
-//        //Then
-//        assertThat(bridgeMap.getUpMap().size()).isEqualTo(1);
-//        assertThat(bridgeMap.getDownMap().get(0)).isEqualTo(" ");
-//        assertThat(bridgeMap.getDownMap().size()).isEqualTo(1);
-//    }
+    @DisplayName("createBridgeMap 테스트")
+    @Test
+    void createBridgeMap() {
+        //Given
+        int expectSize = 1;
+        String input1 = "O";
+        String input2 = " ";
+        BridgeMap bridgeMap = bridgeGame.getBridgeMap();
+        //When
+        bridgeMap.add(input1, input2);
+        //Then
+        assertThat(bridgeMap.getUpMap().size()).isEqualTo(1);
+        assertThat(bridgeMap.getDownMap().get(0)).isEqualTo(" ");
+        assertThat(bridgeMap.getDownMap().size()).isEqualTo(1);
+    }
 
     @DisplayName("move 테스트")
     @ParameterizedTest
@@ -78,21 +72,20 @@ class BridgeGameTest {
     }
 
 
-//    @Disabled
-//    @DisplayName("checkMove 테스트")
-//    @ParameterizedTest
-//    @CsvSource(value = {"0:U", "0:D"}, delimiter=':')
-//    void checkMove(int inputIndex, String direction) {
-//        //Given
-//        int startIndex = bridgeGame.getBridgeMap().getIndex();
-//
-//        //When
-//        bridgeGame.checkMove(inputIndex, direction);
-//        int updateIndex = bridgeGame.getBridgeMap().getIndex();
-//
-//        //Then
-//        assertThat(startIndex).isEqualTo(updateIndex - 1);
-//    }
+    @DisplayName("checkMove 테스트")
+    @ParameterizedTest
+    @CsvSource(value = {"0:U", "0:D"}, delimiter=':')
+    void checkMove(int inputIndex, String direction) {
+        //Given
+        int startIndex = bridgeGame.getBridgeMap().getIndex();
+
+        //When
+        bridgeGame.checkMove(inputIndex, direction);
+        int updateIndex = bridgeGame.getBridgeMap().getIndex();
+
+        //Then
+        assertThat(startIndex).isEqualTo(updateIndex - 1);
+    }
 
     @DisplayName("addMatchMap 테스트")
     @Test
@@ -147,7 +140,7 @@ class BridgeGameTest {
         bridgeGame.retry(retry);
 
         //Then
-        assertThat(bridgeGame.getBridgeMap().getUpMap().size()).isEqualTo(expectSize);
+        assertThat(bridgeGame.getBridgeMap().getIndex()).isEqualTo(expectSize);
     }
 
     @DisplayName("retry 'Q'입력 테스트(BridgeMap 초기화)")
