@@ -16,11 +16,6 @@ public class BridgeGame {
 
     InputView inputView = new InputView();
 
-    public void gameStart(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println("");
-    }
-
     public List<String> makeBridge(int step){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(step);

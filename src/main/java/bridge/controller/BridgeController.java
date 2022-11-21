@@ -13,7 +13,7 @@ public class BridgeController {
     OutputView outputView = new OutputView();
 
     public void startGame(){
-        bridgeGame.gameStart();
+        outputView.gameStart();
     }
 
     public List<String> bridgeMake(){

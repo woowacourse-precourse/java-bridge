@@ -9,6 +9,10 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    public void gameStart(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("");
+    }
 
     public void printRequestSize(){
         System.out.println(GameMessage.REQUEST_BRIDGE_LENGTH_MESSAGE.getMessage());
