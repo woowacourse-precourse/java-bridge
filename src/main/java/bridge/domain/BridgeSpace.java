@@ -14,6 +14,14 @@ public enum BridgeSpace {
     private final String title;
     private final int value;
 
+    private static final Map<Integer, BridgeSpace> values =
+            Collections.unmodifiableMap(Stream.of(values())
+                    .collect(Collectors.toMap(BridgeSpace::getValue, Function.identity())));
+
+    private static final Map<String, BridgeSpace> types =
+            Collections.unmodifiableMap(Stream.of(values())
+                    .collect(Collectors.toMap(BridgeSpace::getType, Function.identity())));
+
     BridgeSpace(String type, String title, int value) {
         this.type = type;
         this.title = title;
@@ -36,8 +44,8 @@ public enum BridgeSpace {
         return values.get(value);
     }
 
-    private static final Map<Integer, BridgeSpace> values =
-            Collections.unmodifiableMap(Stream.of(values())
-                    .collect(Collectors.toMap(BridgeSpace::getValue, Function.identity())));
+    public static BridgeSpace findByType(String type) {
+        return types.get(type);
+    }
 
 }
