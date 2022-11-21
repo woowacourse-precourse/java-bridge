@@ -52,7 +52,7 @@ public class Application {
         tryGame();
 
         if(BridgeGame.playerStep.size() < bridge.size())
-            CheckRetry();
+            checkRetry();
     }
 
     private static void tryGame(){
@@ -74,8 +74,14 @@ public class Application {
         }
     }
 
-    private static void CheckRetry(){
-        if(bridgeGame.retry(inputView.readGameCommand()))
-            gameStart();
+    private static void checkRetry(){
+        try {
+            if (bridgeGame.retry(inputView.readGameCommand()))
+                gameStart();
+        }
+        catch (IllegalArgumentException ex){
+            OutputView.printError(ex.getMessage());
+            checkRetry();
+        }
     }
 }

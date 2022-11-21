@@ -49,11 +49,11 @@ public class InputView {
     public String readMoving() {
         System.out.println(Message.MOVING);
         String input = Console.readLine();
-        ValidateMove(input);
+        validateMove(input);
         return input;
     }
 
-    private void ValidateMove(String input) {
+    private void validateMove(String input) {
         checkUpOrDown(input);
     }
 
@@ -68,19 +68,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        try {
-            System.out.println(Message.GAME_COMMAND);
-            String input = Console.readLine();
-            ValidateGameCommand(input);
-            return input;
-        }
-        catch (IllegalArgumentException ex){
-            OutputView.printError(ex.getMessage());
-            return readGameCommand();
-        }
+        System.out.println(Message.GAME_COMMAND);
+        String input = Console.readLine();
+        validateGameCommand(input);
+        return input;
     }
 
-    private void ValidateGameCommand(String input) {
+    private void validateGameCommand(String input) {
         checkRetryAndQuit(input);
     }
 
