@@ -22,14 +22,14 @@ public class BridgeController {
         createBridgeGame();
         do {
             playTurn();
-        } while (!bridgeGame.isEnd());
+        } while (bridgeGame.isOnWay());
         announceFinalResult();
     }
 
     private void createBridgeGame() {
-        int inputSize = inputView.readBridgeSize();
+        int inputBridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(inputSize);
+        List<String> bridge = bridgeMaker.makeBridge(inputBridgeSize);
         this.bridgeGame = new BridgeGame(bridge);
     }
 
@@ -44,10 +44,10 @@ public class BridgeController {
     }
 
     private void announceFinalResult() {
-        boolean isSuccess = bridgeGame.isSuccess();
         outputView.announceEndGame();
         String bridgeSketch = bridgeGame.getSketch();
         outputView.printMap(bridgeSketch);
+        boolean isSuccess = bridgeGame.isSuccess();
         int tryCount = bridgeGame.getTryCount();
         outputView.printResult(isSuccess, tryCount);
     }
