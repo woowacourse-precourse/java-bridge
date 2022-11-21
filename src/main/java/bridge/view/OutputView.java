@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.model.Direction;
 import bridge.model.Record;
-import bridge.util.Constant;
+import bridge.util.ResultConstant;
 import bridge.util.GuideMessage;
 
 import java.util.List;
@@ -63,7 +63,7 @@ public class OutputView {
         if (!bridgeResult && boardResult) {
             return GuideMessage.INCORRECT_CHOICE;
         }
-        return Constant.EMPTY;
+        return ResultConstant.EMPTY;
     }
 
     private boolean compareToBoard(Record record, String direction, int index) {

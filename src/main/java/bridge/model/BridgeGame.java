@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.util.Constant;
+import bridge.util.ResultConstant;
 
 import java.util.List;
 
@@ -16,8 +16,8 @@ public class BridgeGame {
 
     public void initialize(Record record) {
         record.clearRecord();
-        record.putInResultBoard(Constant.SUCCESS_OR_FAIL, null);
-        record.putInResultBoard(Constant.NUMBER_OF_ATTEMPTS, count);
+        record.putInResultBoard(ResultConstant.SUCCESS_OR_FAIL, null);
+        record.putInResultBoard(ResultConstant.NUMBER_OF_ATTEMPTS, count);
     }
 
     /**

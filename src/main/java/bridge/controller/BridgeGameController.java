@@ -4,7 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.Record;
-import bridge.util.Constant;
+import bridge.util.ResultConstant;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -38,7 +38,7 @@ public class BridgeGameController {
             bridgeGame.move(record, inputController.getMovingDirection());
             outputController.getChoiceResult(record, bridge);
         }
-        record.putInResultBoard(Constant.SUCCESS_OR_FAIL, bridgeGame.isSuccess(record, bridge));
+        record.putInResultBoard(ResultConstant.SUCCESS_OR_FAIL, bridgeGame.isSuccess(record, bridge));
         outputController.getFinalResult(record, bridge);
     }
 

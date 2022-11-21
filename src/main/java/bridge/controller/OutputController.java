@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.model.Record;
-import bridge.util.Constant;
+import bridge.util.ResultConstant;
 import bridge.util.GuideMessage;
 import bridge.view.OutputView;
 
@@ -20,11 +20,11 @@ public class OutputController {
 
     public void getFinalResult(Record record, List<String> bridge) {
         String result = GuideMessage.FAIL;
-        if (record.equalsToResultBoard(Constant.SUCCESS_OR_FAIL, 1)) {
+        if (record.equalsToResultBoard(ResultConstant.SUCCESS_OR_FAIL, 1)) {
             result = GuideMessage.SUCCESS;
         }
         outputView.endOfGame();
         getChoiceResult(record, bridge);
-        outputView.printResult(result, record.getValueByKey(Constant.NUMBER_OF_ATTEMPTS));
+        outputView.printResult(result, record.getValueByKey(ResultConstant.NUMBER_OF_ATTEMPTS));
     }
 }
