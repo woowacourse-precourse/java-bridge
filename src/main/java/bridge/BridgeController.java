@@ -11,24 +11,59 @@ public class BridgeController {
     public static int tryNumber = 0;
     private int size;
     void init(){
-        outputView.startPrint();
-        size = inputView.readBridgeSize();
-        bridgeGame.makeBridge(size);
+        try {
+            outputView.startPrint();
+            size = inputView.readBridgeSize();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            init();
+            return;
+        }
+        bridgeInit();
+    }
+    void bridgeInit(){
+        try {
+            bridgeGame.makeBridge(size);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            bridgeInit();
+            return;
+        }
         run();
     }
     void run(){
         tryNumber++;
         for (int i = 0 ;i<size;i++) {
-            outputView.gamePrint();
-            bridgeGame.setPlayer(inputView.readMoving());
-            if (bridgeGame.move(i)){
+            makePlayer();
+            if (movePlayer(i)){
                 continue;
             }
-            if (bridgeGame.retry()){
+            if (retryPlayer()){
                 run();
                 return;
             }
         }
         bridgeGame.endGame();
+    }
+    void makePlayer(){
+        try {
+            outputView.gamePrint();
+            bridgeGame.setPlayer(inputView.readMoving());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            makePlayer();
+            return;
+        }
+    }
+    boolean movePlayer(int index){
+        return bridgeGame.move(index);
+    }
+    boolean retryPlayer(){
+        try {
+            return bridgeGame.retry();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return retryPlayer();
+        }
     }
 }
