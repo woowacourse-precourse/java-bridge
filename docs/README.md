@@ -1,4 +1,4 @@
-# 구현할 기능 목록
+# 📃 구현할 기능 목록
 
 ## 전체 조건
 - 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
@@ -80,3 +80,35 @@
   - [x] 게임 결과
   - [x] 게임 성공 여부
   - [x] 총 시도한 횟수
+
+
+# 🏗️ 프로젝트 구조
+
+## main
+- Models (도메인 로직)
+  - BridgeMaker : 사용자가 입력한 다리 길이만큼, 무작위로 문자 "U" 또는 문자 "D"의 원소가 담긴 List<Interge>를 생성하는 클래스
+    - BridgeNumberGenerator`(Interface)`
+    - BridgeRandomNumberGenerator
+  - BridgeDirection`(Enum)` : 임의로 생성된 0, 1의 값을 "U", "D" 문자열로 매핑시켜주는 클래스
+  - BridgeGame : 생성된 다리를 사용자 입력값과 비교해 한 칸 움직이거나, 재도전을 하도록 하거나, 게임 성공 여부를 알려주는 클래스
+- Views (UI 로직)
+  - InputView : 사용자로 부터 받은 입력값을 검증하고 올바른 데이터를 Controller에 넘김
+  - OutputView : Controller에서 BridgeGame 객체로부터 메세지를 받아 게임 상황과 게임 결과를 출력
+- Controller : View로부터 입력 받은 값을 Model에 전달하거나, Model의 결과 값을 View에 출력하도록 연결해주는 클래스
+- Utils
+  - ErrorMessage : Exception 메세지에 [ERROR] 전치사 붙여주는 기능
+  - Setting : 게임 전반에 걸친 상수를 관리하는 기능
+  - Validator : InputView에서 사용자 입력값을 검증하는 기능
+
+## test
+- Models
+  - BridgeMaker : 다리 반복 생성 시 "U"와 "D"만 포함 되는지 확인. 인터페이스 구현한 numberGenerator를 통해 올바른 값 반환되는지 확인
+    - BridgeRandomNumberGenerator : 50번 RepeatedTest를 통해 0과 1값만 나오는지 확인
+  - BridgeDirectionTest : 0, 1이 "U", "D" 문자열로 잘 매핑되는지 확인. 올바르지 않은 정수값에 "E"가 매핑되는지 확인
+  - BridgeGame : BridgeGame 객체가 메소드에 의해 올바르게 작동하는지 확인
+- Utils
+  - Validator : 각각의 validate 메소드들이 올바르게 작동하는지 확인
+- Application (추가 테스트 구현) : 여러 프로그램 실행 상황 확인, 여러가지 입력 예외 가능성 확인
+
+
+# 📌 프로젝트 중점 사항
