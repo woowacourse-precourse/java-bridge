@@ -27,4 +27,12 @@ public class ExceptionTest {
                 .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
+    @Test
+    @DisplayName("사용자의 요청이 올바르지 않으면 오류 발생")
+    void 사용자의_요청이_올바르지_않으면_오류_발생(){
+        String input = "I";
+        assertThatThrownBy(() -> inputView.readMovingCommandCheck(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] U와 R 중에 하나를 입력하세요.");
+    }
 }
