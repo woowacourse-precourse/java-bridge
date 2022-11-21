@@ -5,7 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -32,14 +34,17 @@ public class BridgeGameTest {
         assertThat(actual.getPlayerMap()).isEqualTo(expected);
     }
 
-    @DisplayName("게임을 2번 재시작하면 총 시도 횟수 3을 반환한다")
-    @Test
-    void retryTest() {
-        BridgeGame nextBridgeGame = bridgeGame.retry();
-        nextBridgeGame = nextBridgeGame.retry();
+    @DisplayName("게임을 n번 재시작하면 총 시도 횟수 (n + 1)을 반환한다")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2, 3})
+    void retryTest(int retry) {
+        BridgeGame nextBridgeGame = bridgeGame;
+        for(int i = 0; i < retry; i++) {
+            nextBridgeGame = nextBridgeGame.retry();
+        }
 
         TotalResult actual = nextBridgeGame.move("D", 1);
-        assertThat(actual.getTryCnt()).isEqualTo(3);
+        assertThat(actual.getTryCnt()).isEqualTo(retry + 1);
     }
 
     private static Stream<Arguments> moveUpSideTestSource() {
