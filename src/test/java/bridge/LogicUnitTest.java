@@ -27,6 +27,14 @@ class LogicUnitTest extends NsTest {
     }
 
     @Test
+    void 기능_BridgeGame_retry() {
+        List<String> bridge = newArrayList("U", "D", "U");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        int retryFlag = bridgeGame.retry("R");
+        assertThat(retryFlag).isEqualTo(1);
+    }
+
+    @Test
     void 예외_다리길이_숫자아닌경우() {
             InputView inputView = new InputView();
             System.setIn(new ByteArrayInputStream("3".getBytes()));

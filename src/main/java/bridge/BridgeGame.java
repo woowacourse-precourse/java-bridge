@@ -54,5 +54,4 @@ public class BridgeGame {
         }
         return RETRY_FLAG_NO;
     }
-    }
 }
