@@ -28,6 +28,16 @@ public class BridgeGame {
      */
     public void move() {
     }
+    private void pathCheck(String movingCommand, HashMap<String,String> oppositionCommand){
+        if (movingCommand.equals(bridge.get(moveCount))){
+            path.get(movingCommand).add("O");
+            path.get(oppositionCommand.get(movingCommand)).add("N");
+        }
+        if (!movingCommand.equals(bridge.get(moveCount))){
+            path.get(movingCommand).add("X");
+            path.get(oppositionCommand.get(movingCommand)).add("N");
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
