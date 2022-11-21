@@ -3,6 +3,11 @@ package bridge;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,6 +39,34 @@ class OutputViewTest extends NsTest {
         outputView.printAskMovingPhrases();
 
         assertThat(output()).isEqualTo("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+    @DisplayName("전부 맞았을 때의 다리의 상태를 출력한다.")
+    @Test
+    void printMapPerfect() {
+        OutputView outputView = new OutputView();
+        List<String> bridge = List.of("U", "D", "D", "U", "U", "D");
+        List<String> inputs = List.of("U", "D", "D", "U", "U", "D");
+
+        outputView.printMap(bridge, inputs);
+
+        assertThat(output()).contains(
+                "[ O |   |   | O | O |   ]",
+                "[   | O | O |   |   | O ]"
+        );
+    }
+    @DisplayName("조금 틀렸을 때의 다리의 상태를 출력한다.")
+    @Test
+    void printMapWrong() {
+        OutputView outputView = new OutputView();
+        List<String> bridge = List.of("U", "D", "D", "U", "U", "D");
+        List<String> inputs = List.of("U", "U", "D", "U", "D", "D");
+
+        outputView.printMap(bridge, inputs);
+
+        assertThat(output()).contains(
+                "[ O | X |   | O |   |   ]",
+                "[   |   | O |   | X | O ]"
+        );
     }
 
     @Override
