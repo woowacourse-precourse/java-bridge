@@ -1,5 +1,6 @@
 package bridge.mock;
 
+import bridge.controller.BridgeController;
 import bridge.controller.GameController;
 import bridge.service.BridgeGame;
 import bridge.system.util.BridgeMaker;
@@ -21,7 +22,7 @@ public class MockObjectMaker {
                 inputView,
                 outputView,
                 new BridgeMaker(new MockNumberGenerator(answers)),
-                new BridgeGame(outputView, inputView)
+                new BridgeController(outputView, inputView, new BridgeGame())
         );
     }
 

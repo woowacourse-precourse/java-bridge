@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.service.BridgeGame;
 import bridge.system.util.BridgeMaker;
 import bridge.view.inputview.InputViewInterface;
 import bridge.view.outputview.OutputView;
@@ -14,20 +13,20 @@ public class GameController {
     private final InputViewInterface inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
-    private final BridgeGame bridgeGame;
+    private final BridgeController bridgeController;
 
-    public GameController(InputViewInterface inputView, OutputView outputView, BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
+    public GameController(InputViewInterface inputView, OutputView outputView, BridgeMaker bridgeMaker, BridgeController bridgeController) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeMaker = bridgeMaker;
-        this.bridgeGame = bridgeGame;
+        this.bridgeController = bridgeController;
     }
 
     public void doGame() {
         outputView.printGameStartMessage();
 
         Bridge bridge = makeBridge();
-        GameResult gameResult = bridgeGame.doGame(bridge);
+        GameResult gameResult = bridgeController.doGame(bridge);
 
         handleGameResult(bridge, gameResult);
     }

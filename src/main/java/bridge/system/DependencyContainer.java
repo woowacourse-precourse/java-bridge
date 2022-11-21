@@ -1,5 +1,6 @@
 package bridge.system;
 
+import bridge.controller.BridgeController;
 import bridge.service.BridgeGame;
 import bridge.controller.GameController;
 import bridge.system.util.BridgeMaker;
@@ -16,7 +17,7 @@ import java.lang.reflect.Proxy;
 
 public class DependencyContainer {
     public static GameController gameController() {
-        return new GameController(inputView(), outputView(), bridgeMaker(), bridgeGame());
+        return new GameController(inputView(), outputView(), bridgeMaker(), bridgeController());
     }
 
     public static BridgeNumberGenerator bridgeNumberGenerator() {
@@ -44,6 +45,10 @@ public class DependencyContainer {
     }
 
     public static BridgeGame bridgeGame() {
-        return new BridgeGame(outputView(), inputView());
+        return new BridgeGame();
+    }
+
+    public static BridgeController bridgeController() {
+        return new BridgeController(outputView(), inputView(), bridgeGame());
     }
 }

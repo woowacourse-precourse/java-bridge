@@ -1,12 +1,7 @@
 package bridge.service;
 
-import bridge.mock.MockInputView;
-import bridge.system.util.BridgeMessageMaker;
-import bridge.view.outputview.OutputView;
 import bridge.vo.Bridge;
-import bridge.vo.GameResult;
 import bridge.vo.Step;
-import bridge.vo.StepResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -14,36 +9,13 @@ import org.junit.jupiter.api.Test;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BridgeGameTest {
     public static final String UP = Step.U.toString();
     public static final String DOWN = Step.D.toString();
-    private final BridgeGame bridgeGame = new BridgeGame(
-            new OutputView(new BridgeMessageMaker()),
-            new MockInputView(UP, DOWN, UP, UP)
-    );
-
-    @Nested
-    @DisplayName("주어진 다리를 이용해 다리 건너기 게임을 진행하는 doGame 메서드")
-    class DoGameTest {
-        @Test
-        @DisplayName("주어진 다리를 이용해 다리 건너기 게임을 진행한 후 개암 결과를 반환한다.")
-        void givenBridge_whenDoingGame_thenReturnsGameResult() {
-            //given
-            Bridge bridge = new Bridge(Step.from(List.of(UP, DOWN, UP, UP)));
-            //when
-            GameResult gameResult = bridgeGame.doGame(bridge);
-            //then
-            assertThat(gameResult.getStepResults())
-                    .containsExactly(
-                            new StepResult(Step.U, true), new StepResult(Step.D, true),
-                            new StepResult(Step.U, true), new StepResult(Step.U, true)
-                    );
-        }
-    }
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     @Nested
     @DisplayName("차례에 해당하는 칸의 정답과 사용자가 선택한 칸이 일치하는 지 비교하는 move 메서드")
