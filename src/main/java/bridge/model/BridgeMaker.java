@@ -2,6 +2,7 @@ package bridge.model;
 
 import bridge.BridgeNumberGenerator;
 import bridge.model.Bridge;
+import bridge.view.MessageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,12 +28,12 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             int generateNumber = bridgeNumberGenerator.generate();
             if (generateNumber == 0) {
-                bridge.add("D");
+                bridge.add(MessageView.DOWN.getMessage());
             } else if (generateNumber == 1) {
-                bridge.add("U");
+                bridge.add(MessageView.UP.getMessage());
             }
         }
-        System.out.println(bridge);
+//        System.out.println(bridge);
         return bridge;
     }
 }
