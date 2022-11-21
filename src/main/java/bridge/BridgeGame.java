@@ -65,4 +65,8 @@ public class BridgeGame {
     public List<String> getBridge() {
         return bridge;
     }
+
+    public int getChallengesCnt() {
+        return challengesCnt;
+    }
 }

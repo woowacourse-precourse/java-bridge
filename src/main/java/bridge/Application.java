@@ -22,6 +22,7 @@ public class Application {
             bridgeGame.retry();
             play(bridgeGame);
         } while (userWantedReplaying(bridgeGame.getStatus()));
+        outputView.printResult(bridgeGame);
     }
 
     private static void play(BridgeGame bridgeGame) {
