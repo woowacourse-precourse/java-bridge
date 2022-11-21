@@ -4,6 +4,32 @@ package bridge;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private String mapTop = "";
+    private String mapBelow = "";
+    private String result ="";
+
+    private static final int INITIAL_INDEX = 0;
+
+    private enum Map {
+        BOARD("[ %s ]%n[ %s ]"),
+        STEADY("O"),
+        BROKEN("X"),
+        SEPARATOR(" | "),
+        BLANK(" "),
+        BOARD_ONE("[ "),
+        BOARD_TWO(" ]%n[ "),
+        BOARD_THREE(" ]");
+
+        private String piece;
+
+        Map(String piece) {
+            this.piece = piece;
+        }
+
+        public String getPiece() {
+            return piece;
+        }
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
