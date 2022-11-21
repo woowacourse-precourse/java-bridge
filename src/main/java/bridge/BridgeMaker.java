@@ -1,9 +1,7 @@
 package bridge;
 
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static bridge.MatchWord.Down;
 import static bridge.MatchWord.Up;
