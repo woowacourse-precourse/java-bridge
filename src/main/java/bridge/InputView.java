@@ -19,7 +19,6 @@ public class InputView {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
-
         return Integer.parseInt(bridgeSizeInput);
     }
 
@@ -46,7 +45,19 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String directionInput = Console.readLine();
+        try {
+            directionInput = validateReadMoving(directionInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+        return directionInput;
+    }
 
+    public String validateReadMoving(String directionInput) throws IllegalArgumentException{
+        if (!(directionInput.equals("U") || directionInput.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
+        }
         return directionInput;
     }
 
@@ -56,7 +67,19 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String doRetry = Console.readLine();
+        try {
+            doRetry = validateReadGameCommand(doRetry);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
+        return doRetry;
+    }
 
+    public String validateReadGameCommand(String doRetry) throws IllegalArgumentException{
+        if (!(doRetry.equals("R") || doRetry.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
+        }
         return doRetry;
     }
 }
