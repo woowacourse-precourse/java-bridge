@@ -24,15 +24,6 @@ public class BridgeTest {
     Bridge bridge;
 
     @ParameterizedTest
-    @MethodSource("generateBridge")
-    void 다리_생성_테스트(List<String> movableSides) {
-        bridge = new Bridge(movableSides);
-        String side = bridge.getMovableSide(0);
-        assertThat(Side.isBridgeSavingFormat(side))
-                .isTrue();
-    }
-
-    @ParameterizedTest
     @MethodSource("generateWrongBridgeValue")
     void 다리_생성_예외_테스트(List<String> movableSides) {
         assertThatThrownBy(() -> new Bridge(movableSides))
@@ -72,18 +63,6 @@ public class BridgeTest {
         bridge = new Bridge(defaultBridge);
         assertThat(bridge.isLastPosition(defaultBridge.size() - 1))
                 .isTrue();
-    }
-
-    static Stream<Arguments> generateBridge() {
-        return Stream.of(
-                Arguments.of(Arrays.asList("U")),
-                Arguments.of(Arrays.asList("D")),
-                Arguments.of(Arrays.asList("U", "U")),
-                Arguments.of(Arrays.asList("D", "D")),
-                Arguments.of(Arrays.asList("U", "U", "D", "U", "U")),
-                Arguments.of(bridgeMaker.makeBridge(10)),
-                Arguments.of(bridgeMaker.makeBridge(20))
-        );
     }
 
     static Stream<Arguments> generateWrongBridgeValue() {
