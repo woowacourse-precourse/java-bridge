@@ -16,7 +16,7 @@ public class Application {
     public static void playGame(BridgeGame bridgeGame) {
         while (bridgeGame.checkToContinue()) {
             bridgeGame.move(InputView.readMoving());
-            OutputView.printMap(bridgeGame.getMap());
+            OutputView.printMap(bridgeGame.mapMaker.getMap());
         }
         if (bridgeGame.checkSuccess() && InputView.readGameCommand().equals("R")) {
             bridgeGame.retry();

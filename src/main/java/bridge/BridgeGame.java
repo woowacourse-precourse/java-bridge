@@ -10,8 +10,8 @@ public class BridgeGame {
     private int position;
     private int count = 1;
     private boolean canMove;
-    private final StringBuilder[] map = {new StringBuilder(), new StringBuilder()};
     private final List<String> bridge;
+    MapMaker mapMaker=new MapMaker();
 
     BridgeGame(List<String> bridge, int position, boolean canMove) {
         this.bridge = bridge;
@@ -34,32 +34,13 @@ public class BridgeGame {
      */
     public void move(String moving) {
         if (bridge.get(position).equals(moving)) {
-            setMap(moving, "O");
+            mapMaker.setMap(moving, "O",position);
         }
         if (!bridge.get(position).equals(moving)) {
-            setMap(moving, "X");
+            mapMaker.setMap(moving, "X",position);
             canMove = false;
         }
         position++;
-    }
-
-    private void setMap(String moving, String match) {
-        if (position != 0) {
-            map[0].append("| ");
-            map[1].append("| ");
-        }
-        if (moving.equals("U")) {
-            map[0].append(match).append(" ");
-            map[1].append("  ");
-        }
-        if (moving.equals("D")) {
-            map[0].append("  ");
-            map[1].append(match).append(" ");
-        }
-    }
-
-    public StringBuilder getMap() {
-        return new StringBuilder().append("[ ").append(map[0]).append("]\n[ ").append(map[1]).append("]");
     }
 
     /**
@@ -71,15 +52,15 @@ public class BridgeGame {
         count++;
         position = 0;
         canMove = true;
-        map[0] = new StringBuilder();
-        map[1] = new StringBuilder();
+        mapMaker.getMap()[0] = new StringBuilder();
+        mapMaker.getMap()[1] = new StringBuilder();
         Application.playGame(this);
     }
 
     public StringBuilder getResult() {
         StringBuilder result = new StringBuilder();
         result.append("\n최종 게임 결과");
-        result.append("[ ").append(map[0]).append("]\n[ ").append(map[1]).append("]");
+        result.append("[ ").append(mapMaker.getMap()[0]).append("]\n[ ").append(mapMaker.getMap()[1]).append("]");
         result.append("\n게임 성공 여부: ");
         if (canMove) result.append("성공");
         if (!canMove) result.append("실패");
