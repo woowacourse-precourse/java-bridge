@@ -6,7 +6,7 @@ public enum ErrorConstant {
     INPUT_LENGTH("입력은 한글자만 가능합니다"),
     BRIDGE_SIZE_INVALID_RANGE("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 
-    private final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_PREFIX = "[ERROR] ";
     private final String errorConstant;
 
     ErrorConstant(final String errorConstant) {
