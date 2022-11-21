@@ -1,7 +1,11 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
+import bridge.domain.User;
 import bridge.domain.message.ErrorMessage;
+import bridge.domain.utils.BridgeState;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +14,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.*;
+import java.util.List;
 
 class BridgeGameTest {
 
@@ -75,5 +80,17 @@ class BridgeGameTest {
         new InputView().readGameCommand();
 
         Assertions.assertThat(newConsole.toString().trim()).contains(ErrorMessage.INPUT_ONLY_RETRY_OR_END);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"U:U:true", "U:D:false", "D:U:false", "D:D:true"}, delimiter = ':')
+    void 각_방향에따라_GameState가_제대로_동작해서_살았는지_죽었는지_반영하는지(String bridgePosition, String position, boolean isAlive) {
+        Bridge bridge = new Bridge(List.of(bridgePosition));
+        User user = new User();
+        BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
+        System.setIn(new ByteArrayInputStream(position.getBytes()));
+        bridgeGame.move(user, bridge);
+
+        Assertions.assertThat(user.getUserCrossing(0)).isEqualTo(BridgeState.convertToBridgeState(position, isAlive));
     }
 }
