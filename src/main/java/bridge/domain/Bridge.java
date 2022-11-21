@@ -2,6 +2,7 @@ package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.assertj.core.util.Lists;
 
 public class Bridge {
     private final List<BridgeState> bridge;
@@ -28,5 +29,10 @@ public class Bridge {
             return true;
         }
         return false;
+    }
+
+    public List<BridgeState> makeSubBridge(int stage) {
+        List<BridgeState> subBridge = Lists.newArrayList(bridge);
+        return subBridge.subList(0, stage);
     }
 }
