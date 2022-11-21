@@ -23,6 +23,18 @@ public class BridgeGame {
         return tryCount;
     }
 
+    public List<String> getUser() {
+        return user;
+    }
+
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public BridgeGameResult getBridgeGameResult() {
+        return bridgeGameResult;
+    }
+
     public String move(String movingCommand) {
         user.add(movingCommand);
         return bridge.compare(user);

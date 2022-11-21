@@ -19,7 +19,7 @@ public class OutputView {
     public void printResult(BridgeGameResult bridgeGameResult, BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGameResult);
-        System.out.printf("게임 성공 여부: %b", bridgeGameResult.getSuccess());
-        System.out.printf("총 시도한 횟수: %d", bridgeGame.getTryCount());
+        System.out.println("게임 성공 여부: " + bridgeGameResult.getSuccess());
+        System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
     }
 }

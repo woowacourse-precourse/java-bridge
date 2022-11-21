@@ -19,4 +19,8 @@ public class Bridge {
         return MovingResult.fromComparison(comparison)
                 .getSign();
     }
+
+    public boolean compareLength(List<String> user) {
+        return bridgePosition.size() == user.size();
+    }
 }

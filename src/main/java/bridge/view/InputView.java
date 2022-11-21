@@ -58,7 +58,7 @@ public class InputView {
     }
 
     public void checkCommand(String command) {
-        if (!(command.equals("U") || command.equals("D"))) {
+        if (!(command.equals("R") || command.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] 재시작(R)과 종료(Q) 중 하나를 입력해야 합니다.");
         }
     }
