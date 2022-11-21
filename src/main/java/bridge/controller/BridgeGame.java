@@ -62,10 +62,14 @@ public class BridgeGame implements BridgeContainer, ViewContainer, Game {
     }
 
     private void showMap() {
-        List<List<String>> map;
+        List<List<String>> bridgeMap;
 
-        map = bridge.makeMap();
-        outputView.printMap(map);
+        bridgeMap = getBridgeMap();
+        outputView.printMap(bridgeMap);
+    }
+
+    private List<List<String>> getBridgeMap() {
+        return bridge.makeMap();
     }
 
     /**
@@ -92,12 +96,17 @@ public class BridgeGame implements BridgeContainer, ViewContainer, Game {
 
     @Override
     public void showResult() {
-        outputView.printResult(calculateResult());
+        List<List<String>> bridgeMap;
+
+        bridgeMap = getBridgeMap();
+        outputView.printResult(bridgeMap, getSuccessOrFailure(), getTrial());
     }
 
-    private List<String> calculateResult() {
-        return Arrays.asList(
-                GameResult.convert(bridge.isAllSuccess()),
-                String.valueOf(trial));
+    private String getSuccessOrFailure() {
+        return GameResult.convert(bridge.isAllSuccess());
+    }
+
+    private String getTrial() {
+        return String.valueOf(trial);
     }
 }
