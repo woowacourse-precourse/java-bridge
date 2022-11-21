@@ -1,5 +1,6 @@
 package bridge.Controller;
 
+import bridge.Domain.BridgeGame;
 import bridge.Domain.BridgeMaker;
 import bridge.Domain.BridgeNumberGenerator;
 import bridge.Domain.BridgeRandomNumberGenerator;
@@ -14,12 +15,13 @@ public class Controller {
     public BridgeNumberGenerator bridgeNumberGenerator;
     public BridgeMaker bridgeMaker;
     public OutputView outputView;
+    public BridgeGame bridgeGame;
     public void run(){
         inputView = new InputView();
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView = new OutputView();
-
+        
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
 
@@ -29,6 +31,7 @@ public class Controller {
         //다리 생성하기
         List<String> bridge = bridgeMaker.makeBridge(bridgeLen);
 
+        bridgeGame = new BridgeGame(bridge, bridgeLen);
         //게임 시작
         int gameTryCount = 1;
         boolean gameSuccess = false;

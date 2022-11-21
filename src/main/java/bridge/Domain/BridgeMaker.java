@@ -23,9 +23,9 @@ public class BridgeMaker {
         for(int i=0; i<size; i++){
             int random = bridgeNumberGenerator.generate();
             if(random == 0)
-                bridge.add("U");
-            else
                 bridge.add("D");
+            else
+                bridge.add("U");
         }
         return bridge;
     }
