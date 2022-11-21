@@ -1,7 +1,7 @@
 package bridge.controller;
 
-
-import bridge.view.InputView;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.OutputView;
 
 public class GameContoller {
@@ -11,7 +11,9 @@ public class GameContoller {
     public void run() {
 //        System.out.println(inputController.readBridgeSize());
 //        System.out.println(inputController.readMoving());
-        System.out.println(inputController.readGameCommand());
+//        System.out.println(inputController.readGameCommand());
 //        outputView.printStart();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        System.out.println(bridgeMaker.makeBridge(3));
     }
 }
