@@ -17,6 +17,11 @@ public class BridgeGameController {
     private GameCommand gameCommand;
     private BridgeGame bridgeGame;
 
+    /**
+     * 다리 건너기 게임 시작
+     * '입력 받은 칸'과 '건널 수 있는 칸' 비교 결과 다를 경우
+     * '입력 받은 칸'과 '건널 수 있는 칸' 비교 결과 마지막 칸일 경우
+     */
     public void run(){
         init();
         while(isRestart){
@@ -77,6 +82,7 @@ public class BridgeGameController {
 
     /**
      * 재시작 여부
+     * 재시작 명령어가 R일 경우, 재시작 명령어가 Q일 경우 흐름 분기
      */
     private void restartOrQuit(){
         readGameCommand();

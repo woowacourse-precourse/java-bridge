@@ -33,7 +33,7 @@ public class BridgeGame {
     }
 
     /**
-     * '입력 받은 칸'과 '건널 수 있는 칸' 비교 결과 값 얻는 메소드
+     * '입력 받은 칸'과 '건널 수 있는 칸' 비교 결과 값 얻는 메서드
      */
     private String getBridgeResult(Moving moving, String bridgePos){
         String movingValue = moving.getValue();
@@ -63,7 +63,8 @@ public class BridgeGame {
     }
 
     /**
-     * '입력 받은 칸'과 '건널 수 있는 칸' 비교 결과 값 얻는 메소드
+     * 비교한 값이 일치할 경우
+     * 마지막 이동할 칸일지 아닐지 판단 하는 메서드
      */
     public boolean isSuccess(String movingValue) {
         return isRightResult(movingValue) && isLastMoving();
