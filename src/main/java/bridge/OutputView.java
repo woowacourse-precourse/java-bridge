@@ -18,8 +18,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(int movingIdx, List<String> bridgeList, String input) {
-        System.out.println(upString(movingIdx, bridgeList, input));
-        System.out.println(downString(movingIdx, bridgeList, input));
+        System.out.println(upSide(movingIdx, bridgeList, input));
+        System.out.println(downSide(movingIdx, bridgeList, input));
         System.out.println();
     }
 
@@ -39,13 +39,13 @@ public class OutputView {
         return !Objects.equals(input, compared);
     }
 
-    private String upString(int movingIdx, List<String> bridgeList, String input) {
+    private String upSide(int movingIdx, List<String> bridgeList, String input) {
         return "[" +
-                middleUpString(movingIdx, bridgeList) +
-                endUpString(movingIdx, bridgeList, input);
+                middleUpSide(movingIdx, bridgeList) +
+                endUpSide(movingIdx, bridgeList, input);
     }
 
-    private String middleUpString(int movingIdx, List<String> bridgeList) {
+    private String middleUpSide(int movingIdx, List<String> bridgeList) {
         StringBuilder upString = new StringBuilder();
         for (int i = 0; i < movingIdx; i++) {
             if (SameWithU(bridgeList.get(i))) upString.append(" O |");
@@ -54,7 +54,7 @@ public class OutputView {
         return upString.toString();
     }
 
-    private String endUpString(int movingIdx, List<String> bridgeList, String input) {
+    private String endUpSide(int movingIdx, List<String> bridgeList, String input) {
         if (SameWithU(input)) {
             if (Same(bridgeList.get(movingIdx), input)) return " O ]";
             else if (Different(bridgeList.get(movingIdx), input)) return " X ]";
@@ -62,13 +62,13 @@ public class OutputView {
         return "";
     }
 
-    private String downString(int movingIdx, List<String> bridgeList, String input) {
+    private String downSide(int movingIdx, List<String> bridgeList, String input) {
         return "[" +
-                middleDownString(movingIdx, bridgeList) +
-                endDownString(movingIdx, bridgeList, input);
+                middleDownSide(movingIdx, bridgeList) +
+                endDownSide(movingIdx, bridgeList, input);
     }
 
-    private String middleDownString(int movingIdx, List<String> bridgeList) {
+    private String middleDownSide(int movingIdx, List<String> bridgeList) {
         StringBuilder downString = new StringBuilder();
         for (int i = 0; i < movingIdx; i++) {
             if (SameWithD(bridgeList.get(i))) downString.append(" O |");
@@ -77,7 +77,7 @@ public class OutputView {
         return downString.toString();
     }
 
-    private String endDownString(int movingIdx, List<String> bridgeList, String input) {
+    private String endDownSide(int movingIdx, List<String> bridgeList, String input) {
         if (SameWithD(input)) {
             if (Same(bridgeList.get(movingIdx), input)) return " O ]";
             else if (Different(bridgeList.get(movingIdx), input)) return " X ]";
