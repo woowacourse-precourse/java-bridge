@@ -15,20 +15,38 @@ public class BridgeView {
     }
 
     public int inputBridgeSizeMessage() {
-        outputView.inputBridgeSizeMessage();
-        int bridgeSize = inputView.readBridgeSize();
-        outputView.printNewLine();
-        return bridgeSize;
+        while (true) {
+            try {
+                outputView.inputBridgeSizeMessage();
+                int bridgeSize = inputView.readBridgeSize();
+                outputView.printNewLine();
+                return bridgeSize;
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 
     public String inputMoveCommandMessage() {
-        outputView.inputMoveCommandMessage();
-        return inputView.readMoving();
+        while (true) {
+            try {
+                outputView.inputMoveCommandMessage();
+                return inputView.readMoving();
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 
     public String inputRetryCommandMessage() {
-        outputView.inputRetryCommandMessage();
-        return inputView.readGameCommand();
+        while (true) {
+            try {
+                outputView.inputRetryCommandMessage();
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 
     public void printMoveResult(BridgeResult bridgeResult) {
