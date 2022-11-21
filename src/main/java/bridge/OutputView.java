@@ -74,7 +74,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getBridge(), bridgeGame.getPlayer());
         printSuccessOrFail(bridgeGame);
-        System.out.println("시도 횟수");
+        System.out.println("총 시도한 횟수: " + bridgeGame.getRetryCount());
     }
 
     private void printSuccessOrFail(BridgeGame bridgeGame) {
