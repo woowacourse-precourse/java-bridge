@@ -14,7 +14,7 @@ public enum Order {
 		this.orderAlias = orderAlias;
 	}
 
-	public boolean isOrder(String orderAlias) {
+	public static boolean isOrder(String orderAlias) {
 		for (Order order : Order.values()) {
 			if (order.orderAlias.equals(orderAlias)) {
 				return true;

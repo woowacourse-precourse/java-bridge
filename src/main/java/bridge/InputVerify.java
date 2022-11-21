@@ -30,6 +30,7 @@ public class InputVerify {
 	}
 
 	public static void verifyOrderMove(String order) {
-
+		verifyIsString(order);
+		verifyIsOrder(order);
 	}
 }
