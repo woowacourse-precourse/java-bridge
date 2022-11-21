@@ -13,8 +13,8 @@ public class OutputView {
     private static final String CORRECT_CHOICE = "O";
     private static final String NON_CHOICED = " ";
     private static final String WRONG_CHOICE = "X";
-    private static final String FRONT_WRAPPER = "[";
-    private static final String LAST_WRAPPER = "]";
+    private static final String FRONT_WRAPPER = "[ ";
+    private static final String LAST_WRAPPER = " ]";
     private static final String DEVIDER = " | ";
     private static final String UP = "U";
     private static final String DOWN = "D";
@@ -30,7 +30,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Player player) {
-        String upperLine = FRONT_WRAPPER + String.join(DEVIDER, printSingleLine(player,UP )) + DOWN;
+        String upperLine = FRONT_WRAPPER + String.join(DEVIDER, printSingleLine(player,UP )) + LAST_WRAPPER;
         String lowerLine = FRONT_WRAPPER + String.join(DEVIDER, printSingleLine(player,DOWN)) + LAST_WRAPPER;
         System.out.println(upperLine);
         System.out.println(lowerLine);
