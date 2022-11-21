@@ -15,14 +15,17 @@ public class OutputView {
     }
 
     public void printResult(GameResultView gameResultView) {
-        println(gameResultView.render());
+        print(gameResultView.render());
     }
 
     public void lineSeparate() {
         println("");
     }
-    public static void println(String content) {
+    private static void println(String content) {
         System.out.println(content);
+    }
+    public static void print(String content) {
+        System.out.print(content);
     }
 
 }
