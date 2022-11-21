@@ -37,7 +37,6 @@ public class BridgeMaker {
         if(randomNumber == 1) {
             return "U";
         }
-
         throw new IllegalStateException(ErrorMessage.NotValidBridgeElement.getMessage());
     }
 }

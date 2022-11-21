@@ -9,6 +9,7 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> userLog;
+    private static int retryCount = 1;
 
     public BridgeGame() {
         this.userLog = new ArrayList<>();
@@ -36,10 +37,15 @@ public class BridgeGame {
     public boolean retry(String userCommand) {
         if (userCommand.equals(Command.RETRY.getValue())) {
             userLog.remove(userLog.size() - 1);
+            retryCount++;
             return true;
         }
 
         return false;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
     }
 
     public boolean isOver(Bridge bridge) {

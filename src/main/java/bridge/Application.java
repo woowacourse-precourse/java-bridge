@@ -7,7 +7,6 @@ public class Application {
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
     BridgeGame bridgeGame = new BridgeGame();
-    private static int tryCount = 1;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -26,21 +25,21 @@ public class Application {
 
     private void crossBridge(Bridge bridge) {
         boolean isGameContinued = true;
-
         while(isGameContinued) {
             outputView.printMap(bridge, bridgeGame.move(inputView.readMoving()));
-            if (bridgeGame.isUserDead(bridge)) {
-                isGameContinued = bridgeGame.retry(inputView.readGameCommand());
-                tryCount++;
-            }
-
-            if (bridgeGame.isOver(bridge)) {
-                break;
-            }
+            isGameContinued = isContinued(bridge);
         }
     }
 
+    private boolean isContinued(Bridge bridge) {
+        if (bridgeGame.isUserDead(bridge)) {
+            return bridgeGame.retry(inputView.readGameCommand());
+        }
+
+        return ! bridgeGame.isOver(bridge);
+    }
+
     private void exitGame(Bridge bridge) {
-        outputView.printResult(bridge, bridgeGame, tryCount);
+        outputView.printResult(bridge, bridgeGame, bridgeGame.getRetryCount());
     }
 }
