@@ -6,13 +6,17 @@ import java.util.List;
 public class CrossBridge {
 
     private static final List<Way> crossBridge = new ArrayList<>();
-    private static int totalTry;
-    private static boolean success;
+    private static int totalTry = 0;
+    private static boolean success = false;
 
     Bridge bridge = new Bridge();
 
     public CrossBridge() {
-        CrossBridge.totalTry = 0;
+
+    }
+
+    public void setNewGame() {
+        CrossBridge.totalTry++;
         CrossBridge.success = false;
         crossBridge.clear();
     }
@@ -36,10 +40,6 @@ public class CrossBridge {
 
     public int getCrossBridgeSize() {
         return getCrossBridge().size();
-    }
-
-    public void increaseTotalTry() {
-        CrossBridge.totalTry++;
     }
 
     public int getTotalTry() {
