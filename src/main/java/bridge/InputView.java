@@ -64,7 +64,7 @@ public class InputView {
             }
             return true;
         } catch (IllegalArgumentException e){
-            System.out.println(errorMsg);
+            System.out.println(errorMsg + "U 또는 D 중에 입력해주십시오.");
             return false;
         }
     }

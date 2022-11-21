@@ -9,13 +9,16 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
 
-        String move = "";
+        String move;
+        boolean canMove;
         do {
             move = inputView.readMoving();
-            outputView.printMap(outputView.makeMove(bridgeGame.getMove(), bridgeGame.canMove(move)));
-        } while (bridgeGame.canMove(move) && !bridgeGame.success());
+            canMove = bridgeGame.canMove(move);
+            outputView.printMap(bridgeGame.getMove(), canMove);
+        } while (canMove && !bridgeGame.success());
 
 
 
     }
 }
+
