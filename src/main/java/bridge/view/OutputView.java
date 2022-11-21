@@ -55,21 +55,21 @@ public class OutputView {
         return upSide + NEW_LINE + downSide + NEW_LINE;
     }
 
-    private String sideFormat(BridgeGameResult result, BridgeShape bridgeShape) {
+    private String sideFormat(BridgeGameResult result, BridgeShape bridgeSide) {
         Bridge bridge = result.bridge();
         List<BridgeShape> bridgeShapes = bridge.bridgeShapes();
         List<Boolean> attemptsResult = result.playerMoveResult();
         List<String> sidesTexts = IntStream.range(0, attemptsResult.size())
-                .mapToObj(index -> moveFormat(attemptsResult.get(index), bridgeShapes.get(index), bridgeShape))
-                .collect(Collectors.toList());
+                .mapToObj(index -> moveFormat(attemptsResult.get(index), bridgeShapes.get(index), bridgeSide))
+                .collect(Collectors.toUnmodifiableList());
         return bridgeFormat(sidesTexts);
     }
 
-    private String moveFormat(boolean move, BridgeShape bridgeShape, BridgeShape compareBridgeShape) {
-        if (move && bridgeShape == compareBridgeShape) {
+    private String moveFormat(boolean move, BridgeShape bridgeShape, BridgeShape bridgeSide) {
+        if (move && bridgeShape == bridgeSide) {
             return MOVE_SUCCESS;
         }
-        if (!move && bridgeShape != compareBridgeShape) {
+        if (!move && bridgeShape != bridgeSide) {
             return MOVE_FAIL;
         }
         return MOVE_NOT_SELECT;
