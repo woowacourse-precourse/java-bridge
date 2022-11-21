@@ -25,7 +25,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String input = Console.readLine();
+        isPermittedCommand(input, PERMITTED_MOVING_COMMAND);
+        return input;
     }
 
     /**
