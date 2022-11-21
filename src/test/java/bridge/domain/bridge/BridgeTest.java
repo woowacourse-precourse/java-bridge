@@ -19,7 +19,7 @@ class BridgeTest {
         bridge = Bridge.valueOf(bridgeList);
     }
 
-    @DisplayName("다리를 건널 수 있다면 true 를 반환한다.")
+    @DisplayName("다리를 건널 수 있다면 참을 반환한다.")
     @Test
     void moveSuccess() {
         Square square = new Square(MoveType.UP);
@@ -29,7 +29,7 @@ class BridgeTest {
         assertThat(move).isTrue();
     }
 
-    @DisplayName("다리를 건널 수 없다면 false 를 반환한다.")
+    @DisplayName("다리를 건널 수 없다면 거짓을 반환한다.")
     @Test
     void moveFail() {
         Square square = new Square(MoveType.DOWN);
