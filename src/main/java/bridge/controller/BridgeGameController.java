@@ -15,11 +15,17 @@ import static bridge.domain.BridgeGame.*;
 public class BridgeGameController {
     private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeGame bridgeGame;
+    private String successResult = "";
     private boolean moving = true;
 
     public void start(){
         OutputView.startMessage();
+        inputBridgeSizeAndGenerate();
+        inputBridgeMove();
+        printGameResult(successResult);
+    }
 
+    private void inputBridgeSizeAndGenerate(){
         while (true){
             try {
                 bridgeGame = new BridgeGame(generateBridge());
@@ -28,20 +34,17 @@ public class BridgeGameController {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
-        String successResult = "";
-
+    private void inputBridgeMove(){
         while (moving){
             try{
-                String blankToMove = inputBridgeMove();
-                bridgeMove(blankToMove);
+                bridgeMove();
                 successResult = successJudgment();
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
-
-        printGameResult(successResult);
     }
 
     private List<String> generateBridge(){
@@ -51,13 +54,9 @@ public class BridgeGameController {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private String inputBridgeMove(){
+    private void bridgeMove(){
         String blankToMove = InputView.inputMoving();
         Validation.isValidBlankToMove(blankToMove);
-        return blankToMove;
-    }
-
-    private void bridgeMove(String blankToMove){
         bridgeGame.move(blankToMove);
         OutputView.printMap(bridgeGame.makeBridgeCrossingResult());
     }
@@ -66,20 +65,16 @@ public class BridgeGameController {
         String judgment = bridgeGame.judgment();
         if (judgment.equals(SUCCESS)){
             moving = false;
-            return SUCCESS;
         } else if (judgment.equals(FAILURE)) {
             inputRetryOrEnd();
-            return FAILURE;
         }
-        return MOVING;
+        return judgment;
     }
 
     private void inputRetryOrEnd(){
         while (true){
             try {
-                String command = InputView.inputGameCommand();
-                Validation.isValidRetryOrEnd(command);
-                retryOrEnd(command);
+                retryOrEnd();
                 break;
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -87,7 +82,9 @@ public class BridgeGameController {
         }
     }
 
-    private void retryOrEnd(String command){
+    private void retryOrEnd(){
+        String command = InputView.inputGameCommand();
+        Validation.isValidRetryOrEnd(command);
         if (command.equals("R")){
             bridgeGame.retry();
         } else if (command.equals("Q")) {
