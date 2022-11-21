@@ -135,10 +135,10 @@ public class MapMakerTest {
         mapMaker.saveUpperMapResult(move, results);
         //then
         assertThat(results.size()).isEqualTo(1);
-        if (area.equals(AreaStatus.UP.symbol)) {
+        if (area.equals(AreaStatus.UP.getSymbol())) {
             assertThat(results).contains(Result.SUCCESS);
         }
-        if (area.equals(AreaStatus.DOWN.symbol)) {
+        if (area.equals(AreaStatus.DOWN.getSymbol())) {
             assertThat(results).contains(Result.NONE);
         }
     }
@@ -154,10 +154,10 @@ public class MapMakerTest {
         mapMaker.saveLowerMapResult(move, results);
         //then
         assertThat(results.size()).isEqualTo(1);
-        if (area.equals(AreaStatus.UP.symbol)) {
+        if (area.equals(AreaStatus.UP.getSymbol())) {
             assertThat(results).contains(Result.NONE);
         }
-        if (area.equals(AreaStatus.DOWN.symbol)) {
+        if (area.equals(AreaStatus.DOWN.getSymbol())) {
             assertThat(results).contains(Result.SUCCESS);
         }
     }

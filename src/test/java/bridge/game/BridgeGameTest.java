@@ -2,6 +2,7 @@ package bridge.game;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.generator.AreaStatus;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -146,15 +147,13 @@ class BridgeGameTest {
     @Test
     void showSuccess() {
         //given
-        final String FAIL = "실패";
-        final String SUCCESS = "성공";
         //when
         String fail = bridgeGame.getResultMessage();
         bridgeGame.success();
         String success = bridgeGame.getResultMessage();
         //then
-        assertThat(fail).isEqualTo(FAIL);
-        assertThat(success).isEqualTo(SUCCESS);
+        assertThat(fail).isEqualTo(Result.FAIL.getKorean());
+        assertThat(success).isEqualTo(Result.SUCCESS.getKorean());
     }
 
     @DisplayName("게임 캐릭터가 이동할 칸의 이동 가능 여부 체크 테스트")

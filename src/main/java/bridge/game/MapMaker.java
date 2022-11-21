@@ -32,7 +32,7 @@ public class MapMaker {
     }
 
     public void saveUpperMapResult(Move move, List<Result> results) {
-        if (move.getDestination().equals(AreaStatus.DOWN.symbol)) {
+        if (move.getDestination().equals(AreaStatus.DOWN.getSymbol())) {
             results.add(Result.NONE);
             return;
         }
@@ -71,7 +71,7 @@ public class MapMaker {
     }
 
     public void saveLowerMapResult(Move move, List<Result> results) {
-        if (move.getDestination().equals(AreaStatus.UP.symbol)) {
+        if (move.getDestination().equals(AreaStatus.UP.getSymbol())) {
             results.add(Result.NONE);
             return;
         }

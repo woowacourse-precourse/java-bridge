@@ -15,7 +15,7 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             int status = bridgeNumberGenerator.generate();
             AreaStatus areaStatus = AreaStatus.getAreaStatus(status);
-            bridge.add(areaStatus.symbol);
+            bridge.add(areaStatus.getSymbol());
         }
         return bridge;
     }
