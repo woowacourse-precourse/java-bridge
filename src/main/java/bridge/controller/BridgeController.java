@@ -10,11 +10,17 @@ public class BridgeController {
 
     private static final InputView inputView = new InputView();
     private static List<String> bridges;
+    private static Boolean trueOrFalse = true;
 
     public void init() {
 
         int inputSize = getBridgeSize();
         bridges = makeRandomBridges(inputSize);
+
+        while (trueOrFalse) {
+            String inputMoving = inputView.readMoving();
+//            getTriedNumber();
+        }
 //        triedNumber = getTriedNumber(inputSize);
 //        printResult();
     }
