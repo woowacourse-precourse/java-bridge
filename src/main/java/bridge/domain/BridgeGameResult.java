@@ -30,11 +30,11 @@ public class BridgeGameResult {
 
     private List<MoveResult> getMoveResults(Direction direction) {
         return Round.naturalOrderWithSize(result.size()).stream()
-                .map(round -> checkRound(round, direction))
+                .map(round -> getMoveResult(round, direction))
                 .collect(toList());
     }
 
-    private MoveResult checkRound(Round round, Direction direction) {
+    private MoveResult getMoveResult(Round round, Direction direction) {
         PlayerMove playerMove = result.get(round);
         if (playerMove.isNotSameDirection(direction)) {
             return MoveResult.NOT_MOVE;
