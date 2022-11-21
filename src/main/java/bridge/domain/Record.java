@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.utils.Converter;
+import bridge.utils.MoveFormat;
 import bridge.utils.MoveResults;
 
 import java.util.ArrayList;
@@ -54,11 +55,11 @@ public class Record {
     }
 
     private void resultRecord(String move, String result) {
-        if (move.equals("U")) {
+        if (MoveFormat.MOVE_UP.isEqual(move)) {
             recordUpBridge(result);
         }
 
-        if (move.equals("D")) {
+        if (MoveFormat.MOVE_DOWN.isEqual(move)) {
             recordDownBridge(result);
         }
     }
