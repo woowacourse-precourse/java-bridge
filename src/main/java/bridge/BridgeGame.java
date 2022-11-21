@@ -25,6 +25,7 @@ public class BridgeGame {
      */
     public void move() {
         outputView.updateMap(check(round, inputView.readMoving()));
+        outputView.printMap();
         round++;
     }
 
@@ -40,7 +41,7 @@ public class BridgeGame {
      *사용자가 입력한 값과 컴퓨터의 값을 비교하는 메서드
      * @param round 사용자가 움직인 횟수 - 1
      * @param user 사용자가 입력한 이동할 값 : U or D
-     * @return updateMap()에서 각 map에 입력할 정보
+     * @return {" ","O","X"} - updateMap()에서 각 map에 입력할 정보
      */
     public String[] check(int round, String user) {
         if (computer.get(round) == user) {

@@ -9,7 +9,6 @@ public class OutputView {
     StringBuilder map1 = new StringBuilder();
     StringBuilder map2 = new StringBuilder();
     String[] map = new String[2];
-    private int count = 0;
 
     public OutputView() {
         map[0] = "[";
@@ -22,6 +21,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
+        for(int i = 0;i<2;i++){
+            System.out.println(map[i]+"]");
+        }
     }
 
     /**
@@ -39,7 +41,7 @@ public class OutputView {
     public void updateMap(String[] result) {
         for (int i = 0; i < 2; i++) {
             if (map[i] != "[") map[i] += "|";
-            map[i]+=" "+result[i]+" "+"]";
+            map[i]+=" "+result[i]+" ";
         }
     }
 }
