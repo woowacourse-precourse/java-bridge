@@ -1,153 +1,98 @@
 package bridge.input;
 
+import bridge.controller.GameCommand;
+import bridge.controller.MoveCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
-    static class MockSizeBridgeInput3 implements BridgeInput {
+    static class MockSizeBridgeInput implements BridgeInput {
         @Override
         public String readData() {
-            return "3";
+            return "2131af";
         }
     }
 
-    static class MockSizeBridgeInput20 implements BridgeInput {
-        @Override
-        public String readData() {
-            return "20";
-        }
-    }
-
-    static class MockBridgeInputU implements BridgeInput {
-        @Override
-        public String readData() {
-            return "U";
-        }
-    }
-
-    static class MockBridgeInputD implements BridgeInput {
-        @Override
-        public String readData() {
-            return "D";
-        }
-    }
-
-    static class MockBridgeInputR implements BridgeInput {
-        @Override
-        public String readData() {
-            return "R";
-        }
-    }
-
-    static class MockBridgeInputQ implements BridgeInput {
-        @Override
-        public String readData() {
-            return "Q";
-        }
-    }
+    BridgeInput inputer = new ConsoleBridgeInput();
+    BridgeValidator validator = new BasicBridgeValidator();
 
     @DisplayName("다리 길이 입력 테스트")
     @Nested
     class inputSize {
-        @DisplayName("3~20 사이의 값을 입력할 경우 값이 반환된다 - 1")
+        @DisplayName("3~20 사이의 값을 입력할 경우 값이 반환된다")
         @Test
         void correctBridgeSize1() {
             //given
-            BridgeInput input = new MockSizeBridgeInput3();
-            BridgeInputValidator validator = new BasicBridgeInputValidator();
-            InputView inputView = new InputView(input, validator);
+            InputView inputView = new InputView(inputer, validator);
 
             //when
+            String input = "3\n20";
+            InputStream in = new ByteArrayInputStream(input.getBytes());
+            System.setIn(in);
             int size = inputView.readBridgeSize();
+            int size2 = inputView.readBridgeSize();
 
             //then
             assertThat(size).isEqualTo(3);
-        }
-
-        @DisplayName("3~20 사이의 값을 입력할 경우 값이 반환된다 - 2")
-        @Test
-        void correctBridgeSize2() {
-            //given
-            BridgeInput input = new MockSizeBridgeInput20();
-            BridgeInputValidator validator = new BasicBridgeInputValidator();
-            InputView inputView = new InputView(input, validator);
-
-            //when
-            int size = inputView.readBridgeSize();
-
-            //then
-            assertThat(size).isEqualTo(20);
+            assertThat(size2).isEqualTo(20);
         }
 
         @DisplayName("예외 테스트")
         @Nested
         class exceptSize {
-            @DisplayName("정해진 다리 길이 범위 외의 값을 입력할 경우 false 가 반환된다. - 1")
+            @DisplayName("정해진 다리 길이 범위 외의 값을 입력할 경우 예외가 발생한다")
             @Test
             void exceptBridgeSizeRange1() {
                 //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
+                InputView inputView = new InputView(inputer, validator);
 
                 //when
-                boolean bool = validator.validateBridgeSize("21");
+                String input = "21";
+                InputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
 
                 //then
-                assertThat(bool).isFalse();
+                assertThatThrownBy(inputView::readBridgeSize)
+                        .isInstanceOf(RuntimeException.class);
             }
 
-            @DisplayName("정해진 다리 길이 범위 외의 값을 입력할 경우 false 가 반환된다. - 1")
-            @Test
-            void exceptBridgeSizeRange2() {
-                //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
-
-                //when
-                boolean bool = validator.validateBridgeSize("2");
-
-                //then
-                assertThat(bool).isFalse();
-            }
-
-            @DisplayName("입력 값이 정수가 아닌 경우 false 가 반환된다. - 1")
+            @DisplayName("입력 값이 정수가 아닌 경우 예외가 발생한다.")
             @Test
             void exceptBridgeSizeInteger1() {
                 //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
+                InputView inputView = new InputView(inputer, validator);
 
                 //when
-                boolean bool = validator.validateBridgeSize("a2");
+                String input = "2a";
+                InputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
 
                 //then
-                assertThat(bool).isFalse();
+                assertThatThrownBy(inputView::readBridgeSize)
+                        .isInstanceOf(RuntimeException.class);
             }
 
-            @DisplayName("입력 값이 정수가 아닌 경우 false 가 반환된다. - 2")
+            @DisplayName("입력 값이 정수가 아닌 경우 예외가 발생한다.")
             @Test
             void exceptBridgeSizeInteger2() {
                 //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
+                InputView inputView = new InputView(inputer, validator);
 
                 //when
-                boolean bool = validator.validateBridgeSize("2.2");
+                String input = "2.2";
+                InputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
 
                 //then
-                assertThat(bool).isFalse();
-            }
-
-            @DisplayName("입력 값이 정수가 아닌 경우 false 가 반환된다. - 3")
-            @Test
-            void exceptBridgeSizeInteger3() {
-                //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
-
-                //when
-                boolean bool = validator.validateBridgeSize("ab");
-
-                //then
-                assertThat(bool).isFalse();
+                assertThatThrownBy(inputView::readBridgeSize)
+                        .isInstanceOf(RuntimeException.class);
             }
         }
     }
@@ -155,34 +100,21 @@ class InputViewTest {
     @DisplayName("이동 입력 테스트")
     @Nested
     class inputMove {
-        @DisplayName("U를 입력할 경우 char U 가 반환된다")
+        @DisplayName("MoveCommand 를 입력하면 해당 command가 반환된다")
         @Test
-        void correctBridgeMoveU() {
+        void correctBridgeMove() {
             //given
-            BridgeInput input = new MockBridgeInputU();
-            BridgeInputValidator validator = new BasicBridgeInputValidator();
-            InputView inputView = new InputView(input, validator);
+            InputView inputView = new InputView(inputer, validator);
 
             //when
-            char move = inputView.readMoving();
+            String input = MoveCommand.UP.getCommand();
+            InputStream in = new ByteArrayInputStream(input.getBytes());
+            System.setIn(in);
+
+            String move = inputView.readMoving();
 
             //then
-            assertThat(move).isEqualTo('U');
-        }
-
-        @DisplayName("D를 입력할 경우 char D 가 반환된다")
-        @Test
-        void correctBridgeMoveD() {
-            //given
-            BridgeInput input = new MockBridgeInputD();
-            BridgeInputValidator validator = new BasicBridgeInputValidator();
-            InputView inputView = new InputView(input, validator);
-
-            //when
-            char move = inputView.readMoving();
-
-            //then
-            assertThat(move).isEqualTo('D');
+            assertThat(move).isEqualTo("U");
         }
 
         @DisplayName("예외 테스트")
@@ -192,26 +124,16 @@ class InputViewTest {
             @Test
             void exceptBridgeSizeRange1() {
                 //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
+                InputView inputView = new InputView(inputer, validator);
 
                 //when
-                boolean bool = validator.validateMoveCommand("F");
+                String input = "f";
+                InputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
 
                 //then
-                assertThat(bool).isFalse();
-            }
-
-            @DisplayName("정해진 Move Command 가 아닐 경우 false 를 반환한다.")
-            @Test
-            void exceptBridgeSizeRange2() {
-                //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
-
-                //when
-                boolean bool = validator.validateMoveCommand("2");
-
-                //then
-                assertThat(bool).isFalse();
+                assertThatThrownBy(inputView::readGameCommand)
+                        .isInstanceOf(RuntimeException.class);
             }
         }
     }
@@ -219,34 +141,21 @@ class InputViewTest {
     @DisplayName("게임 재시작/ 종료 입력 테스트")
     @Nested
     class inputGameCommand {
-        @DisplayName("R을 입력할 경우 char R 이 반환된다")
+        @DisplayName("GameCommand 를 입력할경우 해당 command가 반환된다")
         @Test
         void inputR() {
             //given
-            BridgeInput input = new MockBridgeInputR();
-            BridgeInputValidator validator = new BasicBridgeInputValidator();
-            InputView inputView = new InputView(input, validator);
+            InputView inputView = new InputView(inputer, validator);
 
             //when
-            char gameCommand = inputView.readGameCommand();
+            String input = GameCommand.RESTART.getCommand();
+            InputStream in = new ByteArrayInputStream(input.getBytes());
+            System.setIn(in);
+
+            String move = inputView.readGameCommand();
 
             //then
-            assertThat(gameCommand).isEqualTo('R');
-        }
-
-        @DisplayName("Q을 입력할 경우 char Q 이 반환된다")
-        @Test
-        void inputQ() {
-            //given
-            BridgeInput input = new MockBridgeInputQ();
-            BridgeInputValidator validator = new BasicBridgeInputValidator();
-            InputView inputView = new InputView(input, validator);
-
-            //when
-            char gameCommand = inputView.readGameCommand();
-
-            //then
-            assertThat(gameCommand).isEqualTo('Q');
+            assertThat(move).isEqualTo(GameCommand.RESTART.getCommand());
         }
 
         @DisplayName("예외 테스트")
@@ -254,41 +163,50 @@ class InputViewTest {
         class exceptSize {
             @DisplayName("정해진 Game Command 가 아닐 경우 false 를 반환한다.")
             @Test
-            void exceptGameCommandE() {
+            void exceptGameCommand1() {
                 //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
+                InputView inputView = new InputView(inputer, validator);
 
                 //when
-                boolean bool = validator.validateGameCommand("E");
+                String input = "r";
+                InputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
 
                 //then
-                assertThat(bool).isFalse();
+                assertThatThrownBy(inputView::readGameCommand)
+                        .isInstanceOf(RuntimeException.class);
             }
 
             @DisplayName("정해진 Game Command 가 아닐 경우 false 를 반환한다.")
             @Test
-            void exceptGameCommandr() {
+            void exceptGameCommand2() {
                 //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
+                InputView inputView = new InputView(inputer, validator);
 
                 //when
-                boolean bool = validator.validateGameCommand("r");
+                String input = "1";
+                InputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
 
                 //then
-                assertThat(bool).isFalse();
+                assertThatThrownBy(inputView::readGameCommand)
+                        .isInstanceOf(RuntimeException.class);
             }
 
             @DisplayName("정해진 Game Command 가 아닐 경우 false 를 반환한다.")
             @Test
-            void exceptGameCommand4a() {
+            void exceptGameCommand3() {
                 //given
-                BridgeInputValidator validator = new BasicBridgeInputValidator();
+                InputView inputView = new InputView(inputer, validator);
 
                 //when
-                boolean bool = validator.validateGameCommand("4a");
+                String input = "q";
+                InputStream in = new ByteArrayInputStream(input.getBytes());
+                System.setIn(in);
 
                 //then
-                assertThat(bool).isFalse();
+                assertThatThrownBy(inputView::readGameCommand)
+                        .isInstanceOf(RuntimeException.class);
             }
         }
     }
