@@ -1,5 +1,6 @@
 package bridge.view;
 
+import static bridge.Constants.ErrorMessage.IS_NOT_IN_RANGE;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
@@ -7,19 +8,34 @@ public class InputView {
 
     public int readBridgeSize() {
         String bridgeSize = readLine();
-        validator.validateBridgeSize(bridgeSize);
+        try {
+            validator.validateBridgeSize(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
         return Integer.parseInt(bridgeSize);
     }
 
     public String readMoving() {
         String moving = readLine();
-        validator.validateMoving(moving);
+        try {
+            validator.validateMoving(moving);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
         return moving;
     }
 
     public String readGameCommand() {
         String command = readLine();
-        validator.validateGameCommand(command);
+        try {
+            validator.validateGameCommand(command);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
         return command;
     }
 }
