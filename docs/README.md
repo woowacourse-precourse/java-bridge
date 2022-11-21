@@ -37,8 +37,8 @@
 
 
 # 테스트
-- [ ] BridgeGame 테스트
-  - [ ] move 테스트
+- [x] BridgeGame 테스트
+  - [x] move 테스트
     - 성공,실패,진행중에 대한 테스트
 
 - [x] BridgeMaker 테스트
