@@ -20,7 +20,7 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame(statusSaver, INIT_RETRY_COUNT);
 
         run(bridgeGame);
-        // 결과 출력
+        printFinalResult(bridgeGame);
     }
 
     private static List<String> generateRandomBridge(BridgeLength length) {
@@ -49,16 +49,6 @@ public class Application {
         }
     }
 
-
-    private static Command getCommand() {
-        try {
-            return Command.createCommand(readGameCommand());
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return getCommand();
-        }
-    }
-
     private static BridgeLength getBridgeLength() {
         try {
             return BridgeLength.createBridgeLength(readBridgeSize());
@@ -75,5 +65,20 @@ public class Application {
             System.out.println(exception.getMessage());
             return getMoving();
         }
+    }
+
+    private static Command getCommand() {
+        try {
+            return Command.createCommand(readGameCommand());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return getCommand();
+        }
+    }
+
+    private static void printFinalResult(BridgeGame bridgeGame) {
+        printResult(bridgeGame.getSavedStatus());
+        printGameSuccessOrNot(bridgeGame.isFail());
+        printTotalRetryCount(bridgeGame.getRetryCount());
     }
 }
