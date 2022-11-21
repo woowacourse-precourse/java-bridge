@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     private void printGameTryCount() {
-        String str = Message.TOTAL_TRY_COUNT + Application.tryCount;
+        String str = String.format(Message.TOTAL_TRY_COUNT, Application.tryCount);
         System.out.println(str);
     }
 
