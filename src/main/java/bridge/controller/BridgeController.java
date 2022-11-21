@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.constant.GameCommand;
 import bridge.constant.MovingDirection;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeController {
 
@@ -29,7 +31,10 @@ public class BridgeController {
         outputView.printMap(bridgeGame);
     }
 
-    public boolean retryOrQuit() {
+    public boolean isNotFailure() {
+        if (!bridgeGame.fail()) {
+            return true;
+        }
         outputView.printRetryOrQuitPhrase();
         GameCommand gameCommand = inputView.readGameCommand();
         if (gameCommand == GameCommand.R) {

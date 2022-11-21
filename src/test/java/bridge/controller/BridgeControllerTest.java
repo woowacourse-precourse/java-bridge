@@ -3,6 +3,8 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -85,7 +87,7 @@ class BridgeControllerTest {
     @Test
     void 게임_종료_선택멘트호출_성공() throws Exception {
         initBridgeController("Q", new LinkedList<>(Arrays.asList(1, 0, 0, 1)));
-        boolean quit = bridgeController.retryOrQuit();
+        boolean quit = bridgeController.isNotFailure();
         assertAll(
             () -> assertThat(outputView.printRetryOrQuitPhrase).isOne(),
             () -> assertThat(quit).isFalse()
@@ -95,7 +97,7 @@ class BridgeControllerTest {
     @Test
     void 게임_재시작_선택멘트호출_성공() throws Exception {
         initBridgeController("R", new LinkedList<>(Arrays.asList(1, 0, 0, 1)));
-        boolean retry = bridgeController.retryOrQuit();
+        boolean retry = bridgeController.isNotFailure();
         assertAll(
             () -> assertThat(outputView.printRetryOrQuitPhrase).isOne(),
             () -> assertThat(retry).isTrue()

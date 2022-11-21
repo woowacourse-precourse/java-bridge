@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.constant.GameCommand;
 import bridge.constant.MovingDirection;
+import bridge.view.ClientConsole;
+import bridge.view.InputView;
 import org.junit.jupiter.api.Test;
 
 public class InputViewTest {
