@@ -46,11 +46,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean success, int trial) {
-        System.out.printf(OutputMessage.GAME_RESULT.value, successToString(success), trial);
+        System.out.printf(OutputMessage.GAME_RESULT.getValue(), successToString(success), trial);
     }
 
     public void printFinalState(List<String> bridge, int pos, boolean correct) {
-        System.out.println(OutputMessage.FINAL_STATE.value);
+        System.out.println(OutputMessage.FINAL_STATE.getValue());
         printMap(bridge, pos, correct);
     }
 
@@ -67,18 +67,18 @@ public class OutputView {
     }
 
     public void printStartGameMessage() {
-        System.out.println(OutputMessage.START_GAME.value);
+        System.out.println(OutputMessage.START_GAME.getValue());
     }
 
     public void printAskSizeMessage() {
-        System.out.println(OutputMessage.ASK_BRIDGE_SIZE.value);
+        System.out.println(OutputMessage.ASK_BRIDGE_SIZE.getValue());
     }
 
     public void printAskMoveMessage() {
-        System.out.println(OutputMessage.ASK_MOVE.value);
+        System.out.println(OutputMessage.ASK_MOVE.getValue());
     }
 
     public void printAskRetryMessage() {
-        System.out.println(OutputMessage.ASK_RETRY.value);
+        System.out.println(OutputMessage.ASK_RETRY.getValue());
     }
 }

@@ -12,9 +12,13 @@ public enum OutputMessage {
     FINAL_STATE("최종 게임 결과"),
     GAME_RESULT("게임 성공 여부: %s\n총 시도한 횟수: %d\n");
 
-    public final String value;
+    private final String value;
 
     OutputMessage(String value) {
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 }
