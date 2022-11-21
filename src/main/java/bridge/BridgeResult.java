@@ -63,4 +63,10 @@ public class BridgeResult {
     public int getCrossingCount() {
         return crossingCount;
     }
+
+    public void reset() {
+        upLine.clear();
+        downLine.clear();
+        crossingCount = 0;
+    }
 }

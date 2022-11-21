@@ -9,6 +9,8 @@ public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
     private Bridge bridges;
+    private BridgeResult bridgeResult;
+    private int gameTryCount = 1;
 
     public BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
@@ -16,6 +18,7 @@ public class BridgeGame {
 
     public void create(int bridgeSize) {
         bridges = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        bridgeResult = new BridgeResult(bridges);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -23,7 +26,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public ResultSymbol move(String moveCommand) {
-        ResultSymbol resultSymbol = bridges.move(moveCommand);
+        ResultSymbol resultSymbol = bridgeResult.move(moveCommand);
         return resultSymbol;
     }
 
@@ -33,9 +36,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        bridgeResult.reset();
+        gameTryCount++;
     }
 
     public boolean allTry() {
-        return bridges.getCount() == bridges.getCrossingCount();
+        return bridges.getCount() == bridgeResult.getCrossingCount();
     }
 }
