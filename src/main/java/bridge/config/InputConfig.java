@@ -8,11 +8,10 @@ public class InputConfig {
     private static final int BRIDGE_MAX_LENGTH = 20;
     private static final int BRIDGE_MIN_LENGTH = 3;
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private static final String NUMBER_PATTERN = "^[0-9]+$";
-    private static final String NOT_ONE_WORD_ERROR = ERROR_MESSAGE + " 한 단어만 입력해 주세요.";
-    private static final String NOT_IN_CORRECT_RANGE = ERROR_MESSAGE + " %d ~ %d 사이의 값만 입력해 주세요.";
+    private static final String NUMBER_PATTERN = "^\\d{1,2}+$";
+    private static final String NOT_ONE_WORD_ERROR = ERROR_MESSAGE + " 한 문자만 입력해 주세요.";
+    private static final String NOT_IN_CORRECT_RANGE = ERROR_MESSAGE + " %d ~ %d 사이의 숫자만 입력해 주세요.";
     private static final String INVALID_INPUT_ERROR = ERROR_MESSAGE + " %s, %s만 입력해 주세요.";
-    private static final String NOT_NUMBER_ERROR = ERROR_MESSAGE + " 숫자만 입력해 주세요.";
 
 
     // 다리 길이 확인
@@ -33,7 +32,7 @@ public class InputConfig {
 
     private void isNumber(String input) {
         if (!Pattern.matches(NUMBER_PATTERN, input)) {
-            throw new IllegalArgumentException(NOT_NUMBER_ERROR);
+            throw new IllegalArgumentException(NOT_IN_CORRECT_RANGE);
         }
     }
 
