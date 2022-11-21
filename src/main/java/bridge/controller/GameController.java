@@ -10,9 +10,12 @@ public class GameController {
     private final BridgeGame bridgeGame = new BridgeGame();
     private final Player player = new Player();
 
-    public void run() {
+    public GameController() {
         outputView.printStart();
         bridgeGame.initBridgeGame(inputController.readBridgeSize(), player);
+    }
+
+    public void run() {
         do {
             if (move().equals("SUCCESS")) break;
         } while (bridgeGame.retry(inputController.readGameCommand()));
