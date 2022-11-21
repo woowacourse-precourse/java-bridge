@@ -36,7 +36,7 @@ public class OutputView {
 		if (moveResultResponseDto.isSuccess()) {
 			System.out.println(ViewConstant.SUCCESS);
 		}
-		if (moveResultResponseDto.isSuccess()) {
+		if (!moveResultResponseDto.isSuccess()) {
 			System.out.println(ViewConstant.FAIL);
 		}
 	}

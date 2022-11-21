@@ -10,12 +10,13 @@ import bridge.GameCommand;
 import bridge.MoveResult;
 import bridge.Moving;
 import bridge.MovingStack;
+import bridge.PlayCount;
 import dto.BridgeResponseDto;
 import dto.BridgeSizeRequestDto;
 import dto.GameCommandRequestDto;
 import dto.MoveResultResponseDto;
 import dto.MovingRequestDto;
-import bridge.PlayCount;
+import dto.PlayCountResponseDto;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -23,6 +24,9 @@ import bridge.PlayCount;
 public class BridgeGame {
 	private MovingStack movingStack;
 
+	/**
+	 * 사용자의 입력 모음을 초기화하는 메서드
+	 */
 	public void initMovingStack() {
 		movingStack = new MovingStack();
 	}
@@ -46,17 +50,29 @@ public class BridgeGame {
 		movingStack.addMoving(moving.isUpPosition());
 	}
 
-	private int calculateNumberOfCorrectMoving(MoveResultResponseDto moveResultResponseDto) {
-		return (int)moveResultResponseDto.getMap().chars().filter(cell -> cell == 'O').count();
-	}
-	public boolean isEnd(BridgeResponseDto bridgeResponseDto, MoveResultResponseDto moveResultResponseDto) {
-		List<String> bridge = bridgeResponseDto.getBridge();
-		return calculateNumberOfCorrectMoving(moveResultResponseDto) != movingStack.getMovingCount() || bridge.equals(movingStack.getMovingStack());
-	}
-
-	public MoveResultResponseDto renderMap(BridgeResponseDto bridgeResponseDto) {
+	/**
+	 * 이동에 따른 결과를 반환할 때 사용하는 메서드
+	 */
+	public MoveResultResponseDto produceResult(BridgeResponseDto bridgeResponseDto) {
 		List<String> bridge = bridgeResponseDto.getBridge();
 		return new MoveResultResponseDto(new MoveResult(bridge, movingStack.getMovingStack()));
+	}
+
+	public MoveResultResponseDto checkGameIsEnd(MoveResultResponseDto moveResultResponseDto) {
+		if (isEnd(moveResultResponseDto)) {
+			initMovingStack();
+			return moveResultResponseDto;
+		}
+		return null;
+	}
+
+	private boolean isEnd(MoveResultResponseDto moveResultResponseDto) {
+		return moveResultResponseDto.getNumberOfCorrect() != movingStack.getMovingCount()
+			|| moveResultResponseDto.isSuccess();
+	}
+
+	public PlayCountResponseDto makePlayCountDto() {
+		return new PlayCountResponseDto(PlayCount.getInstance());
 	}
 
 	/**
