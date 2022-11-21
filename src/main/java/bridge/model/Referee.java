@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.constant.GameOption;
 import bridge.constant.Score;
 
 import java.util.List;
@@ -40,5 +41,10 @@ public class Referee {
 
     public Boolean isPass(String moveDirection) {
         return !isFail(moveDirection);
+    }
+
+    public Boolean isGameRestart(String input) {
+        GameOption gameOption = GameOption.getGameOptionByMessage(input);
+        return gameOption == GameOption.RESTART;
     }
 }
