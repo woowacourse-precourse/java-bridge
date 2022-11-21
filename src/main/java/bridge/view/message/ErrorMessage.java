@@ -1,6 +1,7 @@
-package bridge.view;
+package bridge.view.message;
 
 public abstract class ErrorMessage {
+
     public static final String ERROR_HEADER = "[ERROR] ";
 
     public static final String VALIDATE_INTEGER_TYPE = "다리의 길이는 정수 형태여야 합니다.";

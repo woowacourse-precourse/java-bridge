@@ -1,6 +1,10 @@
 package bridge.view;
 
-import static bridge.view.ErrorMessage.*;
+import static bridge.view.message.ErrorMessage.ERROR_HEADER;
+import static bridge.view.message.ErrorMessage.VALIDATE_BRIDGE_MOVE;
+import static bridge.view.message.ErrorMessage.VALIDATE_BRIDGE_RANGE;
+import static bridge.view.message.ErrorMessage.VALIDATE_GAME_RETRY;
+import static bridge.view.message.ErrorMessage.VALIDATE_INTEGER_TYPE;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import bridge.model.BridgeStatus;
