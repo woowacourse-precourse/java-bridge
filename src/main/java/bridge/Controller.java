@@ -7,12 +7,11 @@ public class Controller {
     private final InputView iView;
     private final OutputView oView;
 
-    private final BridgeGame bridgeGame;
+    private BridgeGame bridgeGame;
 
-    public Controller(InputView iView, OutputView oView, BridgeGame bridgeGame) {
-        this.iView      = iView;
-        this.oView      = oView;
-        this.bridgeGame = bridgeGame;
+    public Controller(InputView iView, OutputView oView) {
+        this.iView = iView;
+        this.oView = oView;
     }
 
     /**
@@ -21,6 +20,8 @@ public class Controller {
     public void start() {
         oView.printStart();
         int input = iView.readBridgeSize();
+        BridgeRandomNumberGenerator rng = new BridgeRandomNumberGenerator();
+        this.bridgeGame = new BridgeGame(new BridgeMaker(rng).makeBridge(input));
     }
 
 
