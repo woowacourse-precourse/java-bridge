@@ -15,13 +15,20 @@ public class BridgeGame {
     private final UserPath userPath;
     private int userPosition;
     private int tryNumber;
+    private boolean success;
 
     public BridgeGame(int size, BridgeMaker bridgeMaker) {
         this.bridge = new Bridge(bridgeMaker.makeBridge(size));
         this.bridgeSize = size;
         this.userPath = new UserPath();
+
+        initialize();
+    }
+
+    private void initialize() {
         this.userPosition = 0;
         this.tryNumber = 1;
+        this.success = false;
     }
 
     /**
@@ -34,6 +41,10 @@ public class BridgeGame {
 
         userPath.move(movement);
         userPosition++;
+
+        if (isPass && userPosition == bridgeSize) {
+            success = true;
+        }
 
         return isPass;
     }
@@ -54,9 +65,7 @@ public class BridgeGame {
     }
 
     public boolean checkSuccess() {
-        if (userPosition == bridgeSize)
-            return true;
-        return false;
+        return success;
     }
 
     public Bridge getBridge() {
