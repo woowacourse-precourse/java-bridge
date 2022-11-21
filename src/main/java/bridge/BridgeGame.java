@@ -49,7 +49,7 @@ public class BridgeGame {
 
     public boolean isEnd() { return this.path.equals(this.bridge); }
 
-    private String getMovingCommand() { return inputView.readMoving(); }
+    private String getMovingCommand() { return inputView.readMovingCommand(); }
 
     private void updatePath(String movingCommand) { this.path.add(movingCommand); }
 }
