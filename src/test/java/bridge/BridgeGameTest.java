@@ -11,6 +11,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class BridgeGameTest {
 
@@ -42,15 +44,10 @@ public class BridgeGameTest {
     }
 
     @DisplayName("성공적으로 움직였으면 true를 실패했으면 false를 리턴한다.")
-    @Test
-    void moveTest_1() {
-        assertThat(bridgeGame.move(Command.DOWN)).isEqualTo(false);
-    }
-
-    @DisplayName("성공적으로 움직였으면 true를 실패했으면 false를 리턴한다.")
-    @Test
-    void moveTest_2() {
-        assertThat(bridgeGame.move(Command.UP)).isEqualTo(true);
+    @ParameterizedTest
+    @CsvSource(value = {"D:false", "U:true"}, delimiter = ':')
+    void moveTest_1(String command, boolean isCorrect) {
+        assertThat(bridgeGame.move(command)).isEqualTo(isCorrect);
     }
 
 
@@ -82,28 +79,16 @@ public class BridgeGameTest {
 //    }
 
     @DisplayName("입력한 방향과 해당 지점이 같으면 true를 다르면 false를 리턴한다")
-    @Test
-    void isCorrectDirectionTest_1() {
-        assertThat(bridgeGame.isCorrectDirection("U")).isEqualTo(true);
+    @ParameterizedTest
+    @CsvSource(value = {"U:true", "D:false"}, delimiter = ':')
+    void isCorrectDirectionTest_1(String command, boolean isCoorrect) {
+        assertThat(bridgeGame.isCorrectDirection(command)).isEqualTo(isCoorrect);
     }
-
-    @DisplayName("입력한 방향과 해당 지점이 같으면 true를 다르면 false를 리턴한다")
-    @Test
-    void isCorrectDirectionTest_2() {
-        assertThat(bridgeGame.isCorrectDirection("D")).isEqualTo(false);
-    }
-
 
     @DisplayName("Q를 입력하면 false, R을 입력하면 true를 리턴한다.")
-    @Test
-    void retryTest_1() {
-        assertThat(bridgeGame.retry("Q")).isEqualTo(false);
-    }
-
-
-    @DisplayName("Q를 입력하면 false, R을 입력하면 true를 리턴한다.")
-    @Test
-    void retryTest_2() {
-        assertThat(bridgeGame.retry("R")).isEqualTo(true);
+    @ParameterizedTest
+    @CsvSource(value = {"Q:false", "R:true"}, delimiter = ':')
+    void retryTest_1(String command, boolean isRetry) {
+        assertThat(bridgeGame.retry(command)).isEqualTo(isRetry);
     }
 }
