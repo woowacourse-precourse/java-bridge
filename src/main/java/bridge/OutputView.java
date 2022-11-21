@@ -19,11 +19,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String printMap(List<String> upBoardCheckList, List<String> downBoardCheckList) {
+    public void printMap(List<String> upBoardCheckList, List<String> downBoardCheckList) {
         String upMap = getUpMap(upBoardCheckList);
         String downMap = getDownMap(downBoardCheckList);
         System.out.println(upMap + downMap);
-        return upMap + downMap;
     }
 
     private String getUpMap(List<String> upBoardCheckList) {
@@ -55,15 +54,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean success, int tryCount, String result) {
+    public void printResult(BridgeGame bridgeGame) {
+        boolean success = bridgeGame.getSuccess();
+        int tryCount = bridgeGame.getTryCount();
+        List<String> upBoardCheckList = bridgeGame.getUpBoardCheckList();
+        List<String> downBoardCheckList = bridgeGame.getDownBoardCheckList();
         System.out.println(GAME_RESULT_SENTENCE);
-        System.out.println(result);
-
+        printMap(upBoardCheckList,downBoardCheckList);
         System.out.print(GAME_SUCCESS_OR_NOT_SENTENCE);
-        if (success) System.out.println("성공");
-        if (!success) System.out.println("실패");
+        printSuccess(success);
         System.out.print(GAME_TRY_NUMBER_SENTENCE);
         System.out.println(tryCount);
+    }
+
+    private void printSuccess(boolean success) {
+        if (success) System.out.println("성공");
+        if (!success) System.out.println("실패");
     }
 
     /**
