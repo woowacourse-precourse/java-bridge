@@ -14,6 +14,9 @@ public class Constant {
     public static final String MAP_END = "]";
     public static final String FIRST_ROUND_END = "  ]";
     public static final String OTHER_ROUND_END = "|   ]";
+    public static final String BRIDGE_INPUT_MSG = "\n다리의 길이를 입력해주세요.";
+    public static final String MOVE_INPUT_MSG = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String GAME_RESTART_MSG = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public static final String ERROR_MESSAGE_BRIDGE_LENGTH_CONSIST_OF_NUM = "[ERROR] 다리 길이 입력값은 숫자여야 합니다.";
     public static final String ERROR_MESSAGE_BRIDGE_LENGTH_RANGE_3_TO_20 = "[ERROR] 다리의 길이는 3이상 20이하여야 합니다.";
