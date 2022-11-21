@@ -25,7 +25,7 @@ public class BridgeMaker {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         for(int i=0;i<size;i++){
             int number = bridgeRandomNumberGenerator.generate();
-            if (number==0){
+            if (number==0){  //0을 위칸으로
                 bridge.add("U");
             }
             else{

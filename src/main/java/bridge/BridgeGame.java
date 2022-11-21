@@ -21,6 +21,11 @@ public class BridgeGame {
         BridgeMaker.makeBridge(bridgeLength);
         System.out.println(bridge); //sout
 
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        System.out.println(bridgeMaker.bridge);
+        System.out.println(bridgeRandomNumberGenerator);
+
         OutputView outputView = new OutputView();
         outputView.printMap(bridge);
 
@@ -36,7 +41,7 @@ public class BridgeGame {
             System.out.println("게임 성공 여부 : 실패");
         }
         int count = 0;
-        System.out.println("총 시도한 횟수" + count);
+        System.out.println("총 시도한 횟수 : " + count);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
