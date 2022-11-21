@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.model.Result;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,8 +63,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(int tryCount, String score) {
-        out.println("게임 성공 여부: " + score);
+    public static void printResult(Result result) {
+        int tryCount = result.getTryCount();
+        String scoreMessage = result.getScoreMessage();
+
+        out.println("게임 성공 여부: " + scoreMessage);
         out.println("총 시도한 횟수: " + tryCount);
     }
 
