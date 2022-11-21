@@ -2,8 +2,8 @@ package bridge;
 
 public enum Success {
 
-    SUCCESS(true, "성공"),
-    FAIL(false,"실패");
+    SUCCESS(true, Constant.SUCCESS),
+    FAIL(false,Constant.FAIL);
     private final boolean isSuccess;
     private final String isSuccessWord;
     Success(boolean b, String s) {

@@ -14,7 +14,7 @@ public class Bridge {
     }
 
     public Bridge(){
-        this.bridgeAnswer=List.of("U");
+        this.bridgeAnswer=List.of(Constant.UP);
     }
     public Bridge(List<String> bridgeAnswer){
         this.bridgeAnswer=bridgeAnswer;
