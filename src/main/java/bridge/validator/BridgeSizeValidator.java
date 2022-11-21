@@ -10,13 +10,13 @@ public class BridgeSizeValidator implements SizeValidator {
     }
 
     @Override
-    public boolean isBiggerThanMin(int target) {
-        return target >= minLength;
+    public boolean isSmallerThanMin(int target) {
+        return target < minLength;
     }
 
     @Override
-    public boolean isSmallerThanMax(int target) {
-        return target <= maxLength;
+    public boolean isBiggerThanMax(int target) {
+        return target > maxLength;
     }
 
     public int convertTarget(String target) {
@@ -25,11 +25,11 @@ public class BridgeSizeValidator implements SizeValidator {
 
     public int getValidBridgeSize(String target) {
         if (!isNumeric(target)) {
-            throw new IllegalArgumentException("다리 사이즈는 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 다리 사이즈는 숫자만 입력할 수 있습니다.");
         }
         int bridgeSize = convertTarget(target);
-        if (!isBiggerThanMin(bridgeSize) || isSmallerThanMax(bridgeSize)) {
-            throw new IllegalArgumentException(String.format("다리 사이즈는 %d이상 %d이하의 수여야합니다.", minLength, maxLength));
+        if (isSmallerThanMin(bridgeSize) || isBiggerThanMax(bridgeSize)) {
+            throw new IllegalArgumentException(String.format("[ERROR] 다리 사이즈는 %d이상 %d이하의 수여야합니다.", minLength, maxLength));
         }
         return bridgeSize;
     }
