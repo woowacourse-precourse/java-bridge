@@ -30,7 +30,25 @@ public class BridgeMaker {
         initialBridgeState.add("[");
         return initialBridgeState;
     }
+    private List<String> addBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
+        if (preBridgeState.get(0)=="["){
+            return firstAddBridge( preBridgeState, randomNumber, positionNumber);
+        }
+        return afterAddBridge( preBridgeState, randomNumber, positionNumber);
+    }
+    private List<String> firstAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
+        if (randomNumber==positionNumber){
+            return firstOAddBridge(preBridgeState,randomNumber,positionNumber);
+        }
+        return firstXAddBridge(preBridgeState,randomNumber,positionNumber);
+    }
 
+    private List<String> afterAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
+        if (randomNumber==positionNumber){
+            return afterOAddBridge(preBridgeState,randomNumber,positionNumber);
+        }
+        return afterXAddBridge(preBridgeState,randomNumber,positionNumber);
+    }
     private List<String> firstOAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber) {
         if (randomNumber == 1 && positionNumber == 1) {
             preBridgeState.set(0, preBridgeState.get(0) + " O ");
