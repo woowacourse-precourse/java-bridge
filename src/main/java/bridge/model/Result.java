@@ -12,7 +12,16 @@ public class Result {
     private boolean success = true;
 
     public Result() {
+        initialize();
         ox.put(true, "O");
         ox.put(false, "X");
+    }
+
+    public void initialize() {
+        resultBridges.clear();
+        List<String> upperBridge = new ArrayList<>();
+        List<String> lowerBridge = new ArrayList<>();
+        resultBridges.add(upperBridge);
+        resultBridges.add(lowerBridge);
     }
 }
