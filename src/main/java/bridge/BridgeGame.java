@@ -83,4 +83,8 @@ public class BridgeGame {
     public void addCount() {
         count++;
     }
+
+    public int getCount() {
+        return count;
+    }
 }
