@@ -19,7 +19,7 @@ public class UserBridgeTest {
         assertThat(userBridge.getUserInput()).isEqualTo(input);
     }
 
-    @DisplayName("플레이어가 널값 입력 시 에러가 발생한다.")
+    @DisplayName("플레이어가 빈 값 입력 시 에러가 발생한다.")
     @Test
     void createNullInput() {
         assertThatThrownBy(() -> new UserBridge(""))
@@ -30,7 +30,7 @@ public class UserBridgeTest {
     @DisplayName("플레이어가 U와 D 외 문자 입력 시 에러가 발생한다.")
     @ValueSource(strings = {"A", "u", "d", "UA", "DB"})
     @ParameterizedTest
-    void createInputNotInRange(String input) {
+    void createInputNotInType(String input) {
         assertThatThrownBy(() -> new UserBridge(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.SPACE_TYPE.getMessage());
@@ -39,7 +39,7 @@ public class UserBridgeTest {
     @DisplayName("플레이어가 U와 D를 같이 입력 시 에러가 발생한다.")
     @ValueSource(strings = {"UD", "DU", "DUU", "UU", "DD"})
     @ParameterizedTest
-    void createAllInput(String input) {
+    void createTogetherInput(String input) {
         assertThatThrownBy(() -> new UserBridge(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.SPACE_TYPE.getMessage());
