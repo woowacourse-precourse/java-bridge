@@ -8,7 +8,7 @@ public class BridgeResult {
     private String result;
     private int attempt;
 
-    BridgeResult(String result, int attempt){
+    public BridgeResult(){
         this.result = "실패";
         this.attempt = 1;
     }
