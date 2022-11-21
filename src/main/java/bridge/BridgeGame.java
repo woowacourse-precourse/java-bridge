@@ -8,6 +8,7 @@ import java.util.*;
 public class BridgeGame {
     private int playerLocationIndex = -1;
     private Boolean askRetryMarker = false;
+    private int tryCount = 1;
     private List<String> upMap = new ArrayList<>();
     private List<String> downMap = new ArrayList<>();
 
@@ -25,13 +26,13 @@ public class BridgeGame {
     }
 
     private String checkAnswer(List<String> bridge, String playerChoice) {
-        String answer = "X";
+        String answer = "O";
 
         if (bridge.get(playerLocationIndex).equals(playerChoice)) {
             askRetryMarker = false;
-            answer = "O";
         } else if (!bridge.get(playerLocationIndex).equals(playerChoice)) {
             askRetryMarker = true;
+            answer = "X";
         }
         return answer;
     }
@@ -54,6 +55,7 @@ public class BridgeGame {
         playerLocationIndex = -1;
         upMap.clear();
         downMap.clear();
+        tryCount++;
     }
 
     public void quit() {
@@ -66,6 +68,10 @@ public class BridgeGame {
 
     public Boolean getAskRetryMarker() {
         return askRetryMarker;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 
     public List<String> getUpMap() {
