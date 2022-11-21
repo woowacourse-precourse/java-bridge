@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.Messages.Error;
 import camp.nextstep.edu.missionutils.Console;
+import net.bytebuddy.pool.TypePool;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -24,6 +25,8 @@ public class InputView {
         int bridgeLength = 0;
         try {
             bridgeLength = castInt(Console.readLine());
+            if (bridgeLength > 20 || bridgeLength < 3)
+                throw new IllegalArgumentException(Error.INVALID_RANGE.getMessage());
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             bridgeLength = readBridgeSize();
