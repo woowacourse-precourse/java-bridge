@@ -14,9 +14,6 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        /*if (bridgeSize < BridgeLengthRule.MIN_LENGTH.getValue() || bridgeSize > BridgeLengthRule.MAX_LENGTH.getValue()) {
-            throw new IllegalArgumentException("다리 길이는 3 이상 20 이하여야 합니다!");
-        }*/
 
         return convertToInteger(bridgeSize);
     }

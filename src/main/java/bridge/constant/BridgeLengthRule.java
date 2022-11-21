@@ -13,4 +13,10 @@ public enum BridgeLengthRule {
     public int getValue() {
         return value;
     }
+
+    public static void validLength(int length) {
+        if (length < MIN_LENGTH.getValue() || length > MAX_LENGTH.getValue()) {
+            throw new IllegalArgumentException("다리 길이는 3 이상 20 이하여야 합니다!");
+        }
+    }
 }
