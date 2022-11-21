@@ -14,7 +14,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String up, String down) {
+        System.out.printf("[ %c", up.charAt(0));
+        for(int index = 1; index<up.length(); index++){
+            System.out.printf(" | %c", up.charAt(index));
+        }
+        System.out.println("]");
+        System.out.printf("[ %c", down.charAt(0));
+        for(int index = 1; index<down.length(); index++){
+            System.out.printf(" | %c", down.charAt(index));
+        }
+        System.out.println("]");
     }
 
     /**
