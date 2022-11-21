@@ -32,9 +32,7 @@ public class Application {
 
                 playerStatus = isMatchingWithBridge(userBridge, s);
 
-                bridgeGame.move(userBridge, playerStatus);
-
-                outputView.printMap(userBridge);
+                playerMove(userBridge, playerStatus);
 
                 if (!playerStatus.isMatchingFlag()) {
                     break;
@@ -49,6 +47,11 @@ public class Application {
                 break;
             }
         }
+    }
+
+    private static void playerMove(Bridge userBridge, PlayerStatus playerStatus) {
+        bridgeGame.move(userBridge, playerStatus);
+        outputView.printMap(userBridge);
     }
 
     private static boolean finishGamePlayerWin(int gameCount, Bridge userBridge, PlayerStatus playerStatus) {
