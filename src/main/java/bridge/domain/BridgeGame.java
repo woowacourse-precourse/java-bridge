@@ -36,24 +36,34 @@ public class BridgeGame {
         reGame.start();
     }
 
-    public List<String> makeMap(String input, boolean move){
+    private List<String> correctMove(String input){
         MapString mapString = new MapString();
-        if (input.equals("U") && move){
+        if (input.equals("U")){
             MapString.upstairs += "O";
             MapString.downstairs += " ";
+            return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
         }
-        else if (input.equals("U")){
+        MapString.upstairs += " ";
+        MapString.downstairs += "O";
+        return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
+    }
+
+    private List<String> incorrectMove(String input){
+        MapString mapString = new MapString();
+        if (input.equals("U")){
             MapString.upstairs += "X";
             MapString.downstairs += " ";
+            return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
         }
-        else if (input.equals("D") && move){
-            MapString.upstairs += " ";
-            MapString.downstairs += "O";
-        }
-        else if (input.equals("D")){
-            MapString.upstairs += " ";
-            MapString.downstairs += "X";
-        }
+        MapString.upstairs += " ";
+        MapString.downstairs += "X";
         return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
+    }
+
+    public List<String> makeMap(String input, boolean move){
+        if (move){
+            return (correctMove(input));
+        }
+        return (incorrectMove(input));
     }
 }

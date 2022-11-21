@@ -14,11 +14,11 @@ public class InputView {
      */
     public int readBridgeSize() {
         while (true){
-        System.out.println("다리의 길이를 입력해주세요.");
-        String input = Console.readLine();
-        if (validate.isValidBridgeSize(input)){
-            return (Integer.parseInt(input));
-        }
+            System.out.println("다리의 길이를 입력해주세요.");
+            String input = Console.readLine();
+            if (validate.isValidBridgeSize(input)){
+                return (Integer.parseInt(input));
+            }
         }
     }
 
@@ -45,6 +45,7 @@ public class InputView {
             String input = Console.readLine();
             if (validate.isValidRetryCommand(input)){
                 return (input);
+            }
         }
     }
-}}
+}
