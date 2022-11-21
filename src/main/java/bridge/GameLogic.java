@@ -62,7 +62,6 @@ public class GameLogic {
         if(inputRetry.equals(RETRY)){
             bridgeGame.retry();
             playOneGame();
-            return;
         }
     }
     private void catchRetryException(){
