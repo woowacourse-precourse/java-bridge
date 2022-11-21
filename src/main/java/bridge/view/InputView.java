@@ -8,12 +8,11 @@ public class InputView {
 
     private final BridgeGameValidator bridgeGameValidator;
 
-    public InputView()
-    {
+    public InputView() {
         bridgeGameValidator = new BridgeGameValidator();
     }
-    private String readLine()
-    {
+
+    private String readLine() {
         return Console.readLine();
     }
 
@@ -22,8 +21,7 @@ public class InputView {
             int bridgeSize = Integer.parseInt(readLine());
             bridgeGameValidator.validateBridgeSize(bridgeSize);
             return bridgeSize;
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Message.ILLEGAL_BRIDGE_SIZE_ERROR_MESSAGE);
         }
     }

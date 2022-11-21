@@ -11,71 +11,61 @@ public class Application {
     private IOController ioController;
     private BridgeGame bridgeGame;
 
-    public Application()
-    {
+    public Application() {
         ioController = new IOController();
     }
 
-    private BridgeGame makeBridgeGame()
-    {
+    private BridgeGame makeBridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int bridgeSize = ioController.inputBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         return new BridgeGame(bridge);
     }
 
-    private void displayBridge()
-    {
+    private void displayBridge() {
         String bridgeMap = bridgeGame.getBridgeMap();
         ioController.printMap(bridgeMap);
     }
 
-    private void displayGameResult()
-    {
+    private void displayGameResult() {
         String gameResult = bridgeGame.toString();
         ioController.printResult(gameResult);
     }
 
-    private boolean isGameActive(String gameCommand)
-    {
-        if (gameCommand.equals(BridgeGameInfo.GAME_RESTART_COMMAND))
-        {
+    private boolean isGameActive(String gameCommand) {
+        if (gameCommand.equals(BridgeGameInfo.GAME_RESTART_COMMAND)) {
             bridgeGame.retry();
             return true;
         }
 
         return false;
     }
-    private boolean move()
-    {
+
+    private boolean move() {
         String moving = ioController.inputNextMove();
         return bridgeGame.move(moving);
     }
 
-    private boolean getGameActive(boolean isMoved)
-    {
-        if(!isMoved)
-        {
+    private boolean getGameActive(boolean isMoved) {
+        if (!isMoved) {
             String gameCommand = ioController.inputGameCommand();
             return isGameActive(gameCommand);
         }
 
         return true;
     }
-    private void playGame()
-    {
+
+    private void playGame() {
         boolean isGameActive = true;
 
-        while(bridgeGame.isNotFinish() && isGameActive)
-        {
+        while (bridgeGame.isNotFinish() && isGameActive) {
             boolean isMoved = move();
             displayBridge();
             isGameActive = getGameActive(isMoved);
         }
     }
 
-    public void run()
-    {
+    public void run() {
         ioController.printGameStartMessage();
         bridgeGame = makeBridgeGame();
         playGame();
