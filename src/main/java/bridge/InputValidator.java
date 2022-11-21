@@ -12,14 +12,14 @@ public class InputValidator {
     }
 
     public String validateMoving(String input) {
-        if (input.equals("U") || input.equals("u") || input.equals("D") || input.equals("d")) {
+        if (input.equals("U") || input.equals("D")) {
             return input;
         }
         throw new IllegalArgumentException();
     }
 
     public String validateRestart(String input) {
-        if (input.equals("R") || input.equals("r") || input.equals("Q") || input.equals("q")) {
+        if (input.equals("R") || input.equals("Q")) {
             return input;
         }
         throw new IllegalArgumentException();

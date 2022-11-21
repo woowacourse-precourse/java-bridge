@@ -33,7 +33,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @DisplayName("이동할 칸 입력 시 정해진 문자 외 다른 문자가 포함되었을 때 예외가 발생하는지 테스트")
-    @ValueSource(strings = {"R", "r", "q", "Q", "123", "a", "B", "coding", "joa", "s ", " "})
+    @ValueSource(strings = {"R", "u", "q", "Q", "123", "a", "B", "coding", "joa", "s ", " "})
     void validateMoving_InValidInput_ExceptionThrown(String input) {
         assertThatThrownBy(() -> inputValidator.validateMoving(input))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -41,7 +41,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @DisplayName("재시작여부 입력 시 정해진 문자 외 다른 문자가 포함되었을 때 예외가 발생하는지 테스트")
-    @ValueSource(strings = {"U", "u", "D", "d","coding", "joa", "s ", " "})
+    @ValueSource(strings = {"U", "r", "D", "d","coding", "joa", "s ", " "})
     void validateRestart_InValidInput_ExceptionThrown(String input) {
         assertThatThrownBy(() -> inputValidator.validateRestart(input))
                 .isInstanceOf(IllegalArgumentException.class);
