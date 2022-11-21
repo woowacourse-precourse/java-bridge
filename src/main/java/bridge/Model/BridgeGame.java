@@ -34,12 +34,14 @@ public class BridgeGame {
         return "X";
     }
 
-    private void selectUpperBridge(){
-        // TODO: 위에 있는 다리를 건너려고 했을 경우의 결과를 currentMap에 추가
+    private void selectUpperBridge(String result){
+        currentMap.get("U").add(result);
+        currentMap.get("D").add(" ");
     }
 
-    private void selectLowerBridge(){
-        // TODO: 아래에 있는 다리를 건너려고 했을 경우의 결과를 currentMap에 추가
+    private void selectLowerBridge(String result){
+        currentMap.get("U").add(" ");
+        currentMap.get("D").add(result);
     }
 
     /**
