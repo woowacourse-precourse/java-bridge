@@ -10,15 +10,15 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge, 0, true);
         playGame(bridgeGame);
-        OutputView.printResult(bridgeGame.map, bridgeGame.flag, bridgeGame.count);
+        OutputView.printResult(bridgeGame.getResult());
     }
 
     public static void playGame(BridgeGame bridgeGame) {
-        while (bridgeGame.position != bridgeGame.bridge.size() && bridgeGame.flag) {
+        while (bridgeGame.checkToContinue()) {
             bridgeGame.move(InputView.readMoving());
-            OutputView.printMap(bridgeGame.map);
+            OutputView.printMap(bridgeGame.getMap());
         }
-        if ((!bridgeGame.flag) && InputView.readGameCommand().equals("R")) {
+        if (bridgeGame.checkSuccess() && InputView.readGameCommand().equals("R")) {
             bridgeGame.retry();
         }
     }

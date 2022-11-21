@@ -16,8 +16,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(StringBuilder[] map) {
-        System.out.println("[ " + map[0] + "]\n[ " + map[1] + "]");
+    public static void printMap(StringBuilder finalMap) {
+        System.out.println(finalMap);
     }
 
     /**
@@ -25,12 +25,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(StringBuilder[] map, boolean flag, int count) {
-        System.out.println("\n최종 게임 결과");
-        System.out.println("[ " + map[0] + "]\n[ " + map[1] + "]");
-        System.out.print("\n게임 성공 여부: ");
-        if (flag) System.out.println("성공");
-        if (!flag) System.out.println("실패");
-        System.out.println("총 시도한 횟수: " + count);
+    public static void printResult(StringBuilder result) {
+        System.out.println(result);
     }
 }

@@ -7,17 +7,18 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    int position = 0;
-    int count = 1;
+    private int position;
+    private int count = 1;
+    private StringBuilder[] map = {new StringBuilder(),  new StringBuilder()};
+    private StringBuilder result=new StringBuilder();
+    private StringBuilder finalMap=new StringBuilder();
+    private boolean canMove;
+    private final List<String> bridge;
 
-    StringBuilder[] map = {new StringBuilder(),  new StringBuilder()};
-    boolean flag = true;
-    List<String> bridge;
-
-    BridgeGame(List<String> bridge, int position, boolean flag) {
+    BridgeGame(List<String> bridge, int position, boolean canMove) {
         this.bridge = bridge;
         this.position = position;
-        this.flag = flag;
+        this.canMove = canMove;
     }
 
     /**
@@ -25,13 +26,21 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    public boolean checkToContinue(){
+        return position != bridge.size() && canMove;
+    }
+
+    public boolean checkSuccess(){
+        return !canMove;
+    }
+
     public void move(String moving) {
         if (bridge.get(position).equals(moving)) {
             setMap(moving, "O");
         }
         if (!bridge.get(position).equals(moving)) {
             setMap(moving, "X");
-            flag = false;
+            canMove = false;
         }
         position++;
     }
@@ -51,6 +60,11 @@ public class BridgeGame {
         }
     }
 
+    public StringBuilder getMap(){
+        finalMap.append("[ ").append(map[0]).append("]\n[ ").append(map[1]).append("]");
+        return finalMap;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -59,9 +73,19 @@ public class BridgeGame {
     public void retry() {
         count++;
         position = 0;
-        flag = true;
+        canMove = true;
         map[0] = new StringBuilder();
         map[1]  = new StringBuilder();
         Application.playGame(this);
+    }
+
+    public StringBuilder getResult() {
+        result.append("\n최종 게임 결과");
+        result.append("[ ").append(map[0]).append("]\n[ ").append(map[1]).append("]");
+        result.append("\n게임 성공 여부: ");
+        if (canMove) result.append("성공");
+        if (!canMove) result.append("실패");
+        result.append("총 시도한 횟수: ").append(count);
+        return result;
     }
 }
