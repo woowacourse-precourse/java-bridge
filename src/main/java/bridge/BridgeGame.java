@@ -12,6 +12,12 @@ public class BridgeGame {
      */
     public void move() {
     }
+    private int replacePositonNumber(String moveBridgePosition){
+        if(moveBridgePosition=="U"){
+            return 1;
+        }
+        return 0;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
