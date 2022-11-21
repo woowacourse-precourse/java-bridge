@@ -10,6 +10,7 @@ public class BridgeGameController {
     }
 
     public void start(){
+
         bridgeGameService.startBridgeGame();
         bridgeGameService.playLoop();
         bridgeGameService.printResult();

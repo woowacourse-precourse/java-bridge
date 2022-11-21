@@ -1,17 +1,14 @@
 package bridge.ui;
 
+import bridge.constant.ErrorCode;
+import bridge.constant.MatchConst.Button;
+import bridge.constant.MatchConst.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Objects;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         System.out.print("다리 건너기 게임을 시작합니다.\n\n");
         System.out.println("다리 길이를 입력해주세요.");
@@ -20,21 +17,15 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(InputMessage.CHOOSE_UPDOWN);
         String result = Console.readLine();
         validationMoving(result);
         return result;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(InputMessage.CHOOSE_RETRY);
         String result = Console.readLine();
         validationGamieCommand(result);
         return result;
@@ -42,19 +33,19 @@ public class InputView {
 
     private void validationBridgeSize(String size){
         if(!size.matches("\\d+")){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());
         }
     }
 
     private void validationMoving(String moving){
-        if(!Objects.equals(moving, "U") && !Objects.equals(moving, "D")){
-            throw new IllegalArgumentException("[ERROR] 입력값이 잘못됐습니다.");
+        if(!Objects.equals(moving, Button.UP_BOTTON) && !Objects.equals(moving, Button.DOWN_BOTTON)){
+            throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());
         }
     }
 
     private void validationGamieCommand(String gameCommand){
-        if(!Objects.equals(gameCommand, "R") && !Objects.equals(gameCommand, "Q")){
-            throw new IllegalArgumentException("[ERROR] 입력값이 잘못됐습니다.");
+        if(!Objects.equals(gameCommand, Button.RETRY_BOTTON) && !Objects.equals(gameCommand, Button.END_BOTTON)){
+            throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());
         }
     }
 }

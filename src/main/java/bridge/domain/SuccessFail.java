@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.constant.ErrorCode;
+
 import java.util.Arrays;
 
 public enum SuccessFail {
@@ -19,7 +21,7 @@ public enum SuccessFail {
         return Arrays.stream(SuccessFail.values())
                 .filter(successFail -> successFail.isSuccess == isSuccess)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력"));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage()));
     }
 
     public String getMessage() {

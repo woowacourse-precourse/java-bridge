@@ -1,10 +1,12 @@
 package bridge.domain;
 
+import bridge.constant.ErrorCode;
+import bridge.constant.MatchConst;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private static final int BRIDGE_MAX_SIZE = 20;
 
     private List<BridgeShapeMatcher> bridgeShapeMatcher;
     private boolean isSuccess;
@@ -24,23 +26,16 @@ public class Player {
 
     private void isContainNone(List<BridgeShapeMatcher> bridgeShapeMatcher) {
         if (bridgeShapeMatcher.contains(BridgeShapeMatcher.NONE)) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 값이 포함되어있음");
+            throw new IllegalArgumentException(ErrorCode.WRONG_WORD_IN_LIST.getMessage());
         }
     }
 
     private void validationSize(int size) {
-        if (size > BRIDGE_MAX_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이가 범위를 벗어납니다.");
+        if (size > MatchConst.Size.BRIDGE_MAX_SIZE) {
+            throw new IllegalArgumentException(ErrorCode.OUT_OF_RANGE.getMessage());
         }
     }
 
-    public void addMatcher(BridgeShapeMatcher bridgeShapeMatcher) {
-        this.bridgeShapeMatcher.add(bridgeShapeMatcher);
-    }
-
-    public void removeMatcher(){
-        this.bridgeShapeMatcher.remove(bridgeShapeMatcher.size()-1);
-    }
     public void removeAllMatcher(){
         this.bridgeShapeMatcher = new ArrayList<>();
     }

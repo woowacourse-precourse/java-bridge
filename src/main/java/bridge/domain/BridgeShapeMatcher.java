@@ -3,11 +3,14 @@ package bridge.domain;
 import java.util.Arrays;
 import java.util.Objects;
 
+import bridge.constant.MatchConst.Button;
+
+
 public enum BridgeShapeMatcher {
-    UP_TRUE("U",true, "O", " "),
-    UP_FALSE("U",false,"X", " "),
-    DOWN_TRUE("D",true, " " , "O"),
-    DOWN_FALSE("D",false, " " , "X"),
+    UP_TRUE(Button.UP_BOTTON,true, "O", " "),
+    UP_FALSE(Button.UP_BOTTON,false,"X", " "),
+    DOWN_TRUE(Button.DOWN_BOTTON,true, " " , "O"),
+    DOWN_FALSE(Button.DOWN_BOTTON,false, " " , "X"),
     NONE(null, false, " ", " ");
 
     private String direction;

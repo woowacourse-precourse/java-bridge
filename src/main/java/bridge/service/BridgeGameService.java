@@ -1,6 +1,8 @@
 package bridge.service;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.ErrorCode;
+import bridge.constant.MatchConst;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeShapeMatcher;
 import bridge.domain.Player;
@@ -51,18 +53,18 @@ public class BridgeGameService {
     private boolean isRetry() {
         if (player.isSuccess()) return false;
         String gameCommand = inputView.readGameCommand();
-        if (Objects.equals(gameCommand, "R")) {
+        if (Objects.equals(gameCommand, MatchConst.Button.RETRY_BOTTON)) {
             player.removeAllMatcher();
             return true;
         }
-        if (Objects.equals(gameCommand, "Q")) {
+        if (Objects.equals(gameCommand, MatchConst.Button.END_BOTTON)) {
             return false;
         }
-        throw new IllegalArgumentException("[ERROR] 입력값이 잘못 됐습니다.");
+        throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());
     }
 
     public void printResult() {
-        outputView.printFinalResult(player);
+        outputView.printResult(player);
     }
 
 
