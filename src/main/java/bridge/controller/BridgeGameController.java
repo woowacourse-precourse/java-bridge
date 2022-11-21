@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.domain.State.*;
+
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
@@ -10,18 +12,15 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 	private final InputController inputController = new InputController();
-	private ProgressMap progressMap;
 
 	public void start() {
 		InputView.printIntroMessage();
 		BridgeGame bridgeGame = settingBridgeGame();
 		startBridgeGame(bridgeGame);
-		OutputView.printResult(progressMap, bridgeGame);
 	}
 
 	private BridgeGame settingBridgeGame() {
 		int bridgeSize = inputController.receiveBridgeSize();
-		progressMap = new ProgressMap();
 		return initBridgeGame(bridgeSize);
 	}
 
@@ -32,24 +31,17 @@ public class BridgeGameController {
 	}
 
 	private void startBridgeGame(BridgeGame bridgeGame) {
-		boolean startGame = true;
-		while (startGame && bridgeGame.isNotFinish(progressMap)) {
-			moveBridgeOneTime(bridgeGame);
-			if (progressMap.isMoveFailed()) {
-				startGame = isRestart(bridgeGame);
+		ProgressMap progressMap = new ProgressMap();
+		while (bridgeGame.getState() == PLAY) {
+			moveBridgeOneTime(bridgeGame, progressMap);
+			if (bridgeGame.getState() == MOVE_FAILED) {
+				progressMap = bridgeGame.retry(inputController.askRetry(), progressMap);
 			}
 		}
+		OutputView.printResult(progressMap, bridgeGame);
 	}
 
-	private boolean isRestart(BridgeGame bridgeGame) {
-		if (inputController.askRetry()) {
-			progressMap = bridgeGame.retry();
-			return true;
-		}
-		return false;
-	}
-
-	private void moveBridgeOneTime(BridgeGame bridgeGame) {
+	private void moveBridgeOneTime(BridgeGame bridgeGame, ProgressMap progressMap) {
 		String moving = inputController.receiveMoveCommand();
 		bridgeGame.move(moving, progressMap);
 		OutputView.printMap(progressMap);
