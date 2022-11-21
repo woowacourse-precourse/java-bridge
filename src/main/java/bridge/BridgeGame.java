@@ -4,17 +4,15 @@ import enumCollections.AvailableInput;
 import enumCollections.GameStatus;
 import enumCollections.Side;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
+    private final int INITIALIZED_TRIAL = 0;
     private Bridge bridge;
     private Player player;
     private int trial;
 
     public BridgeGame() {
         this.player = new Player();
-        this.trial = 0;
+        this.trial = INITIALIZED_TRIAL;
     }
 
     public void generateBridge(int bridgeSize) {
@@ -28,16 +26,16 @@ public class BridgeGame {
     }
 
     public boolean isPlayerInRightSide() {
-        return bridge.isAvailableToMove(player.getLastMoving(), player.getCurrentPosition());
-    }
-
-    private void addTrial() {
-        this.trial++;
+        return bridge.isMovable(
+                player.getLastMoving(),
+                player.getCurrentPosition()
+        );
     }
 
     public GameStatus retry(String gameCommand) {
-        if (gameCommand.equals(AvailableInput.RESTART_GAME)) {
+        if (gameCommand.equals(AvailableInput.get(AvailableInput.RESTART_GAME))) {
             player.initializePosition();
+            addTrial();
             return GameStatus.CONTINUE;
         }
         return GameStatus.FAILURE;
@@ -50,12 +48,16 @@ public class BridgeGame {
         return GameStatus.CONTINUE;
     }
 
+    public Side getCurrentAvailableSide() {
+        String sideSymbol = bridge.getMovableSide(player.getCurrentPosition());
+        return Side.getPosition(sideSymbol);
+    }
+
     public String getTrial() {
         return Integer.toString(this.trial);
     }
 
-    public Side getCurrentAvailableSide() {
-        String sideSymbol = bridge.getMovableSide(player.getCurrentPosition());
-        return Side.getPosition(sideSymbol);
+    private void addTrial() {
+        this.trial++;
     }
 }
