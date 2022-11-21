@@ -21,10 +21,10 @@ public class OutputView {
     public void lineSeparate() {
         println("");
     }
-    private static void println(String content) {
+    public void println(String content) {
         System.out.println(content);
     }
-    public static void print(String content) {
+    public void print(String content) {
         System.out.print(content);
     }
 
