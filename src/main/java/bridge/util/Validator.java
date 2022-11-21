@@ -1,7 +1,7 @@
 package bridge.util;
 
 public class Validator {
-    public static boolean isDigit(String input){
+    public static boolean isDigit(String input) {
         for(int i=0; i<input.length(); i++){
             if(!Character.isDigit(input.charAt(i))){
                 throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NOT_DIGIT.print());
@@ -9,7 +9,7 @@ public class Validator {
         }
         return true;
     }
-    public static boolean checkRange(String input){
+    public static boolean checkRange(String input) {
         int size=Integer.parseInt(input);
         if(size<Constants.MIN_BRIDGE_SIZE || size>Constants.MAX_BRIDGE_SIZE){
             throw new IllegalArgumentException(ErrorMessage.ERROR_BRIGE_SIZE_RANGE.print());
@@ -27,5 +27,11 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.ERROR_RETRY_OR_QUIT.print());
         }
         return true;
+    }
+    public static boolean checkBridgeSize(String input) {
+        if(isDigit(input) && checkRange(input)) {
+            return true;
+        }
+        return false;
     }
 }

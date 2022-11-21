@@ -30,8 +30,12 @@ public class BridgeGameController {
     }
     public int inputBridgeSize(){
         String bridgeSize = inputView.readBridgeSize();
-        Validator.isDigit(bridgeSize);
-        Validator.checkRange(bridgeSize);
+        try {
+            Validator.checkBridgeSize(bridgeSize);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            inputBridgeSize();
+        }
         return Integer.parseInt(bridgeSize);
     }
     public void move(int bridgeSize){
