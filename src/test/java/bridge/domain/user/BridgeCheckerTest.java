@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.user;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import bridge.constant.Message.InputExceptionMessage;

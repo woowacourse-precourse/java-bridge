@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.game;
 
 import bridge.constant.Message;
 import bridge.domain.game.BridgeMap;
