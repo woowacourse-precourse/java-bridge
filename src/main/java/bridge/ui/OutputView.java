@@ -15,21 +15,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> mapString) {
+    private void printEachString(String str){
         int index = 0;
         System.out.print("[ ");
-        for (index = 0; index < mapString.get(0).length() - 1; index++){
-            System.out.print(mapString.get(0).charAt(index));
+        for (index = 0; index < str.length() - 1; index++){
+            System.out.print(str.charAt(index));
             System.out.print(" | ");
         }
-        System.out.println(mapString.get(0).charAt(index) + " ]");
-        index = 0;
-        System.out.print("[ ");
-        for (index = 0; index < mapString.get(1).length() - 1; index++){
-            System.out.print(mapString.get(1).charAt(index));
-            System.out.print(" | ");
-        }
-        System.out.println(mapString.get(1).charAt(index) + " ]");
+        System.out.println(str.charAt(index) + " ]");
+    }
+    public void printMap(List<String> mapString) {
+        printEachString(mapString.get(0));
+        printEachString(mapString.get(1));
         System.out.println();
     }
 

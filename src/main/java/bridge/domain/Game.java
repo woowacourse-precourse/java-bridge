@@ -14,6 +14,7 @@ public class Game {
     private MapString mapString;
     private List<String> bridge;
     private int bridgeSize;
+    private boolean move = true;
     public Game(List<String> bridge, int bridgeSize){
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
@@ -26,12 +27,10 @@ public class Game {
     }
 
     public void Start(){
-        boolean move = true;
         while (move){
             String readMove = inputView.readMoving();
             move = bridgeGame.move(bridge, readMove);
-            List<String> mapStr = bridgeGame.makeMap(readMove, move);
-            outputView.printMap(mapStr);
+            outputView.printMap(bridgeGame.makeMap(readMove, move));
             bridgeGame.index++;
             if (bridgeGame.index == bridgeSize) {
                 break ;
