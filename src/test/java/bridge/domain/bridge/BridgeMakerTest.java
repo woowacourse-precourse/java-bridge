@@ -12,6 +12,7 @@ import java.util.List;
 import static bridge.support.ErrorMessage.BRIDGE_MAKER_SIZE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.util.Lists.newArrayList;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class BridgeMakerTest {
@@ -20,7 +21,7 @@ class BridgeMakerTest {
 
     @BeforeEach
     void init() {
-        bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator(List.of(0, 1, 0)));
+        bridgeMaker = new BridgeMaker(new FakeBridgeNumberGenerator(newArrayList(0, 1, 0, 1, 0, 1)));
     }
 
     @Test
@@ -42,7 +43,7 @@ class BridgeMakerTest {
         int size = 2;
 
         //when then
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
+        assertThatThrownBy(() -> BridgeMaker.validateBridgeSize(size))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BRIDGE_MAKER_SIZE_ERROR);
     }
