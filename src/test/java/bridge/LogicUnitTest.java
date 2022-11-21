@@ -13,7 +13,26 @@ import org.junit.jupiter.params.provider.ValueSource;
 class LogicUnitTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    // InputView 기능 테스트 추가
+    @Test
+    void 기능_입력_다리길이() {
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream("3".getBytes()));
+        assertThat(inputView.readBridgeSize()).isEqualTo(3);
+    }
+
+    @Test
+    void 기능_입력_이동() {
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream("U".getBytes()));
+        assertThat(inputView.readMoving()).isEqualTo("U");
+    }
+
+    @Test
+    void 기능_입력_재시작여부() {
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream("Q".getBytes()));
+        assertThat(inputView.readGameCommand()).isEqualTo("Q");
+    }
 
     @Test
     void 예외_다리길이_숫자아닌경우() {
