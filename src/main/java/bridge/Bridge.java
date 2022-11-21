@@ -13,4 +13,8 @@ public class Bridge {
     public boolean canGo(int index, String ud) {
         return bridge.get(index).equals(ud);
     }
+
+    public int size() {
+        return bridge.size();
+    }
 }
