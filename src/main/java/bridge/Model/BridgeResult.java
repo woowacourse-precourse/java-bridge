@@ -2,22 +2,23 @@ package bridge.Model;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BridgeResult {
     private static final String UPPER_BRIDGE = "U";
     private static final String LOWER_BRIDGE = "D";
 
-    private final LinkedHashMap<String, List<String>> currentMap;
+    private final LinkedHashMap<String, LinkedList<String>> currentMap;
 
     public BridgeResult(){
         currentMap = new LinkedHashMap<>(){{
-            put(UPPER_BRIDGE, new ArrayList<>());
-            put(LOWER_BRIDGE, new ArrayList<>());
+            put(UPPER_BRIDGE, new LinkedList<>());
+            put(LOWER_BRIDGE, new LinkedList<>());
         }};
     }
 
-    public BridgeResult(List<String> upperBridgeState, List<String> lowerBridgeState){
+    public BridgeResult(LinkedList<String> upperBridgeState, LinkedList<String> lowerBridgeState){
         currentMap = new LinkedHashMap<>(){{
             put(UPPER_BRIDGE, upperBridgeState);
             put(LOWER_BRIDGE, lowerBridgeState);
@@ -37,6 +38,10 @@ public class BridgeResult {
     public void clear(){
         currentMap.get(UPPER_BRIDGE).clear();
         currentMap.get(LOWER_BRIDGE).clear();
+    }
+
+    public void getLastResult(){
+
     }
 
     @Override

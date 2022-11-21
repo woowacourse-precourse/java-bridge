@@ -19,6 +19,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -197,8 +198,8 @@ class ApplicationTest extends NsTest {
     void 다리이동결과출력_기능테스트_실패1(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U"));
         bridgeResult = new BridgeResult(
-                new ArrayList<>(List.of("O")),
-                new ArrayList<>(List.of(" "))
+                new LinkedList<>(List.of("O")),
+                new LinkedList<>(List.of(" "))
         );
         bridgeResult = bridgeGame.move(1, "U", bridgeResult);
         outputView.printMap(bridgeResult);
@@ -212,8 +213,8 @@ class ApplicationTest extends NsTest {
     void 다리이동결과출력_기능테스트_실패2(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U", "U", "D"));
         bridgeResult = new BridgeResult(
-                new ArrayList<>(List.of("O", " ", "O")),
-                new ArrayList<>(List.of(" ", "O", " "))
+                new LinkedList<>(List.of("O", " ", "O")),
+                new LinkedList<>(List.of(" ", "O", " "))
         );
         bridgeResult = bridgeGame.move(3, "D", bridgeResult);
         outputView.printMap(bridgeResult);
@@ -227,8 +228,8 @@ class ApplicationTest extends NsTest {
     void 다리이동결과출력_기능테스트_실패3(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U", "U", "D"));
         bridgeResult = new BridgeResult(
-                new ArrayList<>(List.of("O", " ")),
-                new ArrayList<>(List.of(" ", "O"))
+                new LinkedList<>(List.of("O", " ")),
+                new LinkedList<>(List.of(" ", "O"))
         );
         bridgeResult = bridgeGame.move(2, "U", bridgeResult);
         bridgeResult = bridgeGame.move(3, "D", bridgeResult);
@@ -296,8 +297,8 @@ class ApplicationTest extends NsTest {
     void 재시작시초기화_기능테스트(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U"));
         bridgeResult = new BridgeResult(
-                new ArrayList<>(List.of("O")),
-                new ArrayList<>(List.of(" "))
+                new LinkedList<>(List.of("O")),
+                new LinkedList<>(List.of(" "))
         );
         bridgeResult = bridgeGame.move(1, "U", bridgeResult);
         outputView.printMap(bridgeResult);
