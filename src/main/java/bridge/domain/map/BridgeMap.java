@@ -4,12 +4,12 @@ import bridge.domain.bridge.CrossStatus;
 import bridge.domain.direction.Direction;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static bridge.domain.bridge.CrossStatus.FAIL;
 import static bridge.domain.direction.Direction.UP;
 import static bridge.domain.map.MapSymbol.*;
+import static java.util.Collections.unmodifiableList;
 
 public class BridgeMap {
 
@@ -42,26 +42,19 @@ public class BridgeMap {
     public void addPath(final Direction direction,
                         final CrossStatus status) {
         if (status == FAIL) {
-            addFailPath(direction);
+            addPath(direction, FAIL_PATH);
             return;
         }
-        addSuccessPath(direction);
+        addPath(direction, PATH);
     }
 
-    private void addSuccessPath(final Direction direction) {
+    private void addPath(final Direction direction,
+                         final MapSymbol symbol) {
         if (isUp(direction)) {
-            drawTop(PATH);
+            drawTop(symbol);
             return;
         }
-        drawBottom(PATH);
-    }
-
-    private void addFailPath(final Direction direction) {
-        if (isUp(direction)) {
-            drawTop(FAIL_PATH);
-            return;
-        }
-        drawBottom(FAIL_PATH);
+        drawBottom(symbol);
     }
 
     private boolean isUp(final Direction direction) {
@@ -69,18 +62,19 @@ public class BridgeMap {
     }
 
     private void drawTop(final MapSymbol symbol) {
-        topLine.add(SEPARATOR);
-        bottomLine.add(SEPARATOR);
-
+        drawSeparator();
         topLine.add(symbol);
         bottomLine.add(EMPTY);
     }
 
     private void drawBottom(final MapSymbol symbol) {
-        topLine.add(SEPARATOR);
-        bottomLine.add(SEPARATOR);
-
+        drawSeparator();
         bottomLine.add(symbol);
         topLine.add(EMPTY);
+    }
+
+    private void drawSeparator() {
+        topLine.add(SEPARATOR);
+        bottomLine.add(SEPARATOR);
     }
 }
