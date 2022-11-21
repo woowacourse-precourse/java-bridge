@@ -1,5 +1,7 @@
 package bridge.utils;
 
+import java.util.regex.Pattern;
+
 import static bridge.utils.Constants.*;
 
 public class UserInputValidator {
@@ -22,9 +24,7 @@ public class UserInputValidator {
     }
 
     private static void isDigit(String bridgeLength) {
-        try {
-            Integer.parseInt(bridgeLength);
-        } catch (Exception e) {
+        if (!Pattern.matches(DIGIT_PATTERN, bridgeLength)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_DIGIT);
         }
     }

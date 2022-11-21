@@ -17,6 +17,7 @@ public class Constants {
     //예외처리 관련 상수
     public static final int MINIMUM_BRIDGE_SIZE = 3;
     public static final int MAXIMUM_BRIDGE_SIZE = 20;
+    public static final String DIGIT_PATTERN = "^[0-9]*$";
     private static final String ERROR = "[ERROR]";
     public static final String ERROR_MESSAGE_OUT_OF_RANGE_BRIDGE_SIZE = ERROR + " 다리 길이는 3이상 20이하여야 합니다.";
     public static final String ERROR_MESSAGE_NOT_DIGIT = ERROR + " 다리 길이는 숫자만 입력 가능합니다.";
