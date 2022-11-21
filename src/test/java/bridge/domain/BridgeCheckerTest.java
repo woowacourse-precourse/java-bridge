@@ -3,10 +3,7 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import bridge.constant.Message.InputExceptionMessage;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -47,6 +44,32 @@ public class BridgeCheckerTest {
     @ParameterizedTest
     public void 이동_방향_소문자_예외테스트(String moving) {
         이동_방향_예외테스트(moving);
+    }
+
+    @DisplayName("재시작 입력이 숫자를 포함했을 때")
+    @ValueSource(strings = {"-1", "100", "R1", "0Q"})
+    @ParameterizedTest
+    public void 재시도_여부_숫자_예외테스트(String gameCommand) {
+        재시도_여부_예외테스트(gameCommand);
+    }
+
+    @DisplayName("재시작 입력이 다른 문자열일 때")
+    @ValueSource(strings = {"Quit", "Retry", "asd"})
+    @ParameterizedTest
+    public void 재시도_여부_잘못된_문자_예외테스트(String gameCommand) {
+        재시도_여부_예외테스트(gameCommand);
+    }
+    @DisplayName("재시작 입력이 소문자일 때 때")
+    @ValueSource(strings = {"r", "q"})
+    @ParameterizedTest
+    public void 재시작_여부_소문자_예외테스트(String gameCommand) {
+        재시도_여부_예외테스트(gameCommand);
+    }
+
+    private void 재시도_여부_예외테스트(String gameCommand) {
+        assertThatThrownBy(() -> bridgeChecker.validateGameCommand(gameCommand))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(InputExceptionMessage.WRONG_GAME_COMMAND);
     }
 
     private void 이동_방향_예외테스트(String moving) {
