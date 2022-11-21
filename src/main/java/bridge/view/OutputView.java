@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.view.InputView.Command;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -84,7 +85,7 @@ public class OutputView {
     }
 
     private int getIndex(String command) {
-        if (command.equals("U")) {
+        if (command.equals(Command.MOVE_UP.getCommand())) {
             return 0;
         }
         return 1;
