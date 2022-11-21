@@ -14,10 +14,12 @@ import java.util.List;
  */
 public class InputView {
     Validator validator = new Validator();
+    OutputView output = new OutputView();
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        output.printGetLength();
         String lenString = Console.readLine();
         int len = validator.isInt(lenString);
         return validator.isValidLength(len);
@@ -27,6 +29,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        output.printGetMove();
         String move = Console.readLine();
         validator.isValidMove(move);
         return move;
@@ -36,6 +39,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        output.printGetCommand();
         String command = Console.readLine();
         validator.isValidCommand(command);
         return command;
