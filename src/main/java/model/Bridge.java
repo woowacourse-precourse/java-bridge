@@ -1,15 +1,13 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private final List<MoveMark> bridge = new ArrayList<>();
+    private final List<BridgeType> bridge;
 
     public Bridge(List<String> bridge) {
-        for (String mark : bridge) {
-            this.bridge.add(new MoveMark(mark));
-        }
+        List<BridgeType> bridgeTypes = BridgeType.getListByStringList(bridge);
+        this.bridge = List.copyOf(bridgeTypes);
     }
 
     public boolean canMove(int stage, MoveMark mark) {

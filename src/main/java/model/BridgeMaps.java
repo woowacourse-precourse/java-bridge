@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static model.BridgeType.UP;
+import static model.BridgeType.U;
 
 public class BridgeMaps {
     private final Map<BridgeType, BridgeMap> maps;
@@ -27,7 +27,7 @@ public class BridgeMaps {
     }
 
     public int getStage() {
-        BridgeMap map = maps.getOrDefault(UP, new BridgeMap());
+        BridgeMap map = maps.getOrDefault(U, new BridgeMap());
         return map.getStage();
     }
 

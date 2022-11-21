@@ -4,7 +4,6 @@ import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -25,15 +24,15 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         while (bridge.size() < size) {
-            int generate = bridgeNumberGenerator.generate();
-            addBridge(bridge, generate);
+            addBridge(bridge);
         }
 
         return bridge;
     }
 
-    private void addBridge(List<String> bridge, int generate) {
-        Optional<String> mark = BridgeType.getMarkByNumber(generate);
-        mark.ifPresent(bridge::add);
+    private void addBridge(List<String> bridge) {
+        int generate = bridgeNumberGenerator.generate();
+        String type = BridgeType.getStringByNumber(generate);
+        bridge.add(type);
     }
 }

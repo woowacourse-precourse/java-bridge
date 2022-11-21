@@ -5,9 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BridgeTypeTest {
@@ -16,18 +14,18 @@ class BridgeTypeTest {
     @CsvSource(value = {"1:U", "0:D"}, delimiter = ':')
     @ParameterizedTest(name = "[{index}]  {0} 전달 시 {1} 반환")
     void getMarkByNumber(Integer number, String mark) {
-        Optional<String> markByNumber = BridgeType.getMarkByNumber(number);
+        String type = BridgeType.getStringByNumber(number);
 
-        assertThat(markByNumber).isPresent();
-        assertEquals(markByNumber.get(), mark);
+        assertEquals(type, mark);
     }
 
-    @DisplayName("잘못된 숫자 전달 시 빈 값 반환")
+    @DisplayName("잘못된 숫자 전달 시 오류 반환")
     @ValueSource(strings = {"-1", "2"})
-    @ParameterizedTest(name = "[{index}]  {0} 전달 시 빈 값 반환")
+    @ParameterizedTest(name = "[{index}]  {0} 전달 시 오류 반환")
     void getMarkByWrongNumber(Integer number) {
-        Optional<String> markByNumber = BridgeType.getMarkByNumber(number);
-
-        assertThat(markByNumber).isEmpty();
+        assertThatThrownBy(() ->
+                BridgeType.getStringByNumber(number)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1 또는 0이 아닙니다.");
     }
 }

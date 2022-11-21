@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import static constant.Config.NEW_LINE;
-import static model.BridgeType.DOWN;
-import static model.BridgeType.UP;
+import static model.BridgeType.D;
+import static model.BridgeType.U;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -32,8 +32,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Map<BridgeType, List<String>> maps) {
-        System.out.println(getPrintMap(maps.get(UP)));
-        System.out.println(getPrintMap(maps.get(DOWN)));
+        System.out.println(getPrintMap(maps.get(U)));
+        System.out.println(getPrintMap(maps.get(D)));
     }
 
     private String getPrintMap(List<String> map) {

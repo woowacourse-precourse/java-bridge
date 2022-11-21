@@ -5,10 +5,13 @@ import bridge.BridgeRandomNumberGenerator;
 import model.Bridge;
 import model.BridgeMaker;
 import model.BridgeSize;
+import model.BridgeType;
 import model.GameCommand;
 import model.MoveMark;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 
 public class BridgeGameController {
     private final InputView inputView;

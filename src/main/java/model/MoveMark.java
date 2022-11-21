@@ -3,36 +3,33 @@ package model;
 import java.util.Objects;
 
 import static constant.Config.ERROR;
-import static model.BridgeType.DOWN;
-import static model.BridgeType.UP;
+import static model.BridgeType.D;
+import static model.BridgeType.U;
+import static model.BridgeType.valueOf;
 
 public class MoveMark {
-    private static final String VALUE_ERROR = ERROR + String.format("이동할 칸은 %s 또는 %s여야 합니다.", UP.getMark(), DOWN.getMark());
-    private final String mark;
+    private static final String VALUE_ERROR = ERROR + String.format("이동할 칸은 %s 또는 %s여야 합니다.", U, D);
+    private final BridgeType mark;
 
     public MoveMark(String mark) {
         String upperCaseMark = mark.toUpperCase().trim();
 
         validateValue(upperCaseMark);
-        this.mark = upperCaseMark;
+        this.mark = valueOf(upperCaseMark);
     }
 
-    public String getMark() {
+    public BridgeType getMark() {
         return mark;
     }
 
     private void validateValue(String moving) {
-        if (!UP.isEqualsMark(moving) && !DOWN.isEqualsMark(moving)) {
+        if (!U.isEqualsMark(moving) && !D.isEqualsMark(moving)) {
             throw new IllegalArgumentException(VALUE_ERROR);
         }
     }
 
-    public BridgeType getBridgeType() {
-        return BridgeType.getByMark(mark);
-    }
-
-    public boolean canMove(MoveMark mark) {
-        return this.equals(mark);
+    public boolean canMove(BridgeType mark) {
+        return this.mark.equals(mark);
     }
 
     @Override
@@ -50,6 +47,6 @@ public class MoveMark {
 
     @Override
     public String toString() {
-        return mark;
+        return mark.toString();
     }
 }

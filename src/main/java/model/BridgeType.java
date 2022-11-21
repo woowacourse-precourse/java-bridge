@@ -1,33 +1,38 @@
 package model;
 
 import java.util.Arrays;
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static constant.Config.ERROR;
 
 public enum BridgeType {
-    UP(1, "U"),
-    DOWN(0, "D");
+    U(1),
+    D(0);
 
+    private static final String VALUE_ERROR = ERROR + String.format("%d 또는 %d이 아닙니다.", U.getNumber(), D.getNumber());
     private final int number;
-    private final String mark;
 
-    BridgeType(int number, String mark) {
+    BridgeType(int number) {
         this.number = number;
-        this.mark = mark;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public String getMark() {
-        return mark;
-    }
-
-    public static Optional<String> getMarkByNumber(int number) {
+    public static String getStringByNumber(int number) {
         return Arrays.stream(values())
                 .filter(type -> type.number == number)
                 .findAny()
-                .map(BridgeType::getMark);
+                .orElseThrow(() -> new IllegalArgumentException(VALUE_ERROR))
+                .toString();
+    }
+
+    public static List<BridgeType> getListByStringList(List<String> bridge) {
+        return bridge.stream()
+                .map(BridgeType::valueOf)
+                .collect(Collectors.toList());
     }
 
     public boolean isEquals(BridgeType type) {
@@ -35,13 +40,6 @@ public enum BridgeType {
     }
 
     public boolean isEqualsMark(String mark) {
-        return this.mark.equals(mark);
-    }
-
-    public static BridgeType getByMark(String mark) {
-        return Arrays.stream(values())
-                .filter(type -> type.isEqualsMark(mark))
-                .findAny()
-                .orElse(null);
+        return this.equals(valueOf(mark));
     }
 }

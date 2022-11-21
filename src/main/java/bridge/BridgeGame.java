@@ -55,7 +55,7 @@ public class BridgeGame {
     }
 
     private void updateBridgeMaps(MoveMark mark, boolean move) {
-        BridgeType type = mark.getBridgeType();
+        BridgeType type = mark.getMark();
         maps.updateMaps(type, move);
     }
 
