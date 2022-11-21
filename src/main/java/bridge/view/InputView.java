@@ -12,7 +12,10 @@ public class InputView {
      */
     public static String readBridgeSize() {
         OutputView.askBridgeSize();
-        return Console.readLine();
+        String input = Console.readLine();
+        OutputView.printNewLine();
+
+        return input;
     }
 
     /**
