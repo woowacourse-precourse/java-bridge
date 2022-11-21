@@ -5,6 +5,7 @@ package bridge;
  */
 public class OutputView {
     private static final String error = "[ERROR] ";
+    private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 
 
     /**
@@ -26,4 +27,9 @@ public class OutputView {
     public static void printError(String errorMessage) {
         System.out.println(error + errorMessage);
     }
+
+    public static void printRequestBridgeSize() {
+        System.out.println(REQUEST_BRIDGE_SIZE);
+    }
+
 }
