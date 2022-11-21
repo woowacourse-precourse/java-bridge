@@ -20,9 +20,11 @@ public class Application {
 
         // 다리 건너기
         List<String> route = new ArrayList<>();
-        bridgeGameProcessor.start(bridge, route);
+        Integer gameRestartCount = bridgeGameProcessor.start(bridge, route);
 
         // 게임 종료
+        outputView.printEnding(bridge, route, gameRestartCount);
+
 
     }
 }
