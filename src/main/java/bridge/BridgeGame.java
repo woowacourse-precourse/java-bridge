@@ -5,7 +5,7 @@ import static bridge.Utils.Constant.GameCommand.RETRY;
 
 import bridge.Controller.BridgeController;
 import bridge.Domain.Bridge;
-import bridge.View.TotalView;
+import bridge.Utils.Constant.GameCommand;
 import java.util.List;
 
 /**
@@ -14,14 +14,12 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeController bridgeController;
-    private final TotalView view;
     private Bridge user;
     private int playCount = 0;
     private boolean isPlaying;
 
     BridgeGame() {
         bridgeController = new BridgeController();
-        view = new TotalView();
 
         play();
     }
@@ -47,7 +45,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        user.addMoving(view.getMoving());
+        user = bridgeController.addMovingToBridge(user);
         if (user.isMatchAboutLastMoving()) {
             matchAboutLastMoving();
             return;
@@ -56,31 +54,30 @@ public class BridgeGame {
     }
 
     private void matchAboutLastMoving() {
-        view.printResult(user.getResult());
+        bridgeController.printResult(user);
         if (user.isFinish()) {
             quit(true);
         }
     }
 
     private void notMatchAboutLastMoving() {
-        view.printResult(user.getResult());
+        bridgeController.printResult(user);
         quitOrRetry();
     }
 
     public void quitOrRetry() {
-        String command = view.getCommand();
-        if (command.equals(QUIT.toString())) {
+        GameCommand command = bridgeController.getCommand();
+        if (command.equals(QUIT)) {
             quit(false);
         }
-        if (command.equals(RETRY.toString())) {
+        if (command.equals(RETRY)) {
             retry();
         }
     }
 
     public void quit(boolean isSuccess) {
         isPlaying = false;
-        String result = user.getResult();
-        view.quit(result, isSuccess, playCount);
+        bridgeController.printQuitMessageByBridge(user, isSuccess, playCount);
     }
 
     /**
