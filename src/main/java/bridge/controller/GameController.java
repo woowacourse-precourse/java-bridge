@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.service.BridgeGame;
-import bridge.service.GameService;
 import bridge.util.GameConst;
 import bridge.view.OutputView;
 
@@ -9,19 +8,17 @@ public class GameController {
 	private final BridgeGame bridgeGame;
 	private final OutputView outputView;
 	private final InputController inputController;
-	private final GameService gameService;
 
 	public GameController(BridgeGame bridgeGame, OutputView outputView,
-		InputController inputController, GameService gameService) {
+		InputController inputController) {
 		this.bridgeGame = bridgeGame;
 		this.outputView = outputView;
 		this.inputController = inputController;
-		this.gameService = gameService;
 	}
 
 	public void startApplication() {
 		Integer bridgeSize = getBridgeSize();
-		gameService.makeBridge(bridgeSize);
+		bridgeGame.makeBridge(bridgeSize);
 		startGame(bridgeSize);
 	}
 
@@ -41,42 +38,33 @@ public class GameController {
 		printResult(attemptCount, userResult);
 	}
 
+	private String startMove(Integer bridgeSize) {
+		Integer currentLocation = 0;
+		boolean validMove;
+		do {
+			validMove = bridgeGame.move(inputController.getUserMoving(), currentLocation);
+			outputView.printMap(bridgeGame.getUserBridgeStatus());
+			currentLocation++;
+		} while (validMove && !currentLocation.equals(bridgeSize));
+		return getResult(validMove);
+	}
+
+	private String getResult(boolean validMove) {
+		if (!validMove) {
+			return GameConst.FAIL;
+		}
+		return GameConst.SUCCESS;
+	}
+
 	private void printResult(Integer attemptCount, String userResult) {
 		outputView.printFinalResultPhrase();
-		outputView.printMap(gameService.getUserBridgeStatus());
+		outputView.printMap(bridgeGame.getUserBridgeStatus());
 		outputView.printResult(userResult, attemptCount);
 	}
 
 	private boolean restartGame(String userResult) {
 		return userResult.equals(GameConst.FAIL) &&
 			bridgeGame.retry(inputController.getUserRestartCommand());
-	}
-
-	private String startMove(Integer bridgeSize) {
-		Integer currentLocation = 0;
-		do {
-			if (checkIsInvalidUserMove(currentLocation, inputController.getUserMoving()))
-				return GameConst.FAIL;
-			currentLocation++;
-		} while (!currentLocation.equals(bridgeSize));
-		return GameConst.SUCCESS;
-	}
-
-	private boolean checkIsInvalidUserMove(Integer currentLocation, String userLocation) {
-		if (!bridgeGame.move(userLocation, currentLocation)) {
-			printWrongUserMap(userLocation);
-			return true;
-		}
-		printCorrectMap(userLocation);
-		return false;
-	}
-
-	private void printCorrectMap(String userLocation) {
-		outputView.printMap(gameService.saveUserCorrectSpace(userLocation));
-	}
-
-	private void printWrongUserMap(String userLocation) {
-		outputView.printMap(gameService.saveUserWrongSpace(userLocation));
 	}
 
 }

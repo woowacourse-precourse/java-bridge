@@ -14,30 +14,56 @@ class UserBridgeRepositoryTest {
 		userBridgeRepository.clear();
 	}
 
-	@DisplayName("saveUserSpace 에서 upper 위치에 userCurrentTrace 저장 확인 테스트")
+	@DisplayName("saveUserCorrectSpace 에서 upperBridge 에 O 저장 확인 테스트")
 	@Test
-	void saveUserSpaceInUpper() {
+	void saveUserCorrectSpaceInUpperBridge() {
 		//given
-		String location = "U";
-		String userCurrentTrace = "X";
+		String userLocation = "U";
 
 		//when
-		userBridgeRepository.saveUserSpace(location, userCurrentTrace);
+		userBridgeRepository.saveUserCorrectSpace(userLocation);
+		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
+
+		//then
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[ O ]" + "\n" + "[   ]");
+	}
+
+	@DisplayName("saveUserCorrectSpace 에서 lowerBridge 에 O 저장 확인 테스트")
+	@Test
+	void saveUserCorrectSpaceInLowerBridge() {
+		//given
+		String userLocation = "D";
+
+		//when
+		userBridgeRepository.saveUserCorrectSpace(userLocation);
+		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
+
+		//then
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[   ]" + "\n" + "[ O ]");
+	}
+
+	@DisplayName("saveUserWrongSpace 에서 upperBridge 에 X 저장 확인 테스트")
+	@Test
+	void saveUserWrongSpaceInUpperBridge() {
+		//given
+		String userLocation = "U";
+
+		//when
+		userBridgeRepository.saveUserWrongSpace(userLocation);
 		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
 		//then
 		Assertions.assertThat(userBridgeStatus).isEqualTo("[ X ]" + "\n" + "[   ]");
 	}
 
-	@DisplayName("saveUserSpace 에서 lower 위치에 userCurrentTrace 저장 확인 테스트")
+	@DisplayName("saveUserWrongSpace 에서 lowerBridge 에 X 저장 확인 테스트")
 	@Test
-	void saveUserSpaceInLower() {
+	void saveUserWrongSpaceInLowerBridge() {
 		//given
-		String location = "D";
-		String userCurrentTrace = "X";
+		String userLocation = "D";
 
 		//when
-		userBridgeRepository.saveUserSpace(location, userCurrentTrace);
+		userBridgeRepository.saveUserWrongSpace(userLocation);
 		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
 		//then
@@ -49,16 +75,13 @@ class UserBridgeRepositoryTest {
 	void findUserBridgeStatus() {
 		//given
 		String location1 = "U";
-		String userCurrentTrace1 = "O";
 		String location2 = "D";
-		String userCurrentTrace2 = "X";
 		String location3 = "D";
-		String userCurrentTrace3 = "O";
 
 		//when
-		userBridgeRepository.saveUserSpace(location1, userCurrentTrace1);
-		userBridgeRepository.saveUserSpace(location2, userCurrentTrace2);
-		userBridgeRepository.saveUserSpace(location3, userCurrentTrace3);
+		userBridgeRepository.saveUserCorrectSpace(location1);
+		userBridgeRepository.saveUserWrongSpace(location2);
+		userBridgeRepository.saveUserCorrectSpace(location3);
 		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
 		//then

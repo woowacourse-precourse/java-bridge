@@ -1,6 +1,9 @@
 package bridge.service;
 
+import java.util.List;
+
 import bridge.domain.Bridge;
+import bridge.domain.BridgeMaker;
 import bridge.repository.UserBridgeRepository;
 import bridge.util.GameConst;
 
@@ -8,13 +11,25 @@ import bridge.util.GameConst;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+	private final BridgeMaker bridgeMaker;
 	private final Bridge bridge;
 	private final UserBridgeRepository userBridgeRepository;
 
-	public BridgeGame(Bridge bridge,
+	public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge,
 		UserBridgeRepository userBridgeRepository) {
+		this.bridgeMaker = bridgeMaker;
 		this.bridge = bridge;
 		this.userBridgeRepository = userBridgeRepository;
+	}
+
+	public List<String> makeBridge(Integer bridgeSize) {
+		List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+		this.bridge.initBridge(bridge);
+		return bridge;
+	}
+
+	public String getUserBridgeStatus() {
+		return userBridgeRepository.findUserBridgeStatus();
 	}
 
 	/**
@@ -24,8 +39,10 @@ public class BridgeGame {
 	 */
 	public boolean move(String userLocation, Integer currentLocation) {
 		if (!bridge.checkValidSpace(userLocation, currentLocation)) {
+			userBridgeRepository.saveUserWrongSpace(userLocation);
 			return false;
 		}
+		userBridgeRepository.saveUserCorrectSpace(userLocation);
 		return true;
 	}
 

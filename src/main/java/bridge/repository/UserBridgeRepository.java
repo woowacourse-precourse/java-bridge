@@ -13,6 +13,14 @@ public class UserBridgeRepository {
 		this.userCurrentLocation = 0;
 	}
 
+	public void saveUserCorrectSpace(String location) {
+		saveUserSpace(location, GameConst.USER_CORRECT_SPACE);
+	}
+
+	public void saveUserWrongSpace(String location) {
+		saveUserSpace(location, GameConst.USER_WRONG_SPACE);
+	}
+
 	public void saveUserSpace(String location, String userCurrentTrace) {
 		userCurrentLocation++;
 		userBridgeGroup.updateStatus(location, userCurrentTrace);
