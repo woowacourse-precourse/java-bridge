@@ -16,7 +16,7 @@ public class InputView {
         if(size >= 3 && size <= 20)
             return size;
 
-        throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_OUT_RANGE.value);
+        throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_OUT_RANGE.getValue());
     }
 
     /**
@@ -27,7 +27,7 @@ public class InputView {
         if(moving.equals("U") || moving.equals("D"))
             return moving;
 
-        throw new IllegalArgumentException(ErrorMessage.INPUT_UD.value);
+        throw new IllegalArgumentException(ErrorMessage.INPUT_UD.getValue());
     }
 
     /**
@@ -38,7 +38,7 @@ public class InputView {
         if(moving.equals("R") || moving.equals("Q"))
             return moving;
 
-        throw new IllegalArgumentException(ErrorMessage.INPUT_RQ.value);
+        throw new IllegalArgumentException(ErrorMessage.INPUT_RQ.getValue());
     }
 
     private int readInteger() {
@@ -46,7 +46,7 @@ public class InputView {
             int number = Integer.parseInt(Console.readLine());
             return number;
         } catch(Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_INTEGER.value);
+            throw new IllegalArgumentException(ErrorMessage.INPUT_INTEGER.getValue());
         }
     }
 
@@ -55,10 +55,10 @@ public class InputView {
         try {
             line = Console.readLine();
         } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR.value);
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR.getValue());
         }
         if(line.length() != 1) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_ONE_CHARACTER.value);
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONE_CHARACTER.getValue());
         }
         return line;
     }

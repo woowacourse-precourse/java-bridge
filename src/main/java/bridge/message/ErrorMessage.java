@@ -8,9 +8,13 @@ public enum ErrorMessage {
     INPUT_ERROR("입력 과정에서 오류가 발생했습니다."),
     INPUT_ONE_CHARACTER("알파벳 하나를 입력해야 합니다.");
 
-    public final String value;
+    private final String value;
 
     ErrorMessage(String value) {
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 }
