@@ -35,6 +35,5 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         assertThatThrownBy(() -> bridgeGame.move("U", 1)).isInstanceOf(
             CannotCrossBridgeException.class);
-
     }
 }

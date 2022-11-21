@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.exception.CannotCrossBridgeException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +21,9 @@ public class BridgeGame {
      * @param direction
      */
     public void move(String direction, int bridgeIndex) {
+        if (!compareDirection(direction, bridgeIndex)) {
+            throw new CannotCrossBridgeException();
+        }
     }
 
     public boolean compareDirection(String direction, int bridgeIndex) {
