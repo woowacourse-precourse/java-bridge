@@ -53,10 +53,6 @@ public class BridgeApplication {
         bridgeGame.move(inputMoving(), idx);
     }
 
-    private void plusGameCnt() {
-        bridgeGame.plusCnt();
-    }
-
     private void printMap() {
         outputView.printMap(bridgeGame);
     }
