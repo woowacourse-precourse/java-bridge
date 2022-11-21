@@ -50,6 +50,7 @@ public class BridgeGame {
      */
     public List<String> retry(String gameCommand) {
         if (gameCommand.equals("R")) {
+            tryCount = 0;
             retryCount = retryCount + 1;
             moveResult.clear();
             return moveResult;
