@@ -1,14 +1,19 @@
 package bridge.view;
 
 import static bridge.utils.BridgeConstant.END_POINT_MARKING;
+import static bridge.utils.BridgeConstant.FAIL;
 import static bridge.utils.BridgeConstant.MIDDLE_POINT_MARKING;
 import static bridge.utils.BridgeConstant.MOVING_FAIL_MARKING;
 import static bridge.utils.BridgeConstant.MOVING_SUCCESS_MARKING;
 import static bridge.utils.BridgeConstant.NOTHING_MARKING;
 import static bridge.utils.BridgeConstant.STARTING_POINT_MARKING;
+import static bridge.utils.BridgeConstant.SUCCESS;
 import static bridge.utils.command.MoveCommand.DOWN;
 import static bridge.utils.command.MoveCommand.UP;
+import static bridge.utils.message.FixedMessage.GAME_RESULT;
 import static bridge.utils.message.FixedMessage.GAME_START;
+import static bridge.utils.message.FixedMessage.SUCCESS_OR_FAIL;
+import static bridge.utils.message.FixedMessage.TOTAL_ATTEMPTS;
 
 import bridge.BridgeGame;
 import java.util.ArrayList;
@@ -68,8 +73,21 @@ public class OutputView {
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param bridgeGame
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println("\n" + GAME_RESULT.getMessage());
+        printMap(bridgeGame);
+        System.out.println("\n" + String.format(SUCCESS_OR_FAIL.getMessage(), printSuccessOrFail(bridgeGame.isFail())));
+        System.out.println(String.format(TOTAL_ATTEMPTS.getMessage(), bridgeGame.getTotalAttempts()));
+    }
+
+    private String printSuccessOrFail(boolean isFail) {
+        if (isFail) {
+            return FAIL;
+        }
+        return SUCCESS;
     }
 
     public void printGameStart() {

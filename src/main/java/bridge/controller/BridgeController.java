@@ -54,4 +54,8 @@ public class BridgeController {
         }
         return bridgeIndex;
     }
+
+    public void quitGame() {
+        outputView.printResult(bridgeGame);
+    }
 }

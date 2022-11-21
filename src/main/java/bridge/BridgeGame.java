@@ -52,4 +52,12 @@ public class BridgeGame {
     public int getCountOfMovingResults() {
         return movingResults.size();
     }
+
+    public int getTotalAttempts() {
+        return totalAttempts;
+    }
+
+    public boolean isFail() {
+        return movingResults.contains(Boolean.FALSE);
+    }
 }

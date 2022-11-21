@@ -8,5 +8,6 @@ public class Application {
         BridgeController bridgeController = new BridgeController();
         bridgeController.startGame();
         bridgeController.playGame();
+        bridgeController.quitGame();
     }
 }

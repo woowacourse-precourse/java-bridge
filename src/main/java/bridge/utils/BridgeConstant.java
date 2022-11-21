@@ -9,4 +9,6 @@ public class BridgeConstant {
     public static final String MOVING_SUCCESS_MARKING = "O";
     public static final String MOVING_FAIL_MARKING = "X";
     public static final String NOTHING_MARKING = " ";
+    public static final String SUCCESS = "성공";
+    public static final String FAIL = "실패";
 }
