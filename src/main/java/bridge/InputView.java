@@ -7,22 +7,19 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         String bridgeSize = camp.nextstep.edu.missionutils.Console.readLine();
         validateBridgeSize(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
 
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        String movingStep = camp.nextstep.edu.missionutils.Console.readLine();
+        validateMovingStep(movingStep);
+        return movingStep;
+
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -36,6 +33,12 @@ public class InputView {
             throw new IllegalArgumentException();
         }
         if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateMovingStep(String movingStep) throws IllegalArgumentException {
+        if (!movingStep.equals('U') ^ !movingStep.equals('D')) {
             throw new IllegalArgumentException();
         }
     }
