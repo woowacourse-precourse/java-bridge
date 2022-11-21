@@ -23,36 +23,32 @@ public class BridgeGameController {
         while (movingIndex < bridgeSize) {
             movingIndex = play(bridgeGame, movingIndex);
         }
-        outputView.printResult(bridgeGame.getBridgeGameResult());
+        outputView.printResult(bridgeGame.getBridgeGameResult(), bridgeGame.getBridgeGameCount());
     }
 
     private int play(BridgeGame bridgeGame, int movingIndex) {
-        String movingResult = move(bridgeGame, movingIndex);
+        boolean moving = move(bridgeGame, movingIndex);
         outputView.printMap(bridgeGame.getBridgeGameResult());
-        return updateMovingIndex(bridgeGame, movingResult, movingIndex);
+        return updateMovingIndex(bridgeGame, moving, movingIndex);
     }
 
-    private int updateMovingIndex(BridgeGame bridgeGame, String movingResult, int movingIndex){
-        if (bridgeGame.isMove(movingResult)) {
+    private int updateMovingIndex(BridgeGame bridgeGame, boolean moving, int movingIndex){
+        if (moving) {
             return movingIndex + 1;
         }
-        if (isRetry(bridgeGame)) {
+        if (retry(bridgeGame)) {
             return 0;
         }
         return Integer.MAX_VALUE;
     }
 
-    private String move(BridgeGame bridgeGame, int movingIndex) {
+    private boolean move(BridgeGame bridgeGame, int movingIndex) {
         String moving = inputView.readMoving();
         return bridgeGame.move(moving, movingIndex);
     }
 
-    private boolean isRetry(BridgeGame bridgeGame) {
+    private boolean retry(BridgeGame bridgeGame) {
         String gameCommand = inputView.readGameCommand();
-        if (bridgeGame.isRetry(gameCommand)) {
-            bridgeGame.retry();
-            return true;
-        }
-        return false;
+        return bridgeGame.retry(gameCommand);
     }
 }
