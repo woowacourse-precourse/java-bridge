@@ -27,13 +27,23 @@ public class BridgeGameController {
 
     private void crossBridge(BridgeGame bridgeGame) {
         boolean movingSuccess;
-        boolean allPass;
+        boolean allPass = false;
         do {
             outputView.printMoveInputMessage();
             String moving = inputView.readMoving();
             movingSuccess = bridgeGame.move(moving);
             outputView.printMap(bridgeGame.getMovingMap());
+            if (!movingSuccess) {
+                outputView.printRetryMessage();
+                if (inputView.readGameCommand().equals("R")) {
+                    bridgeGame.retry();
+                    continue;
+                }
+                else {
+                    break;
+                }
+            }
             allPass = bridgeGame.allPass();
-        } while (movingSuccess && !allPass);
+        } while (!allPass);
     }
 }
