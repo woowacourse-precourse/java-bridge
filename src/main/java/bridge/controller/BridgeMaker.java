@@ -21,17 +21,16 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridgeStr = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridgeStr = addUorD(bridgeStr,bridgeNumberGenerator.generate());
+            addUorD(bridgeStr, bridgeNumberGenerator.generate());
         }
         return bridgeStr;
     }
 
-    private List<String> addUorD(List<String> bridgeStr, int oneOrZero) {
+    private void addUorD(List<String> bridgeStr, int oneOrZero) {
         if (oneOrZero == 1) {
             bridgeStr.add("U");
-            return bridgeStr;
+            return;
         }
         bridgeStr.add("D");
-        return bridgeStr;
     }
 }
