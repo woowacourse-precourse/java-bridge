@@ -25,8 +25,15 @@ public class InputView {
     }
 
     public static String readMoving() {
-        String userInput = getUserInput(REQUEST_MOVE_COMMAND_MESSAGE.getGuideMessage());
-        return userInput;
+        while (true) {
+            try {
+                String userInput = getUserInput(REQUEST_MOVE_COMMAND_MESSAGE.getGuideMessage());
+                Validator.validateMoveCommand(userInput);
+                return userInput;
+            } catch (IllegalArgumentException e) {
+                System.out.println(INVALID_MOVE_COMMAND_MESSAGE.getErrorMessage());
+            }
+        }
     }
 
     public String readGameCommand() {
