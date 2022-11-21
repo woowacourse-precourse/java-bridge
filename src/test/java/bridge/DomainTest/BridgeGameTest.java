@@ -44,7 +44,7 @@ public class BridgeGameTest {
             System.setIn(in);
 
             bridgeGame.gameStart();
-            assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(0);
+            assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(1);
         }
     }
 
@@ -58,11 +58,12 @@ public class BridgeGameTest {
             bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
 
             List<String> nextStep = new ArrayList<>(Arrays.asList("D"));
+            List<String> expected = new ArrayList<>(Arrays.asList("X"));
             InputStream in = new ByteArrayInputStream(nextStep.get(0).getBytes());
             System.setIn(in);
 
             bridgeGame.move();
-            assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(nextStep);
+            assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(expected);
             assertThat(bridgeGame.getIsGameSucceed()).isFalse();
         }
 
