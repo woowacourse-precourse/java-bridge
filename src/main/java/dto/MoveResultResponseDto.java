@@ -10,7 +10,7 @@ public class MoveResultResponseDto {
 	public MoveResultResponseDto(MoveResult moveResult) {
 		this.map = moveResult.getMap();
 		this.numberOfCorrect = moveResult.getNumberOfCorrect();
-		this.isSuccess = moveResult.getIsSuccess();
+		this.isSuccess = moveResult.isSuccess();
 	}
 
 	public String getMap() {

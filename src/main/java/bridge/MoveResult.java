@@ -140,7 +140,7 @@ public class MoveResult {
 		return numberOfCorrect;
 	}
 
-	public boolean getIsSuccess() {
+	public boolean isSuccess() {
 		return isSuccess;
 	}
 }
