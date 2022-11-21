@@ -11,8 +11,12 @@ public class Player {
     }
 
     int move(String direction) {
-        passingRout.add(direction);
+        addDirection(direction);
         return passingRout.size();
+    }
+
+    private void addDirection(String direction) {
+        passingRout.add(direction);
     }
 
     boolean isCompletedGame(int size) {
@@ -24,10 +28,14 @@ public class Player {
     }
 
     String printResult(Boolean success) {
-        return ResultPrinter.createResultPrinter(success, passingRout).print();
+        return ResultPrinter.createResultPrinter(success, getPassingRout()).print();
+    }
+
+    private List<String> getPassingRout() {
+        return List.copyOf(passingRout);
     }
 
     public boolean isSuccess(List<String> bridges) {
-        return SuccessRoutValidator.isSuccess(bridges, List.copyOf(passingRout));
+        return SuccessRoutValidator.isSuccess(bridges, getPassingRout());
     }
 }

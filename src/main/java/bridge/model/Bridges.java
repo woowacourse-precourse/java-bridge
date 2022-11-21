@@ -7,12 +7,19 @@ public class Bridges {
     private final List<String> bridges;
 
     Bridges(int size, BridgeNumberGenerator bridgeNumberGenerator) {
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        this.bridges = bridgeMaker.makeBridge(size);
+        this.bridges = new BridgeMaker(bridgeNumberGenerator).makeBridge(size);
     }
 
     boolean isRight(int position, String direction) {
-        return bridges.get(position - INDEX_SIZE_DIFFERENT).equals(direction);
+        return getDirection(position).equals(direction);
+    }
+
+    private String getDirection(int position) {
+        return bridges.get(getIndex(position));
+    }
+
+    private static int getIndex(int position) {
+        return position - INDEX_SIZE_DIFFERENT;
     }
 
     boolean isCompletedGame(Player player) {
@@ -20,6 +27,10 @@ public class Bridges {
     }
 
     boolean isSuccess(Player player) {
-        return player.isSuccess(List.copyOf(bridges));
+        return player.isSuccess(getBridges());
+    }
+
+    private List<String> getBridges() {
+        return List.copyOf(bridges);
     }
 }
