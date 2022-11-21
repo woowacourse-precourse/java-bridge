@@ -59,7 +59,7 @@ public class BridgeGameController {
         Result result = Result.SUCCESS;
         while (Result.SUCCESS.equals(result)) {
             result = bridgeGame.move(bridge, readMoving());
-            outputView.printMap(bridge, attempts);
+            outputView.printMap(bridge, bridgeGame.getIndexOfBridge(), result);
             if (result.equals(Result.FAIL) && chooseRetryOrEnd().equals(Result.SUCCESS)) {
                 bridgeGame.retry();
                 result = Result.SUCCESS;
@@ -77,6 +77,6 @@ public class BridgeGameController {
     }
 
     private void end(Result result) {
-        outputView.printResult();
+        outputView.printResult(bridge, attempts, result);
     }
 }
