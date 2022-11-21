@@ -165,8 +165,9 @@ class BridgeGameTest {
         String answer = bridgeGame.showRightDestinationInArea(character.showNextArea());
         boolean expect = answer.equals(destination);
         character.setNextMove(destination);
+        int nextArea = character.showNextArea();
         //when
-        boolean ableToMove = bridgeGame.isAbleToMove();
+        boolean ableToMove = bridgeGame.isAbleToMove(nextArea, destination);
         //then
         assertThat(ableToMove).isEqualTo(expect);
     }
