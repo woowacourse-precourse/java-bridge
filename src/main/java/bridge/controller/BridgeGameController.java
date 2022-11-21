@@ -18,7 +18,7 @@ public class BridgeGameController {
     private final BridgeGame bridgeGame;
 
     public BridgeGameController() {
-        this.inputController = new InputController(new InputView());
+        this.inputController = new InputController(new InputView(), new OutputView());
         this.outputController = new OutputController(new OutputView());
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridgeGame = new BridgeGame();

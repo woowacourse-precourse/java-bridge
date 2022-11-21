@@ -18,6 +18,14 @@ public class OutputView {
         System.out.println(GuideMessage.ENTER_BRIDGE_SIZE);
     }
 
+    public void printInputMoving() {
+        System.out.println(GuideMessage.ENTER_NEXT_DIRECTION);
+    }
+
+    public void printInputGameCommand() {
+        System.out.println(GuideMessage.ENTER_RETRY_OR_QUIT);
+    }
+
     public void printFirstOfBridge() {
         System.out.print(GuideMessage.FIRST_OF_BRIDGE);
     }

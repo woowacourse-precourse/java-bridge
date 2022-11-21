@@ -4,6 +4,7 @@ import bridge.controller.BridgeGameController;
 import bridge.controller.InputController;
 import bridge.model.Record;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public class Application {
         try {
             List<String> board = new ArrayList<>();
             Map<String, Integer> resultBoard = new HashMap<>();
-            InputController inputController = new InputController(new InputView());
+            InputController inputController = new InputController(new InputView(), new OutputView());
             BridgeGameController bridgeGameController = new BridgeGameController();
 
             bridgeGameController.start(inputController.getBridgeSize(), new Record(board, resultBoard));
