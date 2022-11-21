@@ -42,6 +42,6 @@ public class BridgeController {
 
 
     private void printResult(Result result){
-
+        OutputView.printResult(result);
     }
 }

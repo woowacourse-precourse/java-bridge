@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.BridgeGame;
+import bridge.model.Result;
 
 import java.util.List;
 
@@ -25,10 +26,10 @@ public class OutputView {
         String[] map = makeMap(index, bridge);
         StringBuffer Up = new StringBuffer();StringBuffer Down = new StringBuffer();
         Up.append(map[0]);Down.append(map[1]);
-        if(Up.charAt(Up.length()-3) == 'O'){
+        if(Up.charAt(Up.length()-3) != 'O'){
             Up.replace(Up.length()-3,Up.length()-2,"X");
         }
-        if(Down.charAt(Down.length()-3) == 'O'){
+        if(Down.charAt(Down.length()-3) != 'O'){
             Down.replace(Down.length()-3,Down.length()-2,"X");
         }
         System.out.println(Up);System.out.println(Down);
@@ -54,6 +55,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult() {
+    public static void printResult(Result result) {
+        System.out.print("게임 성공 여부: ");
+        System.out.println(checkIsDone(result.getIsDone()));
+        System.out.println("총 시도한 횟수: "+result.getAttemptCount());
+
+
+    }
+    private static String checkIsDone(boolean isDone){
+        if(isDone)
+            return "성공";
+        return "실패";
     }
 }

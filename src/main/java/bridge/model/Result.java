@@ -10,7 +10,7 @@ public class Result {
     public boolean getIsDone(){
         return isDone;
     }
-
+    
     public int getAttemptCount(){
         return attemptCount;
     }
