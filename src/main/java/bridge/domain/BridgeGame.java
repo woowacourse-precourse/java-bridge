@@ -80,7 +80,7 @@ public class BridgeGame {
         }
     }
 
-    public int getBridgeLength() {
+    public int getBridgeSize() {
         return bridge.size();
     }
 

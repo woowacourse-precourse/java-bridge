@@ -36,7 +36,7 @@ public class BridgeState {
     }
 
     private boolean isEmpty() {
-        return (upBridge.length() == BRIDGE_LENGTH_INIT && downBridge.length() == BRIDGE_LENGTH_INIT);
+        return (upBridge.length() == BRIDGE_SIZE_INIT && downBridge.length() == BRIDGE_SIZE_INIT);
     }
 
     public void initBridgeState() {

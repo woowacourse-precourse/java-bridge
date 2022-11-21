@@ -11,7 +11,7 @@ public class BridgeGameManager {
     private BridgeState bridgeState = new BridgeState();
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
-    private int bridgeLength = BRIDGE_LENGTH_INIT;
+    private int bridgeSize = BRIDGE_SIZE_INIT;
 
     public void start() {
         introBridgeGame();
@@ -22,7 +22,7 @@ public class BridgeGameManager {
 
     private void introBridgeGame() {
         outputView.printGameStartNotification();
-        outputView.printInputBridgeLengthNotification();
+        outputView.printInputBridgeSizeNotification();
     }
 
     private BridgeGame makeBridgeGame() {
@@ -30,8 +30,8 @@ public class BridgeGameManager {
     }
 
     private void mainProgress(BridgeGame bridgeGame) {
-        initBrigeLength(bridgeGame);
-        while (bridgeLength --> BRIDGE_LENGTH_INIT) {
+        initBrigeSize(bridgeGame);
+        while (bridgeSize --> BRIDGE_SIZE_INIT) {
             moveProgress(bridgeGame);
             if (!bridgeGame.isWon() && !isRetry(bridgeGame)) {
                 break;
@@ -39,8 +39,8 @@ public class BridgeGameManager {
         }
     }
 
-    private void initBrigeLength(BridgeGame bridgeGame) {
-        bridgeLength = bridgeGame.getBridgeLength();
+    private void initBrigeSize(BridgeGame bridgeGame) {
+        bridgeSize = bridgeGame.getBridgeSize();
     }
 
     private void moveProgress(BridgeGame bridgeGame) {
@@ -53,7 +53,7 @@ public class BridgeGameManager {
         outputView.printInputRetryOrNot();
         String command = inputView.readGameCommand();
         if (bridgeGame.retry(command)) {
-            initBrigeLength(bridgeGame);
+            initBrigeSize(bridgeGame);
             return true;
         }
         return false;
