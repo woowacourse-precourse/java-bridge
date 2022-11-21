@@ -27,7 +27,7 @@ public class BridgeMaker {
 
   private String getUpOrDown() {
     final int zeroOrOne = bridgeNumberGenerator.generate();
-    if (zeroOrOne == 0) {
+    if (zeroOrOne == 1) {
       return UP;
     }
     return DOWN;
