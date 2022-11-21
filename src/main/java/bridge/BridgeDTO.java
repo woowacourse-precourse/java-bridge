@@ -25,19 +25,19 @@ public class BridgeDTO {
         this.length = 1;
     }
     public void move(int i) {
-        if("U".equals(this.bridge.get(i))) {
+        if(InputCase.UP.getInput().equals(this.bridge.get(i))) {
             upCase[i] = BridgeCase.ANSWER;
         }
-        if("D".equals(this.bridge.get(i))) {
+        if(InputCase.DOWN.equals(this.bridge.get(i))) {
             downCase[i] = BridgeCase.ANSWER;
         }
     }
 
     public void doNotMove(String movingCommand, int i) {
-        if(movingCommand.equals("U")) {
+        if(InputCase.UP.getInput().equals(movingCommand)) {
             upCase[i] = BridgeCase.WRONG;
         }
-        if(movingCommand.equals("D")) {
+        if(InputCase.DOWN.getInput().equals(movingCommand)) {
             downCase[i] = BridgeCase.WRONG;
         }
     }

@@ -13,13 +13,13 @@ public class ValidateUserInput {
             throw new IllegalArgumentException("[ERROR]");
     }
     public void checkReadMoving(String moveButton){
-        if(moveButton.equals("U") || moveButton.equals("D")) {
+        if(InputCase.UP.getInput().equals(moveButton) || InputCase.DOWN.getInput().equals(moveButton)) {
             return;
         }
         throw new IllegalArgumentException("[ERROR]");
     }
     public void checkGameCommand(String gameCommandButton){
-        if(gameCommandButton.equals("R") || gameCommandButton.equals("Q")) {
+        if(InputCase.RESTART.getInput().equals(gameCommandButton) || InputCase.QUIT.getInput().equals(gameCommandButton)) {
             return;
         }
         throw new IllegalArgumentException("[ERROR]");
