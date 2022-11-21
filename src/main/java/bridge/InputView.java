@@ -38,6 +38,7 @@ public class InputView {
 
 	public void checkReadMovingException(String userInputMove) {
 		exception.checkMissMatch(userInputMove);
+		exception.checkUserInputMove(userInputMove);
 	}
 
 	public void checkReadGameCommandException(String usertryOrEnd) {

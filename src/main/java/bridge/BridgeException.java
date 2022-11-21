@@ -21,4 +21,10 @@ public class BridgeException {
 			throw new IllegalArgumentException(Constant.SPELLING_MISSMATCH_ERROR);
 		}
 	}
+
+	public void checkUserInputMove(String userInputMove) throws IllegalArgumentException {
+		if (!userInputMove.equals(Constant.SPELLING_U) && !userInputMove.equals(Constant.SPELLING_D)) {
+			throw new IllegalArgumentException(Constant.SPELLING_U_OR_D_MISSMATCH_ERROR);
+		}
+	}
 }
