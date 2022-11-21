@@ -16,7 +16,7 @@ public class GameMachine {
     private List<BridgeType> bridge;
     private BridgeGame bridgeGame;
 
-    private int counter;
+    private int gameCounter;
 
     public GameMachine() {
         view.printStart();
@@ -24,24 +24,23 @@ public class GameMachine {
 
         bridge = makeBridge();
         bridgeGame = new BridgeGame(bridge);
-        counter = 1;
+        gameCounter = 0;
     }
 
     public void run() {
         RetryCommand respond;
         do {
             MoveResult gameResult = play();
-            respond = askRetryByResult(gameResult);
+            respond = askRetry(gameResult);
         } while (respond == RetryCommand.RETRY);
         end();
     }
 
-    private RetryCommand askRetryByResult(MoveResult gameResult) {
+    private RetryCommand askRetry(MoveResult gameResult) {
         RetryCommand respond = RetryCommand.QUIT;
 
         if (gameResult == MoveResult.FAIL) {
             view.printRestartRequest();
-            counter++;
             respond = RetryCommand.of(ui.readGameCommand());
         }
 
@@ -50,10 +49,11 @@ public class GameMachine {
 
     private void end() {
         view.printResult();
-        view.printGameCount(counter);
+        view.printGameCount(gameCounter);
     }
 
     private MoveResult play() {
+        gameCounter++;
         for (int location = 0; location < bridge.size(); location++) {
             MoveResult moveResult = move();
             if (moveResult == MoveResult.FAIL) {
