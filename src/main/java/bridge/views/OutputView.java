@@ -20,6 +20,12 @@ public class OutputView {
     private static String MSG_CORRECT_DIRECTION = "O";
     private static String MSG_WRONG_DIRECTION = "X";
     private static String MSG_NONE_DIRECTION = " ";
+
+    private static String MSG_FINAL_RESULT = "최종 게임 결과";
+    private static String FORMAT_WHETHER_SUCCESS = "게임 성공 여부: {0}";
+    private static String MSG_GAME_SUCCESS = "성공";
+    private static String MSG_GAME_FAILURE = "실패";
+    private static String FORMAT_ATTEMPT_COUNT = "총 시도한 횟수: {0}";
     private static String MSG_SEPARATOR = "";
 
     public void printWelcome() {
@@ -83,7 +89,30 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<Direction> playerPath, boolean isGameOver, boolean isSuccess, int countAttempt) {
+        System.out.println(MSG_FINAL_RESULT);
+        printMap(playerPath, isGameOver);
+        printSeparator();
+        System.out.println(makeWhetherSuccessMessage(isSuccess));
+        System.out.println(makeAttemptCountMessage(countAttempt));
+    }
+
+    private String makeWhetherSuccessMessage(boolean isSuccess){
+        String messagePart_isSuccess = MSG_GAME_FAILURE;
+        if(isSuccess){
+            messagePart_isSuccess = MSG_GAME_SUCCESS;
+        }
+        return MessageFormat.format(
+                FORMAT_WHETHER_SUCCESS,
+                messagePart_isSuccess
+        );
+    }
+
+    private String makeAttemptCountMessage(int countAttempt){
+        return MessageFormat.format(
+                FORMAT_ATTEMPT_COUNT,
+                countAttempt
+        );
     }
 
     private void printSeparator() {
