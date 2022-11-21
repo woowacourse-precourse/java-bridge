@@ -27,20 +27,40 @@ public class BridgeController {
     }
 
     private void createBridgeGame() {
-        int inputBridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(inputBridgeSize);
-        this.bridgeGame = new BridgeGame(bridge);
+        try {
+            List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+            this.bridgeGame = new BridgeGame(bridge);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createBridgeGame();
+        }
     }
 
     private void playTurn() {
-        String moving = inputView.readMoving();
-        bridgeGame.move(moving);
-        String bridgeSketch = bridgeGame.getSketch();
-        outputView.printMap(bridgeSketch);
+        try {
+            bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.getSketch());
+            checkFail();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            playTurn();
+        }
+    }
+
+    private void checkFail() {
         if (bridgeGame.isFail()) {
+            retryGame();
+        }
+    }
+
+    private void retryGame() {
+        try {
             String gameCommand = inputView.readGameCommand();
             bridgeGame.retry(gameCommand);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            retryGame();
         }
     }
 
