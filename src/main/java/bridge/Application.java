@@ -6,13 +6,13 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
+        BridgeGame bridgeGame = new BridgeGame();
         runBridgeGame(bridgeGame);
     }
 
     private static void runBridgeGame(BridgeGame bridgeGame) {
-        BridgeResult result = bridgeGame.makeBridgeResult();
         List<String> bridge = bridgeGame.makeBridge();
+        BridgeResult result = bridgeGame.makeBridgeResult();
         boolean ready = true;
         while (ready) {
             ready = crossBridge(bridgeGame, bridge, result);
@@ -26,6 +26,6 @@ public class Application {
         while (!block) {
             block = bridgeGame.move(bridge, result);
         }
-        bridgeGame.endCycle(result);
+        return bridgeGame.endCycle(result);
     }
 }

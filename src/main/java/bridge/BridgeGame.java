@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,19 +13,18 @@ public class BridgeGame {
     private BridgeBluePrint bluePrint;
     private BridgeMaker maker;
 
-
     public BridgeGame() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        outputView.printStartStatement();
         bluePrint = makeBridgeBluePrint();
         maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        outputView.printBridgeSizeInputStatement();
     }
 
     private BridgeBluePrint makeBridgeBluePrint() {
         BridgeBluePrint bluePrint = null;
         while (bluePrint == null) {
-            outputView.printBridgeSizeInputStatement();
+            outputView.printBridgeSizeStatement();
             bluePrint = makeBridgeBluePrintOrNull();
         }
         return bluePrint;
@@ -43,7 +43,7 @@ public class BridgeGame {
     }
 
     public BridgeResult makeBridgeResult() {
-        return new BridgeResult(BridgeCell.values().length);
+        return new BridgeResult();
     }
 
     public List<String> makeBridge() {
@@ -56,8 +56,15 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(List<String> bridge, BridgeResult result) {
+        outputView.printMovingStatement();
         String moving = inputMoving();
-        return false;
+        int index = result.getResultSize();
+        boolean correct = moving.equals(bridge.get(index));
+        result.add(moving, correct);
+        if (bridge.size() == result.getResultSize()) {
+            return true;
+        }
+        return !correct;
     }
 
     private String inputMoving() {
@@ -65,7 +72,7 @@ public class BridgeGame {
         while (moving == null) {
             moving = inputMovingOrNull();
         }
-        return null;
+        return moving;
     }
 
     private String inputMovingOrNull() {
@@ -86,8 +93,36 @@ public class BridgeGame {
         result.init();
     }
 
-    public void endCycle(BridgeResult result) {
+    public boolean endCycle(BridgeResult result) {
+        outputView.printMap(result.getResult());
+        if (isDone(result)) {
+            return false;
+        }
+        return inputGameCommand();
+    }
 
+    private boolean isDone(BridgeResult result) {
+        return Arrays.stream(result.getResult())
+                .anyMatch(map ->
+                        map.get(map.size() - 1).equals(BridgeDisplay.toString(true)));
+    }
+
+    private boolean inputGameCommand() {
+        String gameCommand = null;
+        while (gameCommand == null) {
+            outputView.printgameCommandStatement();
+            gameCommand = getGameCommandOrNull();
+        }
+        return BridgeGameCommand.toBoolean(gameCommand);
+    }
+
+    private String getGameCommandOrNull() {
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+        }
+        return null;
     }
 
     public void exit() {

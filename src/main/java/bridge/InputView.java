@@ -2,7 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -41,10 +40,10 @@ public class InputView {
      */
     public String readMoving() {
         String moving = Console.readLine();
-        Arrays.stream(BridgeCell.values())
-                .filter(cell -> cell.equals(moving))
+        Arrays.stream(BridgeMoving.values())
+                .filter(cell -> cell.toString().equals(moving))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR]: 잘못된 칸을 입력하셨습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("잘못된 칸을 입력하셨습니다."));
         return moving;
     }
 
@@ -52,6 +51,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        Arrays.stream(BridgeGameCommand.values())
+                .filter(gameCommand -> gameCommand.name().equals(command))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("재시작 여부를 다시 입력해주세요."));
+        return command;
     }
 }

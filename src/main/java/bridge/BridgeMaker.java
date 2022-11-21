@@ -2,7 +2,6 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -23,7 +22,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>(size);
         for (int count = 0; count < size; count++) {
             bridge.add(
-                    BridgeCell.toString(bridgeNumberGenerator.generate())
+                    BridgeMoving.toString(bridgeNumberGenerator.generate())
             );
         }
         return bridge;
