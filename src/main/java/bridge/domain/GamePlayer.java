@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeException;
 import bridge.view.InputView;
 import bridge.view.InputViewAdapter;
 import bridge.view.OutputView;
@@ -26,6 +27,7 @@ public class GamePlayer {
     }
 
     public void run() {
+        isInitialized();
         do {
             move();
 
@@ -60,5 +62,11 @@ public class GamePlayer {
     private void retry() {
         bridgeGame.retry();
         retryCount++;
+    }
+
+    private void isInitialized() {
+        if (bridgeGame == null) {
+            throw new IllegalArgumentException(BridgeException.TOKEN.getMessage() + " 게임 실행 전 게임 초기화가 필요합니다. -> init()");
+        }
     }
 }
