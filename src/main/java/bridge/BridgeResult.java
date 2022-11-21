@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BridgeResult {
 
@@ -9,13 +10,13 @@ public class BridgeResult {
 
     public BridgeResult() {
         count = 0;
-        result = null;
+        result = new ArrayList[BridgeCell.values().length];
     }
 
     public void init() {
         count++;
-        for (ArrayList<String> list : result) {
-            list = new ArrayList<>();
-        }
+        Arrays.stream(result).forEach(
+                list -> list = new ArrayList<>()
+        );
     }
 }

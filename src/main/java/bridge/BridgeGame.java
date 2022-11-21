@@ -11,23 +11,15 @@ public class BridgeGame {
     private OutputView outputView;
     private BridgeBluePrint bluePrint;
     private BridgeMaker maker;
-    private boolean ready;
 
 
-    public BridgeGame(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeGame() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
         bluePrint = makeBridgeBluePrint();
         maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        ready = true;
         outputView.printBridgeSizeInputStatement();
     }
-
-    public boolean isReady() {
-        return ready;
-    }
-
-    ;
 
     private BridgeBluePrint makeBridgeBluePrint() {
         BridgeBluePrint bluePrint = null;
@@ -50,6 +42,10 @@ public class BridgeGame {
         return null;
     }
 
+    public BridgeResult makeBridgeResult() {
+        return new BridgeResult(BridgeCell.values().length);
+    }
+
     public List<String> makeBridge() {
         return maker.makeBridge(bluePrint.getSize());
     }
@@ -59,7 +55,26 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(List<String> bridge, BridgeResult result) {
+        String moving = inputMoving();
+        return false;
+    }
+
+    private String inputMoving() {
+        String moving = null;
+        while (moving == null) {
+            moving = inputMovingOrNull();
+        }
+        return null;
+    }
+
+    private String inputMovingOrNull() {
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+        }
+        return null;
     }
 
     /**
@@ -67,6 +82,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(BridgeResult result) {
+        result.init();
+    }
+
+    public void endCycle(BridgeResult result) {
+
+    }
+
+    public void exit() {
+
     }
 }

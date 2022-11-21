@@ -26,13 +26,6 @@ public class BridgeMaker {
                     BridgeCell.toString(bridgeNumberGenerator.generate())
             );
         }
-        validBridge(bridge);
         return bridge;
-    }
-
-    private void validBridge(List<String> bridge) {
-        if (bridge.contains("UNDEFINED")) {
-            throw new IllegalArgumentException("[ERROR]: 동작이 정의되지 않은 번호를 입력받았습니다.");
-        }
     }
 }

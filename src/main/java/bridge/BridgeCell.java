@@ -4,8 +4,7 @@ import java.util.Arrays;
 
 public enum BridgeCell {
     D(0),
-    U(1),
-    UNDEFINED(-1);
+    U(1);
 
     private final int numberNotation;
 
@@ -21,7 +20,6 @@ public enum BridgeCell {
         return Arrays.stream(BridgeCell.values())
                 .filter(cell -> cell.getNumberNotation() == number)
                 .findAny()
-                .orElse(UNDEFINED)
                 .toString();
     }
 }
