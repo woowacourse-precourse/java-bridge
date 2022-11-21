@@ -17,12 +17,11 @@ public class BridgeMover {
     }
 
     public GameStatus go(String moving) {
-        boolean isCorrectMoving = this.bridge.get(this.location).equals(moving);
-        if (!isCorrectMoving) {
+        if (!isCorrect(moving)) {
             return FAIL;
         }
         this.location += 1;
-        if (this.bridge.size() == location) {
+        if (isCrossCompletely()) {
             return END;
         }
         return ON_WAY;
@@ -31,5 +30,10 @@ public class BridgeMover {
     public boolean isCrossCompletely() {
         int bridgeSize = this.bridge.size();
         return bridgeSize == location;
+    }
+
+    private boolean isCorrect(String moving) {
+        String correctMoving = this.bridge.get(this.location);
+        return correctMoving.equals(moving);
     }
 }
