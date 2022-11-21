@@ -1,12 +1,14 @@
 package bridge.model;
 
 import org.junit.jupiter.api.DisplayName;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BridgeGameTest {
 
@@ -25,6 +27,33 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.createBridge(4);
         assertThatThrownBy(()->{bridgeGame.checkAnswerOfRound(input);}).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("틀린 답을 줬을 때 게임에 잘 실패하는지 테스트")
+    @Test
+    void gameFailTest(){
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.createBridge(3);
+        String testInput = "U";
+        if(bridgeGame.getBridge().getBlocks().get(0) == "U") testInput = "D";
+        bridgeGame.checkAnswerOfRound(testInput);
+        assertTrue(bridgeGame.isGameFail());
+    }
+
+    @DisplayName("모두 정답을 줬을 때 게임에 잘 성공하는지 테스트")
+    @Test
+    void gameSuccessTest(){
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.createBridge(3);
+        for(int i = 0; i < 3; i++){
+            String testInput = "U";
+            if(bridgeGame.getBridge().getBlocks().get(i) == "D") testInput = "D";
+            bridgeGame.checkAnswerOfRound(testInput);
+            assertFalse(bridgeGame.isGameFail());
+            bridgeGame.move();
+        }
+        bridgeGame.checkGameSuccess();
+        assertTrue(bridgeGame.isGameSuccess());
     }
 
 }
