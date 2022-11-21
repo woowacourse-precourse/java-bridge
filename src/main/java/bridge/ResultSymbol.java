@@ -5,8 +5,12 @@ public enum ResultSymbol {
     FAIL(" X "),
     NOTHING(" ");
 
-    private String symbol;
+    private final String symbol;
     ResultSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public String getSymbol() {
+        return symbol;
     }
 }
