@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeTest {
-    Bridge testBridge = new Bridge(List.of("U","D","U"));
+    private final Bridge testBridge = new Bridge(List.of("U","D","U"));
 
     @DisplayName("정확한 길이가 반환되는 지 테스트 한다.")
     @Test
