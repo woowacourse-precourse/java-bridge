@@ -11,7 +11,9 @@ public class UserBridege {
        upBridge.add(compareInput(userInput, "U", correct));
     }
 
-    
+    public void makeDownBridge(String userInput, boolean correct) {
+        downBridge.add(compareInput(userInput, "D", correct));
+    }
 
     private String compareInput(String userInput, String standard, boolean correct) {
         if (standard.equals(userInput) && correct == true) {
