@@ -6,7 +6,7 @@ public enum Site {
     UP("U"),
     DOWN("D");
 
-    String movement_command;
+    private final String movement_command;
 
     Site(String movement_command) {
         this.movement_command = movement_command;
