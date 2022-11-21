@@ -6,14 +6,25 @@ import java.util.List;
 public class Player {
     private final List<String> DIRECTIONS = new ArrayList<>(List.of(Direction.D.toString(), Direction.U.toString()));
     private List<String> path;
+    private Map map;
 
     public Player() {
         this.path = new ArrayList<>();
+        this.map = new Map();
     }
 
-    public void move(String direction) {
+    public void move(String direction, String answer) {
         validateDirection(direction);
+        map.update(direction, answer);
         path.add(direction);
+    }
+
+    public List<String> generateMap() {
+        return map.getCurrentMap();
+    }
+
+    public int getPathSize() {
+        return path.size();
     }
 
     public boolean compareWith(List<String> bridge) {

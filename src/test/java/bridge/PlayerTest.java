@@ -13,26 +13,23 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
     @Nested
-    class MoveTest extends NsTest {
+    class MoveTest {
         @DisplayName("이동 명령어로 소문자 u를 입력했을 때 예외 발생")
         @Test
         void testLowerU() {
-            assertThatThrownBy(() -> run("u"))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> {
+                Player player = new Player();
+                player.move("u", "U");
+            }).isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("이동 명령어로 소문자 d를 입력했을 때 예외 발생")
         @Test
         void testLowerD() {
-            assertThatThrownBy(() -> run("d"))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @Override
-        protected void runMain() {
-            Player player = new Player();
-            String direction = readLine();
-            player.move(direction);
+            assertThatThrownBy(() -> {
+                Player player = new Player();
+                player.move("d", "D");
+            }).isInstanceOf(IllegalArgumentException.class);
         }
     }
 
@@ -45,12 +42,13 @@ class PlayerTest {
             List<String> inputDirections = new ArrayList<>(List.of("U", "D", "U", "D"));
             List<String> bridge = new ArrayList<>(List.of("U", "D", "U", "U"));
             List<Boolean> compareResult = new ArrayList<>();
-            for (String direction : inputDirections) {
-                player.move(direction);
+            for (int i = 0; i < inputDirections.size(); i++) {
+                player.move(inputDirections.get(i), bridge.get(i));
                 compareResult.add(player.compareWith(bridge));
             }
             List<Boolean> answers = new ArrayList<>(List.of(true, true, true, false));
-            assertThat(compareResult).isEqualTo(answers);
+            assertThat(compareResult).isEqualTo(answers
+            );
         }
 
         @DisplayName("4번 입력 모두 정답인 경우")
@@ -60,8 +58,8 @@ class PlayerTest {
             List<String> inputDirections = new ArrayList<>(List.of("U", "D", "U", "U"));
             List<String> bridge = new ArrayList<>(List.of("U", "D", "U", "U"));
             List<Boolean> compareResult = new ArrayList<>();
-            for (String direction : inputDirections) {
-                player.move(direction);
+            for (int i = 0; i < inputDirections.size(); i++) {
+                player.move(inputDirections.get(i), bridge.get(i));
                 compareResult.add(player.compareWith(bridge));
             }
             List<Boolean> answers = new ArrayList<>(List.of(true, true, true, true));
