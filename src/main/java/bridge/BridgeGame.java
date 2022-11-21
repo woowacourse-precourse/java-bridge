@@ -73,4 +73,8 @@ public class BridgeGame {
     public int getTryCount() {
         return tryCount;
     }
+
+    public boolean isFail() {
+        return gameStatus == GameStatus.FAIL;
+    }
 }

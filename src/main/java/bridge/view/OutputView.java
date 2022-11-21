@@ -38,6 +38,11 @@ public class OutputView {
                 .collect(Collectors.joining(" | ", "[ ", " ]")));
     }
 
+    public void reset() {
+        upBridge.clear();
+        downBridge.clear();
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -51,5 +56,9 @@ public class OutputView {
                 .collect(Collectors.joining(" | ", "[ ", " ]")));
         System.out.println("게임 성공 여부: " + gameStatus.getMessage());
         System.out.println("총 시도한 횟수: " + tryCount);
+    }
+
+    public void printError(String message) {
+        System.out.println("[ERROR] " + message);
     }
 }

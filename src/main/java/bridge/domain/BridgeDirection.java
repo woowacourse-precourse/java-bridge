@@ -29,6 +29,6 @@ public enum BridgeDirection {
         return Arrays.stream(BridgeDirection.values())
                 .filter(location -> location.word.equals(word))
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("U 또는 D만 입력 가능합니다."));
     }
 }
