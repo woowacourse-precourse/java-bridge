@@ -42,14 +42,32 @@ class OutputViewTest {
     }
 
     @Test
-    void printTestU() {
+    void printMapTestU() {
         outputView.printSingleMap(List.of("U", "D", "D"), List.of("U", "U"), "U");
         assertThatNoException();
     }
 
     @Test
-    void printTestD() {
+    void printMapTestD() {
         outputView.printSingleMap(List.of("U", "D", "D"), List.of("U", "U"), "D");
+        assertThatNoException();
+    }
+
+    @Test
+    void printMapTest() {
+        outputView.printMap(List.of("U", "D", "D"), List.of("U", "U"));
+        assertThatNoException();
+    }
+
+    @Test
+    void printResultSuccessTest() {
+        outputView.printResult(true, 5);
+        assertThatNoException();
+    }
+
+    @Test
+    void printResultFailTest() {
+        outputView.printResult(false, 10);
         assertThatNoException();
     }
 }
