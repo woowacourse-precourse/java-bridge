@@ -1,19 +1,20 @@
 
 ## 기능 목록
 
-- [ ] 다리 만들기
-  - [ ] 다리 길이 입력받기 InputView#readBridgeSize()
-    - [ ] 입력받은 다리 길이 유효성 검사 InputValidation#validateBridgeSize()
-      - [ ] 입력이 숫자인지 확인 InputValidation#validateInputIsNumber()
-      - [ ] 입력 숫자가 3 <= 입력 <= 20 을 만족하는지 확인 InputValidation#validateBridgeSizeIsInRange
-  - [ ] 얻어낸 무작위 숫자로 String 배열(다리) 만들기 BridgeMaker#makeBirdge()
-- [ ] 사용자 이동
-  - [ ] 이동할 칸 입력받기 InputView#readBridgeSize()
-  - [ ] 이동할 칸과 다리 비교
-  - [ ] 이동한 칸 결과 출력하기
+- [x] 다리 만들기
+  - [x] 다리 길이 입력받기 InputView#readBridgeSize()
+    - [x] 입력받은 다리 길이 유효성 검사 InputView#validateBridgeSize()
+      - [x] 입력이 숫자인지 확인 InputView#validateInputIsNumber()
+      - [x] 입력 숫자가 3 <= 입력 <= 20 을 만족하는지 확인 InputView#validateBridgeSizeIsInRange
+  - [x] 얻어낸 무작위 숫자로 String 배열(다리) 만들기 BridgeMaker#makeBirdge()
+- [x] 사용자 이동
+  - [x] 이동할 칸 입력받기 InputView#readMoving()
+    - [x] 이동할 칸 입력이 U혹은 D인지 확인 InputView#validateMoveAlphabet()
+  - [x] 이동할 칸과 다리 비교 Bridge#compareWithBridge()
+  - [x] 이동한 칸 결과 출력하기 OutputView#printMap()
 - [ ] 게임 결과
-  - [ ] 게임 결과 출력
-  - [ ] 재시도 여부 입력받기 InputView#readGameCommand()
+  - [x] 게임 결과 출력 OutputView#printResult()
+  - [x] 재시도 여부 입력받기 InputView#readGameCommand()
   - [ ] 게임 재시도 or 종료
 
 ## 🚀 기능 요구 사항
