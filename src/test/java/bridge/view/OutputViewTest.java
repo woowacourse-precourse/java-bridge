@@ -1,6 +1,8 @@
 package bridge.view;
 
-import bridge.view.OutputView;
+import bridge.view.dto.PrintMapDto;
+import bridge.view.proxy.OutputViewProxy;
+import bridge.view.proxy.OutputViewProxyImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +21,7 @@ public class OutputViewTest {
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
-    private static OutputView outputView;
+    private static OutputViewProxy outputView;
 
     @BeforeEach
     public void setUpStreams() {
@@ -35,7 +37,7 @@ public class OutputViewTest {
 
     @BeforeAll
     public static void init() {
-        outputView = new OutputView();
+        outputView = new OutputViewProxyImpl(new OutputView());
     }
 
     @Test
@@ -47,7 +49,7 @@ public class OutputViewTest {
                 + System.lineSeparator();
 
         // when
-        outputView.printMap(0, "U", List.of("U"));
+        outputView.printMap(new PrintMapDto(0, "U", List.of("U")));
 
         // then
 
@@ -63,7 +65,7 @@ public class OutputViewTest {
                 + System.lineSeparator();
 
         // when
-        outputView.printMap(0, "U", List.of("D"));
+        outputView.printMap(new PrintMapDto(0, "U", List.of("D")));
 
         // then
 
@@ -79,7 +81,7 @@ public class OutputViewTest {
                 + System.lineSeparator();
 
         // when
-        outputView.printMap(1, "D", List.of("U", "D"));
+        outputView.printMap(new PrintMapDto(1, "D", List.of("U", "D")));
 
         // then
         assertThat(outContent.toString()).isEqualTo(expect);
@@ -94,7 +96,7 @@ public class OutputViewTest {
                 + System.lineSeparator();
 
         // when
-        outputView.printMap(1, "U", List.of("U", "D"));
+        outputView.printMap(new PrintMapDto(1, "U", List.of("U", "D")));
 
         // then
         assertThat(outContent.toString()).isEqualTo(expect);

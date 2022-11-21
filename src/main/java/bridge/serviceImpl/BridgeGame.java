@@ -9,6 +9,10 @@ import bridge.service.GameService;
 import bridge.validation.BridgeSizeValidation;
 import bridge.validation.MovingValidation;
 import bridge.validation.RestartQuickValidation;
+import bridge.view.proxy.OutputViewProxy;
+import bridge.view.proxy.OutputViewProxyImpl;
+import bridge.view.dto.PrintMapDto;
+import bridge.view.dto.PrintResultDto;
 
 import java.util.List;
 
@@ -16,13 +20,13 @@ public class BridgeGame implements GameService {
     private static final String RETRY = "R";
 
     private static InputView inputView;
-    private static OutputView outputView;
+    private static OutputViewProxy outputView;
     private static int gameTry;
     private static int count;
 
     public BridgeGame() {
         inputView = buildInputView();
-        outputView = new OutputView();
+        outputView = new OutputViewProxyImpl(new OutputView());
         gameTry = 1;
         count = 0;
     }
@@ -38,7 +42,7 @@ public class BridgeGame implements GameService {
         doGame(bridge);
 
         boolean isSuccess = (count == bridgeSize);
-        outputView.printResult(isSuccess, gameTry);
+        outputView.printResult(new PrintResultDto(isSuccess, gameTry));
     }
 
     private void introMessage() {
@@ -76,7 +80,7 @@ public class BridgeGame implements GameService {
     }
 
     public boolean move(String inputMove, List<String> bridge) {
-        outputView.printMap(count, inputMove, bridge);
+        outputView.printMap(new PrintMapDto(count, inputMove, bridge));
         return bridge.get(count).equals(inputMove);
     }
 
