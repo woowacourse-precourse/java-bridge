@@ -52,12 +52,16 @@ public class BridgeGame {
             return false;
         }
 
+        return isCorrectRoute();
+    }
+
+    private boolean isCorrectRoute() {
         return IntStream.range(0, route.size())
-                .mapToObj(index -> isCorrectRoute(index))
+                .mapToObj(index -> isCorrectRouteSpace(index))
                 .reduce(true, Boolean::logicalAnd);
     }
 
-    private boolean isCorrectRoute(int index) {
+    private boolean isCorrectRouteSpace(int index) {
         return route.get(index).equals(bridge.get(index));
     }
 
