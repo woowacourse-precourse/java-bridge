@@ -102,11 +102,10 @@ public class BridgeGame {
         outputView.printStartGame();
         int gameOverResult = -1;
         buildBridge();
-        while (true) {
+        while (bridge.size() != playerBridge.size()) {
             move();
             gameOverResult = checkGameOver();
-            if (gameOverResult == 0) continue;
-            if (gameOverResult == 1) break;
+            if (gameOverResult == 0 || gameOverResult == 1) continue;
             if (!retry()) break;
         }
         gameOver(gameOverResult);
