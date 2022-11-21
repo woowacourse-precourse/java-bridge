@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+    public static final int FROM_INDEX = 0;
     private final List<Position> passingRout;
 
     Player() {
@@ -40,8 +41,11 @@ public class Player {
     }
 
     public boolean isSuccess(List<Position> bridges) {
-        List<Position> target = bridges.subList(0, this.passingRout.size());
-        return target.equals(this.passingRout);
+        return getSameSizePositions(bridges).equals(this.passingRout);
+    }
+
+    private List<Position> getSameSizePositions(List<Position> bridges) {
+        return bridges.subList(FROM_INDEX, this.passingRout.size());
     }
 
 
