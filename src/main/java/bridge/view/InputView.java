@@ -10,6 +10,7 @@ public class InputView {
     private final String MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private BridgeGame bridgeGame = new BridgeGame();
+    private boolean allCorrect = false;
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -33,9 +34,17 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public void readGameCommand() {
+    public boolean readGameCommand() {
         System.out.println(RETRY_MESSAGE);
         String command = Console.readLine();
+        if (command.equals("Q")){
+            return false;
+        }
         bridgeGame.retry();
+        return true;
+    }
+
+    public boolean checkAllCorrect() {
+        return allCorrect;
     }
 }
