@@ -1,47 +1,50 @@
 package bridge;
 
 public class Map {
-
-    private String upMap = "[ ";
-    private String downMap = "[ ";
+    private String START = "[ ";
+    private String END = " ]";
+    private String MIDDLE = " | ";
+    private String NOTHING = " ";
+    private String upMap = START;
+    private String downMap = START;
 
     public void makeMap(String moving, String check) {
-        if (moving.equals("U")) {
+        if (moving.equals(MovingRandomNumber.UP.getMoving())) {
             makeUpMap(check);
         }
-        if (moving.equals("D")) {
+        if (moving.equals(MovingRandomNumber.DOWN.getMoving())) {
             makeDownMap(check);
         }
     }
 
     public void makeUpMap(String check) {
         if (upMap.length() > 2) {
-            upMap += " | ";
-            downMap += " | ";
+            upMap += MIDDLE;
+            downMap += MIDDLE;
         }
         upMap += check;
-        downMap += " ";
+        downMap += NOTHING;
     }
 
     public void makeDownMap(String check) {
         if (downMap.length() > 2) {
-            upMap += " | ";
-            downMap += " | ";
+            upMap += MIDDLE;
+            downMap += MIDDLE;
         }
-        upMap += " ";
+        upMap += NOTHING;
         downMap += check;
     }
 
     public String getUpMap() {
-        return upMap + " ]";
+        return upMap + END;
     }
 
     public String getDownMap() {
-        return downMap + " ]";
+        return downMap + END;
     }
 
     public void resetMap() {
-        upMap = "[ ";
-        downMap = "[ ";
+        upMap = START;
+        downMap = START;
     }
 }
