@@ -65,4 +65,7 @@ public class BridgeGameController {
         }
     }
 
+    private void printResult(){
+        OutputView.printResult(mapMaker, gameResult, count);
+    }
 }
