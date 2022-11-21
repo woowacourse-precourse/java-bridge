@@ -20,26 +20,51 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> moves) {
-        int progress = moves.size();
-        List<List<String>> map = new ArrayList<>();
-        List<String> up = new ArrayList<>();
-        List<String> down = new ArrayList<>();
-        for (int idx = 0; idx < progress; idx ++) {
-            if ((moves.get(idx).equals("U")) && (bridge.get(idx).equals(moves.get(idx)))) {
-                up.add("O");
-                down.add(" ");
-            }
-            else if ((moves.get(idx).equals("D")) && (bridge.get(idx).equals(moves.get(idx)))) {
-                down.add("O");
-                up.add(" ");
-            }
+    public void printMap(String[][] map) {
+        for (int row = 0; row < map.length; row++) {
+            System.out.print("[");
+            printRow(map[row]);
+            System.out.println("]");
         }
-        map.add(up);
-        map.add(down);
-
     }
-
+    public void printRow(String[] row) {
+        for (int idx = 0; idx < row.length; idx ++) {
+            if (idx != row.length-1) {
+                System.out.print(" "+row[idx]+" |");
+                continue;
+            }
+            System.out.print(row[idx]+ " ");
+        }
+    }
+    public String[][] makeMap(List<Boolean> bridgeTranslated, List<Boolean> moves) {
+        int progress = moves.size();
+        String[][] map = new String[2][progress];
+        for (int idx = 0; idx < progress; idx++) {
+            if (moves.get(idx)) {
+                map[0][idx] = checkCell(bridgeTranslated.get(idx), moves.get(idx));
+                continue;
+            }
+            map[1][idx] = checkCell(bridgeTranslated.get(idx), moves.get(idx));
+        }
+        return map;
+    }
+    public String checkCell(boolean bridge, boolean move) {
+        if (Boolean.compare(bridge,move)==0) {
+            return "O";
+        }
+        return "X";
+    }
+    public List<Boolean> translateBridge(List<String> bridge) {
+        List<Boolean> translated = new ArrayList<>();
+        for (String cell : bridge) {
+            if (cell.equals("U")) {
+                translated.add(true);
+                continue;
+            }
+            translated.add(false);
+        }
+        return translated;
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
