@@ -17,12 +17,20 @@ public class Bridge {
                 -> direction.equals(StepDirectionCommand.U.toString()) ||
                 direction.equals(StepDirectionCommand.D.toString()));
 
-        if(!isAllMatchUAndD) {
+        if (!isAllMatchUAndD) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_DIRECTION_MESSAGE.toString());
         }
     }
 
+    public boolean checkCrossableBridge(int currentStandingIndex, String currentStandingPosition) {
+        return bridge.get(currentStandingIndex).equals(currentStandingPosition);
+    }
+
     public List<String> getBridge() {
         return new ArrayList<>(bridge);
+    }
+
+    public int getBridgeIndex() {
+        return bridge.size() - 1;
     }
 }

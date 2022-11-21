@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.vo.Bridge;
 import bridge.vo.ErrorMessage;
+import bridge.vo.RetryCommand;
 import bridge.vo.UserStatus;
 
 import java.util.List;
@@ -21,7 +22,6 @@ public class BridgeGame {
     public BridgeGame(List<String> createdBridge) {
         gameTryCount = 1;
         userStatus = new UserStatus();
-
         bridge = new Bridge(createdBridge);
     }
     /**
@@ -42,7 +42,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String input) {
-        if(input.equals("R")) {
+        if(input.equals(RetryCommand.R.toString())) {
             checkGameTryCountOverIntegerMaxValue();
             gameTryCount++;
             userStatus.clear();
@@ -57,15 +57,28 @@ public class BridgeGame {
         }
     }
 
-    public boolean isEnd() {
+    public boolean checkPlayerCrossedAllBridge() {
+        return (!isUserDead() && isPlayerLocatedLastIndex());
+    }
 
-        return (!isUserDead() && userStatus.getCurrentCrossedBridge().size() == bridge.getBridge().size()
-        );
+    public boolean isPlayerLocatedLastIndex() {
+        return userStatus.getCurrentIndex() == bridge.getBridgeIndex();
     }
 
     public boolean isUserDead() {
-        return userStatus.getCurrentIndex() != -1 &&
-                !userStatus.getCurrentPosition().equals(bridge.getBridge().get(userStatus.getCurrentIndex()));
+        int currentStandingIndex = userStatus.getCurrentIndex();
+
+        checkBeforePlayerCrossBridge(currentStandingIndex);
+
+        String currentStandingPosition = userStatus.getCurrentPosition();
+
+        return bridge.checkCrossableBridge(currentStandingIndex, currentStandingPosition);
+    }
+
+    public boolean checkBeforePlayerCrossBridge(int currentStandingIndex) {
+        final int beforePlayerCrossBridgeIndex = -1;
+
+        return currentStandingIndex == beforePlayerCrossBridgeIndex;
     }
 
     public int getGameTryCount() {

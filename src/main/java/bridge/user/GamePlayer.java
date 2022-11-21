@@ -25,7 +25,7 @@ public class GamePlayer {
     public void move() {
         do {
             bridgeGameManager.move();
-        } while (bridgeGameManager.isGameEnd());
+        } while (bridgeGameManager.GameKeepGoingOrNot());
     }
 
 }

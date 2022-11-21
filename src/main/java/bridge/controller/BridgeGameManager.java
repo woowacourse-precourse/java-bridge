@@ -18,6 +18,7 @@ public class BridgeGameManager {
     private List<StringBuilder> currentBridgeStatus;
     private BridgeGame bridgeGame;
     private BridgeNumberGenerator bridgeNumberGenerator;
+
     public BridgeGameManager(NumberGeneratorDependencyContainer numberGeneratorDependencyContainer) {
         inputView = new InputView();
         outputView = new OutputView();
@@ -36,35 +37,35 @@ public class BridgeGameManager {
     }
 
     public void move() {
-        while (!bridgeGame.isUserDead() && !bridgeGame.isEnd()) {
+        while (!bridgeGame.isUserDead() && !bridgeGame.checkPlayerCrossedAllBridge()) {
             outputView.printGameProgressMessage(GameProgressMessage.MOVE_MESSAGE);
 
-            String direct = inputView.readMoving();
-            currentBridgeStatus = bridgeGame.move(direct);
+            String direction = inputView.readMoving();
+            currentBridgeStatus = bridgeGame.move(direction);
             outputView.printMap(currentBridgeStatus);
         }
     }
 
     public void printResult() {
-        long count = bridgeGame.getGameTryCount();
+        long gameTryCount = bridgeGame.getGameTryCount();
 
-        String endResult = checkEndResult();
-        outputView.printResult(currentBridgeStatus, count, endResult);
+        String gameResultMessage = checkGameResultMessage();
+        outputView.printResult(currentBridgeStatus, gameTryCount, gameResultMessage);
     }
 
-    public String checkEndResult() {
+    public String checkGameResultMessage() {
         final String SUCCESS_MESSAGE = "성공";
         final String FAIL_MESSAGE = "실패";
 
-        if(bridgeGame.isEnd()) {
+        if(bridgeGame.checkPlayerCrossedAllBridge()) {
             return SUCCESS_MESSAGE;
         }
 
         return FAIL_MESSAGE;
     }
 
-    public boolean isGameEnd() {
-        if(!bridgeGame.isEnd()) {
+    public boolean GameKeepGoingOrNot() {
+        if(!bridgeGame.checkPlayerCrossedAllBridge()) {
             System.out.println(GameProgressMessage.GAME_RETRY_MESSAGE);
             String input = Console.readLine();
 

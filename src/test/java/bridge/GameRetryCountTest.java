@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class BridgeGameTest {
+public class GameRetryCountTest {
 
     @DisplayName("게임을 재시작할 때마다, 게임 시도 횟수를 1 증가시킨다.")
     @ParameterizedTest
