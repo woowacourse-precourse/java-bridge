@@ -10,19 +10,27 @@ public class BridgeState {
 
     private static final String SPACE = " ";
 
-    private List<String> upper = new ArrayList<>();
-    private List<String> lower = new ArrayList<>();
+    private final List<String> upper = new ArrayList<>();
+    private final List<String> lower = new ArrayList<>();
 
     public void update(StepResult stepResult) {
-        if (stepResult.getDirection().equals(Constant.UPPER_MOVING)) {
+        if (isUpperMoving(stepResult)) {
             upper.add(stepResult.getResult());
             lower.add(SPACE);
         }
 
-        if (stepResult.getDirection().equals(Constant.LOWER_MOVING)) {
+        if (isLowerMoving(stepResult)) {
             lower.add(stepResult.getResult());
             upper.add(SPACE);
         }
+    }
+
+    private boolean isLowerMoving(StepResult stepResult) {
+        return stepResult.getDirection().equals(Constant.LOWER_MOVING);
+    }
+
+    private boolean isUpperMoving(StepResult stepResult) {
+        return stepResult.getDirection().equals(Constant.UPPER_MOVING);
     }
 
     public void clear() {
