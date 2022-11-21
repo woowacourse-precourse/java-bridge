@@ -1,23 +1,20 @@
 package bridge.validation;
 
 import bridge.convertor.InputConvertor;
+import bridge.game.Player;
 import bridge.resource.ErrorMessage;
-import bridge.view.InputView;
+import bridge.resource.GameConstant;
 import bridge.view.OutputView;
 
 public class BridgeSizeValidator {
-    private static final int BRIDGE_MIN_SIZE = 3;
-    private static final int BRIDGE_MAX_SIZE = 20;
-    private static final InputView INPUT_VIEW = new InputView();
 
-    public String sizeValidator() {
+    public String sizeValidator(String input) {
         try {
-            String input = INPUT_VIEW.readBridgeSize();
             bridgeSizeValidation(input);
             return input;
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return sizeValidator();
+            return Player.requestInputSizeToValidation();
         }
     }
 
@@ -28,7 +25,7 @@ public class BridgeSizeValidator {
         throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR);
     }
 
-    public int convertInputToNumber(String value) {
+    private int convertInputToNumber(String value) {
         try {
             return InputConvertor.inputParseNumber(value);
         } catch (IllegalArgumentException e) {
@@ -36,7 +33,7 @@ public class BridgeSizeValidator {
         }
     }
 
-    public boolean checkBridgeSize(int size) {
-        return BRIDGE_MIN_SIZE <= size && size <= BRIDGE_MAX_SIZE;
+    private boolean checkBridgeSize(int size) {
+        return GameConstant.BRIDGE_MIN_SIZE <= size && size <= GameConstant.BRIDGE_MAX_SIZE;
     }
 }

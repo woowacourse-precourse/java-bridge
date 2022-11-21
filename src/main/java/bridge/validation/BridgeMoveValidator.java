@@ -1,23 +1,21 @@
 package bridge.validation;
 
+import bridge.game.Player;
 import bridge.resource.ErrorMessage;
 import bridge.resource.GameConstant;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeMoveValidator {
     private static final List<String> movePossibilityValue = List.of(GameConstant.TOP, GameConstant.BOTTOM);
-    private static final InputView INPUT_VIEW = new InputView();
 
-    public String moveValidator() {
+    public String moveValidator(String input) {
         try {
-            String input = INPUT_VIEW.readMoving();
             bridgeMoveValidation(input);
             return input;
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return moveValidator();
+            return Player.requestInputMoveToValition();
         }
     }
 
@@ -29,7 +27,7 @@ public class BridgeMoveValidator {
     }
 
 
-    public boolean checkMoveInputData(String data) {
+    private boolean checkMoveInputData(String data) {
         return movePossibilityValue.contains(data);
     }
 
