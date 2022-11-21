@@ -2,6 +2,7 @@ package bridge.view;
 
 import static bridge.constants.ErrorConstant.RETRY_ERROR;
 import static bridge.constants.ErrorConstant.SIZE_EXCEPTION;
+import static bridge.constants.ErrorConstant.UPDOWN_ERROR;
 import static bridge.validator.Validate.*;
 
 import bridge.constants.ErrorConstant;
@@ -20,7 +21,7 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSizeInput = Console.readLine();
         try {
-            vaildateBridgeSize(bridgeSizeInput);
+            validateBridgeSize(bridgeSizeInput);
         } catch (IllegalArgumentException e) {
             SIZE_EXCEPTION.printException();
             return readBridgeSize();
@@ -32,8 +33,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String userMove;
-        userMove = Console.readLine().toUpperCase();
+        String userMove = Console.readLine().toUpperCase();
+        try{
+            validateCheckMove(userMove);
+        }catch (IllegalArgumentException e){
+            UPDOWN_ERROR.printException();
+            return readMoving();
+        }
         return userMove;
     }
 
@@ -43,7 +49,7 @@ public class InputView {
     public String readGameCommand() {
         String command = Console.readLine().toUpperCase();
         try{
-            vaildateCheckRetry(command);
+            validateCheckRetry(command);
         }catch (IllegalArgumentException e){
             RETRY_ERROR.printException();
             return readGameCommand();
