@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Bridge {
 
-    private static List<String> bridge = new ArrayList<>();
+    private static final List<String> bridge = new ArrayList<>();
 
     public Bridge() {
 
     }
 
-    public Bridge(List<String> bridge) {
-        Bridge.bridge = bridge;
+    public Bridge(List<String> setBridge) {
+        Bridge.bridge.addAll(setBridge);
     }
 
     public List<String> getBridge() {
