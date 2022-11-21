@@ -8,6 +8,7 @@ import java.util.Objects;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    public static List<String> bridgeMain = new ArrayList<>();
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -37,7 +38,7 @@ public class OutputView {
         String printDown = "";
         if (Objects.equals(init, "U")){
             printDown += "[   ]";
-            if(Objects.equals(BridgeMaker.bridge.get(0),init)){
+            if(Objects.equals(bridgeMain.get(0),init)){
                 printUp += "[ O ]";
             }
             else{
@@ -46,7 +47,7 @@ public class OutputView {
         }
         else if (Objects.equals(init, "D")) {
             printUp += "[   ]";
-            if (Objects.equals(BridgeMaker.bridge.get(0), init)) {
+            if (Objects.equals(bridgeMain.get(0), init)) {
                 printDown += "[ O ]";
             } else {
                 printDown += "[ X ]";
@@ -56,32 +57,35 @@ public class OutputView {
         inits.add(printDown);
         return inits;
     }
-    public static void print(List<String> map) {
+    public static List<String> print(List<String> bridge, List<String> map) {
+        bridgeMain = bridge;
         String printUp = initialPrint(map.get(0)).get(0);
         String printDown = initialPrint(map.get(0)).get(1);
 
         for(int i=1; i<map.size();i++){
             if (Objects.equals(map.get(i), "U")){
-                printDown = printDown.replace("]"," |   ]");
-                if(Objects.equals(BridgeMaker.bridge.get(i),map.get(i))){
-                    printUp=printUp.replace("]"," | O ]");
+                printDown = printDown.replace("]","|   ]");
+                if(Objects.equals(bridge.get(i),map.get(i))){
+                    printUp=printUp.replace("]","| O ]");
                 }
                 else{
-                    printUp=printUp.replace("]"," | X ]");
+                    printUp=printUp.replace("]","| X ]");
                 }
             }
             else if (Objects.equals(map.get(i), "D")){
-                printUp = printUp.replace("]"," |   ]");
-                if(Objects.equals(BridgeMaker.bridge.get(i),map.get(i))){
-                    printDown=printDown.replace("]"," | O ]");
+                printUp = printUp.replace("]","|   ]");
+                if(Objects.equals(bridge.get(i),map.get(i))){
+                    printDown=printDown.replace("]","| O ]");
                 }
                 else{
-                    printDown=printDown.replace("]"," | X ]");
+                    printDown=printDown.replace("]","| X ]");
                 }
             }
         }
-        System.out.println(printUp);
-        System.out.println(printDown);
+        List<String> Result = new ArrayList<>();
+        Result.add(printUp);
+        Result.add(printDown);
+        return Result;
     }
 
     /**
@@ -89,6 +93,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(List<String> Result) {
+        System.out.println(Result.get(0));
+        System.out.println(Result.get(1));
     }
 }
