@@ -59,10 +59,7 @@ public class Application {
     }
 
     private static void CheckRetry(){
-        String retry = inputView.readGameCommand();
-        if(retry.equals(Retry.R.name()))
-            bridgeGame.retry();
-
-        return;
+        if(bridgeGame.retry(inputView.readGameCommand()))
+            gameStart();
     }
 }
