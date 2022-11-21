@@ -39,7 +39,7 @@ public class OutputView {
 
     String printAnswer(String answer, int bridgeSize, boolean isUpOrDown){
         if(!isUpOrDown){
-            answer = "";
+            answer = " ";
         }
         String combinedAnswer = " " + answer + " ";
         if(bridgeSize > 1){
