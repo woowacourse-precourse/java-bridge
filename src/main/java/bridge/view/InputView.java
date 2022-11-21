@@ -13,11 +13,10 @@ public class InputView {
     private Bridge bridge;
     private BridgeGame bridgeGame;
 
-    public InputView(Bridge bridge, BridgeGame bridgeGame, BridgeException bridgeException,
-                     GameStatistics gameStatistics, OutputView outputView) {
-        this.bridge = bridge;
+    public InputView(BridgeGame bridgeGame, BridgeException bridgeException, OutputView outputView) {
+        this.bridge = bridgeGame.getBridge();
         this.bridgeException = bridgeException;
-        this.gameStatistics = gameStatistics;
+        this.gameStatistics = bridgeGame.getGameStatistics();
         this.outputView = outputView;
         this.bridgeGame = bridgeGame;
     }
@@ -31,6 +30,7 @@ public class InputView {
             System.out.println(MessageView.PLAY_BRIDGE_GAME.getMessage() + "\n");
             System.out.println(MessageView.INPUT_BRIDGE_LENGTH.getMessage());
             bridgeLength = Console.readLine();
+            System.out.println();
         } while(bridgeException.invalidLengthInputValue(bridgeLength));
         bridge.setSize(Integer.parseInt(bridgeLength));
         this.gameStatistics.setAnswerRoad(bridge.getBridgeMaker().makeBridge(Integer.parseInt(bridgeLength)));
@@ -70,7 +70,6 @@ public class InputView {
 
     private void showGameResult() {
         gameStatistics.setGameResult(MessageView.RETURN_SUCCESS.getMessage());
-        System.out.println();
         outputView.printResult();
     }
 
