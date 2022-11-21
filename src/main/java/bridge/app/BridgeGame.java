@@ -24,6 +24,7 @@ public class BridgeGame {
                 move();
                 retry();
             }
+            close();
         } catch (Exception err) {
             exceptionHandler(err);
         }
@@ -52,6 +53,10 @@ public class BridgeGame {
         if (isFail()) {
             resetGame();
         }
+    }
+
+    private void close() {
+        bridgeController.showResult();
     }
 
     private void resetGame() {

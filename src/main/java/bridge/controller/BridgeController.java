@@ -53,6 +53,6 @@ public class BridgeController {
     }
 
     public void showResult() {
-
+        outputView.printResult(bridgeHistory);
     }
 }
