@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.model.Direction;
-import bridge.util.Constant;
+import bridge.model.RetryCommand;
 import bridge.util.ExceptionMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -90,7 +90,8 @@ public class InputController {
     }
 
     private void isValidGameCommand(String commandInput) throws IllegalArgumentException {
-        if (!commandInput.equals(Constant.RETRY) && !commandInput.equals(Constant.QUIT)) {
+        if (!RetryCommand.equals(commandInput, RetryCommand.RETRY)
+                && !RetryCommand.equals(commandInput, RetryCommand.QUIT)) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_MESSAGE
                     + ExceptionMessage.INVALID_GAME_COMMAND);
         }
