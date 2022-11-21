@@ -16,35 +16,45 @@ public class InputView {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
+        Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
         int bridgeSize = readBridgeSize(); // 다리 길이 입력
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize); // 다리 생성
-        startGame(bridge); // 반복
+        startGame(bridge); // 게임 시작
     }
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
         while (true) {
-            String value = Console.readLine();
-            if (isBridgeSizeNumber(value)) {
+            try {
+                String value = validBridgeSize();
                 return Integer.parseInt(value);
-            } // end if
+            } catch (IllegalArgumentException e) {
+                ErrorMessage.inputBridgeNumber();
+            }
         } // end while
+    }
+
+    public String validBridgeSize() {
+        String value = Console.readLine();
+        if (!isBridgeSizeNumber(value)) { // 3 ~ 20이 아니면 true
+            throw new IllegalArgumentException();
+        }
+        return value;
     }
 
     // 3 이상 20 이하의 숫자인지 검사
     public boolean isBridgeSizeNumber(String value) {
         final String REGEX = "^[3-9]{1}$|^[1]{1}[0-9]{1}$|^2{1}[0]{1}$";
-        if (!Pattern.matches(REGEX, value)) {
-            ErrorMessage.inputBridgeNumber();
-            return false;
+        if (Pattern.matches(REGEX, value)) {
+            return true;
         }
-        return true;
+//        ErrorMessage.inputBridgeNumber();
+        return false;
     }
 
-    public void startGame(List<String> bridgeList){
+    public void startGame(List<String> bridgeList) {
         OutputView outputView = new OutputView();
         loopGame(bridgeList); // 게임 재시도 여부에 따라 반복
         outputView.printResult(bridge); // 최종 결과 출력
