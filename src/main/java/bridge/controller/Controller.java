@@ -1,5 +1,9 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeGame;
+import bridge.service.BridgeGameService;
+import bridge.InputView;
+import bridge.OutputView;
 import java.util.List;
 
 public class Controller {

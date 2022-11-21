@@ -1,5 +1,8 @@
-package bridge;
+package bridge.service;
 
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.State;
 import java.util.ArrayList;
 import java.util.List;
