@@ -13,13 +13,7 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-//            startGame();
             start();
-//            List<String> answerBridge = Arrays.asList("U", "D", "D");
-//            List<String> userBridge = Arrays.asList("U", "D", "U");
-//
-//            outputView.printMap(answerBridge, userBridge);
-
         } catch (UserInputException inputException) {
             System.out.println(inputException.getMessage());
         } catch (GameException gameException) {
@@ -45,22 +39,18 @@ public class Application {
         checkGameStatus(movement);
 
         outputView.printMap(game.bridge, game.userInput);
-        System.out.println();
         gameProcess();
     }
 
     private static void checkGameStatus(String movement) {
         if (!game.move(movement)) {
             outputView.printMap(game.bridge, game.userInput);
-            System.out.println();
             gameCommandProcess();
         }
 
         if (game.userInput.size() == game.bridge.size()) {
             outputView.printMap(game.bridge, game.userInput);
-            System.out.println();
-            outputView.printResult(game.bridge, game.userInput, true, game.trialCount);
-            System.out.println();
+            outputView.printResult(game, true);
             throw new GameException();
         }
     }
@@ -82,7 +72,7 @@ public class Application {
     }
 
     private static void quitProcess() {
-        outputView.printResult(game.bridge, game.userInput, false, game.trialCount);
+        outputView.printResult(game, false);
         throw new GameException();
     }
 
