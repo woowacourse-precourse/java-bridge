@@ -7,9 +7,7 @@ import bridge.view.OutputView;
 public class GenerateBridgeStatus implements BridgeGameStatus {
     @Override
     public BridgeGameStatus next(BridgeGameContext context, InputView inputView, OutputView outputView) {
-        var bridgeSize = inputView.readBridgeSize();
-
-        context.generateBridge(bridgeSize);
+        context.generateBridge(inputView.readBridgeSize());
         return new PlayerUnitMoveStatus();
     }
 
