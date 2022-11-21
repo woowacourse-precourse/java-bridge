@@ -10,7 +10,6 @@ public class Application {
             OutputView outputView = new OutputView();
             Controller.startRound(bridgeGame, outputView);
             if (bridgeGame.isGameSuccess()) {
-                outputView.printResult(bridgeGame);
                 break;
             }
             Controller.restartGame(bridgeGame, outputView);

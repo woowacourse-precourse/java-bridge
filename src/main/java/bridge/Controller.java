@@ -34,6 +34,7 @@ public class Controller {
             bridgeGame.move(direction);
             outputView.printMap(bridgeGame, direction);
             if (bridgeGame.isGameSuccess()) {
+                outputView.printResult(bridgeGame);
                 break;
             }
         } while (bridgeGame.isGameContinue());
