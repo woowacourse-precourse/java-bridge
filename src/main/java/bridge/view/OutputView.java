@@ -33,10 +33,14 @@ public class OutputView {
         System.out.println(downMap);
     }
 
-    public String createPrintMap(List<String> map){
+    private String createPrintMap(List<String> map){
         String strMap = BridgeIngredient.START.getIngredient() + BridgeIngredient.BLANK.getIngredient();
         for(int i = 0; i < map.size(); i ++){
             strMap += map.get(i) + BridgeIngredient.BLANK.getIngredient();
+            if(i != map.size() - 1) {
+                strMap += BridgeIngredient.SEPARATOR.getIngredient();
+                strMap += BridgeIngredient.BLANK.getIngredient();
+            }
         }
         strMap += BridgeIngredient.END.getIngredient();
         return strMap;

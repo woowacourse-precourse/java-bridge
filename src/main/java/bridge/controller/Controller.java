@@ -42,4 +42,8 @@ public class Controller {
         game.move(input.readMoving());
     }
 
+    public void printState() { // TODO: Refactoring Service 계층에서 변환하여 전달해주자
+        out.printMap(game.getBridgeMap());
+    }
+
 }
