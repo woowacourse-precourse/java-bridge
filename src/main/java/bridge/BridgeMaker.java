@@ -1,7 +1,4 @@
-package bridge.util;
-
-import bridge.enums.IntEnum;
-import bridge.enums.StringEnum;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;

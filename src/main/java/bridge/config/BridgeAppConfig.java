@@ -1,9 +1,9 @@
 package bridge.config;
 
 import bridge.game.BridgeGame;
-import bridge.util.BridgeMaker;
-import bridge.util.BridgeNumberGenerator;
-import bridge.util.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
