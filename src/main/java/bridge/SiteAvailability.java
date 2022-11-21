@@ -4,7 +4,7 @@ public enum SiteAvailability {
     ACCESS_UP_SITE(1),
     ACCESS_DOWN_SITE(0);
 
-    int availability;
+    private final int availability;
 
     SiteAvailability(int availability) {
         this.availability = availability;
