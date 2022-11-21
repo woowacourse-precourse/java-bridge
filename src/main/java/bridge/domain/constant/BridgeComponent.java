@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.constant;
 
 public class BridgeComponent {
     public static final String BRIDGE_BEGINNING = "[";
