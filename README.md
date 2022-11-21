@@ -107,7 +107,8 @@ BUILD SUCCESSFUL in 0s
 - [ ] **CLASS5. OutputView**
     - **Class Methods**
         - [ ] public void printMap(List<String> bridge, int currentUserPosition)
-        - [ ] public void printResult(List<String> bridge, int currentUserPosition, boolean getGameWinStatus)
+        - [ ] public void printResult(List<String> bridge, int currentUserPosition)
+        - [ ] public void printResultMessage(boolean getGameWinStatus, int totalTryCount)
         - [ ] public void printGameStartMessage()
         - [ ] public void printReadBridgeSizeMessage()
         - [ ] public void printReadMovingMessage()
