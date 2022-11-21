@@ -1,14 +1,17 @@
 package bridge.domain;
 
 import bridge.constant.GameRecordFormat;
+import bridge.constant.GameRecordSymbol;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class GameRecordMaker {
     private final List<List<String>> TOTAL_RESULT;
     private final int ZERO=0;
-    private List<String> gameRecord;
+    private final int RESULT_SIZE=2;
+    private List<String> currentGameRecord;
     private int recordLength;
 
     public GameRecordMaker(){
@@ -18,14 +21,24 @@ public class GameRecordMaker {
     private boolean isRecordLengthOverOne(){
         return recordLength==ZERO;
     }
-    public void makeFormat(List<String> gameRecord){
-        boolean isFirst = isRecordLengthOverOne();
-        List<String> newRecord = new ArrayList<>();
+
+    public String makeFormat(boolean isFirst, String record){
+        GameRecordFormat gameRecordFormat = GameRecordFormat.findByTrial(isFirst);
+        return gameRecordFormat.generate(record);
+    }
+
+    public List<String> transformCurrentRecord(boolean isFirst, List<String> gameRecord){
+        List<String> transformedRecord = new ArrayList<>();
         for(String record: gameRecord){
-            GameRecordFormat gameRecordFormat = GameRecordFormat.findByTrial(isFirst);
-            newRecord.add(gameRecordFormat.generate(record));
+            String formattedRecord = makeFormat(isFirst, record);
+            transformedRecord.add(formattedRecord);
         }
-        this.gameRecord=newRecord;
+        return transformedRecord;
+    }
+
+    public void updateCurrentRecord(List<String> gameRecord){
+        boolean isFirst = isRecordLengthOverOne();
+        currentGameRecord=transformCurrentRecord(isFirst, gameRecord);
         ++recordLength;
     }
 
