@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.domain.BridgeMoveJudgment.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> moveResult = new ArrayList<>();
+    private final List<BridgeMoveJudgment> moveResult = new ArrayList<>();
     private int tryCount = 0;
     private int retryCount = 1;
 
@@ -17,27 +19,27 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> move(List<String> bridge, String movingSpace) {
+    public List<BridgeMoveJudgment> move(List<String> bridge, String movingSpace) {
         if (bridge.get(tryCount++).equals(movingSpace)) {
             if (movingSpace.equals("U")) {
-                moveResult.add("O");
-                moveResult.add(" ");
+                moveResult.add(CORRECT);
+                moveResult.add(EMPTY);
                 return moveResult;
             }
             if (movingSpace.equals("D")) {
-                moveResult.add(" ");
-                moveResult.add("O");
+                moveResult.add(EMPTY);
+                moveResult.add(CORRECT);
                 return moveResult;
             }
         }
         if (movingSpace.equals("U")) {
-            moveResult.add("X");
-            moveResult.add(" ");
+            moveResult.add(WRONG);
+            moveResult.add(EMPTY);
             return moveResult;
         }
         if (movingSpace.equals("D")) {
-            moveResult.add(" ");
-            moveResult.add("X");
+            moveResult.add(EMPTY);
+            moveResult.add(WRONG);
             return moveResult;
         }
         throw new IllegalStateException("[ERROR] 메소드를 잘못 사용하셨습니다.");
@@ -48,7 +50,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> retry(String gameCommand) {
+    public List<BridgeMoveJudgment> retry(String gameCommand) {
         if (gameCommand.equals("R")) {
             tryCount = 0;
             retryCount = retryCount + 1;
@@ -65,7 +67,7 @@ public class BridgeGame {
      * 게임 실패 여부 검사할 때 사용하는 메서드
      */
     public boolean isFailGame() {
-        if (moveResult.contains("X")) {
+        if (moveResult.contains(WRONG)) {
             return true;
         }
         return false;

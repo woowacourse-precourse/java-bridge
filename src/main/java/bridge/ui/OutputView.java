@@ -1,5 +1,7 @@
 package bridge.ui;
 
+import bridge.domain.BridgeMoveJudgment;
+
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> moveResult) {
+    public void printMap(List<BridgeMoveJudgment> moveResult) {
         StringBuilder bridgeUpperResult = new StringBuilder();
         StringBuilder bridgeLowerResult = new StringBuilder();
         addFormat(bridgeUpperResult, bridgeLowerResult, OPEN_SQUARE_BRACKET);
@@ -32,7 +34,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> moveResult, boolean isFailFinalGame, int retryCount) {
+    public void printResult(List<BridgeMoveJudgment> moveResult, boolean isFailFinalGame, int retryCount) {
         System.out.println("최종 게임 결과");
         printMap(moveResult);
         printGameSuccessOrFail(isFailFinalGame);
@@ -70,17 +72,17 @@ public class OutputView {
     /**
      * 이동한 다리의 상태를 정해진 출력 형식에 맞춰주는 로직
      */
-    private void createMoveResultFormat(List<String> moveResult, StringBuilder bridgeUpperResult,
+    private void createMoveResultFormat(List<BridgeMoveJudgment> moveResult, StringBuilder bridgeUpperResult,
                                         StringBuilder bridgeLowerResult) {
         for (int i = 0; i < moveResult.size(); i += 2) {
             if (i == FIRST_MOVE) {
-                bridgeUpperResult.append(moveResult.get(i));
-                bridgeLowerResult.append(moveResult.get(i + 1));
+                bridgeUpperResult.append(moveResult.get(i).getShape());
+                bridgeLowerResult.append(moveResult.get(i + 1).getShape());
                 continue;
             }
             addFormat(bridgeUpperResult, bridgeLowerResult, VERTICAL_BAR);
-            bridgeUpperResult.append(moveResult.get(i));
-            bridgeLowerResult.append(moveResult.get(i + 1));
+            bridgeUpperResult.append(moveResult.get(i).getShape());
+            bridgeLowerResult.append(moveResult.get(i + 1).getShape());
         }
     }
 
