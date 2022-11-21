@@ -2,10 +2,8 @@ package bridge.model;
 
 import bridge.model.utils.BridgeSides;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -39,7 +37,7 @@ public class BridgeGameTest {
     @ValueSource(ints = {0, 2, 3})
     void retryTest(int retry) {
         BridgeGame nextBridgeGame = bridgeGame;
-        for(int i = 0; i < retry; i++) {
+        for (int i = 0; i < retry; i++) {
             nextBridgeGame = nextBridgeGame.retry();
         }
 
