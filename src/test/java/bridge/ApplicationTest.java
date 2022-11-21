@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.Controller.BridgeSizeValidator;
+import bridge.Controller.GameCommandValidator;
 import bridge.Controller.MovingCommandValidator;
 import bridge.Controller.Validator;
 import bridge.Model.BridgeGame;
@@ -236,6 +237,67 @@ class ApplicationTest extends NsTest {
                 "[ O |   | O |   ]",
                 "[   | O |   | X ]"
         );
+    }
+    //endregion
+
+    //region 재시작 혹은 종료 입력 단위 테스트 케이스
+    @Test
+    void 재시작혹은종료_예외테스트_지정문자이외입력(){
+        assertThatThrownBy(() -> {
+            validator = new GameCommandValidator();
+            validator.validate("ㅁ");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_EXISTENT_COMMAND);
+    }
+
+    @Test
+    void 재시작혹은종료_예외테스트_소문자입력(){
+        assertThatThrownBy(() -> {
+            validator = new GameCommandValidator();
+            validator.validate("r");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_EXISTENT_COMMAND);
+    }
+
+    @Test
+    void 재시작혹은종료_예외테스트_숫자입력(){
+        assertThatThrownBy(() -> {
+            validator = new GameCommandValidator();
+            validator.validate("1");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_EXISTENT_COMMAND);
+    }
+
+    @Test
+    void 재시작혹은종료_예외테스트_제어문자입력(){
+        assertThatThrownBy(() -> {
+            validator = new GameCommandValidator();
+            validator.validate("\n");
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_NON_EXISTENT_COMMAND);
+    }
+
+    @Test
+    void 이동할_칸_입력_기능테스트_R(){
+        String input = "R";
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        String gameCommand = inputView.readGameCommand();
+        assertThat(gameCommand).isEqualTo("R");
+    }
+    //endregion
+
+    @Test
+    void 이동할_칸_입력_기능테스트_Q(){
+        String input = "Q";
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        String gameCommand = inputView.readGameCommand();
+        assertThat(gameCommand).isEqualTo("Q");
     }
     //endregion
 
