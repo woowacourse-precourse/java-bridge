@@ -32,7 +32,7 @@ public class BridgeGame {
         upBridge += " | " + resultStatus.charAt(count*2);
         downBridge += " | " + resultStatus.charAt(count*2+1) ;
         OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
-        if (count == bridge.size() - 1 && resultStatus.contains("O")) {
+        if (count == bridge.size() - 1 && checkFalse.charAt(0) == checkFalse.charAt(1)) {
             OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]","성공",attempt);
             return true;
         }
