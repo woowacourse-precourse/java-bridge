@@ -72,4 +72,31 @@ public class ValidatorProcessorTest {
                         )
                 );
     }
+
+    @TestFactory
+    @DisplayName("validateCommandInput Success Test")
+    Stream<DynamicTest> validateCommandInputSuccess() {
+        List<String> valueSource = List.of(CommandEnum.UP.getValue(), CommandEnum.DOWN.getValue());
+        validatorProcessor = new ValidatorProcessorImpl();
+        return valueSource.stream()
+                .map(moveCommand -> DynamicTest.dynamicTest("성공케이스: 올바른 입력값", () -> {
+                            validatorProcessor.validateCommandInput(moveCommand);
+                        })
+                );
+    }
+
+    @TestFactory
+    @DisplayName("validateCommandInput Fail Test")
+    Stream<DynamicTest> validateCommandInputFail() {
+        List<String> valueSource = List.of("K", "J", "Q", "R");
+        validatorProcessor = new ValidatorProcessorImpl();
+        return valueSource.stream()
+                .map(NotMoveCommand -> DynamicTest.dynamicTest("실패케이스: 올바르지 못한 입력값", () -> {
+                                    assertThatThrownBy(()-> validatorProcessor.validateCommandInput(NotMoveCommand))
+                                            .isInstanceOf(IllegalArgumentException.class)
+                                            .hasMessageContaining("[ERROR]");
+                                }
+                        )
+                );
+    }
 }
