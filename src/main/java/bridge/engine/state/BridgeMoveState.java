@@ -30,18 +30,18 @@ public class BridgeMoveState implements BridgeState {
         bridgeGame.getUserDirection().add(inputView.readMoving());
         bridgeGame.setTryCount(bridgeGame.getTryCount() + 1);
 
-        if (!isCanCross(bridgeGame.getBridge(), bridgeGame.getUserDirection())) {
+        if (!isBridgeCorrect(bridgeGame.getBridge(), bridgeGame.getUserDirection())) {
             bridgeGame.setState(bridgeGame.getRetryState());
             isSuccess = false;
         }
 
-        outputView.printMap();
+        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserDirection());
         return isSuccess;
     }
 
-    private boolean isCanCross(List<String> bridge, List<String> userDirection) {
+    private boolean isBridgeCorrect(List<String> bridge, List<String> userDirection) {
         for (int i = 0; i < userDirection.size() && i < bridge.size(); ++i) {
-            if (!bridge.get(i).equals(userDirection.get(i))) {
+            if (!(bridge.get(i).equals(userDirection.get(i)))) {
                 return false;
             }
         }

@@ -1,5 +1,9 @@
 package bridge.view;
 
+import bridge.engine.BridgeReporter;
+
+import java.util.List;
+
 import static bridge.view.Message.*;
 
 /**
@@ -7,10 +11,17 @@ import static bridge.view.Message.*;
  */
 public class OutputView {
 
+    private BridgeReporter reporter;
+
+    public OutputView() {
+        this.reporter = new BridgeReporter("|");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
-    public void printMap() {
+    public void printMap(List<String> bridge, List<String> userDirection) {
+        System.out.println(reporter.reportBridge(bridge, userDirection));
     }
 
     /**
