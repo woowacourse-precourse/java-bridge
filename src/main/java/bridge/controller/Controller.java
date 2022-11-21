@@ -29,10 +29,15 @@ public class Controller {
     }
 
     private BridgeGame makeGame() {
-        int bridgeSize = inputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        return BridgeGame.from(bridge);
+        try {
+            int bridgeSize = inputView.readBridgeSize();
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+            return BridgeGame.from(bridge);
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception.getMessage());
+            return makeGame();
+        }
     }
 
     private int doGame() {
@@ -46,11 +51,19 @@ public class Controller {
     }
 
     private TrialResult move() {
-        String moving = inputView.readMoving();
-        TrialResult trialResult = game.move(moving);
-        trialResults.add(trialResult);
-        outputView.printMap(trialResults);
-        return trialResult;
+        try {
+            String moving = inputView.readMoving();
+            TrialResult trialResult = game.move(moving);
+            trialResults.add(trialResult);
+            outputView.printMap(trialResults);
+            return trialResult;
+
+        } catch (
+                IllegalArgumentException exception) {
+            outputView.printException(exception.getMessage());
+            return move();
+        }
+
     }
 
     private int retryOrExit() {
@@ -59,11 +72,16 @@ public class Controller {
             trialResults.clear();
             return doGame() + 1;
         }
-        return 0;
+        return 1;
     }
 
     private boolean askForRetry() {
-        String command = inputView.readGameCommand();
-        return command.equals("R");
+        try {
+            String command = inputView.readGameCommand();
+            return command.equals("R");
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception.getMessage());
+            return askForRetry();
+        }
     }
 }
