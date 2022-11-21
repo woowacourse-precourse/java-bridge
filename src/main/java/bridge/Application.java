@@ -7,29 +7,30 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
 
-        int bridgeSize = inputView.readBridgeSize();
-        BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+        playingGame(bridgeGame, inputView, outputView);
 
-        List<String> bridge = bridgeGame.getBridge();
+        outputView.printResult(bridgeGame.getMove(), bridgeGame.success(), bridgeGame.getTryNum());
+    }
 
-        for(String str : bridge)
-            System.out.print(str);
-
+    public static void moveAndPrintingMap(BridgeGame bridgeGame, InputView inputView, OutputView outputView){
+        String move;
+        boolean canMove;
         do {
-            String move;
-            boolean canMove;
-            do {
-                move = inputView.readMoving();
-                canMove = bridgeGame.canMove(move);
-                outputView.printMap(bridgeGame.getMove(), canMove);
-            } while (canMove && !bridgeGame.success());
+            move = inputView.readMoving();
+            canMove = bridgeGame.canMove(move);
+            outputView.printMap(bridgeGame.getMove(), canMove);
+        } while (canMove && !bridgeGame.success());
+    }
+
+    public static void playingGame(BridgeGame bridgeGame, InputView inputView, OutputView outputView){
+        do {
+            moveAndPrintingMap(bridgeGame, inputView, outputView);
             if(bridgeGame.success()){
                 break;
             }
         } while (bridgeGame.retry(inputView.readGameCommand()));
-
-        outputView.printResult(bridgeGame.getMove(), bridgeGame.success(), bridgeGame.getTryNum());
     }
 }
 
