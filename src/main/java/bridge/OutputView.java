@@ -24,13 +24,14 @@ public class OutputView {
      */
     public void printMap(List<List<String>> bridgeMap) {
         for (List<String> bridge : bridgeMap) {
-            System.out.println(String.format(PRINT_MAP_FRONT.getMessage(), bridge.get(0)));
+            System.out.print(String.format(PRINT_MAP_FRONT.getMessage(), bridge.get(0)));
 
-            for (int i = 1; i < bridgeMap.size(); i++) {
-                System.out.println(String.format(PRINT_MAP_MID.getMessage(), bridge.get(i)));
+            for (int i = 1; i < bridgeMap.get(0).size(); i++) {
+                System.out.print(String.format(PRINT_MAP_MID.getMessage(), bridge.get(i)));
             }
-            System.out.println(String.format(PRINT_MAP_BACK.getMessage()));
+            System.out.print(String.format(PRINT_MAP_BACK.getMessage()));
         }
+        System.out.println();
     }
 
     /**
