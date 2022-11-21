@@ -1,8 +1,11 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import bridge.validation.InputValidation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,6 +38,15 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridges = new ArrayList<>();
+        while (bridges.size() < size) {
+            int randomNumber = bridgeNumberGenerator.generate();
+            bridges.add(Arrays.stream(Bridge.values())
+                    .filter(bridge -> bridge.isSameNumber(randomNumber))
+                    .findAny()
+                    .get()
+                    .getDirection());
+        }
+        return bridges;
     }
 }
