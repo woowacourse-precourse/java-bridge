@@ -41,9 +41,8 @@ class ValidatorTest {
         assertThatThrownBy(()-> validator.validateMoving(moving2))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
-
-
     }
+
     @Test
     public void userRestartValidator() throws Exception{
         //given
@@ -58,8 +57,6 @@ class ValidatorTest {
         assertThatThrownBy(()-> validator.validateRestartChoice(restart2))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
-
-
     }
 
 }
