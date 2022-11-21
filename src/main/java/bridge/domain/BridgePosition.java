@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.vo;
 
 import java.util.Arrays;
 
@@ -14,10 +14,18 @@ public enum BridgePosition {
         this.value = value;
     }
 
-    public static BridgePosition getPositionWithCommand(String command) {
+    public static String getCommandByValue(int value) {
+        return Arrays.stream(BridgePosition.values())
+                .filter(position -> position.value == value)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(""))
+                .command;
+    }
+
+    public static BridgePosition getPositionByCommand(String command) {
         return Arrays.stream(BridgePosition.values())
                 .filter(position -> position.command.equals(command))
-                .findAny()
+                .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(""));
     }
 }
