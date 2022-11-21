@@ -67,6 +67,12 @@ public class BridgeGame {
         return bridgeProgress;
     }
 
+    public GameState getGameState() {
+        return gameState;
+    }
 
+    public Integer getTrialCount() {
+        return trialCount;
+    }
 
 }
