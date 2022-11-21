@@ -1,28 +1,28 @@
 package game;
 
-import exception.UserInputException;
-
-import java.util.List;
+import inMemoryDB.GameData;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    public void play(List<String> bridge, String movingFloor) {
+    GameData gameData;
 
+    public BridgeGame(GameData gameData) {
+        this.gameData = gameData;
     }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String movingFloor, String bridgeStatus) {
-        if (movingFloor.equals(bridgeStatus)) {
-           return GameResult.CORRECT_FLOOR.getResultMessage();
+    public void move(String movingInputFloor, String bridgeFloorStatus) {
+        if (movingInputFloor.equals(bridgeFloorStatus)) {
+            gameData.setGameData(movingInputFloor, GameResult.CORRECT_FLOOR.getResultMessage());
+            return;
         }
-        return GameResult.WRONG_FLOOR.getResultMessage();
+        gameData.setGameData(movingInputFloor, GameResult.WRONG_FLOOR.getResultMessage());
     }
 
     /**
