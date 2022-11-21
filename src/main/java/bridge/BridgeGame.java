@@ -29,28 +29,32 @@ public class BridgeGame {
     }
 
     public void move(final String sideToMove) {
-        player.move(sideToMove);
+        this.player.move(sideToMove);
     }
 
     public boolean isPlayerInRightSide() {
-        return bridge.isMovableSide(
-                player.getLastMoving(),
-                player.getCurrentPosition()
+        return this.bridge.isMovableSide(
+                this.player.getLastMoving(),
+                this.player.getCurrentPosition()
         );
     }
 
     public boolean retry(String gameCommand) {
         if (gameCommand.equals(AvailableInput.get(AvailableInput.RETRY_GAME))) {
-            player.initializePosition();
-            this.map.initialize();
+            initialize_game();
             addTrial();
             return true;
         }
         return false;
     }
 
+    private void initialize_game() {
+        this.player.initializePosition();
+        this.map.initialize();
+    }
+
     public GameStatus getGameStatus() {
-        if (bridge.isLastPosition(player.getCurrentPosition())) {
+        if (this.bridge.isLastPosition(this.player.getCurrentPosition())) {
             return GameStatus.SUCCESS;
         }
         return GameStatus.CONTINUE;
