@@ -7,9 +7,11 @@ public enum ErrorMessage {
     NOT_VALID_RANGE("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 
     private final String errorMessage;
+
     ErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+
     @Override
     public String toString() {
         return errorMessage;
