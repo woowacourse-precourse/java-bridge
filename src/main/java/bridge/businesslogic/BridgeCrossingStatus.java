@@ -20,12 +20,11 @@ public class BridgeCrossingStatus {
         downLine.delete(0,downLine.length());
     }
 
-    public String getUpBridgeStatus(boolean isLastPickIsRight){
-        StringBuilder getStatus = new StringBuilder(upLine);
-        return checkLastAndPacking(getStatus,isLastPickIsRight);
-    }
-
-    public String getDownBridgeStatus(boolean isLastPickIsRight){
+    public String getBridgeStatus(String upOrDown, boolean isLastPickIsRight){
+        if(upOrDown.equals("U")){
+            StringBuilder getStatus = new StringBuilder(upLine);
+            return checkLastAndPacking(getStatus,isLastPickIsRight);
+        }
         StringBuilder getStatus = new StringBuilder(downLine);
         return checkLastAndPacking(getStatus,isLastPickIsRight);
     }

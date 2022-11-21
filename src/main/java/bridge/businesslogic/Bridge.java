@@ -36,8 +36,8 @@ public class Bridge {
 
     public List<String> getAlreadyCrossedBridge(boolean isLastPickIsRight){
         return List.of(
-                status.getUpBridgeStatus(isLastPickIsRight),
-                status.getDownBridgeStatus(isLastPickIsRight)
+                status.getBridgeStatus("U",isLastPickIsRight),
+                status.getBridgeStatus("D",isLastPickIsRight)
         );
     }
 }
