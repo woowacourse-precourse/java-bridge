@@ -31,7 +31,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        if (!input.equals("D") || !input.equals("U")) {
+        if (!input.equals("D") && !input.equals("U")) {
             throw new IllegalArgumentException();
         }
         return input;
