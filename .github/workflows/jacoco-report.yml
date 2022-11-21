@@ -1,0 +1,13 @@
+name: PR-TestCoverage-Report
+on: [ pull_request ] # 깃 저장소의 push, pull_request 이벤트에 의해 트리거된다.
+jobs:
+  reporting:
+    runs-on: ubuntu-latest # 워크플로우의 이름
+    steps:
+      - uses: madrapps/jacoco-report@v1.2
+        with:
+          title: 📝 테스트 커버리지 리포트입니다
+          paths: ${{ github.workspace }}/backend/build/reports/jacoco/test/jacocoTestReport.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 50
+          min-coverage-changed-files: 50
