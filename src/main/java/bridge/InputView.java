@@ -88,7 +88,30 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
+    public boolean CHECK_READ_GAME_COMMAND_ERROR(String Str_Input){
+        if(!((Str_Input.equals("R")) || (Str_Input.equals("Q")) || (Str_Input.equals("r")) || (Str_Input.equals("q")))){
+            System.out.println("[ERROR] MOVE 입력은 r/R 이거나 q/Q 만 가능 합니다.\n");
+            return false;
+        }
+        return true;
+    }
+
+    public String readGameCommand_SUB() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String Str_Input = Console.readLine();
+        if(!CHECK_READ_GAME_COMMAND_ERROR(Str_Input)){
+            throw new IllegalArgumentException();
+        }
+        return Str_Input;
+    }
+
     public String readGameCommand() {
-        return null;
+        String STR_RESULT = "";
+        try {
+            STR_RESULT = readGameCommand_SUB();
+        } catch (IllegalArgumentException e) {
+            STR_RESULT = readGameCommand();
+        }
+        return STR_RESULT;
     }
 }
