@@ -14,7 +14,7 @@ public class InputView {
         try {
             int result = Integer.parseInt(Console.readLine());
             if (result < 3 || result > 20) {
-                throw new IllegalArgumentException("[ERROR] 입력된 값이 3보다 작거나 20보다 큽니다.");
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             }
             return result;
         } catch (NumberFormatException e) {

@@ -21,6 +21,7 @@ public class BridgeGame {
         while (keepPlay) {
             keepPlay = Play();
         }
+
     }
 
     private Boolean Play() {
@@ -62,7 +63,7 @@ public class BridgeGame {
     public void move(String playerInput, List<String> playerList) {
         playerList.add(playerInput);
         System.out.println(playerInput);
-        OutputView.Result(playerList);
+        OutputView.printMap(playerList, BRIDGEANSWER);
     }
 
     /**
