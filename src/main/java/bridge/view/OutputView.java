@@ -96,10 +96,20 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) { // TODO 수정 필요
+
         System.out.println(Message.GAME_RESULT_PREV_MSG.getMessage());
         printMap(bridgeGame);
         System.out.println();
-        System.out.println(Message.GAME_RESULT_STATE_MSG );
+        System.out.println(Message.GAME_RESULT_STATE_MSG.getMessage() + getGameStatus(bridgeGame));
+        System.out.println(Message.GAME_RESULT_TRY_MSG.getMessage() + "" + bridgeGame.getTrial());
+    }
+
+    private String getGameStatus(BridgeGame bridgeGame) {
+        boolean gameWin = bridgeGame.isGameWin();
+        if (gameWin) {
+            return "성공";
+        }
+        return "실패";
     }
 
     public void printStatusResult() { // TODO 수정 필요

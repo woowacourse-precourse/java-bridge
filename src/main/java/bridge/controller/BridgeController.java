@@ -51,8 +51,7 @@ public class BridgeController {
 	private List<String> initBridge() {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		InputNumValidator bridgeSizeInputValidator = new InputNumValidator(inputView.readBridgeSize());
-		List<String> bridge = bridgeMaker.makeBridge(bridgeSizeInputValidator.getInputValue());
-		return bridge;
+		return bridgeMaker.makeBridge(bridgeSizeInputValidator.getInputValue());
 	}
 
 	private boolean isRestartInput() {

@@ -1,9 +1,6 @@
 package bridge;
 
 import bridge.controller.BridgeController;
-import bridge.controller.BridgeGame;
-import bridge.enums.Message;
-import bridge.view.OutputView;
 
 public class Application {
 

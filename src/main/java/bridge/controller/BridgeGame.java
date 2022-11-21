@@ -25,10 +25,12 @@ import java.util.stream.IntStream;
 public class BridgeGame {
     private List<String> bridge;
     private List<String> myBridge;
+    private int trial;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         myBridge = new ArrayList<>();
+        trial = 1;
     }
 
     /**
@@ -40,35 +42,6 @@ public class BridgeGame {
         myBridge.add(direction);
     }
 
-    public List<String> getAnswerBridge() {
-        return Collections.unmodifiableList(bridge);
-    }
-
-    public List<String> getPlayerBridge() {
-        return Collections.unmodifiableList(myBridge);
-    }
-    
-    public boolean isMatchDirection() {
-        int size = myBridge.size();
-        List<String> subAnswerBridge = bridge.subList(0, size);
-        return subAnswerBridge.equals(myBridge);
-    }
-
-    public boolean isGameLoss(){
-        return isNotFinish() || !isGameWin();
-    }
-
-    public boolean isNotFinish() {
-        return myBridge.size() != bridge.size();
-    }
-
-    public boolean isGameWin() {
-        int count = (int) IntStream.range(0, bridge.size())
-                .filter(idx -> Util.valueEqualCheck(bridge, myBridge, idx))
-                .count();
-        return count == bridge.size();
-    }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -76,5 +49,43 @@ public class BridgeGame {
      */
     public void retry() {
         myBridge.remove(myBridge.size() - 1);
+        trial++;
+    }
+
+    public List<String> getAnswerBridge() {
+        return Collections.unmodifiableList(bridge);
+    }
+
+    public List<String> getPlayerBridge() {
+        return Collections.unmodifiableList(myBridge);
+    }
+
+    public boolean isMatchDirection() {
+        int size = myBridge.size();
+        List<String> subAnswerBridge = bridge.subList(0, size);
+        return subAnswerBridge.equals(myBridge);
+    }
+
+    public boolean isGameLoss(){
+        return isNotFinish() || !isAllMatch();
+    }
+
+    public boolean isNotFinish() {
+        return myBridge.size() != bridge.size();
+    }
+
+    private boolean isAllMatch() {
+        int count = (int) IntStream.range(0, bridge.size())
+                .filter(idx -> Util.valueEqualCheck(bridge, myBridge, idx))
+                .count();
+        return count == bridge.size();
+    }
+
+    public boolean isGameWin() {
+        return !isNotFinish() && isAllMatch();
+    }
+
+    public int getTrial() {
+        return trial;
     }
 }
