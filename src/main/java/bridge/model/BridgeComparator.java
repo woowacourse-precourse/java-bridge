@@ -9,7 +9,8 @@ public class BridgeComparator {
 
     public String compareBridge(List<String> bridge, String moving, int location) {
         if (bridge.get(location).equals(moving)) {
-            return BRIDGE_CORRECT;
+            return
+                    BRIDGE_CORRECT;
         }
         return BRIDGE_FAIL;
     }
