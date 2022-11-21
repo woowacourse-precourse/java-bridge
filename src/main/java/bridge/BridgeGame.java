@@ -8,6 +8,7 @@ import java.util.List;
 public class BridgeGame {
 
     private List<String> bridge;
+    private List<String> crossed;
     private int stage;
 
     public BridgeGame(int size) {
