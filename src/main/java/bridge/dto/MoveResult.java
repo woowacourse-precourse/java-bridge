@@ -1,15 +1,13 @@
 package bridge.dto;
 
-import bridge.domain.vo.Command;
-
 public class MoveResult {
 
-    private Command command;
+    private String message;
     private boolean success;
     private int round;
 
     public String getMessage() {
-        return command.getMessage();
+        return message;
     }
 
     public boolean isSuccess() {
@@ -20,8 +18,8 @@ public class MoveResult {
         return round;
     }
 
-    public MoveResult(Command command, boolean success, int round) {
-        this.command = command;
+    public MoveResult(String message, boolean success, int round) {
+        this.message = message;
         this.success = success;
         this.round = round;
     }

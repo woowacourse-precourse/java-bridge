@@ -21,9 +21,10 @@ public class BridgeGame {
 
     public MoveResult move(Bridge bridge,
                            MoveCommand command) {
+        String message = command.getMessage();
         int round = bridgeGameRepository.findRound();
-        boolean isSuccess = bridge.isMoveSuccess(round, command.getMessage());
-        return new MoveResult(command, isSuccess, round);
+        boolean isSuccess = bridge.isMoveSuccess(round, message);
+        return new MoveResult(message, isSuccess, round);
     }
 
     public boolean retry(RetryCommand retryCommand) {
