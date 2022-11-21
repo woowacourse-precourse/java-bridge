@@ -29,7 +29,7 @@ class BranchCommandTest {
 	void inputBranchCommandResultTest() {
 		String restartInput = "R";
 		String quitInput = "Q";
-		
+
 		assertTrue(BranchCommand.isRestartGame(restartInput));
 		assertFalse(BranchCommand.isRestartGame(quitInput));
 	}

@@ -1,11 +1,10 @@
 package bridge.domain.command;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum MoveCommand {
-	MOVE_UP(1 ,"U"),
-	MOVE_DOWN(0 ,"D");
+	MOVE_UP(1, "U"),
+	MOVE_DOWN(0, "D");
 
 	private final int moveCode;
 	private final String value;
