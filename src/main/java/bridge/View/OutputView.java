@@ -7,6 +7,7 @@ import static bridge.Constant.OutputValue.*;
 
 import bridge.Model.BridgeGame;
 
+import bridge.Model.Player;
 import java.util.List;
 
 
@@ -42,27 +43,28 @@ public class OutputView {
     private void printStair(BridgeGame bridgeGame, int passedCount, String stair) {
         final List<String> bridgeStates = bridgeGame.getBridgeStates();
         final String selectedBridgeState = bridgeStates.get(passedCount);
+        boolean isPlayerDead = bridgeGame.isPlayerDead();
 
         final String result = getPassedStair(bridgeStates, passedCount, stair)
-                + getSelectResult(bridgeGame, selectedBridgeState, stair);
+                + getSelectResult(isPlayerDead, selectedBridgeState, stair);
 
         System.out.printf(BRIDGE_MAP, result);
     }
 
-    private String getIsSuccess(BridgeGame bridgeGame) {
-        if (bridgeGame.isPlayerDead()) {
+    private String getIsSuccess(boolean isPlayerDead) {
+        if (isPlayerDead) {
             return FAIL;
         }
 
         return SUCCESS;
     }
 
-    private String getSelectResult(BridgeGame bridgeGame, String bridgeState, String stair) {
-        if (!bridgeGame.isPlayerDead() && bridgeState.equals(stair)) {
+    private String getSelectResult(boolean isPlayerDead, String bridgeState, String stair) {
+        if (!isPlayerDead && bridgeState.equals(stair)) {
             return RIGHT_SELECTION;
         }
 
-        if (bridgeGame.isPlayerDead() && !bridgeState.equals(stair)) {
+        if (isPlayerDead && !bridgeState.equals(stair)) {
             return WRONG_SELECTION;
         }
 
@@ -82,7 +84,7 @@ public class OutputView {
 
         printMap(bridgeGame, maxPassedCount);
 
-        System.out.printf(IS_SUCCESS, getIsSuccess(bridgeGame));
+        System.out.printf(IS_SUCCESS, getIsSuccess(bridgeGame.isPlayerDead()));
         System.out.printf(RETRY_COUNT, bridgeGame.getRetryCount());
     }
 }
