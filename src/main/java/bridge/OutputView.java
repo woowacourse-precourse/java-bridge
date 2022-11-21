@@ -61,7 +61,7 @@ public class OutputView {
     }
     public static void inputUserMoveCommand(){
         System.out.println(INPUT_MOVE_COMMAND+UserCommand.MOVE_UP.getPosition()+IS+UserCommand.MOVE_UP.getCommand()+
-                AND+ UserCommand.MOVE_DOWN.getPosition()+IS+UserCommand.MOVE_DOWN.getPosition()+INPUT_END);
+                AND+ UserCommand.MOVE_DOWN.getPosition()+IS+UserCommand.MOVE_DOWN.getCommand()+INPUT_END);
     }
     public static void inputUserReplayCommand(){
         System.out.println(INPUT_REPLAY_GAME+UserCommand.REPLAY.getPosition()+IS+UserCommand.REPLAY.getCommand()+
