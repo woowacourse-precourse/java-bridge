@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.data.UserBridege;
+
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ public class OutputView {
         for (int r = 0; r < result.size() - 1; r++) {
             System.out.print(result.get(r) + " | ");
         }
-        System.out.println(result.get(result.size() - 1) + " ]");
+        System.out.println(result.get(result.size() - 1) + " ]\n");
     }
 
     public void printContinue() {
@@ -36,10 +38,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String challenge, int attempt) {
-        System.out.print("게임 성공 여부: ");
-        System.out.println(challenge);
-        System.out.print("총 시도한 횟수: ");
-        System.out.println(attempt);
+    public void printResult(String challenge, int attempt, UserBridege userBridge) {
+        System.out.println("최종 게임 결과");
+        printMap(userBridge.getUpBridge());
+        printMap(userBridge.getDownBridge());
+        System.out.print("게임 성공 여부: " + challenge) ;
+        System.out.print("총 시도한 횟수: " + attempt);
     }
 }
