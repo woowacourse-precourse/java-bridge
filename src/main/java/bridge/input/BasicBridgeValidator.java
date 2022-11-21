@@ -8,42 +8,27 @@ import java.util.regex.Pattern;
 import static bridge.controller.BridgeSize.MAXIMUM;
 import static bridge.controller.BridgeSize.MINIMUM;
 
-public class BasicBridgeInputValidator implements BridgeInputValidator {
+public class BasicBridgeValidator implements BridgeValidator {
     MoveCommand[] moveCommands = MoveCommand.values();
     GameCommand[] gameCommands = GameCommand.values();
 
     @Override
-    public boolean validateBridgeSize(String size) {
-        try {
-            validateInteger(size);
-            validateSizeRange(size);
-        } catch (IllegalArgumentException argumentException) {
-            return false;
-        }
-        return true;
+    public void validateBridgeSize(String size) throws IllegalArgumentException {
+        validateInteger(size);
+        validateSizeRange(size);
     }
 
     @Override
-    public boolean validateMoveCommand(String command) {
-        try {
-            validateStringMoveCommand(command);
-        } catch (IllegalArgumentException argumentException) {
-            return false;
-        }
-        return true;
+    public void validateMoveCommand(String command) throws IllegalArgumentException {
+        validateStringMoveCommand(command);
     }
 
     @Override
-    public boolean validateGameCommand(String command) {
-        try {
-            validateStringGameCommand(command);
-        } catch (IllegalArgumentException argumentException) {
-            return false;
-        }
-        return true;
+    public void validateGameCommand(String command) throws IllegalArgumentException {
+        validateStringGameCommand(command);
     }
 
-    private void validateInteger(String size) throws IllegalArgumentException {
+    private void validateInteger(String size) {
         if (!Pattern.matches("^[0-9]*$", size)) {
             String errMessage = "[ERROR] 다리 길이는 자연수만 입력 가능합니다.";
             System.out.println(errMessage);
