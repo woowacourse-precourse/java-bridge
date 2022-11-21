@@ -40,7 +40,7 @@ public class BridgeController {
         do {
             bridgeGame.resetRound();
             startRound(bridge);
-        } while (askRestart());
+        } while (askRestart(bridgeGame.isClear()));
     }
 
     private void startRound(List<String> bridge) {
@@ -68,9 +68,12 @@ public class BridgeController {
         return user.equals(answer);
     }
 
-    private boolean askRestart() {
-        String command = inputCommand().getCommand();
-        return bridgeGame.retry(command);
+    private boolean askRestart(boolean success) {
+        if (!success) {
+            String command = inputCommand().getCommand();
+            return bridgeGame.retry(command);
+        }
+        return false;
     }
 
     private Command inputCommand() {
