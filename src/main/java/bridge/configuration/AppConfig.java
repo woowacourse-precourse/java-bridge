@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.controller.BridgeGameController;
 import bridge.view.io.InputView;
 import bridge.view.io.OutputView;
+import bridge.view.io.UserIOView;
 
 public class AppConfig {
 
@@ -13,6 +14,10 @@ public class AppConfig {
     }
 
     public static BridgeGameController bridgeGameController() {
-        return new BridgeGameController(new InputView(), new OutputView());
+        return new BridgeGameController(userIOView());
+    }
+
+    public static UserIOView userIOView() {
+        return new UserIOView(new InputView(), new OutputView());
     }
 }

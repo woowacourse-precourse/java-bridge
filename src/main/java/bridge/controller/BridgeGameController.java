@@ -2,11 +2,6 @@ package bridge.controller;
 
 import static bridge.service.BridgeGame.createGame;
 import static bridge.domain.game.GameRunStatus.makeGameRunStatus;
-import static bridge.message.SystemMessage.GAME_RESULT;
-import static bridge.message.SystemMessage.GAME_START;
-import static bridge.message.SystemMessage.INPUT_BRIDGE_SIZE;
-import static bridge.message.SystemMessage.INPUT_MOVING;
-import static bridge.message.SystemMessage.RETRY;
 import static bridge.value.GameCommand.QUIT;
 
 import static bridge.view.game.GameResultView.makeGameResultView;
@@ -17,42 +12,34 @@ import bridge.service.BridgeGame;
 import bridge.domain.game.GameRunStatus;
 import bridge.value.BridgeCharacter;
 import bridge.value.GameCommand;
-import bridge.view.io.InputView;
-import bridge.view.io.OutputView;
+import bridge.view.game.GameStatusView;
+import bridge.view.io.UserIOView;
 
 public class BridgeGameController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final UserIOView userIOView;
     private final GameRunStatus gameRunStatus;
     private BridgeGame bridgeGame;
 
-    public BridgeGameController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeGameController(UserIOView userIOView) {
+        this.userIOView = userIOView;
         this.gameRunStatus = makeGameRunStatus();
     }
 
     public void start() {
-        try {
-            run();
-        } catch (Exception e) {
-            outputView.println(e.getMessage());
-        }
+        init();
+        process();
+        release();
     }
 
-    private void run() {
-        initGame();
-
+    private void process() {
         while (!gameRunStatus.isStop()) {
-            process();
+            run();
         }
-        releaseGame();
     }
 
-    public void process() {
-        outputView.printMessage(INPUT_MOVING);
-        BridgeCharacter bridgeCharacter = inputView.readMoving();
+    public void run() {
+        BridgeCharacter bridgeCharacter = userIOView.inputMovingCharacterProcess();
 
         if (!bridgeGame.canMove(bridgeCharacter)) {
             gameFailProcess();
@@ -63,17 +50,15 @@ public class BridgeGameController {
         if (bridgeGame.isGameSuccess()) {
             gameRunStatus.stop();
         }
-        outputView.printMap(makeGameStatusView(bridgeGame.status()));
+
+        userIOView.outputGameStatus(makeGameStatusView(bridgeGame.status()));
     }
 
     private void gameFailProcess() {
-        outputView.printMap(makeGameResultStatusView(bridgeGame.status()));
-        outputView.printMessage(RETRY);
-
-        processFor(inputView.readGameCommand());
+        GameStatusView gameStatusView = makeGameResultStatusView(bridgeGame.status());
+        proceedFor(userIOView.inputGameCommandProcess(gameStatusView));
     }
-
-    private void processFor(GameCommand gameCommand) {
+    private void proceedFor(GameCommand gameCommand) {
         if (gameCommand == QUIT) {
             gameRunStatus.stop();
             return;
@@ -81,18 +66,13 @@ public class BridgeGameController {
         bridgeGame.retry();
     }
 
-    private void initGame() {
-        outputView.printMessage(GAME_START);
-        outputView.lineSeparate();
-        outputView.printMessage(INPUT_BRIDGE_SIZE);
+    private void init() {
+        userIOView.initProcess();
 
-        this.bridgeGame = createGame(inputView.readBridgeSize());
-
-        outputView.lineSeparate();
+        this.bridgeGame = createGame(userIOView.inputBridgeSizeProcess());
     }
 
-    private void releaseGame() {
-        outputView.printMessage(GAME_RESULT);
-        outputView.printResult(makeGameResultView(bridgeGame.result()));
+    private void release() {
+        userIOView.releaseProcess(makeGameResultView(bridgeGame.result()));
     }
 }
