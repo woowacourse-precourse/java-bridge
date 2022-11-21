@@ -50,8 +50,8 @@ public class OutputView {
         System.out.println("게임 성공 여부: "+result);
         System.out.println("총 시도한 횟수: "+tryNumber);
     }
-    public void printStartMessage(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
+    public void printStartMessages(){
+        System.out.println("다리 건너기 게임을 시작합니다."+"");
         System.out.println("다리의 길이를 입력해 주세요.");
     }
     public void printMoveDirection(){
