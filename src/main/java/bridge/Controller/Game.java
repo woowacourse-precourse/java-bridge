@@ -28,9 +28,13 @@ public class Game {
 
     private void startGame() {
         boolean isStart = true;
-        while(isStart) {
+        while (isStart) {
             BridgeGame.plusPlayCount();
             isStart = crossBridge();
+            if (isStart) { // 다리를 다 건넜을 때
+                break;
+            }
+            isStart = isStartOrEnd(); //다리를 다 건너지 못했다면
         }
     }
 
@@ -52,5 +56,10 @@ public class Game {
         gameState = bridgeGame.move(InputView.readMoving(), bridgeMap, position);
         OutputView.printMap(bridgeMap);
         return gameState;
+    }
+
+    private boolean isStartOrEnd() {
+        OutputView.printStartOrEnd();
+
     }
 }
