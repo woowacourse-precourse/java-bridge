@@ -8,6 +8,10 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private final Validator validator;
 
+    public InputView(Validator validator) {
+        this.validator = validator;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -46,8 +50,40 @@ public class InputView {
         return command;
     }
 
-    public InputView(Validator validator) {
-        this.validator = validator;
+    public int getBridgeSize() {
+        int size = 0;
+        while (size == 0) {
+            try {
+                size = readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return size;
+    }
+
+    public String getCommand() {
+        String command = "";
+        while (command.equals("")) {
+            try {
+                command = readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return command;
+    }
+
+    public String getMoving() {
+        String move = "";
+        while (move.equals("")) {
+            try {
+                move = readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return move;
     }
 
     private void validateSize(String sizeName) {
@@ -59,5 +95,7 @@ public class InputView {
         validator.checkMoveWord(move);
     }
 
-    private void validateCommand(String command) {validator.checkCommandWord(command);}
+    private void validateCommand(String command) {
+        validator.checkCommandWord(command);
+    }
 }

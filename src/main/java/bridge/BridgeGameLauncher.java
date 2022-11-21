@@ -17,7 +17,8 @@ public class BridgeGameLauncher {
 
     public void game(){
         outputView.printStart();
-        int size = inputView.readBridgeSize();
+        int size = inputView.getBridgeSize();
+
         List<String> bridge = bridgeMaker.makeBridge(size);
 
         bridgeGame.setBridge(bridge);
@@ -25,4 +26,5 @@ public class BridgeGameLauncher {
 
         outputView.printResult(result);
     }
+
 }
