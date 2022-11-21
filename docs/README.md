@@ -57,6 +57,7 @@
   - [X] 다리에 표시할 상태 값 생성 - BridgeGame#makeBridgeStatus()
   - [X] 다리 표시 작업 요청 - BridgeGame#BridgeState#mark()
 - [X] 게임 재시도 - BridgeGame#retry()
+  - [X] 게임 재시도 또는 게임 종료 명령 값 유효성 검증 및 예외처리 - BridgeGame#validateGameCommnd()
   - [X] 게임 라운드 초기화
   - [X] 게임 총 도전 횟수 카운트
   - [X] 다리 상태 초기화 요청 - BridgeGame#BridgeState#initBridgeState()

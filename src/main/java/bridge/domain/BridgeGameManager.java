@@ -33,7 +33,7 @@ public class BridgeGameManager {
         initBrigeLength(bridgeGame);
         while (bridgeLength --> BRIDGE_LENGTH_INIT) {
             moveProgress(bridgeGame);
-            if (!bridgeGame.isWon() && isQuit(bridgeGame)) {
+            if (!bridgeGame.isWon() && !isRetry(bridgeGame)) {
                 break;
             }
         }
@@ -49,14 +49,14 @@ public class BridgeGameManager {
         outputView.printMap(bridgeState);
     }
 
-    private boolean isQuit(BridgeGame bridgeGame) {
+    private boolean isRetry(BridgeGame bridgeGame) {
         outputView.printInputRetryOrNot();
-        if (inputView.readGameCommand().equals(RETRY)) {
-            bridgeGame.retry();
+        String command = inputView.readGameCommand();
+        if (bridgeGame.retry(command)) {
             initBrigeLength(bridgeGame);
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private void printGameResult(BridgeGame bridgeGame) {
