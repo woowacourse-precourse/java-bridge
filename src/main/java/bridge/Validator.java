@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class Validator {
 
     public static void validateNumeric(String input) {
@@ -15,6 +17,12 @@ public class Validator {
 
         if (parsed < minLength || parsed > maxLength) {
             throw new IllegalArgumentException("[ERROR] 숫자의 범위는 " + minLength + " ~ " + maxLength + "입니다.");
+        }
+    }
+
+    public static void validateContains(List<String> correctInputs, String input) {
+        if (!correctInputs.contains(input)) {
+            throw new IllegalArgumentException("[ERROR] 허용된 값이 아닙니다.");
         }
     }
 

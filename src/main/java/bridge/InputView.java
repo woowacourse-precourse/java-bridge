@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -23,6 +25,7 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
+        validateMoving(input);
         return input;
     }
 
@@ -36,5 +39,9 @@ public class InputView {
     public void validateBridgeSize(String input) {
         Validator.validateNumeric(input);
         Validator.validateNumericSize(3, 20, input);
+    }
+
+    public void validateMoving(String input) {
+        Validator.validateContains(Arrays.asList("U", "D"), input);
     }
 }
