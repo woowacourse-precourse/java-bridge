@@ -3,12 +3,21 @@ package bridge;
 import java.util.Arrays;
 
 public class Application {
+    public static Application application;
+
+    static Application getInstance() {
+        if (application == null) {
+            application = new Application();
+            return application;
+        }
+        return application;
+    }
     private static BridgeMaker bridgeMaker = BridgeMaker.getInstance();
     private static InputView inputView = new InputView();
     private static BridgeGame bridgeGame = new BridgeGame();
     private static OutputView outputView = new OutputView();
     private static int size;
-    private static int count = 0;
+    public static int count = 0;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -20,10 +29,10 @@ public class Application {
                 flag = game();
                 tryCount++;
             }
+        outputView.printResult(flag, tryCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        outputView.printResult(flag, tryCount);
     }
 
     static String game() {
@@ -35,7 +44,7 @@ public class Application {
             count = answerCount(outputView, count, result);
             if (!result) {
                 outputView.printMap(count, result);
-                String retry = bridgeGame.retry(inputView.readGameCommand());
+                String retry = bridgeGame.retry(inputView.readGameCommand(),getInstance());
                 return retry;
             }
         }
