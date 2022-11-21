@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.Constants;
 import java.util.List;
 
 public class Bridge {
@@ -8,7 +9,25 @@ public class Bridge {
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
-        this.bridge = bridge;
+        validate(bridge);
+        this.bridge = List.copyOf(bridge);
+    }
+
+    private void validate(List<String> bridge) {
+        isValidSize(bridge);
+        isValidElement(bridge);
+    }
+
+    private void isValidSize(List<String> bridge) {
+        if (bridge.size() < Constants.BRIDGE_SIZE_MIN || bridge.size() > Constants.BRIDGE_SIZE_MAX) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isValidElement(List<String> bridge) {
+        if (bridge.stream().noneMatch(s -> s.equals(Constants.CODE_UP) || s.equals(Constants.CODE_DOWN))) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static Bridge generateBridge(int bridgeSize) {
