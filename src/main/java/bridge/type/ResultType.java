@@ -1,8 +1,7 @@
 package bridge.type;
 
 public enum ResultType {
-    SUCCESS("성공"),
-    FAIL("실패");
+    SUCCESS("성공"), FAIL("실패");
 
     private final String resultType;
 
