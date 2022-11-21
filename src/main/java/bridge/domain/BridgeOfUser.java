@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.common.Side;
 import bridge.utils.Validator;
 import java.util.ArrayList;
 import java.util.List;
