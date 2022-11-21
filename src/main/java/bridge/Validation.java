@@ -20,4 +20,10 @@ public class Validation {
         }
         return "U";
     }
+
+    public void validateMove(String move) throws IllegalArgumentException {
+        if (!(move.equals("U") || move.equals("D"))) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
