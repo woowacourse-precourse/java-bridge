@@ -19,8 +19,14 @@ public class BridgeGame {
         bridge = new Bridge(bridgeNumberGenerator, size);
     }
 
-    public void move(String move) {
-        boolean canMove = canMove(move);
+    public boolean move(String move) {
+        boolean moved = bridge.canGo(current, move);
+        moveRecord(move, moved);
+        addCurrent(moved);
+        return moved;
+    }
+
+    private void moveRecord(String move, boolean canMove) {
         if (move.equals(UPPER.getSymbol())) {
             moveRecord.moveUP(current, canMove);
         }
@@ -29,12 +35,10 @@ public class BridgeGame {
         }
     }
 
-    private boolean canMove(String move) {
-        if (bridge.canGo(current, move)) {
+    private void addCurrent(boolean bool) {
+        if (bool) {
             current++;
-            return true;
         }
-        return false;
     }
 
     public boolean gameResult() {
