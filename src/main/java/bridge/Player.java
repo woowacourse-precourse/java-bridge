@@ -51,4 +51,8 @@ public class Player {
     public List<String> getLowerFootPrint() {
         return bridgeResult.getLowerResult();
     }
+
+    public int showTrials() {
+        return round;
+    }
 }
