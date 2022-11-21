@@ -1,5 +1,7 @@
 package bridge.io.input;
 
+import bridge.io.output.OutputView;
+import bridge.util.Validator;
 import bridge.util.validator.BridgeLengthValidator;
 import bridge.util.validator.RestartValidator;
 import bridge.util.validator.UpDownValidator;
@@ -24,26 +26,32 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
-
-        return Integer.parseInt(blValidator.validate(readLine()));
+        return Integer.parseInt(readAndValidate("다리의 길이를 입력해주세요.", blValidator));
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-
-        return udValidator.validate(readLine());
+        System.out.println();
+        return readAndValidate("이동할 칸을 선택해주세요. (위: U, 아래: D)", udValidator);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        return readAndValidate("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)", rValidator);
+    }
 
-        return rValidator.validate(readLine());
+    public String readAndValidate(String question, Validator validator) {
+        while (true) {
+            try {
+                System.out.println(question);
+                return validator.validate(readLine());
+            } catch (IllegalArgumentException e) {
+                OutputView.printIllegalArgumentException(e.getMessage());
+            }
+        }
     }
 }
