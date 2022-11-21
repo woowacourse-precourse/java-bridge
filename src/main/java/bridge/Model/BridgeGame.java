@@ -84,4 +84,13 @@ public class BridgeGame {
     public static void resetBridge() {
         currentBridge = new ArrayList<>(List.of(new ArrayList<>(), new ArrayList<>()));
     }
+
+    public static boolean isSuccess() {
+        for (int currentBridgeSize = 0; currentBridgeSize < currentBridge.size(); currentBridgeSize++) {
+            if (currentBridge.get(currentBridgeSize).contains(WRONG_POSITION)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
