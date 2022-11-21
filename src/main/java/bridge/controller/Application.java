@@ -21,17 +21,17 @@ public class Application {
     public void run() {
         startGame();
 
-        while(doesRepeat()) {
+        while(playing) {
             move();
-            checkApproachEndPoint();
             checkCorrectChoice();
+            checkApproachEndPoint();
         }
 
         finishGame();
     }
 
     private void startGame() {
-        OutputView.printStart();
+        System.out.println(Message.START_MESSAGE);
         makeAnswerBridge();
     }
 
@@ -41,21 +41,10 @@ public class Application {
         bridge = new Bridge(madeBridge);
     }
 
-    private boolean doesRepeat() {
-        return (playing && !player.getIsSuccess());
-    }
-
     private void move() {
         String choice = InputView.readChoice();
         bridgeGame.move(player, choice);
         OutputView.printMap(player.getChoices(), bridge.compareTo(player.getChoices()));
-    }
-
-    private void checkApproachEndPoint() {
-        boolean isApproachEndPoint = bridge.isApproachEndPoint(player.getChoices());
-        if (isApproachEndPoint) {
-            player.doSuccess();
-        }
     }
 
     private void checkCorrectChoice() {
@@ -66,6 +55,13 @@ public class Application {
                 return;
             }
 
+            playing = false;
+        }
+    }
+
+    private void checkApproachEndPoint() {
+        boolean isApproachEndPoint = bridge.isApproachEndPoint(player.getChoices());
+        if (playing && isApproachEndPoint) {
             playing = false;
         }
     }

@@ -6,18 +6,6 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printStart() {
-        System.out.println(Message.START_MESSAGE);
-    }
-
-    public static void printInputBridgeSize() {
-        System.out.println(Message.INPUT_BRIDGE_LENGTH);
-    }
-
-    public static void printInputMoving() {
-        System.out.println(Message.INPUT_MOVING);
-    }
-
     public static void printMap(List<String> userChoices, List<Boolean> compareResults) {
         StringBuilder topLine = new StringBuilder(Message.START_MAP);
         StringBuilder bottomLine = new StringBuilder(Message.START_MAP);
@@ -27,7 +15,8 @@ public class OutputView {
             markAtBottomLine(bottomLine, userChoices.get(index), compareResults.get(index));
         }
 
-        printResult(topLine, bottomLine);
+        closeMap(topLine, bottomLine);
+        System.out.println(topLine + Message.NEXT_LINE + bottomLine);
     }
 
     private static void markAtTopLine(StringBuilder topLine, String choice, boolean compareResult) {
@@ -54,14 +43,9 @@ public class OutputView {
         bottomLine.append(Message.EMPTY_LOG);
     }
 
-    private static void printResult(StringBuilder topLine, StringBuilder bottomLine) {
+    private static void closeMap(StringBuilder topLine, StringBuilder bottomLine) {
         topLine.replace(topLine.length() - 1, topLine.length(), Message.END_MAP);
         bottomLine.replace(bottomLine.length() - 1, bottomLine.length(), Message.END_MAP);
-        System.out.println(topLine + Message.NEXT_LINE + bottomLine);
-    }
-
-    public static void printInputRetryCommand() {
-        System.out.println(Message.INPUT_RETRY_COMMAND);
     }
 
     public static void printResult(Player player, List<Boolean> compareResults) {
