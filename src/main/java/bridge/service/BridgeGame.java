@@ -19,9 +19,8 @@ public class BridgeGame {
     }
 
     private void isComplete(Bridge bridge, User user) {
-        if (bridge.getLocation() == bridge.getBridge().size()) {
-            user.winGame();
-            user.finishGame();
+        if (bridge.isEndOfLocation()) {
+           user.finishWithWin();
         }
     }
 
