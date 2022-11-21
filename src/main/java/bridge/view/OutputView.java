@@ -1,6 +1,8 @@
 package bridge.view;
 
+import bridge.domain.Dir;
 import bridge.domain.Result;
+import bridge.util.Formatter;
 import java.util.List;
 
 /**
@@ -24,13 +26,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean printMap(Result result) {
-        List<List<String>> resultsGroup = result.getResultsGroup();
-        for (List<String> results : resultsGroup) {
-            System.out.print(START);
-            for (String res : results) {
-                System.out.print(res);
-            }
-            System.out.println(END);
+        List<List<Dir>> resultsGroup = result.getResultsGroup();
+        for (List<Dir> results : resultsGroup) {
+            System.out.println(Formatter.formatter(results));
         }
         System.out.println();
         return result.isContainWrongAnswer();
