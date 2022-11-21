@@ -6,12 +6,20 @@ package bridge;
 public class OutputView {
 
     private static final String START_PHRASES = "다리 건너기 게임을 시작합니다.";
+    private static final String ASK_LENGTH_PHRASES = "다리의 길이를 입력해주세요.";
     private static final String CHOICE_PHRASES = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     /**
      * 게임이 시작할 때의 문구를 출력한다.
      */
     public void printStartPhrases() {
         System.out.println(START_PHRASES);
+    }
+
+    /**
+     * 다리 길이를 요구하는 문구를 출력한다.
+     */
+    public void printAskLengthPhrases() {
+        System.out.println(ASK_LENGTH_PHRASES);
     }
 
     /**
