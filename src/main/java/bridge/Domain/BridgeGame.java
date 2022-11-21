@@ -37,7 +37,6 @@ public class BridgeGame {
 
     public void gameStart() {
         bridgeData.setBridge(bridgeMaker.makeBridge(inputView.readBridgeLength()));
-        System.out.println(bridgeData.getBridge());
         bridgeData.initializeTotalAttempt();
     }
 
