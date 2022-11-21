@@ -2,19 +2,33 @@
 - 사용자에게서 다리의 길이 입력 받기
     - 건널 수 있는 칸은 무작위로
 - 사용자에게서 U, D 받기
-    - 성공 시 다리 출력
-    - 실패 시 메시지 출력
+    - 다리 진행상황 출력
+    - 실패 시 재시작 질문
 - 오류 시 에러 메세지
+    - U, D 제외 다른 값
+    - R, Q 제외 다른 값
+    - 다리 길이가 3~20 사이의 범위가 아닐 때
+    - 다리 길이가 숫자가 아닌 다른 값이 들어왔을 때
+    
 - 재시작 여부 기능
     - 재시작: R, 종료: Q
     - 재시작해도 기존의 다리로 사용
     - 실패 시에만
+    - 종료 시 성공 여부: 실패, 시도 횟수 출력
 - 끝까지 건넌 경우 종료
+    - 총 시도 횟수 출력
+    - 성공 여부 출력
 - 총 시도 횟수 저장
+    - 시도 횟수: 게임을 시작한 횟수
+    - 사용자의 현재 위치 저장 필요
 - 게임 결과 출력
+- 다리 진행 상황 출력
+    - 기존에 만든 다리와 사용자 입력 비교
+    - 맞았을 때는 해당 칸에 O, 틀렸을 때는 X
+
 
 - **BridgeRandomNumberGenerator 클래스**
-    - Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+    - Random 값 추출은 제공된 `BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
     - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 - **BridgeMaker 클래스**
@@ -315,7 +329,7 @@ public class BridgeMaker {
 
 ### BridgeRandomNumberGenerator 클래스
 
-- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- Random 값 추출은 제공된 `BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 ### 사용 예시
