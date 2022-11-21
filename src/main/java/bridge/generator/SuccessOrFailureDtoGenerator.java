@@ -1,8 +1,6 @@
-package bridge;
+package bridge.generator;
 
 import bridge.dto.SuccessOrFailureDto;
-import bridge.generator.FailBridgeStringGenerator;
-import bridge.generator.SuccessBridgeStringGenerator;
 
 import java.util.List;
 

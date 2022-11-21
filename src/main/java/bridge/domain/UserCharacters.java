@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.SuccessOrFailureDtoGenerator;
+import bridge.generator.SuccessOrFailureDtoGenerator;
 import bridge.dto.SuccessOrFailureDto;
 
 import java.util.Collections;

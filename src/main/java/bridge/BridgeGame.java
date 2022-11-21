@@ -3,6 +3,8 @@ package bridge;
 import bridge.domain.UserCharacters;
 import bridge.dto.BridgeStatusDto;
 import bridge.dto.SuccessOrFailureDto;
+import bridge.reader.SuccessReader;
+
 import java.util.List;
 
 /**
@@ -54,12 +56,12 @@ public class BridgeGame {
 
     public BridgeStatusDto makeSuccessBridgeStatusDto() {
         SuccessOrFailureDto successDto = userCharacters.createSuccessDto();
-        return new BridgeStatusDto(successDto.getBridge(), successDto.getSuccessOrFailure(), count);
+        return new BridgeStatusDto(successDto, count);
     }
 
     public BridgeStatusDto makeFailBridgeStatusDto() {
         SuccessOrFailureDto failDto = userCharacters.createFailDto();
-        return new BridgeStatusDto(failDto.getBridge(), failDto.getSuccessOrFailure(), count);
+        return new BridgeStatusDto(failDto, count);
     }
 
     public boolean isUnitSuccess() {

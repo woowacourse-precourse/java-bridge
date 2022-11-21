@@ -7,9 +7,10 @@ public class BridgeStatusDto {
 
     private final String successOrFailure;
     private final int count;
-    public BridgeStatusDto(String bridge, String successOrFailure, int count) {
-        this.bridge = bridge;
-        this.successOrFailure = successOrFailure;
+
+    public BridgeStatusDto(SuccessOrFailureDto successOrFailureDto, int count) {
+        this.bridge = successOrFailureDto.getBridge();
+        this.successOrFailure = successOrFailureDto.getSuccessOrFailure();
         this.count = count;
     }
 

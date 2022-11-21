@@ -1,6 +1,7 @@
-package bridge;
+package bridge.reader;
 
 import bridge.domain.UserCharacters;
+
 import java.util.List;
 
 public class SuccessReader {

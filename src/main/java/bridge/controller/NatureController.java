@@ -3,12 +3,14 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.dto.BridgeStatusDto;
 import bridge.view.ViewFaçade;
+
 import java.util.HashMap;
 import java.util.function.Function;
 
 public class NatureController implements Controller {
 
     private BridgeGame bridgeGame;
+    private ViewFaçade viewFaçade;
     private Function<Integer, BridgeGame> function;
 
     public NatureController(Function<Integer, BridgeGame> function) {
@@ -18,11 +20,12 @@ public class NatureController implements Controller {
     @Override
     public Runnable generateBridge(ViewFaçade viewFaçade, int size) {
         bridgeGame = function.apply(size);
+        this.viewFaçade = viewFaçade;
         return () -> viewFaçade.moveBride();
     }
 
     @Override
-    public Runnable moveBridge(ViewFaçade viewFaçade, String direction, HashMap<String, String> map) {
+    public Runnable moveBridge(String direction, HashMap<String, String> map) {
         BridgeStatusDto bridgeStatusDto = bridgeGame.move(direction);
         map.put("bridge", bridgeStatusDto.getBridge());
 
@@ -34,7 +37,7 @@ public class NatureController implements Controller {
     }
 
     @Override
-    public Runnable replay(ViewFaçade viewFaçade, String restartCommand) {
+    public Runnable replay(String restartCommand) {
         if (bridgeGame.retry(restartCommand)) {
             bridgeGame.clearFootprints();
             return () -> viewFaçade.moveBride();
