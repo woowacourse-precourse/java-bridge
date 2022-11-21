@@ -21,9 +21,9 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> result = new ArrayList<>();
         String[] converter = {"D", "U"};
-        int index = bridgeNumberGenerator.generate();
 
         for (int adder = 0; adder < size; adder++) {
+            int index = bridgeNumberGenerator.generate();
             result.add(converter[index]);
         }
         return result;
