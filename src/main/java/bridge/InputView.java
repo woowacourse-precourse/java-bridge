@@ -3,6 +3,7 @@ package bridge;
 // 여기에서만 readLine()을 사용할 것.
 
 import camp.nextstep.edu.missionutils.Console;
+import data.ExceptionData;
 import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 /**
@@ -15,11 +16,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         String rawData;
-        try{
-            rawData = Console.readLine();
-            return validateSize(rawData);
-        }catch(Exception e){
-            throw new IllegalArgumentException();
+        while(true){
+            System.out.println("입력");
+            try{
+                rawData = Console.readLine();
+                return validateSize(rawData);
+            }catch(IllegalArgumentException e){
+                ExceptionData.EXCEPTION_SIZE.printExceptionData();
+            }
         }
     }
 
@@ -29,11 +33,15 @@ public class InputView {
      * @throws IllegalArgumentException 3보다 작거나 20보다 크면 예외 발생
      */
     private int validateSize(String rawData) throws IllegalArgumentException {
-        int rawSize = Integer.parseInt(rawData);
-        if(rawSize < 3 || rawSize > 20){
+        try{
+            int rawSize = Integer.parseInt(rawData);
+            if(rawSize < 3 || rawSize > 20){
+                throw new IllegalArgumentException();
+            }
+        }catch (Exception e){
             throw new IllegalArgumentException();
         }
-        return rawSize;
+        return 0;
     }
 
     /**

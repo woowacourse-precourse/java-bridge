@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.List;
 import java.util.ArrayList;
+import data.BridgeData;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -21,21 +22,14 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         int bridgePiece;
-        for(int shape = 0; shape < size; shape ++){
+        for(int sizeCount = 0; sizeCount < size; sizeCount ++){
             bridgePiece = bridgeNumberGenerator.generate();
-            bridge.add(makeBridgePiece(bridgePiece));
+            if(bridgePiece == 0) {
+                bridge.add(BridgeData.UP);
+                continue;
+            }
+            bridge.add(BridgeData.DOWN);
         }
         return bridge;
-    }
-
-    /**
-     * @param bridgePiece BridgeRandomNumberGenerator로 생성된 랜덤 숫자 (0 또는 1)
-     * @return 0이면 D, 그렇지 않으면 U를 리턴함.
-     */
-    public String makeBridgePiece(int bridgePiece){
-        if(bridgePiece == 0){
-            return "D";
-        }
-        return "U";
     }
 }
