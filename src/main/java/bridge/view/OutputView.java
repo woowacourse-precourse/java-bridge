@@ -23,7 +23,11 @@ public class OutputView {
 
 
     public void askRetry() {
-        System.out.printf("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)%n", Command.RETRY.getSymbol(), Command.QUIT.getSymbol());
+        System.out.printf(
+                "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)%n",
+                Command.RETRY.getSymbol(),
+                Command.QUIT.getSymbol()
+        );
     }
 
     public void askSize() {
@@ -64,7 +68,11 @@ public class OutputView {
     }
 
     public void askDirection() {
-        System.out.printf("이동할 칸을 선택해주세요. (위: %s, 아래: %s)%n", Direction.UP.getSymbol(), Direction.DOWN.getSymbol());
+        System.out.printf(
+                "이동할 칸을 선택해주세요. (위: %s, 아래: %s)%n",
+                Direction.UP.getSymbol(),
+                Direction.DOWN.getSymbol()
+        );
     }
 
     public void printHistory(List<Round> history) {
