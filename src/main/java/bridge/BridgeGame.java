@@ -23,7 +23,8 @@ public class BridgeGame {
 
     private List<String> createAnswerBridge(int bridgeSize) {
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize); // 추후 삭제
+        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(answerBridge); // 추후 삭제
         return answerBridge;
     }
 
