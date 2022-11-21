@@ -10,8 +10,9 @@ public class BridgeGame {
     private final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private List<String> bridge;
-    private List<String> up = new ArrayList<>();
-    private List<String> down = new ArrayList<>();
+    private int up = 0;
+    private int down = 0;
+    public int round = 0;
 
     public void init() {
         OutputView.startGameMessage();
@@ -33,5 +34,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public boolean comparingInputBridge(){
+        String input = inputView.readMoving();
+        return input.equals(bridge.get(round));
     }
 }
