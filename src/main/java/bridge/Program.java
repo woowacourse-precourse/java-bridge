@@ -14,7 +14,7 @@ public class Program {
 
     public static void init() {
         startGame();
-        setupBridge();
+        makeBridge();
         playGame();
         finishGame();
     }
@@ -23,7 +23,7 @@ public class Program {
         outputView.printStartGame();
     }
 
-    private static void setupBridge() {
+    private static void makeBridge() {
         outputView.printInputBridgeLength();
 
         int bridgeSize = getBridgeSize();
