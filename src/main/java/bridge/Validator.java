@@ -20,4 +20,8 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요!");
         }
     }
+
+    public boolean readMovingValidator(String input) {
+        return input == "U" || input == "D";
+    }
 }
