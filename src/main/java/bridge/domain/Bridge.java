@@ -14,7 +14,7 @@ public class Bridge {
         return bridge.get(idx).equals(userMoved.get(idx));
     }
 
-    public int getBridgeSize() {
-        return bridge.size();
+    public boolean isSizeEqualTo(List<String> anyList) {
+        return bridge.size() == anyList.size();
     }
 }
