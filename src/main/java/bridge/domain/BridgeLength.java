@@ -14,10 +14,17 @@ public class BridgeLength {
     }
 
     public static BridgeLength createBridgeLength(String inputLength) {
+        validateNullInput(inputLength);
         validateNumeric(inputLength);
         int length = Integer.parseInt(inputLength);
         validateInputLength(length);
         return new BridgeLength(length);
+    }
+
+    private static void validateNullInput(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ExceptionMessage.NULL_INPUT);
+        }
     }
 
     private static void validateInputLength(int length) {
