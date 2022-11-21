@@ -44,6 +44,12 @@ public class BridgeGame {
         record.updateBridgeRecord(score, moveDirection);
     }
 
+    public List<List<String>> getRecordByMove(String moveDirection) {
+        move(moveDirection);
+        judgeMove(moveDirection);
+        return record.getBridgeRecord();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
