@@ -58,10 +58,10 @@ public class BridgeGame {
         for(int i = 0 ; i < size ; i++) {
             String choice = app.secondStep();
             answer =  move(choice);
-            if(answer == false) break;
+            if(!answer) break;
         }
-        if(answer == true) app.printResult(Bridge_out,true,count);
-        if(answer == false) retry();
+        if(answer) app.printResult(Bridge_out,true,count);
+        if(!answer) retry();
     }
 
 }
