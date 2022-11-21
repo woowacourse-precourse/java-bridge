@@ -1,8 +1,6 @@
 package bridge.domain;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.validator.InputRetryOrExitValidator;
 
 /**
@@ -18,10 +16,7 @@ public class BridgeGame {
     private int userPosition;
     private int tryNumber;
 
-    public BridgeGame(int size) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
+    public BridgeGame(int size, BridgeMaker bridgeMaker) {
         this.bridge = new Bridge(bridgeMaker.makeBridge(size));
         this.bridgeSize = size;
         this.userPath = new UserPath();

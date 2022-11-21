@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -8,25 +11,33 @@ public class BridgeGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private final BridgeMaker bridgeMaker;
 
     public BridgeGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
-    public void play() {
+    public void startGame() {
         try {
             int bridgeSize = inputView.readBridgeSize();
-            BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+            BridgeGame bridgeGame = new BridgeGame(bridgeSize, bridgeMaker);
 
-            while (true) {
-                if (!continueGame(bridgeGame)) {
-                    outputView.printResult(bridgeGame);
-                    return;
-                }
-            }
+            playGame(bridgeGame);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
+        }
+    }
+
+    private void playGame(BridgeGame bridgeGame) {
+        while (true) {
+            if (!continueGame(bridgeGame)) {
+                outputView.printResult(bridgeGame);
+                return;
+            }
         }
     }
 
