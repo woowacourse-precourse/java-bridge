@@ -13,8 +13,8 @@ public class BridgeGame {
 
     public BridgeGame(int size, BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridges = new Bridges(size, bridgeNumberGenerator);
-        player = new Player();
-        retryCount = RETRY_DEFAULT_COUNT;
+        this.player = new Player();
+        this.retryCount = RETRY_DEFAULT_COUNT;
     }
 
     /**
@@ -23,12 +23,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(Position position) {
-        player.move(position);
-        return isSuccess();
+        this.player.move(position);
+        return this.isSuccess();
     }
 
     public boolean isSuccess() {
-        return bridges.isSuccess(player);
+        return bridges.isSuccess(this.player);
     }
 
 
@@ -38,23 +38,23 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        player = new Player();
-        retryCount++;
+        this.player = new Player();
+        this.retryCount++;
     }
 
     public int getRetryCount() {
-        return retryCount;
+        return this.retryCount;
     }
 
     public String printResult() {
-        return player.printResult(isSuccess());
+        return this.player.printResult(isSuccess());
     }
 
     boolean isStartStatus() {
-        return player.isStartStatus();
+        return this.player.isStartStatus();
     }
 
     public boolean isCompletedGame() {
-        return bridges.isCompletedGame(player);
+        return this.bridges.isCompletedGame(this.player);
     }
 }

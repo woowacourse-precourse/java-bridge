@@ -42,6 +42,7 @@ public class BridgeGameController {
             retry();
             return;
         }
+        outputView.printMap(bridgeGame.printResult());
         continueOrSuccess();
     }
 
@@ -51,7 +52,6 @@ public class BridgeGameController {
 
     private void continueOrSuccess() {
         if (!isCompletedGame()) {
-            outputView.printMap(bridgeGame.printResult());
             play();
             return;
         }
