@@ -11,10 +11,9 @@ public class Validator {
         }
     }
 
-    public static Moving validMoving(String movingExpression) {
-        if (Moving.findByExpression(movingExpression).isPresent()) {
-            return Moving.findByExpression(movingExpression).get();
+    public static void validMoving(String movingExpression) {
+        if (Moving.findByExpression(movingExpression).isEmpty()) {
+            throw new IllegalArgumentException(Error.WRONG_MOVING.getMessage());
         }
-        throw new IllegalArgumentException(Error.WRONG_MOVING.getMessage());
     }
 }
