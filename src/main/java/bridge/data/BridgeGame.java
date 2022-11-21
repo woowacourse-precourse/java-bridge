@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private Bridge bridge;
-    private UserBridege userBridege = new UserBridege();
+    private final UserBridege userBridege = new UserBridege();
 
     private boolean correct;
 
@@ -21,14 +21,14 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public UserBridege move(int count, String userMove) {
-        boolean correct = getCorrect(count, userMove);
+        correct = bridge.state(count, userMove);
         userBridege.makeUpBridge(userMove, correct);
         userBridege.makeDownBridge(userMove, correct);
         return userBridege;
     }
 
-    public boolean getCorrect(int count, String userMove) {
-        return bridge.state(count, userMove);
+    public boolean getCorrect() {
+        return correct;
     }
 
     /**
