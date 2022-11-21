@@ -1,6 +1,12 @@
 package bridge.domain;
 
+import static bridge.domain.Validation.validationType.*;
+
 public class Validation {
+    public enum validationType {
+        BRIDGE_SIZE, MOVING, GAME_COMMAND
+    }
+
     public static void isNumber(String input) throws IllegalArgumentException {
         try {
             Integer.parseInt(input);
@@ -27,6 +33,17 @@ public class Validation {
     public static void isRorQ(String input) throws IllegalArgumentException {
         if (!(input.equals("R")) && !(input.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] R이나 Q 값을 입력해주세요.");
+        }
+    }
+
+    public static void validate(validationType type, String input) {
+        if (type.equals(BRIDGE_SIZE)) {
+            isNumber(input);
+            inRange(input);
+        } else if (type.equals(MOVING)) {
+            isUorD(input);
+        } else if (type.equals(GAME_COMMAND)) {
+            isRorQ(input);
         }
     }
 }
