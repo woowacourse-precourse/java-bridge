@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.domain.bridge.Bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -12,9 +13,7 @@ import java.util.List;
 public class BridgeGame {
 
     private BridgeNumberGenerator bridgeNumberGenerator;
-    private int size;
-    private List<String> bridges;
-    private int currentLocation = 0;
+    private Bridge bridge;
 
     public void start(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -26,8 +25,9 @@ public class BridgeGame {
 
     private void init() {
         OutputView.startBridgeGame();
-        this.size = readBridgeSize();
-        this.bridges = makeBridge(size);
+        int size = readBridgeSize();
+        List<String> bridges = makeBridge(size);
+        this.bridge = new Bridge(size, bridges);
     }
 
     private int readBridgeSize() {
@@ -54,14 +54,8 @@ public class BridgeGame {
     public void move() {
         OutputView.readMoving();
         String moving = InputView.readMoving();
-        updateBridgeStatus(moving);
+        bridge.updateLocation(moving);
         OutputView.printMap();
-    }
-
-    private void updateBridgeStatus(String moving) {
-        if (bridges.get(currentLocation) == moving) {
-            currentLocation += 1;
-        }
     }
 
     private boolean isGameDone() {
