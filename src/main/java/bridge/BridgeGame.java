@@ -5,8 +5,12 @@ import java.util.*;
  */
 public class BridgeGame {
     private List<String> movable;
+    private int attempts;
+    private List<String> users;
     BridgeGame(List<String>movable){
         this.movable = movable;
+        this.attempts =1;
+        this.users = new ArrayList<>();
     }
 
     /**
@@ -15,7 +19,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String userValue, int index) {
-        if(userValue.equals(movable.get(index))) return true;
+        usersBridge(userValue,index);
+        if(userValue.equals(movable.get(index))) {
+            return true;
+        }
         return false;
     }
 
@@ -25,7 +32,31 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String retryOrNot) {
-        if(retryOrNot.equals("Q")) return false;
+        if(retryOrNot.equals("Q")) {
+            usersAttempts();
+            retryUsers();
+            return false;}
         return true;
+    }
+    private void usersBridge(String userValue, int index){
+        this.users.add(index, userValue);
+    }
+    private void usersAttempts(){
+        this.attempts +=1;
+    }
+
+    public List<String> getUsers() {
+        return users;
+    }
+    private void retryUsers() {
+        this.users.clear();
+    }
+    public int getAttempts() {
+        return attempts;
+    }
+
+    public boolean result(){
+        if(movable.equals(users)) return true;
+        return false;
     }
 }

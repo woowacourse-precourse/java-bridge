@@ -58,11 +58,19 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println("최종 게임 결과");
+
+
         System.out.println(printUp.toString()+isDraw_SquareBracket_Right);
         System.out.println(printDown.toString()+isDraw_SquareBracket_Right);
     }
-    public void printSuccessOrFailure() {
-        System.out.println("게임 성공 여부 :");
-        System.out.println("총 시도한 횟수: ");
+    public void printSuccessOrFailure(boolean bridgeGameResult, int attempts) {
+        System.out.print("게임 성공 여부: ");
+        if (bridgeGameResult) {
+            System.out.println("성공");
+        }else {
+            System.out.println("실패");
+        }
+        System.out.print("총 시도한 횟수: ");
+        System.out.println(attempts);
     }
 }

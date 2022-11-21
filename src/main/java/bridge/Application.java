@@ -25,9 +25,10 @@ public class Application {
             // 만약에 같으면 conitnue로 게임종료 여부 물어보지마 그리고 while한번 돌아라
             // 게임 종료 여부
         }
+        boolean bridgeGameResult = startgame.result();
         // 최종게임 결과
         outputView.printResult();
         // 게임 성공 여부 출력
-        outputView.printSuccessOrFailure();
+        outputView.printSuccessOrFailure(bridgeGameResult, startgame.getAttempts());
     }
 }
