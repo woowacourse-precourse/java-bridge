@@ -10,7 +10,7 @@ public class InputController {
 			checkBridgeSize(userInput);
 			return parseBridgeSize(InputView.readBridgeSize());
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			OutputView.printErrorMessage(e.getMessage());
 			return getBridgeSize();
 		}
 	}
@@ -30,7 +30,7 @@ public class InputController {
 			checkMoving(userInput);
 			return userInput;
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			OutputView.printErrorMessage(e.getMessage());
 			return getMoving();
 		}
 	}
@@ -48,6 +48,7 @@ public class InputController {
 			checkGameCommand(userInput);
 			return userInput;
 		} catch (IllegalArgumentException e) {
+			OutputView.printErrorMessage(e.getMessage());
 			System.out.println(e.getMessage());
 			return getGameCommand();
 		}
