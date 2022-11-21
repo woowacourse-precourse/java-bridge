@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import bridge.model.validation.Stairs;
 
 class FootPrintTest {
-	@DisplayName("층수와 정답 여부를 입력하면 footPrints를 리턴한다.")
+	@DisplayName("층수와 정답 여부를 입력하면 footPrint 리스트를 리턴한다.")
 	@ParameterizedTest
 	@MethodSource("parametersProvider")
 	void makeFootPrintsTest(int stairs, Boolean isRight, List<String> list) {

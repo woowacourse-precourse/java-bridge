@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import bridge.model.constant.Error;
 
 class StairsTest {
-	@DisplayName("U 혹은 D를 입력하면 Location Enum을 반환한다")
+	@DisplayName("U 혹은 D를 입력하면 Location Enum 반환한다")
 	@Nested
 	class CommandTest {
 		@ParameterizedTest
@@ -24,14 +24,12 @@ class StairsTest {
 		@ParameterizedTest
 		@ValueSource(strings = {"", " ", "a", "q", "r", "Q", "R", "Z", "0", "-1", "100000"})
 		void exceptionCase(String value) {
-			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Stairs.of(value);
-			});
+			Throwable exception = assertThrows(IllegalArgumentException.class, () -> Stairs.of(value));
 			Assertions.assertEquals(Error.STAIRS_COMMAND.getMessage(), exception.getMessage());
 		}
 	}
 
-	@DisplayName("1 혹은 0을 입력하면 Location Enum을 반환한다")
+	@DisplayName("1 혹은 0을 입력하면 Location Enum 반환한다")
 	@Nested
 	class NumberTest {
 		@ParameterizedTest
@@ -43,14 +41,12 @@ class StairsTest {
 		@ParameterizedTest
 		@ValueSource(ints = {-100, -2, -1, 2, 21, 100, 10000})
 		void exceptionCase(int value) {
-			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Stairs.of(value);
-			});
+			Throwable exception = assertThrows(IllegalArgumentException.class, () -> Stairs.of(value));
 			Assertions.assertEquals(Error.STAIRS_NUMBER.getMessage(), exception.getMessage());
 		}
 	}
 
-	@DisplayName("Stairs의 command와 입력된 문자열이 같은지 여부를 리턴한다")
+	@DisplayName("Stairs command 입력된 문자열이 같은지 여부를 리턴한다")
 	@Nested
 	class IsEqualTest {
 		@ParameterizedTest

@@ -8,11 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import bridge.model.domain.GameResult;
-
 class GameResultTest {
 
-	@DisplayName("addNumberOfAttempts의 호출 수 만큼 numberOfAttempts가 변화한다.")
+	@DisplayName("addNumberOfAttempts 메서드 호출 수 만큼 numberOfAttempts 변수가 변화한다.")
 	@ParameterizedTest
 	@ValueSource(ints = {1, 4, 7, 100, 1100})
 	void getNumberOfAttemptsTest(int count) {
@@ -23,7 +21,7 @@ class GameResultTest {
 		assertEquals(gameResult.getNumberOfAttempts(), count);
 	}
 
-	@DisplayName("최종적으로 changeResult한 결과를 리턴한다.")
+	@DisplayName("최종적으로 바뀐 결과를 리턴한다.")
 	@Nested
 	class ChangeResultTest {
 		@Test

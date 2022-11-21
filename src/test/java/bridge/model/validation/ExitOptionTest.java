@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import bridge.model.constant.Error;
 
 class ExitOptionTest {
-	@DisplayName("R 혹은 Q를 입력하면 Boolean을 리턴한다.")
+	@DisplayName("R 혹은 Q를 입력하면 일치 여부를 리턴한다.")
 	@Nested
 	class BooleanTest {
 		@ParameterizedTest
@@ -31,9 +31,7 @@ class ExitOptionTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"", " ", "a", "d", "u", "D", "U", "Z", "0", "-1", "100000"})
 	void exceptionCase(String value) {
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			ExitOption.of(value);
-		});
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> ExitOption.of(value));
 		Assertions.assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 	}
 

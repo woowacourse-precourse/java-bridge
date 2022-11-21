@@ -27,14 +27,14 @@ public class BridgeGame {
 		bridges.makeBridge(userInput);
 	}
 
-	public List<String> getBridges() {
-		return bridges.getBridges();
-	}
-
 	public void setUpRound() {
 		result.changeResultToSuccess();
 		result.addNumberOfAttempts();
 		map.resetMap();
+	}
+
+	public List<String> getBridges() {
+		return bridges.getBridges();
 	}
 
 	/**

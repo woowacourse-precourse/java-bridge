@@ -14,7 +14,7 @@ class MapTest {
 	static StringBuilder downstairs = new StringBuilder();
 	static StringBuilder upstairs = new StringBuilder();
 
-	@DisplayName("footPrint 리스트를 입력하면 upstair과 downstair의 상태를 변경시킨다. 그리고 각 층의 상태를 getter 메서드로 불러온다.")
+	@DisplayName("footPrint 리스트를 입력하면 upstairs 인스턴스 변수와 downstairs 인스턴스 변수의 상태를 변경시키고 getter 메서드로 불러온다.")
 	@ParameterizedTest
 	@CsvSource({"RIGHT, BLANK", "BLANK, RIGHT", "WRONG, BLANK", "BLANK, WRONG"})
 	void drawMapTest(FootPrint down, FootPrint up) {
