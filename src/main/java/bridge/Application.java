@@ -9,12 +9,44 @@ public class Application {
     private static List<String> bridge;
     private static String moving;
     private static BridgeGame bridgeGame;
+    private static Map map = new Map();
+    private static OutputView outputView = new OutputView();
+    private static boolean isFail = false;
+    private static String gameCommand;
+    private static int attempt = 1;
 
     public static void main(String[] args) {
         start();
         enterBridgeSize();
         makeBridge();
-        enterMoving();
+        bridgeGame = new BridgeGame(bridge);
+        int count = 0;
+        while (count < bridgeSize) {
+            enterMoving();
+            String check = bridgeGame.move(moving, count);
+            if (count == 0) {
+                map.makeMap(moving, check);
+            } else if (count < bridgeSize) {
+                map.addMap(moving, check);
+            }
+            outputView.printMap(map.getUpMap(), map.getDownMap());
+            if (check.equals("X")) {
+                isFail = true;
+                break;
+            }
+            count++;
+        }
+        if (isFail) {
+            enterGameCommand();
+            attempt += bridgeGame.retry(gameCommand);
+        }
+        if (gameCommand.equals("Q")) {
+            outputView.printResult(map.getUpMap(), map.getDownMap());
+
+        }
+        if (count == bridgeSize - 1) {
+            outputView.printResult(map.getUpMap(), map.getDownMap());
+        }
     }
 
     public static void start() {
@@ -50,6 +82,18 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             enterMoving();
+        }
+    }
+
+    public static void enterGameCommand() {
+        try {
+            String userGameCommand = inputView.readGameCommand();
+            Validator.validateLength(userGameCommand);
+            Validator.validateGameCommand(userGameCommand);
+            gameCommand = userGameCommand;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            enterGameCommand();
         }
     }
 }
