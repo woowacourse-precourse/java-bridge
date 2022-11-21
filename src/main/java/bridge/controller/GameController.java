@@ -37,7 +37,7 @@ public class GameController {
         boolean isCorrect = false;
         while (bridgeNum < bridgeSize && gaming) {
             String moving = inputMoving();
-            isCorrect = bridgeGame.checkMove(bridgeNum, moving);
+            isCorrect = bridgeGame.move(bridgeNum, moving);
             outputView.printMap(bridgeGame.getBridgeMap());
 
             if (!isCorrect) failed(bridgeGame);

@@ -15,7 +15,7 @@ public class BridgeGame {
         newBridgePattern();
     }
 
-    public boolean checkMove(int bridgeNum, String moving) {
+    public boolean move(int bridgeNum, String moving) {
         String correctAnswer = correctBridge.get(bridgeNum);
 
         if (moving.equals(correctAnswer)) {
