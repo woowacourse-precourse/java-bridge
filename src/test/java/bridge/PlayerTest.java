@@ -3,6 +3,7 @@ package bridge;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -97,5 +98,46 @@ class PlayerTest {
 
         //then
         assertThat(player.isSuccess()).isFalse();
+    }
+
+    @Test
+    public void 시작지점에서_footprint_확인() throws Exception {
+        Player player = new Player(new Bridge(List.of("U", "U")));
+        player.startRound();
+
+        assertThat(player.getFootPrint()).isEqualTo(Collections.EMPTY_LIST);
+    }
+
+    @Test
+    public void 다리_중간에서_footprint_확인_한번_move() throws Exception {
+        Player player = new Player(new Bridge(List.of("U", "U")));
+        player.startRound();
+
+        player.move("U");
+
+        assertThat(player.getFootPrint()).isEqualTo(List.of("O "));
+    }
+
+    @Test
+    public void 다리_마지막에서_footprint_확인() throws Exception {
+        Player player = new Player(new Bridge(List.of("U", "U", "D")));
+        player.startRound();
+
+        player.move("U");
+        player.move("U");
+        player.move("D");
+
+        assertThat(player.getFootPrint()).isEqualTo(List.of("O ","O "," O"));
+    }
+
+    @Test
+    public void 다리_중간에서_틀렸을떄_footprint_확인() throws Exception {
+        Player player = new Player(new Bridge(List.of("U", "U")));
+        player.startRound();
+
+        player.move("U");
+        player.move("D");
+
+        assertThat(player.getFootPrint()).isEqualTo(List.of("O "," X"));
     }
 }

@@ -1,7 +1,11 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private Bridge bridge;
+    private BridgeResult bridgeResult = new BridgeResult();
     private int round = 0;
     private int location = -1;
     private boolean alive = true;
@@ -25,11 +29,13 @@ public class Player {
 
     public int move(String step) {
         if (movable() && bridge.matchBlockLocation((location + 1), step)) {
+            bridgeResult.saveCorrectStep(step);
             return ++location;
         }
 
+        bridgeResult.saveWrongStep(step);
         alive = false;
-        return location;
+        return ++location;
     }
 
     public boolean isSuccess() {
@@ -37,5 +43,14 @@ public class Player {
             return true;
         }
         return false;
+    }
+
+    public List<String> getFootPrint() {
+        List<String> footPrint = new ArrayList<>();
+        for (int prevLocation = 0; prevLocation <= location; prevLocation++) {
+            footPrint.add(bridgeResult.getResult(prevLocation));
+        }
+
+        return footPrint;
     }
 }
