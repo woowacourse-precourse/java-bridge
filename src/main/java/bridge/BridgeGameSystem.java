@@ -59,5 +59,9 @@ public class BridgeGameSystem {
         return false;
     }
 
+    public static boolean isSuccess(int bridgeSize, int index){
+        return bridgeSize == index;
+    }
+
 
 }
