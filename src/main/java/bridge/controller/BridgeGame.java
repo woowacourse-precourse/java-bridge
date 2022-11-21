@@ -1,6 +1,10 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
 import bridge.domain.Bridge;
+import bridge.view.InputView;
+
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -8,8 +12,19 @@ import bridge.domain.Bridge;
 public class BridgeGame {
     private Bridge bridge;
 
-    public void readBridgeSize() {
+    private final BridgeMaker bridgeMaker;
+    private final InputView inputView;
 
+    public BridgeGame(BridgeMaker bridgeMaker, InputView inputView) {
+        this.bridgeMaker = bridgeMaker;
+        this.inputView = inputView;
+    }
+
+    public void readBridgeSize() {
+        int size = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(size);
+
+        this.bridge = new Bridge(bridge, size);
     }
 
     /**
