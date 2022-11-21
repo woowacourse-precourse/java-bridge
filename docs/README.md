@@ -28,8 +28,8 @@
 - [X] 개임 실패, 성공 여부 판단
 - [X] 게임 재시작, 종료 여부 판단
 - [X] 게임 종료 후 최종 결과 출력
-- [ ] 플레이어 입력 값 예외 처리
-- [ ] 예외 및 유의 사항 처리
+- [X] 플레이어 입력 값 예외 처리
+- [X] 예외 및 유의 사항 처리
 
 ## 🚨 예외 사항 및 유의 사항
 
@@ -62,6 +62,26 @@
         * 예외 발생 시, `IllegalArugmentException` 을 발생시킨 후 "[ERROR]" 로 시작되는 예외 문장을 출력한다. 
         * **에러가 발생한 부분을 재입력 받는다** (즉 예외가 발생한 후에도 게임이 진행되어야 한다)
         * `Exception` (모든 예외의 부모 클래스) 가 아닌, 세부 예외 클래스 (`IlleagalArugmentException`)로 에러를 처리해야 한다
+        
+## Diagram
+<details>
+<summary>Flow Chart</summary>
+<div markdown="1">       
+
+![플로우차트](./4주차-플로우차트.png)
+
+</div>
+</details>
+
+<details>
+<summary>Class Diagram</summary>
+<div markdown="1">       
+
+![클래스다이어그램](./4주차-클래스다이어그램.png)
+
+</div>
+</details>
+
 
 ## 📝 커밋 메시지
 
