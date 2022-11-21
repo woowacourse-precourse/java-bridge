@@ -5,7 +5,7 @@ import bridge.constant.Score;
 public class Result {
 
     private Score score;
-    private int tryCount = 0;
+    private int tryCount = 1;
 
     public void addTryCount() {
         tryCount +=1;
