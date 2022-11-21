@@ -17,10 +17,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<BridgeType> bridge, int location, MoveResult result) {
-        StringBuilder message = new StringBuilder();
-        message.append(createMessage(bridge, location, result, BridgeType.U));
-        message.append(createMessage(bridge, location, result, BridgeType.D));
-        cache = message.toString();
+        Message message = new Message(bridge, location, result);
+        StringBuilder messenger = new StringBuilder();
+        messenger.append(message.create(BridgeType.U))
+                .append(message.create(BridgeType.D));
+        cache = messenger.toString();
         print(cache);
     }
 
@@ -61,43 +62,56 @@ public class OutputView {
         System.out.println(message);
     }
 
-    private String createMessage(List<BridgeType> bridge, int location, MoveResult result, BridgeType direction) {
-        StringBuilder message = createProgressMessage(bridge, location, direction);
-        if (result == MoveResult.FAIL) {
-            return message.append(createFailMessage(bridge.get(location), direction)).toString();
-        }
-        if (result == MoveResult.PASS) {
-            return message.append(createPassMessage(bridge.get(location), direction)).toString();
-        }
-        throw new IllegalArgumentException("[ERROR] 허용되지 않은 출력이 발생했습니다");
-    }
+    private class Message {
+        List<BridgeType> bridge;
+        int location;
+        MoveResult result;
 
-    private String createFailMessage(BridgeType lastBridge, BridgeType bridgeLocation) {
-        if (lastBridge == bridgeLocation) {
+        Message(List<BridgeType> bridge, int location, MoveResult result) {
+            this.bridge = bridge;
+            this.location = location;
+            this.result = result;
+        }
+
+        public String create(BridgeType direction) {
+            StringBuilder message = new StringBuilder(progress(direction));
+            if (result == MoveResult.FAIL) {
+                return message.append(fail(direction)).toString();
+            }
+            if (result == MoveResult.PASS) {
+                return message.append(pass(direction)).toString();
+            }
+
+            throw new IllegalArgumentException("[ERROR] 허용되지 않은 출력이 발생했습니다");
+        }
+
+        private String progress(BridgeType bridgeLocation) {
+            StringBuilder message = new StringBuilder("[");
+            for (int i = 0; i < location; i++) {
+                message.append(progressAdapter(bridge.get(i), bridgeLocation));
+            }
+            return message.toString();
+        }
+
+        private String fail(BridgeType bridgeLocation) {
+            if (bridge.get(location) == bridgeLocation) {
+                return "   ]\n";
+            }
+            return " X ]\n";
+        }
+
+        private String pass(BridgeType bridgeLocation) {
+            if (bridge.get(location) == bridgeLocation) {
+                return " O ]\n";
+            }
             return "   ]\n";
         }
-        return " X ]\n";
-    }
 
-    private String createPassMessage(BridgeType lastBridge, BridgeType bridgeLocation) {
-        if (lastBridge == bridgeLocation) {
-            return " O ]\n";
+        private String progressAdapter(BridgeType cur, BridgeType comp) {
+            if (cur == comp) {
+                return " O |";
+            }
+            return "   |";
         }
-        return "   ]\n";
-    }
-
-    private StringBuilder createProgressMessage(List<BridgeType> bridge, int location, BridgeType bridgeLocation) {
-        StringBuilder message = new StringBuilder("[");
-        for (int i = 0; i < location; i++) {
-            message.append(progressMessageAdapter(bridge.get(i), bridgeLocation));
-        }
-        return message;
-    }
-
-    private String progressMessageAdapter(BridgeType cur, BridgeType comp) {
-        if (cur == comp) {
-            return " O |";
-        }
-        return "   |";
     }
 }
