@@ -4,19 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
+    private final List<String> bridge;
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final BridgeGame bridgeGame = new BridgeGame();
-    private final String WIN = "WIN";
-    private final String SAFE = "SAFE";
-    private final String RETRY = "RETRY";
-    private final String QUIT = "QUIT";
+
     private int gameNumber = 0;
     private int gameTryNumber = 1;
     private String gameFlag = "";
     private List<String> movingList = new ArrayList<>();
 
-    private final List<String> bridge;
+    public enum GameStatus {
+        WIN("WIN"),
+        SAFE("SAFE"),
+        R("RETRY"),
+        Q("QUIT");
+        private String status;
+        private GameStatus(String status) {
+            this.status = status;
+        }
+    }
 
     public GameManager(List<String>  bridge) {
         this.bridge = bridge;
@@ -38,13 +46,13 @@ public class GameManager {
     }
 
     private void checkStatus(){
-        if (gameFlag.equals(WIN)) {
+        if (gameFlag.equals(GameStatus.WIN.status)) {
             outputView.printResult(bridge, movingList, gameTryNumber);
         }
-        if (gameFlag.equals(SAFE)) {
+        if (gameFlag.equals(GameStatus.SAFE.status)) {
             gameNumber++;
         }
-        if (gameFlag.equals(RETRY)) {
+        if (gameFlag.equals(GameStatus.R.status)) {
             retryGame();
         }
     }
@@ -55,10 +63,10 @@ public class GameManager {
     }
 
     private void checkRetryOrQuit(String gameCommand){
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(GameStatus.R.name())) {
             resetStatus();
         }
-        if (gameCommand.equals("Q")) {
+        if (gameCommand.equals(GameStatus.Q.name())) {
             quitGame();
         }
     }
@@ -71,11 +79,11 @@ public class GameManager {
 
     private void quitGame(){
         outputView.printResult(bridge, movingList, gameTryNumber);
-        gameFlag = QUIT;
+        gameFlag = GameStatus.Q.status;
     }
 
     private boolean isGameEnd(String gameFlag) {
-        if (gameFlag.equals(WIN) || gameFlag.equals(QUIT)) {
+        if (gameFlag.equals(GameStatus.WIN.status) || gameFlag.equals(GameStatus.Q.status)) {
             return true;
         }
         return false;
