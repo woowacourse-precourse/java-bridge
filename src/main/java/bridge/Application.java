@@ -8,6 +8,8 @@ public class Application {
             gameController.startGame();
         }catch (CloneNotSupportedException e){
             System.out.println("clone error");
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
     }
 }

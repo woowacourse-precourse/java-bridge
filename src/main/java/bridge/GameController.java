@@ -6,7 +6,9 @@ public class GameController {
 
     private final BridgeGame bridgeGame = new BridgeGame();
 
-    void startGame() throws CloneNotSupportedException {
+    private static final int MAX_COUNT = 3;
+
+    void startGame() throws CloneNotSupportedException, IllegalArgumentException {
         boolean retryFlag = true;
         boolean gameSuccess = false;
         setBridgeGame();
@@ -26,17 +28,19 @@ public class GameController {
         bridgeGame.initBridge(size);
     }
 
-    private int inputBridgeSize(){
+    private int inputBridgeSize() throws IllegalArgumentException{
+        int cnt = 0;
         while(true){
             try {
+                cnt += 1;
                 outputView.printInputBridgeSize();
                 return inputView.readBridgeSize();
             }
             catch(Exception e){
+                checkInputLimit(cnt);
                 System.out.println(e.getMessage());
             }
         }
-
     }
 
     private boolean move() throws CloneNotSupportedException {
@@ -50,25 +54,35 @@ public class GameController {
         return gameSuccess;
     }
 
-    private String inputMoving(){
+    private String inputMoving() throws IllegalArgumentException{
+        int cnt = 0;
         while(true){
             try{
+                cnt += 1;
                 outputView.printInputMoving();
                 return inputView.readMoving();
             }
             catch(Exception e){
+                checkInputLimit(cnt);
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private void checkInputLimit(int cnt) throws IllegalArgumentException{
+        if (cnt > MAX_COUNT) throw new IllegalArgumentException("[ERROR] 비정상적인 입력이 지속적으로 감지되었습니다.");
+    }
+
     private String inputRetryFlag(){
+        int cnt = 0;
         while(true) {
             try {
+                cnt += 1;
                 outputView.printInputAgain();
                 return inputView.readGameCommand();
             }
             catch(Exception e){
+                checkInputLimit(cnt);
                 System.out.println(e.getMessage());
             }
         }
