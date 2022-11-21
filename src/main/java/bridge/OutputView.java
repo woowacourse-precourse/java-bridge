@@ -40,7 +40,7 @@ public class OutputView {
         for(int i = 0; i< index +1; i++){
             System.out.print(bridgePosition.charAt(i));
             if(i!= index){
-                System.out.println(BRIDGE_MIDDLE);
+                System.out.print(BRIDGE_MIDDLE);
             }
         }
     }
