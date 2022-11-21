@@ -17,14 +17,14 @@ public class IsNumberInRangeCond implements Condition {
 
     @Override
     public boolean test(String input) {
-        return isNumeric(input) && isInBound(input);
+        return isNumeric(input) && isInRange(input);
     }
 
     private boolean isNumeric(String input) {
         return Arrays.stream(input.split("")).allMatch((String digit) -> Character.isDigit(digit.charAt(0)));
     }
 
-    private boolean isInBound(String input) {
+    private boolean isInRange(String input) {
         return LOWER_BOUND <= Integer.parseInt(input) && Integer.parseInt(input) <= UPPER_BOUND;
     }
 }
