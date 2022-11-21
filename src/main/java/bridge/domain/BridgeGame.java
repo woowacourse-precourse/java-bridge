@@ -1,33 +1,17 @@
 package bridge.domain;
 
+import bridge.Instances.EndType;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.BridgeGame.endType.FAIL_QUIT;
-import static bridge.domain.BridgeGame.endType.SUCCESS;
+import static bridge.Instances.EndType.*;
+
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public enum endType {
-        SUCCESS(false, true), FAIL_RETRY(true, false), FAIL_QUIT(false, false);
-         final boolean retry;
-         final boolean success;
-
-        endType(boolean retry, boolean success) {
-            this.retry = retry;
-            this.success = success;
-        }
-
-        public boolean getRetry() {
-            return this.retry;
-        }
-
-        public boolean getSuccess() {
-            return this.success;
-        }
-    }
 
     List<String> bridge;
     int trial;
@@ -82,27 +66,27 @@ public class BridgeGame {
         printResult(SUCCESS.getSuccess());
     }
 
-    private void failEnd(endType type) {
-        if (type.equals(endType.FAIL_RETRY)) {
+    private void failEnd(EndType type) {
+        if (type.equals(FAIL_RETRY)) {
             trial++;
             position = 0;
-        } else if (type.equals(endType.FAIL_QUIT)) {
+        } else if (type.equals(FAIL_QUIT)) {
             printResult(FAIL_QUIT.getSuccess());
         }
     }
 
-    private endType gameEnded() {
+    private EndType gameEnded() {
         if (gameSuccess()) {
             return SUCCESS;
         }
         String input = GameUtils.getGameCommand();
         if (input.equals("R")) {
-            return endType.FAIL_RETRY;
+            return FAIL_RETRY;
         }
-        return endType.FAIL_QUIT;
+        return FAIL_QUIT;
     }
 
-    private boolean successEndOrFailEnd(endType type) {
+    private boolean successEndOrFailEnd(EndType type) {
         if (type.equals(SUCCESS)) {
             successEnd();
             return type.getRetry();
@@ -116,7 +100,7 @@ public class BridgeGame {
         boolean replay;
         do {
             moveUntilGameOver();
-            endType type = gameEnded();
+            EndType type = gameEnded();
             replay = successEndOrFailEnd(type);
         } while (replay);
     }

@@ -1,11 +1,10 @@
 package bridge.domain;
 
-import static bridge.domain.Validation.validationType.*;
+import bridge.Instances.InputValidationType;
+
+import static bridge.Instances.InputValidationType.*;
 
 public class Validation {
-    public enum validationType {
-        BRIDGE_SIZE, MOVING, GAME_COMMAND
-    }
 
     public static void isNumber(String input) throws IllegalArgumentException {
         try {
@@ -36,7 +35,7 @@ public class Validation {
         }
     }
 
-    public static void validate(validationType type, String input) {
+    public static void validate(InputValidationType type, String input) {
         if (type.equals(BRIDGE_SIZE)) {
             isNumber(input);
             inRange(input);
