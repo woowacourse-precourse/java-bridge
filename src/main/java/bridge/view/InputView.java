@@ -21,8 +21,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        requestInput(INPUT_BRIDGE_SIZE);
-        return validateSize(readLine());
+        this.requestInput(INPUT_BRIDGE_SIZE);
+        return this.validateSize(readLine());
     }
 
     private int validateSize(String input) {
@@ -30,8 +30,8 @@ public class InputView {
             InputValidator.isValidSize(input);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            logger.warning(getErrorSupplier(e));
-            return readBridgeSize();
+            this.logger.warning(getErrorSupplier(e));
+            return this.readBridgeSize();
         }
     }
 
@@ -40,8 +40,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        requestInput(INPUT_MOVING);
-        return validateMoving(readLine());
+        this.requestInput(INPUT_MOVING);
+        return this.validateMoving(readLine());
     }
 
     private String validateMoving(String inputMoving) {
@@ -49,8 +49,8 @@ public class InputView {
             InputValidator.isValidMoving(inputMoving);
             return inputMoving;
         } catch (IllegalArgumentException e) {
-            logger.warning(getErrorSupplier(e));
-            return readMoving();
+            this.logger.warning(getErrorSupplier(e));
+            return this.readMoving();
         }
     }
 
@@ -58,8 +58,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        requestInput(INPUT_RETRY);
-        return validateGameCommand(readLine());
+        this.requestInput(INPUT_RETRY);
+        return this.validateGameCommand(readLine());
     }
 
     private String validateGameCommand(String inputRetry) {
@@ -67,16 +67,16 @@ public class InputView {
             InputValidator.isValidRetry(inputRetry);
             return inputRetry;
         } catch (IllegalArgumentException e) {
-            logger.warning(getErrorSupplier(e));
-            return readGameCommand();
+            this.logger.warning(getErrorSupplier(e));
+            return this.readGameCommand();
         }
     }
 
-    private static void requestInput(String request) {
+    private void requestInput(String request) {
         System.out.println(request);
     }
 
-    private static Supplier<String> getErrorSupplier(IllegalArgumentException e) {
+    private Supplier<String> getErrorSupplier(IllegalArgumentException e) {
         return () -> {
             String message = e.getMessage();
             System.out.println(message);
