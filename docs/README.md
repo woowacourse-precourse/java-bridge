@@ -30,6 +30,15 @@
     - [ ] 게임 재시도 여부 입력, 검증
       - 검증 실패 시 IllegalArgumentException
 
+- [ ] InputValidator : 사용자 입력을 검증하는 클래스
+    - [ ] 다리 길이 검증
+        - 검증 실패 시 IllegalArgumentException
+    - [ ] 이동할 칸 검증
+        - 검증 실패 시 IllegalArgumentException
+    - [ ] 게임 재시도 여부 검증
+        - 검증 실패 시 IllegalArgumentException
+    
+
 - [ ] OutputView : 사용자에게 게임 진행 상황과 결과를 출력하는 클래스
   - [ ] 시작 문구 출력
   - [ ] 현재까지 이동한 다리 출력
