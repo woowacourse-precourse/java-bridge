@@ -13,8 +13,13 @@ public class Controller {
     }
 
     public void startGame(final BridgeGame bridgeGame) {
-        bridgeGame.generateBridge(getBridgeSize());
+        generateBridge(bridgeGame);
         play(bridgeGame, GameStatus.CONTINUE);
+    }
+
+    private void generateBridge(final BridgeGame bridgeGame) {
+        new OutputView().printGuideMessage(GuideMessage.START);
+        bridgeGame.generateBridge(this.inputView.readBridgeSize());
     }
 
     public GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
@@ -43,11 +48,6 @@ public class Controller {
     private GameStatus askRestartGame(final BridgeGame bridgeGame) {
         outputView.printAskGameCommand();
         return bridgeGame.retry(inputView.readGameCommand());
-    }
-
-    private int getBridgeSize() {
-        new OutputView().printGuideMessage(GuideMessage.START);
-        return this.inputView.readBridgeSize();
     }
 
     private void getResult(GameStatus gameResult, BridgeGame bridgeGame, Map map) {
