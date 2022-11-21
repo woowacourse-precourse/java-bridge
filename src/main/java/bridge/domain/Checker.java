@@ -46,7 +46,7 @@ public class Checker {
     }
 
     private boolean checkGameCommandValue(String gameCommand) {
-        return gameCommand.equals(BridgeGameConstants.GAME_RESTART)
+        return gameCommand.equals(BridgeGameConstants.GAME_RETRY)
                 || gameCommand.equals(BridgeGameConstants.GAME_QUIT);
     }
 }
