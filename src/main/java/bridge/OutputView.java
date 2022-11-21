@@ -41,6 +41,10 @@ public class OutputView {
         System.out.println("게임 성공 여부: 실패");
     }
 
+    public void printHowManyTimeTry(User user){
+        System.out.printf("총 시도한 횟수: %d", user.getUserAttempt());
+    }
+
     public void printUpperBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
         printMapStart();
         for(int i = 0; i < userPosition; i++){
