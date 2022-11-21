@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.exception.domain.AttemptsCountException;
+import bridge.exception.domain.CompareBridgeSizeException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -29,7 +29,7 @@ public class Bridge {
     }
 
     public BridgeGameResult compare(Bridge compareBridge) {
-        validateAttemptsCount(compareBridge);
+        validateCompareBridgeSize(compareBridge);
 
         List<Boolean> booleans = IntStream.range(0, compareBridge.bridgeShapes.size())
                 .mapToObj(index -> compareBridge.bridgeShapes.get(index) == this.bridgeShapes.get(index))
@@ -37,9 +37,9 @@ public class Bridge {
         return new BridgeGameResult(this, booleans);
     }
 
-    private void validateAttemptsCount(Bridge compareBridge) {
+    private void validateCompareBridgeSize(Bridge compareBridge) {
         if (compareBridge.bridgeShapes.size() > this.bridgeShapes.size()) {
-            throw new AttemptsCountException();
+            throw new CompareBridgeSizeException();
         }
     }
 
