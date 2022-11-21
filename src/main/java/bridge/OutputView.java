@@ -52,7 +52,7 @@ public class OutputView {
         for (String add : addition) {
             additionalInputs.append(add);
         }
-        System.out.println(comment.line + additionalInputs.toString());
+        System.out.println(comment.line + additionalInputs);
     }
 
 }
