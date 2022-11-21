@@ -8,4 +8,9 @@ public class Bridge {
     public Bridge(List<String> bridgeBlocks) {
         this.bridgeBlocks = bridgeBlocks;
     }
+
+    public boolean isCrossable(int position, String block) {
+        String bridgeBlock = bridgeBlocks.get(position);
+        return bridgeBlock.equals(block);
+    }
 }

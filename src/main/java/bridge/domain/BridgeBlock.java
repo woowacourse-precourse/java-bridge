@@ -25,4 +25,7 @@ public enum BridgeBlock {
         return direction.equals(UP.initial) || direction.equals(DOWN.initial);
     }
 
+    public boolean matches(String direction) {
+        return direction.equals(initial);
+    }
 }
