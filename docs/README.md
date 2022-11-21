@@ -4,7 +4,7 @@
 
 #### version 1.0.0(순서작성, 테스트 코드 구현목록 작성 단계)
 #### version 1.1.0(아키텍처 설계(객체 중심)-의존도 설정, 클래스 다이어그램 작성 단계)
-* (~ing)version 1.1.0 [객체별 의존도 설정, 클래스 다이어그램 작성]
+* (~ing)version 1.1.1 [객체별 의존도 설정, 클래스 다이어그램 작성]
 #### version 1.2.0(실제 구현 단계)
 #### version 1.3.0(추가 테스트 코드 작성-필요시)
 #### version 1.4.0(리팩터링 단계)
@@ -56,5 +56,14 @@ version 1.0.0~1.0.6
 ---
 
 ## 🏗 아키텍처 설계
-version 1.1.0~
+version 1.1.1~
 ![](/Users/shannon/Documents/wootecho/fourth/first.png)
+BridgeGameController에 문자열 리스트를 인스턴스 변수로 두고 객체들이 메시지를 주고 받으며 협력하게 한다.
+메시지는 문자열 리스트에 담겨 이동하거나 BridgeGameController의 메서드 내 지역 변수에 담기거나, 생성자를
+통해 전달되거나, setter를 통해 전달된다.
+
+BridgeGameController 클래스에 BridgeMaker, BridgeGame 클래스의 객체들이 의존한다. 
+그러나 만약 한 객체를 수정하더라도 해당 객체 메서드의 return 타입이 이전과 동일하다면 메시지를 전달받는 
+객체를 별도로 수정하지 않도록 설계한다.
+
+--- 
