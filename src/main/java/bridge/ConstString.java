@@ -8,4 +8,6 @@ public class ConstString {
     public static final String FINAL_RESULT = "최종 게임 결과";
     public static final String IS_CLEAR = "게임 성공 여부: ";
     public static final String TRY_COUNT = "총 시도한 횟수: ";
+    public static final String UP = "U";
+    public static final String DOWN = "D";
 }
