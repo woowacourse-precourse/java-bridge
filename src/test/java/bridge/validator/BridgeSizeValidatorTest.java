@@ -1,5 +1,6 @@
 package bridge.validator;
 
+import static bridge.validator.ErrorStatus.BRIDGE_SIZE_BLANK_ERROR;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_RANGE_ERROR;
 import static bridge.validator.ErrorStatus.BRIDGE_SIZE_TYPE_ERROR;
 
@@ -33,6 +34,18 @@ public class BridgeSizeValidatorTest {
         Assertions.assertThatThrownBy(() -> bridgeSizeValidator.validate(invalidRangeInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BRIDGE_SIZE_RANGE_ERROR.getMessage());
+    }
+
+    @Test
+    @DisplayName("빈 입력값에 대하여 알맞은 예외를 반환한다.")
+    void isReturnRightExceptionWithBlankInput() {
+        //given
+        String blankInput = "     ";
+
+        //when, then
+        Assertions.assertThatThrownBy(() -> bridgeSizeValidator.validate(blankInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(BRIDGE_SIZE_BLANK_ERROR.getMessage());
     }
 
     @Test
