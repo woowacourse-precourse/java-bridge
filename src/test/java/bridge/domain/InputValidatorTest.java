@@ -46,4 +46,18 @@ public class InputValidatorTest {
         assertThatNoException().isThrownBy(() -> inputValidator.validateMoving("D"));
     }
 
+    @DisplayName("입력값이 R, Q 중 하나가 아닌 경우 예외가 발생한다")
+    @Test
+    void inputGameCommandNotRQ() {
+        assertThatThrownBy(() -> inputValidator.validateGameCommand("a"))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] R, Q 중 하나를 입력해야 합니다.");
+    }
+
+    @DisplayName("입력값이 R, Q 중 하나인 경우 예외가 발생하지 않는다")
+    @Test
+    void inputGameCommandAppropriate() {
+        assertThatNoException().isThrownBy(() -> inputValidator.validateGameCommand("R"));
+        assertThatNoException().isThrownBy(() -> inputValidator.validateGameCommand("Q"));
+    }
+
 }
