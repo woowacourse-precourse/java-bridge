@@ -24,12 +24,17 @@ public class InputView {
 
     public ReadBridgeSizeDto readBridgeSize() {
         print.accept(InputViewMessage.MAKE_BRIDGE.message);
+        int inputBridgeSize = processInputBridgeSize();
 
+        print.accept(NULL_STRING);
+        return new ReadBridgeSizeDto(inputBridgeSize);
+    }
+
+    private int processInputBridgeSize() {
         try {
             int playerInput = Integer.parseInt(Console.readLine());
             validateBridgeSize(playerInput);
-            print.accept(NULL_STRING);
-            return new ReadBridgeSizeDto(playerInput);
+            return playerInput;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessageUtils.WRONG_BRIDGE_SIZE.getMessage());
         }
