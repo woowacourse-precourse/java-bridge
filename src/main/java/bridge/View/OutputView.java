@@ -2,9 +2,6 @@ package bridge.View;
 
 import bridge.Model.BridgeGame;
 
-/**
- * 모델한테서 바로 받아오는거 안됨 리팩토링 필요
- **/
 public class OutputView {
 
     public void printMap(BridgeGame bridgeGame) {
