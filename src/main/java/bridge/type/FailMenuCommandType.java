@@ -10,9 +10,6 @@ public enum FailMenuCommandType {
     RETRY("R", "재시작"),
     QUIT("Q", "종료");
 
-    private static final String COMMAND_NOT_FOUND = "[" + getDescription() + "]" +
-            " 중 하나를 입력해야 합니다.";
-
     private final String command;
     private final String name;
 
