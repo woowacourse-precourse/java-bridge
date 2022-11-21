@@ -23,4 +23,13 @@ public class UtilsTest {
         assertThat(Utils.isValidDirection("")).isFalse();
         assertThat(Utils.isValidDirection("A")).isFalse();
     }
+
+    @Test
+    @DisplayName("사용자가 입력한 문자가 R과Q 중 하나인지 테스트")
+    void validCommandTest() {
+        assertThat(Utils.isValidCommand("Q")).isTrue();
+        assertThat(Utils.isValidCommand("R")).isTrue();
+        assertThat(Utils.isValidCommand("")).isFalse();
+        assertThat(Utils.isValidCommand("A")).isFalse();
+    }
 }
