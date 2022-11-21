@@ -8,13 +8,13 @@ import bridge.constant.PrintMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private String getInput(String inputString) {
-        System.out.print(inputString);
+    private String getInput(PrintMessage printMessage) {
+        System.out.print(printMessage.getString());
         return Console.readLine();
     }
 
     public int readBridgeSize() {
-        String inputBridgeSize = getInput(PrintMessage.INPUT_BRIDGE_SIZE.getString());
+        String inputBridgeSize = getInput(PrintMessage.INPUT_BRIDGE_SIZE);
         try {
             validateBridgeSize(inputBridgeSize);
         } catch (IllegalArgumentException e) {
@@ -25,7 +25,7 @@ public class InputView {
     }
 
     public String readMoving() {
-        String inputMoving = getInput(PrintMessage.INPUT_MOVING.getString());
+        String inputMoving = getInput(PrintMessage.INPUT_MOVING);
         try {
             validateMoving(inputMoving);
         } catch (IllegalArgumentException e) {
@@ -36,7 +36,7 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        String inputGameCommand = getInput(PrintMessage.INPUT_GAME_COMMAND.getString());
+        String inputGameCommand = getInput(PrintMessage.INPUT_GAME_COMMAND);
         try {
             validateGameCommand(inputGameCommand);
         } catch (IllegalArgumentException e) {
