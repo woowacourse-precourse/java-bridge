@@ -2,28 +2,29 @@ package bridge.domain;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeMaker;
-import bridge.domain.bridge.Move;
 import bridge.domain.game.BridgeGame;
-import bridge.domain.game.GameStatus;
 import bridge.domain.game.GameProgress;
 import bridge.support.FakeBridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.bridge.Move.DOWN;
-import static bridge.domain.bridge.Move.UP;
-import static bridge.domain.game.GameStatus.FAILED;
-import static bridge.domain.game.GameStatus.SUCCESS;
+import static bridge.domain.GameStatus.FAILED;
+import static bridge.domain.GameStatus.PLAYING;
+import static bridge.domain.GameStatus.SUCCESS;
+import static bridge.domain.Move.DOWN;
+import static bridge.domain.Move.UP;
 import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class BridgeGameTest {
     BridgeGame bridgeGame;
 
@@ -86,6 +87,7 @@ class BridgeGameTest {
         @Test
         void 재시작하면_시도_횟수가_올라가고_진행_상황을_초기화_하며_PLAYING을_리턴한다() {
             //given
+            GameProgress expect = new GameProgress();
             bridgeGame.move(DOWN.getCode());
             bridgeGame.move(UP.getCode());
 
@@ -95,7 +97,9 @@ class BridgeGameTest {
             //then
             assertThat(status).isEqualTo(PLAYING);
             assertThat(bridgeGame.getAttempt()).isEqualTo(2);
-            assertThat(bridgeGame.getGameProgress()).isEqualTo(new ArrayList<GameProgress>());
+            assertThat(bridgeGame.getGameProgress())
+                    .usingRecursiveComparison()
+                    .isEqualTo(expect);
         }
 
         @Test
@@ -110,5 +114,27 @@ class BridgeGameTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(TOO_MANY_ATTEMPTS);
         }
+    }
+
+    @Test
+    void getAttempt_현재_시도_횟수를_가져온다() {
+        //when
+        int res = bridgeGame.getAttempt();
+
+        //then
+        assertThat(res).isEqualTo(1);
+    }
+
+    @Test
+    void getGameProgress_현재_진행_상황을_가져온다() {
+        //given
+        GameProgress expect = new GameProgress();
+
+        //when
+        GameProgress res = bridgeGame.getGameProgress();
+
+        //then
+        assertThat(res).usingRecursiveComparison()
+                .isEqualTo(expect);
     }
 }
