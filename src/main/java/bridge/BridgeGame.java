@@ -65,4 +65,8 @@ public class BridgeGame {
     public List<String> getBridgeLineOne() {
         return bridgeLineOne;
     }
+
+    public List<String> getBridgeLineTwo() {
+        return bridgeLineTwo;
+    }
 }
