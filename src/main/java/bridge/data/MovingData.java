@@ -15,4 +15,8 @@ public class MovingData {
     public static int getRecentMovingIndex(){
         return movings.size() - 1 ;
     }
+
+    public static void reset() {
+        movings.clear();
+    }
 }

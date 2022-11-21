@@ -73,7 +73,8 @@ public class BridgeGameController {
     private void restartOrQuit(){
         readGameCommand();
         if (isRestartResult()){
-            //
+            bridgeGame.retry();
+            trial++;
         }
     }
 

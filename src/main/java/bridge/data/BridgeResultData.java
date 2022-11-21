@@ -21,4 +21,9 @@ public class BridgeResultData {
     public static List<String> getBridgeDownResults() {
         return bridgeDownResults;
     }
+
+    public static void reset() {
+        bridgeUpResults.clear();
+        bridgeDownResults.clear();
+    }
 }
