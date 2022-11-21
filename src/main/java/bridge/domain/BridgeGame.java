@@ -31,8 +31,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public GameResult move(String userInput) {
+        GameResult gameResult = makeGameResult(userInput);
         this.stage++;
-        return makeGameResult(userInput);
+        isGameSuccess();
+        return gameResult;
     }
 
     public GameResult makeGameResult(String userInput) {
@@ -51,13 +53,13 @@ public class BridgeGame {
     }
 
     public void checkGameEnd(String userInput) {
-        if (!canMove(userInput) || isGameSuccess(userInput)) {
+        if (!canMove(userInput) || isGameSuccess()) {
             isEnd = true;
         }
     }
 
-    public boolean isGameSuccess(String userInput) {
-        if (canMove(userInput) && bridge.isLastTile(stage)) {
+    public boolean isGameSuccess() {
+        if (!isEnd && bridge.isLastTile(stage)) {
             isSuccess = true;
             return true;
         }
@@ -81,5 +83,9 @@ public class BridgeGame {
 
     public boolean isSuccess() {
         return isSuccess;
+    }
+
+    public int getTotalTryCount() {
+        return totalTryCount;
     }
 }
