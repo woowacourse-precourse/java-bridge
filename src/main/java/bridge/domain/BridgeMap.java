@@ -2,24 +2,29 @@ package bridge.domain;
 
 import java.util.Arrays;
 
-public class BridgeMap2 {
+public class BridgeMap {
+    private static final int UP_BRIDGE = 0;
+    private static final int DOWN_BRIDGE = 1;
+    private static final int BRIDGE_TYPE_SIZE = 2;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
     public BridgeStatus[][] bridgeStatuses;
 
-    public BridgeMap2(int bridgeSize) {
-        this.bridgeStatuses = new BridgeStatus[2][bridgeSize];
-        Arrays.stream(bridgeStatuses).forEach(row -> Arrays.fill(row, BridgeStatus.INIT));
+    public BridgeMap(int bridgeSize) {
+        this.bridgeStatuses = new BridgeStatus[BRIDGE_TYPE_SIZE][bridgeSize];
+        setUpMap();
     }
 
-    public void reflectAtMap(String direction, int currentBridgeBlock, BridgeStatus bridgeBlockStatus) {
-        if (direction.equals("U")) {
-            bridgeStatuses[0][currentBridgeBlock] = bridgeBlockStatus;
+    public void reflectAtMap(String direction, int currentBridgeCoordinate, BridgeStatus bridgeBlockStatus) {
+        if (direction.equals(UP)) {
+            bridgeStatuses[UP_BRIDGE][currentBridgeCoordinate] = bridgeBlockStatus;
         }
-        if (direction.equals("D")) {
-            bridgeStatuses[1][currentBridgeBlock] = bridgeBlockStatus;
+        if (direction.equals(DOWN)) {
+            bridgeStatuses[DOWN_BRIDGE][currentBridgeCoordinate] = bridgeBlockStatus;
         }
     }
 
-    public void clear() {
+    public void setUpMap() {
         Arrays.stream(bridgeStatuses).forEach(row -> Arrays.fill(row, BridgeStatus.INIT));
     }
 }
