@@ -28,7 +28,6 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int idx = 0; idx < size; idx++) {
             int randNumber = bridgeNumberGenerator.generate();
-            System.out.println(randNumber);
             addBridge(bridge, randNumber);
         }
         return bridge;
