@@ -12,7 +12,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        Validate.bridgeSize(input);
+        ValidateInput.bridgeSize(input);
 
         return Integer.parseInt(input);
     }
@@ -22,7 +22,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        Validate.moving(input);
+        ValidateInput.moving(input);
 
         return input;
     }
@@ -32,7 +32,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
-        Validate.gameCommand(input);
+        ValidateInput.gameCommand(input);
 
         return input;
     }
