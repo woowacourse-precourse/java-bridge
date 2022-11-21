@@ -15,16 +15,16 @@ public class OutputView {
         overRound(UpStep, DownStep, moveTo);
     }
 
-    public static void printResult(List<String> bridgeNow, boolean flag, String moveTo, int totalCount) {
+    public static void printResult(Bridge bridge, boolean flag, String moveTo) {
         System.out.println("최종 게임 결과");
-        printMap(bridgeNow, flag, moveTo);
+        printMap(bridge.getBridgeNow(), flag, moveTo);
         if (flag) {
             System.out.println("게임 성공 여부: 성공");
         }
         if (!flag) {
             System.out.println("게임 성공 여부: 실패");
         }
-        System.out.println("총 시도한 횟수: " + totalCount);
+        System.out.println("총 시도한 횟수: " + bridge.getCountTotal());
     }
 
     public static void messageGameStart() {

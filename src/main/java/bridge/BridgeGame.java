@@ -25,7 +25,7 @@ public class BridgeGame {
             return retry(moveTo);
         };
         if (bridge.checkFinish()) {
-            OutputView.printResult(bridge.getBridgeNow(), true, moveTo, bridge.getCountTotal());
+            OutputView.printResult(bridge, true, moveTo);
             return false;
         }
         return true;
@@ -36,7 +36,7 @@ public class BridgeGame {
         OutputView.messageRestart();
         boolean restart = input.readGameCommand();
         if (!restart) {
-            OutputView.printResult(bridge.getBridgeNow(), false, moveTo, bridge.getCountTotal());
+            OutputView.printResult(bridge, false, moveTo);
         }
         if (restart) {
             bridge.clearBridgeNow();
