@@ -32,41 +32,40 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println();
-        System.out.println(PRINT_SELECT_MOVING_DIRECTION);
-        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-
-        return getMovingCommand(userInput);
+        while (true) {
+            try {
+                return getMovingCommand();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
+            }
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        while (true) {
+            try {
+                return getRetryCommand();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
+            }
+        }
+    }
+
+    private String getMovingCommand() {
+        System.out.println();
+        System.out.println(PRINT_SELECT_MOVING_DIRECTION);
+        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
+        return UserInputValidator.movingGameCommandValidation(userInput);
+    }
+
+    private String getRetryCommand() {
         System.out.println();
         System.out.println(PRINT_RETRY);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        return getRetryCommand(userInput);
-    }
-
-    private String getMovingCommand(String userInput) {
-        while (true) {
-            try {
-                return UserInputValidator.movingCommandValidation(userInput);
-            } catch (IllegalArgumentException illegalArgumentException) {
-                ErrorView.printException(illegalArgumentException);
-            }
-        }
-    }
-
-    private String getRetryCommand(String userInput) {
-        while (true) {
-            try {
-                return UserInputValidator.retryCommandValidation(userInput);
-            } catch (IllegalArgumentException illegalArgumentException) {
-                ErrorView.printException(illegalArgumentException);
-            }
-        }
+        return UserInputValidator.retryGameCommandValidation(userInput);
     }
 
     private int getBridgeSize() {

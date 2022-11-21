@@ -17,26 +17,26 @@ public class UserInputValidator {
     private static final int COMMAND_SIZE = 1;
 
     public static String ckeckBridgeSize(final String userInput) {
-        checkBridgeSizeIsNotNumber(userInput);
         checkBridgeSizeIsNotZero(userInput);
+        checkBridgeSizeIsNotNumber(userInput);
         return userInput;
     }
 
-    public static String movingCommandValidation(final String command) {
-        checkCommandSize(command);
-        checkCommandUpperCase(command);
+    public static String movingGameCommandValidation(final String command) {
+        checkGameCommandSize(command);
+        checkUpperCase(command);
         checkMovingCommandCharacter(command);
         return command;
     }
 
-    public static String retryCommandValidation(final String command) {
-        checkCommandSize(command);
-        checkCommandUpperCase(command);
-        checkRetryCommandCharacter(command);
+    public static String retryGameCommandValidation(final String command) {
+        checkGameCommandSize(command);
+        checkUpperCase(command);
+        checkRetryGameCommandCharacter(command);
         return command;
     }
 
-    private static void checkCommandSize(final String command) {
+    private static void checkGameCommandSize(final String command) {
         if (command.length() != COMMAND_SIZE) {
             UserInputException.invalidCommandSize();
         }
@@ -57,7 +57,7 @@ public class UserInputValidator {
         }
     }
 
-    private static void checkCommandUpperCase(final String userInput) {
+    private static void checkUpperCase(final String userInput) {
         for (int i = INDEX_ZERO; i < userInput.length(); ++i) {
             final char check = userInput.charAt(i);
             if (check < ASCII_UPPER_A || ASCII_UPPER_Z < check) {
@@ -73,7 +73,7 @@ public class UserInputValidator {
         }
     }
 
-    private static void checkRetryCommandCharacter(final String command) {
+    private static void checkRetryGameCommandCharacter(final String command) {
         final char checkCommand = command.charAt(INDEX_ZERO);
         if (checkCommand != ASCII_UPPER_R && checkCommand != ASCII_UPPER_Q) {
             UserInputException.invalidRetryCommandCharacter();
