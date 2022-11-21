@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.util.Judge;
 import bridge.view.OutputView;
 
 import java.util.List;
@@ -11,23 +12,23 @@ public class BridgePrinter {
     private StringBuilder upBridge;
     private StringBuilder downBridge;
 
-    private void init(){
+    private void init() {
         upBridge = new StringBuilder();
         upBridge.append("[");
         downBridge = new StringBuilder();
         downBridge.append("[");
     }
 
-    private void end(){
+    private void end() {
         upBridge.deleteCharAt(upBridge.length() - 1);
         upBridge.append("]");
         downBridge.deleteCharAt(downBridge.length() - 1);
         downBridge.append("]");
     }
 
-    public void printStatus(List<String> bridge, List<String> playerMove){
+    public void printStatus(List<String> bridge, List<String> playerMove) {
         init();
-        for(int index = 0; index < playerMove.size(); index++){
+        for (int index = 0; index < playerMove.size(); index++) {
             makeUpBridge(bridge, playerMove, index);
             makeDownBridge(bridge, playerMove, index);
         }
