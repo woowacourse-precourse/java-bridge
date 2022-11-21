@@ -63,16 +63,21 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String finish = null;
-        while (true) {
-            try {
-                finish = Console.readLine();
-                PlayerInputValidator.canFinish(finish);
-                break;
-            } catch (IllegalArgumentException retry) {
-                System.out.println(retry.getMessage());
-            }
+        String finish = Console.readLine();
+        while (handlingRestartCommandException(finish)) {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            finish = Console.readLine();
         }
         return finish;
+    }
+
+    private boolean handlingRestartCommandException(String finish) {
+        try {
+            PlayerInputValidator.canFinish(finish);
+            return false;
+        } catch (IllegalArgumentException retry) {
+            System.out.println(retry.getMessage());
+        }
+        return true;
     }
 }
