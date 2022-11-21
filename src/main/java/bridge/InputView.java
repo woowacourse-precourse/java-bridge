@@ -36,4 +36,12 @@ public class InputView {
         }
         return result;
     }
+    public void checkRange(int input, int startInclusiveNumber, int endInclusiveNumber){
+        String message = String.format("[ERROR] 다리 길이는 %d부터 %d 사이의 숫자여야 합니다."
+                ,startInclusiveNumber, endInclusiveNumber);
+        if (input<startInclusiveNumber || input>endInclusiveNumber){
+            IllegalArgumentException e = new IllegalArgumentException(message);
+            throw e;
+        }
+    }
 }
