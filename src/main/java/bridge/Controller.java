@@ -2,6 +2,7 @@ package bridge;
 
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
+import enumCollections.Side;
 
 public class Controller {
     private final OutputView outputView;
@@ -26,11 +27,20 @@ public class Controller {
         Map map = new Map();
         while (gameStatus == GameStatus.CONTINUE) {
             movePlayer(bridgeGame);
-            map.add(bridgeGame.getCurrentAvailableSide(), bridgeGame.isPlayerInRightSide());
+            getProgress(map, bridgeGame);
             gameStatus = getGameStatus(bridgeGame, bridgeGame.isPlayerInRightSide());
         }
         getResult(gameStatus, bridgeGame, map);
         return gameStatus;
+    }
+
+    private void getProgress(Map map, BridgeGame bridgeGame) {
+        updateMap(bridgeGame.getCurrentAvailableSide(), bridgeGame.isPlayerInRightSide(), map);
+        outputView.printMap(map);
+    }
+
+    private void updateMap(Side movingSide, boolean moved, Map map) {
+        map.add(movingSide, moved);
     }
 
     private void movePlayer(final BridgeGame bridgeGame) {
