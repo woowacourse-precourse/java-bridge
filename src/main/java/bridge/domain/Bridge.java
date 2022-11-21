@@ -16,6 +16,7 @@ public class Bridge {
         validateSize(size);
         this.size = size;
         this.bridge = buildBridge();
+        System.out.println(bridge);
     }
 
     private void validateSize(int size) {
@@ -34,5 +35,9 @@ public class Bridge {
     public boolean checkPassable(String movePlace, int current) {
 
         return bridge.get(current).equals(movePlace);
+    }
+
+    public int getSize() {
+        return size;
     }
 }

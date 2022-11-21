@@ -20,13 +20,22 @@ public class BridgeController {
         do{
             bridgeGame.retry();
             boolean passable = false;
+
             do {
                 outputView.printRequestMove();
                 passable = bridgeGame.move(inputView.readMoving(), bridge);
                 outputView.printMap(bridgeGame.getMark(), passable);
+                // 다 건너면 탈출
+                if(bridgeGame.getCurrent() == size  ){
+                    break;
+                }
             } while (passable);
-
+            // 다 건너면 탈출
+            if(bridgeGame.getCurrent() == size && passable ){
+                break;
+            }
             outputView.printRequestGameCommand();
         }while (inputView.readGameCommand());
+
     }
 }
