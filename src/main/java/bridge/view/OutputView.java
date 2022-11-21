@@ -4,7 +4,6 @@ import bridge.game.BridgeGame;
 import bridge.game.MapMaker;
 import bridge.game.Move;
 import bridge.message.GameMessage;
-
 import java.util.List;
 
 public class OutputView {

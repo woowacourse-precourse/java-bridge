@@ -1,10 +1,8 @@
 package bridge.validate;
 
 import bridge.input.GameCommand;
-import bridge.generator.Answer;
 import bridge.input.UserMove;
 import bridge.message.ErrorMessage;
-
 import java.util.List;
 
 public class Validator {
