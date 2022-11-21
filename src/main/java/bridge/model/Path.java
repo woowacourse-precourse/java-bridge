@@ -3,70 +3,64 @@ package bridge.model;
 import bridge.resource.InputType;
 
 public class Path {
-    private static final String correctBlock = " O ]";
-    private static final String incorrectBlock = " X ]";
-    private static final String unselectedBlock = "   ]";
+    private static final String FORMAT_OF_PATH_START = "[";
+    private static final String FORMAT_OF_PATH_END = "]";
+    private static final String FORMAT_OF_SEPARATOR = "|";
+    private static final String CORRECT_BLOCK = " O ";
+    private static final String INCORRECT_BLOCK = " X ";
+    private static final String EMPTY_BLOCK = "   ";
 
-    private String upperPath;
-    private String lowerPath;
+    private String path;
+    private final InputType commandType;
 
-    public Path() {
-        this.upperPath = "[";
-        this.lowerPath = "[";
+    public Path(InputType commandType) {
+        this.path = FORMAT_OF_PATH_START;
+        this.commandType = commandType;
     }
 
     public String getPath() {
-        return upperPath + "\n" + lowerPath;
+        return path;
     }
 
     public void clear() {
-        this.upperPath = "[";
-        this.lowerPath = "[";
+        this.path = FORMAT_OF_PATH_START;
     }
 
-    public void updatePath(String command, boolean isMovable) {
-        upperPath = upperPath.replace("]", "|");
-        lowerPath = lowerPath.replace("]", "|");
+    public void updateCorrectBlock(String command) {
+        replaceEndFormatToSeparator();
 
-        if (isMovable)
-            updateCorrectBlock(command);
-        if (!isMovable)
-            updateIncorrectBlock(command);
-    }
-
-    private void updateCorrectBlock(String command) {
-        if (command.equals(InputType.MOVE_UP_COMMAND.getCommand())) {
-            addCorrectBlockForUpperPath();
+        if (command.equals(commandType.getCommand())) {
+            addCorrectBlock();
             return;
         }
-        addCorrectBlockForLowerPath();
+
+        addEmptyBlock();
     }
 
-    private void updateIncorrectBlock(String command) {
-        if (command.equals(InputType.MOVE_UP_COMMAND.getCommand())) {
-            addIncorrectBlockForUpperPath();
+    public void updateIncorrectBlock(String command) {
+        replaceEndFormatToSeparator();
+
+        if (command.equals(commandType.getCommand())) {
+            addIncorrectBlock();
             return;
         }
-        addIncorrectBlockForLowerPath();
+
+        addEmptyBlock();
     }
 
-    private void addCorrectBlockForUpperPath() {
-        upperPath += correctBlock;
-        lowerPath += unselectedBlock;
+    private void replaceEndFormatToSeparator() {
+        path = path.replace(FORMAT_OF_PATH_END, FORMAT_OF_SEPARATOR);
     }
 
-    private void addIncorrectBlockForUpperPath() {
-        upperPath += incorrectBlock;
-        lowerPath += unselectedBlock;
+    private void addCorrectBlock() {
+        path += CORRECT_BLOCK + FORMAT_OF_PATH_END;
     }
 
-    private void addCorrectBlockForLowerPath() {
-        upperPath += unselectedBlock;
-        lowerPath += correctBlock;
+    private void addIncorrectBlock() {
+        path += INCORRECT_BLOCK + FORMAT_OF_PATH_END;
     }
 
-    private void addIncorrectBlockForLowerPath() {
-        upperPath += unselectedBlock;
-        lowerPath += incorrectBlock;
+    private void addEmptyBlock() {
+        path += EMPTY_BLOCK + FORMAT_OF_PATH_END;
     }
 }

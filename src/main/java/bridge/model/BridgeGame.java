@@ -6,12 +6,12 @@ import java.util.List;
 public class BridgeGame {
     private final Bridge bridge;
     private List<String> pathOfUser;
-    private Path path;
+    private BridgePath path;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         pathOfUser = new ArrayList<>();
-        path = new Path();
+        path = new BridgePath();
     }
 
     public boolean move(String command) {
