@@ -3,12 +3,12 @@ package bridge.util;
 import bridge.error.ErrorMessage;
 
 public class Validator {
-    static final int MIN_SIZE = 3;
-    static final int MAX_SIZE = 20;
-    static final String UP = "U";
-    static final String DOWN = "D";
-    static final String RESTART = "R";
-    static final String QUIT = "Q";
+    private static final int MIN_SIZE = 3;
+    private static final int MAX_SIZE = 20;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String RESTART = "R";
+    private static final String QUIT = "Q";
 
     private Validator() {}
 
