@@ -110,8 +110,8 @@
 - BridgeRandomNumberGenerator
   - 인터페이스, 구현부 클래스 코드 변경 X
 
-- [ ] 콘솔 리더(ConsoleReader)
-  - [ ] 콘솔 입력의 원시 객체타입 예외 전환
+- [x] 콘솔 리더(ConsoleReader)
+  - [x] 콘솔 입력의 원시 객체타입 예외 전환
     - int로 변환 실패의 경우 메시지 처리 및 IllegalArgumentException으로 예외 전환
 ## 사용 예시
 
