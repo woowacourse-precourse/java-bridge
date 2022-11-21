@@ -31,8 +31,8 @@ public class BridgeGame {
 
     public ProcessCondition move(String selectBlock) {
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
+        gameStatusOperator.changePosition();
         if (bridge.checkPassableBlock(currentPosition, selectBlock)) {
-            gameStatusOperator.changePosition();
             return PassCondition.PASS;
         }
         return PassCondition.FAIL;
@@ -54,6 +54,15 @@ public class BridgeGame {
             return FinishCondition.FINISHED;
         }
         return FinishCondition.NOT_FINISHED;
+    }
+
+    //== Getter ==//
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public GameStatusOperator getGameStatusOperator() {
+        return gameStatusOperator;
     }
 
 }
