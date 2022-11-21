@@ -13,21 +13,31 @@ public class BridgeGameController {
 	private static final BridgeGame bridgeGame = new BridgeGame();
 
 	public void run() {
-		startView.printStart();
-		startBridgeMaking();
-		processBridgeGame();
-		outputView.printResult();
+		startView.printGameStartMessage();
+		makeBridge();
+		processTheGame();
+		outputView.printResultMessage();
 	}
 
-	private void startBridgeMaking() {
-		boolean isSizeError;
+	private void makeBridge() {
+		boolean isError;
 
 		do {
-			isSizeError = isMakingBridgeSuccess();
-		} while (isSizeError);
+			isError = isSizeInputRight();
+		} while (isError);
 	}
 
-	private void processBridgeGame() {
+	private boolean isSizeInputRight() {
+		try {
+			bridgeGame.startMakingBridge(inputView.readBridgeSize());
+			return false;
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+			return true;
+		}
+	}
+
+	private void processTheGame() {
 		String gameCommand;
 
 		do {
@@ -121,16 +131,6 @@ public class BridgeGameController {
 	private void checkResetOutput(String gameCommand) {
 		if (gameCommand.equals("R")) {
 			outputView.resetOutputView();
-		}
-	}
-
-	private boolean isMakingBridgeSuccess() {
-		try {
-			bridgeGame.start(inputView.readBridgeSize());
-			return false;
-		} catch (IllegalArgumentException exception) {
-			System.out.println(exception.getMessage());
-			return true;
 		}
 	}
 

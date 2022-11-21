@@ -14,10 +14,14 @@ public class BridgeGame {
 	private int totalTry;
 	private boolean gameClear;
 
-	public void start(String bridgeSize) {
+	public void startMakingBridge(String bridgeSize) {
 		checkBridgeSizeError(bridgeSize);
 
 		int convertedSize = Utils.convertBridgeSize(bridgeSize);
+		initializeBridge(convertedSize);
+	}
+
+	private void initializeBridge(int convertedSize) {
 		this.bridge = GameSetting.makeBridge(convertedSize);
 		currentStep = GameSetting.FIRST_STEP;
 		totalTry = GameSetting.FIRST_TRY;
