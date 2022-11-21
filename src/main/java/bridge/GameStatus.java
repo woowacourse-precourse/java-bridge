@@ -3,10 +3,7 @@ package bridge;
 import bridge.domain.Bridge;
 
 public class GameStatus {
-    private boolean isEnd = false;
-    private boolean isSuccess = false;
     private int tryCount = 1;
-
     private Bridge realBridge;
     private Bridge selectedBridge = new Bridge();
 
@@ -30,17 +27,6 @@ public class GameStatus {
         selectedBridge = new Bridge();
     }
 
-    public boolean isSuccess() {
-        return isSuccess;
-    }
-
-    public void setSuccess(boolean success) {
-        if (success) {
-            isEnd = true;
-        }
-        isSuccess = success;
-    }
-
     public int getTryCount() {
         return tryCount;
     }
@@ -49,9 +35,6 @@ public class GameStatus {
         this.tryCount++;
     }
 
-    public boolean isEnd() {
-        return isEnd;
-    }
 
     public static GameStatus startNewGame() {
         return new GameStatus();

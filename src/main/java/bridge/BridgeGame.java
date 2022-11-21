@@ -26,12 +26,23 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move() {
+    public Result move(GameStatus gameStatus) {
+        Bridge selectedBridges = gameStatus.getSelectedBridge();
+        Bridge realBridges = gameStatus.getRealBridge();
+
+        String newBridge = requestMove();
+        selectedBridges.addNewBridge(newBridge);
+        Result result = BridgeComparator.compareBridges(realBridges, selectedBridges);
+        outputView.printMap(result);
+        return result;
+    }
+
+    public String requestMove() {
         try {
             return inputView.readMoving();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return move();
+            return requestMove();
         }
     }
 
@@ -40,12 +51,18 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
+    public Result retry(GameStatus gameStatus) {
+        gameStatus.setNewSelectedBridge();
+        gameStatus.addTryCount();
+        return playOneTry(gameStatus);
+    }
+
+    private boolean requestRetryCommand() {
         try {
             return "R".equals(inputView.readGameCommand());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return retry();
+            return requestRetryCommand();
         }
     }
 
@@ -53,46 +70,40 @@ public class BridgeGame {
         GameStatus gameStatus = GameStatus.startNewGame();
         System.out.println(Message.INITIAL_MESSAGE.getMessage());
 
-        int bridgeSize = getBridgeSize();
+        int bridgeSize = requestBridgeSize();
         gameStatus.setRealBridge(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
 
         Result result = playGame(gameStatus);
         outputView.printResult(gameStatus, result);
     }
 
-    private int getBridgeSize() {
+    private int requestBridgeSize() {
         try {
             return inputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBridgeSize();
+            return requestBridgeSize();
         }
     }
 
     private Result playGame(GameStatus gameStatus) {
         Result result = playOneTry(gameStatus);
-        while (!gameStatus.isEnd() && retry()) {
-            result = playOneTry(gameStatus);
-            gameStatus.addTryCount();
+        while (!result.isSuccess()) {
+            if (requestRetryCommand()) {
+                result = retry(gameStatus);
+            }
         }
         return result;
     }
+
 
     public Result playOneTry(GameStatus gameStatus) {
         Bridge realBridges = gameStatus.getRealBridge();
         Bridge selectedBridges = gameStatus.getSelectedBridge();
         for (int index = 0; index < realBridges.getSize(); index++) {
-            addNewSelectedBridge(selectedBridges);
-            Result result = BridgeComparator.compareBridges(realBridges, selectedBridges);
-            outputView.printMap(result);
+            Result result = move(gameStatus);
             if (!result.isSuccess()) return result;
         }
-        gameStatus.setSuccess(true);
         return Result.success(selectedBridges);
-    }
-
-    private void addNewSelectedBridge(Bridge selectedBridges) {
-        String selectedBridge = move();
-        selectedBridges.addNewBridge(selectedBridge);
     }
 }

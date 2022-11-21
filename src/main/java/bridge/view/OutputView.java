@@ -31,7 +31,7 @@ public class OutputView {
     public void printResult(GameStatus gameStatus, Result result) {
         System.out.println(Message.FINAL_RESULT.getMessage());
         printMap(result);
-        if (gameStatus.isSuccess()) {
+        if (result.isSuccess()) {
             System.out.println(Message.FAIL_TRY_COUNT.getMessage() + gameStatus.getTryCount());
             return;
         }
