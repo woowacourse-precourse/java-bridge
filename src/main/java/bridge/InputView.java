@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
  */
 public class InputView {
     private static final String regex = "^[0-9]+$";
-    private static final int MIN_VALUE = 3;
-    private static final int MAX_VALUE = 20;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -20,9 +18,7 @@ public class InputView {
         System.out.println();
 
         validateNumber(input);
-        int number = stringToInt(input);
-        validateNumberRange(number);
-        return number;
+        return stringToInt(input);
     }
 
     /**
@@ -56,12 +52,6 @@ public class InputView {
     private void validateNumber(String target) {
         if (!Pattern.matches(regex, target)) {
             throw new IllegalArgumentException(Error.INCLUDE_CAHRACTER.toString());
-        }
-    }
-
-    private void validateNumberRange(int number) {
-        if (number < MIN_VALUE || number > MAX_VALUE) {
-            throw new IllegalArgumentException(Error.OUT_OF_RANGE.toString());
         }
     }
 

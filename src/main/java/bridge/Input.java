@@ -5,14 +5,20 @@ public enum Input {
     DOWN("D", 0),
     RETRY("R"),
     QUIT("Q"),
-    ;
+    MIN_VALUE(3),
+    MAX_VALUE(20);
 
     private final String input;
     private final int value;
 
     Input(String input) {
         this.input = input;
-        value = -1;
+        this.value = -1;
+    }
+
+    Input(int value) {
+        this.input = "";
+        this.value = value;
     }
 
     Input(String input, int value) {
