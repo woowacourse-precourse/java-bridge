@@ -10,7 +10,9 @@ public class Bridge {
         this.saveBridge = saveBridge;
     }
 
-    boolean state(int order, String userInput) {
+    public boolean state(int order, String userInput) {
         return saveBridge.get(order).equals(userInput);
     }
+
+    
 }
