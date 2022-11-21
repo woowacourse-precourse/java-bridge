@@ -1,23 +1,81 @@
 package bridge.view;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+import java.util.List;
+
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    private String upBridge = "[";
+    private String downBridge = "[";
+
+    public void printMap(List<String> bridge, int len, boolean flag) {
+        initMap();
+        if(flag == true) makeCorrectMap(bridge, len);
+        if(flag == false) {
+            makeCorrectMap(bridge, len-1);
+            makeWrongMap(bridge, len);
+        }
+        printBridgeMap();
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void printResult(boolean flag, int count) {
+        System.out.println(Message.RESULT_MESSAGE);
+        printBridgeMap();
+        if(flag == true)
+            System.out.println(Message.RESULT_MESSAGE_IS_SUCCESS + "성공");
+        if(flag == false)
+            System.out.println(Message.RESULT_MESSAGE_IS_SUCCESS + "실패");
+        System.out.printf("%s%d",Message.RESULT_MESSAGE_TOTAL_ATTEMPT,count);
+    }
+
+    private void printBridgeMap() {
+        trimBridge();
+        System.out.println(upBridge);
+        System.out.println(downBridge);
+    }
+
+    private void initMap() {
+        this.upBridge = "[";
+        this.downBridge = "[";
+    }
+
+    private void makeCorrectMap(List<String> bridge, int len) {
+        for(int i = 0; i< len; i++){
+            if(bridge.get(i).equals("U"))
+                addUpBridgeO();
+            if(bridge.get(i).equals("D"))
+                addDownBridgeO();
+        }
+    }
+
+    private void makeWrongMap(List<String> bridge, int len){
+        if(bridge.get(len-1).equals("U"))
+            addDownBridgeX();
+        if(bridge.get(len-1).equals("D"))
+            addUpBridgeX();
+    }
+
+    private void trimBridge() {
+        upBridge = upBridge.substring(0, upBridge.length()-1) +"]";
+        downBridge = downBridge.substring(0, downBridge.length()-1) + "]";
+    }
+
+    private void addUpBridgeO(){
+        upBridge   += " O |";
+        downBridge += "   |";
+    }
+
+    private void addUpBridgeX(){
+        upBridge   += " X |";
+        downBridge += "   |";
+    }
+
+    private void addDownBridgeO(){
+        upBridge   += "   |";
+        downBridge += " O |";
+    }
+
+    private void addDownBridgeX(){
+        upBridge   += "   |";
+        downBridge += " X |";
     }
 }
