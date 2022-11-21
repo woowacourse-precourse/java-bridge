@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.GameCommand;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +25,10 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             int num = bridgeNumberGenerator.generate();
             if (num == 0) {
-                bridge.add("D");
+                bridge.add(GameCommand.MOVE_DOWN.getValue());
                 continue;
             }
-            bridge.add("U");
+            bridge.add(GameCommand.MOVE_UP.getValue());
         }
         return bridge;
     }
