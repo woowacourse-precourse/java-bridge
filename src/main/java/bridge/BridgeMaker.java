@@ -15,10 +15,12 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+
         while (bridge.size() < size) {
             int number = bridgeNumberGenerator.generate();
             bridge.add(toLetter(number));
         }
+
         return bridge;
     }
 
