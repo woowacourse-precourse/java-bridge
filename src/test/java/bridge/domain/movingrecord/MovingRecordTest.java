@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.within;
 
 class MovingRecordTest {
 
@@ -35,7 +34,7 @@ class MovingRecordTest {
     }
 
     @DisplayName("read 메소드를 호출하였을 때 판정과 방향에 대한 entrySet 스트림을 입력 순서대로 반환하는지 확인")
-    @ParameterizedTest(name = "{index}")
+    @ParameterizedTest(name = "{index} read 메소드, entrySet 스트림 입력 순서대로 반환")
     @MethodSource("provideArgumentsForWritingMultipleRecord")
     void read_test(List<Judgement> judgements, List<Direction> directions) {
         MovingRecord record = writeMultiple(judgements, directions);
@@ -48,10 +47,21 @@ class MovingRecordTest {
     }
 
     @DisplayName("size 메소드를 호출하였을 때 전체 자료의 길이를 반환하는지 확인")
-    @ParameterizedTest(name = "{index}")
+    @ParameterizedTest(name = "{index} size 메소드, 전체 자료 길이 반환")
     @MethodSource("provideArgumentsForWritingMultipleRecord")
     void size_test(List<Judgement> judgements, List<Direction> directions) {
         int expectedSize = judgements.size();
+        MovingRecord record = writeMultiple(judgements, directions);
+
+        int actualSize = record.size();
+
+        assertThat(actualSize).isEqualTo(expectedSize);
+    }
+
+    @DisplayName("clear 메소드를 호출하였을 때 자료를 비우는지 확인")
+    @ParameterizedTest(name = "{index} clear 메소드, 자료를 비움")
+    @MethodSource("provideArgumentsForWritingMultipleRecord")
+    void clear_test(List<Judgement> judgements, List<Direction> directions) {
         MovingRecord record = writeMultiple(judgements, directions);
         int size = record.size();
 
@@ -61,8 +71,8 @@ class MovingRecordTest {
         assertThat(clearedSize).isNotEqualTo(size);
     }
 
-    @DisplayName("hasFalseJudgement 메소드를 호출하였을 때 false 판정의 자료가 확인해서 반환하는지 확인")
-    @ParameterizedTest(name = "{index} ")
+    @DisplayName("hasFalseJudgement 메소드를 호출하였을 때 false 판정의 자료를 확인해서 반환하는지 확인")
+    @ParameterizedTest(name = "{index} hasFalseJudgement 메소드, false 판정 존재 확인")
     @MethodSource("provideArgumentsForWritingMultipleRecord")
     void hasFalseJudgement_test(List<Judgement> judgements, List<Direction> directions, boolean expectedValue) {
         MovingRecord record = writeMultiple(judgements, directions);
@@ -118,21 +128,6 @@ class MovingRecordTest {
                                 new Direction("U"),
                                 new Direction("U"),
                                 new Direction("D")), false)
-        );
-    }
-
-    static Stream<Arguments> provideArgumentsForRecord() {
-        return Stream.of(
-                Arguments.of(List.of(new Judgement(true),
-                                new Judgement(true),
-                                new Judgement(false),
-                                new Judgement(false),
-                                new Judgement(false)),
-                        List.of(new Direction("U"),
-                                new Direction("D"),
-                                new Direction("U"),
-                                new Direction("U"),
-                                new Direction("D")))
         );
     }
 }
