@@ -107,6 +107,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_잘못된_사용자_이동_입력(){
+        assertSimpleTest(() -> {
+            runException("3", "R");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_잘못된_사용자_다시이동_입력(){
+        assertSimpleTest(() -> {
+            runException("3", "U", "D", "D", "P");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
