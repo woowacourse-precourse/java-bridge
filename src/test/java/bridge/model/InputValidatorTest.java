@@ -1,5 +1,8 @@
 package bridge.model;
 
+import static bridge.model.InputValidator.ERROR_BRIDGE_SIZE;
+import static bridge.model.InputValidator.ERROR_MOVING;
+import static bridge.model.InputValidator.ERROR_RETRY;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -13,7 +16,8 @@ public class InputValidatorTest {
     @ValueSource(strings = {"2", "", "21", "''", "$", "a"})
     @ParameterizedTest
     void input_false_size(String inputSize) {
-        assertThatThrownBy(() -> InputValidator.isValidSize(inputSize)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.isValidSize(inputSize)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_BRIDGE_SIZE);
     }
 
     @DisplayName("정확한 사이즈 입력시 정상 작동")
@@ -27,7 +31,8 @@ public class InputValidatorTest {
     @ValueSource(strings = {"", "E","123","%", "''"})
     @ParameterizedTest
     void input_false_moving(String moving) {
-        assertThatThrownBy(() -> InputValidator.isValidMoving(moving)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.isValidMoving(moving)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_MOVING);
     }
 
     @DisplayName("정확한 이동위치 입력시 정상 작동")
@@ -41,7 +46,8 @@ public class InputValidatorTest {
     @ValueSource(strings = {"","32", "''","A","r"})
     @ParameterizedTest
     void input_false_retry(String retry) {
-        assertThatThrownBy(() -> InputValidator.isValidRetry(retry)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.isValidRetry(retry)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_RETRY);
     }
 
     @DisplayName("정확한 게임 다시시작 문자 입력시 정상 작동")

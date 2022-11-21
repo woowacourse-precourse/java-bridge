@@ -3,6 +3,8 @@ package bridge.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import bridge.model.InputValidator;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -13,7 +15,7 @@ public class InputView {
     public static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String INPUT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-
+    private final Logger logger = Logger.getLogger(InputView.class.getName());
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -24,7 +26,7 @@ public class InputView {
             InputValidator.isValidSize(input);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warning(getErrorSupplier(e));
             return readBridgeSize();
         }
     }
@@ -40,7 +42,7 @@ public class InputView {
             InputValidator.isValidMoving(inputMoving);
             return inputMoving;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warning(getErrorSupplier(e));
             return readMoving();
         }
     }
@@ -55,12 +57,19 @@ public class InputView {
             InputValidator.isValidRetry(inputRetry);
             return inputRetry;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warning(getErrorSupplier(e));
             return readGameCommand();
         }
     }
 
     private static void requestInput(String request) {
         System.out.println(request);
+    }
+
+    private static Supplier<String> getErrorSupplier(IllegalArgumentException e) {
+        return () -> {
+            System.out.println(e.getMessage());
+            return e.getMessage();
+        };
     }
 }
