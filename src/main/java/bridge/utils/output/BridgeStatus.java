@@ -24,12 +24,20 @@ public class BridgeStatus {
                 appendPoint(BridgeConstants.BRIDGE_DIVIDING_POINT);
             }
             Result result = results.get(i);
-            if (result.isCorrect()) {
-                appendResult(result.getStep(), BridgeConstants.CORRECT_ANSWER);
-            }
-            if (!result.isCorrect()) {
-                appendResult(result.getStep(), BridgeConstants.INCORRECT_ANSWER);
-            }
+            appendCorrect(result);
+            appendIncorrect(result);
+        }
+    }
+
+    private void appendIncorrect(Result result) {
+        if (!result.isCorrect()) {
+            appendResult(result.getStep(), BridgeConstants.INCORRECT_ANSWER);
+        }
+    }
+
+    private void appendCorrect(Result result) {
+        if (result.isCorrect()) {
+            appendResult(result.getStep(), BridgeConstants.CORRECT_ANSWER);
         }
     }
 
