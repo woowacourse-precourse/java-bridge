@@ -49,4 +49,8 @@ public enum Moving {
     public boolean isDown() {
         return this == DOWN;
     }
+
+    public boolean isSameCommand(int command) {
+        return this.command == command;
+    }
 }

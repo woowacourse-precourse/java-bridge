@@ -11,7 +11,6 @@ import java.util.List;
 public class BridgeMaker {
 
     public static final int FIRST_BLOCK = 0;
-    public static final int DOWN_COMMAND = 0;
     public static final int MIN_SIZE = 3;
     public static final int MAX_SIZE = 20;
     public static final String DOWN = "D";
@@ -49,9 +48,13 @@ public class BridgeMaker {
     }
 
     private String generateBlock(int generatedNumber) {
-        if (generatedNumber == DOWN_COMMAND) {
+        if (isDownCommand(generatedNumber)) {
             return DOWN;
         }
         return UP;
+    }
+
+    private boolean isDownCommand(int generatedNumber) {
+        return Moving.DOWN.isSameCommand(generatedNumber);
     }
 }
