@@ -16,6 +16,7 @@ public class BridgeGame {
     private int size;
     private boolean success;
 
+    private List<String> savedBridge;
     private int savedPos;
     private boolean savedCorrect;
 
@@ -42,7 +43,7 @@ public class BridgeGame {
             size = inputView.readBridgeSize();
             success = move(bridgeMaker.makeBridge(size));
         } while(!success && retry());
-
+        outputView.printFinalState(savedBridge, savedPos, savedCorrect);
         outputView.printResult(success, trial);
     }
 
@@ -57,12 +58,13 @@ public class BridgeGame {
             outputView.printAskMoveMessage();
             correct = inputView.readMoving().equals(bridge.get(pos));
             outputView.printMap(bridge, pos, correct);
-            saveState(pos, correct);
+            saveState(bridge, pos, correct);
         }
         return correct;
     }
 
-    private void saveState(int pos, boolean correct) {
+    private void saveState(List<String> bridge, int pos, boolean correct) {
+        this.savedBridge = bridge;
         this.savedPos = pos;
         this.savedCorrect = correct;
     }

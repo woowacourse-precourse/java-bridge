@@ -16,6 +16,7 @@ public class OutputView {
     public void printMap(List<String> bridge, int pos, boolean correct) {
         printMapLine(bridge.subList(0, pos+1), "U", correct);
         printMapLine(bridge.subList(0, pos+1), "D", correct);
+        System.out.println();
     }
 
     private void printMapLine(List<String> bridge, String line, boolean correct) {
@@ -46,6 +47,11 @@ public class OutputView {
      */
     public void printResult(boolean success, int trial) {
         System.out.printf(OutputMessage.GAME_RESULT.value, successToString(success), trial);
+    }
+
+    public void printFinalState(List<String> bridge, int pos, boolean correct) {
+        System.out.println(OutputMessage.FINAL_STATE.value);
+        printMap(bridge, pos, correct);
     }
 
     private String successToString(boolean success) {
