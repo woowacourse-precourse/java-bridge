@@ -45,7 +45,7 @@ public enum Step {
     }
 
     private String checkAnswer(String answer, String step){
-        String str = " ";
+        String str = Constant.BLANK;
         if(step.equals(this.name())){
             str = answer;
         }

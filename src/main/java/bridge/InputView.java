@@ -6,9 +6,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final String REGEX = "[0-9]+";
-    private final int minLength = 3;
-    private final int maxLength = 20;
 
     //region 다리길이
     /**
@@ -29,15 +26,15 @@ public class InputView {
 
     private void checkSize(String input) {
         int size = Integer.valueOf(input);
-        if(size < minLength)
+        if(size < Constant.MIN_LENGTH)
             throw new IllegalArgumentException(Message.ERROR_SMALL_SIZE);
 
-        if(size > maxLength)
+        if(size > Constant.MAX_LENGTH)
             throw new IllegalArgumentException(Message.ERROR_BIG_SIZE);
     }
 
     private void checkOnlyNumber(String input) {
-        if(!input.matches(REGEX))
+        if(!input.matches(Constant.REGEX))
             throw new IllegalArgumentException(Message.ERROR_NOT_NUMBER);
     }
     //endregion
