@@ -15,7 +15,7 @@ public enum GameCommand {
 
     public static GameCommand of(String command) {
         return Arrays.stream(GameCommand.values())
-                .filter(bridgeMark -> bridgeMark.equals(command))
+                .filter(bridgeMark -> bridgeMark.isEqualCommand(command))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_INPUT_COMMAND));
     }
@@ -28,7 +28,7 @@ public enum GameCommand {
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_INPUT_COMMAND));
     }
 
-    private boolean equals(String command) {
+    private boolean isEqualCommand(String command) {
         return this.command.equals(command);
     }
 
