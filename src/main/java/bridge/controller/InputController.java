@@ -1,19 +1,19 @@
 package bridge.controller;
 
+import bridge.Constants;
 import bridge.view.InputView;
 import java.util.Arrays;
 import java.util.List;
 
 public class InputController {
-    private final static int MAX_RECURSION = 1000;
-    private final static List<Integer> recursions = Arrays.asList(1, 1, 1);
+    private static List<Integer> recursions = Arrays.asList(1, 1, 1);;
 
     public static int setBridgeSize() {
         try {
-            System.out.println("Please input length of bridge");
+            System.out.println(Constants.GameProcessMessages.INPUT_BRIDGE_LENGTH);
             return InputView.readBridgeSize();
         } catch (IllegalArgumentException ie) {
-            if (checkMaxRecursion(0)) return 0;
+            if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_BRIDGE_SIZE)) return 0;
             System.out.println(ie.getMessage());
             return setBridgeSize();
         }
@@ -21,10 +21,10 @@ public class InputController {
 
     public static String setMoveChoice() {
         try{
-            System.out.println("choice where to move");
+            System.out.println(Constants.GameProcessMessages.INPUT_WHERETO_MOVE);
             return InputView.readMoving();
         } catch (IllegalArgumentException ie) {
-            if (checkMaxRecursion(1)) return "end";
+            if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_MOVE_CHOICE)) return "end";
             System.out.println(ie.getMessage());
             return setMoveChoice();
         }
@@ -32,10 +32,10 @@ public class InputController {
 
     public static String setGameCommand() {
         try {
-            System.out.println("please decide to try again");
+            System.out.println(Constants.GameProcessMessages.INPUT_RETRY_ORNOT);
             return InputView.readGameCommand();
         } catch (IllegalArgumentException ie) {
-            if (checkMaxRecursion(2)) return "end";
+            if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_GAME_COMMAND)) return "end";
             System.out.println(ie.getMessage());
             return setGameCommand();
         }
@@ -49,7 +49,7 @@ public class InputController {
 
     private static boolean checkIfRecursionExceed() {
         for (int i=0; i<recursions.size(); i++) {
-            if (recursions.get(i) > MAX_RECURSION) {
+            if (recursions.get(i) > Constants.GameElements.MAX_RECURSION) {
                 return true;
             }
         }

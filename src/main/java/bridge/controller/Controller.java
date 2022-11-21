@@ -1,11 +1,11 @@
 package bridge.controller;
 
+import bridge.Constants;
 import bridge.domain.Bridge;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +13,12 @@ public class Controller {
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
+
     private Bridge bridge;
     private OutputView outputView;
+    private List<String> choices;
     private int tryNumbers;
     private boolean pass;
-    List<String> choices;
 
     public Controller() {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -26,11 +27,11 @@ public class Controller {
     }
 
     public void game() throws IllegalArgumentException{
+        outputView.InitialMessage();
         int size = makeBridgeObject();
         outputView = new OutputView(bridge);
         tryNumbers = 0;
         pass = false;
-
         doWhileGameEnd(size);
 
         printFinalResult(pass, tryNumbers);
@@ -49,7 +50,6 @@ public class Controller {
         choices = new ArrayList<>();
         do {
             tryNumbers++;
-
             retry = iterateToCrossEachBridge(size, retry);
         } while (retry);
     }
@@ -77,7 +77,7 @@ public class Controller {
     private boolean gamePass(int i, int size) {
         if (i==size-1) {
             pass = true;
-            boolean retry = bridgeGame.retry("Q");
+            boolean retry = bridgeGame.retry(Constants.UserChoices.QUIT_UPPER);
 
             return retry;
         }

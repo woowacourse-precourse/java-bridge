@@ -1,8 +1,5 @@
 package bridge;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Constants {
     public class ErrorMessages {
         public static final String ERROR = "[ERROR] ";

@@ -1,11 +1,10 @@
 package bridge.enums;
 
-import java.util.Arrays;
-import java.util.Optional;
+import bridge.Constants;
 
 public enum Retry {
-    AGAIN(true, "R"),
-    END(false,"Q");
+    AGAIN(true, Constants.UserChoices.AGAIN_UPPER),
+    END(false,Constants.UserChoices.QUIT_UPPER);
 
     private final String retryInput;
     private final boolean retryIntention;
@@ -15,12 +14,12 @@ public enum Retry {
         this.retryInput = retryInput;
     }
 
-    public static boolean getRetryIntention(Retry retryEnum) { // 이럼 안될라나?
+    public static boolean getRetryIntention(Retry retryEnum) {
         return retryEnum.retryIntention;
     }
 
     public static Retry getProperRetryEnum(String givenInput) {
-        if ((givenInput.toLowerCase()).equals("R".toLowerCase())) {
+        if ((givenInput).equalsIgnoreCase(Constants.UserChoices.AGAIN_UPPER)) {
             return AGAIN;
         }
 

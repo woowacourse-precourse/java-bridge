@@ -1,10 +1,11 @@
 package bridge;
 
-import org.junit.jupiter.api.*;
-
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Assertions;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeRandomNumberGeneratorTest {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;

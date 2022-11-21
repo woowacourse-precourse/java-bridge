@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.Constants;
 import bridge.domain.Bridge;
 
 import java.util.List;
@@ -9,25 +10,30 @@ import java.util.List;
  */
 public class OutputView {
     private final Bridge bridge;
-    private StringBuffer uppperBuffer = new StringBuffer();
-    private StringBuffer lowerBuffer = new StringBuffer();
+    private StringBuffer upperBuffer;
+    private StringBuffer lowerBuffer;
     private List<String> choices;
 
     public OutputView(Bridge bridge) {
         this.bridge = bridge;
+        upperBuffer = new StringBuffer();
+        lowerBuffer = new StringBuffer();
     }
 
-    /* 특정 위치의 O X 빈칸 중 하나를 출력한다 */
+    public static void InitialMessage() {
+        System.out.println(Constants.GameProcessMessages.INITIAL_MESSAGE);
+    }
+
     private String properOXSpace(String UpOrDown , String directionChoice, String whereToPrint) {
         /* 실제로는 위냐 아래냐, 유저 선택은 뭐냐, 위쪽용 프린터냐 아래쪽용 프린터냐 */
         /* String UpOrDown = bridge.returnCertainIndexUpOrDown(index); */
         if (!(directionChoice.equals(whereToPrint))) {
-            return " ";
+            return Constants.GameElements.EMPTY;
         }
         if (UpOrDown.equals(directionChoice)) {
-            return "O";
+            return Constants.GameElements.CHOICE_EQUALS_DIRECTION;
         }
-        return "X";
+        return Constants.GameElements.CHOICE_UNEQUALS_DIRECTION;
     }
 
     /**
@@ -39,10 +45,10 @@ public class OutputView {
         clearBuffer();
         this.choices = choices;
 
-        fillEachBuffer(uppperBuffer, ongoing, "U");
-        System.out.println(uppperBuffer);
+        fillEachBuffer(upperBuffer, ongoing, Constants.UserChoices.UP_UPPERSTRING);
+        System.out.println(upperBuffer);
 
-        fillEachBuffer(lowerBuffer, ongoing, "D");
+        fillEachBuffer(lowerBuffer, ongoing, Constants.UserChoices.DOWN_UPPERSTRING);
         System.out.println(lowerBuffer);
     }
 
@@ -59,7 +65,7 @@ public class OutputView {
     }
 
     private void clearBuffer() {
-        uppperBuffer.delete(0,uppperBuffer.length());
+        upperBuffer.delete(0,upperBuffer.length());
         lowerBuffer.delete(0,lowerBuffer.length());
     }
 
@@ -69,25 +75,22 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean pass, int tryNumber) {
-        System.out.printf("game success or not: %s\n", printWinorLose(pass));
-        //        System.out.printf("게임 성공 여부: %s\n", printWinorLose(pass));
-        System.out.println(uppperBuffer.toString());
+        System.out.println(Constants.GameProcessMessages.FINAL_RESULT);
+        System.out.println(upperBuffer.toString());
         System.out.println(lowerBuffer.toString());
+        System.out.printf(Constants.GameProcessMessages.GAME_PASS_OR_NOT, printWinorLose(pass));
         printTryNumbers(tryNumber);
     }
 
     public String printWinorLose(boolean pass) {
         if (pass) {
-//            result = "성공";
-            return "success";
+            return Constants.GameProcessMessages.SUCCESS;
         }
-//            result = "실패";
-        return "fail";
+        return Constants.GameProcessMessages.FAIL;
     }
 
     public void printTryNumbers(int tryNumber) {
-//        System.out.printf("총 시도한 횟수: %s", tryNumber);
-        System.out.printf("all tried number: %s", tryNumber);
+        System.out.printf(Constants.GameProcessMessages.ALL_TRIED_COUNTS, tryNumber);
     }
 }
 
