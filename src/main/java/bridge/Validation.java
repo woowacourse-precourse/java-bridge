@@ -18,16 +18,21 @@ public class Validation {
 
     public static void isInputBetweenMinAndMax(int input) {
         if (input < NUMBER_MIN || input > NUMBER_MAX)
-            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_NOT_BETWEEN_MIN_AND_MAX.getMessage());
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.ERROR_MESSAGE_INPUT_NOT_BETWEEN_MIN_AND_MAX.getMessage(),
+                            NUMBER_MIN, NUMBER_MAX));
     }
 
     public static void isInputUpOrDown(String input) {
         if (!input.equals(WORD_UP) && !input.equals(WORD_DOWN))
-            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_UP_OR_DOWN.getMessage());
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.ERROR_MESSAGE_INPUT_UP_OR_DOWN.getMessage(),
+                            WORD_UP, WORD_DOWN));
     }
 
     public static void isInputRestartOrQuit(String input) {
         if (!input.equals(WORD_RESTART) && !input.equals(WORD_QUIT))
-            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_RESTART_OR_QUIT.getMessage());
+            throw new IllegalArgumentException(String.format(ErrorMessage.ERROR_MESSAGE_INPUT_RESTART_OR_QUIT.getMessage(),
+                    WORD_RESTART, WORD_QUIT));
     }
 }
