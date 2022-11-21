@@ -5,54 +5,53 @@ import java.util.List;
 
 public class Application {
     static String printGameStart = "다리 건너기 게임을 시작합니다.";
-    static List<String> bridge = new ArrayList<>();
-    static List<String> currentUpState = new ArrayList<>();
-    static List<String> currentDownState = new ArrayList<>();
-    static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    static BridgeNumberGenerator bridgeNumberGenerator;
+    static InputView inputView;
+    static OutputView outputView;
+    static BridgeMaker bridgeMaker;
+    static BridgeGame bridgeGame;
+    static List<String> bridge;
     static String gameCommand = "";
     static int count = 1;
     public static void main(String[] args) {
         System.out.println(printGameStart);
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        BridgeGame bridgeGame = new BridgeGame();
+        gameInit();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
 
         for(int i=0;i<bridge.size();i++){
             String upDown = inputView.readMoving();
+            bridgeGame.playing(bridge,upDown,i);
+            outputView.printMap(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
 
-            if(upDown.equals("U")){
-                currentUpState.add(bridgeGame.move(bridge,i,upDown));
-                currentDownState.add(" ");
-            }
-            if(upDown.equals("D")){
-                currentUpState.add(" ");
-                currentDownState.add(bridgeGame.move(bridge,i,upDown));
-            }
-            outputView.printMap(currentUpState,currentDownState);
+            if(bridgeGame.success(bridge))
+                outputView.printSuccessResult(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
 
-            if(i==bridge.size()-1){
-                outputView.printResult(currentUpState,currentDownState,bridge.size());
-            }
-
-            if(bridgeGame.move(bridge,i,upDown).equals("X")){
+            if(bridgeGame.fail(i))
                 gameCommand = inputView.readGameCommand();
-            }
 
             if(gameCommand.equals("R")){
-                currentUpState.clear();
-                currentDownState.clear();
+                bridgeGame.retry(gameCommand);
                 i=-1;
                 count++;
                 gameCommand = "";
             }
 
             if(gameCommand.equals("Q")){
-                outputView.printResult(currentUpState,currentDownState,bridge.size());
+                outputView.printFailResult(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
+                break;
             }
+
         }
         System.out.println("총 시도한 횟수: "+ count);
     }
+    public static void gameInit(){
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        inputView = new InputView();
+        outputView = new OutputView();
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        bridgeGame = new BridgeGame();
+        bridge = new ArrayList<>();
+    }
+
+
 }
