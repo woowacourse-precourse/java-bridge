@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.validation.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.NoSuchElementException;
@@ -12,6 +13,12 @@ import static bridge.utils.constant.ExceptionPhrase.*;
  */
 public class InputView {
 
+    private final Validation validation;
+
+    public InputView(Validation validation) {
+        this.validation = validation;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -19,7 +26,9 @@ public class InputView {
         String size = Console.readLine();
         int length = bridgeSizeIsNumeric(size);
 
-        return bridgeSizeRange(length);
+        validation.bridgeSizeIsInRange(length);
+
+        return length;
     }
 
     public int bridgeSizeIsNumeric(String size) {
@@ -32,21 +41,13 @@ public class InputView {
         return length;
     }
 
-    public int bridgeSizeRange(int bridge) {
-        if(bridge < 3 || bridge > 20) {
-            throw new IllegalArgumentException(INVALID_INPUT_NOT_RANGE_IN_THREE_TO_TWENTY.getPhrase());
-        }
-        return bridge;
-    }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
         String move = Console.readLine();
-        if(!(move.equals(UP.getValue()) || move.equals(DOWN.getValue()))) {
-            throw new IllegalArgumentException(INVALID_INPUT_NOT_U_OR_D.getPhrase());
-        }
+        validation.moveIsUOrD(move);
+
         return move;
     }
 
@@ -56,9 +57,7 @@ public class InputView {
     public String readGameCommand() {
         String quit =  Console.readLine();
 
-        if(!(quit.equals(QUIT.getValue()) || quit.equals(RESTART.getValue()))) {
-            throw new IllegalArgumentException(INVALID_INPUT_NOT_Q_OR_R.getPhrase());
-        }
+        validation.quitOrRestart(quit);
         return quit;
     }
 }

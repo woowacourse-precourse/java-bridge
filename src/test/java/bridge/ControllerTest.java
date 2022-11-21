@@ -1,23 +1,23 @@
 package bridge;
 
+import bridge.validation.Validation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.naming.ldap.Control;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.utils.constant.Constant.FAILED;
-import static bridge.utils.constant.Constant.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ControllerTest {
 
     List<String> bridge = new ArrayList<>();
-    Controller controller = new Controller(new InputView(),
+    Controller controller = new Controller(new InputView(new Validation()),
             new BridgeGame(),
             new BridgeMaker(new BridgeRandomNumberGenerator()),
             new OutputView());

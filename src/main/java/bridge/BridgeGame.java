@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.utils.constant.Constant.*;
-import static bridge.utils.constant.ExceptionPhrase.INVALID_INPUT_NOT_Q_OR_R;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -67,12 +66,8 @@ public class BridgeGame {
     public int retry(int attempt, String quit) {
         if(quit.equals(RESTART.getValue())) {
             attempt++;
-            return attempt;
         }
-        if(quit.equals(QUIT.getValue())) {
-            return attempt;
-        }
-        throw new IllegalArgumentException(INVALID_INPUT_NOT_Q_OR_R.getPhrase());
+        return attempt;
     }
 
     public void clearBridges() {
