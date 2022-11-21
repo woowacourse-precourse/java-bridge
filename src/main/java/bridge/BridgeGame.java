@@ -31,9 +31,9 @@ public class BridgeGame {
             if (this.currentUserPosition == bridge.size() - 1) {
                 this.gameWinStatus = true;
             }
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**
