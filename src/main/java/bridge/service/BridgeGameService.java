@@ -1,29 +1,34 @@
 package bridge.service;
 
 import bridge.domain.bridgeGame.BridgeGame;
-import bridge.dto.BridgeGameDto;
 import bridge.repository.BridgeGameRepository;
+
+import java.util.Queue;
 
 public class BridgeGameService {
     private final static BridgeGameRepository bridgeGameRepository = BridgeGameRepository.getInstance();
 
-    public void initBridgeGame(BridgeGameDto bridgeGameDto) {
-        bridgeGameRepository.update(bridgeGameDto.toEntity());
+    public void initBridgeGame() {
+        bridgeGameRepository.save(BridgeGame.initGame());
     }
 
-    public void crossBridge(String movingDirection, boolean movingSuccess) {
-        BridgeGame bridgeGame = bridgeGameRepository.get();
-        BridgeGame movedBridgeGame = bridgeGame.move(movingDirection, movingSuccess);
-        bridgeGameRepository.update(movedBridgeGame);
+    public boolean getCrosseSuccess() {
+        return bridgeGameRepository.getCrossSuccess();
     }
 
-    public String getGameMap() {
-        BridgeGame bridgeGame = bridgeGameRepository.get();
-        return bridgeGame.getGameMap();
+    public void crossOneBlock(String direction, boolean crossSuccess) {
+        bridgeGameRepository.crossOneBlock(direction, crossSuccess);
     }
 
     public void retryGame() {
-        BridgeGame bridgeGame = bridgeGameRepository.get();
-        bridgeGameRepository.update(bridgeGame.retry());
+        bridgeGameRepository.retry();
+    }
+
+    public String getBridgeMap() {
+        return bridgeGameRepository.getBridgeMap();
+    }
+
+    public Queue<String> getGameStatics() {
+        return bridgeGameRepository.getGameStatics();
     }
 }
