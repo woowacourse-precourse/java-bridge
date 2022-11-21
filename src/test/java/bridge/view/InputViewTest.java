@@ -1,6 +1,8 @@
 package bridge.view;
 
 import bridge.model.BridgeSize;
+import bridge.model.GameCommand;
+import bridge.model.Moving;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,8 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class InputViewTest {
-
-    private final InputView inputView = new InputView();
 
     @DisplayName("다리길이에 범위를 넘거나, 숫자가 아닌 값이 들어왔을때 예외처리")
     @ValueSource(strings = {"999", "0", "2", "-123", "21", "", " ", "하하"})
@@ -32,7 +32,7 @@ class InputViewTest {
     @ValueSource(strings = {"R", "0", "-123", "u", "", " ", "하하"})
     @ParameterizedTest
     void readMoving(String input) {
-        assertThatThrownBy(() -> inputView.getMoving(input))
+        assertThatThrownBy(() -> Moving.getMoving(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -40,7 +40,7 @@ class InputViewTest {
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
     void readMoving2(String input) {
-        assertThat(inputView.getMoving(input))
+        assertThat(Moving.getMoving(input))
                 .isNotInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,7 +48,7 @@ class InputViewTest {
     @ValueSource(strings = {"U", "0", "-123", "q", "", " ", "하하"})
     @ParameterizedTest
     void readGameCommand(String input) {
-        assertThatThrownBy(() -> inputView.getGameCommand(input))
+        assertThatThrownBy(() -> GameCommand.getGameCommand(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -56,7 +56,7 @@ class InputViewTest {
     @ValueSource(strings = {"R", "Q"})
     @ParameterizedTest
     void readGameCommand2(String input) {
-        assertThat(inputView.getGameCommand(input))
+        assertThat(GameCommand.getGameCommand(input))
                 .isNotInstanceOf(IllegalArgumentException.class);
     }
 }

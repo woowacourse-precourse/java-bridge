@@ -34,18 +34,13 @@ public class InputView implements Input {
             try {
                 System.out.println(Message.MOVE_INPUT);
                 String inputMoving = Console.readLine();
-                return getMoving(inputMoving);
+                return Moving.getMoving(inputMoving);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public Moving getMoving(String inputMoving) {
-        if (Moving.UP.getValue().equals(inputMoving)) return Moving.UP;
-        if (Moving.DOWN.getValue().equals(inputMoving)) return Moving.DOWN;
-        throw new IllegalArgumentException(Message.ERROR + Message.MOVE_ERROR);
-    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -55,16 +50,12 @@ public class InputView implements Input {
             try {
                 System.out.println(Message.GAME_COMMAND_INPUT);
                 String inputGameCommand = Console.readLine();
-                return getGameCommand(inputGameCommand);
+                return GameCommand.getGameCommand(inputGameCommand);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public GameCommand getGameCommand(String inputGameCommand) {
-        if (GameCommand.RE_GAME.getValue().equals(inputGameCommand)) return GameCommand.RE_GAME;
-        if (GameCommand.QUIT.getValue().equals(inputGameCommand)) return GameCommand.QUIT;
-        throw new IllegalArgumentException(Message.ERROR + Message.GAME_COMMAND_ERROR);
-    }
+
 }
