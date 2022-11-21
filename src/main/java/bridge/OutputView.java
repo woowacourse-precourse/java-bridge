@@ -20,34 +20,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String ox, int order, String upDown) {
-        addOxContour = CONTOUR + ox;
-        emptyContour = CONTOUR + " ";
-
+    public void printMap(String map) {
         // X가 틀린 곳에 있어야함..
-
-        if(order == 0){
-            addOxContour = ox;
-            emptyContour = " ";
-        }
-
-        if(upDown.equals("U")){
-            mapUp.add(mapUp.size()-1,addOxContour);
-            mapDown.add(mapDown.size()-1,emptyContour);
-        } else if (upDown.equals("D")) {
-            mapUp.add(mapUp.size()-1,emptyContour);
-            mapDown.add(mapDown.size()-1,addOxContour);
-        }
-
-        this.str = String.join("", mapUp) + "\n" + String.join("", mapDown);
-
-        System.out.println(str);
+        System.out.println(map);
     }
 
-    public void resetMap(){
-        this.mapUp = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
-        this.mapDown = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
-    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

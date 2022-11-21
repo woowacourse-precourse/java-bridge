@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.Application.correctWrong;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,29 +15,105 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     boolean retryOrNot;
     private String failSuccess;
+    private static List<String> mapUp = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
+    private static List<String> mapDown = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
+    private static final String CONTOUR = " | ";
+    private static String str;
+    String addOxContour;
+    String emptyContour;
+
+    private static int tryNumber = 0;
+    private static String ox;
+    private static String successFail;
+    private boolean correctNot;
+
+    public enum CorrectWrong {
+        CORRECT(true, "O", "성공"),
+        WRONG(false, "X", "실패");
+
+        boolean trueFalse;
+        String ox;
+        String successFailEnum;
 
 
+
+        CorrectWrong(boolean trueFalse, String ox, String successFailEnum) {
+            this.trueFalse = trueFalse;
+            this.ox = ox;
+            this.successFailEnum = successFailEnum;
+        }
+
+        public boolean getTrueFalse(){
+            return trueFalse;
+        }
+
+        public String getOx(){
+            return ox;
+        }
+
+        public String getsuccessFailEnum(){
+            return successFailEnum;
+        }
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(List<String> bridgeList, String upDownUserInput, int order) {
-        if (bridgeList.get(order).equals(upDownUserInput)){
-            /** get을 사용하지 않는다?
-             *
-             */
-            //그러면 맞은 것을 나타낸다.
+    public String move(List<String> bridgeList, String upDownUserInput, int order) {
+        boolean ys = bridgeList.get(order).equals(upDownUserInput)
 
-            return true;
-        }
+        CorrectWrong origin = selectFromOrigin(ys);
+
+
+
+            makeAddWord(origin.getOx(), order);
+
+            makeMap(upDownUserInput);
+
+
         //그러면 안맞은 것을 출력한다.
-        return false;
+        return str;
 
 
     }
 
+    private CorrectWrong selectFromOrigin(boolean ys) {
+        if (ys = true){
+            return CorrectWrong.CORRECT;
+        }
+        return CorrectWrong.WRONG;
+    }
 
+    public String getSuccessFail(){
+        return this.successFail;
+    }
+
+    private void makeAddWord(String ox, int order){
+        this.addOxContour = CONTOUR + ox;
+        this.emptyContour = CONTOUR + " ";
+
+        if(order == 0){
+            this.addOxContour = ox;
+            this.emptyContour = " ";
+        }
+    }
+
+    private void makeMap(String upDownUserInput){
+        if(upDownUserInput.equals("U")){
+            this.mapUp.add(mapUp.size()-1,addOxContour);
+            this.mapDown.add(mapDown.size()-1,emptyContour);
+        } else if (upDownUserInput.equals("D")) {
+            this.mapUp.add(mapUp.size()-1,emptyContour);
+            this.mapDown.add(mapDown.size()-1,addOxContour);
+        }
+        this.str = String.join("", mapUp) + "\n" + String.join("", mapDown);
+    }
+
+    public void resetMap(){
+        this.mapUp = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
+        this.mapDown = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
+    }
 
 
     /**
