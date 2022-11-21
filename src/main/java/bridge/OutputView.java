@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.OutputViewDetail.*;
+
 public class OutputView {
     String upperBridge = "";
     String lowerBridge = "";
@@ -18,32 +20,32 @@ public class OutputView {
 
     private void makeUpperBridge(BridgeGame bridgeGame) {
         if (isUp(bridgeGame) && bridgeGame.isMovable) {
-            upperBridge += " O ";
+            upperBridge += CAN_MOVE.getMessage();
         }
         if (isUp(bridgeGame) && !bridgeGame.isMovable) {
-            upperBridge += " X ";
+            upperBridge += CANNOT_MOVE.getMessage();
         }
         if (isDown(bridgeGame)) {
-            upperBridge += "   ";
+            upperBridge += NONE.getMessage();
         }
     }
 
     private void makeLowerBridge(BridgeGame bridgeGame) {
         if (isDown(bridgeGame) && bridgeGame.isMovable) {
-            lowerBridge += " O ";
+            lowerBridge += CAN_MOVE.getMessage();
         }
         if (isDown(bridgeGame) && !bridgeGame.isMovable) {
-            lowerBridge += " X ";
+            lowerBridge += CANNOT_MOVE.getMessage();
         }
         if (isUp(bridgeGame)) {
-            lowerBridge += "   ";
+            lowerBridge += NONE.getMessage();
         }
     }
 
     private void addLine(BridgeGame bridgeGame) {
         if (isOnGoing(bridgeGame)) {
-            upperBridge += "|";
-            lowerBridge += "|";
+            upperBridge += MIDDLE_LINE.getMessage();
+            lowerBridge += MIDDLE_LINE.getMessage();
         }
     }
 
@@ -55,8 +57,8 @@ public class OutputView {
 
     public void printMap(BridgeGame bridgeGame) {
         makeBridgeMap(bridgeGame);
-        System.out.println('[' + upperBridge + ']');
-        System.out.println('[' + lowerBridge + ']');
+        System.out.println(START_LINE.getMessage() + upperBridge + END_LINE.getMessage());
+        System.out.println(START_LINE.getMessage() + lowerBridge + END_LINE.getMessage());
     }
 
     /**
