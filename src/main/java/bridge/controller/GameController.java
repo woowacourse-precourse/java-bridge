@@ -22,7 +22,6 @@ public class GameController {
         outputView.printResult(diagram, bridgeGame.isSuccess(), bridgeGame.getAttempts());
     }
 
-
     private static Bridge createBridge() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);

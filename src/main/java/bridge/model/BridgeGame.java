@@ -12,16 +12,13 @@ import static bridge.model.Status.findStatus;
 public class BridgeGame {
     private final Bridge bridge;
     private Diagram diagram;
-    private int attempts;
-    private static boolean success;
-    private static GameCommand command;
+    private int attempts = 1;
+    private boolean success = false;
+    private GameCommand command = GameCommand.RETRY;
 
     public BridgeGame(Bridge bridge, Diagram diagram) {
         this.bridge = bridge;
         this.diagram = diagram;
-        this.attempts = 1;
-        this.success = false;
-        this.command = GameCommand.RETRY;
     }
 
     /**
@@ -80,7 +77,7 @@ public class BridgeGame {
         return attempts;
     }
 
-    public static boolean isSuccess() {
+    public boolean isSuccess() {
         return success;
     }
 }
