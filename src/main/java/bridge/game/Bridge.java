@@ -3,6 +3,7 @@ package bridge.game;
 import static bridge.exception.ErrorEnum.INVALID_BRIDGE_DIRECTION_STATE;
 import static bridge.exception.ErrorEnum.INVALID_BRIDGE_INDEX;
 import static bridge.exception.ErrorEnum.INVALID_BRIDGE_SIZE_STATE;
+import static bridge.exception.ErrorEnum.INVALID_DIRECTION_INPUT;
 import static bridge.game.BridgeMoveResult.CORRECT;
 import static bridge.game.BridgeMoveResult.NONE;
 import static bridge.game.BridgeMoveResult.WRONG;
@@ -24,19 +25,24 @@ public class Bridge {
         bridgeUpper = new ArrayList<>();
         bridgeLower = new ArrayList<>();
         for (String value : initValue) {
-            parseAndUpdate(value);
+            parseDirectionAndUpdate(value);
         }
     }
 
-    private void parseAndUpdate(String value) {
-        if (!value.equals("U") && !value.equals("D")) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
+    private void parseDirectionAndUpdate(String value) {
+        validateDirectionInput(value);
         if (value.equals("U")) {
             updateUpperCorrect();
         }
         if (value.equals("D")) {
             updateLowerCorrect();
+        }
+    }
+
+    private void validateDirectionInput(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException(INVALID_DIRECTION_INPUT
+                    .messageWithCause(input));
         }
     }
 
