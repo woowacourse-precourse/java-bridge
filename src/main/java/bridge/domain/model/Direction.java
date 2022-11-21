@@ -4,6 +4,7 @@ import bridge.config.ErrorMessageConstant;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,12 +33,12 @@ public enum Direction {
      * <p>
      * @param code "D" -> DOWN, "U" -> UP 반환
      * @return DOWN / UP
-     * @throws IllegalArgumentException "D", "U" 외 문자 입력 시 예외 발생
+     * @throws NoSuchElementException "D", "U" 외 문자 입력 시 예외 발생
      */
-    public static Direction of(final String code) throws IllegalArgumentException {
+    public static Direction of(final String code) throws NoSuchElementException {
         String name = DIR_MAP.get(code);
         if (name == null) {
-            throw new IllegalArgumentException(ErrorMessageConstant.DIRECTION_NOT_FOUND);
+            throw new NoSuchElementException(ErrorMessageConstant.DIRECTION_NOT_FOUND);
         }
         return Direction.valueOf(name);
     }

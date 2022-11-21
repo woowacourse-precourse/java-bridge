@@ -5,6 +5,7 @@ import bridge.domain.model.Direction;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,10 +29,10 @@ public enum CommandType {
         return command;
     }
 
-    public static CommandType of(final String command) throws IllegalArgumentException {
+    public static CommandType of(final String command) throws NoSuchElementException {
         String name = COMMAND_MAP.get(command);
         if (name == null) {
-            throw new IllegalArgumentException(ErrorMessageConstant.COMMAND_NOT_FOUND);
+            throw new NoSuchElementException(ErrorMessageConstant.COMMAND_NOT_FOUND);
         }
         return CommandType.valueOf(name);
     }
