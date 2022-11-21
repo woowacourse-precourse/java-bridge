@@ -21,19 +21,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<List<String>> result, Command command) {
-        int mapSize = result.get(ResultMap.DIRECTION_MAP.index()).size();
+    public void printMap(List<List<String>> maps, Command command) {
+        int mapSize = maps.get(ResultMap.DIRECTION_MAP.index()).size();
         System.out.print("[");
         for(int index = Bridge.START_INDEX.getValue(); index<mapSize; index++){
-            printMoveOrBlank(result, index, command);
+            printMoveOrBlank(maps, index, command);
             printVerticalBar(mapSize, index);
         }
         System.out.println("]");
     }
 
-    private void printMoveOrBlank(List<List<String>> result, int index, Command move){
-        List<String> directionMap = result.get(ResultMap.DIRECTION_MAP.index());
-        List<String> signMap = result.get(ResultMap.SIGN_MAP.index());
+    private void printMoveOrBlank(List<List<String>> maps, int index, Command move){
+        List<String> directionMap = maps.get(ResultMap.DIRECTION_MAP.index());
+        List<String> signMap = maps.get(ResultMap.SIGN_MAP.index());
         if(directionMap.get(index).equals(move.getValue())){
             System.out.printf(" %s ",signMap.get(index));
             return;

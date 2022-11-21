@@ -54,11 +54,11 @@ public class BridgeGame {
         totalAttempt++;
     }
 
-    public List<List<String>> getRoundResult(){
-        List<List<String>> result = new ArrayList<>();
-        result.add(Collections.unmodifiableList(userBridge));
-        result.add(getBridgeLog());
-        return result;
+    public List<List<String>> getRoundMaps(){
+        List<List<String>> maps = new ArrayList<>();
+        maps.add(Collections.unmodifiableList(userBridge));
+        maps.add(getBridgeLog());
+        return maps;
     }
 
     private List<String> getBridgeLog(){
