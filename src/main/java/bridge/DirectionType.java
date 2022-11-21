@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Map;
+
 public enum DirectionType {
     UP("U", 1),
     DOWN("D",0);
@@ -25,6 +27,27 @@ public enum DirectionType {
         }
         return null;
     }
+    public static DirectionType findByString (String str){
+        for(DirectionType v : values()){
+            if( v.getStr().equals(str)) return v;
+        }
+        return null;
+    }
 
+    public boolean equalDirection(String str){
+        return str.equals(this.str);
+    }
+
+    public String mapMakeByDirection(String str, int mapType){
+        if (!equalDirection(str) && DirectionType.findByString(str).getNum() != mapType)
+            return " ";
+        if (!equalDirection(str) && DirectionType.findByString(str).getNum() == mapType)
+            return "X";
+        if (equalDirection(str) && DirectionType.findByString(str).getNum() == mapType)
+            return "O";
+        if (equalDirection(str) && DirectionType.findByString(str).getNum() != mapType)
+            return " ";
+        return null;
+    }
 
 }

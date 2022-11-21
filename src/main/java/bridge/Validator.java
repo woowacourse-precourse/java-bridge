@@ -41,8 +41,7 @@ public class Validator {
     }
     public static void validateMoving(String str){
         validateMovingLen(str);
-        char bridgeChoose = str.charAt(0);
-        if (bridgeChoose!= UP.getNum() && bridgeChoose != DOWN.getNum())
+        if (!(str.equals( UP.getStr() ) || str.equals(DOWN.getStr())))
             ErrorGenerator.errorGenerate("이동할 칸이 위 또는 아래가 아닙니다");
     }
 

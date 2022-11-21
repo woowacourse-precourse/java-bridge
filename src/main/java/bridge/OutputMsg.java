@@ -10,9 +10,11 @@ public enum OutputMsg {
     RESULT_MSG("최종 게임 결과");
 
     private final String msg;
+
     OutputMsg(String msg){
         this.msg = msg;
     }
+
     public String getMsg(){
         return this.msg;
     }

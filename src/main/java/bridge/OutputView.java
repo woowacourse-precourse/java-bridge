@@ -13,18 +13,23 @@ public class OutputView {
     public static void printBridgeLengthMsg() {
         System.out.println(BRIDGE_LENGTH_MSG.getMsg());
     }
+
     public static void printStartGameMsg() {
         System.out.println(START_MSG.getMsg());
     }
+
     public static void printRetryQuitMsg() {
         System.out.println(CHOOSE_RETRY_QUIT_MSG.getMsg());
     }
+
     public static void printResultMsg() {
         System.out.println(RESULT_MSG.getMsg());
     }
+
     public static void printMovingMsg() {
         System.out.println(CHOOSE_UPDOWN_MSG.getMsg());
     }
+
     public static void printIsSuccessMsg() {
         System.out.print(ISSUCCESS_MSG.getMsg());
     }
@@ -35,40 +40,21 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<String> movingRecord, List<String> bridge) {
+        printOneMap(movingRecord, bridge, 1);
+        printOneMap(movingRecord, bridge, 0);
+    }
+
+    public static void printOneMap(List<String> movingRecord, List<String> bridge, int maptype) {
         System.out.print("[ ");
         for (int i = 0; i < movingRecord.size(); i++) {
-            if (movingRecord.get(i).equals("D") && bridge.get(i).equals("D")) {
-                System.out.print(" ");
-            }
-            if (movingRecord.get(i).equals("U") && bridge.get(i).equals("U")) {
-                System.out.print("O");
-            }
-            if (bridge.get(i).equals("U") && movingRecord.get(i).equals("D")) {
-                System.out.print("X");
-            }
-            if (i != movingRecord.size() - 1) {
-                System.out.print(" | ");
-            }
-        }
-        System.out.println(" ]");
-        System.out.print("[ ");
-        for (int i = 0; i < movingRecord.size(); i++) {
-            if (movingRecord.get(i).equals("D") && bridge.get(i).equals("D")) {
-                System.out.print("O");
-            }
-            if (bridge.get(i).equals("D") && movingRecord.get(i).equals("U")) {
-                System.out.print("X");
-            }
-            if (movingRecord.get(i).equals("U") && bridge.get(i).equals("U")) {
-                System.out.print(" ");
-            }
+            System.out.print(DirectionType.findByString(bridge.get(i))
+                .mapMakeByDirection(movingRecord.get(i), maptype));
             if (i != movingRecord.size() - 1) {
                 System.out.print(" | ");
             }
         }
         System.out.println(" ]");
     }
-
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -79,10 +65,12 @@ public class OutputView {
         printResultMsg();
         printMap(movingRecord.getRecord(), bridge);
         printIsSuccessMsg();
-        if (successFlag)
+        if (successFlag) {
             System.out.println("성공");
-        if (!successFlag)
+        }
+        if (!successFlag) {
             System.out.println("실패");
+        }
         System.out.println(SUM_OF_RETRY_COUNT.getMsg() + movingRecord.getRetryCount());
     }
 }

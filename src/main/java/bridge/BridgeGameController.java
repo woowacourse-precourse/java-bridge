@@ -17,14 +17,14 @@ public class BridgeGameController {
     }
 
     public void run() {
-        try {
+      //  try {
             startGame();
             playGame();
             endGame();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+       // } catch (IllegalArgumentException e) {
+          //  System.out.println(e.getMessage());
             return;
-        }
+        //}
     }
 
     public void startGame() {
