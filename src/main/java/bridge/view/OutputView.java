@@ -29,14 +29,13 @@ public class OutputView {
     }
 
     public void printResult(final PrintResultDto printResultDto) {
-        PrintMapDto printMapDto = printResultDto.getPrintMapDto();
-        printMap(printMapDto);
+        printMap(printResultDto.getPrintMapDto());
 
         PrintGameInfoDto printGameInfoDto = printResultDto.getPrintGameInfoDto();
         boolean success = printGameInfoDto.isSuccess();
         long tryCount = printGameInfoDto.getTryCount();
 
-        print.accept(OutputViewMessage.GAME_RESULT.getFullMessage(successMapToMessage(success)));
+        print.accept(OutputViewMessage.GAME_RESULT.getFullMessage(MapToMessageFromSuccess(success)));
         print.accept(OutputViewMessage.GAME_TRY_COUNT.getFullMessage(tryCount));
     }
 
@@ -46,7 +45,7 @@ public class OutputView {
         print.accept(OutputViewMessage.EXCEPTION.getFullMessage(exceptionMessage));
     }
 
-    private String successMapToMessage(boolean success) {
+    private String MapToMessageFromSuccess(boolean success) {
         if (success) {
             return SUCCESS;
         }
