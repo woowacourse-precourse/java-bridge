@@ -15,25 +15,25 @@ public class FailureResultPrinter extends ResultPrinter {
     @Override
     public String getResult(Position targetPosition) {
         String result = super.getResult(targetPosition);
-        if (getEndPosition().equals(targetPosition)) {
-            return replaceSignOToX(result);
+        if (this.getEndPosition().equals(targetPosition)) {
+            return this.replaceSignOToX(result);
         }
         return result;
     }
 
     private Position getEndPosition() {
-        return passingRout.get(getEndIndex(passingRout.size()));
+        return this.passingRout.get(this.getEndIndex(passingRout.size()));
     }
 
-    private static String replaceSignOToX(String result) {
-        return removeLastChar(result) + WRONG_SIGN;
+    private String replaceSignOToX(String result) {
+        return this.removeLastChar(result) + WRONG_SIGN;
     }
 
-    private static String removeLastChar(String result) {
-        return result.substring(BEGIN_INDEX, getEndIndex(result.length()));
+    private String removeLastChar(String result) {
+        return result.substring(BEGIN_INDEX, this.getEndIndex(result.length()));
     }
 
-    private static int getEndIndex(int size) {
+    private int getEndIndex(int size) {
         return size - INDEX_SIZE_DIFFERENT;
     }
 }
