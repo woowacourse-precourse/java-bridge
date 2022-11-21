@@ -22,4 +22,17 @@ public class InputView {
         return readBridgeSize();
     }
 
+    private static String getCommandInput(String printInput, String command1, String command2, String errorName) {
+        System.out.println(printInput);
+        String input = Console.readLine();
+        try {
+            if (!input.equals(command1) && !input.equals(command2)) {
+                throw new IllegalArgumentException(errorName);
+            }
+            return input;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
