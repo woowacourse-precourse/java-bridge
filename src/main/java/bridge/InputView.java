@@ -15,22 +15,23 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String lineInput = readInput(InputType.BRIDGESIZE);
+        String lineInput = getLineInput(InputType.BRIDGESIZE);
         return Integer.parseInt(lineInput);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() { return readInput(InputType.MOVINGCOMMAND); }
+    public String readMoving() { return getLineInput(InputType.MOVINGCOMMAND); }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() { return readInput(InputType.GAMECOMMAND); }
+    public String readGameCommand() { return getLineInput(InputType.GAMECOMMAND); }
 
-    private String readInput(InputType inputType) {
-        String lineInput = Console.readLine();
+    private String getLineInput(InputType inputType) { return validateLineInput(Console.readLine(), inputType); }
+
+    private String validateLineInput(String lineInput, InputType inputType) {
         try {
             new Validation(lineInput, inputType);
             return lineInput;
@@ -38,6 +39,6 @@ public class InputView {
             outputView.printNewLine();
             outputView.printMessage(e.getMessage());
         }
-        return readInput(inputType);
+        return getLineInput(inputType);
     }
 }
