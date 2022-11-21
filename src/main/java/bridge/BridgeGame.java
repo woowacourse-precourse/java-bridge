@@ -30,14 +30,14 @@ public class BridgeGame {
         return getMoveDownStatus(position, userInput);
     }
 
-    public String getMoveUPStatus(int position, String userInput) {
+    private String getMoveUPStatus(int position, String userInput) {
         if (userInput.equals(bridgeShape.get(position))) {
             return MoveStatus.UP_CORRECT.get();
         }
         return MoveStatus.UP_INCORRECT.get();
     }
 
-    public String getMoveDownStatus(int position, String userInput) {
+    private String getMoveDownStatus(int position, String userInput) {
         if (userInput.equals(bridgeShape.get(position))) {
             return MoveStatus.DOWN_CORRECT.get();
         }

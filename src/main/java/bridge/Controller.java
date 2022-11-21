@@ -21,13 +21,13 @@ public class Controller {
         this.bridgeStatus = new BridgeStatus();
     }
 
-    public void makeBridgeWithSize() {
+    private void makeBridgeWithSize() {
         int size = inputView.readBridgeSize();
         List<String> bridgeShape = bridgeMaker.makeBridge(size);
         this.bridgeGame = new BridgeGame(bridgeShape, bridgeStatus);
     }
 
-    public String moveToStatus() {
+    private String moveToStatus() {
         String moving = inputView.readMoving();
         String status = bridgeGame.move(moving);
         bridgeGame.makeStatusBridge(status);
@@ -35,12 +35,12 @@ public class Controller {
         return status;
     }
 
-    public boolean isRetry() {
+    private boolean isRetry() {
         String command = inputView.readGameCommand();
         return bridgeGame.retry(command);
     }
 
-    public boolean isContinueMove(boolean correction) {
+    private boolean isContinueMove(boolean correction) {
         if (!correction) {
             if (!isRetry()){
                 return false;
@@ -50,7 +50,7 @@ public class Controller {
         return true;
     }
 
-    public void bridgeRound() {
+    private void bridgeRound() {
         while (!bridgeGame.isEndBridge()) {
             boolean correction = bridgeGame.isCorrectMove(moveToStatus());
             outputView.printMap(bridgeStatus.getBridgeStatusLayers());

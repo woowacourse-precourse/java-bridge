@@ -27,7 +27,7 @@ public class BridgeMaker {
         return bridgeShape;
     }
 
-    public String convertToShape(int randomNumber) {
+    private String convertToShape(int randomNumber) {
         if (randomNumber == NumberToShape.UP.getNumber()) {
             return NumberToShape.UP.getShape();
         }
@@ -39,8 +39,8 @@ enum NumberToShape {
     UP(1, "U"),
     DOWN(0, "D");
 
-    private int randomNumber;
-    private String bridgeShape;
+    private final int randomNumber;
+    private final String bridgeShape;
 
     NumberToShape(int randomNumber, String bridgeShape) {
         this.randomNumber = randomNumber;
