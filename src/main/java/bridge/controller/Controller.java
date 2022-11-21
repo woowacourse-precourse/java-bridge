@@ -38,40 +38,42 @@ public class Controller {
     }
 
     private void playGame(BridgeGame bridgeGame, Bridge bridge) {
-        // Todo: do-while 로 수정하면 break 포인트를 많이 생성하지 않아도 될까?
-        while (true) {
+        do {
             outputView.printSelectMove();
             String inputMove = inputView.readMoving();
             int index = bridgeGame.getIndex();
-            if (index == 0) {
-                if(bridgeGame.moveBridgeInit(bridgeGame, inputMove, bridge)) {
-                    outputView.printMap(bridge);
-                }
-                else {
-                    outputView.printMap(bridge);
-                    bridgeGame.initIndex();
-                    if(retry(bridgeGame)){
-                        break;
-                    }
-                }
-            }
-            if (index != 0) {
-                if(bridgeGame.moveBridge(bridgeGame, inputMove, bridge)) {
-                    outputView.printMap(bridge);
-                }
-                else {
-                    outputView.printMap(bridge);
-                    bridgeGame.initIndex();
-
-                    if(retry(bridgeGame)){
-                        gameEnd(bridge);
-                        break;
-                    }
-                }
-            }
-            if (checkBridgeIndex(bridgeGame)) break;
-        }
+            if (index == 0 && checkInitMoveBridge(bridgeGame, bridge, inputMove)) return;
+            if (index != 0 && checkMoveBridge(bridgeGame, bridge, inputMove)) return;
+        } while (!checkBridgeIndex(bridgeGame));
+        
         gameEnd(bridge);
+    }
+
+    private boolean checkMoveBridge(BridgeGame bridgeGame, Bridge bridge, String inputMove) {
+        if (bridgeGame.moveBridge(bridgeGame, inputMove, bridge)) {
+            outputView.printMap(bridge);
+        } else {
+            outputView.printMap(bridge);
+            bridgeGame.initIndex();
+
+            if (retry(bridgeGame)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkInitMoveBridge(BridgeGame bridgeGame, Bridge bridge, String inputMove) {
+        if (bridgeGame.moveBridgeInit(bridgeGame, inputMove, bridge)) {
+            outputView.printMap(bridge);
+        } else {
+            outputView.printMap(bridge);
+            bridgeGame.initIndex();
+            if (retry(bridgeGame)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkBridgeIndex(BridgeGame bridgeGame) {
