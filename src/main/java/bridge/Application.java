@@ -13,10 +13,6 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         BridgeView bridgeView = new BridgeView(new InputView(), new OutputView());
         BridgeController bridgeController = new BridgeController(bridgeView, bridgeMaker);
-        try {
-            bridgeController.gameStart();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        bridgeController.gameStart();
     }
 }

@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final int MINIMUM_BRIDGE_LENGTH = 3;
+    private static final int MAXIMUM_BRIDGE_LENGTH = 20;
     private final Pattern BRIDGE_SIZE_PATTERN = Pattern.compile("\\d*");
 
     /**
@@ -17,7 +19,15 @@ public class InputView {
     public int readBridgeSize() {
         String input = receiveInput();
         validateNumber(input);
-        return Integer.parseInt(input);
+        int size = Integer.parseInt(input);
+        validateSize(size);
+        return size;
+    }
+
+    private void validateSize(int size) {
+        if (size < MINIMUM_BRIDGE_LENGTH || size > MAXIMUM_BRIDGE_LENGTH) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_BRIDGE_LENGTH_3_TO_20);
+        }
     }
 
     private void validateNumber(String input) {

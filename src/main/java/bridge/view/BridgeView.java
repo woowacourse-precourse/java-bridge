@@ -19,14 +19,26 @@ public class BridgeView {
     }
 
     public int receiveBridgeSize() {
-        outputView.printEnterBridgeLength();
-        return inputView.readBridgeSize();
+        while (true) {
+            try {
+                outputView.printEnterBridgeLength();
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e);
+            }
+        }
     }
 
     public UpDownFlag receiveMoving() {
-        outputView.printEnterSelectMoving();
-        String input = inputView.readMoving();
-        return UpDownFlag.ofString(input);
+        while (true) {
+            try {
+                outputView.printEnterSelectMoving();
+                String input = inputView.readMoving();
+                return UpDownFlag.ofString(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e);
+            }
+        }
     }
 
     public void printMap(Map map) {
@@ -34,9 +46,15 @@ public class BridgeView {
     }
 
     public GameFlag receiveRestart() {
-        outputView.printRestartOrQuitMessage();
-        String input = inputView.readGameCommand();
-        return GameFlag.ofString(input);
+        while (true) {
+            try {
+                outputView.printRestartOrQuitMessage();
+                String input = inputView.readGameCommand();
+                return GameFlag.ofString(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e);
+            }
+        }
     }
 
     public void printResult(Map map, ResultFlag result, int tryCount) {
