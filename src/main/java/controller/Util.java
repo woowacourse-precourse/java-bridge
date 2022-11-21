@@ -9,6 +9,11 @@ public class Util {
         return size;
     }
 
+    public String inputMoving(){
+        String moving = inputValue();
+        return moving;
+    }
+
     private String inputValue(){
         String value = Console.readLine();
         return value;
