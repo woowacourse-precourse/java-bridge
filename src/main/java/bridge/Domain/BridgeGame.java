@@ -26,11 +26,13 @@ public class BridgeGame {
     public final InputView inputView = new InputView();
 
     public final OutputView outputView = new OutputView();
-    private boolean isGameSucceed;
-    private boolean isGameFinished = false;
+    private boolean isGameSucceed = FAILED;
+    private boolean isGameFinished;
+    private retry retryOrQuit = retry.QUIT;
 
     public BridgeGame() {
         System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
+        isGameFinished = false;
     }
 
     public void gameStart() {
@@ -112,5 +114,9 @@ public class BridgeGame {
 
     public boolean getIsGameFinished() {
         return this.isGameFinished;
+    }
+
+    public retry getRetryOrQuit() {
+        return this.retryOrQuit;
     }
 }
