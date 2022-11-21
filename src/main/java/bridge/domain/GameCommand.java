@@ -14,7 +14,7 @@ public class GameCommand {
     }
 
     private void validateGameCommandValue(String gameCommandValue){
-        if (!gameCommandValue.equals(RESTART_CHARACTER) || !gameCommandValue.equals(QUIT_CHARACTER)){
+        if (!gameCommandValue.equals(RESTART_CHARACTER) && !gameCommandValue.equals(QUIT_CHARACTER)){
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_GAME_COMMAND_CHARACTER.getMessage());
         }
     }
