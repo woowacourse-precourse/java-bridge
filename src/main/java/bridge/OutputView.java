@@ -26,39 +26,60 @@ public class OutputView {
         System.out.println("총 시도한 횟수: "+totalAttempt);
     }
 
+    /**
+     * 입력받은 다리길이가 3 ~ 20사이가 아니라면 에러 문구를 출력하는 함수
+     */
     public boolean lenCheckMessage(int bridgeSize){
         try {
             new Exception().inputLenCheck(bridgeSize);
-        } catch (java.lang.Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
         }
         return false;
     }
 
+    /**
+     * 다리의 이동이 위또는 아래로 움직이기 때문에 U or D가 아닌 경우를 확인하고 아닐 경우 에러를 출력
+     */
     public String upAndDownCheckMessage(){
-        String moving = "";
-        while(true) {
-            try {
-                moving = new InputView().readMoving();
-                new Exception().inputStringUpAndDownCheck(moving);
-                return moving;
-            } catch (java.lang.Exception e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String moving = new InputView().readMoving();
+            new Exception().inputStringUpAndDownCheck(moving);
+            return moving;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return upAndDownCheckMessage();
         }
     }
 
+    /**
+     * 재시작 여부를 확인하기 전에 R or Q의 입력이 아니라면 에러를 출력하는 함수
+     */
     public String retryCheckMessage(){
-        String retry;
-        while(true) {
-            try {
-                retry = new InputView().readGameCommand();
-                new Exception().inputRetryCheck(retry);
-                return retry;
-            } catch (java.lang.Exception e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String retry = new InputView().readGameCommand();
+            new Exception().inputRetryCheck(retry);
+            return retry;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return retryCheckMessage();
         }
+    }
+
+    /**
+     * 입력받은 다리길이가 숫자가 아니라면 에러를 출력하는 함수
+     */
+    public int inputStringCheckMessage(){
+        try {
+            System.out.println("다리의 길이를 입력해주세요.");
+            String bridgeSize = new InputView().readBridgeSize();
+            new Exception().inputStringCheck(bridgeSize);
+            return Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputStringCheckMessage();
+        }
+
     }
 }
