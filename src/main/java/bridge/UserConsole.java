@@ -22,29 +22,23 @@ public class UserConsole {
         bridgeGame.initGame(inputView.readBridgeSize());
     }
     public void startGame(){
-        round = 0 ;
-        boolean check = true;
         bridge = bridgeGame.getBridgeInstance();
-        System.out.println(bridgeGame.getBridgeSize());
         while (round < bridgeGame.getBridgeSize()) {
-            System.out.println("input U or D");
-            boolean result =bridge.getComparison(round,inputView.readUserInput());
+            boolean result =bridge.getComparison(round,inputView.readMoving());
             round++;
             bridgeGame.move(result);
             if(!result) {
-                System.out.println("틀렸습니다 R or Q");
-                String userInput = inputView.readUserInput();
-                retry(totalNumber,userInput);
+                retry(totalNumber,inputView.readGameCommand());
             }
         }
-
     }
     public void endGame(){
-        System.out.println("EndGame");
+        System.out.println("최종 게임 결과");
         System.out.println();
     }
     public void retry(int totalNumber,String userInput){
         if(bridgeGame.retry(totalNumber,userInput)){
+            round = 0 ;
             startGame();
         }
         if(!bridgeGame.retry(totalNumber,userInput)){
