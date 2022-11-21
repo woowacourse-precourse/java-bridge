@@ -57,4 +57,38 @@ public class BridgeGameStatusTest {
         // then
         assertFalse(isSuccessfulEnd);
     }
+
+    @DisplayName("현재 게임 상태가 올바르게 출력되는지 테스트")
+    @Test
+    void bridgeGameStatusToStringTest1() {
+        // given
+        List<String> playerMove = List.of("U", "U");
+        List<String> gameBridge = List.of("U", "U", "D", "U");
+        int runCount = 1;
+
+        // when
+        BridgeGameStatus bridgeGameStatus = new BridgeGameStatus(playerMove, gameBridge, runCount);
+        String status = bridgeGameStatus.toString();
+
+        // then
+        boolean contains = status.contains("[ O | O ]\n[   |   ]");
+        assertTrue(contains);
+    }
+
+    @DisplayName("현재 게임 상태가 올바르게 출력되는지 테스트 (마지막 입력이 틀린 경우 X 표시)")
+    @Test
+    void bridgeGameStatusToStringTest2() {
+        // given
+        List<String> playerMove = List.of("U", "U", "U");
+        List<String> gameBridge = List.of("U", "U", "D", "U");
+        int runCount = 1;
+
+        // when
+        BridgeGameStatus bridgeGameStatus = new BridgeGameStatus(playerMove, gameBridge, runCount);
+        String status = bridgeGameStatus.toString();
+
+        // then
+        boolean contains = status.contains("[ O | O | X ]\n[   |   |   ]");
+        assertTrue(contains);
+    }
 }
