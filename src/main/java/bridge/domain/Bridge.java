@@ -3,11 +3,11 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
-    private static final int BRIDGE_SIZE_LOWER_INCLUSIVE = 3;
-    private static final int BRIDGE_SIZE_UPPER_INCLUSIVE = 20;
-    private static final String BRIDGE_SIZE_OUT_OF_RANGE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final int SIZE_LOWER_INCLUSIVE = 3;
+    private static final int SIZE_UPPER_INCLUSIVE = 20;
+    private static final String SIZE_OUT_OF_RANGE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
-    private List<String> bridge;
+    private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
         validate(bridge);
@@ -30,8 +30,9 @@ public class Bridge {
 
     private void validate(List<String> bridge) {
         int size = bridge.size();
-        if (size < BRIDGE_SIZE_LOWER_INCLUSIVE || size > BRIDGE_SIZE_UPPER_INCLUSIVE) {
-            throw new IllegalArgumentException(BRIDGE_SIZE_OUT_OF_RANGE_ERROR);
+        if (size < SIZE_LOWER_INCLUSIVE || size > SIZE_UPPER_INCLUSIVE) {
+            throw new IllegalArgumentException(SIZE_OUT_OF_RANGE_ERROR);
         }
     }
+
 }

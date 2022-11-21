@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.Direction;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,36 +14,36 @@ public class MapMaker {
     private static final String SUFFIX_BRACKET = "]";
 
 
-    public List<String> makeMap(List<String> userBridgeHistroy, boolean hasMoved) {
-        StringBuilder top = new StringBuilder();
-        StringBuilder bottom = new StringBuilder();
-        for (int i = 0; i < userBridgeHistroy.size(); i++) {
-            addHistory(top, bottom, userBridgeHistroy.get(i));
+    public List<String> makeMap(List<String> movementRecord, boolean hasMoved) {
+        StringBuilder topLine = new StringBuilder();
+        StringBuilder bottomLine = new StringBuilder();
+        for (int index = 0; index < movementRecord.size(); index++) {
+            drawMovement(topLine, bottomLine, movementRecord.get(index));
         }
-        checkResult(top, hasMoved);
-        checkResult(bottom, hasMoved);
-        return new ArrayList<>(Arrays.asList(toMap(top),toMap(bottom)));
+        replaceFailMark(topLine, hasMoved);
+        replaceFailMark(bottomLine, hasMoved);
+        return new ArrayList<>(Arrays.asList(toMap(topLine), toMap(bottomLine)));
     }
 
-    private void addHistory(StringBuilder top, StringBuilder bottom, String moving) {
-        if (moving.equals(Direction.Code.UP.getName())) {
-            top.append(SUCCESS_CODE);
-            bottom.append(BLANK);
+    private void drawMovement(StringBuilder topLine, StringBuilder bottomLine, String movement) {
+        if (movement.equals(Direction.Code.UP.getName())) {
+            topLine.append(SUCCESS_CODE);
+            bottomLine.append(BLANK);
         }
-        if (moving.equals(Direction.Code.DOWN.getName())) {
-            top.append(BLANK);
-            bottom.append(SUCCESS_CODE);
-        }
-    }
-
-    private void checkResult(StringBuilder line, boolean didmove) {
-        int endIndex = line.length() - 1;
-        if (!didmove && String.valueOf(line.charAt(endIndex)).equals(SUCCESS_CODE)) {
-            line.replace(endIndex, endIndex + 1, FAIL_CODE);
+        if (movement.equals(Direction.Code.DOWN.getName())) {
+            topLine.append(BLANK);
+            bottomLine.append(SUCCESS_CODE);
         }
     }
 
-    private String toMap(CharSequence result) {
+    private void replaceFailMark(StringBuilder line, boolean hasMoved) {
+        int endOfLineIndex = line.length() - 1;
+        if (!hasMoved && String.valueOf(line.charAt(endOfLineIndex)).equals(SUCCESS_CODE)) {
+            line.replace(endOfLineIndex, endOfLineIndex + 1, FAIL_CODE);
+        }
+    }
+
+    public String toMap(CharSequence result) {
         String map = sperateByDelimiter(result, DELIMITER);
         map = addBracket(map, PREFIX_BRACKET, SUFFIX_BRACKET);
         return sperateByDelimiter(map, BLANK);
@@ -54,8 +52,8 @@ public class MapMaker {
 
     public String sperateByDelimiter(CharSequence charSequence, String delimiter) {
         StringJoiner stringJoiner = new StringJoiner(delimiter);
-        for (int i = 0; i < charSequence.length(); i++) {
-            stringJoiner.add(String.valueOf(charSequence.charAt(i)));
+        for (int index = 0; index < charSequence.length(); index++) {
+            stringJoiner.add(String.valueOf(charSequence.charAt(index)));
         }
         return stringJoiner.toString();
     }

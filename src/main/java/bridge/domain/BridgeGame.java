@@ -1,14 +1,14 @@
 package bridge.domain;
 
-import java.util.List;
-
 public class BridgeGame {
 
     private static final String INVALID_MOVEMENT_ERROR = "[ERROR] U(위 칸)와 D(아래 칸) 중 하나의 문자만 입력해야 합니다.";
     private static final String INVALID_GAME_COMMAND_ERROR = "[ERROR] R(재시작)과 Q(종료) 중 하나의 문자만 입력해야 합니다.";
+    private static final String RETRY_COMMAND_CODE = "R";
+    private static final String QUIT_COMMAND_CODE = "Q";
 
     private final Bridge bridge;
-    private PlayerData playerData = new PlayerData();
+    private final PlayerData playerData = new PlayerData();
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -16,8 +16,8 @@ public class BridgeGame {
 
     public boolean move(String movement) {
         validateMovement(movement);
-        playerData.recordMovement(movement);
-        if (bridge.contain(playerData.getIndexOfMovement(), movement)) {
+        playerData.add(movement);
+        if (bridge.contain(playerData.getIndexOfMovementRecord(), movement)) {
             return true;
         }
         return false;
@@ -25,8 +25,8 @@ public class BridgeGame {
 
     public boolean retry(String gameCommand) {
         validateGameCommand(gameCommand);
-        if (gameCommand.equals("R")) {
-            playerData.resetMovementHistroy();
+        if (gameCommand.equals(RETRY_COMMAND_CODE)) {
+            playerData.clearMovementRecord();
             playerData.increaseCountOfTry();
             return true;
         }
@@ -34,7 +34,7 @@ public class BridgeGame {
     }
 
     public boolean checkWin() {
-        if (bridge.isSame(playerData.getMovementHistory())) {
+        if (bridge.isSame(playerData.getMovementRecord())) {
             return true;
         }
         return false;
@@ -51,9 +51,10 @@ public class BridgeGame {
     }
 
     private void validateGameCommand(String gameCommand) {
-        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+        if (!gameCommand.equals(RETRY_COMMAND_CODE) && !gameCommand.equals(QUIT_COMMAND_CODE)) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND_ERROR);
         }
     }
+
 }
 

@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerData {
-    private List<String> movementHistory = new ArrayList<>();
-    private int countOfTry = 1;
+    private static final int INITIAL_VALUE = 1;
+    private List<String> movementRecord = new ArrayList<>();
+    private int countOfTry = INITIAL_VALUE;
 
-    public void recordMovement(String movement) {
-        movementHistory.add(movement);
+    public void add(String movement) {
+        movementRecord.add(movement);
     }
 
-    public List<String> getMovementHistory() {
-        return movementHistory;
+    public List<String> getMovementRecord() {
+        return movementRecord;
     }
 
-    public void resetMovementHistroy() {
-        movementHistory.clear();
+    public void clearMovementRecord() {
+        movementRecord.clear();
     }
 
     public int getCountOfTry() {
@@ -27,7 +28,7 @@ public class PlayerData {
         countOfTry++;
     }
 
-    public int getIndexOfMovement() {
-        return movementHistory.size() - 1;
+    public int getIndexOfMovementRecord() {
+        return movementRecord.size() - 1;
     }
 }
