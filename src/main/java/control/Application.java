@@ -29,12 +29,13 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        int gameCount = 1;
+        int gameCount = 0;
         boolean restart = true;
         boolean game = true;
 
         while (restart){
 
+            gameCount++;
             game = true;
             int index = 0;
 
@@ -49,9 +50,10 @@ public class Application {
                 restart = false;
                 break;
             }
+
             restart = bridgeGame.retry(inputView.readGameCommand());
             bridgeGame.refresh();
-            gameCount++;
+
 
         }
 
