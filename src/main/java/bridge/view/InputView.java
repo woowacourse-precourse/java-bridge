@@ -15,7 +15,7 @@ public class InputView {
 
     public String readMoving() {
         String moveDirection = Console.readLine();
-        while (!Validation.bridgeSizeValidationTest(moveDirection)){
+        while (!Validation.moveDirectionTest(moveDirection)){
             moveDirection = Console.readLine();
         }
         return moveDirection;
