@@ -1,5 +1,6 @@
-package bridge;
+package bridge.service;
 
+import bridge.BridgeNumberGenerator;
 import bridge.domain.BridgeShape;
 
 import java.util.ArrayList;
