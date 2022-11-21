@@ -45,10 +45,8 @@ public final class BridgeGameController {
 
     private Bridge setUpBridge(final BridgeMaker bridgeMaker) {
         try {
-            outputView.printInitialMessage();
-            outputView.printAskBridgeLength();
-            final int size = inputView.readBridgeSize();
-            BridgeValidator.validateBridgeSize(size);
+            printStartingMessages();
+            final int size = receiveBridgeSize();
             return new Bridge(bridgeMaker.makeBridge(size));
         } catch (final IllegalArgumentException e) {
             outputView.printError(e.getMessage());
@@ -56,19 +54,33 @@ public final class BridgeGameController {
         }
     }
 
+    private void printStartingMessages() {
+        outputView.printInitialMessage();
+        outputView.printAskBridgeLength();
+    }
+
+    private int receiveBridgeSize() {
+        final int size = inputView.readBridgeSize();
+        BridgeValidator.validateBridgeSize(size);
+        return size;
+    }
+
     public void play() {
         ControllerCommand playerChoice = ControllerCommand.RETRY;
         final BridgeGame bridgeGame = new BridgeGame(bridge);
         while (playerChoice != ControllerCommand.QUIT) {
-            bridgeGame.retry();
-            playOneGame(bridgeGame);
-            triedCount++;
+            retryGame(bridgeGame);
             playerChoice = askRetry(bridgeGame);
         }
         finish(bridgeGame);
     }
 
     private void retryGame(final BridgeGame bridgeGame) {
+        triedCount++;
+        bridgeGame.retry();
+        playOneGame(bridgeGame);
+    }
+
     private void finish(final BridgeGame bridgeGame) {
         final PlayLogDto log = new PlayLogDto(bridgeGame.toPrintableLog());
         final GameResult gameResult = bridgeGame.result();
@@ -94,16 +106,20 @@ public final class BridgeGameController {
     }
 
     private ControllerCommand askRetry(final BridgeGame bridgeGame) {
-        if (isGameCleared(bridgeGame)) {
-            return ControllerCommand.QUIT;
-        }
         try {
             outputView.printAskRetry();
-            return ControllerCommand.from(inputView.readGameCommand());
+            return receiveGameCommand(bridgeGame);
         } catch (final IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return askRetry(bridgeGame);
         }
+    }
+
+    private ControllerCommand receiveGameCommand(final BridgeGame bridgeGame) {
+        if (isGameCleared(bridgeGame)) {
+            return ControllerCommand.QUIT;
+        }
+        return ControllerCommand.from(inputView.readGameCommand());
     }
 
     private boolean isGameCleared(final BridgeGame bridgeGame) {
