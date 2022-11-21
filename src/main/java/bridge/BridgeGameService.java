@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.domain.Player;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class BridgeGameService {
 
     public void init(){
         bridgeGame = makeBridgeGame();
+
+        move();
     }
 
     public BridgeGame makeBridgeGame(){
@@ -29,6 +32,11 @@ public class BridgeGameService {
     }
     public Player makePlayer(){
         return new Player();
+    }
+
+    public boolean move(){
+        String command = InputView.readMoving();
+        return bridgeGame.move(command);
     }
 
     private BridgeMaker getBridgeMaker(){
