@@ -1,13 +1,13 @@
-package bridge;
+package bridge.controller;
 
-import bridge.models.BridgeGame;
-import bridge.models.BridgeMaker;
-import bridge.models.BridgeNumberGenerator;
-import bridge.models.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.utils.ErrorMessage;
 import bridge.utils.Setting;
-import bridge.views.InputView;
-import bridge.views.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Controller {
 
@@ -33,11 +33,10 @@ public class Controller {
             String direction = requestMovingDirection();
             bridgeGame.move(direction);
             outputView.printMap(bridgeGame, direction);
-            if (bridgeGame.isGameSuccess()) {
-                outputView.printResult(bridgeGame);
+            if (!bridgeGame.isGameContinue()) {
                 break;
             }
-        } while (bridgeGame.isGameContinue());
+        } while (bridgeGame.isGameSuccess());
     }
 
     public static String requestMovingDirection() {
@@ -50,7 +49,7 @@ public class Controller {
         }
     }
 
-    public static void restartGame(BridgeGame bridgeGame, OutputView outputView) {
+    public static void restartOrQuitGame(BridgeGame bridgeGame, OutputView outputView) {
         String gameCommand = requestGameCommand();
         if (gameCommand.equals(Setting.GAME_RESTART)) {
             bridgeGame.retry();

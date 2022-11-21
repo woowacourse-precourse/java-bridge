@@ -1,6 +1,6 @@
-package bridge.views;
+package bridge.view;
 
-import bridge.models.BridgeGame;
+import bridge.domain.BridgeGame;
 
 public class OutputView {
     private static final String START = "[";

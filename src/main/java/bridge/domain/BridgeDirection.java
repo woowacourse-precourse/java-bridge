@@ -1,4 +1,4 @@
-package bridge.models;
+package bridge.domain;
 
 public enum BridgeDirection {
     UP("U", 1),

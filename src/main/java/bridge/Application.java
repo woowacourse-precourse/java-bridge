@@ -1,7 +1,8 @@
 package bridge;
 
-import bridge.models.BridgeGame;
-import bridge.views.OutputView;
+import bridge.controller.Controller;
+import bridge.domain.BridgeGame;
+import bridge.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -9,10 +10,10 @@ public class Application {
         do {
             OutputView outputView = new OutputView();
             Controller.startRound(bridgeGame, outputView);
-            if (bridgeGame.isGameSuccess()) {
-                break;
+            if (!bridgeGame.isGameContinue()) {
+                Controller.restartOrQuitGame(bridgeGame, outputView);
             }
-            Controller.restartGame(bridgeGame, outputView);
+            Controller.restartOrQuitGame(bridgeGame, outputView);
         } while (bridgeGame.isGameContinue());
     }
 }
