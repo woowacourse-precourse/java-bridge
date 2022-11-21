@@ -26,18 +26,18 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public boolean readMoving(List<String> moves) {
-        String moveString = Console.readLine();
-        validator.isValidMove(moveString);
-        return (moveString.equals("U"));
+    public String readMoving() {
+        String move = Console.readLine();
+        validator.isValidMove(move);
+        return move;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public boolean readGameCommand() {
-        String commandString = Console.readLine();
-        validator.isValidCommand(commandString);
-        return (commandString.equals("R"));
+    public String readGameCommand() {
+        String command = Console.readLine();
+        validator.isValidCommand(command);
+        return command;
     }
 }
