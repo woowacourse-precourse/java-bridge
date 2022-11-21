@@ -29,6 +29,11 @@ public class Command {
         return command.equals(RESTART_COMMAND) || command.equals(QUIT_COMMAND);
     }
 
+    public static boolean isRestart(Command command) {
+        return command.toString()
+                .equals(RESTART_COMMAND);
+    }
+
     @Override
     public String toString() {
         return command;
