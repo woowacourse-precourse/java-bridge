@@ -14,7 +14,7 @@ public class Bridge {
         return this.bridgeAnswer.size();
     }
 
-    boolean checkAnswer(String movement, int movementCount) {
+    public boolean checkAnswer(String movement, int movementCount) {
         return this.bridgeAnswer.get(movementCount).equals(movement);
     }
 }
