@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserMove {
-    private int tryCount = 0;
+    private int tryCount = 1;
     private int moveCount = 0;
     private int userBridgeSize=0;
     private List<String> userLocation = new ArrayList<>();

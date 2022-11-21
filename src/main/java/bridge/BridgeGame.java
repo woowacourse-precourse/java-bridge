@@ -35,7 +35,7 @@ public class BridgeGame {
             String userMove=InputView.readMoving();
             user.moveUser(userMove);
             OutputView.printMap(user.getUserLocation(), bridgeMaker.getBridge().getBridgeAnswer());
-            if(!isBridge(bridgeMaker.getBridge().getBridgeAnswer().get(user.getMoveCount()))){
+            if(!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(user.getMoveCount()))){
                 isSuccess=false;
                 break;
             }
@@ -43,10 +43,13 @@ public class BridgeGame {
         }
         if(!isSuccess)
             askRetry();
+        if(isSuccess) {
+            meetEnd();
+        }
     }
 
-    public boolean isBridge(String bridgeShape){
-        if(user.getUserLocation().equals(bridgeShape))
+    public boolean isBridge(String currentUser, String currentBridge){
+        if(currentUser.equals(currentBridge))
             return true;
         return false;
     }
@@ -57,6 +60,7 @@ public class BridgeGame {
      */
     public void retry() {
         user.increaseTryCount();
+        isSuccess=true;
         move();
     }
 
