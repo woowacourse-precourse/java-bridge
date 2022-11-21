@@ -4,9 +4,13 @@ public class BridgeMoving {
 
     private final String moving;
 
-    public BridgeMoving(String moving) {
+    private BridgeMoving(String moving) {
         validateBridgeMoving(moving);
         this.moving = moving;
+    }
+
+    public static BridgeMoving createBridgeMoving(String moving){
+        return new BridgeMoving(moving);
     }
 
     public void validateBridgeMoving(String moving) {

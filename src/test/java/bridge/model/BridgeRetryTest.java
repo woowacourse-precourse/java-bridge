@@ -12,7 +12,7 @@ class BridgeRetryTest {
     @ParameterizedTest
     @ValueSource(strings = {"A","@#%@#","123","r","u","D","U"})
     void 이동_문자_형식_테스트(String moving){
-        assertThatThrownBy(() -> new BridgeRetry(moving))
+        assertThatThrownBy(() -> BridgeRetry.createBridgeRetry(moving))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

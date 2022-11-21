@@ -40,7 +40,7 @@ class BridgeComparatorTest {
         String expectedResult = "X";
         List<String> bridge = new ArrayList<>(List.of("D","U","D","D"));
         int location=0;
-        String moving = "D";
+        String moving = "U";
 
         //when
         String result = bridgeComparator.compareBridge(bridge, moving, 0);

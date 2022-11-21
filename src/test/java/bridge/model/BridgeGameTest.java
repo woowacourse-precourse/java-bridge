@@ -27,6 +27,7 @@ public class BridgeGameTest {
     void generateRetryCount(){
         //given
         int expectedResult=2;
+        bridgeGame = BridgeGame.createBridgeGame(3);
 
         //when
         bridgeGame.countRetry();
@@ -39,8 +40,9 @@ public class BridgeGameTest {
     @Test
     void generateEndPoint(){
         //given
-        bridgeGame = new BridgeGame(1);
+        bridgeGame =  BridgeGame.createBridgeGame(1);
         bridgeGame.move("U");
+        bridgeGame.countRetry();
 
         //when
         boolean found = bridgeGame.checkEndPoint();

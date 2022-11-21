@@ -35,14 +35,14 @@ public class BridgeGameController {
     private int start() {
         outputView.printInit();
         String size = inputView.readBridgeSize();
-        BridgeLength bridgeLength = new BridgeLength(size);
-        bridgeGame = new BridgeGame(bridgeLength.getLength());
+        BridgeLength bridgeLength = BridgeLength.createBridgeLength(size);
+        bridgeGame = BridgeGame.createBridgeGame(bridgeLength.getLength());
         return bridgeLength.getLength();
     }
 
     private void play() {
         String moving = inputView.readMoving();
-        BridgeMoving bridgeMoving = new BridgeMoving(moving);
+        BridgeMoving bridgeMoving = BridgeMoving.createBridgeMoving(moving);
         bridgeGame.move(moving);
     }
 
@@ -50,14 +50,14 @@ public class BridgeGameController {
         boolean retry=true;
         if(bridgeGame.isClosed()) {
             String retryOrClose = inputView.readGameCommand();
-            BridgeRetry bridgeRetry = new BridgeRetry(retryOrClose);
+            BridgeRetry bridgeRetry = BridgeRetry.createBridgeRetry(retryOrClose);
             retry = isRetryOrClose(size, retryOrClose);
         }
         return retry;
     }
 
     private boolean isRetryOrClose(int size, String retryOrClose) {
-        BridgeRetry bridgeRetry = new BridgeRetry(retryOrClose);
+        BridgeRetry bridgeRetry =  BridgeRetry.createBridgeRetry(retryOrClose);
         if (bridgeRetry.isRetry()) {
             bridgeGame.retry(size);
             return true;

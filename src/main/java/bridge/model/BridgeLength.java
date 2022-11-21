@@ -10,9 +10,13 @@ public class BridgeLength {
     private static final int MAX_LENGTH=20;
     private final int length;
 
-    public BridgeLength(String length) {
+    private BridgeLength(String length) {
         validateLength(length);
         this.length = Integer.parseInt(length);
+    }
+
+    public static BridgeLength createBridgeLength(String length){
+        return new BridgeLength(length);
     }
 
     public int getLength() {

@@ -20,13 +20,17 @@ public class BridgeGame {
     private int location;
     private int retryCount;
 
-    public BridgeGame(int size) {
+    private BridgeGame(int size) {
         this.location = INIT_LOCATION;
         this.retryCount = INIT_RETRY_COUNT;
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
         bridgeComparator = new BridgeComparator();
-        bridgeMap = new BridgeMap(size);
+        bridgeMap = BridgeMap.createBridgeMap(size);
+    }
+
+    public static BridgeGame createBridgeGame(int size){
+        return new BridgeGame(size);
     }
 
     public int getRetryCount() {
@@ -82,7 +86,7 @@ public class BridgeGame {
     public void retry(int size) {
         countRetry();
         initLocation();
-        bridgeMap = new BridgeMap(size);
+        bridgeMap =  BridgeMap.createBridgeMap(size);
     }
 
     private void initLocation() {

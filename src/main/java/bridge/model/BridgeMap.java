@@ -7,20 +7,27 @@ import java.util.List;
 public class BridgeMap {
 
     private static final String BLANK=" ";
-    private List<String> bridgeUpMap;
-    private List<String> bridgeDownMap;
+    private static List<String> bridgeUpMap;
+    private static List<String> bridgeDownMap;
 
-    public BridgeMap(int size) {
+    private static BridgeMap bridgeMap = null;
+
+    private BridgeMap(int size) {
         bridgeUpMap = new ArrayList<>(Collections.nCopies(size,BLANK));
         bridgeDownMap = new ArrayList<>(Collections.nCopies(size,BLANK));
     }
 
-    public List<String> getBridgeUpMap() {
+    public static BridgeMap createBridgeMap(int size){
+        return new BridgeMap(size);
+    }
+
+
+    public static List<String> getBridgeUpMap() {
         return Collections.unmodifiableList(bridgeUpMap);
 
     }
 
-    public List<String> getBridgeDownMap() {
+    public static List<String> getBridgeDownMap() {
         return Collections.unmodifiableList(bridgeDownMap);
     }
 

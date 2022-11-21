@@ -13,7 +13,7 @@ class BridgeMovingTest {
     @ParameterizedTest
     @ValueSource(strings = {"A","123","awda","u"})
     void 이동_문자_형식_테스트(String moving){
-        assertThatThrownBy(() -> new BridgeMoving(moving))
+        assertThatThrownBy(() ->  BridgeMoving.createBridgeMoving(moving))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

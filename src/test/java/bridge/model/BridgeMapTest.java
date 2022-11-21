@@ -17,7 +17,7 @@ class BridgeMapTest {
 
     @BeforeEach
     void setUp(){
-        bridgeMap = new BridgeMap(6);
+        bridgeMap = BridgeMap.createBridgeMap(6);
     }
 
     @DisplayName("이동한 곳에 해당 위칸 다리를 만들 수 있다.")

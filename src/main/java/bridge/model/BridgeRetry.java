@@ -4,10 +4,15 @@ public class BridgeRetry {
 
     private final String retry;
 
-    public BridgeRetry(String retry) {
+    private BridgeRetry(String retry) {
         validateRetry(retry);
         this.retry = retry;
     }
+
+    public static BridgeRetry createBridgeRetry(String retry){
+        return new BridgeRetry(retry);
+    }
+
     public boolean isRetry(){
         return retry.equals(Retry.RETRY.getDescription());
     }

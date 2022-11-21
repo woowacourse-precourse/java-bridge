@@ -15,7 +15,7 @@ class BridgeLengthTest{
     @ValueSource(strings = {"a","bc","$",".@#!#!"})
     void 다리_길이_숫자_예외_테스트(String length){
         assertThatThrownBy(() ->
-                new BridgeLength(length))
+                 BridgeLength.createBridgeLength(length))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,7 +24,7 @@ class BridgeLengthTest{
     @ValueSource(strings = {"0","1","2","21"})
     void 다리_길이_범위_예외_테스트(String length){
         assertThatThrownBy(() ->
-                new BridgeLength(length))
+                 BridgeLength.createBridgeLength(length))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

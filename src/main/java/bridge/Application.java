@@ -1,11 +1,8 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
-import bridge.model.BridgeMaker;
+import bridge.model.BridgeGame;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Application {
 
