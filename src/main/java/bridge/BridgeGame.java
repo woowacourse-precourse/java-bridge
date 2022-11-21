@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -28,13 +31,6 @@ public class BridgeGame {
     public void setLine(String stringOfFirstLine, String stringOfSecondLine) {
         firstLine += stringOfFirstLine;
         secondLine += stringOfSecondLine;
-        firstLine = trimLine(firstLine);
-        secondLine = trimLine(secondLine);
-    }
-
-    public String trimLine(String line) {
-        line = "[" + line.replaceAll("", " | ").substring(2, line.length() - 2) + "]";
-        return line;
     }
 
     /**
@@ -59,10 +55,10 @@ public class BridgeGame {
 
     public boolean checkAndSetLine(String setString, String input) {
         if (input.equals("U")) {
-            setLine("setString", " ");
+            setLine(setString, " ");
             return true;
         }
-        setLine(" ", "setString");
+        setLine(" ", setString);
         return false;
     }
 
