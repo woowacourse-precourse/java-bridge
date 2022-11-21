@@ -16,6 +16,8 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -177,14 +179,20 @@ class ApplicationTest extends NsTest {
     @Test
     void 다리이동결과_기능테스트_성공(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U"));
-        String result = bridgeGame.move(0, "U");
-        assertThat(result).isEqualTo("O");
+        Map<String, List<String>> currentMap;
+        currentMap = bridgeGame.move(0, "U");
+        assertThat(currentMap).isEqualTo(Map.of(
+                "U", List.of("O"),
+                "D", List.of(" ")));
     }
     @Test
     void 다리이동결과_기능테스트_실패(){
         bridgeGame = new BridgeGame(List.of("U", "D", "U"));
-        String result = bridgeGame.move(0, "D");
-        assertThat(result).isEqualTo("X");
+        Map<String, List<String>> currentMap;
+        currentMap = bridgeGame.move(0, "D");
+        assertThat(currentMap).isEqualTo(Map.of(
+                "U", List.of(" "),
+                "D", List.of("X")));
     }
     //endregion
 
