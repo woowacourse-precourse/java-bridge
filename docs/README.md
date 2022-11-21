@@ -2,15 +2,19 @@
 
 ## 기능 구현 목록
 
-- 총 다리 길이를 입력 받는다
-  - 다리를 생성한다
-- 이동할 칸을 선택한다 (위,아래 2가지)
-  - 실패 시 다시 시작할 지 묻는다
-    - 재시도 시 다시 진행한다
-    - 종료 시 결과를 출력한다
-  - 다음 칸을 진행한다
-    - 도착 시 게임 결과 이미지를 출력한다
-    - 성공 여부를 출력한다
+- [x] 총 다리 길이를 입력한다 - InputView.readBridgeSize()
+  - [x] 입력 오류 시 예외를 발생한다 - InputException.bridgeSizeInputError()
+- [x] 다리를 생성한다 - Initialization.init()
+- [x] 게임을 시작한다 - StartGame.startGame()
+  - [x] 이동할 칸을 입력한다 (위,아래 2가지) - InputView.readMoving()
+    - [x] 입력 오류 시 예외를 발생한다 - InputException.movingInputError()
+    - [x] 이동한다 - BridgeGame.move()
+      - [x] 실패 시 재시도 여부를 입력한다 - InputView.readGameCommand()
+        - [x] 입력 오류 시 예외를 발생한다 - InputException.gameCommandInputError()
+        - [x] 재시도 선택 시 다시 진행한다 - BridgeGame.retry()
+        - [x] 종료 선택 시 결과를 출력한다 - OutputView.printResult()
+      - [x] 실패가 아닐 경우 다음 칸을 진행한다 - StartGame.startGame()
+      - [x] 성공 시 결과를 출력한다 - OutputView.printResult()
 
 ## 🔍 진행 방식
 
