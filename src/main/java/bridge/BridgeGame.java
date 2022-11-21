@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.model.Bridge;
+import bridge.model.Player;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -8,9 +11,9 @@ public class BridgeGame {
     private Player player;
     private Bridge bridge;
 
-    public BridgeGame(Player player,Bridge bridge){
-        this.player=player;
-        this.bridge=bridge;
+    public BridgeGame(Player player, Bridge bridge) {
+        this.player = player;
+        this.bridge = bridge;
     }
 
     /**
@@ -33,19 +36,23 @@ public class BridgeGame {
         player.increaseAttempt();
     }
 
-    public boolean isSuccess(String nxtStep){
+    public boolean isSuccess(String nxtStep) {
         return bridge.isSuccess(player.getCurrentLocation(), nxtStep);
     }
 
-    public void lose(){
+    public boolean isFinish() {
+        return bridge.isFinish(player);
+    }
+
+    public boolean isLose(){
+        return player.isPlayerWin();
+    }
+
+    public void lose() {
         player.lose();
     }
 
-    public void win(){
+    public void win() {
         player.win();
-    }
-
-    public boolean isFinish(){
-        return bridge.isFinish(player);
     }
 }
