@@ -25,7 +25,7 @@ public class Bridge {
             throw new IllegalArgumentException("[ERROR] bridge size mismatch");
         }
         for (String b : bridge) {
-            Move.fromString(b);
+            Move.from(b);
         }
     }
 

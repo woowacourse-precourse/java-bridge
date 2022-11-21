@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.Objects;
-
 public enum Move {
     UP("U", 1),
     DOWN("D", 0)
@@ -14,14 +12,24 @@ public enum Move {
         this.number = number;
     }
 
-    public static Move fromString(String direction) {
+    public static Move from(String direction) {
         if("U".equals(direction) || "1".equals(direction)) {
             return Move.UP;
         }
         if("D".equals(direction) || "0".equals(direction)) {
             return Move.DOWN;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("[ERROR]");
+    }
+
+    public static Move from(int number) {
+        if (number == 0) {
+            return Move.DOWN;
+        }
+        if (number == 1) {
+            return Move.UP;
+        }
+        throw new IllegalArgumentException("[ERROR]");
     }
 
     public String getDirection() {

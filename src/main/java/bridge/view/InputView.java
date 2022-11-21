@@ -42,7 +42,7 @@ public class InputView {
     public Move readMoving() {
         printInputMovingMessage();
         String input = Console.readLine();
-        return Move.fromString(input);
+        return Move.from(input);
     }
 
     /**
