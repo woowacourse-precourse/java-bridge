@@ -23,7 +23,14 @@ public class BridgeMaker {
     }
 
     public String parseUpOrDownByNumber(int number) {
-        return null;
+        if (number == 0) {
+            return "D";
+        }
+
+        if (number == 1) {
+            return "U";
+        }
+        throw new IllegalArgumentException("[ERROR] 0이나 1만 변환가능합니다.");
     }
 
 }
