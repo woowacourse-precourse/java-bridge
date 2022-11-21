@@ -23,10 +23,9 @@ public class GamePlayer {
         crossingBridge();
     }
     private void crossingBridge() {
-        boolean failFlag = true;
         for(String space: this.bridge) {
-            failFlag = this.bridgeGame.move(inputView.readMoving(), space);
-            outputView.printMap(bridgeStatus.getStatus());
+            boolean failFlag = this.bridgeGame.move(inputView.readMoving(), space);
+            outputView.printMap(bridgeStatus.getUpBridgeStatus(), bridgeStatus.getDownBridgeStatus());
             if(!failFlag) {
                 inputView.readGameCommand();
                 break;

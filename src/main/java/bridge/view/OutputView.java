@@ -13,7 +13,13 @@ public class OutputView {
         System.out.println(IOMessage.START_GAME);
         System.out.println();
     }
-    public void printMap(List<String> bridgeStatus) {
+    public void printMap(List<String> upBridge, List<String> downBridge) {
+        printStatus(upBridge);
+        printStatus(downBridge);
+        System.out.println();
+    }
+
+    private void printStatus(List<String> bridgeStatus) {
         System.out.print(Game.BRIDGE_START);
         for(int i = 0; i < bridgeStatus.size(); i++) {
             System.out.print(bridgeStatus.get(i));
