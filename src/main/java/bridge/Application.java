@@ -22,6 +22,8 @@ public class Application {
         while (!bridgeGame.quit()) {
             playGame(bridgeGame, gameMap);
         }
+        GameResult gameResult = bridgeGame.gameResult();
+        outputView.printResult(gameResult, gameMap);
     }
 
     private static void playGame(BridgeGame bridgeGame, GameMap gameMap) {
@@ -29,7 +31,7 @@ public class Application {
         gameMap.draw(moveResult);
         outputView.printMap(gameMap);
         if (bridgeGame.end()) {
-            bridgeGame.retry(inputGameCommand());
+            bridgeGame.retry(inputGameCommand(), gameMap);
         }
     }
 

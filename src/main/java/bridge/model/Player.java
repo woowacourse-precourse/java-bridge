@@ -8,7 +8,7 @@ public class Player {
         initialize();
     }
 
-    private void initialize() {
+    public void initialize() {
         position = 0;
         retryCount++;
     }
@@ -22,5 +22,9 @@ public class Player {
 
     public boolean moveToEnd(Bridge bridge) {
         return bridge.end(position);
+    }
+
+    public int getRetryCount() {
+        return retryCount;
     }
 }

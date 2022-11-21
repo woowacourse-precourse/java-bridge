@@ -7,12 +7,13 @@ public enum BridgeGameExceptionMessage {
     COMMAND_NOT_MATCH("입력은 재시도: R, 종료: Q 여야만 합니다.");
 
     private final String message;
+    private static final String HEAD = "[ERROR] ";
 
     BridgeGameExceptionMessage(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return message;
+        return HEAD + message;
     }
 }

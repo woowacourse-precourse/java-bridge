@@ -4,6 +4,7 @@ import bridge.model.Bridge;
 import bridge.model.Direction;
 import bridge.model.DrawType;
 import bridge.model.GameCommand;
+import bridge.model.GameMap;
 import bridge.model.GameStatus;
 import bridge.model.MoveResult;
 import bridge.model.Player;
@@ -35,11 +36,11 @@ public class BridgeGame {
 
     public void changeStatusByMoveResult(MoveResult moveResult) {
         if (moveResult.compareDrawType(DrawType.FAIL)) {
-            changeStatus(GameStatus.END);
+            setStatus(GameStatus.FAIL);
             return;
         }
         if (player.moveToEnd(bridge)) {
-            changeStatus(GameStatus.QUIT);
+            setStatus(GameStatus.COMPLETE);
         }
     }
 
@@ -48,18 +49,37 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(GameCommand command) {
+    public void retry(GameCommand command, GameMap gameMap) {
+        if (command == GameCommand.Q) {
+            setStatus(GameStatus.FAIL_QUIT);
+            return;
+        }
+        initialize(gameMap);
     }
 
-    private void changeStatus(GameStatus status) {
+    private void initialize(GameMap gameMap) {
+        player.initialize();
+        setStatus(GameStatus.PLAYING);
+        gameMap.initialize();
+    }
+
+    public GameResult gameResult() {
+        return new GameResult(complete(), player.getRetryCount());
+    }
+
+    private void setStatus(GameStatus status) {
         this.status = status;
     }
 
     public boolean end() {
-        return status == GameStatus.END;
+        return status.end();
     }
 
     public boolean quit() {
-        return status == GameStatus.QUIT;
+        return status.quit();
+    }
+
+    private boolean complete() {
+        return status.complete();
     }
 }
