@@ -1,30 +1,41 @@
 package bridge.view;
 
+import bridge.service.TypeChange;
+import bridge.service.Valification;
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public String readBridgeSize() {
+    private final Valification valification;
+    private final TypeChange typeChange;
+
+    public InputView(Valification valification, TypeChange typeChange) {
+        this.valification = valification;
+        this.typeChange = typeChange;
+    }
+
+    private String readLine() {
         return Console.readLine();
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    public int readBridgeSize() {
+        int size = typeChange.ChangeStringToInteger(readLine());
+        valification.verifyBridgeSize(size);
+
+        return size;
+    }
+
     public String readMoving() {
-        return Console.readLine();
+        String move = readLine();
+        valification.verifyUorD(move);
+
+        return move;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return Console.readLine();
+        String retry = readLine();
+        valification.verifyQorR(retry);
+
+        return retry;
     }
 }
