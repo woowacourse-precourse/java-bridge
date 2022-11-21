@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +11,28 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        try {
+            OutputView.printBridgeSize();
+            int size = validateIsNumeric(Console.readLine());
+            validateCorrectRange(size);
+            return size;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
+    }
+
+    private int validateIsNumeric(String inputSize) throws IllegalArgumentException {
+        if (!inputSize.matches("^[0-9]*$")) {
+            throw new IllegalArgumentException("[ERROR] 3~20 사이의 양의 정수를 입력해주세요");
+        }
+        return Integer.parseInt(inputSize);
+    }
+
+    private void validateCorrectRange(int size) {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException("[ERROR] 3~20 사이의 양의 정수를 입력해주세요");
+        }
     }
 
     /**

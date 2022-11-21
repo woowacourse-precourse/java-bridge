@@ -3,6 +3,7 @@ package bridge;
 import java.util.List;
 
 public class BridgeGameController {
+
     private final InputView inputView;
     private List<String> bridge;
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -20,7 +21,6 @@ public class BridgeGameController {
         OutputView.printStartBridgeGame();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
-
 
 
 }
