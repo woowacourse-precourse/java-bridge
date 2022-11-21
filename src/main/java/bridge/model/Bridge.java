@@ -50,4 +50,8 @@ public class Bridge {
     public int getBridgeLastIndex() {
         return bridge.size() - 1;
     }
+
+    public boolean sameAs(List<Plate> otherBridge) {
+        return bridge.equals(otherBridge);
+    }
 }

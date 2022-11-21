@@ -1,9 +1,10 @@
 package bridge.model;
 
+import bridge.util.Rules;
+
 import java.util.List;
 
 public class BridgeGame {
-
     private Bridge bridge;
     private Player player;
 
@@ -28,24 +29,15 @@ public class BridgeGame {
         player.newTry();
     }
 
-    public void victory() {
-        player.victory();
+    public boolean isVictory() {
+        List<Plate> playerPath = player.getPlayerPath();
+        return bridge.sameAs(playerPath);
     }
 
     public boolean isSuccess() {
         int currentIndex = player.getPlayerPosition();
         Plate currentPlate = player.getCurrentPlate();
         return bridge.possibleNextStep(currentIndex, currentPlate);
-    }
-
-    public boolean isEndOfBridge() {
-        int currentIndex = player.getPlayerPosition();
-        int lastIndex = bridge.getBridgeLastIndex();
-        return currentIndex == lastIndex;
-    }
-
-    public boolean isVictory() {
-        return player.isVictory();
     }
 
     public int getTryCount() {

@@ -12,8 +12,6 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeGame bridgeGame = new BridgeGame();
         BridgeGameController controller = new BridgeGameController(inputView, outputView, bridgeGame);
-        controller.startNewGame();
-        controller.createNewBridge();
-        controller.play();
+        controller.run();
     }
 }

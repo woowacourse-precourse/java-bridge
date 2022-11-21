@@ -59,12 +59,11 @@ public class OutputView {
     public void printResult(boolean isVictory, int tryCount, List<Plate> playerPath) {
         System.out.println(NOTICE_RESULT);
         printMap(isVictory, playerPath);
+        String successOrFail = RESULT_FAIL;
         if (isVictory) {
-            System.out.println(NOTICE_RESULT_VICTORY + RESULT_SUCCESS);
+            successOrFail = RESULT_SUCCESS;
         }
-        if (!isVictory) {
-            System.out.println(NOTICE_RESULT_VICTORY + RESULT_FAIL);
-        }
+        System.out.println(NOTICE_RESULT_VICTORY + successOrFail);
         System.out.println(NOTICE_RESULT_TRY_COUNT + tryCount);
     }
 
