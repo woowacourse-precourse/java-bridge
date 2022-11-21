@@ -59,6 +59,7 @@ public class GameController {
         restartChecker = bridgeGame.retry(inputController.setRestart());
         if (restartChecker) {
             totalCount++;
+            userAnswer = new UserAnswer();
         }
     }
 }
