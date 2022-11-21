@@ -20,13 +20,9 @@ public class Controller {
 
     public void play() {
         outputView.printGameStart();
-
         Bridge bridge = generateBridge();
-
         Long playerId = bridgeGame.generatePlayer();
-
         crossBridgePlayer(playerId, bridge, getPlayerMoving());
-
         while (!isGameClear(bridgeGame.getGameResult(playerId, bridge.getSize())) && isRetry(playerId)) {
             crossBridgePlayer(playerId, bridge, getPlayerMoving());
         }
