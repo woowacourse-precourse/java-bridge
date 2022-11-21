@@ -34,8 +34,8 @@ public class User {
     }
 
     public void revive() {
-        userPosition=0;
-        aliveUser=true;
+        userPosition = 0;
+        aliveUser = true;
     }
 
     private void movingValidation() {

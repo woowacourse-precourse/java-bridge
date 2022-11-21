@@ -13,6 +13,6 @@ public class StringTest {
         StringBuilder test = new StringBuilder();
         test.append("test");
 
-        assertThat(String.format("[%s]",test)).isEqualTo("[test]");
+        assertThat(String.format("[%s]", test)).isEqualTo("[test]");
     }
 }

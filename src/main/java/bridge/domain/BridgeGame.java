@@ -47,7 +47,7 @@ public class BridgeGame {
     }
 
     public GameResult getGameResult() {
-        return new GameResult(user.getUserState(),successGame(),numberOfAttempts);
+        return new GameResult(user.getUserState(), successGame(), numberOfAttempts);
     }
 
     private boolean successGame() {
