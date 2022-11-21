@@ -1,17 +1,17 @@
 package bridge.domain.game;
 
-import static bridge.value.RecordValue.INCREMENT;
-import static bridge.value.RecordValue.INIT;
+import static bridge.value.RecordValue.RECORD_INCREMENT;
+import static bridge.value.RecordValue.RECORD_INIT;
 
 public class GameRecord {
     private int retryCount;
 
     public GameRecord() {
-        this.retryCount = INIT.getValue();
+        this.retryCount = RECORD_INIT.getValue();
     }
 
     public void addRetryCount() {
-        this.retryCount += INCREMENT.getValue();
+        this.retryCount += RECORD_INCREMENT.getValue();
     }
 
     public int getRetryCount() {
