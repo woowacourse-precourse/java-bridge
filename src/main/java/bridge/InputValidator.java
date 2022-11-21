@@ -10,9 +10,11 @@ public class InputValidator {
     public static String getValidateInput(InputType inputType) {
         if (inputType == InputType.BRIDGE) return checkValidateBridge(getLine());
         if (inputType == InputType.MOVE) return checkValidateMove(getLine());
-        if (inputType == InputType.REPLAY) return "";
+        if (inputType == InputType.REPLAY) return checkValidateRePlay(getLine());
         return null;
     }
+
+
     public static String getLine(){
         try{
             return Console.readLine();
@@ -43,6 +45,13 @@ public class InputValidator {
     public static String checkValidateMove(String input){
         if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException(Message.BRIDGE_MOVE_INPUT_ERROR);
+        }
+        return input;
+    }
+
+    public static String checkValidateRePlay(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException(Message.GAME_REPLAY_INPUT_ERROR);
         }
         return input;
     }
