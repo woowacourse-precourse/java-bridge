@@ -91,16 +91,20 @@ public class Controller {
 
     public void result(int inputCount) {
         if (inputCount != bridge.size()) {
-            String command = getCommand();
-            if (bridgeGame.retry(command)) {
-                run();
-            }
-            if (!bridgeGame.retry(command)) {
-                outputView.printResult(movingRoute, "실패", gameCount);
-            }
+            fail();
         }
         if (inputCount == bridge.size()) {
             outputView.printResult(movingRoute, "성공", gameCount);
+        }
+    }
+
+    private void fail() {
+        String command = getCommand();
+        if (bridgeGame.retry(command)) {
+            run();
+        }
+        if (!bridgeGame.retry(command)) {
+            outputView.printResult(movingRoute, "실패", gameCount);
         }
     }
 
