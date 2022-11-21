@@ -6,8 +6,6 @@ import static bridge.utils.message.ErrorMessage.BLANK_VALUE;
 import static bridge.utils.message.ErrorMessage.INVALID_VALUE;
 import static bridge.utils.message.ErrorMessage.LOWERCASE_VALUE;
 
-import java.util.Objects;
-
 public class MovingValidator implements Validator {
     @Override
     public void validate(String inputValue) {
@@ -31,10 +29,7 @@ public class MovingValidator implements Validator {
     }
 
     private boolean isLowercaseValue(String inputValue) {
-        String lowercaseUpCommand = UP.getCommand().toLowerCase();
-        String lowercaseDownCommand = DOWN.getCommand().toLowerCase();
-
-        return Objects.equals(inputValue, lowercaseUpCommand) || Objects.equals(inputValue, lowercaseDownCommand);
+        return UP.isLowerCaseCommand(inputValue) || DOWN.isLowerCaseCommand(inputValue);
     }
 
     private void checkInvalidMoving(String inputValue) {
@@ -45,6 +40,6 @@ public class MovingValidator implements Validator {
     }
 
     private boolean isValidMoving(String inputValue) {
-        return Objects.equals(inputValue, UP.getCommand()) || Objects.equals(inputValue, DOWN.getCommand());
+        return UP.isValidCommand(inputValue) || DOWN.isValidCommand(inputValue);
     }
 }
