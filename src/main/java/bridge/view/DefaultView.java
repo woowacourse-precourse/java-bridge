@@ -11,11 +11,16 @@ public class DefaultView implements View {
 
     public void render() {
         outputWelcome();
+        inputBridgeSize();
     }
 
     private void outputWelcome() {
         outputView.printWelcome();
         System.out.println();
+    }
+
+    private void inputBridgeSize() {
+        outputView.printReadBridgeSize();
     }
 
 }
