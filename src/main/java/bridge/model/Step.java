@@ -11,7 +11,7 @@ public enum Step {
     DOWN_SUCCESS(" O ",(safeZone,direction) -> safeZone.equals("D") && direction.equals("D")),
     DOWN_FAIL(" X ",(safeZone,direction) -> safeZone.equals("D") && direction.equals("U"));
 
-    private final String value;
+    public final String value;
     private final BiPredicate<String,String> matchCase;
 
     Step(String value, BiPredicate<String,String> matchCase){
