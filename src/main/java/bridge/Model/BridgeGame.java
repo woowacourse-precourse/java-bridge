@@ -1,32 +1,32 @@
 package bridge.Model;
 
-import bridge.*;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
+import bridge.GameController;
+import bridge.VisualizeController;
 
 import java.util.List;
 import java.util.Stack;
-/**
- * View 코드를 사용하지 말라는 것으로 보아 Model 이다.
- * 따라서 리팩토링이 필요하다.
- * 그렇다면 게임 진행에 필요한 데이터를 저장하고 수정하는 공간으로 만들어야 한다.
- * **/
+
 public class BridgeGame {
     public int idx;
-    public int runCount=1;
+    public int runCount = 1;
     public static List<String> bridge;
     public static Stack<String> user = new Stack<>();
     public static String upperResult = "[]";
     public static String lowerResult = "[]";
 
     public static int size;
+
     public BridgeGame() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
-        size = new InputView().readBridgeSize();
+        GameController.callReadBridgeSize();
         new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(BridgeGame.size);
         run(runCount);
-        lowerResult="[]";
-        upperResult="[]";
+        lowerResult = "[]";
+        upperResult = "[]";
     }
 
     public void run(int runCount) {
@@ -38,7 +38,7 @@ public class BridgeGame {
             new OutputView().printMap();
         } while (runCondition(user, bridge));
         if (idx == size) {
-            new OutputView().printResult(true,runCount);
+            new OutputView().printResult(true, runCount);
             return;
         }
         retry();
@@ -58,13 +58,13 @@ public class BridgeGame {
 
     public void retry() {
         if (new InputView().readGameCommand().equals("Q")) {
-            new OutputView().printResult(false,runCount);
-            lowerResult="[]";
-            upperResult="[]";
+            new OutputView().printResult(false, runCount);
+            lowerResult = "[]";
+            upperResult = "[]";
             return;
         }
-        lowerResult="[]";
-        upperResult="[]";
+        lowerResult = "[]";
+        upperResult = "[]";
         runCount++;
         run(runCount);
     }
