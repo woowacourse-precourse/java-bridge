@@ -22,6 +22,20 @@ class ProgressMapTest {
 	}
 
 	@Test
+	@DisplayName("성공 시 정상적으로 맵을 업데이트 하는지 테스트")
+	void updateMapMoveTest() {
+		List<List<String>> expect = new ArrayList<>();
+		expect.add(List.of("O", " ", " "));
+		expect.add(List.of(" ", "O", "O"));
+
+		progressMap.updateProgressMap(upInput, moveSuccess);
+		progressMap.updateProgressMap(downInput, moveSuccess);
+		progressMap.updateProgressMap(downInput, moveSuccess);
+
+		assertEquals(expect, progressMap.getProgressMap());
+	}
+
+	@Test
 	@DisplayName("실패 시 정상적으로 맵을 업데이트 하는지 테스트")
 	void updateMapMoveFailedTest() {
 		List<List<String>> expect = new ArrayList<>();
@@ -68,17 +82,4 @@ class ProgressMapTest {
 
 		assertEquals(expect, progressMap.getMapSize());
 	}
-
-	@Test
-	@DisplayName("이동에 실패했을 때 이동 실패 로직이 발동하는지 체크")
-	void moveFailLogicTest() {
-		boolean expect = true;
-
-		progressMap.updateProgressMap(upInput, moveSuccess);
-		progressMap.updateProgressMap(downInput, moveFail);
-
-		assertEquals(expect, progressMap.isMoveFailed());
-	}
-
-
 }
