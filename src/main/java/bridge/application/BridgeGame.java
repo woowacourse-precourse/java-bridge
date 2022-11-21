@@ -3,6 +3,7 @@ package bridge.application;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeType;
 import bridge.domain.Result;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,12 +51,12 @@ public class BridgeGame {
         validateMoveCommand(command);
 
         if (bridge.get(position).equals(command)) {
-            Result result = Result.of(bridge.subList(0, position + 1), true, isEndOfBridge(), gameCount);
+            Result result = Result.of(this, true, isEndOfBridge());
             continueGame();
             return result;
         }
         terminateGame();
-        return Result.of(bridge.subList(0, position + 1), false, false, gameCount);
+        return Result.of(this, false, false);
     }
 
     private void validateGame() {
@@ -79,7 +80,7 @@ public class BridgeGame {
         if (bridge.size() == position + 1) {
             terminate = true;
         }
-        position++; // terminate 가 true 라면 position 의 크기가 성공의 여부로 작용할 수 있다.
+        position++;
     }
 
     private void terminateGame() {
@@ -95,5 +96,13 @@ public class BridgeGame {
         gameCount++;
         position = 0;
         terminate = false;
+    }
+
+    public List<String> getCurrentBridge() {
+        return new ArrayList<>(bridge.subList(0, position + 1));
+    }
+
+    public int getGameCount() {
+        return gameCount;
     }
 }

@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.application.BridgeGame;
 import java.util.List;
 
 public class Result {
@@ -9,15 +10,15 @@ public class Result {
     private final boolean victory;
     private final int gameCount;
 
-    private Result(List<String> bridge, boolean survive, boolean victory, int gameCount) {
-        this.bridge = bridge;
+    private Result(BridgeGame bridgeGame, boolean survive, boolean victory) {
+        this.bridge = bridgeGame.getCurrentBridge();
+        this.gameCount = bridgeGame.getGameCount();
         this.survive = survive;
         this.victory = victory;
-        this.gameCount = gameCount;
     }
 
-    public static Result of(List<String> bridge, boolean survive, boolean victory, int gameCount) {
-        return new Result(bridge, survive, victory, gameCount);
+    public static Result of(BridgeGame bridgeGame, boolean survive, boolean victory) {
+        return new Result(bridgeGame, survive, victory);
     }
 
     public List<String> getBridge() {
@@ -53,6 +54,9 @@ public class Result {
         if (victory != result.victory) {
             return false;
         }
+        if (gameCount != result.gameCount) {
+            return false;
+        }
         return bridge.equals(result.bridge);
     }
 
@@ -61,6 +65,7 @@ public class Result {
         int result = bridge.hashCode();
         result = 31 * result + (survive ? 1 : 0);
         result = 31 * result + (victory ? 1 : 0);
+        result = 31 * result + gameCount;
         return result;
     }
 }
