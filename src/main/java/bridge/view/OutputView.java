@@ -12,6 +12,7 @@ public class OutputView {
     private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private static final String GAME_RESULT_SUCCESS_MESSAGE = "게임 성공 여부: %s";
     private static final String GAME_RESULT_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
+    private static final String PRINT_BRIDGE_SEPARATOR = " | ";
 
     public void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
@@ -43,5 +44,30 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    private String getPrintBridge(List<String> bridge, BridgeStatus bridgeStatus, GameResult result) {
+        StringBuilder bridgeString = new StringBuilder();
+        for (int i = 0; i < bridge.size(); i++) {
+            String now = getTextByBridgeStatus(bridge.get(i), bridgeStatus.getCommand(), result.isSuccess());
+            now += addSeparator(i, bridge.size());
+            bridgeString.append(now);
+        }
+        return bridgeString.toString();
+    }
+
+    private String addSeparator(int index, int size) {
+        if (index != size - 1) {
+            return PRINT_BRIDGE_SEPARATOR;
+        }
+        return "";
+    }
+
+    private String getTextByBridgeStatus(String nowText, String bridgeStatus, boolean isSuccess) {
+        if (!nowText.equals(bridgeStatus) && !isSuccess) {
+            return "X";
+        }
+        if (nowText.equals(bridgeStatus)) {
+            return "O";
+        }
+        return " ";
     }
 }
