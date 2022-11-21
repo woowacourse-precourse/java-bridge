@@ -28,8 +28,7 @@ public class BridgeMaker {
     }
 
     public String makerUpDownBridge() {
-        int bridgeRandomNumber = bridgeNumberGenerator.generate();
-        if (bridgeRandomNumber == 1) {
+        if (bridgeNumberGenerator.generate() == 1) {
             return "U";
         }
         return "D";

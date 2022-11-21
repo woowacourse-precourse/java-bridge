@@ -12,14 +12,11 @@ import java.util.List;
  */
 public class InputView {
     private static int bridgeSize;
-    private static List<String> bridge;
-    private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-    public void readBridgeSize() {
+    public int readBridgeSize() {
         bridgeSize = Integer.parseInt(Console.readLine());
         validateSizeNumber(bridgeSize);
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+        return bridgeSize;
     }
 
     /**
