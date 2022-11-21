@@ -17,7 +17,7 @@ public class UserInputValidator {
 
 	public String runDecisionValidator(String decision) throws IllegalArgumentException {
 		if (isInvalidInput(decisionPattern, decision)) {
-			throw new IllegalArgumentException(MOVE_INPUT.getMessage());
+			throw new IllegalArgumentException(DECISION_INPUT.getMessage());
 		}
 		return decision;
 	}

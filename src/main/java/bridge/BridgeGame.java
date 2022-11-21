@@ -42,8 +42,12 @@ public class BridgeGame {
 		return GameState.SELECT_GAME_COMMAND;
 	}
 
-	public void selectGameContinue(String decision) {    // selectGameContinue호출하는데서 Input입력으로 주기
-
+	public GameState selectGameContinue(String decision) {
+		if (decision.equals("R")) {
+			retry();
+			return GameState.CONTINUATION;
+		}
+		return GameState.END;
 	}
 
 	/**
@@ -52,9 +56,7 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public void retry() {    // GameState.retry일때
-		//	사용자 list초기화
-		// 총 시도횟수 업데이트
-		// GameState에서 맨트 출력하기
+		// retry호출하는 곳에서 멘트출력
 		userPlayer.initUserPlayInformation();
 	}
 
