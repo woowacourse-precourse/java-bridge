@@ -8,6 +8,7 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.currentStatus = gameStatus.CONTINUE;
+        this.attemptCount++;
     }
 
     public void move(String direction) {
