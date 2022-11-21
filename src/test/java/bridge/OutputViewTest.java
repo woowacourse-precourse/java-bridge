@@ -28,7 +28,7 @@ class OutputViewTest {
             bridgeGame.move("U");
             bridgeGame.move("D");
             bridgeGame.move("D");
-            assertThat(outputView.printMap(bridgeGame))
+            assertThat(outputView.getMapLines(bridgeGame))
                     .containsExactly("[   | O | O ]"
                             , "[ O |   |   ]");
         });
@@ -40,7 +40,7 @@ class OutputViewTest {
         assertSimpleTest(() -> {
             bridgeGame.move("U");
             bridgeGame.move("U");
-            assertThat(outputView.printMap(bridgeGame))
+            assertThat(outputView.getMapLines(bridgeGame))
                     .containsExactly("[   | X ]"
                             , "[ O |   ]");
         });
