@@ -4,15 +4,15 @@
 ## 기능 
 ### 입력
 - [x] 자동으로 생성할 다리 길이를 입력 받는다. - InputView#readBridgeSize()
-  - [ ] 3 이상 20 이하의 숫자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.
+  - [x] 3 이상 20 이하의 숫자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.
 - [x] 라운드마다 플레이어가 이동할 칸을 입력 받는다. U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있으며 - InputView#readMoving()
-  - [ ] 올바른 값이 아니면 예외 처리한다.
+  - [x] 올바른 값이 아니면 예외 처리한다.
 - [x] 게임 재시작/종료 여부를 입력 받는다. R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있으며 - InputView#readGameCommand()
-  - [ ] 올바른 값이 아니면 예외 처리한다.
+  - [x] 올바른 값이 아니면 예외 처리한다.
 
 ### 출력
 - [x] 게임시작 문구 - BridgeGame#BridgeGame()
-- [ ] 게임종료 문구
+- [x] 게임종료 문구
 - [x] 사용자가 이동할 때마다 다리 건너기 결과의 출력 형식은 실행 결과 예시를 참고한다. - OutputView#printMap()
   - [x] 이동할 수 있는 칸을 선택한 경우 O 표시 
   - [x] 이동할 수 없는 칸을 선택한 경우 X 표시
@@ -39,8 +39,8 @@
   - [x] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다. - BridgeGame#total_round
 
 ### 에러처리
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-  - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+  - [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 
 ## 조건 
