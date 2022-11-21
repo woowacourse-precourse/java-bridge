@@ -6,6 +6,7 @@ public enum ErrorEnum {
     INVALID_BRIDGE_INDEX("[ERROR] 다리의 인덱스 범위를 벗어났습니다."),
 
     INVALID_DIRECTION_INPUT("[ERROR] U 또는 D를 입력 해야 합니다."),
+    INVALID_BRIDGE_GAME_MOVE_STATUS("[ERROR] 이동하려면 RUNNING 상태여야 합니다."),
     ;
     private final String message;
 

@@ -1,9 +1,12 @@
 package bridge.game;
 
+import static bridge.exception.ErrorEnum.INVALID_BRIDGE_GAME_MOVE_STATUS;
+import static bridge.exception.ErrorEnum.INVALID_DIRECTION_INPUT;
 import static bridge.game.BridgeGameStatus.FINISH;
 import static bridge.game.BridgeGameStatus.RUNNING;
 import static bridge.game.BridgeGameStatus.STOP;
 
+import bridge.validation.Validator;
 import java.util.List;
 
 /**
@@ -29,20 +32,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String direction) {
-        validateMove(direction);
+        Validator.validateStatusAtMove(status);
+        Validator.validateDirectionInput(direction);
         int currentIndex = currentBridge.size();
         String answer = answerBridge.getDirectionAt(currentIndex);
 
         matchBridge(answer, direction);
-    }
-
-    private void validateMove(String direction) {
-        if (!status.equals(RUNNING)) {
-            throw new IllegalStateException("[ERROR]");
-        }
-        if (!direction.equals("U") && !direction.equals("D")) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
     }
 
     private void matchBridge(String answer, String direction) {
