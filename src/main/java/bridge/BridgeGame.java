@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridge;
+    public final List<String> bridge;
     private final List<String> nowBridge;
 
     public BridgeGame(List<String> bridge) {
@@ -36,8 +36,10 @@ public class BridgeGame {
     public MoveResult move(String userInput) {
         nowBridge.add(userInput);
         if (userInput.equals(bridge.get(nowBridge.size() - 1))) {
-            MoveResult moveResult = new MoveResult(MOVERESULT_FLAG_VALID, nowBridge);
-            return moveResult;
+            if(nowBridge.size() == bridge.size()) {
+                return new MoveResult(MOVERESULT_FLAG_FULL, nowBridge);
+            }
+            return new MoveResult(MOVERESULT_FLAG_VALID, nowBridge);
         }
         return new MoveResult(MOVERESULT_FLAG_INVALID, nowBridge);
     }
