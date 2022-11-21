@@ -1,6 +1,8 @@
-package bridge.exception;
+package bridge.domain;
 
 import bridge.domain.Direction;
+import bridge.exception.BridgeError;
+import bridge.exception.ErrorException;
 
 public class Moving {
     private final String movingInput;

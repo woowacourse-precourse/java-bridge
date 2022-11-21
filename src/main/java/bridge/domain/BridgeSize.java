@@ -1,4 +1,7 @@
-package bridge.exception;
+package bridge.domain;
+
+import bridge.exception.BridgeError;
+import bridge.exception.ErrorException;
 
 public class BridgeSize {
     private static final int MIN_BRIDE_SIZE = 3;

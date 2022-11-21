@@ -1,8 +1,8 @@
 package bridge.view;
 
-import bridge.exception.BridgeSize;
-import bridge.exception.GameCommand;
-import bridge.exception.Moving;
+import bridge.domain.BridgeSize;
+import bridge.domain.GameCommand;
+import bridge.domain.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

@@ -1,4 +1,7 @@
-package bridge.exception;
+package bridge.domain;
+
+import bridge.exception.BridgeError;
+import bridge.exception.ErrorException;
 
 public class GameCommand {
     private static final String RESTART_GAME = "R";
