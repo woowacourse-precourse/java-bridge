@@ -1,9 +1,12 @@
 package bridge.domain;
 
 
+import bridge.util.Constant;
+import bridge.util.Validator;
+
 public enum SafeSpot {
-    DOWN(0,"D"),
-    UP(1,"U");
+    DOWN(0, Constant.DOWN),
+    UP(1, Constant.UP);
 
     private final int locationNum;
     private final String location;
@@ -13,12 +16,13 @@ public enum SafeSpot {
         this.location = location;
     }
 
-    public static String locationOf(int locationNum){
-        for (SafeSpot spot : SafeSpot.values()){
-            if (locationNum == spot.locationNum){
+    public static String locationOf(int locationNum) {
+        Validator.validateLocationNum(locationNum);
+        for (SafeSpot spot : SafeSpot.values()) {
+            if (locationNum == spot.locationNum) {
                 return spot.location;
             }
         }
-        throw new IllegalArgumentException("존재하지 않는 위치 숫자입니다");
+        throw new IllegalArgumentException(Constant.SPOTNAME_NOTING);
     }
 }
