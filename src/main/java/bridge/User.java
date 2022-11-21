@@ -51,4 +51,8 @@ public class User {
     public int getUserSize() {
         return nowBridgeLength;
     }
+
+    public List<String> getUserBridge() {
+        return userBridge;
+    }
 }
