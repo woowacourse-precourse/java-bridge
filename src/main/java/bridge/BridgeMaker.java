@@ -10,6 +10,9 @@ public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
+    private final int MIN_BRIDGE_SIZE = 3;
+    private final int MAX_BRIDGE_SIZE = 20;
+
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
@@ -28,18 +31,18 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             if (bridgeNumberGenerator.generate() == 0) {
-                bridge.add("D");
+                bridge.add(InputMatcher.DOWNSIDE_OF_BRIDGE.sideOfBridge);
                 continue;
             }
-            bridge.add("U");
+            bridge.add(InputMatcher.UPSIDE_OF_BRIDGE.sideOfBridge);
         }
 
         return bridge;
     }
 
     private void validateNumberSize(int size) throws IllegalArgumentException {
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        if (size < MIN_BRIDGE_SIZE || size > MAX_BRIDGE_SIZE) {
+            throw new IllegalArgumentException(String.format("[ERROR] 다리 길이는 %s부터 %s 사이의 숫자여야 합니다.", MIN_BRIDGE_SIZE, MAX_BRIDGE_SIZE));
         }
     }
 }

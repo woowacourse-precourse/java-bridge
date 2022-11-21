@@ -22,20 +22,21 @@ public class InputView {
         int bridgeSize = 0;
         try {
             bridgeSize = readStringAndConvertToInt();
-        } catch (NoSuchElementException e) {
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자만 입력해주세요.");
             return readBridgeSize();
         }
         System.out.println();
         return bridgeSize;
     }
 
-    private int readStringAndConvertToInt() throws NoSuchElementException{
+    private int readStringAndConvertToInt() throws IllegalArgumentException {
         String userInput = Console.readLine();
         try{
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자만 입력해주세요.");
-            throw new NoSuchElementException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
     }
 

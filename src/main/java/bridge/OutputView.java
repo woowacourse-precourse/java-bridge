@@ -34,7 +34,6 @@ public class OutputView {
     public void printResult(Player player, Bridge bridge) {
         System.out.println("최종 게임 결과");
         printMap(bridge);
-        System.out.println();
         isGameSuccess(player, bridge);
         System.out.println(String.format("총 시도한 횟수: %d", player.getCountOfTry()));
     }

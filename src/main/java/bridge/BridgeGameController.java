@@ -4,17 +4,14 @@ public class BridgeGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-
-    Bridge bridge;
-    Player player;
-    BridgeGame bridgeGame;
+    private final BridgeGame bridgeGame;
 
     public BridgeGameController() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         inputView.showStartingMessage();
-        this.bridge = getBridge(bridgeMaker);
-        this.player = new Player();
+        Bridge bridge = getBridge(bridgeMaker);
+        Player player = new Player();
         this.bridgeGame = new BridgeGame(bridge, player);
     }
 
@@ -32,13 +29,13 @@ public class BridgeGameController {
         boolean gameContinueFlag = true;
         while (gameContinueFlag) {
             gameContinueFlag = playGame(bridgeGame);
-            outputView.printMap(bridge);
-            gameContinueFlag = AskToRestartOrEnd(bridgeGame, gameContinueFlag);
-            if (bridgeGame.ifUserReachedToEndOfTheBridge(bridge.getSize())) {
+            outputView.printMap(bridgeGame.getBridge());
+            gameContinueFlag = askToRestartOrEnd(bridgeGame, gameContinueFlag);
+            if (bridgeGame.isUserReachedToEndOfTheBridge(bridgeGame.getBridge().getSize())) {
                 break;
             }
         }
-        outputView.printResult(player, bridge);
+        outputView.printResult(bridgeGame.getPlayer(), bridgeGame.getBridge());
     }
 
     private boolean playGame(BridgeGame bridgeGame) {
@@ -50,13 +47,13 @@ public class BridgeGameController {
         }
     }
 
-    private boolean AskToRestartOrEnd(BridgeGame bridgeGame, boolean gameContinueFlag) {
+    private boolean askToRestartOrEnd(BridgeGame bridgeGame, boolean gameContinueFlag) {
         if (!gameContinueFlag) {
             try {
                 return bridgeGame.retry(inputView.readGameCommand());
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e);
-                return AskToRestartOrEnd(bridgeGame, gameContinueFlag);
+                return askToRestartOrEnd(bridgeGame, gameContinueFlag);
             }
         }
         return true;
