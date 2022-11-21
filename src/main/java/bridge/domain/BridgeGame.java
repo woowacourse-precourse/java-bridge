@@ -12,10 +12,10 @@ public class BridgeGame {
     private GameStatusType gameStatus;
 
     public BridgeGame(List<String> bridgeInfo) {
-        this.movingRecord = new ArrayList<>();
+        movingRecord = new ArrayList<>();
         this.bridgeInfo = bridgeInfo;
-        this.stageCount = 0;
-        this.gameStatus = GameStatusType.PLAYING;
+        stageCount = 0;
+        gameStatus = GameStatusType.PLAYING;
     }
 
     public void move(String moving) {
