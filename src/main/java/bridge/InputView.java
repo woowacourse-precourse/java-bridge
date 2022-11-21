@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -15,7 +17,7 @@ public class InputView {
         return StringToInteger(input);
     }
 
-    public int StringToInteger(String input) {
+    private int StringToInteger(String input) {
         return Integer.parseInt(input);
     }
 
@@ -23,7 +25,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        return Console.readLine();
     }
 
     /**
