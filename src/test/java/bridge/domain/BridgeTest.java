@@ -2,6 +2,9 @@ package bridge.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -38,5 +41,15 @@ public class BridgeTest {
     void checkIsBroken() {
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
         assertThat(bridge.isBroken(1, "D")).isTrue();
+    }
+
+    @DisplayName("다리 길이를 벗어나는 칸에 접근하면 예외처리한다")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 4, 10})
+    void accessInvalidSpace(int index) {
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        assertThatThrownBy(() -> bridge.isBroken(index, "U"))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 }
