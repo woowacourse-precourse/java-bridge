@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static bridge.MatchWord.Down;
+import static bridge.MatchWord.Up;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    //public static List<String> bridge = new ArrayList<>();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -26,11 +28,11 @@ public class BridgeMaker {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         for(int i=0;i<size;i++){
             int number = bridgeRandomNumberGenerator.generate();
-            if (number==0){  //0을 위칸으로
-                bridge.add("U");
+            if (number==Up.getValue()){  //0을 위칸으로
+                bridge.add(Up.getWord());
             }
-            else{
-                bridge.add("D");
+            else if(number== Down.getValue()){
+                bridge.add(Down.getWord());
             }
         }
         return bridge;
