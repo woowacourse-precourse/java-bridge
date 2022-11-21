@@ -37,4 +37,13 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private boolean isDigit(String size) {
+        try {
+            Integer.parseInt(size);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }

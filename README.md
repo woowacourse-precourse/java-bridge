@@ -101,7 +101,7 @@ BUILD SUCCESSFUL in 0s
     - [ ] public int readBridgeSize()
     - [ ] public String readMoving()
     - [ ] public String readGameCommand()
-    - [ ] private boolean isDigit(String size)
+    - [x] private boolean isDigit(String size)
 - [ ] **CLASS5. OutputView**
   - **Class Methods**
     - [ ] public void printMap(List<String> bridge, int currentUserPosition)
