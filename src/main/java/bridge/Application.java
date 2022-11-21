@@ -3,7 +3,7 @@ package bridge;
 import java.util.List;
 
 public class Application {
-    private static InputView userInput;
+    private static InputView stdin;
     private static OutputView stdout;
     private static int size;
     private static String moving;
@@ -13,7 +13,7 @@ public class Application {
     private static int limit = 0;
 
     private static void init() {
-        userInput = new InputView();
+        stdin = new InputView();
         stdout = new OutputView();
         size = initBridgeSize();
         bridgeGame = new BridgeGame(initBridge());
@@ -21,7 +21,7 @@ public class Application {
 
     private static int readValidBridgeSize() {
         try {
-            return userInput.readBridgeSize();
+            return stdin.readBridgeSize();
         } catch (IllegalArgumentException e) {
             ExceptionHandler.printException(e);
             return ExceptionHandler.ERROR;
@@ -31,11 +31,11 @@ public class Application {
     private static int initBridgeSize() throws IllegalStateException {
         limit = 0;
         int size = readValidBridgeSize();
-        while (size == ExceptionHandler.ERROR && limit <= Utils.LIMIT) {
+        while (size == ExceptionHandler.ERROR && !ExceptionHandler.exeedLimit(limit)) {
             limit++;
             size = readValidBridgeSize();
         }
-        if (limit > Utils.LIMIT) {
+        if (ExceptionHandler.exeedLimit(limit)) {
             throw new IllegalStateException("[ERROR] 잘못된 입력을 너무 많아 비정상 종료되었습니다.");
         }
         return size;
@@ -49,7 +49,7 @@ public class Application {
 
     private static String readValidMoving() {
         try {
-            return userInput.readMoving();
+            return stdin.readMoving();
         } catch (IllegalArgumentException e) {
             ExceptionHandler.printException(e);
             return null;
@@ -59,11 +59,11 @@ public class Application {
     private static String setNextMoving() throws IllegalStateException {
         limit = 0;
         String moving = readValidMoving();
-        while (moving == null && limit <= Utils.LIMIT) {
+        while (moving == null && !ExceptionHandler.exeedLimit(limit)) {
             limit++;
             moving = readValidMoving();
         }
-        if (limit > Utils.LIMIT) {
+        if (ExceptionHandler.exeedLimit(limit)) {
             throw new IllegalStateException("[ERROR] 잘못된 입력을 너무 많아 비정상 종료되었습니다.");
         }
         return moving;
@@ -80,7 +80,7 @@ public class Application {
 
     private static boolean startBridgeGame() {
         if (runBridgeGame() == Utils.FAIL) {
-            return userInput.readGameCommand().equals(Utils.RESTART);
+            return stdin.readGameCommand().equals(Utils.RESTART);
         }
         return false;
     }

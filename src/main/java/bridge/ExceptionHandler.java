@@ -7,6 +7,10 @@ public class ExceptionHandler {
         System.out.println(e.getMessage());
     }
 
+    public static boolean exeedLimit(int limit) {
+        return limit > Utils.LIMIT;
+    }
+
     public static void handleSizeException(int size) throws IllegalArgumentException {
         if (!Utils.isValidSize(size)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
