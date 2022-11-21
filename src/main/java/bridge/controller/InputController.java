@@ -18,7 +18,7 @@ public class InputController {
         }
     }
 
-    public int readAndParseBridgeSizeInput() {
+    private int readAndParseBridgeSizeInput() {
         MessageUtil.bridgeSizeInputMsg();
         String bridgeSizeInput = InputView.readBridgeSize();
         ParserUtil.parseBridgeSize(bridgeSizeInput);
@@ -36,7 +36,7 @@ public class InputController {
         }
     }
 
-    public Movement readAndParseMovementInput() {
+    private Movement readAndParseMovementInput() {
         MessageUtil.movementInputMsg();
         String directionInput = InputView.readMoving();
         ParserUtil.parseMovement(directionInput);
@@ -54,7 +54,7 @@ public class InputController {
         }
     }
 
-    public boolean readAndParseGameCommandInput() {
+    private boolean readAndParseGameCommandInput() {
         MessageUtil.retryCommandMsg();
         String retryCommandInput = InputView.readGameCommand();
         ParserUtil.parseGameCommand(retryCommandInput);
