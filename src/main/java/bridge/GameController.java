@@ -1,8 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static bridge.Validation.*;
 
 public class GameController {
@@ -67,10 +64,10 @@ public class GameController {
     }
 
     public boolean restartGame(BridgeGame bridgeGame, Bridge bridge) {
-        if (bridgeGame.checkGameClear(bridge)) {
+        if (bridgeGame.checkGameClear(bridge)) { // 게임 클리어면 종료
             return false;
         }
-        return checkRestart(bridgeGame);
+        return checkRestart(bridgeGame); // 게임 실패, 재시작이면 계속하기, 종료이면 종료
     }
     public boolean checkRestart(BridgeGame bridgeGame) {
         try {
