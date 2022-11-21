@@ -1,8 +1,8 @@
 package bridge;
 
-import bridge.domain.Bridge;
 import bridge.repository.BridgeResultData;
 import bridge.repository.MovingData;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,10 +15,11 @@ public class BridgeGame {
     private static final String RETRY_COMMAND = "R";
     private static final String QUIT_COMMAND = "Q";
 
-    private final Bridge bridge;
+    private final List<String> bridge;
 
-    public BridgeGame(int size) {
-        this.bridge = new Bridge(size);
+    public BridgeGame(int size, BridgeNumberGenerator bridgeNumberGenerator) {
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridge = bridgeMaker.makeBridge(size);
     }
 
     public static String getRetryCommand() {
@@ -53,7 +54,7 @@ public class BridgeGame {
     }
 
     public boolean movingIsWrong(String moving) {
-        return !bridge.getBridge().get(MovingData.getLastIndex()).equals(moving);
+        return !bridge.get(MovingData.getLastIndex()).equals(moving);
     }
 
     /**
@@ -79,6 +80,6 @@ public class BridgeGame {
     }
 
     public boolean winBridgeGame(String moving) {
-        return !movingIsWrong(moving) && bridge.getSize() == MovingData.getSize();
+        return !movingIsWrong(moving) && bridge.size() == MovingData.getSize();
     }
 }
