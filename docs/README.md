@@ -2,29 +2,35 @@
 
 ## 기능 목록
 
-- [ ] 게임 시작 메시지를 출력한다.
-- [ ] 다리 길이를 입력받기 위한 메시지를 출력한다.
-- [ ] 다리 길이를 입력 받는다.
-- [ ] 입력 받은 길이에 맞게 다리를 생성한다.
-- [ ] 플레이어가 이동할 칸을 알기 위해 메시지를 출력한다.
-- [ ] 플레이어가 이동할 칸을 입력 받는다. 
-- [ ] 해당 라운드의 결과를 출력한다.
-- [ ] 이동한 칸을 건널 수 있는지 없는지 확인한다
-  - [ ] 이동한 칸을 건널 수 있는 경우, 게임을 계속 진행한다.
-  - [ ] 이동한 칸을 건널 수 없는 경우, 게임의 재시작 여부를 입력받기 위한 메시지를 출력한다.
-  - [ ] 게임 재시작/종료 여부를 입력 받는다.
-  - [ ] 게임을 재시작한 경우, 게임을 다시 진행한다. 
-- [ ] 게임이 종료되면 게임의 성공 여부를 확인한다.
-- [ ] 최종 게임 결과를 출력한다.
+- [ ] 게임 시작 메시지를 출력한다. (view.OutputView.printStartMessage)
+- [ ] 게임의 한 단계를 시작한다. (controller.Controller.gameStageStart)
+  - [ ] 다리 길이를 입력받기 위한 메시지를 출력한다. (view.OutputView.printMessageForBridgeSize)
+  - [ ] 다리 길이를 입력 받는다. (view.InputView.readBridgeSize)
+    - [ ] 잘못된 값이 입력된 경우, 에러 메시지를 출력하고 다시 입력 받는다. (domain.Getter.getBridgeSize) 
+  - [ ] 입력 받은 길이에 맞게 다리를 생성한다. (BridgeMaker.makeBridge)
+  - [ ] 플레이어가 이동할 칸을 알기 위해 메시지를 출력한다. (view.OutputView.printMessageForMoving)
+  - [ ] 플레이어가 이동할 칸을 입력 받는다. (view.InputView.readMoving)
+    - [ ] 잘못된 값이 입력된 경우, 에러 메시지를 출력하고 다시 입력 받는다. (domain.Getter.getMoving)
+  - [ ] 한 칸을 이동시킨다. (domain.BridgeGame.move) 
+  - [ ] 이동시킨 후, 해당 라운드의 결과를 출력한다. (view.OutputView.printMap)
+  - [ ] 이동한 칸을 건널 수 있는지 없는지 확인한다 (domain.Judgement.checkResult)
+  - [ ] 확인한 결과에 따라 재시작 여부를 결정한다 (domain.BridgeGame.retry)
+    - [ ] 이동한 칸을 건널 수 있는 경우, 게임을 계속 진행한다. (controller.Controller.movingStart)
+    - [ ] 이동한 칸을 건널 수 없는 경우, 게임의 재시작 여부를 입력받기 위한 메시지를 출력한다. (view.OutputView.printMessageForTermination)
+    - [ ] 게임 재시작/종료 여부를 입력 받는다. (view.InputView.readGameCommand)
+      - [ ] 잘못된 값이 입력된 경우, 에러 메시지를 출력하고 다시 입력 받는다. (domain.Getter.getGameCommand) 
+  - [ ] 게임을 재시작한 경우, 게임을 다시 진행한다. (controller.Controller.gameStageStart)
+- [ ] 게임이 종료되면 최종 게임 결과를 출력한다. (view.OutputView.printResult)
+  - [ ] 게임의 성공 여부를 확인한다. (view.OutputView.checkFinalResult)
 
 
 
 ## 예외 처리 상황
 
-- [다리 길이] 입력 값이 숫자가 아닌 경우
-- [다리 길이] 입력 값이 3이상 20이하가 아닌 경우
-- [이동할 칸] 입력 값이 U 또는 D가 아닌 경우
-- [재시작 여부] 입력 값이 R 또는 Q가 아닌 경우
+- [다리 길이] 입력 값이 숫자가 아닌 경우 (error.Validator.validateIsDigit)
+- [다리 길이] 입력 값이 3이상 20이하가 아닌 경우 (error.Validator.validateRangeOfLength)
+- [이동할 칸] 입력 값이 U 또는 D가 아닌 경우 (error.Validator.validateMoving)
+- [재시작 여부] 입력 값이 R 또는 Q가 아닌 경우 (error.Validator.validateGameCommand)
 
 
 
