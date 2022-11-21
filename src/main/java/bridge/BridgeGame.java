@@ -6,6 +6,10 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static int attempt = 1;
+    private static String resultStatus = "";
+    private static String upBridge = "[ ";
+    private static String downBridge = "[ ";
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -14,6 +18,12 @@ public class BridgeGame {
      */
     public static boolean move(String upOrDown, List<String> bridge, int count) {
         String status = BridgeStatus.getStatus(upOrDown + bridge.get(count));
+        resultStatus += status;
+        if (count == 0) {
+            fillFirstBridge(upOrDown + bridge.get(count));
+            return false;
+        }
+        return fillBridge(count,bridge,upOrDown + bridge.get(count));
     }
 
     /**
