@@ -4,6 +4,7 @@ import bridge.commom.constant.GameState;
 import bridge.commom.constant.LocationTable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ public class BridgeHistory {
         this.bridgeLength = bridgeLength;
         this.history = history;
         this.retry = 1;
+        this.nowStage = 0;
     }
 
     public Map<String, List<String>> getHistory() {
@@ -43,6 +45,12 @@ public class BridgeHistory {
         return GameState.RUNNING;
     }
 
+    public void resetHistory() {
+        history = new HashMap<>();
+        nowStage = 0;
+        retry++;
+    }
+
     public void updateGameState(String command, boolean isSuccess) {
         updateHistory(command, isSuccess);
         nowStage++;
@@ -52,6 +60,17 @@ public class BridgeHistory {
         String alterCommand = LocationTable.getAlternativeKey(command);
         String checkShape = getCheckShape(isSuccess);
         addPage(command, alterCommand, checkShape);
+    }
+
+
+    private void addPage(String key, String alterKey, String checkShape) {
+        List<String> target = getPages(key);
+        List<String> another = getPages(alterKey);
+
+        target.add(checkShape);
+        another.add(" ");
+        history.put(key, target);
+        history.put(alterKey, another);
     }
 
     private String getCheckShape(boolean isSuccess) {
@@ -64,16 +83,6 @@ public class BridgeHistory {
 
     private List<String> getPages(String key) {
         return history.getOrDefault(key, new ArrayList<>());
-    }
-
-    private void addPage(String key, String alterKey, String checkShape) {
-        List<String> target = getPages(key);
-        List<String> another = getPages(alterKey);
-
-        target.add(checkShape);
-        another.add(" ");
-        history.put(key, target);
-        history.put(alterKey, another);
     }
 
     private boolean isSuccess() {

@@ -48,6 +48,10 @@ public class BridgeController {
         return userCommand.equals("R");
     }
 
+    public void restartGame() {
+        bridgeHistory.resetHistory();
+    }
+
     public void showResult() {
 
     }
