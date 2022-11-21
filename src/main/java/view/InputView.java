@@ -1,10 +1,10 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import util.BridgeSizeValidator;
+import util.validator.BridgeSizeValidator;
 import util.ConverterUtil;
-import util.GameCommandValidator;
-import util.MovingValidator;
+import util.validator.GameCommandValidator;
+import util.validator.MovingValidator;
 
 public class InputView {
     private static final InputView inputView = new InputView();
