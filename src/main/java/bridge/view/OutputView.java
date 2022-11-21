@@ -17,9 +17,6 @@ public class OutputView {
     private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private static final String GAME_STATE_MESSAGE = "게임 성공 여부: %s";
     private static final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
-    private static final String START_OF_BRIDGE_MESSAGE = "[";
-    private static final String END_OF_BRIDGE_MESSAGE = "]";
-    private static final String PARTITION_OF_BRIDGE_MESSAGE = "|";
 
 
     public void printStartingMessage() {
@@ -80,15 +77,15 @@ public class OutputView {
     }
 
     public void printStartOfBridge() {
-        System.out.print(START_OF_BRIDGE_MESSAGE);
+        System.out.print(BridgeState.START.getMark());
     }
 
     public void printEndOfBridge() {
-        System.out.println(END_OF_BRIDGE_MESSAGE);
+        System.out.println(BridgeState.END.getMark());
     }
 
     public void printPartitionOfBridge() {
-        System.out.print(PARTITION_OF_BRIDGE_MESSAGE);
+        System.out.print(BridgeState.PARTITION.getMark());
     }
 
 }

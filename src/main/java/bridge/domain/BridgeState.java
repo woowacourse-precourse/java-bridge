@@ -3,7 +3,10 @@ package bridge.domain;
 public enum BridgeState {
     CORRECT(" O "),
     WRONG(" X "),
-    NONE("   ");
+    NONE("   "),
+    START("["),
+    PARTITION("|"),
+    END("]");
 
     private String mark;
 
