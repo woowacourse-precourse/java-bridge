@@ -58,8 +58,8 @@ public class BridgeGameTest {
         void moveToImpossibleZone() {
             bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
 
-            String nextStep = "D";
-            InputStream in = new ByteArrayInputStream(nextStep.getBytes());
+            List<String> nextStep = new ArrayList<>(Arrays.asList("D"));
+            InputStream in = new ByteArrayInputStream(nextStep.get(0).getBytes());
             System.setIn(in);
 
             bridgeGame.move();
