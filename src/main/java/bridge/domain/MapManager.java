@@ -1,6 +1,8 @@
-package bridge.domain.game;
+package bridge.domain;
 
 import bridge.domain.Move;
+import bridge.domain.game.GameProgress;
+import bridge.domain.game.MoveResult;
 
 import java.util.List;
 import java.util.stream.Collectors;

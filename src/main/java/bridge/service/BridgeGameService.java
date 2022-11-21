@@ -4,7 +4,7 @@ import bridge.domain.Command;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameProgress;
 import bridge.domain.game.GameStatus;
-import bridge.domain.game.MapManager;
+import bridge.domain.MapManager;
 import bridge.dto.MapDto;
 import bridge.dto.ResultDto;
 
