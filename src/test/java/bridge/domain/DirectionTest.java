@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import static bridge.domain.Direction.UP;
 import static bridge.domain.Direction.toEnum;
 import static bridge.domain.Direction.toInitialLetter;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,5 +43,11 @@ class DirectionTest {
     @CsvSource({"U, UP", "D, DOWN"})
     void toEnum_메서드는_U나_D를_입력받는_경우_Direction_인스턴스를_반환한다(String letter, Direction direction) {
         assertThat(toEnum(letter)).isEqualTo(direction);
+    }
+
+    @ParameterizedTest(name = "UP일 때 {0}를 입력받으면 {1}를 반환한다")
+    @CsvSource({"UP, false", "DOWN, true"})
+    void isNotSameDirection_메서드는_입력한_방향이_다른_방향인지_boolean을_반환한다(Direction direction, boolean result) {
+        assertThat(UP.isNotSameDirection(direction)).isEqualTo(result);
     }
 }

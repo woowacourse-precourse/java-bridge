@@ -62,6 +62,7 @@
 - [x]  Direction 위 아래 방향을 표현하는 Enum
     - [x]  toInitialLetter -> 0과 1사이의 값을 받아 D와 U중 하나를 반환
     - [x]  toEnum -> D와 U를 입력받아 Enum 인스턴스를 반환
+    - [x]  isNotSameDirection -> 다른 방향인지 확인
 - [x]  AnswerBridge 다리를 표현하는 클래스
     - [x]  check -> 라운드와 방향을 입력받아 MoveResult를 반환
     - [x]  isLastRound -> 마지막 라운드인지 확인

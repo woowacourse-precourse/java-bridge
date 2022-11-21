@@ -31,4 +31,8 @@ public enum Direction {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_INITIAL_LETTER_MESSAGE));
     }
+
+    public boolean isNotSameDirection(Direction direction) {
+        return this != direction;
+    }
 }
