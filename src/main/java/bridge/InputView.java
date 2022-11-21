@@ -47,8 +47,6 @@ public class InputView {
         return false;
     }
 
-
-
     public boolean isBridgeMove(String bridge) {
         BridgeGame bridgeGame = new BridgeGame();
         String moving = readMoving(); // 이동할 칸 입력 요구
@@ -101,7 +99,13 @@ public class InputView {
         return false;
     }
 
-
+    // 재시도 검사
+    public boolean isGameCommand() {
+        BridgeGame bridgeGame = new BridgeGame();
+        String retry = readGameCommand(); // 재시도 여부 입력
+        boolean loopFlag = bridgeGame.retry(retry); // 재시도 검사
+        return loopFlag;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -124,5 +128,7 @@ public class InputView {
         ErrorMessage.inputRetryError();
         return false;
     }
+
+
 
 }
