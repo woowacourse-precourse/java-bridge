@@ -19,14 +19,14 @@ public class BridgeGameValidationTest {
     @DisplayName("이동 가능한 칸이지만 이동하지 않은 경우, 예외가 발생한다.")
     @Test
     public void validateMoveWhenAvailableTest() {
-        assertThatThrownBy(() -> bridgeGameValidation.validateMoveWhenAvailable("U", List.of("U"), List.of("X")))
+        assertThatThrownBy(() -> bridgeGameValidation.validateMoveWhenAvailable("U", "U", List.of("X")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("이동 불가능한 칸으로 이동한 경우, 예외가 발생한다.")
     @Test
     public void validateNotMoveWhenUnavailableTest() {
-        assertThatThrownBy(() -> bridgeGameValidation.validateNotMoveWhenUnavailable("U", List.of("D"), List.of("O")))
+        assertThatThrownBy(() -> bridgeGameValidation.validateNotMoveWhenUnavailable("U", "D", List.of("O")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
