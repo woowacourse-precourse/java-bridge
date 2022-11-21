@@ -29,7 +29,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = readLine();
-        if (!input.equals("U") || !input.equals("D")){
+        if (!input.equals("U") && !input.equals("D")){
             throw new IllegalArgumentException();}
         return input;
     }
@@ -39,7 +39,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = readLine();
-        if (!input.equals("R") || !input.equals("Q")){
+        if (!input.equals("R") && !input.equals("Q")){
             throw new IllegalArgumentException();}
         return input;
     }
