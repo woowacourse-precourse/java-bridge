@@ -42,8 +42,8 @@ public class Application {
         return checkDirection;
     }
 
-    public static boolean gameIsOverByWinning(User user, String direction, int size, List<String> bridge){
-        if(bridgeGame.checkGameIsOver(user, direction, size, bridge)){
+    public static boolean gameIsOverByWinning(User user, String direction, List<String> bridge){
+        if(bridgeGame.checkGameIsOver(user, direction, bridge)){
             outputView.printResult(user, direction, true, bridge, true);
             return true;
         }

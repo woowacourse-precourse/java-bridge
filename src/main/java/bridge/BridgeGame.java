@@ -32,8 +32,8 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean checkGameIsOver(User user, String moving, int size, List<String> bridge){
-        if(checkBridgeValueInUserPosition(user, moving, bridge) && user.getUserPosition() == size-1){
+    public boolean checkGameIsOver(User user, String moving, List<String> bridge){
+        if(checkBridgeValueInUserPosition(user, moving, bridge) && user.getUserPosition() == bridge.size() -1){
             return true;
         }
         return false;
