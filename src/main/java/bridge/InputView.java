@@ -1,6 +1,8 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -38,7 +40,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = Console.readLine();
+        Arrays.stream(BridgeCell.values())
+                .filter(cell -> cell.equals(moving))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR]: 잘못된 칸을 입력하셨습니다."));
+        return moving;
     }
 
     /**
