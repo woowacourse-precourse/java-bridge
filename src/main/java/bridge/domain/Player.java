@@ -27,11 +27,6 @@ public class Player {
         return path.size();
     }
 
-    public boolean compareWith(List<String> bridge) {
-        int index = path.size() - 1;
-        return path.get(index).equals(bridge.get(index));
-    }
-
     public boolean hasSucceeded(List<String> bridge) {
         return path.equals(bridge);
     }

@@ -7,11 +7,17 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridge;
+    private Player player;
     private int trial;
 
-    public BridgeGame(List<String> bridge) {
+    public BridgeGame(List<String> bridge, Player player) {
         this.bridge = bridge;
+        setPlayer(player);
         this.trial = 1;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     /**
@@ -19,9 +25,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(Player player, String direction) {
-        player.move(direction, bridge.get(player.getPathSize()));
-        return player.compareWith(bridge);
+    public boolean move(String direction, int round) {
+        String answer = bridge.get(round);
+        player.move(direction, answer);
+        return direction.equals(answer);
     }
 
     public int getTotalRounds() {
@@ -32,7 +39,11 @@ public class BridgeGame {
         return trial;
     }
 
-    public boolean hasSucceeded(Player player) {
+    public List<String> getMap() {
+        return player.generateMap();
+    }
+
+    public boolean hasSucceeded() {
         return player.hasSucceeded(bridge);
     }
 
