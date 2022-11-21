@@ -7,7 +7,7 @@ public class BridgeGame {
     private String[] lines;
 
     public BridgeGame() {
-        this.lines = new String[2];
+        this.lines = new String[]{"", ""};
     }
 
     public void resetAllLine() {
