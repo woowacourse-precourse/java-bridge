@@ -19,7 +19,7 @@ public class BridgeMapTest {
     private BridgeMap bridgeMap;
 
     @BeforeEach
-    private void setup() {
+    void setup() {
         bridgeMap = new BridgeMap();
     }
 
@@ -27,15 +27,15 @@ public class BridgeMapTest {
     @ParameterizedTest
     @CsvSource({"U,U,false,false,[ O | O ],[   |   ]", "U,U,false,true,[ O | X ],[   |   ]",
             "U,D,false,false,[ O |   ],[   | O ]", "U,D,false,true,[ O |   ],[   | X ]"})
-    public void 이동상태_테스트(String direction1, String direction2,
-            boolean status1, boolean status2, String upside, String downside) {
-        List<String> directions = List.of(direction1, direction2);
-        List<Boolean> gameStatus = List.of(status1, status2);
-
+    public void 이동상태_테스트(final String direction1, final String direction2,
+                                    final boolean status1, final boolean status2,
+                                            final String upside, final String downside) {
+        final List<String> directions = List.of(direction1, direction2);
+        final List<Boolean> gameStatus = List.of(status1, status2);
         for (int i = 0; i < directions.size(); i++) {
             bridgeMap.update(directions.get(i), gameStatus.get(i));
         }
-        String expected = upside + Message.NEW_LINE + downside + Message.NEW_LINE;
+        final String expected = upside + Message.NEW_LINE + downside + Message.NEW_LINE;
         assertThat(bridgeMap.toString()).isEqualTo(expected);
     }
 

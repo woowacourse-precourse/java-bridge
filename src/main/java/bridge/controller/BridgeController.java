@@ -13,7 +13,7 @@ public class BridgeController {
     private final BridgeService service;
 
     public BridgeController() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         service = new BridgeService();
         game = new BridgeGame(bridgeMaker.makeBridge(service.takeSize()));
     }
@@ -35,7 +35,7 @@ public class BridgeController {
 
     private void move() {
         while (game.inProgress()) {
-            String direction = service.decideDirection();
+            final String direction = service.decideDirection();
             game.move(direction);
             bridgeMap.update(direction, game.over());
             OutputView.printMap(bridgeMap);

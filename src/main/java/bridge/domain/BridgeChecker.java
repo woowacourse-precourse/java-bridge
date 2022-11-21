@@ -24,27 +24,27 @@ public class BridgeChecker {
         }
     }
 
-    public void validateMoving(String moving) {
+    public void validateMoving(final String moving) {
         if (!checkMovingValue(moving)) {
             throw new IllegalArgumentException(InputExceptionMessage.WRONG_MOVING);
         }
     }
 
-    public void validateGameCommand(String gameCommand) {
+    public void validateGameCommand(final String gameCommand) {
         if (!checkGameCommandValue(gameCommand)) {
             throw new IllegalArgumentException(InputExceptionMessage.WRONG_GAME_COMMAND);
         }
     }
 
-    private boolean checkBridgeSizeRange(int bridgeSize) {
+    private boolean checkBridgeSizeRange(final int bridgeSize) {
         return Checker.MINIMUM_BRIDGE_SIZE <= bridgeSize && bridgeSize <= Checker.MAXIMUM_BRIDGE_SIZE;
     }
 
-    private boolean checkMovingValue(String moving) {
+    private boolean checkMovingValue(final String moving) {
         return moving.equals(Moving.UP.getValue()) || moving.equals(Moving.DOWN.getValue());
     }
 
-    private boolean checkGameCommandValue(String gameCommand) {
+    private boolean checkGameCommandValue(final String gameCommand) {
         return gameCommand.equals(GameConstants.GAME_RETRY)
                 || gameCommand.equals(GameConstants.GAME_QUIT);
     }

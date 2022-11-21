@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.constant.Message.LogicExceptionMessage;
-import bridge.constant.enums.Moving;
 
 import java.util.List;
 
@@ -18,13 +17,12 @@ public class BridgeGameTest {
 
     private final int ATTEMPTS_COUNT_EXCEPTED = 10;
     private final int ITERATER_INITIALIZATION = 1;
-    private final int SUCCESSFUL_MOVING_NUMBERS = 2;
     private final BridgeMap bridgeMap = new BridgeMap();
     private BridgeGame bridgeGame;
 
     @BeforeEach
     void setup() {
-        List<String> bridge = List.of("U", "U");
+        final List<String> bridge = List.of("U", "U");
         bridgeGame = new BridgeGame(bridge);
     }
 
@@ -38,39 +36,25 @@ public class BridgeGameTest {
 
     @DisplayName("게임이 진행 중일 때 상태 확인 기능 테스트")
     @Test
-    public void 진행_게임_상태_확인_테스트() {
-        bridgeGame.move(Moving.UP.getValue());
-
-        boolean inProgressExcepted = true;
-        boolean overExcepted = false;
-        boolean successExcepted = false;
+     public void 진행_게임_상태_확인_테스트() {
+        final boolean inProgressExcepted = true;
+        final boolean overExcepted = false;
+        final boolean successExcepted = false;
 
         게임_상태_확인_기능들_테스트(inProgressExcepted, overExcepted,
                 successExcepted);
     }
 
-    @DisplayName("게임이 성공했을 때 상태 확인 기능 테스트")
-    @Test
-    public void 성공_게임_상태_확인_테스트() {
-        boolean inProgressExcepted = false;
-        boolean overExcepted = false;
-        boolean successExcepted = true;
+    @DisplayName("게임이 종료됐을 때 상태 확인 기능 테스트")
+    @ParameterizedTest
+    @CsvSource({"false,false,true,U,U", "false,true,false,U,D"})
+    public void 성공_게임_상태_확인_테스트(final boolean inProgressExcepted, final boolean overExcepted,
+            final boolean successExcepted, String direction1, String direction2) {
+        final List<String> directions = List.of(direction1, direction2);
 
-        for (int i = 0; i < SUCCESSFUL_MOVING_NUMBERS; i++) {
-            bridgeGame.move(Moving.UP.getValue());
+        for (String direction : directions) {
+            bridgeGame.move(direction);
         }
-        게임_상태_확인_기능들_테스트(inProgressExcepted, overExcepted,
-                successExcepted);
-    }
-
-    @DisplayName("게임이 실패했을 때 상태 확인 기능 테스트")
-    @Test
-    public void 실패_게임_상태_확인_테스트() {
-        boolean inProgressExcepted = false;
-        boolean overExcepted = true;
-        boolean successExcepted = false;
-        bridgeGame.move(Moving.DOWN.getValue());
-
         게임_상태_확인_기능들_테스트(inProgressExcepted, overExcepted,
                 successExcepted);
     }
@@ -78,8 +62,8 @@ public class BridgeGameTest {
     @DisplayName("게임 종료 시 성공 여부 반환 기능 테스트")
     @ParameterizedTest
     @CsvSource({"U,U,성공", "U,D,실패"})
-    public void 게임_성공_여부_반환_테스트(String direction1, String direction2,
-            String excepted) {
+    public void 게임_성공_여부_반환_테스트(final String direction1, final String direction2,
+            final String excepted) {
         bridgeGame.move(direction1);
         bridgeGame.move(direction2);
         assertThat(bridgeGame.successOrNot()).isEqualTo(excepted);
@@ -93,8 +77,8 @@ public class BridgeGameTest {
                 .hasMessage(LogicExceptionMessage.WRONG_USE_SUCCESS_OR_NOT);
     }
 
-    private void 게임_상태_확인_기능들_테스트(boolean inProgressExcepted,
-            boolean overExcepted, boolean successExcepted) {
+    private void 게임_상태_확인_기능들_테스트(final boolean inProgressExcepted,
+            final boolean overExcepted, final boolean successExcepted) {
         assertThat(bridgeGame.inProgress()).isEqualTo(inProgressExcepted);
         assertThat(bridgeGame.over()).isEqualTo(overExcepted);
         assertThat(bridgeGame.success()).isEqualTo(successExcepted);

@@ -14,7 +14,7 @@ public class BridgeService {
 
     public boolean retry() {
         try {
-            String retryOrNot = InputView.readGameCommand();
+            final String retryOrNot = InputView.readGameCommand();
             bridgeChecker.validateGameCommand(retryOrNot);
             return retryOrNot.equals(GameConstants.GAME_RETRY);
         } catch (IllegalArgumentException e) {
@@ -24,7 +24,7 @@ public class BridgeService {
 
     public String decideDirection() {
         try {
-            String direction = InputView.readMoving();
+            final String direction = InputView.readMoving();
             bridgeChecker.validateMoving(direction);
             return direction;
         } catch (IllegalArgumentException e) {
@@ -34,7 +34,7 @@ public class BridgeService {
 
     public int takeSize() {
         try {
-            String bridgeSize = InputView.readBridgeSize();
+            final String bridgeSize = InputView.readBridgeSize();
             bridgeChecker.validateBridgeSize(bridgeSize);
             return Integer.parseInt(bridgeSize);
         } catch (IllegalArgumentException e) {
