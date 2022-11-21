@@ -18,7 +18,20 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String choice) {
+        int currentPosition = record.size();
+        int stateCode = getStateCode(currentPosition, choice);
+        record.add(stateCode);
+    }
+
+    private int getStateCode(int position, String choice) throws IllegalArgumentException {
+        String state = bridge.get(position) + choice;
+        for (StateCode stateCode : StateCode.values()) {
+            if (state.equals(stateCode.getState())) {
+                return stateCode.getCode();
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 상태 - U 또는 D만 입력되어야함");
     }
 
     /**
@@ -31,7 +44,7 @@ public class BridgeGame {
         this.trial += 1;
     }
 
-    public void initialize (List<String> bridge){
+    public void initialize(List<String> bridge) {
         this.bridge = bridge;
         this.record = new ArrayList<>();
         this.trial = 1;
