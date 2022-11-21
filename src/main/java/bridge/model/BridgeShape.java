@@ -6,8 +6,8 @@ public enum BridgeShape {
     UP("U", 1),
     DOWN("D", 0);
 
-    private String bridgeShape;
-    private int bridgeRandomNumber;
+    private final String bridgeShape;
+    private final int bridgeRandomNumber;
 
     BridgeShape(String bridgeShape, int bridgeRandomNumber) {
         this.bridgeShape = bridgeShape;

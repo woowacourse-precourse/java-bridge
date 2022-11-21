@@ -84,9 +84,7 @@ public class BridgeGameController {
         return false;
     }
 
-    public void playGame() {
-        int count = 0;
-        int position;
+    public void playGame(int count, int position) {
         do {
             position = 0;
             count++;

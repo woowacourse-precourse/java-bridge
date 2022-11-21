@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println(Message.FINAL_GAME_RESULT_MESSAGE);
         System.out.println(bridge.getUpsideBridge().toString().replace(", ", "|"));
         System.out.println(bridge.getDownBridge().toString().replace(", ", "|"));
-        System.out.println(Message.GAME_RESULT_MESSAGE+successOrFail);
-        System.out.println(Message.TOTAL_TRY_COUNT_MESSAGE+count);
+        System.out.println(Message.GAME_RESULT_MESSAGE + successOrFail);
+        System.out.println(Message.TOTAL_TRY_COUNT_MESSAGE + count);
     }
 }

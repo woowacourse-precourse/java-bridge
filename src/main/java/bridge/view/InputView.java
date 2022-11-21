@@ -10,7 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private Parser parser = new Parser();
+    private final Parser parser = new Parser();
 
     /**
      * 다리의 길이를 입력받는다.
