@@ -16,14 +16,6 @@ public enum Key {
         return input.equals(U.getValue());
     }
 
-    public static boolean matchUp(Key input) {
-        return input == U;
-    }
-
-    public static boolean matchDown(Key input) {
-        return input == D;
-    }
-
     public static boolean matchEnd(String input) {
         return input.equals(Q.getValue());
     }
