@@ -16,7 +16,7 @@ public class RealTimeBridge {
         return realTimeBridge;
     }
 
-    public void makeRealTimeBridge(String userMove, String moveResult) {
+    private void makeRealTimeBridge(String userMove, String moveResult) {
         if (userMove.equals(Moving.UP.getValue())) {
             moveUpper(moveResult);
             return;
