@@ -11,7 +11,36 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGameInfo gameInfo) {
+        String top ="["+preBridge(gameInfo)[1]+nowBridge(gameInfo)[1]+"]";
+        String bottom ="["+preBridge(gameInfo)[0]+nowBridge(gameInfo)[0]+"]";
+        System.out.println(top);
+        System.out.println(bottom);
+    }
+    public String[] preBridge(BridgeGameInfo gameInfo){
+        String[] pre = new String[2];
+        pre[0]="";pre[1]="";
+        int position=gameInfo.getPosition();
+        int preIndex;
+        for(int i=0; i<position; i++){
+            preIndex=0;
+            if(gameInfo.getBridgeAt(i).equals("U")) preIndex=1;
+            pre[preIndex] += " O |";
+            pre[1-preIndex] += "   |";
+        }
+        return pre;
+    }
+    public String[] nowBridge(BridgeGameInfo gameInfo){
+        String[] now = new String[2];
+        String result=" X " ;
+        int index=0;
+        if(gameInfo.getBridgeAt(gameInfo.getPosition()).equals(gameInfo.getPlayer())){
+            result = " O ";
+        }
+        if(gameInfo.getPlayer().equals("U")) index=1;
+        now[index] = result;
+        now[1-index] = "   ";
 
+        return now;
     }
 
     /**

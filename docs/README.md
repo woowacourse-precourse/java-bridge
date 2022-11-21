@@ -47,3 +47,9 @@ input regex를 모은 enum
 ### retry
 
     player 의 위치를 초기화 시키고 총시도 횟수를 1회 증가 시킴
+
+# OutputView
+
+### printMap
+
+    현재까지 건넌 다리 상태를 출력

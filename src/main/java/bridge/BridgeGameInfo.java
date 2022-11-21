@@ -16,6 +16,9 @@ public class BridgeGameInfo {
         this.end = bridge.size()-1;
     }
 
+    public String getBridgeAt(int i){
+        return bridge.get(i);
+    }
     public int getPosition() {
         return position;
     }
