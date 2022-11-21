@@ -23,12 +23,12 @@ public class BridgeMaker {
         List<String> answerBridge = new ArrayList<>();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         for (int i = 0; i < size; i++) {
-            answerBridge.add(convertNumberToString(bridgeRandomNumberGenerator.generate()));
+            answerBridge.add(convertRandomNumberToString(bridgeRandomNumberGenerator.generate()));
         }
         return answerBridge;
     }
 
-    public String convertNumberToString(int number) {
+    public String convertRandomNumberToString(int number) {
         if (number == 1) {
             return "U";
         }
