@@ -8,17 +8,21 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public static List<String> result = new ArrayList<>();
+    static List<String> result = new ArrayList<>();
+    static List<String> bridge;
     static StringBuilder upResult;
     static StringBuilder downResult;
+
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * @param direction 사용자의 입력방향
-     * @param bridge 건너야하는 다리
      * @param index 현재 건너는 칸 수
      */
-    public static void move(String direction, List<String> bridge, int index) {
+    public static void move(String direction, int index) {
         String answer = bridge.get(index);
         result.add(direction);
         if (direction.equals(answer)) {
