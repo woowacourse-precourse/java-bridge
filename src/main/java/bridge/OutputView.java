@@ -17,15 +17,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> results) {
-        System.out.print("[");
+        System.out.print("[ ");
         for (int i = 0; i < results.size(); i++) {
-            System.out.println(results.get(i));
+            System.out.print(results.get(i));
             if (i == results.size() - 1) {
                 break;
             }
-            System.out.print("|");
+            System.out.print(" | ");
         }
-        System.out.print("]");
+        System.out.println(" ]");
     }
 
     /**
