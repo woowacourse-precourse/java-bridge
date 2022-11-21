@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.*;
 import bridge.validator.BridgeSizeValidator;
+import bridge.validator.GameCommandValidator;
 import bridge.validator.MoveCommandValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -14,8 +15,24 @@ public class BridgeGameController {
     BridgeGame bridgeGame;
 
     public void runGame() {
+        try {
+            repeatRound();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+        }
+    }
+
+    public void repeatRound() {
+        outputView.printGameStartMessage();
         bridgeGame = new BridgeGame(new BridgeWalker(new MoveRecord(), createBridgeByUserInputSize()));
-        RoundResult roundResult = RoundResult.PLAYING;
+        RoundResult roundResult;
+        do {
+            bridgeGame.retry();
+            roundResult = runRound();
+        } while (!roundResult.equals(RoundResult.CLEAR) && getGameCommand().equals(GameCommand.RESTART));
+        outputView.printResult(
+                bridgeGame.getClearDescription(), bridgeGame.getGameTryCountDescription(), bridgeGame.getMoveRecord()
+        );
     }
 
     public RoundResult runRound() {
@@ -38,5 +55,17 @@ public class BridgeGameController {
         MoveCommandValidator moveCommandValidator = new MoveCommandValidator();
         String userMove = moveCommandValidator.getValidCommand(inputView.readMoving());
         return userMove;
+    }
+
+    public GameCommand getGameCommand() {
+
+        if (bridgeGame.isClear()) {
+            return GameCommand.QUIT;
+        }
+        GameCommandValidator gameCommandValidator = new GameCommandValidator();
+        GameCommand gameCommand = GameCommand.findByCommand(
+                gameCommandValidator.getValidCommand(inputView.readGameCommand())
+        );
+        return gameCommand;
     }
 }
