@@ -12,6 +12,13 @@ public class Bridge {
         this.position = -1;
     }
 
+    boolean isEndOfBridge(){// bridgeIndex
+        if(position == bridge.size()){
+           return true;
+        }
+        return false;
+    }
+
     boolean isMovable(String moveCommand){ // U 1, D 2 : direction, bridgeIndex
         if(bridge.get(position).equals(moveCommand)){
             return true;

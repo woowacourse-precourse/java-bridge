@@ -32,4 +32,11 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isClear(MoveResult moveResult){
+        if(bridge.isEndOfBridge() && moveResult.equals(MoveResult.SUCCESS)){
+            return true;
+        }
+        return false;
+    }
 }
