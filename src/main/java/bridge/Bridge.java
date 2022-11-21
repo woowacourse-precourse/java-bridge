@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -7,11 +8,14 @@ public class Bridge {
     private static final int MIN_BRIDGE_SIZE =3;
     private static final int MAX_BRIDGE_SIZE =20;
     private int bridgeSize;
-    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
-    private List<Integer> crossAble;
+    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private List<Integer> crossAble = new ArrayList<>();
     public Bridge(String bridgeSize){
         this.bridgeSize = validate(bridgeSize);
         bridgeInit();
+    }
+    public List<Integer> getCrossAble(){
+        return crossAble;
     }
     private void bridgeInit(){
         for(int i=0;i<this.bridgeSize;i++){
