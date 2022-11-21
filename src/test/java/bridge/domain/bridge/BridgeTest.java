@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
@@ -42,6 +43,15 @@ class BridgeTest {
         assertThatThrownBy(() -> bridge.hasElementOf(direction, location))
                 .isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessageContaining("[ERROR] 다리의 길이를 벗어난 위치 값이 입력되었습니다.");
+    }
+
+    @DisplayName("isEnd 메소드에 위치를 입력하였을 때 bridge의 사이즈와 같은지 비교해서 반환하는지 확인")
+    @ParameterizedTest
+    @CsvSource({"3, false", "4, false", "5, true", "6, false"})
+    void isEnd_test(int location, boolean expected) {
+        boolean actual = bridge.isEnd(location);
+
+        assertThat(actual).isEqualTo(expected);
     }
 
     static Stream<Arguments> provideArgumentsForHasElementTest() {
