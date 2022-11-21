@@ -1,6 +1,9 @@
 package bridge.service;
 
+import bridge.type.MapComponentType;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BridgeMakerImpl implements BridgeMaker{
 
@@ -12,6 +15,9 @@ public class BridgeMakerImpl implements BridgeMaker{
 
     @Override
     public List<String> makeBridge(int size) {
-        return null;
+        return IntStream.range(0, size)
+                .map(count -> bridgeNumberGenerator.generate())
+                .mapToObj(MapComponentType::getMapComponent)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

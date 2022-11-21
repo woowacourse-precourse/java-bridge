@@ -1,8 +1,10 @@
 package bridge.controller;
 
 import static bridge.type.GameStateType.*;
+import static bridge.type.GameMessageType.*;
 
-import bridge.data.dto.viewDto.MessageViewDto;
+import bridge.data.dto.requestDto.GameInitRequestDto;
+import bridge.data.dto.responseDto.GameInitResponseDto;
 import bridge.service.BridgeGameService;
 import bridge.service.BridgeGameServiceImpl;
 import bridge.type.GameStateType;
@@ -21,6 +23,7 @@ public class BridgeGameController {
     private final OutputView outputView;
     private final Map<GameStateType, Runnable> gameStateMap;
     private GameStateType state;
+    private String sessionId;
 
 
     private BridgeGameController() {
@@ -40,6 +43,11 @@ public class BridgeGameController {
     }
 
     private void init() {
+        outputView.printMessage(INIT_MESSAGE);
+        outputView.printMessage(ASK_BRINDGE_SIZE_MESSAGE);
+        GameInitRequestDto requestDto = new GameInitRequestDto(inputView.readBridgeSize());
+        GameInitResponseDto responseDto = gameService.initGame(requestDto);
+        sessionId = responseDto.getSessionId();
         state = state.getNextState();
     }
 
@@ -77,7 +85,7 @@ public class BridgeGameController {
             try {
                 gameStateMap.get(state).run();
             } catch (IllegalArgumentException userMistake) {
-                outputView.printMessage(new MessageViewDto(userMistake.getMessage()));
+                outputView.printMessage(userMistake.getMessage());
             }
         }
     }
