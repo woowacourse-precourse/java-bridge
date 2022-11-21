@@ -4,6 +4,7 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeType;
 import bridge.domain.GameResult;
 import bridge.domain.Result;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,12 +46,12 @@ public class BridgeGame {
         validateMoveCommand(command);
 
         if (bridge.get(position).equals(command)) {
-            Result result =  new Result(bridge.subList(0, position), true, isEnd());
+            Result result =  Result.of(bridge.subList(0, position + 1), true, isEnd());
             continueGame();
             return result;
         }
         terminateGame();
-        return new Result(bridge.subList(0, position), false, false);
+        return Result.of(bridge.subList(0, position + 1), false, false);
     }
 
     /**
@@ -66,10 +67,10 @@ public class BridgeGame {
 
     public GameResult exitGame() {
         if (bridge.size() == position) {
-            Result result = new Result(bridge.subList(0, position - 1), true, true);
+            Result result = Result.of(new ArrayList<>(bridge), true, true);
             return GameResult.of(result, gameCount);
         }
-        Result result = new Result(bridge.subList(0, position), false, false);
+        Result result = Result.of(bridge.subList(0, position + 1), false, false);
         return GameResult.of(result, gameCount);
     }
 
