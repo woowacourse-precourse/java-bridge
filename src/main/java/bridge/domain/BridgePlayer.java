@@ -17,6 +17,7 @@ public class BridgePlayer {
     public boolean isLastMoveTypeNotSameAs(List<BridgeMoveType> bridgeMoveTypes) {
         validateBridgeSize(playerBridge);
         validateBridgeSize(bridgeMoveTypes);
+        validateOverRange(bridgeMoveTypes);
         int currentLocation = playerBridge.size() - 1;
         BridgeMoveType playerMoveType = playerBridge.get(currentLocation);
         BridgeMoveType bridgeMoveType = bridgeMoveTypes.get(currentLocation);
@@ -26,9 +27,7 @@ public class BridgePlayer {
     public boolean isAllMoveTypeSameAs(List<BridgeMoveType> bridgeMoveTypes) {
         validateBridgeSize(playerBridge);
         validateBridgeSize(bridgeMoveTypes);
-        if (playerBridge.size() != bridgeMoveTypes.size()) {
-            return false;
-        }
+        validateOverRange(bridgeMoveTypes);
         return compareAllMoveTypesSame(bridgeMoveTypes);
     }
 
@@ -54,8 +53,14 @@ public class BridgePlayer {
     }
 
     private void validateBridgeSize(List<BridgeMoveType> bridgeMoveTypes) {
-        if (bridgeMoveTypes.size() == 0) {
+        if (bridgeMoveTypes.isEmpty()) {
             throw new IllegalArgumentException(BRIDGE_SIZE_SIZE_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validateOverRange(List<BridgeMoveType> bridgeMoveTypes) {
+        if (playerBridge.size() > bridgeMoveTypes.size()) {
+            throw new IllegalStateException(PLAYER_BRIDGE_SIZE_OVER_RANGE_EXCEPTION.getMessage());
         }
     }
 }
