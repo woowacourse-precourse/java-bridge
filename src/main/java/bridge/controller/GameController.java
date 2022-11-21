@@ -8,7 +8,6 @@ import java.util.List;
 import static bridge.enums.Constant_BridgeGame.UP_SIDE_PROGRESS;
 import static bridge.enums.Constant_BridgeGame.DOWN_SIDE_PROGRESS;
 import static bridge.enums.Constant_BridgeGame.GAME_COMMAND_RETRY;
-import static bridge.enums.Constant_BridgeGame.GAME_COMMAND_QUIT;
 
 public class GameController {
 
@@ -48,6 +47,7 @@ public class GameController {
     }
 
     public void endGame() {
-        //TODO: 기능 추가
+        outputView.printResult(bridgeGame.getProgress().get(UP_SIDE_PROGRESS.get()), bridgeGame.getProgress().get(DOWN_SIDE_PROGRESS.get()));
+        outputView.printStatus(bridgeGame.result(), bridgeGame.getTryAttempt());
     }
 }
