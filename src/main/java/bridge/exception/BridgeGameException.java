@@ -11,8 +11,15 @@ public class BridgeGameException {
     private static final String ERROR = "[ERROR] ";
 
     public void validateBridgeSize(String input) {
+        validateBridgeInputIsNull(input);
         validateBridgeSizeOnlyContainsNumber(input);
         validateBridgeSizePermittedLength(input);
+    }
+
+    public void validateBridgeInputIsNull(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ERROR + "입력 값이 비었습니다.");
+        }
     }
 
     public void validateDirection(String input) {
