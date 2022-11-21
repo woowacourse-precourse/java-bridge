@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final String ERROR = "[ERROR] ";
     private static final String PASS = "O";
     private static final String FAIL = "X";
     private static final String NONE = " ";
@@ -92,5 +93,9 @@ public class OutputView {
         }
 
         System.out.println(BRIDGE_START + String.join(BRIDGE_DELIMITER, historyDirection) + BRIDGE_END);
+    }
+
+    public void printError(IllegalArgumentException iae) {
+        System.out.println(ERROR + iae.getMessage());
     }
 }

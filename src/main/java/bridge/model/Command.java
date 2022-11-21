@@ -27,7 +27,7 @@ public enum Command {
             }
         }
 
-        throw new IllegalArgumentException("[ERROR] 올바르지 않은 명령어입니다.");
+        throw new IllegalArgumentException(CommandError.INVALID_SYMBOL.getMessage());
     }
 
     public void exec(BridgeGame bridgeGame){

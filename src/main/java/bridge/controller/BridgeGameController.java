@@ -10,13 +10,13 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-public class BridgeController {
+public class BridgeGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
     private final BridgeMaker bridgeMaker;
 
-    public BridgeController() {
+    public BridgeGameController() {
         this.inputView =  new InputView();
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
@@ -36,10 +36,15 @@ public class BridgeController {
     }
 
     private void initGame() {
+        try {
         outputView.askSize();
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
         bridgeGame.setBridge(bridge);
+        } catch (IllegalArgumentException iae){
+            outputView.printError(iae);
+            initGame();
+        }
     }
 
     private void play() {
@@ -52,17 +57,27 @@ public class BridgeController {
     }
 
     private void askRetry() {
-        outputView.askRetry();
-        Command command = inputView.readGameCommand();
-        command.exec(bridgeGame);
+        try {
+            outputView.askRetry();
+            Command command = inputView.readGameCommand();
+            command.exec(bridgeGame);
+        }catch (IllegalArgumentException iae){
+            outputView.printError(iae);
+            askRetry();
+        }
     }
 
 
     private void move() {
-        outputView.askDirection();
-        Direction direction = inputView.readMoving();
-        bridgeGame.move(direction);
-        outputView.printHistory(bridgeGame.getHistory());
+        try {
+            outputView.askDirection();
+            Direction direction = inputView.readMoving();
+            bridgeGame.move(direction);
+            outputView.printHistory(bridgeGame.getHistory());
+        }catch (IllegalArgumentException iae){
+            outputView.printError(iae);
+            move();
+        }
     }
 
     private void end() {
