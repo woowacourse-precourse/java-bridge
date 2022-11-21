@@ -7,6 +7,7 @@
 - Domian
   - BridgeInform 클래스 입력값 테스트케이스 작성
   - BridgeInform 클래스 예외처리케이스 작성
+  - BridgeInform 클래스 기능 구현
   - BridgeMaker 클래스 up, down별 BridegeRandomNumberGenerator 랜덤값 토대로 결과값 리턴 함수
 - Controller
   - BridgeGame 클래스에서 View, Domain 연결해주고 필요한 로직 작성
@@ -23,7 +24,11 @@
 ## Domain기능목록
 - BridegeInform 클래스 
   1. 함수 및 예외처리 테스트 목록 
+     - 브리지 사이즈 입력값 범위 확인
+     - 브리지 방향 입력값 확인
+     - 브리지 종료 입력값 확인
   2. 클래스 필요 기능 목록
+     - 브리지 관련 정보 get, set 함수 구현
 - BridgeMaker 클래스
   1. 랜덤 함수 입력받아서 게임 결과값 출력
 ## Controller 기능 목록
