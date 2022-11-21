@@ -3,32 +3,16 @@ package bridge.game.context;
 import bridge.domain.bridge.Bridge;
 import bridge.game.BridgeGame;
 
-public class BridgeGameContext {
-    private BridgeGame bridgeGame;
-    private Integer repeatCount = 0;
-    private String cachedHistory;
+public interface BridgeGameContext {
+    void generateBridge(Bridge madeBridge);
 
-    public void generateBridge(Bridge madeBridge) {
-        this.bridgeGame = new BridgeGame(madeBridge);
-    }
+    BridgeGame getBridgeGame();
 
-    public BridgeGame getBridgeGame() {
-        return bridgeGame;
-    }
+    void plusRepeatCount();
 
-    public void plusRepeatCount() {
-        this.repeatCount += 1;
-    }
+    void writeHistory(final String resultMap);
 
-    public void writeHistory(final String resultMap) {
-        this.cachedHistory = resultMap;
-    }
+    String getCachedHistory();
 
-    public String getCachedHistory() {
-        return this.cachedHistory;
-    }
-
-    public Integer getRepeatCount() {
-        return this.repeatCount;
-    }
+    Integer getRepeatCount();
 }
