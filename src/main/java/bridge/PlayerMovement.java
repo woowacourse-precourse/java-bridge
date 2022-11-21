@@ -1,11 +1,24 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerMovement {
     private static final String UPPER_CHECK = "U";
     private static final String LOWER_CHECK = "D";
+    private final List<String> movement;
+
+    public PlayerMovement() {
+        movement = new ArrayList<>();
+    }
+
+    public List<String> getMovement() {
+        return movement;
+    }
 
     public void addMovement(String move) {
         validate(move);
+        movement.add(move);
     }
 
     private void validate(String move) {
