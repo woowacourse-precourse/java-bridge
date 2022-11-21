@@ -1,4 +1,4 @@
-package bridge;
+package type;
 
 import java.util.Arrays;
 
@@ -13,6 +13,10 @@ public enum BridgeType {
     BridgeType(String name, int number) {
         this.name = name;
         this.number = number;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static String findNameByNumber(int number) {
