@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.domain.Bridge;
 import bridge.domain.BridgeSize;
 import bridge.domain.MoveCommand;
 import bridge.service.BridgeGame;
@@ -30,7 +29,7 @@ public class BridgeGameController {
             String command = inputView.readGameCommand();
             new MoveCommand(command);
         } catch (IllegalArgumentException ie) {
-            OutputView.printErrorMessage(ie.getMessage());
+            outputView.printErrorMessage(ie.getMessage());
             insertMoveCommand();
         }
     }
@@ -40,7 +39,7 @@ public class BridgeGameController {
             String size = inputView.readBridgeSize();
             bridgeGame.createBridge(new BridgeSize(size));
         } catch (IllegalArgumentException ie) {
-            OutputView.printErrorMessage(ie.getMessage());
+            outputView.printErrorMessage(ie.getMessage());
             insertBridgeSize();
         }
     }

@@ -29,7 +29,7 @@ public class OutputView {
         System.out.println(START_MESSAGE);
     }
 
-    public static void printErrorMessage(String errorMessage) {
+    public void printErrorMessage(String errorMessage) {
         System.out.println(ERROR + SPACE + errorMessage);
     }
 }
