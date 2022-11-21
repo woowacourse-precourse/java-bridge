@@ -1,5 +1,7 @@
 package bridge;
 
+import controller.OutputController;
+
 import java.util.List;
 
 /**
@@ -28,6 +30,7 @@ public class BridgeGame {
 
     private static boolean fillFirstBridge(String checkFalse) { //여기서 다리를 완성하고 출력은 OutputView에서 해주고 싶은데
         fillOneBlcok(String.valueOf(resultStatus.charAt(0)),String.valueOf(resultStatus.charAt(1)));
+        OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
 
     }
 
