@@ -10,18 +10,18 @@ public class BridgeController {
 
     private final BridgeMap bridgeMap = new BridgeMap();
     private final BridgeGame game;
-    private final BridgeServices service;
+    private final BridgeService service;
 
     public BridgeController() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        service = new BridgeServices();
+        service = new BridgeService();
         game = new BridgeGame(bridgeMaker.makeBridge(service.takeSize()));
     }
 
     public void play() {
         OutputView.printGameStart();
         attemptGameClear();
-        OutputView.printResult(bridgeMap.getBridgeMap(),
+        OutputView.printResult(bridgeMap,
                 game.successOrNot(), game.getNumberOfAttempts());
     }
 
@@ -38,7 +38,7 @@ public class BridgeController {
             String direction = service.decideDirection();
             game.move(direction);
             bridgeMap.update(direction, game.over());
-            OutputView.printMap(bridgeMap.getBridgeMap());
+            OutputView.printMap(bridgeMap);
         }
     }
 }

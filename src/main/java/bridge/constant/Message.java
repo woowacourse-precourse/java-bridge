@@ -5,6 +5,7 @@ public final class Message {
     public static final String START_BRACKET = "[ ";
     public static final String END_BRACKET = " ]";
     public static final String VERTICAL_BAR = " | ";
+    public static final String NEW_LINE = "\n";
 
     public static final class InputExceptionMessage {
 

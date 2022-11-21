@@ -1,9 +1,9 @@
 package bridge.domain;
 
 import bridge.constant.Bridge;
+import bridge.constant.Message;
 import bridge.constant.enums.Moving;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BridgeMap {
@@ -16,9 +16,16 @@ public class BridgeMap {
                         new ArrayList<String>()));
     }
 
-    public List<List<String>> getBridgeMap() {
-        return List.of(Collections.unmodifiableList(bridgeMap.get(Bridge.MapConstants.UP_SIDE_INDEX)),
-                Collections.unmodifiableList(bridgeMap.get(Bridge.MapConstants.DOWN_SIDE_INDEX)));
+    @Override
+    public String toString() {
+        StringBuilder format = new StringBuilder();
+        for (List<String> side : bridgeMap) {
+            format.append(Message.START_BRACKET)
+                    .append(String.join(Message.VERTICAL_BAR, side))
+                            .append(Message.END_BRACKET)
+                                    .append(Message.NEW_LINE);
+        }
+        return format.toString();
     }
 
     public void update(String direction, boolean gameOver) {
