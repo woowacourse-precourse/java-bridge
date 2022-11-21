@@ -28,6 +28,12 @@ public class InputView {
         return readMoving();
     }
 
+    public static String readGameCommand() {
+        String input = getCommandInput(RETRY_INPUT, RESTART, QUIT, ERROR_RESTART_INPUT);
+        if (input != null) return input;
+        return readGameCommand();
+    }
+
     private static String getCommandInput(String printInput, String command1, String command2, String errorName) {
         System.out.println(printInput);
         String input = Console.readLine();
