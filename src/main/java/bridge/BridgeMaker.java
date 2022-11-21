@@ -26,8 +26,8 @@ public class BridgeMaker {
     public List<String> transferNumberToAlphabet(List<Integer> numberBridge) {
         List<String> alphabetBridge = new ArrayList<>();
         for (int i = 0; i < numberBridge.size(); i++) {
-            if (numberBridge.get(i) == 0) {alphabetBridge.add("U");}
-            if (numberBridge.get(i) == 1) {alphabetBridge.add("D");}
+            if (numberBridge.get(i) == 0) {alphabetBridge.add("D");}
+            if (numberBridge.get(i) == 1) {alphabetBridge.add("1");}
         }
         return alphabetBridge;
     }
