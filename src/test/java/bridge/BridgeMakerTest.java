@@ -28,7 +28,7 @@ class BridgeMakerTest {
 
     @DisplayName("생성된 bridge가 U와 D로만 이루어져 있는지 테스트")
     @Test
-    public void convertUpOrDown() {
+    public void convertUpOrDownTest() {
         //given
         int size = 10;
         List<String> list = List.of("U", "D");
