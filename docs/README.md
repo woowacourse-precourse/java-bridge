@@ -78,8 +78,7 @@
 - [x] BridgeNumberGenerator 인터페이스 구현체 반환
 - [x] BridgeMaker 클래스 생성 및 반환
 - [x] 길이에 맞는 Bridge 생성 및 반환
-- [ ] BridgeGame 클래스 생성 및 반환
-- 
+- [x] BridgeGame 클래스 생성 및 반환
 
 ## 🚀 예외 처리 사항
 - [x] 다리 길이 입력시 숫자인지 아닌지 체크

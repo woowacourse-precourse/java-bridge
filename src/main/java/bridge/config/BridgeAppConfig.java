@@ -1,5 +1,6 @@
 package bridge.config;
 
+import bridge.game.BridgeGame;
 import bridge.util.BridgeMaker;
 import bridge.util.BridgeNumberGenerator;
 import bridge.util.BridgeRandomNumberGenerator;
@@ -27,5 +28,9 @@ public class BridgeAppConfig {
 
     public static List<String> generateBridge(int bridgeLength) {
         return bridgeMaker().makeBridge(bridgeLength);
+    }
+
+    public static BridgeGame bridgeGame(int bridgeLength) {
+        return new BridgeGame(generateBridge(bridgeLength));
     }
 }
