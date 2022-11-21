@@ -14,7 +14,7 @@ public class GameController {
         OutputView.printRunGame();
         String bridgeSize = InputView.readBridgeSize();
 
-        List<String> bridge = BridgeService.initBridge(bridgeSize);
+        List<String> bridge = BridgeService.generateBridge(bridgeSize);
         User user = UserService.generateUser();
 
         startGame(bridge, user);
