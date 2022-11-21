@@ -69,7 +69,7 @@ public class OutputView {
         int lastMovePosition = moves.size() - 1;
         System.out.print(mapPrefix);
         for (int i = 0; i < lastMovePosition; ++i) {
-            System.out.print(oneSpace + getOneBlockFormat(side, bridge.get(i)) + oneSpace + mapDelimiter);
+            System.out.print(getOneBlockFormat(side, bridge.get(i)) + mapDelimiter);
         }
         System.out.print(getLastBlockFormat(side, moves.get(lastMovePosition), bridge.get(lastMovePosition)));
         System.out.println(mapPostfix);
@@ -77,9 +77,9 @@ public class OutputView {
 
     private String getOneBlockFormat(String side, String direction) {
         if (side.equals(direction)) {
-            return correctMark;
+            return oneSpace + correctMark + oneSpace;
         }
-        return oneSpace;
+        return oneSpace + oneSpace + oneSpace;
     }
 
     private String getLastBlockFormat(String side, String movedDirection, String answerDirection) {
