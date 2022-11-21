@@ -52,18 +52,15 @@ public class Controller {
 
     private TrialResult move() {
         try {
-            String moving = inputView.readMoving();
-            TrialResult trialResult = game.move(moving);
+            String direction = inputView.readDirection();
+            TrialResult trialResult = game.move(direction);
             trialResults.add(trialResult);
             outputView.printMap(trialResults);
             return trialResult;
-
-        } catch (
-                IllegalArgumentException exception) {
+        } catch (IllegalArgumentException exception) {
             outputView.printException(exception.getMessage());
             return move();
         }
-
     }
 
     private int retryOrExit() {

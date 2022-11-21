@@ -18,7 +18,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public String readMoving() {
+    public String readDirection() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
         validateSingleCharacter(input);
