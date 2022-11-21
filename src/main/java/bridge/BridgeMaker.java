@@ -7,7 +7,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -41,6 +40,6 @@ public class BridgeMaker {
             return GameKeySet.UP.getKeySet();
         }
 
-        throw new IllegalStateException("[ERROR] 랜덤 생성 오류");
+        throw new IllegalStateException(BridgeException.TOKEN.getMessage() + " 랜덤 생성 오류");
     }
 }
