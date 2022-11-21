@@ -9,7 +9,7 @@ import bridge.enums.Inputs;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private static final int LOWER = 0;
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -29,7 +29,7 @@ public class BridgeMaker {
     }
 
     private String generateCorrectMove() {
-        if (bridgeNumberGenerator.generate() == LOWER) {
+        if (bridgeNumberGenerator.generate() == 0) {
             return Inputs.MOVE_DOWN.getMessage();
         }
         return Inputs.MOVE_UP.getMessage();
