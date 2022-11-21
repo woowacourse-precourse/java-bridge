@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.domain.MovingStatus;
 
 import java.util.ArrayList;
