@@ -33,13 +33,12 @@ public class BridgeGameController {
     }
 
     private void playGame() {
-        bridgeGame.tryGame();
+        bridgeGame.addTryCount();
         while (bridgeGame.playing()) {
             SelectBlockRequestDto requestDto = inputView.readMoving();
             BridgeResponseDto responseDto = bridgeGame.move(requestDto);
             outputView.printMap(responseDto);
         }
-
         gameRetry();
     }
 

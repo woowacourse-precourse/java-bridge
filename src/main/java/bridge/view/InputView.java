@@ -11,7 +11,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String INPUT_MOVING_SPACE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String INPUT_MOVING_Block = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_GAME_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
@@ -36,7 +36,7 @@ public class InputView {
     public SelectBlockRequestDto readMoving() {
         while (true) {
             try {
-                System.out.println(INPUT_MOVING_SPACE);
+                System.out.println(INPUT_MOVING_Block);
                 return new SelectBlockRequestDto(InputValidator.checkBlock(Console.readLine()));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

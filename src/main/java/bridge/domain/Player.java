@@ -19,7 +19,7 @@ public class Player {
         this.position += 1;
     }
 
-    public void tryGame() {
+    public void addTotalTryNumber() {
         this.totalTryNumber += 1;
     }
 
@@ -31,11 +31,11 @@ public class Player {
         this.result = Result.SUCCESS;
     }
 
-    public boolean isGameOver() {
-        return !result.equals(Result.PLAYING);
+    public boolean isPlaying() {
+        return result.equals(Result.PLAYING);
     }
 
-    public int nowPosition() {
+    public int getCurrentPosition() {
         return this.position;
     }
 

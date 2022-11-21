@@ -38,12 +38,30 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public BridgeResponseDto move(SelectBlockRequestDto dto) {
-        int nowPosition = player.nowPosition();
-        String mark = getMarkByMove(nowPosition, dto.getBlock());
-        return new BridgeResponseDto(markMovedBlock(mark, dto.getBlock()));
+        int currentPosition = player.getCurrentPosition();
+        String blockToMove = dto.getBlock();
+        String blockMark = expressionOfBlock(currentPosition, blockToMove);
+        BridgeStatus bridgeStatus = marking(blockMark, blockToMove);
+        return new BridgeResponseDto(bridgeStatus);
     }
 
-    private BridgeStatus markMovedBlock(String mark, String block) {
+    private String expressionOfBlock(int currentPosition, String block) {
+        if (bridge.canCross(currentPosition, block)) {
+            player.move();
+            isDoneCrossingBridge(player.getCurrentPosition());
+            return GameConstance.CROSSABLE_EXPRESSION;
+        }
+        player.fail();
+        return GameConstance.NOT_CROSSABLE_EXPRESSION;
+    }
+
+    private void isDoneCrossingBridge(int currentPosition) {
+        if(bridge.isDoneCrossingBridge(currentPosition)) {
+            player.success();
+        }
+    }
+
+    private BridgeStatus marking(String mark, String block) {
         if(block.equals(GameConstance.UP_BLOCK_EXPRESSION)) {
             bridgeStatus.addStatus(mark, GameConstance.EMPTY_BLOCK);
             return bridgeStatus;
@@ -53,32 +71,16 @@ public class BridgeGame {
         return bridgeStatus;
     }
 
-    private String getMarkByMove(int currentPosition, String block) {
-        if (bridge.canCross(currentPosition, block)) {
-            player.move();
-            isDoneCrossingBridge(player.nowPosition());
-            return GameConstance.CROSSABLE;
-        }
-        player.fail();
-        return GameConstance.NOT_CROSSABLE;
-    }
-
-    private void isDoneCrossingBridge(int currentPosition) {
-        if(bridge.isDoneCrossingBridge(currentPosition)) {
-            player.success();
-        }
-    }
-
     public boolean playing() {
-        return !player.isGameOver();
+        return player.isPlaying();
     }
 
     public boolean isFail() {
         return player.getResult().equals(Player.Result.FAIL);
     }
 
-    public void tryGame() {
-        player.tryGame();
+    public void addTryCount() {
+        player.addTotalTryNumber();
     }
 
     /**
