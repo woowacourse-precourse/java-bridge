@@ -26,7 +26,7 @@ public class InputView {
     public String readMoving() {
     	String inputmoveuser = Console.readLine();
     	
-    	if(inputmoveuser.length() != 1 || (inputmoveuser.charAt(0) == 'U' && inputmoveuser.charAt(0) == 'D')) {
+    	if(check(inputmoveuser, 'U', 'D')) {
     		throw new IllegalArgumentException();
     	}
         return inputmoveuser;
@@ -36,6 +36,18 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+    	String inputretryuser = Console.readLine();
+    	
+    	if(check(inputretryuser, 'R', 'Q')) {
+    		throw new IllegalArgumentException();
+    	}
+        return inputretryuser;
+    }
+    
+    public boolean check(String input, char check1, char check2) {
+    	if(input.length() != 1 || (input.charAt(0) != check1 && input.charAt(0) != check2)) {
+    		return true;
+    	}
+    	return false;
     }
 }
