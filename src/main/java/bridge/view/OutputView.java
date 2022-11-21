@@ -5,6 +5,7 @@ import static bridge.constants.OutputConstants.END;
 import static bridge.constants.OutputConstants.Fail;
 import static bridge.constants.OutputConstants.MIDDLE;
 import static bridge.constants.OutputConstants.RESULT_MESSAGE;
+import static bridge.constants.OutputConstants.SELECT_RESTART_OR_QUIT;
 import static bridge.constants.OutputConstants.SET_SIZE_BRIDGE_MESSAGE;
 import static bridge.constants.OutputConstants.START;
 import static bridge.constants.OutputConstants.START_MESSAGE;
@@ -75,18 +76,16 @@ public class OutputView {
         }
     }
 
-
     public void startMessage() {
         START_MESSAGE.printMessage();
         SET_SIZE_BRIDGE_MESSAGE.printMessage();
     }
+    public void restartMessage(){
+        SELECT_RESTART_OR_QUIT.printMessage();
+    }
 
     public void choiceUpDown() {
         CHOICE_UP_DOWN_MESSAGE.printMessage();
-    }
-
-    public void totalMap() {
-
     }
 
     public String changeOX(boolean moveCheck) {
