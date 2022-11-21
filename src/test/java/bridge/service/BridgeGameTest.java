@@ -48,15 +48,15 @@ public class BridgeGameTest {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
         User user = new User();
-        bridge.nowIndexUpdate();
-        user.setGameTryCount(10);
+        bridge.nowIndexUpdate(); // 1
+        user.gameRetry(); // 2
         String command = "R";
 
         // when
-        bridgeGame.doFailCase(bridge, user, command);
+        bridgeGame.doFailCase(bridge, user, command); // 3
 
         // then
-        assertThat(user.getGameTryCount()).isEqualTo(11);
+        assertThat(user.getGameTryCount()).isEqualTo(3);
         assertThat(bridge.getNowIndex()).isEqualTo(0);
     }
 
