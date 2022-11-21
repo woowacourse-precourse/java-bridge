@@ -12,7 +12,7 @@ public class BridgeController {
         BridgeGame bridgeGame = settingController.setBridgeGame();
         PlayingController playingController = new PlayingController(bridgeGame);
         playingController.play();
-
+        playingController.printResult();
     }
 
 }

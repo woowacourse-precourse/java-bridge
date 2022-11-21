@@ -16,6 +16,7 @@ public class PlayingController {
     private final BridgeGame bridgeGame;
     private final List<Moving> movings;
     private int playCount;
+    private Life life;
 
 
     public PlayingController(BridgeGame bridgeGame) {
@@ -27,10 +28,11 @@ public class PlayingController {
     }
 
     public void play() {
-        Life life = bridgeGame.getLife(move());
+        life = bridgeGame.getLife(move());
         outputView.printMap(List.copyOf(movings), life);
         if (life == Life.SAFE) {
             playByClear();
+            return;
         }
         if (life == Life.DEAD) {
             retryByInput();
@@ -64,5 +66,9 @@ public class PlayingController {
         movings.clear();
         bridgeGame.retry();
         play();
+    }
+
+    public void printResult() {
+        outputView.printResult(movings, life, playCount);
     }
 }

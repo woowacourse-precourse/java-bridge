@@ -16,6 +16,11 @@ public class OutputView {
     private static final String WRONG = "X";
     private static final String CORRECT = "O";
     private static final String SEPARATOR = " | ";
+    private static final String FINAL_RESULT = "최종 게임 결과";
+    private static final String SUCCESS_OR_NOT = "게임 성공 여부: ";
+    private static final String SUCCESS = "성공";
+    private static final String NOT = "실패";
+    private static final String PLAY_COUNT = "총 시도한 횟수: ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -30,6 +35,7 @@ public class OutputView {
         setBracket(downBridge);
         System.out.println(upBridge);
         System.out.println(downBridge);
+        printNewLine();
     }
 
     private void setBracket(StringBuilder sb) {
@@ -69,11 +75,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<Moving> movings, Life life, int playCount) {
+        System.out.println(FINAL_RESULT);
+        printMap(movings, life);
+        if (life == Life.SAFE) {
+            System.out.println(SUCCESS_OR_NOT + SUCCESS);
+        }
+        if (life == Life.DEAD) {
+            System.out.println(SUCCESS_OR_NOT + NOT);
+        }
+        System.out.println(PLAY_COUNT + playCount);
     }
 
     public void printStart() {
         System.out.println(START);
+        printNewLine();
     }
 
     public void printInputSize() {
@@ -86,5 +102,9 @@ public class OutputView {
 
     public void printGameCommand() {
         System.out.println(GAME_COMMAND);
+    }
+
+    public void printNewLine() {
+        System.out.println();
     }
 }
