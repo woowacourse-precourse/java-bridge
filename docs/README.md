@@ -55,6 +55,8 @@
   - 메소드 인덴트 확인
   - 메소드 라인 확인
 - BridgeGame이 controller의 역할 수행
+- class Command
+  - `RESTART`, `QUIT`
 
 ## 필요한 클래스
 - **`util/Validator`**
