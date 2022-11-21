@@ -6,10 +6,9 @@ import bridge.domain.GameStatus;
 import bridge.view.OutputView;
 
 public class GameController {
-    BridgeGame bridgeGame = new BridgeGame();
-    InputController inputController = new InputController();
-    OutputView outputView = new OutputView();
-
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private final InputController inputController = new InputController();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
         initializeGame();
@@ -32,7 +31,7 @@ public class GameController {
             String moving = inputController.readMovingUntilSucceed();
             gameStatus = bridgeGame.getMovingResult(moving);
             outputView.printMap(gameStatus);
-        } while(gameStatus.isPlaying());
+        } while (gameStatus.isPlaying());
         return gameStatus;
     }
 
@@ -47,6 +46,6 @@ public class GameController {
 
     private void initializeGame() {
         int size = inputController.readBridgeSizeUntilSucceed();
-        bridgeGame.initialize(size);
+        bridgeGame.initAnswerBridge(size);
     }
 }
