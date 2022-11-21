@@ -1,10 +1,9 @@
 ## 기능 목록
-[ ] 사용자가 입력한 값에 따라 다리를 생성해야한다. - BridgeRandomNumberGenerator.makeBridge()
-   - [x] 다리 길이를 입력 받아야한다. - service.BridgeGame.readBridgeSize();
-     - [x] 입력값에 대해 유효성 검사를 해야한다. - view.InputView.validateBridgeSize()
-       - [x] 입력값은 정수 여야 한다. - view.InputView.validateInteger();
-       - [x] 입력값은 3 ~ 24 여야 한다. - view.InputView.validateBridgeSizeRange();
-   - 다리를 생성해야한다.
+[ ] 사용자가 입력한 값에 따라 다리를 생성해야한다. - BridgeMaker.makeBridge()
+[x] 다리 길이를 입력 받아야한다. - service.BridgeGame.readBridgeSize();
+  - [x] 입력값에 대해 유효성 검사를 해야한다. - view.InputView.validateBridgeSize()
+    - [x] 입력값은 정수 여야 한다. - view.InputView.validateInteger();
+    - [x] 입력값은 3 ~ 24 여야 한다. - view.InputView.validateBridgeSizeRange();
 2. 사용자의 입력값에 따라 이동할 수 있어야한다.
    - 이동 값을 입력 받아야한다.
      - 입력값 의 유효성 검사를 해야한다. 
