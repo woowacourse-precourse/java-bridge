@@ -1,9 +1,21 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final List<String> bridgeAnswer;
+    private Integer tryCount = 0;
+
+    public BridgeGame(List<String> bridgeAnswer) {
+        this.bridgeAnswer = bridgeAnswer;
+        Boolean keepPlay = true;
+        while (keepPlay) {
+            Play();
+        }
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
