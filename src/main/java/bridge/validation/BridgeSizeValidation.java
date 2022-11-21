@@ -11,11 +11,17 @@ public class BridgeSizeValidation {
     public BridgeSizeValidation() {
     }
 
-    public void isValidate(String bridgeSize) {
-        isNull(bridgeSize);
-        isBlank(bridgeSize);
-        isNumber(bridgeSize);
-        isCorrectRange(bridgeSize);
+    public boolean isValidate(String bridgeSize) {
+        try {
+            isNull(bridgeSize);
+            isBlank(bridgeSize);
+            isNumber(bridgeSize);
+            isCorrectRange(bridgeSize);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return true;
+        }
+        return false;
     }
 
     public void throwError(String message) {
@@ -25,7 +31,7 @@ public class BridgeSizeValidation {
     public void isNull(String bridgeSize) {
         if (bridgeSize.isEmpty()) {
             message = ErrorMessage.valueOf("NULL_EXCEPTION");
-            throw new NullPointerException(message.getMessage());
+            throwError(message.getMessage());
         }
     }
 
