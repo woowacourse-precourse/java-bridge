@@ -6,7 +6,7 @@ import static bridge.domain.BridgeGame.UP_BRIDGE;
 import bridge.domain.MovingMap;
 import bridge.domain.MovingMapState;
 import java.util.Map;
-import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class OutputFormatter {
 
@@ -18,14 +18,9 @@ public class OutputFormatter {
     }
 
     private static String formatMovingMapLine(MovingMap movingMap, String targetMoving) {
-        StringJoiner joiner = new StringJoiner(" | ", "[ ", " ]");
-
-        for (int pos = 0; pos < movingMap.getLength(); pos++) {
-            String s = formatStateOfMovingMap(movingMap.getState(targetMoving, pos));
-            joiner.add(s);
-        }
-
-        return joiner.toString();
+        return movingMap.getStateList(targetMoving).stream()
+                .map(OutputFormatter::formatStateOfMovingMap)
+                .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
 
     private static String formatStateOfMovingMap(MovingMapState state) {
