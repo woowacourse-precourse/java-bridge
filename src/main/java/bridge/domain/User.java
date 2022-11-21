@@ -1,46 +1,49 @@
 package bridge.domain;
 
 public class User {
+    private static final int DEFAULT_TRY_COUNT = 1;
+    private static final String DEFAULT_MAP_BRIDGE = "";
+
     private int tryCount;
-    private String mapUpperUserBridge;
-    private String mapLowerUserBridge;
+    private String mapUpperBridge;
+    private String mapLowerBridge;
 
     public User() {
-        this.tryCount = 1;
-        this.mapUpperUserBridge = "";
-        this.mapLowerUserBridge = "";
+        this.tryCount = DEFAULT_TRY_COUNT;
+        this.mapUpperBridge = DEFAULT_MAP_BRIDGE;
+        this.mapLowerBridge = DEFAULT_MAP_BRIDGE;
     }
 
-    public void updateRestartCount(){
+    public void updateTryCount(){
         this.tryCount++;
     }
 
-    public void updateMapUserBridge(String move, int isSuccess){
+    public void updateMapBridge(String move, int isSuccess){
         if(isSuccess == 1)
-            updateMapUserBridgeTrue(move);
+            updateMapBridgeTrue(move);
         if(isSuccess == 0)
-            updateMapUserBridgeFalse(move);
+            updateMapBridgeFalse(move);
     }
 
-    private void updateMapUserBridgeFalse(String move){
+    private void updateMapBridgeFalse(String move){
         if(move == "U"){
-            mapUpperUserBridge += " | X";
-            mapLowerUserBridge += " |  ";
+            mapUpperBridge += " | X";
+            mapLowerBridge += " |  ";
         }
         if(move == "D"){
-            mapUpperUserBridge += " |  ";
-            mapLowerUserBridge += " | X";
+            mapUpperBridge += " |  ";
+            mapLowerBridge += " | X";
         }
     }
 
-    private void updateMapUserBridgeTrue(String move){
+    private void updateMapBridgeTrue(String move){
         if(move == "U"){
-            mapUpperUserBridge += " | O";
-            mapLowerUserBridge += " |  ";
+            mapUpperBridge += " | O";
+            mapLowerBridge += " |  ";
         }
         if(move == "D"){
-            mapUpperUserBridge += " |  ";
-            mapLowerUserBridge += " | O";
+            mapUpperBridge += " |  ";
+            mapLowerBridge += " | O";
         }
     }
 
@@ -48,11 +51,11 @@ public class User {
         return tryCount;
     }
 
-    public String getMapUpperUserBridge() {
-        return mapUpperUserBridge;
+    public String getMapUpperBridge() {
+        return mapUpperBridge;
     }
 
-    public String getMapLowerUserBridge() {
-        return mapLowerUserBridge;
+    public String getMapLowerBridge() {
+        return mapLowerBridge;
     }
 }

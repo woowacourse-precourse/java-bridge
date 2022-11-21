@@ -3,18 +3,17 @@ package bridge.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
     @Test
     void 사용자_지도그리기(){
         User user = new User();
 
-        user.updateMapUserBridge("U",1);
-        user.updateMapUserBridge("D",0);
+        user.updateMapBridge("U",1);
+        user.updateMapBridge("D",0);
 
-        assertThat(" | O |  ").isEqualTo(user.getMapUpperUserBridge());
-        assertThat(" |   | X").isEqualTo(user.getMapLowerUserBridge());
+        assertThat(" | O |  ").isEqualTo(user.getMapUpperBridge());
+        assertThat(" |   | X").isEqualTo(user.getMapLowerBridge());
     }
 
     @Test
