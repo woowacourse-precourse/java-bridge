@@ -14,7 +14,7 @@ public class Bridge {
         return bridge.get(index) == direction;
     }
 
-    public boolean canMove(Stack movement) {
+    public boolean canMove(Stack movement) throws IndexOutOfBoundsException {
         return bridge.get(movement.size() - 1) == movement.peek();
     }
 
