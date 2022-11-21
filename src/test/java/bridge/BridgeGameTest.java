@@ -16,20 +16,15 @@ public class BridgeGameTest {
     public void setUp(){
         bridgeGame = new BridgeGame();
     }
-    @DisplayName("makeBridge Test")
-    @Test
-    public void makeBridgeTest(){
-        assertThat(bridgeGame.makeBridge(3)).isEqualTo(3);
-    }
 
     @DisplayName("move Test")
     @Test
     public void moveBridgeTest(){
-        Bridge bridge = new Bridge();
+        Bridge bridge = new Bridge(3);
         bridge.inputBridgeSize(3);
         bridge.inputBridgeNumber();
         Player player = new Player();
         player.setInputMoving("U");
-        assertThat(bridgeGame.move(0)).isEqualTo(true);
+        assertThat(bridgeGame.move(bridge,player,0)).isEqualTo(true);
     }
 }

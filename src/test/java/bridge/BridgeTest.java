@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BridgeTest {
-    Bridge bridge = new Bridge();
+    Bridge bridge = new Bridge(3);
     @DisplayName("Bridge 생성 테스트")
     @Test
     public void generateTest(){
