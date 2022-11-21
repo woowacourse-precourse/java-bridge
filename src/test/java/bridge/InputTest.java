@@ -14,10 +14,17 @@ public class InputTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("유저 입력값 검사")
+    @DisplayName("유저가 움직일 칸 입력값 검사")
     @Test
     void readMovingTest(){
         assertThatThrownBy(()-> new InputView().checkText("I"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("유저가 재시작 또는 종료할 입력값 검사")
+    @Test
+    void userCommandTest(){
+        assertThatThrownBy(()-> new InputView().checkUserCommand("I"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

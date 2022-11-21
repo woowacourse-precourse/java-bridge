@@ -43,7 +43,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String userCommand;
+
+        OutputView.printRetry();
+
+        userCommand = readLine();
+
+        checkUserCommand(userCommand);
+
+        return userCommand;
     }
 
     public static void checkNumber(int userNumber){
@@ -55,6 +63,12 @@ public class InputView {
     public void checkText(String userMove){
         if(!(userMove.equals("U") || userMove.equals("D"))){
             throw new IllegalArgumentException("[ERROR] 입력 값은 U와 D여야 합니다.");
+        }
+    }
+
+    public void checkUserCommand(String userCommand){
+        if(!(userCommand.equals("R") || userCommand.equals("Q"))){
+            throw new IllegalArgumentException("[ERROR] 입력 값은 R와 Q여야 합니다.");
         }
     }
 }

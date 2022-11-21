@@ -5,29 +5,29 @@
    - [x] 올바른 값이 아니면 예외 처리를 할 수 있다. InputView#checkNumber()
  
 
- - [ ] 시도한 횟수를 셀 수 있다. Count# tryCount()
+ - [x] 시도한 횟수를 셀 수 있다. Count# tryCount()
 
 
- - [ ] 사용자에게 입력받은 다리 길이에 따라 다리를 만들 수 있다. BridgeMaker#makeBridge()
+ - [x] 사용자에게 입력받은 다리 길이에 따라 다리를 만들 수 있다. BridgeMaker#makeBridge()
  
 
- - [ ] 다리를 하나씩 구분할 수 있다. BridgeMaker#splitBridge()
+ - [x] 다리를 하나씩 구분할 수 있다. BridgeMaker#splitBridge()
  
 
- - [ ] 다리는 위아래 두 칸으로 이루어져 있다. BridgeMaker#makeBridge()
-    - [ ] 0과 1 중 무작위 값을 이용해 정할 수 있다. BridgeMaker#putNumber()
-    - [ ] 0과 1이 아니면 예외처리를 할 수 있다. BridgeMaker#checkNumber()
-    - [ ] 0이면 다리를 D값으로 나타낼 수 있다. BridgeMaker#putText()
-    - [ ] 1이면 다리를 U값으로 나타낼 수 있다. BridgeMaker#putText()
-    - [ ] D,U값이 아니면 예외처리를 할 수 있다. BridgeMaker#checkText()
+ - [x] 다리는 위아래 두 칸으로 이루어져 있다. BridgeMaker#makeBridge()
+    - [x] 0과 1 중 무작위 값을 이용해 정할 수 있다. BridgeMaker#putNumber()
+    - [x] 0과 1이 아니면 예외처리를 할 수 있다. BridgeMaker#checkNumber()
+    - [x] 0이면 다리를 D값으로 나타낼 수 있다. BridgeMaker#putText()
+    - [x] 1이면 다리를 U값으로 나타낼 수 있다. BridgeMaker#putText()
+    - [x] D,U값이 아니면 예외처리를 할 수 있다. BridgeMaker#checkText()
 
 
  - [x] 사용자에게 U와 D값을 입력받을 수 있다. InputView#readMoving()
    - [x] 다른 값을 입력받으면 예외처리를 할 수 있다. InputView#checkText()
 
 
- - [ ] 게임 시도 여부를 입력 받을 수 있다. InputView#readGameCommand()
-     - [ ] 올바른 값이 아니면 예외 처리를 할 수 있다. InputView#checkGameCommand()
+ - [x] 게임 시도 여부를 입력 받을 수 있다. InputView#readGameCommand()
+     - [x] 올바른 값이 아니면 예외 처리를 할 수 있다. InputView#checkGameCommand()
 
 
  - [ ] R을 누른다면 다시 시작한다. BridgeGame#retry()
