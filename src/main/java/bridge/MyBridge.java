@@ -11,12 +11,17 @@ public class MyBridge {
     private int tryCnt;
 
     private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
 
     MyBridge(List<String> answerBridge, int size) {
         this.inputList = new ArrayList<>();
         this.answerBridge = answerBridge;
         this.size = size;
         this.tryCnt = 0;
+    }
+
+    public void addTryCnt() {
+        tryCnt++;
     }
 
     public boolean matchBlocks() {
@@ -57,5 +62,9 @@ public class MyBridge {
 
     public boolean compareBridgeBlock(int idx) {
         return inputList.get(idx).equals(answerBridge.get(idx));
+    }
+
+    public void exitGame(boolean success) {
+        outputView.printResult(success, tryCnt);
     }
 }
