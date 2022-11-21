@@ -5,8 +5,12 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.GameStatus;
+import bridge.validator.BridgeLengthValidator;
+import bridge.validator.RetryInputValidator;
+import bridge.validator.SpaceToMoveValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import camp.nextstep.edu.missionutils.Console;
 
 public class BridgeGameController {
 
@@ -61,21 +65,42 @@ public class BridgeGameController {
     }
 
     private String getWhetherToRetry() {
-        String retry;
         outputView.askWhetherToRetry();
-        retry = inputView.readGameCommand();
-        return retry;
+        while (true) {
+            try {
+                String input = inputView.readGameCommand();
+                RetryInputValidator.validateRetryInput(input);
+                return input;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     private String getSpaceToMove() {
         outputView.askSpaceToMove();
-        String moving = inputView.readMoving();
-        return moving;
+        while (true) {
+            try {
+                String input = inputView.readMoving();
+                SpaceToMoveValidator.validateSpaceToMove(input);
+                return input;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     private int getBridgeLength() {
         outputView.askBridgeSize();
-        int bridgeLength = inputView.readBridgeSize();
-        return bridgeLength;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                BridgeLengthValidator.validateNaturalNumber(input);
+                BridgeLengthValidator.validateRange(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }
