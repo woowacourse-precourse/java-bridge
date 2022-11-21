@@ -6,6 +6,7 @@ import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.CompareBridge;
+import bridge.view.BridgeConstant;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.Console;
@@ -48,13 +49,13 @@ public class BridgeController {
         }
     }
 
+    // 게임 재시작
     public static void retryGame() {
         OutputView.printGameRestart();
         String retry = Console.readLine();
         BridgeGame.retry(retry);
         restartMap(retry);
         finishMap(retry);
-
         compareBridgeNum = CompareBridge.ranBridge.size();
     }
 
@@ -73,24 +74,25 @@ public class BridgeController {
     // Q 입력 시 종료
     public static void finishMap(String input) {
         if (input.equals("Q")) {
-            System.out.println("최종 게임 결과");
+            System.out.println(BridgeConstant.END_GAME_RESULT.getValue());
             System.out.println("[" + CompareBridge.sbUp + "]");
             System.out.println("[" + CompareBridge.sbDown + "]");
             System.out.println();
-            System.out.println("게임 성공 여부: " + "실패");
-            System.out.println("총 시도한 횟수: " + howManyGame);
+            System.out.println(BridgeConstant.GAME_NOT_SUCCESS);
+            System.out.println(BridgeConstant.TOTAL_GAME_PLAYS.getValue() + howManyGame);
             quit++;
         }
     }
 
+    // 성공 시 맵
     public static void completeMap() {
         if (compareBridgeNum == CompareBridge.ranBridge.size()) {
-            System.out.println("최종 게임 결과");
+            System.out.println(BridgeConstant.END_GAME_RESULT.getValue());
             System.out.println("[" + CompareBridge.sbUp + "]");
             System.out.println("[" + CompareBridge.sbDown + "]");
             System.out.println();
-            System.out.println("게임 성공 여부: " + "성공");
-            System.out.println("총 시도한 횟수: " + howManyGame);
+            System.out.println(BridgeConstant.GAME_SUCCESS.getValue());
+            System.out.println(BridgeConstant.TOTAL_GAME_PLAYS.getValue() + howManyGame);
         }
     }
 }
