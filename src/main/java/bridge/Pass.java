@@ -1,9 +1,9 @@
 package bridge;
 
 public enum Pass {
-    YES("O"),
-    NO("X"),
-    NOTHING(" ");
+    YES(" O "),
+    NO(" X "),
+    NOTHING("   ");
 
     private final String label;
 
