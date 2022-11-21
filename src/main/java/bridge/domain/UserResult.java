@@ -72,4 +72,9 @@ public class UserResult {
     public void upCount() {
         count ++;
     }
+
+    public void init() {
+        upSpace.clear();
+        downSpace.clear();
+    }
 }
