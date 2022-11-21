@@ -35,6 +35,8 @@ public class InputView {
      */
     public static String readGameCommand() {
         String re_game = Console.readLine();
+        if(re_game.length()!=1 || (!re_game.contains("R") && !re_game.contains("Q")))
+            throw new IllegalArgumentException(ErrorMessage.RESTART_SELECT_ERROR.getErrormessage());
         return re_game;
     }
 }
