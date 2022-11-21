@@ -61,7 +61,14 @@ public class Controller {
 
     boolean isAnswer() {
         if (!bridgeGame.getIsAnswer()) {
-            String command = inputView.readGameCommand();
+           return checkCommand();
+        }
+        return false;
+    }
+
+    boolean checkCommand(){
+        String command = inputView.readGameCommand();
+        if(!bridgeGame.validateGameCommand(command)){
             return bridgeGame.isExit(command);
         }
         return false;
