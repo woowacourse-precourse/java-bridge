@@ -4,8 +4,6 @@ import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Player;
 import bridge.model.Referee;
-import bridge.type.ErrorType;
-import bridge.valid.Validation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,10 +15,6 @@ public class GameController {
     private Bridge bridge = new Bridge();
     private Player player = new Player();
     private Referee referee = new Referee();
-
-    /**
-     * 초기화 작업 필요
-     */
 
     public void play() {
         outputView.printStartGame();
@@ -43,14 +37,7 @@ public class GameController {
     }
 
     public String moveCommand(){
-        String moveType = "";
-        try {
-            moveType = inputView.readMoving();
-            Validation.inputMoveSquareValid(moveType);
-        } catch (IllegalArgumentException e) {
-            inputView.printError(ErrorType.INPUT_SQUARE_ERROR_TYPE.getText());
-            moveCommand();
-        }
+        String moveType = inputView.readMoving();
         bridgeGame.move(moveType, player);
         return moveType;
     }
@@ -62,12 +49,7 @@ public class GameController {
     }
 
     public void generateBridge() {
-        try {
-            BRIDGE_LENGTH = inputView.readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            inputView.printError(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
-            generateBridge();
-        }
+        BRIDGE_LENGTH = inputView.readBridgeSize();
         bridge.setBridge(BRIDGE_LENGTH);
     }
 
@@ -77,14 +59,9 @@ public class GameController {
         referee.addProgressCount();
     }
 
-    private String getCommand() {
+    public String getCommand() {
         String command = inputView.readGameCommand();
-        try {
-            Validation.inputResumeCommandValid(command);
-        } catch (IllegalArgumentException e) {
-            System.out.println(ErrorType.INPUT_RESUME_COMMAND_ERROR_TYPE.getText());
-            bridgeGame.retry(command, player, referee);
-        }
+        bridgeGame.retry(command, player, referee);
         return command;
     }
 }
