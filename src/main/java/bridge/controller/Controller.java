@@ -50,4 +50,7 @@ public class Controller {
         out.printMessage(INPUT_RETRY_MESSAGE);
         game.retry(input.readGameCommand());
     }
+    public void success() {
+        game.success();
+    }
 }

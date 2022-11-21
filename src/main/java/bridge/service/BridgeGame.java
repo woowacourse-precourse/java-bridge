@@ -84,6 +84,9 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
             bridgeMap.add(BLANK.getIngredient(),  NOT_MATCH.getIngredient());
         }
     }
+    public Boolean checkResult() { //둘다 X가 없을 때 true 반환
+        return !bridgeMap.getUpMap().contains(NotMatch) && !bridgeMap.getDownMap().contains(NotMatch);
+    }
 
     public Boolean isEnd(int index){
         return index == bridge.getAnswer().size();
@@ -91,6 +94,12 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
 
     public void success(){
 
+    public String success(){
+        if(bridgeMap.getUpMap().size() == bridge.getAnswer().size() && checkResult()){
+            player.setAnswer(Quit);
+            return Sucees;
+        }
+        return Fail;
     }
 
     /**
