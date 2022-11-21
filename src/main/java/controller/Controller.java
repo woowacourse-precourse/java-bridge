@@ -11,10 +11,13 @@ public class Controller {
     public void run() {
         Bridge bridge = createBridge();
         bridge.print();
+        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         while (!bridge.isCompleted()) {
-            move(bridge);
+            move(bridge, bridgeGame);
         }
+        System.out.println("게임 성공 여부: " + bridgeGame.getGameResult());
+        System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
     }
 
     private Bridge createBridge() {
@@ -28,9 +31,8 @@ public class Controller {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    private void move(Bridge bridge) {
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        String gameCommand = "";
+    private void move(Bridge bridge, BridgeGame bridgeGame) {
+        String gameCommand;
         boolean isCorrect;
 
         do {

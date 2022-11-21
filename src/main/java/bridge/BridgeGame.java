@@ -7,8 +7,12 @@ public class BridgeGame {
 
     private final Bridge bridge;
 
+    private String gameResult;
+    private int tryCount;
+
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+        this.tryCount = 0;
     }
 
     /**
@@ -28,5 +32,17 @@ public class BridgeGame {
      */
     public void retry() {
         bridge.initBridge();
+        tryCount++;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public String getGameResult() {
+        if (bridge.isCompleted()) {
+            return "성공";
+        }
+        return "실패";
     }
 }

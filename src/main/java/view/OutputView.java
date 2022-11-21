@@ -17,6 +17,7 @@ public class OutputView {
      */
     public void printMap(String currentState) {
         System.out.println(currentState);
+        System.out.println();
     }
 
     /**
