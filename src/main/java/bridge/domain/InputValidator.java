@@ -16,4 +16,10 @@ public class InputValidator {
             throw new IllegalArgumentException(InputErrorMessage.BRIDGE_SIZE.message());
         }
     }
+
+    public void validateMoving(String input) {
+        if (!input.equals(Constants.CODE_UP) && !input.equals(Constants.CODE_DOWN)) {
+            throw new IllegalArgumentException(InputErrorMessage.MOVING.message());
+        }
+    }
 }
