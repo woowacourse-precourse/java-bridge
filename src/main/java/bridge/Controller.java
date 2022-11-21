@@ -23,6 +23,13 @@ public class Controller {
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
         tryGame(bridgeSize, bridgeGame);
         tryCount += 1;
+        checkIsSuccess(bridgeGame.getIndex(), bridgeSize);
+    }
+
+    private void checkIsSuccess(int index, int bridgeSize) {
+        if (index == bridgeSize) {
+            success = "성공";
+        }
     }
 
     private void tryGame(int bridgeSize, BridgeGame bridgeGame) {
