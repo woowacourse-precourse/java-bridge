@@ -18,7 +18,7 @@ public enum BridgeStatus {
 
 	public static BridgeStatus findByBridgeStatus(long currentStatus) {
 		return Arrays.stream(BridgeStatus.values())
-			.filter(status -> status.isSuccess(currentStatus))
+			.filter(status -> status.find(currentStatus))
 			.findAny()
 			.orElse(END);
 	}
@@ -26,7 +26,7 @@ public enum BridgeStatus {
 	public String getMessage() {
 		return this.message;
 	}
-	private boolean isSuccess(long currentStatus) {
+	private boolean find(long currentStatus) {
 		return currentStatus == this.bridgeStatus;
 	}
 }

@@ -28,7 +28,7 @@ public class BridgeGame {
 		return BridgeStatus.PASS;
 	}
 
-	public void checkGameEnd(BridgeResult bridgeResult) {
+	public void checkClear(BridgeResult bridgeResult) {
 		if (checkEnd() == BridgeStatus.END) {
 			this.bridgeResult = bridgeResult;
 			this.gameResult = "성공";
@@ -37,7 +37,7 @@ public class BridgeGame {
 
 	public void end(BridgeResult bridgeResult) {
 		while (!bridge.isEnd(bridgeNumber)) {
-			bridgeNumber++;
+			bridgeNumber = bridge.getSize();
 		}
 
 		this.bridgeResult = bridgeResult;

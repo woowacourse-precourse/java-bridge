@@ -1,15 +1,19 @@
 package bridge.domain;
 
-import static bridge.service.BridgeMaker.UP_STRING;
+import static bridge.view.InputView.UP;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import net.bytebuddy.build.ToStringPlugin.Enhance.Prefix;
 
 public class BridgeResult {
 
 	private static final String EMPTY = " ";
+	private static final String DELIMITER = " | ";
+	private static final String PREFIX = "[ ";
+	private static final String SUFFIX = " ]\n";
 
 	private final List<String> upBridge;
 	private final List<String> downBridge;
@@ -36,12 +40,12 @@ public class BridgeResult {
 	}
 
 	private boolean checkMove(String move) {
-		return Objects.equals(move, UP_STRING);
+		return Objects.equals(move, UP);
 	}
 
 	@Override
 	public String toString() {
-		return upBridge.stream().collect(Collectors.joining(" | ", "[ ", " ]\n"))
-			+ downBridge.stream().collect(Collectors.joining(" | ", "[ ", " ]\n"));
+		return upBridge.stream().collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX))
+			+ downBridge.stream().collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX));
 	}
 }

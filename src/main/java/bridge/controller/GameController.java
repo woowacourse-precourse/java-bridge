@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.view.InputView.RETRY;
+
 import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
 import bridge.service.BridgeGame;
@@ -18,8 +20,8 @@ public class GameController {
 			gameStart();
 			crossingBridge();
 			outputView.printResult(bridgeGame);
-		} catch (IllegalArgumentException e) {
-			Logger.error(e.getMessage());
+		} catch (IllegalArgumentException | NullPointerException exception) {
+			Logger.error(exception.getMessage());
 		}
 	}
 
@@ -48,7 +50,7 @@ public class GameController {
 
 	private void oneBridgeResult(BridgeResult bridgeResult, BridgeStatus bridgeStatus) {
 		outputView.printMap(bridgeResult);
-		bridgeGame.checkGameEnd(bridgeResult);
+		bridgeGame.checkClear(bridgeResult);
 		checkRetry(bridgeStatus, bridgeResult);
 	}
 
@@ -60,7 +62,7 @@ public class GameController {
 	}
 
 	private void askContinue(String Input, BridgeResult bridgeResult) {
-		if (Input.equals("R")) {
+		if (Input.equals(RETRY)) {
 			bridgeGame.retry();
 			crossingBridge();
 
