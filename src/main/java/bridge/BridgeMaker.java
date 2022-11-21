@@ -12,10 +12,6 @@ import java.util.stream.Collectors;
  * 메서드 시그니처(인자, 이름), 반환 타입 변경X
  */
 public class BridgeMaker {
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-    private static final int UP_NUMBER = 1;
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
