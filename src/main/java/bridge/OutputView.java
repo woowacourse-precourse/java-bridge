@@ -38,7 +38,11 @@ public class OutputView {
         System.out.println(INPUT_BRIDGE_SIZE);
     }
     public void inputUserMoveCommand(){
-        System.out.println(INPUT_MOVE_COMMAND+UserCommand.MOVE_UP.getMoveCommand()+IS+UserCommand.MOVE_UP.getPosition()+
-                AND+ UserCommand.MOVE_DOWN.getMoveCommand()+IS+UserCommand.MOVE_DOWN.getPosition()+INPUT_END);
+        System.out.println(INPUT_MOVE_COMMAND+UserCommand.MOVE_UP.getPosition()+IS+UserCommand.MOVE_UP.getMoveCommand()+
+                AND+ UserCommand.MOVE_DOWN.getPosition()+IS+UserCommand.MOVE_DOWN.getPosition()+INPUT_END);
+    }
+    public void inputUserReplayCommand(){
+        System.out.println(INPUT_REPLAY_GAME+UserCommand.REPLAY.getPosition()+IS+UserCommand.REPLAY.getMoveCommand()+
+                AND+ UserCommand.END.getPosition()+IS+UserCommand.END.getMoveCommand()+INPUT_END);
     }
 }
