@@ -33,8 +33,8 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         System.out.println(Bridge_out[0]);
         System.out.println(Bridge_out[1]);
-        if(yes_no==true) System.out.println("게임 성공 여부: 성공");
-        else if(yes_no == false) System.out.println("게임 성공 여부: 실패");
+        if(yes_no) System.out.println("게임 성공 여부: 성공");
+        else if(!yes_no) System.out.println("게임 성공 여부: 실패");
         System.out.println("총 시도한 횟수: " + count);
     }
     public String[] beforeMap(List<String> bridge_input){
@@ -60,9 +60,9 @@ public class OutputView {
     }
 
     public String[] addNow(String[] Brdige_out, String choice ,boolean same){
-        if(same == true){
+        if(same){
             Brdige_out = add_OorX(Brdige_out,choice," O ");
-        }else if(same == false){
+        }else if(!same){
             Brdige_out = add_OorX(Brdige_out,choice," X ");
         }
         return Brdige_out;
