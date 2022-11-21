@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.exception.CannotCrossBridgeException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +25,7 @@ public class BridgeGame {
     }
 
     public boolean compareDirection(String direction, int bridgeIndex) {
-        return false;
+        return direction.equals(bridge.get(bridgeIndex));
     }
 
     /**
