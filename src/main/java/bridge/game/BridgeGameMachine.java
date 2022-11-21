@@ -23,6 +23,7 @@ public class BridgeGameMachine {
         Result result = Result.CONTINUE;
         while (result == Result.CONTINUE) {
             result = moveOnce();
+            totalView.out().printMap(bridgeGame.showCurrentMap());
         }
         if (result == Result.SUCCESS) {
             bridgeGame.success();
@@ -40,8 +41,8 @@ public class BridgeGameMachine {
 
     public Result moveOnce() {
         totalView.out().enterMove();
-        bridgeGame.moveCycle(totalView.in().reReadMovingWhenError());
-        totalView.out().printMap(bridgeGame.showCurrentResult());
+        String moveInput = totalView.in().reReadMovingWhenError();
+        bridgeGame.moveCycle(moveInput);
         return bridgeGame.moveResult();
     }
 

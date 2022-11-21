@@ -2,7 +2,6 @@ package bridge.game;
 
 import static org.assertj.core.api.Assertions.*;
 
-import bridge.generator.AreaStatus;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -57,7 +56,7 @@ class BridgeGameTest {
         bridgeGame.moveCycle(destination);
         String answer = bridgeGame.showRightDestinationInArea(0);
         //when
-        List<Move> moves = bridgeGame.showCurrentResult();
+        List<Move> moves = bridgeGame.showCurrentMap();
         //then
         assertThat(moves.size()).isEqualTo(1);
         assertThat(moves.get(0).getDestination()).isEqualTo(destination);
@@ -73,7 +72,7 @@ class BridgeGameTest {
         //when
         bridgeGame.retry();
         //when
-        assertThat(bridgeGame.showCurrentResult().size()).isEqualTo(0);
+        assertThat(bridgeGame.showCurrentMap().size()).isEqualTo(0);
         assertThat(character.showCurrentLocation()).isEqualTo(-1);
     }
 
@@ -100,7 +99,7 @@ class BridgeGameTest {
     void showTotalTry() {
         //given
         //when
-        int start = bridgeGame.showTotalTry();
+        int start = bridgeGame.getTotalTry();
         //then
         assertThat(start).isEqualTo(0);
     }
@@ -109,11 +108,11 @@ class BridgeGameTest {
     @Test
     void addTotalTry() {
         //given
-        int before = bridgeGame.showTotalTry();
+        int before = bridgeGame.getTotalTry();
         //when
         bridgeGame.addTotalTry();
         //then
-        int after = bridgeGame.showTotalTry();
+        int after = bridgeGame.getTotalTry();
         assertThat(before).isEqualTo(0);
         assertThat(after).isEqualTo(1);
     }
@@ -152,8 +151,8 @@ class BridgeGameTest {
         bridgeGame.success();
         String success = bridgeGame.getResultMessage();
         //then
-        assertThat(fail).isEqualTo(Result.FAIL.getKorean());
-        assertThat(success).isEqualTo(Result.SUCCESS.getKorean());
+        assertThat(fail).isEqualTo(Result.FAIL.getMessage());
+        assertThat(success).isEqualTo(Result.SUCCESS.getMessage());
     }
 
     @DisplayName("게임 캐릭터가 이동할 칸의 이동 가능 여부 체크 테스트")
@@ -195,7 +194,7 @@ class BridgeGameTest {
         //when
         bridgeGame.saveNextMove();
         //then
-        List<Move> currentResult = bridgeGame.showCurrentResult();
+        List<Move> currentResult = bridgeGame.showCurrentMap();
         assertThat(currentResult.size()).isEqualTo(1);
         assertThat(currentResult.get(0).getDestination()).isEqualTo(destination);
         assertThat(currentResult.get(0).isSuccess()).isEqualTo(moveResult);
@@ -211,7 +210,7 @@ class BridgeGameTest {
         //then
         assertThat(character.showNextDestination()).isEqualTo(destination);
         assertThat(character.showCurrentLocation()).isEqualTo(0);
-        List<Move> moves = bridgeGame.showCurrentResult();
+        List<Move> moves = bridgeGame.showCurrentMap();
         assertThat(moves.size()).isEqualTo(1);
         assertThat(moves.get(0).getDestination()).isEqualTo(destination);
     }

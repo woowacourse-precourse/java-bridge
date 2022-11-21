@@ -30,7 +30,7 @@ public class OutputView {
 
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(Message.FINAL_GAME_RESULT);
-        printMap(bridgeGame.showCurrentResult());
+        printMap(bridgeGame.showCurrentMap());
         printSuccess(bridgeGame);
         printTotalTry(bridgeGame);
     }
@@ -40,7 +40,7 @@ public class OutputView {
     }
 
     private void printTotalTry(BridgeGame bridgeGame) {
-        System.out.println(Message.TOTAL_TRY.toString() + bridgeGame.showTotalTry());
+        System.out.println(Message.TOTAL_TRY.toString() + bridgeGame.getTotalTry());
     }
 
     public static void printError(Exception e) {

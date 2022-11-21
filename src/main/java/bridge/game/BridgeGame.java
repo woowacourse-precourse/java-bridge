@@ -8,9 +8,9 @@ import java.util.List;
 public class BridgeGame {
     private final GameCharacter character;
     private final List<String> bridge;
+    private final List<Move> map = new ArrayList<>();
     private int totalTry = 0;
     private boolean success = false;
-    private List<Move> moves = new ArrayList<>();
 
     public BridgeGame(GameCharacter character, int bridgeSize) {
         this.character = character;
@@ -25,14 +25,13 @@ public class BridgeGame {
 
     public void saveNextMove() {
         String destination = character.showNextDestination();
-        int nextArea = character.showNextArea();
-        Move move = makeMove(destination, isAbleToMove(nextArea, destination));
-        moves.add(move);
+        boolean ableToMove = isAbleToMove(character.showNextArea(), destination);
+        Move nextMove = makeMove(destination, ableToMove);
+        map.add(nextMove);
     }
 
     public boolean isAbleToMove(int area, String destination) {
-        String answer = showRightDestinationInArea(area);
-        return answer.equals(destination);
+        return showRightDestinationInArea(area).equals(destination);
     }
 
     public List<String> showBridge() {
@@ -40,7 +39,7 @@ public class BridgeGame {
     }
 
     public String showRightDestinationInArea(int area) {
-        return showBridge().get(area);
+        return bridge.get(area);
     }
 
     public Move makeMove(String destination, boolean result) {
@@ -48,11 +47,11 @@ public class BridgeGame {
     }
 
     public Result moveResult() {
-        int progressCount = moves.size();
-        if (!moves.get(progressCount - 1).isSuccess()) {
+        int lastMoveIndex = map.size() - 1;
+        if (!map.get(lastMoveIndex).isSuccess()) {
             return Result.FAIL;
         }
-        if (progressCount == bridge.size()) {
+        if (map.size() == bridge.size()) {
             return Result.SUCCESS;
         }
         return Result.CONTINUE;
@@ -63,12 +62,12 @@ public class BridgeGame {
     }
 
     public void retry() {
-        moves.clear();
+        map.clear();
         character.reset();
     }
 
-    public List<Move> showCurrentResult() {
-        return new ArrayList<>(moves);
+    public List<Move> showCurrentMap() {
+        return new ArrayList<>(map);
     }
 
     public void success() {
@@ -80,13 +79,13 @@ public class BridgeGame {
     }
 
     public String getResultMessage() {
-        if (success) {
-            return Result.SUCCESS.getKorean();
+        if (isSuccess()) {
+            return Result.SUCCESS.getMessage();
         }
-        return Result.FAIL.getKorean();
+        return Result.FAIL.getMessage();
     }
 
-    public int showTotalTry() {
+    public int getTotalTry() {
         return totalTry;
     }
 }
