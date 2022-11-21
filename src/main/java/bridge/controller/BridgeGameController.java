@@ -53,9 +53,14 @@ public class BridgeGameController {
         return movingResult;
     }
     public String inputMoveOne(int index){
-        String moving = inputView.readMoving();
-        Validator.checkMoving(moving);
-        return moving;
+        try {
+            String moving = inputView.readMoving();
+            Validator.checkMoving(moving);
+            return moving;
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputMoveOne(index);
+        }
     }
     public boolean isQuit(){
         String retry=inputView.readGameCommand();
