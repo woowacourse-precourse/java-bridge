@@ -7,6 +7,8 @@ import bridge.Application;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewTest extends NsTest {
 
@@ -26,6 +28,16 @@ class InputViewTest extends NsTest {
     void receiveBridgeLengthByNotNumber() {
         assertSimpleTest(() -> {
             runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @DisplayName("다리의 길이를 입력받을 때 길이가 3 미만, 20 초과이면 예외가 발생해야 한다.")
+    @ValueSource(strings = {"2", "21"})
+    void receiveBridgeLengthByUnder3OrOver20Size(String input) {
+        assertSimpleTest(() -> {
+            runException(input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
