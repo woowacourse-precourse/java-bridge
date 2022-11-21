@@ -18,12 +18,18 @@ public class BridgeGame {
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param index 다리의 몇번째 칸을 건널 것인지
+     * @param command 사용자가 입력한 이동 명령
      */
     public Map<String, List<String>> move(int index, String command) {
-        // TODO: getResult, selectUpperBridge, selectLowerBridge 메소드 호출
-        return null;
+        String result = getResult(index, command);
+        if (command.equals("U")){
+            selectUpperBridge(result);
+        }
+        if (command.equals("D")){
+            selectLowerBridge(result);
+        }
+        return currentMap;
     }
 
     private String getResult(int index, String command){
