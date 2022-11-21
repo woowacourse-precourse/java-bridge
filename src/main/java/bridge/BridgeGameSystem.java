@@ -15,8 +15,8 @@ public class BridgeGameSystem {
         int bridgeSize = BridgeGame.getBridgeSize();
         List<String> bridge = BridgeGame.getBridge(bridgeSize);
         System.out.println(bridge);
-        String direct = BridgeGame.getMoveDirect();
-        Bridge pos = toCrossBridge(bridge, direct, index);
+        boolean success = playGame(bridge, bridgeSize);
+        outputView.printResult(tryCount, success);
     }
 
     public static void startGame(){
