@@ -4,8 +4,8 @@ public enum SuccessStep {
     SUCCESS("O", true),
     FAIL("X", false);
 
-    private String step;
-    private boolean status;
+    private final String step;
+    private final boolean status;
 
     SuccessStep(String step, boolean status) {
         this.step = step;
