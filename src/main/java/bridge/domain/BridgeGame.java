@@ -76,11 +76,11 @@ public class BridgeGame {
         return playCount;
     }
 
-    public List<String> getTop() {
+    public List<PassResult> getTop() {
         return top;
     }
 
-    public List<String> getBottom() {
+    public List<PassResult> getBottom() {
         return bottom;
     }
 }
