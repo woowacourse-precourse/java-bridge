@@ -11,6 +11,12 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
     /**
+     * 이동할 칸을 선택하도록 문구를 출력한다.
+     */
+    public void printMove() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+    /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
@@ -23,6 +29,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String finalMap, String gameResult, int trialCount) {
+        String resultMessage = "최종 게임 결과\n";
+        resultMessage += finalMap + "\n";
+        resultMessage += String.format("게임 성공 여부: %s\n", gameResult);
+        resultMessage += String.format("총 시도한 횟수: %d", trialCount);
     }
 }
