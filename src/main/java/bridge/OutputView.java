@@ -69,7 +69,21 @@ public class OutputView {
         return downLine;
     }
 
+    // 위 또는 아래줄에 빈칸 추가
+    private String addBlank() {
+        return "   ";
+    }
 
+    // 위 또는 아래줄에 출력 내용을 추가
+    private String addLine(List<String> item) {
+        return " " + item.get(0) + " ";
+    }
+
+    private void printLines(List<String> lines) {
+        System.out.println(lines.get(0));
+        System.out.println(lines.get(1));
+        System.out.println();
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
