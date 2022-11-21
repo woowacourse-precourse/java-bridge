@@ -31,19 +31,10 @@ public class BridgeGameController {
     public void playGame() {
         while (game.currentStatus.equals(gameStatus.CONTINUE)) {
             movePosition();
-
             if (game.currentStatus.equals(gameStatus.FAIL)) {
                 output.printResult(game);
-                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-                String gameCommand = input.readGameCommand();
-                if (gameCommand.equals("R")) {
-                    game.retry();
-                }
-                if (gameCommand.equals("Q")) {
-                    output.printResult(game);
-                }
+                retryOrEndGame();
             }
-
             if (game.currentStatus.equals(gameStatus.SUCCESS)) {
                 output.printResult(game);
             }
@@ -55,5 +46,16 @@ public class BridgeGameController {
         String direction = input.readMoving();
         game.move(direction);
         output.printMap(bridge);
+    }
+
+    public void retryOrEndGame() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String gameCommand = input.readGameCommand();
+        if (gameCommand.equals("R")) {
+            game.retry();
+        }
+        if (gameCommand.equals("Q")) {
+            output.printResult(game);
+        }
     }
 }
