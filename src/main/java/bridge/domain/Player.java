@@ -1,33 +1,29 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player {
 
-    private final List<String> movingList;
-
-    public Player() {
-        movingList = new ArrayList<>();
-    }
+    private String latestMoving;
+    private int position = -1;
 
     public void move(String moving) {
-        movingList.add(moving);
+        latestMoving = moving;
+        position++;
     }
 
     public String getLatestMoving() {
-        if (movingList.size() == 0) {
+        if (position < 0) {
             throw new IllegalStateException("아직 이동하지 않았습니다. 한번 이상은 이동 해야 합니다.");
         }
 
-        return movingList.get(getPosition());
+        return latestMoving;
     }
 
     public int getPosition() {
-        return movingList.size() - 1;
+        return position;
     }
 
     public void reset() {
-        movingList.clear();
+        latestMoving = null;
+        position = -1;
     }
 }
