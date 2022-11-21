@@ -22,12 +22,7 @@ public class BridgeGameAnswer {
     public List<List<String>> getMapByHistory(List<String> history) {
         List<List<String>> rvalue = new ArrayList<>();
         for (int i = 0; i < history.size(); i++) {
-            if (isAnswer(history.get(i), i)) {
-                rvalue.add(getCollectMessage(bridgeAnswer.get(i),
-                        isLastIndex(history.size(), i)));
-                continue;
-            }
-            rvalue.add(getWrongMessage(bridgeAnswer.get(i), isLastIndex(history.size(), i)));
+            rvalue.add(getMap(history, i));
         }
         return rvalue;
     }
@@ -51,5 +46,12 @@ public class BridgeGameAnswer {
             return true;
         }
         return false;
+    }
+
+    private List<String> getMap(List<String> history, int index) {
+        if (isAnswer(history.get(index), index)) {
+            return getCollectMessage(bridgeAnswer.get(index), isLastIndex(history.size(), index));
+        }
+        return getWrongMessage(bridgeAnswer.get(index), isLastIndex(history.size(), index));
     }
 }
