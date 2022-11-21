@@ -20,8 +20,7 @@ public class InputController {
         while (true) {
             try {
                 outputView.printBridgeSize();
-                int bridgeSize = inputView.readBridgeSize();
-                return bridgeSize;
+                return inputView.readBridgeSize();
             } catch (IllegalArgumentException e) {
                 errorOutputView.printBridSizeError();
             }
@@ -32,8 +31,7 @@ public class InputController {
         while (true) {
             try {
                 outputView.printMove();
-                String moving = inputView.readMoving();
-                return moving;
+                return inputView.readMoving();
             } catch (IllegalArgumentException e) {
                 errorOutputView.printMoveError();
             }
@@ -44,8 +42,7 @@ public class InputController {
         while (true) {
             try {
                 outputView.printRetry();
-                String retry = inputView.readGameCommand();
-                return retry;
+                return inputView.readGameCommand();
             } catch (IllegalArgumentException e) {
                 errorOutputView.printRetryError();
             }
