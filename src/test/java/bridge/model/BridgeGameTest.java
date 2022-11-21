@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.model;
 
 class BridgeGameTest {
 
