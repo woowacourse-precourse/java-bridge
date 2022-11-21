@@ -13,4 +13,17 @@ public class InputView {
             }
         }
     }
+
+    public static String readMoving() {
+        while(true) {
+            String key = Console.readLine();
+            if(Verification.isMoveKey(key)) {
+                return key;
+            }
+        }
+    }
+
+    public static String readGameCommand() {
+
+    }
 }
