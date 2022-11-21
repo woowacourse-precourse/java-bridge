@@ -11,7 +11,9 @@ public enum OutputText {
     CURRENT_MAP("[%s]"),
     MOVABLE_BLOCK("O"),
     UNMOVABLE_BLOCK("X"),
-    BLANK_BLOCK(" ");
+    BLANK_BLOCK(" "),
+    CLEAR("성공"),
+    FAIL("실패");
 
     private String message;
     OutputText(String message){

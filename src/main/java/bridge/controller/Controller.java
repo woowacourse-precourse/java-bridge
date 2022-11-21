@@ -4,8 +4,10 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
+import bridge.domain.GameState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.view.text.OutputText;
 
 import java.util.List;
 
@@ -44,5 +46,14 @@ public class Controller {
         outputView.printRetryInputRequest();
         String retrialInput = inputView.readGameCommand();
         bridgeGame.retry(retrialInput);
+    }
+
+    private void showResult(){
+        outputView.printResult(gameStateToString(bridgeGame.getGameState()), bridgeGame.getTrialCount());
+    }
+
+    private String gameStateToString(GameState gameState){
+        if (gameState == GameState.CLEAR) return OutputText.CLEAR.getMessage();
+        return OutputText.FAIL.getMessage();
     }
 }
