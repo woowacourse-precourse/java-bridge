@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.constant.BridgeConstant.QUIT;
+import static bridge.constant.BridgeConstant.RETRY;
 import static bridge.constant.ErrorConstant.ENTER_BRIDGE_LENGTH;
 import static bridge.constant.ErrorConstant.PICK_COMMAND;
 import static bridge.constant.ErrorConstant.PICK_POSITION;
@@ -55,7 +57,7 @@ public class InputView {
     }
 
     private void validateRetryOrExit(String input) {
-        if (!input.equals("R") && !input.equals("Q")) {
+        if (!input.equals(RETRY) && !input.equals(QUIT)) {
             throw new IllegalArgumentException(ErrorType.COMMAND_ERROR.printError());
         }
     }

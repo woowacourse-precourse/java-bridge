@@ -6,27 +6,29 @@ import java.util.StringJoiner;
 
 public class OutputView {
 
-    private static final String mapStarter = "[ ";
-    private static final String mapFinisher = " ]";
-    private static final String mapSeparator = " | ";
+    private static final String MAP_STARTER = "[ ";
+    private static final String MAP_FINISHER = " ]";
+    private static final String MAP_SEPARATOR = " | ";
+    private static final String FINAL_GAME_RESULT = "최종 게임 결과";
+    private static final String CHECK_CLEAR_FAIL = "게임 성공 여부: ";
+    private static final String TOTAL_GAME_COUNT = "총 시도한 횟수: ";
 
     public void printMap(List<List<String>> playingMap) {
         for (List<String> playingBridge : playingMap) {
-            String bridgeMap = toStringOf(playingBridge);
-            System.out.println(bridgeMap);
+            System.out.println(toStringOf(playingBridge));
         }
         System.out.println();
     }
 
     public void printResult(List<List<String>> playingMap, GameStatusType gameStatusType, int gameCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_GAME_RESULT);
         printMap(playingMap);
-        System.out.println("게임 성공 여부: " + gameStatusType.toString());
-        System.out.println("총 시도한 횟수: " + gameCount);
+        System.out.println(CHECK_CLEAR_FAIL + gameStatusType.toString());
+        System.out.println(TOTAL_GAME_COUNT + gameCount);
     }
 
     private String toStringOf(List<String> playingBridge) {
-        StringJoiner stringJoiner = new StringJoiner(mapSeparator, mapStarter, mapFinisher);
+        StringJoiner stringJoiner = new StringJoiner(MAP_SEPARATOR, MAP_STARTER, MAP_FINISHER);
         for (String result : playingBridge) {
             stringJoiner.add(result);
         }
