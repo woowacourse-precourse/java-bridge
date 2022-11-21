@@ -9,6 +9,16 @@ public class Service {
 	private int count = 1;
 	private boolean successOrFail = true;
 
+	public void playGame() {
+		for (int index = 0; index < bridgeSize.getBridgeSize(); index++) {
+			String userInput = checkUserInputMove();
+			outputView.printMap(bridgeGame.move(userInput, index), userInput);
+			if (!bridgeGame.move(userInput, index)) {
+				index = checkUserCommend();
+			}
+		}
+	}
+
 	public int checkUserCommend() {
 		String userCommend = checkUserInputCommend();
 		if (bridgeGame.retry(userCommend)) {
