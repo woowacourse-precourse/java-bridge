@@ -12,15 +12,16 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
-    // 숫자 입력
-    private static final String BRIDGE_SIZE_REGEX = "^\\d*$";
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
 
-    // D 또는 U
+    // 다리의 길이 입력 : 숫자
+    private static final String BRIDGE_SIZE_REGEX = "^\\d*$";
+
+    // 이동할 칸 입력 : D 또는 U
     private static final String USER_MOVE_DIRECTION_REGEX = "^[" + BridgeGame.BridgeShape.DOWN.getStringValue() + "|" + BridgeGame.BridgeShape.UP.getStringValue() + "]$";
 
-    // R 또는 Q
+    // 재시작 또는 종료 입력 : R 또는 Q
     private static final String USER_GAME_COMMAND_REGEX = "^[" + User.GameCommand.RETRY.getCommand() + "|" + User.GameCommand.QUIT.getCommand() + "]$";
 
 
@@ -55,6 +56,7 @@ public class InputView {
         return bridgeSize >= MIN_BRIDGE_SIZE && bridgeSize <= MAX_BRIDGE_SIZE;
     }
 
+
     /**
      * TODO: 사용자가 이동할 칸을 입력받는다.
      *
@@ -77,6 +79,7 @@ public class InputView {
         Matcher matcher = pattern.matcher(userMoveDirection);
         return matcher.matches();
     }
+
 
     /**
      * TODO: 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
