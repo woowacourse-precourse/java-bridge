@@ -12,8 +12,9 @@ public class BridgeIndex {
     }
 
     public Integer getAndIncrement() {
+        var lastIndex = this.index;
         this.incrementIndexPlusOne();
-        return this.index;
+        return lastIndex;
     }
 
     private void incrementIndexPlusOne() {
