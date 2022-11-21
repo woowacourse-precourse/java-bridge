@@ -29,6 +29,17 @@ public class OutputView {
         System.out.print(" ]\n");
     }
 
+    private static void printDownMap(List<String> downMap) {
+        for (int index = 0 ; index < downMap.size(); index++) {
+            if (index == 0) {
+                System.out.print("[ ");
+            } else if (index > 0) {
+                System.out.print(" | ");
+            }
+            System.out.print(downMap.get(index));
+        }
+        System.out.print(" ]\n");
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
