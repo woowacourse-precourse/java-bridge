@@ -58,6 +58,25 @@ public class OutputView {
         System.out.println(downside);
     }
 
+    private static String newGuessToString(boolean isSuccess,String position, String newPosition) {
+        if (!position.equals(newPosition)){
+            return BRIDGE_SEP + EMPTY;
+        }
+        if (isSuccess) {
+            return BRIDGE_SEP + BRIDGE_AVAILABLE;
+        }
+        return BRIDGE_SEP + BRIDGE_NOT_AVAILABLE;
+    }
+
+    public static void printMapWithNew(List<String> crossedBridge, boolean isSuccess, String newPosition) {
+        String upside = BRIDGE_START + arrToString(getMiddle(crossedBridge, UP))
+                                + newGuessToString(isSuccess, UP, newPosition) + BRIDGE_END;
+        String downside = BRIDGE_START + arrToString(getMiddle(crossedBridge, DOWN))
+                                + newGuessToString(isSuccess, DOWN, newPosition) + BRIDGE_END;
+        System.out.println(upside);
+        System.out.println(downside);
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
