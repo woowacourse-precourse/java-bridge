@@ -15,6 +15,7 @@ public class Bridge {
 
     public void addBlock(String moving) {
         bridge.add(moving);
+        validate(this.bridge);
     }
 
     public void reset() {
