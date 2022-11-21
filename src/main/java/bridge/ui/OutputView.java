@@ -54,8 +54,11 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridge, userInput);
 
-        boolean result = userInput.containsAll(bridge);
-        System.out.println("게임 성공 여부: " + result);
+        String gameResult = "실패";
+        if(userInput.equals(bridge))
+            gameResult = "성공";
+
+        System.out.println("게임 성공 여부: " + gameResult);
         System.out.println("총 시도한 횟수: " + Integer.toString(cnt));
     }
 }
