@@ -35,8 +35,10 @@ public class OutputView {
      * @param bridge
      */
     public void printMap(List<String> userRoute, List<String> bridge) {
-        for (Direction direction : Direction.values()) {
-            printFloor(direction.toString(), userRoute, bridge);
+        Direction[] directions = Direction.values();
+
+        for (int i = directions.length - 1; i >= 0; i--) {
+            printFloor(directions[i].toString(), userRoute, bridge);
         }
     }
 
