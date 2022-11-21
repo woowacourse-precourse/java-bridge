@@ -12,7 +12,7 @@ public class Player {
     }
 
     public void move(Bridge bridge, String spaceToMove) {
-        if (isDead()) {
+        if (isDead() || isArrived(bridge)) {
             throw new IllegalStateException("[ERROR] 유효하지 않은 상태에서 move가 호출됐습니다");
         }
         int nextSpaceIndex = currentSpaceIndex + 1;
