@@ -17,14 +17,16 @@ public enum BridgeEnum {
         return Arrays.stream(values())
                 .filter(pointValue -> pointValue.bridgeNumberType == locationNumber)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 정보입니다."));
+                .orElseThrow();
     }
 
-    public static BridgeEnum createBridgeStringType(String location) {
+    public static BridgeEnum createBridgeStringType(String location, boolean correctLocation) {
         return Arrays.stream(values())
-                .filter(locationValue -> locationValue.bridgeStringType.equals(location))
+                .filter(locationValue -> isLocation(locationValue, location)
+                        && isCorrectLocation(locationValue, correctLocation))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력은 대문자 'U', 'D'만 입력가능합니다"));
+                .orElseThrow();
+    }
     }
 
     public String getStringType() {

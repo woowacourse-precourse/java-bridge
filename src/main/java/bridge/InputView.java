@@ -6,7 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
+    private static final String UP_BRIDGE = "U";
+    private static final String DOWN_BRIDGE = "D";
     public static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     public static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final int MIN_BRIDGE_SIZE = 3;
@@ -14,6 +15,7 @@ public class InputView {
     private static final String ONLY_CONTAINS_NUMBER_REGEX = "^[0-9]*$";
     private static final String RANGE_ERROR = "[ERROR] 3에서 20까지의 숫자를 입력해 주시기 바랍니다.";
     private static final String NUMBER_ERROR = "[ERROR] 올바른 숫자가 아닙니다.";
+    private static final String MOVING_COMMAND_ERROR = "[ERROR] U 또는 D를 입력해 주시기 바랍니다.\n";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -47,10 +49,21 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public BridgeEnum readMoving() {
-        System.out.println(INPUT_MOVING);
-        String readMove = Console.readLine();
-        return BridgeEnum.createBridgeStringType(readMove);
+    public String readMoving() {
+        try {
+            System.out.println(INPUT_MOVING);
+            return isMovingCommand(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+    }
+
+    private String isMovingCommand(String readLine) {
+        if (!(UP_BRIDGE.equals(readLine) || DOWN_BRIDGE.equals(readLine))) {
+            throw new IllegalArgumentException(MOVING_COMMAND_ERROR);
+        }
+        return readLine;
     }
 
     /**
