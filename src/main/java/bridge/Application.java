@@ -1,8 +1,11 @@
 package bridge;
 
+import bridge.controller.BridgeControl;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeControl bridgeControl = new BridgeControl();
+        bridgeControl.execute();
     }
 }
