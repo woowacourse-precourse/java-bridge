@@ -20,14 +20,14 @@ class BridgeMakerTest {
     @DisplayName("만든 List가 String으로 이루어진게 맞는지 확인하는 테스트")
     @Test
     void makeUDBridgeTest() {
-        Assertions.assertThat(bridgeMaker.makeUDBridge(BRIDGE_SIZE_INPUT).get(2))
+        Assertions.assertThat(bridgeMaker.makeBridge(BRIDGE_SIZE_INPUT).get(2))
                 .isInstanceOf(String.class);
     }
 
     @DisplayName("만든 List가 size에 맞게 만들어졌는지 확인하는 테스트")
     @Test
     void checkSizeOfBridgeTest() {
-        Assertions.assertThat(bridgeMaker.makeUDBridge(BRIDGE_SIZE_INPUT).size())
+        Assertions.assertThat(bridgeMaker.makeBridge(BRIDGE_SIZE_INPUT).size())
                 .isEqualTo(BRIDGE_SIZE_INPUT);
     }
 }
