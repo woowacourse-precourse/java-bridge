@@ -19,24 +19,23 @@ public class BridgeGameController {
         bridgeGame=new BridgeGame();
     }
     public void gameStart(){
-        setBridgeSize();
+        makeBridge();
         move(bridgeGame.getBridgeSize());
     }
-    public int setBridgeSize(){
+    public int makeBridge(){
         outputView.printStartGame();
-        int bridgeSize=inputBridgeSize();
-        bridgeGame.makeBridge(bridgeSize);
-        return bridgeSize;
+        bridgeGame.makeBridge(inputBridgeSize());
+        return bridgeGame.getBridgeSize();
     }
     public int inputBridgeSize(){
-        String bridgeSize = inputView.readBridgeSize();
         try {
+            String bridgeSize=inputView.readBridgeSize();
             Validator.checkBridgeSize(bridgeSize);
+            return Integer.parseInt(bridgeSize);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
-            inputBridgeSize();
+            return inputBridgeSize();
         }
-        return Integer.parseInt(bridgeSize);
     }
     public void move(int bridgeSize){
         boolean success=true;
