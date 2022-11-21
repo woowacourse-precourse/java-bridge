@@ -41,23 +41,34 @@ class ApplicationTest extends NsTest {
 //        }, 1, 0, 1);
 //    }
 
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
+//    @Test
+//    void 예외_테스트() {
+//        assertSimpleTest(() -> {
+//            runException("a");
+//            assertThat(output()).contains(ERROR_MESSAGE);
+//        });
+//    }
+//
+//    @DisplayName("다리의 사이즈가 3이상 20이하가 아닐시 예외가 발생한다")
+//    @Test
+//    void createWrongBridgeSize(){
+//        assertSimpleTest(() -> {
+//            runException("2");
+//            assertThat(output()).contains(ERROR_MESSAGE);
+//        });
+//    }
 
-    @DisplayName("다리의 사이즈가 3이상 20이하가 아닐시 예외가 발생한다")
+    @DisplayName("이동방향이 U나 D가 아닌 입력으로 들어올 시 예외가 발생한다")
     @Test
-    void createWrongBridgeSize(){
-        assertSimpleTest(() -> {
-            runException("2");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+    void createWrongMoveInput(){
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "u", "U", "D", "U");
+            assertThat(output()).contains(
+                    "다리 건너기 게임을 시작합니다.",
+                    ERROR_MESSAGE
+            );
+        }, 1, 0, 1);
     }
-
 
     @Override
     protected void runMain() {
