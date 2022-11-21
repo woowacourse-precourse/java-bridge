@@ -11,5 +11,6 @@ public class BridgeGameController {
             if (bridgeGameService.moveBridge() == GameStatus.SUCCESS) break;
             bridgeGameService.askReplay();
         }
+        bridgeGameService.showFinalResult();
     }
 }

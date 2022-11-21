@@ -61,4 +61,8 @@ public class BridgeGameService {
         bridgeGame.setGameStatus(GameStatus.LOSE);
         return true;
     }
+
+    public void showFinalResult() {
+        outputView.printResult(bridgeGame.getGameResult(), bridgeGame.getRound());
+    }
 }

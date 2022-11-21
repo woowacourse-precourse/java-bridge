@@ -22,6 +22,13 @@ public class OutputView {
     public static void showBridgeResult(List<String> bridge){
         System.out.println(BRIDGE_FRONT + String.join( BRIDGE_LINK, bridge) + BRIDGE_TAIL);
     }
-    public void printResult() {
+    public void printResult(GameResult gameResult, int round) {
+        System.out.println(Message.FINAL_RESULT_MESSAGE);
+
+        printMap(gameResult);
+        System.out.println();
+        System.out.println(Message.FINAL_GAME_STATUS_MESSAGE + gameResult.getGameStatus().getStatus());
+        System.out.println(Message.FINAL_ROUND_COUNT_MESSAGE + round);
+
     }
 }
