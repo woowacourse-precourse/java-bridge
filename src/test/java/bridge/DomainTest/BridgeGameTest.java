@@ -52,21 +52,6 @@ public class BridgeGameTest {
     @DisplayName("다리 이동 테스트")
     class moveTest {
 
-        @DisplayName("건널수 없는 칸으로 갈 때 이동한 칸을 저장하고 실패를 선언한다.")
-        @Test
-        void moveToImpossibleZone() {
-            bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
-
-            List<String> nextStep = new ArrayList<>(Arrays.asList("D"));
-            List<String> expected = new ArrayList<>(Arrays.asList("X"));
-            InputStream in = new ByteArrayInputStream(nextStep.get(0).getBytes());
-            System.setIn(in);
-
-            bridgeGame.move();
-            assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(expected);
-            assertThat(bridgeGame.getIsGameSucceed()).isFalse();
-        }
-
         @DisplayName("다 건넜을 경우 성공을 선언한다.")
         @Test
         void finishCrossingBridgeTest() {
@@ -82,7 +67,7 @@ public class BridgeGameTest {
 
     @Nested
     @DisplayName("재시도 여부 테스트")
-    class retryTest {
+    class retryOrQuitTest {
 
         @DisplayName("R을 받을 경우 RETRY를 선언, 시도 횟수 증가, 유저의 인풋값을 초기화한다.")
         @Test
@@ -98,7 +83,7 @@ public class BridgeGameTest {
                     Collections.emptyList());
         }
 
-        @DisplayName("Q를 받을 경우, QUIT을 선언한다.")
+        @DisplayName("Q를 받을 경우, QUIT 상태로 선언한다.")
         @Test
         void quitTest() {
             String quitInput = "Q";
