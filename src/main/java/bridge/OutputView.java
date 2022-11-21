@@ -11,7 +11,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> answer, List<String> user) {
         printBridgeState(answer,user,"U");
         printBridgeState(answer,user,"D");
         System.out.println();
@@ -19,9 +19,21 @@ public class OutputView {
 
     public void printBridgeState(List<String> answer, List<String> user, String direction) {
         StringBuilder result = new StringBuilder();
+        result.append("[");
+        for (int i = 0; i < user.size(); i++,result.append("|"))
+            result.append(getOorX(user.get(i).equals(direction),user.get(i).equals(answer.get(i))));
+        result.deleteCharAt(result.length()-1);
+        result.append("]");
         System.out.println(result.toString());
     }
 
+    public String getOorX(boolean ans, boolean equal) {
+        if (!ans)
+            return "   ";
+        if (ans & equal)
+            return " O ";
+        return " X ";
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
