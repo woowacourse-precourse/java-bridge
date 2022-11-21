@@ -10,6 +10,7 @@ public class OutputView {
     private static final String START_EVENT_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String BRIDGE_SIZE_EVENT_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String MOVE_EVENT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String RETRY_EVENT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String GAME_RESULT_TITLE = "최종 게임 결과";
@@ -58,5 +59,9 @@ public class OutputView {
 
     public void printMoveEventMessage() {
         System.out.println(MOVE_EVENT_MESSAGE);
+    }
+
+    public void printRetryEventMessage() {
+        System.out.println(RETRY_EVENT_MESSAGE);
     }
 }
