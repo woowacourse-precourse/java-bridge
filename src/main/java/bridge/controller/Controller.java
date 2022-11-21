@@ -30,6 +30,7 @@ public class Controller {
             String moving = inputView.readMoving();
             TrialResult trialResult = bridgeGame.move(moving);
             trialResults.add(trialResult);
+            outputView.printMap(trialResults);
         }
     }
 
