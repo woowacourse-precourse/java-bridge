@@ -6,8 +6,10 @@ import java.util.List;
 public class Bridge {
     private static final int MIN_BRIDGE_SIZE =3;
     private static final int MAX_BRIDGE_SIZE =20;
+    private static final int bridgePositionNumber =2;
     private int bridgeSize;
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private List<String> bridgeMap = new ArrayList<>();
     private List<Integer> crossAble = new ArrayList<>();
     public Bridge(String bridgeSize){
         this.bridgeSize = validate(bridgeSize);
@@ -46,5 +48,12 @@ public class Bridge {
             return true;
         }
         return false;
+    }
+    public void setBridgeMap(){
+        for(int i=0;i<bridgePositionNumber;i++){
+            for(int j=0;j<bridgeSize;j++){
+                bridgeMap.add(" ");
+            }
+        }
     }
 }
