@@ -3,6 +3,9 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.WordType.DOWN;
+import static bridge.WordType.UP;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -28,8 +31,8 @@ public class BridgeMaker {
 
     private String getPostionToBridgeNumberGenerator(int number) {
         if (number == 1) {
-            return "U";
+            return UP.getWord();
         }
-        return "D";
+        return DOWN.getWord();
     }
 }
