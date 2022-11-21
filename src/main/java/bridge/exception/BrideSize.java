@@ -11,6 +11,7 @@ public class BrideSize {
         this.brideSizeInput = brideSizeInput;
         isNotNumeric();
         this.brideSize = Integer.parseInt(brideSizeInput);
+        checkInvalidRange();
     }
 
     private void isNotNumeric() {
@@ -19,7 +20,9 @@ public class BrideSize {
         }
     }
 
-    private boolean checkInvalidRange() {
-        return (MIN_BRIDE_SIZE > brideSize) || (MAX_BRIDE_SIZE < brideSize);
+    private void checkInvalidRange() {
+        if ((MIN_BRIDE_SIZE > brideSize) || (MAX_BRIDE_SIZE < brideSize)) {
+            throw new ErrorException(BrideError.INVALID_RANGE);
+        }
     }
 }
