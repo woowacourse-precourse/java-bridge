@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
+import bridge.variable.Variable;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -36,7 +37,7 @@ public class BridgeController {
     }
 
     public boolean isWrong(String bridge){
-        if(bridge.contains("X")){
+        if(bridge.contains(Variable.FAIL.getStr())){
             return true;
         }
         return false;

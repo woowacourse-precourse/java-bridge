@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeGame;
 import bridge.message.GameMessage;
+import bridge.variable.Variable;
 
 import java.util.List;
 
@@ -48,10 +49,10 @@ public class OutputView {
 
     public void printSuccess(List<String> bridge, int step, String str){
         System.out.println("");
-        if(bridge.size() == step && !str.contains("X")){
+        if(bridge.size() == step && !str.contains(Variable.FAIL.getStr())){
             System.out.println(GameMessage.GAME_SUCCESS_MESSAGE.getMessage());
         }
-        if(bridge.size() != step || str.contains("X")){
+        if(bridge.size() != step || str.contains(Variable.FAIL.getStr())){
             System.out.println(GameMessage.GAME_FAIL_MESSAGE.getMessage());
         }
     }

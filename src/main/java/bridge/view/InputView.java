@@ -2,6 +2,7 @@ package bridge.view;
 
 
 import bridge.message.ErrorMessage;
+import bridge.variable.Variable;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -10,6 +11,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     OutputView outputView = new OutputView();
+    static final int MIN_LENGTH = 3;
+    static final int MAX_LENGTH = 20;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -72,19 +75,19 @@ public class InputView {
             }
         }
         int len = Integer.parseInt(input);
-        if(len < 3 || len > 20){
+        if(len < MIN_LENGTH || len > MAX_LENGTH){
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_RETRY_INPUT_ERROR.getMessage());
         }
     }
 
     private static void validateMoveInput(String input){
-        if(!(input.equals("U") || input.equals("D"))){
+        if(!(input.equals(Variable.UP.getStr()) || input.equals(Variable.DOWN.getStr()))){
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_MOVE_INPUT_ERROR.getMessage());
         }
     }
 
     private static void validateReStartInput(String input){
-        if(!(input.equals("R") || input.equals("Q"))){
+        if(!(input.equals(Variable.RESTART.getStr()) || input.equals(Variable.QUIT.getStr()))){
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_RETRY_INPUT_ERROR.getMessage());
         }
     }

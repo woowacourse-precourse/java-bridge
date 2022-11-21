@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.variable.Variable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private int DOWN_NUMBER = 0;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -28,9 +31,9 @@ public class BridgeMaker {
 
     public String upDown(){
         int num = bridgeNumberGenerator.generate();
-        if(num == 0){
-            return "D";
+        if(num == DOWN_NUMBER){
+            return Variable.DOWN.getStr();
         }
-        return "U";
+        return Variable.UP.getStr();
     }
 }

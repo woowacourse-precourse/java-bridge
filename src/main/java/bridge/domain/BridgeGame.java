@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.variable.Variable;
 import bridge.view.InputView;
 
 import java.util.List;
@@ -36,8 +37,8 @@ public class BridgeGame {
         printGoDown(bridge, input, step);
         midOrLast(bridge, step);
 
-        String upBridge = sbUp.substring(0, sbUp.toString().length() - 1) + "]";
-        String doBridge = sbDo.substring(0, sbDo.toString().length() - 1) + "]";
+        String upBridge = sbUp.substring(0, sbUp.toString().length() - 1) + Variable.END_BRACKET.getStr();
+        String doBridge = sbDo.substring(0, sbDo.toString().length() - 1) + Variable.END_BRACKET.getStr();
 
         return upBridge + System.getProperty("line.separator") + doBridge;
     }
@@ -57,7 +58,7 @@ public class BridgeGame {
     }
 
     public boolean isFinish(String str){
-        if(str.equals("Q")){
+        if(str.equals(Variable.QUIT.getStr())){
             return false;
         }
         return true;
@@ -65,38 +66,38 @@ public class BridgeGame {
 
     public void printMapStart(){
         if(size == 0){
-            sbUp.append("[");
-            sbDo.append("[");
+            sbUp.append(Variable.START_BRACKET.getStr());
+            sbDo.append(Variable.START_BRACKET.getStr());
         }
     }
 
     public void midOrLast(List<String> bridge, int size){
         if(bridge.size()-1 != size){
-            sbUp.append("|");
-            sbDo.append("|");
+            sbUp.append(Variable.MID_BRACKET.getStr());
+            sbDo.append(Variable.MID_BRACKET.getStr());
         }
         if(bridge.size()-1 == size){
-            sbUp.append("]");
-            sbDo.append("]");
+            sbUp.append(Variable.END_BRACKET.getStr());
+            sbDo.append(Variable.END_BRACKET.getStr());
         }
     }
 
     public String printMoveUpDown(List<String> bridge, String input, int step){
         if(bridge.get(step).equals(input)){
-            return " O ";
+            return Variable.SUCCESS.getStr();
         }
-        return " X ";
+        return Variable.FAIL.getStr();
     }
 
     public void printGoUp(List<String> bridge, String input, int step){
         String result = printMoveUpDown(bridge, input, step);
-        if(bridge.get(step).equals("U")) {
-            if (result.equals(" O ")) {
+        if(bridge.get(step).equals(Variable.UP.getStr())) {
+            if (result.equals(Variable.SUCCESS.getStr())) {
                 sbUp.append(result);
-                sbDo.append("   ");
+                sbDo.append(Variable.BLANK.getStr());
             }
-            if (result.equals(" X ")) {
-                sbUp.append("   ");
+            if (result.equals(Variable.FAIL.getStr())) {
+                sbUp.append(Variable.BLANK.getStr());
                 sbDo.append(result);
             }
         }
@@ -104,14 +105,14 @@ public class BridgeGame {
 
     public void printGoDown(List<String> bridge, String input, int step){
         String result = printMoveUpDown(bridge, input, step);
-        if(bridge.get(step).equals("D")) {
-            if (result.equals(" O ")) {
-                sbUp.append("   ");
+        if(bridge.get(step).equals(Variable.DOWN.getStr())) {
+            if (result.equals(Variable.SUCCESS.getStr())) {
+                sbUp.append(Variable.BLANK.getStr());
                 sbDo.append(result);
             }
-            if (result.equals(" X ")) {
+            if (result.equals(Variable.FAIL.getStr())) {
                 sbUp.append(result);
-                sbDo.append("   ");
+                sbDo.append(Variable.BLANK.getStr());
             }
         }
     }
@@ -120,9 +121,9 @@ public class BridgeGame {
         String result = sbUp + System.getProperty("line.separator") + sbDo;
 
         if(size != bridge.size()){
-            result = sbUp.substring(0, sbUp.toString().length()-1) + "]"
+            result = sbUp.substring(0, sbUp.toString().length()-1) + Variable.END_BRACKET.getStr()
                     + System.getProperty("line.separator")
-                    + sbDo.substring(0, sbDo.toString().length()-1) + "]";
+                    + sbDo.substring(0, sbDo.toString().length()-1) + Variable.END_BRACKET.getStr();
         }
 
         return result;
