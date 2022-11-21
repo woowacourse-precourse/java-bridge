@@ -98,61 +98,71 @@ class BridgeGameTest extends NsTest {
     @DisplayName("BridgeGame 클래스의 메소드를 테스트")
     class BridgeGameMethodTest {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U", "U", "D"));
-        @Test
-        @DisplayName("move 메소드 테스트_1")
-        void move1() {
-            bridgeGame.move("U");
-            assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of("O"));
-            assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of(" "));
+
+        @Nested
+        class moveTest {
+            @Test
+            @DisplayName("move 메소드 테스트_1")
+            void move1() {
+                bridgeGame.move("U");
+                assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of("O"));
+                assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of(" "));
+            }
+
+            @Test
+            @DisplayName("move 메소드 테스트_2")
+            void move2() {
+                bridgeGame.move("D");
+                assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of("X"));
+                assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of(" "));
+            }
+
+            @Test
+            @DisplayName("move 메소드 테스트_3")
+            void move3() {
+                bridgeGame.move("U");
+                bridgeGame.move("U");
+                assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of("O", "X"));
+                assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of(" ", " "));
+            }
         }
 
-        @Test
-        @DisplayName("move 메소드 테스트_2")
-        void move2() {
-            bridgeGame.move("D");
-            assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of("X"));
-            assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of(" "));
+        @Nested
+        class isGameEndTest {
+            @Test
+            @DisplayName("isGameEnd 메소드 테스트_1")
+            void isGameEnd1() {
+                bridgeGame.move("U");
+                bridgeGame.move("D");
+                bridgeGame.move("U");
+                bridgeGame.move("U");
+                bridgeGame.move("D");
+                assertThat(bridgeGame.isGameEnd()).isEqualTo(true);
+            }
+
+            @Test
+            @DisplayName("isGameEnd 메소드 테스트_2")
+            void isGameEnd2() {
+                bridgeGame.move("U");
+                bridgeGame.move("D");
+                bridgeGame.move("D");
+                assertThat(bridgeGame.isGameEnd()).isEqualTo(false);
+            }
+
+            @Test
+            @DisplayName("isGameEnd 메소드 테스트_3")
+            void isGameEnd3() {
+                bridgeGame.move("U");
+                bridgeGame.move("D");
+                bridgeGame.move("U");
+                bridgeGame.move("U");
+                bridgeGame.move("U");
+                assertThat(bridgeGame.isGameEnd()).isEqualTo(false);
+            }
         }
 
-        @Test
-        @DisplayName("move 메소드 테스트_3")
-        void move3() {
-            bridgeGame.move("U");
-            bridgeGame.move("U");
-            assertThat(bridgeGame.getUpperRoad()).isEqualTo(List.of("O", "X"));
-            assertThat(bridgeGame.getLowerRoad()).isEqualTo(List.of(" ", " "));
-        }
 
-        @Test
-        @DisplayName("isGameEnd 메소드 테스트_1")
-        void isGameEnd1() {
-            bridgeGame.move("U");
-            bridgeGame.move("D");
-            bridgeGame.move("U");
-            bridgeGame.move("U");
-            bridgeGame.move("D");
-            assertThat(bridgeGame.isGameEnd()).isEqualTo(true);
-        }
 
-        @Test
-        @DisplayName("isGameEnd 메소드 테스트_2")
-        void isGameEnd2() {
-            bridgeGame.move("U");
-            bridgeGame.move("D");
-            bridgeGame.move("D");
-            assertThat(bridgeGame.isGameEnd()).isEqualTo(false);
-        }
-
-        @Test
-        @DisplayName("isGameEnd 메소드 테스트_3")
-        void isGameEnd3() {
-            bridgeGame.move("U");
-            bridgeGame.move("D");
-            bridgeGame.move("U");
-            bridgeGame.move("U");
-            bridgeGame.move("U");
-            assertThat(bridgeGame.isGameEnd()).isEqualTo(false);
-        }
     }
 
     @Override
