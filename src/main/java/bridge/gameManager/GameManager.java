@@ -6,9 +6,12 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.gameComponent.Bridge;
 import bridge.gameComponent.BridgeGame;
 import bridge.util.MoveResult;
-import bridge.validator.InputValidator;
+import bridge.gameComponent.InputValidator;
 import bridge.viewer.InputView;
 import bridge.viewer.OutputView;
+
+import static bridge.util.MoveResult.CORRECT;
+import static bridge.util.MoveResult.WRONG;
 
 public class GameManager {
     private InputView inputView;
@@ -20,26 +23,28 @@ public class GameManager {
     private MoveResult moveResult;
 
     // 의존성 설정
-    public GameManager() {
+    public GameManager() { //TODO: interface
         this.inputValidator = new InputValidator();
         this.inputView = new InputView(this.inputValidator);
         this.outputView = new OutputView();
         this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(this.bridgeNumberGenerator);
-        moveResult = MoveResult.CORRECT;
+        moveResult = CORRECT;
     }
 
     public void start() {
         setBridge();
-        while(moveResult == MoveResult.CORRECT) {
-            moveResult = move();
-            if (moveResult == MoveResult.WRONG && inputView.readRetry()) reset();
+        while(moveResult == CORRECT) {
+            moveResult = moveTry(inputView.readMoving());
+            if (moveResult == WRONG && inputView.readRetry()) {
+                reset();
+            }
         }
         endGame();
     }
     private void reset() {
         bridgeGame.retry();
-        moveResult = MoveResult.CORRECT;
+        moveResult = CORRECT;
     }
     // 다리 생성
     private void setBridge() {
@@ -49,27 +54,26 @@ public class GameManager {
     }
 
     // 게임 진행
-    private MoveResult move() {
-        String move = inputView.readMoving();
+    private MoveResult moveTry(String move) {
         MoveResult moveResult = bridgeGame.isCorrectMove(move);
-        if(moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) bridgeGame.move();
-        char[][] bridgeToCurrentPosition = bridgeGame.getBridgeToCurrentPosition(moveResult);
-        int indexToPrint = getIndexToPrint();
-        outputView.printMap(bridgeToCurrentPosition, indexToPrint);
+        bridgeGame.moveForward(moveResult, move);
+        char[][] bridgeResult = bridgeGame.getCurrentBridge(moveResult);
+        int bridgeIndex = getBridgeIndex(moveResult);
+        outputView.printMap(bridgeResult, bridgeIndex);
         return moveResult;
     }
-    private int getIndexToPrint() {
-        int indexToPrint = bridgeGame.getCurrentStep();
-        if(moveResult.equals(MoveResult.WRONG)) indexToPrint++;
-        return indexToPrint;
+    private int getBridgeIndex(MoveResult moveResult) {
+        int bridgeIndex = bridgeGame.getBridgeIndex();
+        if(moveResult.equals(WRONG)) bridgeIndex++;
+        return bridgeIndex;
     }
     // 게임 종료
     private void endGame() {
         boolean isSuccess = bridgeGame.isSuccess();
-        int indexToPrint = bridgeGame.getCurrentStep();
-        if(!isSuccess) indexToPrint++;
+        int bridgeIndex = bridgeGame.getBridgeIndex();
+        if(!isSuccess) bridgeIndex++;
         outputView.printEndMessage();
-        outputView.printMap(bridgeGame.getMoveRecord(), indexToPrint);
+        outputView.printMap(bridgeGame.getMoveRecord(), bridgeIndex);
         outputView.printResult(isSuccess, bridgeGame.getNumberOfTrials());
     }
 }
