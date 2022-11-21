@@ -71,6 +71,8 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(gameResult.getBridgeStatus());
         System.out.println();
+
+        System.out.println("게임 성공 여부: " + gameResult.getStatus().getName());
     }
 
 }
