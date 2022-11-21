@@ -43,5 +43,4 @@
   - [X] `BridgeMaker`의 필드를 변경 하지 않았는가? 
   - [X] `BridgeMaker`의 반환타입과 시그니쳐를 변경하지 않았는가? 
 - [X] `BridgeRandomNumberGenerator` 클래스
-  - [X] `BridgeNumberGenerator`, `BridgeNumberGenerator`의 클래스 코드를 변경하지 않았는가? 
-  - 
+  - [X] `BridgeNumberGenerator`, `BridgeNumberGenerator`의 클래스 코드를 변경하지 않았는가?
