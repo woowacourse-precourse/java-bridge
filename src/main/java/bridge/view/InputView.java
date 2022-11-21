@@ -47,13 +47,9 @@ public class InputView {
     }
 
     private void validateBridgeSize(String inputBridgeSize) {
-        try {
-            validateBridgeSizeType(inputBridgeSize);
-            int size = Integer.parseInt(inputBridgeSize);
-            validateBridgeSizeRange(size);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE_TYPE.getString());
-        }
+        validateBridgeSizeType(inputBridgeSize);
+        int size = Integer.parseInt(inputBridgeSize);
+        validateBridgeSizeRange(size);
     }
 
     private void validateBridgeSizeType(String inputBridgeSize) {
