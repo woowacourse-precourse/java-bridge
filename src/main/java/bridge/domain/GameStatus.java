@@ -22,7 +22,7 @@ public enum GameStatus {
             return gameStatus.meaning;
         }
 
-        throw new IllegalArgumentException("잘못된 게임 결과");
+        throw new IllegalArgumentException(GameException.INVALID_GAME_RESULT.getMessage());
     }
 
     public static GameStatus receiveInputAfterGameOver(String input) {
@@ -30,6 +30,6 @@ public enum GameStatus {
                 .filter(status -> status.input.equals(input))
                 .filter(status -> status == RETRY || status == QUIT)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 입력입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(GameException.INVALID_ASK_RETRY_KEY.getMessage()));
     }
 }

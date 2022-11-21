@@ -25,7 +25,7 @@ public enum Move {
         return Arrays.stream(Move.values())
                 .filter(move -> move.number == number)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 숫자 입력"))
+                .orElseThrow(() -> new IllegalArgumentException(GameException.INVALID_BRIDGE_GENERATE.getMessage()))
                 .direction;
     }
 
@@ -33,6 +33,6 @@ public enum Move {
         return Arrays.stream(Move.values())
                 .filter(move -> move.direction.equals(direction))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 방향 입력"));
+                .orElseThrow(() -> new IllegalArgumentException(GameException.INVALID_DIRECTION.getMessage()));
     }
 }

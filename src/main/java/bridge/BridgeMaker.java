@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.GameException;
 import bridge.domain.Move;
 
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        final List<String> bridge = new ArrayList<>(size);
         validateSize(size);
+        final List<String> bridge = new ArrayList<>(size);
 
         for (int i = 0; i < size; i++) {
             bridge.add(Move.convertDirection(bridgeNumberGenerator.generate()));
@@ -36,7 +37,7 @@ public class BridgeMaker {
 
     private void validateSize(int size) {
         if (size < MINIMUM_SIZE || size > MAXIMUM_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(GameException.INVALID_BRIDGE_SIZE.getMessage());
         }
     }
 }

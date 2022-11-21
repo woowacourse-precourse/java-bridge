@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.GameException;
 import bridge.domain.GameStatus;
 import bridge.domain.Move;
 import camp.nextstep.edu.missionutils.Console;
@@ -34,7 +35,7 @@ public class InputView {
 
     private static void validateInt(String string) {
         if (!isAllDigit(string)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(GameException.INVALID_INTEGER.getMessage());
         }
     }
 
