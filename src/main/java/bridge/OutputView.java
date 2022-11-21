@@ -20,4 +20,13 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    /** 추가 출력 메세지
+     */
+    public void printStartGameMessage() {
+    }
+
+    public void printInputSizeMessage() {
+
+    }
 }
