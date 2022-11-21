@@ -1,20 +1,14 @@
 package bridge.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Bridge {
     private final List<String> bridge;
-    private final int size;
 
-    public Bridge(List<String> bridge, int size) {
+    public Bridge(List<String> bridge) {
         this.bridge = bridge;
-        this.size = size;
-    }
-
-    public Bridge(int size) {
-        this.size = size;
-        this.bridge = new ArrayList<>();
     }
 
     public List<String> getBridge() {
@@ -22,32 +16,33 @@ public class Bridge {
     }
 
     public int getSize() {
-        return size;
+        return bridge.size();
+    }
+
+    private String getElement(int index) {
+        return bridge.get(index);
     }
 
     /**
      * 도메인 로직
      */
-    public boolean isCorrectLastElement(Bridge answer, int stage) {
-        String userLastInput = bridge.get(stage);
-        String expected = answer.getBridge().get(stage);
+    public boolean isCorrectLastElement(Bridge answer) {
+        int lastIndex = this.getSize() - 1;
 
-        return expected.equals(userLastInput);
+        String userAnswer = this.getElement(lastIndex);
+        String expected = answer.getElement(lastIndex);
+
+        return expected.equals(userAnswer);
     }
 
     public void moveNext(String moving) {
         this.bridge.add(moving);
     }
 
-    public List<String> matchAnswer(Bridge user, int stage) {
-        List<String> answer = new ArrayList<>();
-
-        for (int i = 0; i <= stage; i++) {
-            String result = isCorrect(this.bridge.get(i), user.bridge.get(i));
-            answer.add(result);
-        }
-
-        return answer;
+    public List<String> matchAnswer(Bridge answer) {
+        return IntStream.range(0, getSize())
+                .mapToObj(o -> isCorrect(answer.getElement(o), this.getElement(o)))
+                .collect(Collectors.toList());
     }
 
     private String isCorrect(String answer, String input) {

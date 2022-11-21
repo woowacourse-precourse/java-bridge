@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +20,7 @@ class BridgeTest {
         List<String> bridge = bridgeMaker.makeBridge(10);
 
         //when
-        Bridge newBridge = new Bridge(bridge, 10);
+        Bridge newBridge = new Bridge(bridge);
 
         //then
         assertThat(newBridge.getSize()).isEqualTo(10);
@@ -31,15 +32,15 @@ class BridgeTest {
     void 정답_판단하기(int stage) throws Exception{
         //given
         List<String> bridge = bridgeMaker.makeBridge(stage+1);
-        Bridge newBridge = new Bridge(bridge, stage+1);
-        Bridge user = new Bridge(stage+1);
+        Bridge answer = new Bridge(bridge);
+        Bridge user = new Bridge(new ArrayList<>());
 
         //when
         for(int i=0; i<=stage; i++)
-            user.moveNext(newBridge.getBridge().get(i));
+            user.moveNext(answer.getBridge().get(i));
 
         //then
-        assertThat(user.matchAnswer(user, stage)).allMatch(o -> o.equals("O"));
-        assertThat(user.matchAnswer(user, stage).size()).isEqualTo(stage+1);
+        assertThat(user.matchAnswer(answer)).allMatch(o -> o.equals("O"));
+        assertThat(user.matchAnswer(answer).size()).isEqualTo(stage+1);
     }
 }
