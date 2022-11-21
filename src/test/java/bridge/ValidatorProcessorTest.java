@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.enummodel.CommandEnum;
 import bridge.processor.ValidatorProcessor;
 import bridge.processor.ValidatorProcessorImpl;
 import org.junit.jupiter.api.DisplayName;
@@ -38,6 +39,33 @@ public class ValidatorProcessorTest {
         return valueSource.stream()
                 .map(UnNumber -> DynamicTest.dynamicTest("실패케이스: 올바르지 못한 입력값", () -> {
                                     assertThatThrownBy(()-> validatorProcessor.validateBridgeSizeInput(UnNumber))
+                                            .isInstanceOf(IllegalArgumentException.class)
+                                            .hasMessageContaining("[ERROR]");
+                                }
+                        )
+                );
+    }
+
+    @TestFactory
+    @DisplayName("validateRetryInput Success Test")
+    Stream<DynamicTest> validateRetryInputSuccess() {
+        List<String> valueSource = List.of(CommandEnum.RESTART.getValue(), CommandEnum.QUIT.getValue());
+        validatorProcessor = new ValidatorProcessorImpl();
+        return valueSource.stream()
+                .map(retryCommand -> DynamicTest.dynamicTest("성공케이스: 올바른 입력값", () -> {
+                    validatorProcessor.validateBridgeSizeInput(retryCommand);
+                        })
+                );
+    }
+
+    @TestFactory
+    @DisplayName("validateRetryInput Fail Test")
+    Stream<DynamicTest> validateRetryInputFail() {
+        List<String> valueSource = List.of("K", "J", "U", "D");
+        validatorProcessor = new ValidatorProcessorImpl();
+        return valueSource.stream()
+                .map(NotRetryCommand -> DynamicTest.dynamicTest("실패케이스: 올바르지 못한 입력값", () -> {
+                                    assertThatThrownBy(()-> validatorProcessor.validateBridgeSizeInput(NotRetryCommand))
                                             .isInstanceOf(IllegalArgumentException.class)
                                             .hasMessageContaining("[ERROR]");
                                 }

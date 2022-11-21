@@ -4,13 +4,12 @@ package bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
+
 
 public class BridgeMakerTest {
 
@@ -20,7 +19,7 @@ public class BridgeMakerTest {
     @TestFactory
     @DisplayName("makeBridgeTest")
     Stream<DynamicTest> makeBridgeTest() {
-        List<Integer> valueSource = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> valueSource = List.of(3, 4, 5, 6, 7, 8);
         numberGenerator = new TestNumberGenerator();
         bridgeMaker = new BridgeMaker(numberGenerator);
 
