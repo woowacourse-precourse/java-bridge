@@ -79,7 +79,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        this.input = readLine();
+        validateMoving();
+        return this.input;
+    }
+
+    /* 이동 입력값을 검증한다. */
+    private void validateMoving() {
+        if (!this.input.equals(Constants.BridgeStatus.UPPER.getPos())
+                && !this.input.equals(Constants.BridgeStatus.DOWN.getPos())) {
+            throw new IllegalArgumentException(Exception.HEADER.getExpt() + Exception.MOVE_PICK.getExpt());
+        }
     }
 
     /**
