@@ -31,7 +31,7 @@ public class InputValidatorTest {
     void maxBridgeSize(String bridgeSize) {
         assertThatThrownBy(() -> InputValidator.checkBridgeSize(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("다리의 길이는 최대 20이하여야 합니다.");
+                .hasMessageContaining("다리의 길이는 최대 20미만이어야 합니다.");
     }
 
     @DisplayName("다리 길이를 입력할 때 올바른 값 입력하면 int형으로 반환한다.")
