@@ -24,6 +24,7 @@ public class Application {
     }
 
     private Bridge makeBridge() {
+        System.out.println(Message.INPUT_BRIDGE_LENGTH);
         int bridgeSize = InputView.readBridgeSize();
         List<String> madeBridge = bridgeMaker.makeBridge(bridgeSize);
         return new Bridge(madeBridge);
@@ -40,6 +41,7 @@ public class Application {
     }
 
     private void move() {
+        System.out.println(Message.INPUT_MOVING);
         String choice = InputView.readChoice();
         bridgeGame.move(player, choice);
         OutputView.printMap(player.getChoices(), bridge.compareTo(player.getChoices()));
@@ -47,6 +49,7 @@ public class Application {
 
     private void checkCorrectChoice() {
         if (!isCorrectChoice()) {
+            System.out.println(Message.INPUT_RETRY_COMMAND);
             String retryCommand = InputView.readRetryCommand();
             if (isRestart(retryCommand)) {
                 bridgeGame.retry(player);
