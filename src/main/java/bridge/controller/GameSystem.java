@@ -30,6 +30,11 @@ public class GameSystem {
 
     }
 
+    private String choiceMove() {
+        outputView.printChoice();
+        return inputView.readMoving();
+    }
+
     private void printBridgeState(UserBridege userBridege) {
         outputView.printMap(userBridege.getUpBridge());
         outputView.printMap(userBridege.getDownBridge());
