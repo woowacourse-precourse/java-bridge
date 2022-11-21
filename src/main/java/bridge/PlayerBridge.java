@@ -11,6 +11,10 @@ public class PlayerBridge {
 		this.playerBridge = new ArrayList<>();
 	}
 
+	void init(){
+		playerBridge.clear();
+	}
+
 	void add(String move){
 		playerBridge.add(move);
 	}

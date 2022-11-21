@@ -10,6 +10,11 @@ public class Map {
 
 	Map() {
 		this.map = new ArrayList<>();
+		init();
+	}
+
+	void init(){
+		map.clear();
 		map.add(new ArrayList<>());
 		map.add(new ArrayList<>());
 	}
@@ -42,7 +47,6 @@ public class Map {
 	}
 
 	public boolean fail() {
-		// todo 성공 종료 조건
 		for (List<String> way : map){
 			if (way.contains(X))
 				return true;

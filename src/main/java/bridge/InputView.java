@@ -1,7 +1,6 @@
 package bridge;
 
-import static bridge.Constants.ERROR_WRONG_BRIDGE_VALUE;
-import static bridge.Constants.ERROR_WRONG_SIZE;
+import static bridge.Constants.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -12,10 +11,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
 
-	/**
-	 * 다리의 길이를 입력받는다.
-	 */
-	public int readBridgeSize() {
+	static public int readBridgeSize() {
 		BridgeSize bridgeSize;
 		
 		while (true) {
@@ -29,10 +25,7 @@ public class InputView {
 		}
 	}
 
-	/**
-	 * 사용자가 이동할 칸을 입력받는다.
-	 */
-	public String readMoving() {
+	static public String readMoving() {
 		while (true) {
 			String input;
 			try {
@@ -46,30 +39,27 @@ public class InputView {
 		}
 	}
 
-	private void checkWayInput(String input) {
+	static private void checkWayInput(String input) {
 		if (!input.equals("U") && !input.equals("D")){
 			throw new IllegalArgumentException();
 		}
 	}
 
-	/**
-	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-	 */
-	public String readGameCommand() {
+	static public String readGameCommand() {
 		while (true) {
 			String input;
 			try {
 				input = readLine();
 				checkRetryInput(input);
 			} catch (IllegalArgumentException illegalArgumentException) {
-				System.out.println(ERROR_WRONG_BRIDGE_VALUE);
+				System.out.println(ERROR_WRONG_RETRY);
 				continue;
 			}
 			return input;
 		}
 	}
 
-	private void checkRetryInput(String input) {
+	static private void checkRetryInput(String input) {
 		if (!input.equals("R") && !input.equals("Q")){
 			throw new IllegalArgumentException();
 		}
