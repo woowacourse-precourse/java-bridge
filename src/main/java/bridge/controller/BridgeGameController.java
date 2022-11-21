@@ -13,17 +13,17 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-    public void startGame() {
+    public void run() {
         outputView.printMessage(Message.START);
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize), new MoveLog(bridgeSize));
-        play(bridgeGame);
+        playBridgeGame(bridgeGame);
     }
 
-    private void play(BridgeGame bridgeGame) {
+    private void playBridgeGame(BridgeGame bridgeGame) {
         while (true) {
             String userMove = inputView.readMoving();
             ResultType crossBridgeResult = bridgeGame.move(userMove);
