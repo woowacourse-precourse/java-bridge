@@ -47,6 +47,7 @@ public class BridgeController {
         for (String answer : bridge) {
             String userDirection = inputDirection().getUserInput();
             outputView.printMap(goDirection(userDirection, answer));
+
             if (!isSameWithAnswer(userDirection, answer)) {
                 bridgeGame.changeToFail();
                 break;
