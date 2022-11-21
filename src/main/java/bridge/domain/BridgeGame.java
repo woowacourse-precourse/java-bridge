@@ -7,8 +7,8 @@ import static bridge.domain.BridgeMaker.*;
 
 public class BridgeGame {
     private final Bridge bridge;
-    private List<String> top;
-    private List<String> bottom;
+    private List<PassResult> top;
+    private List<PassResult> bottom;
     private int playCount;
 
     public BridgeGame(Bridge bridge) {
@@ -37,25 +37,25 @@ public class BridgeGame {
         return false;
     }
 
-    public void pass(String input) {
-        if (input.equals(UP)) {
-            top.add(CROSSABLE);
-            bottom.add(NONE);
+    public void pass(Direction direction) {
+        if (direction.equals(Direction.UP)) {
+            top.add(PassResult.PASS);
+            bottom.add(PassResult.NONE);
         }
-        if (input.equals(DOWN)) {
-            bottom.add(CROSSABLE);
-            top.add(NONE);
+        if (direction.equals(Direction.DOWN)) {
+            bottom.add(PassResult.PASS);
+            top.add(PassResult.NONE);
         }
     }
 
-    public void fail(String input) {
-        if (input.equals(UP)) {
-            top.add(UNCROSSABLE);
-            bottom.add(NONE);
+    public void fail(Direction direction) {
+        if (direction.equals(Direction.UP)) {
+            top.add(PassResult.FAIL);
+            bottom.add(PassResult.NONE);
         }
-        if (input.equals(DOWN)) {
-            bottom.add(UNCROSSABLE);
-            top.add(NONE);
+        if (direction.equals(Direction.DOWN)) {
+            bottom.add(PassResult.FAIL);
+            top.add(PassResult.NONE);
         }
     }
 
