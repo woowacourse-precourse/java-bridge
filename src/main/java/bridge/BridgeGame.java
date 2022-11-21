@@ -68,12 +68,12 @@ public class BridgeGame {
      */
     public void retry(String command) {
         commandValidation(command);
-        count++;
         if(Objects.equals(command, "R")){
             setMovingPositions(new ArrayList<>());
             setResult(new ArrayList<>());
             setFailure(false);
             setClear(false);
+            count++;
         }
         if(Objects.equals(command, "Q")){
             setClear(true);
