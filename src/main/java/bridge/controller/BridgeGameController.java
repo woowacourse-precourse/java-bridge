@@ -22,7 +22,6 @@ public class BridgeGameController {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge, new MoveLog(bridgeSize));
-
         play(bridgeGame, bridgeSize);
     }
 
@@ -31,21 +30,17 @@ public class BridgeGameController {
             String userMove = inputView.readMoving();
             MovingType movingType = bridgeGame.move(userMove);
             outputView.printMap(bridgeGame.getMoveLog());
-            if (bridgeGame.getIndex() == bridgeSize) {
-                System.out.println("최종 게임 결과");
-                outputView.printMap(bridgeGame.getMoveLog());
-                outputView.printResult(movingType, bridgeGame.getTrial());
-                break;
-            }
             if (movingType.getState().equals(MovingType.FAIL.getState())) {
                 if (inputView.readGameCommand().equals(CommandType.QUIT.getCommands())) {
-                    System.out.println("최종 게임 결과");
-                    outputView.printMap(bridgeGame.getMoveLog());
-                    outputView.printResult(movingType, bridgeGame.getTrial());
+                    outputView.printResult(bridgeGame, movingType);
                     break;
                 }
                 bridgeGame.retry();
                 play(bridgeGame, bridgeSize);
+            }
+            if (bridgeGame.getIndex() == bridgeSize) {
+                outputView.printResult(bridgeGame, movingType);
+                break;
             }
         }
     }
