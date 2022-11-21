@@ -1,6 +1,7 @@
 package model;
 
 import controller.InputController;
+import view.Constants;
 import view.InputMessage;
 import view.OutputMessage;
 
@@ -14,8 +15,8 @@ public class BridgeGame {
     private boolean success;
 
     public BridgeGame() {
-        userPos = 0;
-        attempts = 1;
+        userPos = Constants.ZERO;
+        attempts = Constants.ONE;
         success = false;
     }
 
@@ -25,23 +26,23 @@ public class BridgeGame {
     public void move(String choice,AllBridge allBridge) {
         if(choice.equals(allBridge.getBridge().get(userPos))) {
             BridgeState.addString(allBridge.getBridge().get(userPos));
-            userPos += 1;
+            userPos += Constants.ONE;
             return;
         }
         BridgeState.addXString(allBridge.getBridge().get(userPos));
-        userPos = 0;
+        userPos = Constants.ZERO;
     }
 
     public boolean retry(AllBridge allBridge) {
         if(checkFinish(allBridge) || checkRetry()) { return true; }
-        if(userPos == 0) { initBridge(); }
+        if(userPos == Constants.ZERO) { initBridge(); }
         return false;
     }
 
     public boolean checkRetry() {
-        if(userPos == 0) {
+        if(userPos == Constants.ZERO) {
             System.out.println(InputMessage.RESTART.getInputMsg());
-            if(inputController.getCommand().equals("R")) {
+            if(inputController.getCommand().equals(Constants.RESTART)) {
                 attempts++;
                 return false;
             }

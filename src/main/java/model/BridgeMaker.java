@@ -1,6 +1,7 @@
 package model;
 
 import bridge.BridgeNumberGenerator;
+import view.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +19,16 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for(int i=0; i<size; i++) {
+        for(int i=Constants.ZERO; i<size; i++) {
             bridge.add(makeEachBridge());
         }
-        System.out.println(bridge);
         return bridge;
     }
 
     public String makeEachBridge() {
-        if(bridgeNumberGenerator.generate() == 1) {
-            return "U";
+        if(bridgeNumberGenerator.generate() == Constants.ONE) {
+            return Constants.UP;
         }
-        return "D";
+        return Constants.DOWN;
     }
 }

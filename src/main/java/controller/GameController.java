@@ -2,9 +2,7 @@ package controller;
 
 import model.BridgeGame;
 import model.AllBridge;
-import model.BridgeState;
 import view.InputMessage;
-import view.InputView;
 import view.OutputView;
 
 public class GameController {
@@ -23,11 +21,10 @@ public class GameController {
     }
 
     public void game(AllBridge allBridge) {
-        while(true) {
+        do {
             System.out.println(InputMessage.MOVE.getInputMsg());
             bridgeGame.move(inputController.getMoving(), allBridge);
             outputView.printMap(outputController.getUpper(), outputController.getLower());
-            if(bridgeGame.retry(allBridge)) { break; }
-        }
+        } while (!bridgeGame.retry(allBridge));
     }
 }

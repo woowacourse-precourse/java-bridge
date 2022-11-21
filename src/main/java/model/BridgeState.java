@@ -1,12 +1,13 @@
 package model;
 
+import view.Constants;
 import view.OutputMessage;
 
 public class BridgeState {
     public static String upper = OutputMessage.START.getOutputMsg();
     public static String lower = OutputMessage.START.getOutputMsg();
     public static void addString(String str) {
-        if(str.equals("U")) {
+        if(str.equals(Constants.UP)) {
             upper += OutputMessage.CORRECT.getOutputMsg();
             lower += OutputMessage.JUMP_BAR.getOutputMsg();
             return;
@@ -16,7 +17,7 @@ public class BridgeState {
     }
 
     public static void addXString(String str) {
-        if(str.equals("U")) {
+        if(str.equals(Constants.UP)) {
             upper += OutputMessage.JUMP_BAR.getOutputMsg();
             lower += OutputMessage.WRONG.getOutputMsg();
             return;

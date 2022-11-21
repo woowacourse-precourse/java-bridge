@@ -9,22 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class OutputTest extends NsTest {
 
-    @DisplayName("현재까지 이동한 칸 출력")
-    @Test
-    void 다리상태_DDU() {
-        assertRandomNumberInRangeTest(() -> {
-            run("3", "D", "D", "U");
-            assertThat(output()).contains(
-                    "[   |   | O ]",
-                    "[ O | O |   ]"
-            );
-
-            int upSideIndex = output().indexOf("[   |   | O ]");
-            int downSideIndex = output().indexOf("[ O | O |   ]");
-            assertThat(upSideIndex).isLessThan(downSideIndex);
-        }, 0, 0, 1);
-    }
-
     @DisplayName("게임 실패 후 재시작")
     @Test
     void 게임실패_재시작() {

@@ -1,5 +1,6 @@
 package model;
 
+import view.Constants;
 import view.ErrorMessage;
 
 public class BridgeSizeValidator {
@@ -16,12 +17,12 @@ public class BridgeSizeValidator {
         bridgeSizeOver(bridgeSize);
     }
     public void nullCheck(String bridgeSize) {
-        if(bridgeSize.length() == 0) {
+        if(bridgeSize.length() == Constants.ZERO) {
             throw new IllegalArgumentException(ErrorMessage.NULL.getErrorMsg());
         }
     }
     public void bridgeSizeIsDigit(String bridgeSize) {
-        for(int i=0; i<bridgeSize.length(); i++) {
+        for(int i=Constants.ZERO; i<bridgeSize.length(); i++) {
             if(!Character.isDigit(bridgeSize.charAt(i))) {
                 throw new IllegalArgumentException(ErrorMessage.DIGIT.getErrorMsg());
             }
@@ -29,7 +30,7 @@ public class BridgeSizeValidator {
     }
 
     public void bridgeSizeOver(String bridgeSize) {
-        if(Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {
+        if(Integer.parseInt(bridgeSize) < Constants.MIN_SIZE || Integer.parseInt(bridgeSize) > Constants.MAX_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.SIZE_RANGE.getErrorMsg());
         }
     }
