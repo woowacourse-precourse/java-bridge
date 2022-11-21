@@ -24,10 +24,8 @@ public class BridgeGameController {
     }
 
     public void moveAStep(){
-        bridgeViewConstructor = new BridgeViewConstructor();
         player.addNewBridgeInput(inputView.readMoving());
-        outputView.printMap(bridgeViewConstructor
-                .constructBridge(player.getBridges(), bridge.getBridges()));
+        outputView.printMap(constructBridge());
     }
 
     public void resetGame(){
@@ -36,10 +34,13 @@ public class BridgeGameController {
     }
 
     public void concludeGame(){
+        outputView.printResult(constructBridge(), trialCount);
+    }
+
+    private String constructBridge(){
         bridgeViewConstructor = new BridgeViewConstructor();
-        outputView.printResult(bridgeViewConstructor
-                .constructBridge(player.getBridges(), bridge.getBridges()),
-                trialCount);
+        return bridgeViewConstructor
+                .constructBridge(player.getBridges(), bridge.getBridges());
     }
 
     public boolean isPaused(){
