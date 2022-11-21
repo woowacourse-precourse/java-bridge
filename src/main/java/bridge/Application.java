@@ -8,5 +8,6 @@ public class Application {
         OutputView outputView = new OutputView();
 
         int size = inputView.readBridgeSize();
+        bridgeGame.start(size);
     }
 }
