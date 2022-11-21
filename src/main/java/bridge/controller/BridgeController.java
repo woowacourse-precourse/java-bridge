@@ -18,8 +18,8 @@ public class BridgeController {
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-
-        outputView.printRequestMove();
-        bridgeGame.move(inputView.readMoving());
+        do {
+            outputView.printRequestMove();
+        } while (bridgeGame.move(inputView.readMoving()));
     }
 }
