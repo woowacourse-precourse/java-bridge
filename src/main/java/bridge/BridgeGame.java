@@ -49,6 +49,20 @@ public class BridgeGame {
         return true;
     }
 
+    /**
+     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     *
+     */
+    public boolean retry(String whetherRetryGame) {
+        if(whetherRetryGame.equals("R")){
+            return true;
+        }
+        if(whetherRetryGame.equals("Q")){
+            return false;
+        }
+        return false;
+    }
+
     // 게임 상황을 반환해주는 메서드
     public List<String> getGameState() {
         return gameState;
