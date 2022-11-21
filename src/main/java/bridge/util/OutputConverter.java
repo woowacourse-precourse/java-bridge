@@ -6,10 +6,6 @@ import java.util.List;
 
 public class OutputConverter {
 
-    private OutputConverter() {
-
-    }
-
     public static List<String> resultToStrings(List<MoveStatus> moveStatuses) {
         StringBuilder upSideBridgeBuilder = new StringBuilder();
         StringBuilder downSideBridgeBuilder = new StringBuilder();
@@ -26,5 +22,9 @@ public class OutputConverter {
             upSideBridgeBuilder.append(moveStatus.generateMark(Direction.UPSIDE));
             downSideBridgeBuilder.append(moveStatus.generateMark(Direction.DOWNSIDE));
         }
+    }
+
+    private OutputConverter() {
+
     }
 }
