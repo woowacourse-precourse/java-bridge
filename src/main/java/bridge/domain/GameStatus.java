@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum GameStatus {
     SUCCESS("성공", true, true),
     FAILED("실패", false, false),
-    ONGOING("진행 중", true, false);
+    PLAYING("진행 중", true, false);
 
     private String status;
 

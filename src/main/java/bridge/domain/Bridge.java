@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bridge {
-    private List<Movement> route;
+    private List<BridgeMovement> route;
 
     public Bridge(List<String> route) {
-        this.route = route.stream().map(Movement::valueOf).collect(Collectors.toList());
+        this.route = route.stream().map(BridgeMovement::findByMovement).collect(Collectors.toList());
     }
 
-    public Boolean isCrossable(Movement playerMove, int playerPosition) {
+    public Boolean isCrossable(BridgeMovement playerMove, int playerPosition) {
         return route.get(playerPosition) == playerMove;
     }
 

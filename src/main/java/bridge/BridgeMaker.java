@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.Movement;
+import bridge.domain.BridgeMovement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +25,7 @@ public class BridgeMaker {
 
         for(int index = 0; index < size; index++) {
             int code = bridgeNumberGenerator.generate();
-            bridge.add(Movement.findByMovement(code).name());
+            bridge.add(BridgeMovement.findByCode(code).getMove());
         }
 
         return Collections.unmodifiableList(bridge);

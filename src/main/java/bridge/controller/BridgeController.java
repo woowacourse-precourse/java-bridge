@@ -2,9 +2,9 @@ package bridge.controller;
 
 import bridge.BridgeGame;
 import bridge.BridgeNumberGenerator;
-import bridge.domain.Command;
+import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
-import bridge.domain.Movement;
+import bridge.domain.BridgeMovement;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -18,12 +18,12 @@ public class BridgeController {
         this.inputView = inputView;
         this.outputView = outputView;
         bridgeGame = new BridgeGame(bridgeNumberGenerator);
-        gameStatus = GameStatus.ONGOING;
+        gameStatus = GameStatus.PLAYING;
     }
 
     public void run() {
         setUp();
-        while (gameStatus == GameStatus.ONGOING) {
+        while (gameStatus == GameStatus.PLAYING) {
             playGame();
         }
         end();
@@ -45,15 +45,15 @@ public class BridgeController {
 
     private void movePlayer() {
         outputView.inputPlayerMove();
-        Movement playerMove = inputView.readMoving();
+        BridgeMovement playerMove = inputView.readMoving();
         gameStatus = bridgeGame.move(playerMove);
         outputView.printMap(bridgeGame.getResultCrossOver());
     }
 
     private void retryGame() {
         outputView.inputPlayerCommand();
-        Command command = inputView.readGameCommand();
-        bridgeGame.retry(command);
+        GameCommand command = inputView.readGameCommand();
+        gameStatus = bridgeGame.retry(command);
     }
 
     private void end() {

@@ -14,7 +14,7 @@ class BridgeTest {
     @ParameterizedTest
     @CsvSource({"U,0,true", "U,1,false"})
     void 다리를_건널_수_있는지_테스트(String playerMove, int playerPosition, Boolean expected) {
-        Movement playerMovement = Movement.valueOf(playerMove);
+        BridgeMovement playerMovement = BridgeMovement.findByMovement(playerMove);
         Bridge bridge = new Bridge(new ArrayList<>(Arrays.asList("U", "D", "D")));
         assertThat(bridge.isCrossable(playerMovement, playerPosition)).isEqualTo(expected);
     }

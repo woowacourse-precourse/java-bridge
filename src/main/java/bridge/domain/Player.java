@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Player {
-    private Map<Movement, List<String>> movementStatus;
+    private Map<BridgeMovement, List<String>> movementStatus;
     private int playerPosition;
 
     public Player() {
@@ -16,13 +16,13 @@ public class Player {
 
     public void reset() {
         movementStatus = new HashMap<>() {{
-            put(Movement.U, new ArrayList<>());
-            put(Movement.D, new ArrayList<>());
+            put(BridgeMovement.UP, new ArrayList<>());
+            put(BridgeMovement.DOWN, new ArrayList<>());
         }};
         playerPosition = 0;
     }
 
-    public Map<Movement, List<String>> getMovementStatus() {
+    public Map<BridgeMovement, List<String>> getMovementStatus() {
         return Collections.unmodifiableMap(movementStatus);
     }
 
@@ -30,8 +30,8 @@ public class Player {
         return playerPosition;
     }
 
-    public void crossOverBridge(Movement playerMove, boolean crossable) {
-        for(Map.Entry<Movement, List<String>> bridge: movementStatus.entrySet()) {
+    public void crossOverBridge(BridgeMovement playerMove, boolean crossable) {
+        for(Map.Entry<BridgeMovement, List<String>> bridge: movementStatus.entrySet()) {
             String status = " ";
             if(bridge.getKey() == playerMove) {
                 status = toStatusAfterCrossOver(crossable);

@@ -1,9 +1,9 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.domain.Command;
+import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
-import bridge.domain.Movement;
+import bridge.domain.BridgeMovement;
 import bridge.domain.Player;
 import java.util.List;
 import java.util.Map;
@@ -31,23 +31,23 @@ public class BridgeGame {
         return numberOfAttempts;
     }
 
-    public Map<Movement, List<String>> getResultCrossOver() {
+    public Map<BridgeMovement, List<String>> getResultCrossOver() {
         return player.getMovementStatus();
     }
 
 
-    public GameStatus move(Movement playerMove) {
+    public GameStatus move(BridgeMovement playerMove) {
         boolean playerCrossable = bridge.isCrossable(playerMove, player.getPlayerPosition());
         player.crossOverBridge(playerMove, playerCrossable);
         boolean isReachedBridge = bridge.isReachedTheEnd(player.getPlayerPosition());
         return GameStatus.findByStatus(playerCrossable, isReachedBridge);
     }
 
-    public GameStatus retry(Command command) {
-        if(command == Command.RETRY) {
+    public GameStatus retry(GameCommand command) {
+        if(command == GameCommand.RETRY) {
             player.reset();
             numberOfAttempts += 1;
-            return GameStatus.ONGOING;
+            return GameStatus.PLAYING;
         }
         return GameStatus.FAILED;
     }

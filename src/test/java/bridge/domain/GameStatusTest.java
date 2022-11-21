@@ -9,7 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class ProgressTest {
+class GameStatusTest {
     @DisplayName("현재 사용자가 다리를 건넜고, 끝까지 도달했다면 성공이다.")
     @ParameterizedTest
     @MethodSource("parametersProvider")
@@ -20,7 +20,7 @@ class ProgressTest {
     static Stream<Arguments> parametersProvider() {
         return Stream.of(
                 arguments(true, true, GameStatus.SUCCESS),
-                arguments(true, false, GameStatus.ONGOING),
+                arguments(true, false, GameStatus.PLAYING),
                 arguments(false, true, GameStatus.FAILED),
                 arguments(false, false, GameStatus.FAILED)
         );

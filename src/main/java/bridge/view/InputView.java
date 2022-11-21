@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.domain.Movement;
-import bridge.domain.Command;
+import bridge.domain.BridgeMovement;
+import bridge.domain.GameCommand;
 import bridge.util.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -26,16 +26,16 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public Movement readMoving() {
+    public BridgeMovement readMoving() {
         String playerMove = input();
-        return Movement.toMovement(playerMove);
+        return BridgeMovement.findByMovement(playerMove);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public Command readGameCommand() {
+    public GameCommand readGameCommand() {
         String playerRetry = input();
-        return Command.toCommand(playerRetry);
+        return GameCommand.findByCommand(playerRetry);
     }
 }

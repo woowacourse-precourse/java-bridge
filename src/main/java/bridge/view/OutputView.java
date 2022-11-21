@@ -1,8 +1,8 @@
 package bridge.view;
 
-import bridge.domain.Command;
+import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
-import bridge.domain.Movement;
+import bridge.domain.BridgeMovement;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ public class OutputView {
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_PLAYER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_PLAYER_COMMAND =
-            "게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + Command.RETRY.getCode() + ", 종료: " + Command.QUIT.getCode() + ")";
+            "게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + GameCommand.RETRY.getCode() + ", 종료: " + GameCommand.QUIT.getCode() + ")";
 
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_END = " ]";
@@ -54,8 +54,8 @@ public class OutputView {
         print(INPUT_PLAYER_COMMAND);
     }
 
-    public void printMap(Map<Movement, List<String>> crossingResults) {
-        for (Movement movement : Movement.values()) {
+    public void printMap(Map<BridgeMovement, List<String>> crossingResults) {
+        for (BridgeMovement movement : BridgeMovement.values()) {
             print(toStingFormatMovement(crossingResults.get(movement)));
         }
         printNewline();

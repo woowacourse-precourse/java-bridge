@@ -34,14 +34,14 @@ class PlayerTest {
     @MethodSource("parametersProvider")
     void 사용자가_다리를_건넌_후_움직임_상태(String playerMoves, Boolean isMoveble, String expectedUp, String expectedDown) {
         for (String playerMove : playerMoves.split("")) {
-            Movement playerMovement = Movement.valueOf(playerMove);
+            BridgeMovement playerMovement = BridgeMovement.findByMovement(playerMove);
             player.crossOverBridge(playerMovement, isMoveble);
         }
-        Map<Movement, List<String>> movementStatus = player.getMovementStatus();
+        Map<BridgeMovement, List<String>> movementStatus = player.getMovementStatus();
 
-        assertThat(movementStatus.get(Movement.U).stream().collect(Collectors.joining()))
+        assertThat(movementStatus.get(BridgeMovement.UP).stream().collect(Collectors.joining()))
                 .isEqualTo(expectedUp);
-        assertThat(movementStatus.get(Movement.D).stream().collect(Collectors.joining()))
+        assertThat(movementStatus.get(BridgeMovement.DOWN).stream().collect(Collectors.joining()))
                 .isEqualTo(expectedDown);
     }
 
