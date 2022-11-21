@@ -3,7 +3,7 @@ package bridge;
 import java.util.*;
 
 public class Application {
-    private int gameCount = 0;
+    private static int gameCount = 1;
 
     /**
      * 게임을 시작하는 메서드
@@ -89,7 +89,12 @@ public class Application {
     /**
      * 게임을 종료하는 메서드
      */
-    static Boolean gameEnd(List<List<String>> moveResult) {
+    static Boolean gameEnd(List<List<String>> moveResult, int bridgeSize) {
+        BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
+
+        if (moveResult.get(0).size() == bridgeSize) { outputView.printResult(moveResult, bridgeSize, gameCount); return false; }
+
         String checkCommand = Application.inputFinish();
 
         return false;
@@ -103,7 +108,7 @@ public class Application {
             List<String> bridge = Application.makeBridge(bridgeSize);
             while (wholeTry) {
                 List<List<String>> moveResult = Application.moveBridge(bridge);
-                wholeTry = Application.gameEnd(moveResult);
+                wholeTry = Application.gameEnd(moveResult, bridgeSize);
             }
         } catch (IllegalArgumentException e) {}
     }
