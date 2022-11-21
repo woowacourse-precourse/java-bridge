@@ -7,6 +7,10 @@ public class Converter {
         return Integer.parseInt(number);
     }
 
+    public static String IntegerToString(int number){
+        return Integer.toString(number);
+    }
+
     public static String NumberToCharacter(int bridgeNumber){
         if (bridgeNumber == BridgeMaker.getUpBridgeNumber()) {
             return BridgeMaker.getUpBridgeCharacter();
