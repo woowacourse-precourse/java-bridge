@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeTest {
-    
+
     static Bridge bridge;
 
     @BeforeAll
@@ -34,6 +34,12 @@ class BridgeTest {
     void invalidMove(int position) {
         assertThatThrownBy(() -> bridge.canMove(BridgeCell.UP, position))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class);
+    }
+
+    @DisplayName("다리의 길이를 알 수 있다.")
+    @Test
+    void size() {
+        assertThat(bridge.size()).isEqualTo(3);
     }
 
 }

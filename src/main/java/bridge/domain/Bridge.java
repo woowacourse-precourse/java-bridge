@@ -14,4 +14,7 @@ public class Bridge {
         return BridgeCell.getBridgeCell(bridge.get(position)) == cell;
     }
 
+    public int size() {
+        return bridge.size();
+    }
 }
