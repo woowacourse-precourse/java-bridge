@@ -60,4 +60,3 @@ public class InputView {
         return command;
     }
 }
-}
