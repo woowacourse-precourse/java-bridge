@@ -1,8 +1,11 @@
 package bridge.controller;
 
+import static bridge.constant.GameCommand.RETRY;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.constant.GameCommand;
 import bridge.domain.BridgeGame;
 import bridge.domain.maker.BridgeMaker;
 import bridge.domain.maker.BridgeRandomNumberGenerator;
@@ -54,7 +57,7 @@ public class Controller {
     }
 
     private int retryOrExit() {
-        if (askForRetry()) {
+        if (askForRetry().equals(RETRY)) {
             game.retry();
             trialResults.clear();
             return doGame() + RETRY_ADD_COUNT;
@@ -74,10 +77,9 @@ public class Controller {
         }
     }
 
-    private boolean askForRetry() {
+    private GameCommand askForRetry() {
         try {
-            String command = inputView.readGameCommand();
-            return command.equals("R");
+            return inputView.readGameCommand();
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception.getMessage());
             return askForRetry();

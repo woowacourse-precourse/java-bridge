@@ -3,6 +3,7 @@ package bridge.view;
 import java.util.regex.Pattern;
 
 import bridge.constant.Direction;
+import bridge.constant.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -24,12 +25,11 @@ public class InputView {
         return Direction.from(input);
     }
 
-    public String readGameCommand() {
+    public GameCommand readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
         validateSingleCharacter(input);
-        validateCommand(input);
-        return input;
+        return GameCommand.from(input);
     }
 
     private void validateNumeric(String input) {
@@ -41,12 +41,6 @@ public class InputView {
     private void validateSingleCharacter(String input) {
         if (!SINGLE_CHARACTER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException("한 글자가 아닙니다");
-        }
-    }
-
-    private void validateCommand(String input) {
-        if (!input.equals("R") && !input.equals("Q")) {
-            throw new IllegalArgumentException("잘못된 명령입니다");
         }
     }
 }
