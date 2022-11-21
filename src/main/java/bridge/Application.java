@@ -58,6 +58,7 @@ public class Application {
 
     private static void gameOver() {
         outputView.printResult(
+                bridgeGame.getMap(),
                 bridgeGame.isSuccess(),
                 bridgeGame.getTryCount()
         );
