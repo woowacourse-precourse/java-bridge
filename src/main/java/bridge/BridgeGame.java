@@ -37,6 +37,12 @@ public class BridgeGame {
         this.user = new ArrayList<>(bridgeLength);
     }
 
+    public boolean isExit() {
+        if (isFail() || isClear())
+            return true;
+        return false;
+    }
+
     public boolean isFail() {
         if (user.size() > 0 && !answer.get(user.size()-1).equals(user.get(user.size()-1))) {
             if (!retry())
