@@ -66,6 +66,11 @@ public class InputView {
         }
     }
 
+    public String checkInputInCommend(String moving, List<String> commend) throws IllegalArgumentException {
+        if(commend.contains(moving)) return moving;
+        throw new IllegalArgumentException();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
