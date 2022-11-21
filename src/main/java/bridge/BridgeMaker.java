@@ -27,7 +27,6 @@ public class BridgeMaker {
         }
         Collections.replaceAll(bridge,"1","U");
         Collections.replaceAll(bridge,"0","D");
-        System.out.println(bridge);
         return bridge;
     }
 }
