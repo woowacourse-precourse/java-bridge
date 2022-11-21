@@ -10,9 +10,7 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    private String result;
     private List<List<String>> map;
-
     private final BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
@@ -39,14 +37,18 @@ public class BridgeGameController {
             map = bridgeGame.move(answer, moving);
             OutputView.printMap(map);
             if (bridgeGame.isWrongAnswer()) {
-                String gameCommand = InputView.readGameCommand();
-                if (!bridgeGame.retry(gameCommand)) {
-                    result = Constant.FAIL;
-                    break;
-                }
+                restartGame(bridge);
             }
-            result = Constant.SUCCESS;
         }
-        OutputView.printResult(map, result, bridgeGame.countTotalTry());
+        OutputView.printResult(map, Constant.SUCCESS, bridgeGame.countTotalTry());
+    }
+
+    public void restartGame(List<String> bridge) {
+        String gameCommand = InputView.readGameCommand();
+        if (bridgeGame.retry(gameCommand)) {
+            startGame(bridge);
+            return;
+        }
+        OutputView.printResult(map, Constant.FAIL, bridgeGame.countTotalTry());
     }
 }
