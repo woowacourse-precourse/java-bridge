@@ -21,14 +21,10 @@ public class ContinueInputValidator implements Validator {
      */
     @Override
     public void validate(String inputValue) {
-        try {
-            validateIsBlank(inputValue);
-            inputValue = inputValue.trim();
-            validateIsInvalid(inputValue);
-            validateIsUpperCase(inputValue);
-        }catch (IllegalArgumentException exception){
-            throw exception ;
-        }
+        validateIsBlank(inputValue);
+        inputValue = inputValue.trim();
+        validateIsInvalid(inputValue);
+        validateIsUpperCase(inputValue);
     }
 
     /**
