@@ -11,6 +11,7 @@ import java.util.List;
 
 public class GameController {
     public void run() {
+        OutputView.printWelcomeGame();
         OutputView.printRunGame();
         String bridgeSize = InputView.readBridgeSize();
 
@@ -34,6 +35,7 @@ public class GameController {
 
     private void controlMove(List<String> bridge, User user) {
         while (user.lessThanBridgeSize(bridge.size())) {
+            OutputView.printChooseOne();
             String position = InputView.readMoving();
             boolean isPermitted = BridgeGame.move(position, bridge, user);
 

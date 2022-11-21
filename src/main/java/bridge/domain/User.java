@@ -1,5 +1,9 @@
 package bridge.domain;
 
+import bridge.status.CountStatus;
+import bridge.status.MoveResultStatus;
+import bridge.status.PositionStatus;
+
 import java.util.List;
 
 public class User {
@@ -13,24 +17,24 @@ public class User {
     public User(List<String> upSpace, List<String> downSpace) {
         this.upSpace = upSpace;
         this.downSpace = downSpace;
-        this.tryCount = 1;
-        this.count = 0;
+        this.tryCount = CountStatus.INITIALIZE_TRY_COUNT.getNumber();
+        this.count = CountStatus.INITIALIZE_COUNT.getNumber();
     }
 
     public void init() {
         upSpace.clear();
         downSpace.clear();
-        count = 0;
+        count = CountStatus.INITIALIZE_COUNT.getNumber();
     }
 
     public void recordResult(String movingResult, String moving) {
-        if (moving.equals("U")) {
+        if (moving.equals(PositionStatus.UP.getText())) {
             upSpace.add(movingResult);
-            downSpace.add(" ");
+            downSpace.add(MoveResultStatus.NOTHING.getText());
             return;
         }
         downSpace.add(movingResult);
-        upSpace.add(" ");
+        upSpace.add(MoveResultStatus.NOTHING.getText());
 
     }
 
@@ -50,11 +54,11 @@ public class User {
 
     public String movePosition(List<String> bridge, String userMoving) {
         if (bridge.get(count).equals(userMoving)) {
-            recordResult("O",userMoving);
-            return "O";
+            recordResult(MoveResultStatus.CORRECT.getText(),userMoving);
+            return MoveResultStatus.CORRECT.getText();
         }
-        recordResult("X",userMoving);
-        return "X";
+        recordResult(MoveResultStatus.FAIL.getText(),userMoving);
+        return MoveResultStatus.FAIL.getText();
     }
 
     public void increaseTryCount() {

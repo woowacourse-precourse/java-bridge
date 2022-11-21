@@ -1,6 +1,8 @@
 package bridge.service;
 
 import bridge.domain.User;
+import bridge.status.MoveResultStatus;
+import bridge.status.RetryStatus;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class BridgeGame {
 
     public static boolean move(String position, List<String> bridge, User user) {
             String moveResult = user.movePosition(bridge, position);
-            if (moveResult.equals("O")) {
+            if (moveResult.equals(MoveResultStatus.CORRECT.getText())) {
                 user.increaseCount();
                 return true;
             }
@@ -19,7 +21,7 @@ public class BridgeGame {
     }
 
     public static boolean retry(String retryInput, User user) {
-        if (retryInput.equals("R")) {
+        if (retryInput.equals(RetryStatus.RETRY.getText())) {
             user.increaseTryCount();
             return true;
         }

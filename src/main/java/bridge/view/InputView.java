@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.Validator.InputValidator;
+import bridge.status.CommentStatus;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -17,7 +18,7 @@ public class InputView {
         do {
             size = Console.readLine();
             validSize = InputValidator.checkBridgeSize(size);
-        }while(validSize.equals("error"));
+        }while(validSize.equals(CommentStatus.ERROR.getText()));
 
         return validSize;
     }
@@ -31,7 +32,7 @@ public class InputView {
         do {
             moving = Console.readLine();
             validMoving = InputValidator.controlMovingInput(moving);
-        }while(validMoving.equals("error"));
+        }while(validMoving.equals(CommentStatus.ERROR.getText()));
 
         return validMoving;
     }
@@ -46,7 +47,7 @@ public class InputView {
         do {
             retryInput = Console.readLine();
             validRetryInput = InputValidator.controlRetryInput(retryInput);
-        }while(validRetryInput.equals("error"));
+        }while(validRetryInput.equals(CommentStatus.ERROR.getText()));
 
         return validRetryInput;
     }

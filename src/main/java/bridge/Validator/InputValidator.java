@@ -1,6 +1,9 @@
 package bridge.Validator;
 
+import bridge.status.BoundaryStatus;
 import bridge.status.ExceptionStatus;
+import bridge.status.PositionStatus;
+import bridge.status.RetryStatus;
 import bridge.view.OutputView;
 
 public class InputValidator {
@@ -26,7 +29,7 @@ public class InputValidator {
 
     public static void checkBoundaryNumber(String size) {
         Integer bridgeSize = Integer.parseInt(size);
-        if (bridgeSize < 3 || bridgeSize > 20) {
+        if (bridgeSize < BoundaryStatus.MIN_LENGTH.getLength() || bridgeSize > BoundaryStatus.MAX_LENGTH.getLength()) {
             throw new IllegalArgumentException(ExceptionStatus.INVALID_BOUNDARY.getException());
         }
     }
@@ -42,7 +45,7 @@ public class InputValidator {
     }
 
     public static void checkMoving(String moving) {
-        if (!(moving.equals("U") || moving.equals("D"))) {
+        if (!(moving.equals(PositionStatus.UP.getText()) || moving.equals(PositionStatus.DOWN.getText()))) {
             throw new IllegalArgumentException(ExceptionStatus.INVALID_INPUT.getException());
         }
     }
@@ -58,7 +61,7 @@ public class InputValidator {
     }
 
     public static void checkRetry(String retryInput) {
-        if (!(retryInput.equals("Q") || retryInput.equals("R"))) {
+        if (!(retryInput.equals(RetryStatus.EXIT.getText()) || retryInput.equals(RetryStatus.RETRY.getText()))) {
             throw new IllegalArgumentException(ExceptionStatus.INVALID_INPUT.getException());
         }
     }
