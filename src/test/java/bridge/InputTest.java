@@ -4,8 +4,6 @@ import bridge.model.Validation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputTest {
     @DisplayName("사용자의 다리 사이즈 입력에 따른 기능 테스트 ")
