@@ -31,4 +31,8 @@ public enum SurviveStatus {
         }
         return String.format(RESULT_STATUS_FORMAT_CODE, " ");
     }
+
+    public boolean isDie() {
+        return surviveStatusValue;
+    }
 }

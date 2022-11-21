@@ -14,13 +14,13 @@ public enum GameStatus {
     }
 
     public static GameStatus generateGameStatus(SurviveStatus surviveStatus, Bridge bridge) {
-        if (surviveStatus.isAlive() && bridge.canMove()) {
+        if (surviveStatus.isDie()) {
+            return FAIL;
+        }
+        if (bridge.canMove()) {
             return RUNNING;
         }
-        if (surviveStatus.isAlive() && bridge.canNotMove()) {
-            return CLEAR;
-        }
-        return FAIL;
+        return CLEAR;
     }
 
     public boolean isRunning() {
