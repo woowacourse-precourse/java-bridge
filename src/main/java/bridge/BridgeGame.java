@@ -38,7 +38,9 @@ public class BridgeGame {
         if (moving.equals("U")) {
             bridgeGameUpResult += movingResult + "|";
             bridgeGameDownResult += "   |";
-        } else {
+        }
+
+        if (moving.equals("D")) {
             bridgeGameUpResult += "   |";
             bridgeGameDownResult += movingResult + "|";
         }
