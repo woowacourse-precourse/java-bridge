@@ -71,12 +71,18 @@ class OutputViewTest {
     void castMap_Check(StringBuilder up, StringBuilder down) {
         assertThat(outputView.castMap(up, down))
                 .isEqualTo("[" + up + "]" + "\n" + "[" + down + "]");
-
     }
 
     @Test
     void castSuccess() {
         assertThat(outputView.castSuccess(true)).isEqualTo("성공");
         assertThat(outputView.castSuccess(false)).isEqualTo("실패");
+    }
+
+    @Test
+    void printStart() {
+        outputView.printStart();
+        assertThat(outputStreamCaptor.toString())
+                .contains("다리 건너기 게임을 시작합니다.");
     }
 }
