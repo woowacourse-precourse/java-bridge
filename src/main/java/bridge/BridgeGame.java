@@ -16,10 +16,10 @@ public class BridgeGame {
      */
     public boolean move(String step) {
         this.step.add(step);
-        return CheckStep();
+        return checkStep();
     }
 
-    private boolean CheckStep() {
+    private boolean checkStep() {
         int index = step.size() - 1;
         String lastMove = step.get(index);
         if(Application.bridge.get(index).equals(lastMove))
