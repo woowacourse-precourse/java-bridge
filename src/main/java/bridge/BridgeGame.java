@@ -20,4 +20,18 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public void start() {
+    }
+
+    public boolean checkWrongMove() {
+        return true;
+    }
+
+    public boolean checkCross() {
+        return true;
+    }
+
+    public void finish() {
+    }
 }

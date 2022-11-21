@@ -9,7 +9,7 @@
           - [ ] 올바른 값인지 검사한다. - CustomException.checkBridgeSize()
             - [ ] 예외 메세지를 출력한다. - OutputView.printExceptionMessage()
       - [ ] 다리가 있으면 이동한다. - BridgeGame.move()
-        - [ ] 이동할 칸을 입력 받는다. - InputView.readMove()
+        - [ ] 이동할 칸을 입력 받는다. - InputView.readMoving()
           - [ ] 올바른 값인지 검사한다. - CustomException.checkMove()
             - [ ] 예외 메세지를 출력한다. - OutputView.printExceptionMessage()
           - [ ] 올바른 값이면 맵을 출력한다. - OutputView.printMap()
