@@ -10,51 +10,44 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    private List<List<String>> map;
     private final BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
-        // TODO 메서드를 분리하자 / 메서드 길이는 최대 10줄 / else 사용하지 말 것
         OutputView.printStartGame();
-        makeBridge();
+        List<String> bridge = makeBridge();
+        String result = startBridgeGame(bridge);
+        quitGame(result);
     }
 
-    public void makeBridge() {
+    public List<String> makeBridge() {
         int size = InputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        startGame(bridge);
+        return bridgeMaker.makeBridge(size);
     }
 
-    public void startGame(List<String> bridge) {
+    public String startBridgeGame(List<String> bridge) {
         bridgeGame.initMap();
-        System.out.println(bridge.toString());
-        crossBridge(bridge);
-    }
-
-    public void crossBridge(List<String> bridge) {
         for (String answer : bridge) {
             String moving = InputView.readMoving();
-            map = bridgeGame.move(answer, moving);
-            OutputView.printMap(map);
+            OutputView.printMap(bridgeGame.move(answer, moving));
             if (bridgeGame.isWrongAnswer()) {
-                restartGame(bridge);
+                return restartGame(bridge);
             }
         }
-        quitGame(Constant.SUCCESS);
+        return Constant.SUCCESS;
     }
 
-    public void restartGame(List<String> bridge) {
+    public String restartGame(List<String> bridge) {
         String gameCommand = InputView.readGameCommand();
         if (bridgeGame.retry(gameCommand)) {
-            startGame(bridge);
-            return;
+            return startBridgeGame(bridge);
         }
-        quitGame(Constant.FAIL);
+        return Constant.FAIL;
     }
 
-    public void quitGame(String successOrFail) {
+    public void quitGame(String result) {
         int totalTry = bridgeGame.countTotalTry();
-        OutputView.printResult(map, successOrFail, totalTry);
+        List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
+        OutputView.printResult(bridgeMap, result, totalTry);
     }
 }
