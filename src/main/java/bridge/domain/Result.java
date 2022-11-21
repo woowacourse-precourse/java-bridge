@@ -59,4 +59,9 @@ public class Result {
     public boolean hasWrong() {
         return isAnswers.contains(false);
     }
+
+    public void initResult() {
+        directions.clear();
+        isAnswers.clear();
+    }
 }
