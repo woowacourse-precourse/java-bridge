@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.utils.BridgeRandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,8 @@ public class Bridge {
         resetUpperBridge();
         List<String> userBridge = User.getUserMovingRecord();
         for (int stage = 0; stage < userBridge.size(); stage++) {
-            String keyword = CalculationResult.calculateUpper(bridge.get(stage), userBridge.get(stage));
+            String keyword = CalculationResult.calculateUpper(bridge.get(stage),
+                    userBridge.get(stage));
             upperBridge.add(keyword);
         }
     }
@@ -41,7 +42,8 @@ public class Bridge {
         resetLowerBridge();
         List<String> userBridge = User.getUserMovingRecord();
         for (int stage = 0; stage < userBridge.size(); stage++) {
-            String keyword = CalculationResult.calculateLower(bridge.get(stage), userBridge.get(stage));
+            String keyword = CalculationResult.calculateLower(bridge.get(stage),
+                    userBridge.get(stage));
             lowerBridge.add(keyword);
         }
     }

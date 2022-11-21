@@ -29,13 +29,15 @@ public class UserInputException {
     }
 
     public static void isCorrectMovingCommand(String userInput) {
-        if (!(userInput.equals("U")) && !(userInput.equals("D"))) {
+        if (!(userInput.equals(Constant.UPPER.getValue())) && !(userInput.equals(
+                Constant.DOWN.getValue()))) {
             throw new IllegalArgumentException("[ERROR] 이동하기 위해서는 U 또는 D를 입력해야 합니다.");
         }
     }
 
     public static void isCorrectGameCommand(String userInput) {
-        if (!(userInput.equals("R")) && !(userInput.equals("Q"))) {
+        if (!(userInput.equals(Constant.RETRY.getValue())) && !(userInput.equals(
+                Constant.QUIT.getValue()))) {
             throw new IllegalArgumentException("[ERROR] 재시작 여부는 R 또는 Q를 입력해야 합니다.");
         }
     }

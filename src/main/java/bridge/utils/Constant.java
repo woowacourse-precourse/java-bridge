@@ -10,15 +10,17 @@ public enum Constant {
     WRONG("X"),
     NOT_MATCH(" "),
     RETRY("R"),
-    QUIT("Q");
+    QUIT("Q"),
+    SUCCESS("성공"),
+    FAIL("실패");
 
-    public Object value;
+    public String value;
 
-    Constant(Object value) {
+    Constant(String value) {
         this.value = value;
     }
 
-    public Object getvalue() {
+    public String getValue() {
         return value;
     }
 }

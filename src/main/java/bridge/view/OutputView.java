@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.Bridge;
+import bridge.utils.Constant;
 import java.util.List;
 
 public class OutputView {
@@ -86,10 +87,10 @@ public class OutputView {
         printGameResultMessage();
         printMap();
         if (result) {
-            printGameSuccessOrNot("성공");
+            printGameSuccessOrNot(Constant.SUCCESS.getValue());
         }
         if (!result) {
-            printGameSuccessOrNot("실패");
+            printGameSuccessOrNot(Constant.FAIL.getValue());
         }
         printTotalAttempts(attempts);
     }

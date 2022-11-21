@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.utils.BridgeNumberGenerator;
+import bridge.utils.Constant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int stage = 0; stage < size; stage++) {
             int number = bridgeNumberGenerator.generate();
             String keyword = numberToKeyword(number);
             bridge.add(keyword);
@@ -31,8 +32,8 @@ public class BridgeMaker {
 
     public String numberToKeyword(int number) {
         if (number == 1) {
-            return "U";
+            return Constant.UPPER.getValue();
         }
-        return "D";
+        return Constant.DOWN.getValue();
     }
 }

@@ -1,38 +1,35 @@
 package bridge.domain;
 
+import bridge.utils.Constant;
 import java.util.List;
 
 public class CalculationResult {
 
-    private static String RIGHT = "O";
-    private static String WRONG = "X";
-    private static String NOT_MATCH = " ";
-
     public static String calculateUpper(String bridgeKeyword, String userKeyword) {
-        if (userKeyword.equals("U") && bridgeKeyword.equals(userKeyword)) {
-            return RIGHT;
+        if (userKeyword.equals(Constant.UPPER.getValue()) && bridgeKeyword.equals(userKeyword)) {
+            return Constant.RIGHT.getValue();
         }
-        if (userKeyword.equals("U") && !bridgeKeyword.equals(userKeyword)) {
-            return WRONG;
+        if (userKeyword.equals(Constant.UPPER.getValue()) && !bridgeKeyword.equals(userKeyword)) {
+            return Constant.WRONG.getValue();
         }
-        return NOT_MATCH;
+        return Constant.NOT_MATCH.getValue();
     }
 
     public static String calculateLower(String bridgeKeyword, String userKeyword) {
-        if (userKeyword.equals("D") && bridgeKeyword.equals(userKeyword)) {
-            return RIGHT;
+        if (userKeyword.equals(Constant.DOWN.getValue()) && bridgeKeyword.equals(userKeyword)) {
+            return Constant.RIGHT.getValue();
         }
-        if (userKeyword.equals("D") && !bridgeKeyword.equals(userKeyword)) {
-            return WRONG;
+        if (userKeyword.equals(Constant.DOWN.getValue()) && !bridgeKeyword.equals(userKeyword)) {
+            return Constant.WRONG.getValue();
         }
-        return NOT_MATCH;
+        return Constant.NOT_MATCH.getValue();
     }
 
     public static boolean calculateResult() {
         List<String> bridge = Bridge.getBridge();
         List<String> userInputBridge = User.getUserMovingRecord();
-        for (int i = 0; i < userInputBridge.size(); i++) {
-            if (!bridge.get(i).equals(userInputBridge.get(i))) {
+        for (int stage = 0; stage < userInputBridge.size(); stage++) {
+            if (!bridge.get(stage).equals(userInputBridge.get(stage))) {
                 return false;
             }
         }
