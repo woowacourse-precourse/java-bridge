@@ -5,16 +5,14 @@ import bridge.util.Utils;
 import bridge.util.validator.BridgeMakerValidator;
 import bridge.util.validator.BridgeMoveValidator;
 
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private ComputerBridge computerBridge;
-    private UserBridge userBridge;
+    private ComputerBridge computerBridge = new ComputerBridge();
+    private UserBridge userBridge = new UserBridge();
 
     public void createBridge(String length) {
         new BridgeMakerValidator(length);
@@ -37,6 +35,20 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public boolean isCorrectLocation() {
+        if (computerBridge.getBridgeLast() == userBridge.getBridgeLast()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEndOfBridge() {
+        if (isCorrectLocation() && (computerBridge.getBridgeLength() == userBridge.getBridgeLength())) {
+            return true;
+        }
+        return false;
     }
 
     public ComputerBridge getComputerBridge() {

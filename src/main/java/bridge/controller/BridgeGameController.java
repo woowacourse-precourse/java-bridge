@@ -6,12 +6,14 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private BridgeGame bridgeGame;
+    private BridgeGame bridgeGame = new BridgeGame();
 
     public void start() {
         insertBridge();
         while (insertBridgeToMove()) {
-
+            if (judgeUserBridgeEnd()) {
+                break;
+            }
         }
     }
 
@@ -26,4 +28,11 @@ public class BridgeGameController {
         return OutputView.printMap(bridgeGame.getUserBridge(), bridgeGame.getComputerBridge().getBridgeLast());
     }
 
+    public boolean judgeUserBridgeEnd() {
+        if (bridgeGame.isEndOfBridge()) {
+            return true;
+        }
+
+        return false;
+    }
 }
