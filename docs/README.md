@@ -36,8 +36,14 @@
   - [x] 기록이 같을 경우 최근 기록을 찾을 수 있다.
 
 ## BridgeMoveHistory
+- [ ] 이동 결과 리스트를 최장 거리, 최근 순으로 비교할 수 있다.
+
+## BridgeMoveResult
 - [x] 이동 방향과 성공, 실패 여부를 가진다.
-- [x] 성공 실패 여부를 O, X로 반환할 수 있다.
+
+## BridgeMoveResultStatus
+- [ ] 성공, 실패 상태를 가진다.
+- [ ] " O " 또는 " X " 의 출력 문자열을 가진다.
 
 ## BridgeGameCommand
 - [x] 재시작 (R), 종료 (Q) 상태를 가진다.
