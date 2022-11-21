@@ -1,11 +1,10 @@
 package controller;
 
-import dto.BridgeDto;
-import dto.BridgeSizeDto;
-import dto.GameCommandDto;
-import dto.IndexDto;
-import dto.MapDto;
-import dto.MovingDto;
+import dto.BridgeResponseDto;
+import dto.BridgeSizeRequestDto;
+import dto.GameCommandRequestDto;
+import dto.MapResponseDto;
+import dto.MovingRequestDto;
 import repository.PlayCount;
 import service.BridgeGame;
 import view.InputView;
@@ -17,90 +16,91 @@ public class GameController {
 	private final BridgeGame bridgeGame = new BridgeGame();
 
 	public void control() {
-		BridgeDto bridgeDto = init();
-		MapDto mapDto = run(bridgeDto);
-		finish(bridgeDto, mapDto);
+		BridgeResponseDto bridgeResponseDto = init();
+		MapResponseDto mapResponseDto = run(bridgeResponseDto);
+		finish(bridgeResponseDto, mapResponseDto);
 	}
 
-	private BridgeDto init() {
+	private BridgeResponseDto init() {
 		outputView.printStartMessage();
+		bridgeGame.initMovingStack();
 		return makeBridge();
 	}
 
-	private BridgeDto makeBridge() {
+	private BridgeResponseDto makeBridge() {
 		while (true) {
 			try {
-				BridgeSizeDto bridgeSizeDto = new BridgeSizeDto(inputView.readBridgeSize());
-				return bridgeGame.initBridge(bridgeSizeDto);
+				BridgeSizeRequestDto bridgeSizeRequestDto = inputView.readBridgeSize();
+				return bridgeGame.initBridge(bridgeSizeRequestDto);
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorLog(e);
 			}
 		}
 	}
 
-	private MapDto run(BridgeDto bridgeDto) {
+	private MapResponseDto run(BridgeResponseDto bridgeResponseDto) {
 		while (true) {
-			MapDto finalMapDto = play(bridgeDto);
-			if (isRetry(bridgeDto, finalMapDto)) {
+			MapResponseDto finalMapResponseDto = play(bridgeResponseDto);
+			if (isRetry(bridgeResponseDto, finalMapResponseDto)) {
 				continue;
 			}
-			return finalMapDto;
+			return finalMapResponseDto;
 		}
 	}
 
-	private boolean isRetry(BridgeDto bridgeDto, MapDto finalMapDto) {
+	private boolean isRetry(BridgeResponseDto bridgeResponseDto, MapResponseDto finalMapResponseDto) {
 		while (true) {
 			try {
-				return gameCommandIsRetry(bridgeDto, finalMapDto);
+				return gameCommandIsRetry(bridgeResponseDto, finalMapResponseDto);
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorLog(e);
 			}
 		}
 	}
 
-	private boolean gameCommandIsRetry(BridgeDto bridgeDto, MapDto finalMapDto) {
-		if (!isSuccess(bridgeDto, finalMapDto)) {
-			GameCommandDto gameCommandDto = new GameCommandDto(inputView.readGameCommand());
-			return bridgeGame.retry(gameCommandDto);
+	private boolean gameCommandIsRetry(BridgeResponseDto bridgeResponseDto, MapResponseDto finalMapResponseDto) {
+		if (!isSuccess(bridgeResponseDto, finalMapResponseDto)) {
+			GameCommandRequestDto gameCommandRequestDto = inputView.readGameCommand();
+			return bridgeGame.retry(gameCommandRequestDto);
 		}
 		return false;
 	}
 
-	private MapDto play(BridgeDto bridgeDto) {
-		MapDto mapDto = null;
-		for (int index = 0; index < bridgeDto.getBridge().size(); index++) {
-			mapDto = move(bridgeDto, index);
-			if (isSuccess(bridgeDto, mapDto) || mapDto.getNumberOfCorrect() == index) {
-				break;
+	private MapResponseDto play(BridgeResponseDto bridgeResponseDto) {
+		while (true) {
+			MapResponseDto mapResponseDto = addMovingToMap(bridgeResponseDto);
+			if (bridgeGame.isEnd(bridgeResponseDto, mapResponseDto)) {
+				bridgeGame.initMovingStack();
+				return mapResponseDto;
 			}
 		}
-		return mapDto;
 	}
 
-	private MapDto move(BridgeDto bridgeDto, int index) {
+	private MapResponseDto addMovingToMap(BridgeResponseDto bridgeResponseDto) {
 		while (true) {
 			try {
-				return renderMapAddMoving(bridgeDto, index);
+				return renderMapAddedMoving(bridgeResponseDto);
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorLog(e);
 			}
 		}
 	}
 
-	private MapDto renderMapAddMoving(BridgeDto bridgeDto, int index) {
-		MovingDto movingDto = new MovingDto(inputView.readMoving());
-		MapDto mapDto = bridgeGame.move(bridgeDto, new IndexDto(index), movingDto);
-		outputView.printMap(mapDto.getMap());
-		return mapDto;
+	private MapResponseDto renderMapAddedMoving(BridgeResponseDto bridgeResponseDto) {
+		MovingRequestDto movingRequestDto = inputView.readMoving();
+		bridgeGame.move(movingRequestDto);
+		MapResponseDto mapResponseDto = bridgeGame.renderMap(bridgeResponseDto);
+		outputView.printMap(mapResponseDto);
+		return mapResponseDto;
 	}
 
-	private void finish(BridgeDto bridgeDto, MapDto mapDto) {
-		String map = mapDto.getMap();
+	private void finish(BridgeResponseDto bridgeResponseDto, MapResponseDto mapResponseDto) {
+		String map = mapResponseDto.getMap();
 
-		outputView.printResult(map, isSuccess(bridgeDto, mapDto), PlayCount.getInstance().getCount());
+		outputView.printResult(map, isSuccess(bridgeResponseDto, mapResponseDto), PlayCount.getInstance().getCount());
 	}
 
-	private boolean isSuccess(BridgeDto bridgeDto, MapDto mapDto) {
-		return bridgeDto.getBridge().size() == mapDto.getNumberOfCorrect();
+	private boolean isSuccess(BridgeResponseDto bridgeResponseDto, MapResponseDto mapResponseDto) {
+		return bridgeResponseDto.getBridge().size() == mapResponseDto.getNumberOfCorrect();
 	}
 }
