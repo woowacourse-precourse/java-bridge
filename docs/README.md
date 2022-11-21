@@ -49,8 +49,8 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
             - [X] 게임의 시작 메시지를 출력합니다.
         - GenerateBridgeStatus
             - 다리 건너기 게임의 다리를 만드는 상태입니다.
-                - [ ] 사용자로 부터 다리의 길이를 입력받습니다.
-                - [ ] 입력받아진 다리의 길이로 랜덤한 다리를 만들어서 컨텍스트로 전달합니다.
+                - [X] 사용자로 부터 다리의 길이를 입력받습니다.
+                - [X] 입력받아진 다리의 길이로 랜덤한 다리를 만듭니다.
         - PlayerUnitMoveStatus
             - 사용자의 장기말이 움직이는 상태입니다.
                 - [ ] 
