@@ -60,7 +60,7 @@ public class Run {
     }
 
     private List <String> getSaveTotalMove(List <String> totalMove, List <String> saveTotalMove){
-        if(totalMove.size()>saveTotalMove.size()){
+        if(totalMove.size()>=saveTotalMove.size()){
             return totalMove;
         }
         return saveTotalMove;
@@ -69,8 +69,6 @@ public class Run {
         if (!gameResult.equals(successMessage)) {
             outputView.printMessage(reGameOrNotMessage);
             String reGame = inputView.readGameCommand();
-            System.out.println(reGame);
-            System.out.println(bridgeGame.retry(reGame));
             return bridgeGame.retry(reGame);
         }
         return retryResult;
