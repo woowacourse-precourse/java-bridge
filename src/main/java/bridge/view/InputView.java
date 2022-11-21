@@ -13,7 +13,7 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSize = receiveInput();
         validateNumber(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        return validateSize(bridgeSize);
     }
 
     /**
@@ -43,6 +43,14 @@ public class InputView {
         }
     }
 
+    private int validateSize(String input) {
+        int size = Integer.parseInt(input);
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+        return size;
+    }
+
     private void validateMovingInput(String input) {
         if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해 주세요.");
@@ -53,6 +61,5 @@ public class InputView {
         if (!input.equals("R") && !input.equals("Q")) {
             throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해 주세요.");
         }
-
     }
 }
