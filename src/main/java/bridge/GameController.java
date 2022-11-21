@@ -2,23 +2,21 @@ package bridge;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class GameController {
 
     private final InputView inputView = new InputView();
-    private final OutputView outputview = new OutputView();
-    private final BridgeGame bridgeGame = new BridgeGame();
+    private final OutputView outputView = new OutputView();
+    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     GameController() {
-        run();
+        int bridgeSize = start();
     }
 
-    private void run() {
-        int bridgeSize = init();
-    }
-
-    private int init() {
-        outputview.printStart();
+    private int start() {
+        outputView.printStart();
         return inputView.readBridgeSize();
     }
 }
