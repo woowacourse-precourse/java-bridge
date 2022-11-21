@@ -1,6 +1,7 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.security.CodeSigner;
 
 public class InputView {
 
@@ -13,7 +14,9 @@ public class InputView {
     }
 
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        validate.isMoving(input);
+        return input;
     }
 
     public String readGameCommand() {
