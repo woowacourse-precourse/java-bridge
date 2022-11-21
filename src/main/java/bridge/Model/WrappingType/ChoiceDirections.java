@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChoiceDirections {
-    private final List<ChoiceDirection> ChoiceDirections;
+    private final List<ChoiceDirection> choiceDirections;
 
     public ChoiceDirections(List<ChoiceDirection> choiceDirections) {
-        this.ChoiceDirections = choiceDirections;
+        this.choiceDirections = choiceDirections;
     }
 
     public static List<ChoiceDirection> of(List<String> elements) {
@@ -20,14 +20,14 @@ public class ChoiceDirections {
     }
 
     public void add(ChoiceDirection choiceDirection) {
-        ChoiceDirections.add(choiceDirection);
+        choiceDirections.add(choiceDirection);
     }
 
     public int length() {
-        return ChoiceDirections.size();
+        return choiceDirections.size();
     }
 
     public ChoiceDirection get(int position) {
-        return ChoiceDirections.get(position);
+        return choiceDirections.get(position);
     }
 }
