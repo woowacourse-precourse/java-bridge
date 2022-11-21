@@ -22,11 +22,11 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int count = 0; count < size ; count++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            if (Choice.UP.getCommandNumber() == randomNumber) {
-                bridge.add(Choice.UP.getGameCommand());
+            if (MovingRandomNumber.UP.getRandomNumber() == randomNumber) {
+                bridge.add(MovingRandomNumber.UP.getMoving());
             }
-            if (Choice.DOWN.getCommandNumber() == randomNumber) {
-                bridge.add(Choice.DOWN.getGameCommand());
+            if (MovingRandomNumber.DOWN.getRandomNumber() == randomNumber) {
+                bridge.add(MovingRandomNumber.DOWN.getMoving());
             }
         }
         return bridge;
