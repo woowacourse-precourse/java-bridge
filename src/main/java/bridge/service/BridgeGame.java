@@ -71,6 +71,14 @@ public class BridgeGame {
         return numberOfTrial;
     }
 
+    public boolean isFailedGame(){
+        return !gameState;
+    }
+
+    public String getBridgeGameState(){
+        return CrossingState.getSuccessOrNot(gameState);
+    }
+
 
 
 }
