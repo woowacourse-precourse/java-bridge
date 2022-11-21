@@ -9,20 +9,20 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameManager {
+	private final InputView inputView = new InputView();
+	private final OutputView outputView = new OutputView();
 	private final BridgeGame bridgeGame;
-	private final InputView inputView;
-	private final OutputView outputView;
 
 	public BridgeGameManager() {
-		inputView = new InputView();
-		outputView = new OutputView();
+		outputView.printGameMessage(GAME_START_MESSAGE);
+		outputView.printNewLine();
 
 		outputView.printGameMessage(BRIDGE_SIZE_REQUEST_MESSAGE);
 		bridgeGame = new BridgeGame(inputView.readBridgeSize());
+		outputView.printNewLine();
 	}
 
 	public void run() {
-		outputView.printGameMessage(GAME_START_MESSAGE);
 		String retryOrEnd = "";
 		while (!(bridgeGame.doesCrossedBridge() || retryOrEnd.equals("Q"))) {
 			roundRun();
