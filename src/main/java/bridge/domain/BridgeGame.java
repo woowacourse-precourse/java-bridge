@@ -9,10 +9,7 @@ import java.util.List;
  */
 
 public class BridgeGame {
-
-//    public static int retryCount = 1;
-//    public static boolean gameFlag = true;
-
+    
     private final int retryCount;
     private final boolean gameFlag;
 
