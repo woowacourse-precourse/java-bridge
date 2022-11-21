@@ -4,27 +4,27 @@ import bridge.constant.BridgeSymbol;
 
 public class Map {
 
-    private String upMap;
-    private String downMap;
+    private StringBuilder upMap;
+    private StringBuilder downMap;
 
     public Map() {
-        this.upMap = BridgeSymbol.OPEN.getState();
-        this.downMap = BridgeSymbol.OPEN.getState();
+        this.upMap = new StringBuilder(BridgeSymbol.OPEN.getState());
+        this.downMap = new StringBuilder(BridgeSymbol.OPEN.getState());
     }
 
     public void makeUpMap(String result) {
-        upMap += result + BridgeSymbol.MIDDLE.getState();
-        downMap += BridgeSymbol.BLANK.getState() + BridgeSymbol.MIDDLE.getState();
+        upMap.append(result).append(BridgeSymbol.MIDDLE.getState());
+        downMap.append(BridgeSymbol.BLANK.getState()).append(BridgeSymbol.MIDDLE.getState());
     }
 
     public void makeDownMap(String result) {
-        upMap += BridgeSymbol.BLANK.getState() + BridgeSymbol.MIDDLE.getState();
-        downMap += result + BridgeSymbol.MIDDLE.getState();
+        upMap.append(BridgeSymbol.BLANK.getState()).append(BridgeSymbol.MIDDLE.getState());
+        downMap.append(result).append(BridgeSymbol.MIDDLE.getState());
     }
 
     public void resetMap() {
-        upMap = BridgeSymbol.OPEN.getState();
-        downMap = BridgeSymbol.OPEN.getState();
+        upMap = new StringBuilder(BridgeSymbol.OPEN.getState());
+        downMap = new StringBuilder(BridgeSymbol.OPEN.getState());
     }
 
     public String getUpMap() {
