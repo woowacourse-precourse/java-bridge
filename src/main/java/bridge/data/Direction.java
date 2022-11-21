@@ -1,4 +1,4 @@
-package bridge;
+package bridge.data;
 
 public enum Direction {
     Down("D"),

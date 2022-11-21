@@ -1,6 +1,6 @@
 package bridge.ioView;
 
-import bridge.Direction;
+import bridge.data.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
