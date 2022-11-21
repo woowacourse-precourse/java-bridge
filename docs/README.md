@@ -49,10 +49,11 @@
 
 ### BridgeMaker
 
-- [ ] 다리의 길이를 숫자로 입력받고 생성한다. - makeBridge
+- [x] 다리의 길이를 숫자로 입력받고 생성한다. - makeBridge
     - 다리를 생성할 때 위 칸과 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해서 정한다. - BridgeRandomNumberGenerator 연계
     - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다.
     - 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다.
+- [x] 생성할 수 있는 size인지 검증한다. - validate
 
 ### InputView
 
