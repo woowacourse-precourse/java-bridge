@@ -35,4 +35,20 @@ public class InputValidatorTest {
     void validateBridgeSizeTest_3(String input) {
         assertThat(InputValidator.validateBridgeSize(input)).isEqualTo(Integer.parseInt(input));
     }
+
+    @DisplayName("사용자가 이동할 칸이 U, D 가 아니라면 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "UU", "DD", "UD", "DU", "U ", "D  ", " D", "u", "d", "wiiajd", "[23p1qwoek"})
+    void validateMovingTest_1(String input) {
+        assertThatThrownBy(() -> InputValidator.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("사용자가 이동할 칸이 U, D 라면 해당 방향 반환")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void validateMovingTest_2(String input) {
+        assertThat(InputValidator.validateMoving(input)).isEqualTo(input);
+    }
 }
