@@ -48,4 +48,31 @@ public class BridgeTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).isEqualTo(newArrayList("D", "U", "D"));
     }
+
+    @DisplayName("이동할 칸이 정상인 경우에 대한 테스트")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void move(String input) {
+        Validation validation = new Validation();
+        assertThatCode(() -> validation.validateMove(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("이동할 칸이 문자가 아닌 경우에 대한 예외 테스트")
+    @ValueSource(strings = {"3", " "})
+    @ParameterizedTest
+    void notCharacterMove(String input) {
+        Validation validation = new Validation();
+        assertThatThrownBy(() -> validation.validateMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이동할 칸이 U 또는 D가 아닌 경우에 대한 예외 테스트")
+    @ValueSource(strings = {"u", "up", "위"})
+    @ParameterizedTest
+    void wrongMove(String input) {
+        Validation validation = new Validation();
+        assertThatThrownBy(() -> validation.validateMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
