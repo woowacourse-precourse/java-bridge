@@ -32,7 +32,7 @@ public class InputView {
 
     public void validateNotNumber(String input){
         if(!pattern.matcher(input).matches()){
-            throw new IllegalArgumentException("[ERROR] 3이상 20 이하의 숫자를 입력해주세요.");
+            throw new NumberFormatException("[ERROR] 3이상 20 이하의 숫자를 입력해주세요.");
         }
     }
 
@@ -62,10 +62,14 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
+    }
+
+    void validateGameCommand(String gameCommand){
         if(!isGameCommandInputValid(gameCommand)){
             throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
         }
-        return gameCommand;
     }
 
     public boolean isMovingBlockInputValid(String movingBlock){
@@ -83,6 +87,4 @@ public class InputView {
         }
         return false;
     }
-
-
 }
