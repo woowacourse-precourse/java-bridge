@@ -25,7 +25,7 @@ public class InputView {
 	public String readMoving() {
 		System.out.println(ViewConstant.ASKING_CHOOSE_MOVING_MESSAGE);
 		String moving = Console.readLine();
-		Validator.validateMovingIsCellPosition(moving);
+		Validator.validateCapitalLetter(moving);
 		return moving;
 	}
 
@@ -35,7 +35,7 @@ public class InputView {
 	public String readGameCommand() {
 		System.out.println(ViewConstant.ASKING_INPUT_RESTART_OR_NOT_MESSAGE);
 		String gameCommand = Console.readLine();
-		Validator.validateGameCommand(gameCommand);
+		Validator.validateCapitalLetter(gameCommand);
 		return gameCommand;
 	}
 }
