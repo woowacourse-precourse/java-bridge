@@ -1,6 +1,6 @@
 package bridge.View;
 
-import bridge.Domain.History;
+import bridge.Domain.Result;
 import bridge.Domain.UserBridge;
 
 import java.util.List;
@@ -23,18 +23,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(History gameHistory, int location) {
-        printEachBridge(gameHistory.getUpperBridge(), location);
-        printEachBridge(gameHistory.getLowerBridge(), location);
+    public static void printMap(Result result) {
+        printEachBridge(result.getUpperSpaces());
+        printEachBridge(result.getLowerSpaces());
     }
 
-    public static void printEachBridge(UserBridge bridge, int location) {
+    public static void printEachBridge(List<String> spaces) {
         System.out.print("[ ");
-        for (int i = 0; i < location; i++) {
-            String space = bridge.getSpaceByLocation(i);
-            System.out.print(space);
+        for(int i=0; i<spaces.size(); i++) {
+            System.out.println(spaces.get(i));
 
-            if (i != location -1)
+            if (i != spaces.size()-1)
                 System.out.print(" | ");
         }
         System.out.println(" ]");
@@ -45,15 +44,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(History gameHistory, int location) {
+    public static void printResult(Result result, int location) {
         System.out.println(GAME_RESULT);
-        printMap(gameHistory, location);
+        printMap(result);
 
-        if (gameHistory.isSuccess())
+        if (result.isSuccess())
             System.out.println(IS_SUCCESS + "성공");
-        if (!gameHistory.isSuccess())
+        if (!result.isSuccess())
             System.out.println(IS_SUCCESS + "실패");
-        System.out.println(TRY_COUNT + gameHistory.getTries());
+        System.out.println(TRY_COUNT + result.getTries());
     }
 
     public static void printGameStart() {

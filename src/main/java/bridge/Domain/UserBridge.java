@@ -10,11 +10,15 @@ public class UserBridge {
         this.spaces = new ArrayList<>();
     }
 
+    public List<String> getSpaces () {
+        return this.spaces;
+    }
+
     public String getSpaceByLocation(int location) {
         return spaces.get(location);
     }
 
-    public void saveSpaceResult(String move) {
+    public void saveSpace(String move) {
         spaces.add(move);
     }
 
