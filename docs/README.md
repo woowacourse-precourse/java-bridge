@@ -12,10 +12,6 @@
 
 # Game
 * 사용자의 입력을 받아 이동한다.
+* 이동 후 현재 다리 상태를 객체에 저장한다.
 * 사용자가 게임을 다시 시도하는 메서드
 
-# GameMoveValidator
-* 입력을 받아 이동하는 움직임이 정답인지 아닌지 확인한다.
-
-# GameMaker 
-* input, output, BridgeMaker 로 생성한 리스트를 인자로 Bridge 게임을 생성한다.
