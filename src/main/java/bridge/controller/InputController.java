@@ -11,7 +11,7 @@ public class InputController {
 
 	public int getBridgeSize() {
 		try {
-			return new BridgeSize(inputView.readBridgeSize()).getSize();
+			return BridgeSize.validateRange(inputView.readBridgeSize());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return getBridgeSize();
