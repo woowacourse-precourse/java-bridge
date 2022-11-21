@@ -100,7 +100,7 @@ public class OutputView {
         upBridge = upBridge.replace(CHANGE_POINT, FIRST_POINT);
         downBridge = downBridge.replace(CHANGE_POINT, FIRST_POINT);
         System.out.println(upBridge);
-        System.out.println(downBridge);
+        System.out.println(downBridge + "\n");
     }
 
     private boolean isU(String movement) {
