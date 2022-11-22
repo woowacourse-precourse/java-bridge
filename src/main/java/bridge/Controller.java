@@ -17,7 +17,7 @@ public class Controller {
         do {
             crossBridgeToEnd();
         } while (!gameFinished());
-
+        outputView.printResult(bridgeGame.makeMap(), bridgeGame.getTryCount(), bridgeGame.isCleared());
     }
 
     public List<String> makeBridge() {
@@ -50,6 +50,7 @@ public class Controller {
         try {
             Direction nextDirection = Direction.toDirection(inputView.readMoving());
             boolean moved = bridgeGame.move(nextDirection);
+            outputView.printMap(bridgeGame.makeMap());
             return moved;
         } catch (IllegalArgumentError e) {
             return move();

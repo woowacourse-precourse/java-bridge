@@ -11,7 +11,7 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final List<Direction> histories;
-
+    //    private BridgeMap bridgeMap;
     private int pointer = 0;
     private int tryCount = 1;
 
@@ -19,7 +19,7 @@ public class BridgeGame {
         this.bridge = new Bridge(bridge);
         this.histories = new ArrayList<>();
     }
-
+    
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -62,6 +62,13 @@ public class BridgeGame {
         return false;
     }
 
+    public BridgeMap makeMap(List<Direction> histories) {
+        return new BridgeMap(bridge, histories);
+    }
+
+    public BridgeMap makeMap() {
+        return makeMap(histories);
+    }
 
     public void initializePointer() {
         pointer = 0;
