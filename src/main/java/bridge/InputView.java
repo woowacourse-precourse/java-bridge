@@ -2,9 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-
-// TODO 입력 예외 처리를 여기서 할까 밖에서 할까?
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -50,7 +47,7 @@ public class InputView {
     public String readMoving() {
         String nextStepInput;
         nextStepInput = Console.readLine();
-        if (!nextStepInput.equals("U") || !nextStepInput.equals("D")) {
+        if (!nextStepInput.equals("U") && !nextStepInput.equals("D")) {
             throw new IllegalArgumentException("[ERROR] U 혹은 D만 입력 가능합니다.");
         }
         if (nextStepInput.length() > 1) {
