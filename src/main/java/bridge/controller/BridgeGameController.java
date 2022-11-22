@@ -9,13 +9,15 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.User;
 import bridge.domain.BridgeGame;
-import bridge.service.ViewService;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    private final ViewService viewService = new ViewService();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void start() {
         printStartGame();
@@ -25,18 +27,18 @@ public class BridgeGameController {
     }
 
     public void printStartGame() {
-        viewService.printStartGame();
+        outputView.printStartGame();
     }
 
     public List<String> createBridge() {
-        return bridgeMaker.makeBridge(viewService.inputBridgeSize());
+        return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
     public void moveBridge(BridgeGame bridgeGame, User user) {
         while (!user.isGameOver()) {
-            String moveUpOrDown = viewService.inputMoving();
+            String moveUpOrDown = inputView.readMoving();
             boolean pass = bridgeGame.isPass(moveUpOrDown);
-            viewService.printMap(bridgeGame.getLocation(), pass, moveUpOrDown);
+            outputView.printMap(bridgeGame.getLocation(), pass, moveUpOrDown);
             runPassOrFailCase(pass, bridgeGame, user);
             completeBridge(bridgeGame, user);
         }
@@ -54,14 +56,14 @@ public class BridgeGameController {
             bridgeGame.move();
         }
         if (!pass) {
-            String gameCommand = viewService.inputGameCommand();
+            String gameCommand = inputView.readGameCommand();
             runFailCase(bridgeGame, user, gameCommand);
         }
     }
 
     public void runFailCase(BridgeGame bridgeGame, User user, String gameCommand) {
         if (gameCommand.equals(RETRY.getCommand())) {
-            viewService.clearMap();
+            outputView.clearMap();
             user.increaseTryCount();
             bridgeGame.retry();
         }
@@ -71,6 +73,6 @@ public class BridgeGameController {
     }
 
     public void printResult(User user) {
-        viewService.printResult(user);
+        outputView.printResult(user);
     }
 }
