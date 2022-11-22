@@ -26,15 +26,15 @@ public class Application {
         return new BridgeRandomNumberGenerator();
     }
 
-    private static Bridge bridge() {
-        return new Bridge();
-    }
-
     private static Player player() {
         return new Player();
     }
 
     private static BridgeGameFacade facade() {
         return new BridgeGameFacade(bridge(), player());
+    }
+
+    private static Bridge bridge() {
+        return new Bridge();
     }
 }
