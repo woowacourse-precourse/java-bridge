@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGameResult;
+import bridge.domain.BridgeMoveState;
 import java.util.List;
 
 public class OutputView {
@@ -51,9 +52,9 @@ public class OutputView {
         System.out.println(GAME_TRY_COUNT + gameResult.getTryCount());
     }
 
-    public void printMap(List<String> bridge, List<Boolean> state) {
+    public void printMap(List<String> bridge, BridgeMoveState moveState) {
         initMap();
-        makeMap(bridge, state);
+        makeMap(bridge, moveState.getState());
         System.out.println(BRIDGE_START + upMap + BRIDGE_END);
         System.out.println(BRIDGE_START + downMap + BRIDGE_END);
     }
