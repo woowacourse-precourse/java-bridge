@@ -48,9 +48,14 @@ public class BridgeController {
 
     public void play() {
         String moveInput = inputView.readMoving();
-        UserStatus userStatus = bridgeGame.move(moveInput);
-        outputView.printMap(bridgeGame.getUserPathLog());
-        checkRetry(userStatus);
+        try {
+            UserStatus userStatus = bridgeGame.move(moveInput);
+            outputView.printMap(bridgeGame.getUserPathLog());
+            checkRetry(userStatus);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            play();
+        }
     }
 
     public void checkSuccess() {
@@ -71,10 +76,15 @@ public class BridgeController {
     }
 
      private void checkRetry(UserStatus userStatus) {
-        if (userStatus.checkUserStatus(UserStatus.OUT)) {
-            String inputGameStatus = inputView.readGameCommand();
-            GameStatus gameStatus = GameStatus.convertGameStatus(inputGameStatus);
-            bridgeGame.changeGameStatus(gameStatus);
+        try {
+            if (userStatus.checkUserStatus(UserStatus.OUT)) {
+                String inputGameStatus = inputView.readGameCommand();
+                GameStatus gameStatus = GameStatus.convertGameStatus(inputGameStatus);
+                bridgeGame.changeGameStatus(gameStatus);
+            }
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            checkRetry(userStatus);
         }
     }
 
