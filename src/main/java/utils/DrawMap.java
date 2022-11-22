@@ -54,4 +54,18 @@ public class DrawMap {
             lowerLog.add(" ");
         }
     }
+
+    /**
+     * 다리의 위쪽 부분 결과를 String 값으로 만드는 메서드
+     */
+    public void setUpperSideOfMap() {
+        upperSideOfMap.append(MapImage.prefix);
+        for (int i = 0; i < upperLog.size(); i++) {
+            upperSideOfMap.append(upperLog.get(i));
+            if (i != upperLog.size() - 1) {
+                upperSideOfMap.append(MapImage.separation);
+            }
+        }
+        upperSideOfMap.append(MapImage.postfix);
+    }
 }
