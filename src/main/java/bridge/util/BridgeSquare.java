@@ -5,8 +5,8 @@ import bridge.view.ExceptionMessage;
 import java.util.Arrays;
 
 public enum BridgeSquare {
-    U(1,"U"),
-    D(0,"D");
+    U(1, "U"),
+    D(0, "D");
 
     private int choice;
     private String square;
@@ -16,7 +16,7 @@ public enum BridgeSquare {
         this.square = square;
     }
 
-    public static String convertSquare(int choice){
+    public static String convertSquare(int choice) {
         return Arrays.stream(values())
                 .filter(c -> c.choice == choice)
                 .map(c -> c.square).findAny()

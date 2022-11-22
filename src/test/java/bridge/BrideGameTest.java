@@ -14,7 +14,7 @@ public class BrideGameTest {
         assertSimpleTest(() -> {
             String square = "U";
             String choice = "U";
-            bridgeGame.move(square,choice);
+            bridgeGame.move(square, choice);
             assertThat(bridgeGame.toString()).contains(
                     "[ O ]",
                     "[   ]"
@@ -28,18 +28,18 @@ public class BrideGameTest {
     @Test
     void 재시도_횟수_증가_테스트() {
         BridgeGame bridgeGame = new BridgeGame();
-        String reply ="R";
+        String reply = "R";
         int attempt = 1;
-        attempt = bridgeGame.retry(reply,attempt);
+        attempt = bridgeGame.retry(reply, attempt);
         assertThat(attempt).isEqualTo(2);
     }
 
     @Test
-    void 종료시_시도횟수_테스트(){
+    void 종료시_시도횟수_테스트() {
         BridgeGame bridgeGame = new BridgeGame();
-        String reply ="Q";
+        String reply = "Q";
         int attempt = 1;
-        attempt = bridgeGame.retry(reply,attempt);
+        attempt = bridgeGame.retry(reply, attempt);
         assertThat(attempt).isEqualTo(1);
     }
 }

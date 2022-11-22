@@ -42,10 +42,10 @@ public class BridgeControllerTest {
     }
 
     @Test
-    void 다리건너기_성공_출력_테스트(){
+    void 다리건너기_성공_출력_테스트() {
         List<List<String>> bridges = new ArrayList<>();
-        List<String> bridgeUp = List.of(" "," "," ");
-        List<String> bridgeDown = List.of("0","O","O");
+        List<String> bridgeUp = List.of(" ", " ", " ");
+        List<String> bridgeDown = List.of("0", "O", "O");
 
         bridges.add(bridgeUp);
         bridges.add(bridgeDown);
@@ -56,10 +56,10 @@ public class BridgeControllerTest {
     }
 
     @Test
-    void 다리건너기_실패_출력_테스트(){
+    void 다리건너기_실패_출력_테스트() {
         List<List<String>> bridges = new ArrayList<>();
-        List<String> bridgeUp = List.of(" ","X"," ");
-        List<String> bridgeDown = List.of("0"," ","O");
+        List<String> bridgeUp = List.of(" ", "X", " ");
+        List<String> bridgeDown = List.of("0", " ", "O");
 
         bridges.add(bridgeUp);
         bridges.add(bridgeDown);
@@ -70,8 +70,8 @@ public class BridgeControllerTest {
     }
 
     @Test
-    void 다리건너기_실패_테스트(){
-        String input ="U" +"\n" + "D" + "\n" + "D";
+    void 다리건너기_실패_테스트() {
+        String input = "U" + "\n" + "D" + "\n" + "D";
         InputStream i = new ByteArrayInputStream(input.getBytes());
 
         System.setIn(i);
@@ -80,8 +80,8 @@ public class BridgeControllerTest {
     }
 
     @Test
-    void 다리건너기_성공_테스트(){
-        String input ="D" +"\n" + "D" + "\n" + "D";
+    void 다리건너기_성공_테스트() {
+        String input = "D" + "\n" + "D" + "\n" + "D";
         InputStream i = new ByteArrayInputStream(input.getBytes());
 
         System.setIn(i);
@@ -90,8 +90,8 @@ public class BridgeControllerTest {
     }
 
     @Test
-    void 다리건너기_재시작_테스트(){
-        String input = "D" + "\n" + "D" +"\n" + "U"+ "\n" + "R" + "\n" + "D" +"\n" + "D" +"\n" +"D";
+    void 다리건너기_재시작_테스트() {
+        String input = "D" + "\n" + "D" + "\n" + "U" + "\n" + "R" + "\n" + "D" + "\n" + "D" + "\n" + "D";
         InputStream i = new ByteArrayInputStream(input.getBytes());
 
         System.setIn(i);

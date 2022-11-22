@@ -9,7 +9,7 @@ public class Application {
         try {
             BridgeController bridgeController = new BridgeController();
             bridgeController.start();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }

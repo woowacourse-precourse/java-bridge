@@ -34,11 +34,11 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
@@ -57,7 +57,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 기능_실패_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D","Q");
+            run("3", "U", "D", "D", "Q");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   |   ]",
@@ -74,7 +74,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 재시도_후_성공_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "U", "R","U","D","U");
+            run("3", "U", "U", "R", "U", "D", "U");
             assertThat(output()).contains(
                     "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
                     "최종 게임 결과",
@@ -91,7 +91,7 @@ class ApplicationTest extends NsTest {
 
 
     @ParameterizedTest
-    @ValueSource(strings ={"-1","0","2","33","44","55"})
+    @ValueSource(strings = {"-1", "0", "2", "33", "44", "55"})
     public void 다리_생성_실패_테스트(String size) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         assertThatThrownBy(() -> {
@@ -102,7 +102,7 @@ class ApplicationTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints ={3,4,5,6,18,20})
+    @ValueSource(ints = {3, 4, 5, 6, 18, 20})
     void 다리_생성_성공_테스트(int size) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(size);
@@ -120,7 +120,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 재시작_선택_실패_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            runException("3", "U", "D", "U" , "r");
+            runException("3", "U", "D", "U", "r");
             assertThat(output()).contains(
                     "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
                     ERROR_MESSAGE

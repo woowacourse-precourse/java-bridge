@@ -28,11 +28,11 @@ public class OutputView {
         printMap(result);
     }
 
-    public static void printSuccessOrFail(String successStatus){
+    public static void printSuccessOrFail(String successStatus) {
         System.out.println("게임 성공 여부: " + successStatus);
     }
 
-    public static void printAttemptCount(int attempt){
+    public static void printAttemptCount(int attempt) {
         System.out.println("총 시도한 횟수: " + attempt);
     }
 }
