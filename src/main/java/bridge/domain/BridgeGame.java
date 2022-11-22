@@ -3,6 +3,7 @@ package bridge.domain;
 import static bridge.domain.GameCommand.RETRY;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -31,7 +32,7 @@ public class BridgeGame {
     }
 
     private boolean canMove(int location, BridgeCellType moveCommand) {
-        return moveCommand.getCellType().equals(bridge.get(location));
+        return Objects.equals(moveCommand.getCellType(), bridge.get(location));
     }
 
     /**
