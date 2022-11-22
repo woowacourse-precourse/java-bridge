@@ -124,13 +124,29 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        InputView inputView = new InputView();
+        String gameCommand = inputGameCommand();
 
-        if (inputView.readGameCommand().equals("R")) {
+        if (gameCommand.equals("R")) {
             tryCount++;
             return true;
         } else { // 최종 게임 결과, 성공 여부, 총 시도 횟수
             return false;
         }
+
+    }
+
+    private static String inputGameCommand() {
+        InputView inputView = new InputView();
+        String gameCommand = "";
+
+        while (true) {
+            try {
+                gameCommand = inputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+        return gameCommand;
     }
 }

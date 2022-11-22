@@ -58,7 +58,14 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return Console.readLine();
+        String command = Console.readLine();
+        readGameCommandCheck(command);
+        return command;
+    }
+
+    private void readGameCommandCheck(String command) throws IllegalArgumentException{
+        if (!command.equals("R") && !command.equals("Q"))
+            throw new IllegalArgumentException("[ERROR] R(재시작) 또는 Q(종료)를 입력해주세요.");
     }
 }
 
