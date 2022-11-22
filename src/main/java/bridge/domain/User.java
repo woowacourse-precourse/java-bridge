@@ -7,6 +7,7 @@ public class User {
     private static final int DEFAULT_TRY_COUNT = 1;
 
     private int tryCount = DEFAULT_TRY_COUNT;
+    private int bridgeLength = 0;
     private List<String> mapUpperBridge = new ArrayList<>();
     private List<String> mapLowerBridge = new ArrayList<>();
 
@@ -15,6 +16,7 @@ public class User {
     }
 
     public void updateMapBridge(String move, boolean isSuccess){
+        bridgeLength ++;
         if(isSuccess)
             updateMapBridgeTrue(move);
         if(!isSuccess)
@@ -43,13 +45,17 @@ public class User {
         }
     }
 
-    public void BridgeReset(){
+    public void bridgeReset(){
         mapUpperBridge = new ArrayList<>();
         mapLowerBridge = new ArrayList<>();
     }
 
     public int getTryCount() {
         return tryCount;
+    }
+
+    public int getBridgeLength(){
+        return bridgeLength;
     }
 
     public List<String> getMapUpperBridge() {
