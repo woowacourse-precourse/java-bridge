@@ -5,11 +5,12 @@ public class MapPrinter {
     private static final String CORRECT = " O |";
     private static final String WRONG = " X |";
     private static final String BLANK = "   |";
+    private static final String NEXT_LINE = "\n";
     private final StringBuilder up = new StringBuilder("[");
     private final StringBuilder down = new StringBuilder("[");
 
-    public void moving(BridgePosition position, boolean correct) {
-        if (position == BridgePosition.UP) {
+    public void moving(Position position, boolean correct) {
+        if (position == Position.UP) {
             addBridge(up, correct);
             addBlank(down);
             return;
@@ -36,6 +37,6 @@ public class MapPrinter {
         StringBuilder second = new StringBuilder(down);
         first.setCharAt(first.length() - 1, END);
         second.setCharAt(second.length() - 1, END);
-        return first + "\n" + second;
+        return first + NEXT_LINE + second;
     }
 }
