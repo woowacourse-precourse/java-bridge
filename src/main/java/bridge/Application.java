@@ -15,8 +15,13 @@ public class Application {
     public static void main(String[] args) {
         printTitle();
         final BridgeSize bridgeSize = askBridgeSize();
+        final BridgeGame bridgeGame = createBridgeGame(bridgeSize);
+    }
+
+    private static BridgeGame createBridgeGame(final BridgeSize bridgeSize) {
         final List<String> rawBridge = bridgeMaker.makeBridge(bridgeSize.getValue());
         final Bridge bridge = Bridge.of(rawBridge);
+        return BridgeGame.of(bridge);
     }
 
     private static BridgeSize askBridgeSize() {
