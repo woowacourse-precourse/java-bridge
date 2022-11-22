@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 
 // 코드 변경 불가

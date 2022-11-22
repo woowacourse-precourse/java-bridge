@@ -1,12 +1,12 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.OutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class OutputViewTest {
 
