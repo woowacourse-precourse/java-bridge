@@ -29,7 +29,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             String key = ControlKey.findKeyByBridgeNumber(bridgeNumberGenerator.generate());
-            if(key != null) bridge.add(key);
+            bridge.add(key);
         }
         return bridge;
     }

@@ -9,7 +9,8 @@ public enum ControlKey {
   UP("U", "위", () -> "위: U", 1),
   DOWN("D", "아래", () -> "아래: D", 0),
   RETRY("R", "재시도", () -> "재시도: R"),
-  QUIT("Q", "종료", () -> "종료: Q");
+  QUIT("Q", "종료", () -> "종료: Q"),
+  NOTHING("", "", () -> "");
 
   private String key;
   private String keyInKorean;
@@ -42,6 +43,6 @@ public enum ControlKey {
                   .filter(controlKey -> controlKey.bridgeNum == bridgeNum)
                   .map(controlKey -> controlKey.key)
                   .findAny()
-                  .orElse(null);
+                  .orElse(NOTHING.key);
   }
 }
