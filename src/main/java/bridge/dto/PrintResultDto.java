@@ -1,13 +1,11 @@
 package bridge.dto;
 
-import com.sun.net.httpserver.Authenticator;
-
-public class printResultDto {
+public class PrintResultDto {
     private String state;
     private BridgeMapDto mapDto;
     private RetryCountDto retryCountDto;
 
-    private printResultDto(String state, BridgeMapDto mapDto, RetryCountDto retryDto) {
+    private PrintResultDto(String state, BridgeMapDto mapDto, RetryCountDto retryDto) {
         this.state = state;
         this.mapDto = mapDto;
         this.retryCountDto = retryDto;
@@ -25,8 +23,8 @@ public class printResultDto {
         return retryCountDto;
     }
 
-    public static printResultDto of(String state, BridgeMapDto mapDto, RetryCountDto retryCount){
-        return new printResultDto(state, mapDto, retryCount);
+    public static PrintResultDto of(String state, BridgeMapDto mapDto, RetryCountDto retryCount){
+        return new PrintResultDto(state, mapDto, retryCount);
     }
 
 }

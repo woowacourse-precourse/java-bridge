@@ -1,5 +1,8 @@
 package bridge.service;
 
+import bridge.dto.BridgeMapDto;
+import bridge.dto.PrintResultDto;
+import bridge.dto.RetryCountDto;
 import bridge.model.entity.*;
 import bridge.model.entity.Bridge;
 import bridge.model.entity.Move;
@@ -30,6 +33,9 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
     public RetryCount getRetryCount() {
         return retryCount;
     }
+    public PrintResultDto getPrintResultDto() {
+        return PrintResultDto.of(success(), BridgeMapDto.of(bridgeMap), RetryCountDto.of(retryCount));
+    }
 
 
     public void createBridge(List<String> answer) {
@@ -51,14 +57,13 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
         Move move = Move.of(readMove);
         checkMove(bridgeMap.getIndex(), move.getMove());
     }
-    public Boolean checkMove(int index, String move) { //정답과 일치하는지 확인
-        updateIndex(index); //TODO: Refactoring 해줄 것 return type 없앨 수 있는 방향 생각하기
+    public void checkMove(int index, String move) { //정답과 일치하는지 확인
+        updateIndex(index);
         if(bridge.getAnswer().get(index).equals(move)){
             addMatchMap(move);
-            return null;
+            return;
         }
         addNotMatchMap(move);
-        return null;
     }
 
     private void updateIndex(int index) {
@@ -101,17 +106,24 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
         return Fail;
     }
 
-    public void retry(String retry) { // TODO: Refactring 해줄 것
-        checkRetry(retry);
-    }
-
-    public void checkRetry(String retry) {
-        if(QUIT.equals(retry)){
-            player.setAnswer(retry);
+    public void retry(String retry) {
+        if (isQuit(retry)) {
             return;
         }
+        isRetry(retry);
+    }
+
+    private void isRetry(String retry) {
         player.setAnswer(retry);
         createBridgeMap();
         this.retryCount.upCount();
+    }
+
+    private boolean isQuit(String retry) {
+        if(QUIT.equals(retry)){
+            player.setAnswer(retry);
+            return true;
+        }
+        return false;
     }
 }

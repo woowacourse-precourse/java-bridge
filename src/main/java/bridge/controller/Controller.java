@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.dto.BridgeMapDto;
+import bridge.dto.PrintResultDto;
 import bridge.dto.RetryCountDto;
 import bridge.model.value.OutMessage;
 import bridge.service.BridgeGame;
@@ -19,44 +20,43 @@ public class Controller {
         this.out = out;
         this.input = input;
     }
-    /*
-1. startGame()
-2. createBridge()
-3. moveBridge()
-4. printState()
-5. retry()
-6.success()
-7. printResult()
-     */
+
     public void startGame() { //다리 게임 시작
         out.printMessage(START_MESSAGE);
         createBridge(); //다리 생성
         while(game.keepGoingGame()) { //사용자 문자가 "R"인가?
-            moveBridge();   // 움직이기
-            printState();   // 입력값 결과 출력
-            if(!game.checkResult()){    // 정답 여부 맞았나 틀렸나
-                retry();
-            }
-            else if(game.isEnd()){  // 끝까지 도달했나 안했나 // TODO: 리펙토링 예정
-                success();
-            }
+            moveAndResult();
         }
-        printResult(game.success(), BridgeMapDto.of(game.getBridgeMap()), RetryCountDto.of(game.getRetryCount()));
-        // TODO: Refactoring 해줄것 Dto클래스로 만들어 전달할 것
+        printResult(game.getPrintResultDto());
+    }
+
+    private void moveAndResult() {
+        moveBridge();   // 움직이기
+        printState();   // 입력값 결과 출력
+        if(!game.checkResult()){    // 정답 여부 맞았나 틀렸나
+            retry();
+        }
+        else if(game.isEnd()){  // 끝까지 도달했나 안했나 // TODO: 리펙토링 예정
+            success();
+        }
     }
 
 
     public void createBridge() {
         try {
             out.printMessage(INPUT_BRIDGE_MESSAGE);
-            game.createBridge(input.readBridgeSize());
-            game.createBridgeMap();
-            game.createPlayer();
-            game.createCount();
+            createGameField();
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             createBridge();
         }
+    }
+
+    private void createGameField() {
+        game.createBridge(input.readBridgeSize());
+        game.createBridgeMap();
+        game.createPlayer();
+        game.createCount();
     }
 
     public void moveBridge() {
@@ -86,12 +86,10 @@ public class Controller {
     public void success() {
         game.success();
     }
-    public void printResult(String State, BridgeMapDto mapDto, RetryCountDto retryCountDto) {// TODO: 변경 예정
+    public void printResult(PrintResultDto dto) {
         out.printMessage(PRINT_RESULT_MESSAGE);
-        out.printMap(mapDto);
-        out.printSuccessOrNot(State);
-        out.printTryCount(retryCountDto.getRetryCount());
-
+        out.printMap(dto.getMapDto());
+        out.printSuccessOrNot(dto.getState());
+        out.printTryCount(dto.getRetryCountDto());
     }
-
 }

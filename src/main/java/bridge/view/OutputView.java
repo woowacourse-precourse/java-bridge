@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.dto.BridgeMapDto;
+import bridge.dto.RetryCountDto;
 import bridge.model.entity.BridgeMap;
 import bridge.model.value.BridgeIngredient;
 import bridge.model.value.OutMessage;
@@ -54,7 +55,7 @@ public class OutputView {
     public void printSuccessOrNot(String result){
         System.out.printf(SUCCES_OR_NOT_MESSAGE.getMessage(), result);
     }
-    public void printTryCount(long count){
-        System.out.printf(TRY_COUNT_MESSAGE.getMessage(), count);
+    public void printTryCount(RetryCountDto dto){
+        System.out.printf(TRY_COUNT_MESSAGE.getMessage(), dto.getRetryCount());
     }
 }
