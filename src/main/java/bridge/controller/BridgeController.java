@@ -34,7 +34,7 @@ public class BridgeController {
     }
 
     public void result() {
-        outputView.printResult(bridgeGame.getUserMoveState(), bridgeGame.getRetryCount(), bridgeGame.isGameOver());
+        outputView.printResult(bridgeGame.getUserMoveState(), bridgeGame.getTryCount(), bridgeGame.isGameOver());
     }
 
     public void setBridgeGame() {
