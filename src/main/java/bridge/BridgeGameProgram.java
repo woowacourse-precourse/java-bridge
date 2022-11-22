@@ -37,12 +37,12 @@ public class BridgeGameProgram {
 
     private Bridge initGame() {
         output.printMessage(Message.START);
-        List<String> bridgeRoute = bridgeMaker.makeBridge(getBridgeSize());
+        List<String> bridgeRoute = bridgeMaker.makeBridge(inputBridgeSize());
         return new Bridge(bridgeRoute);
     }
 
     private Mark match(Bridge bridge) {
-        return bridge.matchRoute(getInputDirection(), bridgeGame.countMoving());
+        return bridge.matchRoute(inputDirection(), bridgeGame.countMoving());
     }
 
     private void checkFail(Mark mark, List<List<String>> route) {
@@ -52,7 +52,7 @@ public class BridgeGameProgram {
     }
 
     private void restartOrStop(List<List<String>> route) {
-        if (getGameCommand().equals(GameCommand.END.getCommand())) {
+        if (inputGameCommand().equals(GameCommand.END.getCommand())) {
             endGame(route, Message.FAIL);
             return;
         }
@@ -70,7 +70,7 @@ public class BridgeGameProgram {
         output.printResult(route, result, bridgeGame.getGameCount());
     }
 
-    private int getBridgeSize() {
+    private int inputBridgeSize() {
         while (true) {
             try {
                 output.printMessage(Message.REQUEST_BRIDGE_SIZE);
@@ -81,7 +81,7 @@ public class BridgeGameProgram {
         }
     }
 
-    private String getInputDirection() {
+    private String inputDirection() {
         while (true) {
             try {
                 output.printMessage(Message.REQUEST_DIRECTION);
@@ -92,7 +92,7 @@ public class BridgeGameProgram {
         }
     }
 
-    private String getGameCommand() {
+    private String inputGameCommand() {
         while (true) {
             try {
                 output.printMessage(Message.RESTART_OR_EXIT);
