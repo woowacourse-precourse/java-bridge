@@ -20,6 +20,8 @@
 ### request
 - [x] View로 부터 받은값에 대해 Shape & types에 대해 검증하는 기능 
      - [x] 다리 길이는 숫자만 가능하고 범위는 3 ~ 20 이어야 한다. - > BridgeSizeRequest
+  ![Generic badge](https://img.shields.io/badge/test-passed-blue.svg)
+
      - [x] 사용자가 이동하기를 위한 입력값으로 "U" or "D" 인지 검증하는 기능 - > MoveRequest
      - [x] 재시도 여부를 묻는 입력값으로 "R" or "Q" 인지 검증하는 기능 - > GameRequest
      - [x] 사용자의 재시도 여부를 확인하는 기능 - > wantRetry
@@ -28,6 +30,9 @@
 - [x] 요구사항에 맞게 Bridge maker에게 다리를 만들도록 일을 넘김
 - [ ] 사용자가 칸을 이동하게 하는 기능 
 - [ ] 사용자가 이동한 칸이 옳바른 방향인지 판단하는 기능 
+- [ ] 게임결과가 실패했는지 확인하는 기능 
+- [ ] 게임결과가 성공했는지 확인하는 기능 
+
 - [ ] 재시도 해야하는 상태를 확인하는 기능 
 
 ### ScoreMap 
