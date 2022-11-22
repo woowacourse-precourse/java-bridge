@@ -9,8 +9,30 @@ public class BridgeGame {
 
     private final static InputView inputView = new InputView();
     private final static OutputView outputView = new OutputView();
-    private final static BridgeGame bridgeGame = new BridgeGame();
+    private final static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
+    public boolean run() {
+
+        CurrentBridgeState currentBridgeState = new CurrentBridgeState();
+        int tryNumber = 1;
+        boolean isRetry = true;
+
+        List<String> bridge = makeBridge();
+
+        while (isRetry) {
+            isRetry = tryCrossBridge(bridge, currentBridgeState, tryNumber);
+            tryNumber++;
+        }
+        return isRetry;
+    }
+
+    private List<String> makeBridge() {
+
+        int bridgeSize = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+
+        return bridge;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -21,10 +43,11 @@ public class BridgeGame {
         boolean isPossibleMove;
 
         String moveCommand = inputView.readMoving();
-        isPossibleMove = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
+        isPossibleMove = isPossibleMove(bridge, moveCommand, turn);
         currentBridgeState.recordBridgeMove(moveCommand, isPossibleMove);
         outputView.printMap(currentBridgeState);
 
+        return isPossibleMove;
     }
 
     public boolean isPossibleMove(List<String> bridge, String moveCommand, int turn) {
