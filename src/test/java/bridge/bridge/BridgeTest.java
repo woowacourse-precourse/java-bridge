@@ -3,12 +3,41 @@ package bridge.bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.exception.IllegalArgumentExceptionMessage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BridgeTest {
+
+    @Test
+    public void longLengthBridgeTest() throws Exception {
+        // given
+        List<String> state = new ArrayList<>(Arrays.asList("U", "U", "U", "U", "U",
+                "U", "U", "U", "U", "U",
+                "U", "U", "U", "U", "U",
+                "U", "U", "U", "U", "U",
+                "U"));
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> new Bridge(state)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(IllegalArgumentExceptionMessage.ILLEGAL_BRIDGE_LENGTH.getMessage());
+    }
+
+    @Test
+    public void shortLengthBridgeTest() throws Exception {
+        // given
+        List<String> state = new ArrayList<>(Arrays.asList("U", "U"));
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> new Bridge(state)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(IllegalArgumentExceptionMessage.ILLEGAL_BRIDGE_LENGTH.getMessage());
+    }
 
     @Test
     public void bridgeSizeTest() throws Exception {
