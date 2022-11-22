@@ -1,7 +1,7 @@
 package bridge.Model;
 
 import bridge.Utils.Validator.BridgeMoveValidator;
-import bridge.Controller.InputController;
+import bridge.Controller.ViewController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,13 @@ public class Move {
 
 
     public Move(String correctMove) {
-        InputController inputController = new InputController();
+        ViewController inputController = new ViewController();
         this.inputMove = inputController.getMovement();
         this.correctMove = correctMove;
         this.result = new ArrayList<>();
     }
 
     /**
-     *
      * @return [" ", "O"] 형식의 리스트를 반환한다.
      */
     public List<String> getMove() {
@@ -33,11 +32,11 @@ public class Move {
         return result;
     }
 
-    private List<String> addOorX(int index, int currentIndex){
+    private List<String> addOorX(int index, int currentIndex) {
         if (index == currentIndex) {
             result.add(BridgeMoveValidator.compareMoveInputAndNextMove(inputMove, correctMove).getOorX());
         }
-        if(index != currentIndex){
+        if (index != currentIndex) {
             result.add(BLANK);
         }
         return result;

@@ -24,6 +24,7 @@ public class BridgeGame {
 
     private int gameCount;
     private int currentLocation;
+    ViewController controller;
 
     public BridgeGame(int bridgeSize) {
         Bridge build = new Bridge(bridgeSize);
@@ -43,7 +44,6 @@ public class BridgeGame {
         while (currentLocation < bridgeSize) {
             moveOnce();
             if (movement.contains(X)) {
-                gameCount++;
                 break;
             }
             currentLocation++;
@@ -55,11 +55,13 @@ public class BridgeGame {
         Move move = new Move(bridge.get(currentLocation));
         movement = move.getMove();
         currentBridge.addAll(movement);
-        OutputView.printMap(currentBridge);
+        controller.printMap(currentBridge);
     }
 
-    private void isSuccess(){
-        OutputView.printResult(gameCount, currentBridge, currentLocation == bridgeSize);
+    private void isSuccess() {
+        if (currentLocation == bridgeSize) {
+            controller.getPrintResult(gameCount, currentBridge, true);
+        }
         isFailed();
     }
 
@@ -70,26 +72,28 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        InputController input = new InputController();
+        ViewController input = new ViewController();
         String command = input.getCommand();
         isRetry(command);
         isQuit(command);
     }
-    private void isRetry(String command){
+
+    private void isRetry(String command) {
         if (command.equals(RETRY)) {
+            gameCount++;
             currentLocation = 0;
             currentBridge = new ArrayList<>();
             move();
         }
     }
 
-    private void isQuit(String command){
+    private void isQuit(String command) {
         if (command.equals(QUIT)) {
-            OutputView.printResult(gameCount, currentBridge, false);
+            controller.getPrintResult(gameCount, currentBridge, false);
         }
     }
 
-    private void isFailed(){
+    private void isFailed() {
         if (currentLocation != bridgeSize) {
             retry();
         }
