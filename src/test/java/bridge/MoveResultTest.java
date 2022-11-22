@@ -9,30 +9,14 @@ import org.junit.jupiter.api.Test;
 
 class MoveResultTest {
 
-	@DisplayName("모두 옳은 칸을 고른 다리의 상태를 정해진 형식대로 만든다.")
-	@Test
-	void renderSuccess() {
-		//given
-		MoveResult moveResult = new MoveResult(List.of("U","D","D","U"), List.of("U", "D", "D"));
-		//when, then
-		assertThat(moveResult.getMap()).isEqualTo("[ O |   |   ]\n[   | O | O ]");
-	}
 
-	@DisplayName("틀린 칸을 고른 다리의 상태를 정해진 형식대로 만든다.")
-	@Test
-	void renderFail() {
-		//given
-		MoveResult moveResult = new MoveResult(List.of("U","D","D","U"), List.of("U","D","D","D"));
-		//when, then
-		assertThat(moveResult.getMap()).isEqualTo("[ O |   |   |   ]\n[   | O | O | X ]");
-	}
-	@DisplayName("옳은 칸을 고른 횟수를 구한다.")
+	@DisplayName("사용자의 입력이 옳은 칸을 고른 경우를 구한다.")
 	@Test
 	void getNumberOfCorrect() {
 		//given
 		MoveResult moveResult = new MoveResult(List.of("U","D","D","U"), List.of("U","D","D","D"));
 		//when, then
-		assertThat(moveResult.getNumberOfCorrect()).isEqualTo(3);
+		assertThat(moveResult.isCorrect()).isEqualTo(false);
 	}
 
 	@DisplayName("성공하지 못한 경우 성공 여부를 구한다.")

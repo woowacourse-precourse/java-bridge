@@ -14,6 +14,7 @@ import bridge.PlayCount;
 import dto.BridgeResponseDto;
 import dto.BridgeSizeRequestDto;
 import dto.GameCommandRequestDto;
+import dto.MapResponseDto;
 import dto.MoveResultResponseDto;
 import dto.MovingRequestDto;
 
@@ -28,11 +29,9 @@ class BridgeGameTest {
 		bridgeGame.move(new MovingRequestDto("U"));
 		bridgeGame.move(new MovingRequestDto("D"));
 		bridgeGame.initMovingStack();
-		bridgeGame.move(new MovingRequestDto("U"));
+		bridgeGame.move(new MovingRequestDto("D"));
 		//when, then
-		assertThat(
-			bridgeGame.produceResult(new BridgeResponseDto(new Bridge(List.of("U", "D", "U")))).getMap()).isEqualTo(
-			new MoveResultResponseDto(new MoveResult(List.of("U", "D", "D"), List.of("U"))).getMap());
+		assertFalse(bridgeGame.produceResult(new BridgeResponseDto(new Bridge(List.of("U", "D", "U")))).isCorrect());
 	}
 
 	@DisplayName("다리가 정상적으로 생성되는지 확인한다.")
@@ -50,14 +49,11 @@ class BridgeGameTest {
 		//given
 		BridgeGame bridgeGame = new BridgeGame();
 		bridgeGame.initMovingStack();
+		//when
 		bridgeGame.move(new MovingRequestDto("U"));
-		bridgeGame.move(new MovingRequestDto("D"));
-		//when, then
-		assertThat(
-			bridgeGame.produceResult(new BridgeResponseDto(new Bridge(List.of("U", "D", "U")))).getMap()).isEqualTo(
-			new MoveResultResponseDto(new MoveResult(List.of("U", "D", "D"), List.of("U", "D"))).getMap());
+		//then
+		assertTrue(bridgeGame.produceResult(new BridgeResponseDto(new Bridge(List.of("U", "D", "U")))).isCorrect());
 	}
-
 	@DisplayName("사용자의 입력에 대해 제대로 결과를 출력하는지 확인한다.")
 	@Test
 	void produceResult() {
@@ -67,8 +63,7 @@ class BridgeGameTest {
 		//when
 		bridgeGame.move(new MovingRequestDto("U"));
 		//then
-		assertEquals(1,
-			bridgeGame.produceResult(new BridgeResponseDto(new Bridge(List.of("U", "D", "U")))).getNumberOfCorrect());
+		assertTrue(bridgeGame.produceResult(new BridgeResponseDto(new Bridge(List.of("U", "D", "U")))).isCorrect());
 	}
 
 	@DisplayName("게임이 끝났을 때 결과를 제대로 반환하는지 확인한다.")
@@ -77,10 +72,12 @@ class BridgeGameTest {
 		//given
 		BridgeGame bridgeGame = new BridgeGame();
 		bridgeGame.initMovingStack();
+		bridgeGame.move(new MovingRequestDto("U"));
+		bridgeGame.move(new MovingRequestDto("D"));
+		bridgeGame.move(new MovingRequestDto("U"));
 		//when, then
-		assertThat(bridgeGame.checkGameIsEnd(
-				new MoveResultResponseDto(new MoveResult(List.of("U", "D", "U"), List.of("U", "D", "U"))))
-			.getMap()).isEqualTo("[ O |   | O ]\n[   | O |   ]");
+		assertThat(bridgeGame.renderMap(new BridgeResponseDto(new Bridge(List.of("U", "D", "U")))).getMap()).isEqualTo(
+			"[ O |   | O ]\n[   | O |   ]");
 	}
 
 	@DisplayName("총 게임 횟수를 정상적으로 반환하는지 확인한다.")
