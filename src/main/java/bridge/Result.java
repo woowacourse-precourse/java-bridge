@@ -20,6 +20,10 @@ public class Result {
     public void updateBridge(List<String> bridge, List<String> moves) {
         setBridgeMap();
         findFail(bridge, moves);
+        topBridgeResult = topBridgeResult.substring(0, topBridgeResult.length() - 1);
+        topBridgeResult += END_BRIDGE_CHARACTER;
+        bottomBridgeResult = bottomBridgeResult.substring(0, bottomBridgeResult.length() - 1);
+        bottomBridgeResult += END_BRIDGE_CHARACTER;
     }
 
     private void setBridgeMap() {
@@ -38,28 +42,22 @@ public class Result {
         }
     }
 
-    public boolean findFail(List<String> bridge, List<String> moves) {
+    public void findFail(List<String> bridge, List<String> moves) {
         for (int findIndex = 0; findIndex < moves.size(); findIndex++) {
             if (!bridge.get(findIndex).equals(moves.get(findIndex))) {
                 isFailedBridgeMap(moves.get(findIndex));
-                return true;
             }
-            compareMoveCommand(moves.get(findIndex));
+            if (bridge.get(findIndex).equals(moves.get(findIndex))) {
+                compareMoveCommand(moves.get(findIndex));
+            }
         }
-        return false;
     }
 
     public String getTopBridgeResult() {
-        topBridgeResult = topBridgeResult.substring(0, topBridgeResult.length() - 1);
-        topBridgeResult += END_BRIDGE_CHARACTER;
-
         return topBridgeResult;
     }
 
     public String getBottomBridgeResult() {
-        bottomBridgeResult = bottomBridgeResult.substring(0, bottomBridgeResult.length() - 1);
-        bottomBridgeResult += END_BRIDGE_CHARACTER;
-
         return bottomBridgeResult;
     }
 

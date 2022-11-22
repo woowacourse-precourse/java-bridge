@@ -44,7 +44,12 @@ public class GameController {
     }
 
     private boolean isFailed() {
-        return result.findFail(bridge, bridgeGame.getMoves());
+        for (int failedIndex = 0; failedIndex < bridgeGame.getMoves().size(); failedIndex++) {
+            if (!bridge.get(failedIndex).equals(bridgeGame.getMoves().get(failedIndex))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void setBridge(BridgeController bridgeController) {
@@ -74,8 +79,9 @@ public class GameController {
     }
 
     private void successResult() {
-        if (bridge.size() == bridgeGame.getMoves().size()) {
+        if ((bridgeSize == bridgeGame.getMoves().size()) && (!isFailed())) {
             OutputView.printEndResult();
+            OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
             OutputView.printResult(SUCCESS);
             OutputView.printTotalAttempts(countTry);
         }
