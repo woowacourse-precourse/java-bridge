@@ -18,20 +18,6 @@ public class BridgeGameTest {
         assertThat(bridgeGame.getPosition().get(1)).isEqualTo(randomNumber);
     }
 
-    @DisplayName("재시도 테스트")
-    @Test
-    public void retryTest(){
-        BridgeGame bridgeGame = new BridgeGame();
-        int randomNumber = Randoms.pickNumberInRange(1,9);
-        System.out.println(randomNumber);
-        repeatMove(bridgeGame, randomNumber);
-        int positionAfterMove = bridgeGame.getPosition().get(1);
-        bridgeGame.retry();
-        int positionBeforeMove = bridgeGame.getPosition().get(1);
-        assertThat(positionAfterMove).isEqualTo(positionBeforeMove+1);
-        assertThat(bridgeGame.getRetryNumber()).isEqualTo(1);
-    }
-
     private void repeatMove(BridgeGame bridgeGame,int randomNumber){
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         for(int i=0; i<randomNumber; i++){
