@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.domain.Bridge;
 import bridge.service.BridgeService;
 import bridge.domain.Player;
-import bridge.validation.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -42,10 +41,7 @@ public class BridgeController {
         return bridgeService.checkSuccess(player);
     }
 
-    public void showWelcome() {
-        outputView.printGameStart();
-    }
-
+    // 입력을 받는 메서드 part
     private int getBridgeSize() {
         Integer bridgeSize = null;
         return getValidBridgeSize(bridgeSize);
@@ -98,6 +94,11 @@ public class BridgeController {
         }
 
         return step;
+    }
+
+    // 출력을 하는 메서드 part
+    public void showWelcome() {
+        outputView.printGameStart();
     }
 
     public void showProgress(Player player) {
