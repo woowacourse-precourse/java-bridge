@@ -17,10 +17,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge) {
+    public void printMap(BridgeGame bridgeGame) {
         List<String> upBridge = new ArrayList<>();
         List<String> downBridge = new ArrayList<>();
-        for (MoveStatus out : bridge.getResult()) {
+        for (MoveStatus out : bridgeGame.getResult()) {
             String[] split = out.toString().split(OutPutMessage.SPLIT_TYPE.get());
             upBridge.add(split[0]);
             downBridge.add(split[1]);
@@ -50,10 +50,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Bridge bridge, int count) {
+    public void printResult(BridgeGame bridgeGame, int count) {
         System.out.println(OutPutMessage.END_MESSAGE.get());
-        printMap(bridge);
-        System.out.println(OutPutMessage.IS_GAME_CLEAR.get() + statusToString(bridge.isWrong()));
+        printMap(bridgeGame);
+        System.out.println(OutPutMessage.IS_GAME_CLEAR.get() + statusToString(bridgeGame.isWrong()));
         System.out.println(OutPutMessage.TOTAL_GAME_COUNT.get() + count);
     }
 
