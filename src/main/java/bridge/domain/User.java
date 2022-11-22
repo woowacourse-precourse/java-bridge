@@ -1,7 +1,7 @@
 package bridge.domain;
 
 public class User {
-    private final int playCount;
+    private int playCount;
     private boolean quit;
 
     public User() {
