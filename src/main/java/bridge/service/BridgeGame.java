@@ -24,8 +24,8 @@ public class BridgeGame {
     private List<String> gameBridge;
     private int runCount;
 
-    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
-        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    public BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
         runCount = 0;
     }
 

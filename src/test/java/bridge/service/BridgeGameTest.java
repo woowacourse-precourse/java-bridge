@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.TestNumberGenerator;
 import bridge.domain.Moving;
@@ -18,8 +19,8 @@ public class BridgeGameTest {
     void canNotMoveContinueBecauseMoveEnd() {
         // given
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 1, 1));
-
-        BridgeGame bridgeGame = new BridgeGame(numberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker);
         int bridgeSize = 3;
         bridgeGame.initialize(bridgeSize);
         
