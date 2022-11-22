@@ -9,7 +9,7 @@ public class User {
 
     public User() {
         attemptCount = 1;
-        round = 1;
+        round = 0;
         status = GameStatus.PLAYING;
     }
 
