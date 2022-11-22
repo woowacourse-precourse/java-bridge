@@ -36,5 +36,22 @@ public class Progress {
         }
     }
 
+    public boolean getRetry() {
+        while (true) {
+            try {
+                return retryValue();
+            } catch (IllegalArgumentException e) {
+                System.out.println(outputView.errorMessage(e.getMessage()));
+            }
+        }
+    }
+
+    public boolean retryValue() {
+        if (!bridgeGame.isSuccess()) {
+            loop = true;
+            return bridgeGame.retry(inputView.readGameCommand());
+        }
+        return false;
+    }
 
 }
