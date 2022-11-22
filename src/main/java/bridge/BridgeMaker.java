@@ -20,8 +20,46 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> Bridge = new ArrayList<>(size*3+1);
-        /*Bridge.add(0, "[");
-        Bridge.add(Bridge.size(), "]");*/
+        return Bridge;
+    }
+
+    public List<String> bridgeAddMove(String move,List<String> Bridge ) {
+        List<String> result = new ArrayList<>();
+        if(move.charAt(1) == 'O'){
+            result =  BridgeAdd(Bridge ,1);
+        }
+        else {
+            result =  BridgeAdd(Bridge ,0);
+        }
+        return result;
+    }
+
+    public List<String> bridgeAddElseMove(List<String> Bridge ) {
+        List<String> result = BridgeAddElse(Bridge);
+        return result;
+    }
+
+    public List<String> BridgeAdd(List<String> Bridge, int chk) {
+        if(chk == 1){
+            Bridge.add(" ");
+            Bridge.add("O");
+            Bridge.add(" ");
+            Bridge.add("|");
+        }
+        else{
+            Bridge.add(" ");
+            Bridge.add("X");
+            Bridge.add(" ");
+            Bridge.add("|");
+        }
+        return Bridge;
+    }
+
+    public List<String> BridgeAddElse(List<String> Bridge) {
+        Bridge.add(" ");
+        Bridge.add(" ");
+        Bridge.add(" ");
+        Bridge.add("|");
         return Bridge;
     }
 }
