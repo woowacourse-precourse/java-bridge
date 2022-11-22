@@ -15,9 +15,7 @@ public class Application {
 
         int bridgelength = inputView.readBridgeSize();
         List<String> bridgeYongJong = bridgeMaker.makeBridge(bridgelength);
-
-
-
+        System.out.println(bridgeYongJong);
 
     }
 }
