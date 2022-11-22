@@ -1,5 +1,8 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +21,22 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        ArrayList<Integer> numbers = new ArrayList<>();
+        BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        for (int i = 0; i < size; i++) {
+            numbers.add(numberGenerator.generate());
+        }
+        return numberToBridge(numbers);
+
+    }
+
+    public List<String> numberToBridge(List<Integer> numbers) {
+        ArrayList<String> bridge = new ArrayList<>();
+        for (Integer number : numbers) {
+            if (number == 0) {bridge.add(String.valueOf("D"));}
+            if (number == 1) {bridge.add(String.valueOf("U"));}
+        }
+        return bridge;
+
     }
 }
