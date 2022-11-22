@@ -44,9 +44,23 @@ class InputViewTest {
     }
 
     @Test
-    void readMoving() {
+    void 이동할_칸_입력_테스트() {
+        String input = "U";
+        inputStream = new ByteArrayInputStream(input.getBytes());
+        setIn(input);
+        String size = inputView.readMoving();
+        String result = "U";
+        assertThat(size).isEqualTo(result);
     }
-
+    @Test
+    void 이동할_칸_입력_예외_테스트() {
+        String input = "F";
+        inputStream = new ByteArrayInputStream(input.getBytes());
+        setIn(input);
+        String size = inputView.readMoving();
+        String result = "F";
+        assertThat(size).isEqualTo(result);
+    }
     @Test
     void readGameCommand() {
     }
