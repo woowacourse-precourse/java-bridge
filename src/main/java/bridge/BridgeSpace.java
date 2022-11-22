@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.ErrorMessage.ERROR_MESSAGE;
-import static bridge.ErrorMessage.BRIDGE_RANDOM_NUMBER_ERROR_MESSAGE;
+import static bridge.util.ErrorMessage.BRIDGE_RANDOM_NUMBER_ERROR_MESSAGE;
+import static bridge.util.ErrorMessage.ERROR_MESSAGE;
 
 public enum BridgeSpace {
     DOWN(0, "D"),

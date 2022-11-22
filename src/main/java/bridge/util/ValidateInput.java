@@ -1,6 +1,6 @@
-package bridge;
+package bridge.util;
 
-import static bridge.ErrorMessage.*;
+import static bridge.util.ErrorMessage.*;
 
 public class ValidateInput {
     public static Integer isNumber(String number) {

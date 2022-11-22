@@ -1,12 +1,11 @@
 package bridge;
 
-import static bridge.OutputView.printGameStartMessage;
-import static bridge.OutputView.printInputBridgeSizeMessage;
+import static bridge.ui.OutputView.printGameStartMessage;
+import static bridge.ui.OutputView.printInputBridgeSizeMessage;
 
 public class Application {
 
     public static void main(String[] args) {
-
         printGameStartMessage();
         printInputBridgeSizeMessage();
 
