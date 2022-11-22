@@ -7,6 +7,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
+
     private final BridgeGame game;
     private final InputView inputView;
     private final OutputView outputView;
@@ -16,9 +17,11 @@ public class GameController {
         this.outputView = new OutputView();
         this.game = new BridgeGame(this.inputView.readBridgeSize());
     }
+
     public static GameController start() {
         return new GameController();
     }
+
     public void play() {
         while (game.getGameStatus() == GameStatus.PLAY) {
             move();

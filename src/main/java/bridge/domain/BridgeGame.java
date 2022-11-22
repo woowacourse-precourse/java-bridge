@@ -3,7 +3,6 @@ package bridge.domain;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.code.BridgeMap;
 import bridge.code.GameStatus;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public class BridgeGame {
     public BridgeGame(int size) {
         this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
         this.result = new GameResult();
-        this.gameStatus= GameStatus.PLAY;
+        this.gameStatus = GameStatus.PLAY;
     }
 
     /**
@@ -48,7 +47,7 @@ public class BridgeGame {
 
     private void updateResult(String input, boolean isMoveSuccess) {
         result.updateResultMap(input, BridgeMap.FOR_MOVE.getString(isMoveSuccess));
-        if (bridge.size()==result.getIndex()) {
+        if (bridge.size() == result.getIndex()) {
             setGameStatus(GameStatus.SUCCESS);
         }
     }
