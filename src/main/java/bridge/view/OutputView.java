@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.type.Bridge;
+import bridge.type.Result;
 import bridge.type.TextType;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<Bridge> bridges, Result result, int tryCount) {
+        System.out.println(TextType.RESULT_MESSAGE.getText());
+
+        printMap(bridges);
+
+        System.out.println(TextType.RESULT_STATUS_MESSAGE.getText() + result.getResult());
+        System.out.println(TextType.TRY_COUNT_MESSAGE.getText() + tryCount);
     }
 
     public void printStart() {

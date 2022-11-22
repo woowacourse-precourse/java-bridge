@@ -11,7 +11,10 @@ public enum TextType {
     BRIDGE_END(" ]"),
     BRIDGE_MID(" | "),
     POSSIBLE_SPACE("O"),
-    IMPOSSIBLE_SPACE("X");
+    IMPOSSIBLE_SPACE("X"),
+    RESULT_MESSAGE("\n최종 게임 결과"),
+    RESULT_STATUS_MESSAGE("\n게임 성공 여부: "),
+    TRY_COUNT_MESSAGE("총 시도한 횟수: ");
 
     private final String text;
 
