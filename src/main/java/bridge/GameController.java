@@ -24,7 +24,6 @@ public class GameController {
     }
 
     public void run(List<String> bridge, List<String> inputCommand) {
-        System.out.println(bridge);
         List<String> addedInputCommand = bridgeGame.addCommandInput(inputCommand, inputView.readMoving());
         List<List<String>> result = bridgeGame.move(bridge, addedInputCommand);
         outputView.printMap(result.get(upSide), result.get(downSide));
