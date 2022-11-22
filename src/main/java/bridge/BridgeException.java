@@ -1,9 +1,11 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
 import view.InputView;
 
 public class BridgeException {
     private final String BRIDGE_SIZE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private final String MOVE_SIDE_INPUT_ERROR = "[ERROR] 이동할 칸은 U 또는 D여야 합니다.";
 
     public int bridgeSizeInputException() {
         try {
@@ -33,5 +35,22 @@ public class BridgeException {
             return true;
         }
         return false;
+    }
+
+    public boolean moveException(String sideToMove) {
+        try {
+            isCommandUOrD(sideToMove);
+        } catch (IllegalArgumentException e) {
+            System.out.println();
+            new BridgeController().moveController();
+            return false;
+        }
+        return true;
+    }
+
+    public void isCommandUOrD(String sideToMove) {
+        if (!sideToMove.equals("U") && !sideToMove.equals("D")) {
+            throw new IllegalArgumentException(MOVE_SIDE_INPUT_ERROR);
+        }
     }
 }

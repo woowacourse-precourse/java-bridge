@@ -3,6 +3,7 @@ package bridge;
 import view.InputView;
 import view.OutputView;
 
+import java.nio.channels.ScatteringByteChannel;
 import java.util.List;
 
 public class BridgeController {
@@ -29,25 +30,38 @@ public class BridgeController {
 
     public void moveController() {
         bridgeGame = new BridgeGame();
-        for (int i = 0; i < blockCount; i++) {
+        moveProcess();
+    }
+
+    public void moveProcess() {
+        for (int tryCount = 0; tryCount < blockCount; tryCount++) {
             String sideToMove = new InputView().readMoving();
-            moveResult = bridgeGame.moveResult(bridge, i, sideToMove);
-            new OutputView().printMap(moveResult);
-            i = gameFailed(i);
-            gameEnd(i);
+            if (!new BridgeException().moveException(sideToMove)) {
+                tryCount -= 1;
+                continue;
+            }
+            tryCount = moveResultProcess(tryCount, sideToMove);
         }
     }
 
-    public int gameFailed(int i) {
+    public int moveResultProcess(int tryCount, String sideToMove) {
+        moveResult = bridgeGame.moveResult(bridge, tryCount, sideToMove);
+        new OutputView().printMap(moveResult);
+        tryCount = gameFailed(tryCount);
+        gameEnd(tryCount);
+        return tryCount;
+    }
+
+    public int gameFailed(int tryCount) {
         if (bridgeGame.isFailed(moveResult)) {
             String retryCommand = new InputView().readGameCommand();
-            i = failedCase(i, retryCommand);
-            return i;
+            tryCount = failedCase(tryCount, retryCommand);
+            return tryCount;
         }
-        return i;
+        return tryCount;
     }
 
-    public int failedCase(int i, String retryCommand) {
+    public int failedCase(int tryCount, String retryCommand) {
         if (retryCommand.equals("R")) {
             commandR(retryCommand);
             return -1;
@@ -56,7 +70,7 @@ public class BridgeController {
             commandQ(retryCommand);
             return blockCount;
         }
-        return i;
+        return tryCount;
     }
 
     public void commandR(String retryCommand) {
