@@ -37,14 +37,75 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+
+        }, 1, 0,1);
+
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "R","U","U","Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+
+        }, 1, 0,1);
+
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "R","U","D","U");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+
+        }, 1, 0,1);
     }
 
     @Test
-    void 예외_테스트() {
+    void 입력_예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+
+        assertSimpleTest(() -> {
+            runException("3","a","D","U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("3","12","3","U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+
+    }
+
+    @Test
+    void 재시도_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D","1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        },1,0,1);
+
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D","q");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        },1,0,1);
     }
 
     @Override
