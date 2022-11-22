@@ -1,4 +1,4 @@
-package bridge.service.impl;
+package bridge.service.itf;
 
 import bridge.type.ResultType;
 
