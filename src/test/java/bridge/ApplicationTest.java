@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.util.BridgeMaker;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,17 @@ class ApplicationTest extends NsTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
+    }
+
+    @Test
+    void 만약_1이면_U_0이면_D_테스트() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList());
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        String string = bridgeMaker.GeneratorToBridge(1);
+        assertThat(string).isEqualTo("U");
+        string = bridgeMaker.GeneratorToBridge(0);
+        assertThat(string).isEqualTo("D");
+
     }
 
     @Test
