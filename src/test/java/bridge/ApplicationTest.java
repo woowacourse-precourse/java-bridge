@@ -5,8 +5,12 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.domain.Bridge;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -66,6 +70,16 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @BeforeEach
+    void resetBridge() throws NoSuchFieldException, IllegalAccessException {
+        Bridge bridgeInstance = new Bridge();
+        Field bridge = Bridge.class.getDeclaredField("bridge");
+
+        bridge.setAccessible(true);
+        bridge.set(bridgeInstance, new ArrayList<>());
+        bridge.setAccessible(false);
     }
 
     @Override

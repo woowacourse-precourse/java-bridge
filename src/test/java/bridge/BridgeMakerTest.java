@@ -3,7 +3,11 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
+import bridge.domain.Bridge;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,5 +28,15 @@ public class BridgeMakerTest {
     void bridgeWithOnlyUAndDTest(int sizeOfBridge) {
         List<String> bridge = bridgeMaker.makeBridge(sizeOfBridge);
         assertThat(bridge.stream().allMatch(v -> v.equals("U") || v.equals("D"))).isEqualTo(true);
+    }
+
+    @BeforeEach
+    void resetBridge() throws NoSuchFieldException, IllegalAccessException {
+        Bridge bridgeInstance = new Bridge();
+        Field bridge = Bridge.class.getDeclaredField("bridge");
+
+        bridge.setAccessible(true);
+        bridge.set(bridgeInstance, new ArrayList<>());
+        bridge.setAccessible(false);
     }
 }

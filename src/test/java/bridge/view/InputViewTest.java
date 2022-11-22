@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,11 +27,11 @@ public class InputViewTest {
         InputStream in = new ByteArrayInputStream("".getBytes());
         System.setIn(in);
         assertThatThrownBy(() -> inputView.readBridgeSize())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-12", "sj", "34gg"})
+    @ValueSource(strings = {"-12", "sj", "34gg", "1"})
     void bridgeSizeInvalidTest(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -39,7 +40,7 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1232", "1", "0"})
+    @ValueSource(strings = {"3", "20", "14"})
     void bridgeSizeValidTest(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
