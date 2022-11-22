@@ -65,6 +65,7 @@ public class playGame {
             }
             if (bridgeGame.getRetry().equals("Q")) {
                 output.printResult(bridgeGameResult.getList(), bridge.getTryNumber(), gameContinue);
+                return false;
             }
         }
 
