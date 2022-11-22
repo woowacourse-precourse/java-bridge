@@ -10,4 +10,10 @@ public class BridgeGame {
         this.position = 0;
         this.bridge = bridge;
     }
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+    public int getPosition() {
+        return this.position;
+    }
 }
