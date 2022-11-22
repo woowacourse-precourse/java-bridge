@@ -22,26 +22,26 @@ public class BridgeGameController {
 
     public void start() {
         while (play) {
-            playerMove();
+            play = judgePlayerMove();
             showBridge();
-            if (isGameEnd()) {
-                askRetry();
+            if (!isGameLife()) {
+                play = askRetry();
             }
         }
         showResult();
     }
 
-    private void playerMove() {
+    private boolean judgePlayerMove() {
         bridgeGame.move();
-        play = !bridgeGame.isEnd();
+        return !bridgeGame.isEnd();
     }
 
     private void showBridge() {
         outputView.printMap(bridgeGame.getGameMap());
     }
 
-    private boolean isGameEnd() {
-        return !bridgeGame.getStatus().isLife();
+    private boolean isGameLife() {
+        return bridgeGame.getStatus().isLife();
     }
 
     private Bridge makeGameBridge() {
@@ -53,15 +53,15 @@ public class BridgeGameController {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private void askRetry() {
+    private boolean askRetry() {
         String status = inputView.readGameCommand();
 
         if (status.equals(Command.RETRY.getCommand())) {
             bridgeGame.retry();
             gameCount++;
-            return;
+            return true;
         }
-        play = false;
+        return false;
     }
 
     private void showResult() {
