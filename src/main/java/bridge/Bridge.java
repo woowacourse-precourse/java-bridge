@@ -36,4 +36,17 @@ public class Bridge {
                 .equals(bridge.getBridge().get(this.bridge.size()-1));
     }
 
+    public String getLaneString(String side, List<String> answerBridge) {
+        String laneString= "[";
+
+        for (int i = 0 ; i < bridge.size() ; i++) {
+            if (bridge.get(i).equals(side) && bridge.get(i).equals(answerBridge.get(i))) laneString += " O ";
+            else if (bridge.get(i).equals(side) && !bridge.get(i).equals(answerBridge.get(i))) laneString += " X ";
+            else if (!bridge.get(i).equals(side)) laneString += "   ";
+            if (i < bridge.size()-1) laneString += "|";
+        }
+        laneString += "]";
+        return laneString;
+    }
+
 }
