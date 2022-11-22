@@ -1,5 +1,7 @@
 # 다리 건너기
 
+![bridge](./images/bridge.gif)
+
 #### 다리 건너기 게임이란
 
 처음 입력한 값 만큼의 다리가 생성된다.
@@ -131,26 +133,3 @@
   - [x] movePlayer
   - [x] inputGameCommand
   	- [x] 잘못 입력시 오류 메시지 출력 후 재입력
-
-# 
-
-# 요구 사항
-
-- [x]  함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다
-- [x]  메서드의 파라미터 개수는 최대 3개까지만 허용한다.
-- [x] 아래 있는 클래스의 요구사항을 참고하여 구현한다.
-	- [x]  `InputView`
-	- [x]  `OutputView`
-	- [x]  `BridgeGame`
-	- [x]  `BridgeMaker`
-	- [x]  `BridgeRandomNumberGenerator` 
-- [x] InputView`클래스에서만`camp.nextstep.edu.missionutils.Console`의`readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
-- [x] BridgeGame`클래스에서`InputView`,`OutputView` 를 사용하지 않는다.
-- [x] 실행 결과 예시 줄 바꿈, 빈 줄
-- [x] 객체는 객체스럽게 사용한다
-- [x] 정적 팩토리 메서드
-- [x] 테스트 코드 리팩터링
-- [x] 스트림 고려
-- [x] 3주차 피드백 적용
-- [x] 2주차 피드백 적용
-
