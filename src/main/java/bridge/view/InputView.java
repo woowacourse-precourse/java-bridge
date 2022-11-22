@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.type.ErrorType;
+import bridge.type.TextType;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,10 +13,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-
         String input = Console.readLine();
-        int size = parseNumber(input);
 
+        int size = parseNumber(input);
         validateSize(size);
 
         return size;
@@ -25,7 +25,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+
+        validateMoving(input);
+
+        return input;
     }
 
     /**
@@ -45,5 +49,10 @@ public class InputView {
 
     public void validateSize(int size) {
         if (size < 3 || size > 20) throw new IllegalArgumentException(ErrorType.OVER_SIZE.getError());
+    }
+
+    public void validateMoving(String input) {
+        if (!input.equals(TextType.UP.getText()) && !input.equals(TextType.DOWN.getText()))
+                throw new IllegalArgumentException(ErrorType.NOT_MOVING_INPUT.getError());
     }
 }
