@@ -34,6 +34,7 @@ public class BridgeController {
                 bridgeGame.resetUserData();
                 bridgeGame.changeGameStatus(GameStatus.PROCEED);
             }
+            checkSuccess();
         }
     }
 
@@ -44,7 +45,15 @@ public class BridgeController {
         checkRetry(userStatus);
     }
 
-    private void checkRetry(UserStatus userStatus) {
+    public void checkSuccess() {
+        if (bridgeGame.isSuccess()) {
+            bridgeGame.changeGameStatus(GameStatus.SUCCESS);
+            String userPathLog = bridgeGame.getUserPathLog();
+            outputView.printResult(userPathLog, bridgeGame.getResultStatus(), bridgeGame.getTryCount());
+        }
+    }
+
+     private void checkRetry(UserStatus userStatus) {
         if (userStatus.checkUserStatus(UserStatus.OUT)) {
             String inputGameStatus = inputView.readGameCommand();
             GameStatus gameStatus = GameStatus.convertGameStatus(inputGameStatus);
