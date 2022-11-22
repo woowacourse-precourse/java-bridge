@@ -12,4 +12,7 @@ public enum GameCommand {
         throw new IllegalArgumentException(ERR_GAME_COMMAND_FORMAT);
     }
 
+    public boolean isRetry() {
+        return this == R;
+    }
 }
