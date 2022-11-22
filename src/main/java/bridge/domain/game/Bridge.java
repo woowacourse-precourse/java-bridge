@@ -1,14 +1,13 @@
 package bridge.domain.game;
 
-import bridge.domain.game.Direction;
-import bridge.domain.game.Position;
+import static bridge.constant.gameValue.DOWN;
+import static bridge.constant.gameValue.UP;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bridge {
 
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private static final String BRIDGE_COMPONENTS_INVALID_ERROR = "다리의 구성 요소가 올바르지 않습니다.";
     private final List<Direction> directions;
 
