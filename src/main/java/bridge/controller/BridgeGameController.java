@@ -10,7 +10,6 @@ public class BridgeGameController {
 
     InputView iv;
     OutputView ov;
-    boolean reEnter;
 
     public BridgeGameController() {
         this.bridgeGame = new BridgeGame();
@@ -25,15 +24,13 @@ public class BridgeGameController {
     }
 
     private void makeBridge() {
-        reEnter = true;
         ov.gameStart();
-        while(reEnter) {
+        while(true) {
             try {
                 bridgeGame.makeBridge(iv.readBridgeSize());
-                reEnter = false;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                reEnter = true;
             }
         }
     }
@@ -50,14 +47,12 @@ public class BridgeGameController {
     }
 
     private void validateReadMoving() {
-        reEnter = true;
-        while(reEnter) {
+        while(true) {
             try {
                 bridgeGame.move(iv.readMoving());
-                reEnter = false;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                reEnter = true;
             }
         }
     }
@@ -74,14 +69,12 @@ public class BridgeGameController {
     }
 
     private void validateReadCommand() {
-        reEnter = true;
-        while(reEnter) {
+        while(true) {
             try {
                 bridgeGame.retry(iv.readGameCommand());
-                reEnter = false;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                reEnter = true;
             }
         }
     }
