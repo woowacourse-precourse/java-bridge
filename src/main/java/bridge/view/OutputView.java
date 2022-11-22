@@ -5,6 +5,10 @@ package bridge.view;
  */
 public class OutputView {
 
+    private static final String GAME_END_MESSAGE = "\n최종 게임 결과";
+    private static final String GAME_RESULT_MESSAGE = "\n게임 성공 여부: %s";
+    private static final String GAME_TRY_COUNT_MESSAGE = "\n총 시도한 횟수: %d";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
@@ -15,7 +19,10 @@ public class OutputView {
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      */
-    public void printResult() {
+    public void printResult(String userPathLog, String gameResult, int tryCount) {
+        System.out.println(GAME_END_MESSAGE);
+        System.out.print(userPathLog);
+        System.out.println(String.format(GAME_RESULT_MESSAGE + GAME_TRY_COUNT_MESSAGE, gameResult, tryCount));
     }
 
     public void printErrorMessage(String message) {
