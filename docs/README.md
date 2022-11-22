@@ -41,23 +41,24 @@
 
 ```bash
 ├── constant
+│   ├── Bridge                   // 다리의 상태("U", "D")를 나타내는 enum
+│   ├── BridgePrintSign          // 다리의 출력에 대한 표식("O", "X", " ")을 나타내는 enum
 │   ├── Constant                 // 메시지에 사용되지 않는 일반적인 상수
 │   ├── ErrorMessage             // 에러메시지에 사용되는 상수
-│   └── Message                  // 일반메시지에 사용되는 상수
+│   ├── Message                  // 일반메시지에 사용되는 상수
+│   └── SuccessOrFail            // 게임의 성공 또는 실패를 나타내는 enum
 ├── controller                   
 │   └── BridgeController         // 뷰와 모델 사이를 이어주는 인터페이스
 ├── model                        
 │   ├── domain                   
-│   │   ├── Bridge               // 다리의 상태("U", "D")를 나타내는 enum
-│   │   ├── BridgeGame           // 다리 이동, 게임 다시 시작, 게임 결과 반환
-│   │   ├── Bridges              // 건너갈 다리 모음
-│   │   ├── BridgeSign           // 다리의 출력에 대한 표식("O", "X", " ")을 나타내는 enum
-│   │   └── SuccessOrFail        // 게임의 성공 또는 실패를 나타내는 enum
+│   │   └── Bridges              // 다리 상태를 나타내는 문자열("U", "D") 모음
 │   ├── dto                      
 │   │   ├── GameResultDto        // 다리를 나타내는 지도, 게임 성공여부, 재시작 횟수 정보를 가진 dto 
 │   │   └── MoveResultDto        // 다리를 나타내는 지도, 다리선택의 정답여부, 다리 마지막에 도달했는지 정보를 가진 dto 
-│   └── service                  
-│       └── BridgeService        // 도메인의 메소드를 호출하고, 출력할 데이터를 dto를 통해 컨트롤러로 반환
+│   ├── repository   
+│   │   └── BridgeRepository     // 모든 다리, 재시도 횟수, 현재 건너야 하는 다리 위치, 게임 성공여부 관리
+│   └── service                     
+│       └── BridgeGame           // 다리 생성하기, 다리 건너기, 게임 다시 시도하기, 다리 지도 조회, 게임 결과 조회
 ├── view                         
 │   ├── InputView                // 입력에 대한 뷰
 │   └── OutputView               // 출력에 대한 뷰
