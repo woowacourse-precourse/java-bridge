@@ -23,6 +23,7 @@ public class Constant {
 
     public static final String SUCCESS = "성공";
     public static final String FAIL = "실패";
+
     public static final String WRONG = "X";
     public static final String RIGHT = "O";
 

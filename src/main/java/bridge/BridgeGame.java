@@ -67,7 +67,7 @@ public class BridgeGame {
         return new StringBuilder().append(mapUp).append(Constant.NEXT).append(mapDown).append(Constant.NEXT);
     }
 
-    public StringBuilder getMap(){
+    public StringBuilder getMap() {
 
         return new StringBuilder().append(mapUp).append(Constant.NEXT).append(mapDown).append(Constant.NEXT);
     }
