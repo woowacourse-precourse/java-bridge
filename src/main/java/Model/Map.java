@@ -8,11 +8,9 @@ public class Map {
     private List<String> mapUpper = new ArrayList<>();
     private List<String> mapLower = new ArrayList<>();
     private List<String> crossable;
-    private final int limitSize;
 
     public Map(List<String> crossable) {
         this.crossable = crossable;
-        this.limitSize = crossable.size();
     }
 
     public List<String> getMapUpper() {
