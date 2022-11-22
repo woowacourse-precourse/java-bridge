@@ -11,39 +11,45 @@ public class InputView {
     private static final String WRONG_DIRECTION_MESSAGE = "[ERROR] 이동할 칸은 U 또는 D만 입력할 수 있습니다.";
     private static final String WRONG_COMMAND_MESSAGE = "[ERROR] 게임 재시작 여부는 R 또는 Q만 입력할 수 있습니다.";
 
-    public int readBridgeSize() {
+    public void printStartMessage() {
         System.out.println(GAME_START_MESSAGE);
+    }
+
+    public int readBridgeSize() {
         System.out.println(BRIDGE_SIZE_INPUT_MESSAGE);
-        String input = Console.readLine();
         try {
+            String input = Console.readLine();
             validateBridgeSize(input);
+            System.out.println();
+            return Integer.parseInt(input);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println();
-        return Integer.parseInt(input);
+        return readBridgeSize();
     }
 
     public String readMoving() {
         System.out.println(MOVE_INPUT_MESSAGE);
-        String input = Console.readLine();
         try{
+            String input = Console.readLine();
             validateMoveInput(input);
+            return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return input;
+        return readMoving();
     }
 
     public String readGameCommand() {
         System.out.println(RETRY_INPUT_MESSAGE);
-        String input = Console.readLine();
         try {
+            String input = Console.readLine();
             validateCommand(input);
+            return input;
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return input;
+        return readGameCommand();
     }
 
     public static void validateBridgeSize(String input) {

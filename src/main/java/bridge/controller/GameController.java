@@ -13,6 +13,7 @@ public class GameController {
     }
 
     public void run() {
+        inputView.printStartMessage();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         BridgeGame bridgeGame = new BridgeGame(bridge);
