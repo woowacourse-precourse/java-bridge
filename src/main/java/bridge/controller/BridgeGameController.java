@@ -35,7 +35,9 @@ public class BridgeGameController {
     }
 
     public static void executeBridgeGame(BridgeGame bridgeGame) {
-
+        while (true) {
+            InputView.readMoving();
+        }
     }
 }
 
