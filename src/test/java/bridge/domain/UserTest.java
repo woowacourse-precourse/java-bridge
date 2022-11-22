@@ -71,8 +71,21 @@ public class UserTest {
 
         for (int i = 0; i < 9; i++) {
             user.resetUserData();
+            Assertions.assertThat(user).extracting("tryCount").isEqualTo(i + 2);
         }
-        Assertions.assertThat(user).extracting("tryCount").isEqualTo(10);
+    }
+
+    @Test
+    @DisplayName("다리 건너기 성공 테스트")
+    public void isCrossSuccessTest() {
+        Bridge bridge = Bridge.initBridge(List.of("U", "D", "D", "U"));
+        List<MoveType> moveTypes = List.of(MoveType.UP_TYPE, MoveType.DOWN_TYPE, MoveType.DOWN_TYPE, MoveType.UP_TYPE);
+
+        for (MoveType moveType : moveTypes) {
+            user.cross(bridge, moveType);
+        }
+
+        Assertions.assertThat(user.isFinish(bridge.getBridgeEnd())).isTrue();
     }
 
 }
