@@ -1,15 +1,7 @@
 package bridge;
 
-import static bridge.Moving.DOWN;
-import static bridge.Moving.UP;
-import static bridge.constant.BridgeSymbol.MOVING_EMPTY;
-import static bridge.constant.BridgeSymbol.MOVING_O;
-import static bridge.constant.BridgeSymbol.MOVING_X;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class BridgeGame {
 
@@ -55,30 +47,12 @@ public class BridgeGame {
         return trialCount;
     }
 
-    public Map<Moving, List<String>> getMap() {
-        Map<Moving, List<String>> map = new HashMap<>();
-        map.put(UP, new ArrayList<>());
-        map.put(DOWN, new ArrayList<>());
-        for (int i = 0; i < round - 1; i++) {
-            cross(map, Moving.of(bridge.get(i)), true);
-        }
-        cross(map, Moving.of(bridge.get(round - 1)), success);
-        return map;
-    }
-    
-    private void cross(Map<Moving, List<String>> row, Moving moving, boolean isCorrectMoving) {
-        Moving otherSide = getOtherSide(moving);
-        if (isCorrectMoving) {
-            row.get(otherSide).add(MOVING_EMPTY);
-            row.get(moving).add(MOVING_O);
-            return;
-        }
-        row.get(otherSide).add(MOVING_X);
-        row.get(moving).add(MOVING_EMPTY);
+    public List<String> getBridge() {
+        return Collections.unmodifiableList(bridge);
     }
 
-    private Moving getOtherSide(Moving moving) {
-        return Moving.values()[(moving.ordinal() + 1) % 2];
+    public int getRound() {
+        return round;
     }
 
     public boolean isSuccess() {

@@ -5,7 +5,6 @@ import static bridge.constant.GameCommand.RETRY;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
-import java.util.Map;
 
 public class BridgeGameController {
 
@@ -50,8 +49,7 @@ public class BridgeGameController {
     private boolean playRound() {
         String moving = inputMoving();
         boolean result = bridgeGame.move(moving);
-        Map<Moving, List<String>> map = bridgeGame.getMap();
-        outputView.printMap(map);
+        outputView.printMap(bridgeGame);
         return result;
     }
 
