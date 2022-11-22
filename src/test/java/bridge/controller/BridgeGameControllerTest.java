@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.Application;
 import bridge.BridgeNumberGenerator;
 import bridge.model.Bridge;
-import bridge.model.BridgeMaker;
+import bridge.BridgeMaker;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

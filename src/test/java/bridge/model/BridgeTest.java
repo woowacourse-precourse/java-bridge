@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.Application;
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
