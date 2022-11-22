@@ -27,12 +27,7 @@ public class Run {
         SuccessFail isSuccess = bridgeGame.isSuccess();
 
         if (isSuccess == FAIL) {
-            String gameCommand = getGameCommand();
-            if (gameCommand.equals(RETRY.getKey())) {
-                attempts++;
-                bridgeGame.retry();
-                play(bridgeGame);
-            }
+            askWhatToDo(bridgeGame);
         }
     }
 
@@ -44,6 +39,15 @@ public class Run {
             new OutputView().printMap(bridgeGame.upBridge, bridgeGame.downBridge);
             isFinish = bridgeGame.isFinish();
         } while(!isFinish);
+    }
+
+    private void askWhatToDo(BridgeGame bridgeGame) {
+        String gameCommand = getGameCommand();
+        if (gameCommand.equals(RETRY.getKey())) {
+            attempts++;
+            bridgeGame.retry();
+            play(bridgeGame);
+        }
     }
 
     private int getBridgeSize() {

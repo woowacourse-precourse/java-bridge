@@ -37,23 +37,32 @@ public class BridgeGame {
      */
     public void move(String moving) {
         player.add(moving);
-        int nowIdx = player.size() - 1;
         if (moving.equals(UP.getKey())) {
-            downBridge.add(EMPTY);
-            if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
-                upBridge.add(ALIVE);
-                return;
-            }
-            upBridge.add(DIE);
+            upCase();
         }
         if (moving.equals(DOWN.getKey())) {
-            upBridge.add(EMPTY);
-            if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
-                downBridge.add(ALIVE);
-                return;
-            }
-            downBridge.add(DIE);
+            downCase();
         }
+    }
+
+    public void upCase() {
+        int nowIdx = player.size() - 1;
+        downBridge.add(EMPTY);
+        if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
+            upBridge.add(ALIVE);
+            return;
+        }
+        upBridge.add(DIE);
+    }
+
+    public void downCase() {
+        int nowIdx = player.size() - 1;
+        upBridge.add(EMPTY);
+        if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
+            downBridge.add(ALIVE);
+            return;
+        }
+        downBridge.add(DIE);
     }
 
     public SuccessFail isSuccess() {
