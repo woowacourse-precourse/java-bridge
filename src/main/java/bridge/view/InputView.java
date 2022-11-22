@@ -12,24 +12,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public static String readBridgeSize() {
         System.out.println(SystemMessage.BRIDGE_SIZE_INPUT_MESSAGE);
-        String temp = Console.readLine();
-        int size = validateNumber(temp);
-        validateLimit(size);
+        String size = Console.readLine();
         return size;
     }
 
-    private static Integer validateNumber(String size) {
-        return Integer.parseInt(size);
-    }
-
-
-    private static void validateLimit(int size) {
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + BRIDGE_SIZE_LIMIT_ERROR_MESSAGE);
-        }
-    }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
