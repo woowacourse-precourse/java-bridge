@@ -64,22 +64,22 @@ public class OutputView {
         return ERROR_MESSAGE + ERROR_MESSAGE_NUMBER;
     }
 
-    public static String getStartMessage() {
-        return START_MESSAGE;
+    public static void getStartMessage() {
+        System.out.println(START_MESSAGE);
     }
 
-    public static String getInputSizeMessage() {
-        return INPUT_SIZE_MESSAGE;
+    public static void getInputSizeMessage() {
+        System.out.println(INPUT_SIZE_MESSAGE);
     }
 
-    public static String getRetryMessage() {
-        return RETRY_MESSAGE;
+    public static void getRetryMessage() {
+        System.out.println(RETRY_MESSAGE);
     }
 
-    public static String getMoveMessage() {
-        return MOVE_MESSAGE;
+    public static void getMoveMessage() {
+        System.out.println(MOVE_MESSAGE);
     }
-    public static String getEndMessage() {
-        return END_MESSAGE;
+    public static void getEndMessage() {
+        System.out.println(END_MESSAGE);
     }
 }
