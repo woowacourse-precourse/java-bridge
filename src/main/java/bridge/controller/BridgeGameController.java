@@ -13,9 +13,17 @@ public class BridgeGameController {
     private Bridge bridge;
     private BridgeGame bridgeGame = new BridgeGame();
     private GameResult gameResult;
-    private boolean retryFlag = true;
+    private boolean retryFlag;
     private String inputMove;
-    private int gameCount = 0;
+    private int gameCount;
+
+    public BridgeGameController() {
+        inputView = new InputView();
+        outputView = new OutputView();
+        bridgeGame = new BridgeGame();
+        retryFlag = true;
+        gameCount = 0;
+    }
 
     public void run() {
         outputView.printGameStartMessage();
