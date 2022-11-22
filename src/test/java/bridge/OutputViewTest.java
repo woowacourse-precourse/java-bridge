@@ -42,4 +42,38 @@ public class OutputViewTest {
         outputView.printMap(gameResults);
         assertThat(output.toString()).isEqualTo("[ O |   | X ]\n[   | O |   ]\n");
     }
+
+    @Test
+    void 두번쨰_단계에서_실패하고_재시작없이_게임이_종료되는_경우_결과_출력이_잘_되는지(){
+        List<Result> gameResults = List.of(
+                new Result("U",true),
+                new Result("U",false));
+        outputView.printResult(gameResults,false, 1);
+
+        String print = "최종 게임 결과\n[ O | X ]\n[   |   ]\n게임 성공 여부: 실패\n총 시도한 횟수: 1\n";
+        assertThat(output.toString()).isEqualTo(print);
+    }
+
+    @Test
+    void 첫번째_단계에서_실패하고_재시작하여_두번째단계에서_다시_실패하여_재시작없이_게임이_종료되는_경우_결과_출력이_잘_되는지(){
+        List<Result> gameResults = List.of(
+                new Result("U",true),
+                new Result("D",false));
+        outputView.printResult(gameResults,false, 2);
+
+        String print = "최종 게임 결과\n[ O |   ]\n[   | X ]\n게임 성공 여부: 실패\n총 시도한 횟수: 2\n";
+        assertThat(output.toString()).isEqualTo(print);
+    }
+
+    @Test
+    void 재시도없이_전부_성공하여_게임이_종료되는_경우_결과_출력이_잘_되는지(){
+        List<Result> gameResults = List.of(
+                new Result("U",true),
+                new Result("D",true),
+                new Result("U", true));
+        outputView.printResult(gameResults,true, 1);
+
+        String print = "최종 게임 결과\n[ O |   | O ]\n[   | O |   ]\n게임 성공 여부: 성공\n총 시도한 횟수: 1\n";
+        assertThat(output.toString()).isEqualTo(print);
+    }
 }
