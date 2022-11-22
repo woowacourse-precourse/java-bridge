@@ -10,21 +10,14 @@ import java.util.List;
 public class BridgeGame {
 
     InputView inputView = new InputView();
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     OutputView outputView = new OutputView();
-    boolean retryOrNot;
-    private String failSuccess;
     private static List<String> mapUp = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
     private static List<String> mapDown = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
     private static final String CONTOUR = " | ";
     private static String str;
+    private static String ox;
     String addOxContour;
     String emptyContour;
-
-    private static int tryNumber = 0;
-    private static String ox;
-    private static String successFail;
-    private boolean correctNot;
 
     public enum CorrectWrong {
         CORRECT(true, "O", "성공"),
@@ -34,41 +27,51 @@ public class BridgeGame {
         String ox;
         String successFailEnum;
 
-
         CorrectWrong(boolean trueFalse, String ox, String successFailEnum) {
             this.trueFalse = trueFalse;
             this.ox = ox;
             this.successFailEnum = successFailEnum;
         }
 
-        public boolean getTrueFalse() {
-            return trueFalse;
-        }
-
         public String getOx() {
             return ox;
         }
-
-        public String getsuccessFailEnum() {
-            return successFailEnum;
-        }
     }
+
+
+    public String mainGame(List<String> bridgeList){
+        for (int order = 0; order < bridgeList.size(); order++){
+            move(bridgeList.get(order), order);
+            outputView.printMap(str);
+
+            if (judgementFail()){
+                return "실패";
+            }
+        }
+        return "성공";
+    }
+
+    private boolean judgementFail(){
+        if (this.ox == "X"){
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> move(String bridgeAnswer, int order) {
+    public void move(String bridgeAnswer, int order) {
         String upDownUserInput = inputView.readMoving();
         boolean oxResult = compare(bridgeAnswer, upDownUserInput);//get 메소드?
 
         CorrectWrong origin = selectFromOrigin(oxResult);
-
-        makeAddWord(origin.getOx(), order);
+        this.ox = origin.getOx();
+        makeAddWord(order);
         makeMap(upDownUserInput);
-
-        return new ArrayList<>(List.of(str, origin.getOx()));
     }
 
     private CorrectWrong selectFromOrigin(boolean oxResult) {
@@ -83,12 +86,12 @@ public class BridgeGame {
     }
 
 
-    private void makeAddWord(String ox, int order) {
-        this.addOxContour = CONTOUR + ox;
+    private void makeAddWord(int order) {
+        this.addOxContour = CONTOUR + this.ox;
         this.emptyContour = CONTOUR + " ";
 
         if (order == 0) {
-            this.addOxContour = ox;
+            this.addOxContour = this.ox;
             this.emptyContour = " ";
         }
     }
@@ -110,6 +113,16 @@ public class BridgeGame {
     }
 
 
+    public boolean retryJudgeMethod(String successFail) {
+        if (successFail == "성공"){
+            return false;
+        }
+        String retryOrNotInput = inputView.readGameCommand();
+        if (retryOrNotInput == "Q"){
+            return false;
+        }
+        return true;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

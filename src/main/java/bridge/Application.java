@@ -13,25 +13,29 @@ public class Application {
     private static boolean retryJudge;
     private static String successFail;
 
+    private static List<String> bridgeList;
+
 
 
     public static void main(String[] args) {
-        List<String> bridgeList = initalBridgeListGenerate();
-        do{
-            bridgeGame.resetMap();
-            successFail = gameJudge.successFailMethod(bridgeList);
-            retryJudge = gameJudge.retryJudgeMethod(successFail);
-            tryNumber++;
-        }while(retryJudge);
+        initalBridgeListGenerate();
+        mainBridgeGame();
         outputView.printResult(tryNumber, successFail);
     }
 
-    private static List<String> initalBridgeListGenerate(){
+    private static void initalBridgeListGenerate(){
         int inputNumber = inputView.readBridgeSize();
-        List<String> bridgeList = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(inputNumber);
-        return bridgeList;
+        bridgeList = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(inputNumber);
     }
 
+    private static void mainBridgeGame(){
+        do{
+            bridgeGame.resetMap();
+            successFail = bridgeGame.mainGame(bridgeList);
+            retryJudge = bridgeGame.retryJudgeMethod(successFail);
+            tryNumber++;
+        }while(retryJudge);
+    }
 
 }
 

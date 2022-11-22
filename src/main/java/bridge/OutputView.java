@@ -16,7 +16,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(String map) {
-        // X가 틀린 곳에 있어야함..
         System.out.println(map);
         this.str = map;
     }
