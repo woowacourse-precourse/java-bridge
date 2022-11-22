@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge;
 
 import bridge.model.constant.Message;
 import bridge.model.interfaces.BridgeNumberGenerator;
