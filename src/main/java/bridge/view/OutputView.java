@@ -7,6 +7,10 @@ import bridge.util.ResultGame;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String MESSAGE_START = "다리 건너기 게임을 시작합니다.";
+    private static final String MESSAGE_INPUT_LENGTH_OF_BRIDGE = "다리의 길이를 입력해주세요.";
+    private static final String MESSAGE_INPUT_MOVE_COMMAND = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String MESSAGE_INPUT_RETRY_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String FINAL_GAME_RESULT_MESSAGE = "최종 게임 결과";
     private static final String SUCCESS_OR_FAILURE_MESSAGE = "게임 성공 여부: ";
     private static final String TOTAL_ATTEMPTS_MESSAGE = "총 시도한 횟수: ";
@@ -29,5 +33,21 @@ public class OutputView {
         printMap(moveBridgeMap);
         System.out.println(SUCCESS_OR_FAILURE_MESSAGE + ResultGame.getResultMessage(gameStatus.isResult()));
         System.out.println(TOTAL_ATTEMPTS_MESSAGE + gameStatus.getAttemptCount());
+    }
+
+    public void printStart() {
+        System.out.println(MESSAGE_START);
+    }
+
+    public void printInputMessageBridgeLength() {
+        System.out.println(MESSAGE_INPUT_LENGTH_OF_BRIDGE);
+    }
+
+    public void printInputMessageMoveCommand() {
+        System.out.println(MESSAGE_INPUT_MOVE_COMMAND);
+    }
+
+    public void printInputMessageRetryCommand() {
+        System.out.println(MESSAGE_INPUT_RETRY_COMMAND);
     }
 }
