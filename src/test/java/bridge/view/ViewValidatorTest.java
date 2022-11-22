@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ViewValidatorTest {
-    @DisplayName("비어있는 값을 입력했을 때 IllegalArgumentException 에러를 발생시킨다.")
+    @DisplayName("다리 길이 입력으로 비어있는 값을 입력했을 때 IllegalArgumentException 에러를 발생시킨다.")
     @Test
     void validateNumberInputWithEmptyValue() {
         String input = "";
@@ -20,7 +20,7 @@ public class ViewValidatorTest {
                 );
     }
 
-    @DisplayName("숫자가 아닌 값을 입력했을 때 IllegalArgumentException 에러를 발생시킨다.")
+    @DisplayName("다리 길이 입력으로 숫자가 아닌 값을 입력했을 때 IllegalArgumentException 에러를 발생시킨다.")
     @Test
     void validateNumberInputWithNonNumericValue() {
         String input = "1a";
@@ -32,7 +32,7 @@ public class ViewValidatorTest {
                 );
     }
 
-    @DisplayName("올바른 칸의 입력 (U, D)에 대해 에러를 발생시키지 않는다.")
+    @DisplayName("다리 길이 입력으로 올바른 칸의 입력 (U, D)에 대해 에러를 발생시키지 않는다.")
     @ParameterizedTest(name = "{index}) Panel Input = {0}")
     @ValueSource(strings = { "U", "D" })
     void validatePanelInput(String input) {
