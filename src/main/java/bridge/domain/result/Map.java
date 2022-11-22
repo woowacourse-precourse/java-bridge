@@ -17,7 +17,7 @@ public class Map {
         upBlocks.add(ResultType.BLANK);
     }
 
-    public void retry() {
+    protected void retry() {
         this.upBlocks.clear();
         this.downBlocks.clear();
     }
