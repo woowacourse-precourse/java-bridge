@@ -12,4 +12,10 @@ public class ExceptionCaseTest {
         assertThatThrownBy(() -> ExceptionCase.isInputAllNumber("2"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void bridge_size가_20보다_큰_경우() {
+        assertThatThrownBy(() -> ExceptionCase.isInputAllNumber("50"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
