@@ -44,4 +44,8 @@ public class BridgeGame {
         return gameCommand;
     }
 
+    public String getGameCommand() {
+        return retryCommand;
+    }
+
 }
