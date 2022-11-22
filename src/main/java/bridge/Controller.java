@@ -11,31 +11,23 @@ public class Controller {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    public int getBridgeSize() {
-        outputView.inputBridgeSize();
-        while (true) {
-            try {
-                return inputView.readBridgeSize();
-            } catch (IllegalArgumentException e){
-                System.out.println(e);
-            }
-        }
-    }
-
-    public String getMoving() {
-        outputView.inputMoving();
-        while (true) {
-            try {
-                return inputView.readMoving();
-            } catch (IllegalArgumentException e){
-                System.out.println(e);
-            }
-        }
+    public void start() {
+        makeBridgeGame();
+        do {
+            onGoing();
+        } while (!bridgeGame.isSuccess && !isQuit());
+        end();
     }
 
     public void makeBridgeGame() {
         outputView.printStartGame();
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(getBridgeSize()));
+    }
+
+    public void onGoing() {
+        do {
+            stepForward();
+        } while (bridgeGame.getIsCorrect() && !bridgeGame.isSuccess);
     }
 
     public void stepForward() {
@@ -48,28 +40,35 @@ public class Controller {
         outputView.printResult(bridgeGame);
     }
 
-    public void onGoing() {
-        do {
-            stepForward();
-        } while (bridgeGame.getIsCorrect() && !bridgeGame.isSuccess);
+    public int getBridgeSize() {
+        outputView.inputBridgeSize();
+        while (true) {
+            try {
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public String getMoving() {
+        outputView.inputMoving();
+        while (true) {
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
     }
 
     public boolean isQuit() {
-        outputView.restartOrQuit();
+        outputView.inputCommand();
         if (inputView.readGameCommand().equals("Q")) {
             return true;
         }
         bridgeGame.retry();
         outputView.removeRecentBridge();
         return false;
-    }
-
-    public void start() {
-        makeBridgeGame();
-        System.out.println(bridgeGame.bridge);
-        do {
-            onGoing();
-        } while (!bridgeGame.isSuccess && !isQuit());
-        end();
     }
 }

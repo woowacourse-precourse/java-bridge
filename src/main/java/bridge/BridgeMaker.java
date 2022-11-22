@@ -17,7 +17,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int index = 0; index < size; index++){
+        for (int index = 0; index < size; index++) {
             BridgeDirection bridgeDirection = BridgeDirection.of(bridgeNumberGenerator.generate());
             bridge.add(bridgeDirection.toString());
         }

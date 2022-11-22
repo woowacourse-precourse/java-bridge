@@ -15,6 +15,24 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
+    public void move(String moving) {
+        if (!isCorrect(moving)) {
+            incorrect();
+            return;
+        }
+        if (canMove()) {
+            correct();
+            return;
+        }
+        success();
+    }
+
+    public void retry() {
+        bridgeIndex--;
+        isCorrect = true;
+        tryNumber++;
+    }
+
     private boolean isCorrect(String moving) {
         return moving.equals(bridge.get(bridgeIndex));
     }
@@ -38,29 +56,11 @@ public class BridgeGame {
         bridgeIndex++;
     }
 
-    public void move(String moving) {
-        if (!isCorrect(moving)) {
-            incorrect();
-            return;
-        }
-        if (canMove()){
-            correct();
-            return;
-        }
-        success();
-    }
-
-    public void retry() {
-        bridgeIndex--;
-        isCorrect = true;
-        tryNumber++;
-    }
-
     public boolean getIsCorrect() {
         return isCorrect;
     }
 
-    public int getBridgeIndex(){
+    public int getBridgeIndex() {
         return bridgeIndex;
     }
 
@@ -70,5 +70,9 @@ public class BridgeGame {
 
     public int getTryNumber() {
         return tryNumber;
+    }
+
+    public boolean getIsSuccess() {
+        return isSuccess;
     }
 }

@@ -17,11 +17,15 @@ public enum ValidateDetail {
         this.message = message;
     }
 
-    public String getPattern() { return message; }
+    public String getPattern() {
+        return message;
+    }
 
     public String getErrorMassage() {
         return ERROR.message + message;
     }
 
-    public Integer getSize() { return Integer.parseInt(message); }
+    public Integer getSize() {
+        return Integer.parseInt(message);
+    }
 }
