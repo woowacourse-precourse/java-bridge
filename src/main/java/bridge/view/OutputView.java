@@ -13,6 +13,8 @@ public class OutputView {
     private static final String FAIL = "실패";
     private static final String GAME_SUCCESS_MESSAGE_FORMAT = "게임 성공 여부: %s\n";
     private static final String NUMBER_OF_ATTEMPTS_FORMAT = "총 시도한 횟수: %d\n";
+    public static final String START_OF_ROW = "[ ";
+    public static final String END_OF_ROW = " ]";
 
     public void printStart() {
         System.out.println(START_MESSAGE);
@@ -56,11 +58,11 @@ public class OutputView {
     }
 
     private void printEndOfRow() {
-        System.out.println(" ]");
+        System.out.println(END_OF_ROW);
     }
 
     private void printStartOfRow() {
-        System.out.print("[ ");
+        System.out.print(START_OF_ROW);
     }
 
     /**

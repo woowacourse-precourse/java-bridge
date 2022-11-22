@@ -3,10 +3,10 @@ package bridge.view.inputCallback;
 import bridge.model.bridge.Bridge;
 import camp.nextstep.edu.missionutils.Console;
 
-public class ReadBridgeSizeCallback implements ReadLineCallback<Integer>{
+public class ReadBridgeSizeCallback implements ReadLineCallback<Integer> {
     private static final String BRIDGE_SIZE_INPUT_PROMPT = "다리의 길이를 입력해주세요.";
-    private static final String INVALID_BRIDGE_SIZE =
-            "다리 길이는 " + Bridge.MIN_SIZE + "부터 " + Bridge.MAX_SIZE + " 사이의 숫자여야 합니다.";
+    private static final String INVALID_BRIDGE_SIZE = String.format("다리 길이는 %d 부터 %d 사이의 숫자여야합니다.", Bridge.MIN_SIZE,
+            Bridge.MAX_SIZE);
 
     @Override
     public Integer repeatToRead() {
