@@ -30,24 +30,24 @@ public class InputView {
     public int getBrideSize() {
         try {
             return readBridgeSize();
-        }catch(IllegalArgumentException e){
-            System.out.println(ErrorCase.SIZE_ERROR.getError());
+        }catch(Exception e){
+            OutputView.printError(e);
             return getBrideSize();
         }
     }
     public String getReadMoving() {
         try {
             return readMoving();
-        }catch(IllegalArgumentException e){
-            System.out.println(ErrorCase.MOVE_ERROR.getError());
+        }catch(Exception e){
+            OutputView.printError(e);
             return getReadMoving();
         }
     }
     public String getRestartCommand(){
         try {
            return readGameCommand();
-        }catch(IllegalArgumentException e){
-            System.out.println(ErrorCase.RESTART_ERROR.getError());
+        }catch(Exception e){
+            OutputView.printError(e);
             return getRestartCommand();
         }
     }
