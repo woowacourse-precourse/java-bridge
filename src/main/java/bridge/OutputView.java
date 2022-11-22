@@ -21,15 +21,14 @@ public class OutputView {
     }
 
     public String constructBridgeShape(int flag, List<String> bridge) {
-        List<String> up = upBridge(bridge);
-        List<String> down = downBridge(bridge);
+        List<String> up = upBridge(bridge, new ArrayList<>());
+        List<String> down = downBridge(bridge, new ArrayList<>());
         if (flag == MOVERESULT_FLAG_INVALID) {
             checkInvalidBlock(up, down);
         }
         return MESSAGE_LEFT_BRACKET + String.join(MESSAGE_SEPARATOR, up) + MESSAGE_RIGHT_BRACKET
                 + "\n" +
-                MESSAGE_LEFT_BRACKET + String.join(MESSAGE_SEPARATOR, down) + MESSAGE_RIGHT_BRACKET
-                + "\n";
+                MESSAGE_LEFT_BRACKET + String.join(MESSAGE_SEPARATOR, down) + MESSAGE_RIGHT_BRACKET + "\n";
     }
 
     public void checkInvalidBlock(List<String> up, List<String> down) {
@@ -41,8 +40,7 @@ public class OutputView {
         }
     }
 
-    public List<String> upBridge (List<String> bridge) {
-        List<String> upper = new ArrayList<>();
+    public List<String> upBridge (List<String> bridge, List<String> upper) {
         for (String item : bridge) {
             if (item.equals(MOVE_UP)) {
                 upper.add(MESSAGE_VALID_BLOCK);
@@ -53,8 +51,7 @@ public class OutputView {
         return upper;
     }
 
-    public List<String> downBridge (List<String> bridge) {
-        List<String> down = new ArrayList<>();
+    public List<String> downBridge (List<String> bridge, List<String> down) {
         for (String item : bridge) {
             if (item.equals(MOVE_DOWN)) {
                 down.add(MESSAGE_VALID_BLOCK);
@@ -80,11 +77,10 @@ public class OutputView {
     public void printWhetherSuccessOrNot(int flag, int count) {
         if (flag == MOVERESULT_FLAG_FULL) {
             System.out.println(MESSAGE_SUCCESS);
-            System.out.println(MESSAGE_TOTAL_TRIAL + count);
         }
         if (flag == MOVERESULT_FLAG_INVALID) {
             System.out.println(MESSAGE_FAILURE);
-            System.out.println(MESSAGE_TOTAL_TRIAL + count);
         }
+        System.out.println(MESSAGE_TOTAL_TRIAL + count);
     }
 }

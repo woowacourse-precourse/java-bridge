@@ -49,8 +49,8 @@ public class Application {
         System.out.println(MESSAGE_GAME_START);
         System.out.println(MESSAGE_ENTER_LENGTH);
         InputView inputView = new InputView();
-
         int length = inputView.readBridgeSize();
+        System.out.println();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(length);
         return new BridgeGame(bridge);
@@ -70,7 +70,6 @@ public class Application {
         System.out.println(MESSAGE_MOVE);
         InputView inputView = new InputView();
         String userMove = inputView.readMoving();
-        System.out.println(userMove);
         MoveResult moveResult = bridgeGame.move(userMove);
         OutputView outputView = new OutputView();
         outputView.printMap(moveResult);
