@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.GameCommand;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,8 @@ class BridgeGameTest {
 
     private BridgeGame bridgeGame;
     private List<String> bridge = Arrays.asList("D", "U", "D");
+    private String upper = GameCommand.GO_UP.getGameCommand();
+    private String lower = GameCommand.GO_DOWN.getGameCommand();
 
     @BeforeEach
     void setBridgeGame() {
@@ -19,25 +22,25 @@ class BridgeGameTest {
 
     @Test
     void 다리_건너기_올바른_입력_테스트() {
-        assertThat(bridgeGame.move(bridge, "D")).isEqualTo(true);
+        assertThat(bridgeGame.move(lower, "D")).isEqualTo(true);
     }
 
     @Test
     void 다리_건너기_올바른_입력_연속_테스트() {
-        assertThat(bridgeGame.move(bridge, "D")).isEqualTo(true);
-        assertThat(bridgeGame.move(bridge, "U")).isEqualTo(true);
-        assertThat(bridgeGame.move(bridge, "D")).isEqualTo(true);
+        assertThat(bridgeGame.move(lower, "D")).isEqualTo(true);
+        assertThat(bridgeGame.move(upper, "U")).isEqualTo(true);
+        assertThat(bridgeGame.move(lower, "D")).isEqualTo(true);
     }
 
     @Test
     void 다리_건너기_틀린_입력_테스트() {
-        assertThat(bridgeGame.move(bridge, "U")).isEqualTo(false);
+        assertThat(bridgeGame.move(lower, "U")).isEqualTo(false);
     }
 
     @Test
     void 다리_건너기_틀린_입력_연속_테스트() {
-        assertThat(bridgeGame.move(bridge, "D")).isEqualTo(true);
-        assertThat(bridgeGame.move(bridge, "D")).isEqualTo(false);
+        assertThat(bridgeGame.move(lower, "D")).isEqualTo(true);
+        assertThat(bridgeGame.move(upper, "D")).isEqualTo(false);
     }
 
     @Test
