@@ -14,6 +14,10 @@ public class Error {
             throw new IllegalArgumentException("[ERROR] U 또는 D만 입력하세요.");
         }
     }
-
+    public static void validRetry(String input) {
+        if(!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력하세요.");
+        }
+    }
 
 }
