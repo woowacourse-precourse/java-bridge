@@ -79,4 +79,12 @@ public class BridgeGameTest {
         assertThat(result.get("U")).containsExactly("O", " ", "X");
         assertThat(result.get("D")).containsExactly(" ", "O", " ");
     }
+
+    @DisplayName("잘못된 재시도, 종료 입력에 대한 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "다시", "RR", "q", "retry"})
+    void 재시도_종료_예외_발생(String command) {
+        assertThatThrownBy(() -> bridgeGame.retryOrEnd(command))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
