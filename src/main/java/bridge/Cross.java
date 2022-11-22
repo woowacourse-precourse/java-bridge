@@ -25,4 +25,8 @@ public enum Cross {
     public String getMark() {
         return mark;
     }
+
+    public static boolean canNotCross(Cross cross) {
+        return Cross.CAN_NOT_CROSS == cross;
+    }
 }
