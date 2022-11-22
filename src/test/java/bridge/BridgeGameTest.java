@@ -1,23 +1,43 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.as;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
 import bridge.domain.Result;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 class BridgeGameTest {
+
     Bridge bridge;
     Player player;
-    BridgeGame bridgeGame = new BridgeGame(bridge, player);
-    Result result = new Result();
+    BridgeGame bridgeGame;
+    Result result;
+
+    @DisplayName("길이 3의 브릿지를 생성한다.")
+    @BeforeEach
+    void setUp() {
+        bridge = new Bridge(List.of("U", "D", "U"));
+        player = new Player();
+        bridgeGame = new BridgeGame(bridge, player);
+        result = new Result();
+    }
+
+    @DisplayName("플레이어가 올바른 방향으로 다리를 세차례 건넌다.")
+    @Test
+    void move() {
+        bridgeGame.move(Movement.UP, result);
+        bridgeGame.move(Movement.DOWN, result);
+        bridgeGame.move(Movement.UP, result);
+
+        assertThat(result.getSuccessOrFailure()).isEqualTo("성공");
+    }
 
     @DisplayName("retry()를 실행하면 시도 횟수가 2로 올라감")
     @Test
