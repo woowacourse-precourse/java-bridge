@@ -1,5 +1,8 @@
 package bridge;
 
+import static org.assertj.core.util.Lists.newArrayList;
+
+import bridge.ApplicationTest.TestNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,6 +27,16 @@ public class BridgeGameTest {
         String answer = "[ O |   |   ]\n"
                 + "[   | O | X ]\n";
         Assertions.assertEquals(bridgeMap.toString(), answer);
+    }
+
+    @Test
+    void moveTest() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new TestNumberGenerator(newArrayList(0, 0, 0)));
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3));
+        Assertions.assertTrue(bridgeGame.move(Direction.DOWN));
+        Assertions.assertFalse(bridgeGame.move(Direction.UP));
+        Assertions.assertTrue(bridgeGame.move(Direction.DOWN));
+        Assertions.assertTrue(bridgeGame.move(Direction.DOWN));
     }
 
 
