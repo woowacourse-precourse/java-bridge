@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.GameResult;
+
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -86,8 +88,8 @@ public class OutputView {
     }
 
     public static void printResult(boolean gameResult) {
-        String result = "실패";
-        if (gameResult) result = "성공";
+        String result = GameResult.OVER.getMessage();
+        if (gameResult) result = GameResult.WIN.getMessage();
         System.out.printf(GAME_RESULT_MESSAGE + "%n", result);
     }
 
