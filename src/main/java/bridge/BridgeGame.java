@@ -19,8 +19,21 @@ public class BridgeGame {
         OutputView.printWelcome();
 
         // 다리를 생성한다.
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = readBridgeSize();
         targetBridge = bridgeBroker.makeBridge(bridgeSize);
+    }
+
+    // 다리 사이즈를 입력받는다. 잘못된 값이 입력되면 에러를 출력하고 다시 시도한다.
+    private int readBridgeSize() {
+        int bridgeSize = 0;
+        try {
+            bridgeSize = inputView.readBridgeSize();
+        }
+        catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.toString());
+            bridgeSize = readBridgeSize();
+        }
+        return bridgeSize;
     }
 
     /**
@@ -84,5 +97,9 @@ public class BridgeGame {
 
     private boolean isSameSize(List<String> answer, List<String> myAnswer) {
         return answer.size() == myAnswer.size();
+    }
+
+    public boolean bridgeIsEmpty() {
+        return targetBridge.getBridge().isEmpty();
     }
 }
