@@ -32,7 +32,7 @@ public class Player {
         attempt++;
     }
 
-    public GameRecordDto toResponseDto() {
+    public GameRecordDto toGameRecordDto() {
         return new GameRecordDto(Collections.unmodifiableList(record), attempt);
     }
 }

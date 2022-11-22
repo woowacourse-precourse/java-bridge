@@ -25,7 +25,7 @@ public class PlayerTest {
     @DisplayName("플레이어의 게임 기록 확인")
     @Test
     void getGameRecord() {
-        GameRecordDto gameRecord = player.toResponseDto();
+        GameRecordDto gameRecord = player.toGameRecordDto();
         assertThat(gameRecord.getAttempt()).isEqualTo(1);
         assertThat(gameRecord.getRecord()).containsExactly(BridgeMark.UP, BridgeMark.DOWN);
     }
@@ -33,7 +33,7 @@ public class PlayerTest {
     @DisplayName("플레이어가 움직인 마크 기록 확인")
     @Test
     void record() {
-        GameRecordDto gameRecord = player.toResponseDto();
+        GameRecordDto gameRecord = player.toGameRecordDto();
         List<BridgeMark> record = gameRecord.getRecord();
 
         assertThat(record).containsExactly(BridgeMark.UP, BridgeMark.DOWN);
@@ -43,7 +43,7 @@ public class PlayerTest {
     @Test
     void clearRecord() {
         player.clearRecord();
-        GameRecordDto gameRecord = player.toResponseDto();
+        GameRecordDto gameRecord = player.toGameRecordDto();
         List<BridgeMark> record = gameRecord.getRecord();
 
         assertThat(record.size()).isEqualTo(0);
@@ -54,7 +54,7 @@ public class PlayerTest {
     void increaseAttempt() {
         player.increaseAttempt();
         player.increaseAttempt();
-        GameRecordDto gameRecord = player.toResponseDto();
+        GameRecordDto gameRecord = player.toGameRecordDto();
 
         assertThat(gameRecord.getAttempt()).isEqualTo(3);
     }

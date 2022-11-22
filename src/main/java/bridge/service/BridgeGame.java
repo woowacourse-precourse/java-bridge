@@ -29,7 +29,7 @@ public class BridgeGame {
         player.record(movingMark);
         GameStatus gameStatus = bridge.cross(round, movingMark);
 
-        GameRecordDto gameRecord = player.toResponseDto();
+        GameRecordDto gameRecord = player.toGameRecordDto();
         return createGameResultDto(gameStatus, gameRecord);
     }
 
