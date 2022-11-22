@@ -57,23 +57,31 @@ public class BridgeGameProcessor {
     private boolean isRetried() {
         while (true) {
             try {
-                outputView.printGameCommandSelectionMessage();
-                return bridgeGame.retry(inputView.readGameCommand());
+                return getGameCommand();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private boolean getGameCommand() {
+        outputView.printGameCommandSelectionMessage();
+        return bridgeGame.retry(inputView.readGameCommand());
+    }
+
     private boolean isSuccessMoved() {
         while (true) {
             try {
-                outputView.printPositionSelectionMessage();
-                return bridgeGame.move(inputView.readMoving());
+                return getMovingPosition();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private boolean getMovingPosition() {
+        outputView.printPositionSelectionMessage();
+        return bridgeGame.move(inputView.readMoving());
     }
 
     private BridgeGame initBridgeGame(User user) {
