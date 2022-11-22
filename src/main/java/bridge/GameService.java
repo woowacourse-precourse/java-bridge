@@ -3,13 +3,15 @@ package bridge;
 import java.util.List;
 
 public class GameService {
+    static BridgeGame bridgeGame = new BridgeGame();
+    static OutputView outputView = new OutputView();
+    static InputView inputView = new InputView();
+    static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    static ErrorCheck errorCheck=new ErrorCheck();
+
     public void playGame(int size){
         boolean gameStartOrNot=true;
-        BridgeGame bridgeGame = new BridgeGame();
-        OutputView outputView = new OutputView();
-        InputView inputView = new InputView();
 
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridges = bridgeMaker.makeBridge(size);    // 다리 "UDU" String 으로 List에 담김
 
         String correctOrFailSign="";
