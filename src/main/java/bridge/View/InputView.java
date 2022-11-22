@@ -14,7 +14,6 @@ public class InputView {
         } catch(NumberFormatException e){
             throw new IllegalArgumentException(Constant.Length_Restrict());
         }
-        System.out.println(Constant.Start_Game);
         return Size;
     }
 
