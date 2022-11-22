@@ -1,6 +1,6 @@
-package bridge;
+package utils;
 
-import static bridge.Constant.*;
+import static utils.Constant.*;
 
 import java.util.Objects;
 

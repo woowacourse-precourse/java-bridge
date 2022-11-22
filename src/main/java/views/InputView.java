@@ -1,6 +1,6 @@
-package bridge;
+package views;
 
-import static bridge.InputValidation.*;
+import static utils.InputValidation.*;
 
 import camp.nextstep.edu.missionutils.Console;
 

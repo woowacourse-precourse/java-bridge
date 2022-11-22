@@ -1,4 +1,4 @@
-package bridge;
+package utils;
 
 public enum ErrorMessage {
     ERROR_BRIDGE_SIZE_RANGE(": 다리 길이는 3부터 20 사이의 숫자여야 합니다."),

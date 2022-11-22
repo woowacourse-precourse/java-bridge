@@ -1,4 +1,4 @@
-package bridge;
+package utils;
 
 public class Constant {
     public static final String UP = "U";

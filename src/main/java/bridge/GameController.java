@@ -4,6 +4,8 @@ import static bridge.BridgeGame.downstairsBridge;
 import static bridge.BridgeGame.upstairsBridge;
 
 import java.util.List;
+import views.InputView;
+import views.OutputView;
 
 public class GameController {
     public static void bridgeGameProcess() {
