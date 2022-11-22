@@ -57,6 +57,14 @@ class ApplicationTest extends NsTest {
 		});
 	}
 
+	@Test
+	void moving_예외_U_D_테스트() {
+		assertSimpleTest(() -> {
+			runException("3", "U", "D", "W");
+			assertThat(output()).contains(ERROR_MESSAGE);
+		});
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
