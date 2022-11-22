@@ -84,8 +84,8 @@ public class Controller {
             }
             if (command.equals("R")) {
                 isRetry = true;
+                bridgeGame.retry();
             }
-            bridgeGame.retry();
         } while(onGoing);
         end();
     }
