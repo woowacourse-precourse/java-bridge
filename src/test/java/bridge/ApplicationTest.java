@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -21,8 +22,8 @@ class ApplicationTest extends NsTest {
 
 
     @ParameterizedTest
-    @ValueSource(strings={"2","21","-","s"})
-    void 다리_길이_예외_테스트(String input){
+    @ValueSource(strings = {"2", "21", "-", "s"})
+    void 다리_길이_예외_테스트(String input) {
         assertSimpleTest(() -> {
             runException(input);
             assertThat(output()).contains("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
@@ -38,16 +39,16 @@ class ApplicationTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings={"u","d","3","A"})
-    void 이동할_칸_예외_테스트(String input){
+    @ValueSource(strings = {"u", "d", "3", "A"})
+    void 이동할_칸_예외_테스트(String input) {
         assertThatThrownBy(() -> ValidateInput.validateMoving(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"0:O", "1:X"}, delimiter = ':')
-    void 이동_테스트(int position,StringBuilder expected){
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0,1));
+    void 이동_테스트(int position, StringBuilder expected) {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0, 1));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(4);
         BridgeGame bridgeGame = new BridgeGame(bridge, position, true);
@@ -55,16 +56,23 @@ class ApplicationTest extends NsTest {
         assertThat(bridgeGame.mapMaker.getMap()[0]).contains(expected);
     }
 
+    void 성공_종료_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("5", "D", "D", "U", "U", "D");
+            assertThat(output()).contains("결과", "성공");
+            }, 0, 0, 1, 1, 0);
+    }
+
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
