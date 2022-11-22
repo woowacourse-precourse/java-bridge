@@ -4,7 +4,7 @@ public abstract class BaseGameActivity {
 
     private boolean stopped = false;
 
-    public void run() {
+    public final void run() {
         onStart();
         while (!stopped) {
             onLoop();
