@@ -1,10 +1,11 @@
-package bridge;
+package bridge.view;
 
 /**
  * 패키지 변경 가능 메서드 이름 변경 불가 인자 변경 가능 반환 타입 변경 가능 추가 메서드 구현 가능 BridgeGame 클래스에서 사용 불가
  */
 
-import bridge.Constants.OutputState;
+import bridge.domain.BridgeGame;
+import bridge.utils.Constants.OutputState;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -18,7 +19,6 @@ public class OutputView {
     public void printStartGame() {
         System.out.println(OutputState.START_GAME);
     }
-
 
     public void printInputBridgeLength() {
         System.out.println(OutputState.INPUT_BRIDGE_LENGTH);

@@ -1,9 +1,10 @@
-package bridge;
+package bridge.utils;
 
-import bridge.Constants.Command;
-import bridge.Constants.ErrorState;
+import bridge.utils.Constants.Command;
+import bridge.utils.Constants.ErrorState;
 
 public class Validator {
+
     private Validator() {
     }
 

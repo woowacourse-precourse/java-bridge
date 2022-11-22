@@ -1,4 +1,4 @@
-package bridge;
+package bridge.utils;
 
 public final class Constants {
 

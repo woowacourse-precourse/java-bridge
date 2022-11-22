@@ -1,11 +1,11 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import bridge.Constants.OutputState;
-import bridge.Constants.Result;
-import bridge.Constants.BridgeShape;
-import bridge.Constants.Command;
+import bridge.utils.Constants.OutputState;
+import bridge.utils.Constants.Result;
+import bridge.utils.Constants.BridgeShape;
+import bridge.utils.Constants.Command;
 
 public class BridgeGame {
 
@@ -17,7 +17,7 @@ public class BridgeGame {
     private int bridgeIndex;
     private String result;
 
-    BridgeGame() {
+    public BridgeGame() {
         this.upline = new ArrayList<String>();
         this.downline = new ArrayList<String>();
         this.result = Result.FAIL;
