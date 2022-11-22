@@ -10,8 +10,13 @@ public class Validator {
 
     public static int validateBridgeSize(String number) {
         try {
-            return Integer.parseInt(number);
+            int n = Integer.parseInt(number);
+            if(n > 0){
+                return n;
+            }
         } catch (NumberFormatException e) {
+            e.printStackTrace();
+        } finally {
             throw new IllegalArgumentException(INVALID_BRIDGE_SIZE.getMessage());
         }
     }
