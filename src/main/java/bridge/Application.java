@@ -50,11 +50,12 @@ public class Application {
     }
 
     private static BridgeSize inputBridgeSize() {
-        try {
-            return new BridgeSize(inputView.readBridgeSize());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return inputBridgeSize();
+        while (true) {
+            try {
+                return new BridgeSize(inputView.readBridgeSize());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 
@@ -65,20 +66,22 @@ public class Application {
     }
 
     private static Moving inputDirection() {
-        try {
-            return Moving.fromInput(inputView.readDirection());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return inputDirection();
+        while (true) {
+            try {
+                return Moving.fromInput(inputView.readDirection());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 
     private static GameCommand inputGameCommand() {
-        try {
-            return GameCommand.fromInput(inputView.readGameCommand());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return inputGameCommand();
+        while (true) {
+            try {
+                return GameCommand.fromInput(inputView.readGameCommand());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 }
