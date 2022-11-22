@@ -33,4 +33,9 @@ public class BridgeGame {
     public void makeBridge(int bridgeSize) {
         bridgeGameState = new BridgeGameState(bridgeMaker.makeBridge(bridgeSize));
     }
+
+    public boolean isWon() {
+        return bridgeGameState.currentSize().equals(bridgeGameState.bridgeSize())
+                && bridgeGameState.getMatched(bridgeGameState.currentSize() - 1);
+    }
 }
