@@ -19,6 +19,6 @@ public class BridgeGameService {
     }
 
     public BridgePassed showBridgePassed(Bridge bridge, int index, String moving) {
-        return new BridgePassed(bridge.getSubBridge(index), bridge.canMove(index, moving));
+        return new BridgePassed(bridge.getSubBridge(index + 1), bridge.canMove(index, moving));
     }
 }

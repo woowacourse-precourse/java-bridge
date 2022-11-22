@@ -44,6 +44,7 @@ public class BridgeGame {
         // TODO: 함수길이 초과 리팩토링 요망
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
             BridgePassed bridgePassed = move(bridge, i);
+            outputView.printMap(bridgePassed);
             if (!bridgePassed.canMove()) {
                 gameStatus.addGameCount();
                 retry();

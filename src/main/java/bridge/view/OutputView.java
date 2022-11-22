@@ -1,33 +1,66 @@
 package bridge.view;
 
 import bridge.GameStatus;
-import bridge.domain.Bridge;
+import bridge.domain.BridgePassed;
+import bridge.enumeration.GameCommand;
 import bridge.map.Map;
 import bridge.enumeration.GuideMessage;
+import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
+    private final List<String> upDownMark = List.of("U", "D");
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge, int index, String moving) {
-        for (int i = 0; i < 2; i++) {
+    public void printMap(BridgePassed bridge) {
+        for (String mark : upDownMark) {
             System.out.print(Map.BRIDGE_START.getMark());
-            for (int j = 0; j < index; j++) {
-                printRow();
-                System.out.print(Map.BLOCK_SECTION.getMark());
-            }
+            printRow(bridge, mark);
             System.out.println(Map.BRIDGE_END.getMark());
         }
     }
 
-    public void printRow() {
+    public void printRow(BridgePassed bridge, String mark) {
+        List<String> blocks = bridge.getBlocks();
+        for (int i = 0; i < bridge.getBridgeSize(); i++) {
+            printSection(i);
+            if (i == bridge.getBridgeSize() - 1 && !bridge.canMove()) {
+                printX(blocks.get(i), mark);
+                continue;
+            }
+            printBlock(blocks.get(i), mark);
+        }
+    }
 
+    private void printSection(int index) {
+        if (index >= 1) {
+            System.out.print(Map.BLOCK_SECTION.getMark());
+        }
+    }
+
+    public void printBlock(String block, String mark) {
+        if (block.equals(mark)) {
+            System.out.print(Map.BLOCK_CAN_MOVE.getMark());
+        }
+        if (!block.equals(mark)) {
+            System.out.print(Map.BLOCK_BLANK.getMark());
+        }
+    }
+
+    public void printX(String block, String mark) {
+        if (block.equals(mark)) {
+            System.out.print(Map.BLOCK_BLANK.getMark());
+        }
+        if (!block.equals(mark)) {
+            System.out.print(Map.BLOCK_CANT_MOVE.getMark());
+        }
     }
 
     /**

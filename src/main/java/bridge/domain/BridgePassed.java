@@ -18,4 +18,12 @@ public class BridgePassed {
     public boolean canMove() {
         return canMove;
     }
+
+    public int getBridgeSize() {
+        return blocks.size();
+    }
+
+    public boolean compare(int index, String row) {
+        return blocks.get(index).equals(row);
+    }
 }
