@@ -80,7 +80,7 @@ public class BridgeGame {
 	}
 
 	public String result() {
-		if (match() || matchLength()) {
+		if (match() && matchLength()) {
 			return GameConstant.CLEAR;
 		}
 		return GameConstant.FAIL;
