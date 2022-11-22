@@ -1,9 +1,17 @@
 package bridge;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    public int bridgesize_len;
+    public static String gameRestart;
+    private int bridegeLen;
+
+    public InputView() {
+    }
 
     /**
      * 다리의 길이를 입력받는다.
