@@ -26,20 +26,15 @@ public class OutputView {
     }
 
     private static void appendSeparator(StringBuilder upperBridge, StringBuilder lowerBridge, StringBuilder upperBridgeFormat, StringBuilder lowerBridgeFormat) {
-        for (int i = 0; i < upperBridge.length(); i++) {
+        int bridgeLength = upperBridge.length();
+        for (int i = 0; i < bridgeLength; i++) {
             upperBridgeFormat.append(upperBridge.charAt(i));
             lowerBridgeFormat.append(lowerBridge.charAt(i));
-            if (i != upperBridge.length() - 1) {
+            if (i != bridgeLength - 1) {
                 upperBridgeFormat.append(SEPARATOR);
                 lowerBridgeFormat.append(SEPARATOR);
             }
         }
-//        for (int i = 0; i < lowerBridge.length(); i++) {
-//            lowerBridgeFormat.append(lowerBridge.charAt(i));
-//            if (i != lowerBridge.length() - 1) {
-//                lowerBridgeFormat.append(SEPARATOR);
-//            }
-//        }
     }
 
     public static void printResult(boolean isSuccess, StringBuilder upperBridge, StringBuilder lowerBridge, int round) {
