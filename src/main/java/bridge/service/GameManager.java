@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.BridgeGame;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;

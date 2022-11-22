@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.GameResult;
