@@ -23,7 +23,7 @@ public class InputView {
         }
     }
 
-    private int validateIsNumeric(String inputSize) throws IllegalArgumentException {
+    public int validateIsNumeric(String inputSize) throws IllegalArgumentException {
         if (!inputSize.matches("^[0-9]*$")) {
             throw new IllegalArgumentException("[ERROR] 3~20 사이의 양의 정수를 입력해주세요");
         }
