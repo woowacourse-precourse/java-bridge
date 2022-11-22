@@ -1,28 +1,38 @@
 package bridge.domain.bridgeGame;
 
-import bridge.domain.bridgeGame.bridgeMap.BridgeMap;
-import bridge.domain.bridgeGame.gameStatics.GameStatics;
+import bridge.domain.bridgeGame.gameStatus.gameStatics.GameResult;
 
+import java.util.List;
 import java.util.Queue;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final GameStatics gameStatics;
-    private final BridgeMap bridgeMap;
+    private final GameStatus gameStatus;
+    private final Bridge bridge;
 
-    private BridgeGame(GameStatics gameStatics, BridgeMap bridgeMap) {
-        this.gameStatics = gameStatics;
-        this.bridgeMap = bridgeMap;
+    private BridgeGame(GameStatus gameStatus, Bridge bridge) {
+        this.gameStatus = gameStatus;
+        this.bridge = bridge;
     }
 
-    public static BridgeGame initGame() {
-        return new BridgeGame(GameStatics.initStatics(), BridgeMap.initMap());
+    public static BridgeGame initGame(List<String> bridge) {
+        return new BridgeGame(GameStatus.initStatus(), Bridge.from(bridge));
     }
 
-    public boolean crossSuccess() {
-        return gameStatics.getCrossResult();
+    private void updateGameResult(boolean movingSuccess, boolean isAtEndpoint) {
+        if (!movingSuccess) {
+            gameStatus.updateGameResult(false);
+            return;
+        }
+        if (isAtEndpoint) {
+            gameStatus.updateGameResult(true);
+        }
+    }
+
+    public Queue<String> getGameStatics() {
+        return gameStatus.getGameStatics();
     }
 
     /**
@@ -30,9 +40,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String direction, boolean crossSuccess) {
-        bridgeMap.addCrossResult(direction, crossSuccess);
-        gameStatics.updateCrossResult(crossSuccess);
+    public GameResult move(String direction) {
+        int currentDistance = gameStatus.getAndIncreaseDistance();
+        String passableDirection = bridge.passableDirectionAt(currentDistance);
+
+        boolean movingSuccess = direction.equals(passableDirection);
+        boolean isAtEndpoint = (gameStatus.distance() == bridge.size());
+        updateGameResult(movingSuccess, isAtEndpoint);
+
+        return gameStatus.gameResult();
     }
 
     /**
@@ -41,15 +57,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        bridgeMap.reset();
-        gameStatics.increaseAttemptCount();
-    }
-
-    public String bridgeMap() {
-        return bridgeMap.toString();
-    }
-
-    public Queue<String> gameStatics() {
-        return gameStatics.getStaticsString();
+        gameStatus.retryGame();
+        gameStatus.resetDistance();
     }
 }
