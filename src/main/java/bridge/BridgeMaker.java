@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,6 +9,7 @@ import java.util.List;
 public class BridgeMaker {
 
 
+    private static final String errorMsg = "[ERROR]";
     private static String bridgeStr = "";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -23,10 +23,11 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      * <p>
      */
-    public List<String> makeBridge(int size) {
+    public List<String> customMakeBridge(int size) {
 
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 3 이상 20 이하의 숫자만 입력 가능합니다.");
+            System.out.println(errorMsg + " 3 이상 20 이하의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(errorMsg + " 3 이상 20 이하의 숫자만 입력 가능합니다.");
         }
 
         bridgeStr = "";     // while문에 들어가기 때문에  초기화 꼭 필요
@@ -34,21 +35,21 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             bridgeStr += bridgeNumberGenerator.generate();
         }
-        System.out.println(" 다리 " + bridgeStr);
+//        System.out.println(" 다리 " + bridgeStr);
 
         int[][] arr = new int[2][bridgeStr.length()];
         for (int i = 0; i < bridgeStr.length(); i++) {
-            if (bridgeStr.charAt(i) == '0') {
+            if (bridgeStr.charAt(i) == '0') {       //  0인 경우 아래 칸 건널 수 있다.
                 arr[1][i] = 1;
-            } else if (bridgeStr.charAt(i) == '1') {
+            } else if (bridgeStr.charAt(i) == '1') {    // 0인 경우 위 칸이 건널 수 있다.
                 arr[0][i] = 1;
             }
         }
 
-        System.out.println("BridgeMaker.makeBridge() arr 타입");
-        for (int[] a : arr) {
-            System.out.println(Arrays.toString(a));
-        }
+//        System.out.println("BridgeMaker.makeBridge() arr 타입");
+//        for (int[] a : arr) {
+//            System.out.println(Arrays.toString(a));
+//        }
 
         return changeStrToBridge(bridgeStr);
     }
@@ -62,14 +63,13 @@ public class BridgeMaker {
 
     // String 00111010101  => List<String> 형태로 바꾼다.
     // 10101x 이면?
-    public  List<String> changeStrToBridge(String inputBridgeStr) {
+    public List<String> changeStrToBridge(String inputBridgeStr) {
 
         List<String> result = new ArrayList<>();
         String up = "[";
         String down = "[";
 
         for (int i = 0; i < inputBridgeStr.length(); i++) {
-
 
             if (inputBridgeStr.charAt(i) == '1') {
 
@@ -99,11 +99,11 @@ public class BridgeMaker {
 
             } else if (inputBridgeStr.charAt(i) == 'y') {       // 밑에가 x인 경우
 
-                    down += " X ";
-                    up += "   ";
-                    break;      //여기서 더이상 다리 만들기를 끝내야한다.
-                }
+                down += " X ";
+                up += "   ";
+                break;      //여기서 더이상 다리 만들기를 끝내야한다.
             }
+        }
 
         up += "]";
         down += "]";
@@ -112,5 +112,34 @@ public class BridgeMaker {
         return result;
 
     }
+
+    public List<String> makeBridge(int size) {
+        String inputBridgeStr = "";
+
+        if (size < 3 || size > 20) {
+            System.out.println(errorMsg + " 3 이상 20 이하의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(errorMsg + " 3 이상 20 이하의 숫자만 입력 가능합니다.");
+        }
+
+        bridgeStr = "";     // while문에 들어가기 때문에  초기화 꼭 필요
+
+        for (int i = 0; i < size; i++) {
+            inputBridgeStr += bridgeNumberGenerator.generate();
+        }
+
+
+        List<String> res = new ArrayList<>();
+
+        for (char c : inputBridgeStr.toCharArray()) {
+            if (c == '1') {
+                res.add("U");
+                continue;
+            }
+            res.add("D");
+        }
+
+        return res;
+    }
+
 
 }
