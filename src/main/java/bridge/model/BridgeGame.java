@@ -7,6 +7,8 @@ import java.util.*;
 
 public class BridgeGame {
 
+    private static final int FIRST_INDEX = 0;
+    private static final int INCREASE_VALUE = 1;
     private final List<String> bridge;
     private int count;
 
@@ -16,7 +18,7 @@ public class BridgeGame {
     }
 
     public BridgeCase move(String bridgeToMove, int index) {
-        if (index == 0) countUp();
+        if (isFirst(index)) countUp();
         return Arrays.stream(BridgeCase.values())
                 .filter(bridgeCase -> isFirst(index) == bridgeCase.isFirst())
                 .filter(bridgeCase -> bridgeToMove.equals(bridgeCase.getMark()))
@@ -32,11 +34,11 @@ public class BridgeGame {
     }
 
     public boolean isFirst(int index) {
-        return index == 0;
+        return index == FIRST_INDEX;
     }
 
     public void countUp() {
-        count += 1;
+        count += INCREASE_VALUE;
     }
 
     public int getCount() {   // 수정해보기

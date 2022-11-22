@@ -15,12 +15,13 @@ public class BridgeGameController {
     private static final BridgeDrawer bridgeDrawer = new BridgeDrawer();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
+    private static final int INIT_COUNT = 0;
     private static BridgeGame bridgeGame;
     private static int bridgeSize;
 
     public void start() {
         outputView.printStartMessage();
-        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(getBridgeSize()), 0);
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(getBridgeSize()), INIT_COUNT);
         run();
     }
 
@@ -38,7 +39,7 @@ public class BridgeGameController {
     }
 
     public boolean isAvailableBridge() {
-        for (int index = 0; index < bridgeSize; index++) {
+        for (int index = INIT_COUNT; index < bridgeSize; index++) {
             String bridgeToMove = getBridgeToMove();
             sendBridgeShape(bridgeGame.move(bridgeToMove, index), bridgeGame.isAnswer(bridgeToMove, index));
             if (!bridgeGame.isAnswer(bridgeToMove, index)) return false;
@@ -74,6 +75,6 @@ public class BridgeGameController {
 
     public void sendResult(ResultState resultState) {
         outputView.printResult(bridgeDrawer.combineBridge());
-        outputView.printStatistic(bridgeGame.getCount(), resultState.getResult());
+        outputView.printStatistic(bridgeGame.getCount(), resultState.getState());
     }
 }
