@@ -6,9 +6,24 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+    private boolean userMove(BridgeGame bridgeGame, Bridge bridge, String userMoveCommand) {
+        if (!bridgeGame.move(userMoveCommand, bridge, index)) {
+            bridge.changeBridgeMap(index, userMoveCommand, "X");
+            if (chooseReplay(bridgeGame, bridge)) {
+                return true;
+            }
+        }
+        bridge.changeBridgeMap(index, userMoveCommand, "O");
+        OutputView.printMap(bridge.getBridgeMap(), index);
+        index++;
+        return false;
+    }
+
     private boolean chooseReplay(BridgeGame bridgeGame, Bridge bridge) {
         OutputView.printMap(bridge.getBridgeMap(), index);
-        if (checkReplay(bridgeGame, bridge, getReplayCommand())) return false;
+        if (checkReplay(bridgeGame, bridge, getReplayCommand())){
+            return false;
+        }
         return true;
     }
     private boolean checkReplay(BridgeGame bridgeGame, Bridge bridge, String replay) {
