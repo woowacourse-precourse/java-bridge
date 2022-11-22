@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
@@ -18,28 +17,20 @@ public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final BridgeGame bridgeGame = new BridgeGame();
+    private GameResult gameResult;
 
     public void run() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
         System.out.println(GAME_START);
-        Bridge answerBridge = makeAnswerBridge(bridgeMaker);
+        gameResult = new GameResult(true, 1);
 
-        Bridge playerBridge = new Bridge(new ArrayList<>());
-        GameResult gameResult = new GameResult(true, 1);
-        playerBridge = playingGame(playerBridge, answerBridge, gameResult);
+        Bridge answerBridge = makeAnswerBridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
+
+        Bridge playerBridge = playingGame(answerBridge);
         endGame(answerBridge, playerBridge, gameResult);
     }
 
     private Bridge makeAnswerBridge(BridgeMaker bridgeMaker) {
-        Bridge answerBridge;
-        try {
-            answerBridge = setAnswerBridge(bridgeMaker);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-            answerBridge = makeAnswerBridge(bridgeMaker);
-        }
+        Bridge answerBridge = setAnswerBridge(bridgeMaker);
         return answerBridge;
     }
 
@@ -48,82 +39,50 @@ public class Controller {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    private Bridge playingGame(Bridge playerBridge, Bridge answerBridge, GameResult gameResult) {
-        try{
-            playerBridge = readPlayerBridge(playerBridge, answerBridge, gameResult);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-            playerBridge = playingGame(playerBridge, answerBridge, gameResult);
-        }
-        return playerBridge;
-    }
-
-    private Bridge readPlayerBridge(Bridge playerBridge, Bridge answerBridge, GameResult gameResult){
-        List<String> playerInput = playerBridge.getBridge();
-        int cnt = 0;
-        int position;
-
-        while (playerInput.size() != answerBridge.getBridge().size()) {
-            String moveMessage = getMoveMessage();
-            playerInput.add(moveMessage);
-            position = bridgeGame.move(answerBridge.getBridge(), cnt, moveMessage);
-
-            outputView.printMap(answerBridge.getBridge(), playerInput);
-            if (cnt == position) {
-                playerBridge = retry(playerBridge, answerBridge, gameResult);
-                return playerBridge;
-            }
-            cnt = position;
-        }
+    private Bridge playingGame(Bridge answerBridge) {
+        List<String> playerInput = new ArrayList<>();
+        int inputPosition = 0;
+        playerInput = createPlayerBridge(answerBridge, playerInput, inputPosition);
         return new Bridge(playerInput);
     }
 
-    private String getMoveMessage() {
-        String moveMessage;
-        try {
-            moveMessage = readMoveMessage();
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-            moveMessage = getMoveMessage();
+    private List<String> createPlayerBridge(Bridge answerBridge, List<String> playerInput, int inputPosition) {
+        while (playerInput.size() != answerBridge.getBridge().size()) {
+            playerInput.add(readPlayerBridge());
+            boolean moveSuccess = moveResult(answerBridge, playerInput, inputPosition); inputPosition++;
+            if (!moveSuccess) {
+                playerInput = checkRetry(playerInput);
+                inputPosition = 0;
+            }
+            if (!gameResult.getSuccess()) { return playerInput; }
         }
+        return playerInput;
+    }
+
+    private String readPlayerBridge(){
+        String moveMessage = inputView.readMoving();
         return moveMessage;
     }
 
-    private String readMoveMessage() {
-        return inputView.readMoving();
+    private boolean moveResult(Bridge answerBridge, List<String> playerInput, int inputPosition) {
+        boolean moveSuccess = bridgeGame.move(answerBridge.getBridge().get(inputPosition),
+                playerInput.get(playerInput.size() - 1));
+        outputView.printMap(answerBridge.getBridge(), playerInput);
+        return moveSuccess;
     }
 
-    private Bridge retry(Bridge playerBridge, Bridge answerBridge, GameResult gameResult) {
-        try {
-            playerBridge = checkRetry(playerBridge, answerBridge, gameResult);
-        } catch (IllegalArgumentException ex) {
-            playerBridge = retry(playerBridge, answerBridge, gameResult);
-        }
-        return playerBridge;
-    }
-
-    private Bridge checkRetry(Bridge playerBridge, Bridge answerBridge, GameResult gameResult) {
+    private List<String> checkRetry(List<String> playerInput) {
         if (askRetry().equals(RETRY)) {
             gameResult.plusTryCount();
-            return readPlayerBridge(clearPlayerBridge(), answerBridge, gameResult);
+            return bridgeGame.retry();
         }
         gameResult.setSuccess(false);
-        return playerBridge;
+        return playerInput;
     }
 
     private String askRetry() {
-        String retryMessage;
-        try {
-            retryMessage = inputView.readGameCommand();
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-            retryMessage = askRetry();
-        }
+        String retryMessage = inputView.readGameCommand();
         return retryMessage;
-    }
-
-    private Bridge clearPlayerBridge() {
-        return new Bridge(bridgeGame.retry());
     }
 
     private void endGame(Bridge answerBridge, Bridge playerBridge, GameResult gameResult) {
