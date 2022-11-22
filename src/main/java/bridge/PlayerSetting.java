@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 import bridge.domain.Player;
 import bridge.dto.BridgeCorrectLocationDto;
@@ -6,6 +6,7 @@ import bridge.dto.BridgeDto;
 import bridge.dto.PlayerBridgeSizeDto;
 import bridge.exception.InputException;
 import bridge.BridgeMaker;
+import bridge.service.BridgeRandomNumberGenerator;
 
 import java.util.List;
 

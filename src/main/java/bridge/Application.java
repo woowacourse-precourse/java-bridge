@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.service.PlayerSetting;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
