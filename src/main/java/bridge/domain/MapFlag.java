@@ -8,13 +8,13 @@ public enum MapFlag {
     MOVE_FAIL("X"),
     MOVE_EMPTY(" ");
 
-    private final String code;
+    private final String flag;
 
-    MapFlag(String code) {
-        this.code = code;
+    MapFlag(String flag) {
+        this.flag = flag;
     }
 
-    public String code() {
-        return code;
+    public String flag() {
+        return flag;
     }
 }
