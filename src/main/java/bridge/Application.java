@@ -5,16 +5,11 @@ import bridge.view.OutputView;
 
 public class Application {
 
-    private static final String ERROR = "[ERROR]";
     private static BridgeController bridgeController;
 
     public static void main(String[] args) {
         dependencyInjection();
-        try {
-            bridgeController.run();
-        } catch (IllegalArgumentException | IllegalStateException e) {
-            System.out.println(ERROR + " " + e.getMessage());
-        }
+        bridgeController.run();
     }
 
     private static void dependencyInjection() {
