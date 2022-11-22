@@ -2,11 +2,10 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.utils.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
+import bridge.utils.Validator;
 public class ValidatorTest {
 
     @DisplayName("3이상 20이하의 숫자를 입력하지 않으면 예외가 발생한다")

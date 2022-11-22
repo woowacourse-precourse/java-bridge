@@ -3,14 +3,14 @@ package bridge;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.ApplicationTest.TestNumberGenerator;
-import bridge.utils.Constants.Command;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import bridge.ApplicationTest.TestNumberGenerator;
+import bridge.utils.Constants.Command;
 
 public class BridgeGameTest {
 
