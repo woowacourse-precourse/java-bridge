@@ -1,7 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -15,7 +13,7 @@ public class BridgeGame {
      */
     public static String move() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String nextMove = Console.readLine();
+        String nextMove = InputView.readMoving();
         if(ErrorCheck.isValidUpOrDown(nextMove));
         return nextMove;
     }
