@@ -27,13 +27,13 @@ public class OutputView {
         System.out.println(PRINT_GAME_RESULT);
         if (result.equals(SUCCESS)) {
             printMap(bridge.movingResultToString(SUCCESS));
-            System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, SUCCESS));
-            System.out.println(String.format(TOTAL_NUMBERS_OF_ATTEMPTS, bridge.getGameCount()));
+            System.out.printf((PRINT_WHETHER_SUCCESS_OR_NOT) + "%n", SUCCESS);
+            System.out.printf((TOTAL_NUMBERS_OF_ATTEMPTS) + "%n", bridge.getGameCount());
             return;
         }
         printMap(bridge.movingResultToString(FAILURE));
-        System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, FAILURE));
-        System.out.println(String.format(TOTAL_NUMBERS_OF_ATTEMPTS, bridge.getGameCount()));
+        System.out.printf((PRINT_WHETHER_SUCCESS_OR_NOT) + "%n", FAILURE);
+        System.out.printf((TOTAL_NUMBERS_OF_ATTEMPTS) + "%n", bridge.getGameCount());
     }
 
     public void printStartMessage() {
