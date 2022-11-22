@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.validation.Exception;
 
-import bridge.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 import bridge.constant.BridgeGameInfo;
 

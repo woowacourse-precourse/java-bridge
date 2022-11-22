@@ -1,6 +1,6 @@
-package bridge.model;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
+import bridge.model.Bridge;
 
 public class BridgeMaker {
 

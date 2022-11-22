@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeGame {
