@@ -9,8 +9,8 @@ public class OutputView {
 
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String END_MESSAGE = "최종 게임 결과";
-    private static final String GAME_SUCCESS_MESSAGE = "게임의 성공 여부: ";
-    private static final String GAME_COUNT_MESSAGE = "총  시도한 횟수: ";
+    private static final String GAME_SUCCESS_MESSAGE = "게임 성공 여부: ";
+    private static final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
 
     /**
      * 게임 시작 문구를 출력한다.
