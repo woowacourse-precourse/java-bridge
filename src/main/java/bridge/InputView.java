@@ -27,11 +27,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public String readMoving() throws IllegalArgumentException{
         String answer = Console.readLine();
         if(answer.equals("U") || answer.equals("D"))
             return answer;
-        throw new IllegalArgumentException("[ERROR] 잘못된 이동할 칸 입력");
+        throw new IllegalArgumentException("[ERROR] 잘못된 이동할 칸 입력, 다시 입력하세요");
     }
 
     /**

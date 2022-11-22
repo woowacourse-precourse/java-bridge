@@ -40,9 +40,17 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 다리길이_예외_테스트() {
         assertSimpleTest(() -> {
             runException("a", "9");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void Moving_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("9", "a", "U");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
