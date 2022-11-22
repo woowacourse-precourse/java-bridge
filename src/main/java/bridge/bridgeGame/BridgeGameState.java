@@ -29,4 +29,12 @@ public class BridgeGameState {
     public void clearCurrent() {
         currentState.clear();
     }
+
+    public String getCurrentAt(int index) {
+        return currentState.get(index);
+    }
+
+    public boolean getMatched(int index) {
+        return currentState.get(index).equals(finalState.get(index));
+    }
 }
