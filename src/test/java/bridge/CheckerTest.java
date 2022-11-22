@@ -1,14 +1,30 @@
 package bridge;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
-public class CheckerTest  extends NsTest {
+public class CheckerTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+
+    @Test
+    void 기능_테스트_재시도() {
+        assertSimpleTest(() -> {
+            assertThat(new Checker().checkRetry("R")).isEqualTo(true);
+        });
+    }
+
+    @Test
+    void 기능_테스트_다리길이() {
+        assertSimpleTest(() -> {
+            assertThat(new Checker().checkValidate("15")).isEqualTo(new Integer(15));
+        });
+    }
 
     @Test
     void 예외_테스트_다리길이_문자() {
