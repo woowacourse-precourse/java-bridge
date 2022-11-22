@@ -85,4 +85,11 @@ class BridgeGameTest {
         }
     }
 
+    @Test
+    @DisplayName("게임을 끝낸다.")
+    void update_gameState_stop() {
+        bridgeGame.quit();
+        assertFalse(bridgeGame.isRunning());
+    }
+
 }
