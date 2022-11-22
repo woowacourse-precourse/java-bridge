@@ -13,7 +13,7 @@ public class BridgeGameController {
     GameProgress gameProgress = GameProgress.START;
 
     public void run() {
-        OutputView.printStart();
+        start();
 
         while (gameProgress != GameProgress.EXIT) {
             try {
@@ -22,6 +22,11 @@ public class BridgeGameController {
                 handleErrors(GameException.valueOf(ex.getMessage()));
             }
         }
+    }
+
+    private void start() {
+        OutputView.printStart();
+        gameProgress = GameProgress.CREATE;
     }
 
     private void handleErrors(GameException gameException) {
@@ -33,8 +38,8 @@ public class BridgeGameController {
     }
 
     private void choiceGameMode() {
-        if (gameProgress == GameProgress.START) {
-            start();
+        if (gameProgress == GameProgress.CREATE) {
+            create();
         }
         if (gameProgress == GameProgress.PLAY) {
             play();
@@ -70,7 +75,7 @@ public class BridgeGameController {
         OutputView.printMap(bridgeGame.getPlayer());
     }
 
-    private void start() {
+    private void create() {
         bridgeGame.createBridge(InputView.readBridgeSize());
         gameProgress = GameProgress.PLAY;
     }
