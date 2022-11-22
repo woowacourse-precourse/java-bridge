@@ -34,5 +34,10 @@ public class OutputView {
 		System.out.println(Constants.TOTAL_COUNT + count);
 	}
 
+	public void Fail(int count) {
+		System.out.println(Constants.GAME_FAIL);
+		System.out.println(Constants.TOTAL_COUNT + count);
+	}
+
 }
 
