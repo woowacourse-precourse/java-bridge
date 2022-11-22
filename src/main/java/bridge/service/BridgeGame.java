@@ -2,7 +2,6 @@ package bridge.service;
 
 import bridge.constant.Directions;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeLength;
 import bridge.domain.User;
 import bridge.service.constant.ChoiceResult;
 import bridge.service.constant.GameStatus;
@@ -16,24 +15,26 @@ import java.util.stream.Collectors;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private Bridge bridge;
+    private static BridgeGame instance = new BridgeGame();
 
-    public BridgeGame (int lengthInput) {
-        this.bridge = new Bridge(lengthInput);
+    public static BridgeGame getInstance() {
+        return instance;
     }
+
+    private BridgeGame() {}
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(User user, String userChoice) {
+    public void move(Bridge bridge, User user, String userChoice) {
         user.playNextRound();
         boolean isUserChoiceCorrect = bridge.isCorrectPanel(user.getRound(), userChoice);
-        modifyStatusAfterChoice(user, isUserChoiceCorrect);
+        modifyStatusAfterChoice(bridge, user, isUserChoiceCorrect);
     }
 
-    private void modifyStatusAfterChoice(User user, boolean isUserChoiceCorrect) {
+    private void modifyStatusAfterChoice(Bridge bridge, User user, boolean isUserChoiceCorrect) {
         if (isUserChoiceCorrect && bridge.isEnd(user.getRound())) {
             user.clearGame();
         }
@@ -52,18 +53,18 @@ public class BridgeGame {
         user.playSameRoundAgain();
     }
 
-    public List<List<ChoiceResult>> obtainGameLog(User user) {
+    public List<List<ChoiceResult>> obtainGameLog(Bridge bridge, User user) {
         int userRound = user.getRound();
         List<List<ChoiceResult>> gameLog = new ArrayList<>();
         Arrays.stream(Directions.values())
-                .forEach(direction -> gameLog.add(obtainGameLogOfLine(userRound, direction.getSymbol())));
+                .forEach(direction -> gameLog.add(obtainGameLogOfLine(bridge, userRound, direction.getSymbol())));
         if (user.getStatus() == GameStatus.FAIL) {
             putFailLogElement(gameLog, userRound);
         }
         return gameLog;
     }
 
-    private List<ChoiceResult> obtainGameLogOfLine (int userRound, String line) {
+    private List<ChoiceResult> obtainGameLogOfLine (Bridge bridge, int userRound, String line) {
         return bridge.getBridge().stream()
                 .limit(userRound)
                 .map(panel -> createLogElement(panel, line))
