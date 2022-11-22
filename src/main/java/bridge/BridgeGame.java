@@ -5,30 +5,29 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private int playerLocation = -1;
-    private int nextLocation = playerLocation + 1;
     private int trialCount = 1;
-
 
     public BridgeGame(List<String> bridge) {;
         this.bridge = bridge;
     }
 
     public void move(boolean isMoveAvailable) {
-        this.playerLocation++;
+        if (isMoveAvailable) {
+            this.playerLocation++;
+        }
     }
 
     public void retry(boolean doesPlayerWantRetrial) {
-        this.trialCount++;
+        if (doesPlayerWantRetrial) {
+            this.trialCount++;
+        }
     }
 
     public Boolean checkMoveIsAvailable (String playerMoving) {
-        if (bridge.get(nextLocation).equals(playerMoving)) {
+        if (bridge.get(playerLocation + 1).equals(playerMoving)) {
             return true;
         }
-        if (!bridge.get(nextLocation).equals(playerMoving)) {
-            return false;
-        }
-        return null;
+        return false;
     }
 
     public List<String> getBridge() {
