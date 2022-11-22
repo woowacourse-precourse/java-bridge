@@ -53,6 +53,10 @@ public class BridgeGame {
         }
     }
 
+    public ProcessCondition selectRetryOrQuit(String gameCommand) {
+        return GameStatus.getGameStatusByGameCommand(gameCommand);
+    }
+
     public ProcessCondition retry() {
         gameStatusOperator.initPosition();
         gameStatusOperator.toRestart();

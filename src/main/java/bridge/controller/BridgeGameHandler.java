@@ -41,7 +41,7 @@ public class BridgeGameHandler {
     }
 
     public ProcessCondition executeFailCondition(BridgeGame bridgeGame) {
-        GameStatus selectGameProcess = GameStatus.getGameStatusByGameCommand(readGameCommand());
+        ProcessCondition selectGameProcess = bridgeGame.selectRetryOrQuit(readGameCommand());
         if (selectGameProcess.equals(GameStatus.RESTART)) {
             ProcessCondition processCondition = bridgeGame.retry();
             return executeGame(processCondition, bridgeGame);
