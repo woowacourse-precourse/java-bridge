@@ -20,6 +20,7 @@ public class BridgeGame {
     private static final String SPACE = "   ";
     private static final String X = " X ";
     private static final String O = " O ";
+    private static final String PIPE = "|";
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -55,9 +56,9 @@ public class BridgeGame {
 
     public void addGameResult(String[] result) {
         upResult.add(result[1]);
-        upResult.add("|");
+        upResult.add(PIPE);
         downResult.add(result[0]);
-        downResult.add("|");
+        downResult.add(PIPE);
     }
 
     /**
