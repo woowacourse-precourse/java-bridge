@@ -3,26 +3,30 @@ package bridge;
 import java.util.List;
 
 public class Application {
-    private static final int count = 0;
-    private static int bridgeSize = getBridgeSize();
-    static List<String> bridge = getBridge(bridgeSize);
-    static BridgeGame bridgeGame = new BridgeGame(bridge);
 
     public static void main(String[] args) {
-        System.out.println("bridge: " + bridge);
+        try {
+            doBridgeGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void doBridgeGame() {
+        int bridgeSize = getBridgeSize();
+        List<String> bridge = getBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
         while (!bridgeGame.isBridgeSuccess()) {
             bridgeGame.move(getMove());
             OutputView.printMap(bridge, bridgeGame.getChoice());
-            if(!isRetry()) {
-                break;
-            }
+            if (!isRetry(bridgeGame)) {break;}
         }
-        printResult(bridgeGame.getCount(), bridgeGame.isBridgeSuccess());
-
+        printResult(bridgeGame.getCount(), bridgeGame.isBridgeSuccess(), bridgeGame, bridge);
     }
 
-    public static boolean isRetry() {
-        if(!bridgeGame.isRightChoice()) {
+    public static boolean isRetry(BridgeGame bridgeGame) {
+        if (!bridgeGame.isRightChoice()) {
             String answer = getRetry();
             if (answer.equals("R")) {
                 bridgeGame.retry();
@@ -64,8 +68,8 @@ public class Application {
         String answer = InputView.readGameCommand();
         return answer;
     }
-    
-    public static void printResult(int count, boolean isBridgeSuccess) {
+
+    public static void printResult(int count, boolean isBridgeSuccess, BridgeGame bridgeGame, List<String> bridge) {
         System.out.println("최종 게임 결과");
         OutputView.printMap(bridge, bridgeGame.getChoice());
         System.out.println();
