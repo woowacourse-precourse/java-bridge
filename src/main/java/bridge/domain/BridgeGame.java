@@ -30,24 +30,29 @@ public class BridgeGame {
   }
 
   public boolean isClear() {
+    List<Boolean> stateHistory = gameState.getStateHistory();
     List<BridgeArea> bridgeAreas = bridge.getBridgeAreas();
-    List<BridgeArea> movementHistory = gameState.getMovementHistory();
-    return equalAll(bridgeAreas, movementHistory);
-  }
-
-  private boolean equalAll(List<BridgeArea> bridge, List<BridgeArea> userHistory) {
-    if (bridge.size() != userHistory.size()) {
+    if(stateHistory.size() != bridgeAreas.size()){
       return false;
     }
-    for (int i = 0; i < bridge.size(); i++) {
-      if (!bridge.get(i).equals(userHistory.get(i))) {
+    return isAllSuccess(stateHistory);
+  }
+
+  private boolean isAllSuccess(List<Boolean> stateHistory){
+    for(boolean result : stateHistory){
+      if(!result){
         return false;
       }
     }
     return true;
   }
 
+
   public void retry() {
     gameState.retry();
+  }
+
+  public GameState getGameState() {
+    return gameState;
   }
 }
