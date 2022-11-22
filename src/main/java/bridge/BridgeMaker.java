@@ -19,10 +19,9 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         List<String> bridge = new ArrayList<>();
         for(int count = 0; count < size; count++){
-            int direction = bridgeRandomNumberGenerator.generate();
+            int direction = bridgeNumberGenerator.generate();
             bridge.add("D");
             if (direction == 1) {bridge.set(count,"U");}
         }
