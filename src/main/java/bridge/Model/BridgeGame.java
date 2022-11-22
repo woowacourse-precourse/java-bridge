@@ -31,15 +31,8 @@ public class BridgeGame {
     }
 
     void validateIsRightMoving(String inputMoving) throws IllegalArgumentException {
-        if (!inputMoving.equals("U") && !inputMoving.equals("D")) {
+        if (!inputMoving.equals("U") && !inputMoving.equals("D"))
             throw new IllegalArgumentException(ExceptionMessage.MOVING_EXCEPTION_MESSAGE.getExceptionMessage());
-        }
-    }
-
-    public void move(String movement) {
-        isAnswer = bridge.checkAnswer(movement, movementCount);
-        moveMap(movement);
-        movementCount += 1;
     }
 
     public boolean validateGameCommand(String command) {
@@ -53,24 +46,19 @@ public class BridgeGame {
     }
 
     void validateIsRightCommand(String command) throws IllegalArgumentException {
-        if (!command.equals("R") && !command.equals("Q")) {
+        if (!command.equals("R") && !command.equals("Q"))
             throw new IllegalArgumentException(ExceptionMessage.GAME_COMMAND_EXCEPTION_MESSAGE.getExceptionMessage());
-        }
     }
 
-    void retry() {
-        round += 1;
-        movementCount = 0;
-        this.bridgeMap = new BridgeMap();
+    public void move(String movement) {
+        isAnswer = bridge.checkAnswer(movement, movementCount);
+        moveMap(movement);
+        movementCount += 1;
     }
 
     void moveMap(String movement) {
         int moving = MovingStatus.findByCommand(movement).getMovingNumber();
         this.bridgeMap.updateMap(moving, isAnswer);
-    }
-
-    public boolean getIsAnswer() {
-        return this.isAnswer;
     }
 
     public boolean isExit(String command) {
@@ -81,9 +69,19 @@ public class BridgeGame {
         return true;
     }
 
+    void retry() {
+        round += 1;
+        movementCount = 0;
+        this.bridgeMap = new BridgeMap();
+    }
+
     public boolean checkSuccess() {
         boolean isEnd = (bridge.getBridgeSize() == movementCount);
         return (isEnd && isAnswer);
+    }
+
+    public boolean getIsAnswer() {
+        return this.isAnswer;
     }
 
     public int getRound() {
