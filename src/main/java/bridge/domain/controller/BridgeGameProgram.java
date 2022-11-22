@@ -43,10 +43,6 @@ public class BridgeGameProgram {
         int bridgeLength = inputView.readBridgeLength();
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
         controllerException.sameBridgeLength(bridgeLength);
-
-        if (bridge.getSize() != bridgeLength) {
-            throw new IllegalArgumentException("service error");
-        }
     }
 
     public void goGame() {
