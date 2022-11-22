@@ -18,6 +18,7 @@ public class InputView {
     private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String GAME_COMMAND_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private final static String LINE_BREAK = System.lineSeparator();
 
     /**
      * 다리의 길이를 입력받는다.
@@ -31,7 +32,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(MOVE_INPUT_MESSAGE);
+        System.out.println(LINE_BREAK + MOVE_INPUT_MESSAGE);
         return validateNotEmpty(Console.readLine());
     }
 
@@ -39,7 +40,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(GAME_COMMAND_INPUT_MESSAGE);
+        System.out.println(LINE_BREAK + GAME_COMMAND_INPUT_MESSAGE);
         return validateNotEmpty(Console.readLine());
     }
 

@@ -36,7 +36,7 @@ public class OutputView {
      */
     public void printMap(List<List<String>> map) {
         System.out.println(RESULT_START_BRACKET + String.join(DELIMITER, map.get(0)) + RESULT_END_BRACKET);
-        System.out.println(RESULT_START_BRACKET + String.join(DELIMITER, map.get(1)) + RESULT_END_BRACKET + LINE_BREAK);
+        System.out.println(RESULT_START_BRACKET + String.join(DELIMITER, map.get(1)) + RESULT_END_BRACKET);
 
     }
 
@@ -47,7 +47,7 @@ public class OutputView {
      */
     public void printResult(List<List<String>> map, boolean gameResult, int tryCount) {
         String result = "실패";
-        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.println(LINE_BREAK + GAME_RESULT_MESSAGE);
         printMap(map);
         if (gameResult) {
             result = "성공";
