@@ -11,15 +11,15 @@ public class Player {
         lastCrossSuccess = true;
     }
 
-    public boolean move(Bridge bridge, String command){
-        if (bridge.getCommandAt(position).equals(command)){
+    public boolean move(Bridge bridge, String command) {
+        if (bridge.getCommandAt(position).equals(command)) {
             position++;
             return lastCrossSuccess = true;
         }
         return lastCrossSuccess = false;
     }
 
-    public void retry(){
+    public void retry() {
         position = 0;
         tryCount++;
         lastCrossSuccess = true;
@@ -28,6 +28,7 @@ public class Player {
     public int getPosition() {
         return position;
     }
+
     public int getTryCount() {
         return tryCount;
     }

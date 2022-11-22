@@ -13,17 +13,18 @@ public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
 
-    private OutputView(){
+    private OutputView() {
     }
 
     // Validator에서 예외 처리 시 errorMessage를 출력한다.
-    public static void printErrorMessage(String errorMessage){
+    public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 
-    public static void printInit(){
+    public static void printInit() {
         System.out.println(INIT_MESSAGE + "\n");
     }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -47,7 +48,7 @@ public class OutputView {
         System.out.println(TOTAL_TRY_COUNT_MESSAGE + bridgeGame.getTryCount());
     }
 
-    private static String getSuccessOrFail(boolean isSuccess){
+    private static String getSuccessOrFail(boolean isSuccess) {
         if (isSuccess) return SUCCESS;
         return FAIL;
     }

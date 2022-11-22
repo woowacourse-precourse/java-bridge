@@ -20,7 +20,8 @@ public enum Key {
     public int number() {
         return number;
     }
-    public String command(){
+
+    public String command() {
         return command;
     }
 

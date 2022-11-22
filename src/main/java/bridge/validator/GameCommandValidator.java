@@ -8,8 +8,8 @@ public class GameCommandValidator {
     private static final String QUIT = "Q";
     private static final String RETRY = "R";
 
-    public static void validate(String input){
-        if (!input.equals(QUIT) && !input.equals(RETRY)){
+    public static void validate(String input) {
+        if (!input.equals(QUIT) && !input.equals(RETRY)) {
             OutputView.printErrorMessage(RETRY_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }

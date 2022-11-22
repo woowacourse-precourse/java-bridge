@@ -1,11 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.Bridge;
-import bridge.domain.Key;
-import bridge.domain.Player;
-
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -41,11 +35,11 @@ public class BridgeGame {
         player.retry();
     }
 
-    public boolean isGameSuccess(){
+    public boolean isGameSuccess() {
         return bridge.getSize() == player.getPosition();
     }
 
-    public int getTryCount(){
+    public int getTryCount() {
         return player.getTryCount();
     }
 
@@ -93,7 +87,7 @@ public class BridgeGame {
         return WHITESPACE;
     }
 
-    private String getSeparator(int index, int expected){
+    private String getSeparator(int index, int expected) {
         if (index != expected)
             return SEPARATOR;
         return "";

@@ -9,10 +9,11 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public String getCommandAt(int index){
+    public String getCommandAt(int index) {
         return bridge.get(index);
     }
-    public int getSize(){
+
+    public int getSize() {
         return bridge.size();
     }
 
