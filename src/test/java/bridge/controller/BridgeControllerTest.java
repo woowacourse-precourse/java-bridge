@@ -41,6 +41,20 @@ public class BridgeControllerTest {
         assertThat(user.getGameTryCount()).isEqualTo(2);
     }
 
+    @DisplayName("다리를 생성해주는 bridgeMaker 테스트")
+    @Test
+    public void makeBridgeTest() {
+        // given
+        int bridgeSize = 5;
+
+        // when
+        List<String> bridge = bridgeController.bridgeMaker(bridgeSize);
+
+        // then
+        assertThat(bridge.size()).isEqualTo(bridgeSize);
+        assertThat(bridge.contains("U") || bridge.contains("D")).isEqualTo(true);
+    }
+
     @DisplayName("doFailCase 테스트 (Quit 경우)")
     @Test
     public void doFailCaseWithQuitTest() {
