@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameResult {
-    private List<Integer> upSideResult = new ArrayList<>();
-    private List<Integer> downSideResult = new ArrayList<>();
+    private List<String> upSideResult = new ArrayList<>();
+    private List<String> downSideResult = new ArrayList<>();
 
-    public List<Integer> getUpSideResult() {
+    public List<String> getUpSideResult() {
         return Collections.unmodifiableList(upSideResult);
     }
 
-    public List<Integer> getDownSideResult() {
+    public List<String> getDownSideResult() {
         return Collections.unmodifiableList(downSideResult);
     }
 
@@ -31,20 +31,20 @@ public class GameResult {
     }
 
     private void addUpSideResult(boolean isCorrect) {
-        downSideResult.add(ResultType.valueOf("NOT_SELECT").getCode());
+        downSideResult.add(ResultType.valueOf("NOT_SELECT").getRepresentation());
         if (isCorrect) {
-            upSideResult.add(ResultType.valueOf("CORRECT").getCode());
+            upSideResult.add(ResultType.valueOf("CORRECT").getRepresentation());
             return;
         }
-        upSideResult.add(ResultType.valueOf("WRONG").getCode());
+        upSideResult.add(ResultType.valueOf("WRONG").getRepresentation());
     }
 
     private void addDownSideResult(boolean isCorrect) {
-        upSideResult.add(ResultType.valueOf("NOT_SELECT").getCode());
+        upSideResult.add(ResultType.valueOf("NOT_SELECT").getRepresentation());
         if (isCorrect) {
-            downSideResult.add(ResultType.valueOf("CORRECT").getCode());
+            downSideResult.add(ResultType.valueOf("CORRECT").getRepresentation());
             return;
         }
-        downSideResult.add(ResultType.valueOf("WRONG").getCode());
+        downSideResult.add(ResultType.valueOf("WRONG").getRepresentation());
     }
 }
