@@ -1,41 +1,32 @@
 package bridge.BridgeGame;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.UI.Input.InputView;
-import bridge.UI.Output.OutputView;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    InputView inputView = new InputView();
-    BridgeMaker bridgeMaker;
     List<String> bridge;
-    OutputView outputView;
-    public BridgeGame(BridgeNumberGenerator generator){
-        bridgeMaker = new BridgeMaker(generator);
-        System.out.println("다리 건너기 게임을 시작 합니다.\n");
-        initBridge();
-        this.outputView = new OutputView(bridge);
-    }
+    StringBuilder top;
+    StringBuilder bottom;
 
-    private void initBridge() {
-        System.out.println("다리의 길이를 입력해주세요.");
-        int bridgeSize = inputView.readBridgeSize();
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+    public BridgeGame(List<String> bridge){
+        this.bridge = bridge;
+        this.top = new StringBuilder();
+        this.bottom = new StringBuilder();
     }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int currentLocation) {
-        System.out.println("이동할 칸을 선택해주세요. (위 : U, 아래 : D)");
-        String move = inputView.readMoving();
-        return outputView.printMap(currentLocation, move);
+    public boolean move(int currentLocation, String move) {
+        boolean flag = true;
+
+        if(move.equals("U")) flag = compareTop(currentLocation, bridge);
+        if(move.equals("D")) flag = compareBottom(currentLocation, bridge);
+
+        return flag;
     }
 
     /**
@@ -43,17 +34,46 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요 (재시도 : R, 종료 : Q)");
-        String retry = inputView.readGameCommand();
+    public boolean retry(String reply) {
+        boolean flag = false;
+        if(reply.equals("R")) flag = true;
+        return flag;
+    }
 
-        if(retry.charAt(0) == 'R') return true;
+    private boolean compareTop(int location, List<String> bridge) {
+        // 다리를 맞춘 경우
+        if(bridge.get(location).equals("U")) {
+            top.append('O');
+            bottom.append(' ');
+            return true;
+        }
 
+        // 다리를 틀린 경우
+        top.append('X');
+        bottom.append(' ');
         return false;
     }
 
-    public void printResult(boolean flag, int count){
-        this.outputView.printResult(flag, count);
+    private boolean compareBottom(int location, List<String> bridge) {
+        // 다리를 맞춘 경우
+        if(bridge.get(location).equals("D")) {
+            bottom.append('O');
+            top.append(' ');
+            return true;
+        }
+
+        // 다리를 틀린 경우
+        bottom.append('X');
+        top.append(' ');
+        return false;
+    }
+
+    public StringBuilder getTop(){
+        return this.top;
+    }
+
+    public StringBuilder getBottom() {
+        return this.bottom;
     }
 
     public int getBridgeSize() {
@@ -61,6 +81,7 @@ public class BridgeGame {
     }
 
     public void clear(){
-        this.outputView.clear();
+        this.top = new StringBuilder();
+        this.bottom = new StringBuilder();
     }
 }
