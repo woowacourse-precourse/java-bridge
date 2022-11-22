@@ -48,17 +48,20 @@ public class Application {
     public static boolean retryOrQuit(){
         if (endGame()) return false;
         try {
-            outputView.printGameCommand();
-            if (inputView.readGameCommand().equals("R")){
-                bridgeGame.retry(location, upBridgeResult, downBridgeResult);
-                return true;
-            }
-            return false;
+            return getGameCommandResult();
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             retryOrQuit();
         }
         return true;
+    }
+    public static boolean getGameCommandResult(){
+        outputView.printGameCommand();
+        if (inputView.readGameCommand().equals("R")){
+            bridgeGame.retry(location, upBridgeResult, downBridgeResult);
+            return true;
+        }
+        return false;
     }
     public static boolean endGame(){
         if (gameStatus.equals("성공")){
