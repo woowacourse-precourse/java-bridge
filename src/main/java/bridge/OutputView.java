@@ -5,11 +5,13 @@ package bridge;
  */
 public class OutputView {
 
+    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+
     /**
      * 게임 시작을 알리는 메시지를 출력한다.
      */
     public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(START_MESSAGE);
     }
 
     /**
