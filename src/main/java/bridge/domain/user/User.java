@@ -6,7 +6,7 @@ import bridge.domain.enums.Direction;
 public class User {
 
     public static final int DEAD = 0;
-    public static final int LIVE = 1;
+    public static final int ALIVE = 1;
 
     private final FootPrints footPrints;
     private final UserData userData;
@@ -20,8 +20,8 @@ public class User {
         int currentPosition = userData.getPosition();
         if (bridge.canCross(currentPosition, direction)) {
             userData.increasePosition();
-            footPrints.addStep(User.LIVE, direction);
-            return LIVE;
+            footPrints.addStep(User.ALIVE, direction);
+            return ALIVE;
         }
         footPrints.addStep(User.DEAD, direction);
         return DEAD;

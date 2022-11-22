@@ -20,7 +20,7 @@ public class FootPrint {
     }
 
     public void addStep(int status) {
-        if (status == User.LIVE) {
+        if (status == User.ALIVE) {
             footPrint.add(O);
             return;
         }

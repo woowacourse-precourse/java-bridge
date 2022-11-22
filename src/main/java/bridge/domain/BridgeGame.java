@@ -27,7 +27,7 @@ public class BridgeGame {
      */
     public GameStatus move(Direction direction) {
         int userStatus = user.cross(bridge, direction);
-        if (userStatus == User.LIVE) {
+        if (userStatus == User.ALIVE) {
             if (isSuccess()) {
                 return GameStatus.WIN;
             }

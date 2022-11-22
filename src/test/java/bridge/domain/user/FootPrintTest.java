@@ -19,7 +19,7 @@ class FootPrintTest {
 
     private static Stream<Arguments> methodSourceForAddStepWithStatus() {
         return Stream.of(
-                Arguments.of(User.LIVE, "O"),
+                Arguments.of(User.ALIVE, "O"),
                 Arguments.of(User.DEAD, "X")
         );
     }
@@ -41,7 +41,7 @@ class FootPrintTest {
     @DisplayName("FootPrint 초기화")
     @Test
     void clearFootPrint() {
-        footPrint.addStep(User.LIVE);
+        footPrint.addStep(User.ALIVE);
         footPrint.addStep(User.DEAD);
         footPrint.clear();
         assertThat(footPrint)
@@ -52,7 +52,7 @@ class FootPrintTest {
     @DisplayName("Foot Print toString 테스트")
     @Test
     void footPrintToStringTest() {
-        footPrint.addStep(User.LIVE);
+        footPrint.addStep(User.ALIVE);
         footPrint.addBlank();
         footPrint.addStep(User.DEAD);
         assertThat(footPrint.toString()).isEqualTo("[ O |   | X ]\n");

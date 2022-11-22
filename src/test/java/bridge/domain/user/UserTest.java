@@ -24,7 +24,7 @@ class UserTest {
 
     private static Stream<Arguments> generateDirectionAndExpectValue() {
         return Stream.of(
-                Arguments.of(Direction.UP, User.LIVE),
+                Arguments.of(Direction.UP, User.ALIVE),
                 Arguments.of(Direction.DOWN, User.DEAD)
         );
     }
