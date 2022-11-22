@@ -34,6 +34,8 @@ public class OutputView {
      */
 
     public void printResult(BridgeGame bridgeGame) {
+        printEmptyLine();
+
         System.out.println("최종 게임 결과");
         printMap(bridgeGame);
 
