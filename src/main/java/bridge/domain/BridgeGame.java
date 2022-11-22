@@ -12,6 +12,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public static int checkAnswerIndex = 0;
+    public static int retryCount = 0;
     PrintView printView = new PrintView();
     InputRestartHandler inputRestartHandler = new InputRestartHandler();
     public List<String> upSide = new ArrayList<>();

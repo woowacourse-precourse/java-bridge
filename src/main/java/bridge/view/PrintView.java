@@ -12,8 +12,6 @@ public class PrintView {
     public final String TOTAL_COUNT = "총 시도한 횟수:";
     public final String FAIL = "실패";
     public final String SUCCESS = "성공";
-    public static int checkAnswerIndex = 0;
-    public static int retryCount = 0;
     public void lineSkip(){
         System.out.println();
     }

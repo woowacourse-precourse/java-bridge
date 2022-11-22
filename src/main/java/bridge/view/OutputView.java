@@ -26,25 +26,25 @@ public class OutputView {
     }
 
     private boolean exitLoop() {
-        return PrintView.checkAnswerIndex != 1 && PrintView.checkAnswerIndex != 2;
+        return BridgeGame.checkAnswerIndex != 1 && BridgeGame.checkAnswerIndex != 2;
     }
 
     public void stepBridge(List<String> bridgeData) {
         String moveStep = "";
-        PrintView.retryCount++;
+        BridgeGame.retryCount++;
         for(int index = 0 ; index < bridgeData.size(); index++) {
             if(index != 0) printView.lineSkip();
             System.out.println(printView.MOVE_STEP);
             moveStep = inputView.readGameCommand();
             bridgeGame.move(inputMoveStepHandler.checkValidator(moveStep), bridgeData.get(index), index);
-            if(PrintView.checkAnswerIndex == 1 || PrintView.checkAnswerIndex == 2) break;
+            if(BridgeGame.checkAnswerIndex == 1 || BridgeGame.checkAnswerIndex == 2) break;
             successBridge(index, bridgeData);
         }
     }
 
     private void successBridge(int index, List<String> bridgeData) {
-        if(index == bridgeData.size()-1 && PrintView.checkAnswerIndex == 0) {
-            PrintView.checkAnswerIndex = 2;
+        if(index == bridgeData.size()-1 && BridgeGame.checkAnswerIndex == 0) {
+            BridgeGame.checkAnswerIndex = 2;
             printView.lineSkip();
             System.out.println(printView.THE_GAME_RESULT);
             bridgeGame.extractBracket(bridgeGame.upSide,bridgeGame.downSide);
