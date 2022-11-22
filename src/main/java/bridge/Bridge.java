@@ -33,4 +33,13 @@ public class Bridge {
         return new ArrayList<>(this.bridge);
     }
 
+    public List<String> createBridge(int bridgeSize) {
+        BridgeNumberGenerator bridgeNumberGenerator= new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        List<String> newBridge = bridgeMaker.makeBridge(bridgeSize);
+
+        return newBridge;
+    }
+
 }

@@ -57,12 +57,8 @@ public class BridgeGame {
         return "실패";
     }
 
-    public void createBridge(int bridgeSize) {
-        BridgeNumberGenerator bridgeNumberGenerator= new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
-        List<String> newBridge = bridgeMaker.makeBridge(bridgeSize);
-        bridge.registerBridge(newBridge);
+    public void createAndRegisterBridge(int bridgeSize) {
+        bridge.registerBridge(bridge.createBridge(bridgeSize));
     }
 
     private void addBridgeMap(String bridgeSide) {

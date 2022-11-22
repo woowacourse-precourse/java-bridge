@@ -11,7 +11,7 @@ public class BridgeController {
         outputView.printAskingBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
 
-        bridgeGame.createBridge(bridgeSize);
+        bridgeGame.createAndRegisterBridge(bridgeSize);
     }
 
     public void moveBridge() {
