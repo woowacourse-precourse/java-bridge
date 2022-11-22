@@ -15,22 +15,19 @@ public class BridgeMaker {
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
-
+    
     /**
+     *
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 지나갈수 있는 칸이 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     // 10줄 초과 리팩토링 필요 //
     public List<String> makeBridge(int size) {
+        List<String> bridgeTable = List.of("D","U");
         List<String> bridge = new ArrayList<>(size);
         for(int i = 0 ; i < size; i++){
             int randomNumber = bridgeNumberGenerator.generate();
-            if(randomNumber == 0){
-                bridge.add("D");
-            }
-            if(randomNumber == 1){
-                bridge.add("U");
-            }
+            bridge.add(bridgeTable.get(randomNumber));
         }
         return bridge;
     }
