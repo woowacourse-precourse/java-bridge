@@ -1,5 +1,5 @@
 package bridge;
-import camp.nextstep.edu.missionutils.Console;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -12,6 +12,8 @@ public class Application {
         InputView inputView = new InputView();
         BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
         System.out.println(bm.makeBridge(inputView.bridge_size));
+
+        String mv = inputView.readMoving();
 
     }
 
