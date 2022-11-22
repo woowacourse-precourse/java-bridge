@@ -12,10 +12,6 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final int MIN_BRIDGE_LENGTH = 3;
-    private static final int MAX_BRIDGE_LENGTH = 20;
-    private static final String INVALID_BRIDGE_SIZE_MESSAGE = "다리 길이는 3이상 20이하의 정수여야 합니다.";
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -28,7 +24,6 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        validateBridgeSize(size);
         for (int i = 0; i < size; i++) {
             bridge.add(convertRandomNumberToBridgeCellType(bridgeNumberGenerator.generate()));
         }
@@ -40,11 +35,5 @@ public class BridgeMaker {
             return UP.getCellType();
         }
         return DOWN.getCellType();
-    }
-
-    private void validateBridgeSize(int input) {
-        if (input < MIN_BRIDGE_LENGTH || input > MAX_BRIDGE_LENGTH) {
-            throw new IllegalArgumentException(INVALID_BRIDGE_SIZE_MESSAGE);
-        }
     }
 }
