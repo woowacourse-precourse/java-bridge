@@ -14,15 +14,16 @@ import java.util.List;
 public class GameController {
     private static final BridgeGame bridgeGame = new BridgeGame();
 
-    private static int tryNumber;
+    private static int tryNumber = 0;
     private static boolean successOrFail = true;
     private static List<String> bridge;
-    private static int movingCount = 0;
 
     public void run() {
         startGame();
         makeBridge();
+
         crossBridge();
+
         endGame();
     }
 
@@ -32,35 +33,25 @@ public class GameController {
     }
 
     private void makeBridge() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
-        ViewMessage.printBridgeSizeInputRequest();
-
-        int bridgeSize = InputView.readBridgeSize();
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
     }
 
     public static void crossBridge() {
-        movingCount = 0;
         BridgeMap.reset();
-        crossBridgeProcess();
-    }
 
-    private static void crossBridgeProcess() {
         while (successOrFail) {
             moveAndCheck();
-            movingCount++;
 
-            if (movingCount >= bridge.size()) {
+            if (BridgeMap.getMovingCount() >= bridge.size()) {
                 break;
             }
         }
     }
 
     private static void moveAndCheck() {
-        String moving = getMoving();
-        String bridgeBlock = bridge.get(movingCount);
+        String moving = InputView.readMoving();;
+        String bridgeBlock = bridge.get(BridgeMap.getMovingCount());
 
         bridgeGame.move(moving, bridgeBlock);
         OutputView.printMap(BridgeMap.getUpRecord(), BridgeMap.getDownRecord());
@@ -68,15 +59,8 @@ public class GameController {
         moveWrongBlock(moving, bridgeBlock);
     }
 
-    private static String getMoving() {
-        ViewMessage.printMovingInputRequest();
-
-        return InputView.readMoving();
-    }
-
     private static void moveWrongBlock(String moving, String bridgeBlock) {
         if (!moving.equals(bridgeBlock)) {
-            ViewMessage.printGameCommandInputRequest();
             String gameCommand = InputView.readGameCommand();
 
             isGameCommandR(gameCommand);

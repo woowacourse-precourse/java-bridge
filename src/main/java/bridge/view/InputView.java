@@ -17,6 +17,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
         try {
+            ViewMessage.printBridgeSizeInputRequest();
             bridgeSize = Console.readLine();
             Validator.validateBridgeSize(bridgeSize);
         } catch (IllegalArgumentException e) {
@@ -32,6 +33,7 @@ public class InputView {
      */
     public static String readMoving() {
         try {
+            ViewMessage.printMovingInputRequest();
             moving = Console.readLine();
             Validator.validateMoving(moving);
         } catch (IllegalArgumentException e) {
@@ -47,6 +49,7 @@ public class InputView {
      */
     public static String readGameCommand() {
         try {
+            ViewMessage.printGameCommandInputRequest();
             gameCommand = Console.readLine();
             Validator.validateGameCommand(gameCommand);
         } catch (IllegalArgumentException e) {

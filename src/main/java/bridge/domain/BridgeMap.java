@@ -61,4 +61,8 @@ public class BridgeMap {
     public static List<String> getDownRecord() {
         return downRecord;
     }
+
+    public static int getMovingCount() {
+        return upRecord.size();
+    }
 }
