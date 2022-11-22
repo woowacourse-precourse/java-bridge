@@ -18,7 +18,7 @@ public class BridgeGameRunner {
             } while (bridgeController.isNotEnd());
             bridgeController.endGame();
         } catch (RuntimeException exception) {
-            System.out.println(exception.getMessage());
+            bridgeController.handleException(exception);
         }
     }
 }

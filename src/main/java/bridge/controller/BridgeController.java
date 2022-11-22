@@ -52,4 +52,7 @@ public class BridgeController {
         outputView.printResult(bridgeGame);
     }
 
+    public void handleException(RuntimeException exception) {
+        outputView.printExceptionMessage(exception);
+    }
 }
