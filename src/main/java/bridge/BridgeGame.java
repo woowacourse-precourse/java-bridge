@@ -8,12 +8,12 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
-    int playedCount = 1;
-    String GAME_STATE = "성공";
-    StringBuilder FIRST_LINE_DATA = new StringBuilder();
-    StringBuilder SECOND_LINE_DATA = new StringBuilder();
+    public int playedCount = 1;
+    public String GAME_STATE = "성공";
+    public StringBuilder FIRST_LINE_DATA = new StringBuilder();
+    public StringBuilder SECOND_LINE_DATA = new StringBuilder();
 
-    InputView iv = new InputView();
+    private static final InputView iv = new InputView();
 
     /**
      *

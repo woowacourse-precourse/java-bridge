@@ -5,17 +5,16 @@ import java.util.Objects;
 
 public class Application {
 
-    static InputView iv = new InputView();
-    static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    static BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    static BridgeGame bridgeGame = new BridgeGame();
-    static OutputView ov = new OutputView(bridgeGame);
+    private static final InputView iv = new InputView();
+    private static final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private static final BridgeGame bridgeGame = new BridgeGame();
+    private static final OutputView ov = new OutputView(bridgeGame);
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int bridgeSize = iv.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge);
         playGame(bridge);
     }
 
