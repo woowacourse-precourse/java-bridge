@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMatcher;
 import bridge.domain.GameResult;
+import bridge.validator.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -17,6 +18,34 @@ public class BridgeController {
         BridgeMatcher bridgeMatcher = makeBridgeMatcher();
         OutputView outputView = makeResultBridge();
         BridgeGame bridgeGame = startBridgeGame(bridge, bridgeMatcher);
+        while (!bridgeMatcher.isGameSuccess(bridge)) {
+            boolean isReStart = runGame(bridgeGame, outputView, bridgeMatcher);
+            if (!isReStart) break;
+        }
+        outputView.printResult(bridge, bridgeMatcher);
+    }
+
+    private boolean reStarGame(BridgeGame bridgeGame, OutputView outputView, BridgeMatcher bridgeMatcher) {
+        String command = InputView.readGameCommand();
+        if (command.equals(Validator.GAME_RESTART_COMMAND)) {
+            bridgeGame.retry();
+            runGame(bridgeGame, outputView, bridgeMatcher);
+        }
+        if (command.equals(Validator.GAME_QUIT_COMMAND)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean runGame(BridgeGame bridgeGame, OutputView outputView, BridgeMatcher bridgeMatcher) {
+        String moving = InputView.readMoving();
+        boolean isMatch = bridgeGame.move(moving);
+        outputView.printMap(moving, isMatch, bridgeMatcher);
+        boolean isReStart = true;
+        if (!bridgeMatcher.getLatestTry()) {
+            isReStart = reStarGame(bridgeGame, outputView, bridgeMatcher);
+        }
+        return isReStart;
     }
 
     private BridgeGame startBridgeGame(List<String> bridge, BridgeMatcher bridgeMatcher) {
