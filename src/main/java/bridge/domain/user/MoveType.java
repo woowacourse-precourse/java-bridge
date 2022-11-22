@@ -29,6 +29,13 @@ public enum MoveType {
         throw new IllegalArgumentException(UNSUPPORTED_TYPE_ERROR);
     }
 
+    public static MoveType convertMoveType(String inputType) {
+        return java.util.Arrays.stream(MoveType.values())
+                .filter(moveType -> moveType.compareTo(inputType))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(UNSUPPORTED_TYPE_ERROR));
+    }
+
     public boolean compareTo(String moveType) {
         return moveType.equals(this.type);
     }
