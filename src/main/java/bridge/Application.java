@@ -18,7 +18,7 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            System.out.println("다리 건너기 게임을 시작합니다.");
+            outputView.printStartMessage();
             int bridgeSize = inputView.readBridgeSize();
             Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
             UserState userState = new UserState();
