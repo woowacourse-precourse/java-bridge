@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.controller.BridgeGame;
 import bridge.view.InputView;
 
 public class Application {

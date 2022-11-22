@@ -1,5 +1,6 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeMaker;
 import bridge.model.LowerBridge;
 import bridge.model.UpperBridge;
 import bridge.view.OutputView;

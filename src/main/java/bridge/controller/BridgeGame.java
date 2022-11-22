@@ -1,6 +1,6 @@
-package bridge;
+package bridge.controller;
 
-import bridge.controller.InputRetryOrNot;
+import bridge.BridgeMaker;
 import bridge.model.LowerBridge;
 import bridge.model.UpperBridge;
 import bridge.view.InputView;
@@ -15,8 +15,8 @@ import static bridge.Application.bridgeLength;
  */
 public class BridgeGame {
     public static int allTryCount = 0;
-    List<String> bridge = new ArrayList<>();
-    List<String> bridgeCheck = new ArrayList<>();
+    public List<String> bridge = new ArrayList<>();
+    public List<String> bridgeCheck = new ArrayList<>();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
