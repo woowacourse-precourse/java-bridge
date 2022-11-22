@@ -1,8 +1,14 @@
 package bridge;
 
+import bridge.engine.BridgeGame;
+import bridge.engine.BridgeGameContext;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGameContext context = new BridgeGameContext(bridgeGame);
+
+        context.run();
     }
 }
