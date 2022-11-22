@@ -8,7 +8,7 @@ public enum Message {
     RESULT("최종 게임 결과"),
     GAME_SUCCESS("최종 게임 결과: 성공"),
     GAME_FAIL("최종 게임 결과: 실패"),
-    TRY_NUMBER("총 시도한 횟수" ),
+    TRY_NUMBER("총 시도한 횟수: "),
     START_MAP("["),
     END_MAP("]"),
     SPLIT_MAP("|"),
