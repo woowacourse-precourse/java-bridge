@@ -63,7 +63,7 @@
 - [x] 다리의 길이를 가져온다. #getBridgeLength()
 - [x] 사용자의 위치 정보의 갯수를 가져온다. #getNumberOfChoice()
 - [ ] 사용자가 다시 움직일수 있는지 판별한다. #moveAgain()
-- [ ] 사용자의 최근 위치가 동일 위치의 다리와 같은지 확인한다. #isSameRecentChoiceAndBridge()
+- [x] 사용자의 최근 위치가 동일 위치의 다리와 같은지 확인한다. #isSameRecentChoiceAndBridge()
 - [ ] 사용자의 현재 이동 정보가 다리 길이와 같은지 확인한다. #isAcrossLast()
 - [ ] 사용자가 모두 건넜는지 확인한다. #isClearGame()
 - [ ] 사용자가 모두 건넌것을 체크한다. #crossAllBridge()

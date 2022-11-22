@@ -59,4 +59,8 @@ public class BridgeGame {
         return player.getNumberOfChoice();
     }
 
+    private boolean isSameRecentChoiceAndBridge() {
+        return player.getLastChoice().equals(bridge.getBridgeByIndex(getNumberOfChoice() - 1));
+    }
+
 }
