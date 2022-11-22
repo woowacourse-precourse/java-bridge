@@ -1,12 +1,12 @@
 package bridge;
 
+import bridge.condition.Condition;
 import bridge.condition.ConditionGenerator;
 import bridge.enums.SystemOperation;
-import bridge.exception.NotAllowedDirectionException;
-import bridge.exception.NotAllowedSystemOperationException;
-import bridge.exception.OutOfRangeException;
 import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.List;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -31,41 +31,36 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        try {
-            String input = Console.readLine();
-            Validator.validateConditions(ConditionGenerator.getBridgeSizeCondition(), input);
-            return Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(new OutOfRangeException(e));
-            return readBridgeSize();
-        }
+        String input = getConditionSatisfiedInput(ConditionGenerator.getBridgeSizeCondition());
+
+        return Integer.parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        try {
-            String input = Console.readLine();
-            Validator.validateConditions(ConditionGenerator.getGameActionCondition(), input);
-            return input;
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(new NotAllowedDirectionException(e));
-            return readMoving();
-        }
+        return getConditionSatisfiedInput(ConditionGenerator.getGameActionCondition());
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public SystemOperation readGameCommand() {
-        try {
-            String input = Console.readLine();
-            Validator.validateConditions(ConditionGenerator.getSystemActionCondition(), input);
-            return SystemOperation.findByValue(input);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(new NotAllowedSystemOperationException(e));
-            return readGameCommand();
+        String input = getConditionSatisfiedInput(ConditionGenerator.getSystemActionCondition());
+
+        return SystemOperation.findByValue(input);
+    }
+
+    private String getConditionSatisfiedInput(List<Condition> conditions) {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                Validator.validateConditions(conditions, input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 }
