@@ -16,6 +16,11 @@ public class Application {
         printTitle();
         final BridgeSize bridgeSize = askBridgeSize();
         final BridgeGame bridgeGame = createBridgeGame(bridgeSize);
+        askMoving();
+    }
+
+    private static void askMoving() {
+        outputView.printMoving();
     }
 
     private static BridgeGame createBridgeGame(final BridgeSize bridgeSize) {
