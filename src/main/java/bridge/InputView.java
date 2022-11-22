@@ -1,5 +1,14 @@
 package bridge;
 
+import static bridge.Constant.GAME_QUIT;
+import static bridge.Constant.GAME_RETRY;
+import static bridge.Constant.MAX_SIZE_NUM;
+import static bridge.Constant.MIN_SIZE_NUM;
+import static bridge.Constant.MOVE_DOWN;
+import static bridge.Constant.MOVE_UP;
+
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,21 +17,43 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public int readBridgeSize() throws IllegalArgumentException {
+        Message.GAME_START.print();
+        Message.SIZE_INPUT.print();
+        try {
+            int size = Integer.parseInt(Console.readLine());
+            if (size < MIN_SIZE_NUM || size > MAX_SIZE_NUM) {
+                throw new IllegalArgumentException(Message.ERROR_SIZE.getMessage());
+            }
+            return size;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Message.ERROR_SIZE.getMessage());
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving() throws IllegalArgumentException {
+        Message.MOVE_INPUT.print();
+        String command = Console.readLine();
+        if (!command.equals(MOVE_UP) && !command.equals(MOVE_DOWN)) {
+            Message.ERROR_MOVE.print();
+            throw new IllegalArgumentException(Message.ERROR_MOVE.getMessage());
+        }
+        return command;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand() throws IllegalArgumentException {
+        Message.RETRY_INPUT.print();
+        String command = Console.readLine();
+        if (!command.equals(GAME_RETRY) && !command.equals(GAME_QUIT)) {
+            Message.ERROR_RETRY.print();
+            throw new IllegalArgumentException(Message.ERROR_RETRY.getMessage());
+        }
+        return command;
     }
 }
