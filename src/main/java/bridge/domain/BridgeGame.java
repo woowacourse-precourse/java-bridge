@@ -19,7 +19,6 @@ public class BridgeGame {
     }
 
     public List<List<String>> move(String answer, String moving) {
-        // TODO : 중복 제거해서 메서드 길이 줄일 것 / else 문 없애도록 노력할 것
         if (answer.equals(moving)) {
             return BridgeMapGenerator.generateRightAnswerMap(moving, bridgeMap);
         }
