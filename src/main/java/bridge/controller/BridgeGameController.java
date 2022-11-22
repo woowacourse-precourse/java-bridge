@@ -41,6 +41,15 @@ public class BridgeGameController {
         bridgeGame.initBridge(bridgeSize);
     }
 
+    private String getMoveCommand() {
+        String input;
+        do {
+            input = inputView.readMoveCommand();
+        } while (isDisallowInputMoveCommand(input));
+
+        return input;
+    }
+
     private boolean isDisallowInputMoveCommand(String input) {
         try {
             bridgeGame.validateInputMoveCommand(input);
