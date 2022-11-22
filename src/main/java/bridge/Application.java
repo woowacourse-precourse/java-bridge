@@ -13,7 +13,7 @@ public class Application {
     public static void main(String[] args) {
         Bridge bridge = setBridge();
         System.out.println(bridge.getFootholds().toString());
-        crossUntilEnd(bridge);
+        play(bridge);
         outputView.printResult(bridge, bridgeGame.isClear(bridge));
     }
 
@@ -28,19 +28,33 @@ public class Application {
         String input = inputView.readMovingUntilConstant();
         bridgeGame.move(bridge, input);
         outputView.printMap(bridge);
-        if (!bridgeGame.isCorrect(bridge)) {
-            String gameCommand = inputView.readGameCommandUntilConstant();
-            if (gameCommand.equals("R")) {
-                bridgeGame.retry(bridge);
+    }
+
+    private static void crossUntilEnd(Bridge bridge) {
+        while (bridgeGame.isCorrect(bridge)) {
+            cross(bridge);
+            if (!bridgeGame.isAllCrossed(bridge)) {
+                break;
             }
         }
     }
 
+    public static String getGameCommand(Bridge bridge) {
+        if (bridgeGame.isClear(bridge)) {
+            return "Q";
+        }
+        String gameCommand = inputView.readGameCommandUntilConstant();
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry(bridge);
+        }
+        return gameCommand;
+    }
 
-    private static void crossUntilEnd(Bridge bridge) {
-        while (!bridgeGame.isAllCrossed(bridge)) {
-            cross(bridge);
-            if (!bridgeGame.isCorrect(bridge)) {
+    private static void play(Bridge bridge) {
+        while (true) {
+            crossUntilEnd(bridge);
+            String gameCommand = getGameCommand(bridge);
+            if (!gameCommand.equals("R")) {
                 break;
             }
         }
