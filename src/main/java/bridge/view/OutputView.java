@@ -88,5 +88,11 @@ public class OutputView {
 
     }
 
+    private boolean checkDownAnswer(boolean isSameValueComputerAndUser) {
+        if(isSameValueComputerAndUser) return true;
+        return false;
+    }
+
+
 
 }
