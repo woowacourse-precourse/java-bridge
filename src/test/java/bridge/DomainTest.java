@@ -26,14 +26,14 @@ public class DomainTest {
     }
 
     @BeforeEach
-    void SetUp() {
+    void setUp() {
         inputView = new InputView();
         bridgeGame = new BridgeGame(bridgeSet());
     }
 
     @DisplayName("다리 길이 3 테스트")
     @Test
-    void Length3Test() {
+    void length3Test() {
         String testData = "3";
         InputStream in = new ByteArrayInputStream(testData.getBytes());
         System.setIn(in);
@@ -71,7 +71,7 @@ public class DomainTest {
 
     @DisplayName("재시작 종료 입력 받는 것 체크")
     @Test
-    void RestartOrQuitValue() {
+    void restartOrQuitValue() {
         assertThat(inputView.checkMessage("R", ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("PASS");
         assertThat(inputView.checkMessage("Q", ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("PASS");
         assertThat(inputView.checkMessage("dfddf", ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("ERROR");
@@ -79,31 +79,38 @@ public class DomainTest {
 
     @DisplayName("다리만큼 다왔으면 게임 오버")
     @Test
-    void GameOverCheck() {
+    void gameOverCheck() {
         bridgeGame.gameOverChecker(3);
         assertThat(bridgeGame.isGameOver()).isTrue();
     }
 
     @DisplayName("이동 틀렸을 때 체크")
     @Test
-    void MoveWrong() {
+    void moveWrong() {
         bridgeGame.move("D");
         assertThat(bridgeGame.isGameOver()).isTrue();
     }
 
     @DisplayName("이동 맞았을 때 체크")
     @Test
-    void MoveRight() {
+    void moveRight() {
         bridgeGame.move("U");
         assertThat(bridgeGame.isGameOver()).isFalse();
     }
 
     @DisplayName("게임 오버시 재시작 체크")
     @Test
-    void RestartCheck() {
+    void restartCheck() {
         assertThat(bridgeGame.retry("R")).isTrue();
         assertThat(bridgeGame.retry("F")).isFalse();
     }
 
+    @DisplayName("이겼는지 판단")
+    @Test
+    void winCheck() {
+        assertThat(bridgeGame.isWin()).isFalse();
+        bridgeGame = new BridgeGame(new ArrayList<>());
+        assertThat(bridgeGame.isWin()).isTrue();
+    }
 
 }
