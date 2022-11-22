@@ -11,11 +11,10 @@
 3. 이동에 실패하면 R/Q 명령어로 재시도/종료
 4. 다리 끝에 도착하면 게임 종료
 ```
-<br></br>
 
 ## 실행 영상
 ![BridgeGIF](https://user-images.githubusercontent.com/110909423/203241539-32e8f05d-b8f0-4f27-8048-c331e41b5af1.gif)
-
+<br></br>
 
 ## 기능 목록
 ### 입력
