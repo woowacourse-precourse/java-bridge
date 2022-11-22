@@ -33,4 +33,17 @@ public class ExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @DisplayName("재시작/종료 입력시 R나 Q 이외의 값을 입력한 경우 예외 처리 테스트")
+    @Test
+    void validateIsROrQTest() {
+        // given
+        String inputNotROrQ = "K";
+        InputView inputView = new InputView();
+
+        // when, then
+        assertThatThrownBy(() -> inputView.validateIsROrQ(inputNotROrQ))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
