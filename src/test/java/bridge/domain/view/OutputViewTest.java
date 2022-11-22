@@ -60,7 +60,6 @@ class OutputViewTest {
         correctInfos.add(CorrectInfo.createCorrectInfo("D", "D"));
         //when
         String result = outputView.printResult(correctInfos, success, count);
-
         //then
         assertThat(result).contains("게임 성공 여부: 실패\n총 시도한 횟수: 3");
     }
