@@ -3,8 +3,8 @@ package bridge.view;
 import java.util.List;
 
 public class BridgeView {
-    private InputView inputView;
-    private OutputView outputView;
+    final private InputView inputView;
+    final private OutputView outputView;
 
     public BridgeView() {
         this.inputView = new InputView();

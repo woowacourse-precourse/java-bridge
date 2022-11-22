@@ -4,7 +4,7 @@ import bridge.util.Validater;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private Validater validater = new Validater();
+    private final Validater validater = new Validater();
 
     public int readBridgeSize() {
         String input = Console.readLine();

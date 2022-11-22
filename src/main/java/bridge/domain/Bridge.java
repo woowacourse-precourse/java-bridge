@@ -1,15 +1,13 @@
 package bridge.domain;
 
 import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.util.MoveResult;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
+    final private List<String> userPath;
     private List<String> bridge;
-    private List<String> userPath;
     private int tryCount;
 
     public Bridge() {

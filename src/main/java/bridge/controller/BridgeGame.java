@@ -8,8 +8,8 @@ import bridge.view.BridgeView;
 import java.util.List;
 
 public class BridgeGame {
-    BridgeView view;
-    Bridge domain;
+    final BridgeView view;
+    final Bridge domain;
 
     public BridgeGame(BridgeView view, Bridge domain) {
         this.view = view;
