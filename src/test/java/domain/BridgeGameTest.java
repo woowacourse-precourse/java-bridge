@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameTest {
 
@@ -23,7 +22,7 @@ public class BridgeGameTest {
     private static BridgeGameService bridgeGameService;
 
     @BeforeEach
-    void beforeEach() {
+    void setUp() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(20));
         bridgeGameService = new BridgeGameService(bridgeGame);
