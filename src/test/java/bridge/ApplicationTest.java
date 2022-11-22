@@ -310,6 +310,31 @@ class ApplicationTest extends NsTest {
     }
     //endregion
 
+    //region 최종 결과 출력 단위 테스트 케이스
+    @Test
+    void 최종결과출력_기능테스트(){
+        bridgeResult = new BridgeResult(
+                new LinkedList<>(List.of("O", " ", "O")),
+                new LinkedList<>(List.of(" ", "O", " "))
+        );
+        String result = "실패";
+        if (bridgeResult.getLastResult().equals("O")){
+            result = "성공";
+        }
+        outputView.printResult(bridgeResult, result, 3);
+        assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   | O ]",
+                "[   | O |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 3"
+        );
+        int upSideIndex = output().indexOf("[ O |   | O ]");
+        int downSideIndex = output().indexOf("[   | O |   ]");
+        assertThat(upSideIndex).isLessThan(downSideIndex);
+    }
+    //endregion
+
     @Test
     void 이동할_칸_입력_기능테스트_Q(){
         String input = "Q";
