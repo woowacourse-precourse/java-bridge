@@ -10,7 +10,15 @@ import java.util.Map;
 public class BridgeGame {
 
     public void run() {
-        move(createBridge());
+        List<String> bridge = createBridge();
+        runGameSystem(bridge);
+    }
+
+    public void runGameSystem(List<String> bridge) {
+        if (move(bridge, "O"))
+            return;
+        if(willRetry())
+            retry(bridge);
     }
 
     private List<String> createBridge() {
@@ -24,15 +32,26 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private void move(List<String> bridge) {
-        Map<String, String> gameResult = new HashMap<>();
-        initializeGameResult(gameResult);
-        for (int space = 0; space < bridge.size(); space++) {
-            String direction = bridge.get(space);
-            String result = compareMoving(direction);
-            addGameResult(gameResult, direction, result);
-            createPrintMap(gameResult);
+
+    private boolean move(List<String> bridge, String result) {
+        Map<String, String> gameResult = initializeGameResult(new HashMap<>());
+        for (int space = 0; space < bridge.size() && canMove(result); space++) {
+            result = compareMoving(bridge.get(space));
+            updateBridgeOverTime(gameResult, bridge.get(space), result);
         }
+        return isWin(gameResult, result);
+    }
+
+    private Map<String, String> updateBridgeOverTime(Map<String, String> gameResult, String direction, String result) {
+        addGameResult(gameResult, direction, result);
+        createPrintMap(gameResult);
+        return gameResult;
+    }
+
+    private boolean canMove(String result) {
+        if (result.equals("X"))
+            return false;
+        return true;
     }
 
     private String compareMoving(String eachBridgeSpace) {
@@ -77,6 +96,20 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    private void retry(List<String> bridge) {
+        runGameSystem(bridge);
+    }
+
+    private boolean isWin(Map<String, String> gameResult, String result) {
+        if (result.equals("O"))
+            return true;
+        return false;
+    }
+
+    private boolean willRetry() {
+        String command = new GameCommand().get();
+        if (command.equals("R"))
+            return true;
+        return false;
     }
 }
