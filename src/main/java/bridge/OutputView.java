@@ -29,10 +29,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(Map<String,List<String>> bridgeMap,int index){
-        for(int i=0;i<bridgeMap.size();i++){
+        Iterator<String> keys = bridgeMap.keySet().iterator();
+        while(keys.hasNext()){
+            String command = keys.next();
             System.out.print(BRIDGE_LEFT);
             for(int j=0;j<index+1;j++){
-                System.out.print(bridgeMap.get(i).get(j));
+                System.out.print(bridgeMap.get(command).get(j));
                 if(j!=index){
                     System.out.print(BRIDGE_MIDDLE);
                 }
