@@ -1,9 +1,7 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BridgeController {
+
     private final BridgeGame bridgeGame = new BridgeGame();
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -27,22 +25,29 @@ public class BridgeController {
         }
     }
 
-    public boolean restartBridgeGame() {
+    public void finishBridgeGame() {
+        outputView.printResult(bridgeGame.getFinishBridgeMap(), bridgeGame.getChallengeResultToString(), bridgeGame.getChallengeCount());
+    }
+
+    public boolean retryBridgeGame() {
         outputView.printGameCommand();
         String gameCommand = inputView.readGameCommand();
         BridgeGameCommandType gameCommandType = BridgeGameCommandType.getFindByGameCommand(gameCommand);
 
         bridgeGame.retry(gameCommandType);
 
-        return gameCommandType.getIsRestart();
+        return gameCommandType.getIsRetry();
     }
 
     public void executeBridgeGame() {
         startBridgeGame();
-        boolean isRestart = true;
-        while(isRestart) {
+        boolean isRetry = true;
+        while(isRetry) {
             moveBridge();
-            isRestart = restartBridgeGame();
+            if(bridgeGame.getChallengeResult()) {
+               break;
+            }
+            isRetry = retryBridgeGame();
         }
     }
 }

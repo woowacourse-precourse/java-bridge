@@ -7,9 +7,12 @@ import java.util.List;
  * InputView와 OutputView는 사용할 수 없다.
  */
 public class BridgeGame {
-    private int compareCount = 0;
 
-    private final static Bridge bridge = new Bridge();
+    private int compareCount = 0;
+    private int challengeCount = 1;
+    private boolean challengeResult = false;
+
+    private final Bridge bridge = new Bridge();
     private BridgeMap bridgeMap = new BridgeMap();
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -18,7 +21,7 @@ public class BridgeGame {
      */
     public BridgeMap move(String bridgeSide) {
         addBridgeMap(bridgeSide);
-        System.out.println(bridge.getBridge());
+        compareCount++;
 
         return bridgeMap;
     }
@@ -29,20 +32,29 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(BridgeGameCommandType gameCommandType) {
-        if(gameCommandType.getIsRestart()) {
+        if(gameCommandType.getIsRetry()) {
             bridgeMap = new BridgeMap();
             compareCount = 0;
+            challengeCount++;
             return;
         }
-        //TODO: 이부분은 최종 게임 결과를 반환해야함
     }
 
     public boolean isFinish(String bridgeSide) {
-        if(bridge.isLastCount(compareCount) || !bridge.isMatchBothIndexAndString(bridgeSide, compareCount)) {
+        if(bridge.isLastCount(compareCount) || !bridge.isMatchBothIndexAndString(bridgeSide, compareCount-1)) {
+            if(bridge.isLastCount(compareCount) && bridge.isMatchBothIndexAndString(bridgeSide, compareCount-1)) {
+                challengeResult = true;
+            }
             return false;
         }
-        compareCount++;
         return true;
+    }
+
+    public String getChallengeResultToString() {
+        if(challengeResult == true) {
+            return "성공";
+        }
+        return "실패";
     }
 
     public void createBridge(int bridgeSize) {
@@ -61,6 +73,16 @@ public class BridgeGame {
         bridgeMap.addLowerBridge(bridge.isMatchBothIndexAndString(bridgeSide, compareCount));
         return;
     }
+
+    public BridgeMap getFinishBridgeMap() {
+        return bridgeMap;
+    }
+
+    public Integer getChallengeCount() {
+        return challengeCount;
+    }
+
+    public boolean getChallengeResult() { return challengeResult; }
 
 
 }

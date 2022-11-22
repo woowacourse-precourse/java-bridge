@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private final static int ONE = 1;
 
     private final List<String> bridge;
 
@@ -24,7 +23,7 @@ public class Bridge {
     }
 
     public boolean isLastCount(int count) {
-        if(count == bridge.size() - ONE) {
+        if(count == bridge.size()) {
             return true;
         }
         return false;

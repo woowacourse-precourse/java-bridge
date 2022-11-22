@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BridgeMap {
+
     private final static int ONE = 1;
     private final static String CORRECT = "O ";
     private final static String INCORRECT = "X ";

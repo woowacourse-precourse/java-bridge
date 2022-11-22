@@ -3,19 +3,20 @@ package bridge;
 import java.util.Arrays;
 
 public enum BridgeGameCommandType {
+
     RESTART(true, "R"),
     QUIT(false, "Q");
 
-    private final boolean isRestart;
+    private final boolean isRetry;
     private final String gameCommand;
 
     BridgeGameCommandType(final boolean isRestart, final String gameCommand) {
-        this.isRestart = isRestart;
+        this.isRetry = isRestart;
         this.gameCommand = gameCommand;
     }
 
-    public boolean getIsRestart() {
-        return this.isRestart;
+    public boolean getIsRetry() {
+        return this.isRetry;
     }
 
     public String getGameCommand() {

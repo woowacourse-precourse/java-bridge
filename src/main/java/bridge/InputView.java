@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
     private final static int MIN_BRIDGE_SIZE = 3;
     private final static int MAX_BRIDGE_SIZE = 20;
 
@@ -19,7 +20,7 @@ public class InputView {
             validateInputBridgeSize(input);
         } catch(IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.BRIDGE_SIZE_ERROR);
-            readBridgeSize();
+            return readBridgeSize();
         }
         return Integer.parseInt(input);
     }
@@ -33,7 +34,7 @@ public class InputView {
             validateInputBridgeSide(input);
         } catch(IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.BRIDGE_MOVING_ERROR);
-            readMoving();
+            return readMoving();
         }
         return input;
     }
@@ -47,7 +48,7 @@ public class InputView {
             validateInputGameCommand(input);
         } catch(IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.GAME_COMMAND_ERROR);
-            readGameCommand();
+            return readGameCommand();
         }
         return input;
     }

@@ -3,6 +3,7 @@ package bridge;
 import java.util.Arrays;
 
 public enum BridgeSideType {
+
     UPPER_SIDE(1, "U"),
     LOWER_SIDE(0, "D");
 
