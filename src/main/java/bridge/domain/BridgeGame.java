@@ -14,9 +14,9 @@ public class BridgeGame {
     int bridgeSize;
     int blockNumber;
 
-    public BridgeGame(int bridgeSize){
-        player = new Player();
-        bridge = new Bridge(bridgeSize);
+    public BridgeGame(Player player, Bridge bridge, int bridgeSize){
+        this.player = player;
+        this.bridge = bridge;
         this.bridgeSize = bridgeSize;
         blockNumber = 0;
     }
@@ -42,19 +42,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String playerRetry) {
-        if(playerRetry == PLAYER_RETRY){
-            player = new Player();
-            blockNumber = 0;
-        }
-        if(playerRetry == PLAYER_QUIT){
-            System.out.println("종료");
-            exit(0);
-        }
+    public void retry() {
+        player.tryAgain();
+        blockNumber = 0;
     }
 
     public void success(){
         System.out.println("성공");
-        exit(0);
     }
 }
