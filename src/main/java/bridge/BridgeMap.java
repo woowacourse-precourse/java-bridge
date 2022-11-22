@@ -45,4 +45,11 @@ public class BridgeMap {
         }
         updateChooseLower(correct);
     }
+
+    public void refreshMap() {
+        bridgeMap.clear();
+        for (int i = 0; i < 2; i++) {
+            bridgeMap.add(List.of(START,END));
+        }
+    }
 }
