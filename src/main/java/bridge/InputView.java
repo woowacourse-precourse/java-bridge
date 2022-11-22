@@ -22,7 +22,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = Console.readLine();
+        validateMoving(moving);
+        return moving;
     }
 
     /**
@@ -37,11 +39,23 @@ public class InputView {
      */
     private void validateBridgeSize(String bridgeSize) {
         if (Pattern.matches("^[0-9]+$", bridgeSize)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력하십시오.");
+            throw new IllegalArgumentException("[ERROR] 숫자만을 입력하십시오.");
         }
         int number = Integer.parseInt(bridgeSize);
         if (number < 3 || number > 20) {
             throw new IllegalArgumentException("[ERROR] 3 이상 20 이하의 값을 입력하십시오.");
+        }
+    }
+
+    /**
+     * 사용자가 이동할 칸이 올바르게 입력되었는지 검사한다.
+     */
+    private void validateMoving(String moving) {
+        if (moving.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 하나의 문자를 입력하십시오.");
+        }
+        if (!moving.equals("U") && !moving.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] 입력할 수 있는 값은 U(위 칸)와 D(아래 칸)로 제한됩니다.");
         }
     }
 }
