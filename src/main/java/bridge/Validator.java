@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.ErrorMessage.*;
+
 public class Validator {
     private static final String UP = "U";
     private static final String DOWN = "D";
@@ -10,7 +12,7 @@ public class Validator {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_BRIDGE_SIZE.getMessage());
         }
     }
 
@@ -18,13 +20,13 @@ public class Validator {
         if (UP.equals(moving) || DOWN.equals(moving)) {
             return moving;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(INVALID_MOVING_VALUE.getMessage());
     }
 
     public static String validateGameCommand(String gameCommand) {
         if (RESTART.equals(gameCommand) || QUIT.equals(gameCommand)) {
             return gameCommand;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(INVALID_GAME_COMMAND_VALUE.getMessage());
     }
 }
