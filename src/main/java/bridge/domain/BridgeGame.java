@@ -12,8 +12,8 @@ import java.util.stream.IntStream;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> bridge;
-    private List<String> myBridge;
+    private final List<String> bridge;
+    private final List<String> myBridge;
     private int trial;
 
     public BridgeGame(List<String> bridge) {
