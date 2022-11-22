@@ -11,6 +11,7 @@ public class BridgeGame {
     private static final int DOWN_INDEX = 1;
     private static final String MOVE_UP = "U";
     private static final int MAX_HEIGHT = 2;
+    private static final String BLANK = "   ";
 
     private final int size;
     private final List<String> bridge;
@@ -62,7 +63,7 @@ public class BridgeGame {
         for (int height = 0; height < MAX_HEIGHT; height++) {
             List<String> row = new ArrayList<>();
             for (int width = 0; width < size; width++) {
-                row.add("   ");
+                row.add(BLANK);
             }
             bridgeMap.add(row);
         }
