@@ -16,7 +16,7 @@ public class BridgeGameService {
     private final OutputView outputView = new OutputView();
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    private final BridgeGame bridgeGame = new BridgeGame(inputView);
+    private final BridgeGame bridgeGame = new BridgeGame();
     private Player player;
     private Bridge bridge;
 
@@ -26,21 +26,24 @@ public class BridgeGameService {
         List<BridgeShapeMatcher> bridgeShapeMatchers = new ArrayList<>();
         player = new Player(bridgeShapeMatchers);
 
-        System.out.println(bridge.getBridgeSpace());
-
     }
 
     public void playLoop() {
+        String gameCommand = null;
         do {
             player.addTryNumber();
             playerMoving();
-        } while (bridgeGame.retry(player));
+            if(!player.isSuccess()){
+                gameCommand = inputView.readGameCommand();
+            }
+        } while (bridgeGame.retry(player,gameCommand));
     }
 
     private void playerMoving() {
         boolean isSuccess = true;
         while (!player.isSuccess() && isSuccess) {
-            isSuccess = bridgeGame.move(bridge, player);
+            String input = inputView.readMoving();
+            isSuccess = bridgeGame.move(input,bridge, player);
             outputView.printMap(player);
             if (bridge.getBridgeSpace().size() == player.getBridgeShapeMatcher().size()) {
                 player.success();
