@@ -49,61 +49,6 @@ public class OutputView {
         appendLast(gameResult);
     }
 
-
-    private void appendLast(GameResult result) {
-        ViewStatus status = result.getNextViewStatus();
-        List<String> bridge = result.getResult();
-        String lastPosition = bridge.get(bridge.size() - 1);
-        if (status == ViewStatus.DETERMINE_CONTINUE) {
-            appendLastWhenWrong(lastPosition);
-            return;
-        }
-        appendLastWhenCorrect(lastPosition);
-    }
-
-    private void appendLastWhenCorrect(String lastPosition) {
-        appendUpLastWhenCorrect(lastPosition);
-        appendDownLastWhenCorrect(lastPosition);
-    }
-
-    private void appendUpLastWhenCorrect(String lastPosition) {
-        if (lastPosition.equals("U")) {
-            topLine.append(CORRECT).append(CLOSE_BRACKET);
-            return;
-        }
-        topLine.append(SPACE).append(CLOSE_BRACKET);
-    }
-
-    private void appendDownLastWhenCorrect(String lastPosition) {
-        if (lastPosition.equals("D")) {
-            bottomLine.append(CORRECT).append(CLOSE_BRACKET);
-            return;
-        }
-        bottomLine.append(SPACE).append(CLOSE_BRACKET);
-    }
-
-
-    private void appendLastWhenWrong(String lastPosition) {
-        appendUpLastWhenWrong(lastPosition);
-        appendDownLastWhenWrong(lastPosition);
-    }
-
-    private void appendDownLastWhenWrong(String lastPosition) {
-        if (lastPosition.equals("U")) {
-            bottomLine.append(WRONG).append(CLOSE_BRACKET);
-            return;
-        }
-        bottomLine.append(SPACE).append(CLOSE_BRACKET);
-    }
-
-    private void appendUpLastWhenWrong(String lastPosition) {
-        if (lastPosition.equals("D")) {
-            topLine.append(WRONG).append(CLOSE_BRACKET);
-            return;
-        }
-        topLine.append(SPACE).append(CLOSE_BRACKET);
-    }
-
     private void appendExceptLast(GameResult gameResult) {
         List<String> bridge = gameResult.getResult();
         topLine.append(OPEN_BRACKET);
@@ -129,6 +74,59 @@ public class OutputView {
             return;
         }
         bottomLine.append(SPACE).append(SEPARATOR);
+    }
+
+    private void appendLast(GameResult result) {
+        ViewStatus status = result.getNextViewStatus();
+        List<String> bridge = result.getResult();
+        String lastPosition = bridge.get(bridge.size() - 1);
+        if (status == ViewStatus.DETERMINE_CONTINUE) {
+            appendLastWhenWrong(lastPosition);
+            return;
+        }
+        appendLastWhenCorrect(lastPosition);
+    }
+
+    private void appendLastWhenWrong(String lastPosition) {
+        appendUpLastWhenWrong(lastPosition);
+        appendDownLastWhenWrong(lastPosition);
+    }
+
+    private void appendUpLastWhenWrong(String lastPosition) {
+        if (lastPosition.equals("D")) {
+            topLine.append(WRONG).append(CLOSE_BRACKET);
+            return;
+        }
+        topLine.append(SPACE).append(CLOSE_BRACKET);
+    }
+
+    private void appendDownLastWhenWrong(String lastPosition) {
+        if (lastPosition.equals("U")) {
+            bottomLine.append(WRONG).append(CLOSE_BRACKET);
+            return;
+        }
+        bottomLine.append(SPACE).append(CLOSE_BRACKET);
+    }
+
+    private void appendLastWhenCorrect(String lastPosition) {
+        appendUpLastWhenCorrect(lastPosition);
+        appendDownLastWhenCorrect(lastPosition);
+    }
+
+    private void appendUpLastWhenCorrect(String lastPosition) {
+        if (lastPosition.equals("U")) {
+            topLine.append(CORRECT).append(CLOSE_BRACKET);
+            return;
+        }
+        topLine.append(SPACE).append(CLOSE_BRACKET);
+    }
+
+    private void appendDownLastWhenCorrect(String lastPosition) {
+        if (lastPosition.equals("D")) {
+            bottomLine.append(CORRECT).append(CLOSE_BRACKET);
+            return;
+        }
+        bottomLine.append(SPACE).append(CLOSE_BRACKET);
     }
 
     /**
