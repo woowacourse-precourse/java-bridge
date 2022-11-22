@@ -19,10 +19,10 @@
 - [x] BridgeGameStatus : 게임 상태 정보 Enum
     - [x] 게임 상태 정의(진행중,성공,실패)
 
-- [ ] BridgeMoveCommand : 게임 이동 명령 정보 Enum
-    - [ ] 이동 명령 정의(위=U,아래=D)
-    - [ ] 명령어로 탐색
-    - [ ] 순서로 탐색
+- [x] BridgeMoveCommand : 게임 이동 명령 정보 Enum
+    - [x] 이동 명령 정의(위=U,아래=D)
+    - [x] 명령어로 탐색
+    - [x] 순서로 탐색
 
 - [ ] BridgeRetryCommand : 재시도 명령 정보 Enum
     - [ ] 명령 정의(재시도=R,나가기=Q)
