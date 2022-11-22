@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.domain.constants.BlockSymbol;
 import bridge.domain.constants.Constant;
-import bridge.domain.constants.ErrorMessage;
+import bridge.domain.constants.DomainError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class BridgeMaker {
 
     private void validateSize(int size){
         if (size < Constant.MINIMUM_LENGTH_INCLUSIVE.getValue() || size > Constant.MAXIMUM_LENGTH_INCLUSIVE.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(DomainError.BRIDGE_LENGTH_OUT_OF_RANGE.getMessage());
         }
     }
 

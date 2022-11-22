@@ -1,7 +1,6 @@
 package bridge.view;
 
-import bridge.domain.constants.BlockSymbol;
-import bridge.domain.constants.ErrorMessage;
+import bridge.domain.constants.DomainError;
 import bridge.view.text.OutputText;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(String errorMessage){
-        System.out.println(ErrorMessage.ERROR_HEAD.getMessage() + errorMessage);
+        System.out.println(DomainError.ERROR_HEAD.getMessage() + errorMessage);
     }
 
 }
