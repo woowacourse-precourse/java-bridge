@@ -100,4 +100,8 @@ public class BridgeController {
             downBridge.replace(downBridge.length() - 1, downBridge.length(), "|");
         }
     }
+
+    private void printBuilder() {
+        outputView.printMap(upBridge, downBridge);
+    }
 }
