@@ -51,14 +51,6 @@ public class BridgeGame {
         return "성공";
     }
 
-    private boolean judgementFail(){
-        if (this.ox == "X"){
-            return true;
-        }
-        return false;
-    }
-
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -74,6 +66,10 @@ public class BridgeGame {
         makeMap(upDownUserInput);
     }
 
+    private boolean compare(String bridgeAnswer, String upDownUserInput ){
+        return bridgeAnswer.equals(upDownUserInput);
+    }
+
     private CorrectWrong selectFromOrigin(boolean oxResult) {
         if (oxResult = true) {
             return CorrectWrong.CORRECT;
@@ -81,9 +77,16 @@ public class BridgeGame {
         return CorrectWrong.WRONG;
     }
 
-    private boolean compare(String bridgeAnswer, String upDownUserInput ){
-        return bridgeAnswer.equals(upDownUserInput);
+
+    private boolean judgementFail(){
+        if (this.ox == "X"){
+            return true;
+        }
+        return false;
     }
+
+
+    /** 여기부턴 map 만들어지는 메소드 **/
 
 
     private void makeAddWord(int order) {
@@ -104,7 +107,7 @@ public class BridgeGame {
             this.mapUp.add(mapUp.size() - 1, emptyContour);
             this.mapDown.add(mapDown.size() - 1, addOxContour);
         }
-        this.str = String.join("", mapUp) + "\n" + String.join("", mapDown);
+        this.str = String.join("", mapUp) + "\n" + String.join("", mapDown) +"\n";
     }
 
     public void resetMap() {
@@ -113,26 +116,19 @@ public class BridgeGame {
     }
 
 
-    public boolean retryJudgeMethod(String successFail) {
-        if (successFail == "성공"){
-            return false;
-        }
-        String retryOrNotInput = inputView.readGameCommand();
-        if (retryOrNotInput == "Q"){
-            return false;
-        }
-        return true;
-    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        String retryUserInput = inputView.readGameCommand();
-        if (retryUserInput.equals("R")) {
-            return true;
+    public boolean retry(String successFail) {
+        if (successFail.equals("성공")){
+            return false;
         }
-        return false;
+        String retryUserInput = inputView.readGameCommand();
+        if (retryUserInput.equals("Q")) {
+            return false;
+        }
+        return true;
     }
 }

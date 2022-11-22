@@ -31,7 +31,7 @@ public class Application {
         do{
             bridgeGame.resetMap();
             successFail = bridgeGame.mainGame(bridgeList);
-            retryJudge = bridgeGame.retryJudgeMethod(successFail);
+            retryJudge = bridgeGame.retry(successFail);
             tryNumber++;
         }while(retryJudge);
     }
