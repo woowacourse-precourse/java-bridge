@@ -3,6 +3,7 @@
     │       └── bridge
     │           ├── Application.java
     │           ├── BridgeGameProgram.java
+    │           ├── BridgeMaker.java
     │           ├── BridgeNumberGenerator.java
     │           ├── BridgeRandomNumberGenerator.java
     │           ├── io
@@ -11,8 +12,7 @@
     │           │   └── OutputView.java
     │           ├── model
     │           │   ├── Bridge.java
-    │           │   ├── BridgeGame.java
-    │           │   └── BridgeMaker.java
+    │           │   └── BridgeGame.java
     │           └── utils
     │               ├── BridgeDirection.java
     │               ├── GameCommand.java
