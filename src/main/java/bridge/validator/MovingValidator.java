@@ -7,7 +7,7 @@ public class MovingValidator {
 
     public static String validate(String input) {
         if (!input.matches(MOVING_REGEX)) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_BRIDGE_SIZE.getMessage());
+            throw new IllegalArgumentException(ErrorCode.INVALID_MOVING.getMessage());
         }
         return input;
     }
