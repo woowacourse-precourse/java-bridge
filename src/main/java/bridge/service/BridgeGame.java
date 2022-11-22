@@ -1,5 +1,7 @@
 package bridge.service;
 
+import bridge.constant.ErrorCode;
+import bridge.constant.MatchConst;
 import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.ui.InputView;
@@ -23,6 +25,16 @@ public class BridgeGame {
         return isTrue;
     }
 
-    public void retry() {
+    public boolean retry(Player player) {
+        if (player.isSuccess()) return false;
+        String gameCommand = inputView.readGameCommand();
+        if (Objects.equals(gameCommand, MatchConst.Button.RETRY_BOTTON)) {
+            player.removeAllMatcher();
+            return true;
+        }
+        if (Objects.equals(gameCommand, MatchConst.Button.END_BOTTON)) {
+            return false;
+        }
+        throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());
     }
 }

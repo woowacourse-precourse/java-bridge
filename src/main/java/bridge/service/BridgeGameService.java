@@ -36,7 +36,7 @@ public class BridgeGameService {
         do {
             player.addTryNumber();
             playerMoving();
-        } while (isRetry());
+        } while (bridgeGame.retry(player));
     }
 
     private void playerMoving() {
@@ -48,19 +48,6 @@ public class BridgeGameService {
                 player.success();
             }
         }
-    }
-
-    private boolean isRetry() {
-        if (player.isSuccess()) return false;
-        String gameCommand = inputView.readGameCommand();
-        if (Objects.equals(gameCommand, MatchConst.Button.RETRY_BOTTON)) {
-            player.removeAllMatcher();
-            return true;
-        }
-        if (Objects.equals(gameCommand, MatchConst.Button.END_BOTTON)) {
-            return false;
-        }
-        throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());
     }
 
     public void printResult() {
