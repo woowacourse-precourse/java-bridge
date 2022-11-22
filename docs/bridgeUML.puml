@@ -10,6 +10,7 @@ class InputView
 class OutputView
 class Application
 
+
 BridgeController -up-> BridgeGame
 
 BridgeController -up-> BridgeView
@@ -97,9 +98,16 @@ class InputView{
 }
 
 class OutputView{
+    - {static} EMPTY
     - {static} RESULT_MESSAGE
+    - {static} BRIDGE_MESSAGE
     + printMap()
     + printResult()
+    + getState()
+    + getDirection()
+    + updateMap()
+    + drawMap()
+    + drawResult()
 }
 
 class ExceptionHandler{
