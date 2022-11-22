@@ -18,7 +18,6 @@ public class InputView {
                 break;
             } catch (NumberFormatException e) {
                 out(ExceptionMessage.NOT_INTEGER);
-                throw new NumberFormatException();
             }
         }
         blank();
