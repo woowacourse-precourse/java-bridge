@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ public class BridgeGame {
     }
 
     public List<List<String>> getMap() {
-        return bridgeMap.getBridgeMap();
+        return Collections.unmodifiableList(bridgeMap.getBridgeMap());
     }
 
 
