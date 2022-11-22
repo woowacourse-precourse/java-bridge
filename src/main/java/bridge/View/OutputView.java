@@ -12,22 +12,22 @@ import java.util.List;
 public class OutputView {
 
     public static void printBridgeLengthMsg() {
-        System.out.println(BRIDGE_LENGTH_MSG.getMsg());
+        System.out.println("\n"+BRIDGE_LENGTH_MSG.getMsg());
     }
     public static void printStartGameMsg() {
         System.out.println(START_MSG.getMsg());
     }
     public static void printRetryQuitMsg() {
-        System.out.println(CHOOSE_RETRY_QUIT_MSG.getMsg());
+        System.out.println("\n"+CHOOSE_RETRY_QUIT_MSG.getMsg());
     }
     public static void printResultMsg() {
-        System.out.println(RESULT_MSG.getMsg());
+        System.out.println("\n"+RESULT_MSG.getMsg());
     }
     public static void printMovingMsg() {
-        System.out.println(CHOOSE_UPDOWN_MSG.getMsg());
+        System.out.println("\n"+CHOOSE_UPDOWN_MSG.getMsg());
     }
     public static void printIsSuccessMsg() {
-        System.out.print(ISSUCCESS_MSG.getMsg());
+        System.out.print("\n"+ISSUCCESS_MSG.getMsg());
     }
 
     /**
