@@ -40,4 +40,8 @@ public class BridgeGame {
     public boolean isFailed() {
         return player.isInWater();
     }
+
+    public List<Direction> getRoute() {
+        return player.getRoute();
+    }
 }

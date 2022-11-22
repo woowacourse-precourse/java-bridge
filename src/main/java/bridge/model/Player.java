@@ -27,4 +27,8 @@ public class Player {
     public boolean isInWater() {
         return inWater;
     }
+
+    public List<Direction> getRoute() {
+        return route;
+    }
 }
