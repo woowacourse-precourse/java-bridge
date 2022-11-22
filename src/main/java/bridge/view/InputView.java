@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private final String INPUT_MOVING_POSITION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String INPUT_RESTART_OR_END_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private final String LINE_BREAK = "\n";
 
@@ -39,6 +40,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(INPUT_RESTART_OR_END_COMMAND_MESSAGE);
+
+        String restartOrQuitCommand = Console.readLine();
+
+        return restartOrQuitCommand;
     }
 }

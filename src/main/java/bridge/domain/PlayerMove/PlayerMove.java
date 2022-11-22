@@ -1,6 +1,7 @@
 package bridge.domain.PlayerMove;
 
 import bridge.domain.gameManagement.BridgeState;
+import bridge.domain.gameOver.GameRestartOrQuit;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -21,6 +22,14 @@ public class PlayerMove {
         }
     }
 
+    public static int handlePlayerMove(int currentLocation, List<String> bridge, List<String> currentBridge) {
+        currentLocation = crossBridgeUntilFailOrEnd(currentLocation, bridge, currentBridge);
+
+        String restartOrEndCommand = handleIntermediateFailure(currentLocation, bridge);
+
+        return currentLocation;
+    }
+
     public static int crossBridgeUntilFailOrEnd (int currentLocation, List<String> bridge, List<String> currentBridge) {
         while (currentLocation < bridge.size()) {
             String movingPosition = takeMovingPosition();
@@ -32,6 +41,15 @@ public class PlayerMove {
             currentLocation = moveSuccess(currentBridge, movingPosition, currentLocation);
         }
         return currentLocation;
+    }
+
+    public static String handleIntermediateFailure(int currentLocation, List<String> bridge) {
+        String gameRestartOrQuitCommand = null;
+
+        if (currentLocation <= bridge.size()) {
+            gameRestartOrQuitCommand = GameRestartOrQuit.takeGameRestartOrQuitCommand();
+        }
+        return gameRestartOrQuitCommand;
     }
 
     public static int moveFail(List<String> currentBridge, List<String> bridge, int currentLocation) {

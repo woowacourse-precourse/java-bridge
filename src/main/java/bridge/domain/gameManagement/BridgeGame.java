@@ -20,7 +20,7 @@ public class BridgeGame {
     public int move(List<String> bridge, List<String> currentBridge) {
         int currentLocation = INITIAL_LOCATION;
 
-        currentLocation = PlayerMove.crossBridgeUntilFailOrEnd(currentLocation, bridge, currentBridge);
+        currentLocation = PlayerMove.handlePlayerMove(currentLocation, bridge, currentBridge);
 
         return currentLocation;
     }
