@@ -40,7 +40,14 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("플레이어가 움직인 횟수가 다리의 길이와 일치하면 True(성공)를 반환한다.")
     void isSuccessGame() {
+        //given
+        List<String> userDirection = Arrays.asList("U","D","D");
+        //when
+        userDirection.forEach(direction -> bridgeGame.move(direction));
+        //then
+        assertTrue(bridgeGame.isSuccessGame());
     }
 
     @Test
