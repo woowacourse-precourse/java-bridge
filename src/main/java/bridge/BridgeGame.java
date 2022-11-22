@@ -43,7 +43,7 @@ public class BridgeGame {
     }
 
     public String makeSymbol(int index, String position) {
-        if (moving.get(index).equals(position)) {
+        if (isWinInRow(index)) {
             if (moving.get(index).equals(bridge.get(index))) {
                 return BridgeConstant.SUCCESS;
             }
@@ -87,12 +87,12 @@ public class BridgeGame {
             return true;
         }
         int pathLastIndex = moving.size() - 1;
-        return moving.size() != bridge.size() && moving.get(pathLastIndex).equals(bridge.get(pathLastIndex));
+        return moving.size() != bridge.size() && isWinInRow(pathLastIndex);
     }
 
     public boolean isWin() {
         int pathLastIndex = moving.size() - 1;
-        return moving.size() == bridge.size() && moving.get(pathLastIndex).equals(bridge.get(pathLastIndex));
+        return moving.size() == bridge.size() && isWinInRow(pathLastIndex);
     }
 
     private boolean isWinInRow(int index) {
