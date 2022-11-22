@@ -1,7 +1,9 @@
 package bridge.view;
 
 import bridge.domain.GameResult;
+import bridge.domain.Moving;
 import bridge.domain.MovingResult;
+import java.lang.module.ModuleFinder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,8 +19,12 @@ public class OutputView {
 
     static {
         map = new LinkedHashMap<>();
-        map.put("U", new StringBuilder(INIT_MAP));
-        map.put("D", new StringBuilder(INIT_MAP));
+        map.put(
+                Moving.UP.direction(), new StringBuilder(INIT_MAP)
+        );
+        map.put(
+                Moving.DOWN.direction(), new StringBuilder(INIT_MAP)
+        );
     }
 
     /**
