@@ -4,26 +4,36 @@ import java.util.Objects;
 
 public class Validator {
 
+  public static final String INPUT_DIRECTION_ERROR = "[ERROR] 방향은 U, D로만 입력 가능합니다.";
+  public static final String INPUT_RESTART_ERROR = "[ERROR] (재시도: R, 종료: Q) 두 문자로만 입력 가능합니다.";
+  public static final String OUT_OF_RANGE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+  private static final int BRIDGE_LENGTH_LOWER_INCLUSIVE = 3;
+  private static final int BRIDGE_LENGTH_UPPER_INCLUSIVE = 20;
+  private static final String BRIDGE_UPPER = "U";
+  private static final String BRIDGE_LOWER = "D";
+  private static final String GAME_RESTART = "R";
+  private static final String GAME_QUIT = "Q";
+
   public static void validateBridge(String input) {
     sizeBetween(input);
   }
 
   public static void validateDirection(String input) {
-    if (!Objects.equals(input, "U") && !Objects.equals(input, "D")) {
-      throw new IllegalArgumentException("[ERROR] 방향은 U, D로만 입력 가능합니다.");
+    if (!Objects.equals(input, BRIDGE_UPPER) && !Objects.equals(input, BRIDGE_LOWER)) {
+      throw new IllegalArgumentException(INPUT_DIRECTION_ERROR);
     }
   }
 
   public static void validateGameCommand(String input) {
-    if (!Objects.equals(input, "R") && !Objects.equals(input, "Q")) {
-      throw new IllegalArgumentException("[ERROR] (재시도: R, 종료: Q) 두 문자로만 입력 가능합니다.");
+    if (!Objects.equals(input, GAME_RESTART) && !Objects.equals(input, GAME_QUIT)) {
+      throw new IllegalArgumentException(INPUT_RESTART_ERROR);
     }
   }
 
   public static void sizeBetween(String input) {
     int inputNum = Integer.parseInt(input);
-    if (inputNum < 3 || inputNum > 20) {
-      throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    if (inputNum < BRIDGE_LENGTH_LOWER_INCLUSIVE || inputNum > BRIDGE_LENGTH_UPPER_INCLUSIVE) {
+      throw new IllegalArgumentException(OUT_OF_RANGE_INPUT_ERROR);
     }
   }
 
