@@ -65,6 +65,9 @@ public class InputView {
         String gameCommand = Console.readLine();
 
         gameCommand = validateCommandInputLength(gameCommand);
+        if (gameCommand == null) {
+            return null;
+        }
         String validCommand = validateGameCommand(gameCommand);
         return validCommand;
     }

@@ -78,7 +78,7 @@ public class InputViewTest {
 
     @DisplayName("입력받은 문자가 R이면 정상적으로 입력된다.")
     @Test
-    void readCommandLine_Success() {
+    void readCommandLine_R_Success() {
 
         // given
         InputView inputView = new InputView();
@@ -92,5 +92,38 @@ public class InputViewTest {
 
         // then
         assertThat(gameCommand).isEqualTo("R");
+    }
+
+    @DisplayName("입력받은 문자가 Q이면 정상적으로 입력된다.")
+    @Test
+    void readCommandLine_Q_Success() {
+
+        // given
+        InputView inputView = new InputView();
+        String userInput = "Q";
+
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+
+        // when
+        String gameCommand = inputView.readGameCommand();
+
+        // then
+        assertThat(gameCommand).isEqualTo("Q");
+    }
+
+    @DisplayName("입력받은 명령어 문자열의 크기가 1보다 크면 null을 반환한다.")
+    @Test
+    void readGameCommand_biggerThan_1_Failed() {
+        // given
+        InputView inputView = new InputView();
+        String userInput = "RQ";
+
+        // when
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+
+        // then
+        assertThat(inputView.readGameCommand()).isNull();
     }
 }
