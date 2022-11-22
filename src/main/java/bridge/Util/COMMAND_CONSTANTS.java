@@ -2,8 +2,7 @@ package bridge.Util;
 
 public enum COMMAND_CONSTANTS {
     MOVE_UP("U", 1),
-    MOVE_DOWN("D", 0),
-    CORRECT("COR", 0);
+    MOVE_DOWN("D", 0);
 
     private String command;
     private int value;

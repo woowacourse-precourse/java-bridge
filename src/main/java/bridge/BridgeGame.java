@@ -25,15 +25,17 @@ public class BridgeGame {
     }
 
     private boolean isFinished(String command, List<String> bridge) {
+        GAME_STATE.INDEX.setValue(index+1);
         return (index == bridge.size() - 1) && (Objects.equals(bridge.get(index), command));
     }
 
     private GAME_STATE isNotFinished(String command, List<String> bridge) {
         if (Objects.equals(bridge.get(index), command)) {
             index++;
-            COMMAND_CONSTANTS.CORRECT.setValue(index);
+            GAME_STATE.INDEX.setValue(index);
             return GAME_STATE.IN_GAME;
         }
+        index++;
         return GAME_STATE.RETRY;
     }
 
@@ -44,6 +46,6 @@ public class BridgeGame {
      */
     public void retry() {
         index = 0;
-        COMMAND_CONSTANTS.CORRECT.setValue(index);
+        GAME_STATE.INDEX.setValue(index);
     }
 }
