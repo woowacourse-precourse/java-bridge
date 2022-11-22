@@ -16,6 +16,7 @@ public class BridgeGame {
     private final List<String> down = new ArrayList<>();
     private int round = 0;
     private String input;
+    private int tryCount = 1;
 
     public void init() {
         OutputView.startGameMessage();
@@ -36,6 +37,8 @@ public class BridgeGame {
             input = inputView.readMoving();
             if (!comparingInputBridge()) {
                 wrongCase();
+                if(choose()) return;
+                retry();
             }
             if (comparingInputBridge()) {
                 correctCase();
@@ -82,6 +85,6 @@ public class BridgeGame {
         OutputView.chooseEndPrint();
         String choice = Console.readLine();
         ExceptionHandling.choiceChecking(choice);
-        return choice.equals("R");
+        return choice.equals("Q");
     }
 }
