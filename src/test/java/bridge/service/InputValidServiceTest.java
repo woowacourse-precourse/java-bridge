@@ -31,7 +31,8 @@ class InputValidServiceTest {
 	@ParameterizedTest
 	@CsvSource(value = {"3, 3", "20, 20", "5, 5"})
 	void validBridgeSizeTest(String bridgeSize, Integer bridgeSizeNumber) {
-		Assertions.assertThat(inputValidService.validBridgeSize(bridgeSize)).isEqualTo(bridgeSizeNumber);
+		Assertions.assertThat(inputValidService.validBridgeSize(bridgeSize))
+			.isEqualTo(bridgeSizeNumber);
 	}
 
 	@DisplayName("인자로 들어온 userMoving 값이 U 또는 D 이 아닌 경우")
