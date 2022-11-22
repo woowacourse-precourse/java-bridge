@@ -10,6 +10,14 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final int upSide = 0;
+    private static final int downSide = 1;
+    private static final String leftBracket = "\\[";
+    private static final String rightBracket = "]";
+    private static final String space = " ";
+    private static final String comma = ",";
+    private static final String verticalBar = "|";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -27,19 +35,19 @@ public class OutputView {
      */
     public void printResult(List<List<String>> result, int retryNumber, Boolean gameResult) {
         System.out.println(MessageEnum.GAME_END_INFO.getValue());
-        printMap(result.get(0), result.get(1));
+        printMap(result.get(upSide), result.get(downSide));
         System.out.println(MessageEnum.GAME_RESULT.getValue() + GameResultEnum.RESULT.getValue(gameResult));
         System.out.println(MessageEnum.GAME_TRY.getValue() + retryNumber);
     }
 
-    public void initGame(){
+    public void initGame() {
         System.out.println(MessageEnum.GAME_START.getValue());
     }
 
     private void convertResult(List<String> upAnswer) {
         System.out.println(String.valueOf(upAnswer)
-                .replaceAll(","," |")
-                .replaceAll("\\[", "[ ")
-                .replaceAll("]", " ]"));
+                .replaceAll(comma, space + verticalBar)
+                .replaceAll(leftBracket, leftBracket + space)
+                .replaceAll(rightBracket, space + rightBracket));
     }
 }
