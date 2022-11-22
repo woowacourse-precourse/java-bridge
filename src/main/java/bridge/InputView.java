@@ -20,42 +20,6 @@ public class InputView {
     }
 
 
-    /** 다리의 길이를 입력받는다. (예외) **/
-
-    private void exceptionCheckInt(String userInputSize) {
-        try {
-            if (!integerTrue(userInputSize)) {
-                throw new IllegalArgumentException();
-            }
-        } catch (Exception IllegalArgumentException) {
-            System.out.println("[ERROR] 숫자를 입력해주세요. ");
-            IllegalArgumentException.printStackTrace();
-            throw new NoSuchElementException();
-        }
-    }
-
-    private boolean integerTrue(String userInputSize) {
-        try {
-            Integer.parseInt(userInputSize);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private void exceptionRangeCheck(int bridgeSize) {
-        try {
-            if (!(bridgeSize >= 3 && bridgeSize <= 20)) {
-                throw new IllegalArgumentException();
-            }
-        } catch (Exception IllegalArgumentException) {
-            System.out.println("[ERROR] bridge 사이즈를 3~20사이로 입력해주세요.");
-            IllegalArgumentException.printStackTrace();
-            throw new NoSuchElementException();
-        }
-    }
-
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -66,19 +30,6 @@ public class InputView {
         return moving;
     }
 
-    /** 사용자가 이동할 칸을 입력받는다. (예외) **/
-
-    private void exeptionWordCheck(String moving){
-        try{
-            if(!(moving.equals("D")||moving.equals("U"))){
-                throw new IllegalArgumentException();
-            }
-        }catch(Exception IllegalArgumentException){
-            System.out.println("[ERROR] U,D 둘 중 하나의 문자만 입력해주세요. (U :위, D : 아래)");
-            IllegalArgumentException.printStackTrace();
-            throw new NoSuchElementException();
-        }
-    }
 
 
     /**
