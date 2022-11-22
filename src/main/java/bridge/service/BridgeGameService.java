@@ -19,8 +19,9 @@ public class BridgeGameService {
     }
 
     public void init(){
-        bridgeGame = makeBridgeGame();
+        OutputView.printInit();
 
+        bridgeGame = makeBridgeGame();
         startGame();
 
         OutputView.printResult(bridgeGame, bridgeGame.isGameSuccess());
