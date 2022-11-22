@@ -55,6 +55,15 @@ public class BridgeGame {
                 .collect(Collectors.toList());
     }
 
+    public List<List<String>> makeBridgeResult() {
+        List<List<String>> map = new ArrayList<>();
+
+        map.add(makeRow(BridgeConstant.UP));
+        map.add(makeRow(BridgeConstant.DOWN));
+
+        return map;
+    }
+
     private void validateSize(int size) {
         if (size < BridgeConstant.MIN_LENGTH || BridgeConstant.MAX_LENGTH < size) {
             throw new IllegalArgumentException(ExceptionConstant.INCORRECT_LENGTH.getMessage());
