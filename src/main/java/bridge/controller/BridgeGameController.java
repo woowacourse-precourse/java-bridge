@@ -33,6 +33,54 @@ public class BridgeGameController {
         outputView.printResult(game);
     }
 
+    public void determineUserValueIsEqualToComputerValue(Bridge bridge, Game game, String userInputMove) {
+        if (!bridge.isSameValueOfComputerAndUser(userInputMove)) {
+            String command = askGameOptionCommand();
+            playNextGameStatus(bridge, game, command);
+            return;
+        }
+        bridgeGame.move(bridge, game, userInputMove);
+    }
+
+    public void playNextGameStatus(Bridge bridge, Game game, String command) {
+
+        checkRestartOption(bridge, game, command);
+        checkQuitOption(bridge, game, command);
+
+    }
+
+    public boolean checkRestartOption(Bridge bridge, Game game, String inputGameOption) {
+        if(inputGameOption.equals(RESTART)) {
+            outputView.initView();
+            bridgeGame.retry(bridge, game);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkQuitOption(Bridge bridge, Game game, String inputGameOption) {
+        if(inputGameOption.equals(QUIT)) {
+            outputView.printResultMap();
+            return true;
+        }
+        return false;
+    }
+
+    public int askBridgeLengthInput() {
+        outputView.printInputBridgeLengthMessage();
+        return inputView.readBridgeSize();
+    }
+
+    public String askHowUserMoves() {
+        outputView.printInputUserMoveMessage();
+        return inputView.readMoving();
+    }
+
+    public String askGameOptionCommand() {
+        outputView.printInputGameRestartOptionMessage();
+        return inputView.readGameCommand();
+    }
+
 
 
 }
