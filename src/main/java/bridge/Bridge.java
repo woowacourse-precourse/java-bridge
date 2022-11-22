@@ -1,23 +1,15 @@
 package bridge;
 
-public enum Bridge {
-    LOWER_BRIDGE("D", 0),
-    UPPER_BRIDGE("U", 1),
-    ;
+import java.util.List;
 
-    private final String direction;
-    private final int number;
+public class Bridge {
+    private List<String> bridge;
 
-    Bridge(String direction, int number) {
-        this.direction = direction;
-        this.number = number;
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
-    public String getDirection() {
-        return direction;
-    }
-
-    public int getNumber() {
-        return number;
+    public List<String> getBridge() {
+        return bridge;
     }
 }
