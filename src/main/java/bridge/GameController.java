@@ -22,6 +22,22 @@ public class GameController {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
+    public void play() {
+        int index;
+        while (true) {
+            numberOfTimes += 1;
+            bridgeGame.retry();
+            index = oneTime();
+            if (isSuccess(index)) {
+                break;
+            }
+            if (!isRetry()) {
+                break;
+            }
+        }
+        end(isSuccess(index));
+    }
+
     public String toString(List<String> currentBridge) {
         String result = String.join(Symbol.SPLIT.getSymbol(), currentBridge);
         return result;
@@ -36,7 +52,8 @@ public class GameController {
 
     public int oneTime() {
         boolean isMove;
-        for (int i = 0; i < bridgeSize; i++) {
+        int i;
+        for (i = 0; i < bridgeSize; i++) {
             isMove = bridgeGame.move(bridge.get(i), choice());
             outputView.printMap(toString(bridgeGame.getUpBridge()));
             outputView.printMap(toString(bridgeGame.getDownBridge()));
@@ -44,6 +61,7 @@ public class GameController {
                 break;
             }
         }
+        return i;
     }
 
     public String choice() {
