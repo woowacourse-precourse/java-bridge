@@ -4,17 +4,17 @@
 
 ```mermaid
 graph TD
-A[Application#main] --> B[Gamecontroller#play]
-B --> C(createBridge)
-C --> D(attempt)
-D --> E{moving}
-E-->O{moveOnce}
-O-->|survive/success|E 
-E-->|success|Y
-O-->|die=fail|X{retry VS quit}
-X-->|retry|F[bridgeGame#retry]
-F-->|initialize Diagram & add attempts|D
-X-->|quit|Y(printResult)
+A(Create Bridge) --> B(Attempt)
+B --> C{Move Until Success Or Fail}
+C ==> D{Move To Decide Survive Or Die}
+D --> |survive|D
+D ==> |die=FAIL or SUCCESS|C
+C --> |SUCCESS|G(Print Result)
+C --> |FAIL|E{Handle Retry After Fail}
+E --> |RETRY|F(BridgeGame#retry)
+F ==> |add attempts & initialize diagram|B
+E ==> |QUIT|G
+
 ```
 
 ## 🔍 진행 방식
