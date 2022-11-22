@@ -34,8 +34,8 @@ class BridgeGameTest {
     @Test
     void can_move_test1() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.bridge = Arrays.asList("U", "D", "D");
-        bridgeGame.userLocation = 0;
+        bridgeGame.setBridge(Arrays.asList("U", "D", "D"));
+        bridgeGame.setUserLocation(0);
         boolean result = bridgeGame.canMove("U");
         Assertions.assertEquals(true, result);
     }
@@ -43,8 +43,8 @@ class BridgeGameTest {
     @Test
     void can_move_test2() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.bridge = Arrays.asList("U", "D", "D");
-        bridgeGame.userLocation = 1;
+        bridgeGame.setBridge(Arrays.asList("U", "D", "D"));
+        bridgeGame.setUserLocation(1);
         boolean result = bridgeGame.canMove("U");
         Assertions.assertEquals(false, result);
     }
@@ -52,8 +52,8 @@ class BridgeGameTest {
     @Test
     void can_move_test3() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.bridge = Arrays.asList("U", "U", "U");
-        bridgeGame.userLocation = 2;
+        bridgeGame.setBridge(Arrays.asList("U", "U", "U"));
+        bridgeGame.setUserLocation(2);
         boolean result = bridgeGame.canMove("D");
         Assertions.assertEquals(false, result);
     }
@@ -61,9 +61,9 @@ class BridgeGameTest {
     @Test
     void move_test() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.bridge = Arrays.asList("U", "U", "U");
-        bridgeGame.userInput = Arrays.asList("U", "U");
-        bridgeGame.userLocation = 1;
+        bridgeGame.setBridge(Arrays.asList("U", "U", "U"));
+        bridgeGame.setUserInput(Arrays.asList("U", "U"));
+        bridgeGame.setUserLocation(1);
         bridgeGame.move("U");
         Assertions.assertEquals("[ O | O ]\n[   |   ]\n\n", outputMessage.toString());
     }
