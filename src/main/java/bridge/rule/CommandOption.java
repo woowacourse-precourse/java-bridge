@@ -14,4 +14,8 @@ public enum CommandOption {
     public static boolean isCorrectCommand(String command) {
         return QUIT.command.equals(command) || RESTART.command.equals(command);
     }
+
+    public static boolean isRetry(String command){
+        return command.equals(QUIT.command);
+    }
 }

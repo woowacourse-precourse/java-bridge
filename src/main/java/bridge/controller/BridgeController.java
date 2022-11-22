@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.rule.CommandOption.isRetry;
+
 import bridge.dto.BridgeResultResponseDto;
 import bridge.service.BridgeService;
 import bridge.view.InputView;
@@ -18,9 +20,13 @@ public class BridgeController {
     }
 
     public void run() {
-        initGame();
-        playGame();
-        finishGame();
+        try {
+            initGame();
+            playGame();
+            finishGame();
+        } catch (IllegalArgumentException e){
+            outputView.printWithLine(e.getMessage());
+        }
     }
 
     private void initGame() {
@@ -63,7 +69,7 @@ public class BridgeController {
     private boolean isRestartOrQuit() {
         outputView.printWithLine(OutputView.INPUT_COMMAND);
         String command = inputView.readGameCommand();
-        if (command.equals("R")) {
+        if (isRetry(command)) {
             bridgeService.retry();
             return false;
         }
