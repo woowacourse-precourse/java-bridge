@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.view.SystemMessage.*;
+
 import bridge.domain.Bridge;
 import bridge.domain.MoveSpace;
 import bridge.view.InputView;
@@ -11,13 +13,27 @@ public class InputController {
     }
 
     public static MoveSpace getMoving() {
-        return new MoveSpace(InputView.readMoving());
+        String move = null;
+        while (move == null) {
+            move = validateGetMoving();
+        }
+        return new MoveSpace(move);
     }
 
-    public static boolean retryOrGameOver() {
-        if (InputView.readGameCommand().equals("R")) {
-            return true;
+    private static String validateGetMoving(){
+        String move = null;
+        try {
+            move = InputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-        return false;
+        return move;
+    }
+
+    public static String retryOrGameOver() {
+        if (InputView.readGameCommand().equals("R")) {
+            return "R";
+        }
+        return "Q";
     }
 }

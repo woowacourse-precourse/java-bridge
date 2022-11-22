@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.view.SystemMessage.*;
+
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
@@ -14,16 +16,24 @@ public class BridgeGameController {
     }
 
     public void playGame() {
-        Bridge bridge = startGame();
-
+        Bridge bridge = null;
+        while (bridge == null) {
+            bridge = startGameWithValidation();
+        }
         runGame(bridge);
     }
 
-    public Bridge startGame() {
-        Bridge bridge = InputController.getBridge();
+    public Bridge startGameWithValidation() {
+        Bridge bridge = null;
+        try {
+            bridge = InputController.getBridge();
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_MESSAGE + NOT_NUMBER_ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         return bridge;
     }
-
 
     public static void runGame(Bridge bridge) {
         List<MoveResult> moveResults = new ArrayList<>();
@@ -46,14 +56,31 @@ public class BridgeGameController {
 
     private static boolean retryOrOver(BridgeGame bridgeGame) {
         if (bridgeGame.isFailedGame()) {
-            boolean command = InputController.retryOrGameOver();
-            if (command) {
-                bridgeGame.retry();
+            if (doRetryOrOver(bridgeGame,getRetryOrOverCommand())){
                 return true;
             }
-            bridgeGame.exit();
         }
         return false;
+    }
+
+    private static boolean doRetryOrOver(BridgeGame bridgeGame, String command){
+        if (command.equals("R")) {
+            bridgeGame.retry();
+            return true;
+        }
+        bridgeGame.exit();
+        return false;
+    }
+    private static String getRetryOrOverCommand(){
+        String command = null;
+        while(command == null){
+            try{
+                command = InputController.retryOrGameOver();
+            } catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return command;
     }
 
     private static void gameOver(BridgeGame bridgeGame, List<MoveResult> moveResults) {
