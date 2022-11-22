@@ -33,5 +33,12 @@ class BridgeGameTest {
         Assertions.assertThat(bridgeGame.move("U")).isEqualTo(ResultType.SUCCESS);
     }
 
+    @DisplayName("재시도 후 시도횟수가 올바르게 증가하는지 확인")
+    @Test
+    void checkTrialAfterRetry() {
+        bridgeGame.retry();
+        bridgeGame.retry();
+        Assertions.assertThat(bridgeGame.getTrial()).isEqualTo(3);
+    }
 
 }
