@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,6 +13,32 @@ public class OutputView {
     }
 
     public void printMap(int idx, List<String> bridge, boolean isMoved) {
+        List<String> bridgeList = setBridge(idx, bridge);
+        List<String> resultList = new ArrayList<>();
+
+        if (isMoved == true) {
+            resultList = getBridge(bridgeList,"O",bridge.get(idx));
+        }
+        if (isMoved == false) {
+            resultList = getBridge(bridgeList,"X",bridge.get(idx));
+        }
+        System.out.println(resultList.get(0)+"\n"+resultList.get(1));
+    }
+    public List<String> getBridge(List<String>bridgeList, String isMoved, String lastString) {
+        String firstBridge = bridgeList.get(0);
+        String secondBridge = bridgeList.get(1);
+        if ( (isMoved.equals("O") && lastString.equals("U")) || isMoved.equals("X") && lastString.equals("D") ) {
+            firstBridge += " "+isMoved+" ]";
+            secondBridge += "   ]";
+        }
+        if ( (isMoved.equals("O") && lastString.equals("D")) || isMoved.equals("X") && lastString.equals("U") ) {
+            firstBridge += "   ]";
+            secondBridge += " "+isMoved+" ]";
+        }
+        return new ArrayList<>(Arrays.asList(firstBridge,secondBridge));
+    }
+
+    public List<String> setBridge(int idx, List<String> bridge) {
         String firstBridge = "[";
         String secondBridge = "[";
         for (int i=0; i<idx; i++) {
@@ -23,28 +51,7 @@ public class OutputView {
                 secondBridge += " O |";
             }
         }
-        if (isMoved) {
-            if (bridge.get(idx).equals("U")) {
-                firstBridge += " O ]";
-                secondBridge += "   ]";
-            }
-            if (bridge.get(idx).equals("D")){
-                secondBridge += " O ]";
-                firstBridge += "   ]";
-            }
-        }
-        if (!isMoved) {
-            if (bridge.get(idx).equals("U")) {
-                firstBridge += "   ]";
-                secondBridge += " X ]";
-            }
-            if (bridge.get(idx).equals("D")) {
-                secondBridge += "   ]";
-                firstBridge += " X ]";
-            }
-        }
-        System.out.println(firstBridge);
-        System.out.println(secondBridge);
+        return new ArrayList<>(Arrays.asList(firstBridge,secondBridge));
     }
 
     public void printResult(int count, int idx, List<String> bridge, boolean result) {
@@ -56,6 +63,5 @@ public class OutputView {
         }
         System.out.println("게임 성공 여부: "+strResult);
         System.out.println("총 시도한 횟수: "+count);
-
     }
 }
