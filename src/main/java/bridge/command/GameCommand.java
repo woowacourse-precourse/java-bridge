@@ -9,7 +9,7 @@ public enum GameCommand {
     GameCommand() {
     }
 
-    public static GameCommand setCommand(String input) {
+    public static GameCommand setGameCommand(String input) {
         if (input.equals("R")) {
             return GameCommand.REPLAY;
         }

@@ -12,7 +12,7 @@ public enum MoveCommand {
         this.command = command;
     }
 
-    public static MoveCommand setCommand(String str) {
+    public static MoveCommand setMoveCommand(String str) {
         if (str.equals("U")) {
             return MoveCommand.UP;
         }
