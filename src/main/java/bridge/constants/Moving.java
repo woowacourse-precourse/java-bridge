@@ -11,7 +11,7 @@ public enum Moving {
     }
 
     private static final String NUMBER_ERROR = "[ERROR] 숫자 생성은 0과 1만 가능합니다";
-    final int number;
+    private final int number;
 
 
     public static Moving getMovingFromNumber(int number) {
