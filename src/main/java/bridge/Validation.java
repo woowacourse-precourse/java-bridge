@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Validation {
+    /**
+     *
+     * */
     public static void validateObjectNull(Object object) {
         if (Objects.isNull(object)) {
             System.out.println("[ERROR] Null 객체는 유효하지 않습니다.");
@@ -15,6 +18,7 @@ public class Validation {
     }
 
     /**
+     * input의 Type이 정수인지 확인
      * @param input 사용자에게 입력받는 다리의 길이
      */
     public static void validateSizeType(String input) {
@@ -27,6 +31,7 @@ public class Validation {
     }
 
     /**
+     * input의 범위가 원하는 값 사이인지 확인
      * @param input 사용자에게 입력받는 다리의 길이
      */
     public static void validateSizeRange(String input) {
@@ -38,6 +43,7 @@ public class Validation {
     }
 
     /**
+     * Up, Down 선택에서 input의 커멘드가 정상적인 커멘드 인지 확인
      * @param input 사용자에게 입력받는 이동할 칸
      */
     public static void validateMoveValid(String input) {
@@ -48,6 +54,7 @@ public class Validation {
     }
 
     /**
+     * Retry, Quit 선택에서 input의 커멘드가 정상적인 커멘드 인지 확인
      * @param input 사용자에게 입력받는 재시도 여부
      */
     public static void validateRetryValid(String input) {
