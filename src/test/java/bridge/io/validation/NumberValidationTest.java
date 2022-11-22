@@ -22,4 +22,12 @@ class NumberValidationTest {
       .hasMessageContaining(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.NOT_A_NUMBER.getMessage());
   }
 
+  @ParameterizedTest
+  @ValueSource(strings = {"1", "2147483647", "-1234726", "0"})
+  void 입력값이_integer_숫자라면_정상적으로_작동하는가(String input) {
+    NumberValidation numberValidation = new NumberValidation(new NullValidation());
+    assertThatCode(() -> numberValidation.validate(input))
+      .doesNotThrowAnyException();
+  }
+
 }
