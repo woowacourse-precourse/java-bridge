@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.constant.BridgeSize.MAX_BRIDGE_SIZE;
+import static bridge.constant.BridgeSize.MIN_BRIDGE_SIZE;
 import static bridge.constant.Commands.DOWN_COMMAND;
 import static bridge.constant.Commands.UP_COMMAND;
 import static bridge.constant.ExceptionName.BRIDGE_MAKER_SIZE_EXCEPTION;
@@ -12,9 +14,6 @@ import view.InputView;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
-    public static final int MIN_BRIDGE_SIZE = 3;
-    public static final int MAX_BRIDGE_SIZE = 20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
