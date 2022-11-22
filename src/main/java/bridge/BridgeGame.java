@@ -36,8 +36,11 @@ public class BridgeGame {
         return this.tries;
     }
 
-    public int mapSize() {
-        return bridge.size();
+    public boolean isMapSizeSameWith(int size) {
+        if (bridge.size()==size) {
+            return true;
+        }
+        return false;
     }
 
     /**

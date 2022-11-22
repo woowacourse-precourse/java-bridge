@@ -31,7 +31,7 @@ public class DefaultGameController implements GameController {
     }
 
     private boolean isEnd(boolean isAvailable, List<String> history, BridgeGame game) {
-        if (isAvailable && game.mapSize() != history.size()) {
+        if (isAvailable && !game.isMapSizeSameWith(history.size())) {
             return false;
         }
         if (isAvailable || InputView.readGameCommandUntilSuccess().equals(QUIT_SIGN)) {
