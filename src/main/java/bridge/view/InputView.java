@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.BridgeValue;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -8,6 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String BRIDGE_DIRECTION_SELECT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String BRIDGE_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String INPUT_TYPE_IS_NOT_PROPER = "[ERROR] 잘못된 입력 형식입니다.";
 
     /**
@@ -24,15 +26,16 @@ public class InputView {
      * @return
      */
     private int validateSizeType(String size) {
-        int bridgeSize;
         try {
-            bridgeSize = Integer.parseInt(size);
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException(INPUT_TYPE_IS_NOT_PROPER);
+            return Integer.parseInt(size);
+        } catch (NumberFormatException e) {
+            System.out.println(INPUT_TYPE_IS_NOT_PROPER);
+            readBridgeSize();
         }
-        return bridgeSize;
+        return 0;
     }
 
+    // TODO: 타입을 어떻게 검사할 것인가
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -42,7 +45,7 @@ public class InputView {
     }
 
     private String validateDirectionType(String direction) {
-        if (!direction.equals(Bridge.LOWER_BRIDGE.getDirection()) && !direction.equals(Bridge.UPPER_BRIDGE.getDirection())) {
+        if (!direction.equals(BridgeValue.LOWER_BRIDGE.getDirection()) && !direction.equals(BridgeValue.UPPER_BRIDGE.getDirection())) {
             throw new RuntimeException(INPUT_TYPE_IS_NOT_PROPER);
         }
         return direction;
