@@ -22,11 +22,18 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> blocks = new ArrayList<>();
+        checkRange(size);
         for (int i = 0; i < size; i++) {
             String block = convert(bridgeNumberGenerator.generate());
             blocks.add(block);
         }
         return blocks;
+    }
+
+    private void checkRange(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalStateException();
+        }
     }
 
     private String convert(int number) {

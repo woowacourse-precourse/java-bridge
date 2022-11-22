@@ -20,11 +20,6 @@ public class InputView {
         if (!Pattern.matches("^[0-9]*$", inputBridgeSize)) {
             throw new IllegalArgumentException();
         }
-
-        int bridgeSize = Integer.parseInt(inputBridgeSize);
-        if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException();
-        }
     }
 
     /**
