@@ -43,14 +43,6 @@ class ApplicationTest extends NsTest {
 	}
 
 	@Test
-	void 예외_테스트() {
-		assertSimpleTest(() -> {
-			runException("a");
-			assertThat(output()).contains(ERROR_MESSAGE);
-		});
-	}
-
-	@Test
 	void 기능_테스트_20자리() {
 		assertRandomNumberInRangeTest(() -> {
 			run("20",
