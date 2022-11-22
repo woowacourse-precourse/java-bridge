@@ -34,5 +34,4 @@ public class Application {
         }
         bridgeGame.outputView.printResult(bridge, states, gameCommand, count);
     }
-    }
 }
