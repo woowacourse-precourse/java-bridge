@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -17,7 +19,7 @@ public class BridgeGameInitializationTest {
 	// 	bridgeGameInitialization = new BridgeGameInitialization();
 	// }
 
-	@DisplayName("다리 초기화 검사")
+	@DisplayName("올바른 다리 생성 여부 테스트")
 	@Test
 	void initBridge() {
 		//	given
@@ -35,6 +37,6 @@ public class BridgeGameInitializationTest {
 		System.setIn(in);
 
 		// then
-		// assertThat(bridgeGameInitialization.initBridge().showBridge()).contains("U", "D");
+		assertThat(bridgeGameInitialization.initBridge().getBridgeSize()).isEqualTo(Integer.parseInt(correct));
 	}
 }
