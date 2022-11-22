@@ -107,7 +107,11 @@ public class BridgeGame {
             OutputView.downSide ="";
             return;
         }
-        round = bridgeSize;
+        if(userInput.equals("Q")){
+            round = bridgeSize;
+            outputView.printResult();
+            View.failResult(challenge);
+        }
     }
 
     /* 사용자가 선택한 칸이 건널 수 있는 칸인지 확인하는 메서드 */
