@@ -1,4 +1,4 @@
-package bridge.type;
+package bridge;
 
 public enum MovingType {
     MOVE("O"),

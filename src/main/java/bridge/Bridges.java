@@ -1,8 +1,5 @@
 package bridge;
 
-import bridge.Bridge;
-import bridge.type.MovingType;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

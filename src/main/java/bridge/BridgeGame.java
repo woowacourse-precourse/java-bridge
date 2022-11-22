@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.type.MovingType;
-
 import java.util.Map;
 
 public class BridgeGame {

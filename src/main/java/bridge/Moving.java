@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.type.MovingType;
-
 public class Moving {
     private final String result;
 
