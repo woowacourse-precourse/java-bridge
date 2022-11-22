@@ -11,7 +11,7 @@ public class UserService {
     }
 
 
-    public static void initUser(User user) {
+    public static void initializeUser(User user) {
         user.init();
     }
 }

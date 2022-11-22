@@ -10,9 +10,9 @@ public class User {
     private int count;
     private int tryCount;
 
-    private List<String> upSpace;
+    private final List<String> upSpace;
 
-    private List<String> downSpace;
+    private final List<String> downSpace;
 
     public User(List<String> upSpace, List<String> downSpace) {
         this.upSpace = upSpace;
@@ -35,7 +35,6 @@ public class User {
         }
         downSpace.add(movingResult);
         upSpace.add(MoveResultStatus.NOTHING.getText());
-
     }
 
     public boolean sameBridgeSize(int size) {

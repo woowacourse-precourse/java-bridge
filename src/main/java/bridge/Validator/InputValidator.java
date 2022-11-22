@@ -1,9 +1,10 @@
 package bridge.Validator;
 
+import bridge.status.RetryStatus;
 import bridge.status.BoundaryStatus;
+import bridge.status.CommentStatus;
 import bridge.status.ExceptionStatus;
 import bridge.status.PositionStatus;
-import bridge.status.RetryStatus;
 import bridge.view.OutputView;
 
 public class InputValidator {
@@ -14,7 +15,7 @@ public class InputValidator {
             checkBoundaryNumber(size);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception.getMessage());
-            return "error";
+            return CommentStatus.ERROR.getText();
         }
         return size;
     }
@@ -39,7 +40,7 @@ public class InputValidator {
             checkMoving(moving);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception.getMessage());
-            return "error";
+            return CommentStatus.ERROR.getText();
         }
         return moving;
     }
@@ -55,7 +56,7 @@ public class InputValidator {
             checkRetry(retryInput);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception.getMessage());
-            return "error";
+            return CommentStatus.ERROR.getText();
         }
         return retryInput;
     }

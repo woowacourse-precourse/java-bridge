@@ -22,8 +22,8 @@ public class GameController {
         endGame(bridge, user);
     }
 
-    private void startGame(List<String> bridge, User user) {
-        UserService.initUser(user);
+    public void startGame(List<String> bridge, User user) {
+        UserService.initializeUser(user);
         controlMove(bridge, user);
 
         if (user.sameBridgeSize(bridge.size())) {
@@ -33,12 +33,11 @@ public class GameController {
         retry(bridge, user);
     }
 
-    private void controlMove(List<String> bridge, User user) {
+    public void controlMove(List<String> bridge, User user) {
         while (user.lessThanBridgeSize(bridge.size())) {
             OutputView.printChooseOne();
             String position = InputView.readMoving();
             boolean isPermitted = BridgeGame.move(position, bridge, user);
-
             OutputView.printMap(user);
 
             if (!(isPermitted)) {
@@ -47,7 +46,7 @@ public class GameController {
         }
     }
 
-    private void retry(List<String> bridge, User user) {
+    public void retry(List<String> bridge, User user) {
         OutputView.printRetry();
         String retryInput = InputView.readGameCommand();
 
@@ -56,7 +55,7 @@ public class GameController {
         }
     }
 
-    private static void endGame(List<String> bridge, User user) {
+    public static void endGame(List<String> bridge, User user) {
         OutputView.printResult(user);
         if (user.sameBridgeSize(bridge.size())) {
             OutputView.printSuccess(user);

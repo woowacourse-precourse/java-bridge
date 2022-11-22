@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.status.BoundaryStatus;
 import bridge.status.NumberStatus;
 import bridge.status.PositionStatus;
 
