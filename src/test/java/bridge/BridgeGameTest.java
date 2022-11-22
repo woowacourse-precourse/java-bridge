@@ -32,4 +32,26 @@ public class BridgeGameTest {
         Assertions.assertThat(correct).isEqualTo(false);
     }
 
+    @Test
+    void 다리건너기_완료_테스트() {
+        List<String> footholds = Arrays.asList("U", "D", "U", "D");
+        List<String> crossed = Arrays.asList("U", "D", "U", "D");
+        Bridge bridge = new Bridge(footholds, crossed);
+
+        boolean allCrossed = bridgeGame.isAllCrossed(bridge);
+
+        Assertions.assertThat(allCrossed).isEqualTo(true);
+    }
+
+    @Test
+    void 다리건너기_미완료_테스트() {
+        List<String> footholds = Arrays.asList("U", "D", "U", "D");
+        List<String> crossed = Arrays.asList("U", "D", "U");
+        Bridge bridge = new Bridge(footholds, crossed);
+
+        boolean allCrossed = bridgeGame.isAllCrossed(bridge);
+
+        Assertions.assertThat(allCrossed).isEqualTo(false);
+    }
+
 }
