@@ -1,7 +1,5 @@
 package bridge.domain.game;
 
-import com.sun.net.httpserver.Authenticator;
-
 public enum SuccessStep {
     SUCCESS("O", true, "성공"),
     FAIL("X", false, "실패");
@@ -28,19 +26,20 @@ public enum SuccessStep {
         return status;
     }
 
-    public static SuccessStep compareStep(String answer, String step){
-        if (step.equals(answer)){
+    public static SuccessStep compareStep(String answer, String step) {
+        if (step.equals(answer)) {
             return SUCCESS;
         }
         return FAIL;
     }
 
-    public static String getResultbyStatus(boolean status){
-        for (SuccessStep successStep: SuccessStep.values()){
-            if (successStep.status == status){
+    public static String getResultbyStatus(boolean status) {
+        for (SuccessStep successStep : SuccessStep.values()) {
+            if (successStep.status == status) {
                 return successStep.getResult();
             }
-        }return null;
+        }
+        return null;
     }
 
 }

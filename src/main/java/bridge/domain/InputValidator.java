@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.game.GameMode;
+import bridge.domain.generator.Step;
 import bridge.message.ErrorMessage;
 
 public class InputValidator {

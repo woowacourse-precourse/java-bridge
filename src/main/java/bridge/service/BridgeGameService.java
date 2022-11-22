@@ -45,6 +45,7 @@ public class BridgeGameService {
             return map;
         }
         map = move();
+
         if (!game.isSuccess()) {
             return isRetry(map);
         }

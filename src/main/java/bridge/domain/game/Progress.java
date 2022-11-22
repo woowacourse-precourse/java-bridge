@@ -1,6 +1,7 @@
 package bridge.domain.game;
 
-import bridge.domain.Step;
+import bridge.domain.generator.Step;
+
 import java.util.*;
 import java.util.stream.Collectors;
 

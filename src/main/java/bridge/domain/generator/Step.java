@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.generator;
 
 import bridge.message.ErrorMessage;
 
@@ -17,11 +17,6 @@ public enum Step {
     public String getStepTxt() {
         return stepTxt;
     }
-
-    public int getStepNumber() {
-        return stepNumber;
-    }
-
 
     public static Step findByNum(int n){
         for (Step step: Step.values()){

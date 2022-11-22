@@ -28,21 +28,21 @@ public class OutputView {
     public void printResult(String map, boolean success, int totalTrial) {
         System.out.println(Message.PRINT_RESULT.getMessage());
         printMap(map);
-        System.out.println(Message.WHETHER_SUCCESS.getMessage()+SuccessStep.getResultbyStatus(success));
-        System.out.println(Message.TOTAL_TRIAL.getMessage()+totalTrial);
+        System.out.println(Message.WHETHER_SUCCESS.getMessage() + SuccessStep.getResultbyStatus(success));
+        System.out.println(Message.TOTAL_TRIAL.getMessage() + totalTrial);
     }
 
-    public void askBridgeLen(){
+    public void askBridgeLen() {
         System.out.println(Message.START_GAME.getMessage());
         System.out.println("");
         System.out.println(Message.ASK_LENGTH.getMessage());
     }
 
-    public void askRestart(){
+    public void askRestart() {
         System.out.println(Message.ASK_RESTART.getMessage());
     }
 
-    public void askStep(){
+    public void askStep() {
         System.out.println(Message.ASK_STEP.getMessage());
     }
 

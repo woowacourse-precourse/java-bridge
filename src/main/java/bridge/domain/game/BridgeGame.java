@@ -18,6 +18,7 @@ public class BridgeGame {
     public int getTotalTrial() {
         return totalTrial;
     }
+
     public boolean isSuccess() {
         return success;
     }
@@ -44,7 +45,7 @@ public class BridgeGame {
      */
     public String move(String userStep) {
         SuccessStep whetherSuccess = bridge.go(userStep);
-        if (!whetherSuccess.getStatus()){
+        if (!whetherSuccess.getStatus()) {
             success = false;
         }
         return progress.saveProgress(whetherSuccess, userStep);

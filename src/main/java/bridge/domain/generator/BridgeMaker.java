@@ -1,6 +1,5 @@
 package bridge.domain.generator;
 
-import bridge.domain.Step;
 import java.util.ArrayList;
 import java.util.List;
 

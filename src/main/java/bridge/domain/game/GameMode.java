@@ -1,27 +1,17 @@
 package bridge.domain.game;
 
 public enum GameMode {
-    RETRY("R", true),
-    QUIT("Q", false);
+    RETRY("R"),
+    QUIT("Q");
 
     private final String retryKey;
-    private final boolean retryOrNot;
 
     public String getKey() {
         return retryKey;
     }
 
-    public boolean isRetryOrNot() {
-        return retryOrNot;
-    }
-
-    GameMode(String retryKey, boolean retryOrNot) {
+    GameMode(String retryKey) {
         this.retryKey = retryKey;
-        this.retryOrNot = retryOrNot;
-    }
-
-    public boolean isRetry(String mode) {
-        return GameMode.valueOf(mode).retryOrNot;
     }
 
 }

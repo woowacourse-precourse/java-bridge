@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.game.SuccessStep;
+
 import java.util.List;
 
 public class Bridge {
@@ -8,11 +9,7 @@ public class Bridge {
     private int nowPosition;
     private InputValidator inputValidator;
 
-    public int getNowPosition() {
-        return nowPosition;
-    }
-
-    public void initNowPosition(){
+    public void initNowPosition() {
         nowPosition = 0;
     }
 
