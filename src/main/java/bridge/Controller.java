@@ -27,5 +27,25 @@ public class Controller {
         }
     }
 
-    
+
+    // 건널 수 있을 때 까지 건너기
+    public void crossBridgeToEnd() {
+        while (!bridgeGame.isCleared()) {
+            if (!move()) {
+                break;
+            }
+        }
+    }
+
+    public boolean move() {
+        try {
+            Direction nextDirection = Direction.toDirection(inputView.readMoving());
+            boolean moved = bridgeGame.move(nextDirection);
+            return moved;
+        } catch (IllegalArgumentError e) {
+            return move();
+        }
+    }
+
+
 }
