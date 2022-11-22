@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.exception.Exception;
+import bridge.model.Course;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -8,15 +9,18 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private static final String enterBridgeSize = "다리의 길이를 입력해주세요.";
-    private static final String enterBridgeCourse = "이동할 칸을 입력해주세요. (위: U, 아래: D)";
-    private static final String enterRestartOrQuit = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+
+    private static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String ENTER_BRIDGE_COURSE = "이동할 칸을 입력해주세요. (위: U, 아래: D)";
+    private static final String ENTER_RESTART_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(enterBridgeSize);
+        System.out.println(ENTER_BRIDGE_SIZE);
         String input = Console.readLine();
         isNumber(input);
         return Integer.parseInt(input);
@@ -32,7 +36,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(enterBridgeCourse);
+        System.out.println(ENTER_BRIDGE_COURSE);
         String input = Console.readLine();
         validateLength(input);
         isLetter(input);
@@ -44,7 +48,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(enterRestartOrQuit);
+        System.out.println(ENTER_RESTART_OR_QUIT);
         String input = Console.readLine();
         validateLength(input);
         isLetter(input);
@@ -66,13 +70,13 @@ public class InputView {
     }
 
     private void isCourse(String input) {
-        if (!input.equals("U") && !input.equals("D")) {
+        if (!input.equals(Course.TOP.getDirection()) && !input.equals(Course.BOTTOM.getDirection())) {
             throw Exception.IS_NOT_COURSE_EXCEPTION.getException();
         }
     }
 
     private void isRestartFlag(String input) {
-        if (!input.equals("R") && !input.equals("Q")) {
+        if (!input.equals(RETRY) && !input.equals(QUIT)) {
             throw Exception.IS_NOT_FLAG_EXCEPTION.getException();
         }
     }
