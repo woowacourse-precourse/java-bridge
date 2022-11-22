@@ -44,10 +44,22 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(MOVING_MENT);
-        String s = Console.readLine();
-        // validateMoving(s)
-        return s;
+        while (true) {
+            try {
+                System.out.println(MOVING_MENT);
+                String s = Console.readLine();
+                validateMoving(s);
+                return s;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateMoving(String s) throws IllegalArgumentException {
+        if (!s.equals("D") && !s.equals("U")) {
+            throw new IllegalArgumentException("[ERROR] 플레이어는 U(위 칸) 또는 D(아래 칸)으로만 이동할 수 있습니다.");
+        }
     }
 
     /**
