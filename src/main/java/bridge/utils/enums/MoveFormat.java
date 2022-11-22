@@ -22,6 +22,10 @@ public enum MoveFormat {
         throw new IllegalArgumentException();
     }
 
+    public String getLabel() {
+        return label;
+    }
+
     public boolean isEqual(String label) {
         return this.label.equals(label);
     }

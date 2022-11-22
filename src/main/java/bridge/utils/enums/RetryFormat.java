@@ -10,6 +10,10 @@ public enum RetryFormat {
         this.label = label;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
     public boolean isEqual(String label) {
         return this.label.equals(label);
     }
