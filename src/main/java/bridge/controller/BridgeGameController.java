@@ -43,7 +43,7 @@ public class BridgeGameController {
         MovingResult movingResult = bridgeGameService.createMovingResult();
         outputView.printMap(MessageGenerator.createMovedMessage(movingResult));
         if (movingResult.isFailToMove()) {
-            requestPlayingAgain();
+            requestPlayingAgain(movingResult);
             return;
         }
         determineFinishGame(movingResult);
@@ -51,24 +51,33 @@ public class BridgeGameController {
 
     private void determineFinishGame(final MovingResult movingResult) {
         if (movingResult.isFinish()) {
-            outputView.printResult(MessageGenerator.createMovedMessage(movingResult), bridgeGameService.getGameCount());
+            outputView.printResult(MessageGenerator.createMovedMessage(movingResult),
+                    bridgeGameService.getGameCount(),
+                    movingResult.getMovingResultStatus());
             return;
         }
         requestBlock();
     }
 
-    private void requestPlayingAgain() {
+    private void requestPlayingAgain(MovingResult movingResult) {
         try {
             if (isRetry(inputView.readGameCommand())) {
                 requestBlockAgain();
                 return;
             }
+            requestQuitGame(movingResult);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            requestPlayingAgain();
+            requestPlayingAgain(movingResult);
         }
     }
 
+    private void requestQuitGame(MovingResult movingResult) {
+        // TODO 기존 기능 테스트 및 메시지 성공, 실패 여부 꽂는 기능 개발하기 이후 리팩토링
+        outputView.printResult(MessageGenerator.createMovedMessage(movingResult),
+                bridgeGameService.getGameCount(),
+                movingResult.getMovingResultStatus());
+    }
     private void requestBlockAgain() {
         bridgeGameService.retry();
         requestBlock();

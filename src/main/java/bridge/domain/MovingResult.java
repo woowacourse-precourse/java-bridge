@@ -30,6 +30,10 @@ public class MovingResult {
         return currentMovedIndex;
     }
 
+    public CrossStatus getMovingResultStatus() {
+        return movingResultStatus;
+    }
+
     public String getLastMoveResult(final BlockStatus expectedStatus) {
         if (movingResultStatus == CrossStatus.SUCCESS && blocks.get(currentMovedIndex) == expectedStatus) {
             return MessageGenerator.CORRECT;
