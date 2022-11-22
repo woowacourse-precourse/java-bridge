@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.constant.GameCommand;
+import bridge.constant.MovingCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
