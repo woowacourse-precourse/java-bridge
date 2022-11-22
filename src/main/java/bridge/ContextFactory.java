@@ -6,10 +6,6 @@ public class ContextFactory {
         return new BridgeRandomNumberGenerator();
     }
 
-    public RandomNumberHandler getRandomNumberHandler() {
-        return new RandomNumberHandlerImpl();
-    }
-
     public BridgeMaker getBridgeMaker() {
         return new BridgeMaker(getBridgeNumberGenerator());
     }
