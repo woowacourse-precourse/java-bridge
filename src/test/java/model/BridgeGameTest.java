@@ -162,7 +162,7 @@ public class BridgeGameTest {
             bridgeGame.move(DOWN);
             GameStatus gameStatus = bridgeGame.getGameStatus();
 
-            assertThat(gameStatus.getMoveDirections()).isEqualTo(List.of(UP));
+            assertThat(gameStatus.getMoveDirections()).isEqualTo(List.of(DOWN));
             assertThat(gameStatus.getMoveDirections().size()).isEqualTo(1);
             assertThat(gameStatus.fail()).isEqualTo(true);
             assertThat(gameStatus.tryCount()).isEqualTo(1);
