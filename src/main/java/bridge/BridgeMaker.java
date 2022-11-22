@@ -24,9 +24,9 @@ public class BridgeMaker {
         return IntStream.range(0, size)
                 .mapToObj(i -> {
                     if (isUpSide()) {
-                        return "U";
+                        return Move.UP.toString();
                     }
-                    return "D";
+                    return Move.DOWN.toString();
                 })
                 .collect(Collectors
                         .toList());
