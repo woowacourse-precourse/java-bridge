@@ -69,7 +69,7 @@ public class BridgeController {
 
     private int startGame(int inputSize, int lengthOfBridge) {
         while (lengthOfBridge < inputSize) {
-            String inputMoving = getInputMoving();
+            String inputMoving = inputView.readMoving();
             lengthOfBridge = bridgeGame.move(bridges, lengthOfBridge, inputMoving);
 
             List<String> toStringBridges = new ArrayList<>();
@@ -78,16 +78,6 @@ public class BridgeController {
             lengthOfBridge++;
         }
         return lengthOfBridge;
-    }
-
-    private String getInputMoving() {
-
-        String inputMoving = inputView.readMoving();
-
-        if (!inputMoving.equals("U") && !inputMoving.equals("D")) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_MOVING_COMMAND.getExceptionMessage());
-        }
-        return inputMoving;
     }
 
     private static void addforBridges(List<String> toStringBridges) {
