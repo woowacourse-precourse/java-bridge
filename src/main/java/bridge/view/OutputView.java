@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     private void printEachBridge(List<String> bridge) {
-        bridge =createSpace(bridge);
+        bridge = createSpaceByOutputFormat(bridge);
 
         boolean isFirst = true;
         for (String round : bridge) {
@@ -51,7 +51,7 @@ public class OutputView {
         }
     }
 
-    private List<String> createSpace(List<String> bridge) {
+    private List<String> createSpaceByOutputFormat(List<String> bridge) {
         return bridge.stream()
                 .map(i -> SPACE + i + SPACE)
                 .collect(Collectors.toList());
@@ -77,7 +77,7 @@ public class OutputView {
         out.println(TRY_COUNT_MESSAGE + tryCount);
     }
 
-    public void printFinalResult(List<List<String>> bridges) {
+    public void printFinalRecord(List<List<String>> bridges) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printMap(bridges);
     }

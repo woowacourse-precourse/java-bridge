@@ -25,7 +25,7 @@ public enum GameOption {
         return message.equals(gameOptionMessage);
     }
 
-    public static Boolean isGameOption(String gameOption) {
+    public static Boolean isGameOptionExist(String gameOption) {
         return Stream.of(values())
                 .anyMatch(value -> gameOption.equals(value.message));
     }

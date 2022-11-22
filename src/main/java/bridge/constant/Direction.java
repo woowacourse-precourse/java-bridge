@@ -23,7 +23,7 @@ public enum Direction {
                 .message;
     }
 
-    public static Direction getDirection (String message) {
+    public static Direction getDirectionByMessage(String message) {
         return Stream.of(values())
                 .filter(value -> isDirectionEqual(message, value))
                 .findFirst()
@@ -35,7 +35,7 @@ public enum Direction {
         return message.equals(directionMessage);
     }
 
-    public static Boolean isDirection(String direction) {
+    public static Boolean isDirectionExist(String direction) {
         return Stream.of(values())
                 .anyMatch(value -> direction.equals(value.message));
     }

@@ -84,7 +84,7 @@ public class GameController {
     private void printGameResult() {
         Record record = bridgeGame.getRecord();
         List<List<String>> bridgeRecord = record.getBridgeRecord();
-        outputView.printFinalResult(bridgeRecord);
+        outputView.printFinalRecord(bridgeRecord);
 
         Result result = bridgeGame.getResult();
         outputView.printResult(result);

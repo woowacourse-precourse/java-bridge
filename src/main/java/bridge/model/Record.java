@@ -29,7 +29,7 @@ public class Record {
     }
 
     private List<String> getSelectBridge(String moveDirection) {
-        Direction direction = getDirection(moveDirection);
+        Direction direction = getDirectionByMessage(moveDirection);
 
         if (direction == UP) {
             return upBridgeRecord;
