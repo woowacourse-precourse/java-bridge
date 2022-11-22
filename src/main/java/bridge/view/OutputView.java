@@ -33,39 +33,50 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static String printMap(GameProgress progress, Bridge bridge) {
-        String firstRow = "";
-        String secondRow = "";
+        List<String> rawBridge = bridge.getBridge();
 
-        //TODO 길이를 줄이자! -> 이게 모두 한번씩 동일한 뭉탱이가 반복되니깐 그 뭉탱이(로우)를 한세트로 처리하게 하면 된다.
-        for (String upDown : bridge.getBridge()) {
-            if (upDown.equals(Move.UP.getDirection())) {
-                firstRow += "O";
-                secondRow += " ";
-            }
-            if (upDown.equals(Move.DOWN.getDirection())) {
-                firstRow += " ";
-                secondRow += "O";
-            }
-        }
+        String firstRow = makeAndPrintRow(progress, rawBridge, Move.UP.getDirection());
+        String secondRow = makeAndPrintRow(progress, rawBridge, Move.DOWN.getDirection());
 
-        // 현재 상태가 실패인 경우, 마지막 글자를 X로 바꾸는 로직 필요
-        if (progress == GameProgress.FAILURE) {
-            if (firstRow.charAt(firstRow.length() - 1) == 'O') {
-                firstRow = firstRow.substring(0, firstRow.length() - 1) + "X";
-            }
-            if (secondRow.charAt(secondRow.length() - 1) == 'O') {
-                secondRow = secondRow.substring(0, secondRow.length() - 1) + "X";
-            }
-        }
-
-        // 지정된 포맷으로 변환시켜주는 로직 필요
-        firstRow = "[ " + String.join(" | ", firstRow.split("")) + " ]";
-        secondRow = "[ " + String.join(" | ", secondRow.split("")) + " ]";
-
-        // 정제된 결과를 출력한다.
-        System.out.println(firstRow);
-        System.out.println(secondRow);
         return firstRow + '\n' + secondRow;
+    }
+
+    private static String makeAndPrintRow(GameProgress progress, List<String> bridge, String direction) {
+        String row = "";
+
+        row = bridgeToRow(bridge, direction);  // 한줄씩 다리에 대한 String 제작
+        if (progress == GameProgress.FAILURE) {  // 실패한 게임의 경우 마지막 글자를 X로 변경
+            row = replaceFailedStep(row);
+        }
+        row = setMapFormat(row);  // 지정된 포맷으로 변환
+
+        System.out.println(row);  // 정제된 결과를 출력
+        return row;
+    }
+
+    private static String bridgeToRow(List<String> bridge, String direction) {
+        String row = "";
+        for (String upDown : bridge) {
+            if (upDown.equals(direction)) {
+                row += "O";
+            }
+            if (!upDown.equals(direction)) {
+                row += " ";
+            }
+        }
+        return row;
+    }
+
+    private static String replaceFailedStep(String row) {
+        int rowLength = row.length();
+        if (row.charAt(rowLength - 1) == 'O') {
+            row = row.substring(0, rowLength - 1) + "X";
+        }
+        return row;
+    }
+
+    private static String setMapFormat(String row) {
+        return "[ " + String.join(" | ", row.split("")) + " ]";
     }
 
     /**
