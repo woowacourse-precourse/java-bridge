@@ -2,8 +2,9 @@ package bridge;
 
 import java.util.Objects;
 
-import static bridge.constant.ErrorConstant.ERROR_BLANK_INPUT;
-import static bridge.constant.ErrorConstant.ERROR_NON_INTEGER;
+import static bridge.constant.BridgeConstant.BRIDGE_MAX_SIZE;
+import static bridge.constant.BridgeConstant.BRIDGE_MIN_SIZE;
+import static bridge.constant.ErrorConstant.*;
 
 public class InputViewValidation {
 
@@ -21,6 +22,11 @@ public class InputViewValidation {
     private static void checkBlankInput(String input) {
         if (Objects.isNull(input) || input.isEmpty()) {
             throw new IllegalArgumentException(ERROR_BLANK_INPUT);
+        }
+    }
+    public static void isValidRangeOfBridgeSize(int bridgeSize) {
+        if (bridgeSize < BRIDGE_MIN_SIZE || bridgeSize > BRIDGE_MAX_SIZE) {
+            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
         }
     }
 }
