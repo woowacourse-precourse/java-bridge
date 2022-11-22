@@ -12,6 +12,10 @@ public class BridgeConnector {
     private String upperSide;
     private String lowerSide;
 
+    @Override
+    public String toString() {
+        return upperSide + "\n" + lowerSide;
+    }
 
     public void connect(List<Status> statuses) {
         upperSide = "";
@@ -52,10 +56,4 @@ public class BridgeConnector {
             lowerSide += selectResult;
         }
     }
-
-    @Override
-    public String toString() {
-        return upperSide + "\n" + lowerSide;
-    }
-
 }
