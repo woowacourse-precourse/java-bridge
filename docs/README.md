@@ -93,6 +93,9 @@
 - 사용자가 재시도를 선택한 경우 : `resetProcess()`
   - `BridgeGame.retry()` 호출
   - 처음 과정부터 재시작
+- 사용자 재입력 요구사항, 예외 발생 시 재입력 요청
+  - `checkMovementExceptionAndRun` : 사용자 이동 예외 입력시 재요청
+  - `checkExitCodeExceptionAndRun` : 사용자 종료 및 재시도 예외 입력시 재요청
 ### BridgeGame
 - Class field value: `int trialCount`
   - 사용자가 정답까지 시도한 횟수
