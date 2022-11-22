@@ -45,6 +45,7 @@ public class Controller {
                 }
                 index++;
             }
+            outputView.printResult(isSuccess, bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
