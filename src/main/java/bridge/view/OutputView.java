@@ -82,8 +82,8 @@ public class OutputView {
     }
 
     public void clearMap() {
-        upState = new StringBuilder();
-        downState = new StringBuilder();
+        upState.setLength(0);
+        downState.setLength(0);
     }
 
     /**
