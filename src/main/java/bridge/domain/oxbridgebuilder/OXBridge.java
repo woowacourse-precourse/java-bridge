@@ -4,8 +4,11 @@ import bridge.domain.resources.UpOrDown;
 
 public class OXBridge {
 
+    private static int tries;
+
     private final UDBridge upBridge;
     private final UDBridge downBridge;
+    private boolean correctOrWrong;
 
     private OXBridge() {
         this.upBridge = UDBridge.of();
@@ -13,12 +16,14 @@ public class OXBridge {
     }
 
     public static OXBridge from() {
+        tries++;
         return new OXBridge();
     }
 
     public void addUD(UpOrDown upOrDown, boolean correctOrWrong) {
         String UD = upOrDown.getInputUD();
         String ox = OXBridgeUtils.makeOX(correctOrWrong);
+        this.correctOrWrong = correctOrWrong;
 
         InputIsU(UD, ox);
         InputIsD(UD, ox);
@@ -40,6 +45,14 @@ public class OXBridge {
 
     public int sizeOfOXBridge() {
         return upBridge.size();
+    }
+
+    public boolean isCorrectOrWrong() {
+        return correctOrWrong;
+    }
+
+    public int getTries() {
+        return tries;
     }
 
     @Override
