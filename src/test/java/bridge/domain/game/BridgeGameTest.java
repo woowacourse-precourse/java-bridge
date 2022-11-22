@@ -5,6 +5,7 @@ import bridge.domain.factory.BridgeGameFactory;
 import bridge.domain.pedestrian.Pedestrian;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,12 +16,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeGameTest {
 
     private static final int FIRST_ROUND = 1;
     private static final int STARTING_POINT = 0;
     private static final int EXAMPLE_SIZE = 5;
+    private static final int MAXIMUM_ROUND = 2_147_483_647;
     private BridgeGame game;
     private Pedestrian pedestrian;
 
@@ -55,7 +58,6 @@ class BridgeGameTest {
         assertThat(pedestrian.findLocation()).isEqualTo(STARTING_POINT);
     }
 
-
     private void moveInManyDirections(BridgeGame game, List<Direction> directions) {
         for (Direction direction : directions) {
             game.move(pedestrian, direction);
@@ -79,6 +81,13 @@ class BridgeGameTest {
         int actualRound = round.getGameRound();
 
         assertThat(actualRound).isEqualTo(expectedRound);
+    }
+
+    @DisplayName("retry 메소드를 2_147_483_647 이상 호출하면 오류를 발생시키는지 확인")
+    @Test
+    void retry_error_test() {
+        assertThatThrownBy(() -> retryGameMultiple(MAXIMUM_ROUND)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 가능한 게임 라운드를 초과하였습니다.");
     }
 
     private void retryGameMultiple(int times) {
