@@ -1,12 +1,12 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeMakerTest {
 
@@ -34,7 +34,7 @@ class BridgeMakerTest {
 
     }
 
-    private class TestGenerator implements BridgeNumberGenerator{
+    private class TestGenerator implements BridgeNumberGenerator {
 
         @Override
         public int generate() {
