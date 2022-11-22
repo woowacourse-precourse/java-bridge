@@ -86,11 +86,11 @@ public class BridgeGame {
         }
     }
 
-    public void isSuccess(List<String> bridge, int acrossBridge) {
-        if (acrossBridge == bridge.size()) {
+    public void isSuccess(List<String> bridge, int acrossBridge, String resultMap) {
+        if (acrossBridge == bridge.size() && !(resultMap.contains("X"))) {
             System.out.println(printOutput.IS_SUCCESS_SUCCESS.getGameOutput());
         }
-        if (acrossBridge != bridge.size()) {
+        if (acrossBridge != bridge.size() || resultMap.contains("X")) {
             System.out.println(printOutput.IS_SUCCESS_FAIL.getGameOutput());
         }
     }
@@ -137,11 +137,4 @@ public class BridgeGame {
         return this.count = count + 1;
     }
 
-    public StringBuilder getLowerBridge() {
-        return lowerBridge;
-    }
-
-    public StringBuilder getUpperBridge() {
-        return upperBridge;
-    }
 }
