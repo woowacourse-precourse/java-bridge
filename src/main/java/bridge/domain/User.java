@@ -23,24 +23,29 @@ public class User {
 
     private void updateMapBridgeFalse(String move){
         if(move.equals("U")){
-            this.mapUpperBridge.add("X");
-            this.mapLowerBridge.add(" ");
+            mapUpperBridge.add("X");
+            mapLowerBridge.add(" ");
         }
         if(move.equals("D")){
-            this.mapUpperBridge.add(" ");
-            this.mapLowerBridge.add("X");
+            mapUpperBridge.add(" ");
+            mapLowerBridge.add("X");
         }
     }
 
     private void updateMapBridgeTrue(String move){
         if(move.equals("U")){
-            this.mapUpperBridge.add("O");
-            this.mapLowerBridge.add(" ");
+            mapUpperBridge.add("O");
+            mapLowerBridge.add(" ");
         }
         if(move.equals("D")){
-            this.mapUpperBridge.add(" ");
-            this.mapLowerBridge.add("O");
+            mapUpperBridge.add(" ");
+            mapLowerBridge.add("O");
         }
+    }
+
+    public void BridgeReset(){
+        mapUpperBridge = new ArrayList<>();
+        mapLowerBridge = new ArrayList<>();
     }
 
     public int getTryCount() {
@@ -48,10 +53,10 @@ public class User {
     }
 
     public List<String> getMapUpperBridge() {
-        return this.mapUpperBridge;
+        return mapUpperBridge;
     }
 
     public List<String> getMapLowerBridge() {
-        return this.mapLowerBridge;
+        return mapLowerBridge;
     }
 }
