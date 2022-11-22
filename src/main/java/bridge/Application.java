@@ -15,7 +15,7 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리 건너기 게임을 시작합니다.");
         // 다리 길이 입력
         int size = InputView.getInstance.readBridgeSize();
         List<String> madeBridge = bridgeMaker.makeBridge(size);
