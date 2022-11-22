@@ -1,7 +1,7 @@
 package bridge.domain;
 
 public enum GameException {
-    INVALID_INTEGER("[ERROR]", "올바른 정수형 숫자가 아닙니다."),
+    INVALID_POSITIVE_INTEGER("[ERROR]", "양의 정수를 입력해 주세요."),
     INVALID_BRIDGE_SIZE("[ERROR]", "다리 길이는 3부터 20 사이의 숫자여야 합니다."),
     INVALID_DIRECTION("[ERROR]", "U(위 칸) 또는 D(아래 칸)이 입력되지 않았습니다."),
     INVALID_ASK_RETRY_KEY("[ERROR]", "R(재도전) 또는 Q(종료)가 입력되지 않았습니다."),

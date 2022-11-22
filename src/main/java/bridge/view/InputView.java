@@ -21,21 +21,17 @@ public class InputView {
      */
     public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
-        int bridgeSize = convertToInt(Console.readLine());
+        String bridgeSize = Console.readLine();
         System.out.println();
 
-        return bridgeSize;
+        validatePositiveInt(bridgeSize);
+
+        return Integer.parseInt(bridgeSize);
     }
 
-    private static int convertToInt(String input) {
-        validateInt(input);
-
-        return Integer.parseInt(input);
-    }
-
-    private static void validateInt(String string) {
+    private static void validatePositiveInt(String string) {
         if (!isAllDigit(string)) {
-            throw new IllegalArgumentException(GameException.INVALID_INTEGER.name());
+            throw new IllegalArgumentException(GameException.INVALID_POSITIVE_INTEGER.name());
         }
     }
 
