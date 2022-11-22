@@ -22,4 +22,8 @@ public class GameService {
             }
         }
     }
+
+    public void increaseCount() {
+        game.increaseTryCount();
+    }
 }

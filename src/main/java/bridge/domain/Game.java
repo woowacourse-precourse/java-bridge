@@ -6,4 +6,8 @@ public class Game {
     public Game(int tryCount) {
         this.tryCount = tryCount;
     }
+
+    public void increaseTryCount() {
+        this.tryCount++;
+    }
 }

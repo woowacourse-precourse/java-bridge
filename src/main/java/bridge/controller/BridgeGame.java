@@ -49,6 +49,7 @@ public class BridgeGame {
         String command = gameService.pauseGame();
         if (command.equals("R")) {
             roundService.initializeRound();
+            gameService.increaseCount();
             return true;
         }
         return false;
