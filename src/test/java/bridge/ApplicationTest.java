@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import bridge.utils.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 class ApplicationTest extends NsTest {

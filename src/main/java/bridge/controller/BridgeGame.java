@@ -3,9 +3,9 @@ package bridge.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import bridge.model.BridgeMaker;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.model.CrossBridgeType;
-import bridge.utils.BridgeRandomNumberGenerator;
 import bridge.utils.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
