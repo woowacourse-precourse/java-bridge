@@ -119,5 +119,20 @@ public class OutputView {
     }
 
     public void printStatistic(boolean currentStatus, int numTry) {
+        println();
+        StringBuilder statistic = new StringBuilder();
+        statistic.append(Constants.MESSAGE_RESULT);
+        makeResultStatus(statistic, currentStatus);
+        statistic.append(Constants.NEXT_LINE).append(Constants.MESSAGE_TOTAL_TRY).append(numTry);
+        println(statistic.toString());
     }
+
+    private void makeResultStatus(StringBuilder statistic, boolean currentStatus) {
+        if (!currentStatus) {
+            statistic.append(Constants.MESSAGE_FAIL);
+            return;
+        }
+        statistic.append(Constants.MESSAGE_SUCCESS);
+    }
+
 }
