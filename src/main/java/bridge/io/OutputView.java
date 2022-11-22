@@ -8,6 +8,11 @@ public class OutputView {
     public static String END_RESULT = " ]";
     public static String DIVIDE_RESULT = " | ";
 
+    public static void setupBridgeProgress() {
+        UPPER_BRIDGE_RESULT = new StringBuilder();
+        LOWER_BRIDGE_RESULT = new StringBuilder();
+    }
+
     public static void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }

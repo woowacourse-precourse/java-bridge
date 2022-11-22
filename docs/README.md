@@ -3,7 +3,8 @@
 - Application
     - InputView, OutputView를 사용하여 입출력한다.
     - BridgeGameConfig를 통해 BridgeGame을 생성한다.
-    - retry command가 "Q"가 입력될 때까지 게임을 반복한다.
+    - bridge size에 맞게 bridge를 세팅한다.
+    - 게임이 종료될 때까지 게임을 반복한다.
 
 - io 패키지 생성
     - InputView, OutputView를 io 패키지로 구분한다.

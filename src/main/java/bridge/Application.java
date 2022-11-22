@@ -18,6 +18,17 @@ public class Application {
         }
     }
 
+    private static BridgeGame createBridgeGame() {
+        printStartMessage();
+        return bridgeGame();
+    }
+
+    private static void setupGame() {
+        printGetBridgeSize();
+        final int bridgeSize = readBridgeSize();
+        bridgeGame.setupGame(bridgeSize);
+    }
+
     private static void playGame() {
         while (true) {
             if (crossBridge()) {
@@ -32,19 +43,8 @@ public class Application {
         }
     }
 
-    private static BridgeGame createBridgeGame() {
-        printStartMessage();
-        return bridgeGame();
-    }
-
-    private static void setupGame() {
-        printGetBridgeSize();
-        final int bridgeSize = readBridgeSize();
-        bridgeGame.setupGame(bridgeSize);
-    }
-
     private static boolean crossBridge() {
-        setupProgress();
+        setupBridgeProgress();
         final int bridgeSize = bridgeGame.getBridgeSize();
         for (int i = 0; i < bridgeSize; i++) {
             printGetBridgeCourse();
@@ -54,11 +54,6 @@ public class Application {
         }
         bridgeGame.success();
         return true;
-    }
-
-    private static void setupProgress() {
-        UPPER_BRIDGE_RESULT = new StringBuilder();
-        LOWER_BRIDGE_RESULT = new StringBuilder();
     }
 
     private static boolean move(final String course) {
