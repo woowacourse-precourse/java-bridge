@@ -1,8 +1,6 @@
-package bridge.View;
+package bridge;
 
-import bridge.domain.enums.BridgeMsgs;
-
-import static bridge.domain.enums.BridgeMsgs.*;
+import static bridge.enums.BridgeMsgs.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**

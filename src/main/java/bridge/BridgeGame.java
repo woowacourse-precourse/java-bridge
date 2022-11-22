@@ -1,13 +1,10 @@
-package bridge.domain;
-
-import bridge.View.InputView;
-import bridge.View.OutputView;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.enums.BridgeConstants.*;
-import static bridge.domain.enums.BridgeMsgs.*;
+import static bridge.enums.BridgeConstants.*;
+import static bridge.enums.BridgeMsgs.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

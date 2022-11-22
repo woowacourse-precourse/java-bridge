@@ -1,8 +1,8 @@
-package bridge.domain;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-import static bridge.domain.enums.BridgeConstants.*;
+import static bridge.enums.BridgeConstants.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.

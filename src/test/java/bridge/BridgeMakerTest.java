@@ -1,9 +1,6 @@
 package bridge;
 
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
-import org.assertj.core.api.Assertions;
-import static bridge.domain.enums.BridgeConstants.*;
+import static bridge.enums.BridgeConstants.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

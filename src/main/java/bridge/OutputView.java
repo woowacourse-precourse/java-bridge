@@ -1,11 +1,11 @@
-package bridge.View;
+package bridge;
 
-import bridge.domain.Field;
+import bridge.Field;
 
 import java.util.ArrayList;
 
-import static bridge.domain.enums.BridgeMsgs.*;
-import static bridge.domain.enums.BridgeConstants.*;
+import static bridge.enums.BridgeMsgs.*;
+import static bridge.enums.BridgeConstants.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

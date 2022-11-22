@@ -1,4 +1,4 @@
-package bridge.domain.enums;
+package bridge.enums;
 
 public enum BridgeMsgs {
 
