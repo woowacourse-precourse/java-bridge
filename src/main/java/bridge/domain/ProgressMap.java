@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProgressMap {
-	private static final String MOVE_FAILED_VALUE = "X";
-	private static final String MOVE_SUCCESS_VALUE = "O";
-	private static final String NO_MOVE_VALUE = " ";
+	private static final int MOVE_UP_SEQUENCE = 0;
+	private static final int MOVE_DOWN_SEQUENCE = 1;
 	private final List<List<String>> progressMap;
 
 	public ProgressMap() {
@@ -18,50 +17,11 @@ public class ProgressMap {
 	}
 
 	public void updateProgressMap(String moving, boolean isCorrectMove) {
-		if (isCorrectMove) {
-			correctMove(moving);
-		}
-		if (!isCorrectMove) {
-			incorrectMove(moving);
-		}
-	}
-
-	private void correctMove(String moving) {
-		if (moving.equals(MOVE_UP.getValue())) {
-			correctMoveUp();
-		}
-		if (moving.equals(MOVE_DOWN.getValue())) {
-			correctMoveDown();
-		}
-	}
-
-	private void correctMoveUp() {
-		progressMap.get(0).add(MOVE_SUCCESS_VALUE);
-		progressMap.get(1).add(NO_MOVE_VALUE);
-	}
-
-	private void correctMoveDown() {
-		progressMap.get(0).add(NO_MOVE_VALUE);
-		progressMap.get(1).add(MOVE_SUCCESS_VALUE);
-	}
-
-	private void incorrectMove(String moving) {
-		if (moving.equals(MOVE_UP.getValue())) {
-			incorrectMoveUp();
-		}
-		if (moving.equals(MOVE_DOWN.getValue())) {
-			incorrectMoveDown();
-		}
-	}
-
-	private void incorrectMoveUp() {
-		progressMap.get(0).add(MOVE_FAILED_VALUE);
-		progressMap.get(1).add(NO_MOVE_VALUE);
-	}
-
-	private void incorrectMoveDown() {
-		progressMap.get(0).add(NO_MOVE_VALUE);
-		progressMap.get(1).add(MOVE_FAILED_VALUE);
+		List<String> result = MoveResult.createMoveResult(moving, isCorrectMove);
+		String moveUpResult = result.get(MOVE_UP_SEQUENCE);
+		String moveDownResult = result.get(MOVE_DOWN_SEQUENCE);
+		progressMap.get(MOVE_UP_SEQUENCE).add(moveUpResult);
+		progressMap.get(MOVE_DOWN_SEQUENCE).add(moveDownResult);
 	}
 
 	public int getMapSize() {
