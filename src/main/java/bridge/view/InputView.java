@@ -19,15 +19,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int size;
         try {
-            size = stringToInteger(Console.readLine());
+            int size = stringToInteger(Console.readLine());
             validateSize(size);
+            return size;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
-        return size;
     }
 
     private int stringToInteger(String input) {
