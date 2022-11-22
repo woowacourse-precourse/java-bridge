@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Bridge {
     private final List<String> bridge;
@@ -17,8 +18,8 @@ public class Bridge {
         return bridge;
     }
 
-    public boolean isEqualByIndex(String playerChoice, int index) {
-        return playerChoice.equals(bridge.get(index));
+    public boolean isAllEqualSoFar(List<String> movement) {
+        return IntStream.range(0, movement.size()).allMatch(index -> bridge.get(index).equals(movement.get(index)));
     }
 
     public boolean isEqual(List<String> playerChoices) {
