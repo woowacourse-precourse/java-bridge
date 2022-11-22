@@ -20,22 +20,22 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         List<String> userPicks = new ArrayList<>();
         boolean isCorrect = false;
-        while(!GAME_STATE.equals("Q")) {
+        while (!GAME_STATE.equals("Q")) {
             String userPick = inputView.readMoving();
             userPicks.add(userPick);
             isCorrect = bridgeGame.move(bridge, userPicks);
             outputView.printMap(bridge, userPicks, isCorrect);
-            if(index == bridgeSize && isCorrect) {
+            if (index == bridgeSize && isCorrect) {
                 outputView.printResult(bridge, userPicks, true, gameCount);
                 return;
             }
-            if(!isCorrect) {
+            if (!isCorrect) {
                 GAME_STATE = inputView.readGameCommand();
-                if(GAME_STATE == "Q") {
+                if (GAME_STATE == "Q") {
                     outputView.printResult(bridge, userPicks, false, gameCount);
                     return;
                 }
-                if(GAME_STATE == "R") gameCount++;
+                if (GAME_STATE == "R") gameCount++;
             }
             index++;
         }

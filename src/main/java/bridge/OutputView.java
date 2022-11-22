@@ -15,21 +15,21 @@ public class OutputView {
     public void printMap(List<String> bridge, List<String> userPick, boolean isCorrect) { // todo : 리팩토링
         int SIZE = userPick.size();
         System.out.print("[");
-        for(int i=0; i<SIZE; i++) {
-            if(bridge.get(i).equals("U") && userPick.get(i).equals("U"))
+        for (int i = 0; i < SIZE; i++) {
+            if (bridge.get(i).equals("U") && userPick.get(i).equals("U"))
                 System.out.print(" O ");
-            if(!bridge.get(i).equals("U") && userPick.get(i).equals("D"))
+            if (!bridge.get(i).equals("U") && userPick.get(i).equals("D"))
                 System.out.print(" " + (isCorrect ? " " : "X") + " ");
-            if(i <= SIZE - 2) System.out.print("|");
+            if (i <= SIZE - 2) System.out.print("|");
         }
         System.out.println("]");
         System.out.print("[");
-        for(int i=0; i<SIZE; i++) {
-            if(bridge.get(i).equals("D") && userPick.get(i).equals("D"))
+        for (int i = 0; i < SIZE; i++) {
+            if (bridge.get(i).equals("D") && userPick.get(i).equals("D"))
                 System.out.print(" O ");
-            if(!bridge.get(i).equals("D") && userPick.get(i).equals("U"))
+            if (!bridge.get(i).equals("D") && userPick.get(i).equals("U"))
                 System.out.print(" " + (isCorrect ? " " : "X") + " ");
-            if(i <= SIZE - 2) System.out.print("|");
+            if (i <= SIZE - 2) System.out.print("|");
         }
         System.out.println("]");
     }
