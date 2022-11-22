@@ -27,4 +27,9 @@ public class InputView {
         String move = Console.readLine();
         return move;
     }
+    public String readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String restart = Console.readLine();
+        return restart;
+    }
 }
