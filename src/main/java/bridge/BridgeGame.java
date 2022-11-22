@@ -10,6 +10,7 @@ public class BridgeGame {
     public final List<String> bridge;
     public final List<String> moveResult = new ArrayList<>();
 
+    public int countOfTry = 1;
     BridgeGame(List<String> bridge) {
         this.bridge = bridge;
     }
@@ -20,7 +21,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String movement) {
-        if (bridge.get(0).equals(movement)) {
+        if (bridge.get(moveResult.size()).equals(movement)) {
             this.moveResult.add("O");
             return true;
         }
@@ -36,6 +37,7 @@ public class BridgeGame {
     public boolean retry(String answer) {
         if(answer.equals("R")){
             this.moveResult.clear();
+            this.countOfTry++;
             return true;
         }
         return false;
