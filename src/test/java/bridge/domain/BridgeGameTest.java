@@ -11,8 +11,8 @@ class BridgeGameTest {
     @DisplayName("다리에서 칸을 이동한 결과가 잘나오는지 테스트")
     @Test
     void move() {
-        assertThat(bridgeGame.move(List.of("U", "D", "D"), 0, "U")).isEqualTo(1);
-        assertThat(bridgeGame.move(List.of("U", "D", "D"), 0, "D")).isEqualTo(0);
+        assertThat(bridgeGame.move(List.of("U", "D", "D").get(0), "U")).isEqualTo(true);
+        assertThat(bridgeGame.move(List.of("U", "D", "D").get(1), "U")).isEqualTo(false);
     }
 
     @DisplayName("플레이어가 재시작할경우 플레이어의 결과가 리셋되는지 테스트")
