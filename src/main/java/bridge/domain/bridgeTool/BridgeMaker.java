@@ -1,6 +1,6 @@
-package bridge;
+package bridge.domain.bridgeTool;
 
-import util.BridgeUtil;
+import bridge.util.BridgeUtil;
 
 import java.util.ArrayList;
 import java.util.List;

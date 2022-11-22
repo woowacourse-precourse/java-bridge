@@ -1,4 +1,4 @@
-package util;
+package bridge.util;
 
 public class BridgeUtil {
 
