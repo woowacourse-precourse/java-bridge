@@ -45,7 +45,7 @@ public class InputViewTest {
                 );
     }
 
-    @DisplayName("입력받은 다리의 길이가 3보다 작으면 예외를 던진다.")
+    @DisplayName("입력받은 다리의 길이가 3보다 작으면 null을 반환한다.")
     @Test
     void readBridgeSize_smallThan_3_Failed() {
         // given
@@ -57,12 +57,11 @@ public class InputViewTest {
         System.setIn(in);
 
         // then
-        assertThatThrownBy(() -> inputView.readBridgeSize())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("범위를 벗어난 입력입니다. ");
+        assertThat(inputView.readBridgeSize()).isNull();
+
     }
 
-    @DisplayName("입력받은 다리의 길이가 20보다 크면 예외를 던진다.")
+    @DisplayName("입력받은 다리의 길이가 20보다 크면 null을 반환한다.")
     @Test
     void readBridgeSize_biggerThan_20_Failed() {
         // given
@@ -74,8 +73,6 @@ public class InputViewTest {
         System.setIn(in);
 
         // then
-        assertThatThrownBy(() -> inputView.readBridgeSize())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("범위를 벗어난 입력입니다. ");
+        assertThat(inputView.readBridgeSize()).isNull();
     }
 }
