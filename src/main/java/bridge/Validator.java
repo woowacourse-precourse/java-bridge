@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.utils.Stairs;
+
 public class Validator {
     public static final int MINIMUM_SIZE = 3;
     public static final int MAXIMUM_SIZE = 20;
@@ -17,5 +19,12 @@ public class Validator {
             }
         }
         return Integer.parseInt(length);
+    }
+
+    public static String validateIsCorrectValue(String value) {
+        if (!value.equals(Stairs.UP_STAIRS.getAbbreviation()) && !value.equals(Stairs.DOWN_STAIRS.getAbbreviation())) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U(위 칸), D(아래 칸) 둘 중 하나를 입력하셔야 합니다.");
+        }
+        return value;
     }
 }
