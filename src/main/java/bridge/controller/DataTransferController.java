@@ -1,9 +1,9 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.BridgeStatus;
-import bridge.service.BridgeRandomNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 
 
 public class DataTransferController {

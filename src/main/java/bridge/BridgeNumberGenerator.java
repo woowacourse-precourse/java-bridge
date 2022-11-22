@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 /**
  * bridge.BridgeRandomNumberGenerator의 generate 활용
