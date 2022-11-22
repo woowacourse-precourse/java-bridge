@@ -23,13 +23,13 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             bridge.add(
-                    changeInt2Str(bridgeNumberGenerator.generate())
+                    changeOrderToCommand(bridgeNumberGenerator.generate())
             );
         }
         return bridge;
     }
 
-    private String changeInt2Str(int dir) {
+    private String changeOrderToCommand(int dir) {
         return BridgeMoveCommand.getByOrder(dir).command;
     }
 }
