@@ -114,6 +114,12 @@ public class BridgeGame {
         return false;
     }
 
+    public void validateInputGameCommand(String input) {
+        if (!isEndCommand(input) && !isRestartCommand(input)) {
+            throw new IllegalArgumentException(OUT_OF_RANGE);
+        }
+    }
+
     private boolean isEndCommand(String command) {
         if (QUIT.equals(command)) {
             return true;
