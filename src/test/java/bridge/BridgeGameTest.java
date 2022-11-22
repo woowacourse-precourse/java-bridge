@@ -12,8 +12,7 @@ class BridgeGameTest {
         try {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             List<String> availableList = List.of("U", "D", "D", "D", "U");
-            Bridge bridge = new Bridge(availableList);
-            BridgeGame bridgeGame = new BridgeGame(bridge);
+            BridgeGame bridgeGame = new BridgeGame(availableList);
             assertThat(true).isEqualTo(bridgeGame.checkMovable("U"));
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("U 또는 D를 입력해주세요.");
@@ -24,8 +23,7 @@ class BridgeGameTest {
         try {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             List<String> availableList = List.of("U", "D", "D", "D", "U");
-            Bridge bridge = new Bridge(availableList);
-            BridgeGame bridgeGame = new BridgeGame(bridge);
+            BridgeGame bridgeGame = new BridgeGame(availableList);
             assertThat(true).isEqualTo(bridgeGame.checkMovable("W"));
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("U 또는 D를 입력해주세요.");
@@ -36,8 +34,7 @@ class BridgeGameTest {
         try {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             List<String> availableList = List.of("U", "D", "U", "D", "D");
-            Bridge bridge = new Bridge(availableList);
-            BridgeGame bridgeGame = new BridgeGame(bridge);
+            BridgeGame bridgeGame = new BridgeGame(availableList);
             assertThat(true).isEqualTo(bridgeGame.checkMovable("U"));
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("U 또는 D를 입력해주세요.");
@@ -48,8 +45,7 @@ class BridgeGameTest {
         try {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             List<String> availableList = List.of("U", "D", "U", "D", "D");
-            Bridge bridge = new Bridge(availableList);
-            BridgeGame bridgeGame = new BridgeGame(bridge);
+            BridgeGame bridgeGame = new BridgeGame(availableList);
             bridgeGame.move();
             assertThat(false).isEqualTo(bridgeGame.checkMovable("U"));
         } catch (IllegalArgumentException e) {
@@ -60,8 +56,7 @@ class BridgeGameTest {
     void 게임성공_확인(){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> availableList = List.of("U", "D", "U", "D", "D");
-        Bridge bridge = new Bridge(availableList);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = new BridgeGame(availableList);
         bridgeGame.move();
         bridgeGame.move();
         bridgeGame.move();
