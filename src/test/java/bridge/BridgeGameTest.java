@@ -1,63 +1,50 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.controller.InputController;
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
 import bridge.domain.Result;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.*;
-import java.util.List;
+import java.util.ArrayList;
 
-/*
 class BridgeGameTest {
     Bridge bridge;
+    Player player;
+    BridgeGame bridgeGame = new BridgeGame(bridge, player);
     Result result = new Result();
-    InputController inputController = new InputController();
-    BridgeGame bridgeGame = new BridgeGame(bridge, result, inputController);
-    Player player = new Player();
 
-
-    @DisplayName("길이가 3인 브릿지 객체를 생성하고 플레이어는 두번 연속 다리 건너기에 성공함")
-    @BeforeEach
-    void setUp() {
-        bridge = new Bridge(List.of("U"));
-        bridge.getBridgeSize();
-        // player.updateMovement(Movement.UP);
-        // player.updateMovement(Movement.DOWN);
-
-    }
-
-    @DisplayName("Player 객체의 경로 객체(MOVEMENT)가 정상적으로 업데이트 됨")
+    @DisplayName("retry()를 실행하면 시도 횟수가 2로 올라감")
     @Test
-    void getRoute() {
-        assertThat(player.getRoute()).isEqualTo(List.of(Movement.UP, Movement.DOWN));
+    void updateTrialNumberTestFromRetry() {
+
+        bridgeGame.retry(result);
+
+        assertThat(result.getNumberOfTrials()).isEqualTo(2);
     }
 
-
-    @DisplayName("플레이어가 추가적으로 다리를 한번 건넜고 결과는 성공함")
+    @DisplayName("retry()를 실행하면 이동 경로가 초기화 됨")
     @Test
-    void movePlayer() {
-        String input = "U";
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+    void initRouteFromRetry() {
+        player.updateMovement(Movement.UP);
 
-        bridgeGame.move();
+        bridgeGame.retry(result);
 
-        assertThat(player.getRoute()).isEqualTo(List.of(Movement.UP));
-
+        assertThat(player.getRoute()).isEqualTo(new ArrayList<>());
     }
 
+    @DisplayName("retry()를 실행하면 기존에 생성된 결과값이 초기화 됨")
+    @Test
+    void initResultFromRetry() {
+        result.setGameResult(Boolean.TRUE);
+
+        bridgeGame.retry(result);
+
+        assertThat(result.getGameResult()).isEqualTo(new ArrayList<>());
+    }
 }
-
- */
