@@ -59,7 +59,7 @@ public class InputView {
     }
 
     public void checkGameCommand(String gameCommand) {
-        if(!gameCommand.equals("R")||!gameCommand.equals("Q")){
+        if(!gameCommand.equals("R")&&!gameCommand.equals("Q")){
             throw new IllegalArgumentException("[ERROR] 다시 시도할지 여부는 R이나 Q만 입력하세요.");
         }
     }
