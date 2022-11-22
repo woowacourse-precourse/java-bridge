@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Position;
+import bridge.model.Result;
 import bridge.model.SuccessAndFail;
 import bridge.model.SurviveAndDie;
 import bridge.view.InputView;
@@ -14,6 +15,7 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
+    private Result result;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -21,20 +23,21 @@ public class GameController {
     }
 
     public void play() {
-        printStartMessage();
+        startGame();
         createBridge();
         attempt();
         printResult();
     }
 
-    private void printStartMessage() {
+    private void startGame() {
         outputView.printStartGame();
+        result = Result.byDefault();
     }
 
     private void createBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        bridgeGame = new BridgeGame(bridge);
+        bridgeGame = new BridgeGame(bridge, result);
     }
 
     public void attempt() {
@@ -59,12 +62,12 @@ public class GameController {
     private SurviveAndDie moveToDecideSurviveOrDie(int index) {
         Position position = inputView.readMoving();
         SurviveAndDie surviveAndDie = bridgeGame.move(index, position);
-        outputView.printMap(bridgeGame.getDiagram());
+        outputView.printMap(result.getDiagram());
         return surviveAndDie;
     }
 
     private void handleSuccess() {
-        bridgeGame.setSuccess();
+        result.setSuccess();
     }
 
     private void handleDie() {
@@ -79,7 +82,7 @@ public class GameController {
     }
 
     private void printResult() {
-        outputView.printResult(bridgeGame.getDiagram(), bridgeGame.getSuccessOrFail(), bridgeGame.getAttempts());
+        outputView.printResult(result.getDiagram(), result.getSuccessOrFail(), result.getAttempts());
     }
 
 }

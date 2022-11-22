@@ -11,10 +11,13 @@ class BridgeGameTest {
 
     public static final List<String> bridge = List.of("U", "D", "D");
     private BridgeGame bridgeGame;
+    private Result result;
+
 
     @BeforeEach
     void 게임_생성() {
-        bridgeGame = new BridgeGame(new Bridge(bridge));
+        result = Result.byDefault();
+        bridgeGame = new BridgeGame(new Bridge(bridge), result);
     }
 
     @Test
@@ -26,16 +29,16 @@ class BridgeGameTest {
 
     @Test
     void 재시작_테스트() {
-        Assertions.assertEquals(INITIAL_ATTEMPTS, bridgeGame.getAttempts());
+        Assertions.assertEquals(INITIAL_ATTEMPTS, result.getAttempts());
         bridgeGame.retry();
-        Assertions.assertEquals(INITIAL_ATTEMPTS + 1, bridgeGame.getAttempts());
+        Assertions.assertEquals(INITIAL_ATTEMPTS + 1, result.getAttempts());
     }
 
     @Test
     void 성공_테스트() {
-        Assertions.assertEquals(SuccessAndFail.FAIL, bridgeGame.getSuccessOrFail());
-        bridgeGame.setSuccess();
-        Assertions.assertEquals(SuccessAndFail.SUCCESS, bridgeGame.getSuccessOrFail());
+        Assertions.assertEquals(SuccessAndFail.FAIL, result.getSuccessOrFail());
+        result.setSuccess();
+        Assertions.assertEquals(SuccessAndFail.SUCCESS, result.getSuccessOrFail());
     }
 
 }
