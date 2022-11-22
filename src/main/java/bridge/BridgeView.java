@@ -6,29 +6,23 @@ public class BridgeView {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public String readBridgeSize() {
+    public String sizeIO(){
+        outputView.printSizeMessage();
         return inputView.readBridgeSize();
     }
 
-    public String readMoving(){
+    public String moveIO(){
+        outputView.printMoveMessage();
         return inputView.readMoving();
     }
 
-    public String readGameCommand(){
+    public String commandIO(){
+        outputView.printCommandMessage();
         return inputView.readGameCommand();
     }
 
     public void printStartMessage(){
         outputView.printStartMessage();
-    }
-    public void printSizeMessage(){
-        outputView.printSizeMessage();
-    }
-    public void printMoveMessage(){
-        outputView.printMoveMessage();
-    }
-    public void printCommandMessage(){
-        outputView.printCommandMessage();
     }
 
     public void printErrorMessage(String errorMessage){
