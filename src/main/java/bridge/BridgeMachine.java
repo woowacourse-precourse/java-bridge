@@ -6,6 +6,12 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+    private boolean chooseReplay(BridgeGame bridgeGame, Bridge bridge) {
+        OutputView.printMap(bridge.getBridgeMap(), index);
+        String replay = getReplayCommand();
+        if (checkReplay(bridgeGame, bridge, replay)) return false;
+        return true;
+    }
     private boolean checkReplay(BridgeGame bridgeGame, Bridge bridge, String replay) {
         if (replay.equals(UserCommand.REPLAY.getCommand())) {
             bridgeGame.retry(bridge);
