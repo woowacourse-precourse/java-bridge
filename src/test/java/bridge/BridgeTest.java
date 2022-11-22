@@ -6,8 +6,12 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMoveJudgment;
+import bridge.ui.ValidateInput;
+import bridge.ui.ValidateInputBridgeGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.BitSet;
 import java.util.List;
@@ -98,4 +102,30 @@ public class BridgeTest {
         assertThat(retryCount).isEqualTo(3);
     }
 
+    @DisplayName("다리 길이 문자 입력 시 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"aaa", "123a", "!!!"})
+    void 다리_길이_문자입력시_예외처리_테스트(String number) {
+        ValidateInput validateInput = new ValidateInputBridgeGame();
+        assertThatThrownBy(() -> validateInput.validateNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리 길이 십의 자리 초과 입력 시 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "10000", "100000000000000"})
+    void 다리_길이_십의자리초과_입력시_예외처리_테스트(String number) {
+        ValidateInput validateInput = new ValidateInputBridgeGame();
+        assertThatThrownBy(() -> validateInput.validateBridgeSizeLength(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리 길이 3미만 20초과 입력 시 예외 처리")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 1, 2, 21, 123123123})
+    void 다리_길이_정해진_범위_초과_입력시_예외처리_테스트(int number) {
+        ValidateInput validateInput = new ValidateInputBridgeGame();
+        assertThatThrownBy(() -> validateInput.validateBridgeSizeRange(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
