@@ -5,6 +5,8 @@ import bridge.domain.generator.BridgeMaker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -32,9 +34,10 @@ class BridgeMakerTest {
     }
 
     @DisplayName("지정된 다리 크기에 벗어나면 예외가 발생한다.")
-    @Test
-    void makeBridgeFail() {
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(21))
+    @ValueSource(strings = {"21", "2", "101"})
+    @ParameterizedTest
+    void makeBridgeFail(int size) {
+        assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

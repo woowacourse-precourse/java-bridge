@@ -1,9 +1,10 @@
 package bridge.controller;
 
 import bridge.domain.MoveCommand;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.NoSuchElementException;
 
@@ -24,9 +25,10 @@ class MoveCommandTest {
     }
 
     @DisplayName("지정되지 않은 값을 넘겨주면 예외가 발생한다.")
-    @Test
-    void parseValueToCommandFail() {
-        assertThatThrownBy(() -> MoveCommand.parseValueToCommand(UP.getValue() + 1230))
+    @ValueSource(strings = {"4", "5", "123"})
+    @ParameterizedTest
+    void parseValueToCommandFail(int value) {
+        assertThatThrownBy(() -> MoveCommand.parseValueToCommand(value))
                 .isInstanceOf(NoSuchElementException.class);
     }
 }

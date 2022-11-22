@@ -3,7 +3,10 @@ package bridge.input;
 import bridge.domain.GameCommand;
 import bridge.domain.MoveCommand;
 import bridge.input.validate.BasicBridgeValidator;
+import bridge.input.validate.BridgeValidator;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -20,10 +23,16 @@ class InputViewTest {
     }
 
     private static InputView inputView;
+    private static BridgeValidator bridgeValidator;
 
     @BeforeAll
     static void setInputView() {
         inputView = new InputView(new ConsoleBridgeInput(), new BasicBridgeValidator());
+    }
+
+    @BeforeAll
+    static void setBridgeValidator() {
+        bridgeValidator = new BasicBridgeValidator();
     }
 
     @DisplayName("다리 길이 입력 테스트")
@@ -43,41 +52,12 @@ class InputViewTest {
             assertThat(size2).isEqualTo(20);
         }
 
-        @DisplayName("예외 테스트")
-        @Nested
-        class exceptSize {
-            @DisplayName("정해진 다리 길이 범위 외의 값을 입력할 경우 예외가 발생한다")
-            @Test
-            void exceptBridgeSizeRange1() {
-                String input = "21";
-                InputStream in = new ByteArrayInputStream(input.getBytes());
-                System.setIn(in);
-
-                assertThatThrownBy(inputView::readBridgeSize)
-                        .isInstanceOf(RuntimeException.class);
-            }
-
-            @DisplayName("입력 값이 정수가 아닌 경우 예외가 발생한다.")
-            @Test
-            void exceptBridgeSizeInteger1() {
-                String input = "2a";
-                InputStream in = new ByteArrayInputStream(input.getBytes());
-                System.setIn(in);
-
-                assertThatThrownBy(inputView::readBridgeSize)
-                        .isInstanceOf(RuntimeException.class);
-            }
-
-            @DisplayName("입력 값이 정수가 아닌 경우 예외가 발생한다.")
-            @Test
-            void exceptBridgeSizeInteger2() {
-                String input = "2.2";
-                InputStream in = new ByteArrayInputStream(input.getBytes());
-                System.setIn(in);
-
-                assertThatThrownBy(inputView::readBridgeSize)
-                        .isInstanceOf(RuntimeException.class);
-            }
+        @DisplayName("정해진 다리 길이 범위 외의 값을 입력할 경우 예외가 발생한다")
+        @ValueSource(strings = {"2", "21", "3z", "2.2"})
+        @ParameterizedTest
+        void exceptBridgeSizeRange1(String size) {
+            assertThatThrownBy(() -> bridgeValidator.validateBridgeSize(size))
+                    .isInstanceOf(RuntimeException.class);
         }
     }
 
@@ -96,19 +76,12 @@ class InputViewTest {
             assertThat(move).isEqualTo("U");
         }
 
-        @DisplayName("예외 테스트")
-        @Nested
-        class exceptSize {
-            @DisplayName("정해진 Move Command 가 아닐 경우 false 를 반환한다.")
-            @Test
-            void exceptBridgeSizeRange1() {
-                String input = "f";
-                InputStream in = new ByteArrayInputStream(input.getBytes());
-                System.setIn(in);
-
-                assertThatThrownBy(inputView::readGameCommand)
-                        .isInstanceOf(RuntimeException.class);
-            }
+        @DisplayName("정해진 Move Command 가 아닐 경우 예외가 발생한다.")
+        @ValueSource(strings = {"f", "u", "d", "z"})
+        @ParameterizedTest
+        void exceptBridgeSizeRange1(String command) {
+            assertThatThrownBy(() -> bridgeValidator.validateMoveCommand(command))
+                    .isInstanceOf(RuntimeException.class);
         }
     }
 
@@ -127,41 +100,12 @@ class InputViewTest {
             assertThat(move).isEqualTo(GameCommand.RESTART.getCommand());
         }
 
-        @DisplayName("예외 테스트")
-        @Nested
-        class exceptSize {
-            @DisplayName("정해진 Game Command 가 아닐 경우 false 를 반환한다.")
-            @Test
-            void exceptGameCommand1() {
-                String input = "r";
-                InputStream in = new ByteArrayInputStream(input.getBytes());
-                System.setIn(in);
-
-                assertThatThrownBy(inputView::readGameCommand)
-                        .isInstanceOf(RuntimeException.class);
-            }
-
-            @DisplayName("정해진 Game Command 가 아닐 경우 false 를 반환한다.")
-            @Test
-            void exceptGameCommand2() {
-                String input = "1";
-                InputStream in = new ByteArrayInputStream(input.getBytes());
-                System.setIn(in);
-
-                assertThatThrownBy(inputView::readGameCommand)
-                        .isInstanceOf(RuntimeException.class);
-            }
-
-            @DisplayName("정해진 Game Command 가 아닐 경우 false 를 반환한다.")
-            @Test
-            void exceptGameCommand3() {
-                String input = "q";
-                InputStream in = new ByteArrayInputStream(input.getBytes());
-                System.setIn(in);
-
-                assertThatThrownBy(inputView::readGameCommand)
-                        .isInstanceOf(RuntimeException.class);
-            }
+        @DisplayName("정해진 Game Command 가 아닐 경우 예외가 발생한다.")
+        @ValueSource(strings = {"f", "u", "d", "z"})
+        @ParameterizedTest
+        void exceptBridgeSizeRange1(String command) {
+            assertThatThrownBy(() -> bridgeValidator.validateMoveCommand(command))
+                    .isInstanceOf(RuntimeException.class);
         }
     }
 }

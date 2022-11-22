@@ -3,6 +3,8 @@ package bridge.controller;
 import bridge.domain.GameCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.NoSuchElementException;
 
@@ -23,9 +25,10 @@ class GameCommandTest {
     }
 
     @DisplayName("지정되지 않은 값을 넘겨주면 예외가 발생한다.")
-    @Test
-    void convertCommandFail() {
-        assertThatThrownBy(() -> GameCommand.parseCommandToInstance(RESTART.getCommand() + "AROES"))
+    @ValueSource(strings = {"q", "r", "E", "A"})
+    @ParameterizedTest
+    void convertCommandFail(String command) {
+        assertThatThrownBy(() -> GameCommand.parseCommandToInstance(command))
                 .isInstanceOf(NoSuchElementException.class);
     }
 }
