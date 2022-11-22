@@ -1,12 +1,14 @@
-package bridge.domain.bridge;
+package bridge.domain.bridgeGame;
 
 import java.util.List;
 
 public class Bridge {
     private final List<String> bridge;
+    private final int bridgeSize;
 
     private Bridge(List<String> bridge) {
         this.bridge = bridge;
+        this.bridgeSize = bridge.size();
     }
 
     public static Bridge from(List<String> bridge) {
@@ -14,7 +16,7 @@ public class Bridge {
     }
 
     public int size() {
-        return bridge.size();
+        return bridgeSize;
     }
 
     public String passableDirectionAt(int distance) {
