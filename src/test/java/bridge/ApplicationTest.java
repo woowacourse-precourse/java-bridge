@@ -47,6 +47,39 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_숫자_범위최소() {
+        assertSimpleTest(() -> {
+            runException("1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_숫자_범위최대() {
+        assertSimpleTest(() -> {
+            runException("30");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_이동값() {
+        assertSimpleTest(() -> {
+            runException("3", "B");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_종료() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "U", "K");
+
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 0);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
