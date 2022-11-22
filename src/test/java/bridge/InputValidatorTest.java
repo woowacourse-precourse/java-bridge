@@ -12,7 +12,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InputValidatorTest {
@@ -31,7 +30,7 @@ public class InputValidatorTest {
     @ValueSource(strings = {"3", "10", "4"})
     public void bridgeLengthTest(String input) {
         setInput(input);
-        assertEquals(InputValidator.getValidateInput(InputType.BRIDGE), input);
+        assertEquals(InputValidator.getValidateInput(InputType.BRIDGE,input), input);
     }
 
     @DisplayName("다리 길이 입력 예외 경우 테스트")
@@ -39,7 +38,7 @@ public class InputValidatorTest {
     @ValueSource(strings = {"a", "1000", " "})
     public void bridgeLengthExceptionTest(String input) {
         setInput(input);
-        assertThatThrownBy(() -> InputValidator.getValidateInput(InputType.BRIDGE)).
+        assertThatThrownBy(() -> InputValidator.getValidateInput(InputType.BRIDGE,input)).
                 isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,7 +47,7 @@ public class InputValidatorTest {
     @ValueSource(strings={"aaa","1000"," "})
     public void bridgeMoveInputExceptionTest(String input){
         setInput(input);
-        assertThatThrownBy(() -> InputValidator.getValidateInput(InputType.MOVE)).
+        assertThatThrownBy(() -> InputValidator.getValidateInput(InputType.MOVE,input)).
                 isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -57,7 +56,7 @@ public class InputValidatorTest {
     @ValueSource(strings={"U","D"})
     public void bridgeMoveInputTest(String input){
         setInput(input);
-        assertEquals(InputValidator.getValidateInput(InputType.MOVE), input);
+        assertEquals(InputValidator.getValidateInput(InputType.MOVE,input), input);
     }
 
     @DisplayName("재시작 입력 예외 경우 테스트")
@@ -65,7 +64,7 @@ public class InputValidatorTest {
     @ValueSource(strings={" ","test","111"})
     public void gameReplayInputExceptionTest(String input){
         setInput(input);
-        assertThatThrownBy(() -> InputValidator.getValidateInput(InputType.REPLAY)).
+        assertThatThrownBy(() -> InputValidator.getValidateInput(InputType.REPLAY,input)).
                 isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("재시작 입력 정상 경우 테스트")
@@ -73,15 +72,7 @@ public class InputValidatorTest {
     @ValueSource(strings={"R","Q"})
     public void gameReplayTest(String input){
         setInput(input);
-        assertEquals(InputValidator.getValidateInput(InputType.REPLAY), input);
-    }
-
-    @DisplayName("입력 타입이 잘못된 경우 ( 다리, 이동, 재시작 타입 X)")
-    @ParameterizedTest
-    @ValueSource(strings={"test"})
-    public void wrongInputTypeTest(String input){
-        setInput(input);
-        assertThat(InputValidator.getValidateInput(null)).isNull();
+        assertEquals(InputValidator.getValidateInput(InputType.REPLAY, input), input);
     }
 
     public void setInput(String input) {
