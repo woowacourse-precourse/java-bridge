@@ -12,7 +12,7 @@ public enum BridgeMsgs {
 
     FINAL_RESULT_MSG("최종 게임 결과"),
     FINAL_GAME_SUCCESS_MSG("게임 성공 여부: "),
-    FINAL_GAME_TRY_MSG(" 총 시도한 횟수: ");
+    FINAL_GAME_TRY_MSG("총 시도한 횟수: ");
 
     private final String value;
 
