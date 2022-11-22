@@ -1,23 +1,68 @@
 package bridge;
 
+import bridge.constant.BridgeSelection;
+import bridge.constant.OutputValue;
+
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String GAME_RESULT = "최종 게임 결과";
+    private static final String SUCCESS_OR_NOT = "게임 성공 여부: ";
+    private static final String TRIAL_NUMBER = "총 시도한 횟수: ";
+
+    public static void printStartMessage() {
+        System.out.println(START_MESSAGE);
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public static void printMap(List<String> bridge, List<String> result) {
+        System.out.println(upBridge(bridge, result));
+        System.out.println(downBridge(bridge, result));
+    }
+
+    private static String upBridge(List<String> bridge, List<String> result) {
+        return getBridgeFrame(bridge, result, BridgeSelection.UP.get());
+    }
+
+    private static String downBridge(List<String> bridge, List<String> result) {
+        return getBridgeFrame(bridge, result, BridgeSelection.DOWN.get());
+    }
+
+    private static String getBridgeFrame(List<String> bridge, List<String> result, String floor) {
+        StringBuilder frame = new StringBuilder("[ ");
+        for (int i = 0; i < result.size(); i++) {
+            frame.append(getOX(bridge.get(i), result.get(i), floor));
+            frame.append(" | ");
+        }
+        return frame.replace(frame.length() - 2, frame.length() - 1, "]").toString();
+    }
+
+    private static String getOX(String bridgeMark, String resultMark, String floor) {
+        if (bridgeMark.equals(floor) && resultMark.equals(OutputValue.RIGHT_BLOCK.get())) {
+            return OutputValue.RIGHT_BLOCK.get();
+        }
+        if (!bridgeMark.equals(floor) && resultMark.equals(OutputValue.WRONG_BLOCK.get())) {
+            return OutputValue.WRONG_BLOCK.get();
+        }
+        return " ";
+    }
+
+    public static void printResult(GameHelper gameHelper, int trialCount) {
+        System.out.println(GAME_RESULT);
+        printMap(gameHelper.getBridge(), gameHelper.getResultBridge());
+        System.out.println();
+        System.out.println(SUCCESS_OR_NOT + isSuccess(gameHelper));
+        System.out.println(TRIAL_NUMBER + trialCount);
+    }
+
+    public static String isSuccess(GameHelper gameHelper) {
+        if (!gameHelper.reachEnd()) {
+            return "실패";
+        }
+        return "성공";
     }
 }
