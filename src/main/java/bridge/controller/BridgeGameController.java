@@ -17,4 +17,15 @@ public class BridgeGameController {
     }
 
 
+
+    public void movingControl(BridgeGame bridgeGame) {
+        String moving = inputView.inputMoving();
+        outputView.printMoving(moving);
+
+    }
+
+    public void start() {
+        movingControl(bridgeGame);
+
+    }
 }
