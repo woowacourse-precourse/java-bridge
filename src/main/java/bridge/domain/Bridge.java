@@ -14,8 +14,10 @@ public class Bridge {
 	}
 
 	private void validate(List<String> bridge) {
-		if (!bridge.contains(UP) && !bridge.contains(DOWN))
-			throw new IllegalArgumentException();
+		for (String status : bridge) {
+			if (!status.equals(UP) && !status.equals(DOWN))
+				throw new IllegalArgumentException();
+		}
 	}
 
 	String getValueOfIndex(int index){
