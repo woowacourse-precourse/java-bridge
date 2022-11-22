@@ -1,9 +1,8 @@
 package bridge.domain.resources.converter;
 
-public class ConvertBridge implements Converter<Integer, String> {
+public class ConvertBridge {
 
-    @Override
-    public String toUpOrDown(final Integer input) {
+    public static String toUpOrDown(final Integer input) {
         if (input == 1)
             return "U";
         if (input == 0)

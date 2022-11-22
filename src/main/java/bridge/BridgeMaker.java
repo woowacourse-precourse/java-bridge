@@ -8,21 +8,18 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final ConvertBridge convertBridge;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-        this.convertBridge = new ConvertBridge();
     }
 
     public List<String> makeBridge(int size) {
-        int count = size;
         List<String> bridge = new ArrayList<>();
-        while (count != 0) {
+        while (size != 0) {
             int number = bridgeNumberGenerator.generate();
-            String footHold = convertBridge.toUpOrDown(number);
+            String footHold = ConvertBridge.toUpOrDown(number);
             bridge.add(footHold);
-            count--;
+            size--;
         }
         System.out.println("bridge = " + bridge);
         return bridge;
