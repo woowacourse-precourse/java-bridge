@@ -9,7 +9,6 @@ public class InputView {
     private static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVE_MESSAGE = "이동한 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-
     private static final int BRIDGE_MIN_RANGE = 3;
     private static final int BRIDGE_MAX_RANGE = 20;
     private static final String UP_COMMAND = "U";
