@@ -71,6 +71,7 @@ public class BridgeGame {
     }
 
     public Result getResult() {
-        return new Result(input, answer, time, state);
+        UserInfo userInfo = new UserInfo(input, time, state);
+        return new Result(answer, userInfo);
     }
 }

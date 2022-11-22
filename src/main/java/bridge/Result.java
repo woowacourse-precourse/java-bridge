@@ -12,11 +12,11 @@ public class Result {
     private final String bottom;
     private final Map<String, String > map = new HashMap<>();
 
-    public Result(List<String> input, List<String> answer, int time, State state) {
-        this.time = time;
-        this.state = state;
-        top = setString(input, answer, "U", "D");
-        bottom = setString(input, answer, "D", "U");
+    public Result(List<String> answer, UserInfo userInfo) {
+        this.time = userInfo.getTime();
+        this.state = userInfo.getState();
+        top = setString(userInfo.getInput(), answer, "U", "D");
+        bottom = setString(userInfo.getInput(), answer, "D", "U");
     }
 
     private String setString(List<String> input, List<String> answer, String correct, String wrong) {
