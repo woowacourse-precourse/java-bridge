@@ -75,23 +75,4 @@ public class BridgeGameController {
             }
         }
     }
-
-    private void judge(boolean canMove) {
-        if (canMove) {
-            succeed();
-            return;
-        }
-        fail();
-    }
-
-    private void succeed() {
-        bridgeGame.succeed();
-    }
-
-    private void fail() {
-        outputView.printGameCommandMsg();
-        if (bridgeGame.doesRetry(inputView.readGameCommand())) {
-            bridgeGame.retry();
-        }
-    }
 }
