@@ -4,6 +4,7 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        gameStart();
     }
 
     public static void gameStart() {
@@ -11,9 +12,12 @@ public class Application {
         System.out.println();
         System.out.println("다리의 길이를 입력해주세요.");
         InputView user_input = new InputView();
-        int bs = Integer.valueOf(Console.readLine());
-        user_input.readBridgeSize(bs);
+        int size = Integer.valueOf(Console.readLine());
+        user_input.readBridgeSize(size);
 
+        BridgeRandomNumberGenerator gen = new BridgeRandomNumberGenerator();
+        BridgeMaker bm = new BridgeMaker(gen);
+        System.out.println(bm.makeBridge(size));
 
     }
 }
