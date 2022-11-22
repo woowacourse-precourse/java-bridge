@@ -21,6 +21,15 @@ public class OutputView {
         System.out.println(" ]\n");
     }
 
+    public void printUpperMap(List<String> bridge, List<String> states) {
+        for (int i = 0; i < states.size(); i++) {
+            printUpperMoving(isUpperMap(bridge, states, i), states, i);
+            if (i != states.size() - 1) {
+                System.out.print(" |");
+            }
+        }
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
