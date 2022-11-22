@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
 import bridge.domain.User;
 import bridge.service.BridgeGame;
 import bridge.service.constant.GameStatus;
@@ -12,6 +13,7 @@ import java.util.function.Supplier;
 public class GameController {
     private static final InputView inputView = InputView.getInstance();
     private static final OutputView outputView = OutputView.getInstance();
+    private static final BridgeGame game = BridgeGame.getInstance();
 
     public static GameController instance = new GameController();
 
@@ -23,23 +25,22 @@ public class GameController {
 
     public BridgeGame create() {
         try {
-            return new BridgeGame(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return create();
         }
     }
 
-    public void operate (User user, BridgeGame game) {
+    public void operate (Bridge map, User user) {
         while (user.getStatus() == GameStatus.PLAYING) {
-            game.move(user, requestStringInput(inputView::readMoving));
-            outputView.printMap(game.obtainGameLog(user));
+            game.move(map, user, requestStringInput(inputView::readMoving));
+            outputView.printMap(game.obtainGameLog(map, user));
             outputView.insertLineBreak();
-            operateRetryOption(user, game);
+            operateRetryOption(user);
         }
     }
 
-    private void operateRetryOption (User user, BridgeGame game) {
+    private void operateRetryOption (User user) {
         if (user.getStatus() == GameStatus.FAIL) {
             String retryOption = requestStringInput(inputView::readRetryOption);
             if (retryOption.equals(RetryOptions.RETRY.get())) {
@@ -57,9 +58,9 @@ public class GameController {
         }
     }
 
-    public void finish (User user, BridgeGame game) {
+    public void finish (Bridge map, User user) {
         outputView.printResult(
-                game.obtainGameLog(user),
+                game.obtainGameLog(map, user),
                 game.isGameCleared(user),
                 user.getAttemptCount()
         );
