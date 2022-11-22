@@ -27,12 +27,13 @@ class BridgeTest {
     public void increaseLocationTest() {
         //given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        int increaseLocation = 1;
 
         //when
         bridge.increaseLocation();
 
         //then
-        assertThat(bridge.getLocation()).isEqualTo(1);
+        assertThat(bridge.getLocation()).isEqualTo(increaseLocation);
     }
 
     @DisplayName("위치가 잘 반환되는지 테스트")
@@ -40,12 +41,13 @@ class BridgeTest {
     public void getLocationTest() {
         //given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        int nowLocation = 0;
 
         //when
         int location = bridge.getLocation();
 
         //then
-        assertThat(location).isEqualTo(0);
+        assertThat(location).isEqualTo(nowLocation);
     }
 
     @DisplayName("위치가 잘 초기화되는지 테스트")
@@ -53,13 +55,14 @@ class BridgeTest {
     public void initLocationTest() {
         //given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        int initialLocation = 0;
         bridge.increaseLocation();
 
         //when
         bridge.initLocation();
 
         //then
-        assertThat(bridge.getLocation()).isEqualTo(0);
+        assertThat(bridge.getLocation()).isEqualTo(initialLocation);
     }
 
     @DisplayName("위치 비교가 잘되는지 테스트")
