@@ -1,6 +1,5 @@
 package bridge.outputView;
 
-import bridge.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
