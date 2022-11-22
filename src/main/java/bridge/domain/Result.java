@@ -3,6 +3,7 @@ package bridge.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Result {
     private static final int PATH_COUNT = 2;
@@ -84,6 +85,7 @@ public class Result {
     }
 
     public List<List<String>> getResults() {
-        return Collections.unmodifiableList(results);
+        return results.stream().map(result -> Collections.unmodifiableList(result))
+                .collect(Collectors.toUnmodifiableList());
     }
 }
