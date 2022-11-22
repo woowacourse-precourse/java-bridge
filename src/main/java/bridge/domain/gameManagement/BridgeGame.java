@@ -25,7 +25,7 @@ public class BridgeGame {
 
         //currentLocation = PlayerMove.handlePlayerMove(currentLocation, bridge, currentBridge);
 
-        PlayerMove.repeatGame(bridge, currentBridge, currentLocation);
+        PlayerMove.attemptCrossBridge(bridge, currentBridge, currentLocation);
 
         return currentLocation;
     }
