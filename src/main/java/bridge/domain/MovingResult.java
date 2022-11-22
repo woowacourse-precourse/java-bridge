@@ -10,7 +10,8 @@ public enum MovingResult {
         this.message = message;
     }
 
-    public String getMessage() {
+    @Override
+    public String toString() {
         return message;
     }
 
