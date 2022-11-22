@@ -64,6 +64,19 @@ public class BridgeGame {
         upperBridge.add(WRONG_ANSWER_RESULT);
     }
 
+    private void makeLowerBridgeOfPart(int position, String choice) {
+        if (!choice.equals(DOWN)) {
+            lowerBridge.add(SPACE);
+            return;
+        }
+
+        if (choice.equals(getBridgeByPosition(position))) {
+            lowerBridge.add(ANSWER_RESULT);
+            return;
+        }
+        lowerBridge.add(WRONG_ANSWER_RESULT);
+    }
+
     private String getChoiceByPosition(int position) {
         return player.getChoiceIndex(position);
     }

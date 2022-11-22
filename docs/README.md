@@ -55,7 +55,7 @@
 - [x] 사용자의 칸 이동 현황을 초기화 한다. #initBridgeMap()
 - [ ] 사용자 위치 현황을 만든다. #makeBridgeMap()
 - [x] 사용자 위치현황 중 윗줄을 만든다. #makeUpperBridgeOfPart()
-- [ ] 사용자 위치현황 중 아랫줄을 만든다. #makeLowerBridgeOfPart()
+- [x] 사용자 위치현황 중 아랫줄을 만든다. #makeLowerBridgeOfPart()
 - [x] 위치에 따른 사용자의 칸 정보를 가져온다. #getChoiceByPosition()
 - [x] 다리의 해당 위치 정보를 가져온다 #getBridgeByPosition()
 - [ ] 사용자의 위치현황을 모두 가져온다. #getBridgeMap()
