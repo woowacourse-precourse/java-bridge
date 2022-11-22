@@ -4,6 +4,11 @@ public class BridgeGameManager {
     private int count;
     private int step;
 
+    public BridgeGameManager() {
+        count = 1;
+        step = 0;
+    }
+    
     public int getStep() {
         return step;
     }
@@ -12,10 +17,6 @@ public class BridgeGameManager {
         return count;
     }
 
-    public BridgeGameManager() {
-        count = 1;
-        step = 0;
-    }
 
     public void increaseCount() {
         count++;
