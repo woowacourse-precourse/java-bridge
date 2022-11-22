@@ -35,5 +35,6 @@ public class BridgeGameController {
 
     public void start() {
         movingControl(bridgeGame);
+        outputView.printResult(bridgeGame.getBridgeMap(), bridgeGame.getIsGame(), bridgeGame.getRetryCount());
     }
 }
