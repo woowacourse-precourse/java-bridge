@@ -1,8 +1,8 @@
-package bridge.Controller;
+package bridge.controller;
 
 import bridge.constant.GameConstant;
 import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.User;
 import bridge.domain.Map;
 import bridge.service.GameService;
