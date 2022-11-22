@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.view.utils.ConsoleUtils;
+
 public class Application {
 
     public static void main(String[] args) {

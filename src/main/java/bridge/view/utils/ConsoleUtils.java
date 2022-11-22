@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view.utils;
+
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class ConsoleUtils {
 
