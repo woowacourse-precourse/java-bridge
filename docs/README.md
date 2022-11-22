@@ -64,7 +64,7 @@
   - 예외) 문자 하나를 입력하지 않은 경우
   - 예외) R과 Q 외의 문자를 입력한 경우
 ### 출력
-- [x] 게임 시작 문구를 출력한다.
+- [x] 게임 시작 문구를 출력한다. - OutputView#printStartMessage
 - [x] 현재까지 이동한 경로를 출력한다. - OutputView#printRoute
 - [x] 게임의 최종 결과를 출력한다. - OutputView#printResult
   - [x] 지금까지 이동한 경로를 출력한다.
