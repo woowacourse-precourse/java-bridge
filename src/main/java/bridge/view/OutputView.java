@@ -18,5 +18,10 @@ public class OutputView {
     private StringBuilder upView = new StringBuilder();
     private StringBuilder downView = new StringBuilder();
 
+    public void initView() {
+        upView = new StringBuilder();
+        downView = new StringBuilder();
+    }
+
 
 }
