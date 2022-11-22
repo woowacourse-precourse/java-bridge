@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -9,7 +8,6 @@ public class BridgeController {
 
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
-    private Bridge bridge;
     private BridgeGame bridgeGame;
 
     public int requestBridgeSize() {
@@ -24,12 +22,11 @@ public class BridgeController {
 
     public void setGame(int size) {
         try {
-            bridge = new Bridge(size);
+            bridgeGame = new BridgeGame(size);
         } catch (IllegalArgumentException e) {
             outputView.printError();
             setGame(requestBridgeSize());
         }
-        bridgeGame = new BridgeGame(bridge);
     }
 
     public String requestMovingPoint() {
