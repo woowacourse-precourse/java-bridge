@@ -1,9 +1,11 @@
-package bridge.domain;
+package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import bridge.Map;
+import bridge.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;

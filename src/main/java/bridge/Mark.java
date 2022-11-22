@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 /**
  * 지나온 경로를 지도에 표시할 표식

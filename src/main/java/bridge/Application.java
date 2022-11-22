@@ -1,12 +1,5 @@
 package bridge;
 
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.Map;
-import bridge.domain.Player;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 import java.util.List;
 
 public class Application {

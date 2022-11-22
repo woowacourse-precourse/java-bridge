@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 /**
  * 다리 구조, 사용자의 이동 커맨드를 관리

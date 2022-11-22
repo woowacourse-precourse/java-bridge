@@ -1,7 +1,8 @@
-package bridge.domain;
+package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.Map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;

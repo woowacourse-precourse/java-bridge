@@ -1,9 +1,10 @@
-package bridge.view;
+package bridge;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.InputView;
 import camp.nextstep.edu.missionutils.test.Assertions;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;

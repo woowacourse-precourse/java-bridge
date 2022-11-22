@@ -1,9 +1,6 @@
-package bridge.view;
+package bridge;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-
-import bridge.domain.Direction;
-import bridge.domain.Progress;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

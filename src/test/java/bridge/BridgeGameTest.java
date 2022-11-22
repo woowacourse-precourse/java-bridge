@@ -1,9 +1,12 @@
-package bridge.domain;
+package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import bridge.BridgeGame;
+import bridge.Map;
+import bridge.Player;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
