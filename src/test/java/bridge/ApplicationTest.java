@@ -7,12 +7,16 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @DisplayName("다리 생성 테스트")
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
@@ -21,6 +25,7 @@ class ApplicationTest extends NsTest {
         assertThat(bridge).containsExactly("U", "D", "D");
     }
 
+    @DisplayName("다리 건너기 게임 기능 테스트")
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
@@ -39,12 +44,45 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-    @Test
-    void 예외_테스트() {
+
+    @DisplayName("입력 받은 다리의 길이가 정수가 아닌 경우 예외 처리")
+    @ValueSource(strings = {"a", "!", "123."})
+    @ParameterizedTest
+    void notIntInputException(String input) {
         assertSimpleTest(() -> {
-            runException("a");
+            runException(input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("입력 받은 다리의 길이가 3과 20사이의 정수가 아닌 경우 예외 처리")
+    @ValueSource(strings = {"-1", "50"})
+    @ParameterizedTest
+    void notInRangeInputException(String input) {
+        assertSimpleTest(() -> {
+            runException(input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력 받은 이동할 칸이 U나 D가 아닌 경우 예외 처리")
+    @ValueSource(strings = {"1", "A"})
+    @ParameterizedTest
+    void notAllowedInputException(String input) {
+        assertSimpleTest(() -> {
+            runException("3", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력 받은 재시도 여부가 R이나 Q가 아닌 경우 예외 처리")
+    @ValueSource(strings = {"1", "A"})
+    @ParameterizedTest
+    void notAllowedInputException2(String input) {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "U", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
     }
 
     @Override
