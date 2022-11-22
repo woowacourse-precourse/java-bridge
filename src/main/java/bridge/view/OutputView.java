@@ -1,21 +1,8 @@
 package bridge.view;
 
-public class OutputView {
-    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다";
-    private static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String MOVING_SELECT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String GAME_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
+import static bridge.util.Constant.*;
 
-    private static final int BRIDGE_FIRST_TRY_INDEX = 0;
-    private static final int BRIDGE_ONE_TRY_SPACE_SIZE = 4;
-    private static final int ADDITIONAL_NUMBER_FOR_EXCLUDE_BRACKET = 1;
-    private static final String BRIDGE_FAIL_SPACE_BLANK = "   ";
-    private static final String CLOSING_BRACKET = "]";
-    private static final StringBuilder SUCCESSFUL_MARK = new StringBuilder(" O ");
-    private static final StringBuilder FAILURE_MARK = new StringBuilder(" X ");
-    private static final StringBuilder upsideBridge = new StringBuilder("[]");
-    private static final StringBuilder downsideBridge = new StringBuilder("[]");
+public class OutputView {
 
 
 
@@ -63,7 +50,6 @@ public class OutputView {
         }
     }
 
-    // forExcludeBracketIndex
     /**
      * 위 칸 입력 후 다리 건너기 성공했을 시 Map에 O 표시를 추가하는 메소드
      * index에서 바로 insert 할 경우 닫는 괄호가 추가 되
