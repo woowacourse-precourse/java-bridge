@@ -8,12 +8,14 @@ import bridge.paths.PlayerPath;
  */
 public class BridgeGame {
 
-    Bridge bridge;
-    PlayerPath playerPath;
+    private Bridge bridge;
+    private PlayerPath playerPath;
 
-    public BridgeGame(int bridgeLength) {
+    public BridgeGame() {}
+
+    public void initComponents(int bridgeLength) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength), bridgeLength);
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
         playerPath = new PlayerPath();
     }
 
