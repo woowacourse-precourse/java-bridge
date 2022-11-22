@@ -16,20 +16,8 @@ public class OutputView {
         System.out.println(e);
     }
 
-    public void printStartGame() {
-        System.out.println(OutputState.START_GAME);
-    }
-
-    public void printInputBridgeLength() {
-        System.out.println(OutputState.INPUT_BRIDGE_LENGTH);
-    }
-
-    public void printInputMoveDirection() {
-        System.out.println(OutputState.INPUT_MOVE_DIRECTION);
-    }
-
-    public void printInputRetryCommand() {
-        System.out.println(OutputState.INPUT_RETRY_COMMAND);
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 
     /**

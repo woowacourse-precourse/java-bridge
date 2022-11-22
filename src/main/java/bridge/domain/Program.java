@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.utils.Constants.OutputState;
 import java.util.List;
 import bridge.BridgeMaker;
 import bridge.BridgeGame;
@@ -26,11 +27,11 @@ public class Program {
     }
 
     private static void startGame() {
-        outputView.printStartGame();
+        outputView.printMessage(OutputState.START_GAME);
     }
 
     private static void makeBridge() {
-        outputView.printInputBridgeLength();
+        outputView.printMessage(OutputState.INPUT_BRIDGE_LENGTH);
 
         int bridgeSize = getBridgeSize();
         createBridge(bridgeSize);
@@ -79,7 +80,7 @@ public class Program {
     }
 
     private static boolean generateMovement() {
-        outputView.printInputMoveDirection();
+        outputView.printMessage(OutputState.INPUT_MOVE_DIRECTION);
         String direction = getDirection();
 
         boolean isSuccess = bridgeGame.move(direction);
@@ -99,7 +100,7 @@ public class Program {
     }
 
     private static boolean askToRetryGame() {
-        outputView.printInputRetryCommand();
+        outputView.printMessage(OutputState.INPUT_RETRY_COMMAND);
         String command = getRetryCommand();
         return bridgeGame.retry(command);
     }
