@@ -50,6 +50,7 @@ class BridgeGameTest2 extends NsTest {
     @Override
     protected void runMain() {
         BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.resetMap();
         bridgeGame.move("D",0);
         bridgeGame.move("U",1);
         bridgeGame.move("U",2);

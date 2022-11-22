@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest extends NsTest {
@@ -12,14 +13,14 @@ class BridgeGameTest extends NsTest {
     void 브릿지_리스트와_유저_인풋이_맞을_때_ox_값이_O인지_확인() {
         BridgeGame bridgeGame = new BridgeGame();
         run("D");
-        assertEquals(bridgeGame.getOX(),"O");
+        assertEquals(bridgeGame.getOX(), "O");
     }
 
     @Test
     void 브릿지_리스트와_유저_인풋이_틀렸을_때_ox_값이_x인지_확인() {
         BridgeGame bridgeGame = new BridgeGame();
         run("U");
-        assertEquals(bridgeGame.getOX(),"X");
+        assertEquals(bridgeGame.getOX(), "X");
     }
 
     @Test
@@ -39,7 +40,8 @@ class BridgeGameTest extends NsTest {
     @Override
     protected void runMain() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.move("D",0);
+        bridgeGame.resetMap();
+        bridgeGame.move("D", 0);
 
     }
 
