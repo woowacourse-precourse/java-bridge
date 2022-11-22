@@ -1,10 +1,6 @@
 package bridge.controller;
 
-import bridge.AppConfig;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameManagerTest {
 

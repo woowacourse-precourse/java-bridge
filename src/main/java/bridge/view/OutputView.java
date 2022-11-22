@@ -86,6 +86,7 @@ public class OutputView {
         System.out.println(FINAL_RESULT);
         System.out.println(sb1);
         System.out.println(sb2);
+        System.out.println();
         System.out.println(GAME_RESULT+gameResult);
         System.out.print(GAME_COUNT+count);
     }
