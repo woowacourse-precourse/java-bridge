@@ -27,6 +27,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridgeNumberGenerator);
 
         // when
+        bridgeGame.makeBridge(10);
         bridgeGame.retry();
         bridgeGame.retry();
 
