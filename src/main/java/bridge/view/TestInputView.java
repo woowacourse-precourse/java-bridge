@@ -7,7 +7,7 @@ public class TestInputView extends InputView {
     private List<String> userInput;
     private int inputIdx;
 
-    TestInputView(int bridgeSize, List<String> userInput) {
+    public TestInputView(int bridgeSize, List<String> userInput) {
         this.bridgeSize = bridgeSize;
         this.userInput = userInput;
         this.inputIdx = 0;
