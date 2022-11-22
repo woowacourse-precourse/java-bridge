@@ -51,7 +51,7 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         ValidationUtil.restartValidation(gameCommand);
-        if(Objects.equals(gameCommand, Constant.RESTART)){
+        if (Objects.equals(gameCommand, Constant.RESTART)) {
             bridgeInitialization();
             retryCount++;
             return true;

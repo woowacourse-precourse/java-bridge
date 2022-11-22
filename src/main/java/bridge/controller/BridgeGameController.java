@@ -29,12 +29,12 @@ public class BridgeGameController {
         confirmRestart(moving);
     }
 
-    private void confirmRestart(String moving){
+    private void confirmRestart(String moving) {
         if (bridgeGame.isGameComplete(moving)) {
             return;
         }
-        if(bridgeGame.move(moving) || bridgeGame.retry(outputView.printGameCommand(inputView.readGameCommand()))){
-             moveControl(bridgeGame);
+        if (bridgeGame.move(moving) || bridgeGame.retry(outputView.printGameCommand(inputView.readGameCommand()))) {
+            moveControl(bridgeGame);
         }
     }
 }
