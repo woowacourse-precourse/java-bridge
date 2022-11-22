@@ -35,6 +35,7 @@ public class GameController {
     private boolean tryCrossBridge(List<String> bridge, CurrentBridgeState currentBridgeState) {
 
         boolean isPossibleMove = true;
+
         for (int turn = 0; turn < bridge.size(); turn++) {
             isPossibleMove = moveController(bridge, currentBridgeState, turn);
             if (isPossibleMove == false) {
@@ -52,7 +53,7 @@ public class GameController {
         return bridge;
     }
 
-    public boolean moveController(List<String> bridge, CurrentBridgeState currentBridgeState, int turn) {
+    private boolean moveController(List<String> bridge, CurrentBridgeState currentBridgeState, int turn) {
 
         boolean isPossibleMove;
 
@@ -64,7 +65,7 @@ public class GameController {
         return isPossibleMove;
     }
 
-    public boolean retryController(CurrentBridgeState currentBridgeState, boolean isSuccess, int tryNumber) {
+    private boolean retryController(CurrentBridgeState currentBridgeState, boolean isSuccess, int tryNumber) {
 
         boolean isRetry = false;
 

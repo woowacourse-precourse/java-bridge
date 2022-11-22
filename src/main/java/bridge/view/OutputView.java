@@ -13,7 +13,7 @@ public class OutputView {
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     * @param CurrentBridgeState
+     * @param currentBridgeState
      */
     public void printMap(CurrentBridgeState currentBridgeState) {
 
@@ -28,6 +28,7 @@ public class OutputView {
     }
 
     private void printManyArgument(List<String> upBridgeResult, List<String> downBridgeResult) {
+
         System.out.print("[ " + upBridgeResult.get(0) + " ");
         for (int index = 1; index < upBridgeResult.size(); index++) {
             System.out.print("| " + upBridgeResult.get(index) + " ");
@@ -40,6 +41,7 @@ public class OutputView {
     }
 
     private void printOneArgument(List<String> upBridgeResult, List<String> downBridgeResult) {
+
         System.out.print("[ " + upBridgeResult.get(0) + " ]\n");
         System.out.print("[ " + downBridgeResult.get(0) + " ]\n\n");
     }
