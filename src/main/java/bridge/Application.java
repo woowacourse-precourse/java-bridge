@@ -25,11 +25,10 @@ public class Application {
         while(true){
             try {
                 checkGame();
+                return ;
             } catch (IllegalArgumentException e){
-                System.out.println("[ERROR]");
-                continue;
+                System.out.println(e.getMessage());
             }
-            break;
         }
     }
     public static void checkGame(){
@@ -44,11 +43,11 @@ public class Application {
         while(true) {
             try {
                 inputView.readBridgeSize();
+                return ;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+                System.out.println(e.getMessage());
                 continue;
             }
-            break;
         }
     }
 
@@ -56,11 +55,11 @@ public class Application {
         while (true) {
             try {
                 isCorrect = inputView.readMoving();
+                return ;
             } catch (IllegalArgumentException e){
-                System.out.println("[ERROR]");
+                System.out.println(e.getMessage());
                 continue;
             }
-            break;
         }
     }
 
