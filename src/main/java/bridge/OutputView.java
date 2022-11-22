@@ -60,10 +60,10 @@ public class OutputView {
 
     public void getGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge) {
         BridgeGame bridgeGame = new BridgeGame();
-        if(bridgeGame.whetherGameSuccess(upstairsBridge, downstairsBridge)) {
+        if(bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
             System.out.println(GAME_RESULT + GAME_SUCCESS);
         };
-        if(!bridgeGame.whetherGameSuccess(upstairsBridge, downstairsBridge)) {
+        if(!bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
             System.out.println(GAME_RESULT + GAME_FAIL);
         }
     }

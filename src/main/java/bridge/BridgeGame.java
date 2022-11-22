@@ -86,7 +86,11 @@ public class BridgeGame {
         triedAnswers.remove(triedAnswers.size()-1);
     }
 
-    public static boolean whetherGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge) {
+    public static boolean checkWrongAnswer(List<String> upstairsBridge, List<String> downstairsBridge) {
         return !upstairsBridge.contains(WRONG) && !downstairsBridge.contains(WRONG);
+    }
+
+    public static boolean getGameCompleteStatus(List<String> upstairsBridge, List<String> downstairsBridge, int size) {
+        return (checkWrongAnswer(upstairsBridge, downstairsBridge) && upstairsBridge.size() >= size && upstairsBridge.size() = 0);
     }
 }
