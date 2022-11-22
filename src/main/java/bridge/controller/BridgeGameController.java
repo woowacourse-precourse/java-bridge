@@ -31,11 +31,13 @@ public class BridgeGameController {
 
     private void createAnswerBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        inputView.showBridgeSizeMessage();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         bridgeGame.setAnswerBridge(bridge);
     }
 
     private void playGame() {
+        inputView.showMovingMessage();
         bridgeGame.move(inputView.readMoving());
         outputView.printMap(bridgeGame.getBridgePrintMaker());
         checkRetry();
@@ -47,6 +49,7 @@ public class BridgeGameController {
 
     private void checkRetry() {
         if (bridgeGame.isFail()) {
+            inputView.showGameCommandMessage();
             bridgeGame.updateRestart(inputView.readGameCommand());
         }
     }
