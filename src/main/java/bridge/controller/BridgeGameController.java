@@ -16,7 +16,7 @@ public class BridgeGameController {
         OutputView.printStartGame();
         List<String> bridge = makeBridge();
         String result = startBridgeGame(bridge);
-        quitGame(result);
+        resultOfGame(result);
     }
 
     public List<String> makeBridge() {
@@ -46,7 +46,7 @@ public class BridgeGameController {
         return Constant.FAIL;
     }
 
-    public void quitGame(String result) {
+    public void resultOfGame(String result) {
         int totalTry = bridgeGame.countTotalTry();
         List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
         OutputView.printResult(bridgeMap, result, totalTry);
