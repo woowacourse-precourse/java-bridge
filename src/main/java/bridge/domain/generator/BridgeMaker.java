@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain.generator;
 
 import java.util.List;
 
