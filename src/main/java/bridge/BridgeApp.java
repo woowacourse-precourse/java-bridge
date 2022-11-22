@@ -14,10 +14,18 @@ public class BridgeApp {
     }
 
     public void run() {
-        bridgeGame.createBridge(viewController.readBridgeSize());
+        while (true) {
+            try {
+                bridgeGame.createBridge(viewController.readBridgeSize());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         viewController.printResult(playAndGetResult());
 
     }
+
     private Result playAndGetResult() {
         while (true) {
             Result result = moveBridge();

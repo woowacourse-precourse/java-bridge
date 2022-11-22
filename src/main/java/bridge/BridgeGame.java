@@ -44,7 +44,7 @@ public class BridgeGame {
         bridge.retry();
     }
 
-    public void createBridge(int size) {
+    public void createBridge(String size) {
         bridge.create(size);
     }
 }
