@@ -39,9 +39,6 @@ public class BridgeGame {
         gameProgress.resetGameOver();
         gameProgress.retrialGameCommand();
         gameProgress.resetGameResult();
-  //      gameProgress.gameOver = GameOver.YET;
-  //      gameProgress.gameCommand = GameCommand.RETRIAL;
-  //      gameProgress.gameResult = GameResult.UNDETERMINED;
         gameProgress.plusTrial();
     }
 
@@ -50,16 +47,12 @@ public class BridgeGame {
         final int LAST_INDEX = matchingResult.size()-1;
 
         if(matchingResult.get(LAST_INDEX).equals(BlockExpression.DIFF.getMark())) {
-            //gameProgress.gameOver = GameOver.OVER;
             gameProgress.gameOver();
-            //gameProgress.gameResult = GameResult.FAILED;
             gameProgress.gameFailed();
             return;
         }
         if(bridge.size()==userInput.size()) {
-            //gameProgress.gameOver = GameOver.OVER;
             gameProgress.gameOver();
-            //gameProgress.gameResult = GameResult.SUCCESS;
             gameProgress.gameSuccess();
         }
     }
