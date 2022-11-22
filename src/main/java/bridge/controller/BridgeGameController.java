@@ -25,7 +25,7 @@ public class BridgeGameController {
         int bridgeSize = getBridgeSize();
         bridgeGame.createBridge(bridgeSize);
         tryMove();
-        outputView.printResult(bridgeGame.getResult(), bridgeGame.isSuccess(),
+        outputView.printResult(bridgeGame.getPrintMap(), bridgeGame.isSuccess(),
                 bridgeGame.getTryCount());
     }
 
@@ -59,7 +59,7 @@ public class BridgeGameController {
     }
 
     private void checkRetry() {
-        outputView.printMap(bridgeGame.getResult());
+        outputView.printMap(bridgeGame.getPrintMap());
         if (bridgeGame.checkStatus().equals(Status.SUCCESS.getMessage()) || bridgeGame.canPlay()) {
             return;
         }

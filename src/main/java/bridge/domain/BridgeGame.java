@@ -44,7 +44,7 @@ public class BridgeGame {
         bridgeGameAnswer = new BridgeGameAnswer(bridgeMaker.makeBridge(size));
     }
 
-    public List<List<String>> getResult() {
+    public List<List<String>> getPrintMap() {
         return bridgeGameAnswer.getMapByHistory(bridgeGameHistory.getBridgeHistory());
     }
 
