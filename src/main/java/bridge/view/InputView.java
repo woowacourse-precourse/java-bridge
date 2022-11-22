@@ -1,20 +1,34 @@
 package bridge.view;
 
-import bridge.validator.InputValidator;
-import bridge.validator.Validatable;
+import bridge.validator.*;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-public class InputView implements Validatable<String> {
+public class InputView {
+
+    private final NumberValidator numberValidator;
+    private final SingleCharacterValidator singleCharacterValidator;
+    private final UppercaseValidator uppercaseValidator;
+
+    public InputView(
+            NumberValidator numberValidator,
+            SingleCharacterValidator singleCharacterValidator,
+            UppercaseValidator uppercaseValidator
+    ) {
+        this.numberValidator = numberValidator;
+        this.singleCharacterValidator = singleCharacterValidator;
+        this.uppercaseValidator = uppercaseValidator;
+    }
+
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = getInput();
-        validate(input, InputValidator.IS_NUMBER);
+        numberValidator.validate(input);
         return Integer.parseInt(input);
     }
 
@@ -23,11 +37,8 @@ public class InputView implements Validatable<String> {
      */
     public String readMove() {
         String input = getInput();
-        validate(
-                input,
-                InputValidator.IS_SINGLE_CHARACTER,
-                InputValidator.IS_UPPERCASE_ALPHABET
-        );
+        singleCharacterValidator.validate(input);
+        uppercaseValidator.validate(input);
         return input;
     }
 
@@ -36,11 +47,8 @@ public class InputView implements Validatable<String> {
      */
     public String readGameCommand() {
         String input = getInput();
-        validate(
-                input,
-                InputValidator.IS_SINGLE_CHARACTER,
-                InputValidator.IS_UPPERCASE_ALPHABET
-        );
+        singleCharacterValidator.validate(input);
+        uppercaseValidator.validate(input);
         return input;
     }
 

@@ -3,6 +3,9 @@ package bridge;
 import bridge.controller.BridgeGameController;
 import bridge.service.BridgeGameService;
 import bridge.service.DefaultBridgeGameService;
+import bridge.validator.NumberValidator;
+import bridge.validator.SingleCharacterValidator;
+import bridge.validator.UppercaseValidator;
 import bridge.view.DefaultView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -29,15 +32,11 @@ public class ContextFactory {
 
     private ContextFactory() {
         this.outputView = new OutputView();
-        this.inputView = new InputView();
+        this.inputView = new InputView(new NumberValidator(), new SingleCharacterValidator(), new UppercaseValidator());
         this.generator = new BridgeRandomNumberGenerator();
         this.service = new DefaultBridgeGameService();
         this.controller = new BridgeGameController(generator, service);
-        view = new DefaultView(
-                this.outputView,
-                this.inputView,
-                this.controller
-        );
+        view = new DefaultView(this.outputView, this.inputView, this.controller);
     }
 
     public View getView() {

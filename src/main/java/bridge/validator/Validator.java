@@ -6,5 +6,11 @@ public interface Validator<T> {
 
     boolean test(T target);
 
-    String getErrorMessage();
+    String getMessage();
+
+    default void validate(T target) {
+        if (!test(target)) {
+            throw new IllegalArgumentException(prefix + getMessage());
+        }
+    }
 }
