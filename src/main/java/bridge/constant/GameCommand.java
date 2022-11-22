@@ -21,7 +21,7 @@ public enum GameCommand {
                 .get();
     }
 
-    public boolean getRestart() {
+    public boolean isRestart() {
         return restart;
     }
 

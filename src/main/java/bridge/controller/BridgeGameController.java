@@ -54,6 +54,6 @@ public class BridgeGameController {
 
     public boolean isRestart(String sign) {
         return GameCommand.fromCommand(sign)
-                .getRestart();
+                .isRestart();
     }
 }
