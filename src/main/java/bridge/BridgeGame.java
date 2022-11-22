@@ -34,11 +34,16 @@ public class BridgeGame {
 
         cross = Cross.from(bridge.isSameMoving(index, moving));
 
-        map.update(moving, cross);
+        updateMap(moving);
 
-        map.print();
+        printMap();
     }
 
-    public void retry() {
+    private void updateMap(Moving moving) {
+        map.update(moving, cross);
+    }
+
+    private void printMap() {
+        map.print();
     }
 }
