@@ -43,33 +43,6 @@ public class BridgeGame {
         this.moving = moving;
         this.result = result;
     }
-
-//    public void start(){
-//        judgeGame();
-//        while(keepGoing){
-//            retry();
-//        }
-//        outputView.printResult(results,gameResult,tryCount);
-//    }
-
-//    private void judgeGame() {
-//        tryCount++;
-//        while (isRight && count<bridge.size()){
-//            String moving = inputView.readMoving();
-//            move(bridge,moving);
-//            count++;
-//            outputView.printMap(results);
-//        }
-//        judgeResult();
-//    }
-    private void initVariable(){
-        count = 0;
-        isRight = true;
-    }
-    public void judgeResult(){
-        result.judgeResult(moving.isRight());
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -80,8 +53,6 @@ public class BridgeGame {
         moving.checkUp(inputMoving);
         moving.checkDown(inputMoving);
         moving.plusCount();
-//        if(moving.getUp().contains("X") || moving.getDown().contains("X"))
-//            return false;
     }
 
     /**
@@ -95,6 +66,10 @@ public class BridgeGame {
         if(!result.isKeeping())
             moving.setRight(false);
         return result.isKeeping();
+    }
+
+    public void judgeResult(){
+        result.judgeResult(moving.isRight());
     }
 
 }
