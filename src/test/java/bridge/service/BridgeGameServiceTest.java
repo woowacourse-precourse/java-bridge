@@ -45,6 +45,6 @@ class BridgeGameServiceTest {
         MoveResultDto moveResultDto = bridgeGameService.play(player, "D");
         bridgeGameService.retry(player, command);
 
-        assertThat(bridgeGameService.isPlayable()).isEqualTo(expected);
+        assertThat(bridgeGameService.isPlaying()).isEqualTo(expected);
     }
 }
