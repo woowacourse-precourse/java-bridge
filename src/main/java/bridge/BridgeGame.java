@@ -20,8 +20,8 @@ public class BridgeGame {
         bridgeGameResult.increaseTryCount();
     }
 
-    public void make(int inputSize) {
-        this.bridge = new Bridge(inputSize);
+    public void make(int size) {
+        this.bridge = new Bridge(size);
     }
 
     public boolean move(String moving) {
@@ -32,9 +32,9 @@ public class BridgeGame {
         return canMove;
     }
 
-    public boolean retry(String inputCommand) {
-        checkCommand(inputCommand);
-        if (inputCommand.equals(RETRY)) {
+    public boolean retry(String command) {
+        checkCommand(command);
+        if (command.equals(RETRY)) {
             bridgeGameResult.increaseTryCount();
             bridgeGameResult.initMoveState();
             return true;
