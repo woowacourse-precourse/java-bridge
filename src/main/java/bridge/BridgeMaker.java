@@ -25,7 +25,6 @@ public class BridgeMaker {
             if (upDownNum == 1) result.add("U");
             else if (upDownNum == 0) result.add("D");
         }
-        System.out.println();
         return result;
     }
 }
