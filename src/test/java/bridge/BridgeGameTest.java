@@ -6,6 +6,7 @@ import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
 import bridge.domain.Result;
+import bridge.service.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
