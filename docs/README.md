@@ -1,3 +1,44 @@
+## 🌉 게임 소개
+
+- 본 게임은 우아한 테크코스 프리코스 4주차 미션으로 주어진 ```다리 건너기``` 게임 입니다.
+
+### 🎮 게임 방법
+
+**⚠️시작 전 주의사항**
+```
+- 값 입력 시, 주어진 요구사항에서 벗어난 값을 입력하면 정상적인 값이 입력될 때까지 반복된다.
+```
+
+**1. 참가자는 생성할 다리 길이를 입력한다.**
+```
+- 다리의 길이는 3 이상 20 이하만 가능하다.
+```
+
+**2. 참가자에게 자동으로 다리가 생성된다.**
+
+**3. 참가자는 이동할 칸을 입력한다. (위: U, 아래: D)**
+```
+- 입력한 위치의 칸에 'O' 표시가 뜨면 이동에 성공한 것이다.
+- 입력한 위치의 칸에 'X' 표시가 뜨면 이동에 실패한 것이다.
+```
+
+**4. 이동에 실패하면 재시도 또는 게임을 종료할 수 있다. (재시도: R, 종료: Q)**
+```
+- 'R'을 입력하면 처음에 생성되었던 다리로 게임을 다시 진행하며, 성공할 때까지 재시도할 수 있다.
+- 'Q'를 입력하면 게임이 즉시 종료된다.
+```
+
+**6. 게임이 종료되면 최종 게임 결과를 확인할 수 있다.**
+- 최종 게임 결과 예시
+```
+최종 게임 결과
+[ O |   |   ]
+[   | O | O ]
+
+게임 성공 여부: 성공
+총 시도한 횟수: 2
+```
+
 ##  🌉 기능 목록
 
 ### 🖥 입출력 담당 부분
@@ -49,3 +90,39 @@
 ```
 - R 또는 Q가 아닌 경우 예외 발생   ✓
 ```
+
+## 📁 패키지 구조
+```bash
+├── bridge
+│   ├── Application.java
+│   ├── BridgeMaker.java
+│   ├── BridgeNumberGenerator.java
+│   ├── BridgeRandomNumberGanerator.java
+│   │
+│   ├── constant
+│   │   ├── BridgeDirection.java
+│   │   ├── ResultState.java
+│   │   └── RetryCode.java
+│   │ 
+│   ├── drawer
+│   │   ├── BridgeCase.java
+│   │   ├── BridgeState.java
+│   │   └── BridgeDrawer.java
+│   │  
+│   ├── controller
+│   │   └── BridgeGameController.java
+│   │  
+│   ├── model
+│   │   └── BridgeGame.java
+│   │  
+│   └── validation
+│       └── Validation.java
+└── view
+    ├── input
+    │   ├── InputMessage.java
+    │   └── InputView.java
+    │
+    └── output
+        ├── OutputMessage.java
+        └── OutputView.java
+``` 
