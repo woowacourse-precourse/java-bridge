@@ -69,7 +69,7 @@ class BridgeStatusTest {
         // when
         makeSuccessGameStatus(bridgeStatus);
 
-        // expect
+        // then
         assertThat(bridgeStatus.needCallRetryGame()).isEqualTo(false);
     }
 
@@ -84,7 +84,7 @@ class BridgeStatusTest {
         bridgeStatus.addUserMovingCommand(MovingCommand.UP);
         bridgeStatus.addUserMovingCommand(MovingCommand.UP);
 
-        // expect
+        // then
         assertThat(bridgeStatus.needCallRetryGame()).isEqualTo(true);
     }
 }
