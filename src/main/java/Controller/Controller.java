@@ -26,14 +26,14 @@ public class Controller {
         map = new Map(crossable);
     }
 
-    public boolean play() {
+    public boolean play(int index) {
         boolean isWin = true;
-        int index = 0;
+
         while (isWin&&index<limitSize) {
-            String moving = util.determineWhereToGo();
-            isWin = bridgeGame.move(map, index++, moving);;
+            isWin = bridgeGame.move(map, index++, util.determineWhereToGo());
             outputView.printMap(map.getMapUpper(), map.getMapLower());
         }
+
         return isWin;
     }
 
@@ -52,7 +52,7 @@ public class Controller {
         boolean isWin = false;
         map.startMap();
         while (isContinue) {
-            isWin = play();
+            isWin = play(0);
             isContinue = isContinue(isWin);
         }
         outputView.printResult(map,isWin,attempts);
