@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MESSAGE = "[ExceptionCode]";
 
     @Test
     void 다리_생성_테스트() {
