@@ -51,16 +51,22 @@ public class BridgeGameController {
         if (bridgeGame.isFailure()) {
             String gameCommand = inputView.readGameCommand();
 
-            if (gameCommand.equals("Q")) {
-                outputView.printResult();
-                outputView.printFailure();
-                return true;
-            }
+            if (quit(gameCommand)) return true;
 
             if (gameCommand.equals("R")) {
                 bridgeGame.retry();
                 trialCnt++;
             }
+        }
+
+        return false;
+    }
+
+    private boolean quit(String gameCommand) {
+        if (gameCommand.equals("Q")) {
+            outputView.printResult();
+            outputView.printFailure();
+            return true;
         }
 
         return false;
