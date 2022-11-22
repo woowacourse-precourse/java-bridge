@@ -10,4 +10,8 @@ public enum GameStatus {
     GameStatus(String gameStatus) {
         this.gameStatus = gameStatus;
     }
+
+    public boolean isGameStatus(GameStatus gameStatus) {
+        return this.gameStatus.equals(gameStatus.gameStatus);
+    }
 }
