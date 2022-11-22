@@ -52,4 +52,8 @@ public class BridgeGame {
     public List<String> getMoveProgress(){
         return moveProgress;
     }
+
+    public boolean isGameOver(){
+        return !isMoveOk() || moveProgress.size() == bridges.size();
+    }
 }

@@ -16,18 +16,18 @@ public class OutputView {
         StringBuilder upUI;
         StringBuilder downUI;
 
-        upUI = progressUI(bridgeGame.getMoveProgress(), true);
-        downUI = progressUI(bridgeGame.getMoveProgress(), false);
+        upUI = progressUI(bridgeGame.getMoveProgress(), true, bridgeGame.isMoveOk());
+        downUI = progressUI(bridgeGame.getMoveProgress(), false, bridgeGame.isMoveOk());
 
         System.out.println(upUI);
         System.out.println(downUI);
     }
 
-    private StringBuilder progressUI(List<String> progress, boolean isUp){
+    private StringBuilder progressUI(List<String> progress, boolean isUp, boolean isMoveOk){
         StringBuilder sb = new StringBuilder();
         sb.append("[ ");
         for(int i=0; i<progress.size(); i++){
-            sb.append(progressUIMiddle(progress.get(i), isUp));
+            sb.append(progressUIMiddle(progress.get(i), isUp, isMoveOk));
             if(progress.size()-1 != i){
                 sb.append(" | ");
             }
@@ -36,12 +36,16 @@ public class OutputView {
         return sb;
     }
 
-    private String progressUIMiddle(String direction, boolean isUp){
+    private String progressUIMiddle(String direction, boolean isUp, boolean isMoveOk){
         if(isUp && direction.equals("U")){
-            return "O";
+            if(isMoveOk)
+                return "O";
+            return "X";
         }
         if(!isUp && direction.equals("D")){
-            return "O";
+            if(isMoveOk)
+                return "O";
+            return "X";
         }
         return " ";
     }
