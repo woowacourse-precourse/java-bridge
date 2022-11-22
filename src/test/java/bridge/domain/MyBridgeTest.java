@@ -17,10 +17,6 @@ public class MyBridgeTest {
     MyBridge myBridge;
     private static MockedStatic<InputView> inputView;
 
-    @BeforeEach
-    public void init() {
-        myBridge = new MyBridge(List.of("U", "U", "D", "D"), new ArrayList<>());
-    }
 
     @BeforeAll
     public static void beforeALl() {
@@ -50,7 +46,6 @@ public class MyBridgeTest {
     @CsvSource(value = {"A", "d", "123"})
     @DisplayName("이동시 U와 D가 아니면 IllegalArgumentException이 발생한다.")
     void move_IllegalArgumentException(String input) throws Exception{
-        when(InputView.readMoving()).thenReturn(input);
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> Validator.validateMove(input));
     }
@@ -59,7 +54,6 @@ public class MyBridgeTest {
     @CsvSource(value = {"D", "U"})
     @DisplayName("이동시 U와 D면 정상 작동.")
     void move(String input) throws Exception{
-        when(InputView.readMoving()).thenReturn(input);
         Validator.validateMove(input);
     }
 
@@ -67,7 +61,6 @@ public class MyBridgeTest {
     @CsvSource(value = {"Q", "R"})
     @DisplayName("재시작시 Q와 R이면 정상 작동.")
     void reGame(String input) throws Exception{
-        when(InputView.readGameCommand()).thenReturn(input);
         Validator.validateRetry(input);
     }
 
@@ -75,7 +68,6 @@ public class MyBridgeTest {
     @CsvSource(value = {"A", "q"})
     @DisplayName("재시작시 Q와 R이 아니면 IllegalArgumentException이 발생한다.")
     void reGame_IllegalArgumentException(String input) throws Exception{
-        when(InputView.readGameCommand()).thenReturn(input);
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> Validator.validateRetry(input));
     }
