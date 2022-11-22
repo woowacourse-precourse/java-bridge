@@ -38,7 +38,11 @@ public class PlayGame {
                 break;
             }
             turn++;
+            printResult(tryCount);
         }
+    }
+
+    private void printResult(int tryCount){
         List<HashMap> bridge = List.of(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
         System.out.println(OutputStatic.END_GAME_TITLE.getOutputPrint());
         outputView.printMap(endTurn, bridge);
