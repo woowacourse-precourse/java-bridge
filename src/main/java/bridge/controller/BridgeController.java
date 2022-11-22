@@ -30,9 +30,9 @@ public class BridgeController {
             outputView.printMap(movedResult,bridge);
             if(movedResult.equals(bridge)){
                 outputView.printResult();
+                count++;
                 System.out.println("게임 성공 여부: 성공");
                 System.out.println("총 시도한 횟수: "+count);
-                count++;
                 return true;
             }
             if (!(bridge.get(i).equals(movedResult.get(i)))) {
