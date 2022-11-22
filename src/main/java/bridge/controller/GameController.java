@@ -1,9 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.OutputView;
+import bridge.*;
 import bridge.model.Moving;
 import bridge.model.ReEnter;
 
@@ -16,6 +13,7 @@ public class GameController {
 
     private final ReEnter reEnter = new ReEnter();
     private final Moving moving = new Moving();
+    private boolean isTrue = true;
 
     private static boolean isClear = true;
     private static int TRY_COUNT = 0;
@@ -37,6 +35,18 @@ public class GameController {
             }
         }
         isClear = false;
+    }
+
+    public void playTheGaming() {
+        List<String> bridge = gameSet(reEnter.reGetBridgeLength());
+        while (isTrue) {
+            gamingSet(bridge);
+            if (!isClear) {
+                printMovingAndResult();
+                break;
+            }
+            isTrue = BridgeGame.retry();
+        }
     }
 
     public static void printMovingAndResult() {
