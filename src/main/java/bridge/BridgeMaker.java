@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.constant.Game;
-import bridge.utils.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
