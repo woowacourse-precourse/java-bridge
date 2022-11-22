@@ -9,8 +9,9 @@ public class Bridge {
         this.bridgeBlocks = bridgeBlocks;
     }
 
-    public boolean isCrossable(int position, String block) {
+    public boolean isCrossable(int position, Direction direction) {
         String bridgeBlock = bridgeBlocks.get(position);
-        return bridgeBlock.equals(block);
+        String playerBlock = direction.getInitial();
+        return bridgeBlock.equals(playerBlock);
     }
 }

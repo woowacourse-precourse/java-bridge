@@ -1,31 +1,17 @@
 package bridge.domain;
 
 public enum BridgeBlock {
-    UP("U", 1),
-    DOWN("D", 0);
+    X(" X "),
+    O(" O "),
+    EMPTY("   ");
 
-    private final String initial;
-    private final int blockNumber;
+    private final String bridgeBlock;
 
-    BridgeBlock(String initial, int blockNumber) {
-        this.initial = initial;
-        this.blockNumber = blockNumber;
+    BridgeBlock(String bridgeBlock) {
+        this.bridgeBlock = bridgeBlock;
     }
 
-    public static String getBridgeBlock(int blockNumber) {
-        for(BridgeBlock block : values()) {
-            if(block.blockNumber == blockNumber) {
-                return block.initial;
-            }
-        }
-        return null;
-    }
-
-    public static boolean isUpOrDown(String direction) {
-        return direction.equals(UP.initial) || direction.equals(DOWN.initial);
-    }
-
-    public boolean matches(String direction) {
-        return direction.equals(initial);
+    public String getBridgeBlock() {
+        return bridgeBlock;
     }
 }

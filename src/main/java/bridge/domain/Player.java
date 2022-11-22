@@ -13,8 +13,13 @@ public class Player {
         tryCount++;
     }
 
-    public PlayerStatus move() {
+    public PlayerStatus success() {
         position++;
+        return status;
+    }
+
+    public PlayerStatus fail() {
+        status = FAIL;
         return status;
     }
 
@@ -22,8 +27,7 @@ public class Player {
         return position;
     }
 
-    public PlayerStatus fail() {
-        status = FAIL;
+    public PlayerStatus getStatus() {
         return status;
     }
 }

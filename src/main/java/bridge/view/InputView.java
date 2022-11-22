@@ -1,6 +1,8 @@
 package bridge.view;
 
 import static bridge.validator.InputValidator.*;
+
+import bridge.domain.Direction;
 import camp.nextstep.edu.missionutils.Console;
 import static bridge.utils.constant.OutputMessage.*;
 /**
@@ -27,13 +29,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Direction readMoving() {
         while(true) {
             try {
                 System.out.println(DIRECTION_INPUT_MESSAGE);
                 String input = Console.readLine();
                 validateDirection(input);
-                return input;
+                return Direction.of(input);
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -44,6 +46,6 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return Console.readLine();
+        
     }
 }

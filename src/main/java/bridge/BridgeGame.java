@@ -1,9 +1,6 @@
 package bridge;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeStatus;
-import bridge.domain.Player;
-import bridge.domain.PlayerStatus;
+import bridge.domain.*;
 
 import java.util.List;
 
@@ -26,10 +23,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public BridgeStatus move(String direction) {
+    public BridgeStatus move(Direction direction) {
         int position = player.getNextPosition();
         if(bridge.isCrossable(position, direction)) {
-            bridgeStatus.update(direction, player.move());
+            bridgeStatus.update(direction, player.success());
             return bridgeStatus;
         }
         bridgeStatus.update(direction, player.fail());
@@ -41,7 +38,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String command) {
 
     }
 
@@ -55,7 +52,7 @@ public class BridgeGame {
         return new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
-    public boolean isNotFinished() {
-        return player.getStatus() != PlayerStatus.SUCCESS;
+    public boolean isPlaying() {
+        return player.getStatus() == PlayerStatus.PLAYING;
     }
 }

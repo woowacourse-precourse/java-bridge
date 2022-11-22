@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.domain.PlayerStatus.*;
-import static bridge.domain.BridgeBlock.*;
+import static bridge.domain.Direction.*;
 import static bridge.utils.constant.Constants.*;
 
 public class BridgeStatus {
@@ -16,29 +16,29 @@ public class BridgeStatus {
         this.downBridgeBlocks = new ArrayList<>();
     }
 
-    public void update(String direction, PlayerStatus status) {
-        String block = getBlockByStatus(status);
-        if(UP.matches(direction)) {
-            addBlocks(block, EMPTY_BLOCK);
+    public void update(Direction direction, PlayerStatus status) {
+        BridgeBlock block = getBlockByStatus(status);
+        if(direction == UP) {
+            addBlocks(block, BridgeBlock.EMPTY);
         }
-        if(DOWN.matches(direction)) {
-            addBlocks(EMPTY_BLOCK, block);
+        if(direction == DOWN) {
+            addBlocks(BridgeBlock.EMPTY, block);
         }
     }
 
-    public String getBlockByStatus(PlayerStatus status) {
+    public BridgeBlock getBlockByStatus(PlayerStatus status) {
         if(status == PLAYING) {
-            return OK_BLOCK;
+            return BridgeBlock.O;
         }
         if(status == FAIL) {
-            return FAIL_BLOCK;
+            return BridgeBlock.X;
         }
-        return null;
+        return BridgeBlock.EMPTY;
     }
 
-    public void addBlocks(String upBlock, String downBlock) {
-        upBridgeBlocks.add(upBlock);
-        downBridgeBlocks.add(downBlock);
+    public void addBlocks(BridgeBlock upBlock, BridgeBlock downBlock) {
+        upBridgeBlocks.add(upBlock.getBridgeBlock());
+        downBridgeBlocks.add(downBlock.getBridgeBlock());
     }
 
     @Override

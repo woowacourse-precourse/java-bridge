@@ -1,6 +1,7 @@
 package bridge.validator;
 
-import static bridge.domain.BridgeBlock.isUpOrDown;
+import bridge.domain.Direction;
+
 import static bridge.exception.Exception.*;
 import static bridge.utils.constant.Constants.*;
 
@@ -25,7 +26,8 @@ public class InputValidator {
     }
 
     public static void validateDirection(String direction) {
-        if(!isUpOrDown(direction)) {
+        Direction block = Direction.of(direction);
+        if(block != Direction.UP && block != Direction.DOWN) {
             INVALID_DIRECTION.throwException();
         }
     }

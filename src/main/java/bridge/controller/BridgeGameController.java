@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeGame;
 import bridge.domain.BridgeStatus;
+import bridge.domain.Direction;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -18,11 +19,10 @@ public class BridgeGameController {
     }
 
     public void playGame() {
-        while(bridgeGame.isNotFinished()) {
-            String direction = inputView.readMoving();
+        while(bridgeGame.isPlaying()) {
+            Direction direction = inputView.readMoving();
             BridgeStatus bridgeStatus = bridgeGame.move(direction);
             outputView.printMap(bridgeStatus);
         }
     }
-
 }
