@@ -7,13 +7,15 @@ import bridge.domain.generator.BridgeMaker;
 import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
 import java.util.List;
 
 public class BridgeGameService {
-    private BridgeMaker bridgeMaker;
-    private InputView inputView;
-    private OutputView outputView;
-    private InputValidator validator;
+    private static final String EMPTY_MAP = "";
+    private final BridgeMaker bridgeMaker;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final InputValidator validator;
     private BridgeGame game;
 
     public BridgeGameService() {
@@ -23,35 +25,53 @@ public class BridgeGameService {
         outputView = new OutputView();
     }
 
-    public void start(){
+    public void start() {
         int size = validator.returnNum(inputView.readBridgeSize());
         List<String> answerBridge = bridgeMaker.makeBridge(size);
         game = new BridgeGame(answerBridge);
         run();
     }
 
-    public void run(){
-        String map = "";
-        while(game.getBridge().bridgeEnd()){
-            map = game.move(inputView.readMoving());
-            outputView.printMap(map);
-            if (!game.isSuccess()){
-                retry();
-                break;
-            }
+    public void run() {
+        String map = EMPTY_MAP;
+        while (map.equals(EMPTY_MAP)) {
+            map = go(EMPTY_MAP);
         }
         outputView.printResult(map, game.isSuccess(), game.getTotalTrial());
     }
 
-    public void retry(){
+    private String go(String map) {
+        if (game.getBridge().bridgeEnd()) {
+            return map;
+        }
+        map = move();
+        if (!game.isSuccess()) {
+            return isRetry(map);
+        }
+        return go(map);
+    }
+
+    private String isRetry(String map) {
+        if (retry()) {
+            return EMPTY_MAP;
+        }
+        game.setSuccess(false);
+        return map;
+    }
+
+    private String move() {
+        String map = game.move(inputView.readMoving());
+        outputView.printMap(map);
+        return map;
+    }
+
+    public boolean retry() {
         String gameMode = inputView.readGameCommand();
         validator.checkRetry(gameMode);
-        if (gameMode.equals(GameMode.RETRY.getKey())){
+        if (gameMode.equals(GameMode.RETRY.getKey())) {
             game.retry();
-            run();
+            return true;
         }
-        if (gameMode.equals(GameMode.QUIT.getKey())){
-            game.setSuccess(false);
-        }
+        return false;
     }
 }
