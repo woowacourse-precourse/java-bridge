@@ -95,4 +95,9 @@ public class OutputView {
     public void printRetry() {
         System.out.println(GuideMessage.INPUT_RETRY.getMessage());
     }
+
+    public void printFinalMap(BridgePassed bridgePassed) {
+        System.out.println(GuideMessage.RESULT.getMessage());
+        printMap(bridgePassed);
+    }
 }

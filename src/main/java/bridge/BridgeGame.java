@@ -14,6 +14,7 @@ public class BridgeGame {
     private final OutputView outputView;
     private final BridgeGameController bridgeGameController;
     private final GameStatus gameStatus;
+    private BridgePassed bridgePassed;
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -29,7 +30,7 @@ public class BridgeGame {
             System.out.println(bridge.getBridge());
             crossBridge(bridge);
         }
-
+        outputView.printFinalMap(bridgePassed);
         outputView.printResult(gameStatus);
     }
 
@@ -41,12 +42,11 @@ public class BridgeGame {
     }
 
     private void crossBridge(Bridge bridge) {
-        // TODO: 함수길이 초과 리팩토링 요망
+        gameStatus.addGameCount();
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
-            BridgePassed bridgePassed = move(bridge, i);
+            bridgePassed = move(bridge, i);
             outputView.printMap(bridgePassed);
             if (!bridgePassed.canMove()) {
-                gameStatus.addGameCount();
                 retry();
                 return;
             }

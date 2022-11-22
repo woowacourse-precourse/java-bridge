@@ -7,7 +7,7 @@ public class GameStatus {
 
     public GameStatus() {
         this.isEnd = false;
-        this.gameCount = 1;
+        this.gameCount = 0;
         this.gameClear = false;
     }
 
