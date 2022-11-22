@@ -51,9 +51,9 @@ public class GameRecordTest {
             gameRecord.recordMove("U", isDead);
 
             assertThat(gameRecord.getCrossedRecord().get("upperCrossedRecord").get(0))
-                    .isEqualTo(" O ");
+                    .isEqualTo("O");
             assertThat(gameRecord.getCrossedRecord().get("lowerCrossedRecord").get(0))
-                    .isEqualTo("   ");
+                    .isEqualTo(" ");
         }
 
         @DisplayName("한 칸 이동시 이동에 성공한 경우 기록 테스트 - 아래로 이동한 경우")
@@ -64,9 +64,9 @@ public class GameRecordTest {
             gameRecord.recordMove("D", isDead);
 
             assertThat(gameRecord.getCrossedRecord().get("upperCrossedRecord").get(0))
-                    .isEqualTo("   ");
+                    .isEqualTo(" ");
             assertThat(gameRecord.getCrossedRecord().get("lowerCrossedRecord").get(0))
-                    .isEqualTo(" O ");
+                    .isEqualTo("O");
         }
 
         @DisplayName("한 칸 이동시 이동에 실패한 경우 기록 테스트 - 위로 이동한 경우")
@@ -77,9 +77,9 @@ public class GameRecordTest {
             gameRecord.recordMove("U", isDead);
 
             assertThat(gameRecord.getCrossedRecord().get("upperCrossedRecord").get(0))
-                    .isEqualTo(" X ");
+                    .isEqualTo("X");
             assertThat(gameRecord.getCrossedRecord().get("lowerCrossedRecord").get(0))
-                    .isEqualTo("   ");
+                    .isEqualTo(" ");
         }
 
         @DisplayName("한 칸 이동시 이동에 실패한 경우 기록 테스트 - 아래로 이동한 경우")
@@ -90,9 +90,9 @@ public class GameRecordTest {
             gameRecord.recordMove("D", isDead);
 
             assertThat(gameRecord.getCrossedRecord().get("upperCrossedRecord").get(0))
-                    .isEqualTo("   ");
+                    .isEqualTo(" ");
             assertThat(gameRecord.getCrossedRecord().get("lowerCrossedRecord").get(0))
-                    .isEqualTo(" X ");
+                    .isEqualTo("X");
         }
     }
 }
