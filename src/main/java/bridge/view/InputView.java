@@ -51,7 +51,7 @@ public class InputView {
         validateMoveLocation(location);
         return location;
     }
-    private void validateMoveLocation(String location) throws IllegalArgumentException{
+    private void validateMoveLocation(String location) {
         if (location.isEmpty() || !(GameCommand.MOVE_UP.isSame(location) ||GameCommand.MOVE_DOWN.isSame(location))) {
             throw new IllegalArgumentException(ErrorText.MOVE_TO_ERROR.getValue());
         }
