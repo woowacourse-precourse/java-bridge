@@ -23,7 +23,7 @@ class MapMakerTest {
     if ((bridgeGame.getMap().equals("[ O ]\n[   ]"))) {
       assertEquals(bridgeGame.getMap(),"[ O ]\n[   ]");
     } else {
-      assertEquals(bridgeGame.getMap(),"[   ]\n[ O ]");
+      assertEquals(bridgeGame.getMap(),"[ X ]\n[   ]");
     }
   }
 }
