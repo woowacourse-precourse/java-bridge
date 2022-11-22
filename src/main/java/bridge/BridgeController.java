@@ -14,6 +14,11 @@ public class BridgeController {
         while (!index.endGame(bridgeSize) && !gameEndButton) {
             boolean compareBridgeLocationResult = bridgeGame.move(inputView.readMoving(), bridgeResults, index);
             outputView.printMap(bridgeResults);
+            if (!compareBridgeLocationResult) {
+                gameEndButton = bridgeGame.retry(inputView.readGameCommand());
+                gameCount++;
+            }
         }
+        outputView.printResult(bridgeResults, gameEndButton, gameCount);
     }
 }
