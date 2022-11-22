@@ -11,6 +11,7 @@ public class InputView {
         blank();
         out(InputMessage.INPUT_BRIDGE_SIZE);
         int inputNum = validate();
+        numberRange(inputNum);
         blank();
         return inputNum;
     }
@@ -28,7 +29,11 @@ public class InputView {
         }
         return inputNum;
     }
-
+    private void numberRange(int inputNum) {
+        if (!(3<=inputNum && inputNum<=20)){
+            throw new IllegalArgumentException(ExceptionMessage.NOT_IN_RANGE);
+        }
+    }
     public String readMoving() {
         out(InputMessage.INPUT_MOVING);
         String input = Console.readLine();
