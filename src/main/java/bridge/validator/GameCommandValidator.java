@@ -1,5 +1,6 @@
 package bridge.validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameCommandValidator implements CommandValidator {
@@ -22,10 +23,10 @@ public class GameCommandValidator implements CommandValidator {
 
     @Override
     public String getCommandsDescription() {
-        StringBuilder commandsDescription = new StringBuilder();
+        List<String> validCommands = new ArrayList<>();
         commands.forEach(command -> {
-            commandsDescription.append(command);
+            validCommands.add(command);
         });
-        return String.join(COMMAND_SEPARATOR, commandsDescription.toString());
+        return String.join(COMMAND_SEPARATOR, validCommands);
     }
 }
