@@ -84,11 +84,43 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_다리길이숫자가아닌경우() {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 예외_테스트_다리길이3보다작은경우() {
+        assertSimpleTest(() -> {
+            runException("2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_다리길이20보다큰경우() {
+        assertSimpleTest(() -> {
+            runException("22");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_움직임U나D가아닌경우() {
+        assertSimpleTest(() -> {
+            runException("3", "O");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_재시도여부R이나Q가아닌경우() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("5", "U", "D", "D", "D", "D", "X");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 0, 0, 1);
     }
 
     @Override

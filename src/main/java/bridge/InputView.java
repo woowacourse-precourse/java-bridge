@@ -23,8 +23,7 @@ public class InputView {
         try {
             int size = Integer.parseInt(Console.readLine());
             if (size < MIN_SIZE_NUM || size > MAX_SIZE_NUM) {
-                Message.ERROR_SIZE.print();
-                throw new IllegalStateException(Message.ERROR_SIZE.getMessage());
+                throw new IllegalArgumentException(Message.ERROR_SIZE.getMessage());
             }
             return size;
         } catch (NumberFormatException e) {
@@ -40,7 +39,7 @@ public class InputView {
         String command = Console.readLine();
         if (!command.equals(MOVE_UP) && !command.equals(MOVE_DOWN)) {
             Message.ERROR_MOVE.print();
-            throw new IllegalStateException(Message.ERROR_MOVE.getMessage());
+            throw new IllegalArgumentException(Message.ERROR_MOVE.getMessage());
         }
         return command;
     }
@@ -53,7 +52,7 @@ public class InputView {
         String command = Console.readLine();
         if (!command.equals(GAME_RETRY) && !command.equals(GAME_QUIT)) {
             Message.ERROR_RETRY.print();
-            throw new IllegalStateException(Message.ERROR_RETRY.getMessage());
+            throw new IllegalArgumentException(Message.ERROR_RETRY.getMessage());
         }
         return command;
     }
