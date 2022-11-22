@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.User;
 import bridge.util.InformationMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -11,37 +12,35 @@ public class BridgeGameProcessor {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeMaker bridgeMaker;
 
-    public BridgeGameProcessor(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
+    public BridgeGameProcessor(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bridgeMaker = bridgeMaker;
     }
 
-    public void playGame() {
+    public void playGame(BridgeMaker bridgeMaker) {
         outputView.printStartMessage();
-        BridgeGame bridgeGame = startBridgeGame(setBridge());
+        BridgeGame bridgeGame = startBridgeGame(setUser(setBridge(bridgeMaker)));
 
-        while (isContinueGame(bridgeGame)) {
+        while (!isOver(bridgeGame)) {
         }
     }
 
-    private boolean isContinueGame(BridgeGame bridgeGame) {
+    private boolean isOver(BridgeGame bridgeGame) {
         if (!isContinueMoving(bridgeGame)) {
-            outputView.printResult(bridgeGame.getUpBridgeResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.FAILURE);
-            return false;
+            outputView.printResult(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.FAILURE);
+            return true;
         }
         if (bridgeGame.isFinished()) {
-            outputView.printResult(bridgeGame.getUpBridgeResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.SUCCESS);
-            return false;
+            outputView.printResult(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.SUCCESS);
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean isContinueMoving(BridgeGame bridgeGame) {
         boolean isSuccessMoving = isSuccessMoving(bridgeGame);
-        outputView.printMap(bridgeGame.getUpBridgeResult(), bridgeGame.getDownBridgeResult());
+        outputView.printMap(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult());
         if (isSuccessMoving) {
             return true;
         }
@@ -71,11 +70,11 @@ public class BridgeGameProcessor {
         }
     }
 
-    private BridgeGame startBridgeGame(Bridge bridge) {
-        return new BridgeGame(bridge);
+    private BridgeGame startBridgeGame(User user) {
+        return new BridgeGame(user);
     }
 
-    private Bridge setBridge() {
+    private Bridge setBridge(BridgeMaker bridgeMaker) {
         while (true) {
             try {
                 outputView.printBridgeSizeInputMessage();
@@ -84,5 +83,9 @@ public class BridgeGameProcessor {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private User setUser(Bridge bridge) {
+        return new User(bridge);
     }
 }
