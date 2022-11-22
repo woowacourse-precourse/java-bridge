@@ -39,6 +39,7 @@ public class ExceptionTest {
                 .hasMessageContaining(Error.ERROR_MOVING.getError())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("U 혹은 D가 입력된다면 예외가 발생하지 않음")
     @Test
     void checkInput() {
@@ -59,5 +60,13 @@ public class ExceptionTest {
     void notoccurException() {
         assertThatCode(() -> Exception.validateGameCommand("R"))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("아무런 입력이 없다면 예외 발생")
+    @Test
+    void validateEmptytest() {
+        assertThatCode(() -> Exception.validateBridgeSize(""))
+                .hasMessageContaining(Error.ERROR_EMPTY.getError())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
