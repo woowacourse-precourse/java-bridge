@@ -1,14 +1,10 @@
-package bridge.bridgeGame;
+package bridge;
 
-import bridge.Validation;
-import bridge.bridgeGame.BridgeGameResultDto;
-import bridge.bridgeGame.StepStatus;
 import bridge.enums.GameStatus;
 import bridge.enums.UpDown;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

@@ -1,7 +1,6 @@
-package bridge.bridgeMaker;
+package bridge;
 
 import bridge.enums.UpDown;
-import bridge.util.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

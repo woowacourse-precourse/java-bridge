@@ -1,4 +1,4 @@
-package bridge.bridgeGame;
+package bridge;
 
 import bridge.enums.UpDown;
 

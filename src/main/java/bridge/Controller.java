@@ -1,10 +1,6 @@
 package bridge;
 
-import bridge.bridgeGame.BridgeGame;
-import bridge.bridgeGame.BridgeGameResultDto;
-import bridge.bridgeMaker.BridgeMaker;
 import bridge.enums.GameStatus;
-import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

@@ -1,8 +1,8 @@
 package bridge.view;
 
-import bridge.bridgeGame.BridgeGameResultDto;
-import bridge.bridgeGame.StepStatus;
-import bridge.constant.Constant;
+import bridge.BridgeGameResultDto;
+import bridge.StepStatus;
+import bridge.Constant;
 import bridge.enums.UpDown;
 
 import java.util.List;

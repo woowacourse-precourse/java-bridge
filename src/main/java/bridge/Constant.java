@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge;
 
 public class Constant {
     public static final int minBridgeLength = 3;

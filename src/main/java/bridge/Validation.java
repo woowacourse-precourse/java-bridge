@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.constant.Constant;
 import bridge.enums.UpDown;
 
 import java.util.Arrays;

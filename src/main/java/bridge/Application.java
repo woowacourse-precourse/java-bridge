@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.bridgeGame.BridgeGame;
-
 public class Application {
     public static void main(String[] args) {
         Controller controller = new Controller();
