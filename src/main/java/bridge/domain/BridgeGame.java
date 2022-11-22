@@ -7,6 +7,8 @@ import java.util.Stack;
 public class BridgeGame {
     public static final String RETRY = "R";
     public static final String QUIT = "Q";
+    public static final String CNT_BRIDGE_ERROR = "[ERROR] 다리 길이 또는 cnt 숫자가 잘못 되었습니다";
+    public static final String VALUE_ERROR = "[ERROR] 다리 길이 또는 cnt 숫자가 잘못 되었습니다";
     private final BridgeMap bridgeMap;
     private final List<String> bridge;
     private int currentLocation = -1;
@@ -29,7 +31,7 @@ public class BridgeGame {
         if (cnt != bridge.size()) {
             return false;
         }
-        throw new IllegalStateException("[ERROR] 다리 길이 또는 cnt 숫자가 잘못 되었습니다");
+        throw new IllegalStateException(CNT_BRIDGE_ERROR);
     }
 
     private List<Stack> makeMap(MapType mapType) {
@@ -46,7 +48,7 @@ public class BridgeGame {
                 return mapType;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 사용자 입력 값이 잘못 되었습니다.");
+        throw new IllegalArgumentException(VALUE_ERROR);
     }
 
     public boolean isCorrect(String movingValue) {
@@ -58,7 +60,7 @@ public class BridgeGame {
         if (!bridge.get(currentLocation).equals(movingValue)) {
             return false;
         }
-        throw new IllegalArgumentException("[ERROR] 사용자 입력 값이 잘못 되었습니다.");
+        throw new IllegalArgumentException(VALUE_ERROR);
     }
 
     public boolean retry(String tryCommand) {
@@ -71,6 +73,6 @@ public class BridgeGame {
         if (tryCommand.equals(QUIT)) {
             return false;
         }
-        return true;
+        throw new IllegalStateException(VALUE_ERROR);
     }
 }
