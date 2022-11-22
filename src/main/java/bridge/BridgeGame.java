@@ -34,7 +34,8 @@ public class BridgeGame {
         System.out.println();
     }
 
-    public void move() {
+    public String move() {
+        return null;
     }
 
     public void retry() {
