@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PlayerPathTest {
 
     @Test
@@ -45,16 +43,6 @@ class PlayerPathTest {
         return playerPath.getPath();
     }
 
-    @Test
-    @Order(0)
-    void 사용자_이동경로_서수는_적절히_관리된다(){
-        new PlayerPath();
-        new PlayerPath();
-        new PlayerPath();
-        int ordinalNumber = new PlayerPath().getOrdinalNumber();
-
-        assertThat(ordinalNumber).isEqualTo(4);
-    }
 
     @Test
     void 사용자_이동경로는_기본적으로_생존했다고_판단한다(){
