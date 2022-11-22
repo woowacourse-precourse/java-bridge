@@ -5,7 +5,8 @@ import bridge.ui.resource.GameResource;
 import java.util.List;
 
 public class PrintBridge {
-
+    //OutputView.printMap()을 도와주는 클래스
+    //입력에 따라 출력해야 되는 문자 행을 계산
     public static String createRow(String UorD, List<String> user, List<String> ans) {
         String row = GameResource.ROW_OPEN.content();
 

@@ -31,7 +31,7 @@ public class GameController {
         }
     }
 
-    public boolean userWin(BridgeGame bridgeGame) {
+    public boolean userWin(BridgeGame bridgeGame) {//유저가 전무 맞췄을 경우 실행
         if (bridgeGame.isSuccess()) {
             outputView.printResult(GameResource.SUCCESS.content(), bridgeGame, trials);
             return true;
@@ -39,7 +39,7 @@ public class GameController {
         return false;
     }
 
-    private boolean userRetry(BridgeGame bridgeGame) {
+    private boolean userRetry(BridgeGame bridgeGame) {//재시도 입력이 필요할 경우 실행
         String command = inputView.askRestart();
         return checkRetry(bridgeGame, command);
     }
