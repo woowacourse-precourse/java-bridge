@@ -25,15 +25,12 @@
 
 ## Model
 - BridgeGame
-- BridgeMaker
-- BridgeRandomNumberGenerator
 - Bridge
 - Player
 - constant
   - Message
-- interfaces
-  - BridgeNumberGenerator
-- util
+
+## util
   - ExceptionHandler
 
 ## View
