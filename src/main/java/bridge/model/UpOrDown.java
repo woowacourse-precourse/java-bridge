@@ -20,18 +20,6 @@ public class UpOrDown {
         this.value = value;
     }
 
-    public boolean isUp() {
-        return value.equals(UP_SIGN);
-    }
-
-    public boolean isDown() {
-        return value.equals(DOWN_SIGN);
-    }
-
-    public String getValue() {
-        return value;
-    }
-
     private void validate(String value) {
         if (value.length() != VALUE_LENGTH) {
             throw new IllegalArgumentException(Error.DIRECTION_INPUT_ERROR.getMessage());
