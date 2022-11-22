@@ -7,8 +7,8 @@ import java.util.List;
 
 public class BridgeGame {
     private static int position;
-    private static int trialCount = 0;
-    private static boolean onMovableCompartment = true;
+    private static int trialCount;
+    private static boolean onMovableCompartment;
     private static List<String> bridge;
 
     private final OutputView outputView;
@@ -24,7 +24,10 @@ public class BridgeGame {
     public void Run() {
         outputView.printGameStartNotice();
         bridge = generateBridge();
+
+        trialCount = 0;
         playGame();
+
         outputView.printResult(onMovableCompartment, trialCount);
     }
 
