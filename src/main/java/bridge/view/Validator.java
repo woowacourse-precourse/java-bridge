@@ -12,7 +12,7 @@ public class Validator {
 
     public void validatorBridgeSizeRange(String size) {
         int len = Integer.parseInt(size);
-        if(len < 1 || len > 20){
+        if(len < 3 || len > 20){
             throwError(ErrorMessage.BRIDGE_RANGE_ERROR.getErrorMessage());
         }
     }
