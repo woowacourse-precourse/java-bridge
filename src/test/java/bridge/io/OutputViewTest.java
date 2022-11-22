@@ -48,4 +48,20 @@ class OutputViewTest {
     assertEquals(outContent.toString(), "최종 게임 결과\n");
   }
 
+  @Test
+  void 올바른_맵을_출력하는가() {
+    // given
+    OutputView outputView = new OutputView();
+
+    // when
+    outputView.printMap("[ O | O |   |   | O | O | O |   |   | O | O |   |   | O |   |   |   |   |   |   ]\n" +
+      "[   |   | O | O |   |   |   | O | O |   |   | O | O |   | O | O | O | O | O | O ]\n");
+
+    // then
+    assertEquals(outContent.toString(), "[ O | O |   |   | O | O | O |   |   | O | O |   |   | O |   |   |   |   |   |   ]\n" +
+      "[   |   | O | O |   |   |   | O | O |   |   | O | O |   | O | O | O | O | O | O ]\n\n");
+  }
+
+
+
 }
