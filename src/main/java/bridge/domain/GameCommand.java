@@ -2,7 +2,7 @@ package bridge.domain;
 
 import java.util.Arrays;
 
-import static bridge.validator.ExceptionMessage.ONLU_RESTART_WHETHER_MESSAGE;
+import static bridge.validator.ExceptionMessage.ONLY_RESTART_WHETHER_MESSAGE;
 
 public enum GameCommand {
     RESTART("R"),
@@ -18,6 +18,6 @@ public enum GameCommand {
         return Arrays.stream(GameCommand.values())
                 .filter(gameCommand -> gameCommand.gameCommandString.equals(gameCommandString))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ONLU_RESTART_WHETHER_MESSAGE.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ONLY_RESTART_WHETHER_MESSAGE.getMessage()));
     }
 }
