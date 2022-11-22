@@ -1,22 +1,16 @@
 package bridge.domain.game;
 
 import bridge.domain.Step;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Progress {
     private Map<String, List<String>> bridgeShape = new LinkedHashMap<>();
 
-    public Map<String, List<String>> getBridgeShape() {
-        return bridgeShape;
-    }
-
     public Progress() {
         this.bridgeShape.put(Step.UPPER_STEP.getStepTxt(), new ArrayList<>());
         this.bridgeShape.put(Step.LOWER_STEP.getStepTxt(), new ArrayList<>());
     }
-
 
     public String saveProgress(SuccessStep successStep, String userStep) {
         makeBridge(successStep, userStep);
@@ -44,7 +38,7 @@ public class Progress {
         StringBuilder sb = new StringBuilder();
         for (List<String> row : bridgeShape.values()) {
             sb.append(makeEachRow(row));
-            sb.append("\n");
+            sb.append(BridgeStructure.BRIDGE_ROW.getShape());
         }
         return sb.toString();
     }

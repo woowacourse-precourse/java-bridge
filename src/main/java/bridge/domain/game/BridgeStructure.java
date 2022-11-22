@@ -4,9 +4,10 @@ public enum BridgeStructure {
     BRIDGE_START("[ "),
     BRIDGE_END(" ]"),
     BRIDGE_CELL(" | "),
+    BRIDGE_ROW("\n"),
     BRIDGE_EMPTY(" ");
 
-    private String shape;
+    private final String shape;
 
     BridgeStructure(String shape) {
         this.shape = shape;

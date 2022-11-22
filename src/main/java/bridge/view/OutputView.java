@@ -34,6 +34,7 @@ public class OutputView {
 
     public void askBridgeLen(){
         System.out.println(Message.START_GAME.getMessage());
+        System.out.println("");
         System.out.println(Message.ASK_LENGTH.getMessage());
     }
 
