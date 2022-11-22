@@ -1,6 +1,7 @@
 package bridge.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,6 @@ public class BridgeMoveLog {
     }
 
     public Map<BridgeType, List<String>> getMoveLog() {
-        return moveLog;
+        return Collections.unmodifiableMap(moveLog);
     }
 }
