@@ -40,7 +40,7 @@ public class GameManager {
     }
 
     public void showResult(BridgeGame bridgeGame) {
-        outputView.printResult(bridgeGame.getMapLines(), bridgeGame.winTheGame(), bridgeGame.tried);
+        outputView.printResult(bridgeGame.getMapLines(), bridgeGame.winTheGame(), bridgeGame.getTried());
     }
 
 }
