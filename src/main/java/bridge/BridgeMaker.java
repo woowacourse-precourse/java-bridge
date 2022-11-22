@@ -24,7 +24,6 @@ public class BridgeMaker {
             int randomNumber = bridgeNumberGenerator.generate();
             newBridge.add(bridgeIndex,convertNumbersToDorU(randomNumber, bridgeIndex));
         }
-        System.out.println(newBridge);
         return newBridge;
     }
 
