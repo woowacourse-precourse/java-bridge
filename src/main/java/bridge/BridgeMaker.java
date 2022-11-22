@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 import static bridge.util.ConvertData.mappingBridgeCellIntToString;

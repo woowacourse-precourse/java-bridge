@@ -24,9 +24,7 @@
         - [x] 해당 다리에 이동 결과 추가 → addProgress
     - [x] 계속 이동할 수 있는지 확인 → isContinue
     - [x] 다리를 건넜는지 떨어졌는지 확인 → isFallBridge
-2. BridgeMaker
-    - [x] 다리 생성 → makeBridge
-3. InputValidator
+2. InputValidator
     - [x] 다리 길이 입력 값의 유효성 검사 → BridgeSize
     - [x] 다리 이동 입력 값의 유효성 검사 → Moving
     - [x] 게임 재시작/종료 여부 입력 값의 유효성 검사 → GameCommand
@@ -76,6 +74,10 @@
 1. ConvertData
     - [x] 다리 칸 숫자에서 문자로 변환 기능 → mappingBridgeCellIntToString
     - [x] 입력 받은 문자를 정수로 변환 기능 → convertStringIntoInt
+
+### BridgeMaker
+
+- [x] 다리 생성 → makeBridge
 
 ---
 
