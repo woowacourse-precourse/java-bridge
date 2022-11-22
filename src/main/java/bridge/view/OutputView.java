@@ -54,7 +54,6 @@ public class OutputView {
     public void printResult(List<BridgeResult> resultTopBridge, List<BridgeResult> resultBottomBridge, GameResult isSuccess, int totalPlayCnt) {
         System.out.println(END_GAME_MESSAGE);
         printMap(resultTopBridge, resultBottomBridge);
-        System.out.println();
         System.out.println(SUCCESS_OR_FAILURE_MESSAGE + isSuccess.getValue());
         System.out.println(TOTAL_PLAY_COUNT_MESSAGE + totalPlayCnt);
     }

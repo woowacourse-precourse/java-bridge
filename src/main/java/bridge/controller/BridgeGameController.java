@@ -18,14 +18,17 @@ public class BridgeGameController {
 
     public void play(){
         outputView.startGameMessage();
-        int size = inputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(size);
+        List<String> bridge = createBridge(inputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
         startGame(bridgeGame);
-
         outputView.printResult(bridgeGame.getTopResult(), bridgeGame.getBottomResult(), bridgeGame.successOrFailure(), bridgeGame.getTotalPlayCnt());
+    }
+
+    private List<String> createBridge(int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        return bridge;
     }
 
     private void startGame(BridgeGame bridgeGame) {
