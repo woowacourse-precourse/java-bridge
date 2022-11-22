@@ -45,9 +45,9 @@ public class BridgeController {
     }
 
     public boolean bridgeRound() {
-        boolean passable = bridgeGame.move(requestMovingPoint());
+        bridgeGame.move(requestMovingPoint());
         outputView.printMap(bridgeGame);
-        return passable;
+        return bridgeGame.checkPassable();
     }
 
     public void bridgeGame(){
