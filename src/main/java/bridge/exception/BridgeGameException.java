@@ -21,4 +21,10 @@ public class BridgeGameException {
             throw new IllegalArgumentException();
         }
     }
+
+    public void checkInputSizeException(String str) {
+        if (str.length() != 1) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
