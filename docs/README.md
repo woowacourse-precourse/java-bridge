@@ -41,14 +41,14 @@
 
     
 
-- [x] 다리 길이
+- [x] 다리 길이 - `BridgeSizeValidator`
   - [x] 다리 길이는 숫자여야 한다. - `validateNumber`
   - [x] 다리 길이는 3부터 20 사이의 자연수여야 한다. - `validateRange`
 - [x] 플레이어의 커맨드
   - [x] 이동하기
-    - [x] 이동은 U, D로 가능하다. - `validate`
+    - [x] 이동은 U, D로 가능하다. - `MovingValidator`
   - [x] 재시작
-    - [x] 재시작은 R, 종료는 Q로 가능하다.
+    - [x] 재시작은 R, 종료는 Q로 가능하다. - `GameCommandValidator`
 
 
 
