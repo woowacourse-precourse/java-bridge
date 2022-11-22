@@ -35,5 +35,5 @@ class OutputViewTest {
                 "게임 성공 여부: 성공",
                 "총 시도한 횟수: 3");
     }
-    
+
 }
