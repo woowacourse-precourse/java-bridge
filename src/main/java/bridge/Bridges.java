@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static bridge.enums.BridgeBound.BOUND_MAX;
+import static bridge.enums.BridgeBound.BOUND_MIN;
+
 public class Bridges {
 
     private static final String MAP_START = "[";
@@ -52,7 +55,7 @@ public class Bridges {
 
     private void validateBridgeSize(List<String> inputBridges) {
         int size = inputBridges.size();
-        if(!((3 <= size) && (size <= 20))) {
+        if(!((BOUND_MIN.getBound() <= size) && (size <= BOUND_MAX.getBound()))) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
