@@ -2,9 +2,9 @@ package bridge;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import bridge.domain.exception.InvalidGameCommandException;
-import bridge.domain.resources.GameCommand;
-import bridge.utils.parser.GameCommandInputParser;
+import bridge.domain.exception.OutOfBridgeSizeBoundaryException;
+import bridge.domain.resources.bridge.BridgeSize;
+import bridge.utils.parser.BridgeSizeInputParser;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,36 +15,49 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class GameCommandTest {
+class BridgeSizeTest {
 
     @Nested
-    @DisplayName("GameCommand Class")
-    class GameCommandKoTest {
+    @DisplayName("BridgeSize Class")
+    class BridgeSizeKoTest {
 
         @Nested
         @TestInstance(Lifecycle.PER_CLASS)
         @DisplayName("validation for right input of")
         class DescribeValidationRightInput {
 
-            @DisplayName("retry or quit")
-            @ParameterizedTest(name = "{1}")
+            @DisplayName("inside the boundaries")
+            @ParameterizedTest(name = "{0}")
             @MethodSource("validParameters")
-            void retryOrQuit(String input, String message) {
-
-                // given
-                GameCommand gameCommand = GameCommandInputParser.parseGameCommand(input);
+            void InsideTheBoundaries(String input, int sizeOfBridge) { // given
 
                 // when
-                String gameCommandString = gameCommand.getGameCommand();
+                BridgeSize bridgeSize = BridgeSizeInputParser.parseBridgeSize(input);
 
                 // then
-                assertThat(gameCommandString).containsAnyOf("R", "Q");
+                assertThat(bridgeSize.getSize()).isEqualTo(sizeOfBridge);
             }
 
             Stream<Arguments> validParameters() {
                 return Stream.of(
-                        Arguments.of("R", "Retry"),
-                        Arguments.of("Q", "Quit")
+                        Arguments.of("3", 3),
+                        Arguments.of("4", 4),
+                        Arguments.of("5", 5),
+                        Arguments.of("6", 6),
+                        Arguments.of("7", 7),
+                        Arguments.of("8", 8),
+                        Arguments.of("9", 9),
+                        Arguments.of("10", 10),
+                        Arguments.of("11", 11),
+                        Arguments.of("12", 12),
+                        Arguments.of("13", 13),
+                        Arguments.of("14", 14),
+                        Arguments.of("15", 15),
+                        Arguments.of("16", 16),
+                        Arguments.of("17", 17),
+                        Arguments.of("18", 18),
+                        Arguments.of("19", 19),
+                        Arguments.of("20", 20)
                 );
             }
         }
@@ -54,14 +67,14 @@ class GameCommandTest {
         @DisplayName("validation for wrong input of")
         class DescribeValidationWrongInput {
 
-            @DisplayName("not alphabet")
+            @DisplayName("empty, null, isNumeric")
             @ParameterizedTest(name = "{1}")
             @MethodSource("invalidParameters1")
-            void notAlphabet(String input, String message) { // given
+            void isNumericAndEmptyAndNull(String input, String message) { // given
                 Assertions.assertThatThrownBy(() -> {
 
                     // when
-                    GameCommand gameCommand = GameCommandInputParser.parseGameCommand(input);
+                    BridgeSize bridgeSize = BridgeSizeInputParser.parseBridgeSize(input);
 
                     // then
                 }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
@@ -72,6 +85,7 @@ class GameCommandTest {
                         Arguments.of("ㄱㄴㄷㄹㅁㅂㅅㅇ", "korean1"),
                         Arguments.of("마지막 프로젝트", "korean2"),
                         Arguments.of("수 고 가 많 았 다", "korean3"),
+                        Arguments.of("abcdef", "alphabet"),
                         Arguments.of("!@#$%^", "special"),
                         Arguments.of("abc!@#", "alphabet and special"),
                         Arguments.of("ㅣ!@#ㄱ30ㄴ0ㅣ ㄷ ㄹ  %^ㅣ", "mixed1"),
@@ -90,29 +104,31 @@ class GameCommandTest {
                 );
             }
 
-            @DisplayName("not up and down")
-            @ParameterizedTest(name = "{0}")
+            @DisplayName("ouf of bridge size boundary")
+            @ParameterizedTest(name = "{1}")
             @MethodSource("invalidParameters2")
-            void NotUpAndDown(String input) { //given
+            void isNumeric(String input, String message) { // given
                 Assertions.assertThatThrownBy(() -> {
 
                     // when
-                    GameCommand gameCommand = GameCommandInputParser.parseGameCommand(input);
+                    BridgeSize bridgeSize = BridgeSizeInputParser.parseBridgeSize(input);
 
                     // then
-                }).isInstanceOf(InvalidGameCommandException.class).hasMessageContaining("[ERROR]");
+                }).isInstanceOf(OutOfBridgeSizeBoundaryException.class).hasMessageContaining("[ERROR]");
             }
 
             Stream<Arguments> invalidParameters2() {
                 return Stream.of(
-                        Arguments.of("A"),
-                        Arguments.of("B"),
-                        Arguments.of("C"),
-                        Arguments.of("ABC"),
-                        Arguments.of("ABCEFG")
+                        Arguments.of("0", "lower boundary1"),
+                        Arguments.of("1", "lower boundary2"),
+                        Arguments.of("2", "lower boundary3"),
+                        Arguments.of("21", "upper boundary1"),
+                        Arguments.of("40", "upper boundary2"),
+                        Arguments.of("60", "upper boundary3"),
+                        Arguments.of("80", "upper boundary4"),
+                        Arguments.of("100", "upper boundary5")
                 );
             }
         }
     }
-
 }
