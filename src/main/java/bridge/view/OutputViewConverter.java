@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.OutputMessage;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameResults;
 
@@ -19,19 +20,19 @@ public class OutputViewConverter {
     }
 
     private String resultFormat(final List<String> results) {
-        final String BRIDGE_PREFIX = "[ ";
-        final String BRIDGE_SUFFIX = " ]";
-        final String BRIDGE_DELIMITER = " | ";
+        final String BRIDGE_PREFIX = OutputMessage.LEFT_BOARDER.getMessage();
+        final String BRIDGE_SUFFIX = OutputMessage.RIGHT_BOARDER.getMessage();
+        final String BRIDGE_DELIMITER = OutputMessage.BAR.getMessage();
 
         return BRIDGE_PREFIX + String.join(BRIDGE_DELIMITER, results) + BRIDGE_SUFFIX;
     }
 
     String finalResultFormat(final BridgeGame bridgeGame) {
         return new StringJoiner("\n")
-                .add("최종 게임 결과")
+                .add(OutputMessage.FINAL_GAME_RESULT_MESSAGE.getMessage())
                 .add(bridgeFormat(bridgeGame.bridgeGameResults()))
-                .add("게임 성공 여부: " + bridgeGame.gameResult())
-                .add("총 시도한 횟수: " + bridgeGame.totalChallengeNumbers())
+                .add(OutputMessage.SUCCESS_MESSAGE.getMessage() + bridgeGame.gameResult())
+                .add(OutputMessage.RETRY_SUM_MESSAGE.getMessage() + bridgeGame.totalChallengeNumbers())
                 .toString();
     }
 }
