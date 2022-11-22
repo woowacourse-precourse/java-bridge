@@ -48,7 +48,7 @@ public class Challenger {
 
 	private void judgement(StringBuilder map, List<Integer> bridge) {
 		for (int i = 0; i < bridge.size(); i++) {
-			map.append(Bridge.findOrder(bridge.get(i)).getResult());
+			map.append(Bridge.findResult(bridge.get(i)));
 
 			if (i < bridge.size() - 1) {
 				map.append(" | ");
