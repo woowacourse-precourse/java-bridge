@@ -12,6 +12,8 @@ public class ConstString {
     public static final String FAIL = "실패";
     public static final String UP = "U";
     public static final String DOWN = "D";
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
 
 
     public static final String INPUT_SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
