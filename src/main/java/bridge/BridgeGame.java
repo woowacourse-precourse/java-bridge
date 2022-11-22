@@ -12,6 +12,21 @@ public class BridgeGame {
     public void start() {
         outputView.printStart();
         Bridge bridge = new Bridge();
+
+        while (!bridge.isFinished()) {
+            if (move(bridge)) {
+                continue;
+            }
+            if (isQuit()) {
+                break;
+            }
+            retry(bridge);
+        }
+    }
+
+    private boolean isQuit() {
+        outputView.printRequestGameCommand();
+        return inputView.readGameCommand().equals("Q");
     }
 
     /**

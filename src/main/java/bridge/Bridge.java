@@ -33,4 +33,8 @@ public class Bridge {
     public String getNow() {
         return bridge.get(now);
     }
+
+    public boolean isFinished() {
+        return size - 1 <= now;
+    }
 }
