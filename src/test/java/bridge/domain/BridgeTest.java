@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.service.BridgeGame;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -43,5 +44,20 @@ class BridgeTest {
         //then
         assertThat(user.matchAnswer(answer)).allMatch(o -> o.equals("O"));
         assertThat(user.matchAnswer(answer).size()).isEqualTo(size);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3, 10, 20})
+    void 정답과_유저의_마지막_답이_다를_때(int size) throws Exception{
+        //given
+        BridgeGame bridgeGame = new BridgeGame(new BridgeRandomNumberGenerator());
+        bridgeGame.initBridge(size);
+        bridgeGame.move("Incorrect Answer");
+
+        //when
+        GameStatus currentStatus = bridgeGame.getCurrentStatus();
+
+        //then
+        assertThat(currentStatus).isEqualTo(GameStatus.OVER);
     }
 }
