@@ -20,10 +20,6 @@ public class BridgeGame {
         this.result = new ArrayList<>();
     }
 
-//    public void commandResult(int count, String command){
-//        result.add(bridge.getStatus(count, command));
-//    }
-
     public void answerReset() {
         result.clear();
     }
@@ -35,6 +31,7 @@ public class BridgeGame {
     private int getLastIndex() {
         return result.size() - 1;
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

@@ -3,7 +3,6 @@ package domain;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {

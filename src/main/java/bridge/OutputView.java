@@ -1,6 +1,5 @@
 package bridge;
 
-import domain.Bridge;
 import domain.MoveStatus;
 import domain.OutPutMessage;
 
