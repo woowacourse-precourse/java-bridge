@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.BridgeNumberGenerator;
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.CmdStatus;
 import bridge.constant.GameSuccessOrNotStatus;
