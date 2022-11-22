@@ -3,20 +3,20 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class BridgeGame {
-    List<String> bridge;
-    InputView input;
-    OutputView outputView;
-    int Attempt=0;
+    private List<String> bridge;
+    private InputView input;
+    private OutputView outputView;
+    private int Attempt=0;
     public BridgeGame(){
         input=new InputView();
         outputView =new OutputView();
         play();
     }
-    public void play(){
+    private void play(){
         start();
         move();
     }
-    public void start(){
+    private void start(){
         int bridgeSize;
         System.out.println("다리 건너기 게임을 시작합니다.");
         try {
@@ -29,7 +29,7 @@ public class BridgeGame {
             start();
         }
     }
-    public void move() {
+    private void move() {
         Attempt++;
         int count=0;
         boolean result=true;
@@ -61,7 +61,7 @@ public class BridgeGame {
         outputView.printFinallyBridge(bridge);
         outputView.printResult(Attempt,"성공");
     }
-    public void retry(int count,String direction) {
+    private void retry(int count,String direction) {
         try {
             System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             String command =input.readGameCommand(Console.readLine());
