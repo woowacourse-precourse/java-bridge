@@ -9,7 +9,14 @@ public class RoundService {
     private Round round = new Round(new ArrayList<>());
 
     public void getMoving() {
-        OutputView.messagePositionInput();
-        round.addMoving(InputView.readMoving());
+        while (true) {
+            try {
+                OutputView.messageMovingInput();
+                round.addMoving(InputView.readMoving());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
