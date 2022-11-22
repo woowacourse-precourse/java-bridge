@@ -25,4 +25,12 @@ public enum MoveCommand {
         }
         return MOVE_VALUE_MAP.get(command);
     }
+
+    public boolean is(final String command) {
+        return this.command.equals(command);
+    }
+
+    public boolean is(final MoveCommand moveCommands) {
+        return this == moveCommands;
+    }
 }
