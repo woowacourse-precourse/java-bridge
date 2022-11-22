@@ -13,7 +13,5 @@ class BridgeTest {
     void 메이커를_통해_만들어진_크기가_유효하지_않을떄_예외발생(){
         Assertions.assertThatThrownBy(()->new Bridge(List.of("1", "1")))
                 .isInstanceOf(IllegalStateException.class);
-
     }
-
 }
