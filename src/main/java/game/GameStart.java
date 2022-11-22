@@ -59,6 +59,13 @@ public class GameStart {
         }
         return "실패";
     }
+    public int getTryNum() {
+        return tryNum;
+    }
 
+
+    public BridgeGame getBridgeGame() {
+        return bridgeGame;
+    }
 
 }
