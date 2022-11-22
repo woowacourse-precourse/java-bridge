@@ -17,7 +17,7 @@ public class Application {
         gameSetting();
 
         while (!gameRun()) {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            OutputView.getRetryMessage();
             if (userInput.readGameCommand().equals("Q")) {
                 break;
             }
@@ -26,8 +26,8 @@ public class Application {
         printTotalResult(Game.getCount());
     }
     private static void gameSetting() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println("다리 길이를 입력해주세요.");
+        OutputView.getStartMessage();
+        OutputView.getInputSizeMessage();
         BridgeRandomNumberGenerator gameRandomNumber = new BridgeRandomNumberGenerator();
         BridgeMaker makeBridge = new BridgeMaker(gameRandomNumber);
 
@@ -38,7 +38,7 @@ public class Application {
 
     private static boolean gameRun() {
         for (int i = 0; i < bridgeNumberList.size(); i++) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            OutputView.getMoveMessage();
             String moveUpOrDown = userInput.readMoving();
             boolean state = Game.move(bridgeNumberList.get(i), moveUpOrDown);
             display.printMap(Game.getBridgeLineOne(), Game.getBridgeLineTwo());
@@ -50,7 +50,7 @@ public class Application {
     }
 
     private static void printTotalResult(int count) {
-        System.out.println("최종 게임 결과");
+        OutputView.getEndMessage();
         display.printMap(Game.getBridgeLineOne(), Game.getBridgeLineTwo());
         display.printResult(Game.getNowState(), count);
     }
