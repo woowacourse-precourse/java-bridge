@@ -3,7 +3,9 @@ package bridge.view;
 import static bridge.constants.ErrorConstant.RETRY_ERROR;
 import static bridge.constants.ErrorConstant.SIZE_EXCEPTION;
 import static bridge.constants.ErrorConstant.UPDOWN_ERROR;
-import static bridge.validator.Validate.*;
+import static bridge.validator.Validate.validateBridgeSizeNumber;
+import static bridge.validator.Validate.validateCheckMove;
+import static bridge.validator.Validate.validateCheckRetry;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -33,9 +35,9 @@ public class InputView {
      */
     public String readMoving() {
         String userMove = Console.readLine().toUpperCase();
-        try{
+        try {
             validateCheckMove(userMove);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             UPDOWN_ERROR.printException();
             return readMoving();
         }
@@ -47,9 +49,9 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = Console.readLine().toUpperCase();
-        try{
+        try {
             validateCheckRetry(command);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             RETRY_ERROR.printException();
             return readGameCommand();
         }
