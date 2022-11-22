@@ -1,8 +1,8 @@
 package bridge.view;
 
-import bridge.util.ExceptionHandler;
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
+
+import bridge.util.ExceptionHandler;
 
 public class InputView {
 
