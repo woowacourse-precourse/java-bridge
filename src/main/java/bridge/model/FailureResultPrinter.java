@@ -14,11 +14,19 @@ public class FailureResultPrinter extends ResultPrinter {
 
     @Override
     public String getResult(Position targetPosition) {
-        String result = super.getResult(targetPosition);
-        if (this.getEndPosition().equals(targetPosition)) {
+        String result = this.getSuccessResult(targetPosition);
+        if (isEqualsEndPosition(targetPosition)) {
             return this.replaceSignOToX(result);
         }
-        return result;
+        return this.getSuccessResult(targetPosition);
+    }
+
+    private String getSuccessResult(Position targetPosition) {
+        return super.getResult(targetPosition);
+    }
+
+    private boolean isEqualsEndPosition(Position targetPosition) {
+        return this.getEndPosition().equals(targetPosition);
     }
 
     private Position getEndPosition() {
