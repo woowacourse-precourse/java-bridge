@@ -66,10 +66,10 @@ public class OutputView {
 
     void checkDowner(String target, String target2) {
         if (target.equals("U")) {
-            down.append(target2);
+            down.append(" ");
         }
         if (target.equals("D")) {
-            down.append(" ");
+            down.append(target2);
         }
     }
 
