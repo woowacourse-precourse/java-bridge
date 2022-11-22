@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.Constant.MOVE_DOWN;
+import static bridge.Constant.MOVE_UP;
+
 import java.util.List;
 
 /**
@@ -14,12 +17,12 @@ public class OutputView {
      */
     public void printMap(List<String> movement, int idx, boolean moved) {
         if (moved) {
-            printSuccess(movement, idx, "U");
-            printSuccess(movement, idx, "D");
+            printSuccess(movement, idx, MOVE_UP);
+            printSuccess(movement, idx, MOVE_DOWN);
         }
         if (!moved) {
-            printFailure(movement, idx, "U");
-            printFailure(movement, idx, "D");
+            printFailure(movement, idx, MOVE_UP);
+            printFailure(movement, idx, MOVE_DOWN);
         }
     }
 
@@ -71,12 +74,12 @@ public class OutputView {
      */
     public void printResult(List<String> movement, int idx, boolean succeed) {
         if (succeed) {
-            printSuccess(movement, idx, "U");
-            printSuccess(movement, idx, "D");
+            printSuccess(movement, idx, MOVE_UP);
+            printSuccess(movement, idx, MOVE_DOWN);
         }
         if (!succeed) {
-            printFailure(movement, idx, "U");
-            printFailure(movement, idx, "D");
+            printFailure(movement, idx, MOVE_UP);
+            printFailure(movement, idx, MOVE_DOWN);
         }
     }
 }

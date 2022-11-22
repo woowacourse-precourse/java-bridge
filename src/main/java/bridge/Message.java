@@ -11,7 +11,6 @@ public enum Message {
     GAME_FAILURE("게임 성공 여부: 실패"),
     GAME_TRIAL("총 시도한 횟수: "),
 
-
     ERROR_SIZE("[ERROR] 다리 길이는 3에서 20 사이의 숫자여야 합니다."),
     ERROR_MOVE("[ERROR] 이동할 칸은 U(위) 또는 D(아래)여야 합니다."),
     ERROR_RETRY("[ERROR] 게임 재시작/종료 여부는 R(재시도) 또는 Q(종료)여야 합니다.");

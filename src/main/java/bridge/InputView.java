@@ -1,5 +1,12 @@
 package bridge;
 
+import static bridge.Constant.GAME_QUIT;
+import static bridge.Constant.GAME_RETRY;
+import static bridge.Constant.MAX_SIZE_NUM;
+import static bridge.Constant.MIN_SIZE_NUM;
+import static bridge.Constant.MOVE_DOWN;
+import static bridge.Constant.MOVE_UP;
+
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,9 +20,8 @@ public class InputView {
     public int readBridgeSize() {
         Message.GAME_START.print();
         Message.SIZE_INPUT.print();
-        String input = Console.readLine();
-        int size = Integer.parseInt(input);
-        if (size < Constant.MIN_SIZE_NUM || size > Constant.MAX_SIZE_NUM) {
+        int size = Integer.parseInt(Console.readLine());
+        if (size < MIN_SIZE_NUM || size > MAX_SIZE_NUM) {
             Message.ERROR_SIZE.print();
             throw new IllegalStateException(Message.ERROR_SIZE.getMessage());
         }
@@ -28,7 +34,7 @@ public class InputView {
     public String readMoving() {
         Message.MOVE_INPUT.print();
         String command = Console.readLine();
-        if (!command.equals("U") && !command.equals("D")) {
+        if (!command.equals(MOVE_UP) && !command.equals(MOVE_DOWN)) {
             Message.ERROR_MOVE.print();
             throw new IllegalStateException(Message.ERROR_MOVE.getMessage());
         }
@@ -41,7 +47,7 @@ public class InputView {
     public String readGameCommand() {
         Message.RETRY_INPUT.print();
         String command = Console.readLine();
-        if (!command.equals("R") && !command.equals("Q")) {
+        if (!command.equals(GAME_RETRY) && !command.equals(GAME_QUIT)) {
             Message.ERROR_RETRY.print();
             throw new IllegalStateException(Message.ERROR_RETRY.getMessage());
         }
