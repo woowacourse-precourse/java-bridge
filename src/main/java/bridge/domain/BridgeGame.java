@@ -59,4 +59,11 @@ public class BridgeGame {
         this.gameStatus = gameStatus;
     }
 
+    public GameResult getResult() {
+        return result;
+    }
+
+    public int getGameStatus() {
+        return gameStatus;
+    }
 }
