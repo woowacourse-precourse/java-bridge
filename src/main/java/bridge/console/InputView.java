@@ -8,15 +8,15 @@ public class InputView {
     private static final String EMPTY_STRING = "";
 
     public String readBridgeSize() {
-        String bridgeSizeInput;
+        String bridgeSize;
 
         try {
-            bridgeSizeInput = readLine();
+            bridgeSize = readLine();
         } catch (NoSuchElementException exception) {
-            bridgeSizeInput = EMPTY_STRING;
+            bridgeSize = EMPTY_STRING;
         }
 
-        return bridgeSizeInput;
+        return bridgeSize;
     }
 
     public String readMove() {
@@ -32,14 +32,14 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        String resumeOrQuit;
+        String gameCommand;
 
         try {
-            resumeOrQuit = readLine();
+            gameCommand = readLine();
         } catch (NoSuchElementException exception) {
-            resumeOrQuit = EMPTY_STRING;
+            gameCommand = EMPTY_STRING;
         }
 
-        return resumeOrQuit;
+        return gameCommand;
     }
 }
