@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private GameSign gameSign = null;
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private final GameSign gameSign = null;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -33,8 +33,8 @@ public class BridgeMaker {
 
     public String checkBridgeDirection(int randomNumber) {
         if (randomNumber == 0) {
-            return gameSign.DOWN_MOVING.getMessage();
+            return GameSign.DOWN_MOVING.getMessage();
         }
-        return gameSign.UP_MOVING.getMessage();
+        return GameSign.UP_MOVING.getMessage();
     }
 }

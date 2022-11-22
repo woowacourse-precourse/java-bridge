@@ -16,18 +16,17 @@ public class GameController {
     /* 상수 및 클래스 변수 */
     private final int GAME_TRY_NUMBER = 1;
     private final int GAME_SUCCESS_OR_FAIL_NUMBER = 0;
-    private ViewMessage viewMessage = null;
-    private GameSign gameSign = null;
-    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    private BridgeGame bridgeGame = new BridgeGame();
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private final GameSign gameSign = null;
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private List<String> bridge;
-    private List<String> upBridge = new ArrayList<>();
-    private List<String> downBridge = new ArrayList<>();
-    private List<String> resultGame = new ArrayList<>();
-    private CheckException checkException = new CheckException();
+    private final List<String> upBridge = new ArrayList<>();
+    private final List<String> downBridge = new ArrayList<>();
+    private final List<String> resultGame = new ArrayList<>();
+    private final CheckException checkException = new CheckException();
 
     /* 인스턴스 변수 */
     private String bridgeSize = "";
@@ -43,10 +42,10 @@ public class GameController {
         makeBridgeForGame();
     }
 
-    public void makeBridgeForGame(){
-        while(true){
+    public void makeBridgeForGame() {
+        while (true) {
             bridgeSize = inputView.readBridgeSize();
-            if(!checkException.checkBridgeSize(bridgeSize)){
+            if (!checkException.checkBridgeSize(bridgeSize)) {
                 continue;
             }
             System.out.println();
@@ -56,7 +55,7 @@ public class GameController {
     }
 
     public void addBridgeMove(String direction) {
-        if (direction.equals(gameSign.UP_MOVING.getMessage())) {
+        if (direction.equals(GameSign.UP_MOVING.getMessage())) {
             addUpMove(bridgeGame.move(bridge, direction, stage));
             return;
         }
@@ -64,34 +63,34 @@ public class GameController {
     }
 
     public void addUpMove(String move) {
-        if (move.equals(gameSign.MOVING_SUCCESS.getMessage())) {
-            upBridge.add(gameSign.MOVING_SUCCESS.getMessage());
-            downBridge.add(gameSign.MOVING_NOT.getMessage());
+        if (move.equals(GameSign.MOVING_SUCCESS.getMessage())) {
+            upBridge.add(GameSign.MOVING_SUCCESS.getMessage());
+            downBridge.add(GameSign.MOVING_NOT.getMessage());
             return;
         }
-        upBridge.add(gameSign.MOVING_FAIL.getMessage());
-        downBridge.add(gameSign.MOVING_NOT.getMessage());
+        upBridge.add(GameSign.MOVING_FAIL.getMessage());
+        downBridge.add(GameSign.MOVING_NOT.getMessage());
     }
 
     public void addDownMove(String move) {
-        if (move.equals(gameSign.MOVING_SUCCESS.getMessage())) {
-            downBridge.add(gameSign.MOVING_SUCCESS.getMessage());
-            upBridge.add(gameSign.MOVING_NOT.getMessage());
+        if (move.equals(GameSign.MOVING_SUCCESS.getMessage())) {
+            downBridge.add(GameSign.MOVING_SUCCESS.getMessage());
+            upBridge.add(GameSign.MOVING_NOT.getMessage());
             return;
         }
-        downBridge.add(gameSign.MOVING_FAIL.getMessage());
-        upBridge.add(gameSign.MOVING_NOT.getMessage());
+        downBridge.add(GameSign.MOVING_FAIL.getMessage());
+        upBridge.add(GameSign.MOVING_NOT.getMessage());
     }
 
-    public void runGame(){
+    public void runGame() {
         moveInGame();
-        outputView.printMap(upBridge,downBridge);
+        outputView.printMap(upBridge, downBridge);
         System.out.println();
     }
 
-    public void moveInGame(){
+    public void moveInGame() {
         stage++;
-        while(true) {
+        while (true) {
             moving = inputView.readMoving();
             if (!checkException.checkInputMoving(moving)) {
                 continue;
@@ -101,19 +100,16 @@ public class GameController {
         }
     }
 
-    public boolean checkFail(int stage){
-        if(upBridge.get(stage - 1).equals(gameSign.MOVING_FAIL.getMessage()) ||
-                downBridge.get(stage - 1).equals(gameSign.MOVING_FAIL.getMessage())){
-            return true;
-        }
-        return false;
+    public boolean checkFail(int stage) {
+        return upBridge.get(stage - 1).equals(GameSign.MOVING_FAIL.getMessage()) ||
+                downBridge.get(stage - 1).equals(GameSign.MOVING_FAIL.getMessage());
     }
 
-    public void startGame(){
-        while(stage < Integer.parseInt(bridgeSize)){
+    public void startGame() {
+        while (stage < Integer.parseInt(bridgeSize)) {
             runGame();
-            if(checkFail(stage)){
-                if(!retryChoice()){
+            if (checkFail(stage)) {
+                if (!retryChoice()) {
                     return;
                 }
                 clearGame();
@@ -122,17 +118,17 @@ public class GameController {
         addFinishGameResult();
     }
 
-    public void clearGame(){
+    public void clearGame() {
         stage = 0;
         tryNumber++;
         upBridge.clear();
         downBridge.clear();
     }
 
-    public boolean retryChoice(){
-        while(true){
+    public boolean retryChoice() {
+        while (true) {
             retryChoice = inputView.readGameCommand();
-            if(!checkException.checkInputRetryChoice(retryChoice)){
+            if (!checkException.checkInputRetryChoice(retryChoice)) {
                 continue;
             }
             return quitRetry(retryChoice);
@@ -140,23 +136,23 @@ public class GameController {
     }
 
 
-    public boolean quitRetry(String retryChoice){
-        if(!bridgeGame.retry(retryChoice)){
-            resultGame.add(viewMessage.RESULT_GAME_FAIL_MESSAGE.getMessage());
+    public boolean quitRetry(String retryChoice) {
+        if (!bridgeGame.retry(retryChoice)) {
+            resultGame.add(ViewMessage.RESULT_GAME_FAIL_MESSAGE.getMessage());
             resultGame.add((String.valueOf(tryNumber)));
             return false;
         }
         return true;
     }
 
-    public void addFinishGameResult(){
-        resultGame.add(viewMessage.RESULT_GAME_SUCCESS_MESSAGE.getMessage());
+    public void addFinishGameResult() {
+        resultGame.add(ViewMessage.RESULT_GAME_SUCCESS_MESSAGE.getMessage());
         resultGame.add((String.valueOf(tryNumber)));
     }
 
-    public void endGame(){
-        System.out.println(viewMessage.RESULT_GAME_MESSAGE.getMessage());
-        outputView.printMap(upBridge,downBridge);
+    public void endGame() {
+        System.out.println(ViewMessage.RESULT_GAME_MESSAGE.getMessage());
+        outputView.printMap(upBridge, downBridge);
         System.out.println();
         outputView.printResult(resultGame.get(GAME_SUCCESS_OR_FAIL_NUMBER), resultGame.get(GAME_TRY_NUMBER));
     }

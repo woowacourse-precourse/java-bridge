@@ -15,7 +15,8 @@ public enum ViewMessage {
     WALL_PRINT("|");
 
     private final String ViewMessage;
-    ViewMessage(String message){
+
+    ViewMessage(String message) {
         this.ViewMessage = message;
     }
 

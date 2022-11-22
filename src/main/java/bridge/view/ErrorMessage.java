@@ -6,7 +6,8 @@ public enum ErrorMessage {
     ERROR_MESSAGE_INPUT_RETRY_CHOICE_NOT_VALID("[ERROR] 문자 R 또는 Q를 입력하세요");
 
     private final String errorMessage;
-    ErrorMessage(String message){
+
+    ErrorMessage(String message) {
         this.errorMessage = message;
     }
 

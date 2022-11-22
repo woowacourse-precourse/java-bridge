@@ -8,7 +8,8 @@ public enum GameSign {
     MOVING_NOT("   "),
     RETRY("R");
     private final String gameSign;
-    GameSign(String message){
+
+    GameSign(String message) {
         this.gameSign = message;
     }
 
