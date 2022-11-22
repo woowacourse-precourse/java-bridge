@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
 import bridge.util.BridgeNumberGenerator;
 import bridge.util.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
