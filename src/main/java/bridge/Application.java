@@ -26,6 +26,18 @@ public class Application {
         }
         return size;
     }
+    public String moveCheck(){
+        String answerMove = "";
+        outputView.printMovingChoice();
+        try {
+            answerMove = input.readMoving(); //이동할 칸 입력
+            errorCheck.moveError(answerMove); //에러체크
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return moveCheck();
+        }
+        return answerMove;
+    }
 
 
 }
