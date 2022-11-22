@@ -7,7 +7,6 @@ public class Application {
         OutputView output = new OutputView();
 
         while(true){
-            output.printStart();
             input.readBridgeSize();
 
             if(input.readGameCommand())
