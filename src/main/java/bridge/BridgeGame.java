@@ -7,6 +7,7 @@ import bridge.view.View;
  */
 public class BridgeGame {
 
+    static int bridgeSize;
     public void setGame() {
         View.gameStartMessage();
         int startNumber = 1;
@@ -15,13 +16,21 @@ public class BridgeGame {
             View.requestBridgeLengthMessage();
             try {
                 InputView inputView = new InputView();
-                int bridgeSize = inputView.readBridgeSize();
+                bridgeSize = inputView.readBridgeSize();
                 startNumber = 0;
             } catch (IllegalArgumentException e) {
                 View.exceptionMessage(e);
                 startNumber = 1;
             }
         }
+    }
+
+    /* 입력값만큼 다리를 만들고 랜덤값 넣기 */
+    public void make() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        bridgeMaker.fillBridge(bridgeSize);
     }
 
     /**

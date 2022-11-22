@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.controller.BridgeGameController;
-
 public class Application {
 
     public static void main(String[] args) {
@@ -9,5 +7,6 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
 
         bridgeGame.setGame();
+        bridgeGame.make();
     }
 }

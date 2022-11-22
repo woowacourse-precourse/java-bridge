@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,5 +20,20 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    public void fillBridge(int bridgeSize) {
+        List<Integer> round = new ArrayList<>();
+        List<String> bridge = new ArrayList<>();
+
+        for (int i = 0; i < bridgeSize; i++) {
+            round.clear();
+            int number = bridgeNumberGenerator.generate();
+            round.add(number);
+            number = (1 - number);
+            round.add(number);
+            bridge.add(round.toString());
+        }
+        System.out.println("bridge" + bridge);
     }
 }
