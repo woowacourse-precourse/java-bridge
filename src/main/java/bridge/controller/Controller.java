@@ -5,6 +5,7 @@ import static bridge.constant.GameCommand.RETRY;
 
 import java.util.List;
 
+import bridge.constant.Direction;
 import bridge.constant.GameCommand;
 import bridge.domain.BridgeGame;
 import bridge.domain.maker.BridgeMaker;
@@ -54,13 +55,17 @@ public class Controller {
     }
 
     private TrialResult move(final BridgeGame game) {
+        TrialResult trialResult = game.move(askDirection());
+        OUTPUT_VIEW.printMap(game.getTrialResults());
+        return trialResult;
+    }
+
+    private Direction askDirection() {
         try {
-            TrialResult trialResult = game.move(INPUT_VIEW.readDirection());
-            OUTPUT_VIEW.printMap(game.getTrialResults());
-            return trialResult;
+            return INPUT_VIEW.readDirection();
         } catch (IllegalArgumentException exception) {
             OUTPUT_VIEW.printException(exception.getMessage());
-            return move(game);
+            return askDirection();
         }
     }
 
