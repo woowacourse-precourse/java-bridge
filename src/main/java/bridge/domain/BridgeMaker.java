@@ -33,8 +33,8 @@ public class BridgeMaker {
 
     public String checkBridgeDirection(int randomNumber) {
         if (randomNumber == 0) {
-            return gameSign.UP_MOVING.getMessage();
+            return gameSign.DOWN_MOVING.getMessage();
         }
-        return gameSign.DOWN_MOVING.getMessage();
+        return gameSign.UP_MOVING.getMessage();
     }
 }
