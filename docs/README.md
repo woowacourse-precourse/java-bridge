@@ -62,5 +62,5 @@
 ## BridgeController
 
 - view(InputView, OutputView)와 BridgeGame을 연결시켜준다.
-- [ ] 구현
+- [x] 구현
 - [ ] 테스트
