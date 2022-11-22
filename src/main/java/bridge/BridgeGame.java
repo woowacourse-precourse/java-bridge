@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.controller.BridgeGameController;
 import bridge.domain.Bridge;
+import bridge.enumeration.GameCommand;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -62,8 +63,7 @@ public class BridgeGame {
     }
 
     private void quit(String answer) {
-        // TODO: Enum으로 리팩토링
-        if (answer.equals("Q")) {
+        if (answer.equals(GameCommand.QUIT.getCommand())) {
             gameStatus.setEnd(true);
         }
     }

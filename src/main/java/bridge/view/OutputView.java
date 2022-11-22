@@ -24,7 +24,6 @@ public class OutputView {
             }
             System.out.println(Map.BRIDGE_END.getMark());
         }
-        System.out.println();
     }
 
     public void printRow() {
