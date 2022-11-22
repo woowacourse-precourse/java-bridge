@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private static BridgeGame bridgeGame = new BridgeGame();
-    private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     public static void main(String[] args) {
+        BridgeGame bridgeGame = new BridgeGame();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
         // TODO: 프로그램 구현
         System.out.println("다리 건너기 게임을 시작합니다.");
         // 다리 길이 입력
