@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.constant.Message;
 import bridge.model.dto.GameResultDto;
 import bridge.model.dto.MoveResultDto;
-import bridge.model.service.BridgeService;
+import bridge.model.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class BridgeController {
 
     private static final BridgeController bridgeController = new BridgeController();
-    private static final BridgeService bridgeService = BridgeService.getInstance();
+    private static final BridgeGame bridgeGame = new BridgeGame();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
@@ -31,7 +31,7 @@ public class BridgeController {
     private void createBridge() {
         System.out.println(Message.START_GAME);
         int bridgeSize = inputView.readBridgeSize();
-        bridgeService.createBridge(bridgeSize);
+        bridgeGame.createBridge(bridgeSize);
     }
 
     private void move() {
@@ -46,22 +46,22 @@ public class BridgeController {
         boolean isMovableStatus = moveResultDto.isMovableStatus();
         if (!moveResultDto.isRightLastBridgePick()) {
             String gameCommand = inputView.readGameCommand();
-            isMovableStatus = bridgeService.retry(gameCommand);
+            isMovableStatus = bridgeGame.retry(gameCommand);
         }
         return isMovableStatus;
     }
 
     private MoveResultDto moveOneBridge() {
         String bridgeType = inputView.readMoving();
-        MoveResultDto moveResultDto = bridgeService.move(bridgeType);
-        List<String> bridgeMap = bridgeService.readBridgeMap();
+        MoveResultDto moveResultDto = bridgeGame.move(bridgeType);
+        List<String> bridgeMap = bridgeGame.readBridgeMap();
         outputView.printMap(bridgeMap, moveResultDto.isRightLastBridgePick());
         return moveResultDto;
     }
 
     private void printResult() {
-        GameResultDto gameResult = bridgeService.readGameResult();
-        List<String> bridgeMap = bridgeService.readBridgeMap();
+        GameResultDto gameResult = bridgeGame.readGameResult();
+        List<String> bridgeMap = bridgeGame.readBridgeMap();
         outputView.printResult(bridgeMap, gameResult.getSuccessOrFail(), gameResult.getRetryCount());
     }
 }

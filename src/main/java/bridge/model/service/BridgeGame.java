@@ -1,9 +1,11 @@
-package bridge.model.domain;
+package bridge.model.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Constant;
-import bridge.constant.SuccessOrFail;
 import bridge.model.dto.GameResultDto;
 import bridge.model.dto.MoveResultDto;
+import bridge.model.repository.BridgeRepository;
 import java.util.List;
 
 /**
@@ -11,14 +13,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static Bridges bridges;
-    private static SuccessOrFail successOrFail = SuccessOrFail.SUCCESS;
-    private static int position = Constant.BRIDGE_INITIAL_POSITION;
-    private static int retryCount = Constant.INITIAL_RETRY_COUNT;
-
-    public BridgeGame(List<String> bridgesSign) {
-        this.bridges = new Bridges(bridgesSign);
-    }
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private static BridgeRepository bridgeRepository;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -26,9 +22,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public MoveResultDto move(String bridgeToMove) {
-        String actualBridge = bridges.findBridgeByPosition(++position);
+        bridgeRepository.addPosition();
+        String actualBridge = bridgeRepository.findBridge();
+        boolean isMovableStatus = bridgeRepository.isMovableStatus();
         boolean isRightLastBridgePick = actualBridge.equals(bridgeToMove);
-        boolean isMovableStatus = position != bridges.size() - Constant.INDEX_ZEROING_NUMBER;
         return new MoveResultDto(isRightLastBridgePick, isMovableStatus);
     }
 
@@ -37,20 +34,26 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(boolean isRestartGame) {
+    public boolean retry(String gameCommand) {
+        boolean isRestartGame = gameCommand.equals(Constant.RESTART_GAME);
         if (!isRestartGame) {
-            successOrFail = SuccessOrFail.FAIL;
-            return;
+            bridgeRepository.gameFail();
         }
-        position = Constant.BRIDGE_INITIAL_POSITION;
-        retryCount++;
+        bridgeRepository.initPosition();
+        bridgeRepository.addRetryCount();
+        return isRestartGame;
     }
 
     public GameResultDto readGameResult() {
-        return new GameResultDto(successOrFail, retryCount);
+        return bridgeRepository.findGameResult();
     }
 
     public List<String> readBridgeMap() {
-        return bridges.readBridgeMap(position);
+        return bridgeRepository.findBridgeMap();
+    }
+
+    public void createBridge(int bridgeSize) {
+        List<String> bridges = bridgeMaker.makeBridge(bridgeSize);
+        bridgeRepository = new BridgeRepository(bridges);
     }
 }

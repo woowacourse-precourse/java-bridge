@@ -11,15 +11,15 @@ public class Bridges {
         this.bridges = bridges;
     }
 
-    String findBridgeByPosition(int position) {
+    public String findBridgeByPosition(int position) {
         return bridges.get(position);
     }
 
-    List<String> readBridgeMap(int bridgeLastPosition) {
+    public List<String> readBridgeMap(int bridgeLastPosition) {
         return bridges.subList(Constant.INITIAL_INDEX, bridgeLastPosition + Constant.INDEX_ZEROING_NUMBER);
     }
 
-    int size() {
+    public int size() {
         return bridges.size();
     }
 }
