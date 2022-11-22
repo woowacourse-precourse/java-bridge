@@ -51,7 +51,8 @@ public class BridgeGame {
     public List<BridgeLocation> currentBridge() {
         AtomicInteger startBridge = new AtomicInteger();
         return playerLocationAnswers.stream()
-                .map(location -> BridgeLocation.createLocation(location, bridge.get(startBridge.getAndIncrement()).equals(location)))
+                .map(location -> BridgeLocation.
+                        createLocation(location, bridge.get(startBridge.getAndIncrement()).equals(location)))
                 .collect(Collectors.toList());
     }
 
