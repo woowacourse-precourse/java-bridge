@@ -1,6 +1,5 @@
 package bridge;
 
-
 import bridge.controller.Controller;
 
 public class Application {
