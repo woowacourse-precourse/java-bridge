@@ -8,9 +8,7 @@ import bridge.view.InputView;
 
 public class PositionUtils {
 
-    private final InputView inputView = new InputView();
-
-    public boolean compareTo(Player player, Bridge bridge, int start) {
+    public static boolean compareTo(Player player, Bridge bridge, int start) {
         PositionType passPosition = bridge.currentPosition(start);
         PositionType playerPosition = player.currentPosition(start);
 
@@ -21,7 +19,7 @@ public class PositionUtils {
         return false;
     }
 
-    public RetryType toRetryType(boolean isPass) {
+    public static RetryType toRetryType(boolean isPass, InputView inputView) {
         if (!isPass) {
             String readGameCommand = inputView.readGameCommand();
 
