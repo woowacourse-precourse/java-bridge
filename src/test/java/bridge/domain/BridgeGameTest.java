@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import bridge.constant.Direction;
+import bridge.dto.TrialResult;
 
 class BridgeGameTest {
 
@@ -17,7 +18,11 @@ class BridgeGameTest {
         List<Direction> directions = List.of(UPPER, LOWER, UPPER, LOWER);
         BridgeGame bridgeGame = BridgeGame.fromDirections(directions);
 
-        assertThat(bridgeGame.move(UPPER)).isTrue();
+        Direction direction = UPPER;
+        TrialResult trialResult = bridgeGame.move(direction);
+
+        assertThat(trialResult.wasSuccessful()).isTrue();
+        assertThat(trialResult.getDirection()).isEqualTo(direction);
     }
 
     @Test
