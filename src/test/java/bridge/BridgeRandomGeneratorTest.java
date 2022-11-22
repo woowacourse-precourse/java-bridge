@@ -2,7 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import bridge.util.BridgeRandomNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
