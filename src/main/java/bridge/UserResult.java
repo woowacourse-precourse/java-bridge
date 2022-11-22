@@ -3,29 +3,62 @@ package bridge;
 import org.mockito.internal.matchers.Null;
 
 public class UserResult {
-    String upperResult = null;
-    String lowerResult = null;
+    private String upperResult;
+    private String lowerResult;
 
+    public UserResult() {
+        this.upperResult = null;
+        this.lowerResult = null;
+    }
 
-    public void plusUpperResult(String inputBridge, boolean rightBridge) {
+    public void plusResult(String inputBridge, boolean rightBridge) {
+        plusBar();
+        if (inputBridge.equals("U")) {
+            selectUpperResult(inputBridge, rightBridge);
+            unselectLowerResult();
+        }
+        if (inputBridge.equals("D")) {
+            selectLowerResult(inputBridge, rightBridge);
+            unselectUpperResult();
+        }
+    }
+
+    public void selectUpperResult(String inputBridge, boolean rightBridge) {
         if (inputBridge.equals("U")) {
             if(rightBridge) {
-                upperResult = upperResult + 'O' + ' ';
+                upperResult = upperResult + "O ";
             }
             if(!rightBridge) {
-                upperResult = upperResult + 'X' + ' ';
+                upperResult = upperResult + "X ";
             }
         }
     }
 
-    public void plusLowerResult(String inputBridge, boolean rightBridge) {
+    public void unselectUpperResult() {
+        upperResult = upperResult + "  ";
+    }
+
+    public void selectLowerResult(String inputBridge, boolean rightBridge) {
         if (inputBridge.equals("D")) {
             if(rightBridge) {
-                lowerResult = lowerResult + 'O' + ' ';
+                lowerResult = lowerResult + "O ";
             }
             if(!rightBridge) {
-                lowerResult = lowerResult + 'X' + ' ';
+                lowerResult = lowerResult + "X ";
             }
+        }
+    }
+
+    public void unselectLowerResult() {
+        lowerResult = lowerResult + "  ";
+    }
+
+    public void plusBar(){
+        if (upperResult.length() != 0){
+            upperResult = upperResult + "| ";
+        }
+        if (lowerResult.length() != 0){
+            lowerResult = lowerResult + "| ";
         }
     }
 
