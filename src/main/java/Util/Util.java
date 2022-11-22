@@ -1,6 +1,5 @@
 package Util;
 
-import Model.Map;
 import View.InputView;
 import View.OutputView;
 
