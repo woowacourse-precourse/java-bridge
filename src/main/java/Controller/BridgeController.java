@@ -12,7 +12,12 @@ public class BridgeController {
     private BridgeGame bridgeGame;
     private final int bridgeSize;
     private final List<String> bridge;
+    private int numberOfMoving;
 
+    private static final String MOVINGIMPOSSIBLE = "X";
+    private static final String GAMEQUIT = "Q";
+    private static final String GAMESUCCESS = "성공";
+    private static final String GAMEFAILURE = "실패";
 
     public BridgeController() {
         outView.printStartGame();
@@ -23,6 +28,30 @@ public class BridgeController {
         this.bridgeGame = new BridgeGame(bridge);
     }
 
+    public String playGame() {
+        numberOfMoving = 1;
+        while (numberOfMoving <= bridgeSize) {
+            String moving = inputView.readMoving();
+            String movingResult = bridgeGame.move(numberOfMoving++, moving);
+            if (movingResult.equals(MOVINGIMPOSSIBLE)) {
+                return Failure();
+            }
+        }
+        bridgeGame.gameOver(GAMESUCCESS);
+        return GAMEQUIT;
+    }
+
+
+    public String Failure() {
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry();
+            return gameCommand;
+        }
+        bridgeGame.gameOver(GAMEFAILURE);
+        return gameCommand;
+    }
 }
+
 
 
