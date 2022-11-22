@@ -4,8 +4,8 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Model.Bridge;
 import bridge.Model.BridgeGame;
-import bridge.Model.BridgeMaker;
-import bridge.UI.InputView;
+import bridge.BridgeMaker;
+import bridge.View.InputView;
 import bridge.View.OutputView;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class GameController {
             // 다리 그리기
             outputView.printMap(userBridge);
 
-            if(!wrongCheck()) {
+            if (!wrongCheck()) {
                 return;
             }
         }
@@ -48,9 +48,7 @@ public class GameController {
         // 틀렸는지 체크
         if (!Bridge.getInstance.isRightAnswer()) {
             String cont = inputView.readGameCommand();
-            if (!bridgeGame.retry(cont)) {
-                return false;
-            }
+            return bridgeGame.retry(cont);
         }
         return true;
     }
