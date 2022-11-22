@@ -30,8 +30,19 @@ class InputViewTest {
     @ParameterizedTest
     @DisplayName("칸 이동 입력 받을 시 예외 테스트")
     @ValueSource(strings = {"Q", "u", "up", "d", "\n", " ", "\\"})
-    void validateCommandTest(String inputCommand) {
+    void validateCommandMoveTest(String inputCommand) {
         List<Command> commands = List.of(Command.UP, Command.DOWN);
+        final int size = 1;
+
+        assertThatThrownBy(() -> inputView.validateCommand(commands, inputCommand, size))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("재시작 혹은 종료 입력 받을 시 예외 테스트")
+    @ValueSource(strings = {"U", "q", "r", "d", "\n", " ", "\\"})
+    void validateCommandRetryTest(String inputCommand) {
+        List<Command> commands = List.of(Command.RETRY, Command.EXIT);
         final int size = 1;
 
         assertThatThrownBy(() -> inputView.validateCommand(commands, inputCommand, size))
