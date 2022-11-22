@@ -12,9 +12,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(int idx, String inputValue, List<String> bridge) {
-        if(!inputValue.equals(bridge.get(idx))){
-            return false;
-        }
+        if(!inputValue.equals(bridge.get(idx))){ return false; }
         return true;
     }
 
@@ -24,7 +22,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public int[] retry(List<String> stepResult, List<String> bridge, int[] gameResult) {
-        if (stepResult.size() == bridge.size()) {
+        if (stepResult.size() == bridge.size() && stepResult.get(stepResult.size()-1).equals(bridge.get(bridge.size()-1))) {
             gameResult[0] = 1;
         }
         gameResult[1] += 1;

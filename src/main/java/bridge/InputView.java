@@ -83,10 +83,7 @@ public class InputView {
         while(true){
             System.out.println(Input.inputMessageByInputType(input_type));
             String input_value = readLine();
-            Optional validateInput = Input.isRightInput(input_type, input_value);
-            if(validateInput.isPresent()){
-               return input_value;
-            }
+            if(Input.isRightInput(input_type, input_value).isPresent()){ return input_value; }
             System.out.println(Input.errorMessageByInputType(input_type));
         }
     }

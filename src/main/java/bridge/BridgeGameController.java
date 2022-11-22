@@ -18,9 +18,7 @@ public class BridgeGameController {
             String moving = inputView.readMoving();
             stepResult.add(moving);
             outputView.printMap(stepResult, bridge);
-            if(!bridgeGame.move(idx, moving, bridge)){
-                break;
-            }
+            if(!bridgeGame.move(idx, moving, bridge)){ break; }
         }
         return stepResult;
     }
