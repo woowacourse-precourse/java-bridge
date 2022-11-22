@@ -30,4 +30,8 @@ public class Bridge {
     public boolean isSameMoving(int index, Moving moving) {
         return Moving.isSame(bridge.get(index), moving);
     }
+
+    public int getBridgeSize() {
+        return bridge.size();
+    }
 }
