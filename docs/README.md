@@ -1,6 +1,6 @@
 ## 🛠 기능 목록
 
--[x] InputView
+- [x] InputView
     - [x] "다리의 길이를 입력해주세요." 문구와 함께 사용자에게 다리 길이를 입력받는다. (readBridgeSize)
         - [x] camp.nextstep.edu.missionutils.Console 의 readLine() 메소드를 이용한다.
         - [x] BridgeSizeValidation클래스의 validate()메소드로 유효성 검사를 진행한다.
