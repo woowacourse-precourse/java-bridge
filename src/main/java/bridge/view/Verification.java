@@ -5,7 +5,7 @@ import bridge.constants.Move;
 
 import java.util.Objects;
 
-public class Valification {
+public class Verification {
 
     private final String ERROR_MESSAGE_SIZE = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private final String ERROR_MOVE_UD = "U, D 두개 중에 하나 선택 해야 합니다.";
