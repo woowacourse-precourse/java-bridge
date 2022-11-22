@@ -29,7 +29,7 @@ public class BridgeMaker {
             throw new IllegalArgumentException("[ERROR] 3 이상 20 이하의 숫자만 입력 가능합니다.");
         }
 
-        bridgeStr = "";     // 초기화
+        bridgeStr = "";     // while문에 들어가기 때문에  초기화 꼭 필요
 
         for (int i = 0; i < size; i++) {
             bridgeStr += bridgeNumberGenerator.generate();
