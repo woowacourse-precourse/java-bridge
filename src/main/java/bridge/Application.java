@@ -21,5 +21,14 @@ public class Application {
         OutputView.printMap(bridgeGame);
         return rightWrong;
     }
+
+    private static boolean endGame(BridgeGame bridgeGame,String result,int count){
+        OutputView.printResult(bridgeGame,result,count);
+
+        if(result.equals("성공") || result.equals("실패")){
+            return true;
+        }
+        return false;
+    }
     
 }
