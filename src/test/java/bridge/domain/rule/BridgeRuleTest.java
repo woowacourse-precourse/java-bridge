@@ -30,4 +30,23 @@ class BridgeRuleTest {
 				.isThrownBy(()-> bridgeRule.isInRange(input))
 				.withMessageContaining("[ERROR]");
 	}
+
+
+    @DisplayName("다리길이 숫자 여부 통과 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"1","2","3","100","55"})
+	void 다리길이는_숫자여야합니다(String input) {
+	    BridgeRule bridgeRule = new BridgeRule();
+	    assertThatCode(() -> bridgeRule.isNumber(input))
+			    .doesNotThrowAnyException();
+	}
+	@DisplayName("다리길이 숫자 여부 예외 테스트")
+	@ParameterizedTest
+	@ValueSource(strings = {" ","E","##","%%"," A "})
+	void 다리길이에_숫자가아닌값이오면_예외가발생합니다(String input) {
+		BridgeRule bridgeRule = new BridgeRule();
+		assertThatIllegalArgumentException()
+				.isThrownBy(()-> bridgeRule.isNumber(input))
+				.withMessageContaining("[ERROR]");
+	}
 }
