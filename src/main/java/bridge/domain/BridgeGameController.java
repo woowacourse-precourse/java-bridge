@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.command.BridgeSizeCommand;
+import bridge.command.ReadMovingCommand;
 import bridge.dto.BridgeGameResultDto;
 import bridge.dto.PlayLogDto;
 import bridge.view.InputView;
@@ -102,7 +103,8 @@ public final class BridgeGameController {
     private Position askMoving() {
         try {
             outputView.printMoving();
-            return Position.from(inputView.readMoving());
+            final ReadMovingCommand movingCommand = inputView.readMoving();
+            return Position.from(movingCommand.getMoving());
         } catch (final IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return askMoving();

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.command.BridgeSizeCommand;
+import bridge.command.ReadMovingCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Pattern;
@@ -29,8 +30,8 @@ public final class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return Console.readLine();
+    public ReadMovingCommand readMoving() {
+        return new ReadMovingCommand(Console.readLine());
     }
 
     /**
