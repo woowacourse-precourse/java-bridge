@@ -13,8 +13,7 @@ public class Application {
             BridgeGame bridgeGame = initGame(inputView, outputView);
             gameLoop(inputView, outputView, bridgeGame);
             outputView.printResult(bridgeGame);
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeMoveCommandTest {
     @Test
-    void getByOrderTest(){
+    void getByOrderTest() {
         assertThat(BridgeMoveCommand.getByOrder(1)).isEqualTo(
                 BridgeMoveCommand.MOVE_UP
         );
@@ -16,7 +16,7 @@ public class BridgeMoveCommandTest {
     }
 
     @Test
-    void getByCommandTest(){
+    void getByCommandTest() {
         assertThat(BridgeMoveCommand.getByCommand("U")).isEqualTo(
                 BridgeMoveCommand.MOVE_UP
         );

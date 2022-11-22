@@ -31,7 +31,7 @@ public class InputValidatorTest {
 
     @DisplayName("다리 길이 정수 변환 예외 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"13I","4D"})
+    @ValueSource(strings = {"13I", "4D"})
     void validateBridgeSizeParsableTestIllegal(String cmd) {
         InputValidator validator = new InputValidator();
         assertThatThrownBy(() -> validator.validateBridgeSizeParsable(cmd)).isEqualTo(
@@ -41,7 +41,7 @@ public class InputValidatorTest {
 
     @DisplayName("다리 길이 정수 변환 정상 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"13","4"})
+    @ValueSource(strings = {"13", "4"})
     void validateBridgeSizeParsableTestPass(String cmd) {
         InputValidator validator = new InputValidator();
         assertThat(validator.validateBridgeSizeParsable(cmd)).isEqualTo(Integer.parseInt(cmd));
@@ -50,8 +50,8 @@ public class InputValidatorTest {
 
     @DisplayName("움직임 입력 예외 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"Q","E"})
-    void validateMoveTestIllegal(String cmd){
+    @ValueSource(strings = {"Q", "E"})
+    void validateMoveTestIllegal(String cmd) {
         InputValidator validator = new InputValidator();
         assertThatThrownBy(() -> validator.validateMove(cmd)).isEqualTo(
                 InputValidationError.ERROR_COMMAND_MOVE.exception
@@ -60,16 +60,16 @@ public class InputValidatorTest {
 
     @DisplayName("움직임 입력 정상 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"U","D"})
-    void validateMoveTestPass(String cmd){
+    @ValueSource(strings = {"U", "D"})
+    void validateMoveTestPass(String cmd) {
         InputValidator validator = new InputValidator();
         validator.validateMove(cmd);
     }
 
     @DisplayName("게임 재시도 여부 입력 예외 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"U","D"})
-    void validateGameCommandIllegal(String cmd){
+    @ValueSource(strings = {"U", "D"})
+    void validateGameCommandIllegal(String cmd) {
         InputValidator validator = new InputValidator();
         assertThatThrownBy(() -> validator.validateGameCommand(cmd)).isEqualTo(
                 InputValidationError.ERROR_COMMAND_RETRY.exception
@@ -78,8 +78,8 @@ public class InputValidatorTest {
 
     @DisplayName("게임 재시도 여부 입력 정상 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"Q","R"})
-    void validateGameCommandPass(String cmd){
+    @ValueSource(strings = {"Q", "R"})
+    void validateGameCommandPass(String cmd) {
         InputValidator validator = new InputValidator();
         validator.validateGameCommand(cmd);
     }

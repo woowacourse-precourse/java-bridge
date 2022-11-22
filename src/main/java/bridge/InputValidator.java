@@ -13,12 +13,12 @@ public class InputValidator {
     }
 
     public void validateBridgeSize(int size) throws IllegalArgumentException {
-        if(size < MINIMUM_BRIDGE_SIZE || size > MAXIMUM_BRIDGE_SIZE){
+        if (size < MINIMUM_BRIDGE_SIZE || size > MAXIMUM_BRIDGE_SIZE) {
             throw InputValidationError.ERROR_BRIDGE_SIZE.exception;
         }
     }
 
-    public int validateBridgeSizeParsable(String size) throws IllegalArgumentException{
+    public int validateBridgeSizeParsable(String size) throws IllegalArgumentException {
         int parsedSize;
         try {
             parsedSize = Integer.parseInt(size);

@@ -57,10 +57,10 @@ public class BridgeGameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {3,5,10})
-    void retryTest(int cnt){
+    @ValueSource(ints = {3, 5, 10})
+    void retryTest(int cnt) {
         BridgeGame bridgeGame = new BridgeGame(new ArrayList<>());
-        for(int i=0;i<cnt;i++){
+        for (int i = 0; i < cnt; i++) {
             bridgeGame.retry();
         }
         assertThat(bridgeGame.getTryCnt()).isEqualTo(cnt + 1);

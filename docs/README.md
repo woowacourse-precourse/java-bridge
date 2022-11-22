@@ -1,7 +1,7 @@
 # 기능 요구 사항
 - [x] Application : main loop, UI와 로직을 통합
-  - [x] 게임 진행
-  - [x] 에러 처리
+    - [x] 게임 진행
+    - [x] 에러 처리
 
 - [x] BridgeGame : 다리 건너기 게임을 관리하는 클래스
     - [x] 생성자 추가
@@ -38,13 +38,13 @@
 
 - [x] InputView : 사용자로부터 입력을 받는 클래스
     - [x] 생성자 추가
-      - InputValidator 설정
+        - InputValidator 설정
     - [x] 다리 길이 입력, 검증
-      - 검증 실패 시 IllegalArgumentException
+        - 검증 실패 시 IllegalArgumentException
     - [x] 이동할 칸 입력, 검증
-      - 검증 실패 시 IllegalArgumentException
+        - 검증 실패 시 IllegalArgumentException
     - [x] 게임 재시도 여부 입력, 검증
-      - 검증 실패 시 IllegalArgumentException
+        - 검증 실패 시 IllegalArgumentException
 
 - [x] InputValidator : 사용자 입력을 검증하는 클래스
     - [x] 생성자 추가
@@ -58,28 +58,28 @@
         - 검증 실패 시 IllegalArgumentException
 
 - [x] InputValidationError : Input 검증 에러를 정의한 Enum
-  - [x] 오류 정의
-    - ERROR_BRIDGE_SIZE 다리 길이 에러
-    - ERROR_COMMAND_MOVE 잘못된 움직임 입력
-    - ERROR_COMMAND_RETRY 잘못된 진행 명령 입력
+    - [x] 오류 정의
+        - ERROR_BRIDGE_SIZE 다리 길이 에러
+        - ERROR_COMMAND_MOVE 잘못된 움직임 입력
+        - ERROR_COMMAND_RETRY 잘못된 진행 명령 입력
 
 - [x] OutputView : 사용자에게 게임 진행 상황과 결과를 출력하는 클래스
-  - [x] 생성자 추가
-  - [x] 시작 문구 출력
-  - [x] 현재까지 이동한 다리 출력
-  - [x] 게임의 최종 결과 출력
+    - [x] 생성자 추가
+    - [x] 시작 문구 출력
+    - [x] 현재까지 이동한 다리 출력
+    - [x] 게임의 최종 결과 출력
 
 
 # 테스트
 - [x] BridgeGame 테스트
-  - [x] move 테스트
-    - 성공,실패,진행중에 대한 테스트
-  - [x] 시도 횟수에 대한 테스트
+    - [x] move 테스트
+        - 성공,실패,진행중에 대한 테스트
+    - [x] 시도 횟수에 대한 테스트
 
 - [x] BridgeMaker 테스트
-  - [x] makeBridge
-    - 크기가 맞는지
-    - 모든 원소가 "U"나 "D"인지
+    - [x] makeBridge
+        - 크기가 맞는지
+        - 모든 원소가 "U"나 "D"인지
 
 - [x] InputValidator 테스트
     - [x] 다리 길이 검증 테스트

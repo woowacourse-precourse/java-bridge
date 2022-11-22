@@ -28,16 +28,16 @@ public class BridgeGame {
     public BridgeGameStstus move(String dir) {
         BridgeGameStstus nextStatus = calcNextStatus(dir);
         step++;
-        if(nextStatus == BridgeGameStstus.PROCEEDING){
+        if (nextStatus == BridgeGameStstus.PROCEEDING) {
             return nextStatus;
         }
         status = nextStatus;
         return nextStatus;
     }
 
-    private BridgeGameStstus calcNextStatus(String dir){
-        if(bridge.get(step).equals(dir)) {
-            if(step + 1 >= bridge.size()){
+    private BridgeGameStstus calcNextStatus(String dir) {
+        if (bridge.get(step).equals(dir)) {
+            if (step + 1 >= bridge.size()) {
                 return BridgeGameStstus.SUCCESS;
             }
             return BridgeGameStstus.PROCEEDING;
@@ -59,12 +59,15 @@ public class BridgeGame {
     public List<String> getBridge() {
         return this.bridge;
     }
+
     public int getStep() {
         return this.step;
     }
+
     public BridgeGameStstus getStatus() {
         return this.status;
     }
+
     public int getTryCnt() {
         return this.tryCnt;
     }

@@ -71,7 +71,7 @@ public class OutputView {
         upperBridge.add(" ");
     }
 
-    private String getPassOrFail(BridgeGameStstus status){
+    private String getPassOrFail(BridgeGameStstus status) {
         if (status == BridgeGameStstus.FAIL) {
             return BRIDGE_FAIL;
         }
@@ -96,9 +96,9 @@ public class OutputView {
         printResultStatistic(bridgeGame);
     }
 
-    private void printResultStatistic(BridgeGame bridgeGame){
+    private void printResultStatistic(BridgeGame bridgeGame) {
         String passOrFail = "성공";
-        if(bridgeGame.getStatus() == BridgeGameStstus.FAIL){
+        if (bridgeGame.getStatus() == BridgeGameStstus.FAIL) {
             passOrFail = "실패";
         }
         System.out.println("게임 성공 여부: " + passOrFail);
