@@ -1,14 +1,14 @@
-package enums;
+package bridge.enums;
 
-public enum RetryCommand {
-    RETRY("RETRY", "R"),
-    END("END","Q"),
+public enum MoveCommand {
+    UP("UP", "U"),
+    DOWN("DOWN","D"),
     ;
 
     private String name;
     private String command;
 
-    RetryCommand(String name, String command) {
+    MoveCommand(String name, String command) {
         this.name = name;
         this.command = command;
     }

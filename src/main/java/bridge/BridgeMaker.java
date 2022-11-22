@@ -1,6 +1,6 @@
 package bridge;
 
-import enums.MoveCommand;
+import bridge.enums.MoveCommand;
 
 import java.util.ArrayList;
 import java.util.List;

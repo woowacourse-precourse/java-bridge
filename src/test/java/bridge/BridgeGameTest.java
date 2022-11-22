@@ -1,14 +1,13 @@
 package bridge;
 
-import enums.MoveCommand;
-import enums.RetryCommand;
+import bridge.enums.MoveCommand;
+import bridge.enums.RetryCommand;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 

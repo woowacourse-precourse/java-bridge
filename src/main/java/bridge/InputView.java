@@ -1,7 +1,7 @@
 package bridge;
 import camp.nextstep.edu.missionutils.Console;
-import enums.MoveCommand;
-import enums.RetryCommand;
+import bridge.enums.MoveCommand;
+import bridge.enums.RetryCommand;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

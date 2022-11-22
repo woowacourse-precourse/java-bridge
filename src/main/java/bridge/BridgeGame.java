@@ -1,6 +1,6 @@
 package bridge;
 
-import enums.RetryCommand;
+import bridge.enums.RetryCommand;
 
 import java.util.List;
 
