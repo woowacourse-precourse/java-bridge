@@ -36,4 +36,16 @@ class OutputViewTest {
     assertEquals(outContent.toString(), "다리 건너기 게임을 시작합니다.\n\n");
   }
 
+  @Test
+  void 올바른_결과_메시지를_출력하는가() {
+    // given
+    OutputView outputView = new OutputView();
+
+    // when
+    outputView.printLastMapResult();
+
+    // then
+    assertEquals(outContent.toString(), "최종 게임 결과\n");
+  }
+
 }
