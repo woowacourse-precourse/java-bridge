@@ -1,8 +1,11 @@
-package bridge;
+package bridge.domain;
 
+import java.util.List;
+import bridge.BridgeMaker;
+import bridge.BridgeGame;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class Program {
 
