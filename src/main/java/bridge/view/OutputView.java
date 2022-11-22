@@ -20,13 +20,11 @@ public class OutputView {
     private final List<String> upperBlocks = new ArrayList<>();
     private final List<String> lowerBlocks = new ArrayList<>();
 
-
     public void printMap(MoveResult moveResult) {
         String resultMark = getResultMark(moveResult.isSuccess());
         addCurrentRoundMap(moveResult.getMessage(), resultMark);
         printJoiningMap();
     }
-
 
     public void clearMap() {
         upperBlocks.clear();

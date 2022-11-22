@@ -21,7 +21,6 @@ public class Bridge {
         this.blocks = new ArrayList<>(blocks);
     }
 
-
     public boolean isMoveSuccess(int round, String message) {
         return blocks.get(round-ROUND_VALUE_TO_BLOCKS_INDEX).equals(message);
     }
