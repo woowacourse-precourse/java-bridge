@@ -1,9 +1,10 @@
 package bridge.domain.game;
 
+import static bridge.constant.gameValue.DOWN;
+import static bridge.constant.gameValue.UP;
+
 public class Direction {
 
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private static final String DIRECTION_BLANK_ERROR = "입력 값은 비어있을 수 없습니다.";
     private static final String BRIDGE_FORMAT_ERROR = "U 또는 D 만 입력해야합니다.";
     private final String direction;

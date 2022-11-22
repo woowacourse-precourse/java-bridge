@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.constant.gameValue.DOWN;
+import static bridge.constant.gameValue.UP;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +13,6 @@ public class BridgeMaker {
 
     private static final int UP_NUMBER = 1;
     private static final int DOWN_NUMBER = 0;
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {

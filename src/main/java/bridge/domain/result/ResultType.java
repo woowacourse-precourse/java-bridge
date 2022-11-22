@@ -1,5 +1,8 @@
 package bridge.domain.result;
 
+import static bridge.constant.gameValue.DOWN;
+import static bridge.constant.gameValue.UP;
+
 import bridge.domain.game.Bridge;
 import bridge.domain.game.Position;
 import java.util.Arrays;
@@ -15,8 +18,6 @@ public enum ResultType {
     DOWN_NOT_MOVABLE("D", "X", true),
     DOWN_NOT_SELECTED("D", " ", false);
 
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private static final String MOVABLE = "O";
     private static final String NOT_MOVABLE = "X";
     private static final String DELIMITER = " | ";
