@@ -38,8 +38,7 @@ public class OutputView {
         String[] splitMap = currentStateOfBridge.split("\\n");
         if(!this.isFirst) {
             splitMap = notFirstPrintMap(splitMap, right, upOrDown);
-        }
-        if (this.isFirst){
+        } if (this.isFirst){
             splitMap = firstPrintMap(splitMap, right, upOrDown);
         }
         currentStateOfBridge = splitMap[0] + "\n" + splitMap[1];
