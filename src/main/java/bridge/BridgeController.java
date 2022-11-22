@@ -13,10 +13,15 @@ public class BridgeController {
     }
 
     public void start() {
-        outputView.printStartMessage();
-        int bridgeSize = inputView.readBridgeSize();
-        BridgeGame bridgeGame = initialize(bridgeSize);
-        printProgress(bridgeGame, bridgeSize);
+        try {
+            outputView.printStartMessage();
+            int bridgeSize = inputView.readBridgeSize();
+            BridgeGame bridgeGame = initialize(bridgeSize);
+            printProgress(bridgeGame, bridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private BridgeGame initialize(int bridgeSize) {
