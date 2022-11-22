@@ -70,7 +70,7 @@ public class BridgeController {
 		try {
 			outputView.printMoveSelect();
 			return inputView.readMoving();
-		} catch (Exception e) {
+		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return moving();
 		}
@@ -82,7 +82,7 @@ public class BridgeController {
 			String command = inputView.readGameCommand();
 			moves = new ArrayList<>();
 			return bridgeGame.retry(command);
-		} catch (Exception e) {
+		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return askRetry();
 		}
