@@ -6,12 +6,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputController {
+    private static InputView inputView;
+
+    public InputController(InputView inputView) {
+        this.inputView = inputView;
+    }
+
     private static List<Integer> recursions = Arrays.asList(1, 1, 1);
 
     public static int setBridgeSize() {
         try {
             System.out.println(Constants.GameProcessMessages.INPUT_BRIDGE_LENGTH);
-            return InputView.readBridgeSize();
+            return inputView.readBridgeSize();
         } catch (IllegalArgumentException ie) {
             if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_BRIDGE_SIZE)) return 0;
             System.out.println(ie.getMessage());
@@ -22,7 +28,7 @@ public class InputController {
     public static String setMoveChoice() {
         try{
             System.out.println(Constants.GameProcessMessages.INPUT_WHERETO_MOVE);
-            return InputView.readMoving();
+            return inputView.readMoving();
         } catch (IllegalArgumentException ie) {
             if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_MOVE_CHOICE)) return "end";
             System.out.println(ie.getMessage());
@@ -33,7 +39,7 @@ public class InputController {
     public static String setGameCommand() {
         try {
             System.out.println(Constants.GameProcessMessages.INPUT_RETRY_ORNOT);
-            return InputView.readGameCommand();
+            return inputView.readGameCommand();
         } catch (IllegalArgumentException ie) {
             if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_GAME_COMMAND)) return "end";
             System.out.println(ie.getMessage());
