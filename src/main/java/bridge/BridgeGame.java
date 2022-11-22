@@ -60,6 +60,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        this.bridgePrintMaker = new BridgePrintMaker();
+        position = 0;
+        tryCount++;
     }
 
     private void checkGame() {
@@ -69,6 +72,13 @@ public class BridgeGame {
 
         if (!bridgePrintMaker.isContinueGame()) {
             result = Result.FAIL;
+        }
+    }
+
+    public void updateRestart(String restart) {
+        if (restart.equals(Restart.RESTART.getStatus())) {
+            result = Result.CONTINUE;
+            retry();
         }
     }
 }
