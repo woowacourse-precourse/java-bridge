@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.command.LocationCommand;
-import bridge.domain.BridgeState;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,9 +10,9 @@ import java.util.stream.Stream;
  */
 public class BridgeMaker {
 
-    private final BridgeState bridgeNumberGenerator;
+    private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    public BridgeMaker(BridgeState bridgeNumberGenerator) {
+    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
