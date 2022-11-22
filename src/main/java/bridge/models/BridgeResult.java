@@ -22,12 +22,18 @@ public class BridgeResult {
     public boolean isSuccess() {
         return success;
     }
+
     public int getResultSize() {
         return result[0].size();
     }
 
     public ArrayList<String>[] getResult() {
-        return result;
+        ArrayList<String>[] resultCopy = new ArrayList[result.length];
+        for (int index = 0; index < resultCopy.length; index++) {
+            resultCopy[index] =  new ArrayList<>();
+            resultCopy[index].addAll(result[index]);
+        }
+        return resultCopy;
     }
 
     public void init() {
