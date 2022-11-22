@@ -1,8 +1,8 @@
 package bridge.Service;
 
 import bridge.game.BridgeGame;
-import bridge.game.BridgeMaker;
-import bridge.game.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.io.InputView;
 import bridge.io.OutputView;
 import bridge.validator.RetryType;

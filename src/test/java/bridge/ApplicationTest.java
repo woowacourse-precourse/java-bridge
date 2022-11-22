@@ -5,8 +5,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.game.BridgeMaker;
-import bridge.game.BridgeNumberGenerator;
 import bridge.validator.ErrorType;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
@@ -42,6 +40,14 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+    }
+
+    @Test
+    void 예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
@@ -99,14 +105,6 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[ O | X ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 0, 1, 0);
-    }
-
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
     }
 
     @Test

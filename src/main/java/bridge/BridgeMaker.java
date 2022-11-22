@@ -1,4 +1,6 @@
-package bridge.game;
+package bridge;
+
+import bridge.game.Bridge;
 
 import java.util.ArrayList;
 import java.util.List;
