@@ -79,7 +79,7 @@ public class BridgeController {
 		try {
 			return checkGameCommand(new InputView().readGameCommand());
 		} catch (IllegalArgumentException e) {
-			printNotice(Notice.ERROR.getMessage() + Notice.EXCEPTION_GAMECOMMAND.getMessage());
+			printNotice(Notice.ERROR.getMessage() + Notice.EXCEPTION_GAME_COMMAND.getMessage());
 		}
 		return choiceEndOrNot();
 	}

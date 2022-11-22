@@ -20,6 +20,14 @@ public class RunController {
 		return isClear;
 	}
 
+	public String checkMoving(String move) {
+		if (!(move.equals(Bridge.TOP.getOrder()) || move.equals(Bridge.BOTTOM.getOrder()))) {
+			throw new IllegalArgumentException();
+		}
+
+		return move;
+	}
+
 	public String crossBridge(List<String> bridge) {
 		Challenger challenger = new Challenger(new ArrayList<>(), new ArrayList<>());
 
@@ -59,14 +67,6 @@ public class RunController {
 			new BridgeController().printNotice(Notice.ERROR.getMessage() + Notice.EXCEPTION_MOVE.getMessage());
 		}
 		return choiceMoving();
-	}
-
-	public String checkMoving(String move) {
-		if (!(move.equals(Bridge.TOP.getOrder()) || move.equals(Bridge.BOTTOM.getOrder()))) {
-			throw new IllegalArgumentException();
-		}
-
-		return move;
 	}
 
 }
