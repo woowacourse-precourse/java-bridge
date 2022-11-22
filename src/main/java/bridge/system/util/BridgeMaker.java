@@ -16,8 +16,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int bridgeSize) {
         List<String> randomBridge = new ArrayList<>();
         for (int i = 0; i < bridgeSize; i++) {
-            randomBridge.add(convertTypeString(bridgeNumberGenerator.generate()));
+            randomBridge.add(generateRandomUpAndDownNum());
         }
         return randomBridge;
+    }
+
+    private String generateRandomUpAndDownNum() {
+        return convertTypeString(bridgeNumberGenerator.generate());
     }
 }
