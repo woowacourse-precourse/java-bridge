@@ -1,5 +1,8 @@
 package bridge.constant;
 
+import java.util.List;
+import java.util.Queue;
+
 public enum Token {
     UP("U"),
     DOWN("D"),
@@ -14,5 +17,13 @@ public enum Token {
 
     public String getMark() {
         return mark;
+    }
+
+    public static List<String> getMovingMark() {
+        return List.of(UP.getMark(), DOWN.getMark());
+    }
+
+    public static List<String> getRetryMark() {
+        return List.of(RESTART.getMark(), QUIT.getMark());
     }
 }
