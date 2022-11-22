@@ -1,23 +1,70 @@
 package bridge;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
-public class OutputView {
+import java.util.ArrayList;
+import java.util.List;
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+public class OutputView {
+    BridgeGame bridgeGame;
+    Boolean moved;
+
+    public void printMap(BridgeGame bridgeGame, Boolean moved) {
+        this.bridgeGame = bridgeGame;
+        this.moved = moved;
+        List<String> currentBridge = bridgeGame.getCurrentBridge();
+        List<String> upperRow = convertUpperRow(currentBridge, moved);
+        List<String> lowerRow = convertLowerRow(currentBridge, moved);
+        System.out.println(addDelimiter(upperRow));
+        System.out.println(addDelimiter(lowerRow));
+        System.out.println();
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public List<String> convertUpperRow(List<String> currentBridge, Boolean moved) {
+        List<String> upperRow = new ArrayList<>();
+        for (String bridge : currentBridge) {
+            if (bridge.equals(Constant.UP)) {
+                upperRow.add(Constant.BRIDGE_RIGHT);
+                continue;
+            }
+            upperRow.add(Constant.BRIDGE_BLANK);
+        }
+        if (!moved) {
+            return markLastElement(upperRow);
+        }
+        return upperRow;
+    }
+
+    public List<String> convertLowerRow(List<String> currentBridge, Boolean moved) {
+        List<String> lowerRow = new ArrayList<>();
+        for (String bridge : currentBridge) {
+            if (bridge.equals(Constant.DOWN)) {
+                lowerRow.add(Constant.BRIDGE_RIGHT);
+                continue;
+            }
+            lowerRow.add(Constant.BRIDGE_BLANK);
+        }
+        if (!moved) {
+            return markLastElement(lowerRow);
+        }
+        return lowerRow;
+    }
+
+    public List<String> markLastElement(List<String> row) {
+        if (row.get(row.size() - 1).equals(Constant.BRIDGE_BLANK)) {
+            row.set(row.size() - 1, Constant.BRIDGE_WRONG);
+            return row;
+        }
+        row.set(row.size() - 1, Constant.BRIDGE_BLANK);
+        return row;
+    }
+
+    public String addDelimiter(List<String> row) {
+        return Constant.BRIDGE_START + String.join(Constant.BRIDGE_DELIMITER, row) + Constant.BRIDGE_END;
+    }
+
+    public void printResult(String result, Integer attempt) {
+        System.out.println(Constant.PRINT_RESULT);
+        printMap(this.bridgeGame, this.moved);
+        System.out.println(Constant.GAME_RESULT + result);
+        System.out.println(Constant.ATTEMPT + attempt);
     }
 }
