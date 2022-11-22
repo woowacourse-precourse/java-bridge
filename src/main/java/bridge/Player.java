@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static bridge.Constants.*;
 import static bridge.Result.*;
 
 public class Player {
@@ -34,6 +35,14 @@ public class Player {
 
     public boolean isGameEnd() {
         return directions.size() == bridges.size();
+    }
+
+    public String getGameResult() {
+        int index = directions.size() - 1;
+        if (directions.size() == bridges.size() && directions.get(index).equals(bridges.get(index))) {
+            return SUCCESS;
+        }
+        return FAIL;
     }
 
     public void resetDirections() {

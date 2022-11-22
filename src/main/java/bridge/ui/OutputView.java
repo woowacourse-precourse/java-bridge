@@ -35,23 +35,13 @@ public class OutputView {
 
         DIRECTIONS.forEach(direction -> printView(player, direction));
 
-        String result = getResult(player);
-
-        System.out.println(GAME_SUCCESS + result);
+        System.out.println(GAME_SUCCESS + player.getGameResult());
         System.out.println(GAME_COUNT + player.getPlayCount());
     }
 
     private void printView(Player player, String direction) {
         String view = getView(player, direction);
         System.out.println(view);
-    }
-
-    private static String getResult(Player player) {
-        String result = FAIL;
-        if (player.isGameEnd()) {
-            result = SUCCESS;
-        }
-        return result;
     }
 
     public void printExceptionMessage(IllegalArgumentException e) {
