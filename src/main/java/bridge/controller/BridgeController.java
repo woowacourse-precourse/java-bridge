@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMatcher;
 import bridge.domain.GameResult;
 import bridge.view.InputView;
@@ -15,6 +16,11 @@ public class BridgeController {
         List<String> bridge = generateBridge();
         BridgeMatcher bridgeMatcher = makeBridgeMatcher();
         OutputView outputView = makeResultBridge();
+        BridgeGame bridgeGame = startBridgeGame(bridge, bridgeMatcher);
+    }
+
+    private BridgeGame startBridgeGame(List<String> bridge, BridgeMatcher bridgeMatcher) {
+        return new BridgeGame(bridge, bridgeMatcher);
     }
 
     private OutputView makeResultBridge() {
