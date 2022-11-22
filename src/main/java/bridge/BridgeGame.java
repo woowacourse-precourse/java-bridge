@@ -45,8 +45,9 @@ public class BridgeGame {
     }
 
     public void comparedBridge() {
-        String bridgeValue = bridge.getBridge().get(movingPositions.size() - 1);
-        String movingPosition = movingPositions.get(movingPositions.size() - 1);
+        int lastIndex = movingPositions.size() - 1;
+        String bridgeValue = bridge.getBridge().get(lastIndex);
+        String movingPosition = movingPositions.get(lastIndex);
         if(bridge.getBridge().size() < movingPositions.size()){
             throw new IllegalStateException("다리의 크기보다 입력받은 개수가 클 수 없습니다.");
         }
