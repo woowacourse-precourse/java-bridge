@@ -35,13 +35,4 @@ public class Bridge {
     public boolean isOver(Position position) {
         return position.isGreaterOrEqualThan(directions.size());
     }
-
-    public boolean hasSameSizeWith(Bridge bridge) {
-        return this.directions.equals(bridge.directions);
-    }
-
-    public boolean matchesFromStartWith(Bridge bridge) {
-        return directions.subList(0, bridge.directions.size())
-                .equals(bridge.directions);
-    }
 }
