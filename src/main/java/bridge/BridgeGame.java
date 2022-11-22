@@ -70,4 +70,12 @@ public class BridgeGame {
             throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다");
         }
     }
+
+    public static String rightOrWrong(List<String> bridge, String direction, int idx){
+        //O나 X를 저장하기 위해 검사해서 O혹은 X를 반환
+        if(bridge.get(idx).equals(direction)){
+            return "O";
+        }
+        return "X";
+    }
 }
