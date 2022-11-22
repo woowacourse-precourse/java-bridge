@@ -1,12 +1,13 @@
-package bridge;
+package bridge.model;
 
-public enum GameResult {
-    SUCCESS("성공"),
-    FAIL("실패");
+public enum BridgeResult {
+    SUCCESS("O"),
+    FAIL("X"),
+    NONE(" ");
 
     private final String value;
 
-    GameResult(String value) {
+    BridgeResult(String value) {
         this.value = value;
     }
 

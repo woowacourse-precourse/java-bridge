@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view;
+
+import bridge.model.BridgeResult;
+import bridge.model.GameResult;
 
 import java.util.List;
 
