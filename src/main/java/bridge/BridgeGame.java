@@ -1,23 +1,56 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import java.util.List;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+public class BridgeGame {
+    private final Bridge bridge;
+
+    private int attemptCount;
+
+    public BridgeGame(List<String> blocks) {
+        this.bridge = new Bridge(blocks);
+        this.attemptCount = 1;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void move(String moving) {
+        if (bridge.isArrived()) {
+            throw new IllegalStateException("[ERROR] 이미 도착했습니다.");
+        }
+
+        if (bridge.inProgress()) {
+            bridge.visit(BlockPosition.from(moving));
+            return;
+        }
+
+        throw new IllegalStateException("[ERROR] 게임이 종료되었습니다.");
+    }
+
     public void retry() {
+        if (inProgress()) {
+            throw new IllegalStateException("[ERROR] 게임이 진행중입니다.");
+        }
+
+        if (isSuccess()) {
+            throw new IllegalStateException("[ERROR] 이미 성공했습니다.");
+        }
+
+        bridge.reset();
+        attemptCount++;
+    }
+
+    public boolean inProgress() {
+        return bridge.inProgress();
+    }
+
+    public boolean isSuccess() {
+        return bridge.isArrived();
+    }
+
+    public List<Block> bridge() {
+        return bridge.blocks();
+    }
+
+    public int attemptCount() {
+        return attemptCount;
     }
 }
