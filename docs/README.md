@@ -27,7 +27,7 @@
       - 총 시도한 횟수 1만큼 증가
       - 현재 시점 기준 이전 라운드로 다리 상태 복원
       - 사용자 현재 위치 초기화
-      - 예외 메세지 출력과 개임 재개
+      - 예외 메세지 출력 및 게임 재개
 - [x] 예외 상황 시 에러 문구를 출력 (에러 문구는 [ERROR]로 시작)
   - IllegalArgumentException를 발생시키고, 그 부분부터 재입력
     (IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형) 
