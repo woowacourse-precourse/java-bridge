@@ -16,39 +16,40 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         boolean stageResult;
         boolean retry = true;
-        int triedCounter = 0;
+        int triedCounter = 1;
+        int round;
 
         List<String> currentResult = new ArrayList<>();
-        List<String> currentResultNextLine= new ArrayList<>();
-        int size = inputs.readBridgeSize(); //다리 길이 입력
+        int size = inputs.readBridgeSizeWithValidityCheck(); //다리 길이 입력
         newWholeBridge = newBridge.makeBridge(size); // 입력 받은 길이의 다리 빌드
         System.out.println(newWholeBridge); // 다리 출력 (디버그)
 
-        while(retry){
+        while (retry) {
             retry = false;
 
-            for(int round = 0; round<size; round++){
-                String userAnswer = inputs.readMoving();
+            for (round = 0; round < size; round++) {
+                String userAnswer = inputs.readMovingWithValidityCheck();
                 stageResult = bridgeGame.move(userAnswer, newWholeBridge, round);
 
-                currentResult= outputs.printMap(newWholeBridge,currentResult,stageResult,round);
+                outputs.designBridgeMap(newWholeBridge, currentResult, stageResult, round);
 
-                System.out.println(currentResult);
+                if (!stageResult) {
+                    String retryAnswer = inputs.readGameCommandWithValidityCheck();
+                    retry = bridgeGame.retry(retryAnswer);
+                    if(retry){
+                        currentResult.clear();
+                        triedCounter++;
+                    }
+                    break;
+                }
+                if (round == size - 1) {
+                    outputs.printResult(newWholeBridge, currentResult, round, triedCounter);
             }
-            System.out.println("재시도 하시겠습니까?");
-            String retryAnswer = inputs.readGameCommand();
-            if(retryAnswer.equals("R") ){
-                retry = true;
-                triedCounter++;
-            }
-            if(retryAnswer == "Q"){
-                break;
+
             }
 
 
         }
-
-
 
 
     }
