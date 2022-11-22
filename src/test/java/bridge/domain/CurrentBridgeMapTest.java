@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.domain.CurrentBridgeMap;
 import org.junit.jupiter.api.BeforeEach;
