@@ -45,6 +45,10 @@ public class Bridges {
         return this.playerMoves;
     }
 
+    public List<BridgeMove> getBridges() {
+        return this.bridges;
+    }
+
     @Override
     public String toString() {
         sb.setLength(0);
@@ -76,6 +80,7 @@ public class Bridges {
     }
 
     private void appendWrongMove(String move) {
+        if (playerMoves.isEmpty()) { return;}
         int index = playerMoves.size() - 1;
         if (!(playerMoves.get(index) == bridges.get(index))) {
             if (playerMoves.get(index) == BridgeMove.getEnum(move)) {
