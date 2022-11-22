@@ -13,7 +13,7 @@ public class BridgeMakerValidation {
 
     public void validateGeneratedNumValue(int generatedNum) {
         if (generatedNum != RANDOM_NUM_LOWER && generatedNum != RANDOM_NUM_UPPER) {
-            throw new IllegalArgumentException("[ERROR] 0 또는 1의 값만 생성되어야 합니다.");
+            throw new IllegalArgumentException(RANDOM_VALUE_MUST_BE_ONE_OR_ZERO.getMessage());
         }
     }
 
