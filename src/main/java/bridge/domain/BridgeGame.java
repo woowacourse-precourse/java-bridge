@@ -24,7 +24,7 @@ public class BridgeGame {
      */
     public String move(String inputValue) {
         playerMovement.addMovement(inputValue);
-        return currentBridgeMap.getBridgeMap(inputValue, isAllEqualSoFar());
+        return currentBridgeMap.getCurrentBridgeMap(inputValue, isAllEqualSoFar());
     }
 
     /**

@@ -20,7 +20,7 @@ public class CurrentBridgeMap {
         lowerBridgeMap = new ArrayList<>();
     }
 
-    public String getBridgeMap(String playerChoice, Boolean equalAnswer) {
+    public String getCurrentBridgeMap(String playerChoice, Boolean equalAnswer) {
         updateUpperBridgeMap(playerChoice, equalAnswer);
         updateLowerBridgeMap(playerChoice, equalAnswer);
         return getBridgeMap();
@@ -52,7 +52,7 @@ public class CurrentBridgeMap {
         lowerBridgeMap.add(BLANK_BRIDGE);
     }
 
-    private String getBridgeMap() {
+    public String getBridgeMap() {
         return String.format(BRIDGE_STRUCTURE, String.join(SEPARATE_BRIDGE, upperBridgeMap), String.join(SEPARATE_BRIDGE, lowerBridgeMap));
     }
 }

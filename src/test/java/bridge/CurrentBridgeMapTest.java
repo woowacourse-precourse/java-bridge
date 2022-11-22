@@ -27,7 +27,7 @@ class CurrentBridgeMapTest {
         String expect = "[ O |   |   ]\n[   | O | X ]";
 
         for (int i = 0; i < playerChoices.size(); i++) {
-            result = currentBridgeMap.getBridgeMap(playerChoices.get(i), equalAnswer.get(i));
+            result = currentBridgeMap.getCurrentBridgeMap(playerChoices.get(i), equalAnswer.get(i));
         }
 
         assertThat(result).isEqualTo(expect);
@@ -42,7 +42,7 @@ class CurrentBridgeMapTest {
         String expect = "[ O |   |   ]\n[   | O | O ]";
 
         for (int i = 0; i < playerChoices.size(); i++) {
-            result = currentBridgeMap.getBridgeMap(playerChoices.get(i), equalAnswer.get(i));
+            result = currentBridgeMap.getCurrentBridgeMap(playerChoices.get(i), equalAnswer.get(i));
         }
 
         assertThat(result).isEqualTo(expect);
