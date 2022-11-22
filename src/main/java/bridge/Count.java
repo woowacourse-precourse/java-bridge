@@ -1,31 +1,27 @@
 package bridge;
 
-/**
- * Keeps track of attempts made
- */
-
 public class Count {
-  private int Attempts = 0;
+  private static int Attempts = 1;
   
-  private int Steps = 0;
+  private static int Steps = 0;
   
-  public void increaseAttempt(){
-    this.Attempts++;
+  public static void increaseAttempt(){
+    Attempts++;
   }
   
-  public int getAttempts(){
-    return this.Attempts;
+  public static int getAttempts(){
+    return Attempts;
   }
   
-  public void increaseSteps(){
-    this.Steps++;
+  public static void increaseSteps(){
+    Steps++;
   }
   
-  public int getSteps(){
-    return this.Steps;
+  public static int getSteps(){
+    return Steps;
   }
   
-  public void resetSteps(){
-    this.Steps = 0;
+  public static void resetSteps(){
+    Steps = 0;
   }
 }

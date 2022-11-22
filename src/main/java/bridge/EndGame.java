@@ -2,17 +2,10 @@ package bridge;
 
 public class EndGame {
   
+  private static final Count count = new Count();
   
   
-  private final Count count;
-  private final InputView inputView;
-  
-  public EndGame(Count count, InputView inputView) {
-    this.count = count;
-    this.inputView = inputView;
-  }
-  
-  public boolean endGame(int size){
+  public static boolean endGame(int size){
     int steps = count.getSteps();
     if(steps == size){
       return true;
@@ -20,12 +13,13 @@ public class EndGame {
     return false;
   }
   
-  public boolean fail(){
+  public static boolean fail(){
     System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    InputView inputView = new InputView();
     String temp = inputView.readGameCommand();
     if(temp.equals("Q")){
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 }

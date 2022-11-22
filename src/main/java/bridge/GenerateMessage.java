@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Count.getSteps;
+
 public class GenerateMessage {
   private final String start = "[";
   private final String end = "]";
@@ -12,86 +14,81 @@ public class GenerateMessage {
   private static final String space = "   ";
   private static final String failure = " X ";
   private static final String success = " O ";
-  private final Count count;
   
-  public GenerateMessage(Count count) {
-    this.count = count;
-  }
-  
-  public void reset(){
-    this.topLine = "";
-    this.bottomLine = "";
+  public static void resetMessage(){
+    topLine = "";
+    bottomLine = "";
   }
   
   public List<String> get(){
     List<String> temp = new ArrayList<>();
-    temp.add(start + this.topLine + end);
-    temp.add(start + this.bottomLine + end);
+    temp.add(start + topLine + end);
+    temp.add(start + bottomLine + end);
     return temp;
   }
   
-  public boolean add(boolean result, String step){
-    if(result && count.getSteps() == 0){
-      startSuccess(step);
-      return true;
+  public static boolean addMessage(boolean result, String step){
+    if(getSteps() == 1){
+      if(result){
+        startSuccess(step);
+        return true;
+      }
+      startFail(step);
+      return false;
     }
     if(result){
       con(step, true);
       return true;
     }
-    if(count.getSteps() == 0){
-      startFail(step);
-      return true;
-    }
     con(step, false);
-    return true;
+    return false;
   }
   
-  public void startSuccess(String step){
+  public static void startSuccess(String step){
     boolean eqU = step.equals("U");
     boolean eqD = step.equals("D");
     if(eqU){
-      this.topLine = this.topLine + success;
-      this.bottomLine = this.bottomLine + space;
+      topLine = topLine + success;
+      bottomLine = bottomLine + space;
     }
     if(eqD){
-      this.topLine = this.topLine + space;
-      this.bottomLine = this.bottomLine + success;
+      topLine = topLine + space;
+      bottomLine = bottomLine + success;
     }
   }
-  public void startFail(String step){
+  public static void startFail(String step){
     boolean eqU = step.equals("U");
     boolean eqD = step.equals("D");
     if(eqU){
-      this.topLine = this.topLine + failure;
-      this.bottomLine = this.bottomLine + space;
+      topLine = topLine + failure;
+      bottomLine = bottomLine + space;
     }
     if(eqD){
-      this.topLine = this.topLine + space;
-      this.bottomLine = this.bottomLine + failure;
+      topLine = topLine + space;
+      bottomLine = bottomLine + failure;
     }
   }
-  public void con(String step, boolean result){
+  public static void con(String step, boolean result){
     boolean eqU = step.equals("U");
     boolean eqD = step.equals("D");
     if(result){
       if(eqU){
-        this.topLine = this.topLine + divide + success;
-        this.bottomLine = this.bottomLine + divide + space;
+        topLine = topLine + divide + success;
+        bottomLine = bottomLine + divide + space;
       }
       if(eqD){
-        this.topLine = this.topLine + divide + space;
-        this.bottomLine = this.bottomLine + divide + success;
+        topLine = topLine + divide + space;
+        bottomLine = bottomLine + divide + success;
       }
     }
     if(!result){
       if(eqU){
-        this.topLine = this.topLine + divide + failure;
-        this.bottomLine = this.bottomLine + divide + space;
+        topLine = topLine + divide + failure;
+        bottomLine = bottomLine + divide + space;
       }
       if(eqD){
-        this.topLine = this.topLine + divide + space;
-        this.bottomLine = this.bottomLine + divide + failure;
+        topLine = topLine + divide + space;
+        bottomLine = bottomLine + divide + failure;
       }
     }
   }

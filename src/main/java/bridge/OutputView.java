@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    private GenerateMessage generateMessage;
+    private GenerateMessage generateMessage = new GenerateMessage();
     private final String success = "성공";
     private final String failure = "실패";
     

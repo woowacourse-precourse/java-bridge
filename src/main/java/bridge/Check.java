@@ -1,24 +1,24 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
 
-public class Check {
+public class Check{
   
-  private static Count count;
+  private static Count count = new Count();
   
   private static final IllegalArgumentException illegalArgumentException = new IllegalArgumentException();
   
   public static int checkBridgeSize(String in) throws IllegalArgumentException{
     try{
-      int num = Integer.valueOf(in);
+      int num = Integer.parseInt(in);
       if(num < 21 && num > 2){
         return num;
       }
+      System.out.println("[ERROR] INVALID INPUT");
       throw illegalArgumentException;
     }
-    catch(Exception e){
+    catch(IllegalArgumentException e){
+      System.out.println("[ERROR] INVALID INPUT");
       throw illegalArgumentException;
     }
   }
@@ -28,9 +28,11 @@ public class Check {
      if(in.equals("D") || in.equals("U")){
        return in;
      }
+      System.out.println("[ERROR]");
      throw illegalArgumentException;
     }
     catch(Exception e){
+      System.out.println("[ERROR]");
       throw illegalArgumentException;
     }
   }
@@ -43,11 +45,11 @@ public class Check {
     return false;
   }
   
-  public static String checkFail(String in) throws IllegalArgumentException{
-    String temp = Console.readLine().strip();
+  public static String checkFail(String temp) throws IllegalArgumentException{
     if(temp.equals("R") || temp.equals("Q")){
       return temp;
     }
+    System.out.println("[ERROR]");
     throw illegalArgumentException;
   }
 }
