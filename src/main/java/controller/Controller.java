@@ -12,6 +12,7 @@ public class Controller {
 
     private static final boolean SUCCESS = true;
     private static final boolean FAIL = false;
+
     private final BridgeGame bridgeGame;
     private final InputView inputView;
     private final OutputView outputView;

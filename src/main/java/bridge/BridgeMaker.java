@@ -10,6 +10,7 @@ public class BridgeMaker {
 
     private static final String DOWN = "D";
     private static final String UP = "U";
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
