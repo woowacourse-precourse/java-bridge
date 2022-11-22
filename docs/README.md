@@ -68,15 +68,17 @@
 ### 구현 내용
 < Interface - BridgeNumberGenerator >
 - Method
-  - int generate() : 구현되지 않은 메서드이며, 임의의 난수 값 하나를 생성할 것으로 기대하고 정의한 메서드이다. <br>
+  - int generate() : 구현되지 않은 메서드이며, 임의의 난수 값 하나를 생성할 것으로 기대하고 정의한 메서드이다. 
+
 
 < Concrete Class - BridgeRandomNumberGenerator >
 - Attribute
   - final int RANDOM_LOWER_INCLUSIVE : 상수 값으로 0을 갖는다. <br>
   - final int RANDOM_UPPER_INCLUSIVE : 상수 값으로 1을 갖는다. <br>
 
+
 - Method
-  - int generate() : 멤버 변수 둘 사이의 값 중에 임의의 값 하나를 생성하여 반환한다. <br>
+  - int generate() : 멤버 변수 둘 사이의 값 중에 임의의 값 하나를 생성하여 반환한다. 
 
 
 ### 4. 다리 생성
@@ -96,27 +98,31 @@
   - String allocateBlock : 멤버 변수 bridgeNumberGenerator의 generate 메서드를 통해 난수를 하나 생성하고, 그 값이 0이면 'U', 1이면 'D'를 생성하여 반환한다. <br>
 
   
-### 5. 이동, 재도전 처리
+### 5. 게임 진행
 ### 목표
-1) 플레이어에 입력에 따라, 다리 내에서의 이동을 진행한다.
-2) 플레이어의 입력에 따라, 게임을 재시작할 지 혹은 종료할 지를 결정한다.
+1) 게임 진행을 위한 Bridge를 생성한다.
+2) 플레이어 입력에 따라, 다리 내의 이동을 진행한다.
+3) 이동할 때마다, 현재 다리의 이동 상황을 출력한다.
+4) 게임을 재시작해야 하는 경우에 플레이어에게 재시작 여부를 입력 받는다.
+5) 게임이 종료되면 최종적인 결과를 플레이어에게 출력한다.
 
 ### 구현 내용
 < Class - BridgeGame >
 - Attribute
-  - InputView inputView : <br>
-  - OutputView outputView : <br>
-  - BridgeMaker bridgeMaker : <br>
-  - List<String> bridge : <br>
+  - InputView inputView : 플레이어에게 입력을 받기 위한 인스턴스를 멤버 변수로 갖는다. <br>
+  - OutputView outputView : 플레이어에게 출력을 하기 위한 인스턴스를 멤버 변수로 갖는다. <br>
+  - BridgeMaker bridgeMaker : 게임을 진행하기 위한 Bridge를 생성한다. <br>
+  - List<String> bridge : 게임을 진행하기 위한 Bridge를 멤버 변수로 갖는다. <br>
+
 
 - Method
-  - BridgeGame() : <br>
-  - initBridge() : <br>
-  - boolean move() : <br>
-  - boolean retry() : <br>
-  - void printResult() : <br>
-  - int getBridgeSize() : <br>
-  - void clear() : <br>
+  - BridgeGame() : 생성자이다. bridgeMaker를 할당하고, 다리 생성 이후에 outputView를 할당한다. <br>
+  - void initBridge() : 플레이어에게 다리 길이를 입력 받아서 bridgeMaker를 통해 다리를 생성한다. <br>
+  - boolean move(int currentLocation) : 현재 다리의 몇 번째 칸에 있는 지를 매개 인자로 받고, 플레이어에게 이동 방향을 입력 받아 현재 이동 상황을 출력한다. <br>
+  - boolean retry() : 게임을 다시 시도할 지에 대해 입력 받아서, 그 결과를 true, false로 반환한다. <br>
+  - void printResult() : 게임이 종료되면 outputView의 printResult를 호출한다. <br>
+  - int getBridgeSize() : 다리의 크기만큼 게임을 진행하기 위해, 다리의 크기를 반환한다. <br>
+  - void clear() : 게임이 재시작되면 outputView의 멤버 변수를 초기화하기 위해 outputView의 clear 메서드를 호출한다. <br>
 
 
 ## [ 테스트 코드 ]
