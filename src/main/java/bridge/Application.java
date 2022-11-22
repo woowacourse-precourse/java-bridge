@@ -24,14 +24,18 @@ public class Application {
 
     static boolean gameProgress(InputView input, BridgeGame bridgeGame, OutputView output) {
         for (int step = 0; step < bridgeGame.getBridgeSize(); step++) {
-            String nextStep = readMoving(input);
-            boolean rightStep = bridgeGame.move(nextStep, step);
+            boolean rightStep = moveStep(input, bridgeGame, step);
             output.printMap(bridgeGame);    // 시스템 현재 상황 출력
             if (rightStep && step == bridgeGame.getBridgeSize() - 1) return true;    // 게임 종료로 분기
             if (!rightStep) return false;   // 게임 재시도 여부로 분기
             bridgeGame.nextStepRecord();
         }
         throw new IllegalArgumentException();
+    }
+
+    static boolean moveStep(InputView input, BridgeGame bridgeGame, int step) {
+        String nextStep = readMoving(input);
+        return bridgeGame.move(nextStep, step);
     }
 
     static String readMoving(InputView input) {
@@ -60,6 +64,10 @@ public class Application {
         int bridgeSize = readBridgeSize(input);
         List<String> bridge = makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        printOutput(bridgeGame, input);
+    }
+
+    static void printOutput(BridgeGame bridgeGame, InputView input) {
         OutputView output = new OutputView();
         String isSuccess = playGame(input, bridgeGame, output);
         output.printResult(bridgeGame);
