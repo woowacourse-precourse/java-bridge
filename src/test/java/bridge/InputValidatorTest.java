@@ -12,7 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class ValidatorTest {
+public class InputValidatorTest {
 
     @DisplayName("3 이상 20 이하의 숫자가 아닐 시 예외 발생")
     @ValueSource(strings = {"4e", "21", "칠"})
