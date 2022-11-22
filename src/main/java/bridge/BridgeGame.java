@@ -38,4 +38,8 @@ public class BridgeGame {
         playerPlace = 0;
         movingMap.clear();
     }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
 }
