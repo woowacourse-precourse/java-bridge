@@ -41,7 +41,39 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public int move(String move) {
+        if (move.equals(resultSteps.get(location))) {
+            correct(move);
+            if (location == bridgeSize - 1) {
+                return 1;
+            }
+            location++;
+            return 0;
+        }
+
+        notCorrect(move);
+        location++;
+        return -1;
+    }
+
+    private void correct(String nextStep) {
+        if (nextStep.equals(DOWN)) {
+            down.append(CAN_GO);
+            up.append(NOT_SELECT);
+        } else if (nextStep.equals(UP)) {
+            up.append(CAN_GO);
+            down.append(NOT_SELECT);
+        }
+    }
+
+    private void notCorrect(String nextStep) {
+        if (nextStep.equals(UP)) {
+            up.append(CANNOT_GO);
+            down.append(NOT_SELECT);
+        } else if (nextStep.equals(DOWN)) {
+            down.append(CANNOT_GO);
+            up.append(NOT_SELECT);
+        }
     }
 
     /**
