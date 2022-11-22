@@ -42,6 +42,7 @@ public class BridgeGame {
         if (isMovable(command)) {
             nextLocation++;
             updateStatus();
+            return;
         }
         type = GameStatus.FAIL;
     }
@@ -65,34 +66,50 @@ public class BridgeGame {
 
     public String toString() {
         StringBuffer sb = new StringBuffer();
+        sb.append(renderUpperRow(bridge, nextLocation));
+        sb.append(renderLowerRow(bridge, nextLocation));
+        return sb.toString();
+    }
 
+    public String renderUpperRow(List<String> bridge, int nextLocation) {
+        StringBuffer sb = new StringBuffer();
         sb.append("[");
         for (int i = 0; i < nextLocation; i++) {
-            if (i != nextLocation-1 && bridge.get(i).equals("U")) {
-                sb.append(" O |");
-            }
-            if (i == nextLocation-1 && bridge.get(i).equals("U")) {
-                sb.append(" O ]");
-            }
-            if (i == nextLocation-1 && bridge.get(i).equals("D")) {
-                sb.append(" X ]");
-            }
-            if (i != nextLocation-1 && bridge.get(i).equals("D")) {
-                sb.append("   ");
-            }
+            sb.append(getUpperRowElem(bridge, i, nextLocation));
+            if (i != nextLocation - 1) sb.append("|");
         }
-        sb.append("\n");
-
-        for (int i = 0; i < Math.min(nextLocation, bridge.size()); i++) {
-            if (i != nextLocation-1 && bridge.get(i) == "D") {
-                sb.append(" O ");
-            }
-            if (i == nextLocation-1 && bridge.get(i) == "U") {
-                sb.append(" X ");
-            }
-        }
-        sb.append("\n");
-
+        sb.append("]");
         return sb.toString();
+    }
+
+    public String getUpperRowElem(List<String> bridge, int currentPos, int endPos) {
+        if (bridge.size() != endPos && currentPos == endPos-1) {
+            return " X ";
+        }
+        if (bridge.get(currentPos).equals("U")) {
+            return " O ";
+        }
+        return "   ";
+    }
+
+    public String renderLowerRow(List<String> bridge, int nextLocation) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("[");
+        for (int i = 0; i < nextLocation; i++) {
+            sb.append(getLowerRowElem(bridge, i, nextLocation));
+            if (i != nextLocation - 1) sb.append("|");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    public String getLowerRowElem(List<String> bridge, int currentPos, int endPos) {
+        if (bridge.size() != endPos && currentPos == endPos-1) {
+            return " X ";
+        }
+        if (bridge.get(currentPos).equals("D")) {
+            return " O ";
+        }
+        return "   ";
     }
 }
