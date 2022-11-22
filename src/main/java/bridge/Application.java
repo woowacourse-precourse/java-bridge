@@ -35,7 +35,7 @@ public class Application {
 		while (!map.success(map, size)) {
 			System.out.println(MESSAGE_WANNA_MOVE);
 			playerBridge.add(InputView.readMoving());
-			new BridgeGame().move(map, bridge, playerBridge);
+			BridgeGame.move(map, bridge, playerBridge);
 			OutputView.printMap(map);
 			if (whenFail()) {
 				return;
@@ -50,7 +50,7 @@ public class Application {
 		}
 		System.out.println(MESSAGE_WANNA_RESTART);
 		if (InputView.readGameCommand().equals(RETRY)) {
-			count = new BridgeGame().retry(map, playerBridge, count);
+			count = BridgeGame.retry(map, playerBridge, count);
 			return false;
 		}
 		OutputView.printResult(map, FAIL, count);

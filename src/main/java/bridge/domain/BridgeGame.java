@@ -14,7 +14,7 @@ import static bridge.Constants.*;
  */
 public class BridgeGame {
 
-	public void move(Map map, Bridge bridge, PlayerBridge playerBridge) {
+	public static void move(Map map, Bridge bridge, PlayerBridge playerBridge) {
 		String answer = getAnswer(bridge, playerBridge);
 
 		if (playerBridge.getLastValue().equals(UP)) {
@@ -27,7 +27,7 @@ public class BridgeGame {
 		}
 	}
 
-	private String getAnswer(Bridge bridge, PlayerBridge playerBridge) {
+	private static String getAnswer(Bridge bridge, PlayerBridge playerBridge) {
 		int index = playerBridge.getLastIndex();
 
 		if (playerBridge.getLastValue().equals(bridge.getValueOfIndex(index))) {
@@ -36,7 +36,7 @@ public class BridgeGame {
 		return X;
 	}
 
-	public int retry(Map map, PlayerBridge playerBridge, int count) {
+	public static int retry(Map map, PlayerBridge playerBridge, int count) {
 		map.init();
 		playerBridge.init();
 		return count + 1;
