@@ -24,8 +24,17 @@ public class BridgeGameController {
 
         bridgeLenRangeCheck(bridgeLen);
         bridges =  makeBridge(bridgeLen);
+        bridges.clear();
+        bridges.add("U");
+        bridges.add("D");
+        bridges.add("D");
+
 
         for(int count = 0; count < bridgeLen; count++){
+            bridges.clear();
+            bridges.add("U");
+            bridges.add("D");
+            bridges.add("U");
             String move = readMoving();
             //moveCheck(move);
             inputMove.add(move);

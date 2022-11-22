@@ -35,10 +35,6 @@ public class BridgeMaker {
                 bridges.add("D");
             }
         }
-        bridges.clear();
-        bridges.add("U");
-        bridges.add("D");
-        bridges.add("D");
         return bridges;
     }
 }
