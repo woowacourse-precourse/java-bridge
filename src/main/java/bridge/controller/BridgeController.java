@@ -49,19 +49,21 @@ public class BridgeController {
 	}
 
 	public void play(List<String> bridges) {
-		int moveIndex = 0;
 		String map = "";
-		while (moveIndex < bridges.size()) {
-			String moveCommand = askMove();
-			boolean isRightMove = bridgeGame.move(bridges, moveCommand, moveIndex);
+		int index;
+		for (index = 0; index < bridges.size(); index++) {
+			boolean isRightMove = bridgeGame.move(bridges, askMove(), index);
 			map = outputView.printMap(bridges, moves);
-			moveIndex++;
-			if (!isRightMove) {
-				moveIndex = askRetry();
-				bridgeResult.addCountOfAttemps(moveIndex);
-			}
+			index = retry(isRightMove, index);
 		}
-		updateResult(bridges, moveIndex, map);
+		updateResult(bridges,index, map);
+	}
+	public int retry(boolean isRightmove, int index) {
+		if (!isRightmove) {
+			index = askRetry();
+			bridgeResult.addCountOfAttemps(index);
+		}
+		return index;
 	}
 
 	public void updateResult(List<String> bridges, int moveIndex, String map) {
@@ -86,7 +88,6 @@ public class BridgeController {
 
 	public int askRetry() {
 		try {
-			outputView.printRetry();
 			String command = inputView.readGameCommand();
 			moves.clear();
 			return bridgeGame.retry(command);

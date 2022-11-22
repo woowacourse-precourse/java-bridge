@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.command.BridgeMoveCommand;
 import bridge.domain.result.BridgeResult;
 import java.util.List;
 
@@ -26,55 +27,42 @@ public class OutputView {
 		System.out.println(PRINT_GAME_START);
 	}
 
-	public void printSizeSelect() {
-		System.out.println(PRINT_SIZE_SELECT);
-	}
-
-	public void printMoveSelect() {
-		System.out.println(MOVE_SELECT);
-	}
-
-	public void printRetry() {
-		System.out.println(GAME_RETRY);
-	}
-
 	/**
 	 * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public String printMap(List<String> bridges, List<String> moves) {
-		StringBuilder logUpLine = new StringBuilder(BRIDGE_RESULT_OPEN);
-		StringBuilder logDownLine = new StringBuilder(BRIDGE_RESULT_OPEN);
-		for (int index = 0; index < moves.size(); index++) {
-			String bridgeColumn = bridges.get(index);
-			String moveColumn = moves.get(index);
-			if (index > 0) {
-				logUpLine.append(BRIDGE_RESULT_MIDDLE);
-				logDownLine.append(BRIDGE_RESULT_MIDDLE);
-			}
-			if (moveColumn.equals(bridgeColumn)) {
-				if (moveColumn.equals("U")) {
-					logUpLine.append(SUCCESS);
-					logDownLine.append(BLANK);
-				} else {
-					logUpLine.append(BLANK);
-					logDownLine.append(SUCCESS);
-				}
-			} else {
-				if (moveColumn.equals("U")) {
-					logUpLine.append(FAIL);
-					logDownLine.append(BLANK);
-				} else {
-					logUpLine.append(BLANK);
-					logDownLine.append(FAIL);
-				}
-			}
+		StringBuilder log = new StringBuilder();
+		BridgeMoveCommand[] values = BridgeMoveCommand.values();
+		for(BridgeMoveCommand bridgeMoveCommand : values){
+			log.append(BRIDGE_RESULT_OPEN);
+			appendMap(log,moves,bridges,bridgeMoveCommand.getCommand());
+			log.append(BRIDGE_RESULT_CLOSE).append(ENTER);
 		}
-		logUpLine.append(BRIDGE_RESULT_CLOSE);
-		logDownLine.append(BRIDGE_RESULT_CLOSE);
-		System.out.println(logUpLine + ENTER + logDownLine + ENTER);
-		return logUpLine + ENTER + logDownLine;
+		System.out.print(log);
+		return log.toString();
+	}
+
+	public void appendMap(StringBuilder log ,List<String> moves,List<String> bridges,String command){
+		for (int i = 0; i < moves.size() ; i++) {
+			if (i > 0){
+				log.append(BRIDGE_RESULT_MIDDLE);
+			}
+			if(!command.equals(moves.get(i))){
+				log.append(BLANK);
+				continue;
+			}
+			log.append(isEquals(bridges,moves,i));
+		}
+	}
+	public String isEquals(List<String> bridges,List<String> moves,int index){
+		String a = bridges.get(index);
+		String b = moves.get(index);
+		if(a.equals(b)){
+			return SUCCESS;
+		}
+		return FAIL;
 	}
 
 	/**
