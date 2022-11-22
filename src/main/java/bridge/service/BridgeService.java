@@ -121,6 +121,18 @@ public class BridgeService {
 
     }
 
+    public static void viewResult(){
+        OutputView.printResult(presentMoveBridge);
+    }
+
+    public static void gameSuccess(){
+        OutputView.printGameSuccess(true);
+    }
+
+    public static void tryCount(){
+        OutputView.printTryCount();
+    }
+
     public static String checkRetryQuit(String input){
         if (input.equals("R") || input.equals("Q")) {
             return input;

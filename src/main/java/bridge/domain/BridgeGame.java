@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.service.BridgeService;
-import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -38,9 +37,9 @@ public class BridgeGame {
                 break;
             }
             if (answerCount == BridgeService.getInputSize()) {
-                OutputView.printResult(BridgeService.getPresentMoveBridge());
-                OutputView.printGameSuccess(true);
-                OutputView.printTryCount();
+                BridgeService.viewResult();
+                BridgeService.gameSuccess();
+                BridgeService.tryCount();
                 break;
             }
             dir = BridgeService.getInitMoveRow();
