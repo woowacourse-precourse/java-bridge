@@ -1,23 +1,55 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.Player;
+import bridge.type.RetryType;
+import bridge.utils.PositionUtils;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private int gameCount = 1;
+    private final Bridge bridge;
+
+    public BridgeGame(int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridge = new Bridge(bridgeMaker.makeBridge(size));
+    }
+
+    public void start(Player player, String position) {
+        player.selectPosition(position);
     }
 
     /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     * @param player 사용자
+     * @param start
+     * @return 건널 수 있다면 true / 건널 수 없다면 false
      * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 사용자가 다리를 이동하고 이동 결과를 boolean type 으로 반환 한다.
      */
-    public void retry() {
+    public boolean move(Player player, int start) {
+        return PositionUtils.compareTo(player, bridge, start);
+    }
+
+    /**
+     * @param isPass 다리를 건넌 결과
+     * @return RetryType
+     * <p>
+     * 다리를 건넌 결과로 RetryType 을 반환한다.
+     */
+    public RetryType retry(boolean isPass) {
+        RetryType retryType = PositionUtils.toRetryType(isPass);
+
+        if (RetryType.RETRY.equals(retryType)) {
+            gameCount += 1;
+        }
+
+        return retryType;
+    }
+
+    public int totalGameCount() {
+        return this.gameCount;
     }
 }
