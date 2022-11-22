@@ -42,4 +42,8 @@ public class BridgeGame {
     public static List<String> getBridge(){
         return bridge;
     }
+
+    public int getTryTimes(){
+        return tryTimes;
+    }
 }
