@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.BridgeGameCheck;
 import bridge.domain.BridgeGame;
 import bridge.enums.UpDown;
 import org.assertj.core.api.Assertions;
@@ -35,7 +36,7 @@ public class GameTest {
 	void normalTest(){
 		IntStream.range(0, BRIDGE_SIZE)
 				.forEach(i -> bridgeGame.move(UpDown.DOWN.getDirection()));
-		Assertions.assertThat(bridgeGame.isGameWin()).isTrue();
+		Assertions.assertThat(BridgeGameCheck.isGameWin(bridgeGame)).isTrue();
 	}
 
 	@DisplayName("게임 예외 테스트")
@@ -43,7 +44,7 @@ public class GameTest {
 	void exceptionTest(){
 		IntStream.range(0, BRIDGE_SIZE)
 				.forEach(i -> bridgeGame.move(UpDown.UP.getDirection()));
-		Assertions.assertThat(bridgeGame.isGameWin()).isFalse();
+		Assertions.assertThat(BridgeGameCheck.isGameWin(bridgeGame)).isFalse();
 	}
 
 	@DisplayName("다리를 못건너는 경우 종료 확인")
@@ -52,6 +53,6 @@ public class GameTest {
 		bridgeGame.move("D");
 		bridgeGame.move("D");
 		bridgeGame.move("U");
-		Assertions.assertThat(bridgeGame.isGameLoss()).isTrue();
+		Assertions.assertThat(BridgeGameCheck.isGameLoss(bridgeGame)).isTrue();
 	}
 }

@@ -37,41 +37,20 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        playerDirections.remove(playerDirections.size() - 1);
+        undoLastMove();
         trial++;
     }
 
-    public List<String> getAnswerBridge() {
+    private void undoLastMove() {
+        playerDirections.remove(playerDirections.size() - 1);
+    }
+
+    public List<String> getAnswerDirections() {
         return Collections.unmodifiableList(answerDirections);
     }
 
-    public List<String> getPlayerBridge() {
+    public List<String> getPlayerDirections() {
         return Collections.unmodifiableList(playerDirections);
-    }
-
-    public boolean isMatchDirection() {
-        int size = playerDirections.size();
-        List<String> subAnswerBridge = answerDirections.subList(0, size);
-        return subAnswerBridge.equals(playerDirections);
-    }
-
-    public boolean isGameLoss(){
-        return isNotFinish() || !isAllMatch();
-    }
-
-    public boolean isNotFinish() {
-        return playerDirections.size() != answerDirections.size();
-    }
-
-    private boolean isAllMatch() {
-        int count = (int) IntStream.range(0, answerDirections.size())
-                .filter(idx -> Util.valueEqualCheck(answerDirections, playerDirections, idx))
-                .count();
-        return count == answerDirections.size();
-    }
-
-    public boolean isGameWin() {
-        return !isNotFinish() && isAllMatch();
     }
 
     public int getTrial() {

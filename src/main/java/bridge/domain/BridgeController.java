@@ -32,7 +32,7 @@ public class BridgeController {
 	private void gameProcess() {
 		while (true) {
 			gameStart();
-			if (bridgeGame.isGameLoss() && isRestartInput()) {
+			if (BridgeGameCheck.isGameLoss(bridgeGame) && isRestartInput()) {
 				bridgeGame.retry();
 				continue;
 			}
@@ -44,7 +44,7 @@ public class BridgeController {
 		do {
 			bridgeGame.move(inputDirection());
 			OutputView.printMap(bridgeGame);
-		} while (bridgeGame.isMatchDirection() && bridgeGame.isNotFinish());
+		} while (BridgeGameCheck.isMatchDirection(bridgeGame) && BridgeGameCheck.isNotFinish(bridgeGame));
 	}
 
 	private String inputDirection() {
