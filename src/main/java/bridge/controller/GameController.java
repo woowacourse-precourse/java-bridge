@@ -31,6 +31,7 @@ public class GameController {
     private int bridgeSize = 0;
     private int stage = 0;
     private int tryNumber = 1;
+    private String moving = "";
 
     public void init() {
         outputView.printGameStart();
@@ -79,10 +80,21 @@ public class GameController {
     }
 
     public void runGame(){
-        addBridgeMove(inputView.readMoving());
-        stage++;
+        moveInGame();
         outputView.printMap(upBridge,downBridge);
         System.out.println();
+    }
+
+    public void moveInGame(){
+        stage++;
+        while(true) {
+            moving = inputView.readMoving();
+            if (!checkException.checkInputMoving(moving)) {
+                continue;
+            }
+            addBridgeMove(moving);
+            break;
+        }
     }
 
     public boolean checkFail(int stage){
