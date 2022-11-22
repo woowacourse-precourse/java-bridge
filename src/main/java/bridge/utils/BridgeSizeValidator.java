@@ -6,7 +6,7 @@ import static bridge.utils.ErrorEnum.*;
 
 public class BridgeSizeValidator {
     private final static int minNum=3;
-    private final static int maxNUm=3;
+    private final static int maxNUm=20;
 
     public static void checkBridgeSize(String strBridgeSize) {
         checkBridgeSizeNumber(strBridgeSize);

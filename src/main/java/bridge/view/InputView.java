@@ -7,14 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.view.ViewEnum.*;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
-
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public static int getBridgeSize(){
         System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE.getMessage());
         return readBridgeSize(Console.readLine());
@@ -30,9 +23,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public static String getMoving() {
         System.out.println(INPUT_USER_MOVE_BRIDGE_MESSAGE.getMessage());
         return readMoving(Console.readLine());
@@ -48,9 +38,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public static String getGameCommand() {
         System.out.println(INPUT_WANT_RE_GAME_MESSAGE.getMessage());
         return readGameCommand(Console.readLine());

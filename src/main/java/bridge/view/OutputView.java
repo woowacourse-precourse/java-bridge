@@ -50,7 +50,7 @@ public class OutputView {
 
         printMap(bridgeGame);
 
-        System.out.printf(OUTPUT_GAME_RESULT_MESSAGE.getMessage(), bridgeGame.getGameSuccess());
+        System.out.printf(OUTPUT_GAME_RESULT_MESSAGE.getMessage(), bridgeGame.getGameBoolean());
         System.out.printf(OUTPUT_TOTAL_GAME_COUNT_MESSAGE.getMessage(), bridgeGame.getGameCount());
     }
 }

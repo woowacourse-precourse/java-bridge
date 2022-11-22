@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.MODEnum;
 import bridge.model.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
@@ -8,10 +9,10 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-public class BridgeGameController {
-    private final String gameSuccess="성공";
-    private final String retryGame="R";
+import static bridge.MODEnum.RE_GAME;
+import static bridge.MODEnum.SUCCESS_GAME_MESSAGE;
 
+public class BridgeGameController {
     private BridgeGame bridgeGame;
     private List<String> bridge;
 
@@ -20,7 +21,7 @@ public class BridgeGameController {
         do {
             bridgeGame.move(InputView.getMoving());
             OutputView.printMap(bridgeGame);
-            if(bridgeGame.getGameSuccess()!=gameSuccess) {
+            if(!bridgeGame.getGameBoolean().equals(SUCCESS_GAME_MESSAGE.getMessage())) {
                 String gameCommand = InputView.getGameCommand();
                 continueBrideGameCommand(gameCommand);
             }
@@ -29,7 +30,7 @@ public class BridgeGameController {
     }
 
     public void continueBrideGameCommand(String gameCommand){
-        if(gameCommand.equals(retryGame)){
+        if(gameCommand.equals(RE_GAME.getMessage())){
             bridgeGame.retry();
             bridgeGame.totalGamePlus();
         }
