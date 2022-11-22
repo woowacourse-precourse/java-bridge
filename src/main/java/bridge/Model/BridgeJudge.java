@@ -1,5 +1,7 @@
 package bridge.Model;
 
+import bridge.Constant.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,24 +21,24 @@ public class BridgeJudge {
     }
 
     private void judgeEqual(String userInput, Bridge bridge) {
-        if (userInput.equals("U")) {
-            bridge.updateUp("O");
-            bridge.updateDown(" ");
+        if (userInput.equals(Constant.UP_STR)) {
+            bridge.updateUp(Constant.RIGHT);
+            bridge.updateDown(Constant.SPACE);
             return;
         }
-        bridge.updateDown("O");
-        bridge.updateUp(" ");
+        bridge.updateDown(Constant.RIGHT);
+        bridge.updateUp(Constant.SPACE);
     }
 
     private void judgeNotEqual(String userInput, Bridge bridge) {
         bridge.setRightAnswer(false);
-        if (userInput.equals("U")) {
-            bridge.updateUp("X");
-            bridge.updateDown(" ");
+        if (userInput.equals(Constant.UP_STR)) {
+            bridge.updateUp(Constant.WRONG);
+            bridge.updateDown(Constant.SPACE);
             return;
         }
-        bridge.updateDown("X");
-        bridge.updateUp(" ");
+        bridge.updateDown(Constant.WRONG);
+        bridge.updateUp(Constant.SPACE);
     }
 
     public static List<String> getBridgeMapDown(List<String> result, int count) {

@@ -1,5 +1,6 @@
 package bridge.Model;
 
+import bridge.Constant.Constant;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -7,7 +8,6 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     public static final InputView getInstance = new InputView();
-    private static final String INT_REGEX = "^[0-9]*$";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -106,7 +106,7 @@ public class InputView {
      * 입력받은 값이 숫자가 아닐 경우 IllegalArgumentException 을 발생시킨다.
      */
     protected void checkNumber(String input) {
-        if (!input.matches(INT_REGEX)) {
+        if (!input.matches(Constant.INT_REGEX)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
         }
     }

@@ -1,9 +1,12 @@
 package bridge.Model;
 
 import bridge.BridgeNumberGenerator;
+import bridge.Constant.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.Constant.Constant.DOWN;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -11,8 +14,6 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final static int UP = 1;
-    private final static int DOWN = 0;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -27,11 +28,11 @@ public class BridgeMaker {
         int randomNum;
         for (int count = 0; count < size; count++) {
             randomNum = bridgeNumberGenerator.generate();
-            if (randomNum == UP) {
-                bridge.add("U");
+            if (randomNum == Constant.UP) {
+                bridge.add(Constant.UP_STR);
             }
             if (randomNum == DOWN) {
-                bridge.add("D");
+                bridge.add(Constant.DOWN_STR);
             }
         }
         return bridge;
