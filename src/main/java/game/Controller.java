@@ -22,7 +22,7 @@ public class Controller {
     private boolean isRestart(GameData gameData) {
         if (gameData.getPassDataSet().contains(GameResult.WRONG_FLOOR.getResultMessage())) {
             OutputView.printRestartStatusMessage();
-            return BridgeGame.retry(InputCheck.RestartStatusValue());
+            return BridgeGame.retry(InputCheck.restartStatusValue());
         }
         return false;
     }

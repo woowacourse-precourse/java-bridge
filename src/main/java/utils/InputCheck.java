@@ -15,7 +15,7 @@ public class InputCheck {
         }
     }
 
-    public static String setMovingValue() {
+    public static String movingValue() {
         while (true) {
             try {
                 return InputView.readMoving();
@@ -25,7 +25,7 @@ public class InputCheck {
         }
     }
 
-    public static String RestartStatusValue() {
+    public static String restartStatusValue() {
         while (true) {
             try {
                 return InputView.readGameCommand();
