@@ -6,6 +6,8 @@ import bridge.domain.BridgeGameResult;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameResultTest {
     BridgeGameResult bridgeGameResult;
@@ -32,5 +34,13 @@ class BridgeGameResultTest {
         assertThat(bridgeGameResult.getUpBridge().size()).isEqualTo(0);
         assertThat(bridgeGameResult.getDownBridge().size()).isEqualTo(0);
         assertThat(bridgeGameResult.isSuccess()).isTrue();
+    }
+
+    @Test
+    void 이동_결과_변환_테스트() {
+        boolean trueInput = bridgeGameResult.getComparison("O");
+        assertThat(trueInput).isEqualTo(true);
+        boolean falseInput = bridgeGameResult.getComparison("X");
+        assertThat(falseInput).isEqualTo(false);
     }
 }
