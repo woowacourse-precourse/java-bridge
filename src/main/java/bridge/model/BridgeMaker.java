@@ -31,12 +31,9 @@ public class BridgeMaker {
     }
 
     private String convertToBridge(Integer integer) {
-        if (integer == 0) {
+        if (integer == 1) {
             return "U";
         }
-        if (integer == 1) {
-            return "D";
-        }
-        return null;
+        return "D";
     }
 }
