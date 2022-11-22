@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.Draw;
 import bridge.type.DrawType;
 import bridge.type.PositionType;
 
@@ -18,12 +19,8 @@ public class OutputView {
     public void printMap(PositionType position, boolean isPass) {
         DrawType.PASS.draw(position, isPass, draw);
         DrawType.MISS.draw(position, isPass, draw);
-
-        String up = String.join(" | ", draw.getUpBridges());
-        String down = String.join(" | ", draw.getDownBridges());
-
-        System.out.printf("[ %s ]\n", up);
-        System.out.printf("[ %s ]\n", down);
+        System.out.printf("[ %s ]\n", String.join(" | ", draw.getUpBridges()));
+        System.out.printf("[ %s ]\n\n", String.join(" | ", draw.getDownBridges()));
     }
 
     /**
@@ -31,6 +28,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String gameStatus, int gameCount) {
+        System.out.println("최종 게임 결과");
+        System.out.printf("[ %s ]\n", String.join(" | ", draw.getUpBridges()));
+        System.out.printf("[ %s ]\n\n", String.join(" | ", draw.getDownBridges()));
+        System.out.printf("게임 성공 여부: %s", gameStatus);
+        System.out.printf("총 시도한 횟수: %d", gameCount);
+    }
+
+    public void reset() {
+        draw.removeAll();
     }
 }
