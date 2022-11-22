@@ -3,7 +3,10 @@ package bridge.application;
 import static org.assertj.core.api.Assertions.*;
 
 import bridge.domain.Bridge;
+import bridge.domain.GameCommand;
+import bridge.domain.GameStatus;
 import bridge.domain.Move;
+import bridge.domain.Moving;
 import bridge.domain.Result;
 import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
@@ -39,6 +42,48 @@ class BridgeGameTest {
         Result result = bridgeGame.getResult();
 
         assertThat(result).isEqualTo(Result.FAIL);
+    }
+
+    @DisplayName("이동한 다리의 위치가 동일하면 이동 테스트를 성공합니다.")
+    @Test
+    void 다리_이동_테스트_성공() {
+        Bridge bridge = new Bridge(Arrays.asList("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.move(Move.UP);
+        Result result = bridgeGame.getMoving().getResult();
+
+        assertThat(result).isEqualTo(Result.SUCCESS);
+    }
+
+    @DisplayName("이동한 다리의 위치가 동일하지 않으면 이동 테스트를 실패합니다.")
+    @Test
+    void 다리_이동_테스트_실패() {
+        Bridge bridge = new Bridge(Arrays.asList("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        Moving moving = bridgeGame.move(Move.DOWN);
+        Result result = moving.getResult();
+
+        assertThat(result).isEqualTo(Result.FAIL);
+    }
+
+    @DisplayName("다리 건너기 게임 재시도 시 초기화 설정")
+    @Test
+    void 다리_이동_테스트_재시도() {
+        Bridge bridge = new Bridge(Arrays.asList("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.move(Move.UP);
+        bridgeGame.retry();
+
+        initializeTest(bridgeGame);
+    }
+
+    private void initializeTest(BridgeGame bridgeGame) {
+        assertThat(bridgeGame.getCount().getCount()).isEqualTo(2);
+        assertThat(bridgeGame.getMoving().getMovingResult(Move.UP).size()).isEqualTo(0);
+        assertThat(bridgeGame.getMoving().getMovingResult(Move.DOWN).size()).isEqualTo(0);
     }
 
 }
