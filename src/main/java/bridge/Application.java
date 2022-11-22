@@ -49,23 +49,13 @@ public class Application {
     }
 
     private static void printDownBridge() {
-        List<String> downString = new ArrayList<>();
-        for (int i = 0; i < visited.size(); i++) {
-            boolean rightDirection = bridgeGame.isRightDirection(i, visited.get(i));
-            String result = bridgeGame.getResult(i, "D", rightDirection);
-            downString.add(result);
-        }
-        outputView.printMap(downString);
+        List<String> downBridge = bridgeGame.getDownBridge();
+        outputView.printMap(downBridge);
     }
 
     private static void printUpBridge() {
-        List<String> upString = new ArrayList<>();
-        for (int i = 0; i < visited.size(); i++) {
-            boolean rightDirection = bridgeGame.isRightDirection(i, visited.get(i));
-            String result = bridgeGame.getResult(i, "U", rightDirection);
-            upString.add(result);
-        }
-        outputView.printMap(upString);
+        List<String> upBridge = bridgeGame.getUpBridge();
+        outputView.printMap(upBridge);
     }
 
     private static boolean retry() {
