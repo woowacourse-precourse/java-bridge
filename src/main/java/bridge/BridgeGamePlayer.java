@@ -17,6 +17,8 @@ public class BridgeGamePlayer {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
+    private static boolean gameSuccess;
+
 
     public void run(){
         outputView.showMessage(START_MESSAGE.getMessage());
@@ -26,6 +28,7 @@ public class BridgeGamePlayer {
     private void setting(){
         List<String> bridge = new ArrayList<>();
         bridge = getBridge();
+        gameSuccess =true;
         gameStart(bridge);
     }
 
@@ -52,7 +55,8 @@ public class BridgeGamePlayer {
                 continue;
             }
             outputView.showMessage(RETRY_OR_QUIT.getMessage());
-            game.retry(bridge,inputView.readGameCommand());
+            gameSuccess=game.retry(bridge,inputView.readGameCommand());
+
         }
     }
 
