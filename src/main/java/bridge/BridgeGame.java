@@ -10,26 +10,26 @@ public class BridgeGame {
     private int tryTimes;
     private String recentInput;
 
-    BridgeGame(){
+    BridgeGame() {
         this.nowIdx = 0;
         this.tryTimes = 1;
     }
 
-    public void setSize(int size){
-        if(size<3||size>20)
+    public void setSize(int size) {
+        if (size < 3 || size > 20)
             OutputView.errorHandling("3~20 사이의 숫자를 입력해주세요.");
         this.makeBridge(size);
     }
 
-    private void makeBridge(int bridgeSize){
-        BridgeMaker bridgeMaker = new BridgeMaker (new BridgeRandomNumberGenerator());
+    private void makeBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     public boolean move(String userInput) {
         this.recentInput = userInput;
-        if(userInput.equals(bridge.get(nowIdx))){
-            if(nowIdx == bridge.size()-1){
+        if (userInput.equals(bridge.get(nowIdx))) {
+            if (nowIdx == bridge.size() - 1) {
                 return endGame(userInput);
             }
             nowIdx++;
@@ -38,8 +38,8 @@ public class BridgeGame {
         return false;
     }
 
-    private boolean endGame(String userInput){
-        if(userInput.equals(bridge.get(nowIdx))){
+    private boolean endGame(String userInput) {
+        if (userInput.equals(bridge.get(nowIdx))) {
             this.win = true;
             return false;
         }
@@ -47,12 +47,12 @@ public class BridgeGame {
         return false;
     }
 
-    public void resetGame(){
+    public void resetGame() {
         this.nowIdx = 0;
     }
 
     public boolean retry(String userInput) {
-        if(userInput.equals("R")){
+        if (userInput.equals("R")) {
             tryTimes++;
             resetGame();
             return true;
@@ -60,17 +60,23 @@ public class BridgeGame {
         return false;
     }
 
-    public static List<String> getBridge(){
+    public static List<String> getBridge() {
         return bridge;
     }
 
-    public int getTryTimes(){
+    public int getTryTimes() {
         return tryTimes;
     }
 
-    public int getNowIdx(){return nowIdx;}
+    public int getNowIdx() {
+        return nowIdx;
+    }
 
-    public boolean getWin(){return win;}
+    public boolean getWin() {
+        return win;
+    }
 
-    public String getRecentInput(){return recentInput;}
+    public String getRecentInput() {
+        return recentInput;
+    }
 }
