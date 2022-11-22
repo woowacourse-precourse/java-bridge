@@ -11,8 +11,8 @@ public class Result {
     private static final String WRONG_PATH = "X";
     private static final String OTHER_PATH = " ";
 
-    private List<String> answer;
-    private List<List<String>> results;
+    private final List<String> answer;
+    private final List<List<String>> results;
 
     public Result(List<String> answer) {
         this.answer = answer;

@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.List;
 
 public class BridgeGame {
-    private Result result;
+    private final Result result;
     private int count;
 
     public BridgeGame(List<String> answer) {

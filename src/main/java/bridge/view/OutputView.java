@@ -5,7 +5,6 @@ import bridge.domain.Result;
 import java.util.List;
 
 public class OutputView {
-
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
     private static final String CHECK_SUCCESS_MESSAGE = "게임 성공 여부: %s";
