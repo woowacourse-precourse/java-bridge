@@ -14,6 +14,8 @@ public class InputView {
         System.out.println(GAME_START_MESSAGE);
 
         int size = convertStringToInt(Console.readLine());
+
+        System.out.println();
         return size;
     }
 
