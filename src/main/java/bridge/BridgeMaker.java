@@ -16,11 +16,11 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-
-        for (int count = 0; count < size; count++) {
+        for (int index = 0; index < size; index++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
             bridge.add(Arrays.stream(BridgeDirection.values())
-                    .filter(bridgeDirection -> bridgeNumber == bridgeDirection.getRandomNumber()).findFirst().orElse(BridgeDirection.NOTING).getMark());
+                    .filter(bridgeDirection -> bridgeNumber == bridgeDirection.getRandomNumber())
+                    .findFirst().orElse(BridgeDirection.NOTING).getDirection());
         }
         return bridge;
     }

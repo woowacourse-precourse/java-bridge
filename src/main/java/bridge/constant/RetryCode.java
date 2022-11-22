@@ -4,13 +4,13 @@ public enum RetryCode {
     RETRY("R"),
     QUIT("Q");
 
-    private final String retryCode;
+    private final String code;
 
-    RetryCode(String retryCode) {
-        this.retryCode = retryCode;
+    RetryCode(String code) {
+        this.code = code;
     }
 
-    public String getRetryCode() {
-        return retryCode;
+    public String getCode() {
+        return code;
     }
 }

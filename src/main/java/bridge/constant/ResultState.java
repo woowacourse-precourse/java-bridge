@@ -4,13 +4,13 @@ public enum ResultState {
     SUCCESS("성공"),
     FAIL("실패");
 
-    private final String result;
+    private final String state;
 
-    ResultState(String result) {
-        this.result = result;
+    ResultState(String state) {
+        this.state = state;
     }
 
-    public String getResult() {
-        return result;
+    public String getState() {
+        return state;
     }
 }

@@ -6,18 +6,18 @@ public enum BridgeDirection {
     NOTING(-1,"N");
 
     private final int randomNumber;
-    private final String mark;
+    private final String direction;
 
-    BridgeDirection(int randomNumber, String mark) {
+    BridgeDirection(int randomNumber, String direction) {
         this.randomNumber = randomNumber;
-        this.mark = mark;
+        this.direction = direction;
     }
 
     public int getRandomNumber() {
         return randomNumber;
     }
 
-    public String getMark() {
-        return mark;
+    public String getDirection() {
+        return direction;
     }
 }

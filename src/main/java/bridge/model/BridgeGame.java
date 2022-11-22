@@ -21,7 +21,7 @@ public class BridgeGame {
         if (isFirst(index)) countUp();
         return Arrays.stream(BridgeCase.values())
                 .filter(bridgeCase -> isFirst(index) == bridgeCase.isFirst())
-                .filter(bridgeCase -> bridgeToMove.equals(bridgeCase.getMark()))
+                .filter(bridgeCase -> bridgeToMove.equals(bridgeCase.getDirection()))
                 .findFirst().orElse(BridgeCase.NOTHING);
     }
 
@@ -30,7 +30,7 @@ public class BridgeGame {
     }
 
     public boolean retry(String command) {
-        return command.equals(RetryCode.RETRY.getRetryCode());
+        return command.equals(RetryCode.RETRY.getCode());
     }
 
     public boolean isFirst(int index) {
