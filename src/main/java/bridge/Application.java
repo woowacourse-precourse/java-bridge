@@ -11,6 +11,5 @@ public class Application {
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
         }
-
     }
 }
