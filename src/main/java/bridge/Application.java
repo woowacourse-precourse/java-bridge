@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.controller.GameController;
 import bridge.model.BridgeGame;
+import bridge.view.OutputView;
 
 public class Application {
 
@@ -11,7 +12,7 @@ public class Application {
             GameController gameController = new GameController();
             gameController.start();
         }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            OutputView.printError(e.getMessage());
         }
     }
 }

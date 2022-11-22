@@ -8,6 +8,10 @@ import java.util.List;
 public class OutputView {
 
 
+    public static void printError(String message) {
+        System.out.println(message);
+    }
+
     public void startPrint(){
         System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
