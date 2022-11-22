@@ -48,13 +48,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String answer, String readMoving) {
+    private void move(String answer, String readMoving) {
         moveUpperBridge(answer, readMoving);
         moveUnderBridge(answer, readMoving);
         outputView.printMap(Common.formatToPrintMap(upperBridge, underBridge));
     }
 
-    public void moveUpperBridge(String answer, String readMoving) {
+    private void moveUpperBridge(String answer, String readMoving) {
         if (answer.equals("D")) {
             upperBridge.add("   ");
             return;
@@ -66,7 +66,7 @@ public class BridgeGame {
         upperBridge.add(" X ");
     }
 
-    public void moveUnderBridge(String answer, String readMoving) {
+    private void moveUnderBridge(String answer, String readMoving) {
         if (answer.equals("U")) {
             underBridge.add("   ");
             return;
