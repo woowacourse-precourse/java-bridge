@@ -10,7 +10,6 @@ public class OutputView {
     PrintView printView = new PrintView();
     BridgeGame bridgeGame = new BridgeGame();
     InputView inputView = new InputView();
-    private String moveStep;
     InputMoveStepHandler inputMoveStepHandler = new InputMoveStepHandler();
 
     public void printMap(List<String> bridgeData) {
@@ -31,7 +30,7 @@ public class OutputView {
 
     private void stepIntoBridge(List<String> bridgeData, int index) {
         System.out.println(printView.MOVE_STEP);
-        moveStep = inputView.readGameCommand();
+        String moveStep = inputView.readGameCommand();
         bridgeGame.move(inputMoveStepHandler.checkValidator(moveStep), bridgeData.get(index), index);
     }
 
@@ -53,15 +52,15 @@ public class OutputView {
     }
 
     public void printSuccessOrFailCase() {
-        if(bridgeGame.checkResultFlag == 1) {
+        if(BridgeGame.checkResultFlag == 1) {
             printView.lineSkip();
             System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.FAIL);
-            System.out.println(printView.TOTAL_COUNT+" "+ bridgeGame.retryCount);
+            System.out.println(printView.TOTAL_COUNT+" "+ BridgeGame.retryCount);
         }
-        if(bridgeGame.checkResultFlag == 2) {
+        if(BridgeGame.checkResultFlag == 2) {
             printView.lineSkip();
             System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.SUCCESS);
-            System.out.println(printView.TOTAL_COUNT+" "+ bridgeGame.retryCount);
+            System.out.println(printView.TOTAL_COUNT+" "+ BridgeGame.retryCount);
         }
     }
 
