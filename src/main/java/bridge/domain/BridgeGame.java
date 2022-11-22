@@ -40,6 +40,10 @@ public class BridgeGame {
         return bridgeSize == movingPosition;
     }
 
+    public int getGameAttempts() {
+        return player.getGameAttempts();
+    }
+
     private String getMovingResult(String moving) {
         int movingPosition = player.getMovingPosition();
         String movingBridgeShape = bridge.getBridgeShapeByPosition(movingPosition);
