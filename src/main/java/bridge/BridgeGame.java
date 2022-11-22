@@ -8,8 +8,21 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public List<String> upCells = new ArrayList<>();
-    public List<String> downCells = new ArrayList<>();
+    private final List<String> upCells;
+    private final List<String> downCells;
+    private final List<String> bridge;
+    private int count;
+    private int index;
+    private boolean movingStatus;
+
+    public BridgeGame(List<String> bridge) {
+        this.upCells = new ArrayList<>();
+        this.downCells = new ArrayList<>();
+        this.bridge = bridge;
+        this.count = 0;
+        this.index = 0;
+        this.movingStatus = true;
+    }
 
     public List<String> getUpCells() {
         return upCells;
@@ -17,6 +30,18 @@ public class BridgeGame {
 
     public List<String> getDownCells() {
         return downCells;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isMovingStatus() {
+        return movingStatus;
+    }
+
+    public boolean isEnd() {
+        return index == bridge.size();
     }
 
     public static String valueOfStatus(boolean status) {
@@ -31,17 +56,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moving, String cell) {
-        boolean result = moving.equals(cell);
+    public void move(String moving) {
+        movingStatus = moving.equals(bridge.get(index++));
         if (moving.equals(CellType.DOWN.getCell())){
-            downCells.add(valueOfStatus(result));
+            downCells.add(valueOfStatus(movingStatus));
             upCells.add(" ");
         }
         if (moving.equals(CellType.UP.getCell())){
-            upCells.add(valueOfStatus(result));
+            upCells.add(valueOfStatus(movingStatus));
             downCells.add(" ");
         }
-        return result;
     }
 
     /**
@@ -49,6 +73,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String input) {
+        if (input.equals("R")){
+            count++;
+            movingStatus = true;
+            index = 0;
+            upCells.clear();
+            downCells.clear();
+        }
     }
 }
