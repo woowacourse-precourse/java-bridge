@@ -1,5 +1,12 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeMaker;
+import bridge.domain.GameEndChecker;
+import bridge.domain.Player;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class BridgeGame {
 
     private final InputView inputView;
