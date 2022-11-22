@@ -7,14 +7,20 @@ import java.util.NoSuchElementException;
 
 public enum Retry {
 
-    YES("R"),
-    NO("Q"),
+    YES("R", true),
+    NO("Q", false),
     ;
 
     private final String command;
 
-    Retry(final String command) {
+    private final boolean value;
+
+    Retry(
+            final String command,
+            final boolean value
+    ) {
         this.command = command;
+        this.value = value;
     }
 
     public static Retry commandOf(final String command) {
@@ -31,5 +37,9 @@ public enum Retry {
 
     public String getCommand() {
         return command;
+    }
+
+    public boolean getValue() {
+        return value;
     }
 }

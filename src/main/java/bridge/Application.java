@@ -26,7 +26,15 @@ public class Application {
         final Movement movement = askMoving();
         final Path path = bridgeGame.onMove(movement);
         printMap(path);
+        boolean retries = retries(bridgeGame);
+    }
+
+    private static boolean retries(final BridgeGame bridgeGame) {
         final Retry retry = askRetrying();
+        if (retry == Retry.YES) {
+            bridgeGame.onRetry();
+        }
+        return retry.getValue();
     }
 
     private static Retry askRetrying() {
