@@ -11,7 +11,7 @@ public class InputValidator {
 
     private static void validateBridgeSizeRange(String bridgeSizeInput) {
         final int MINIMAL_BRIDGE_SIZE = 3;
-        final int MAXIMAL_BRIDGE_SIZE = 3;
+        final int MAXIMAL_BRIDGE_SIZE = 20;
 
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
 
