@@ -25,7 +25,7 @@ public class Application {
         do {
             String userRemoveCommand = inputView.readMoving();
             gameChecked = bridgeGame.move(answerBridge,userRemoveCommand);
-            outputView.printMap(bridgeGame.upBridge,bridgeGame.downBridge);
+            outputView.printMap(bridgeGame.getBridgeToString());
             if(!gameChecked){
                 break;
             }

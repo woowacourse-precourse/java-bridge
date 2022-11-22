@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -10,8 +11,8 @@ public class BridgeGame {
 
     private final String UP_BRIDGN_SIGN = "U";
     private final String EMPTY_SIGN = " ";
-    public List<String> upBridge;
-    public List<String> downBridge;
+    private List<String> upBridge;
+    private List<String> downBridge;
     private int moveCount;
     public int gameCount;
     public boolean gameStatus;
@@ -65,5 +66,15 @@ public class BridgeGame {
         }
         upBridge.add(EMPTY_SIGN);
         downBridge.add(input);
+    }
+
+    public String getBridgeToString(){
+        StringBuilder bridgeToString = new StringBuilder();
+        String printUpBridge = upBridge.stream()
+                .collect(Collectors.joining(" | ","[ "," ]"));
+        String printDownBridge = downBridge.stream()
+                .collect(Collectors.joining(" | ","[ "," ]"));
+        bridgeToString.append(printUpBridge).append("\n").append(printDownBridge).append("\n");
+        return bridgeToString.toString();
     }
 }
