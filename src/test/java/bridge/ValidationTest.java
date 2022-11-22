@@ -1,6 +1,10 @@
-package bridge.validation;
+package bridge;
 
 import bridge.model.BridgeSize;
+import bridge.validation.Validation;
+import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -17,6 +21,11 @@ public class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE)
                 .hasMessageContaining("다리의 길이는 숫자이어야 합니다.");
+    }
+
+    @Test
+    void 다리의_길이_입력_값이_숫자일_경우_숫자_반환(){
+        Assertions.assertThat(Validation.toInt("3")).isEqualTo(3);
     }
 
     @ParameterizedTest
