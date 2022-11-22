@@ -24,12 +24,12 @@ public class Record {
         resultRecord(move, resultString);
     }
 
-    public List<String> getResult() {
-        List<String> results = new ArrayList<>();
-        results.add(getResultMessage(upBridgeResult));
-        results.add(getResultMessage(downBridgeResult));
+    public List<String> getRecordedMap() {
+        List<String> map = new ArrayList<>();
+        map.add(getResultMessage(upBridgeResult));
+        map.add(getResultMessage(downBridgeResult));
 
-        return results;
+        return map;
     }
 
     public List<String> getFinalResultToString() {

@@ -26,7 +26,7 @@ public class Service {
     }
 
     public List<String> getCurrentResult() {
-        return record.getResult();
+        return record.getRecordedMap();
     }
 
     public String getPlayResult() {
