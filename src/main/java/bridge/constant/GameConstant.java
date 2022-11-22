@@ -7,5 +7,7 @@ public class GameConstant {
     public static final String FAIL = "실패";
     public static final String RETRY = "R";
     public static final String QUIT = "Q";
+    public static final int START_MOVE_COUNT = 0;
+    public static final int START_TRY_COUNT = 1;
 
 }
