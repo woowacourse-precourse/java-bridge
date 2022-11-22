@@ -38,23 +38,25 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(int bridgeCount) {
+        System.out.println(bridge);
         bridgeCount = -1;
         do {
             alphabet = inputView.readMoving();
             bridgeCount += 1;
-            if (bridgeCount == size - 1) {break;}
-        } while (bridge.get(bridgeCount).equals(alphabet));
+            outputView.printMap(alphabet, bridge, bridgeCount);
+            checkCount(bridgeCount);
+        } while (bridge.get(bridgeCount).equals(alphabet) && bridgeCount != size -1);
     }
 
-    public boolean getMove() {
-        move();
-        checkCount(bridgeCount);
+    public boolean getMove(int bridgeCount) {
+        move(bridgeCount);
         return wrongMovement;
     }
 
     public void checkCount(int bridgeCount) {
-        if (bridgeCount == size - 1) {
+        System.out.println(bridgeCount);
+        if (bridgeCount == size - 1 && bridge.get(bridgeCount).equals(alphabet)) {
             wrongMovement = false;
         }
     }
@@ -74,7 +76,8 @@ public class BridgeGame {
     public void resultPrint() {
         int tryCount = 0;
         while (playMore && wrongMovement) {
-            wrongMovement = getMove();
+            outputView.clearResult();
+            wrongMovement = getMove(bridgeCount);
             if (wrongMovement) {playMore = retry();}
             tryCount += 1;
         }
