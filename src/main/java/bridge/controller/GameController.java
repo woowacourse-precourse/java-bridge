@@ -31,11 +31,10 @@ public class GameController {
     }
 
     private void bridgeMaker(InputView inputView){
-        String input = inputView.readBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         try{
-            int size = bridgeMaker.getSizeInteger(input);
+            int size = inputView.readBridgeSize();
             bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
         }catch (IllegalArgumentException e){
             arrangeErrorMakingBridge(inputView, e);

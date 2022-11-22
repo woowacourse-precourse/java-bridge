@@ -1,6 +1,7 @@
 package bridge.ui;
 
 
+import bridge.model.ErrorMessage;
 import bridge.model.GameMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -10,9 +11,12 @@ public class InputView {
         printStartMessage();
         System.out.println();
     }
-    public String readBridgeSize() {
+    public int readBridgeSize() {
         printSizeMessage();
-        return getInput();
+        String input = getInput();
+        int size = getSizeInteger(input);
+        isValidRange(size);
+        return size;
     }
 
     public String readMoving() {
@@ -43,5 +47,19 @@ public class InputView {
 
     private String getInput(){
         return Console.readLine();
+    }
+
+    private int getSizeInteger(String size){
+        try{
+            return Integer.parseInt(size);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC_VALUE.getOutput());
+        }
+    }
+
+    private void isValidRange(int size){
+        if(size < 3 || size > 20){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC_VALUE.getOutput());
+        }
     }
 }
