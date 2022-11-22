@@ -24,6 +24,15 @@ public class BridgeGameController {
         gameStart(bridge, game);
     }
 
+    public void gameStart(Bridge bridge, Game game) {
+        while (!game.isGameDone()) {
+            String userMove = askHowUserMoves();
+            outputView.printNowMap(bridge.getNowIndex(), userMove, bridge.isSameValueOfComputerAndUser(userMove));
+            determineUserValueIsEqualToComputerValue(bridge, game, userMove);
+        }
+        outputView.printResult(game);
+    }
+
 
 
 }
