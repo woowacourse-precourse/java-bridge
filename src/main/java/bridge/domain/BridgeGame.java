@@ -1,12 +1,5 @@
 package bridge.domain;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-import org.assertj.core.api.ThrowableAssert;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +59,10 @@ public class BridgeGame {
 
     public List<List<String>> getBridges() {
         return List.of(upBridge, downBridge);
+    }
+
+    public boolean getGameResult() {
+        return gameResult;
     }
 
     private void moveRightWay(String moveCommand) {
