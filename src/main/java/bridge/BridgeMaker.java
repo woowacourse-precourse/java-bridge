@@ -27,7 +27,6 @@ public class BridgeMaker {
             bridge.add(makeWood(number));
         }
 
-//        System.out.println(bridge);
         return bridge;
     }
     private static void checkBridgeSize(int size){
