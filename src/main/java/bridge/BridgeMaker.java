@@ -21,8 +21,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i =0; i < size; i++) {
-            int generate = bridgeNumberGenerator.generate();
-            String directionIndicator = Bridge.upperOrDown(generate);
+            int number = bridgeNumberGenerator.generate();
+            String directionIndicator = Bridge.upperOrDown(number);
             bridge.add(directionIndicator);
         }
 

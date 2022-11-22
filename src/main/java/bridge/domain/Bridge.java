@@ -22,8 +22,7 @@ public class Bridge {
         return bridge.get(index);
     }
 
-
-    public static String upperOrDown(int randomNum) { // 위인지 아래인지 고르는 메서드
+    public static String upperOrDown(int randomNum) {
         if (randomNum == 1) {
             return Constants.UserChoices.UP_UPPERSTRING;
         }
