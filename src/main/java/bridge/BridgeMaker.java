@@ -20,7 +20,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge  = new ArrayList<>();
-        List<String> vertical = List.of("U", "D");
+        List<String> vertical = List.of("D", "U");
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
             bridge.add(vertical.get(randomNumber));
