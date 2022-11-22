@@ -6,6 +6,16 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+    private Bridge getBridge() {
+        while (true) {
+            try {
+                return validateBridge();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
     private Bridge validateBridge() {
         Bridge bridge;
         OutputView.inputBridgeSize();
