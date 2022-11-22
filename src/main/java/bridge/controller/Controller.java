@@ -58,4 +58,11 @@ public class Controller {
             downBuilder.replace(downBuilder.length() - 1, downBuilder.length(), "|");
         }
     }
+
+    public void correctCase(String moveInput, BridgeGame bridgeGame) {
+        correctPrintMap(moveInput);
+        printBuilder();
+        bridgeGame.move();
+        editBuilder(bridgeGame);
+    }
 }
