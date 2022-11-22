@@ -13,7 +13,7 @@ public class Application {
         int bridgeSize =Input.readBridgeSize();
 
         BridgeMaker Bridge = new BridgeMaker(new BridgeRandomNumberGenerator());
-        Bridge.makeBridge(bridgeSize);
+        Bridge.changeNumberToString(bridgeSize);
 //        System.out.println(Bridge.getBridge());
 
         while (retry.equals("CONTINUE")){

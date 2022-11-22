@@ -17,18 +17,13 @@ public class InputView {
         /**
          * 다리의 길이를 입력받는다.
          */
-//        while (true) {
-//            bridgeLength = Integer.valueOf(Console.readLine());
-//            if (checkBridgeLength(bridgeLength)){
-//                break;
-//            }
-//        }
         while (true) {
-            bridgeLength = Integer.valueOf(Console.readLine());
+            bridgeLength=checkInteger(Console.readLine());
             if (checkBridgeLength(bridgeLength)){
                 break;
             }
         }
+
         System.out.println(bridgeLength);
         return bridgeLength;
     }
@@ -92,9 +87,19 @@ public class InputView {
                 throw new IllegalArgumentException();
             }
         }catch(IllegalArgumentException e){
-            System.out.println(Constants.ERROR_RESTRAT_COMMAND_INFO);
+            System.out.println(Constants.ERROR_RESTART_COMMAND_INFO);
             return false;
         }
         return true;
+    }
+
+    public int checkInteger(String stringNumber){
+        int integerNumber = 0;
+        try {
+            integerNumber = Integer.valueOf(stringNumber);
+        }catch (IllegalArgumentException e){
+            System.out.println(Constants.ERROR_INPUT_NOT_INTEGER_INFO);
+        }
+        return integerNumber;
     }
 }
