@@ -1,6 +1,9 @@
 package bridge;
 
+import bridge.constants.ErrorMessage;
+
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,8 +16,9 @@ import static org.assertj.core.util.Lists.newArrayList;
 class GameTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    @DisplayName("실패 테스트")
     @Test
-    void 실패_테스트() {
+    void failure_test() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D","Q");
             assertThat(output()).contains(
@@ -29,8 +33,9 @@ class GameTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
+    @DisplayName("재시도 테스트")
     @Test
-    void 재시도_테스트() {
+    void retry_success_test() {
         assertRandomNumberInRangeTest(() -> {
             run("4", "D", "U", "U", "R", "D", "U", "D", "U");
             assertThat(output()).contains(
@@ -44,6 +49,14 @@ class GameTest extends NsTest {
             int downSideIndex = output().indexOf("[ O |   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 0, 1, 0, 1);
+    }
+    @DisplayName("예외 재시도 값 테스트")
+    @Test
+    void exception_retry_test() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "U", "U", "E");
+            assertThat(output()).contains(ErrorMessage.ERROR_NOT_VALID_COMMAND.getDescription());
+            }, 0, 1, 0);
     }
     @Override
     protected void runMain() {
