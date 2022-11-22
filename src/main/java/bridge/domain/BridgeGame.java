@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BridgeGame {
@@ -58,8 +59,8 @@ public class BridgeGame {
     }
 
     public GameResult isClear() {
-        long topCount = top.stream().filter(t -> t.equals(MoveResult.PASS)).count();
-        long bottomCount = bottom.stream().filter(b -> b.equals(MoveResult.PASS)).count();
+        long topCount = Collections.frequency(top, MoveResult.PASS);
+        long bottomCount = Collections.frequency(bottom, MoveResult.PASS);
         if (topCount + bottomCount == bridge.size()) {
             return GameResult.SUCCESS;
         }
