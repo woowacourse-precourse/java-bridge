@@ -1,12 +1,11 @@
 package bridge;
 
+import java.util.Objects;
+
 public class Application {
 
-    final static String startExceptionMessage = "[ERROR]";
-    static int length;
     static BridgeGame bridgeGame;
     static Status status;
-    static String restart = null;
     static InputView inputView;
     static OutputView outputView;
 
@@ -19,9 +18,25 @@ public class Application {
         outputView.printGameStartMessage();
         outputView.printNewLine();
         outputView.printInputBridgeSizeMessage();
-        length = inputView.readBridgeSize();
+        Integer length = readBridgeSizeNotException();
         outputView.printNewLine();
         bridgeGame = new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()), length);
+    }
+
+    /**
+     * @return 입력 예외가 발생하지 않은 다리 길이
+     * 예외가 발생하지 않을 때까지 다리 길이를 입력받는 함수
+     */
+    private static int readBridgeSizeNotException() {
+        Integer length = null;
+        do {
+            try {
+                length = inputView.readBridgeSize();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printExceptionMessage(illegalArgumentException);
+            }
+        } while (Objects.isNull(length));
+        return length;
     }
 
     /**
@@ -29,7 +44,7 @@ public class Application {
      */
     private static void next() {
         outputView.printInputMoveMessage();
-        String next = inputView.readMoving();
+        String next = readMovingNotException();
         status = bridgeGame.move(next);
         outputView.printMap(bridgeGame.getBridge(), bridgeGame.getMove());
         outputView.printNewLine();
@@ -39,15 +54,46 @@ public class Application {
     }
 
     /**
-     * 실패 시 입력을 받아 세임을 재시작 하거나 상태를 실패로 고정한다.
+     * @return 입력 예외가 발생하지 않은 다음 위치
+     * 예외가 발생하지 않을 때까지 다음 위치를 입력받는 함수
+     */
+    private static String readMovingNotException() {
+        String next = null;
+        do {
+            try {
+                next = inputView.readMoving();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printExceptionMessage(illegalArgumentException);
+            }
+        } while (Objects.isNull(next));
+        return next;
+    }
+
+    /**
+     * 실패 시 입력을 받아 게임을 재시작 하거나 상태를 실패로 고정한다.
      */
     private static void failStep() {
         outputView.printRestartMessage();
-        restart = inputView.readGameCommand();
-
+        String restart = readExitCommandNotException();
         if (restart.equals("Q")) return;
         status = Status.HAS_NEXT;
         bridgeGame.retry();
+    }
+
+    /**
+     * @return 입력 예외가 발생하지 않은 게임 종료 또는 재시작 커맨드
+     * 예외가 발생하지 않을 때까지 게임 종료 또는 재시작 커맨드를 입력받는 함수
+     */
+    private static String readExitCommandNotException() {
+        String restart = null;
+        do {
+            try {
+                restart = inputView.readGameCommand();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printExceptionMessage(illegalArgumentException);
+            }
+        } while (Objects.isNull(restart));
+        return restart;
     }
 
     public static void main(String[] args) {
