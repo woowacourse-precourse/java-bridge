@@ -35,7 +35,7 @@ public class BridgeGameController {
     }
 
     private void playBridgeGame(BridgeGame bridgeGame) {
-        if (!movePlayer(bridgeGame)) {
+        if (!isMovePlayer(bridgeGame)) {
             bridgeGame.retry(inputGameCommand());
         }
         if (bridgeGame.isEnd()) {
@@ -44,7 +44,7 @@ public class BridgeGameController {
         playBridgeGame(bridgeGame);
     }
 
-    private boolean movePlayer(BridgeGame bridgeGame) {
+    private boolean isMovePlayer(BridgeGame bridgeGame) {
         boolean isMove = bridgeGame.move(inputMoving());
         outputView.printMap(bridgeGame);
         return isMove;
