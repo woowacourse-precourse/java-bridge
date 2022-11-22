@@ -19,9 +19,8 @@ public class GameManager {
     private BridgeNumberGenerator bridgeNumberGenerator;
     private BridgeMaker bridgeMaker;
     private MoveResult moveResult;
-
     // 의존성 설정
-    public GameManager() { //TODO: interface
+    public GameManager() {
         this.inputValidator = new InputValidatorImpl();
         this.inputView = new InputView(this.inputValidator);
         this.outputView = new OutputView();
@@ -29,7 +28,12 @@ public class GameManager {
         this.bridgeMaker = new BridgeMaker(this.bridgeNumberGenerator);
         moveResult = CORRECT;
     }
-
+    // 다리 생성
+    private void setBridge() {
+        int bridgeSize = inputView.readBridgeSize();
+        Bridge bridge = new BridgeImpl(bridgeMaker.makeBridge(bridgeSize));
+        bridgeGame = new BridgeGame(bridge);
+    }
     public void start() {
         setBridge();
         while(moveResult == CORRECT) {
@@ -43,12 +47,6 @@ public class GameManager {
     private void reset() {
         bridgeGame.retry();
         moveResult = CORRECT;
-    }
-    // 다리 생성
-    private void setBridge() {
-        int bridgeSize = inputView.readBridgeSize();
-        Bridge bridge = new BridgeImpl(bridgeMaker.makeBridge(bridgeSize));
-        bridgeGame = new BridgeGame(bridge);
     }
 
     // 게임 진행
