@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +12,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(BridgeGame bridgeGame) {
+        List<String> upBridge = bridgeGame.getUpBridge();
+        List<String> downBridge = bridgeGame.getDownBridge();
+        printBridge(upBridge);
+        System.out.println();
+        printBridge(downBridge);
+    }
+
+    private static void printBridge(List<String> bridge){
+        System.out.print("[");
+        bridgeForm(bridge);
+        System.out.print("]");
+    }
+
+    private static void bridgeForm(List<String> bridge){
+        for(int i = 0 ; i < bridge.size();i++){
+            if(i == bridge.size() - 1){
+                System.out.print(bridge.get(i));
+                break;
+            }
+            System.out.print(bridge.get(i) + "|");
+        }
     }
 
     /**
@@ -18,6 +41,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(BridgeGame bridgeGame,String result,int count) {
+        System.out.println("\n최종 게임 결과");
+        printBridge(bridgeGame.getUpBridge());
+        System.out.println();
+        printBridge(bridgeGame.getDownBridge());
+        System.out.println("\n\n게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수: " + count);
     }
 }
