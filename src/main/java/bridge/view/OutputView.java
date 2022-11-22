@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.Message;
+import bridge.Result;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
@@ -34,7 +36,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        Message.RESULT.print();
+        printMap(bridgeGame);
+        printSuccessOrFailure(bridgeGame);
+        printTotalNumberOfAttempts(bridgeGame);
     }
 
     private String createBridgeString(Bridge bridge, Player player) {
@@ -61,5 +67,25 @@ public class OutputView {
     private boolean isBridge(Bridge bridge, int position) {
         String bridgeShape = bridge.getBridgeShapeByPosition(position);
         return !bridgeShape.equals(" ");
+    }
+
+    private void printSuccessOrFailure(BridgeGame bridgeGame) {
+        Message.SUCCESS_OR_FAILURE.print();
+
+        String successOrFailure = getSuccessOrFailure(bridgeGame);
+        System.out.println(successOrFailure);
+    }
+
+    private String getSuccessOrFailure(BridgeGame bridgeGame) {
+        if (bridgeGame.isLastMovedFailure()) {
+            return Result.FAILURE.getWord();
+        }
+        return Result.SUCCESS.getWord();
+    }
+
+    private void printTotalNumberOfAttempts(BridgeGame bridgeGame) {
+        Message.TOTAL_NUMBER_OF_ATTEMPTS.print();
+        int gameAttempts = bridgeGame.getGameAttempts();
+        System.out.println(gameAttempts);
     }
 }
