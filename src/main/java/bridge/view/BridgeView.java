@@ -28,17 +28,17 @@ public class BridgeView {
     }
 
     public void printErrorMessage(String errorMessage){
-        System.out.println(errorMessage);
+        outputView.printErrorMessage(errorMessage);
     }
 
 
-    public void printMap(List<Glass> history, State lastState) {
+    public void printMap(String map) {
 
-        outputView.printMap(history, lastState);
+        outputView.printMap(map);
     }
 
-    public void printResult(List<Glass> history, State lastState, int play) {
-        outputView.printResult(history, lastState, play);
+    public void printResult(String result) {
+        outputView.printResult(result);
     }
 
 
