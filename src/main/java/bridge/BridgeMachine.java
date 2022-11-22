@@ -4,6 +4,8 @@ public class BridgeMachine {
     private int totalTry = 1;
     private int index = 0;
     private boolean success = false;
+    private static final String canCross ="O";
+    private static final String cantCross = "X";
 
     public void initiateBridgeMachine() {
         BridgeGame bridgeGame = bridgeGameStart();
@@ -25,12 +27,12 @@ public class BridgeMachine {
     }
     private boolean userMove(BridgeGame bridgeGame, Bridge bridge, String userMoveCommand) {
         if (!bridgeGame.move(userMoveCommand, bridge, index)) {
-            bridge.changeBridgeMap(index, userMoveCommand, "X");
+            bridge.changeBridgeMap(index, userMoveCommand, cantCross);
             if (chooseReplay(bridgeGame, bridge)) {
                 return true;
             }
         }
-        bridge.changeBridgeMap(index, userMoveCommand, "O");
+        bridge.changeBridgeMap(index, userMoveCommand, canCross);
         OutputView.printMap(bridge.getBridgeMap(), index);
         index++;
         return false;
