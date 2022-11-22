@@ -45,7 +45,7 @@ public class BridgeGameController {
     }
 
     private Bridge makeGameBridge() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        outputView.printStartMessage();
 
         int bridgeSize = inputView.readBridgeSize();
 
@@ -55,7 +55,7 @@ public class BridgeGameController {
 
     private void askRetry() {
         String status = inputView.readGameCommand();
-        
+
         if (status.equals(Command.RETRY.getCommand())) {
             bridgeGame.retry();
             gameCount++;
