@@ -28,13 +28,8 @@ public class BridgeController {
 
     private void createBridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        try {
-            List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-            this.bridgeGame = new BridgeGame(bridge);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            createBridgeGame();
-        }
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        this.bridgeGame = new BridgeGame(bridge);
     }
 
     private void playTurn() {
