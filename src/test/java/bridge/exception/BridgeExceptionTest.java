@@ -41,4 +41,27 @@ class BridgeExceptionTest {
         assertThatThrownBy(() -> bridgeException.isInRange(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("이동 방향 입력인지 확인하는 테스트")
+    public void isMovementTest() {
+        // given
+        String input = "K";
+
+        // when, then
+        assertThatThrownBy(() -> bridgeException.isMovement(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("게임 재시작/종료 문자인지 확인하는 테스트")
+    public void isDecisionTest() {
+        // given
+        String input = "O";
+
+        // when, then
+        assertThatThrownBy(() -> bridgeException.isDecision(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
