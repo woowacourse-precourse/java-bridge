@@ -1,7 +1,7 @@
 package bridge;
 
 import static bridge.ErrorMessage.ERROR_MESSAGE;
-import static bridge.ErrorMessage.INVALID_BRIDGE_RANDOM_NUMBER_ERROR_MESSAGE;
+import static bridge.ErrorMessage.BRIDGE_RANDOM_NUMBER_ERROR_MESSAGE;
 
 public enum BridgeSpace {
     DOWN(0, "D"),
@@ -22,7 +22,7 @@ public enum BridgeSpace {
         if (number == UP.number) {
             return UP.getDirection();
         }
-        throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_BRIDGE_RANDOM_NUMBER_ERROR_MESSAGE);
+        throw new IllegalArgumentException(ERROR_MESSAGE + BRIDGE_RANDOM_NUMBER_ERROR_MESSAGE);
     }
 
     public String getDirection() {
