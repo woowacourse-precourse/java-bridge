@@ -10,5 +10,6 @@ public class Application {
         BridgeMaker BM = new BridgeMaker(BNG);
         System.out.println(BM.makeBridge(IV.readBridgeSize()));
         OV.moveGuidance();
+        IV.readMoving();
     }
 }

@@ -8,7 +8,9 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public enum exceptions{
-        BRIDGESIZE_EXCEPTION(new IllegalArgumentException("[ERROR] 3~20까지의 숫자 중 하나를 입력하세요."));
+        BRIDGESIZE_EXCEPTION(new IllegalArgumentException("[ERROR] 3~20까지의 숫자 중 하나를 입력하세요.")),
+        MOVE_EXCEPTION(new IllegalArgumentException("[ERROR] 대문자 U 또는 대문자 D를 입력해주세요."));
+
         private IllegalArgumentException exception;
 
         exceptions(IllegalArgumentException exception) {
@@ -25,25 +27,25 @@ public class InputView {
         }
     }
 
-    public void exceptionCheck(String input) {
+    public void exceptionCheck_Bridge(String input) {
         if (input.length() >= 1 && input.length() <= 2) {
-            exceptionStatusCheck(input);
+            exceptionStatusCheck_Bridge(input);
         }
     }
 
-    public void exceptionStatusCheck(String input){
+    public void exceptionStatusCheck_Bridge(String input){
         if (input.length() == 1 && input.charAt(0) - '0' < 3) {
-            exceptionOccured();
+            exceptionOccured_Bridge();
         }
         if (input.length() == 2 && input.charAt(0) - '0' > 2) {
-            exceptionOccured();
+            exceptionOccured_Bridge();
         }
         if (input.length() == 2 && input.charAt(0) - '0' == 2 && input.charAt(1) - '0' > 0) {
-            exceptionOccured();
+            exceptionOccured_Bridge();
         }
     }
 
-    public void exceptionOccured(){
+    public void exceptionOccured_Bridge(){
         exceptions.BRIDGESIZE_EXCEPTION.getException();
         readBridgeSize();
     }
@@ -52,23 +54,31 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public void exceptionCheck_Moving(String input){
+        if(!input.equals("U") && !input.equals("D")) exceptionOccured_Moving();
+    }
+
+    public void exceptionOccured_Moving(){
+        exceptions.MOVE_EXCEPTION.getException();
+        readMoving();
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        exceptionCheck(input);
+        exceptionCheck_Bridge(input);
         return StringtoInt(input);
     }
-
-
-
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        exceptionCheck_Moving(input);
+        return input;
     }
 
     /**
