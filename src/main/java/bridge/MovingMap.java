@@ -19,6 +19,10 @@ public class MovingMap {
         movingMap.put(UpAndDown.DOWN.getCommand(), new ArrayList<>());
     }
 
+    public void clear() {
+        movingMap.forEach((upAndDown, stateList) -> stateList.clear());
+    }
+
     public void putStatus(String moving, boolean moveStatus) {
         movingMap.forEach((targetUpAndDown, stateList) -> stateList.add(judgeStatus(targetUpAndDown, moving, moveStatus)) );
     }
