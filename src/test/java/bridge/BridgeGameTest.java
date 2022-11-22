@@ -56,4 +56,19 @@ class BridgeGameTest {
         assertThat(bridgeGame.isSuccess()).isEqualTo(true);
     }
 
+    @DisplayName("사용자가 다리를 올바르게 건너고 있는지 확인한다.")
+    @Test
+    void checkRightStep() {
+        BridgeGame bridgeGame = new BridgeGame(SIZE);
+        String step = "U";
+        if (bridgeGame.getBridge().get(1).equals("U")) {
+            step = "D";
+        }
+        bridgeGame.move(bridgeGame.getBridge().get(0));
+        bridgeGame.move(bridgeGame.getBridge().get(1));
+        assertThat(bridgeGame.isRightStep()).isEqualTo(true);
+        bridgeGame.move(step);
+        assertThat(bridgeGame.isRightStep()).isEqualTo(false);
+    }
+
 }
