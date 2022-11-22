@@ -20,22 +20,35 @@ public class BridgeGameController {
     public void startGame() {
         int bridgeSize = inputView.readBridgeSize();
 
-        doGame(bridgeSize);
-        endGame();
+        boolean isWinning = doGame(bridgeSize);
+        endGame(isWinning);
     }
 
-    private void doGame(int bridgeSize) {
+    private boolean doGame(int bridgeSize) {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         List<String> inputResults = new ArrayList<>();
+        boolean isWinning = true;
 
         for (int i = 0; i < bridgeSize; i++) {
             String moveAnswer = inputView.readMoving();
             inputResults.add(bridgeGame.move(moveAnswer, i));
-            outputView.printMap(inputResults, i);
+            outputView.printMap(inputResults, i, moveAnswer);
+
+            if (inputResults.get(i).equals("X")) {
+                isWinning = false;
+                break;
+            }
         }
+
+        return isWinning;
     }
 
-    private void endGame() {
+    private void endGame(boolean isWinning) {
+        if (isWinning) {
+            System.out.print("게임 성공");
+            return;
+        }
 
+        System.out.print("게임 실패");
     }
 }
