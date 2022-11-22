@@ -66,49 +66,49 @@ class InputViewTest {
             getBridgeSizeTest(input);
         }
 
-        @DisplayName("1을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 exception 발생.")
+        @DisplayName("1을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase1(){
             String input = "1";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("100을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 exception 발생.")
+        @DisplayName("100을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase2(){
             String input = "100";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("-5(음수)를 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 exception 발생.")
+        @DisplayName("-5(음수)를 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase3(){
             String input = "-5";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("0을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 exception 발생.")
+        @DisplayName("0을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase4(){
             String input = "0";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("문자열을 넣었을 때, 정수가 아니므로 에러 메세지와 함께 exception 발생.")
+        @DisplayName("문자열을 넣었을 때, 정수가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase5(){
             String input = "Hello World";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("특수문자 문자열을 넣었을 때, 정수가 아니므로 에러 메세지와 함께 exception 발생.")
+        @DisplayName("특수문자 문자열을 넣었을 때, 정수가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase6(){
             String input = "!@#!$";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("빈칸을 넣었을 때, 정수를 입력한 것이 아니므로 에러 메세지와 함께 exception 발생.")
+        @DisplayName("빈칸을 넣었을 때, 정수를 입력한 것이 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase7(){
             String input = " ";
