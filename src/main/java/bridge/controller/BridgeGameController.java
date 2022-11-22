@@ -26,8 +26,13 @@ public class BridgeGameController {
     }
 
     private void initBridge() {
-        Bridge bridge = new Bridge(makeBridge());
-        bridgeGame = new BridgeGame(bridge);
+        try {
+            Bridge bridge = new Bridge(makeBridge());
+            bridgeGame = new BridgeGame(bridge);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            initBridge();
+        }
     }
 
     private List<String> makeBridge() {
@@ -39,17 +44,21 @@ public class BridgeGameController {
 
         while (gameState) {
             gameMovement();
-            gameState = isRetry();
+            gameState = isFail();
         }
     }
 
     private void gameMovement() {
         while (!bridgeGame.isFinish()) {
-            outputView.printMap(bridgeGame.move(inputView.readMoving()));
+            try {
+                outputView.printMap(bridgeGame.move(inputView.readMoving()));
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
     }
 
-    private boolean isRetry() {
+    private boolean isFail() {
         if (bridgeGame.isSuccess()) {
             return false;
         }
@@ -59,8 +68,18 @@ public class BridgeGameController {
 
     private boolean askRetry() {
         String inputValue = inputView.readGameCommand();
-        validate(inputValue);
 
+        try {
+            validate(inputValue);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return askRetry();
+        }
+
+        return isRetry(inputValue);
+    }
+
+    private boolean isRetry(String inputValue) {
         if (inputValue.equals(RETRY_GAME)) {
             bridgeGame.retry();
             return true;
