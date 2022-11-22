@@ -7,13 +7,13 @@ public class User {
 
     private final UserPath userPath = new UserPath();
     private int tryCount = 1;
-    private int location = 0;
+    private int nextLocation = 0;
 
     public User() {
     }
 
     public UserStatus cross(Bridge bridge, MoveType moveType) {
-        if (bridge.canCross(location, moveType)) {
+        if (bridge.canCross(nextLocation, moveType)) {
             userPath.addUserPath(true, moveType);
             increaseLocation();
             return UserStatus.SUCCESS;
@@ -24,11 +24,11 @@ public class User {
     }
 
     private void increaseLocation() {
-        location++;
+        nextLocation++;
     }
 
     private void resetLocation() {
-        location = 0;
+        nextLocation = 0;
     }
 
     private void addTryCount() {
@@ -46,7 +46,7 @@ public class User {
     }
 
     public boolean isFinish(int bridgeSize) {
-        return bridgeSize == location;
+        return bridgeSize == nextLocation;
     }
 
     public int getTryCount() {
