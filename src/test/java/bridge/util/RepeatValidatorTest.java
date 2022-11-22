@@ -33,12 +33,12 @@ class RepeatValidatorTest {
     @DisplayName(value = "2회 예외발생 후 3회째 1 반환 테스트")
     @Test
     void readUntilValidateTest() {
-        int actualValue = RepeatValidator.readUntilValidate(() -> returnValueAfter(1, 3));
-        String expectedOutput = ERROR_MESSAGE + "\n" + ERROR_MESSAGE + "\n";
+        int tryNumber = 3;
+        int actualValue = RepeatValidator.readUntilValidate(() -> returnValueAfter(1, tryNumber));
+        String expectedOutput = new String(ERROR_MESSAGE + "\n").repeat(tryNumber-1);
 
         assertSoftly(softly -> {
             softly.assertThat(actualValue).isEqualTo(1);
-            softly.assertThat(functionRunCount).isEqualTo(3);
             softly.assertThat(out.toString()).isEqualTo(expectedOutput);
         });
     }
