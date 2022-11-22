@@ -12,8 +12,8 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         try {
-            int num = Integer.parseInt(Console.readLine());
-            if(!(3<=num && num<=20)) throw new IllegalArgumentException();
+            String str = Console.readLine();
+            int num = Validation.validSize(str);
             return num;
         } catch(IllegalArgumentException e) {
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
@@ -28,7 +28,7 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         try{
             String str = Console.readLine();
-            if(!(str.equals("U") || str.equals("D"))) throw new IllegalArgumentException();
+            Validation.validMoving(str);
             return str;
         } catch (IllegalArgumentException e){
             System.out.println("[ERROR] 입력은 U,D 만 가능합니다.");
@@ -43,7 +43,7 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         try{
             String str = Console.readLine();
-            if(!(str.equals("R") || str.equals("Q"))) throw new IllegalArgumentException();
+            Validation.validCommand(str);
             return str;
         } catch (IllegalArgumentException e){
             System.out.println("[ERROR] 입력은 R,Q 만 가능합니다.");
