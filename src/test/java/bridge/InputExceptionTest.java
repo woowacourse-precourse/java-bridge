@@ -72,6 +72,16 @@ public class InputExceptionTest extends NsTest {
         }, 1, 1, 1);
     }
 
+    @DisplayName("게임 재시작/종료가 R, Q가 아닌 테스트")
+    @ValueSource(strings = {"r", "q", "3", "*", "w", "make"})
+    @ParameterizedTest
+    void createInvalidGameCommand(String input) {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", input);
+            assertThat(output()).contains(InputException.INVALID_GAME_END_INPUT.getExceptionMessage());
+        }, 1, 1, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
