@@ -28,7 +28,10 @@ public class BridgeGame {
 
     public boolean checkFinalState(List<List<String>> sideState) {
         if (sideState.get(0).contains("X") || sideState.get(1).contains("X")) {
-            return retry(inputView.readGameCommand());
+            if (!retry(inputView.readGameCommand())) {
+                outputView.printResult(sideState);
+                return false;
+            }
         }
         outputView.printResult(sideState);
         return false;
