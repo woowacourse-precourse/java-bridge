@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private BridgeMaker bridgeMaker;
     // 입력받는 View 클래스
     private InputView gameInput;
     // 출력하는 View 클래스
@@ -22,6 +23,7 @@ public class BridgeGame {
     private int bridgeLen; // 다리의 길이
 
     public BridgeGame() {
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         gameInput = new InputView();
         gameOutput = new OutputView();
 
@@ -74,7 +76,8 @@ public class BridgeGame {
      */
     void setAnswer() {
         String input = gameInput.readBridgeSize();
-        bridgeLen = checkBridgeLenCommand(input);
+        this.bridgeLen = checkBridgeLenCommand(input);
+        this.bridge = bridgeMaker.makeBridge(this.bridgeLen);
     }
 
     int checkBridgeLenCommand(String input) {
