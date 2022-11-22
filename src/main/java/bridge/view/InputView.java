@@ -36,7 +36,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = Console.readLine();
+
+        validateCommand(input);
+
+        return input;
     }
 
     public int parseNumber(String input) {
@@ -54,5 +58,10 @@ public class InputView {
     public void validateMoving(String input) {
         if (!input.equals(TextType.UP.getText()) && !input.equals(TextType.DOWN.getText()))
                 throw new IllegalArgumentException(ErrorType.NOT_MOVING_INPUT.getError());
+    }
+
+    public void validateCommand(String input) {
+        if (!input.equals(TextType.RESTART.getText()) && !input.equals(TextType.EXIT.getText()))
+                throw new IllegalArgumentException(ErrorType.NOT_COMMAND_INPUT.getError());
     }
 }

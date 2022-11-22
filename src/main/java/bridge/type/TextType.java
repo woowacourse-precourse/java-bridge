@@ -3,7 +3,9 @@ package bridge.type;
 public enum TextType {
 
     UP("U"),
-    DOWN("D");
+    DOWN("D"),
+    RESTART("R"),
+    EXIT("Q");
 
     private final String text;
 
