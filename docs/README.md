@@ -1,0 +1,116 @@
+# 기능 목록
+
+- [x] 다리 생성
+
+  - [x] 다리 길이 입력 받기 - `readBridgeSize()`
+  - [x] 다리 만들기 - `makeBridge()`
+  
+- [x] 플레이어 생성 - `makePlayer()`
+
+  
+
+- [x] 게임 진행
+
+  - [x] 게임 시작 문구 출력 - `printInit()`
+
+  - [x] 다리 건너기 게임 생성 - `makeBridgeGame()`
+
+  - [x] 게임이 끝날 때까지 반복
+
+    - [x] 이동할 칸 입력 받기 - `readMoving()`
+
+    - [x] 움직이기 - `move()`
+
+    - [x] 게임 진행 상황 출력 - `printMap()`
+    - [x] 성공 시, 종료하기 - `isGameSuccess()`
+
+    - [x] 실패 시, 재시도 여부 입력 받기 - `isRetry()`
+      - [x] 재시도 - `retry`
+
+- [x] 게임 결과 출력 - `printResult()`
+
+
+
+### 예외 처리
+
+- 공통
+
+  - [x] [ERROR]로 시작하는 에러 메시지 출력
+
+  - [x] 다시 입력 받기
+
+    
+
+- [x] 다리 길이 - `BridgeSizeValidator`
+  - [x] 다리 길이는 숫자여야 한다. - `validateNumber`
+  - [x] 다리 길이는 3부터 20 사이의 자연수여야 한다. - `validateRange`
+- [x] 플레이어의 커맨드
+  - [x] 이동하기
+    - [x] 이동은 U, D로 가능하다. - `MovingValidator`
+  - [x] 재시작
+    - [x] 재시작은 R, 종료는 Q로 가능하다. - `GameCommandValidator`
+
+
+
+### 테스트
+
+- [x] 단위 테스트
+  - [x] Bridge
+    - [x] 다리 생성 테스트
+  - [x] Player
+    - [x] 다리 건너기를 성공한다.
+    - [x] 다리 건너기를 실패한다.
+    - [x] 재시도한다.
+
+- [x] 통합 테스트
+
+  - [x] 프로그램이 성공적으로 작동한다.
+  - [x] 입력 테스트
+    - [x] 다리 길이가 숫자가 아니면 예외가 발생한다.
+    - [x] 이동하는 칸이 U, D가 아니면 예외가 발생한다.
+    - [x] 재시도로 주어진 입력이 R, Q가 아니면 예외가 발생한다.
+
+  
+
+# Flow Chart
+
+![image](https://user-images.githubusercontent.com/79066049/203342911-1ed9c5a6-af0b-43ba-9654-5c383ba53847.png)
+
+
+
+### Bridge
+
+위(U), 아래(D)로 이루어진 다리
+
+### Player
+
+다리 건너기 게임을 플레이하는 Player.
+
+- Move(bridge, command)
+  - bridge에서, command에 따라 이동한다.
+- retry()
+  -  재시도한다.
+
+### BridgeGame
+
+다리 건너기 게임을 관리한다. Bridge와 Player를 인스턴스 변수로 갖는다.
+
+
+
+### InputView, Validator
+
+사용자 입력을 받는다.
+
+### OutputView
+
+게임 진행 상황과 결과를 출력한다.
+
+
+
+
+
+### BridgeService
+
+BridgeGame을 실제로 service한다.
+
+InputView, OutputView, BridgeGame을 엮어 조립한다.

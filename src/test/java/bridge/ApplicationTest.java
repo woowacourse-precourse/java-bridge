@@ -3,24 +3,17 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    @Test
-    void 다리_생성_테스트() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge).containsExactly("U", "D", "D");
-    }
-
+    @DisplayName("프로그램이 성공적으로 작동한다.")
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
@@ -39,30 +32,35 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @DisplayName("다리의 길이가 숫자가 아니면 예외가 발생한다.")
     @Test
-    void 예외_테스트() {
+    void 다리_길이_입력_예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
+    @DisplayName("이동하는 칸이 U, D가 아니면 예외가 발생한다.")
+    @Test
+    void 다리_건너기_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "X");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("재시도로 주어진 입력이 R, Q가 아니면 예외가 발생한다.")
+    @Test
+    void 재시도_입력_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "U", "A");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
-    }
-
-    static class TestNumberGenerator implements BridgeNumberGenerator {
-
-        private final List<Integer> numbers;
-
-        TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-
-        @Override
-        public int generate() {
-            return numbers.remove(0);
-        }
     }
 }
