@@ -1,10 +1,13 @@
 package bridge;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.handler.InputBridgeLengthHandler;
+import bridge.handler.InputMoveStepHandler;
+import bridge.handler.InputRestartHandler;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -12,6 +15,9 @@ import org.junit.jupiter.api.Test;
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    InputMoveStepHandler inputMoveStepHandler = new InputMoveStepHandler();
+    InputRestartHandler inputRestartHandler = new InputRestartHandler();
+    InputBridgeLengthHandler inputBridgeLengthHandler = new InputBridgeLengthHandler();
 
     @Test
     void 다리_생성_테스트() {
@@ -40,11 +46,70 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+    void 다리길이_범위_입력_예외테스트() {
+        String test = "1";
+        assertThatThrownBy(() -> {
+            inputBridgeLengthHandler.checkInRange(test);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 다리길이_입력_숫자인지_예외테스트() {
+        String test = "a";
+        assertThatThrownBy(() -> {
+            inputBridgeLengthHandler.checkIsNumber(test);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 다리길이_입력_아무것도_입력하지않는_예외테스트() {
+        String test = "";
+        assertThatThrownBy(() -> {
+            inputBridgeLengthHandler.checkNonInput(test);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 다리길이_입력_정수초과_예외테스트() {
+        String test_1 = "2221111111";
+        long test_long = Long.parseLong(test_1);
+        assertThatThrownBy(() -> {
+            if(test_long > Integer.MAX_VALUE) {
+                inputBridgeLengthHandler.checkOverRange(test_1);
+            }
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 다리_랜덤_위아래_입력하지_않았을떄_예외테스트() {
+        String test = "";
+        assertThatThrownBy(() -> {
+            inputMoveStepHandler.checkNonInput(test);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 다리_랜덤_D아니면U를_입력하지_않았을때_예외테스트() {
+        String test = "qwe";
+        assertThatThrownBy(() -> {
+            inputMoveStepHandler.checkIsUpDown(test);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 재시작_Q아니면R_입력_예외테스트() {
+        String test = "qwe";
+        assertThatThrownBy(() -> {
+            inputRestartHandler.checkQuitOrRestart(test);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 재시작_입력_아무것도_없을때_예외테스트() {
+        String test = "";
+        assertThatThrownBy(() -> {
+            inputRestartHandler.checkNonInput(test);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override

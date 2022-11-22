@@ -15,7 +15,7 @@ public class InputBridgeLengthHandler {
         return bridgeLength;
     }
 
-    private void checkOverRange(String bridgeLength) {
+    public void checkOverRange(String bridgeLength) {
         PrintView printView = new PrintView();
         long length = Long.parseLong(bridgeLength);
 
@@ -24,7 +24,7 @@ public class InputBridgeLengthHandler {
         }
     }
 
-    private void checkNonInput(String bridgeLength) {
+    public void checkNonInput(String bridgeLength) {
         PrintView printView = new PrintView();
 
         if(bridgeLength.length() == 0) {
@@ -32,7 +32,7 @@ public class InputBridgeLengthHandler {
         }
     }
 
-    private void checkIsNumber(String bridgeLength) {
+    public void checkIsNumber(String bridgeLength) {
         PrintView printView = new PrintView();
 
         boolean checkNumeric = bridgeLength.matches("[+-]?\\d*(\\.\\d+)?");
@@ -42,7 +42,7 @@ public class InputBridgeLengthHandler {
         }
     }
 
-    private void checkInRange(String bridgeLength) {
+    public void checkInRange(String bridgeLength) {
         PrintView printView = new PrintView();
 
         int bridgeLengthNumber = Integer.parseInt(bridgeLength);

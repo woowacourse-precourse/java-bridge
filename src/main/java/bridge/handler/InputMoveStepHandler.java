@@ -12,14 +12,14 @@ public class InputMoveStepHandler {
         return moveStep;
     }
 
-    private void checkIsUpDown(String moveStep) {
+    public void checkIsUpDown(String moveStep) {
         PrintView printView = new PrintView();
         if(!moveStep.equals("U") && !moveStep.equals("D")){
             throw new IllegalArgumentException(printView.ERROR_ORDER+" 잘못된 이동 입력입니다. 다시 입력해주세요.");
         }
     }
 
-    private void checkNonInput(String moveStep){
+    public void checkNonInput(String moveStep){
         PrintView printView = new PrintView();
 
         if(moveStep.length() == 0) {

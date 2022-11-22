@@ -8,13 +8,13 @@ public class InputRestartHandler {
 
     public String checkValidator(String restart) {
         checkNonInput(restart);
-        checkIsUpDown(restart);
+        checkQuitOrRestart(restart);
         this.restart = restart;
 
         return restart;
     }
 
-    private void checkIsUpDown(String restart) {
+    public void checkQuitOrRestart(String restart) {
         PrintView printView = new PrintView();
 
         if(!restart.equals("Q") && !restart.equals("R")){
@@ -22,7 +22,7 @@ public class InputRestartHandler {
         }
     }
 
-    private void checkNonInput(String restart){
+    public void checkNonInput(String restart){
         PrintView printView = new PrintView();
 
         if(restart.length() == 0) {
