@@ -4,13 +4,12 @@ import static bridge.domain.PlayerStatus.*;
 
 public class Player {
     private int position;
-    private int tryCount = 0;
     private PlayerStatus status;
 
     public void init() {
         position = 0;
         status = PLAYING;
-        tryCount++;
+        status.addTryCount();
     }
 
     public PlayerStatus success() {
