@@ -1,10 +1,8 @@
 package bridge;
 
-import static bridge.BridgeStructure.FALSE;
-import static bridge.BridgeStructure.FIRST_TRUE;
-import static bridge.BridgeStructure.LAST_TRUE;
-import static bridge.BridgeStructure.MIDDLE_TRUE;
-import static bridge.BridgeStructure.UN_KNOWN;
+
+import static bridge.BridgeStructure.SEPARATOR;
+import static bridge.BridgeStructure.TRUE;
 import static bridge.Expression.DOWN;
 import static bridge.Expression.UP;
 import static bridge.GameStatus.QUIT;
@@ -47,10 +45,10 @@ public class GameEntity extends BridgeGame implements GameRepository {
 
     private String predicateWin() {
         String predicate = "";
-        if (bridgeEntity.get(bridgeEntity.size()).equals(LAST_TRUE.buildStructure())) {
+        if ( (bridgeEntity.get(bridgeEntity.size())).equals(readMoving)) {
             predicate = SUCCESS.interact();
         }
-        if (bridgeEntity.get(bridgeEntity.size()).equals(FALSE.buildStructure())) {
+        if ( (bridgeEntity.get(bridgeEntity.size())) != (readMoving)) {
             predicate = FAIL.interact();
         }
 
@@ -58,53 +56,29 @@ public class GameEntity extends BridgeGame implements GameRepository {
     }
 
     // 이동 기능
-    // bridge.size() = 5+(n-1)*4, 5 9 13..
     @Override
     public String move() {
-        if (readMoving.equals(UP.expressThat())) {
-            upRow.replace(0, downRow.length(), FIRST_TRUE.buildStructure());
+        String table = "";
+        for (String entity : bridgeEntity) {
+            table = predicateRow(entity);
         }
-        if (readMoving.equals(DOWN.expressThat())) {
-            downRow.replace(0, downRow.length(), FIRST_TRUE.buildStructure());
+
+        return table;
+    }
+
+    private String predicateRow(String entity) {
+        if (readMoving.equals(entity) && readMoving.equals(UP.expressThat())) {
+            upRow.append(TRUE.buildStructure());
+            upRow.append(SEPARATOR.buildStructure());
+            upRow.setCharAt(upRow.length()-1, ']');
+
+        }
+        if (readMoving.equals(entity) && readMoving.equals(DOWN.expressThat())) {
+            downRow.append(TRUE.buildStructure());
+            downRow.append(SEPARATOR.buildStructure());
+            downRow.setCharAt(downRow.length()-1, ']');
         }
         return upRow + "\n" + downRow;
-    }
-
-    public String moveNTimes() {
-        String upRowNTimes = "";
-        String DownNTimes = "";
-        for (String index : bridgeEntity) {
-
-            upRowNTimes = finishUpRow(index);
-            DownNTimes = finishDownRow(index);
-
-        }
-
-        return upRowNTimes + "\n" + DownNTimes;
-    }
-
-    private String finishDownRow(String index) {
-        String DownNTimes = "";
-        if (index.equals(DOWN.expressThat())) {
-            StringBuilder NTimeUpColumn = upRow.append(UN_KNOWN);
-            NTimeUpColumn.setCharAt(NTimeUpColumn.length() - 1, ']');
-            StringBuilder NTimeDownColumn = downRow.append(MIDDLE_TRUE.buildStructure());
-            NTimeDownColumn.setCharAt(NTimeDownColumn.length() - 1, ']');
-            DownNTimes = NTimeDownColumn + "\n" + NTimeUpColumn;
-        }
-        return DownNTimes;
-    }
-
-    private String finishUpRow(String index) {
-        String upRowNTimes = "";
-        if (index.equals(UP.expressThat())) {
-            StringBuilder NTimeUpColumn = upRow.append(MIDDLE_TRUE);
-            NTimeUpColumn.setCharAt(NTimeUpColumn.length() - 1, ']');
-            StringBuilder NTimeDownColumn = downRow.append(UN_KNOWN.buildStructure());
-            NTimeDownColumn.setCharAt(NTimeDownColumn.length() - 1, ']');
-            upRowNTimes = NTimeUpColumn + "\n" + NTimeDownColumn;
-        }
-        return upRowNTimes;
     }
 
     @Override
@@ -121,6 +95,5 @@ public class GameEntity extends BridgeGame implements GameRepository {
 
         return countTry;
     }
-
 
 }
