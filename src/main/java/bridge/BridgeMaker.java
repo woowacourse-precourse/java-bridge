@@ -52,6 +52,11 @@ public class BridgeMaker {
         return bridges;
     }
 
+    public void printCrossResults(List<Result> results) {
+        OutputView outputView = new OutputView();
+        results.forEach(outputView::printResult);
+    }
+
     public List<Result> getCrossResults(List<String> bridges, List<Result> crossResults, int position) {
         boolean crossed = crossBridge(bridges, position);
         List<Integer> movedDirection = getMovedDirection(bridges, position);
