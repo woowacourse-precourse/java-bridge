@@ -1,10 +1,8 @@
 package bridge.view;
 
+import bridge.domain.BridgeGame;
 import bridge.domain.GameCommand;
 import bridge.domain.MoveCommand;
-import bridge.domain.BridgeGame;
-import bridge.domain.object.Bridge;
-import bridge.domain.object.Player;
 
 import java.util.List;
 import java.util.Objects;
@@ -40,9 +38,9 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printMap(Bridge bridge, Player player) {
-        List<String> bridgeRoute = bridge.getRoute();
-        List<String> playerMoves = player.getMoves();
+    public void printMap(final BridgeGame bridgeGame) {
+        List<String> bridgeRoute = bridgeGame.getBridge().getRoute();
+        List<String> playerMoves = bridgeGame.getPlayer().getMoves();
 
         System.out.println(START + getFloor(UP, bridgeRoute, playerMoves) + END);
         System.out.println(START + getFloor(DOWN, bridgeRoute, playerMoves) + END);
@@ -78,13 +76,11 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printResult(String result, BridgeGame bridgeGame) {
-        Bridge bridge = bridgeGame.getBridge();
-        Player player = bridgeGame.getPlayer();
+    public void printResult(final String result, final BridgeGame bridgeGame) {
         int tryCount = bridgeGame.getTryCount();
 
         System.out.println("최종 게임 결과");
-        printMap(bridge, player);
+        printMap(bridgeGame);
         System.out.println("게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + tryCount);
     }

@@ -44,13 +44,14 @@ class OutputViewTest {
     void printMap() {
         Player player = new Player();
         Bridge bridge = new Bridge(List.of("U", "D", "U", "U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(player, bridge);
         player.addMove("U");
         player.addMove("D");
         player.addMove("U");
         player.addMove("U");
         player.addMove("U");
 
-        outputView.printMap(bridge, player);
+        outputView.printMap(bridgeGame);
 
         assertThat(outputMessage.toString()).isEqualTo(
                 "[ O |   | O | O | X ]\r\n" +
@@ -70,12 +71,12 @@ class OutputViewTest {
     void printResult() {
         Player player = new Player();
         Bridge bridge = new Bridge(List.of("U", "D", "U", "U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(player, bridge);
         player.addMove("U");
         player.addMove("D");
         player.addMove("U");
         player.addMove("U");
         player.addMove("U");
-        BridgeGame bridgeGame = new BridgeGame(player, bridge);
 
         outputView.printResult("실패", bridgeGame);
 

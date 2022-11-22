@@ -48,9 +48,7 @@ public class BridgeController {
             outputView.guideInputMoving();
             String moving = inputView.readMoving();
             game.move(moving);
-            Bridge bridge = game.getBridge();
-            Player player = game.getPlayer();
-            outputView.printMap(bridge, player);
+            outputView.printMap(this.game);
         } while (game.checkGameState() == RUN);
         confirmState();
     }
@@ -58,6 +56,7 @@ public class BridgeController {
     public void confirmState() {
         final GameState state = game.getState();
         if (state == FAIL) {
+            outputView.guideInputGameOver();
             choiceRestartOrQuit();
         } else if (state == CLEAR) {
             end(CLEAR.getComment());
@@ -65,7 +64,6 @@ public class BridgeController {
     }
 
     private void choiceRestartOrQuit() {
-        outputView.guideInputGameOver();
         String command = inputView.readGameCommand();
         GameCommand gameCommand = parseCommandToInstance(command);
         if (gameCommand == RESTART) {
@@ -76,7 +74,7 @@ public class BridgeController {
         }
     }
 
-    public void end (String result) {
+    public void end(final String result) {
         outputView.printResult(result, this.game);
     }
 
@@ -97,7 +95,7 @@ public class BridgeController {
         return new Bridge(bridge);
     }
 
-    public void setGame(BridgeGame game) {
+    public void setGame(final BridgeGame game) {
         this.game = game;
     }
 }
