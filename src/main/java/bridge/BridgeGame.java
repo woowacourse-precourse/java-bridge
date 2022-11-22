@@ -9,6 +9,7 @@ import bridge.exception.GameExceptionHandler;
 import bridge.input.getter.BridgeSizeGetter;
 import bridge.input.getter.GameCommandGetter;
 import bridge.input.getter.MoveGetter;
+import bridge.output.BridgeGameStarter;
 import bridge.output.ResultDemonstrator;
 
 import java.util.ArrayList;
