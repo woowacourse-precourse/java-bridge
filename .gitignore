@@ -33,3 +33,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Java Extension ###
+*.class
