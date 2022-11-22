@@ -47,4 +47,12 @@ public class BridgeGameTest {
 
         assertThat(bridgeGame.isSuccess(bridge)).isEqualTo(true);
     }
+
+    @DisplayName("게임 실패 여부 잘 판단하는지 테스트")
+    @Test
+    public void isFailureTest() {
+        bridgeGame = new BridgeGame(List.of("O", "X"));
+
+        assertThat(bridgeGame.isFailure()).isEqualTo(true);
+    }
 }
