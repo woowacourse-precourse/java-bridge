@@ -2,9 +2,6 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
     private static final String ERROR_SIZE_NUMBER = "[ERROR] 다리 길이는 3 이상 20 이하만 가능합니다.";
     private static final String ERROR_SIZE_CHAR = "[ERROR] 다리의 길이는 숫자만 입력 가능합니다.";
