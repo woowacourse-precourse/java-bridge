@@ -1,6 +1,7 @@
 package bridge.businesslogic;
 
 import bridge.BridgeNumberGenerator;
+import bridge.TestNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -172,20 +173,6 @@ class BridgeTest {
             List<String> getCrossedBridge = testBridge.getAlreadyCrossedBridge(false);
             assertThat(getCrossedBridge.get(0)).isEqualTo("[ O |   | X ]");
             assertThat(getCrossedBridge.get(1)).isEqualTo("[   | O |   ]");
-        }
-    }
-
-    static class TestNumberGenerator implements BridgeNumberGenerator {
-
-        private final List<Integer> numbers;
-
-        TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-
-        @Override
-        public int generate() {
-            return numbers.remove(0);
         }
     }
 }
