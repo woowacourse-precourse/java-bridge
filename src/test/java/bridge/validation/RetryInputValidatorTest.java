@@ -1,11 +1,10 @@
-package bridge.validator;
+package bridge.validation;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.constants.ValidatorMessage;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,10 +18,11 @@ class RetryInputValidatorTest {
                 .hasMessage(ValidatorMessage.RETRY_INPUT_IS_R_OR_Q.toString());
     }
 
-    @DisplayName("2,100,000,000번 이하의 시도라면 예외가 발생하지 않는다.")
-    @Test
-    void asd() {
-        assertThatCode(() -> TryCountValidator.validateTryCount(2000))
+    @DisplayName("입력이 Q나 R이라면 예외를 발생시키지 않는다.")
+    @ParameterizedTest()
+    @ValueSource(strings = {"R", "Q"})
+    void createNormalInput(String input) {
+        assertThatCode(() -> RetryInputValidator.validateRetryInput(input))
                 .doesNotThrowAnyException();
     }
 }
