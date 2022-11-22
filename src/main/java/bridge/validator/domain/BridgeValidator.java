@@ -1,7 +1,6 @@
 package bridge.validator.domain;
 
 import bridge.exception.LengthOutOfRangeException;
-
 import java.util.List;
 
 public class BridgeValidator {

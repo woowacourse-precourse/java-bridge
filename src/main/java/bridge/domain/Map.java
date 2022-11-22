@@ -51,14 +51,14 @@ public class Map {
     return MOVE_FAIL_SIGN;
   }
 
-  private String getUpLineString(String moveDir, String successOrFail){
+  private String getUpLineString(String moveDir, String successOrFail) {
     if (moveDir.equals(Direction.UP.getDirection())) {
       return successOrFail;
     }
     return BRIDGE_BLACK_SHAPE;
   }
 
-  private String getDownLineString(String moveDir, String successOrFail){
+  private String getDownLineString(String moveDir, String successOrFail) {
     if (moveDir.equals(Direction.DOWN.getDirection())) {
       return successOrFail;
     }

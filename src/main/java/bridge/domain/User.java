@@ -35,7 +35,7 @@ public class User {
     return this.tryCount;
   }
 
-  public int getCurrentIndex(){
+  public int getCurrentIndex() {
     return getMoveCount() - 1;
   }
 }

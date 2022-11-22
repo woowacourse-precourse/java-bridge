@@ -1,11 +1,11 @@
 package bridge.view;
 
+import static bridge.view.OutputView.*;
+
 import bridge.validator.domain.DirectionValidator;
 import bridge.validator.domain.GameCommandValidator;
 import bridge.validator.view.NumberInputValidator;
 import camp.nextstep.edu.missionutils.Console;
-
-import static bridge.view.OutputView.*;
 
 /** 사용자로부터 입력을 받는 역할을 한다. */
 public class InputView {
