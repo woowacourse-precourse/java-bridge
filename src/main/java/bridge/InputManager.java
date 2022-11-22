@@ -9,7 +9,7 @@ import view.InputView;
  * <p>
  * 입력 예외도 여기에서 처리함.
  */
-public class InputParser {
+public class InputManager {
 
     private final InputView inputView = new InputView();
 

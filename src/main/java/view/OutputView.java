@@ -1,6 +1,6 @@
 package view;
 
-
+import data.PrintData;
 import java.util.List;
 import data.BridgeData;
 /**
@@ -13,6 +13,12 @@ public class OutputView {
     private final String SUCCESS = "O ";
     private final String FAIL = "X ";
     private final String NONE = "  ";
+
+
+    public void printWelcome(){
+        PrintData.WELCOME.printGuideWithLine();
+        System.out.println();
+    }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

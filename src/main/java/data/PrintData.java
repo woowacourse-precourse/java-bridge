@@ -1,6 +1,6 @@
 package data;
 
-public enum PrintGuide {
+public enum PrintData {
     WELCOME("다리 건너기 게임을 시작합니다."),
     SIZE("다리의 길이를 입력해 주세요."),
     MOVE("이동할 칸을 선택해주세요. (위: " + BridgeData.UP + ", 아래: " + BridgeData.DOWN + ")"),
@@ -14,7 +14,7 @@ public enum PrintGuide {
 
     private final String guider;
 
-    PrintGuide(String guider) {
+    PrintData(String guider) {
         this.guider = guider;
     }
 

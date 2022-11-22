@@ -1,7 +1,6 @@
 package bridge;
 
 import data.BridgeData;
-import data.PrintGuide;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +9,11 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    InputParser inputParser = new InputParser();
-    BridgeComparator bridgeComparator = new BridgeComparator();
+    InputManager inputManager = new InputManager();
+    OutputManager outputManager = new OutputManager();
 
     public void start() {
-        PrintGuide.WELCOME.printGuideWithLine();
-        System.out.println();
-
+        orderWelcome();
         List<String> bridge;
         List<String> player = new ArrayList<>();
         bridge = makeBridge(); // 다리 생성
@@ -25,6 +22,7 @@ public class BridgeGame {
         playGame(bridge, player); // 게임 시작
     }
 
+    private void orderWelcome(){ outputManager.welcomePlayer();}
     /**
      * 다리 생성할때 쓰이는 메서드
      */
@@ -33,16 +31,14 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
         int size;
-        size = inputParser.getBridgeSize();
+        size = inputManager.getBridgeSize();
         List<String> bridge;
 
         bridge = bridgeMaker.makeBridge(size);
         return bridge;
     }
 
-    /**
-     * @param bridge
-     */
+
     private void playGame(List<String> bridge, List<String> player) {
         int attempt = 0;
         do {
@@ -63,8 +59,8 @@ public class BridgeGame {
     public boolean move(List<String> bridge, List<String> player) {
         boolean isAlive = true;
         while (bridge.size() != player.size() && isAlive) {
-            player.add(inputParser.getMoveCommand());
-            isAlive = bridgeComparator.movePlayer(bridge, player);
+            player.add(inputManager.getMoveCommand());
+            isAlive = outputManager.movePlayer(bridge, player);
         }
         return isAlive;
     }
@@ -76,7 +72,7 @@ public class BridgeGame {
      */
     public boolean retry() {
         String gameCommand;
-        gameCommand = inputParser.getGameCommand();
+        gameCommand = inputManager.getGameCommand();
         return gameCommand.equals(BridgeData.RESTART);
     }
 
@@ -85,8 +81,8 @@ public class BridgeGame {
      */
     public void result(List<String> bridge, List<String> player, int attempt) {
         String result;
-        bridgeComparator.printResultBridge(bridge, player);
-        result = bridgeComparator.compareBridge(bridge, player);
-        bridgeComparator.printResult(result, attempt);
+        outputManager.printResultBridge(bridge, player);
+        result = outputManager.compareBridge(bridge, player);
+        outputManager.printResult(result, attempt);
     }
 }
