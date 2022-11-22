@@ -15,12 +15,13 @@ public class BridgeGameController {
     OutputView outputView = new OutputView();
     BridgeGame bridgeGame = new BridgeGame();
     List<String> bridge = new ArrayList<>();
-    List<String> isCorrectList = new ArrayList<>();
+    static List<String> isCorrectList = new ArrayList<>();
     int turn = 0;
+    boolean isWin = false;
     public void start() {
         int lengthOfBridge = gameStart();
-        boolean isCorrect = selectMoving(lengthOfBridge);
-        printResultOfGame(isCorrect);
+        selectMoving(lengthOfBridge);
+        printResultOfGame(isWin);
     }
 
     public int gameStart() {
@@ -34,23 +35,22 @@ public class BridgeGameController {
         return lengthOfBridge;
     }
 
-    public boolean selectMoving(int lengthOfBridge) {
-        while (true) {
+    public void selectMoving(int lengthOfBridge) {
+        while (!isWin) {
             String userMove = InputView.readMoving();
             outputView.setUpAndDownSide(userMove, bridge.get(turn));
             boolean isCorrect = bridgeGame.move(bridge, userMove);
             outputView.printMap();
             turn ++;
-            if (!isCorrect) return selectQuitOrRestart(lengthOfBridge);
-            if (isSuccess(isCorrect, lengthOfBridge)) return true;
+            if (!isCorrect) selectQuitOrRestart(lengthOfBridge);
+            if (isSuccess(isCorrect, lengthOfBridge)) isWin = true;
         }
     }
 
-    public boolean selectQuitOrRestart(int lengthOfBridge) {
+    public void selectQuitOrRestart(int lengthOfBridge) {
         String restartOrQuit = InputView.readGameCommand();
         if (restartOrQuit.equals("R")) restartGame(lengthOfBridge);
-        if (restartOrQuit.equals("Q")) return false;
-        return false;
+        if (restartOrQuit.equals("Q")) isWin = false;
     }
 
     public void restartGame(int lengthOfBridge) {
