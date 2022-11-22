@@ -14,7 +14,7 @@ public enum Restart {
 
     public static void validate(String status) {
         if (status.equals(Restart.RESTART.getStatus())
-            || status.equals(Restart.QUIT.getStatus())) {
+                || status.equals(Restart.QUIT.getStatus())) {
             return;
         }
 

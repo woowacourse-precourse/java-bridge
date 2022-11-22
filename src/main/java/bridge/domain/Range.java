@@ -14,7 +14,7 @@ public enum Range {
 
     public static void validate(Integer range) {
         if (Range.MIN.getRange() <= range
-            && range <= Range.MAX.getRange()) {
+                && range <= Range.MAX.getRange()) {
             return;
         }
 
