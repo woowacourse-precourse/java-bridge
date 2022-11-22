@@ -31,12 +31,12 @@ public class Controller {
     }
 
     private int getBridgeSize() {
-        int inputBridgeSize;
+        int bridgeSize;
         while (true) {
             try {
-                inputBridgeSize = inputView.readBridgeSize();
-                validation.validateBridgeSize(inputBridgeSize);
-                return inputBridgeSize;
+                bridgeSize = inputView.readBridgeSize();
+                validation.validateBridgeSize(bridgeSize);
+                return bridgeSize;
             } catch (IllegalArgumentException e) {
                 systemMessage.error("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             }
@@ -50,35 +50,34 @@ public class Controller {
     }
 
     private void run() {
-        List<String> movement = new ArrayList<>();
+        List<String> moveRecord = new ArrayList<>();
         gameCount++;
-        while (movement.size() < bridge.size()) {
-            movement.add(getMove());
-            createMovingRoute(bridge, movement);
+        while (moveRecord.size() < bridge.size()) {
+            moveRecord.add(getMove());
+            setMovingRoute(bridge, moveRecord);
             if (isContainX(movingRoute)) {
                 break;
             }
         }
-        result(movement);
+        result(moveRecord);
     }
 
     private String getMove() {
-        String input = "";
+        String move = "";
         while (true) {
             try {
-                input = inputView.readMoving();
-                validation.validateMove(input);
-                return input;
+                move = inputView.readMoving();
+                validation.validateMove(move);
+                return move;
             } catch (IllegalArgumentException e) {
                 systemMessage.error("이동경로는 U 또는 D여야 합니다.");
             }
         }
     }
 
-    private List<String> createMovingRoute(List<String> bridge, List<String> movement) {
-        movingRoute = bridgeGame.move(bridge, movement);
+    private void setMovingRoute(List<String> bridge, List<String> moveRecord) {
+        movingRoute = bridgeGame.move(bridge, moveRecord);
         outputView.printMap(movingRoute);
-        return movingRoute;
     }
 
     private boolean isContainX(List<String> map) {
@@ -90,11 +89,12 @@ public class Controller {
         return false;
     }
 
-    public void result(List<String> movement) {
+    public void result(List<String> moveRecord) {
+        OutputView outputView = new OutputView();
         if (isContainX(movingRoute)) {
             fail();
         }
-        if (bridge.size() == movement.size()) {
+        if (bridge.size() == moveRecord.size()) {
             outputView.printResult(movingRoute, "성공", gameCount);
         }
     }
@@ -110,12 +110,12 @@ public class Controller {
     }
 
     private String getCommand() {
-        String inputCommand;
+        String command;
         while (true) {
             try {
-                inputCommand = inputView.readGameCommand();
-                validation.validateCommand(inputCommand);
-                return inputCommand;
+                command = inputView.readGameCommand();
+                validation.validateCommand(command);
+                return command;
             } catch (IllegalArgumentException e) {
                 systemMessage.error("재시도 여부는 R 또는 Q여야 합니다.");
             }
