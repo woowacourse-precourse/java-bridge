@@ -30,6 +30,7 @@ public class InputView {
             System.out.println(e);
             return readBridgeSize();
         }
+        System.out.println();
         return Integer.valueOf(userInput);
     }
 
