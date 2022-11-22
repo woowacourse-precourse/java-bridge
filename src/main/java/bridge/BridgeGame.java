@@ -7,11 +7,11 @@ import java.util.List;
  */
 public class BridgeGame {
     private static final String NOT_VALID_BRIDGE_SIZE_INPUT = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    private static final String NOT_INPUT = "[ERROR] 아무런 값이 입력되지 않았습니다.";
     private static final String NOT_VALID_SIZE_INPUT = "[ERROR] 1글자만 입력해주세요.";
     private static final String NOT_VALID_RETRY_INPUT = "[ERROR] 입력은 Q,R 이어야 합니다.";
     private static final String NOT_VALID_BRIDGE_INPUT = "[ERROR] 입력은 숫자 이어야 합니다.";
     private static final String NOT_VALID_MOVE_INPUT = "[ERROR] 입력은 U,D 이어야 합니다.";
+    private static final String NOT_INPUT = "[ERROR] 아무런 값이 입력되지 않았습니다.";
 
     public int retryCount = 1;
     public int count = 0;
@@ -23,14 +23,9 @@ public class BridgeGame {
     private BridgeMaker bridgeMaker;
     public List<String> bridge;
 
-    public void setUp() {
+    public BridgeGame() {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
-    }
-
-    public BridgeGame() {
-        setUp();
     }
 
     public boolean bridge(String inputBridgeSize) {
