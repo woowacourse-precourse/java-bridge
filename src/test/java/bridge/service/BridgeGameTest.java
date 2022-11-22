@@ -78,14 +78,6 @@ public class BridgeGameTest {
         assertThat(game.getStatus()).isEqualTo(GameStatus.PLAYING);
     }
 
-    @DisplayName("칸에 대한 선택을 할 때, 시도횟수가 1 증가한다.")
-    @Test
-    void When_UserChoice_AttemptCountIncreaseByOne() {
-        int attemptCount = game.getAttemptCount();
-        game.move("U");
-        assertThat(game.getAttemptCount()).isEqualTo(attemptCount + 1);
-    }
-
     @DisplayName("칸에 대한 선택을 할 때, 시도하는 칸의 순서가 1 증가한다.")
     @Test
     void When_UserChoice_PanelOrderIncreaseByOne() {
@@ -94,6 +86,18 @@ public class BridgeGameTest {
         assertThat(game.getPanelOrder())
                 .isEqualTo(panelOrder + 1)
                 .isEqualTo(1);
+    }
+
+    @DisplayName("재시도를 할 경우 시도 횟수가 1 증가한다.")
+    @Test
+    void When_UserRetry_Expect_AttemptCountIncreaseByOne() {
+        int attemptCount = game.getAttemptCount();
+        game.move("U");
+        game.move("U");
+        game.retry();
+        assertThat(game.getAttemptCount())
+                .isEqualTo(attemptCount + 1)
+                .isEqualTo(2);
     }
 
     @DisplayName("재시도를 할 경우 시도하는 칸의 순서가 1 감소한다.")
