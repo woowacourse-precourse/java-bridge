@@ -1,7 +1,7 @@
 package bridge.domain;
 
 import bridge.enums.Sign;
-import bridge.util.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
