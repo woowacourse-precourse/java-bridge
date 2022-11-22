@@ -1,4 +1,4 @@
-package bridge;
+package view;
 
 import static bridge.Validate.validateInputMove;
 import static bridge.Validate.validateInputNumber;

@@ -1,6 +1,9 @@
-package bridge;
+package controller;
 
-import java.util.List;
+import bridge.Bridge;
+import bridge.BridgeGame;
+import view.InputView;
+import view.OutputView;
 
 public class UserConsole {
     /// user console class bridge class  - >  user interaction calss

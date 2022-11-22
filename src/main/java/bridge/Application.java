@@ -1,5 +1,7 @@
 package bridge;
 
+import controller.UserConsole;
+
 public class Application {
 
     public static void main(String[] args) {
