@@ -38,5 +38,9 @@ public class OutputView {
     public void printGameResult(String gameState){
         System.out.printf("게임 성공 여부: %s\n", gameState);
     }
+
+    public void printTotalTrial(int numberOfTrial){
+        System.out.printf("총 시도한 횟수: %d\n", numberOfTrial);
+    }
     
 }
