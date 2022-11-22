@@ -52,7 +52,6 @@ public class BridgeGame {
         List<String> bridgeState) {
         gameCount++;
         start(bridgeState, bridgeSize);
-        return;
     }
 
 
