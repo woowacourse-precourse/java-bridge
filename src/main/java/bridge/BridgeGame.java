@@ -9,7 +9,7 @@ public class BridgeGame {
     private int tryTimes;
     BridgeGame(){
         this.nowIdx = 0;
-        this.tryTimes = 0;
+        this.tryTimes = 1;
     }
 
     public void setSize(int size){
@@ -24,7 +24,6 @@ public class BridgeGame {
     }
 
     public boolean move(String userInput) {
-        tryTimes++;
         if(userInput.equals(bridge.get(nowIdx))){
             nowIdx++;
             return true;
@@ -33,12 +32,12 @@ public class BridgeGame {
     }
 
     public void resetGame(){
-        this.tryTimes = 0;
         this.nowIdx = 0;
     }
 
     public boolean retry(String userInput) {
         if(userInput.equals("R")){
+            tryTimes++;
             resetGame();
             return true;
         }
