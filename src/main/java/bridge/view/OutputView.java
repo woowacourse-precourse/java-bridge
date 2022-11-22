@@ -40,8 +40,8 @@ public class OutputView {
         for (int i = 0; i < 2; i++) {
             List<String> line = result.get(i);
             System.out.println("[ " + String.join(" | ", line) + " ]");
-
         }
+        System.out.println();
     }
 
     /**
