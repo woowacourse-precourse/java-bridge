@@ -12,7 +12,7 @@ import java.util.List;
 public class BridgeGame {
     private final InputView inputView = new InputView();
     private final BridgeBroker bridgeBroker = new BridgeBroker();
-    private final Bridge bridge;
+    private final Bridge targetBridge;
     private GameResult gameResult = new GameResult();
 
     public BridgeGame() {
@@ -20,7 +20,7 @@ public class BridgeGame {
 
         // 다리를 생성한다.
         int bridgeSize = inputView.readBridgeSize();
-        bridge = bridgeBroker.makeBridge(bridgeSize);
+        targetBridge = bridgeBroker.makeBridge(bridgeSize);
     }
 
     /**
@@ -58,7 +58,7 @@ public class BridgeGame {
 
     public void updateResult() {
         List<String> myAnswer = gameResult.getBridge().getBridge();
-        List<String> answer = bridge.getBridge();
+        List<String> answer = targetBridge.getBridge();
 
         if (isSameBridge(answer, myAnswer)) {
             gameResult.setProgress(GameProgress.SUCCESS);

@@ -5,7 +5,7 @@ import bridge.domain.GameProgress;
 import bridge.domain.GameResult;
 
 public class BridgeGameController {
-    private BridgeGame game;
+    private final BridgeGame game;
 
     public BridgeGameController() {
         // 객체 생성 및 다리 생성

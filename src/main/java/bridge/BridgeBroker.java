@@ -5,7 +5,7 @@ import bridge.domain.Bridge;
 import java.util.List;
 
 public class BridgeBroker {
-    BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker;
 
     BridgeBroker() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
