@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.DTO.MoveRecord;
+import bridge.model.MoveRecord;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,8 +48,23 @@ public class OutputView {
         return "X";
     }
 
-    public void printResult() {
-
+    public void printFinalResultTitle() {
+        System.out.println("최종 게임 결과");
     }
 
+    public void printSuccess(boolean success) {
+        String result = "게임 성공 여부: ";
+        System.out.println(result + winOrLose(success));
+    }
+
+    private String winOrLose(boolean success) {
+        if (success) {
+            return "성공";
+        }
+        return "실패";
+    }
+
+    public void printTrial(int n) {
+        System.out.println("총 시도한 횟수: " + n);
+    }
 }
