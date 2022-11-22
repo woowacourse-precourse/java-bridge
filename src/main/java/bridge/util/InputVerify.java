@@ -1,4 +1,7 @@
-package bridge;
+package bridge.util;
+
+import bridge.constant.Constants;
+import bridge.constant.Order;
 
 public class InputVerify {
 

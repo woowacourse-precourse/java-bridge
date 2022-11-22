@@ -1,8 +1,14 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.Constants;
+import bridge.constant.Control;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
-public class BridgeStage {
+public class BridgeController {
 
 	private List<String> bridge;
 	private int position;
@@ -11,7 +17,7 @@ public class BridgeStage {
 	private InputView inputView;
 	private OutputView outputView;
 
-	public BridgeStage() {
+	public BridgeController() {
 		inputView = new InputView();
 		outputView = new OutputView();
 		position = 0;

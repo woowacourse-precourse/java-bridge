@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.util.InputVerify;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

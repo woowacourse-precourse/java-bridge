@@ -1,4 +1,4 @@
-package bridge;
+package bridge.constant;
 
 public enum Control {
 	UP(1, "U"),

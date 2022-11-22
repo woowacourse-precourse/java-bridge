@@ -1,14 +1,16 @@
 package bridge;
 
+import bridge.controller.BridgeController;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-	private BridgeStage bridgeStage;
+	private BridgeController bridgeStage;
 
 	public BridgeGame() {
-		bridgeStage = new BridgeStage();
+		bridgeStage = new BridgeController();
 	}
 
 	public void run() {

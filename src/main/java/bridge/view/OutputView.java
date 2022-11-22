@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.constant.Constants;
+import bridge.constant.Control;
 import java.util.List;
 
 /**
