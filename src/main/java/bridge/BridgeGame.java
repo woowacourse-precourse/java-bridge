@@ -33,16 +33,11 @@ public class BridgeGame {
         return new String[]{upLine, downLine};
     }
 
-    private String makeLineOfMap(String UorD) {
+    private String makeLineOfMap(String lineUpOrDown) {
         StringBuilder sb = new StringBuilder("[");
         for (int i=0; i<movement.size(); i++) {
-            if (!movement.get(i).equals( bridge.get(i) )) { // 일치하지 않으면 마지막 move
-                sb.append(" X |");
-                break;
-            }
-            if (movement.get(i).equals(UorD)) sb.append(" O ");
-            if (!movement.get(i).equals(UorD)) sb.append("   "); // else 사용하면 더 깔끔함
-            sb.append("|");
+            String checker = UpDownChecker.fromConditions(bridge.get(i), movement.get(i), lineUpOrDown).getChecker();
+            sb.append(checker).append("|");
         }
         return sb.substring(0, sb.length()-1) + "]";
     }
