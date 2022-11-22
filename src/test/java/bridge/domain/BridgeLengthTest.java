@@ -22,9 +22,7 @@ public class BridgeLengthTest {
     void createBridgeLengthWithOutOfRangeLength(int length) {
         assertThatThrownBy(() -> new BridgeLength(length))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(
-                        "[ERROR]",
-                        "값을 입력하지 않았습니다."
-                );
+                .hasMessageContaining("[ERROR]")
+                .hasMessageContaining("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 }
