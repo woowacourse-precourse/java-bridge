@@ -26,8 +26,7 @@ class BridgeGameTest {
     @DisplayName("move 테스트 - 정답이 아닌 값 입력")
     @Test
     void moveTestWrongMovement() {
-        String expect = "[ X ]\n[   ]\n";
-        assertThat(bridgeGame.move("U")).isEqualTo(expect);
+        assertThat(bridgeGame.move("U")).isEqualTo("[ X ]\n[   ]\n");
         assertThat(bridgeGame.isFinish()).isTrue();
         assertThat(bridgeGame.isSuccess()).isFalse();
     }
@@ -35,8 +34,7 @@ class BridgeGameTest {
     @DisplayName("move 테스트 - 정답 값 입력")
     @Test
     void moveTestCorrectMovement() {
-        String expect = "[   ]\n[ O ]\n";
-        assertThat(bridgeGame.move("D")).isEqualTo(expect);
+        assertThat(bridgeGame.move("D")).isEqualTo("[   ]\n[ O ]\n");
         assertThat(bridgeGame.isFinish()).isFalse();
         assertThat(bridgeGame.isSuccess()).isFalse();
     }
@@ -54,13 +52,12 @@ class BridgeGameTest {
     void isSuccessTest() {
         List<String> inputValues = Arrays.asList("D", "U", "U", "D");
         String result = "";
-        String expect = "[   | O | O |   ]\n[ O |   |   | O ]\n";
 
         for (String inputValue : inputValues) {
             result = bridgeGame.move(inputValue);
         }
 
-        assertThat(result).isEqualTo(expect);
+        assertThat(result).isEqualTo("[   | O | O |   ]\n[ O |   |   | O ]\n");
         assertThat(bridgeGame.isFinish()).isTrue();
         assertThat(bridgeGame.isSuccess()).isTrue();
     }
@@ -70,14 +67,13 @@ class BridgeGameTest {
     void isFailTest() {
         List<String> inputValues = Arrays.asList("D", "U", "U", "U");
         String result = "";
-        String expect = "[   | O | O | X ]\n[ O |   |   |   ]\n";
 
         for (String inputValue : inputValues) {
             result = bridgeGame.move(inputValue);
         }
 
         System.out.println(result);
-        assertThat(result).isEqualTo(expect);
+        assertThat(result).isEqualTo("[   | O | O | X ]\n[ O |   |   |   ]\n");
         assertThat(bridgeGame.isFinish()).isTrue();
         assertThat(bridgeGame.isSuccess()).isFalse();
     }
