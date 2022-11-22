@@ -48,7 +48,7 @@ public class OutputView {
         return GAME_FAIL_MESSAGE;
     }
 
-    public void printErrorMessage(String message) {
+    public static void printErrorMessage(String message) {
         System.out.println(ERROR_MESSAGE + message);
     }
 }
