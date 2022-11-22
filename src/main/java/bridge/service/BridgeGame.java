@@ -73,6 +73,17 @@ public class BridgeGame {
         return player.getNumberOfChoice();
     }
 
+    public boolean moveAgain() {
+        if (isAcrossLast()) {
+            return false;
+        }
+        if (isSameRecentChoiceAndBridge()) {
+            return true;
+        }
+
+        return false;
+    }
+
     private boolean isSameRecentChoiceAndBridge() {
         return player.getLastChoice().equals(bridge.getBridgeByIndex(getNumberOfChoice() - 1));
     }
