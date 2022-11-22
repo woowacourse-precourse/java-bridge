@@ -29,13 +29,13 @@ public class InputValidate {
 
     public void validateMoving(String direction) {
         if (!direction.equals("U") && !direction.equals("D")) {
-            throw new IllegalArgumentException(Error.WRONG_INPUT);
+            throw new IllegalArgumentException(Error.WRONG_DIRECTION_INPUT);
         }
     }
 
     public void validateRetry(String retry) {
         if (!retry.equals("R") && !retry.equals("Q")) {
-            throw new IllegalArgumentException(Error.WRONG_INPUT);
+            throw new IllegalArgumentException(Error.WRONG_RETRY_INPUT);
         }
     }
 }

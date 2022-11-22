@@ -59,7 +59,7 @@ public class BridgeGameController {
                 String moving = inputView.readMoving();
                 return moving;
             } catch (IllegalArgumentException e) {
-                System.out.println(Error.WRONG_INPUT);
+                System.out.println(e.getMessage());
             }
         } while (true);
     }
@@ -70,7 +70,7 @@ public class BridgeGameController {
                 String retry = inputView.readGameCommand();
                 return retry;
             } catch (IllegalArgumentException e) {
-                System.out.println(Error.WRONG_INPUT);
+                System.out.println(e.getMessage());
             }
         } while (true);
     }
