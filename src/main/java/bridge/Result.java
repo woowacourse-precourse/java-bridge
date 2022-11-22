@@ -47,4 +47,40 @@ public class Result {
     public List<List<String>> getResults() {
         return results;
     }
+
+    public void makeUpPositionMap() {
+        for (int i = 0; i < results.size(); i++) {
+            printMovableMark("U", i);
+            printNothing("D", i);
+
+            if (i == results.size() - 1) {
+                continue;
+            }
+            System.out.print(" | ");
+        }
+    }
+
+    public void makeDownPositionMap() {
+        for (int i = 0; i < results.size(); i++) {
+            printMovableMark("D", i);
+            printNothing("U", i);
+
+            if (i == results.size() - 1) {
+                continue;
+            }
+            System.out.print(" | ");
+        }
+    }
+
+    public void printNothing(String position, int index) {
+        if (results.get(index).get(0).equals(position)) {
+            System.out.print(" ");
+        }
+    }
+
+    public void printMovableMark(String position, int index) {
+        if (results.get(index).get(0).equals(position)) {
+            System.out.print(results.get(index).get(1));
+        }
+    }
 }
