@@ -24,11 +24,11 @@ public class BridgeGame {
     public TotalResult move(String movingSide, int distance) {
         if (movingSuccess(movingSide, distance)) {
             PlayerMap resultMap = playerMapMaker.makeSuccessPlayerMapTo(distance);
-            return new TotalResult(resultMap, tryCnt);
+            return new TotalResult(this, resultMap);
         }
 
         PlayerMap resultMap = playerMapMaker.makeFailurePlayerMapTo(distance);
-        return new TotalResult(resultMap, tryCnt);
+        return new TotalResult(this, resultMap);
     }
 
     private boolean movingSuccess(String movingSide, int distance) {
@@ -44,8 +44,13 @@ public class BridgeGame {
     public BridgeGame retry() {
         return new BridgeGame(bridge, tryCnt + 1);
     }
-    public int getBridgeSize() {
-        return bridge.size();
+
+    public int getTryCnt() {
+        return tryCnt;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
     }
 
     @Override

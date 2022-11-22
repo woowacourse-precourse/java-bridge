@@ -1,12 +1,15 @@
 package bridge.model;
 
-public class TotalResult {
-    private final PlayerMap playerMap;
-    private final int tryCnt;
+import java.util.List;
 
-    public TotalResult(PlayerMap playerMap, int tryCnt) {
+public class TotalResult {
+
+    private final BridgeGame bridgeGame;
+    private final PlayerMap playerMap;
+
+    public TotalResult(BridgeGame bridgeGame, PlayerMap playerMap) {
+        this.bridgeGame = bridgeGame;
         this.playerMap = playerMap;
-        this.tryCnt = tryCnt;
     }
 
     public PlayerMap getPlayerMap() {
@@ -18,7 +21,7 @@ public class TotalResult {
     }
 
     public int getTryCnt() {
-        return tryCnt;
+        return bridgeGame.getTryCnt();
     }
 
     @Override
