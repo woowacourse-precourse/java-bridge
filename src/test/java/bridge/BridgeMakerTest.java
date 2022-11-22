@@ -21,6 +21,4 @@ class BridgeMakerTest {
         Assertions.assertThatThrownBy(() -> new BridgeMakerValidate("21")).isInstanceOf(IllegalArgumentException.class);
         Assertions.assertThatThrownBy(() -> new BridgeMakerValidate("0")).isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }
