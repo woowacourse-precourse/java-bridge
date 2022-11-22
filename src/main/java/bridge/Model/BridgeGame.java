@@ -13,7 +13,7 @@ public class BridgeGame {
     private static BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
     public static OutputView outputView = new OutputView();
 
-    private static int position = 0;
+    private int position = 0;
     private int attempt = 1;
 
     private List<String> bridge;
