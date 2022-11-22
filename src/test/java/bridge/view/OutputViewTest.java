@@ -26,7 +26,7 @@ public class OutputViewTest {
         System.setOut(new PrintStream(out));
     }
 
-    @DisplayName("성공 여부에 따라 현재까지 움직인 경로 출력하는 테스트")
+    @DisplayName("현재까지 움직인 경로 출력하는 테스트")
     @ParameterizedTest
     @MethodSource("expectedOutput")
     void printMapTest(boolean isSuccess, List<Plate> path, String expectedOutput) {
@@ -45,5 +45,31 @@ public class OutputViewTest {
         return Stream.of (
                 Arguments.of(success, path1, expected1),
                 Arguments.of(fail, path2, expected2));
+    }
+
+    @DisplayName("게임 성공 결과 테스트")
+    @Test
+    void printResultSuccessTest() {
+        List<Plate> path = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
+        outputView.printResult(true, 5, path);
+
+        String expectedOutput
+                = "최종 게임 결과\n[ O |   | O ]\n[   | O |   ]\n\n게임 성공 여부: 성공\n총 시도한 횟수: 5";
+
+        assertThat(out.toString().trim())
+                .isEqualTo(expectedOutput);
+    }
+
+    @DisplayName("게임 실패 결과 테스트")
+    @Test
+    void printResultFailTest() {
+        List<Plate> path = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
+        outputView.printResult(false, 5, path);
+
+        String expectedOutput
+                = "최종 게임 결과\n[ O |   | X ]\n[   | O |   ]\n\n게임 성공 여부: 실패\n총 시도한 횟수: 5";
+
+        assertThat(out.toString().trim())
+                .isEqualTo(expectedOutput);
     }
 }
