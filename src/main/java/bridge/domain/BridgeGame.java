@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.controller.GameState;
-import bridge.view.OutputView;
 import bridge.vo.Bridge;
 import bridge.vo.UserPlayer;
 
@@ -52,8 +51,8 @@ public class BridgeGame {
 		stage = 0;
 	}
 
-	public void draw(GameState result) {
-		OutputView.printMap(result, userPlayer.getMoveRecord());
-		OutputView.printResult(result, userPlayer.getTotalAttempt());
-	}
+	// public void draw(GameState result) {
+	// 	OutputView.printMap(result, userPlayer.getMoveRecord());
+	// 	OutputView.printResult(result, userPlayer.getTotalAttempt());
+	// }
 }

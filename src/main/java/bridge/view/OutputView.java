@@ -9,7 +9,6 @@ import bridge.controller.GameState;
 import bridge.domain.BridgeConfiguration;
 
 public class OutputView {
-
 	public static void printMap(GameState result, List<String> moveRecord) {
 		printWholeBridge(result, moveRecord);
 		System.out.println();
@@ -45,10 +44,10 @@ public class OutputView {
 	}
 
 	public static void printEndBridge(GameState result, boolean lastBridgeState) {
-		if (lastBridgeState && result.equals(SUCCESS_END)) {
+		if (lastBridgeState && result.equals(SUCCESS_END) || lastBridgeState && result.equals(CONTINUATION)) {
 			System.out.print("O");
 		}
-		if (lastBridgeState && result.equals(FAIL_END)) {
+		if (lastBridgeState && result.equals(FAIL_END) || lastBridgeState && result.equals(SELECT_GAME_COMMAND)) {
 			System.out.print("X");
 		}
 		if (!lastBridgeState) {

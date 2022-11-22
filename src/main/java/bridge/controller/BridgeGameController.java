@@ -24,8 +24,8 @@ public class BridgeGameController {
 		GameState state;
 		do {
 			state = movePlayer();
+			drawBridge(state);
 			state = operateGame(state);
-
 		} while (state.equals(CONTINUATION));
 		finishGame(state);
 	}
@@ -64,8 +64,13 @@ public class BridgeGameController {
 		}
 	}
 
+	public void drawBridge(GameState result) {
+		OutputView.printMap(result, userPlayer.getMoveRecord());
+	}
+
 	public void finishGame(GameState result) {
 		OutputView.printProgressMessage(GAME_DRAW_RESULT);
-		bridgeGame.draw(result);
+		drawBridge(result);
+		OutputView.printResult(result, userPlayer.getTotalAttempt());
 	}
 }
