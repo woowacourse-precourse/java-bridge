@@ -47,7 +47,7 @@ public class BridgeGameController {
             boolean pass = bridgeGame.isPass(moveUpOrDown);
             printMap(bridgeGame.getLocation(), pass, moveUpOrDown);
             checkPassOrFailCase(pass, bridgeGame, user);
-            isArriveByEnd(bridgeGame, user);
+            checkArriveByEnd(bridgeGame, user);
         }
         printResult(user);
     }
@@ -62,7 +62,7 @@ public class BridgeGameController {
         outputView.printMap(bridgeMapUpdater.getUpdatedBridgeMap());
     }
 
-    private void isArriveByEnd(BridgeGame bridgeGame, User user) {
+    private void checkArriveByEnd(BridgeGame bridgeGame, User user) {
         if (bridgeGame.isEndOfLocation()) {
             user.finishWithWin();
         }
