@@ -88,7 +88,7 @@ public class OutputView {
         ViewStatus status = result.getNextViewStatus();
         List<String> bridge = result.getResult();
         String lastPosition = bridge.get(bridge.size() - 1);
-        if (status == ViewStatus.DETERMINE_CONTINUE) {
+        if (status == ViewStatus.DETERMINE_RETRY) {
             appendWrongSignAsLastPartOfMap(lastPosition);
             return;
         }

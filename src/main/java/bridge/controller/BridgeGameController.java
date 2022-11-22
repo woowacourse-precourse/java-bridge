@@ -39,7 +39,7 @@ public class BridgeGameController {
             return bridgeService.retry(InputParser.parseToUpperCase(command));
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
-            return ViewStatus.DETERMINE_CONTINUE;
+            return ViewStatus.DETERMINE_RETRY;
         }
     }
 

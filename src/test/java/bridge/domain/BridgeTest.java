@@ -60,6 +60,6 @@ class BridgeTest {
         GameResult result = bridge.getUnMatchedPathResult(index + 1);
 
         assertThat(result.getResult().get(index)).isNotEqualTo(expected);
-        assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_CONTINUE);
+        assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_RETRY);
     }
 }

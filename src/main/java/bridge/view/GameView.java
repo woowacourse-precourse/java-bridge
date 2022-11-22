@@ -43,7 +43,7 @@ public class GameView {
     }
 
     public void retry() {
-        while (status == ViewStatus.DETERMINE_CONTINUE) {
+        while (status == ViewStatus.DETERMINE_RETRY) {
             status = inputView.readGameCommand();
         }
     }

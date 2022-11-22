@@ -32,7 +32,7 @@ public class Bridge {
     }
 
     public GameResult getUnMatchedPathResult(int columnPosition) {
-        return GameResult.of(bridgeFrame.subList(STARTING_POINT, columnPosition), ViewStatus.DETERMINE_CONTINUE);
+        return GameResult.of(bridgeFrame.subList(STARTING_POINT, columnPosition), ViewStatus.DETERMINE_RETRY);
     }
 
     public boolean compare(String command, int indexOfBridge) {

@@ -60,7 +60,7 @@ class BridgeGameControllerTest {
         ViewStatus result = bridgeGameController.retry(command);
 
         assertThat(result)
-                .isEqualTo(ViewStatus.DETERMINE_CONTINUE);
+                .isEqualTo(ViewStatus.DETERMINE_RETRY);
     }
 
     @DisplayName("올바른 retry 명령어 입력 시 그에 맞는 상태값 반환.")
@@ -71,7 +71,7 @@ class BridgeGameControllerTest {
         ViewStatus result = bridgeGameController.retry(command);
 
         assertThat(result)
-                .isNotEqualTo(ViewStatus.DETERMINE_CONTINUE);
+                .isNotEqualTo(ViewStatus.DETERMINE_RETRY);
     }
 
     @DisplayName("게임 카운트 반환.")

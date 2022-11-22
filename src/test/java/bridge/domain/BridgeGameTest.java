@@ -54,7 +54,7 @@ class BridgeGameTest {
     void returnGameResultWhenGiveWrongMoveCommand() {
         GameResult result = bridgeGame.resultOfMove(false);
 
-        assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_CONTINUE);
+        assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_RETRY);
     }
 
     @DisplayName("모든 정답을 맞춘 경우 그에 맞는 결과를 반환한다.")
