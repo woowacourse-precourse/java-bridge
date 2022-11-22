@@ -15,7 +15,7 @@ public class BridgeSizeValidator {
 
     private static void validateBlank(String size) {
         if (isBlank(size)) {
-            throw new NumberFormatException(BLANK.getMessage());
+            throw new NumberFormatException(NO_BLANK_MESSAGE.getMessage());
         }
     }
 
@@ -25,13 +25,13 @@ public class BridgeSizeValidator {
 
     private static void validateDigit(String size) {
         if (isDigit(size)) {
-            throw new IllegalArgumentException(NO_NUMBER.getMessage());
+            throw new IllegalArgumentException(NO_NUMBER_MESSAGE.getMessage());
         }
     }
 
     private static void validateSize(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
-            throw new IllegalArgumentException(OVER_OR_UNDER_RANGE.getMessage());
+            throw new IllegalArgumentException(OVER_OR_UNDER_RANGE_MESSAGE.getMessage());
         }
     }
 

@@ -30,10 +30,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(Result result) {
-        System.out.println(GAME_RESULT);
+        System.out.println(GAME_RESULT_MESSAGE);
         printMap(result.getBridgeMap(), result.getBlockCount());
-        System.out.println(GAME_SUCCESS_WHETHER + result.getWinning());
-        System.out.println(GAME_COUNT + result.getGameCount());
+        System.out.println(GAME_SUCCESS_WHETHER_MESSAGE + result.getWinning());
+        System.out.println(GAME_COUNT_MESSAGE + result.getGameCount());
     }
 
     public void printGameStartMessage() {

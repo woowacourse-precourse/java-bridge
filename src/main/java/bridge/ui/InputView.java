@@ -17,7 +17,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         try {
-            String bridgeSize = getAnswer(INPUT_BRIDGE_SIZE);
+            String bridgeSize = getAnswer(INPUT_BRIDGE_SIZE_MESSAGE);
             System.out.print(LINE_FEED);
             BridgeSizeValidator.validate(bridgeSize);
             return Integer.parseInt(bridgeSize);
@@ -32,7 +32,7 @@ public class InputView {
      */
     public String readMoving() {
         try {
-            String direction = getAnswer(INPUT_DIRECTION);
+            String direction = getAnswer(INPUT_DIRECTION_MESSAGE);
             DirectionSelectionValidator.validate(direction);
             return direction;
         } catch (IllegalArgumentException exception) {
@@ -46,7 +46,7 @@ public class InputView {
      */
     public GameCommand readGameCommand() {
         try {
-            String restartWhether = getAnswer(INPUT_RESTART_WHETHER);
+            String restartWhether = getAnswer(INPUT_RESTART_WHETHER_MESSAGE);
             return GameCommand.getByCommandString(restartWhether);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());

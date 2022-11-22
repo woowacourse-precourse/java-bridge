@@ -1,6 +1,6 @@
 package bridge.validator;
 
-import static bridge.validator.ExceptionMessage.UP_DOWN;
+import static bridge.validator.ExceptionMessage.ONLY_UP_DOWN_MESSAGE;
 
 public class DirectionSelectionValidator {
     private static final String UP_DIRECTION = "U";
@@ -8,7 +8,7 @@ public class DirectionSelectionValidator {
 
     public static void validate(String direction) {
         if (!isEqualUpMessage(direction) && !isEqualDownMessage(direction)) {
-            throw new IllegalArgumentException(UP_DOWN.getMessage());
+            throw new IllegalArgumentException(ONLY_UP_DOWN_MESSAGE.getMessage());
         }
     }
 
