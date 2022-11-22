@@ -1,4 +1,4 @@
-package bridge.View;
+package bridge;
 
 import bridge.Entity.Bridge;
 
@@ -68,7 +68,7 @@ public class OutputView {
         if (status == false) {
             result = "실패";
         }
-        System.out.println("게임 성공 여부 : " + result);
-        System.out.println("총 시도한 횟수 : " + count);
+        System.out.println("게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수: " + count);
     }
 }

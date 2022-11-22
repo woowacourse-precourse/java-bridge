@@ -5,23 +5,22 @@
 - `BridgeGame` : 다리 건너기 게임을 관리하는 클래스
 
 ### Entity : 객체 패키지
-- `Space` : 이동에 관한 객체
 - `BridgeMaker` : 다리 생성에 관한 객체
 - `BridgeSize` : 다리 길이에 관한 객체
-
+- `Bridge` : 이동과 관련된 enum 객체
 ### Service : 동작 관련 패키지
 - `GenerateBridgeSize` : 다리 길이를 생성하기 위한 클래스
 - `GenerateComBridge` : 랜덤 다리 생성 클래스
-
+- `GenerateUserBridge` : 유저 입력을 관리하는 클래스
 ### View : 입력, 출력을 수행하는 클래스들의 모음 `UI`
 - `InputView` : 사용자로부터 입력을 받는 UI
 - `OutputView` : 사용자에게 출력을 하는 UI
 - `InputValidate` : 입력에 대한 예외 검증
+- `ValidateSet` : 같은 유형의 유효성 검사끼리 묶어 관리하는 클래스
 
 ### 그외
 - `BridgeNumberGenerator`
 - `BridgeRandomNumberGenerator`
-
 
 ---
 ## 순서 및 기능

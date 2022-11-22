@@ -4,7 +4,7 @@ public class InputValidate {
 
     public void IsCorrectFormatBridgeSize(String input) {
         if (!input.matches("-?\\d+(\\.\\d+)?")) {
-            System.out.println("[Error] 다리 길이는 숫자여야 합니다.");
+            System.out.println("[ERROR] 다리 길이는 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }

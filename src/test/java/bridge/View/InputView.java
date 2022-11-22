@@ -9,8 +9,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputView {
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
     @DisplayName("다리의 길이가 숫자가 아닌 경우 예외 발생")
     @Test
     void createBridgeLengthByNotNumber() {

@@ -1,8 +1,5 @@
 package bridge.Entity;
 
-import bridge.View.InputValidate;
-import bridge.View.InputView;
-import bridge.View.OutputView;
 import bridge.View.ValidateSet;
 
 public class BridgeSize {

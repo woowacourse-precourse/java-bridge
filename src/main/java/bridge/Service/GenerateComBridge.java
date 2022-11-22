@@ -15,7 +15,6 @@ public class GenerateComBridge {
         for (int i=0;i<size;i++) {
             comBridge.add(getRandom());
         }
-        System.out.println(comBridge);
         return comBridge;
     }
 

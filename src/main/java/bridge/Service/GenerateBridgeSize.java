@@ -1,7 +1,7 @@
 package bridge.Service;
 
-import bridge.View.InputView;
-import bridge.View.OutputView;
+import bridge.InputView;
+import bridge.OutputView;
 import bridge.View.ValidateSet;
 
 public class GenerateBridgeSize {
@@ -17,8 +17,7 @@ public class GenerateBridgeSize {
         while (!isValidate(size = inputView.readBridgeSize())) {
             outputView.guideEnterBridgeSize();
         }
-        int convertSize = Integer.parseInt(size);
-        return convertSize;
+        return Integer.parseInt(size);
     }
 
     private boolean isValidate(String size) {

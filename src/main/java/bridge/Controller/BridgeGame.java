@@ -26,10 +26,10 @@ public class BridgeGame {
         if ((play(size, randomBridge))==false) {
             if (retry(bridgeList, userList, size)) {
                 play(size, randomBridge);
-                BridgeResult.endGame(bridgeList, userList);
-                BridgeResult.printAllResult(true, count);
             }
         }
+        BridgeResult.endGame(bridgeList, userList);
+        BridgeResult.printAllResult(true, count);
     }
 
     public boolean play(int size, List<String> randomBridge) {
@@ -50,7 +50,6 @@ public class BridgeGame {
 
     private List<String> getrandomBridge(int size) {
         List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
-        System.out.println(bridge);
         return bridge;
     }
 

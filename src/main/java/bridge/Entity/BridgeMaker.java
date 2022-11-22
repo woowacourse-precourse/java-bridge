@@ -1,8 +1,8 @@
 package bridge.Entity;
 
 import bridge.BridgeNumberGenerator;
-import bridge.View.InputView;
-import bridge.View.OutputView;
+import bridge.InputView;
+import bridge.OutputView;
 import bridge.View.ValidateSet;
 
 import java.util.ArrayList;

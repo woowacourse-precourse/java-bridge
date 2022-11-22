@@ -18,6 +18,6 @@ public class ValidateSet extends InputValidate {
     }
 
     public void reGame(String input) {
-        throw new IllegalArgumentException(input);
+        IsCorrectFormatByreGame(input);
     }
 }
