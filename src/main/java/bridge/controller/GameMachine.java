@@ -15,6 +15,7 @@ public class GameMachine {
         play();
     }
     void play() {
+        System.out.println(MessageView.PLAY_BRIDGE_GAME.getMessage() + "\n");
         inputView.readBridgeSize();
         inputView.readMoving();
     }
