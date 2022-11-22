@@ -1,33 +1,29 @@
 package bridge.view;
 
-import bridge.exception.BridgeSizeException;
-import bridge.exception.CommandException;
+import bridge.exception.BridgeException;
 import camp.nextstep.edu.missionutils.Console;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
-    BridgeSizeException bridgeSizeException = new BridgeSizeException();
-    CommandException commandException = new CommandException();
+    private final BridgeException bridgeException = new BridgeException();
 
     public int readBridgeSize() {
-
         String bridgeSize = Console.readLine();
-        bridgeSizeException.isValidSize(bridgeSize);
+        bridgeException.isValidBridge(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
 
-    public String readMoving() {
-        String moving = Console.readLine();
-        commandException.isValidMove(moving);
-        return moving;
+    public String readMovement() {
+        String move = Console.readLine();
+        bridgeException.isMovement(move);
+        return move;
     }
 
 
     public String readDecision() {
         String decision = Console.readLine();
-        commandException.isValidDecision(decision);
+        bridgeException.isDecision(decision);
         return decision;
     }
 }
