@@ -26,6 +26,9 @@ public class Application {
         // 5.다리 이동
         List<String> gameBridgeMoving = new ArrayList<>();
         BridgeGame.move(gameBridgeMoving,gameBridgeMoveKey);
+
+        // 6.다리 검사
+        List<String> gameBridgeCheck = BridgeGame.check(gameBridgeMoving,gameBridge);
     }
 }
 

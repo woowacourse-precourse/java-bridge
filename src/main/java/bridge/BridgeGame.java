@@ -1,12 +1,13 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    
+
     // 게임 생성 확인 출력 메서드
     public void createGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -16,6 +17,19 @@ public class BridgeGame {
     // 사용자가 칸을 이동할 때 사용하는 메서드
     public static void move(List<String> gameBridgeMoving, String gameBridgeMoveKey) {
         gameBridgeMoving.add(gameBridgeMoveKey);
+    }
+
+    // 사용자가 이동한 구간 확인
+    public static List<String> check(List<String> gameBridgeMoving,List<String> gameBridge) {
+        List<String> gameBridgeCheck = new ArrayList<>();
+        String checkResult = "";
+        for(int idx=0; idx<gameBridgeMoving.size(); idx++) {
+            if(gameBridgeMoving.get(idx).equals(gameBridge.get(idx))) { checkResult = "O"; }
+            if(!gameBridgeMoving.get(idx).equals(gameBridge.get(idx))) { checkResult = "X"; }
+            gameBridgeCheck.add(checkResult);
+        }
+
+        return gameBridgeCheck;
     }
 
     /**
