@@ -18,9 +18,6 @@ public class Application{
     public static String getYesNo(List<String> yourBridge, int i, String movingUpDown){
         if (yourBridge.get(i).equals(movingUpDown)) {       //정답
             return "O";
-//        } else if (!yourBridge.get(i).equals(movingUpDown)) {  //오답
-//            return "X";
-//        }
         }
         return "X";
     }
@@ -35,6 +32,7 @@ public class Application{
         InputView makeBridge = new InputView();
         BridgeRandomNumberGenerator bridgeRandomNum = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMake = new BridgeMaker(bridgeRandomNum);
+        BridgeGame manageGame = new BridgeGame();
 
 
         int bridgeLength = makeBridge.readBridgeSize();             // 다리의 길이
@@ -44,81 +42,51 @@ public class Application{
         String reOrStop = "";                                       //게임 재시작 여부
 
         while(true) {
+
             List<String> yourBridge = bridgeMake.makeBridge(bridgeLength);
 
             String yesOrNo = "";
             howManyGames += 1;
-
+            int ii = 0;
             int maxBridgeLength = 0;
+            String[] mainBridge = new String[2];
+            mainBridge[0] = "[ ";                                   //윗층
+            mainBridge[1] = "[ ";                                   //아랫층
 
-            String mainBridge1 = "[ ";                                //윗층
-            String mainBridge2 = "[ ";                                //아랫층
-
-
-            //U,D에 따라서 다리를 만듬
-            //refact List<String> yourBridge, String yesOrNO,
-            for(int i = 0; i < bridgeLength; i++) {
+            while(!yesOrNo.equals("X") && maxBridgeLength != bridgeLength) {
                 String movingUpDown = makeBridge.readMoving();
 
-                //refact - 1
-                if (yourBridge.get(i).equals(movingUpDown)) {       //정답
-                    yesOrNo = "O";
-                } else if (!yourBridge.get(i).equals(movingUpDown)) {  //오답
-                    yesOrNo = "X";
-                }
+                yesOrNo = getYesNo(yourBridge, ii, movingUpDown);
 
-                //refact - 2
-                //처음에 다리 만들때
-                if(maxBridgeLength == 0) {
-                    if (movingUpDown.equals("U")) {
-                        mainBridge1 += yesOrNo;
-                        mainBridge2 += " ";
-                    } else if (movingUpDown.equals("D")) {
-                        mainBridge1 += " ";
-                        mainBridge2 += yesOrNo;
-                    }
-                    //2번째 이상부터 다리 만들때
-                }else if(maxBridgeLength != 0){
-                    if (movingUpDown.equals("U")) {
-                        mainBridge1 += " | " + yesOrNo;
-                        mainBridge2 += " | " + " ";
-                    } else if (movingUpDown.equals("D")) {
-                        mainBridge1 += " | " + " ";
-                        mainBridge2 += " | " + yesOrNo;
-                    }
-                }
+                //String[]으로 받아서 조금더 짧게 만들어볼수도 있겠다
+                mainBridge[0] += manageGame.move(maxBridgeLength, movingUpDown, yesOrNo)[0];
+                mainBridge[1] += manageGame.move(maxBridgeLength, movingUpDown, yesOrNo)[1];
 
-                System.out.println(mainBridge1 + " ]");
-                System.out.println(mainBridge2 + " ]");
+                System.out.println(mainBridge[0] + " ]");
+                System.out.println(mainBridge[1] + " ]");
                 maxBridgeLength += 1;
-                if(yesOrNo.equals("X")){
-                    break;
-                }
+                ii +=1;
+
             }
 
             //성공시 최종 게임 결과
-            if(countChar(mainBridge1,'O') + countChar(mainBridge2, 'O') == bridgeLength){
+            if(countChar(mainBridge[0],'O') + countChar(mainBridge[1], 'O') == bridgeLength){
                 System.out.println("최종 게임 결과");
-                System.out.println(mainBridge1 + " ]");
-                System.out.println(mainBridge2 + " ]");
+                System.out.println(mainBridge[0] + " ]");
+                System.out.println(mainBridge[1] + " ]");
 
                 System.out.println("게임 성공 여부: 성공");
                 System.out.println("총 시도한 횟수: " + howManyGames);
                 break;
             }
-            reOrStop = makeBridge.readGameCommand();
+            reOrStop = makeBridge.readGameCommand();                            //reOrStop = "R" or "Q"
 
-            //실패시 쵲오 게임 결과
-            if(reOrStop.equals("R")){
-                continue;
-            }else if(reOrStop.equals("Q")){
-                System.out.println("최종 게임 결과");
-                System.out.println(mainBridge1 + " ]");
-                System.out.println(mainBridge2 + " ]");
+            String finalReSt = manageGame.retry(reOrStop, mainBridge, howManyGames);
 
-                System.out.println("게임 성공 여부: 실패");
-                System.out.println("총 시도한 횟수: " + howManyGames);
+            if(finalReSt.equals("Quit")){
                 break;
+            }else if(finalReSt.equals("Retry")){
+                continue;
             }
         }
     }
