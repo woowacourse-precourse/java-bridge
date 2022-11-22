@@ -9,8 +9,9 @@ import bridge.utils.Converter;
  */
 public class OutputView {
     private static final String PREFIX = "[ ";
-    private static final String INFIX = " | ";
+    private static final String INFIX = "| ";
     private static final String SUFFIX = " ]";
+    private static final int FIRST = 0;
 
     private static String[] map = new String[Moving.values().length];
 
@@ -28,22 +29,21 @@ public class OutputView {
 
     private static void makeMap(int position, String movingResult, int selectedIndex) {
         int notSelectedIndex = 1 - selectedIndex;
-        int length = map[selectedIndex].length();
+        int lengthBeforeSquareBracket = map[selectedIndex].length() - 1;
 
-        if (position == 0) {
-            map[selectedIndex] = PREFIX + movingResult + SUFFIX;
-            map[notSelectedIndex] = PREFIX + " " + SUFFIX;
+        if (position == FIRST) {
+            makeFirstMap(movingResult, selectedIndex, notSelectedIndex);
             return;
         }
-        map[selectedIndex] = map[selectedIndex].substring(0, length - 2) + INFIX + movingResult + SUFFIX;
-        map[notSelectedIndex] = map[notSelectedIndex].substring(0, length - 2) + INFIX + " " + SUFFIX;
+        map[selectedIndex] = map[selectedIndex].substring(0, lengthBeforeSquareBracket) + INFIX + movingResult + SUFFIX;
+        map[notSelectedIndex] = map[notSelectedIndex].substring(0, lengthBeforeSquareBracket) + INFIX + " " + SUFFIX;
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    private static void makeFirstMap(String movingResult, int selectedIndex, int notSelectedIndex) {
+        map[selectedIndex] = PREFIX + movingResult + SUFFIX;
+        map[notSelectedIndex] = PREFIX + " " + SUFFIX;
+    }
+
     public void printResult() {
     }
 
