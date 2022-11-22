@@ -1,5 +1,6 @@
 package generator;
 
+import bridge.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.Randoms;
 import constant.NumberConstant;
 

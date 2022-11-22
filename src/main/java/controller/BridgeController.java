@@ -5,7 +5,7 @@ import static model.BridgeGame.getTryNumber;
 import constant.BridgeConstant;
 import generator.BridgeRandomNumberGenerator;
 import model.BridgeGame;
-import service.BridgeMaker;
+import bridge.BridgeMaker;
 import view.InputView;
 import view.OutputView;
 import java.util.ArrayList;
