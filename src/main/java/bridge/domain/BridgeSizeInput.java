@@ -12,7 +12,9 @@ public class BridgeSizeInput {
         isNumberInRange(size);
         this.bridgeSize = size;
     }
-
+    public int getBridgeSize(){
+        return bridgeSize;
+    }
     private void isEmpty(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(Error.INPUT_BLANK.getMessage());

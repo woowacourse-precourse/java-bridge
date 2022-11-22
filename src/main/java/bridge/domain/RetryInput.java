@@ -10,8 +10,11 @@ public class RetryInput {
         isRetryValid(input);
         this.retry = input;
     }
+    public String getRetryInput(){
+        return retry;
+    }
     public void isRetryValid(String decision) {
-        if (!decision.equals(PlayerInput.RESTART) && !decision.equals(PlayerInput.QUIT)) {
+        if (!decision.equals(PlayerInput.RESTART.getValue()) && !decision.equals(PlayerInput.QUIT.getValue())) {
             throw new IllegalArgumentException(Error.INPUT_CONTINUE.getMessage());
         }
     }

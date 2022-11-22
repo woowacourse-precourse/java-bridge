@@ -10,7 +10,7 @@ public class OutputView {
     BridgeGame bridgeGame = new BridgeGame();
 
     public void printStart(){
-        System.out.println(Message.START_GAME);
+        System.out.println(Message.START_GAME.getValue());
     }
 
     public void printMap(List<String> upBridge, List<String> downBridge) {
@@ -20,25 +20,24 @@ public class OutputView {
     }
 
     public void printStatus(List<String> blocks){
-        System.out.print(GameOutput.BRIDGE_START);
+        System.out.print(GameOutput.BRIDGE_START.getMessage());
         for (int i = 0; i < blocks.size()-1; i++) {
             System.out.print(blocks.get(i));
-            System.out.print(GameOutput.BAR);
+            System.out.print(GameOutput.BAR.getMessage());
         }
         System.out.print(blocks.get(blocks.size()-1));
-        System.out.println(GameOutput.BRIDGE_END);
+        System.out.println(GameOutput.BRIDGE_END.getMessage());
     }
 
     public void printResult(boolean success, int tryCount) {
-        System.out.println(Message.TOTAL_RESULT);
+        System.out.println(Message.TOTAL_RESULT.getValue());
         printMap(bridgeGame.getUpBlocks(), bridgeGame.getDownBlocks());
-        System.out.println(Message.SUCCESS_RESULT);
-        System.out.println(returnSuccess(success));
-        System.out.println(String.valueOf(Message.TRY_COUNT) + tryCount);
+        System.out.println(Message.SUCCESS_RESULT.getValue() + returnSuccess(success));
+        System.out.println(Message.TRY_COUNT.getValue() + tryCount);
     }
 
     public String returnSuccess(boolean success){
-        if(success) return String.valueOf(Message.SUCCESS);
-        return String.valueOf(Message.FAIL);
+        if(success) return Message.SUCCESS.getValue();
+        return Message.FAIL.getValue();
     }
 }

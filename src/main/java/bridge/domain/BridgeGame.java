@@ -11,41 +11,36 @@ public class BridgeGame {
     private static List<String> upBlocks;
     private static List<String> downBlocks;
 
-    public void initBridgeStatus() {
+    public void initBridgeGame() {
         upBlocks = new ArrayList<>();
         downBlocks = new ArrayList<>();
     }
 
     public void move(String input) {
-        if(input.equals(String.valueOf(PlayerInput.UP))) {
-            upBlocks.add(String.valueOf(GameOutput.PASS_POSSIBLE));
-            downBlocks.add(String.valueOf(GameOutput.EMPTY));
+        if(input.equals(PlayerInput.UP.getValue())) {
+            upBlocks.add(GameOutput.PASS_POSSIBLE.getMessage());
+            downBlocks.add(GameOutput.EMPTY.getMessage());
             return;
         }
-        if(input.equals(String.valueOf(PlayerInput.DOWN))){
-            upBlocks.add(String.valueOf(GameOutput.EMPTY));
-            downBlocks.add(String.valueOf(GameOutput.PASS_POSSIBLE));
+        if(input.equals(PlayerInput.DOWN.getValue())){
+            upBlocks.add(GameOutput.EMPTY.getMessage());
+            downBlocks.add(GameOutput.PASS_POSSIBLE.getMessage());
         }
     }
     public void WrongMove(String input){
-        if(input.equals(String.valueOf(PlayerInput.UP))) {
-            upBlocks.add(String.valueOf(GameOutput.PASS_IMPOSSIBLE));
-            downBlocks.add(String.valueOf(GameOutput.EMPTY));
+        if(input.equals(PlayerInput.UP.getValue())) {
+            upBlocks.add(GameOutput.PASS_IMPOSSIBLE.getMessage());
+            downBlocks.add(GameOutput.EMPTY.getMessage());
             return;
         }
-        if(input.equals(String.valueOf(PlayerInput.DOWN))){
-            upBlocks.add(String.valueOf(GameOutput.EMPTY));
-            downBlocks.add(String.valueOf(GameOutput.PASS_IMPOSSIBLE));
+        if(input.equals(PlayerInput.DOWN.getValue())){
+            upBlocks.add(GameOutput.EMPTY.getMessage());
+            downBlocks.add(GameOutput.PASS_IMPOSSIBLE.getMessage());
         }
-    }
-
-    private boolean validateMovement(String movement, String space){
-        if(movement.equals(space)) return true;
-        return false;
     }
 
     public boolean retry(String gameRetry) {
-        if (gameRetry.equals(String.valueOf(PlayerInput.UP))) {
+        if (gameRetry.equals(PlayerInput.RESTART.getValue())) {
             GameController gameController = new GameController();
             gameController.play();
             return true;

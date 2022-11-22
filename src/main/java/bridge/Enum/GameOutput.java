@@ -6,8 +6,8 @@ public enum GameOutput {
     PASS_POSSIBLE(" O "),
     PASS_IMPOSSIBLE(" X "),
     EMPTY("   "),
-    BRIDGE_START("[ "),
-    BRIDGE_END(" ]"),
+    BRIDGE_START("["),
+    BRIDGE_END("]"),
     ;
 
     private final String message;

@@ -23,7 +23,7 @@ public class BridgeMaker {
     }
 
     private String convertToEnum(int num){
-        if(num == 0) return String.valueOf(PlayerInput.DOWN);
-        return String.valueOf(PlayerInput.UP);
+        if(num == 0) return PlayerInput.DOWN.getValue();
+        return PlayerInput.UP.getValue();
     }
 }

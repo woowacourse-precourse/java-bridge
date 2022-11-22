@@ -10,8 +10,11 @@ public class DirectionInput {
         isDirectionValid(input);
         this.direction = input;
     }
+    public String getDirectionInput(){
+        return direction;
+    }
     public void isDirectionValid(String direction) {
-        if (!direction.equals(PlayerInput.UP) && !direction.equals(PlayerInput.DOWN)) {
+        if (!direction.equals(PlayerInput.UP.getValue()) && !direction.equals(PlayerInput.DOWN.getValue())) {
             throw new IllegalArgumentException(Error.INPUT_DIRECTION.getMessage());
         }
     }
