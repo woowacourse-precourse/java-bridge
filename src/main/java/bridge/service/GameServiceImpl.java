@@ -1,7 +1,7 @@
 package bridge.service;
 
-import bridge.service.impl.CheckService;
-import bridge.service.impl.GameService;
+import bridge.service.itf.CheckService;
+import bridge.service.itf.GameService;
 import bridge.type.GameOptionType;
 import bridge.type.ResultType;
 import bridge.view.InputView;

@@ -1,7 +1,7 @@
 package bridge.service;
 
-import bridge.service.impl.CheckService;
-import bridge.service.impl.ResultService;
+import bridge.service.itf.CheckService;
+import bridge.service.itf.ResultService;
 import utils.BridgePrintTool;
 
 import java.util.List;

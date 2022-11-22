@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.service.GameServiceImpl;
-import bridge.service.impl.GameService;
+import bridge.service.itf.GameService;
 import bridge.type.ResultType;
 import bridge.view.OutputView;
 
