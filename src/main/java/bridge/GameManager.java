@@ -16,7 +16,7 @@ public class GameManager {
         bridgeGame = new BridgeGame(BridgeMap.generateMap(), createBridge());
 
         int tryCount = 1;
-        boolean gameClear = true;
+        boolean gameStatus = true;
 
         while (!bridgeGame.isEnd()) {
             if (!askMove()) {
@@ -24,13 +24,13 @@ public class GameManager {
                     tryCount++;
                     bridgeGame.retry();
                 } else {
-                    gameClear=false;
+                    gameStatus=false;
                     break;
                 }
             }
         }
 
-        outputView.printResult(bridgeGame.getBridgeMap(),tryCount,gameClear);
+        outputView.printResult(bridgeGame.getBridgeMap(),tryCount,gameStatus);
 
     }
 

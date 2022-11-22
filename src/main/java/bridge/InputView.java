@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-//BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
 public class InputView {
 
     /**

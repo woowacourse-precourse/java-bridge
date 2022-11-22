@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-//BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
 public class BridgeGame {
     private BridgeMap bridgeMap;
     private List<String> answer;
