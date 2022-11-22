@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge;
 
 import bridge.domain.Result;
 import bridge.util.Constants;
