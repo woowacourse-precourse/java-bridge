@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.Validator.bridgeSizeValidate;
 import static bridge.Validator.numberValidate;
+import static bridge.Validator.moveValidate;
+import static bridge.view.IOMessage.INPUT_MOVE_MESSAGE;
 import static bridge.view.IOMessage.INPUT_SIZE_MESSAGE;
 
 /**
@@ -28,7 +30,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(INPUT_MOVE_MESSAGE.getMessage());
+        String input = inputData();
+        moveValidate(input);
+        return input;
     }
 
     /**

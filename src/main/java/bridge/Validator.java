@@ -14,4 +14,10 @@ public class Validator {
             throw new IllegalArgumentException();   //3~20
         }
     }
+
+    public static void moveValidate(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException();   //U or D
+        }
+    }
 }
