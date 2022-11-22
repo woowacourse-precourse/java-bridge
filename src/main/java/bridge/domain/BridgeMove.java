@@ -1,8 +1,8 @@
 package bridge.domain;
 
-import java.util.List;
-
 import static bridge.domain.BridgeMoveJudgment.*;
+
+import java.util.List;
 
 public enum BridgeMove {
 
