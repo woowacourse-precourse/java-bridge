@@ -14,7 +14,7 @@ class ValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {"1a34, ㄱ1ㄴㄷ, !1aㄴ, .12@3, '', ' '"})
     void createBridgeLengthNumOtherThanNum(String bridgeLength) {
-        assertThatThrownBy(() -> Validation.checkBridgeLengthConsistOfNum(bridgeLength))
+        assertThatThrownBy(() -> Validation.checkBridgeSizeInput(bridgeLength))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
     }
@@ -23,7 +23,7 @@ class ValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {"01, 001, 000, 0000, 000017"})
     void createBridgeLengthStartZero(String bridgeLength) {
-        assertThatThrownBy(() -> Validation.checkBridgeLengthStartZero(bridgeLength))
+        assertThatThrownBy(() -> Validation.checkBridgeSizeInput(bridgeLength))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
     }
@@ -32,7 +32,7 @@ class ValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {"21", "2", "0", "-1"})
     void createBridgeLengthOutOfRange3To20(String bridgeLenght) {
-        assertThatThrownBy(() -> Validation.checkBridgeLengthRange3To20(bridgeLenght))
+        assertThatThrownBy(() -> Validation.checkBridgeSizeInput(bridgeLenght))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
     }
