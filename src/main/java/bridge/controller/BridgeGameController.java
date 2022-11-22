@@ -28,6 +28,5 @@ public class BridgeGameController {
     public static void executeBridgeGame() {
         //정보를 가진 다리를 생성하기
         bridgeUpDown = BridgeGame.generateUpDownInformation(bridgeLengthInt);
-        System.out.println(bridgeUpDown);
     }
 }
