@@ -2,9 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+// 사용자로부터 입력을 받는 역할
+
 public class InputView {
 
     // 다리의 길이를 입력
@@ -24,11 +23,12 @@ public class InputView {
         return gameBridgeMoveKey;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
+    // 사용자가 게임을 다시 시도할지 종료할지 여부를 입력
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String gameProceed = Console.readLine();
+        System.out.println(gameProceed);
+        return gameProceed;
     }
 }
 

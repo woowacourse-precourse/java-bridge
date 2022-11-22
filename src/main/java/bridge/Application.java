@@ -7,6 +7,15 @@ public class Application {
 
     public static void main(String[] args) {
 
+        // 이동 위치
+        String gameBridgeMoveKey = "";
+        // 사용자 이동 정보 리스트
+        List<String> gameBridgeMoving = new ArrayList<>();
+        // 사용자에게 게임 진행 상황, 결과 출력
+        OutputView gameOutputView = new OutputView();
+        // 게임 진행 여부
+        String gameProceed = "";
+
         // 1.게임 생성
         BridgeGame game = new BridgeGame();
         game.createGame();
@@ -20,19 +29,22 @@ public class Application {
         BridgeMaker gameBridgeMaker = new BridgeMaker(gameBridgeRandomNumberGenerator);
         List<String> gameBridge = gameBridgeMaker.makeBridge(gameBridgeLength);
 
-        // 4.이동 위치 입력
-        String gameBridgeMoveKey = gameInputView.readMoving();
+        while(!gameProceed.equals("Q")) {
+            // 4.이동 위치 입력
+            gameBridgeMoveKey = gameInputView.readMoving();
 
-        // 5.다리 이동
-        List<String> gameBridgeMoving = new ArrayList<>();
-        BridgeGame.move(gameBridgeMoving,gameBridgeMoveKey);
+            // 5.다리 이동
+            BridgeGame.move(gameBridgeMoving,gameBridgeMoveKey);
 
-        // 6.다리 검사
-        List<String> gameBridgeCheck = BridgeGame.check(gameBridgeMoving,gameBridge);
+            // 6.다리 검사
+            List<String> gameBridgeCheck = BridgeGame.check(gameBridgeMoving,gameBridge);
 
-        // 7.다리 상황
-        OutputView gameOutputView = new OutputView();
-        gameOutputView.printMap(gameBridgeCheck);
+            // 7.다리 상황
+            gameOutputView.printMap(gameBridgeCheck);
+
+            // 8.게임 재시도 여부 입력
+            if(gameBridgeCheck.contains("X")) { gameProceed = gameInputView.readGameCommand(); }
+        }
     }
 }
 
