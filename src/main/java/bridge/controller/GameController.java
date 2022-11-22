@@ -18,7 +18,6 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
-    private Bridge bridge;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -34,7 +33,7 @@ public class GameController {
 
     private void createBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         bridgeGame = new BridgeGame(bridge);
     }
 
@@ -48,7 +47,7 @@ public class GameController {
     }
 
     private SuccessAndFail moveUntilSuccessOrFail() {
-        for (int index = 0; index < bridge.getBridgeSize(); index++) {
+        for (int index = 0; index < bridgeGame.getBridgeSize(); index++) {
             SurviveAndDie surviveAndDie = moveToDecideSurviveOrDie(index);
             if (isDie(surviveAndDie)) {
                 return SuccessAndFail.FAIL;

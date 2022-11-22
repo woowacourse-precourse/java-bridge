@@ -52,4 +52,7 @@ public class BridgeGame {
         return diagram;
     }
 
+    public int getBridgeSize() {
+        return bridge.size();
+    }
 }

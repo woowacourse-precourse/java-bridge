@@ -22,7 +22,7 @@ class BridgeTest {
 
     @Test
     void 다리_길이_받아오기() {
-        Assertions.assertEquals(3, bridge.getBridgeSize());
+        Assertions.assertEquals(3, bridge.size());
     }
 
 }

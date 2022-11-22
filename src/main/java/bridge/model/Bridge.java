@@ -16,7 +16,7 @@ public class Bridge {
         return isSame(bridge.get(index), position);
     }
 
-    public int getBridgeSize() {
+    public int size() {
         return bridge.size();
     }
 }
