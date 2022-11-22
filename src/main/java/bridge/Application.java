@@ -32,7 +32,7 @@ public class Application {
                 }
             }
 
-            outputView.printChooseRestartGameMessage();
+            outputView.printChooseRetryGameMessage();
             inputView.readGameCommand();
 
         } catch (IllegalArgumentException exception) {
