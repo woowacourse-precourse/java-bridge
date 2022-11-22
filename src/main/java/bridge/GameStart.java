@@ -29,4 +29,16 @@ public class GameStart {
         outputView.printMap(P1, P2);
         CheckOutput(P1,P2);
     }
+
+    private void CheckOutput(List<String>P1,List<String>P2) {
+        if (P1.get(P1.size() - 1).equals(" X ") || P2.get(P2.size() - 1).equals(" X ")) {
+            String re = inputView.readGameCommand();
+            if (bridgeGame.retry(re)) {
+                tryNum+=1;
+                regame = true;
+                return;
+            }
+            regame = false;
+        }
+    }
 }
