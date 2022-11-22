@@ -17,14 +17,12 @@ public class BridgeGameController {
     BridgeGame bridgeGame;
 
 
-    public void run(){
+    public void run() {
         start();
         setDifficulty();
-        do {
+        do {ㄴ
             playGame();
-            if(isSuccess())
-                break;
-        } while (askRetry());
+        } while (!isSuccess() && askRetry());
         end();
     }
 
@@ -58,18 +56,6 @@ public class BridgeGameController {
     }
 
     public boolean askRetry() {
-        askValidRetry();
-        if (bridgeGame.isAlive())
-            bridgeGame.retry();
-
-        return bridgeGame.isAlive();
-    }
-
-    public boolean isSuccess(){
-        return bridgeGame.getIsSuccess();
-    }
-
-    private void askValidRetry(){
         retryWhenExceptionOrTryOnce(outputView, () -> {
             String rawRetry = inputView.readGameCommand();
             GameRetry gameRetry = GameRetry.parseRetry(rawRetry);
@@ -77,6 +63,13 @@ public class BridgeGameController {
                 bridgeGame.setDead();
             }
         });
+        if (bridgeGame.isAlive())
+            bridgeGame.retry();
+        return bridgeGame.isAlive();
+    }
+
+    public boolean isSuccess() {
+        return bridgeGame.getIsSuccess();
     }
 
     public void end() {
