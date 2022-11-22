@@ -42,6 +42,11 @@ public class OutputView {
         System.out.println(bridges.get(1));
     }
 
+    public static void printFinalGameResult(List<String> bridges, boolean isEntered) {
+        printFinalGameResultMessage(isEntered);
+        printMap(bridges);
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

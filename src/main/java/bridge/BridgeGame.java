@@ -15,6 +15,7 @@ import static bridge.PrintMessage.*;
 public class BridgeGame {
     private String upBridge = "";
     private String downBridge = "";
+    private List<String> bridges = new ArrayList<>();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -104,7 +105,7 @@ public class BridgeGame {
         printChooseRetryGameMessage();
         String retryGameInput = readGameCommand();
         if (retryGameInput.equals(QUIT)) {
-            printFinalGameResultMessage(false);
+            printFinalGameResult(bridges, false);
             return true;
         }
 
@@ -117,14 +118,14 @@ public class BridgeGame {
             printChooseSpaceToMoveMessage();
             String space = readMoving();
 
-            List<String> bridges = bridgeGame.move(space, i, randomBridge.get(i));
+            bridges = bridgeGame.move(space, i, randomBridge.get(i));
             printMap(bridges);
 
             if (bridges.get(2).equals(FAIL)) {
                 return false;
             }
         }
-        printFinalGameResultMessage(true);
+        printFinalGameResult(bridges, true);
         return true;
     }
 }
