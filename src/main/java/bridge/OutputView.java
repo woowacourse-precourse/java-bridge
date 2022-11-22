@@ -49,7 +49,6 @@ public class OutputView {
         return "D";
     }
 
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -64,5 +63,15 @@ public class OutputView {
         if (!result)
             System.out.println("실패");
         System.out.println("총 시도한 횟수: " + rerun);
+    }
+
+    static public void printLengthGuide(){
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
+    static public void printMoveGuide(){
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+    static public void printGameCommandGuide(){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }

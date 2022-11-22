@@ -23,14 +23,14 @@ public class InputView {
         return num;
     }
     static public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        OutputView.printLengthGuide();
         int bridgeLength = 0;
         try {
             bridgeLength = castInt(Console.readLine());
             Validate.checkRange(bridgeLength);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            bridgeLength = readBridgeSize();
+            bridgeLength = readBridgeSize(); //Recursively execute to scan new input
         }
         return bridgeLength;
     }
@@ -39,7 +39,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     static public String readMoving() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        OutputView.printMoveGuide();
         String input = "";
         try {
             input = Console.readLine();
@@ -55,7 +55,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     static public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        OutputView.printGameCommandGuide();
         String input = "";
         try {
             input = Console.readLine();

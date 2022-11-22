@@ -32,8 +32,7 @@ public class BridgeGame {
         trace = new ArrayList<>(bridgeSize);
         String updown;
         for (int step = 0; step < bridgeSize; step++) {
-            updown = InputView.readMoving();
-            trace.add(updown);
+            trace.add((updown = InputView.readMoving()));
             if(moveCheck(updown, step)){
                 OutputView.printMap(trace, false);
                 return false;
