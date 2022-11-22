@@ -60,7 +60,7 @@ public class InputView {
         return inputFailCommand;
     }
 
-    private boolean isValidBridgeSize(String bridgeSize) {
+    public boolean isValidBridgeSize(String bridgeSize) {
         try {
             validateInteger(bridgeSize);
             validateBridgeSizeRange(Integer.parseInt(bridgeSize));
@@ -70,7 +70,7 @@ public class InputView {
         return true;
     }
 
-    private void validateInteger(String bridgeSize) {
+    public void validateInteger(String bridgeSize) {
         try {
             Integer.parseInt(bridgeSize);
         } catch (NumberFormatException e) {
@@ -79,14 +79,14 @@ public class InputView {
         }
     }
 
-    private void validateBridgeSizeRange(int bridgeSize) {
-        if (bridgeSize >= BRIDGE_SIZE_MIN && bridgeSize >= BRIDGE_SIZE_MAX) {
+    public void validateBridgeSizeRange(int bridgeSize) {
+        if (bridgeSize < BRIDGE_SIZE_MIN || bridgeSize > BRIDGE_SIZE_MAX) {
             printErrorMessage(ErrorMessage.BRIDGE_SIZE_RANGE_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean isValidMoveCommand(String moveCommand) {
+    public boolean isValidMoveCommand(String moveCommand) {
         try {
             validateMoveFormat(moveCommand);
         } catch (IllegalArgumentException e) {
@@ -97,14 +97,14 @@ public class InputView {
     }
 
 
-    private void validateMoveFormat(String moveCommand) {
+    public void validateMoveFormat(String moveCommand) {
         if (!moveCommand.equals(MOVE_COMMAND_UP) && !moveCommand.equals(MOVE_COMMAND_DOWN)) {
             printErrorMessage(ErrorMessage.MOVE_COMMAND_FORMAT_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean isValidFailCommand(String failCommand) {
+    public boolean isValidFailCommand(String failCommand) {
         try {
             validateGameFailFormat(failCommand);
         } catch (IllegalArgumentException e) {
@@ -113,7 +113,7 @@ public class InputView {
         return true;
     }
 
-    private void validateGameFailFormat(String failCommand) {
+    public void validateGameFailFormat(String failCommand) {
         if (!failCommand.equals(FAIL_COMMAND_RETRY) && !failCommand.equals(FAIL_COMMAND_QUIT)) {
             printErrorMessage(ErrorMessage.GAME_END_COMMAND_FORMAT_ERROR);
             throw new IllegalArgumentException();
