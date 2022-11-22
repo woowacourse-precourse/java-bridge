@@ -7,9 +7,12 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AllTest extends NsTest {
+
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("기능 테스트 1")
     @Test
@@ -242,6 +245,33 @@ public class AllTest extends NsTest {
                     "[   | O |   | O |   | O |   | O |   | O | O |   | O |   | O | O |   | O |   | O ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0);
+    }
+
+    @DisplayName("문자가 포함되어 입력되었을 경우 예외")
+    @Test
+    void 예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("100abc");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("다리 길이가 20을 넘었을 때의 예외")
+    @Test
+    void 다리_길이_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("21");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("다리 길이가 3보다 작을 때 예외")
+    @Test
+    void 다리_길이_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Override
