@@ -25,6 +25,11 @@ public enum UpAndDown {
                 .findFirst().get();
     }
 
+    public static boolean isUpOrDown(String moving) {
+        return Arrays.stream(UpAndDown.values())
+                .anyMatch(c -> c.getCommand().equals(moving));
+    }
+
     public String getCommand() {
         return command;
     }
