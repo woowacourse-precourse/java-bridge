@@ -68,7 +68,7 @@ public class BridgeController {
     }
 
     public boolean isMismatch(String check) {
-        return check.equals("X");
+        return check.equals(bridgeGame.MISMATCH);
     }
 
     public void enterGameCommand() {

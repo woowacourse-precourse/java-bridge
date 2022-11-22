@@ -11,7 +11,7 @@ public class BridgeGame {
     private final List<String> bridge;
     private final int NO_RETRY = 0;
     private final String MATCH = "O";
-    private final String MISMATCH = "X";
+    public final String MISMATCH = "X";
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
