@@ -50,4 +50,17 @@ class BridgeGameTest {
     assertFalse(bridgeGame.isWin());
   }
 
+  @Test
+  void 재시작을_선택한경우_게임_시도_횟수가_증가하는가() {
+
+    // given
+    Bridge bridge = new Bridge(3);
+    BridgeGame bridgeGame = new BridgeGame(bridge);
+
+    // when
+    bridgeGame.retry("R");
+
+    // then
+    assertTrue(bridgeGame.getResult().contains("총 시도한 횟수: 2"));
+  }
 }
