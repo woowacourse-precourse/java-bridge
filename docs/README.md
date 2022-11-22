@@ -25,6 +25,8 @@
 │       ├── Direction : 사용자 방향 (U 또는 D)
 │       ├── GameCommand : 게임 재시작 혹은 종료
 │       └── Position : 사용자 위치 (방향과 거리 정보)
+└── handler
+│   └── InputHandler : 사용자 입력 값을 관리하는 클래스
 └── view
 │   ├── InputView : 입력
 │   └── OutputView : 출력
