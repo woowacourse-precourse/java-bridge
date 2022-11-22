@@ -57,4 +57,9 @@ public class BridgeGame {
     public void changeGameStatus(GameStatus status) {
         gameStatus = status;
     }
+
+    public boolean isSuccess() {
+        int bridgeEnd = bridge.getBridgeEnd();
+        return user.isFinish(bridgeEnd);
+    }
 }

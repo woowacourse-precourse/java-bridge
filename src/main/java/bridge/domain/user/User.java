@@ -43,4 +43,8 @@ public class User {
     public String getUserPathLog() {
         return userPath.toString();
     }
+
+    public boolean isFinish(int bridgeSize) {
+        return bridgeSize == location;
+    }
 }
