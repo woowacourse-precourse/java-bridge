@@ -22,8 +22,8 @@ class BridgeMakerTest {
     @RepeatedTest(10)
     void bridgeCreateStringTest() {
         List<String> bridge = bridgeMaker.makeBridge(15);
-        for (String row : bridge) {
-            assertThat(List.of("U", "D").contains(row)).isTrue();
+        for (String moving : bridge) {
+            assertThat(List.of("U", "D").contains(moving)).isTrue();
         }
     }
 

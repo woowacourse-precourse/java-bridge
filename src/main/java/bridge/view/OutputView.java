@@ -1,9 +1,9 @@
 package bridge.view;
 
-import static bridge.Row.DOWN;
-import static bridge.Row.UP;
+import static bridge.Moving.DOWN;
+import static bridge.Moving.UP;
 
-import bridge.Row;
+import bridge.Moving;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,13 +27,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, int round, boolean result) {
-        Map<Row, List<String>> row = new HashMap<>();
+        Map<Moving, List<String>> row = new HashMap<>();
         row.put(UP, new ArrayList<>());
         row.put(DOWN, new ArrayList<>());
         for (int i = 0; i < round - 1; i++) {
-            cross(row, Row.of(bridge.get(i)), true);
+            cross(row, Moving.of(bridge.get(i)), true);
         }
-        cross(row, Row.of(bridge.get(round - 1)), result);
+        cross(row, Moving.of(bridge.get(round - 1)), result);
         printRow(row.get(UP));
         printRow(row.get(DOWN));
     }
@@ -42,8 +42,8 @@ public class OutputView {
         System.out.println(BRIDGE_START + String.join(BRIDGE_DELIMITER, row) + BRIDGE_END);
     }
 
-    private void cross(Map<Row, List<String>> row, Row moving, boolean isCorrectMoving) {
-        Row otherSide = getOtherSide(moving);
+    private void cross(Map<Moving, List<String>> row, Moving moving, boolean isCorrectMoving) {
+        Moving otherSide = getOtherSide(moving);
         if (isCorrectMoving) {
             row.get(otherSide).add(MOVING_EMPTY);
             row.get(moving).add(MOVING_O);
@@ -53,8 +53,8 @@ public class OutputView {
         row.get(moving).add(MOVING_EMPTY);
     }
 
-    private Row getOtherSide(Row moving) {
-        return Row.values()[(moving.ordinal() + 1) % 2];
+    private Moving getOtherSide(Moving moving) {
+        return Moving.values()[(moving.ordinal() + 1) % 2];
     }
 
     /**

@@ -1,14 +1,14 @@
 package bridge.validator;
 
-import bridge.Row;
+import bridge.Moving;
 import bridge.exception.WrongMovingException;
 import java.util.Arrays;
 
 public class MovingValidator {
 
     public static void validateMoving(String moving) {
-        Arrays.stream(Row.values())
-                .filter(row -> moving.equals(row.getCode()))
+        Arrays.stream(Moving.values())
+                .filter(v -> moving.equals(v.getCode()))
                 .findFirst()
                 .orElseThrow(WrongMovingException::new);
     }
