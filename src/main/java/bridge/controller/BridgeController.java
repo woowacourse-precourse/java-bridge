@@ -22,14 +22,14 @@ public class BridgeController {
     }
 
     public GameResult doGame(Bridge bridge) {
-        TryCount tryCount = new TryCount();
+        TryCountDto tryCount = new TryCountDto();
         tryCount.addCount();
 
         List<StepResult> stepResults = crossBridge(bridge, tryCount);
         return new GameResult(stepResults, tryCount);
     }
 
-    private List<StepResult> crossBridge(Bridge bridge, TryCount tryCount) {
+    private List<StepResult> crossBridge(Bridge bridge, TryCountDto tryCount) {
         List<StepResult> stepHistory = new ArrayList<>();
         for (Step step : bridge.getSteps()) {
             StepResult stepResult = moveForward(step, stepHistory);
@@ -40,10 +40,11 @@ public class BridgeController {
         return stepHistory;
     }
 
-    private List<StepResult> handleFailure(Bridge bridge, TryCount tryCount, List<StepResult> stepHistory) {
+    private List<StepResult> handleFailure(Bridge bridge, TryCountDto tryCount, List<StepResult> stepHistory) {
         outputView.printAskingGameCommandMessage();
         if (getCommand().isRetrying()) {
-            return crossBridge(bridge, bridgeGame.retry(tryCount));
+            bridgeService.retry(tryCount);
+            return crossBridge(bridge, tryCount);
         }
         return stepHistory;
     }

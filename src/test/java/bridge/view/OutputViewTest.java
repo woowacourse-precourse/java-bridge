@@ -5,7 +5,7 @@ import bridge.view.outputview.OutputView;
 import bridge.vo.GameResult;
 import bridge.vo.enums.Step;
 import bridge.vo.StepResult;
-import bridge.vo.TryCount;
+import bridge.dto.TryCountDto;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -163,9 +163,9 @@ class OutputViewTest {
                     new StepResult(Step.D, true),
                     new StepResult(Step.U, false)
             );
-            TryCount tryCount = new TryCount()
-                    .addCount()
-                    .addCount();
+            TryCountDto tryCount = new TryCountDto();
+            tryCount.addCount();
+            tryCount.addCount();
 
             return new GameResult(stepResults, tryCount);
         }

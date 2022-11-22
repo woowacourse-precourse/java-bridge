@@ -1,14 +1,16 @@
 package bridge.vo;
 
+import bridge.dto.TryCountDto;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class GameResult {
     private final List<StepResult> stepResults;
-    private final TryCount tryCount;
+    private final TryCountDto tryCount;
 
-    public GameResult(List<StepResult> stepResults, TryCount tryCount) {
+    public GameResult(List<StepResult> stepResults, TryCountDto tryCount) {
         this.stepResults = Collections.unmodifiableList(stepResults);
         this.tryCount = tryCount;
     }
@@ -17,7 +19,7 @@ public class GameResult {
         return stepResults;
     }
 
-    public TryCount getTryCount() {
+    public TryCountDto getTryCount() {
         return tryCount;
     }
 

@@ -1,20 +1,16 @@
-package bridge.vo;
+package bridge.dto;
 
 import java.util.Objects;
 
-public class TryCount {
-    private final int tryCount;
+public class TryCountDto {
+    private int tryCount;
 
-    public TryCount() {
+    public TryCountDto() {
         tryCount = 0;
     }
 
-    private TryCount(int tryCount) {
-        this.tryCount = tryCount;
-    }
-
-    public TryCount addCount() {
-        return new TryCount(tryCount + 1);
+    public void addCount() {
+        ++tryCount;
     }
 
     @Override
@@ -25,8 +21,8 @@ public class TryCount {
     @Override
     public boolean equals(Object target) {
         if (this == target) return true;
-        if (!(target instanceof TryCount)) return false;
-        TryCount anotherTryCount = (TryCount) target;
+        if (!(target instanceof TryCountDto)) return false;
+        TryCountDto anotherTryCount = (TryCountDto) target;
         return tryCount == anotherTryCount.tryCount;
     }
 

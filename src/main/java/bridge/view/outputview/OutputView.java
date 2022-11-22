@@ -1,5 +1,6 @@
 package bridge.view.outputview;
 
+import bridge.dto.TryCountDto;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.vo.*;
 import bridge.vo.enums.Command;
@@ -71,7 +72,7 @@ public class OutputView {
         }
     }
 
-    private void printTryCount(TryCount tryCount) {
+    private void printTryCount(TryCountDto tryCount) {
         System.out.printf(TRY_COUNT_MESSAGE_FORMAT, tryCount);
     }
 
