@@ -31,6 +31,21 @@ class InputViewTest {
     assertEquals(expectedInt, resultInt);
   }
 
+  @ParameterizedTest
+  @CsvSource(value = {"U,U", "D,D"})
+  void 움직일_방향의_입력값을_검증하고_올바른_방향을_입력받아_반환하는가(String input, String expectedOutput) {
+    // given
+    InputView inputView = new InputView();
+    InputStream inputStream = readUserInput(input);
+    System.setIn(inputStream);
+
+    // when
+    String resultOutput = inputView.readMoving();
+
+    // then
+    assertEquals(expectedOutput, resultOutput);
+  }
+
   private InputStream readUserInput(String input) {
     return new ByteArrayInputStream(input.getBytes());
   }
