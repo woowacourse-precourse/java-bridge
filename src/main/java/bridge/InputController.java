@@ -6,17 +6,17 @@ import bridge.validator.CommandValidate;
 public class InputController {
 	public static int getBridgeSize() {
 		try {
-			String userInput = InputView.readBridgeSize();
-			checkBridgeSize(userInput);
-			return parseBridgeSize(userInput);
+			return inputBridgeSize();
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			return getBridgeSize();
 		}
 	}
 
-	private static int parseBridgeSize(String userInput) {
-		return Integer.parseInt(userInput);
+	private static int inputBridgeSize() {
+		String userInput = InputView.readBridgeSize();
+		checkBridgeSize(userInput);
+		return parseBridgeSize(userInput);
 	}
 
 	private static void checkBridgeSize(String userInput) {
@@ -24,15 +24,23 @@ public class InputController {
 		BridgeLengthValidate.validateRange(userInput);
 	}
 
+	private static int parseBridgeSize(String userInput) {
+		return Integer.parseInt(userInput);
+	}
+
 	public static String getMoving() {
 		try {
-			String userInput = InputView.readMoving();
-			checkMoving(userInput);
-			return userInput;
+			return inputMoving();
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			return getMoving();
 		}
+	}
+
+	private static String inputMoving() {
+		String userInput = InputView.readMoving();
+		checkMoving(userInput);
+		return userInput;
 	}
 
 	private static void checkMoving(String userInput) {
@@ -44,13 +52,17 @@ public class InputController {
 
 	public static String getGameCommand() {
 		try {
-			String userInput = InputView.readGameCommand();
-			checkGameCommand(userInput);
-			return userInput;
+			return inputGameCommand();
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			return getGameCommand();
 		}
+	}
+
+	private static String inputGameCommand() {
+		String userInput = InputView.readGameCommand();
+		checkGameCommand(userInput);
+		return userInput;
 	}
 
 	private static void checkGameCommand(String userInput) {

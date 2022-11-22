@@ -57,10 +57,19 @@ public class GameController {
 
 	private static void selectRestartOrQuit(BridgeGame bridgeGame) {
 		String userSelectCommand = InputController.getGameCommand();
+		selectRestart(bridgeGame, userSelectCommand);
+		selectQuit(bridgeGame, userSelectCommand);
+	}
+
+
+	private static void selectRestart(BridgeGame bridgeGame, String userSelectCommand) {
 		if (userSelectCommand.equals(RESTART)) {
 			bridgeGame.retry();
 			OutputView.resetPrintStatus();
 		}
+	}
+
+	private static void selectQuit(BridgeGame bridgeGame, String userSelectCommand) {
 		if (userSelectCommand.equals(QUIT)) {
 			bridgeGame.end();
 		}

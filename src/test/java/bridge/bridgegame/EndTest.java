@@ -58,9 +58,6 @@ public class EndTest {
 		}
 
 		// then
-		assertAll(
-			() -> assertThat(bridgeGame.isEnd()).isTrue(),
-			() -> assertThat(Pause.isPaused()).isFalse()
-		);
+		assertThat(bridgeGame.isEnd()).isTrue();
 	}
 }

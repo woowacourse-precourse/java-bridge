@@ -14,13 +14,17 @@ public class BridgeStatus {
 
 	public static BridgeStatus getInstance() {
 		if (uniqueInstance == null) {
-			synchronized (BridgeStatus.class) {
-				if (uniqueInstance == null) {
-					uniqueInstance = new BridgeStatus();
-				}
-			}
+			synchronizedStatus();
 		}
 		return uniqueInstance;
+	}
+
+	private static void synchronizedStatus() {
+		synchronized (BridgeStatus.class) {
+			if (uniqueInstance == null) {
+				uniqueInstance = new BridgeStatus();
+			}
+		}
 	}
 
 	private BridgeStatus() {
@@ -33,15 +37,23 @@ public class BridgeStatus {
 	}
 
 	public HashMap<String, String> loadStatus(String userSelectedCell, String bridgeLetter) {
+		loadUpperCell(userSelectedCell, bridgeLetter);
+		loadLowerCell(userSelectedCell, bridgeLetter);
+		return status;
+	}
+
+	private void loadUpperCell(String userSelectedCell, String bridgeLetter) {
 		if (isUp(userSelectedCell)) {
 			buildUpperCell(bridgeLetter);
 			putStatus();
 		}
+	}
+
+	private void loadLowerCell(String userSelectedCell, String bridgeLetter) {
 		if (isDown(userSelectedCell)) {
 			buildLowerCell(bridgeLetter);
 			putStatus();
 		}
-		return status;
 	}
 
 	private static boolean isUp(String Letter) {
