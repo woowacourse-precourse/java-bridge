@@ -18,9 +18,9 @@ public class BridgeGame {
     private static final String MAP_X_CHARACTER = "X";
     private static final String RETRY_COMMAND_CHARACTER = "R";
 
-    private int bridgeSize;
-    private BridgeNumberGenerator bridgeNumberGenerator;
-    private BridgeMaker bridgeMaker;
+    private final int bridgeSize;
+    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private final BridgeMaker bridgeMaker;
 
     public BridgeGame(int bridgeSize) {
         this.bridgeSize = bridgeSize;
