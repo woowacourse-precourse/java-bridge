@@ -5,15 +5,15 @@ import bridge.type.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import static bridge.view.InputView.readGameCommand;
-import static bridge.view.InputView.readSelectedBridgeBlock;
-
 public class BridgeGameHandler {
+
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
 
     public BridgeGame initGame() {
         BridgeGame bridgeGame;
         do {
-            bridgeGame = BridgeGame.initBridgeGame(InputView.readBridgeLength());
+            bridgeGame = BridgeGame.initBridgeGame(inputView.readBridgeLength());
         } while (bridgeGame == null);
         return bridgeGame;
     }
@@ -31,9 +31,9 @@ public class BridgeGameHandler {
     public ProcessCondition executePassCondition(BridgeGame bridgeGame) {
         ProcessCondition passCondition;
         do {
-            passCondition = bridgeGame.move(readSelectedBridgeBlock());
+            passCondition = bridgeGame.move(inputView.readSelectedBridgeBlock());
         } while (passCondition == null);
-        OutputView.printMap(passCondition, bridgeGame);
+        outputView.printMap(passCondition, bridgeGame);
         FinishCondition finishCondition = bridgeGame.checkWhetherFinished(passCondition);
         if (finishCondition.equals(FinishCondition.FINISHED)) return bridgeGame.quit(FinishCondition.FINISHED);
         return executeGame(passCondition, bridgeGame);
@@ -42,7 +42,7 @@ public class BridgeGameHandler {
     public ProcessCondition executeFailCondition(BridgeGame bridgeGame) {
         ProcessCondition selectGameProcess;
         do {
-            selectGameProcess = bridgeGame.selectRetryOrQuit(readGameCommand());
+            selectGameProcess = bridgeGame.selectRetryOrQuit(inputView.readGameCommand());
         } while (selectGameProcess == null);
         if (selectGameProcess.equals(GameStatus.RESTART)) return executeGame(bridgeGame.retry(), bridgeGame);
         return bridgeGame.quit(FinishCondition.NOT_FINISHED);

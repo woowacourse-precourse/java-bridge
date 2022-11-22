@@ -23,7 +23,7 @@ public class OutputView {
     private static final String NOT_FINISHED = "실패";
     private static final String NUMBER_OF_TRY = "총 시도한 횟수: ";
 
-    public static void printMap(ProcessCondition passCondition, BridgeGame bridgeGame) {
+    public void printMap(ProcessCondition passCondition, BridgeGame bridgeGame) {
         Bridge bridge = bridgeGame.getBridge();
         Integer currentPosition = bridgeGame.getGameStatusOperator().getCurrentPosition();
         List<Integer> upIndexes = getPrintIndexes(bridge, currentPosition, BridgeBlock.UP);
@@ -32,7 +32,7 @@ public class OutputView {
         if (passCondition == PassCondition.FAIL) printFail(currentPosition, upIndexes, downIndexes);
     }
 
-    public static void printResult(ProcessCondition finishCondition, BridgeGame bridgeGame) {
+    public void printResult(ProcessCondition finishCondition, BridgeGame bridgeGame) {
         System.out.println();
         System.out.println(RESULT);
         if (finishCondition == FinishCondition.FINISHED)
@@ -42,13 +42,13 @@ public class OutputView {
         System.out.println(NUMBER_OF_TRY + bridgeGame.getGameStatusOperator().getNumberOfTry());
     }
 
-    private static void printWhetherFinished(ProcessCondition passCondition, String finishCondition, BridgeGame bridgeGame) {
+    private void printWhetherFinished(ProcessCondition passCondition, String finishCondition, BridgeGame bridgeGame) {
         printMap(passCondition, bridgeGame);
         System.out.println();
         System.out.println(FINISHED_OR_NOT_FINISHED + finishCondition);
     }
 
-    private static List<Integer> getPrintIndexes(Bridge bridge, Integer currentPosition, BridgeBlock bridgeBlock) {
+    private List<Integer> getPrintIndexes(Bridge bridge, Integer currentPosition, BridgeBlock bridgeBlock) {
         List<String> passedBridgeMap = bridge.getBridgeMapUntil(currentPosition);
         List<Integer> printIndexes = IntStream.range(0, passedBridgeMap.size())
                 .filter(idx -> passedBridgeMap.get(idx).equals(bridgeBlock.getBlockSymbol()))
@@ -57,27 +57,27 @@ public class OutputView {
         return printIndexes;
     }
 
-    private static void printPass(Integer currentPosition, List<Integer> upIndexes, List<Integer> downIndexes) {
+    private void printPass(Integer currentPosition, List<Integer> upIndexes, List<Integer> downIndexes) {
         printCircle(currentPosition, upIndexes);
         printCircle(currentPosition, downIndexes);
     }
 
-    private static void printFail(Integer currentPosition, List<Integer> upIndexes, List<Integer> downIndexes) {
+    private void printFail(Integer currentPosition, List<Integer> upIndexes, List<Integer> downIndexes) {
         printCircleAndCross(currentPosition, upIndexes);
         printCircleAndCross(currentPosition, downIndexes);
     }
 
-    private static void printCircle(Integer currentPosition, List<Integer> indexes) {
+    private void printCircle(Integer currentPosition, List<Integer> indexes) {
         printPreviousPath(currentPosition, indexes);
         printCurrentBlockOrNot(currentPosition, indexes);
     }
 
-    private static void printCircleAndCross(Integer currentPosition, List<Integer> indexes) {
+    private void printCircleAndCross(Integer currentPosition, List<Integer> indexes) {
         printPreviousPath(currentPosition, indexes);
         printFailedBlockOrNot(currentPosition, indexes);
     }
 
-    private static void printPreviousPath(Integer currentPosition, List<Integer> indexes) {
+    private void printPreviousPath(Integer currentPosition, List<Integer> indexes) {
         System.out.print(OPEN_BRACKET);
         for (int idx = 0; idx < currentPosition; idx++) {
             if (indexes.contains(idx)) {
@@ -88,7 +88,7 @@ public class OutputView {
         }
     }
 
-    private static void printCurrentBlockOrNot(Integer currentPosition, List<Integer> indexes) {
+    private void printCurrentBlockOrNot(Integer currentPosition, List<Integer> indexes) {
         if (indexes.contains(currentPosition)) {
             System.out.println(CIRCLE_MARK + CLOSE_BRACKET);
             return;
@@ -96,12 +96,11 @@ public class OutputView {
         System.out.println(SPACE + CLOSE_BRACKET);
     }
 
-    private static void printFailedBlockOrNot(Integer currentPosition, List<Integer> indexes) {
+    private void printFailedBlockOrNot(Integer currentPosition, List<Integer> indexes) {
         if (indexes.contains(currentPosition)) {
             System.out.println(SPACE + CLOSE_BRACKET);
             return;
         }
         System.out.println(CROSS_MARK + CLOSE_BRACKET);
-
     }
 }
