@@ -9,8 +9,6 @@ public class BridgeGame {
 
     private final String PASS = "O";
     private final String FAIL = "X";
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
     private final List<String> bridge;
     private final int bridgeSize;
     private int currentRound;
@@ -18,8 +16,8 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.bridgeSize = inputView.readBridgeSize();
-        this.currentRound = 0;
+        this.bridgeSize = bridge.size();
+        this.currentRound = 1;
     }
 
     /**
@@ -27,12 +25,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String selectedBridge) {
+    public String move(String selectedBridge) {
         List<String> result = checkAnswer(selectedBridge);
         gameProgress.add(result);
         if (result.get(1).equals(PASS)) {
             this.currentRound++;
         }
+        return result.get(1);
     }
 
     /**
