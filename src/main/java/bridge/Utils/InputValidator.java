@@ -1,16 +1,15 @@
 package bridge.Utils;
 
-import camp.nextstep.edu.missionutils.Console;
 
 public class InputValidator {
 
     static final int BRIDGE_MIN_LENGTH = 3;
     static final int BRIDGE_MAX_LENGTH = 20;
 
-    public static String getValidateInput(InputType inputType) {
-        if (inputType == InputType.BRIDGE) return checkValidateBridge(Console.readLine());
-        if (inputType == InputType.MOVE) return checkValidateMove(Console.readLine());
-        if (inputType == InputType.REPLAY) return checkValidateRePlay(Console.readLine());
+    public static String getValidateInput(InputType inputType, String input) {
+        if (inputType == InputType.BRIDGE) return checkValidateBridge(input);
+        if (inputType == InputType.MOVE) return checkValidateMove(input);
+        if (inputType == InputType.REPLAY) return checkValidateRePlay(input);
         return null;
     }
 
