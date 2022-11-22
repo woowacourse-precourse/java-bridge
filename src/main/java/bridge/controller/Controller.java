@@ -36,17 +36,19 @@ public class Controller {
                 break;
             }
         }
-        output.printResult(bridgeGame.getGameCount());
+        output.printResult(bridgeGame.getGameCount(), bridgeGame.stateGame());
     }
 
     public boolean checkMoveSucess() {
         String upDown = inputException.checkUpDown(input.readMoving());
         if (!bridgeGame.move(upDown)) {
+            output.printMap(bridgeGame.getUser(), upDown);
             if(!checkRetry()){
                 return false;
             }
             return true;
         }
+        output.printMap(bridgeGame.getUser(), upDown);
         return true;
     }
 
@@ -54,6 +56,7 @@ public class Controller {
         String retryQuick = inputException.checkRetry(input.readGameCommand());
         if (bridgeGame.retry(retryQuick)) {
             bridgeGame.setup();
+            output.setUpDrawMap();
             return true;
         }
         return false;
