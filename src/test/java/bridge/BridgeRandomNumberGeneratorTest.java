@@ -2,7 +2,6 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.RepeatedTest;
 
 public class BridgeRandomNumberGeneratorTest {
