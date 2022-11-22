@@ -21,9 +21,13 @@ public enum UpDownCommand {
     public int value() {
         return value;
     }
-    private static final Map<Integer,String> COMMAND_VALUE =
-            Stream.of(values()).collect(Collectors.toMap( UpDownCommand::value, UpDownCommand::command));
-    public static String mapping(int way) {
-        return COMMAND_VALUE.get(way);
+//    private static final Map<Integer,String> COMMAND_VALUE =
+//            Stream.of(values()).collect(Collectors.toMap( UpDownCommand::value, UpDownCommand::command));
+//    public static String mapping(int way) {
+//        return COMMAND_VALUE.get(way);
+//    }
+    public static String mapping(int way){
+        if(way==1) return "U";
+        return "D";
     }
 }
