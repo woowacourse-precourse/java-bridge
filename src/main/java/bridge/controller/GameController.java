@@ -13,9 +13,15 @@ public class GameController {
 
     private final String ERROR = "[ERROR] ";
 
-    private BridgeGame bridgeGame = new BridgeGame();
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame;
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public GameController () {
+        bridgeGame = new BridgeGame();
+        inputView = new InputView();
+        outputView = new OutputView();
+    }
 
     public void init() {
         try {
@@ -30,14 +36,14 @@ public class GameController {
         int bridgeSize = inputView.readBridgeSize();
         createBridge(bridgeSize);
 
-        startGame();
+        startBridgeGame();
         printGameResult();
     }
 
-    private void startGame() {
+    private void startBridgeGame() {
 
         do {
-            playRound();
+            playEachRound();
             if (isFail()) break;
         } while (isFinalRound());
     }
@@ -53,7 +59,7 @@ public class GameController {
         return inputView.readMoving();
     }
 
-    private void playRound() {
+    private void playEachRound() {
         String moveDirection = loadMoveDirection();
         List<List<String>> bridgeRecord = bridgeGame.getRecordByMove(moveDirection);
         outputView.printMap(bridgeRecord);
@@ -71,7 +77,7 @@ public class GameController {
         String gameCommand = inputView.readGameCommand();
         if (bridgeGame.isGameRestart(gameCommand)) {
             bridgeGame.retry();
-            startGame();
+            startBridgeGame();
         }
     }
 
