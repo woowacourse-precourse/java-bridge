@@ -86,4 +86,7 @@ public class BridgeGame {
         return isGameOver;
     }
 
+    public GameResult getResultOfGame() {
+        return new GameResult(scoreMap, status, tryCount);
+    }
 }
