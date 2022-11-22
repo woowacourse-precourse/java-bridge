@@ -9,17 +9,15 @@ import java.util.Map;
 
 public class BridgeGameController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final BridgeMaker bridgeMaker;
-    private BridgeGame bridgeGame;
 
-    public BridgeGameController(InputView inputView, OutputView outputView,
-            BridgeMaker bridgeMaker) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.bridgeMaker = bridgeMaker;
+    public BridgeGameController(BridgeNumberGenerator bridgeNumberGenerator) {
+        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
+
+    private BridgeGame bridgeGame;
 
     public void play() {
         outputView.printGameStartMessage();
