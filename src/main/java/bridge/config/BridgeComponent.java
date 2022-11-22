@@ -22,7 +22,17 @@ public enum BridgeComponent {
                 .symbol;
     }
 
+    public static boolean findBySymbol(String step) {
+        return Arrays.stream(BridgeComponent.values())
+                .anyMatch(bridgeComponent -> bridgeComponent.hasSymbol(step));
+    }
+
     private boolean hasNumber(int generateNumber) {
         return this.number == generateNumber;
     }
+
+    private boolean hasSymbol(String step) {
+        return this.symbol.equals(step);
+    }
+
 }
