@@ -1,6 +1,7 @@
 package bridge.Domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.UI.Resource.UpDownCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +25,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         while (size-- > 0) {
             int way = bridgeNumberGenerator.generate();
-            bridge.add(mapping(way));
+            bridge.add(UpDownCommand.mapping(way));
         }
         return bridge;
-    }
-
-    public String mapping(int way) {
-        if (way == 1) return "U";
-        return "D";
     }
 }

@@ -1,6 +1,7 @@
 package bridge.UI;
 
 import bridge.Domain.ValidCheck;
+import bridge.UI.Resource.Exceptions;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -17,10 +18,7 @@ public class InputView {
         try {
             outputView.bridgeSizeMessage();
             return readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return askBridgeSize();
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println(e.getMessage());
             return askBridgeSize();
         }
@@ -43,10 +41,7 @@ public class InputView {
         try {
             outputView.moveMessage();//move message 출력
             return readMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return askMoving();
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println(e.getMessage());
             return askMoving();
         }
@@ -68,10 +63,7 @@ public class InputView {
         try {
             outputView.restartMessage();
             return readGameCommand();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return askRestart();
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println(e.getMessage());
             return askRestart();
         }

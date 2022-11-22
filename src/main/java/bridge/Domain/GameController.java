@@ -5,6 +5,8 @@ import bridge.Domain.BridgeGame;
 import bridge.Domain.BridgeMaker;
 import bridge.UI.InputView;
 import bridge.UI.OutputView;
+import bridge.UI.Resource.GameResource;
+import bridge.UI.Resource.RetryQuitCommand;
 
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class GameController {
 
     public boolean userWin(BridgeGame bridgeGame) {
         if (bridgeGame.isSuccess()) {
-            outputView.printResult("성공", bridgeGame, trials);
+            outputView.printResult(GameResource.SUCCESS.content(), bridgeGame, trials);
             return true;
         }
         return false;
@@ -44,12 +46,12 @@ public class GameController {
     }
 
     public boolean checkRetry(BridgeGame bridgeGame, String command) {
-        if (command.equals("R")) {  //R 입력시 재시작
+        if (command.equals(RetryQuitCommand.RETRY.command())) {  //R 입력시 재시작
             bridgeGame.retry();
             return true;
         }
-        if (command.equals("Q"))    //Q 입력시 결과 출력 후 종료
-            outputView.printResult("실패", bridgeGame, trials);
+        if (command.equals(RetryQuitCommand.QUIT.command()))    //Q 입력시 결과 출력 후 종료
+            outputView.printResult(GameResource.FAILURE.content(),  bridgeGame, trials);
         return false;
     }
 

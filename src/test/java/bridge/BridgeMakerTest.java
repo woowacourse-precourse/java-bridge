@@ -16,7 +16,8 @@ public class BridgeMakerTest {
 
     @BeforeEach
     void setUp() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 1, 1, 0, 0));
+        BridgeNumberGenerator numberGenerator =
+                new ApplicationTest.TestNumberGenerator(newArrayList(1, 1, 1, 0, 0));
         bridgeMaker = new BridgeMaker(numberGenerator);
     }
 
@@ -26,9 +27,9 @@ public class BridgeMakerTest {
         assertThat(bridge).containsExactly("U", "U", "U", "D", "D");
     }
 
-    @ParameterizedTest
-    @CsvSource({"1,U", "2,D", "0,D", "3,D"})
-    void mappingTest(int num, String output) {
-        assertThat(bridgeMaker.mapping(num)).isEqualTo(output);
-    }
+//    @ParameterizedTest
+//    @CsvSource({"1,U", "2,D", "0,D", "3,D"})
+//    void mappingTest(int num, String output) {
+//        assertThat(bridgeMaker.mapping(num)).isEqualTo(output);
+//    }
 }
