@@ -25,7 +25,6 @@ public class BridgeGameController {
     private boolean doGame(int bridgeSize) {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         List<String> inputResults = new ArrayList<>();
-        boolean isWinning = true;
 
         for (int i = 0; i < bridgeSize; i++) {
             String moveAnswer = INPUT_VIEW.readMoving();
@@ -33,12 +32,11 @@ public class BridgeGameController {
             OUTPUT_VIEW.printMap(inputResults, i, moveAnswer);
 
             if (inputResults.get(i).equals("X")) {
-                isWinning = false;
-                break;
+                return false;
             }
         }
 
-        return isWinning;
+        return true;
     }
 
     private void replayGame() {
