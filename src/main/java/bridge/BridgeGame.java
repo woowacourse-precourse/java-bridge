@@ -48,7 +48,8 @@ public class BridgeGame {
         return move;
     }
 
-    public void retry() {
+    public String retry() {
+        return null;
     }
 
     public int bridgeSize() {
