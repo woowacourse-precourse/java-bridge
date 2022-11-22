@@ -54,12 +54,12 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public boolean readGameCommand() {
         System.out.println(readGameCommandMsg);
         String gameCommand = Console.readLine();
 
         if (gameCommand.equals(restart) || gameCommand.equals(quit))
-            return gameCommand;
+            return gameCommand.equals(restart);
 
         System.out.println(ERROR.GAME_COMMAND);
         return readGameCommand();
