@@ -8,12 +8,17 @@ import bridge.view.utils.OutputUtils;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    
+
+    private static final String ERROR_HEAD_MESSAGE = "[ERROR] ";
     private static final String GAME_RESULT_MESSAGE = "게임 성공 여부: ";
     private static final String GAME_TRY_MESSAGE = "총 시도한 횟수: ";
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
 
     private OutputView() {
+    }
+
+    public static void printException(Exception exception) {
+        OutputUtils.output(ERROR_HEAD_MESSAGE + exception.getMessage());
     }
 
     /**
