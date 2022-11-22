@@ -13,28 +13,8 @@ public class BridgeGame {
     private OutputView outputView = new OutputView();
     private Bridge bridge;
 
-    public void run() {
-        outputView.printInitMessage();
-        bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
-        runUntilGameEnds();
-    }
-
-    private void runUntilGameEnds() {
-        while (!bridge.gameWon()) {
-            if (isGameFailEnded()) {
-                return;
-            }
-        }
-        outputView.printResult(bridge);
-    }
-
-    private boolean isGameFailEnded() {
-        if (!move()) {
-            if (!retry()) {
-                return true;
-            }
-        }
-        return false;
+    public BridgeGame(int bridgeSize, BridgeNumberGenerator bridgeNumberGenerator) {
+        this.bridge = new Bridge(bridgeSize, bridgeNumberGenerator);
     }
 
     /**
@@ -42,11 +22,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move() {
-        Inputs input = inputView.readMoving();
-        boolean moveSuccess = bridge.moveNext(input);
-        outputView.printMap(bridge);
-        return moveSuccess;
+    public boolean move(Inputs input) {
+        return bridge.moveNext(input);
     }
 
     /**
@@ -54,17 +31,21 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        String retry = inputView.readGameCommand();
-        if (isRetry(retry)) {
-            bridge.resetMoveStatus();
-            return true;
-        }
-        outputView.printResult(bridge);
-        return false;
+
+    public void retry() {
+        bridge.resetMoveStatus();
     }
 
-    private boolean isRetry(String retry) {
-        return retry.equals(Inputs.RETRY.getMessage());
+    public boolean gameWon() {
+        return bridge.gameWon();
+    }
+
+    public int getTrials() {
+        return bridge.getTrials();
+    }
+
+    @Override
+    public String toString() {
+        return bridge.toString();
     }
 }
