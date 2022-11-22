@@ -11,8 +11,7 @@ public class BridgeMap {
     private final static String NOT_SELECTED = "  ";
     private final static String SEPARATOR = "|";
     private final static String COMMA = ",";
-    private final static String START = "[ ";
-    private final static String END = "]";
+    private final static String SPACE = " ";
 
     private final List<String> upperBridge;
     private final List<String> lowerBridge;
@@ -48,7 +47,7 @@ public class BridgeMap {
     private String getSelectBridgeToString(List<String> selectBridge) {
         StringBuffer bridge = new StringBuffer(selectBridge.toString().replace(COMMA, SEPARATOR));
 
-        bridge.insert(ONE, " ");
+        bridge.insert(ONE, SPACE);
         return bridge.toString();
     }
 
