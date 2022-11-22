@@ -24,12 +24,12 @@ public class Controller {
         String beforeValidateSize = inputView.readBridgeSize();
         int size = validateBridgeSize(beforeValidateSize);
         List<String> bridge = bridgeMaker.makeBridge(size);
+        bridgeGame = new BridgeGame(bridge);
         int tryCount = 1;
         int index = 0;
         while(index < bridge.size()) {
             String BeforeMovement = inputView.readMoving();
             String movement = validateMovement(BeforeMovement);
-            bridgeGame = new BridgeGame(bridge);
             boolean isContinue = bridgeGame.move(movement, index);
             outputView.printMap(bridgeGame);
             if (isContinue == false) {
