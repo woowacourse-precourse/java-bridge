@@ -26,7 +26,14 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return readLine();
+        String shape = "";
+        try {
+            shape = readLine();
+            if(shape != "U" || shape != "D") throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 이동할 칸은 U 또는 D 이어야 합니다.");
+        }
+        return shape;
     }
 
     /**
@@ -34,6 +41,13 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return readLine();
+        String state = "";
+        try {
+            state = readLine();
+            if(state != "R" || state != "Q") throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 게임을 다시 시도할지 여부는 R 또는 Q 이어야 합니다.");
+        }
+        return state;
     }
 }
