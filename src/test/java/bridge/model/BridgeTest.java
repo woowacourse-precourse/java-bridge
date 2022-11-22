@@ -14,20 +14,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
-    public InputStream getPlayerInput(String input) {
-        return new ByteArrayInputStream(input.getBytes());
-    }
-
-    @ParameterizedTest
-    @DisplayName("다리 생성")
-    @ValueSource(strings = {"3", "6"})
-    void checkSetBridge(String input) {
-
-        InputStream in = getPlayerInput(input);
-        System.setIn(in);
-
-
-    }
 
     @Test
     @DisplayName("다리 생성")
