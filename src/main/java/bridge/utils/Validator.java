@@ -18,4 +18,9 @@ public class Validator {
         if (!value.equals("U") && !value.equals("D"))
             throw new IllegalArgumentException(ErrorMsgs.ERROR_BRIDGE_MOVE_TYPE);
     }
+
+    public static void checkValueOfReadGameCommand(String value) {
+        if (!value.equals("R") && !value.equals("Q"))
+            throw new IllegalArgumentException(ErrorMsgs.ERROR_COMMAND_TYPE);
+    }
 }
