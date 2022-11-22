@@ -10,8 +10,8 @@ public class BridgeGameException {
     private static final String ONLY_CONTAINS_NUMBER_REGEX = "^[0-9]*$";
     private static final String RANGE_ERROR = "[ERROR] 3에서 20까지의 숫자를 입력해 주시기 바랍니다.";
     private static final String NUMBER_ERROR = "[ERROR] 올바른 숫자가 아닙니다.";
-    private static final String MOVING_COMMAND_ERROR = "[ERROR] 입력은 대문자 'U' 또는 'D'를 입력해 주시기 바랍니다.\n";
-    private static final String RETRY_COMMAND_ERROR = "[ERROR] 입력은 대문자 'R' 또는 'Q'를 입력해 주시기 바랍니다.\n";
+    private static final String MOVING_COMMAND_ERROR = "[ERROR] 입력은 대문자 'U' 또는 'D'를 입력해 주시기 바랍니다.";
+    private static final String RETRY_COMMAND_ERROR = "[ERROR] 입력은 대문자 'R' 또는 'Q'를 입력해 주시기 바랍니다.";
 
     public void validateBridgeSize(String readLine){
         validateType(readLine);;

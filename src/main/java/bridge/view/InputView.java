@@ -35,7 +35,6 @@ public class InputView {
             bridgeGameException.validateMovingCommand(readLine);
             return readLine;
         } catch (IllegalArgumentException e) {
-//            System.out.println(e.getMessage());
             return readMoving();
         }
     }
