@@ -26,4 +26,10 @@ public class BridgeService {
             throw new IllegalArgumentException(BridgeException.INVALID_MOVE.getErrorMessage());
         return input;
     }
+
+    public static String validateRestartStatus(String input){
+        if (!input.equals("R") && !input.equals("Q"))
+            throw new IllegalArgumentException(BridgeException.INVALID_RESTART_STATUS.getErrorMessage());
+        return input;
+    }
 }
