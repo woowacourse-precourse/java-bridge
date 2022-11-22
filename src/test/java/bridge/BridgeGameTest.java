@@ -56,4 +56,18 @@ class BridgeGameTest {
         assertThat(user.isSuccessful()).isEqualTo(false);
         assertThat(user.isGameDone()).isEqualTo(true);
     }
+
+    @DisplayName("Success 테스트")
+    @Test
+    public void SuccessTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "U", "U"));
+        User user = new User();
+
+        // when
+        bridgeGame.processSuccess(bridge, user);
+
+        // then
+        assertThat(bridge.getCurrentBlock()).isEqualTo(1);
+    }
 }
