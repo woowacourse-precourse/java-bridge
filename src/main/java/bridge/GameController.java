@@ -12,7 +12,12 @@ public class GameController {
     }
 
     private void simulate() {
-
+        while (bridgeGame.isOver()) {
+            if (!bridgeGame.canMove(inputView.readMoving())) {
+                break;
+            }
+            bridgeGame.move();
+        }
     }
 
     private void ending() {
@@ -21,7 +26,13 @@ public class GameController {
 
     public void run() {
         bridgeGame = new BridgeGame(inputView.readBridgeSize());
-        simulate();
+        while (true) {
+            simulate();
+            if (inputView.readGameCommand() == "Q") {
+                break;
+            }
+            bridgeGame.retry();
+        }
         ending();
     }
 }
