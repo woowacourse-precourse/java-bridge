@@ -41,6 +41,19 @@ class BridgeGameResultTest {
     }
 
     @Test
+    @DisplayName("재시작 시, 사용자의 게임 결과를 초기화한다.")
     void retryResultUpDown() {
+        //given ( 테스트를 위해 각 배열에 1개의 인자 넣음 )
+        bridgeGameResult.addResultUp(true);
+        bridgeGameResult.addResultDown(true);
+
+        //when
+        bridgeGameResult.retryResultUpDown();
+
+        //then
+        assertAll(
+                () -> assertEquals(bridgeGameResult.getResultUp().size(), 0),
+                () -> assertEquals(bridgeGameResult.getResultDown().size(), 0)
+        );
     }
 }
