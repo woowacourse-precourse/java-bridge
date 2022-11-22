@@ -23,4 +23,10 @@ public class ViewController {
 		out.printResult(mapMaker.toString(), result, gameCount);
 		return;
 	}
+
+	public String movingView() {
+		out.printGameMessage("MOVING");
+		String move = in.readMoving();
+		return move;
+	}
 }
