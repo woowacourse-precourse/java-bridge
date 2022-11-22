@@ -32,9 +32,7 @@ public class GameStart {
         while (!isSuccess && isRestart) {
             countOfPlay++;
             isSuccess = play();
-            if (!isSuccess) {
-                isRestart = inputRestart();
-            }
+            isRestart = checkRestart(isSuccess);
         }
         outputView.printResult(bridge, countOfMove, isSuccess, countOfPlay);
     }
@@ -49,6 +47,14 @@ public class GameStart {
             }
         }
         return true;
+    }
+
+    private boolean checkRestart(boolean isSuccess) {
+        boolean isRestart = true;
+        if (!isSuccess) {
+            isRestart = inputRestart();
+        }
+        return isRestart;
     }
 
     private void inputBridge() {
