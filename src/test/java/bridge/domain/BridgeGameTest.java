@@ -67,16 +67,39 @@ class BridgeGameTest {
         assertThat(game.retry()).isTrue();
     }
 
-    @DisplayName("다리를 모두 건너면 true가 반환된다.")
+    @DisplayName("다리 끝까지 이동하였고 이동에 성공했다면 게임이 끝났다.")
     @Test
-    void isEndWhenBridgeEnd() {
+    void gameEnd() {
+        // given
+        game.move(BridgeCell.UP);
+        game.move(BridgeCell.DOWN);
+        game.move(BridgeCell.DOWN);
+
+        // when, then
+        assertThat(game.isEnd()).isTrue();
+    }
+
+    @DisplayName("다리 끝까지 이동하였지만 이동에 실패하면 게임이 끝나지 않았다.")
+    @Test
+    void gameFail() {
         // given
         game.move(BridgeCell.UP);
         game.move(BridgeCell.DOWN);
         game.move(BridgeCell.UP);
 
         // when, then
-        assertThat(game.isEnd()).isTrue();
+        assertThat(game.isEnd()).isFalse();
+    }
+
+    @DisplayName("다리 끝까지 이동하지 않았다면 게임이 끝나지 않았다.")
+    @Test
+    void gameProgress() {
+        // given
+        game.move(BridgeCell.UP);
+        game.move(BridgeCell.DOWN);
+
+        // when, then
+        assertThat(game.isEnd()).isFalse();
     }
 
     @DisplayName("현재 게임의 최종 결과를 알 수 있다.")
@@ -85,7 +108,7 @@ class BridgeGameTest {
         // given
         game.move(BridgeCell.UP);
         game.move(BridgeCell.DOWN);
-        game.move(BridgeCell.UP);
+        game.move(BridgeCell.DOWN);
 
         // when, then
         assertThat(game.getResult()).isEqualTo(

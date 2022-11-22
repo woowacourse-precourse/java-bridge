@@ -58,7 +58,15 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
+        return isSameSize() && isSuccessAtLast();
+    }
+
+    private boolean isSameSize() {
         return history.size() == bridge.size();
+    }
+
+    private boolean isSuccessAtLast() {
+        return history.get(history.size() - 1).isSuccess();
     }
 
     public String getResult() {
