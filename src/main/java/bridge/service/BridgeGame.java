@@ -143,6 +143,14 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean isRestartGame(String input) {
+        if (RESTART.equals(input)) {
+            retry();
+            return true;
+        }
+        return false;
+    }
+
     private void addTryCount() {
         this.tryCount = tryCount + BINARY_UP;
     }
