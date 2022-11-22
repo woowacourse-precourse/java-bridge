@@ -83,4 +83,21 @@ class BridgeGameTest {
             assertThat(game.getIsSuccess()).isFalse();
         }
     }
+
+    @Nested
+    class GameOverJudgeTest {
+        @Test
+        void 사용자경로가_다리_안전경로와_일치하면_게임은_끝나지않는다(){
+            game.move(Direction.UP);
+            assertThat(game.isOver()).isFalse();
+        }
+
+        @Test
+        void 사용자경로가_다리_안전경로와_불일치하면_게임은_끝난다(){
+            game.move(Direction.DOWN);
+            assertThat(game.isOver()).isTrue();
+        }
+
+
+    }
 }
