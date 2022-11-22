@@ -12,6 +12,10 @@ public class BridgeMoving {
         this.moving = moving;
     }
 
+    public String getMoving() {
+        return moving;
+    }
+
     public static BridgeMoving createBridgeMoving(String moving) {
         return new BridgeMoving(moving);
     }

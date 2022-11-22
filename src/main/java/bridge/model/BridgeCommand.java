@@ -16,7 +16,10 @@ public class BridgeCommand {
         return new BridgeCommand(command);
     }
 
-    public boolean getCommand() {
+    public String getCommand(){
+        return command;
+    }
+    public boolean isRetry() {
         return command.equals(Command.RETRY.getDescription());
     }
 

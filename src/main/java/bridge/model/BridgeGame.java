@@ -53,7 +53,7 @@ public class BridgeGame {
      */
     public void move(String moving) {
         countLocation();
-        String expression = bridgeComparator.compareBridge(bridge, moving, location);
+        String expression = BridgeComparator.compareBridge(bridge, moving, location);
         bridgeMap.makeBridgeMap(location, moving, expression);
     }
 
@@ -85,7 +85,7 @@ public class BridgeGame {
     }
 
     public boolean isFail() {
-        return bridgeComparator.isExpressionX(location, bridgeMap.getBridgeMap());
+        return BridgeComparator.isExpressionX(location, bridgeMap.getBridgeMap());
     }
 
     public void countRetry() {
