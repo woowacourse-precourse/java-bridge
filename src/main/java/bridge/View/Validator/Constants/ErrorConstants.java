@@ -1,4 +1,4 @@
-package bridge.Validator.Constants;
+package bridge.View.Validator.Constants;
 
 import static bridge.View.Constants.InputConstants.*;
 

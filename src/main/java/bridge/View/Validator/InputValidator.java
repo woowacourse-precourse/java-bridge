@@ -1,6 +1,6 @@
-package bridge.Validator;
+package bridge.View.Validator;
 
-import static bridge.Validator.Constants.ErrorConstants.*;
+import static bridge.View.Validator.Constants.ErrorConstants.*;
 import static bridge.View.Constants.InputConstants.*;
 
 public class InputValidator {

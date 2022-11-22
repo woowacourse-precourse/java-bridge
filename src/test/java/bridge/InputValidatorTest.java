@@ -2,8 +2,8 @@ package bridge;
 
 import org.junit.jupiter.api.Test;
 
-import static bridge.Validator.InputValidator.validateInteger;
-import static bridge.Validator.InputValidator.validateRange;
+import static bridge.View.Validator.InputValidator.validateInteger;
+import static bridge.View.Validator.InputValidator.validateRange;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputValidatorTest {

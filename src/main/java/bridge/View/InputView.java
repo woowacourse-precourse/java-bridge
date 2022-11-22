@@ -1,6 +1,6 @@
 package bridge.View;
 
-import static bridge.Validator.InputValidator.*;
+import static bridge.View.Validator.InputValidator.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
