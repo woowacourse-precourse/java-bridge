@@ -22,7 +22,7 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        valueError = checkBridgeError(size);
+        valueError = dealBridgeError(size);
         if (valueError) {
             return null;
         }
@@ -33,7 +33,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private boolean checkBridgeError(int size) {
+    private boolean dealBridgeError(int size) {
         try {
             checkRangeValidity(size);
         } catch (IllegalArgumentException e) {

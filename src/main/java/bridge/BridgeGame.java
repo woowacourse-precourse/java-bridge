@@ -19,14 +19,14 @@ public class BridgeGame {
 
     public void move(String direction) {
         valueError = false;
-        moveErrorCheck(direction);
+        dealMoveError(direction);
         if (!valueError) {
             currentPosition++;
             BridgeGame.direction = direction;
         }
     }
 
-    public void moveErrorCheck(String direction) {
+    public void dealMoveError(String direction) {
         try {
             checkMoveValidity(direction);
         } catch (IllegalArgumentException e) {
@@ -43,28 +43,7 @@ public class BridgeGame {
         }
     }
 
-    public BridgeGameDto sendDto() {
-        return new BridgeGameDto(currentPosition, totalTrial, direction);
-    }
-
-    public void initializeValues() {
-        currentPosition = -1;
-        direction = null;
-    }
-
-    public void retry(Bridge bridge, String command) {
-        try {
-            checkDecisionValidity(command);
-        } catch (IllegalArgumentException e) {
-            if (!InputView.commandFormatError) {
-                System.out.println(e.getMessage());
-            }
-            return;
-        }
-        makeDecision(bridge, command);
-    }
-
-    public void makeDecision(Bridge bridge, String command) {
+    public void makeRetryDecision(Bridge bridge, String command) {
         if (command.equals(QUIT)) {
             Application.endGame(bridge, false);
             return;
@@ -74,10 +53,31 @@ public class BridgeGame {
         Application.launchGame(bridge);
     }
 
-    private void checkDecisionValidity(String word) {
+    private void checkCommandValidity(String word) {
         if (!decisionCandidate.contains(word)) {
             valueError = true;
             throw new IllegalArgumentException(ERROR_INVALID_INPUT);
         }
+    }
+
+    public void retry(Bridge bridge, String command) {
+        try {
+            checkCommandValidity(command);
+        } catch (IllegalArgumentException e) {
+            if (!InputView.commandFormatError) {
+                System.out.println(e.getMessage());
+            }
+            return;
+        }
+        makeRetryDecision(bridge, command);
+    }
+
+    public void initializeValues() {
+        currentPosition = -1;
+        direction = null;
+    }
+
+    public BridgeGameDto sendDto() {
+        return new BridgeGameDto(currentPosition, totalTrial, direction);
     }
 }

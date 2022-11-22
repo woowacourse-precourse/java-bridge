@@ -41,16 +41,25 @@ public class OutputView {
         System.out.println(LINE_CHANGE + ENTER_MOVE);
     }
 
-    private String decideMark(String answer, Boolean hit, String target) {
-        if (answer.equals(target) && hit) {
-            return CORRECT;
+    public void printResult(BridgeDto bridgeDto, ResultDto resultDto) {
+        List<Boolean> result = resultDto.result;
+        if (result.contains(false)) {
+            FINAL_RESULT = FINAL_RESULT.substring(1);
         }
-        if (!answer.equals(target) && !hit) {
-            return MISS;
-        }
-        return SPACE;
+        System.out.println(FINAL_RESULT);
+        printMap(bridgeDto, resultDto);
     }
-
+    public void printMap(BridgeDto bridgeDto, ResultDto resultDto) {
+        List<String> answer = bridgeDto.bridge;
+        List<Boolean> guess = resultDto.result;
+        String target = "U";
+        for (int row = 0; row <= 1; row++) {
+            if (row == 1) {
+                target = "D";
+            }
+            printSingleLine(answer, guess, target);
+        }
+    }
     private void printSingleLine(List<String> answer, List<Boolean> guess, String target) {
         System.out.print(LINE_START);
         for (int col = 0; col < guess.size(); col++) {
@@ -63,26 +72,14 @@ public class OutputView {
             System.out.print(VERTICAL_BAR);
         }
     }
-
-    public void printMap(BridgeDto bridgeDto, ResultDto resultDto) {
-        List<String> answer = bridgeDto.bridge;
-        List<Boolean> guess = resultDto.result;
-        String target = "U";
-        for (int row = 0; row <= 1; row++) {
-            if (row == 1) {
-                target = "D";
-            }
-            printSingleLine(answer, guess, target);
+    private String decideMark(String answer, Boolean hit, String target) {
+        if (answer.equals(target) && hit) {
+            return CORRECT;
         }
-    }
-
-    public void printResult(BridgeDto bridgeDto, ResultDto resultDto) {
-        List<Boolean> result = resultDto.result;
-        if (result.contains(false)) {
-            FINAL_RESULT = FINAL_RESULT.substring(1);
+        if (!answer.equals(target) && !hit) {
+            return MISS;
         }
-        System.out.println(FINAL_RESULT);
-        printMap(bridgeDto, resultDto);
+        return SPACE;
     }
 
     public void printReport(boolean result, int trial) {
