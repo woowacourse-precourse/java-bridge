@@ -15,4 +15,9 @@ public class BridgeGameRecord {
         record.add(side);
     }
 
+    public boolean endMatchWith(List<String> answerBridge) {
+        return record.get(record.size() - 1)
+                .equals(answerBridge.get(record.size() - 1));
+    }
+
 }
