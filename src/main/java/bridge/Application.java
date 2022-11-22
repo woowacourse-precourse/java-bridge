@@ -1,14 +1,14 @@
 package bridge;
 
-import java.util.List;
-
 public class Application {
 
     public static void main(String[] args) {
         BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
-        List<String> answers = bridgeGame.gameSet();
+
+        bridgeGame.init();
         do {
-            bridgeGame.play(answers);
+            bridgeGame.reset();
+            bridgeGame.play();
         } while (bridgeGame.retry());
     }
 }
