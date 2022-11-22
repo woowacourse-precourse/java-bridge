@@ -51,4 +51,11 @@ public class Controller {
         }
         wrongCase(moveInput, bridgeGame, user);
     }
+
+    public void editBuilder(BridgeGame bridgeGame) {
+        if (!bridgeGame.comparePositionLength()) {
+            upBuilder.replace(upBuilder.length() - 1, upBuilder.length(), "|");
+            downBuilder.replace(downBuilder.length() - 1, downBuilder.length(), "|");
+        }
+    }
 }
