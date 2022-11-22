@@ -16,6 +16,10 @@ public class BridgeGame {
 
     private List<List<String>> playerBridge;
 
+    public int getTryCount() {
+        return tryCount;
+    }
+
     private int tryCount;
 
     /**
@@ -56,7 +60,7 @@ public class BridgeGame {
      */
     public boolean checkGameOver() {
         for (int i = 0; i < playerBridge.size(); i++) {
-            if (playerBridge.get(i).get(playerBridge.size() - 1).equals("X")) {
+            if (playerBridge.get(i).get(playerBridge.get(i).size() - 1).equals("X")) {
                 return true;
             }
         }
@@ -73,7 +77,8 @@ public class BridgeGame {
      */
     public boolean retry(String input) {
         if (input.equals("R")) {
-            playerBridge.clear();
+            playerBridge.get(0).clear();
+            playerBridge.get(1).clear();
             tryCount++;
             return true;
         }
@@ -89,7 +94,17 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
+    /**
+     * 게임에서 승리했는지 판단하는 메서드
+     *
+     * @return
+     */
     public boolean checkGameWin() {
-
+        if (playerBridge.get(0).size() == bridge.size()) {
+            if (!playerBridge.get(0).get(bridge.size() - 1).equals("X") && !playerBridge.get(0).get(bridge.size() - 1).equals("X")) {
+                return true;
+            }
+        }
+        return false;
     }
 }
