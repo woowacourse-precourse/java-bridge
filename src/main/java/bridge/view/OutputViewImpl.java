@@ -7,6 +7,7 @@ import bridge.data.dto.responseDto.InGameCommandResponseDto;
 import bridge.type.MapComponentType;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -20,22 +21,26 @@ public class OutputViewImpl implements OutputView{
 
     @Override
     public void printMap(InGameCommandResponseDto responseDto) {
-        Map<String, String> answerMapRows = getAnswerMapRowsUntilLast(responseDto);
-        for (Entry<String, String> row: answerMapRows.entrySet()) {
-            answerMapRows.put(row.getKey(), getLastElementAddedRow(row, responseDto));
+        Map<String, String> movesMap = getMovesMap(responseDto);
+        if (responseDto.isPlayerDead()) {
+            String fixedRow = fixLastBlock(movesMap.get(responseDto.getLastMove()));
+            movesMap.put(responseDto.getLastMove(), fixedRow);
         }
-        System.out.println(stringifyAnswerMapRows(answerMapRows));
+        System.out.println(stringifyMap(movesMap));
     }
 
-    private Map<String, String> getAnswerMapRowsUntilLast(InGameCommandResponseDto responseDto) {
+    /**
+     * 각각의 줄에 대한 플레이어의 선택을 문자열로 만들어 해시맵에 저장합니다.
+     * @return {"U" : "O |   | O", "D" : "  | O |  "} 형태로 저장된 해시맵을 반환합니다.
+     */
+    private Map<String, String> getMovesMap(InGameCommandResponseDto responseDto) {
          return Arrays.stream(MapComponentType.values())
-                .map(type -> getAnswerMapEntry(type.getMapComponent(), responseDto))
+                .map(type -> getMovesPerRow(type.getMapComponent(), responseDto.getMoves()))
                 .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
     }
 
-    private Entry<String, String> getAnswerMapEntry(String component, InGameCommandResponseDto responseDto) {
-        return new SimpleEntry<>(component, responseDto.getMoves().stream()
-                .limit(responseDto.getMoves().size() - 1)
+    private Entry<String, String> getMovesPerRow(String component, List<String> moves) {
+        return new SimpleEntry<>(component, moves.stream()
                 .map(component::equals)
                 .map(this::getOOrBlank)
                 .collect(Collectors.joining(MAP_DELIMITER.toString())));
@@ -48,28 +53,20 @@ public class OutputViewImpl implements OutputView{
         return MAP_BLANK.toString();
     }
 
-    private String getLastElementAddedRow(Entry<String, String> lineEntry, InGameCommandResponseDto responseDto) {
-        String baseLine = getBaseLine(lineEntry.getValue());
-        if (lineEntry.getKey().equals(responseDto.getLastMove())) {
-            if (responseDto.isPlayerDead()) {
-                return baseLine + MAP_X_MARK;
-            }
-            return baseLine + MAP_O_MARK;
-        }
-        return baseLine + MAP_BLANK;
+    /**
+     * 마지막 선택을 O에서 X로 바꿉니다.
+     */
+    private String fixLastBlock(String row) {
+        return row.substring(0, row.length() - 1) + MAP_X_MARK;
     }
 
-    private String getBaseLine(String baseLine) {
-        if (!baseLine.isEmpty()) {
-            baseLine += MAP_DELIMITER;
-        }
-        return baseLine;
-    }
-
-    private String stringifyAnswerMapRows(Map<String, String> answerMapRows) {
+    /**
+     * MapComponentType이 선언 된 순서대로 지도를 출력합니다.
+     */
+    private String stringifyMap(Map<String, String> movesMap) {
         return Arrays.stream(MapComponentType.values())
                 .map(MapComponentType::getMapComponent)
-                .map(answerMapRows::get)
+                .map(movesMap::get)
                 .map(row -> MAP_HEAD + row + MAP_TAIL)
                 .collect(Collectors.joining("\n"));
     }
