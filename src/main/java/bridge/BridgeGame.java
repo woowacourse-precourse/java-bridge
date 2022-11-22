@@ -18,6 +18,7 @@ public class BridgeGame {
 
     public BridgeGame(int size) {
         this.size = size;
+        checkBridgeSize(size);
     }
 
     public void move(String gameCommand) {
