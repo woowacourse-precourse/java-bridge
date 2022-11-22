@@ -41,7 +41,7 @@ public class BridgeGame {
         return stairs;
     }
 
-    private MapType findMapType(String movingValue, boolean moveResult) {
+    public MapType findMapType(String movingValue, boolean moveResult) {
         MapType[] mapTypes = MapType.values();
         for (MapType mapType : mapTypes) {
             if (movingValue.equals(mapType.getStairs()) && moveResult == mapType.isPass()) {
