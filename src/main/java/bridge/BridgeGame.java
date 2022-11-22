@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.validation.BridgeGameValidator.checkCommand;
-import static bridge.validation.BridgeGameValidator.checkMoving;
+import static bridge.validation.CommonValidator.checkCommand;
+import static bridge.validation.CommonValidator.checkMoving;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGameResult;
