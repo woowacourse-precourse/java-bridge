@@ -29,6 +29,15 @@ public class BridgeGame {
         this.bridgeGenerateService = bridgeGenerateService;
     }
 
+    private void Run() {
+        outputView.printGameStartNotice();
+        bridge = generateBridge();
+        while (isTryingToClearGame) {
+            trialCount++;
+            playGame();
+        }
+    }
+
     private List<String> generateBridge() {
         outputView.printBridgeSizeInputNotice();
         bridgeSize = inputView.readBridgeSize();
@@ -44,7 +53,6 @@ public class BridgeGame {
         String gameCommand = askGameCommand();
         if (gameCommand.equals("Q")) {
             quit();
-            return;
         }
     }
 
