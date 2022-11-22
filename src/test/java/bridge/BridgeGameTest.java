@@ -28,4 +28,14 @@ class BridgeGameTest {
 
   }
 
+  @Test
+  void 시작_혹은_재시작_시에_맵을_건널수_있는지_여부에_대해_올바른_boolean을_가지고_오는가() {
+
+    // given
+    Bridge bridge = new Bridge(3);
+    BridgeGame bridgeGame = new BridgeGame(bridge);
+
+    // then
+    assertTrue(bridgeGame.canCross());
+  }
 }
