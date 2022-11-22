@@ -14,6 +14,7 @@ import static bridge.util.constants.Marker.NOT_CROSS;
 public class GameRecord {
     private final Map<String, List<String>> crossedRecord;
     private int tryCount;
+
     public GameRecord() {
         crossedRecord = new HashMap<>();
         crossedRecord.put(UPPER_RECORD_KEY.getValue(), new ArrayList<>());
