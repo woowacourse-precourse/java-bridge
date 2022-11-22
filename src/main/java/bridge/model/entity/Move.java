@@ -1,5 +1,12 @@
 package bridge.model.entity;
 
+import bridge.model.value.PlayerMessage;
+
+import java.util.List;
+
+import static bridge.model.value.PlayerMessage.DOWN;
+import static bridge.model.value.PlayerMessage.UP;
+
 public class Move {
     private String move;
 
@@ -12,7 +19,10 @@ public class Move {
         return this.move;
     }
     private void validate(String move){
-        //TODO: 예외 추후 구현 예정
+        if(UP.equals(move) || DOWN.equals(move)){
+            return;
+        }
+        throw new IllegalArgumentException("이동하기 위한 문자가 아닙니다. 다시 입력해주세요 :" + move);
     }
 
     public static Move of(String move){

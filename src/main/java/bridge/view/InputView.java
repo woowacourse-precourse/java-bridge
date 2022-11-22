@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.entity.BridgeSize;
+import bridge.model.entity.Move;
 import bridge.util.BridgeMaker;
 import bridge.util.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Console;
@@ -36,7 +37,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return input();
+        try {
+            return Move.of(input()).getMove();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
