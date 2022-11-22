@@ -30,4 +30,7 @@ public class OutputView {
     public void printInputMove(){
         System.out.println(Messages.INPUT_MOVE_MESSAGE);
     }
+    public void printInputCommand(){
+        System.out.println(Messages.RETRY_MESSAGE);
+    }
 }
