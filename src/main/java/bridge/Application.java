@@ -22,6 +22,14 @@ public class Application {
         return rightWrong;
     }
 
+    private static boolean chooseRetryQuit(BridgeGame bridgeGame,int count){
+        String gameCommand = InputView.repeatInputRetry();
+        if(!bridgeGame.retry(gameCommand)){
+            return endGame(bridgeGame,"실패",count);
+        }
+        return false;
+    }
+
     private static boolean endGame(BridgeGame bridgeGame,String result,int count){
         OutputView.printResult(bridgeGame,result,count);
 
@@ -30,5 +38,6 @@ public class Application {
         }
         return false;
     }
-    
+
+
 }
