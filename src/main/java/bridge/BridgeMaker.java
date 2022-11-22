@@ -23,7 +23,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(Collections.nCopies(size, MovingRandomNumber.UP.getMoving()));
-        for (int count = 0; count < size ; count++) {
+        for (int count = 0; count < size; count++) {
             int randomNumber = bridgeNumberGenerator.generate();
             if (randomNumber == MovingRandomNumber.DOWN.getRandomNumber()) {
                 bridge.set(count, MovingRandomNumber.DOWN.getMoving());

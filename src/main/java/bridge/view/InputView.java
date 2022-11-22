@@ -28,7 +28,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("\n" +GameMessage.REGAME_OR_END.getMessage());
+        System.out.println("\n" + GameMessage.REGAME_OR_END.getMessage());
         return Console.readLine();
     }
 }
