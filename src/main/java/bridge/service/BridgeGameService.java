@@ -1,39 +1,43 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Attempt;
 import bridge.domain.Bridge;
 import bridge.domain.Command;
 import bridge.domain.Result;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static bridge.view.InputView.*;
 import static bridge.view.OutputView.*;
 
 public class BridgeGameService {
 
+    private final BridgeMaker maker;
     private Attempt attempt;
     private Bridge bridge;
-    private List<String> user;
+    private Bridge user;
+
+    public BridgeGameService() {
+        this.maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
 
     /**
-     * 게임을 시작할 때 사용하는 메서드
+     * 게임을 시작할 때 시도횟수 초기화와 다리를 생성하는 메서드
      */
     public void start() {
         printStart();
         attempt = Attempt.begin();
-        bridge = Bridge.make(readBridgeSize());
+        bridge = Bridge.of(maker.makeBridge(readBridgeSize()));
     }
 
     public Result move() {
         attempt.increase();
-        user = new ArrayList<>();
+        user = Bridge.start();
         while (bridge.isProceeding(user)) {
             printMoveOptionInput();
-            user.add(readMoving());
+            user = user.move(readMoving());
             printMap(bridge, user);
-            if (bridge.compare(user).equals(Result.FAIL)) {
+            if (!bridge.isSuccess(user)) {
                 return Result.FAIL;
             }
         }

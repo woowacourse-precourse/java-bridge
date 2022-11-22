@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.domain.Attempt;
 import bridge.domain.Bridge;
-import bridge.domain.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +10,9 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     /**
      * 게임 시작 메세지를 출력하는 메소드
@@ -45,21 +47,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(Bridge bridge, List<String> user) {
+    public static void printMap(Bridge bridge, Bridge user) {
         String map = bridge.getMap(user);
-        List<String> top = new ArrayList<>();
-        List<String> bottom = new ArrayList<>();
-        for (int index = 0; index < map.length(); index++) {
-            if (user.get(index).equals("U")) {
-                top.add(" " + map.charAt(index) + " ");
-                bottom.add("   ");
+        System.out.println(getLine(user, map, UP));
+        System.out.println(getLine(user, map, DOWN));
+    }
+
+    private static String getLine(Bridge user, String map, String line) {
+        List<String> halfBridge = new ArrayList<>();
+        for (int index = 0; index < user.getBridgeLength(); index++) {
+            if (user.canJump(index, line)) {
+                halfBridge.add(" " + map.charAt(index) + " ");
                 continue;
             }
-            top.add("   ");
-            bottom.add(" " + map.charAt(index) + " ");
+            halfBridge.add("   ");
         }
-        System.out.println(top.toString().replaceAll(", ", "|"));
-        System.out.println(bottom.toString().replaceAll(", ", "|"));
+        return halfBridge.toString().replaceAll(", ", "|");
     }
 
     /**
@@ -67,14 +70,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(Bridge bridge, List<String> user, Attempt attempt) {
+    public static void printResult(Bridge bridge, Bridge user, Attempt attempt) {
         System.out.println("최종 게임 결과");
         printMap(bridge, user);
         System.out.print("\n게임 성공 여부: ");
-        if (bridge.compare(user).equals(Result.SUCCESS)) {
+        if (bridge.isSuccess(user)) {
             System.out.println("성공");
         }
-        if (bridge.compare(user).equals(Result.FAIL)) {
+        if (!bridge.isSuccess(user)) {
             System.out.println("실패");
         }
         System.out.printf("총 시도한 횟수: %d\n", attempt.getCount());
