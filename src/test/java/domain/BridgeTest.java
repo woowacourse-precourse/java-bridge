@@ -6,6 +6,8 @@ import bridge.domain.Bridge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeTest {
     private Bridge bridge;
@@ -22,8 +24,6 @@ public class BridgeTest {
         bridge.updateUserRoute("U");
         bridge.updateUserRoute("U");
 
-        assertThat(bridge.getUserRoute().get(0).equals("D")).isTrue();
-        assertThat(bridge.getUserRoute().get(1).equals("U")).isTrue();
-        assertThat(bridge.getUserRoute().get(2).equals("U")).isTrue();
+        assertThat(bridge.getUserRoute()).containsExactly("D", "U", "U");
     }
 }
