@@ -3,7 +3,6 @@ package bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.TestInputView;
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
@@ -11,7 +10,6 @@ import java.io.PrintStream;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -158,7 +156,7 @@ public class UnitTest {
                     );
         }
 
-        /*@Test
+        @Test
         @DisplayName("이동 성공")
         void moveSuccess() {
             assertRandomNumberInRangeTest(() -> {
@@ -172,7 +170,6 @@ public class UnitTest {
                 );
 
             }, 0, 0, 0, 0, 0);
-        }*/
+        }
     }
-
 }
