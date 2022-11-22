@@ -10,7 +10,6 @@ public class PrepareGame {
 
     private final int bridgeSize;
 
-    private final InputView inputView = new InputView();
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 
     public PrepareGame(int bridgeSize) {
