@@ -19,6 +19,10 @@
 - [x]  사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - [x]  Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
+### Diagram
+
+![image](https://user-images.githubusercontent.com/58586537/203298591-c79fa9d7-a670-48d7-8744-fed3aba0e9fd.png)
+
 ### 입력
 
 - [x]  자동으로 생성할 다리 길이(3 이상 20 이하의 숫자)를 입력 받는다.
