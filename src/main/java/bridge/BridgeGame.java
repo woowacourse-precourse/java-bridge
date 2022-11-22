@@ -13,6 +13,15 @@ public class BridgeGame {
     public void move() {
     }
 
+    public boolean isCorrectStep(List<String> userPosition, List<String> bridge) {
+        for (int i = 0; i < userPosition.size(); i++) {
+            if (!userPosition.get(i).equals(bridge.get(i)))
+                return false;
+        }
+        return true;
+    }
+
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
