@@ -41,6 +41,4 @@ public enum UpDown {
 	public static boolean isDown(String src) {
 		return src.equals(DOWN.getDirection());
 	}
-
-
 }
