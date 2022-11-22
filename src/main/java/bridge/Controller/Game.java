@@ -18,14 +18,7 @@ public class Game {
     public void run() {
         OutputView.printInit();
         makeBridge();
-        while (isStart) {
-            BridgeGame.plusPlayCount();
-            isStart = crossBridge();
-            if(isStart) { // 다리를 다 건넜을 때
-                break;
-            }
-            isStart = isStartOrEnd();
-        }
+        oneGame();
         endGame();
     }
 
@@ -64,5 +57,16 @@ public class Game {
         OutputView.printEndGame();
         OutputView.printMap(bridgeMap);
         OutputView.printResult(BridgeGame.getPlayCount(), isStart);
+    }
+
+    private void oneGame() {
+        while (isStart) {
+            BridgeGame.plusPlayCount();
+            isStart = crossBridge();
+            if(isStart) { // 다리를 다 건넜을 때
+                break;
+            }
+            isStart = isStartOrEnd(); // 건너지 못했다면
+        }
     }
 }
