@@ -8,19 +8,21 @@ public class InputView {
     private static final String INPUT_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public String readBridgeSize() {
-        System.out.println(INPUT_BRIDGE_SIZE);
-        String size = Console.readLine();
+        String size = readInput(INPUT_BRIDGE_SIZE);
         System.out.println();
         return size;
     }
 
     public String readMoving() {
-        System.out.println(INPUT_MOVING);
-        return Console.readLine();
+        return readInput(INPUT_MOVING);
     }
 
     public String readGameCommand() {
-        System.out.println(INPUT_COMMAND);
+        return readInput(INPUT_COMMAND);
+    }
+
+    private String readInput(String message) {
+        System.out.println(message);
         return Console.readLine();
     }
 }
