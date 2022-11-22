@@ -61,4 +61,12 @@ public class InputView {
         }
     }
 
+    public String getReadGameCommand(){
+        try {
+            return readGameCommand();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return getReadGameCommand();
+        }
+    }
 }

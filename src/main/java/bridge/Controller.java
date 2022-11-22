@@ -48,7 +48,7 @@ public class Controller {
     }
 
     private boolean retryGame(BridgeGame bridgeGame) {
-        String command = inputView.readGameCommand();
+        String command = inputView.getReadGameCommand();
         if (!isRetry(bridgeGame, command)) return true;
         bridgeGame.retry();
         return false;
