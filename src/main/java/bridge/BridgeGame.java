@@ -56,4 +56,19 @@ public class BridgeGame {
         return countPlayGame;
     }
 
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getCurrentBridge() {
+        return currentBridge;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public boolean isSuccessEndGame() {
+        return bridge.size() - 1 == currentBridge;
+    }
 }

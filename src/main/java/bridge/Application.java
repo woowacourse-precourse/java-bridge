@@ -2,7 +2,8 @@ package bridge;
 
 public class Application {
 
-    private static final InputView inputView = new InputView();
+    private static final InputView input = new InputView();
+    private static final OutputView output = new OutputView();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(
         new BridgeRandomNumberGenerator()
     );
@@ -10,17 +11,37 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다");
         BridgeGame game = makeGame();
-        String moving = inputView.readMoving();
+        playGame(game);
+    }
+
+    private static void playGame(final BridgeGame game) {
+        boolean resultMoving = true;
+        while (resultMoving && !game.isSuccessEndGame()) {
+            String line = input.readMoving();
+            PropertyMove moving = convertPropertyMoveByLine(line);
+            resultMoving = game.move(moving);
+            output.printMap(game);
+        }
     }
 
     private static BridgeGame makeGame() {
         while (true) {
             try {
-                int size = inputView.readBridgeSize();
+                int size = input.readBridgeSize();
                 return new BridgeGame(bridgeMaker.makeBridge(size));
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 다리 크기는 3이상 20이하이어야 합니다.");
             }
         }
+    }
+
+    private static PropertyMove convertPropertyMoveByLine(String line) {
+        if (line.equals("U")) {
+            return PropertyMove.UP;
+        }
+        if (line.equals("D")) {
+            return PropertyMove.DOWN;
+        }
+        throw new IllegalStateException();
     }
 }
