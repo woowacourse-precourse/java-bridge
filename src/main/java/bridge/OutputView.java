@@ -6,11 +6,13 @@ import static bridge.PrintMessage.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    /**
-     * 게임 시작 문구를 출력한다.
-     */
     public void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
+        System.out.print(ENTER);
+    }
+
+    public void printInputBridgeLength() {
+        System.out.println(INPUT_BRIDGE_LENGTH);
         System.out.print(ENTER);
     }
 
