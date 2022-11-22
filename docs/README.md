@@ -1,0 +1,54 @@
+# 다리 건너기 게임
+
+## 클래스(객체)를 분리하는 연습 / 리팩터링
+
+### 기능 구현 리스트
+
+- [X] 다리의 길이 입력 받기  (InputView.getBridgeLength)
+  -  *예외 발생 상황*
+  - [X] 3이상 20이하의 정수가 아닐시 예외 발생 (ValidityCheck.numberRangeChecker)
+  - [X] 문자를 입력했을 경우 예외 발생 (ValidityCheck.stringChecker)
+
+
+    다리의 길이를 입력해주세요. 
+
+- [X] 입력 받은 값으로 다리 생성 (BridgeMaker.makeBridge)
+  - (BridgeMaker <- BridgeNumberGenerator <- BridgeRandomNumberGenerator)
+
+- [X] 이동할 칸 입력 받기 (InputView.readMoving)
+  - [X] U or D 가 아닌 경우 예외 발생
+
+
+    이동할 칸을 선택해주세요. (위: U, 아래: D)
+
+- [X] 입력 받은 U or D 를 이용해 이동 할 수 있으면 O, 없으면 X로 표기후 출력 ( OutputView.printMap )
+
+
+    이동할 칸을 선택해주세요. (위: U, 아래: D)
+    U
+    [ O ]
+    [   ]
+
+- [X] 게임 실패시 재도전 여부 입력 받기 (InputView.getExitOrRestart)
+  - *예외 발생 상황*
+  - [X] R or Q 가 아닌 경우 예외 발생
+
+
+    게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+
+- [X] 게임 성공 여부 / 총 시도한 횟수 출력 (OutputView.printResult)
+
+
+    게임 성공 여부: 성공
+    총 시도한 횟수: 2
+
+---
+
+### 제출 전 체크 리스트
+
+- [X] 예외 발생시 다시 재 입력을 받는가 ?
+- [X] 함수가 한 가지 일만 하는가 ?
+- [X] 함수의 길이가 10을 넘기지 않는가 ?
+- [X] 메서드의 파라미터는 4개 이상이 아닌가 ?
+- [X] 각 클래스의 제약 사항을 잘 지키였는가 ?
+- [X] BridgeGame 클래스에서 InputView, OutputView 를 사용 하지 않았는가 ?
