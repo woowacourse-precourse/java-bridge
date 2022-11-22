@@ -1,22 +1,18 @@
 package bridge;
 
-import bridge.View.InputView;
-import bridge.View.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.Enum.Result.*;
 
 public class BridgeGameController {
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final ConsoleController consoleController;
     private final BridgeMaker bridgeMaker;
+
     private List<String> bridgeScaffold;
 
-    public BridgeGameController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeGameController(ConsoleController consoleController, BridgeMaker bridgeMaker) {
+        this.consoleController = consoleController;
         this.bridgeMaker = bridgeMaker;
     }
 
@@ -27,13 +23,12 @@ public class BridgeGameController {
 
         List<String> finalResult = bridgeGameLoop(bridgeGame, bridgeSize);
 
-        outputView.printResult(finalResult);
+        consoleController.outputFinalResult(finalResult);
     }
 
     private int initBridge() {
-        outputView.printGameStart();
 
-        int bridgeSizeInput = inputView.readBridgeSize();
+        int bridgeSizeInput = consoleController.inputBridgeSize();
 
         this.bridgeScaffold = bridgeMaker.makeBridge(bridgeSizeInput);
 
@@ -73,22 +68,22 @@ public class BridgeGameController {
     }
 
     private List<String> moveOneStep(BridgeGame bridgeGame) {
-        outputView.printDirectionInput();
-        String direction = inputView.readMoving();
+        String direction = consoleController.inputMovingDirection();
+
         List<String> stepResult = bridgeGame.move(direction);
 
         List<String> stepProgress = stepResult.subList(1, 3);
-        outputView.printMap(stepProgress);
+        consoleController.outputStepProgress(stepProgress);
 
         return stepResult;
     }
 
     private boolean isCommandQuit() {
-        outputView.printGameCommandInput();
+        final String QUIT_COMMAND = "Q";
 
-        String gameCommand = inputView.readGameCommand();
+        String gameCommand = consoleController.inputGameCommand();
 
-        return "Q".equals(gameCommand);
+        return QUIT_COMMAND.equals(gameCommand);
     }
 
 }
