@@ -7,6 +7,7 @@ public class BridgeGame {
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private final BridgeMaker bridgeMaker;
     private final GameEndChecker gameEndChecker;
+    private final Player player;
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -14,6 +15,7 @@ public class BridgeGame {
         this.bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(this.bridgeRandomNumberGenerator);
         this.gameEndChecker = new GameEndChecker();
+        this.player = new Player();
     }
 
     public void play() {
@@ -26,6 +28,11 @@ public class BridgeGame {
     }
 
     private void crossBridge(Bridge bridge) {
+        for (int i = 0; i < bridge.getBridgeSize(); i++) {
+            String moving = move();
+            outputView.printMap();
+        }
+        gameEndChecker.setEnd(true);
     }
 
     public String move() {
@@ -37,9 +44,10 @@ public class BridgeGame {
     public void retry() {
         System.out.println("게임 재시작 유무");
         String answer = inputView.readGameCommand();
-        Quit(answer);
+        quit(answer);
     }
-    private void Quit(String answer) {
+
+    private void quit(String answer) {
         // TODO: Enum으로 리팩토링
         if (answer.equals("Q")) {
             gameEndChecker.setEnd(true);
