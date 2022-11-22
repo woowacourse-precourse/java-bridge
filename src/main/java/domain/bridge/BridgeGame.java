@@ -16,7 +16,7 @@ public class BridgeGame {
     boolean res;
 
     player.playerPick();
-    res = answerBridge.isCorrect(player.getUserBridge());
+    res = answerBridge.isCorrect(player.getUserBridge().getUserBridge());
     player.isRightPick(res);
 
     return res;

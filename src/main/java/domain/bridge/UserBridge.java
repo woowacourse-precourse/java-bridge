@@ -8,6 +8,7 @@ import java.util.List;
 
 public class UserBridge implements Bridge {
   private List<String> user_bridge;
+  boolean is_answer;
 
   public UserBridge () {
     user_bridge = new ArrayList<>();
@@ -27,11 +28,16 @@ public class UserBridge implements Bridge {
 
   public void printBridge(boolean is_answer) {
     OutputView outputView = new OutputView();
+    this.is_answer = is_answer;
 
     outputView.printMap(user_bridge, is_answer);
   }
 
   public List<String> getUserBridge() {
     return user_bridge;
+  }
+
+  public boolean getIsAnswer() {
+    return is_answer;
   }
 }

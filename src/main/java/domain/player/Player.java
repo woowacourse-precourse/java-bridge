@@ -3,9 +3,6 @@ package domain.player;
 import domain.bridge.UserBridge;
 import domain.bridge.view.InputView;
 
-import java.util.List;
-
-
 public class Player {
   private int pick;
   private UserBridge userBridge;
@@ -16,7 +13,7 @@ public class Player {
   }
 
   public void playerPick() {
-    pick++;
+//    pick++;
     userBridge.setBridge();
   }
 
@@ -28,8 +25,8 @@ public class Player {
     return pick;
   }
 
-  public List<String> getUserBridge() {
-    return userBridge.getUserBridge();
+  public UserBridge getUserBridge() {
+    return userBridge;
   }
 
   public String wantRetry() {

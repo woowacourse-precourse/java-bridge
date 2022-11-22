@@ -25,4 +25,8 @@ public class AnswerBridge implements Bridge {
 
     return bridge.get(last_ub).equals(user_bridge.get(last_ub));
   }
+
+  public int getBridgeSize() {
+    return bridge.size();
+  }
 }
