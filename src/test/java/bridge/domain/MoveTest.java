@@ -28,12 +28,12 @@ public class MoveTest {
     static Stream<Arguments> generateMoveValue() {
         return Stream.of(
                 Arguments.of("U", Direction.UP, Direction.UP, "O"),
-                Arguments.of("U", Direction.UP, Direction.DOWN, "X"),
+                Arguments.of("U", Direction.UP, Direction.DOWN, " "),
                 Arguments.of("D", Direction.UP, Direction.UP, "X"),
                 Arguments.of("D", Direction.UP, Direction.DOWN, " "),
                 Arguments.of("U", Direction.DOWN, Direction.UP, " "),
                 Arguments.of("U", Direction.DOWN, Direction.DOWN, "X"),
-                Arguments.of("D", Direction.DOWN, Direction.UP, "X"),
+                Arguments.of("D", Direction.DOWN, Direction.UP, " "),
                 Arguments.of("D", Direction.DOWN, Direction.DOWN, "O")
         );
     }
