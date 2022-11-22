@@ -45,66 +45,68 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-        public boolean move(String movingSquare, int index) {
-            if(bridge.get(index).equals(movingSquare)){
-                moveCorrect(movingSquare);
-                return true;
-            }
-            moveWrong(movingSquare);
-            return false;
+    public boolean move(String movingSquare, int index) {
+        if (bridge.get(index).equals(movingSquare)) {
+            moveCorrect(movingSquare);
+            return true;
         }
+        moveWrong(movingSquare);
+        return false;
+    }
 
-        private void moveWrong(String movingSquare) {
-            if(movingSquare.equals("U")){
-                upBridge.add(BridgeResult.FAIL.getStructure());
-                downBridge.add(BridgeResult.NONE.getStructure());
-            }
-            if(movingSquare.equals("D")){
-                upBridge.add(BridgeResult.NONE.getStructure());
-                downBridge.add(BridgeResult.FAIL.getStructure());
-            }
+    private void moveWrong(String movingSquare) {
+        if (movingSquare.equals("U")) {
+            upBridge.add(BridgeResult.FAIL.getStructure());
+            downBridge.add(BridgeResult.NONE.getStructure());
         }
+        if (movingSquare.equals("D")) {
+            upBridge.add(BridgeResult.NONE.getStructure());
+            downBridge.add(BridgeResult.FAIL.getStructure());
+        }
+    }
 
-        private void moveCorrect(String movingSquare) {
-            if(movingSquare.equals("U")){
-                upBridge.add(BridgeResult.SUCCESS.getStructure());
-                downBridge.add(BridgeResult.NONE.getStructure());
-            }
-            if(movingSquare.equals("D")){
-                upBridge.add(BridgeResult.NONE.getStructure());
-                downBridge.add(BridgeResult.SUCCESS.getStructure());
-            }
+    private void moveCorrect(String movingSquare) {
+        if (movingSquare.equals("U")) {
+            upBridge.add(BridgeResult.SUCCESS.getStructure());
+            downBridge.add(BridgeResult.NONE.getStructure());
         }
+        if (movingSquare.equals("D")) {
+            upBridge.add(BridgeResult.NONE.getStructure());
+            downBridge.add(BridgeResult.SUCCESS.getStructure());
+        }
+    }
 
-        /**
-         @@ -19,5 +82,19 @@ public void move() {
-          * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-         */
-        public void retry() {
-            upBridge.clear();
-            downBridge.clear();
-            playCount++;
-        }
+    /**
+     * @@ -19,5 +82,19 @@ public void move() {
+     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void retry() {
+        upBridge.clear();
+        downBridge.clear();
+        playCount++;
+    }
 
-        public String whenSuccess() {
-            int upCount = 0;
-            int downCount = 0;
-            upCount = CountPlus(upCount,upBridge);
-            downCount = CountPlus(downCount,downBridge);
-            if(compareCount(upCount,downCount)){
-                return SUCCESS;
+    public String whenSuccess() {
+        int upCount = 0;
+        int downCount = 0;
+        upCount = CountPlus(upCount, upBridge);
+        downCount = CountPlus(downCount, downBridge);
+        if (compareCount(upCount, downCount)) {
+            return SUCCESS;
+        }
+        return FAIL;
+    }
+
+    public int CountPlus(int count, List<String> countBridge) {
+        for (String Piece : countBridge) {
+            if (Piece.equals(BridgeResult.SUCCESS.getStructure())) {
+                count++;
             }
-            return FAIL;
         }
-        public int CountPlus(int count, List<String> countBridge){
-            for (String Piece : countBridge){
-                if(Piece.equals(BridgeResult.SUCCESS.getStructure())){
-                    count++;
-                }
-            }
-            return count;
-        }
-        public boolean compareCount(int upCount,int downCount){
-            return upCount + downCount == bridge.size();
-        }
+        return count;
+    }
+
+    public boolean compareCount(int upCount, int downCount) {
+        return upCount + downCount == bridge.size();
+    }
 }

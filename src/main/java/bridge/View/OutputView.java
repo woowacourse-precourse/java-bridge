@@ -33,14 +33,14 @@ public class OutputView {
     }
 
     public String[] printMap(List<String> UpBridge, List<String> DownBridge) {
-        String Up = FRONT_BRACKET + printAsBridge(UpBridge) +  BACK_BRACKET;
-        String Down = FRONT_BRACKET + printAsBridge(DownBridge) +  BACK_BRACKET;
-        System.out.println(FRONT_BRACKET + printAsBridge(UpBridge) +  BACK_BRACKET);
-        System.out.println(FRONT_BRACKET + printAsBridge(DownBridge) +  BACK_BRACKET);
-        return new String[] {Up,Down};
+        String Up = FRONT_BRACKET + printAsBridge(UpBridge) + BACK_BRACKET;
+        String Down = FRONT_BRACKET + printAsBridge(DownBridge) + BACK_BRACKET;
+        System.out.println(FRONT_BRACKET + printAsBridge(UpBridge) + BACK_BRACKET);
+        System.out.println(FRONT_BRACKET + printAsBridge(DownBridge) + BACK_BRACKET);
+        return new String[]{Up, Down};
     }
 
-    public static String printAsBridge(List<String> resultBridge){
+    public static String printAsBridge(List<String> resultBridge) {
         return String.join(" | ", resultBridge);
     }
 
@@ -52,8 +52,8 @@ public class OutputView {
 
     public void printResult(List<String> UpBridge, List<String> DownBridge, BridgeGame bridgeGame) {
         System.out.println(TOTAL_GAME_RESULT);
-        System.out.println(FRONT_BRACKET + printAsBridge(UpBridge) +  BACK_BRACKET);
-        System.out.println(FRONT_BRACKET + printAsBridge(DownBridge) +  BACK_BRACKET);
+        System.out.println(FRONT_BRACKET + printAsBridge(UpBridge) + BACK_BRACKET);
+        System.out.println(FRONT_BRACKET + printAsBridge(DownBridge) + BACK_BRACKET);
         System.out.println(SUCCESS_FAIL + bridgeGame.whenSuccess());
         System.out.println(TOTAL_COUNT + bridgeGame.getTotalCnt());
     }

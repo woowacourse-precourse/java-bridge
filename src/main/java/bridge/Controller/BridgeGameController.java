@@ -20,13 +20,13 @@ public class BridgeGameController {
     public BridgeGameController() {
     }
 
-    public void playGame(){
+    public void playGame() {
         System.out.println(START_BRIDGE_GAME);
         List<String> bridge = createBridge(inputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
         GameStart(bridgeGame);
-        outputView.printResult(bridgeGame.getUp(),bridgeGame.getDown(),bridgeGame);
+        outputView.printResult(bridgeGame.getUp(), bridgeGame.getDown(), bridgeGame);
     }
 
     private List<String> createBridge(int size) {
@@ -39,22 +39,22 @@ public class BridgeGameController {
         restart(bridgeGame);
     }
 
-    public void moveBridge(BridgeGame bridgeGame){
-        for(int i = 0; i < bridgeGame.getBridge().size(); i++){
+    public void moveBridge(BridgeGame bridgeGame) {
+        for (int i = 0; i < bridgeGame.getBridge().size(); i++) {
             boolean success = bridgeGame.move(inputView.readMoving(), i);
             outputView.printMap(bridgeGame.getUp(), bridgeGame.getDown());
-            if(!success){
+            if (!success) {
                 return;
             }
         }
     }
 
-    public void restart(BridgeGame bridgeGame){
-        if(Objects.equals(bridgeGame.whenSuccess(), SUCCESS)){
+    public void restart(BridgeGame bridgeGame) {
+        if (Objects.equals(bridgeGame.whenSuccess(), SUCCESS)) {
             return;
         }
         String restartCommand = inputView.readGameCommand();
-        if(restartCommand.equals("R")){
+        if (restartCommand.equals("R")) {
             bridgeGame.retry();
             GameStart(bridgeGame);
         }
