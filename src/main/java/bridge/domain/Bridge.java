@@ -30,7 +30,7 @@ public class Bridge {
         if (optionalCommand.isPresent()) {
             return optionalCommand.get();
         }
-        throw new IllegalArgumentException("Internal Server Error - 다리 생성 (0,1)");
+        throw new IllegalArgumentException("[ERROR]Internal Server Error - 다리 생성 (0,1)");
     }
 
     public static Bridge mapToBridge(List<String> commandKey) {
