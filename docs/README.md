@@ -1,7 +1,7 @@
 # 다리 건너기 게임
 
 ## Flow Chart
-![flow-chart](../../bridge-flowchart.png)
+![flow-chart](bridge-flowchart.png)
 
 ## 기능 목록
 
