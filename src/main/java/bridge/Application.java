@@ -10,11 +10,13 @@ import bridge.service.GameService;
 public class Application {
 
     public static void main(String[] args) {
-        BridgeController bridgeController = new BridgeController(new BridgeService());
+        BridgeService bridgeService = new BridgeService();
+        BridgeController bridgeController = new BridgeController(bridgeService);
         Bridge bridge = bridgeController.createBridge();
 
         BridgeGame bridgeGame = bridgeController.createBridgeGame(bridge);
-        GameController gameController = new GameController(new GameService(bridgeGame));
+        GameService gameService = new GameService(bridgeGame);
+        GameController gameController = new GameController(gameService);
         gameController.run();
     }
 }

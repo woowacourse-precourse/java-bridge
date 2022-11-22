@@ -17,9 +17,14 @@ public class BridgeController {
     }
 
     public Bridge createBridge() {
-        int size = inputView.readBridgeSize();
-        BridgeSize bridgeSize = new BridgeSize(size);
-        return bridgeService.createBridge(bridgeSize.get());
+        try {
+            int size = inputView.readBridgeSize();
+            BridgeSize bridgeSize = new BridgeSize(size);
+            return bridgeService.createBridge(bridgeSize.get());
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return createBridge();
+        }
     }
 
     public BridgeGame createBridgeGame(Bridge bridge) {

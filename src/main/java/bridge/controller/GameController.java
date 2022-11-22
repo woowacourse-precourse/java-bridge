@@ -7,6 +7,8 @@ import bridge.service.GameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.NoSuchElementException;
+
 public class GameController {
 
     private final InputView inputView = new InputView();
@@ -19,19 +21,17 @@ public class GameController {
 
     public void run() {
         try {
-            init();
             playGame();
             printFinalResult();
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
         }
     }
 
-    protected void init() {
-        outputView.printInit();
-    }
-
     protected void playGame() {
+        outputView.printInit();
         do {
             SquareResult squareResult = moveBridge();
             BridgeResultDto bridgeResultDto = gameService.getFormattedEachMoveResult(squareResult);
