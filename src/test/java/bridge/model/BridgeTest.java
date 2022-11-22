@@ -1,7 +1,5 @@
-package bridge;
+package bridge.model;
 
-import bridge.model.Bridge;
-import bridge.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
