@@ -1,4 +1,9 @@
-package bridge;
+package bridge.domain;
+
+import bridge.resource.GameResult;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.resource.UserCommand;
 
 public class BridgeMachine {
     private int totalTry = 1;

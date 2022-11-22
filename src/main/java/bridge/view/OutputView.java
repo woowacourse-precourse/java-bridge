@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view;
+
+import bridge.resource.GameResult;
+import bridge.resource.UserCommand;
 
 import java.util.Iterator;
 import java.util.List;
@@ -62,7 +65,7 @@ public class OutputView {
         System.out.println(INPUT_BRIDGE_SIZE);
     }
     public static void inputUserMoveCommand(){
-        System.out.println(INPUT_MOVE_COMMAND+UserCommand.MOVE_UP.getPosition()+IS+UserCommand.MOVE_UP.getCommand()+
+        System.out.println(INPUT_MOVE_COMMAND+ UserCommand.MOVE_UP.getPosition()+IS+UserCommand.MOVE_UP.getCommand()+
                 AND+ UserCommand.MOVE_DOWN.getPosition()+IS+UserCommand.MOVE_DOWN.getCommand()+INPUT_END);
     }
     public static void inputUserReplayCommand(){

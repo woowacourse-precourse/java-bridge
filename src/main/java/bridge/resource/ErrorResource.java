@@ -1,4 +1,4 @@
-package bridge;
+package bridge.resource;
 
 public class ErrorResource {
 

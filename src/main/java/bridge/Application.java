@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.BridgeMachine;
+
 public class Application {
 
 

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.resource.UserCommand;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +39,7 @@ class BridgeTest {
     void 다리_생성자3(){
         Bridge bridge = new Bridge("3");
         for(int i = 0; i<bridge.getBridgeCanCross().size(); i++){
-            assertTrue(bridge.getBridgeCanCross().get(i) ==UserCommand.MOVE_UP.getCommand()
+            assertTrue(bridge.getBridgeCanCross().get(i) == UserCommand.MOVE_UP.getCommand()
                     ||bridge.getBridgeCanCross().get(i)==UserCommand.MOVE_DOWN.getCommand());
         }
     }

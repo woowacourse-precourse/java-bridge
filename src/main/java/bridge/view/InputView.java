@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.resource.ErrorResource;
+import bridge.resource.UserCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

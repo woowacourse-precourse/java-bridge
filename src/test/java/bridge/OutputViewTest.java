@@ -1,7 +1,6 @@
 package bridge;
 
-import org.assertj.core.api.Assert;
-import org.junit.jupiter.api.Assertions;
+import bridge.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,9 +8,6 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OutputViewTest {
 

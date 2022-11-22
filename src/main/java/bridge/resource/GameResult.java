@@ -1,4 +1,4 @@
-package bridge;
+package bridge.resource;
 
 public enum GameResult {
     PASSED("성공",true),

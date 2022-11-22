@@ -1,4 +1,8 @@
-package bridge;
+package bridge.domain;
+
+import bridge.BridgeRandomNumberGenerator;
+import bridge.resource.ErrorResource;
+import bridge.resource.UserCommand;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -51,10 +55,7 @@ public class Bridge {
         }
     }
     public boolean ableToCross(int index,String userCommand){
-        if(bridgeCanCross.get(index).equals(userCommand)){
-            return true;
-        }
-        return false;
+        return bridgeCanCross.get(index).equals(userCommand);
     }
 
     public int getBridgeSize() {
