@@ -15,45 +15,32 @@ public class OutputView {
     public void printMap(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
         List<String> playerCommand = bridgeGame.getPlayerCommand();
-        int size = playerCommand.size();
 
+        printRow(bridge, playerCommand, "U");
+        printRow(bridge, playerCommand, "D");
+    }
+
+    private void printRow(List<String> bridge, List<String> playerCommand, String row) {
         System.out.print("[");
-        for (int i=0; i<size; i++){
-            if(playerCommand.get(i).equals("U")){
-                if(bridge.get(i).equals(playerCommand.get(i))){
-                    System.out.print(" O ");
-                }
-                if(!bridge.get(i).equals(playerCommand.get(i))){
-                    System.out.print(" X ");
-                }
-            }
-            if(playerCommand.get(i).equals("D")){
-                System.out.print("   ");
-            }
-            if(i+1 != size){
+        for (int i = 0; i < playerCommand.size(); i++) {
+            printStep(bridge.get(i), playerCommand.get(i), row);
+            if (i + 1 != playerCommand.size()) {
                 System.out.print("|");
             }
         }
         System.out.println("]");
+    }
 
-        System.out.print("[");
-        for (int i=0; i<size; i++){
-            if(playerCommand.get(i).equals("D")){
-                if(bridge.get(i).equals(playerCommand.get(i))){
-                    System.out.print(" O ");
-                }
-                if(!bridge.get(i).equals(playerCommand.get(i))){
-                    System.out.print(" X ");
-                }
+    private void printStep(String bridgeCommand, String playerCommand, String row){
+        if (playerCommand.equals(row)) {
+            if (playerCommand.equals(bridgeCommand)) {
+                System.out.print(" O ");
             }
-            if(playerCommand.get(i).equals("U")){
-                System.out.print("   ");
-            }
-            if(i+1 != size){
-                System.out.print("|");
+            if (!playerCommand.equals(bridgeCommand)) {
+                System.out.print(" X ");
             }
         }
-        System.out.println("]");
+        if (!playerCommand.equals(row)) System.out.print("   ");
     }
 
     /**
@@ -68,11 +55,11 @@ public class OutputView {
         System.out.printf("총 시도한 횟수: %d\n", bridgeGame.getNumberOfTry());
     }
 
-    public void printErrorMessage(String message){
+    public void printErrorMessage(String message) {
         System.out.println(message);
     }
 
-    public void printStartMessage(){
+    public void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 }
