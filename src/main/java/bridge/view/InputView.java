@@ -36,7 +36,7 @@ public class InputView {
     public Position readMoving() {
         try {
             outputView.printMoveInput();
-            return Position.from(Console.readLine());
+            return Position.fromAbbreviation(Console.readLine());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
             return readMoving();

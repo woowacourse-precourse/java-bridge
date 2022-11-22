@@ -21,16 +21,16 @@ public enum Position {
     }
 
     public static String getAbbreviation(int generatedNumber) {
-        return Position.from(generatedNumber).abbreviation;
+        return Position.fromNumber(generatedNumber).abbreviation;
     }
 
-    private static Position from(int generatedNumber) {
+    private static Position fromNumber(int generatedNumber) {
         return Arrays.stream(Position.values())
                 .filter(position -> position.generatedNumber == generatedNumber)
                 .findFirst().orElseThrow(() -> new IllegalArgumentException(ERROR_GENERATED_NUMBER));
     }
 
-    public static Position from(String abbreviation) {
+    public static Position fromAbbreviation(String abbreviation) {
         return Arrays.stream(Position.values())
                 .filter(position -> position.abbreviation.equals(abbreviation))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException(ERROR_MOVING_INPUT));
