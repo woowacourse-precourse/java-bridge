@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.controller.BridgeGame;
+import bridge.service.constant.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -12,5 +13,5 @@ public class BridgeGameService {
     public BridgeGameService() {
         outputView.printStartMessage();
     }
-
+    
 }
