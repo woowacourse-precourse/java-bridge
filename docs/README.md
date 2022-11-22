@@ -101,8 +101,8 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
         - [X] 게임이 진행중인지 확인할 수 있습니다.
 - RepeatCount
     - 게임의 반복 횟수를 나타냅니다.
-        - [ ] 횟수를 추가할 수 있습니다.
-        - [ ] 타입의 허용범위를 벗어나면 오류가 납니다.
+        - [X] 횟수를 추가할 수 있습니다.
+        - [X] 타입의 허용범위를 벗어나면 오류가 납니다.
 
 #
 
