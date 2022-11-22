@@ -14,8 +14,8 @@ class BridgeRestartCommandTest {
 
 	@DisplayName("R or Q가 입력됬을때 리턴값 테스트")
 	@ParameterizedTest
-	@CsvSource(value = {"R:0","Q:2147483647"},delimiterString = ":")
-	void R과Q가입력됬을때_0과_인트맥스값이출력됩니다(String input, int expected) {
-		Assertions.assertThat(BridgeRestartCommand.getRestartCode(input)).isEqualTo(expected);
+	@CsvSource(value = {"R:true","Q:false"},delimiterString = ":")
+	void R입력시_true_Q입력시_false_테스트(String input, boolean expected) {
+		Assertions.assertThat(BridgeRestartCommand.isRetry(input)).isEqualTo(expected);
 	}
 }
