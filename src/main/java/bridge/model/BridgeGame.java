@@ -38,6 +38,7 @@ public class BridgeGame {
         if (gameState.equals(GameState.NOT_FINISH))
             bridge.move();
         changeState(direction);
+        bridge.update(direction);
     }
 
     private void changeState(String direction) {

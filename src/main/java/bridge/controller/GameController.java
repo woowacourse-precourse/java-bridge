@@ -33,13 +33,13 @@ public class GameController {
         while (game.getGameState().equals(GameState.NOT_FINISH)) {
             String move = inputView.loopInput(inputView::readMoving);
             game.move(move);
-            outputView.printMap(game, move);
+            outputView.printMap(game);
 
-            changeGameState(game);
+            retryOrQuit(game);
         }
     }
 
-    private void changeGameState(BridgeGame game) {
+    private void retryOrQuit(BridgeGame game) {
         if (game.getGameState().equals(GameState.FINISH_FAIL)) {
             String command = inputView.loopInput(inputView::readGameCommand);
             game.retry(command);

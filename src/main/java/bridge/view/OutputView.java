@@ -14,13 +14,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame game, String direction) {
-        System.out.print(printBridge(game, direction));
+    public void printMap(BridgeGame game) {
+        System.out.print(printBridge(game));
     }
 
-    private String printBridge(BridgeGame game, String direction) {
-        game.update(direction);
-        return makeMap(game.getBridge());
+    private String printBridge(BridgeGame game) {
+        StringBuilder map = new StringBuilder();
+        for (List<String> bridge : game.getBridge()) {
+            map.append("[ ");
+            map.append(String.join(" | ", bridge));
+            map.append(" ]\n");
+        }
+        return map.toString();
     }
 
     private String makeMap(List<List<String>> bridges) {
