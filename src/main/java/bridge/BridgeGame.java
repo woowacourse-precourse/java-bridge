@@ -1,10 +1,19 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public List<String> bridge;
+    public int count;
 
+    public BridgeGame(List<String> bridge){
+        this.bridge = bridge;
+        this.count = 1;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
