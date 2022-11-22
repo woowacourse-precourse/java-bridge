@@ -9,9 +9,46 @@ import java.util.List;
 public class BridgeGame {
 
     private final Bridge bridge;
+    private BridgeGameState bridgeGameState;
+    private RetryState retryState;
+    private int numOfGamePlayed;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+        this.bridgeGameState = BridgeGameState.NORMAL;
+        this.retryState = RetryState.START;
+        this.numOfGamePlayed = 0;
+    }
+
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public int getNumOfGamePlayed() {
+        return numOfGamePlayed;
+    }
+
+    public void proceed(InputView inputView, OutputView outputView) {
+        while (retryState == RetryState.RETRY || retryState == RetryState.START) {
+            numOfGamePlayed++;
+            if (subProceed(inputView, outputView)) { return; }
+            if (bridgeGameState == BridgeGameState.SUCCESS_AND_END) { return; }
+            String gameCommand = inputView.readGameCommand();
+            if (gameCommand == null) { return; }
+            retryState = this.retry(gameCommand);
+        }
+    }
+
+    private boolean subProceed(InputView inputView, OutputView outputView) {
+        while (bridgeGameState == BridgeGameState.NORMAL) {
+            String moving = inputView.readMoving();
+            if (moving == null) {
+                return true;
+            }
+            bridgeGameState = this.move(moving);
+            outputView.printMap();
+        }
+        return false;
     }
 
     /**

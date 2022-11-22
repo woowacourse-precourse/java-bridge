@@ -10,6 +10,7 @@
   - [x] 사용자가 칸을 이동할 때 사용하는 메서드, 칸을 이동하고 게임 상태를 반환받는다. - BridgeGame#move
   - [x] 사용자가 게임을 다시 시도할 때 사용하는 메서드 - BridgeGame#retry
     - [x] RetryState 열거형으로 상태 표현
+  - [x] 게임을 처음 시작하고 사용자의 입력에 따라 다리 상태 변화, 출력, 재시도 여부를 진행하는 메소드 구현 - BridgeGame#proceed
 - [x] 입력으로 다리의 길이를 받고 그에 따른 랜덤한 다리를 생성해야 한다. - BridgeMaker
   - [x] 다리의 길이를 매개변수로 받고 다리 모양이 위 칸이면 U, 아래 칸이면 D인 List를 반환한다 - BridgeMaker#makeBridge
 - [x] 다리 모양을 랜덤으로 생성할 때 필요한 0과 1 중 랜덤으로 선택하는 인터페이스 필요 - BridgeNumberGenerator

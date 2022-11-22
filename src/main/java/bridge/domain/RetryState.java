@@ -1,5 +1,5 @@
 package bridge.domain;
 
 public enum RetryState {
-    RETRY, QUIT
+    RETRY, QUIT, START
 }
