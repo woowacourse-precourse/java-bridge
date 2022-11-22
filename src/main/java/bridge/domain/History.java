@@ -11,6 +11,10 @@ public class History {
         this.bridgeChars = new ArrayList<>();
     }
 
+    public History(List<String> bridgeChars){
+        this.bridgeChars = bridgeChars;
+    }
+
     public void appendMove(MoveCommand moveCommand) {
         bridgeChars.add(String.valueOf(moveCommand.getValue()));
     }
