@@ -12,7 +12,7 @@ public class BridgeGame {
     final List<String> map;
     final OutputView out;
     private int bridgeLength;
-    private int trials = 0;
+    private int trials = 1;
     private List<String> user = new ArrayList<>();
 
     public BridgeGame(OutputView out, int bridgeLength) {
@@ -29,10 +29,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String direction) {
+        System.out.println(direction);
+        System.out.println(map);
         user.add(direction);
         out.printMap(map,user);
 
-        if (direction != map.get(user.size()-1)) {
+        if (!user.get(user.size()-1).equals(map.get(user.size()-1))) {
+            user.remove(user.size()-1);
             return false;
         }
         return true;
