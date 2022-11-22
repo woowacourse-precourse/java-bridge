@@ -5,6 +5,7 @@ import bridge.domain.Bridge;
 import bridge.BridgeMaker;
 import bridge.domain.GameBoard;
 import bridge.domain.GameResult;
+import bridge.domain.MoveResult;
 import bridge.service.BridgeGame;
 
 import java.util.ArrayList;
@@ -28,11 +29,11 @@ public class BridgeGameController {
 
     private void moveOnBridge() {
         for (String correctDirection : bridge.getBridge()) {
-            boolean isGameLose = bridgeGame.move(correctDirection, inputMoveDirection());
+            MoveResult moveResult = bridgeGame.move(correctDirection, inputMoveDirection());
             List<GameBoard> gameBoards = bridgeGame.getGameBoards();
             printMap(gameBoards.get(0), gameBoards.get(1));
 
-            if (isGameLose) {
+            if (moveResult.getIsGameLose()) {
                 break;
             }
         }
