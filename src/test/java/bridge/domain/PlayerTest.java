@@ -27,7 +27,7 @@ class PlayerTest {
     @DisplayName("플레이어가 다리 건너기를 성공한다.")
     @ValueSource(strings = {"U", "UD", "UDD"})
     @ParameterizedTest
-    void userCrossBridgeSuccess(String command) {
+    void 플레이어_다리_건너기_성공(String command) {
         Player player = new Player();
         for (int i = 0; i < command.length(); i++){
             boolean isSuccess = player.move(bridge, String.valueOf(command.charAt(i)));
@@ -38,7 +38,7 @@ class PlayerTest {
     @DisplayName("플레이어가 다리 건너기를 실패한다.")
     @ValueSource(strings = {"D", "UU", "UDU"})
     @ParameterizedTest
-    void userCrossBridgeFail(String command) {
+    void 플레이어_다리_건너기_실패(String command) {
         Player player = new Player();
 
         List<Boolean> result = newArrayList();
@@ -51,7 +51,7 @@ class PlayerTest {
     @DisplayName("플레이어가 재시도한다.")
     @ValueSource(strings = {"D", "UU", "UDU"})
     @ParameterizedTest
-    void userRetry(String command) {
+    void 플레이어_재시도(String command) {
         Player player = new Player();
         for (int i = 0; i < command.length(); i++) {
             player.move(bridge, String.valueOf(command.charAt(i)));
