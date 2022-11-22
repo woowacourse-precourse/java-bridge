@@ -20,4 +20,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printStart(){
+        System.out.println(Messages.START_MESSAGE);
+    }
 }
