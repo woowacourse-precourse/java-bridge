@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.Constant.*;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,6 +9,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.BridgeGame.MoveResult;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,6 +35,17 @@ class LogicUnitTest extends NsTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         int retryFlag = bridgeGame.retry("R");
         assertThat(retryFlag).isEqualTo(1);
+    }
+
+    @Test
+    void 기능_Application_playGame() {
+        List<String> bridge = newArrayList("U", "D", "D");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        System.setIn(new ByteArrayInputStream("U\nD\nU".getBytes()));
+        Application application = new Application();
+        MoveResult playResult = application.playGame(bridgeGame);
+        assertThat(playResult.flag).isEqualTo(MOVERESULT_FLAG_INVALID);
+        assertThat(playResult.nowBridge.toString()).isEqualTo("[U, D, U]");
     }
 
 //    @Test
@@ -106,7 +119,8 @@ class LogicUnitTest extends NsTest {
 //        runStartGame();
 //    }
 //
-//    protected void runStartGame() {
-//        Application.startGame();
-//    }
+    @Override
+    protected void runMain() {
+        Application.main(new String[]{});
+    }
 }

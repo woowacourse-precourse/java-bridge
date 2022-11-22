@@ -44,6 +44,7 @@ public class Application {
             System.out.println(MESSAGE_MOVE);
             InputView inputView = new InputView();
             String move = inputView.readMoving();
+            System.out.println(move);
             moveResult = bridgeGame.move(move);
 
             OutputView outputView = new OutputView();
