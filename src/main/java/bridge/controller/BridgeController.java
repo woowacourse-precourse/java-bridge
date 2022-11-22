@@ -38,4 +38,12 @@ public class BridgeController {
         }
         printResult(bridgeGame, user);
     }
+
+    private void checkCorrect(String moveInput, BridgeGame bridgeGame, User user) {
+        if (bridgeGame.checkThisStep(moveInput)) {
+            correctCase(moveInput, bridgeGame);
+            return;
+        }
+        wrongCase(moveInput, bridgeGame, user);
+    }
 }
