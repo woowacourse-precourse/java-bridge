@@ -22,4 +22,16 @@ public class BridgeState {
     public void refreshState(){
         state.clear();
     }
+
+    public boolean isCompleted(int size){
+        return state.size() == size;
+    }
+
+    public boolean isSuccess(int size) {
+        return state.size() == size && !state.get(size-1).contains("X");
+    }
+
+    public List<String> getState(){
+        return List.copyOf(state);
+    }
 }

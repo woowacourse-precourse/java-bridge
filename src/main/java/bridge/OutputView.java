@@ -31,38 +31,36 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> state) {
-        for (int i = 0; i < state.size(); i++) {
-            printUpper(state);
-            printLower(state);
-        }
+        printUpper(state);
+        printLower(state);
     }
 
     private void printUpper(List<String> state) {
-        System.out.print("[");
+        System.out.print("[ ");
 
         for (int i = 0; i < state.size(); i++) {
             printBlank(state.get(i),"U");
 
-            if (i != state.size()) {
-                System.out.print("|");
+            if (i + 1 != state.size()) {
+                System.out.print(" | ");
             }
         }
 
-        System.out.println("]");
+        System.out.println(" ]");
     }
 
     private void printLower(List<String> state){
-        System.out.print("[");
+        System.out.print("[ ");
 
         for (int i = 0; i < state.size(); i++) {
             printBlank(state.get(i),"D");
 
-            if (i != state.size()) {
-                System.out.print("|");
+            if (i + 1 != state.size()) {
+                System.out.print(" | ");
             }
         }
 
-        System.out.println("]");
+        System.out.println(" ]");
     }
 
     private void printBlank(String blank,String position) {
@@ -86,7 +84,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String result,String count) {
+    public void printResult(String result,int count,List<String> state) {
+        System.out.println("최종 게임 결과");
+        printMap(state);
         System.out.printf(GAME_RESULT,result,count);
     }
 

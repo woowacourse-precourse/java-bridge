@@ -21,9 +21,10 @@ public class BridgeGame {
 
         if (input.equals(bridge.get(bridgeState.getNextIndex()))) {
             bridgeState.moveState(input);
+            return;
         }
 
-        bridgeState.moveState(bridge.get(bridgeState.getNextIndex())+"X");
+        bridgeState.moveState(input+"X");
     }
 
     /**
@@ -40,6 +41,14 @@ public class BridgeGame {
         }
 
         return false;
+    }
+
+    public boolean isCompleted(int size) {
+        return bridgeState.isCompleted(size);
+    }
+
+    public boolean isRight() {
+        return !bridgeState.getState().get(bridgeState.getNextIndex()-1).contains("X");
     }
 
     private void validateMove(String input){
