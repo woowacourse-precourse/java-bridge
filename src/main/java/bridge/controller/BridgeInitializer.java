@@ -17,9 +17,12 @@ public class BridgeInitializer {
     }
 
     private static int getBridgeSize() {
-        OutputView.printBridgeSizeInputMessage();
-        int bridgeSize = InputView.readBridgeSize();
-        OutputView.printBlankLine();
-        return bridgeSize;
+        try {
+            OutputView.printBridgeSizeInputMessage();
+            return InputView.readBridgeSize();
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return getBridgeSize();
+        }
     }
 }

@@ -17,13 +17,9 @@ public class BridgeGameController {
     }
 
     public void process() {
-        try {
-            initializeGame();
-            playGame();
-            finishGame();
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-        }
+        initializeGame();
+        playGame();
+        finishGame();
     }
 
     public void initializeGame() {
@@ -33,6 +29,7 @@ public class BridgeGameController {
                 new CurrentRoute(),
                 new GameProgress()
         );
+        OutputView.printBlankLine();
     }
 
     private void playGame() {
@@ -63,18 +60,26 @@ public class BridgeGameController {
     }
 
     private void takeTurn() {
-        String movement = getMove();
+        String movement = getMovement();
+        move(movement);
         boolean movementSuccess = bridgeGame.isMovementSuccess();
         mapConverter.drawNext(movement, movementSuccess);
         OutputView.printMap(mapConverter.getDrawnMap());
     }
 
-    private String getMove() {
-        OutputView.printNextMovementInputMessage();
-        String nextMovement = InputView.readMoving();
-        bridgeGame.move(nextMovement);
+    private String getMovement() {
+        try {
+            OutputView.printNextMovementInputMessage();
+            return InputView.readMoving();
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return getMovement();
+        }
+    }
+
+    private void move(String movement) {
+        bridgeGame.move(movement);
         bridgeGame.updateGameProgress();
-        return nextMovement;
     }
 
     private void setRetry() {
@@ -83,9 +88,14 @@ public class BridgeGameController {
     }
 
     private boolean isRestart() {
-        OutputView.printRestartMessage();
-        String gameCommand = InputView.readGameCommand();
-        return gameCommand.equals(BridgeGame.RESTART);
+        try {
+            OutputView.printRestartMessage();
+            String gameCommand = InputView.readGameCommand();
+            return gameCommand.equals(BridgeGame.RESTART);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return isRestart();
+        }
     }
 
     private void finishGame() {

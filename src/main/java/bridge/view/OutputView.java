@@ -53,6 +53,10 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     private static void printOneLineOfBridge(List<Character> line) {
         int lastIndex = line.size() - 1;
         System.out.print(OPEN_BRIDGE);
