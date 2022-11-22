@@ -17,7 +17,7 @@ public class BridgeMakerImpl implements BridgeMaker{
     public List<String> makeBridge(int size) {
         return IntStream.range(0, size)
                 .map(count -> bridgeNumberGenerator.generate())
-                .mapToObj(MapComponentType::getMapComponent)
+                .mapToObj(MapComponentType::getMapComponentByNumber)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
