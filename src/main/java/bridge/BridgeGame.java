@@ -42,5 +42,10 @@ public class BridgeGame {
             app.printResult(Bridge_out,false,count);
         }
     }
+    public void clearUserInput(){
+        bridge_input.clear();
+        moveUpDown();
+    }
+
 
 }
