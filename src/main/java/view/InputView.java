@@ -35,7 +35,7 @@ public class InputView {
      */
     public String readMoving() {
         do {
-            System.out.println(String.format(SELECT_UP_AND_DOWN, UP, DOWN));
+            System.out.printf((SELECT_UP_AND_DOWN) + "%n", UP, DOWN);
             String movingNext = Console.readLine();
             try {
                 validation.validMovingNext(movingNext);
@@ -52,7 +52,7 @@ public class InputView {
      */
     public String readGameCommand() {
         do {
-            System.out.println(String.format(SELECT_REGAME_OR_QUIT, REGAME, QUIT));
+            System.out.printf((SELECT_REGAME_OR_QUIT) + "%n", REGAME, QUIT);
             String gameCommand = Console.readLine();
             try {
                 validation.validGameCommand(gameCommand);
