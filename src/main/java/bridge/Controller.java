@@ -3,23 +3,25 @@ package bridge;
 import java.util.List;
 
 public class Controller {
+    private InputView inputView = new InputView();
+    private int bridgeSize;
+    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private GameManagement gameManagement = new GameManagement();
+    private List<String> bridge;
+    private String[][] bridgeBoard;
 
     public void start() {
-        InputView inputView = new InputView();
-        int bridgeSize = inputView.readBridgeSize();
-
-        //다리 생성 실패시
+        makeBridgeSize();
         if (bridgeSize == -1) {
             return;
         }
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
-        List<String> bridge;
         bridge = bridgeMaker.makeBridge(bridgeSize);
-        String[][] bridgeBoard;
-        GameManagement gameManagement = new GameManagement();
         bridgeBoard = gameManagement.settingBridge(bridge, bridgeSize);
         gameManagement.gameProgress(bridgeBoard, bridgeSize);
+    }
+
+    public void makeBridgeSize() {
+        bridgeSize = inputView.readBridgeSize();
     }
 }
