@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import static bridge.utils.command.GameCommand.QUIT;
 import static bridge.utils.command.GameCommand.RETRY;
 
 import bridge.BridgeMaker;
@@ -18,7 +17,6 @@ public class BridgeController {
     private final BridgeGame bridgeGame = new BridgeGame();
 
     private Bridge bridge;
-    private boolean isMovingSuccess = false;
 
     public void startGame() {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
@@ -29,33 +27,29 @@ public class BridgeController {
     }
 
     public void playGame() {
-        for (int bridgeIndex = 0; bridgeIndex < bridge.length(); bridgeIndex++) {
-            isMovingSuccess = bridgeGame.move(inputView.readMoving(), bridge.findBlockByIndex(bridgeIndex));
+        do {
+            bridgeGame.move(inputView.readMoving(), bridge.findBlockByIndex(bridgeGame.getMovingCount()));
             outputView.printMap(bridgeGame);
-            bridgeIndex = checkMovingFail(bridgeIndex);
-        }
+        } while (canMove());
     }
 
-    private int checkMovingFail(int bridgeIndex) {
-        if (!isMovingSuccess) {
-            bridgeIndex = choiceRetryOrQuit(bridgeIndex);
+    private boolean canMove() {
+        if (bridgeGame.isMovingFail()) {
+            return choiceRetryOrQuit();
         }
-        return bridgeIndex;
+        return bridgeGame.canMoveMoreBlock(bridge.length());
     }
 
-    private int choiceRetryOrQuit(int bridgeIndex) {
+    private boolean choiceRetryOrQuit() {
         String gameCommand = inputView.readGameCommand();
         if (Objects.equals(gameCommand, RETRY.getCommand())) {
             bridgeGame.retry();
-            bridgeIndex = -1;
+            return true;
         }
-        if (Objects.equals(gameCommand, QUIT.getCommand())) {
-            bridgeIndex = bridge.length();
-        }
-        return bridgeIndex;
+        return false;
     }
 
     public void quitGame() {
-        outputView.printResult(bridgeGame, isMovingSuccess);
+        outputView.printResult(bridgeGame);
     }
 }
