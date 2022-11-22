@@ -43,4 +43,8 @@ public class OutputView {
     public static String getErrorMessageUpOrDown() {
         return ERROR_MESSAGE + " 다리는 U와 D만 움직여야 합니다.";
     }
+
+    public static String getErrorMessageInputTry() {
+        return ERROR_MESSAGE + " 재시작은 R과 Q로만 입력 가능합니다.";
+    }
 }
