@@ -6,6 +6,7 @@ import java.util.List;
 public class Result {
     private static final String RESTART = "R";
     private static final String QUIT = "Q";
+
     private ResultType resultType;
     private boolean keeping;
     private List<List<String>> allResults;
