@@ -27,7 +27,7 @@ public class OutputView extends IOPrinter {
         this.println("최종 게임 결과");
         this.printMap(recordedHistory);
         this.println(status.resultMessage());
-        this.println(repeatCount.result());
+        this.print(repeatCount.result());
     }
 
     public void printGameStartMessage() {
