@@ -10,11 +10,22 @@ public class BridgeGame {
     private final List<String> bridge;
     private List<BridgeResult> topResult;
     private List<BridgeResult> bottomResult;
+    int totalPlayCnt;
+
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.topResult = new ArrayList<>();
         this.bottomResult = new ArrayList<>();
+        this.totalPlayCnt = 1;
+    }
+
+    public List<BridgeResult> getTopResult() {
+        return topResult;
+    }
+
+    public List<BridgeResult> getBottomResult() {
+        return bottomResult;
     }
 
     /**
@@ -63,5 +74,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        topResult.clear();
+        bottomResult.clear();
+        totalPlayCnt++;
     }
 }
