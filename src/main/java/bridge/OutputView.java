@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -20,7 +21,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(Map<String, List<String>> movingMap) {
+        Arrays.stream(UpAndDown.values()).forEach((upAndDown -> printBridgeStatus(movingMap, upAndDown.getCommand())));
     }
 
     private void printBridgeStatus(Map<String, List<String>> result, String upAndDown) {
