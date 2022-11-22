@@ -13,7 +13,7 @@ public class StagedHistory {
         this.bridgePosition = bridgePosition;
     }
 
-    public String resultSurviveStatusByBridgePosition(BridgePosition position) {
-        return surviveStatus.convertStatusValueToCode(this.bridgePosition.equals(position));
+    public String resultSurviveStatusByBridgePosition(BridgePosition targetPosition) {
+        return surviveStatus.resultStatusCodeByCompareBridgePosition(this.bridgePosition, targetPosition);
     }
 }

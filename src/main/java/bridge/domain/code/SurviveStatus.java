@@ -14,16 +14,19 @@ public enum SurviveStatus {
         this.surviveStatusValue = value;
     }
 
-    public static SurviveStatus getSurviveStatusByCompareBridgePosition(
-            BridgePosition originalPosition, BridgePosition targetPosition) {
+    public static SurviveStatus getSurviveStatusByCompareBridgePosition(BridgePosition originalPosition,
+                                                                        BridgePosition targetPosition) {
+
         if (originalPosition.equals(targetPosition)) {
             return SURVIVE;
         }
         return DIE;
+
     }
 
-    public String convertStatusValueToCode(boolean statusValue) {
-        if (statusValue) {
+    public String resultStatusCodeByCompareBridgePosition(BridgePosition originalPosition,
+                                                          BridgePosition targetPosition) {
+        if (originalPosition.equals(targetPosition)) {
             return String.format(RESULT_STATUS_FORMAT_CODE, surviveStatusCode);
         }
         return String.format(RESULT_STATUS_FORMAT_CODE, EMPTY_CODE);
