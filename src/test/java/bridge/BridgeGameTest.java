@@ -111,4 +111,18 @@ public class BridgeGameTest {
 
         assertEquals(2, numberOfTry);
     }
+
+    @DisplayName("모든 다리를 건너는 것이 성공했는지 테스트")
+    @Test
+    void 모든_다리_이동_성공() {
+        Bridge bridge =  new Bridge(List.of("D","D","U"));
+        List<String> positions = List.of("D","D","U");
+        positions.stream()
+                        .forEach(position -> bridgeGame.move(playerId, bridge, position));
+        PlayerRepository playerRepository = PlayerRepository.getInstance();
+        Player player = playerRepository.findById(playerId);
+
+        Boolean result = player.isGameClear(bridge.getSize());
+        assertTrue(result);
+    }
 }
