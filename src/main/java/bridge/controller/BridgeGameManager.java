@@ -35,16 +35,24 @@ public class BridgeGameManager {
 
     private void crossBridge() {
         while (!bridgeGame.isCrossed()) {
-            bridgeGame.move(chooseDirection());
-            outputView.printMap(bridgeGame);
-            if (bridgeGame.isFailed()) {
-                if (inputGameCommand() == Command.RETRY) {
-                    bridgeGame.retry();
-                    continue;
-                }
+            moveBridge();
+            if (bridgeGame.isFailed() && processGameCommand()) {
                 return;
             }
         }
+    }
+
+    private boolean processGameCommand() {
+        if (inputGameCommand() == Command.RETRY) {
+            bridgeGame.retry();
+            return false;
+        }
+        return true;
+    }
+
+    private void moveBridge() {
+        bridgeGame.move(chooseDirection());
+        outputView.printMap(bridgeGame);
     }
 
     private Direction chooseDirection() {
