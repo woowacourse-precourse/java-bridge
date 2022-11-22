@@ -15,10 +15,10 @@ public class Application {
 
         List<String> currentBridgeState=bridgeMaker.initialBridge();
         String choicePosition;
-        String retryCommand="실패";
+        String retryCommand;
         int countTry=0;
         int count=0;
-        String passFail="";
+        String passFail="실패";
         while (true) {
             if (retryCommand.equals("Q") || count >= bridgeState.size()){
                 break;
