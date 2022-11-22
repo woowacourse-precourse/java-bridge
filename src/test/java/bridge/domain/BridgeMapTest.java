@@ -26,11 +26,11 @@ class BridgeMapTest {
     @Test
     @DisplayName("지도_초기화_시키기")
     void initialization() {
-        bridgeMap.createMap(false,"U");
+        bridgeMap.createMap(false, "U");
         bridgeMap.initialization();
         assertThat(bridgeMap.getMap())
                 .hasSize(2)
-                .contains(entry("U",new ArrayList<>()),entry("D",new ArrayList<>()));
+                .contains(entry("U", new ArrayList<>()), entry("D", new ArrayList<>()));
     }
 
 }
