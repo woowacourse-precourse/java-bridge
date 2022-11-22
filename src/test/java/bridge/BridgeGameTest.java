@@ -40,4 +40,20 @@ class BridgeGameTest {
         // then
         assertThat(user.getTrial()).isEqualTo(2);
     }
+
+    @DisplayName("Failure :Quit 테스트")
+    @Test
+    public void FailureWithQuitTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        User user = new User();
+        String status = "Q";
+
+        // when
+        bridgeGame.processFailure(bridge, user, status);
+
+        // then
+        assertThat(user.isSuccessful()).isEqualTo(false);
+        assertThat(user.isGameDone()).isEqualTo(true);
+    }
 }
