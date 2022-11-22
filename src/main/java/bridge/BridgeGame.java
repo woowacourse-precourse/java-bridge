@@ -14,6 +14,7 @@ public class BridgeGame {
     private boolean quit = false;
 
     private void startBridgeGame() {
+        outputView.printStartMsg();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
