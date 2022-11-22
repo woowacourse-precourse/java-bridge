@@ -81,16 +81,32 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         while (true) {
-            String inputMove = Console.readLine();
+            String inputMoving = Console.readLine();
             // 올바른 값이라면 그 값 리턴
-            return inputMove;
-
+            if (isValidMoving(inputMoving)) return inputMoving;
             // 올바르지 않은 값이라면 에러 발생 후 메시지 출력
+            throwExceptionIfNotValidMoving(inputMoving);
         }
     }
 
-    public boolean isValidMoving(String inputMove) {
-        return Objects.equals(inputMove, "D") || Objects.equals(inputMove, "U");
+    /**
+     * 입력받은 이동할 칸 정보가 올바른지 판별한다.
+     * @param inputMoving 입력받은 이동할 칸 정보
+     * @return 입력받은 정보가 D 혹은 U가 맞다면 true 를 반환 그렇지 않다면 false
+     */
+    public boolean isValidMoving(String inputMoving) {
+        return Objects.equals(inputMoving, "D") || Objects.equals(inputMoving, "U");
+    }
+
+    /**
+     *  입력받은 이동할 칸 정보가 올바르지 않다면 예외처리 후 에러 메시지를 발생한다.
+     * @param inputMoving 입력받은 이동할 칸 정보
+     * @throws IllegalArgumentException
+     */
+    private void throwExceptionIfNotValidMoving(String inputMoving) throws IllegalArgumentException {
+        if (!isValidMoving(inputMoving)) {
+            System.out.println("[ERROR] D 혹은 U만 입력해주세요.");
+        }
     }
 
     /**
