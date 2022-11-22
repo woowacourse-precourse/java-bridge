@@ -27,8 +27,11 @@ public class BridgeGame {
         return userBridge;
     }
 
-    public boolean getCorrect() {
-        return correct;
+    public int getCorrect() {
+        if (correct) {
+            return 1;
+        }
+        return 0;
     }
 
     public UserBridge getUserBridge() {
