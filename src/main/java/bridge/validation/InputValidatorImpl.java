@@ -1,5 +1,6 @@
 package bridge.validation;
 
+import bridge.enums.GameCommand;
 import bridge.enums.MovingDirection;
 
 public class InputValidatorImpl implements InputValidator{
@@ -22,9 +23,17 @@ public class InputValidatorImpl implements InputValidator{
     public void validateMoving(String moving) {
         if((moving.equals(MovingDirection.LOWER.getDirection()) ||
                 moving.equals(MovingDirection.UPPER.getDirection()))==false) {
-
             throw new IllegalArgumentException(String.format("[ERROR] 위 : %s, 아래: %s 중 입력해야 합니다.",
                   MovingDirection.LOWER.getDirection(), MovingDirection.UPPER.getDirection()));
         }
     }
+
+    public void validateGameCommand(String gameCommand) {
+        if((gameCommand.equals(GameCommand.RETRIAL.getExpression()) ||
+                gameCommand.equals(GameCommand.QUIT.getExpression()))==false) {
+            throw new IllegalArgumentException(String.format("[ERROR] 재시도 : %s, 종료: %s 중 입력해야 합니다.",
+                    GameCommand.RETRIAL.getExpression(), GameCommand.QUIT.getExpression()));
+        }
+    }
+
 }

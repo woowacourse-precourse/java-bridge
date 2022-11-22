@@ -8,4 +8,5 @@ public interface InputValidator {
      */
     void validateBridgeSize(String input);
     void validateMoving(String moving);
+    void validateGameCommand(String gameCommand);
 }
