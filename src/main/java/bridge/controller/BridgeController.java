@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.repository.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.Message;
