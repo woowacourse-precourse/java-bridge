@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.exception.IllegalNumberRangeException;
+import bridge.view.exception.IllegalNumberRangeException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

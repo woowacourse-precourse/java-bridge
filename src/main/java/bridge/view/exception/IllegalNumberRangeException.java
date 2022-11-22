@@ -1,4 +1,4 @@
-package bridge.exception;
+package bridge.view.exception;
 
 public class IllegalNumberRangeException extends IllegalArgumentException{
 
