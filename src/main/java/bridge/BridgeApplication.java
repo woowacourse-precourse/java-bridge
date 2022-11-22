@@ -18,7 +18,7 @@ public class BridgeApplication {
         outputView = new OutputView();
         bridgeGame = new BridgeGame(bridge, 1);
 
-        doBridgeGame(size); // 다리건너기 시작
+        doBridgeGame(); // 다리건너기 시작
         printBridgeGameResult();
     }
 
@@ -28,20 +28,14 @@ public class BridgeApplication {
         outputView.printResult(bridgeGame);
     }
 
-    private void doBridgeGame(int size) {
-        for (int idx = 0; idx < size; idx++) {
-            bridgeGameMoveAction(idx);
+    private void doBridgeGame() {
+        while (!isCorrectMove()) {
+            bridgeGameMoveAction();
             printMap();
-            if (isCorrectMove()) continue;
-            if (isSelectExit()) break;
-            idx = -1; // 반복문의 idx 를 -1로 돌려주어 다시 0부터 시작할 수 있게끔 함
+            if(bridgeGame.isExit()){
+                bridgeGame.retry(getGameCommand());
+            }
         }
-    }
-
-    private boolean isSelectExit() {
-        bridgeGame.retry(getGameCommand());
-        if (bridgeGame.isExit()) return true;
-        return false;
     }
 
     private String getGameCommand() {
@@ -49,8 +43,8 @@ public class BridgeApplication {
         return inputView.readGameCommand();
     }
 
-    private void bridgeGameMoveAction(int idx) {
-        bridgeGame.move(inputMoving(), idx);
+    private void bridgeGameMoveAction() {
+        bridgeGame.move(inputMoving());
     }
 
     private void printMap() {
