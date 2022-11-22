@@ -9,13 +9,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
 
 class GameTest extends NsTest {
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
     @DisplayName("실패 테스트")
     @Test
     void failure_test() {
@@ -71,17 +68,5 @@ class GameTest extends NsTest {
         Application.main(new String[]{});
     }
 
-    static class TestNumberGenerator implements BridgeNumberGenerator {
 
-        private List<Integer> numbers;
-
-        TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-
-        @Override
-        public int generate() {
-            return numbers.remove(0);
-        }
-    }
 }

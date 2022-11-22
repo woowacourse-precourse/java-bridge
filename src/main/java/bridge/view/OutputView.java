@@ -4,8 +4,6 @@ import java.util.List;
 import bridge.model.BridgeGame;
 import bridge.constants.ViewMessage;
 
-import javax.swing.text.View;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  *
@@ -23,9 +21,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(String[][] map) {
-        for (int row = 0; row < map.length; row++) {
+        for (String[] row : map) {
             System.out.print("[");
-            printRow(map[row]);
+            printRow(row);
             System.out.println(" ]");
         }
         System.out.println();

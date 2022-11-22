@@ -24,23 +24,22 @@ public class BridgeGameController {
         output.printStart();
         try {
             List<String> bridge = bm.makeBridge(input.readBridgeSize());
-            moves = runGame(bridge, moves);
-            output.printResult(correct, numTrial, output.makeMap(bridge, moves));
+            runGame(bridge, moves);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
         }
     }
-    public List<String> runGame(List<String> bridge, List<String> moves) {
+    public void runGame(List<String> bridge, List<String> moves) {
         try {
             while (retry && progress < bridge.size()) {
                 moves = runTrial(bridge);
                 numTrial++;
                 retry = runRetry(correct);
+                output.printResult(correct, numTrial, output.makeMap(bridge, moves));
             }
-            return moves;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
-        } return moves;
+        }
     }
     public boolean runRetry(boolean correct) {
         if (!correct) {
