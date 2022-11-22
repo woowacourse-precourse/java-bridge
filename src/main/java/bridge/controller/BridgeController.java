@@ -25,18 +25,24 @@ public class BridgeController {
             outputView.printStart();
             Bridge bridge = new Bridge(inputView.readBridgeSize());
             makedBridge = bridgeMaker.makeBridge(bridge.getBridgeLength());
-            do {
-                playCount += 1;
-                userResult = new UserResult();
-                if (moveBridge(userResult ,bridge.getBridgeLength())) {
-                    break;
-                }
-                gameSuccess = bridgeGame.retry(inputView.readGameRetryCommand());
-            }while(gameSuccess);
+            gameSuccess = oneGame(bridge);
             outputView.printResult(userResult, gameSuccess, playCount);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private boolean oneGame(Bridge bridge) {
+        boolean gameSuccess = true;
+        do {
+            playCount += 1;
+            userResult = new UserResult();
+            if (moveBridge(userResult ,bridge.getBridgeLength())) {
+                break;
+            }
+            gameSuccess = bridgeGame.retry(inputView.readGameRetryCommand());
+        }while(gameSuccess);
+        return gameSuccess;
     }
 
     private boolean moveBridge(UserResult userResult ,int bridgeLength) {
