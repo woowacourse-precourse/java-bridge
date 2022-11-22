@@ -9,16 +9,17 @@ import java.util.List;
 public class BridgeGame {
     private static final String CORRECT_MARK = "O";
     private static final String WRONG_MARK = "X";
-    private List<String> playerCommands = new ArrayList<>();
+    private final List<String> playerCommands;
     private int playerMoveCount = 0;
-    private GameMap gameMap = new GameMap();
+    private final GameMap gameMap = new GameMap();
     private GameStatus gameStatus;
     private int playCount;
-    private List<String> bridge; // 직접 접근을 막고 bridge to map 으로 반환하여 출력하게끔
+    private final List<String> bridge;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         playCount = 1;
+        playerCommands = new ArrayList<>();
         gameStatus = GameStatus.PLAYING;
     }
 
@@ -81,11 +82,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        resetPlayerHistory();
         playCount++;
-        playerCommands.clear();
-        playerMoveCount = 0;
         gameMap.clear();
         gameStatus = GameStatus.PLAYING;
+    }
+
+    private void resetPlayerHistory() {
+        playerCommands.clear();
+        playerMoveCount = 0;
     }
 
     public GameMap getGameMap() {
@@ -98,10 +103,6 @@ public class BridgeGame {
 
     public boolean isOver() {
         return gameStatus.equals(GameStatus.GAME_OVER);
-    }
-
-    public boolean isClear() {
-        return gameStatus.equals(GameStatus.GAME_CLEAR);
     }
 
     public int getPlayCount() {
