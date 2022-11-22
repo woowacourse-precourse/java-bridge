@@ -22,7 +22,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public String readMoveCommand() {
         System.out.println(PLEASE_ENTER_MOVE_COMMAND);
         return Console.readLine();
     }
