@@ -3,6 +3,7 @@ package bridge;
 import bridge.Model.BridgeBlock;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,7 @@ public class BridgeMaker {
                 .map(bridgeNumber -> BridgeBlock.getBlockIdentifier((bridgeNumber)))
                 .collect(Collectors.toList());
 
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 
     private List<Integer> generateBridgeNumbers(int size) {
