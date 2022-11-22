@@ -4,10 +4,9 @@ import bridge.view.ErrorMessage;
 
 public class CheckException {
     ErrorMessage errorMessage;
-
-    public boolean checkBridgeSize(int size){
+    public boolean checkBridgeSize(String bridgeSize){
         try{
-            if(size > 20 || size < 3){
+            if(Integer.parseInt(bridgeSize) > 20 || Integer.parseInt(bridgeSize) < 3){
                 throw new IllegalArgumentException();
             }
             return true;
