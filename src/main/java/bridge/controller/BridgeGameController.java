@@ -21,7 +21,7 @@ public class BridgeGameController {
         outputView.printStartMessage();
         initBridge();
         gamePlay();
-        outputView.printResult(bridgeGame.getTryCount(), bridgeGame.isSuccess());
+        outputView.printResult(bridgeGame.getTryCount(), bridgeGame.isSuccess(), bridgeGame.getResultBridgeMap());
     }
 
     private void initBridge() {
