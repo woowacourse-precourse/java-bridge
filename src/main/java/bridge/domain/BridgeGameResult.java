@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.List;
+
 public class BridgeGameResult {
 
     private static final String FAIL = "실패";
@@ -45,7 +47,7 @@ public class BridgeGameResult {
         return result;
     }
 
-    public BridgeMoveState getMoveState() {
-        return moveState;
+    public List<Boolean> getMoveState() {
+        return moveState.getState();
     }
 }
