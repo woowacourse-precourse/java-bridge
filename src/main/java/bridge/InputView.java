@@ -14,8 +14,8 @@ public class InputView {
         int inputValue = 0;
         try {
             inputValue = Integer.parseInt(Console.readLine());
-            if (inputValue <= 0) {
-                System.out.println("[ERROR] 양의 숫자를 입력해 주세요.");
+            if (inputValue < 3 || inputValue > 20) {
+                System.out.println("[ERROR] 3 ~ 20의 숫자를 입력해 주세요.");
                 inputValue = 0;
             }
         }catch (NumberFormatException e) {
