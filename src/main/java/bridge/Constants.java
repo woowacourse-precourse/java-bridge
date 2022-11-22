@@ -10,7 +10,7 @@ public class Constants {
 
     // 맵 표현 기호
     public static final String CORRECT = "O";
-    public static final String WRONG  = "X";
+    public static final String WRONG = "X";
     public static final String BLANK = " ";
     public static final String BRIDGE_START = "[ ";
     public static final String BRIDGE_END = " ]";

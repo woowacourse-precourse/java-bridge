@@ -8,19 +8,19 @@ public class Bridge {
     private List<String> spaces;
     private final BridgeMaker bridgeMaker;
 
-    public Bridge(BridgeMaker bridgeMaker){
+    public Bridge(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void makeBridge(int size){
+    public void makeBridge(int size) {
         spaces = bridgeMaker.makeBridge(size);
     }
 
-    public int getSize(){
+    public int getSize() {
         return spaces.size();
     }
 
-    public String getIndexOf(int index){
+    public String getIndexOf(int index) {
         return spaces.get(index);
     }
 

@@ -17,26 +17,26 @@ public class InputView {
         return validateBridgeSize(Console.readLine());
     }
 
-    private int validateBridgeSize(String input){
-        try{
+    private int validateBridgeSize(String input) {
+        try {
             return validateBridgeSizeRange(Integer.parseInt(input));
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(getBridgeSizeExceptionMessage(e));
 
             return readBridgeSize();
         }
     }
 
-    private int validateBridgeSizeRange(int bridgeSize){
-        if(bridgeSize<3 || bridgeSize>20){
+    private int validateBridgeSizeRange(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(Constants.BRIDGE_SIZE_RANGE_ERROR_MESSAGE);
         }
 
         return bridgeSize;
     }
 
-    private String getBridgeSizeExceptionMessage(IllegalArgumentException e){
-        if(e.getClass().equals(NumberFormatException.class)){
+    private String getBridgeSizeExceptionMessage(IllegalArgumentException e) {
+        if (e.getClass().equals(NumberFormatException.class)) {
             return Constants.BRIDGE_SIZE_NUMBER_FORMAT_ERROR_MESSAGE;
         }
 
@@ -52,18 +52,18 @@ public class InputView {
         return validateMoving(Console.readLine());
     }
 
-    private String validateMoving(String input){
-        try{
+    private String validateMoving(String input) {
+        try {
             return validateMovingSymbol(input);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
             return readMoving();
         }
     }
 
-    private String validateMovingSymbol(String input){
-        if(!input.equals(Constants.UP) && !input.equals(Constants.DOWN)){
+    private String validateMovingSymbol(String input) {
+        if (!input.equals(Constants.UP) && !input.equals(Constants.DOWN)) {
             throw new IllegalArgumentException(Constants.MOVING_SYMBOL_ERROR_MESSAGE);
         }
 
@@ -79,18 +79,18 @@ public class InputView {
         return validateGameCommand(Console.readLine());
     }
 
-    private String validateGameCommand(String input){
-        try{
+    private String validateGameCommand(String input) {
+        try {
             return validateRestartSymbol(input);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
             return readGameCommand();
         }
     }
 
-    private String validateRestartSymbol(String input){
-        if(!input.equals(Constants.RESTART) && !input.equals(Constants.QUIT)){
+    private String validateRestartSymbol(String input) {
+        if (!input.equals(Constants.RESTART) && !input.equals(Constants.QUIT)) {
             throw new IllegalArgumentException(Constants.RESTART_SYMBOL_ERROR_MESSAGE);
         }
 

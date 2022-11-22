@@ -10,10 +10,10 @@ public class Result {
     private String crossBridgeResult;
     private int tryCount;
 
-    public Result(){
+    public Result() {
         map = new ArrayList<>();
 
-        for(int i = 0;i<2;i++){
+        for (int i = 0; i < 2; i++) {
             map.add(new ArrayList<>());
         }
 
@@ -21,7 +21,7 @@ public class Result {
         tryCount = 1;
     }
 
-    public void makeMap(String move, String space){
+    public void makeMap(String move, String space) {
         successGoUp(move, space);
 
         successGoDown(move, space);
@@ -31,38 +31,38 @@ public class Result {
         failGoDown(move, space);
     }
 
-    public void successGoUp(String move, String space){
-        if(move.equals(Constants.UP) && space.equals(Constants.UP)){
+    public void successGoUp(String move, String space) {
+        if (move.equals(Constants.UP) && space.equals(Constants.UP)) {
             map.get(0).add(Constants.CORRECT);
             map.get(1).add(Constants.BLANK);
         }
     }
 
-    public void successGoDown(String move, String space){
-        if(move.equals(Constants.DOWN) && space.equals(Constants.DOWN)){
+    public void successGoDown(String move, String space) {
+        if (move.equals(Constants.DOWN) && space.equals(Constants.DOWN)) {
             map.get(0).add(Constants.BLANK);
             map.get(1).add(Constants.CORRECT);
         }
     }
 
-    public void failGoUp(String move, String space){
-        if(move.equals(Constants.UP) && space.equals(Constants.DOWN)){
+    public void failGoUp(String move, String space) {
+        if (move.equals(Constants.UP) && space.equals(Constants.DOWN)) {
             map.get(0).add(Constants.WRONG);
             map.get(1).add(Constants.BLANK);
         }
     }
 
-    public void failGoDown(String move, String space){
-        if(move.equals(Constants.DOWN) && space.equals(Constants.UP)){
+    public void failGoDown(String move, String space) {
+        if (move.equals(Constants.DOWN) && space.equals(Constants.UP)) {
             map.get(0).add(Constants.BLANK);
             map.get(1).add(Constants.WRONG);
         }
     }
 
-    public void retry(){
+    public void retry() {
         map.clear();
 
-        for(int i = 0;i<2;i++){
+        for (int i = 0; i < 2; i++) {
             map.add(new ArrayList<>());
         }
 
@@ -85,10 +85,10 @@ public class Result {
                 "\n총 시도한 횟수: " + tryCount;
     }
 
-    public String replaceMapStringForm(){
+    public String replaceMapStringForm() {
         StringBuffer sb = new StringBuffer();
 
-        for(List<String> row : map){
+        for (List<String> row : map) {
             sb.append(row.toString()
                     .replace("[", Constants.BRIDGE_START)
                     .replaceAll(", ", Constants.BRIDGE_DIVIDING_LINE)

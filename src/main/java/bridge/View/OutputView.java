@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    public void printBridgeGameStart(){
+    public void printBridgeGameStart() {
         System.out.println(Constants.GAME_START_MESSAGE);
     }
 

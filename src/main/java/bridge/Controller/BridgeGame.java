@@ -19,7 +19,7 @@ public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public BridgeGame(){
+    public BridgeGame() {
         bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
         player = new Player();
         result = new Result();
@@ -27,7 +27,7 @@ public class BridgeGame {
         outputView = new OutputView();
     }
 
-    public void run(){
+    public void run() {
         outputView.printBridgeGameStart();
 
         makeBridge();
@@ -37,16 +37,16 @@ public class BridgeGame {
         showResult();
     }
 
-    public void makeBridge(){
+    public void makeBridge() {
         int size = inputView.readBridgeSize();
         bridge.makeBridge(size);
         System.out.println();
     }
 
-    public void crossBridge(){
+    public void crossBridge() {
         move();
 
-        if(player.isSuccess(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
+        if (player.isSuccess(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))) {
             result.setCrossBridgeResult(Constants.SUCCESS);
             return;
         }
@@ -60,7 +60,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        while(player.getMovesCount()==0 || player.isMovable(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
+        while (player.getMovesCount() == 0 || player.isMovable(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))) {
             String moveTo = inputView.readMoving();
             player.move(moveTo);
             result.makeMap(moveTo, bridge.getIndexOf(player.getMovesLastIndex()));
@@ -68,10 +68,10 @@ public class BridgeGame {
         }
     }
 
-    public void selectRetry(){
+    public void selectRetry() {
         String gameCommand = inputView.readGameCommand();
 
-        if(gameCommand.equals("R")){
+        if (gameCommand.equals("R")) {
             retry();
         }
     }
@@ -87,7 +87,7 @@ public class BridgeGame {
         crossBridge();
     }
 
-    public void showResult(){
+    public void showResult() {
         outputView.printResult(result);
     }
 }

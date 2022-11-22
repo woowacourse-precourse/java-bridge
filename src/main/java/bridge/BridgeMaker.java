@@ -23,7 +23,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> spaces = new ArrayList<>();
 
-        for(int i = 0;i<size;i++){
+        for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
             spaces.add(upDownIndexSymbol.get(bridgeNumber));
         }
