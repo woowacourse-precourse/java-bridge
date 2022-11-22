@@ -33,7 +33,7 @@ public class Application {
     }
     
     public static void makeBridgeFirst() {
-    	System.out.println("\n\n다리 건너기 게임을 시작합니다.");
+    	System.out.println("\n다리 건너기 게임을 시작합니다.");
     	bridgeSize = 0;
     	inputView = new InputView();
         bridgeSize = inputView.readBridgeSize();
