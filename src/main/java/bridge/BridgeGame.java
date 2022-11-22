@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -48,5 +51,13 @@ public class BridgeGame {
         }
         return moveHistory;
     }
-        }
+    public boolean isMoveFinish() {
+        if (userInput.size() == 0)
+            return false;
+        if (userInput.size() == bridge.size())
+            return true;
+        if (!userInput.get(userInput.size() - 1).equals(bridge.get(userInput.size() - 1)))
+            return true;
+        return false;
+    }
 }
