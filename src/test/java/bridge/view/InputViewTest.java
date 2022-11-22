@@ -1,9 +1,8 @@
 package bridge.view;
 
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.Test;
 
 class InputViewTest {
     InputView inputView = new InputView();
@@ -13,16 +12,19 @@ class InputViewTest {
         boolean validBridgeSize = inputView.isValidBridgeSize("3");
         assertThat(validBridgeSize).isTrue();
     }
+
     @Test
     void isValidBridgeSize_다리_길이_유효성_검사_정상_최대값() {
         boolean validBridgeSize = inputView.isValidBridgeSize("20");
         assertThat(validBridgeSize).isTrue();
     }
+
     @Test
     void isValidBridgeSize_다리_길이_유효성_검사_정상_중간값() {
         boolean validBridgeSize = inputView.isValidBridgeSize("10");
         assertThat(validBridgeSize).isTrue();
     }
+
     @Test
     void isValidBridgeSize_다리_길이_유효성_검사_실패_범위초과() {
         boolean validBridgeSize = inputView.isValidBridgeSize("100");
@@ -53,6 +55,7 @@ class InputViewTest {
 
         assertThat(validMoveCommand).isTrue();
     }
+
     @Test
     void isValidMoveCommand_움직임_유효성_검사_성공_DOWN() {
         boolean validMoveCommand = inputView.isValidMoveCommand("D");
@@ -79,12 +82,14 @@ class InputViewTest {
 
         assertThat(failCommand).isTrue();
     }
+
     @Test
     void isValidFailCommand_프로그램_종료_입력_정상_종료() {
         boolean failCommand = inputView.isValidFailCommand("Q");
 
         assertThat(failCommand).isTrue();
     }
+
     @Test
     void isValidFailCommand_프로그램_종료_입력_실패() {
         boolean failCommand = inputView.isValidFailCommand("1");
