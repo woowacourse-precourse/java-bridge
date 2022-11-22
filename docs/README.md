@@ -142,7 +142,7 @@ Q
 
 ### 6. 재시작 여부에 따라 게임을 진행한다
 
-### 7. 다음을 출력하고 게임을 종료한다 
+### 7. 다리를 끝까지 건넜다면 다음을 출력하고 게임을 종료한다 
 
 - 최종 게임 결과 
   
@@ -150,93 +150,102 @@ Q
   
 - 총 시도한 횟수
 ---
+
+## 도메인 기반 패키지 구조 구현을 목적으로 합니다
+- 프로그램의 domain 영역을 3가지로 나눕니다
+  - 1 사용자에 의해서 바뀌는 영역
+  - 2 프로그램 내부에 의해서 바뀌는 영역
+  - 3 프로그램이 실행되는 영역
+---
+
+## package 구조 
+
+## 1. bridge
+사용자가 아닌 프로그램이 지정해주는 영역입니다  
+프로그램이 만들어주는 bridge와 게임의 결과를 처리합니다  
+유효성을 검사합니다
+
+## bridge
+  - ### BridgeNumberGenerator Class
+  - ### BridgeRandumNumberGenerator Class
+  - ### 내부 패키지 목록 
+    - #### bridgeDomain
+      - ##### data
+        - Bridge Class
+      - ##### operator
+        - BridgeException Class
+        - BridgeGameResult Class
+        - BridgeMaker Class
+
+### 다음을 저장한다
+- 생성된 다리
+- 게임 재시작 횟수
+### 다음의 동작을 진행한다
+- 난수를 발생시킨다
+- 생성된 난수에 의해서 다리를 생성한다 
+- 게임이 진행 결과를 생성한다
+### 다음을 검사한다
+- 사용자가 이동할수 없는 칸을 이동했을때 
+- 사용자가 게임을 끝까지 진행했을때
+
+## 2. userdomain
+사용자에 의해서 다뤄지는 영역입니다  
+UI와 사용자 입력에 의해 바뀌는 data를 처리합니다  
+유효성을 검사합니다.
+- ### 내부 패키지 목록
+  - #### data
+    - BridgeGame Class 
+  - #### operator
+    - UserException Class
+  - #### userInterface  
+    -  InputView Class 
+    -  Message Class
+    -  OutputView Class
+
+
+### 다음을 입력 받는다 
+- 생성할 다리 길이
+- 게임 재시작 여부
+- 사용자 이동
+### 다음을 저장한다
+- 다리 길이
+- 사용자 이동 입력 
+### 다음을 검사한다
+- 재시작 입력의 유효성
+- 이동 입력의 유효성
+- 다리 길이 입력의 유효성
+### 다음을 제공한다
+- 입력 기능
+- 게임 진행에 필요한 출력 기능 
+
+## 3. game
+게임이 진행되는 영역입니다
+bridge와 userdomain을 이용하여 게임을 진행합니다
+- Application Class
+- playGame Class
+---
+
 ## 유효성 검사 목록
-- 도메인 단위의 테스트를 목적으로 합니다
 
 ### 다음의 경우에 유효성을 검사합니다
-- 사용자에게 입력을 받는 경우
-  - 다리의 길이가 범위
-  - 사용자가 이동할 칸의 입력이 
-  - 게임 재시작 여부의 입력이 
----
-## Model-View-Controller 동작 구조를 구현합니다
-
-- package단위로 분리하는 것을 목적으로 합니다
-- 각각의 package는 종속성을 최소화 하여 구현합니다
-- 인스턴스 변수를 최소화 하여 구현 합니다
-
-## package 목록
-
-### 1. bridge
-
-- 데이터를 저장 및 처리 한다
-
-### 2. view
-
-- 사용자에게 입력을 받고 알맞은 메시지를 보여준다
-
-### 3. Controller
-
-- bridge와 view를 연결해준다 전체적인 흐름을 제어한다
-
----
-
-## package 구조
-
-## bridge package
-
-### 1. 게임에 필요한 테이터를 저장하는 BridgeGame Class
-
-- 다음을 저장한다  
-  - 다리의 길이
-  - 사용자 이동 정보
-  - 재시작 여부
-
-### 2. 다리를 생성하는 BridgeMaker Class
-- 다리를 생성한다 이동할 수 있는 칸이 위 칸이면 "U" 아래 칸이면 "D"로 표현한다 
-### 3. 난수를 생성하는 BridgeRandonNumberGenerator Class
-- 난수를 생성한다 이때 범위는 0~1 로 지정한다 
-- 1은 이동 가능한 칸이 위 칸이라는 의미이며 0은 아래 칸이라는 의미이다.
-- BridgeNumberGenerator Interface를 상속받아 override하여 구현한다
-### 4. 다리 건너기 결과를 생성하는 BridgeGameResult Class
-- 다리 건너기 결과를 저장하는 List를 생성하여 구현한다
-## view package
-
-### 1. 사용자의 입력을 받는 InputView Class
-
-- 다음을 입력 받는다 
-  - 다리의 길이
-  - 사용자 이동 정보 
-  - 재시작 여부
-- 다음을 사용한다
-  - ```Console.readLine()```
-
-
-
-### 2. 문자열 상수를 관리하는 Message Class
-
-- enum을 이용해 관리한다
-
-### 3. 게임 진행 상황과 결과를 출력하는 OutputView Class
-
-## Controller package
-
-### 1. 게임이 시작되는 Application Class
-
-### 2. 실질적인 게임이 진행되는 playGame Class
-
-### 3. 사용자 입력의 유효성을 검사하는 Exception Class
-
-
-### 다음을 검사한다 
-
 - 다리 길이
   - 다리 길이의 범위가 3~20 이 아닌 경우
   - 다리 길이 입력이 숫자가 아닌 경우
   - 다리 길이의 첫 입력이 0인 경우
-- 사용자 이동 
+- 사용자 이동
   - 사용자 이동의 입력이 U,D외의 문자가 있는 경우
   - 사용자 입력의 크기가 1이 아닌 경우
 - 재시작 여부
   - 재시작 입력이 R,Q외의 문자가 있는 경우
-  - 재시작 입력의 크기가 1이 아닌 경우 
+  - 재시작 입력의 크기가 1이 아닌 경우
+---
+
+---
+
+
+
+
+
+
+
+
