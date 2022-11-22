@@ -2,7 +2,10 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.*;
+import bridge.domain.Bridge;
+import bridge.domain.GameStatus;
+import bridge.domain.Move;
+import bridge.domain.Player;
 
 public class BridgeGame {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -33,6 +36,7 @@ public class BridgeGame {
     public Player getPlayer() {
         return player;
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

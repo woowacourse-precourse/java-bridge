@@ -30,6 +30,7 @@ public class OutputView {
                 .stream()
                 .map(OutputView::replaceJoining)
                 .forEach(System.out::println);
+
         System.out.println();
     }
 
