@@ -29,7 +29,6 @@ public class BridgeGameController {
         outputView.printGameStartMsg();
         makeBridge();
         bridgeGame.start();
-        isPlaying = true;
     }
 
     private void end() {
@@ -70,15 +69,12 @@ public class BridgeGameController {
 
     private void succeed() {
         bridgeGame.succeed();
-        isPlaying = false;
     }
 
     private void fail() {
         outputView.printGameCommandMsg();
         if (bridgeGame.doesRetry(inputView.readGameCommand())) {
             bridgeGame.retry();
-            return;
         }
-        isPlaying = false;
     }
 }
