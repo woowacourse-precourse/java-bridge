@@ -51,5 +51,16 @@ public class OutputView {
             System.out.println();
         }
     }
-
+    public void printFail1(List<String> Bridge, List<String> nextStep){
+        if(nextStep.size()!=Bridge.size()){
+            System.out.print("실패");
+            System.out.println();
+        }
+    }
+    public void printFail2(List<String> Bridge, List<String> nextStep){
+        if(!Bridge.get(Bridge.size()-1).equals(nextStep.get(nextStep.size()-1))){
+            System.out.print("실패");
+            System.out.println();
+        }
+    }
 }
