@@ -11,13 +11,15 @@ class BridgeGameTest {
 
     @Test
     void 이동_성공_테스트() {
-        BridgeGame bridgeGame = new BridgeGame(new ArrayList<String>(Arrays.asList("U","U")));
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<String>(Arrays.asList("U","U","U")));
+        bridgeGame.move("U");
         bridgeGame.move("U");
         bridgeGame.move("U");
     }
     @Test
     void 이동_실패_테스트() {
-        BridgeGame bridgeGame = new BridgeGame(new ArrayList<String>(Arrays.asList("U","U")));
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<String>(Arrays.asList("U","U","U")));
+        bridgeGame.move("U");
         bridgeGame.move("U");
         bridgeGame.move("D");
     }

@@ -14,16 +14,16 @@ public class BridgeGameService {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.outputView.printStart();
-        int bridgeSize = makeBridge();
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
+        BridgeGame bridgeGame = makeBridge(bridgeMaker);
         this.bridgeGame = bridgeGame;
         while (runBridgeMove()) ;
         outputView.printResult(bridgeGame);
     }
 
-    public int makeBridge() {
+    public BridgeGame makeBridge(BridgeMaker bridgeMaker) {
         this.outputView.printBridgeMake();
-        return this.inputView.readBridgeSize();
+        int bridgeSize = this.inputView.readBridgeSize();
+        return new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public boolean runBridgeMove() throws IllegalArgumentException {
