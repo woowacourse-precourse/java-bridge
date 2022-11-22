@@ -32,7 +32,7 @@ public class OutputView {
     public void printResult(int total_round, String success) {
         System.out.println("최종 게임 결과");
         printMap();
-        System.out.print("게임 성공 여부: " + success);
+        System.out.println("게임 성공 여부: " + success);
         System.out.println("총 시도한 횟수: " + total_round);
 
     }
@@ -43,6 +43,11 @@ public class OutputView {
      * @param result {" ","O","X"} : 현재 상태값
      */
     public void updateMap(String[] result) {
+        if (map[0].contains("]")) {
+            if (!map[1].equals("[")) map[1] += "|";
+            map[1] = " " + result[1] + " ";
+            return;
+        }
         for (int i = 0; i < 2; i++) {
             if (!map[i].equals("[")) map[i] += "|";
             map[i] += " " + result[i] + " ";
