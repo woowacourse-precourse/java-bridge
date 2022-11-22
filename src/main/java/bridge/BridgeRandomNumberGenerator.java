@@ -12,3 +12,7 @@ public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
         return Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
     }
 }
+
+// 추가된 요구 사항
+// 1.Random 값 추출은 제공된 bridge.BridgeRandomNumberGenerator의 generate()를 활용
+// 2.BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스의 코드는 변경 불가능
