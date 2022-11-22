@@ -4,60 +4,30 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 
 class ExceptionBasketTest {
 
     public static final String ERROR_MESSAGE = "[ERROR]";
 
-    @Test
+    //@Test
+    @ValueSource(strings = {"5.0", "5.3", "+5", "-5", "05"})
     @DisplayName("1~20이외의 숫자일 경우 예외 처리")
-    void inputIsNotRangeExceptionTest() {
+    @ParameterizedTest
+    void inputIsNotRangeExceptionTest(String input) {
 
-        //소숫점으로 값을 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.inputIsNotRangeException("5.0"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
-
-        //소숫점으로 값을 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.inputIsNotRangeException("5.3"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
-
-        //앞에 기호를 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.inputIsNotRangeException("+5"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
-
-        //앞에 기호를 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.inputIsNotRangeException("-5"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
-
-        //앞에 0이란 숫자가 있을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.inputIsNotRangeException("05"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
+        assertThatThrownBy(() ->
+                ExceptionBasket.inputIsNotRangeException(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("허용된 숫자열이 아닐 시 예외 처리")
     void inputIsNotNumberExceptionTest() {
-        
+
         //숫자가 아닐 시 예외 처리
         assertThatThrownBy(() ->
                 ExceptionBasket.inputIsNotNumberException("a"))
