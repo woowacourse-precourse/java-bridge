@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println(" ]");
         System.out.print("[");
         printByLine(userInput.get(0), result.get(0), "D");
-        System.out.print(" ]");
+        System.out.println(" ]");
     }
 
     public void printLongMap(List<String> userInput, List<Boolean> result){
@@ -27,8 +27,6 @@ public class OutputView {
     }
 
     public void printUpLineMap(List<String> userInput, List<Boolean> result) {
-//        [ O ]
-//        [   ]
         System.out.print("[");
         for (int i = 0; i < userInput.size() - 1; i++) {
             printByLine(userInput.get(i), result.get(i), "U");

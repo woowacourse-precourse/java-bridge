@@ -9,6 +9,8 @@ public class GameController {
     private List<String> bridge;
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
+    private int count = 1;
+    private boolean isSuccess = true;
 
     public void getSizeAndMakeBridge() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
@@ -38,14 +40,36 @@ public class GameController {
         return bridgeGame.move(bridge, inputMoving, inputIdx);
     }
 
+    public String isRetryReceiver() {
+        String isRetry = "";
+        while (true) {
+            try {
+                isRetry = inputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return isRetry;
+    }
+
+    public boolean isRetryProcessor() {
+        if (isRetryReceiver().equals("R")) {
+            bridgeGame.retry();
+            count++;
+            return true;
+        }
+        return false;
+    }
+
     public void printLongMap() {
-        System.out.println(bridgeGame.userInputList());
-        System.out.println(bridgeGame.getResult());
         outputView.printLongMap(bridgeGame.userInputList(), bridgeGame.getResult());
+        System.out.println();
     }
 
     public void printShortMap() {
         outputView.printShortMap(bridgeGame.userInputList(), bridgeGame.getResult());
+        System.out.println();
     }
 
     public void printMap() {
@@ -62,5 +86,14 @@ public class GameController {
 
     public int getbridgeLength() {
         return bridge.size();
+    }
+
+    public void printResult(){
+        outputView.printTotalResult(bridgeGame.userInputList(), bridgeGame.getResult());
+        System.out.println();
+        outputView.printResult(isSuccess,count);
+    }
+    public void setSuccess(boolean success){
+        this.isSuccess=success;
     }
 }
