@@ -30,15 +30,8 @@ public class OutputView {
     public void printResult(BridgeGame game) {
         printMessage(RESULT.getMessage());
         printMap(game.getMoveResult());
-        printParamMessage(SUCCESS_OR_NOT.getMessage(), isSuccessful(game.isFail()));
+        printParamMessage(SUCCESS_OR_NOT.getMessage(), game.getResultText());
         printParamMessage(TOTAL_TRY.getMessage(), game.getTotalCount());
-    }
-
-    private String isSuccessful(boolean fail) {
-        if (fail) {
-            return "실패";
-        }
-        return "성공";
     }
 
     public void printMessage() {

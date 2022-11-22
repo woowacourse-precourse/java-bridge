@@ -6,28 +6,30 @@ public enum Move {
     UP("U"),
     DOWN("D"),
     SUCCESS("O"),
+    SUCCESS_TEXT("성공"),
     FAIL("X"),
+    FAIL_TEXT("실패"),
     NO_MOVE(" ");
 
-    private final String moving;
+    private final String text;
 
-    Move(String moving) {
-        this.moving = moving;
+    Move(String text) {
+        this.text = text;
     }
 
     public static Move getMove(String move) {
-        if (move.equals(UP.moving)) {
+        if (move.equals(UP.text)) {
             return UP;
         }
         return DOWN;
     }
 
-    public String getMoving() {
-        return moving;
+    public String getText() {
+        return text;
     }
 
     public static void validateMove(String move) {
-        if (UP.moving.equals(move) || DOWN.moving.equals(move)) {
+        if (UP.text.equals(move) || DOWN.text.equals(move)) {
             return;
         }
         throw new IllegalArgumentException(MOVING.getMessage());
@@ -35,5 +37,19 @@ public enum Move {
 
     public static boolean isMoveUp(Move moving) {
         return moving == UP;
+    }
+
+    public boolean isFail() {
+        if (this == FAIL) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getResultText() {
+        if (this == SUCCESS) {
+            return SUCCESS_TEXT.text;
+        }
+        return FAIL_TEXT.text;
     }
 }

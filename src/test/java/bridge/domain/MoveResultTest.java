@@ -3,6 +3,7 @@ package bridge.domain;
 import static bridge.utils.Move.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.utils.GameCommand;
 import bridge.utils.Move;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +27,7 @@ class MoveResultTest {
         moveResult.addMove(UP, result);
 
         // then
-        assertThat(moveResult.getUpMovesString()).isEqualTo(result.getMoving());
+        assertThat(moveResult.getUpMovesString()).isEqualTo(result.getText());
     }
 
     @DisplayName("플레이어가 아래로 움직이면 움직인 결과가 저장된다.")
@@ -37,7 +38,7 @@ class MoveResultTest {
         moveResult.addMove(DOWN, result);
 
         // then
-        assertThat(moveResult.getDownMovesString()).isEqualTo(result.getMoving());
+        assertThat(moveResult.getDownMovesString()).isEqualTo(result.getText());
     }
 
     @DisplayName("현재 다리를 얼마나 건넜는지 인덱스를 반환한다.")
@@ -52,16 +53,16 @@ class MoveResultTest {
         assertThat(result).isEqualTo(3);
     }
 
-    @DisplayName("다리를 끝까지 건넜다면 True를 반환한다.")
+    @DisplayName("다리를 끝까지 건넜다면 게임이 끝난다.")
     @Test
-    void 다리를_끝까지_건넜다면_True를_반환한다() {
+    void 다리를_끝까지_건넜다면_게임이_끝난다() {
         moveResult.addMove(UP, SUCCESS);
         moveResult.addMove(UP, SUCCESS);
         moveResult.addMove(UP, SUCCESS);
 
-        boolean finish = moveResult.isFinish(3);
+        GameCommand result = moveResult.isFinish(3);
 
-        assertThat(finish).isTrue();
+        assertThat(result.isFinish()).isTrue();
     }
 
     @DisplayName("다리를 끝까지 건너지 못했다면 False를 반환한다.")
@@ -69,8 +70,8 @@ class MoveResultTest {
     void 다리를_끝까지_건너지_못했다면_False를_반환한다() {
         moveResult.addMove(UP, SUCCESS);
 
-        boolean finish = moveResult.isFinish(3);
+        GameCommand result = moveResult.isFinish(3);
 
-        assertThat(finish).isFalse();
+        assertThat(result.isFinish()).isFalse();
     }
 }

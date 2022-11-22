@@ -1,11 +1,13 @@
 package bridge.utils.console;
 
 
+import static bridge.utils.GameCommand.getGameCommand;
+import static bridge.utils.GameCommand.validateCommand;
 import static bridge.utils.Move.getMove;
 import static bridge.utils.Move.validateMove;
-import static bridge.utils.message.ErrorMessagesUtil.RETRY_COMMAND;
 
 import bridge.utils.BridgeSize;
+import bridge.utils.GameCommand;
 import bridge.utils.Move;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -33,17 +35,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public GameCommand readGameCommand() {
         String command = Console.readLine();
         validateCommand(command);
-
-        return command;
-    }
-
-    private void validateCommand(String command) {
-        if (command.equals("R") || command.equals("Q")) {
-            return;
-        }
-        throw new IllegalArgumentException(RETRY_COMMAND.getMessage());
+        return getGameCommand(command);
     }
 }

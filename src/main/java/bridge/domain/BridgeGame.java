@@ -2,8 +2,8 @@ package bridge.domain;
 
 import static bridge.utils.Move.FAIL;
 import static bridge.utils.Move.SUCCESS;
-import static bridge.utils.message.ErrorMessagesUtil.RETRY_COMMAND;
 
+import bridge.utils.GameCommand;
 import bridge.utils.Move;
 import java.util.List;
 
@@ -13,16 +13,12 @@ import java.util.List;
 public class BridgeGame {
     private MoveResult moveResult;
     private final List<String> bridge;
-    private boolean fail;
-    private boolean finish;
     private int totalCount;
 
     public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
         this.moveResult = new MoveResult();
-        this.fail = false;
-        this.finish = false;
-        totalCount = 1;
+        this.bridge = bridge;
+        this.totalCount = 1;
     }
 
     /**
@@ -30,7 +26,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MoveResult move(Move move) {
+    public Move move(Move move) {
         if (canMoveNext(move)) {
             return moveSuccess(move);
         }
@@ -38,30 +34,21 @@ public class BridgeGame {
     }
 
     private boolean canMoveNext(Move move) {
-        return bridge.get(nowIndex()).equals(move.getMoving());
+        return bridge.get(nowIndex()).equals(move.getText());
     }
 
     private int nowIndex() {
         return moveResult.getStep();
     }
 
-    private MoveResult moveSuccess(Move move) {
+    private Move moveSuccess(Move move) {
         moveResult.addMove(move, SUCCESS);
-        return moveResult;
+        return SUCCESS;
     }
 
-    private MoveResult moveFail(Move move) {
+    private Move moveFail(Move move) {
         moveResult.addMove(move, FAIL);
-        fail = true;
-        return moveResult;
-    }
-
-    public boolean isFinish() {
-        return finish || moveResult.isFinish(bridge.size());
-    }
-
-    public boolean isFail() {
-        return fail;
+        return FAIL;
     }
 
     /**
@@ -69,26 +56,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String choiceRetry) {
-        validateRetry(choiceRetry);
-        this.finish = true;
-
-        if (choiceRetry.equals("R")) {
+    public void retry(GameCommand command) {
+        if (command.isPlay()) {
             init();
         }
     }
 
-    private void validateRetry(String choiceRetry) {
-        if (choiceRetry.equals("R") || choiceRetry.equals("Q")) {
-            return;
-        }
-        throw new IllegalArgumentException(RETRY_COMMAND.getMessage());
-    }
-
     private void init() {
         this.moveResult = new MoveResult();
-        this.fail = false;
-        this.finish = false;
         this.totalCount++;
     }
 
@@ -96,7 +71,15 @@ public class BridgeGame {
         return moveResult;
     }
 
+    public String getResultText() {
+        return moveResult.getResultText();
+    }
+
     public int getTotalCount() {
         return totalCount;
+    }
+
+    public GameCommand isFinish() {
+        return moveResult.isFinish(bridge.size());
     }
 }

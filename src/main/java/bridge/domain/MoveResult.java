@@ -1,14 +1,17 @@
 package bridge.domain;
 
+import static bridge.utils.GameCommand.*;
 import static bridge.utils.Move.NO_MOVE;
 import static bridge.utils.Move.isMoveUp;
 import static bridge.utils.message.GameMessagesUtil.DELIMITER;
 
+import bridge.utils.GameCommand;
 import bridge.utils.Move;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MoveResult {
+    private Move result;
     private final List<String> upMoves;
     private final List<String> downMoves;
 
@@ -18,6 +21,8 @@ public class MoveResult {
     }
 
     public void addMove(Move moving, Move result) {
+        this.result = result;
+
         if (isMoveUp(moving)) {
             addMoveUp(result);
             return;
@@ -26,13 +31,13 @@ public class MoveResult {
     }
 
     private void addMoveUp(Move result) {
-        upMoves.add(result.getMoving());
-        downMoves.add(NO_MOVE.getMoving());
+        upMoves.add(result.getText());
+        downMoves.add(NO_MOVE.getText());
     }
 
     private void addMoveDown(Move result) {
-        downMoves.add(result.getMoving());
-        upMoves.add(NO_MOVE.getMoving());
+        downMoves.add(result.getText());
+        upMoves.add(NO_MOVE.getText());
     }
 
     public String getUpMovesString() {
@@ -47,7 +52,18 @@ public class MoveResult {
         return upMoves.size();
     }
 
-    public boolean isFinish(int bridgeSize) {
+    public GameCommand isFinish(int bridgeSize) {
+        if (isEqualIndex(bridgeSize)) {
+            return FINISH;
+        }
+        return PLAY;
+    }
+
+    private boolean isEqualIndex(int bridgeSize) {
         return getStep() == bridgeSize;
+    }
+
+    public String getResultText() {
+        return result.getResultText();
     }
 }

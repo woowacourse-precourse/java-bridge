@@ -1,9 +1,11 @@
 package bridge.domain;
 
+import static bridge.utils.GameCommand.*;
 import static bridge.utils.Move.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.utils.GameCommand;
 import bridge.utils.Move;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,24 +23,22 @@ class BridgeGameTest {
     @DisplayName("이동할 수 있는 곳으로 움직이면 O를 표시한다.")
     @Test
     void 이동할_수_있는_곳으로_움직이면_O를_표시한다() {
-        MoveResult moveResult = bridgeGame.move(UP);
+        bridgeGame.move(UP);
+        MoveResult moveResult = bridgeGame.getMoveResult();
 
-        // when
         String result = moveResult.getUpMovesString();
 
-        // then
         assertThat(result).isEqualTo("O");
     }
 
     @DisplayName("이동할 수 없는 곳으로 움직이면 X를 표시한다.")
     @Test
     void 이동할_수_없는_곳으로_움직이면_X를_표시한다() {
-        MoveResult moveResult = bridgeGame.move(DOWN);
+        bridgeGame.move(DOWN);
+        MoveResult moveResult = bridgeGame.getMoveResult();
 
-        // when
         String result = moveResult.getDownMovesString();
 
-        // then
         assertThat(result).isEqualTo("X");
     }
 
@@ -52,29 +52,25 @@ class BridgeGameTest {
     @DisplayName("재시작으로 R을 입력하면 필드값을 초기화한다.")
     @Test
     void 재시작으로_R을_입력하면_게임을_초기화한다() {
-        // when
         bridgeGame.move(DOWN);
-        bridgeGame.retry("R");
+        bridgeGame.retry(PLAY);
 
-        // then
-        assertThat(bridgeGame.isFail()).isFalse();
+        assertThat(bridgeGame.getMoveResult().getStep()).isEqualTo(0);
     }
 
     @DisplayName("재시작으로 Q를 입력하면 값을 초기화하지 않는다.")
     @Test
     void 재시작으로_Q를_입력하면_값을_초기화하지_않는다() {
-        // when
         bridgeGame.move(DOWN);
-        bridgeGame.retry("Q");
+        bridgeGame.retry(FINISH);
 
-        // then
-        assertThat(bridgeGame.isFail()).isTrue();
+        assertThat(bridgeGame.getMoveResult().getStep()).isNotEqualTo(0);
     }
 
     @DisplayName("재시작으로 잘못된 값을 입력하면 예외가 발생한다.")
     @Test
     void 재시작으로_잘못된_값을_입력하면_예외가_발생한다() {
-        assertThatThrownBy(() -> bridgeGame.retry("A"))
+        assertThatThrownBy(() -> GameCommand.validateCommand("A"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -82,7 +78,7 @@ class BridgeGameTest {
     @Test
     void 재시작하면_게임_시도_횟수가_증가한다() {
         // when
-        bridgeGame.retry("R");
+        bridgeGame.retry(PLAY);
 
         // then
         assertThat(bridgeGame.getTotalCount()).isEqualTo(2);

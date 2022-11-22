@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.utils.GameCommand.*;
 import static bridge.utils.message.GameMessagesUtil.CHOICE_MOVE;
 import static bridge.utils.message.GameMessagesUtil.INPUT_BRIDGE_SIZE;
 import static bridge.utils.message.GameMessagesUtil.INPUT_RETRY;
@@ -7,6 +8,7 @@ import static bridge.utils.message.GameMessagesUtil.START;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
+import bridge.utils.GameCommand;
 import bridge.utils.Move;
 import bridge.utils.console.InputView;
 import bridge.utils.console.OutputView;
@@ -17,9 +19,9 @@ public class Application {
     private static final OutputView output = new OutputView();
 
     public static void main(String[] args) {
-        List<String> bridge = getBridge();
+        BridgeGame game = new BridgeGame(getBridge());
 
-        BridgeGame game = play(bridge);
+        play(game);
 
         result(game);
     }
@@ -48,16 +50,21 @@ public class Application {
         }
     }
 
-    private static BridgeGame play(List<String> bridge) {
-        BridgeGame game = new BridgeGame(bridge);
-        while (!game.isFinish()) {
-            showMoveResult(game.move(getChoiceMove()));
-
-            if (game.isFail()) {
-                game.retry(getChoiceRetry());
+    private static void play(BridgeGame game) {
+        GameCommand command = PLAY;
+        while (command.isPlay()) {
+            Move movable = tryMove(game);
+            command = game.isFinish();
+            if (movable.isFail()) {
+                command = getRetryCommand(game);
             }
         }
-        return game;
+    }
+
+    private static Move tryMove(BridgeGame game) {
+        Move movable = game.move(getChoiceMove());
+        showMoveResult(game.getMoveResult());
+        return movable;
     }
 
     private static Move getChoiceMove() {
@@ -75,7 +82,14 @@ public class Application {
         output.printMap(moveResult);
     }
 
-    private static String getChoiceRetry() {
+    private static GameCommand getRetryCommand(BridgeGame game) {
+        GameCommand command;
+        command = getChoiceRetry();
+        game.retry(command);
+        return command;
+    }
+
+    private static GameCommand getChoiceRetry() {
         while (true) {
             try {
                 output.printMessage(INPUT_RETRY.getMessage());
