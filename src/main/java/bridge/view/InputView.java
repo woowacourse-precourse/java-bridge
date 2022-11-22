@@ -8,16 +8,16 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private final BridgeGameException bridgeGameException = new BridgeGameException();
     public static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    public static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String INPUT_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    public static final String INPUT_MOVING = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String INPUT_GAME_COMMAND = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
-        String readLine = Console.readLine();
         try {
+            String readLine = Console.readLine();
             bridgeGameException.validateBridgeSize(readLine);
             return Integer.parseInt(readLine);
         } catch (IllegalArgumentException e) {
