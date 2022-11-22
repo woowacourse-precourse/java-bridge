@@ -14,4 +14,8 @@ public class MoveResultDto {
     public static MoveResultDto from(BridgeGameResult bridgeGameResult) {
         return new MoveResultDto(bridgeGameResult);
     }
+
+    public List<List<MoveResult>> getMoveResult() {
+        return moveResult;
+    }
 }
