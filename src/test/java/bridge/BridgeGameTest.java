@@ -1,5 +1,6 @@
 package bridge;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -24,6 +25,20 @@ public class BridgeGameTest extends NsTest {
         BridgeGame bridgeGame = new BridgeGame(3, generator);
         GameResult gameResult = bridgeGame.move("D");
         assertThat(gameResult.getMoveResult().getResult()).isEqualTo("X");
+    }
+
+    @Test
+    void 다리_이동가능한지_확인() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "U", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | X ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+        }, 1, 0, 0);
     }
 
     @Override
