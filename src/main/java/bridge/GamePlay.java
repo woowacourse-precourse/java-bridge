@@ -3,6 +3,8 @@ package bridge;
 import bridge.presentation.InputView;
 import bridge.presentation.OutputView;
 
+import java.util.List;
+
 public class GamePlay {
     private InputView inputView;
     private OutputView outputView;
@@ -27,5 +29,10 @@ public class GamePlay {
         PlayerMap playerMap = new PlayerMap(bridgeSize);
 
         gamePlay(bridge, playerMap);
+    }
+
+    private BridgeMaker createBridgeMaker() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        return new BridgeMaker(bridgeNumberGenerator);
     }
 }
