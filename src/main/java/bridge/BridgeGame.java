@@ -32,6 +32,17 @@ public class BridgeGame {
         return inputView.readMoving();
     }
 
+    /**
+     * 사용자가 한 칸 이동한 경우 기록을 업데이트 해주는 메서드
+     * @param playerInput
+     * @param move
+     * @return
+     */
+    public List<String> updatePlayerInput(List<String> playerInput, String move) {
+        playerInput.add(move);
+        return playerInput;
+    }
+
     public void retry() {
     }
 
