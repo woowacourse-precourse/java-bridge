@@ -1,4 +1,4 @@
-package bridge.main;
+package bridge;
 
 import bridge.controller.BridgeController;
 

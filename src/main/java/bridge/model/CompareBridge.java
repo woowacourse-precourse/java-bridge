@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.controller.BridgeController;
+import bridge.BridgeMaker;
 import bridge.view.OutputView;
 import java.util.List;
 
