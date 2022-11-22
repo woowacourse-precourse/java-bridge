@@ -15,7 +15,6 @@ public class OutputView {
      */
     public List<String> printMap(String currentMoving, boolean isMatch, List<List<String>> prevResultMap) {
         List<String> currentResult = createCurrentResult(currentMoving, isMatch);
-        System.out.print("[ ");
         if (prevResultMap.isEmpty()) {
             printOnlyCurrentResult(currentResult);
             return currentResult;
@@ -26,20 +25,25 @@ public class OutputView {
     }
 
     private void printOnlyCurrentResult(List<String> currentResult) {
-        System.out.print(currentResult.get(0));
-        System.out.print(" ]\n");
-        System.out.print("[ ");
-        System.out.print(currentResult.get(1));
-        System.out.print(" ]");
+        System.out.print("[");
+        System.out.print(" "+ currentResult.get(0)+" ");
+        System.out.print("]");
+        System.out.println();
+        System.out.print("[");
+        System.out.print(" "+ currentResult.get(1)+" ");
+        System.out.print("]");
+        System.out.println();
     }
 
     private void printEntireLine(List<List<String>> prevResultMap, List<String> currentResult, int line) {
+        System.out.print("[");
         for (int i = 0; i < prevResultMap.size(); i++) {
-            System.out.print(prevResultMap.get(i).get(line));
+            System.out.print(" "+ prevResultMap.get(i).get(line)+" ");
             System.out.print("|");
         }
-        System.out.println(currentResult.get(line));
-        System.out.print(" ]\n");
+        System.out.print(" "+currentResult.get(line)+" ");
+        System.out.print("]");
+        System.out.println();
     }
 
     private String decidePrintMark(boolean isMatch) {
@@ -67,10 +71,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean isSuccess, int attempts) {
+    public void printResult(List<List<String>> finalResultMap, boolean isSuccess, int attempts) {
+        System.out.println("최종 게임 결과");
+        printFinalMap(finalResultMap,0);
+        printFinalMap(finalResultMap,1);
         String suffix = decideSuccessOrFailure(isSuccess);
         System.out.println("게임 성공 여부: " + suffix);
         System.out.println("총 시도한 횟수: " + attempts);
+    }
+
+    private void printFinalMap(List<List<String>> resultMap, int line) {
+        System.out.print("[");
+        for (int i = 0; i < resultMap.size(); i++) {
+            System.out.print(" " + resultMap.get(i).get(line) + " ");
+            if (i == resultMap.size() - 1) {
+                break;
+            }
+            System.out.print("|");
+        }
+        System.out.print("]");
+        System.out.println();
     }
 
     private String decideSuccessOrFailure(boolean isSuccess) {

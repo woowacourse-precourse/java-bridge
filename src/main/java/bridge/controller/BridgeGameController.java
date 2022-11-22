@@ -23,16 +23,23 @@ public class BridgeGameController {
     public void run() {
         while (true) {
             resultMap = new ArrayList<>();
-            if (isSuccessfulCrossing()) {
-                outputView.printResult(true, attempts);
-                return;
-            }
-            if (!isRetry()) {
-                outputView.printResult(false, attempts);
+            if (isEnd()){
                 return;
             }
             attempts++;
         }
+    }
+
+    public boolean isEnd() {
+        if (isSuccessfulCrossing()) {
+            outputView.printResult(resultMap, true, attempts);
+            return true;
+        }
+        if (!isRetry()) {
+            outputView.printResult(resultMap, false, attempts);
+            return true;
+        }
+        return false;
     }
 
     private boolean isSuccessfulCrossing() {
