@@ -25,7 +25,7 @@ public class GameResult {
     }
 
     public boolean isFinishedFrom(Bridge bridge) {
-        return stepResults.size() == bridge.size();
+        return stepResults.get(stepResults.size() - 1).isCorrect() && stepResults.size() == bridge.size();
     }
 
     @Override
