@@ -15,6 +15,10 @@ public class Verification {
         return verify(input, Regex.MOVE_KEY.verify(), Error.MOVE.printError());
     }
 
+    public static boolean isRestartKey(final String input) {
+        return verify(input, Regex.RESTART_KEY.verify(), Error.RESTART.printError());
+    }
+
     private static boolean verify(final String input, final String value, final String error) {
         try {
             if (!input.matches(value)) {

@@ -55,5 +55,6 @@ public class Game {
 
     private boolean isStartOrEnd() {
         OutputView.printStartOrEnd();
+        InputView.readGameCommand();
     }
 }

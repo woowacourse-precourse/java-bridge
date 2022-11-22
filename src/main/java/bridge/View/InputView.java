@@ -23,7 +23,12 @@ public class InputView {
         }
     }
 
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() {
+        while (true) {
+            String key = Console.readLine();
+            if (Verification.isRestartKey(key)) {
+                return key;
+            }
+        }
     }
 }
