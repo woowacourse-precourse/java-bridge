@@ -41,6 +41,7 @@ public class InputView {
     }
 
     public String checkMoving(String moveDirection) {
+        moveDirection = moveDirection.toUpperCase();
         if (!Objects.equals(moveDirection, "U") && !Objects.equals(moveDirection, "D")) {
             throw new IllegalArgumentException("[ERROR] 입력할 수 있는 방향은 U(위) 또는 D(아래) 두가지 입니다.");
         }
@@ -61,6 +62,7 @@ public class InputView {
     }
 
     public String checkGameCommand(String gameCommand) {
+        gameCommand = gameCommand.toUpperCase();
         if (!Objects.equals(gameCommand, "R") && !Objects.equals(gameCommand, "Q")) {
             throw new IllegalArgumentException("[ERROR] 입력할 수 있는 방향은 R(재시도) 또는 Q(종료) 두가지 입니다.");
         }
