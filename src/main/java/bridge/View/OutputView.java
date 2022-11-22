@@ -13,4 +13,8 @@ public class OutputView {
     public static void printInit() {
         System.out.println(Message.START.print());
     }
+
+    public static void printError(String error) {
+        System.out.println(error);
+    }
 }
