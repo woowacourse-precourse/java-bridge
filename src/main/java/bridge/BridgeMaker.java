@@ -25,12 +25,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateSize(size);
-        List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            int randomNumber = bridgeNumberGenerator.generate();
-            bridge.add(upOrDown(randomNumber));
-        }
-        return bridge;
+        return generateRandomNumbers(size);
     }
 
     private String upOrDown(int randomNumber) {
@@ -44,5 +39,14 @@ public class BridgeMaker {
         if (size < 3 || size > 20) {
             throw new IllegalArgumentException(INVALID_SIZE_ERROR);
         }
+    }
+
+    private List<String> generateRandomNumbers(int size) {
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int randomNumber = bridgeNumberGenerator.generate();
+            bridge.add(upOrDown(randomNumber));
+        }
+        return bridge;
     }
 }
