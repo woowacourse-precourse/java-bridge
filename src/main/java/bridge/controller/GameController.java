@@ -43,7 +43,7 @@ public class GameController {
             handleSuccess();
             return;
         }
-        handleFail();
+        handleDie();
     }
 
     private SuccessAndFail moveUntilSuccessOrFail() {
@@ -67,19 +67,19 @@ public class GameController {
         bridgeGame.setSuccess();
     }
 
-    private void handleFail() {
+    private void handleDie() {
         if (inputView.readGameCommand().isRetry()) {
-            handleRetryAfterFail();
+            handleRetryAfterDie();
         }
     }
 
-    private void handleRetryAfterFail() {
+    private void handleRetryAfterDie() {
         bridgeGame.retry();
         attempt();
     }
 
     private void printResult() {
-        outputView.printResult(bridgeGame.getDiagram(), bridgeGame.successOrFail(), bridgeGame.getAttempts());
+        outputView.printResult(bridgeGame.getDiagram(), bridgeGame.getSuccessOrFail(), bridgeGame.getAttempts());
     }
 
 }

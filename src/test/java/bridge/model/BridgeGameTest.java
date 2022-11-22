@@ -3,7 +3,6 @@ package bridge.model;
 import static bridge.util.Constants.INITIAL_ATTEMPTS;
 
 import java.util.List;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,9 +33,9 @@ class BridgeGameTest {
 
     @Test
     void 성공_테스트() {
-        Assertions.assertEquals(SuccessAndFail.FAIL, bridgeGame.successOrFail());
+        Assertions.assertEquals(SuccessAndFail.FAIL, bridgeGame.getSuccessOrFail());
         bridgeGame.setSuccess();
-        Assertions.assertEquals(SuccessAndFail.SUCCESS, bridgeGame.successOrFail());
+        Assertions.assertEquals(SuccessAndFail.SUCCESS, bridgeGame.getSuccessOrFail());
     }
 
 }

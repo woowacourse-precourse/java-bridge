@@ -40,16 +40,16 @@ public class BridgeGame {
         return attempts;
     }
 
-    public SuccessAndFail successOrFail() {
+    public SuccessAndFail getSuccessOrFail() {
         return successAndFail;
-    }
-
-    public void setSuccess() {
-        this.successAndFail = SuccessAndFail.SUCCESS;
     }
 
     public Diagram getDiagram() {
         return diagram;
+    }
+
+    public void setSuccess() {
+        this.successAndFail = SuccessAndFail.SUCCESS;
     }
 
     public int getBridgeSize() {
