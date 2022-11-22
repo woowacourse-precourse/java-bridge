@@ -63,4 +63,16 @@ class BridgeGameTest {
     // then
     assertTrue(bridgeGame.getResult().contains("총 시도한 횟수: 2"));
   }
+
+  @Test
+  void 올바른_게임_결과를_반환하는가() {
+
+    // given
+    Bridge bridge = new Bridge(3);
+    BridgeGame bridgeGame = new BridgeGame(bridge);
+
+    // then
+    assertTrue(bridgeGame.getResult().contains("게임 성공 여부: 성공\n" + "총 시도한 횟수: 1"));
+  }
+
 }
