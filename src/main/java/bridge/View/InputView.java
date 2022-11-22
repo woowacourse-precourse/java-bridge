@@ -27,6 +27,14 @@ public class InputView {
     }
 
     /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public static String readMoving() throws IllegalArgumentException{
+        System.out.println(CHOOSE_BRIDGE_MESSAGE);
+        return validateBridgeChoose(Console.readLine());
+    }
+
+    /**
      * 입려받은 다리의 길이를 int 데이터로 바꾸고, 예외를 처리하는 메소드
      *
      * @param inputBridgeSize 입력받은 다리의 길이(String)
@@ -41,5 +49,21 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER_ERROR);
         }
+    }
+
+    /**
+     * 사용자가 입력한 '이동할 칸'이 적합한지 확인하는 메소드
+     *
+     * @param inputBridgeChoose 입력받은 '이동할 칸'
+     * @return 예외처리를 마친 '이동할 칸'
+     */
+    private static String validateBridgeChoose(String inputBridgeChoose) throws IllegalArgumentException{
+        if (inputBridgeChoose.length() != 1) {
+            throw new IllegalArgumentException(BRIDGE_CHOOSE_OUT_OF_BOUND_ERROR);
+        }
+        if (!inputBridgeChoose.equals("U") && !inputBridgeChoose.equals("D")) {
+            throw new IllegalArgumentException(BRIDGE_CHOOSE_OUT_OF_BOUND_ERROR);
+        }
+        return inputBridgeChoose;
     }
 }
