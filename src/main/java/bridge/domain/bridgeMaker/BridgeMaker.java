@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain.bridgeMaker;
 
 import java.util.List;
 
