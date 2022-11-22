@@ -24,13 +24,18 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+
+        String command = Console.readLine();
+        bridgeRule.isMoveCommand(command);
+        return command;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        bridgeRule.isRetryCommand(command);
+        return command;
     }
 }
