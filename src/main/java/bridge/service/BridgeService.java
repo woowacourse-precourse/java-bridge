@@ -98,41 +98,41 @@ public class BridgeService {
     }
 
     public static void getInitRetryQuit(){
-
         String input = InputView.readGameCommand();
         try {
             checkRetryQuit(input);
-            if(input.equals("R")){
-                tryCount++;
-                BridgeGame.retry();
-            }
-            else if(input.equals("Q")){
-                OutputView.printResult(presentMoveBridge);
-                OutputView.printGameSuccess(false);
-                OutputView.printTryCount();
-            }
+            retryQuit(input);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             getInitRetryQuit();
         }
+    }
 
+    public static void retryQuit(String input){
+        if(input.equals("R")){
+            tryCount++;
+            BridgeGame.retry();
+        }
+        else if(input.equals("Q")){
+            viewFinalResult(false);
+        }
     }
 
     public static void viewResult(){
         OutputView.printResult(presentMoveBridge);
     }
 
-    public static void gameSuccess(){
-        OutputView.printGameSuccess(true);
+    public static void gameSuccess(boolean result){
+        OutputView.printGameSuccess(result);
     }
 
     public static void tryCount(){
         OutputView.printTryCount();
     }
 
-    public static void viewFinalResult(){
+    public static void viewFinalResult(boolean result){
         viewResult();
-        gameSuccess();
+        gameSuccess(result);
         tryCount();
     }
 

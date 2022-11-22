@@ -46,7 +46,7 @@ public class BridgeGame {
             return true;
         }
         if (answerCount == BridgeService.getInputSize()) {
-            BridgeService.viewFinalResult();
+            BridgeService.viewFinalResult(true);
             return true;
         }
         return false;
