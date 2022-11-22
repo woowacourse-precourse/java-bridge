@@ -34,4 +34,10 @@ public class InputViewValidation {
             throw new IllegalArgumentException(ERROR_NOT_VALID_MOVING_COMMAND);
         }
     }
+
+    public static void isValidGameCommand(String gameCommand) {
+        if (!gameCommand.equals(BRIDGE_RETRY_COMMAND) && !gameCommand.equals(BRIDGE_QUIT_COMMAND)) {
+            throw new IllegalArgumentException(ERROR_NOT_VALID_GAME_COMMAND);
+        }
+    }
 }

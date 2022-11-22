@@ -6,4 +6,7 @@ public class BridgeConstant {
 
     public static final String BRIDGE_UP_COMMAND = "U";
     public static final String BRIDGE_DOWN_COMMAND = "D";
+
+    public static final String BRIDGE_RETRY_COMMAND = "R";
+    public static final String BRIDGE_QUIT_COMMAND = "Q";
 }
