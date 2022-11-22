@@ -24,7 +24,6 @@ class BridgeResultTest {
         bridgeResult.updateResult(new SquareResult(new Square(MoveType.UP), MoveResult.SUCCESS));
         bridgeResult.updateResult(new SquareResult(new Square(MoveType.UP), MoveResult.SUCCESS));
         bridgeResult.updateResult(new SquareResult(new Square(MoveType.DOWN), MoveResult.FAIL));
-
     }
 
     @DisplayName("위쪽 다리의 결과만 가져온다.")
@@ -47,6 +46,14 @@ class BridgeResultTest {
         List<String> down = result.get(new Square(MoveType.DOWN));
 
         assertThat(down.get(index)).isEqualTo(moveResult.symbol());
+    }
+
+    @DisplayName("다리 이동 성공 여부를 판별한다.")
+    @Test
+    void validateMoveSuccess() {
+        boolean moveSuccess = bridgeResult.isSuccess();
+
+        assertThat(moveSuccess).isFalse();
     }
 
     @DisplayName("게임의 최종 성공 여부를 판별한다.")
