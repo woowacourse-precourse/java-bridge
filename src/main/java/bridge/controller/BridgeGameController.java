@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
+import bridge.model.BridgeGame;
 import bridge.model.SuccessOrFail;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -10,11 +11,11 @@ import bridge.util.Constants.Constant;
 
 public class BridgeGameController {
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
-    private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private static Bridge bridge;
-    private BridgeGame bridgeGame = new BridgeGame();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private Bridge bridge;
 
     public void createBridge() {
         int bridgeSize = validateBridgeSize();
