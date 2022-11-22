@@ -23,7 +23,7 @@ public class BridgeGame {
             bridgeState.moveState(input);
         }
 
-        bridgeState.moveState("X");
+        bridgeState.moveState(bridge.get(bridgeState.getNextIndex())+"X");
     }
 
     /**
