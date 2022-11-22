@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.Parser;
 import bridge.constant.BridgeDirection;
+import bridge.constant.BridgeSizeRule;
 import bridge.constant.GameRetryCommand;
 import bridge.constant.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
@@ -21,7 +22,9 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(InputMessage.INPUT_BRIDGE_SIZE.getMessage());
         String input = Console.readLine();
-        return Parser.parseToInt(input);
+        Integer bridgeSize = Parser.parseToInt(input);
+        BridgeSizeRule.validateBridgeSize(bridgeSize);
+        return bridgeSize;
     }
 
     /**

@@ -13,4 +13,10 @@ public enum BridgeSizeRule {
     public Integer getSize() {
         return size;
     }
+
+    public static void validateBridgeSize(Integer bridgeSize) {
+        if (!(MINIMUM_SIZE.size <= bridgeSize && bridgeSize <= MAXIMUM_SIZE.size)) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_MUST_BE_FROM_THREE_TO_TWENTY.getMessage());
+        }
+    }
 }

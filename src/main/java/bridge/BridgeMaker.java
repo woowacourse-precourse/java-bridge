@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.constant.BridgeDirection;
-import bridge.constant.BridgeSizeRule;
-import bridge.constant.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +20,6 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        validateBridgeSize(size);
-
         List<String> bridge = new ArrayList<>();
         for (int quantityMade = 0; quantityMade < size; quantityMade++) {
             int integerDirection = bridgeNumberGenerator.generate();
@@ -32,9 +28,4 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private void validateBridgeSize(Integer size) {
-        if (!(BridgeSizeRule.MINIMUM_SIZE.getSize() <= size && size <= BridgeSizeRule.MAXIMUM_SIZE.getSize())) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_MUST_BE_FROM_THREE_TO_TWENTY.getMessage());
-        }
-    }
 }
