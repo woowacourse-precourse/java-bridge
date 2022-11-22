@@ -11,13 +11,7 @@ public class InputView {
     }
 
     public String readMoving() {
-        while (true) {
-            try {
-                return validator.checkMoving(input());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return input();
     }
 
     public String readGameCommand() {

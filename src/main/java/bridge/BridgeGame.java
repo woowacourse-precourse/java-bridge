@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.validation.BridgeGameValidator.checkMoving;
+
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGameResult;
 
@@ -20,6 +22,7 @@ public class BridgeGame {
     }
 
     public boolean move(int moveCount, String moving) {
+        checkMoving(moving);
         boolean canMove = bridge.canMove(moveCount, moving);
         bridgeGameResult.updateMoveState(moving, canMove);
         return canMove;
