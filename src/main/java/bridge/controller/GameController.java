@@ -1,14 +1,13 @@
 package bridge.controller;
 
+import bridge.BridgeNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
-import bridge.model.BridgeSpace;
 import bridge.model.Moved;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
-import java.util.Objects;
 
 public class GameController {
     InputView inputView = new InputView();
