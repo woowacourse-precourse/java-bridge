@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         while (true) {
             String size = Console.readLine();
             if (Verification.isBridgeNum(size)) {
