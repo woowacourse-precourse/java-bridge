@@ -57,6 +57,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         printEndGame();
         printMap(bridgeGame.makeBridgeResult());
+        printSuccessOrFailure(bridgeGame.winOrLose());
         printCount(bridgeGame.getCount());
     }
 }

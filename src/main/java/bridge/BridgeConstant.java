@@ -9,4 +9,6 @@ public class BridgeConstant {
     public static final String SUCCESS = "O";
     public static final String FAIL = "X";
     public static final String NOTHING = " ";
+    public static final String WIN = "성공";
+    public static final String LOSE = "실패";
 }

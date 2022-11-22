@@ -64,6 +64,13 @@ public class BridgeGame {
         return map;
     }
 
+    public String winOrLose() {
+        if (moving.size() == bridge.size() && moving.get(moving.size() - 1).equals(bridge.get(bridge.size() - 1))) {
+            return BridgeConstant.WIN;
+        }
+        return BridgeConstant.LOSE;
+    }
+
     public int getCount() {
         return count;
     }
