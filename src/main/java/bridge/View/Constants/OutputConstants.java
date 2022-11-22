@@ -13,4 +13,6 @@ public class OutputConstants {
     public static final String START_OF_BRIDGE = "[";
     public static final String END_OF_BRIDGE = "]";
     public static final String BETWEEN_BRIDGES = " | ";
+    public static final String RIGHT = "O";
+    public static final String WRONG = "X";
 }
