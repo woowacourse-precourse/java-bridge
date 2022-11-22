@@ -1,6 +1,7 @@
 package bridge.view;
 
 
+import bridge.model.Direction;
 import bridge.model.GameResult;
 
 import java.util.ArrayList;
@@ -44,14 +45,14 @@ public class OutputView {
     }
 
     private void addCorrectUpResult(List<String> bridge, int index) {
-        if (bridge.get(index).equals("U")) {
+        if (Direction.UP.isSame(bridge.get(index))) {
             upBridge.add("O");
             downBridge.add(" ");
         }
     }
 
     private void addCorrectDownResult(List<String> bridge, int index) {
-        if (bridge.get(index).equals("D")) {
+        if (Direction.DOWN.isSame(bridge.get(index))) {
             upBridge.add(" ");
             downBridge.add("O");
         }
@@ -65,14 +66,14 @@ public class OutputView {
     }
 
     private void addMissDownResult(List<String> bridge, int index) {
-        if (bridge.get(index).equals("D")) {
+        if (Direction.DOWN.isSame(bridge.get(index))) {
             upBridge.add("X");
             downBridge.add(" ");
         }
     }
 
     private void addMissUpResult(List<String> bridge, int index) {
-        if (bridge.get(index).equals("U")) {
+        if (Direction.UP.isSame(bridge.get(index))) {
             upBridge.add(" ");
             downBridge.add("X");
         }

@@ -1,12 +1,12 @@
 package bridge.view;
 
+import bridge.model.Direction;
+
 public class InputValidator {
 
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final String NUMBER_PATTERN = "\\d+";
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
 
@@ -30,17 +30,17 @@ public class InputValidator {
     }
 
     public static void validateMovingCommand(String command) {
-        if(!isValidMovingCommand(command)){
+        if (!isValidMovingCommand(command)) {
             throw new IllegalArgumentException("U 또는 D를 입력해주세요.");
         }
     }
 
     private static boolean isValidMovingCommand(String command) {
-        return command.equals(UP) || command.equals(DOWN);
+        return Direction.UP.isSame(command) || Direction.DOWN.isSame(command);
     }
 
     public static void validateGameCommand(String command) {
-        if(!isValidGameCommand(command)){
+        if (!isValidGameCommand(command)) {
             throw new IllegalArgumentException("R 또는 Q를 입력해주세요.");
         }
     }

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.Direction;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +22,9 @@ public class BridgeMaker {
     }
 
     private String generateDirection() {
-        int bridgeNumber = bridgeNumberGenerator.generate();
-        if (bridgeNumber == 1) {
-            return "U";
+        if (Direction.UP.isSame(bridgeNumberGenerator.generate())) {
+            return Direction.UP.getDirection();
         }
-        return "D";
+        return Direction.DOWN.getDirection();
     }
 }
