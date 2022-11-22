@@ -15,14 +15,11 @@ class BridgeTest {
 	@ParameterizedTest
 	@CsvSource(value = {"U, 0, true", "D, 1, true", "U, 2, true", "D, 3, false"})
 	void checkValidSpace(String userSpace, Integer currentSpace, boolean isValid) {
-		//given
 		List<String> bridgeTest = List.of("U", "D", "U", "U");
 
-		//when
 		bridge.initBridge(bridgeTest);
 		boolean isValidTest = bridge.checkValidSpace(userSpace, currentSpace);
 
-		//then
 		Assertions.assertThat(isValid).isEqualTo(isValidTest);
 	}
 }

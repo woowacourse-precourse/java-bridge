@@ -1,5 +1,7 @@
 package bridge.repository;
 
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,74 +19,55 @@ class UserBridgeRepositoryTest {
 	@DisplayName("saveUserCorrectSpace 에서 upperBridge 에 O 저장 확인 테스트")
 	@Test
 	void saveUserCorrectSpaceInUpperBridge() {
-		//given
 		String userLocation = "U";
 
-		//when
 		userBridgeRepository.saveUserCorrectSpace(userLocation);
 		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
-		//then
 		Assertions.assertThat(userBridgeStatus).isEqualTo("[ O ]" + "\n" + "[   ]");
 	}
 
 	@DisplayName("saveUserCorrectSpace 에서 lowerBridge 에 O 저장 확인 테스트")
 	@Test
 	void saveUserCorrectSpaceInLowerBridge() {
-		//given
 		String userLocation = "D";
 
-		//when
 		userBridgeRepository.saveUserCorrectSpace(userLocation);
 		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
-		//then
 		Assertions.assertThat(userBridgeStatus).isEqualTo("[   ]" + "\n" + "[ O ]");
 	}
 
 	@DisplayName("saveUserWrongSpace 에서 upperBridge 에 X 저장 확인 테스트")
 	@Test
 	void saveUserWrongSpaceInUpperBridge() {
-		//given
 		String userLocation = "U";
 
-		//when
 		userBridgeRepository.saveUserWrongSpace(userLocation);
 		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
-		//then
 		Assertions.assertThat(userBridgeStatus).isEqualTo("[ X ]" + "\n" + "[   ]");
 	}
 
 	@DisplayName("saveUserWrongSpace 에서 lowerBridge 에 X 저장 확인 테스트")
 	@Test
 	void saveUserWrongSpaceInLowerBridge() {
-		//given
 		String userLocation = "D";
 
-		//when
 		userBridgeRepository.saveUserWrongSpace(userLocation);
 		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
 
-		//then
 		Assertions.assertThat(userBridgeStatus).isEqualTo("[   ]" + "\n" + "[ X ]");
 	}
 
 	@DisplayName("findUserBridgeStatus 테스트")
 	@Test
 	void findUserBridgeStatus() {
-		//given
-		String location1 = "U";
-		String location2 = "D";
-		String location3 = "D";
-
-		//when
-		userBridgeRepository.saveUserCorrectSpace(location1);
-		userBridgeRepository.saveUserWrongSpace(location2);
-		userBridgeRepository.saveUserCorrectSpace(location3);
+		List<String> location = List.of("U", "D", "D");
+		userBridgeRepository.saveUserCorrectSpace(location.get(0));
+		userBridgeRepository.saveUserWrongSpace(location.get(1));
+		userBridgeRepository.saveUserCorrectSpace(location.get(2));
 		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
-
-		//then
 		Assertions.assertThat(userBridgeStatus)
 			.isEqualTo("[ O |   |   ]" + "\n" + "[   | X | O ]");
 	}

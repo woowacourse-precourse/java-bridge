@@ -15,15 +15,12 @@ class BridgeRandomNumberGeneratorTest {
 	@DisplayName("생성된 숫자가 0 또는 1인지 확인하는 테스트")
 	@Test
 	void generate() {
-		//when
 		List<Integer> bridge = new ArrayList<>();
 
-		//when
 		for (int i = 0; i < 4; i++) {
 			bridge.add(bridgeRandomNumberGenerator.generate());
 		}
 
-		//then
 		bridge.stream().forEach(i -> assertThat(i).isIn(0, 1));
 	}
 }
