@@ -56,7 +56,7 @@
 # 테스트 목록
 
 ## Bridge
-- [ ] bridge 생성 및 요소 수 만큼 next 실행
+- [X] bridge 생성 및 요소 수 만큼 next 실행
 - [ ] 리셋 후에 요소 수 만큼 next 실행
 
 ## BridgeElement
