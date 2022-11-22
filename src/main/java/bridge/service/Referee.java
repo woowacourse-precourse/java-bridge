@@ -9,15 +9,17 @@ public class Referee {
     private static final String COMPARE_PATH_EQUAL = "O";
     private static final String COMPARE_PATH_NOT_EQUAL = "X";
     private static final int BRIDGE_COUNT = 2;
+    private static final String RESULT_WIN = "성공";
+    private static final String RESULT_FAIL = "실패";
 
-    public boolean makeResult(List<String> myPaths, List<String> bridgePaths){
+    public String makeResult(List<String> myPaths, List<String> bridgePaths){
         for (int i = 0; i < myPaths.size(); i++) {
             if(!myPaths.get(i).equals(bridgePaths.get(i))){
-                return false;
+                return RESULT_FAIL;
             }
         }
 
-        return true;
+        return RESULT_WIN;
     }
     private static int convertPath(String path) {
         if (path.equals(MOVE_COMMAND_UP)) {
