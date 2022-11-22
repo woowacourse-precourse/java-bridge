@@ -7,14 +7,16 @@ public enum Errors {
     MOVE_ERROR("U 또는 D만 입력 가능합니다."),
     REPLAY_ERROR("R 또는 Q만 입력 가능합니다.");
 
-    private final String error;
+    private static final String ERRORS = "[ERROR] ";
+    private String message;
 
-    Errors(final String error) {
-        this.error = error;
+
+    Errors(final String message) {
+        this.message = message;
     }
 
-    public String getError() {
-        return error;
+    public String getMessage() {
+        return ERRORS + message;
     }
 
 }
