@@ -19,10 +19,6 @@ public class BridgeGame {
     private List<String> guessBridge;
     private Integer tryCount;
 
-    public Integer getTryCount() {
-        return tryCount;
-    }
-
     private BridgeGame(int size) {
         this.answerBridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
         this.guessBridge = new ArrayList<>();
@@ -31,6 +27,10 @@ public class BridgeGame {
 
     public static BridgeGame initNewGame(int size) {
         return new BridgeGame(size);
+    }
+
+    public Integer getTryCount() {
+        return tryCount;
     }
 
     /**
@@ -70,12 +70,12 @@ public class BridgeGame {
         return answerBridge.size() == guessBridge.size();
     }
 
-    public List<Guess> getGuess() {
-        List<Guess> roundResult = new ArrayList<>();
+    public List<Check> getChecks() {
+        List<Check> roundResult = new ArrayList<>();
 
         for (int index = 0; index < guessBridge.size(); index++) {
-            Guess guessResult = Guess.getGuessResult(answerBridge.get(index), guessBridge.get(index));
-            roundResult.add(guessResult);
+            Check checkResult = Check.getGuessResult(answerBridge.get(index), guessBridge.get(index));
+            roundResult.add(checkResult);
         }
 
         return roundResult;
