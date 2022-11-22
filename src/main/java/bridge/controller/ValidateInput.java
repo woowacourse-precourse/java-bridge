@@ -17,9 +17,10 @@ public class ValidateInput {
         }
         return Integer.parseInt(input);
     }
-    protected void endLetter(String input){
+    protected String endLetter(String input){
         if(!input.equals(GameMessage.RETRY) && !input.equals(GameMessage.CLOSE)){
             throw new IllegalArgumentException(ExceptionMsg.END_LETTER.msg);
         }
+        return input;
     }
 }
