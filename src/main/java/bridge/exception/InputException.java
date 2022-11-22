@@ -1,4 +1,4 @@
-package bridge;
+package bridge.exception;
 
 import static bridge.PlayerCommend.*;
 
