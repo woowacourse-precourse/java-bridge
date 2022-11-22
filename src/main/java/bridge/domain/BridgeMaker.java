@@ -23,20 +23,14 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         while (bridge.size() != size) {
-            bridge.add(randomBridge());
+            int randomNum = bridgeNumberGenerator.generate();
+            if(randomNum == 1){
+                bridge.add(Constant.UP.getConstant());
+            }
+            if(randomNum == 0){
+                bridge.add(Constant.DOWN.getConstant());
+            }
         }
         return bridge;
-    }
-
-    private String randomBridge() {
-        int updown = bridgeNumberGenerator.generate();
-        String result = "";
-        if (updown == 1) {
-            result = Constant.UP.getConstant();
-        }
-        if (updown == 0) {
-            result = Constant.DOWN.getConstant();
-        }
-        return result;
     }
 }
