@@ -6,6 +6,7 @@ import bridge.view.OutputView;
 public class InputExceptionHandler {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+
     public int getBridgeSize() {
         try {
             return inputView.readBridgeSize();
@@ -32,5 +33,6 @@ public class InputExceptionHandler {
             return inputView.readGameCommand();
         }
     }
+
 }
 
