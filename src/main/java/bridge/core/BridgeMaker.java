@@ -2,6 +2,8 @@ package bridge.core;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.core.exception.Error;
+import bridge.core.exception.InvalidInputException;
 import bridge.type.BridgeBlock;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        validateOutOfRange(size);
         return IntStream.range(0, size)
                 .mapToObj(i -> BridgeBlock.getBlockSymbolByNumber(bridgeNumberGenerator.generate()))
                 .collect(Collectors.toList());
@@ -32,4 +35,11 @@ public class BridgeMaker {
     public static BridgeMaker getBridgeMaker() {
         return new BridgeMaker(new BridgeRandomNumberGenerator());
     }
+
+    //== validation ==//
+    private void validateOutOfRange(int size) {
+        Integer number = Integer.valueOf(size);
+        if (number < 3 || number > 20) throw new InvalidInputException(Error.OUT_OF_RANGE_ERROR);
+    }
+
 }
