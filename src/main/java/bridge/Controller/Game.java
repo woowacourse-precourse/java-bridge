@@ -41,6 +41,7 @@ public class Game {
     private boolean isCrossed(final int position) {
         boolean gameState;
         OutputView.printMove();
+        InputView.readMoving();
         return false;
     }
 

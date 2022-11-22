@@ -11,6 +11,10 @@ public class Verification {
             verify(size, Regex.THREE_TO_TWENTY.verify(), Error.THREE_TO_TWENTY.printError());
     }
 
+    public static boolean isMoveKey(final String input) {
+        return verify(input, Regex.MOVE_KEY.verify(), Error.MOVE.printError());
+    }
+
     private static boolean verify(final String input, final String value, final String error) {
         try {
             if (!input.matches(value)) {
