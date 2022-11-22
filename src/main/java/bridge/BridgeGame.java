@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,7 +13,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(Bridge bridge, String input) {
+        bridge.getCrossed().add(input);
     }
 
     /**
@@ -18,6 +22,51 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(Bridge bridge) {
+        resetCrossed(bridge);
+        increaseTried(bridge);
+    }
+
+    public boolean isCorrect(Bridge bridge) {
+        List<String> footholds = bridge.getFootholds();
+        List<String> crossed = bridge.getCrossed();
+        int lastFootholdIndex = bridge.getCrossed().size() - 1;
+        if (crossed.size() == 0) {
+            return true;
+        }
+        if (!crossed.get(lastFootholdIndex).equals(footholds.get(lastFootholdIndex))) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isAllCrossed(Bridge bridge) {
+        int footholdsSize = bridge.getFootholds().size();
+        int crossedSize = bridge.getCrossed().size();
+
+        if (footholdsSize == crossedSize) {
+            return true;
+        }
+        return false;
+    }
+
+    public void resetCrossed(Bridge bridge) {
+        bridge.setCrossed(new ArrayList<>());
+    }
+
+    public void increaseTried(Bridge bridge) {
+        bridge.setTried(bridge.getTried() + 1);
+    }
+
+    public boolean isClear(Bridge bridge) {
+        if (!isAllCrossed(bridge)) {
+            return false;
+        }
+        for (int i = 0; i < bridge.getCrossed().size(); i++) {
+            if (!bridge.getFootholds().get(i).equals(bridge.getCrossed().get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
