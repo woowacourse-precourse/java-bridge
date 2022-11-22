@@ -43,4 +43,17 @@ class BridgeGameTest {
         assertThat(bridgeGame.getInputBridge().size()).isEqualTo(0);
     }
 
+    @DisplayName("사용자 입력 리스트에 따라 성공 여부를 알맞게 반환한다.")
+    @Test
+    void checkSuccess() {
+        BridgeGame bridgeGame = new BridgeGame(SIZE);
+        bridgeGame.move(bridgeGame.getBridge().get(0));
+        bridgeGame.move(bridgeGame.getBridge().get(1));
+        assertThat(bridgeGame.isSuccess()).isEqualTo(false);
+        bridgeGame.move(bridgeGame.getBridge().get(2));
+        bridgeGame.move(bridgeGame.getBridge().get(3));
+        bridgeGame.move(bridgeGame.getBridge().get(4));
+        assertThat(bridgeGame.isSuccess()).isEqualTo(true);
+    }
+
 }
