@@ -40,7 +40,7 @@ public class BridgeGameController {
 
     private void playGame() {
         do {
-            bridgeGame.move(iv.readMoving());
+            validateReadMoving();
             bridgeGame.makeMap(bridgeGame.getBridge(), bridgeGame.getMarks());
             ov.printMap(bridgeGame.getMap());
             if (quit()) {
@@ -49,14 +49,41 @@ public class BridgeGameController {
         } while (bridgeGame.isEndOfBridge());
     }
 
+    private void validateReadMoving() {
+        reEnter = true;
+        while(reEnter) {
+            try {
+                bridgeGame.move(iv.readMoving());
+                reEnter = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                reEnter = true;
+            }
+        }
+    }
+
     private boolean quit() {
         if (bridgeGame.isDiscord()) {
-            if (!bridgeGame.retry(iv.readGameCommand())) {
+            validateReadCommand();
+            if (!bridgeGame.isRetryGame()) {
                 return true;
             }
             bridgeGame.backToFirstSection();
         }
         return false;
+    }
+
+    private void validateReadCommand() {
+        reEnter = true;
+        while(reEnter) {
+            try {
+                bridgeGame.retry(iv.readGameCommand());
+                reEnter = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                reEnter = true;
+            }
+        }
     }
 
     private void printResult() {
