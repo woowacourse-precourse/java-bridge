@@ -29,4 +29,13 @@ public class BridgeProgram {
 			return checkBridgeSizeInputOrMove();
 		}
 	}
+
+	private String checkMovingInput() {
+		try {
+			return inputView.readMoving();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return checkMovingInput();
+		}
+	}
 }
