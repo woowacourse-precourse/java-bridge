@@ -9,7 +9,6 @@ public class InputValidator {
     private static final Pattern GAME_RETRY_FORMAT = Pattern.compile("^[RQ]$");
     private static final int BLOCK_LENGTH = 1;
 
-
     private InputValidator() {
     }
 
