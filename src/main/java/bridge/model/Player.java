@@ -8,7 +8,7 @@ import java.util.Map;
 public class Player {
     private String currentMove;
     private int currentLocation;
-    private List<Map<String, String>> playerMoved;
+    private List<List<String>> playerMoved;
 
     public Player() {
         playerMoved = new ArrayList<>();
@@ -25,10 +25,12 @@ public class Player {
         return currentLocation;
     }
 
+    public List<List<String>> getPlayerMoved() {
+        return playerMoved;
+    }
+
     public void addPlayerMove(String move) {
-        playerMoved.add(new HashMap<>(){{
-            put(currentMove, move);
-        }});
+        playerMoved.add(List.of(currentMove, move));
         addCurrentLocation();
     }
 
