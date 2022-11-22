@@ -9,7 +9,8 @@ public enum IOMessage {
     DIVIDE_BRIDGE (" | "),
     FINAL_RESULT_GAME("최종 게임 결과"),
     GAME_SUCCESS_OR_NOT("게임 성공 여부: "),
-    COUNT_GAME("총 시도한 횟수: ");
+    COUNT_GAME("총 시도한 횟수: "),
+    GAME_START_MESSAGE("다리 건너기 게임을 시작합니다.");
     private final String message;
 
     IOMessage(final String message) {

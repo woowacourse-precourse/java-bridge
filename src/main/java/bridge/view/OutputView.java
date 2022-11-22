@@ -36,4 +36,8 @@ public class OutputView {
         System.out.println(GAME_SUCCESS_OR_NOT.getMessage() + result);
         System.out.println(COUNT_GAME.getMessage() + count);
     }
+
+    public void printStart() {
+        System.out.println(GAME_START_MESSAGE.getMessage());
+    }
 }
