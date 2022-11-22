@@ -42,17 +42,21 @@ public class Application {
     public static MoveResult playGame(BridgeGame bridgeGame) {
         int moveFlag = MOVERESULT_FLAG_VALID;
         MoveResult moveResult = new MoveResult(0, null);
-        while(moveFlag == MOVERESULT_FLAG_VALID) {
-            System.out.println(MESSAGE_MOVE);
-            InputView inputView = new InputView();
-            String move = inputView.readMoving();
-            System.out.println(move);
-            moveResult = bridgeGame.move(move);
-
-            OutputView outputView = new OutputView();
-            outputView.printMap(moveResult);
+        while (moveFlag == MOVERESULT_FLAG_VALID) {
+            moveResult = moveInPlayGame(bridgeGame);
             moveFlag = moveResult.flag;
         }
+        return moveResult;
+    }
+
+    public static MoveResult moveInPlayGame(BridgeGame bridgeGame) {
+        System.out.println(MESSAGE_MOVE);
+        InputView inputView = new InputView();
+        String userMove = inputView.readMoving();
+        System.out.println(userMove);
+        MoveResult moveResult = bridgeGame.move(userMove);
+        OutputView outputView = new OutputView();
+        outputView.printMap(moveResult);
         return moveResult;
     }
 }
