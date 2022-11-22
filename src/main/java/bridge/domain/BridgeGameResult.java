@@ -37,6 +37,10 @@ public class BridgeGameResult {
         result = FAIL;
     }
 
+    public boolean isSuccess() {
+        return result.equals(SUCCESS);
+    }
+
     public void setSuccess() {
         result = SUCCESS;
     }
