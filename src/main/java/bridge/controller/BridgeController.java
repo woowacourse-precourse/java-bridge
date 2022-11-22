@@ -4,10 +4,14 @@ import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class BridgeController {
 
-    private InputView inputView;
-    private OutputView outputView;
+    private static final List<String> COMMAND_INPUT = List.of("R", "Q");
+
+    private final InputView inputView;
+    private final OutputView outputView;
     private BridgeGame bridgeGame;
 
     public BridgeController() {
@@ -31,10 +35,10 @@ public class BridgeController {
         }
     }
 
-    public void run(){
-        while (true){
-            chooseStep();
-            if (bridgeGame.isOver()) {
+    public void run() {
+        while (true) {
+            goForward();
+            if (checkOverCondition()) {
                 break;
             }
             bridgeGame.retry();
@@ -66,7 +70,14 @@ public class BridgeController {
         }
     }
 
-    private void chooseStep(){
+    private void goForward() {
+        do {
+            chooseStep();
+            showResult();
+        } while (!bridgeGame.isOver());
+    }
+
+    private void chooseStep() {
         while (true) {
             try {
                 String step = inputView.readMoving();
