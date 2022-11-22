@@ -1,12 +1,12 @@
 package bridge.controller;
 
-import static bridge.constant.Message.ENTER_BRIDGE_LENGTH;
-import static bridge.constant.Message.ENTER_MOVE_DIRECTION;
-import static bridge.constant.Message.ENTER_RETRY_OR_QUIT;
-import static bridge.constant.Message.START_MESSAGE;
+import static bridge.domain.Message.ENTER_BRIDGE_LENGTH;
+import static bridge.domain.Message.ENTER_MOVE_DIRECTION;
+import static bridge.domain.Message.ENTER_RETRY_OR_QUIT;
+import static bridge.domain.Message.START_MESSAGE;
 
-import bridge.model.Bridge;
-import bridge.model.BridgeGame;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

@@ -1,13 +1,13 @@
 package bridge.view;
 
-import static bridge.constant.Message.FAIL;
-import static bridge.constant.Message.FINAL_GAME_RESULT;
-import static bridge.constant.Message.GAME_SUCCESS_OR_NOT;
-import static bridge.constant.Message.SUCCESS;
-import static bridge.constant.Message.TOTAL_COUNT_OF_TRY;
+import static bridge.domain.Message.FAIL;
+import static bridge.domain.Message.FINAL_GAME_RESULT;
+import static bridge.domain.Message.GAME_SUCCESS_OR_NOT;
+import static bridge.domain.Message.SUCCESS;
+import static bridge.domain.Message.TOTAL_COUNT_OF_TRY;
 
-import bridge.model.BridgeGame;
-import bridge.model.GameResult;
+import bridge.domain.BridgeGame;
+import bridge.domain.GameResult;
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -23,8 +23,6 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
         GameResult gameResult = bridgeGame.getGameResult();
@@ -57,8 +55,6 @@ public class OutputView {
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
         printMessage(FINAL_GAME_RESULT.toString());

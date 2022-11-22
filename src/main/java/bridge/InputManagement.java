@@ -1,7 +1,7 @@
 package bridge;
 
 
-import bridge.constant.ErrorMessage;
+import bridge.domain.ErrorMessage;
 
 public class InputManagement {
 

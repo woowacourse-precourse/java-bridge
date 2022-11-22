@@ -1,8 +1,7 @@
-package bridge.model;
+package bridge.domain;
 
-import static bridge.constant.Direction.UPPER;
+import static bridge.domain.Direction.UPPER;
 
-import bridge.constant.Direction;
 import java.util.ArrayList;
 import java.util.List;
 

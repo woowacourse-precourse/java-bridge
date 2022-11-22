@@ -1,8 +1,7 @@
-package bridge.model;
+package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.constant.ErrorMessage;
 import java.util.List;
 
 public class Bridge {

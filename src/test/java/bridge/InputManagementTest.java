@@ -1,8 +1,8 @@
 package bridge;
 
-import static bridge.constant.ErrorMessage.INPUT_BRIDGE_SIZE_ERROR;
-import static bridge.constant.ErrorMessage.INPUT_DIRECTION_ERROR;
-import static bridge.constant.ErrorMessage.INPUT_RETRY_OR_QUIT_ERROR;
+import static bridge.domain.ErrorMessage.INPUT_BRIDGE_SIZE_ERROR;
+import static bridge.domain.ErrorMessage.INPUT_DIRECTION_ERROR;
+import static bridge.domain.ErrorMessage.INPUT_RETRY_OR_QUIT_ERROR;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
