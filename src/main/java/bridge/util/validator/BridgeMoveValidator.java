@@ -26,7 +26,7 @@ public class BridgeMoveValidator {
     }
 
     public void isRightForm() {
-        if ((bridgeLocation != "U") && (bridgeLocation != "D")) {
+        if (!((bridgeLocation.equals("U")) || (bridgeLocation.equals("D")))) {
             throw new IllegalArgumentException(Constants.ERROR_LOCATION_RIGHT_FORM);
         }
     }

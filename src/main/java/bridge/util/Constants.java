@@ -9,6 +9,7 @@ public class Constants {
 
     // 출력 View 관련 메시지 관련 상수
     public static final String OUTPUT_BRIDGE_GAME_START = "다리 건너기 게임을 시작합니다.";
+    public static final String OUTPUT_FINAL_RESULT = "최종 게임 결과";
     public static final String OUTPUT_BRIDGE_GAME_SUCCESS = "게임 성공 여부: ";
     public static final String OUTPUT_SUCCESS = "성공";
     public static final String OUTPUT_FAIL = "실패";

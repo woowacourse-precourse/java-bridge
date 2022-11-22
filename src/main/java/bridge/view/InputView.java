@@ -30,8 +30,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        System.out.println();
-        System.out.println(Constants.INPUT_BRIDGE_MOVE);
+        System.out.println("\n" + Constants.INPUT_BRIDGE_RETRY);
         return Console.readLine();
     }
 }

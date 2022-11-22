@@ -1,7 +1,6 @@
 package bridge.view;
 
-import bridge.service.ComputerBridge;
-import bridge.service.UserBridge;
+import bridge.service.BridgeGame;
 import bridge.util.Constants;
 
 /**
@@ -18,59 +17,69 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static boolean printMap(UserBridge userBridge, String location) {
-        printMapUpper(userBridge, location);
-        printMapLower(userBridge, location);
+    public static void printMap(BridgeGame bridgeGame) {
+        StringBuilder upperLine = printMapUpper(bridgeGame);
+        StringBuilder LowerLine = printMapLower(bridgeGame);
 
-        return (userBridge.getBridgeLast() == location);
+        System.out.println(upperLine);
+        System.out.println(LowerLine);
     }
 
-    private static void printMapUpper(UserBridge userBridge, String location) {
-        System.out.print("[");
-        for (int index = 0; index < userBridge.getBridgeLength() - 1; index++) {
-            if (userBridge.getBridgeInfo(index) == "U") {
-                System.out.print(" O |");
-                continue;
-            }
-            System.out.print("   |");
+    private static StringBuilder printMapUpper(BridgeGame bridgeGame) {
+        StringBuilder printLine = new StringBuilder("[");
+        int location = bridgeGame.getUserBridge().getBridgeLength();
+        for (int index = 0; index < location - 1; index++) {
+            printLine.append(printEachLocation(bridgeGame.getComputerBridge().getBridge().get(index),
+                    bridgeGame.getUserBridge().getBridge().get(index), "U"));
         }
-        printMapUpperLast(userBridge.getBridgeLast(), location);
+        printLine.append(printMapUpperLast(bridgeGame.getComputerBridge().getBridgeInfo(location -1),
+                bridgeGame.getUserBridge().getBridgeLast()));
+        return printLine;
     }
 
-    private static void printMapLower(UserBridge userBridge, String location) {
-        System.out.print("[");
-        for (int index = 0; index < userBridge.getBridgeLength() - 1; index++) {
-            if (userBridge.getBridgeInfo(index) == "D") {
-                System.out.print(" O |");
-                continue;
-            }
-            System.out.print("   |");
+    private static StringBuilder printMapLower(BridgeGame bridgeGame) {
+        StringBuilder printLine = new StringBuilder("[");
+        int location = bridgeGame.getUserBridge().getBridgeLength();
+        for (int index = 0; index < location - 1; index++) {
+            printLine.append(printEachLocation(bridgeGame.getComputerBridge().getBridge().get(index),
+                    bridgeGame.getUserBridge().getBridge().get(index), "D"));
         }
-        printMapLowerLast(userBridge.getBridgeLast(), location);
+        printLine.append(printMapLowerLast(bridgeGame.getComputerBridge().getBridgeInfo(location -1),
+                bridgeGame.getUserBridge().getBridgeLast()));
+        return printLine;
     }
 
-    private static void printMapUpperLast(String userBridgeLast, String location) {
-        if ((userBridgeLast == location) && (location == "U")) {
-            System.out.println(" O ]");
-            return;
+
+
+    private static String printMapUpperLast(String computerLocation, String userLocation) {
+        if ((computerLocation.equals(userLocation)) &&
+                (computerLocation.equals("U"))) {
+            return " O ]";
         }
-        if ((userBridgeLast != location) && (location == "U")) {
-            System.out.println(" X ]");
-            return;
+        if (!(computerLocation.equals(userLocation)) &&
+                (userLocation.equals("U"))) {
+            return " x ]";
         }
-        System.out.print("   ]");
+        return"   ]";
     }
 
-    private static void printMapLowerLast(String userBridgeLast, String location) {
-        if ((userBridgeLast == location) && (location == "D")) {
-            System.out.println(" O ]");
-            return;
+    private static String printMapLowerLast(String computerLocation, String userLocation) {
+        if ((computerLocation.equals(userLocation)) &&
+                (computerLocation.equals("D"))) {
+            return " O ]";
         }
-        if ((userBridgeLast != location) && (location == "D")) {
-            System.out.println(" X ]");
-            return;
+        if (!(computerLocation.equals(userLocation)) &&
+                (userLocation.equals("D"))) {
+            return " x ]";
         }
-        System.out.print("   ]");
+        return "   ]";
+    }
+
+    private static String printEachLocation(String computerLocation, String userLocation, String location) {
+        if (location.equals(computerLocation) && location.equals(userLocation)) {
+            return " O |";
+        }
+        return "   |";
     }
 
     /**
@@ -78,9 +87,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(boolean clear, int gameCount)  {
-        printSuccess(clear);
-        printGameCount(gameCount);
+    public static void printResult(BridgeGame bridgeGame) {
+        System.out.println(Constants.OUTPUT_FINAL_RESULT);
+        printMap(bridgeGame);
+        System.out.println();
+        printSuccess(bridgeGame.getGameClear());
+        printGameCount(bridgeGame.getGameCount());
     }
 
     public static void printSuccess(boolean clear) {

@@ -26,7 +26,7 @@ public class BridgeRetryValidator {
     }
 
     public void isRightForm() {
-        if ((retryMessage != "R") && (retryMessage != "Q")) {
+        if (!((retryMessage.equals("R")) || (retryMessage.equals("Q")))) {
             throw new IllegalArgumentException(Constants.ERROR_RETRY_RIGHT_FORM);
         }
     }

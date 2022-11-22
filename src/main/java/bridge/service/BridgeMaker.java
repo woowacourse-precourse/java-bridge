@@ -24,7 +24,7 @@ public class BridgeMaker {
         List<String> bridgeInfo = new ArrayList<>();
 
         for (int index = 0; index < size; index++) {
-            String selectedBridge = BridgeLocation.getBridgeLocationInitial(bridgeNumberGenerator.generate());
+            String selectedBridge = Location.getBridgeLocationInitial(bridgeNumberGenerator.generate());
             bridgeInfo.add(selectedBridge);
         }
 

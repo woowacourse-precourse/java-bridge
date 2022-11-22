@@ -8,7 +8,9 @@ public class BridgeGameController {
     private BridgeGame bridgeGame = new BridgeGame();
 
     public void start() {
+        OutputView.printStartGame();
         insertBridge();
+        while (cycle());
     }
 
     public void insertBridge() {
@@ -16,22 +18,52 @@ public class BridgeGameController {
         bridgeGame.createBridge(length);
     }
 
-    public boolean insertBridgeToMove() {
-        String location = InputView.readMoving();
-        bridgeGame.move(location);
-        return OutputView.printMap(bridgeGame.getUserBridge(), bridgeGame.getComputerBridge().getBridgeLast());
+    public boolean cycle() {
+        insertBridgeToMove();
+        if (judgeUserBridgeSuccess()) {
+            finish();
+            return false;
+        }
+
+        return isRetry();
     }
 
-//    public boolean judgeUserBridgeEnd() {
-//        if (bridgeGame.isEndOfBridge()) {
-//            return true;
-//        }
-//
-//        return false;
-//    }
+    public void insertBridgeToMove() {
+        while (true) {
+            String location = InputView.readMoving();
+            bridgeGame.move(location);
+            OutputView.printMap(bridgeGame);
+            if (judgeUserBridge()) {
+                break;
+            }
+        }
+    }
+
+    public boolean judgeUserBridge() {
+        if (bridgeGame.isGameSuccess() || !bridgeGame.isGameFail()) {
+            return true;
+
+        }
+        return false;
+    }
+
+    public boolean judgeUserBridgeSuccess() {
+        if (bridgeGame.isGameSuccess()) {
+            return true;
+        }
+        return false;
+    }
 
     public boolean isRetry() {
         String retryMessage = InputView.readGameCommand();
-        return bridgeGame.retry(retryMessage);
+        if (bridgeGame.retry(retryMessage)) {
+            return true;
+        }
+        finish();
+        return false;
+    }
+
+    public void finish() {
+        OutputView.printResult(bridgeGame);
     }
 }

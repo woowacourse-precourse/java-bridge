@@ -23,10 +23,6 @@ public class UserBridge {
         this.bridge = bridge;
     }
 
-    public String getBridgeInfo(int index) {
-        return bridge.get(index);
-    }
-
     public String getBridgeLast() {
         return bridge.get(bridge.size() - 1);
     }

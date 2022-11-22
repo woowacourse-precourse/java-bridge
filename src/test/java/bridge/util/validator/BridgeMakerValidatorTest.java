@@ -1,7 +1,5 @@
 package bridge.util.validator;
 
-import bridge.BridgeRandomNumberGenerator;
-import bridge.service.BridgeMaker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
