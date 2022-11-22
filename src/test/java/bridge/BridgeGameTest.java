@@ -69,7 +69,30 @@ public class BridgeGameTest {
         moveRecord.moveDOWN(1, false);
         moveRecord.moveUP(1, true);
         moveRecord.moveUP(2, true);
-        assertThat(moveRecord.getString())
-                .isEqualTo("[ O | O | O ]\n[   | X |   ]");
+        assertThat(moveRecord.getString()).isEqualTo("[ O | O | O ]\n[   | X |   ]");
+    }
+
+    @DisplayName("게임 성공 여부-성공")
+    @Test
+    public void checkGameSuccess() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.getBridge(new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1)), 3);
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+
+        assertThat(bridgeGame.gameResult()).isEqualTo(true);
+    }
+
+    @DisplayName("게임 성공 여부-실패")
+    @Test
+    public void checkGameFail() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.getBridge(new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1)), 3);
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+
+        assertThat(bridgeGame.gameResult()).isEqualTo(false);
     }
 }
