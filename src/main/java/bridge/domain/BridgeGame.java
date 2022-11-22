@@ -6,6 +6,7 @@ import bridge.constant.Direction;
 
 public class BridgeGame {
     private static final int INITIAL_TRIAL_COUNT = 1;
+    private static final int TRIAL_COUNT_INCREASE_AMOUNT = 1;
 
     private final Bridge bridge;
     private Player player;
@@ -30,7 +31,7 @@ public class BridgeGame {
 
     public void retry() {
         player = new Player(bridge);
-        trialCount += 1;
+        trialCount += TRIAL_COUNT_INCREASE_AMOUNT;
     }
 
     public boolean isFinished() {
