@@ -14,7 +14,7 @@ public class Validator {
         while (true) {
             try {
                 String inputBridgeMove = InputView.readMoving();
-                Validator.checkValueOfReadBridgeMove(inputBridgeMove);
+                checkValueOfReadBridgeMove(inputBridgeMove);
                 return inputBridgeMove;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -26,7 +26,7 @@ public class Validator {
         while (true) {
             try {
                 String inputBridgeSize = InputView.readBridgeSize();
-                Validator.checkValueOfReadBridgeSize(inputBridgeSize);
+                checkValueOfReadBridgeSize(inputBridgeSize);
                 return Integer.parseInt(inputBridgeSize);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
