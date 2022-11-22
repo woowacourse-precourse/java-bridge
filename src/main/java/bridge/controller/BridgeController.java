@@ -51,7 +51,6 @@ public class BridgeController {
         while (true) {
             bridgeGame.resetUserMoving();
             bridgeGame.addAttemptCount();
-            //System.out.println(bridgeGame.getBridge());
             proceedMove();
 
             if (decideEndOfGame()) break;
