@@ -1,14 +1,12 @@
 package bridge.controller;
 
 import bridge.domain.bridge.Bridge;
-import bridge.domain.bridge.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.bridge.BridgeNumberGenerator;
 import bridge.domain.game.BridgeGame;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import static bridge.util.Constants.*;
 
 public class BridgeGameController {
     OutputView outputView = new OutputView();

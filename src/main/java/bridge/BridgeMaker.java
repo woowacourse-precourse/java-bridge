@@ -1,5 +1,6 @@
-package bridge.domain.bridge;
+package bridge;
 
+import bridge.domain.bridge.BridgeNumberGenerator;
 import bridge.domain.game.MovingType;
 
 import java.util.ArrayList;
