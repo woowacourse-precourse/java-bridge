@@ -11,6 +11,7 @@ public class UpDownBridge {
 
     public static void makeUpDownBridge(String inputDirection, String moveResult) {
         addUpBridge(inputDirection, moveResult);
+        nullBridge();
         addDownBridge(inputDirection, moveResult);
     }
 
@@ -38,6 +39,12 @@ public class UpDownBridge {
         if (inputDirection.equals(Message.Down.getMessage())) {
             upBridge.add(Message.BLANK.getMessage());
             downBridge.add(moveResult);
+        }
+    }
+
+    private static void nullBridge() {
+        if (upBridge.isEmpty()) {
+            throw new IllegalStateException(" 값이 없습니다. ");
         }
     }
 }

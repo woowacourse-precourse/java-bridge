@@ -36,7 +36,7 @@ public class BridgeGameController {
             inputSize = inputView.inputBridgeSize();
             bridges = bridgeMaker.makeBridge(inputSize);
             runGame();
-        } catch (IllegalArgumentException e) {
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
         outputView.printResult();
