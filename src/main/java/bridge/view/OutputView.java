@@ -28,14 +28,14 @@ public class OutputView {
         System.out.print(getLineOfMap(Command.UP, bridgeCommand));
         System.out.println(getLastLineOfMap(Command.UP, bridgeCommand.get(bridgeCommand.size() - 1), result));
         System.out.print(getLineOfMap(Command.DOWN, bridgeCommand));
-        System.out.println(getLastLineOfMap(Command.DOWN, bridgeCommand.get(bridgeCommand.size() - 1), result));
+        System.out.println(getLastLineOfMap(Command.DOWN, bridgeCommand.get(bridgeCommand.size() - 1), result) + "\n");
     }
 
 
-    private String getLineOfMap(Command direction, List<Command> bridgeCommand) {
+    private String getLineOfMap(Command direction, List<Command> bridgeRecord) {
         StringBuilder squaresOfLine = new StringBuilder();
-        for (int i = 0; i < bridgeCommand.size() - 1; i++) {
-            squaresOfLine.append(getResultOfPath(direction, bridgeCommand.get(i), Result.SUCCESS));
+        for (int i = 0; i < bridgeRecord.size() - 1; i++) {
+            squaresOfLine.append(getResultOfPath(direction, bridgeRecord.get(i), Result.SUCCESS));
             squaresOfLine.append(MIDDLE_BRIDGE);
         }
         return START_BRIDGE + squaresOfLine;
@@ -62,11 +62,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<Command> bridgeCommand, int attempts, Result result) {
+    public void printResult(List<Command> bridgeRecord, int attempts, Result result) {
         System.out.println(FINAL_GAME_MSG);
-        printMap(bridgeCommand, result);
+        printMap(bridgeRecord, result);
 
-        System.out.println("\n" + IS_GAME_SUCCEED + result.getString());
+        System.out.println(IS_GAME_SUCCEED + result.getString());
         System.out.println(TOTAL_ATTEMPTS + attempts);
     }
 
