@@ -6,11 +6,13 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    ValidateUserInput validateUserInput = new ValidateUserInput();
-
+    private ValidateUserInput validateUserInput;
     /**
      * 다리의 길이를 입력받는다.
      */
+    public InputView(){
+        validateUserInput = new ValidateUserInput();
+    }
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
         validateUserInput.checkBridgeLength(bridgeSize);
@@ -36,7 +38,7 @@ public class InputView {
         try {
             return readBridgeSize();
         }catch(IllegalArgumentException e){
-            System.out.println("[ERROR] 다리 길이는 3 ~ 20 사이의 숫자여야 합니다.");
+            System.out.println(ErrorCase.SIZE_ERROR.getError());
             return getBrideSize();
         }
     }
@@ -44,16 +46,16 @@ public class InputView {
         try {
             return readMoving();
         }catch(IllegalArgumentException e){
-            System.out.println("[ERROR] U, D 커멘드만 입력해주세요.");
-            return readMoving();
+            System.out.println(ErrorCase.MOVE_ERROR.getError());
+            return getReadMoving();
         }
     }
     public String getReadCommand(){
         try {
            return readGameCommand();
         }catch(IllegalArgumentException e){
-            System.out.println("[ERROR] R, Q 커멘드만 입력해주세요.");
-            return readGameCommand();
+            System.out.println(ErrorCase.RESTART_ERROR.getError());
+            return getReadCommand();
         }
     }
 }
