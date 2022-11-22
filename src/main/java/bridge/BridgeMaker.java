@@ -29,8 +29,8 @@ public class BridgeMaker {
     private String upDown() {
         int generate = bridgeNumberGenerator.generate();
         if (generate == 1) {
-            return "D";
+            return "U";
         }
-        return "U";
+        return "D";
     }
 }
