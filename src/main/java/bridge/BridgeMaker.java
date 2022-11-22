@@ -12,6 +12,7 @@ public class BridgeMaker {
 
     private static final int UP = 1;
     private static final int DOWN = 0;
+
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
@@ -22,7 +23,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> answerBridge = new ArrayList<>();
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             String moveDirection = checkUpOrDown();
             answerBridge.add(moveDirection);
         }
@@ -32,12 +33,9 @@ public class BridgeMaker {
     private String checkUpOrDown() {
         int number;
         number = bridgeNumberGenerator.generate();
-        if( number == UP) {
+        if (number == UP) {
             return "U";
         }
-        if (number == DOWN) {
-            return "D";
-        }
-        return null;
+        return "D";
     }
 }
