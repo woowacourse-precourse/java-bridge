@@ -1,11 +1,11 @@
 package bridge.controller;
 
-import bridge.domain.MoveResult;
+import bridge.common.Result;
 import bridge.domain.Player;
+import bridge.dto.MoveResultDto;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class BridgeGameController {
@@ -20,15 +20,34 @@ public class BridgeGameController {
 
     public void run() {
         initGame();
-        Player player = new Player();
-        List<List<MoveResult>> result = List.of(List.of(MoveResult.SUCCESS, MoveResult.SUCCESS, MoveResult.FAIL));
-        outputView.printMap(result);
+        Result result = playBridgeGame(new Player());
+        endGame(result);
     }
-
     private void initGame() {
         outputView.printGameStartMessage();
         int size = repeatCommand(inputView::readBridgeSize);
         bridgeGameService.initBridgeGame(size);
+    }
+
+    private Result playBridgeGame(Player player) {
+        while (bridgeGameService.isPlaying()) {
+            crossBridge(player);
+        }
+        return generateResult(player);
+    }
+
+    private void crossBridge(Player player) {
+        String move = repeatCommand(inputView::readMoving);
+        MoveResultDto moveResultDto = bridgeGameService.play(player, move);
+        outputView.printMap(moveResultDto);
+    }
+
+    private Result generateResult(Player player) {
+        return bridgeGameService.gameOver(player);
+    }
+
+    private void endGame(Result result) {
+        outputView.printResult(result);
     }
 
     private <T> T repeatCommand(Supplier<T> reader) {
