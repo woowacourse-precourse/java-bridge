@@ -20,4 +20,8 @@ public class Round {
     public int findLastIndex() {
         return this.movings.size() - 1;
     }
+
+    public List<String> getMovings() {
+        return movings;
+    }
 }

@@ -32,6 +32,7 @@ public class BridgeGame {
      */
     public void move() {
         roundService.getMoving();
+        roundService.getResult(bridge);
     }
 
     /**

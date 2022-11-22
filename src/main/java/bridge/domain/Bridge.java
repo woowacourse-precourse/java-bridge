@@ -17,4 +17,8 @@ public class Bridge {
     public boolean compareByIndex(int index, String value) {
         return this.bridgeStatus.get(index).equals(value);
     }
+
+    public int getSize() {
+        return size;
+    }
 }

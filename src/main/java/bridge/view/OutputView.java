@@ -1,5 +1,8 @@
 package bridge.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -21,7 +24,63 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(List<String> movings, boolean status) {
+        System.out.println("[ " + makeUpperRow(movings, status) + " ]");
+        System.out.println("[ " + makeLowerRow(movings, status) + " ]");
+    }
+
+    private static String makeUpperRow(List<String> movings, boolean status) {
+        List<String> row = new ArrayList<>();
+        for (int i = 0; i < movings.size() - 1; i++) {
+            String value = movings.get(i);
+            row.add(compareUpperPosition(value));
+        }
+        row.add(compareLastUpper(movings.get(movings.size() - 1), status));
+        return String.join(" | ", row);
+    }
+
+    private static String compareUpperPosition(String value) {
+        if (value.equals("U")) {
+            return "O";
+        }
+        return " ";
+    }
+
+    private static String compareLastUpper(String value, boolean status) {
+        if (!status && value.equals("U")) {
+            return "X";
+        }
+        if (value.equals("U")) {
+            return "O";
+        }
+        return " ";
+    }
+
+    private static String makeLowerRow(List<String> movings, boolean status) {
+        List<String> row = new ArrayList<>();
+        for (int i = 0; i < movings.size() - 1; i++) {
+            String value = movings.get(i);
+            row.add(compareLowerPosition(value));
+        }
+        row.add(compareLastLower(movings.get(movings.size() - 1), status));
+        return String.join(" | ", row);
+    }
+
+    private static String compareLowerPosition(String value) {
+        if (value.equals("D")) {
+            return "O";
+        }
+        return " ";
+    }
+
+    private static String compareLastLower(String value, boolean status) {
+        if (!status && value.equals("D")) {
+            return "X";
+        }
+        if (value.equals("D")) {
+            return "O";
+        }
+        return " ";
     }
 
     /**

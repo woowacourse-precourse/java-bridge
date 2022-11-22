@@ -21,7 +21,12 @@ public class RoundService {
         }
     }
 
-    public boolean compareBridge(Bridge bridge) {
+    public void getResult(Bridge bridge) {
+        boolean status = compareBridge(bridge);
+        OutputView.printMap(round.getMovings(), status);
+    }
+
+    private boolean compareBridge(Bridge bridge) {
         return bridge.compareByIndex(round.findLastIndex(), round.findLastValue());
     }
 }
