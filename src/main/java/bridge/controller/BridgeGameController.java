@@ -14,34 +14,49 @@ public class BridgeGameController {
 
     public void start() {
         OutputView.printStart();
-        OutputView.printBridgeLengthRequest();
-        int bridgeSize = InputView.readBridgeSize();
-
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = makeBridge();
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
         GameRecord gameRecord = new GameRecord();
 
-        boolean retryflag = true;
+        playGame(bridgeGame, gameRecord);
+    }
 
+    private void playGame(BridgeGame bridgeGame, GameRecord gameRecord) {
         do {
-            gameRecord.clear();
-            gameRecord.updatePlayTime();
-
+            initializeGameRecord(gameRecord);
             moveUser(bridgeGame, gameRecord);
+
             if (gameRecord.isGameSuccess()) {
-                GameResultModel gameResultModel = new GameResultModel(gameRecord.makeBridgeRecord(),
-                        gameRecord.isGameSuccess(), gameRecord.getPlayTime());
-                OutputView.printResult(gameResultModel);
+                makeResultModel(gameRecord);
                 break;
             }
+        } while (canRestart(bridgeGame));
+    }
 
-            OutputView.printGameRestartRequest();
-            String s = InputView.readGameCommand();
-            retryflag = bridgeGame.retry(s);
+    private boolean canRestart(BridgeGame bridgeGame) {
+        OutputView.printGameRestartRequest();
+        String retryInput = InputView.readGameCommand();
+        return bridgeGame.retry(retryInput);
+    }
 
-        } while (retryflag);
+    private void initializeGameRecord(GameRecord gameRecord) {
+        gameRecord.clear();
+        gameRecord.updatePlayTime();
+    }
+
+    private List<String> makeBridge() {
+        OutputView.printBridgeLengthRequest();
+        int bridgeSize = InputView.readBridgeSize();
+
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private void makeResultModel(GameRecord gameRecord) {
+        GameResultModel gameResultModel = new GameResultModel(gameRecord.makeBridgeRecord(),
+                gameRecord.isGameSuccess(), gameRecord.getPlayTime());
+        OutputView.printResult(gameResultModel);
     }
 
     private void moveUser(BridgeGame bridgeGame, GameRecord gameRecord) {
@@ -53,7 +68,7 @@ public class BridgeGameController {
         }
     }
 
-    private static boolean moveOneBlock(BridgeGame bridgeGame, GameRecord gameRecord, int bridgeBlock) {
+    private boolean moveOneBlock(BridgeGame bridgeGame, GameRecord gameRecord, int bridgeBlock) {
         OutputView.printUserMoveRequest();
         String direction = InputView.readMoving();
         boolean success = bridgeGame.move(direction, bridgeBlock);
