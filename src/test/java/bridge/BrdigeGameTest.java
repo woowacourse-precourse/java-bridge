@@ -4,10 +4,6 @@ import bridge.model.BridgeGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static bridge.enums.Constant_BridgeGame.*;
 import static org.assertj.core.api.Assertions.*;
 
