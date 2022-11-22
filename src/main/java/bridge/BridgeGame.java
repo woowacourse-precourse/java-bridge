@@ -7,6 +7,7 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private Actor actor = new Actor();
+    private int numTry = 1;
 
     private BridgeGame(final Bridge bridge) {
         this.bridge = bridge;
@@ -21,6 +22,8 @@ public class BridgeGame {
         return actor.move(bridge);
     }
 
-    public void retry() {
+    public void onRetry() {
+        actor = new Actor();
+        numTry++;
     }
 }
