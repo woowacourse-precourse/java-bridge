@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.enums.Command;
-import bridge.enums.Move;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
@@ -48,7 +46,6 @@ public class InputView {
      */
     public String  readMoving() {
         String userInput = Console.readLine();
-        Move move;
         while (true) {
             try {
                 return convertMoving(userInput);
@@ -70,7 +67,6 @@ public class InputView {
      */
     public String readGameCommand() {
         String userInput = Console.readLine();
-        Command command;
         while (true) {
             try {
                 return convertGameCommand(userInput);
