@@ -1,5 +1,6 @@
 package bridge.view;
 
+import static bridge.util.Constants.OUTPUT_LINE_BREAK;
 import static bridge.util.Constants.OUTPUT_ATTEMPTS;
 import static bridge.util.Constants.OUTPUT_ENGER_MOVING;
 import static bridge.util.Constants.OUTPUT_ENTER_BRIDGE_SIZE;
@@ -24,6 +25,7 @@ public class OutputView {
      */
     public void printMap(Diagram diagram) {
         diagram.getFormattedDiagrams().forEach(element -> System.out.println(element));
+        System.out.println(OUTPUT_LINE_BREAK);
     }
 
     /**
@@ -34,6 +36,7 @@ public class OutputView {
     public void printResult(Diagram diagram, SuccessAndFail successOrFail, int attempts) {
         System.out.println(OUTPUT_FINAL_RESULT);
         printMap(diagram);
+        System.out.println(OUTPUT_LINE_BREAK);
         System.out.println(OUTPUT_SUCCESS_OR_FAIL + successOrFail.getKoreanDisplay());
         System.out.println(OUTPUT_ATTEMPTS + attempts);
     }
@@ -44,10 +47,12 @@ public class OutputView {
 
     public void printStartGame() {
         System.out.println(OUTPUT_START_GAME);
+        System.out.println(OUTPUT_LINE_BREAK);
     }
 
     public void printBridgeSizeInput() {
         System.out.println(OUTPUT_ENTER_BRIDGE_SIZE);
+        System.out.println();
     }
 
     public void printMoveInput() {

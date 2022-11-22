@@ -9,7 +9,6 @@ public class Bridge {
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
-        System.out.println(bridge);
     }
 
     public boolean isSamePosition(int index, Position position) {

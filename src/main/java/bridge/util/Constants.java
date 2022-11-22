@@ -13,6 +13,8 @@ public class Constants {
     public static final String BRIDGE_END = " ]";
     public static final String BRIDGE_WHITE_SPACE = " ";
     public static final int INITIAL_ATTEMPTS = 1;
+    public static final String OUTPUT_LINE_BREAK = "\n";
+
     public static final String OUTPUT_FINAL_RESULT = "최종 게임 결과";
     public static final String OUTPUT_SUCCESS_OR_FAIL = "게임 성공 여부: ";
     public static final String OUTPUT_ATTEMPTS = "총 시도한 횟수: ";
