@@ -36,6 +36,13 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("올바른 다리 길이 입력 시 예외처리를 하지 않는다.")
+    @Test
+    void setBridgeSizeByValidInput() {
+        assertThatCode(() -> Validator.validateBridgeSize("20"))
+                .doesNotThrowAnyException();
+    }
+
     @DisplayName("이동할 칸 입력 시 U, D가 정확히 입력되면 예외처리를 하지 않는다.")
     @Test
     void inputValidMove() {
