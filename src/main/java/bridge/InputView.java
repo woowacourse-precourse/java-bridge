@@ -41,6 +41,12 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = readLine();
+        try {
+            ExceptionCase.isInputTry(gameCommand);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            gameCommand = readMoving();
+        }
         return gameCommand;
     }
 }
