@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import org.mockito.internal.matchers.Null;
 

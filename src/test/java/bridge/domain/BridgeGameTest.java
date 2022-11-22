@@ -1,9 +1,9 @@
-package bridge;
+package bridge.domain;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.UserResult;
 import org.junit.jupiter.api.Test;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
