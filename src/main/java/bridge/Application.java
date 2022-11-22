@@ -38,12 +38,17 @@ public class Application {
         while(move_Status && num < bridge.size()) {
             OV.moveGuidance();
             String currentMoving = IV.readMoving();
-            List<String> movement = BG.move(bridge.get(num), currentMoving);
-            addElement(movement.get(0), movement.get(1), result);
+            moving(result, BG, num, bridge, currentMoving);
             OV.printMap(result, num);
             num++;
         }
         final_Map_Number = --num;
+    }
+
+    public static void moving(List<String> result, BridgeGame BG, int num, List<String> bridge, String currentMoving){
+        List<String> movement;
+        movement = BG.move(bridge.get(num), currentMoving);
+        addElement(movement.get(0), movement.get(1), result);
     }
 
     public static void restart(OutputView OV, InputView IV, BridgeGame BG, List<String> bridge, BridgeNumberGenerator BNG, BridgeMaker BM){

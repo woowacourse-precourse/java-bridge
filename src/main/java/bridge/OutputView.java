@@ -58,8 +58,17 @@ public class OutputView {
     }
 
     public String resultOfPass(){
-        if(bridge_Length == final_Map_Number+1) return "성공";
+        if(bridge_Length == countResult()) return "성공";
         return "실패";
+    }
+
+    public int countResult(){
+        int count = 0;
+        for(int i=0; i<=final_Map_Number; i++) {
+            if(first_Line_Bridge.get(i).contains("O")) count++;
+            if(second_Line_Bridge.get(i).contains("O")) count++;
+        }
+        return count;
     }
 
     public void printMap(List<String> result, int num) {
