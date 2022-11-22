@@ -46,5 +46,15 @@ class BridgeGameTest {
         assertThat(uStatus).isEqualTo("   ");
         assertThat(dStatus).isEqualTo(" X ");
     }
-    
+
+    @Test
+    @DisplayName("moveCorrect 메서드를 통해 값 판정이 제대로 이루어져 isCorrect에 제대로 된 값을 넣을 수 있다.")
+    void insertValueToIsCorrectSuccess() {
+        String moving = "U";
+
+        bridgeGame.moveCorrect(bridge, moving);
+
+        assertThat(bridgeGame.isCorrect()).isTrue();
+    }
+
 }
