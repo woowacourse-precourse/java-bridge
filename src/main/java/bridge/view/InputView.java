@@ -15,10 +15,10 @@ public class InputView {
     private static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String SELECT_GAME_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final int CLIPPED_WORD_LENGTH = 1;
-    private static final String U_INPUT_CLIPPED_WORD = "U";
-    private static final String D_INPUT_CLIPPED_WORD = "D";
+    public static final String U_INPUT_CLIPPED_WORD = "U";
+    public static final String D_INPUT_CLIPPED_WORD = "D";
     private static final String R_INPUT_CLIPPED_WORD = "R";
-    private static final String Q_INPUT_CLIPPED_WORD = "Q";
+    public static final String Q_INPUT_CLIPPED_WORD = "Q";
     private static final int BRIDGE_SIZE_MIN_VALUE = 3;
     private static final int BRIDGE_SIZE_MAX_VALUE = 20;
     private static final String NEW_LINE = "\n";
