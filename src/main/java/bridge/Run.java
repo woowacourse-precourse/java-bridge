@@ -55,7 +55,7 @@ public class Run {
             try {
                 return new InputView().readBridgeSize();
             } catch (IllegalArgumentException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -65,7 +65,7 @@ public class Run {
             try {
                 return new InputView().readMoving();
             } catch (IllegalArgumentException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -75,7 +75,7 @@ public class Run {
             try {
                 return new InputView().readGameCommand();
             } catch (IllegalArgumentException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
             }
         }
     }
