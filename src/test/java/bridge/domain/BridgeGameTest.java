@@ -57,4 +57,17 @@ class BridgeGameTest {
         boolean isEnd = bridgeGame.isEnd();
         assertThat(isEnd).isFalse();
     }
+
+    @Test
+    void 게임_시도_횟수_반환_테스트() {
+        int gameAttempts;
+
+        gameAttempts = bridgeGame.getGameAttempts();
+        assertThat(gameAttempts).isEqualTo(1);
+
+        bridgeGame.retry();
+
+        gameAttempts = bridgeGame.getGameAttempts();
+        assertThat(gameAttempts).isEqualTo(2);
+    }
 }
