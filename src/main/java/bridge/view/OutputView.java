@@ -12,9 +12,9 @@ public class OutputView {
     private static final String LEFT_SQUARE_BRACKET = "[ ";
     private static final String RIGHT_SQUARE_BRACKET = " ]";
     private static final String DELIMITER = " | ";
-    private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
-    private static final String GAME_SUCCESS_MESSAGE = "게임 성공 여부: 성공";
-    private static final String GAME_FAILURE_MESSAGE = "게임 성공 여부: 실패";
+    private static final String GAME_RESULT_MESSAGE = "\n최종 게임 결과";
+    private static final String GAME_SUCCESS_MESSAGE = "\n게임 성공 여부: 성공";
+    private static final String GAME_FAILURE_MESSAGE = "\n게임 성공 여부: 실패";
     private static final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
 
     public static void printGameStart() {

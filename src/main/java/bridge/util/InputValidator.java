@@ -2,10 +2,10 @@ package bridge.util;
 
 public class InputValidator {
 
-    private static final String NO_INTEGER_ERROR = "[ERROR] 다리 길이는 문자열이 아닌 숫자여야 합니다.";
-    private static final String BRIDGE_SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    private static final String BRIDGE_MOVING_ERROR = "[ERROR] 이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.";
-    private static final String GAME_COMMAND_ERROR = "[ERROR] 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.";
+    private static final String NO_INTEGER_ERROR = "[ERROR] 다리 길이는 문자열이 아닌 숫자여야 합니다.\n";
+    private static final String BRIDGE_SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n";
+    private static final String BRIDGE_MOVING_ERROR = "[ERROR] 이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.\n";
+    private static final String GAME_COMMAND_ERROR = "[ERROR] 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.\n";
     private static final String UP_MOVING_CHARACTER = "U";
     private static final String DOWN_MOVING_CHARACTER = "D";
     private static final String RETRY_COMMAND_CHARACTER = "R";
