@@ -70,4 +70,16 @@ public class BridgeGame {
             return true;
         return false;
     }
+
+    public boolean retry(String command) {
+        if (command.equals("R")) {
+            userInput.clear();
+            return true;
+        }
+        if (command.equals("Q")) {
+            return false;
+        }
+        throw new IllegalArgumentException();
+    }
+
 }
