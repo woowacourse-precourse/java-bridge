@@ -126,60 +126,70 @@ class InputViewTest {
             assertThat(inputView.readMoving()).isEqualTo(input);
         }
 
+        @DisplayName("readMoving 에서 U를 입력받았을 때, 다시 정상적으로 U를 return")
         @Test
         void readMoving_case1(){
             String input = "U";
             getReadMovingTest(input);
         }
 
+        @DisplayName("readMoving 에서 D를 입력받았을 때, 다시 정상적으로 D를 return")
         @Test
         void readMoving_case2(){
             String input = "D";
             getReadMovingTest(input);
         }
 
+        @DisplayName("readMoving 에서 UD를 입력받았을 때, U나 D가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readMoving_exceptionCase1(){
             String input = "UD";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readMoving 에서 -1 를 입력받았을 때, U나 D가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readMoving_exceptionCase2(){
             String input = "-1";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readMoving 에서 10000 를 입력받았을 때, U나 D가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readMoving_exceptionCase3(){
             String input = "10000";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readMoving 에서 A를 입력받았을 때, U나 D가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readMoving_exceptionCase4(){
             String input = "A";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readMoving 에서 Z를 입력받았을 때, U나 D가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readMoving_exceptionCase5(){
             String input = "Z";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readMoving 에서 Hello 를 입력받았을 때, U나 D가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readMoving_exceptionCase6(){
             String input = "Hello";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readMoving 에서 !!! 를 입력받았을 때, U나 D가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readMoving_exceptionCase7(){
             String input = "!!!";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readMoving 에서 그냥 빈칸을을 입력받았을 때, U나 D가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readMoving_exceptionCase8(){
             String input = " ";
