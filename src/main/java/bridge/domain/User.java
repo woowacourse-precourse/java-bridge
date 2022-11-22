@@ -38,7 +38,7 @@ public class User {
     }
 
     public GameState isGameSuccess() {
-        if (bridgeGames.contains(GameState.FAILED.getState()))
+        if (bridgeGames.contains(BridgeState.DIE_DOWN) || bridgeGames.contains(BridgeState.DIE_UP))
             return GameState.FAILED;
         return GameState.END;
     }
