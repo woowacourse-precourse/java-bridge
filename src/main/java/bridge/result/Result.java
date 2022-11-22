@@ -1,16 +1,16 @@
 package bridge.result;
 
-import static bridge.result.GameStatus.UNKNOWN;
+import static bridge.result.GameResult.UNKNOWN;
 
 import java.util.Collections;
 import java.util.List;
 
 public class Result {
     private final List<String> squares;
-    private final GameStatus gameStatus;
+    private final GameResult gameResult;
 
-    public Result(List<String> squares, GameStatus gameStatus) {
-        this.gameStatus = gameStatus;
+    public Result(List<String> squares, GameResult gameResult) {
+        this.gameResult = gameResult;
         this.squares = squares;
     }
 
@@ -18,8 +18,8 @@ public class Result {
         return squares;
     }
 
-    public GameStatus getGameStatus() {
-        return gameStatus;
+    public GameResult getGameStatus() {
+        return gameResult;
     }
 
     public static Result getEmptyResult() {

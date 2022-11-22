@@ -31,7 +31,7 @@ public class GameController {
         outputView.printResult(result, gameCount);
     }
 
-    private boolean determineGameStatus(Command command) {
+    private boolean determineNextGame(Command command) {
         GameCommand gameCommand = GameCommand.findGameCommand(command.getCommand());
         return gameCommand.equals(RESTART);
     }
@@ -39,6 +39,6 @@ public class GameController {
     private boolean inputGameCommand() {
         outputView.printInputGameCommand();
         Command command = inputView.readGameCommand();
-        return determineGameStatus(command);
+        return determineNextGame(command);
     }
 }

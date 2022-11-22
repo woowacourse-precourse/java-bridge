@@ -2,9 +2,9 @@ package bridge.view.map;
 
 import static bridge.command.enums.PlayerMove.D;
 import static bridge.command.enums.PlayerMove.U;
-import static bridge.result.GameStatus.FAIL;
+import static bridge.result.GameResult.FAIL;
 
-import bridge.result.GameStatus;
+import bridge.result.GameResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,36 +20,36 @@ public class OutputMapView {
     private static final String MAP_CORRECT_SQUARE = "O";
     private static final String MAP_WRONG_SQUARE = "X";
 
-    public static void printUpperBridge(List<String> squares, GameStatus gameStatus) {
+    public static void printUpperBridge(List<String> squares, GameResult gameResult) {
         List<String> upperSquares = new ArrayList<>(squares);
 
         printStartMap();
-        printUpperSquares(upperSquares, gameStatus);
+        printUpperSquares(upperSquares, gameResult);
         printEndUpperMap();
     }
 
-    public static void printLowerBridge(List<String> squares, GameStatus gameStatus) {
+    public static void printLowerBridge(List<String> squares, GameResult gameResult) {
         List<String> lowerSquares = new ArrayList<>(squares);
 
         printStartMap();
-        printLowerSquares(lowerSquares, gameStatus);
+        printLowerSquares(lowerSquares, gameResult);
         printEndLowerMap();
     }
 
-    private static void printUpperSquares(List<String> squares, GameStatus gameStatus) {
+    private static void printUpperSquares(List<String> squares, GameResult gameResult) {
         while (squares.size() != LAST_ONE) {
             printUpperSquare(squares.remove(START_INDEX));
             printMapWall();
         }
-        printLastUpperSquare(squares.remove(START_INDEX), gameStatus);
+        printLastUpperSquare(squares.remove(START_INDEX), gameResult);
     }
 
-    private static void printLowerSquares(List<String> squares, GameStatus gameStatus) {
+    private static void printLowerSquares(List<String> squares, GameResult gameResult) {
         while (squares.size() != LAST_ONE) {
             printLowerSquare(squares.remove(START_INDEX));
             printMapWall();
         }
-        printLastLowerSquare(squares.remove(START_INDEX), gameStatus);
+        printLastLowerSquare(squares.remove(START_INDEX), gameResult);
     }
 
     private static void printUpperSquare(String square) {
@@ -69,24 +69,24 @@ public class OutputMapView {
     }
 
 
-    private static void printLastUpperSquare(String LastSquare, GameStatus gameStatus) {
+    private static void printLastUpperSquare(String LastSquare, GameResult gameResult) {
         if (LastSquare.equals(D.toString())) {
             printEmptySquare();
             return;
         }
-        System.out.print(determineLastPrintSquare(gameStatus));
+        System.out.print(determineLastPrintSquare(gameResult));
     }
 
-    private static void printLastLowerSquare(String LastSquare, GameStatus gameStatus) {
+    private static void printLastLowerSquare(String LastSquare, GameResult gameResult) {
         if (LastSquare.equals(U.toString())) {
             printEmptySquare();
             return;
         }
-        System.out.print(determineLastPrintSquare(gameStatus));
+        System.out.print(determineLastPrintSquare(gameResult));
     }
 
-    private static String determineLastPrintSquare(GameStatus gameStatus) {
-        if (!gameStatus.equals(FAIL)) {
+    private static String determineLastPrintSquare(GameResult gameResult) {
+        if (!gameResult.equals(FAIL)) {
             return MAP_CORRECT_SQUARE;
         }
         return MAP_WRONG_SQUARE;

@@ -1,6 +1,6 @@
 package bridge.game;
 
-import static bridge.result.GameStatus.SUCCESS;
+import static bridge.result.GameResult.SUCCESS;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeController;
@@ -10,6 +10,7 @@ import bridge.result.Result;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final Integer START_GAME_COUNT = 0;
 
     private final BridgeController bridgeController;
     private final GameController gameController;
@@ -18,7 +19,7 @@ public class BridgeGame {
     public BridgeGame() {
         this.gameController = new GameController();
         this.bridgeController = new BridgeController(new BridgeRandomNumberGenerator());
-        this.gameCount = 0;
+        this.gameCount = START_GAME_COUNT;
     }
 
     public void start() {

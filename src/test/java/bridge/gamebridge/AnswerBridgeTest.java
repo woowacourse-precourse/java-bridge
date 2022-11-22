@@ -1,8 +1,8 @@
 package bridge.gamebridge;
 
-import static bridge.result.GameStatus.FAIL;
-import static bridge.result.GameStatus.PROGRESS;
-import static bridge.result.GameStatus.SUCCESS;
+import static bridge.result.GameResult.FAIL;
+import static bridge.result.GameResult.PROGRESS;
+import static bridge.result.GameResult.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.Bridge;

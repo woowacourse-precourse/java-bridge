@@ -3,7 +3,7 @@ package bridge.view;
 import static bridge.view.map.OutputMapView.printLowerBridge;
 import static bridge.view.map.OutputMapView.printUpperBridge;
 
-import bridge.result.GameStatus;
+import bridge.result.GameResult;
 import bridge.result.Result;
 import java.util.List;
 
@@ -32,9 +32,9 @@ public class OutputView {
      */
     public void printMap(Result result) {
         List<String> squares = result.getSquares();
-        GameStatus gameStatus = result.getGameStatus();
-        printUpperBridge(squares, gameStatus);
-        printLowerBridge(squares, gameStatus);
+        GameResult gameResult = result.getGameStatus();
+        printUpperBridge(squares, gameResult);
+        printLowerBridge(squares, gameResult);
     }
 
     public void printInputGameCommand() {

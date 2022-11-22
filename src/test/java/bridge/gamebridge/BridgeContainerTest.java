@@ -2,9 +2,9 @@ package bridge.gamebridge;
 
 import static bridge.command.util.MoveTestUtils.insertMovesInContainer;
 import static bridge.config.ExceptionMessage.ERROR;
-import static bridge.result.GameStatus.FAIL;
-import static bridge.result.GameStatus.PROGRESS;
-import static bridge.result.GameStatus.SUCCESS;
+import static bridge.result.GameResult.FAIL;
+import static bridge.result.GameResult.PROGRESS;
+import static bridge.result.GameResult.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

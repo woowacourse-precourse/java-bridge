@@ -1,6 +1,6 @@
 package bridge.result;
 
-public enum GameStatus {
+public enum GameResult {
     FAIL("실패", true),
     SUCCESS("성공", true),
     PROGRESS("진행", false),
@@ -18,7 +18,7 @@ public enum GameStatus {
         return !isStopGame;
     }
 
-    GameStatus(String name, boolean isStopGame) {
+    GameResult(String name, boolean isStopGame) {
         this.isStopGame = isStopGame;
         this.name = name;
     }

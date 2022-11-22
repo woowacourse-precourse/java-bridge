@@ -1,9 +1,9 @@
 package bridge.domain;
 
 import static bridge.command.util.MoveTestUtils.insertMovesInService;
-import static bridge.result.GameStatus.FAIL;
-import static bridge.result.GameStatus.PROGRESS;
-import static bridge.result.GameStatus.SUCCESS;
+import static bridge.result.GameResult.FAIL;
+import static bridge.result.GameResult.PROGRESS;
+import static bridge.result.GameResult.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -17,7 +17,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BridgeServiceTest {
-
 
     @DisplayName("테스트 숫자 생성기 테스트")
     @Test
