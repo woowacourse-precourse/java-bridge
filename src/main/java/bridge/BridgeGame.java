@@ -29,9 +29,11 @@ public class BridgeGame {
         int position = player.getNextPosition();
         if(bridge.isCrossable(position, direction)) {
             bridgeStatus.update(direction, player.success());
-            return bridgeStatus;
+            if(hasCrossed(position))
+                player.finish();
         }
-        bridgeStatus.update(direction, player.fail());
+        if(!bridge.isCrossable(position, direction))
+            bridgeStatus.update(direction, player.fail());
         return bridgeStatus;
     }
 
@@ -59,11 +61,18 @@ public class BridgeGame {
     }
 
     public PlayerStatus getGameStatus() {
-        PlayerStatus status = player.getStatus();
-        return status;
+        return player.getStatus();
+    }
+
+    public BridgeStatus getBridgeStatus() {
+        return bridgeStatus;
     }
 
     public boolean isPlaying() {
         return player.getStatus() == PlayerStatus.PLAYING;
+    }
+
+    public boolean hasCrossed(int position) {
+        return position == bridge.getSize() - 1;
     }
 }

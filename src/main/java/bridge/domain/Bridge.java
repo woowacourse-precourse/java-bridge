@@ -9,6 +9,10 @@ public class Bridge {
         this.bridgeBlocks = bridgeBlocks;
     }
 
+    public int getSize() {
+        return bridgeBlocks.size();
+    }
+
     public boolean isCrossable(int position, Direction direction) {
         String bridgeBlock = bridgeBlocks.get(position);
         String playerBlock = direction.getInitial();

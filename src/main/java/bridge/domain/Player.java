@@ -22,6 +22,10 @@ public class Player {
         return status;
     }
 
+    public void finish() {
+        status = SUCCESS;
+    }
+
     public int getNextPosition() {
         return position;
     }
