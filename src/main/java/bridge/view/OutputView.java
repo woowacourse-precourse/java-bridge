@@ -12,8 +12,8 @@ public class OutputView {
     private static final String PASS_MESSAGE = "성공";
     private static final String FAIL_MESSAGE = "실패";
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
-    private static final String HEAD_PART = "[ ";
-    private static final String TAIL_PART = " ]";
+    private static final String HEAD_BRACKET = "[ ";
+    private static final String TAIL_BRACKET = " ]";
 
     private final MapShape mapShape;
 
@@ -32,8 +32,8 @@ public class OutputView {
     }
 
     private void printMapOfCase() {
-        System.out.println(HEAD_PART + mapShape.upperMapToString() + TAIL_PART);
-        System.out.println(HEAD_PART + mapShape.lowerMapToString() + TAIL_PART);
+        System.out.println(HEAD_BRACKET + mapShape.upperMapToString() + TAIL_BRACKET);
+        System.out.println(HEAD_BRACKET + mapShape.lowerMapToString() + TAIL_BRACKET);
     }
 
     /**
