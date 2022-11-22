@@ -40,14 +40,6 @@ public class InputTest extends NsTest {
         );
     }
 
-    @Test
-    void 잘못된_재시작_입력() {
-        InputView inputView = new InputView();
-        String command = "A";
-        assertThatThrownBy(() -> inputView.checkReadMoving(command))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @Override
     protected void runMain() {
         Application.main(new String[]{});

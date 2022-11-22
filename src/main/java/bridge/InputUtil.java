@@ -14,5 +14,22 @@ public class InputUtil {
         }
     }
 
+    public String getMoving() {
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputView.readMoving();
+        }
+    }
+
+    public String getGameCommand() {
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputView.readGameCommand();
+        }
+    }
 
 }

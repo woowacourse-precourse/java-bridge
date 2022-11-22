@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.InputUtil;
 import bridge.controller.InputController;
 import bridge.view.Constants;
 import bridge.view.InputMessage;
@@ -10,7 +11,7 @@ import bridge.view.OutputMessage;
  */
 public class BridgeGame {
 
-    InputController inputController = new InputController();
+    InputUtil inputUtil = new InputUtil();
     private int userPos;
     private int attempts;
     private boolean success;
@@ -43,7 +44,7 @@ public class BridgeGame {
     public boolean checkRetry() {
         if(userPos == Constants.ZERO) {
             System.out.println(InputMessage.RESTART.getInputMsg());
-            if(inputController.getCommand().equals(Constants.RESTART)) {
+            if(inputUtil.getGameCommand().equals(Constants.RESTART)) {
                 attempts++;
                 return false;
             }

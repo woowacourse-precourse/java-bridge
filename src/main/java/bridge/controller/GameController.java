@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.InputUtil;
 import bridge.model.BridgeGame;
 import bridge.model.AllBridge;
 import bridge.view.InputMessage;
@@ -7,7 +8,7 @@ import bridge.view.OutputView;
 
 public class GameController {
 
-    InputController inputController = new InputController();
+    InputUtil inputUtil = new InputUtil();
     OutputController outputController = new OutputController();
     OutputView outputView = new OutputView();
     BridgeGame bridgeGame = new BridgeGame();
@@ -24,7 +25,7 @@ public class GameController {
     public void game(AllBridge allBridge) {
         do {
             System.out.println(InputMessage.MOVE.getInputMsg());
-            bridgeGame.move(inputController.getMoving(), allBridge);
+            bridgeGame.move(inputUtil.getMoving(), allBridge);
             outputView.printMap(outputController.getUpper(), outputController.getLower());
         } while (!bridgeGame.retry(allBridge));
     }
