@@ -1,7 +1,9 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Result {
     private static final int PATH_COUNT = 2;
@@ -65,5 +67,23 @@ public class Result {
         for (List<String> result : results) {
             result.clear();
         }
+    }
+
+    public boolean hasFail() {
+        for (List<String> r : results) {
+            if (r.contains(WRONG_PATH)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isSameLength() {
+        return answer.size() == results[0].size();
+    }
+
+    public List<List<String>> getResults() {
+        return Arrays.stream(results).collect(Collectors.toUnmodifiableList());
     }
 }
