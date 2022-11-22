@@ -1,5 +1,6 @@
 package bridge.util;
 
+import bridge.BridgeMaker;
 import java.util.List;
 import java.util.regex.Pattern;
 
