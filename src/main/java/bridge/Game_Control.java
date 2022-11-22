@@ -15,7 +15,7 @@ public class Game_Control {
 
     public void start() {
         while (check.contentEquals("R")) {
-            System.out.println(makeBridge);
+//            System.out.println(makeBridge);
             outputview.printMap(bridgeSize, makeBridge);
             outputview.printResult();
             outputview.printSuccess();
