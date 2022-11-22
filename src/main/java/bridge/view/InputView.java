@@ -28,7 +28,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        return inputMoveCommand();
     }
 
     /**
@@ -38,20 +38,26 @@ public class InputView {
         return null;
     }
 
+    private int toBridgeSize(String bridgeSizeCommand) {
+        int bridgeSize = Integer.parseInt(bridgeSizeCommand);
+        validateIntegerSize(bridgeSize);
+
+        return bridgeSize;
+    }
+
     /**
      * input: 데이터를 Console에서 입력받는다.
      */
     private String inputBridgeSizeCommand() {
         String bridgeSize = Console.readLine();
         validateStringSize(bridgeSize);
+
         return bridgeSize;
     }
 
-    private int toBridgeSize(String bridgeSizeCommand) {
-        int bridgeSize = Integer.parseInt(bridgeSizeCommand);
-        validateIntegerSize(bridgeSize);
+    private String inputMoveCommand() {
 
-        return bridgeSize;
+        return Console.readLine();
     }
 
     /**
