@@ -28,14 +28,4 @@ class BridgeGameControllerTest {
         assertDoesNotThrow(() -> new BridgeGameController());
     }
 
-    @Disabled
-    @Test
-    @DisplayName("게임 시작 컨트롤러 실행을 정상적으로 실행한다.")
-    void 컨트롤러_시작_테스트(){
-        OutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-        bridgeGameController.start();
-        assertThat(outputStream.toString()).contains("다리 건너기 게임을 시작합니다.");
-    }
-
 }
