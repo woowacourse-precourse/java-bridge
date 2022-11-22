@@ -21,5 +21,8 @@ public enum BridgeMap{
         this.map = map;
 
     }
+    public String getString(Object input) {
+        return map.get(input).toString();
+    }
 
 }
