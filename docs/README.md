@@ -46,6 +46,16 @@
     - 움직임 (int)
 - [x] 움직임 (int)를 넣으면 움직임(String)으로 반환
 
+### RetryQuitTable
+
+- 열거형 상수
+    - RETRY
+    - QUIT
+- 인스턴스 변수
+    - 재시작 (String);
+    - 재시작 (boolean);
+- [x] 재시작 (String)을 넣으면 재시작(boolean)으로 반환
+
 <br>
 
 # View
