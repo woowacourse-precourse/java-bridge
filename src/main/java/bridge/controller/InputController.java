@@ -1,10 +1,10 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.test.BridgeMaker;
-import bridge.test.MoveBox;
-import bridge.test.RestartStatus;
-import bridge.test.lengthBridge;
+import bridge.BridgeMaker;
+import bridge.model.MoveBox;
+import bridge.model.RestartStatus;
+import bridge.model.lengthBridge;
 import bridge.view.InputView;
 import java.util.List;
 

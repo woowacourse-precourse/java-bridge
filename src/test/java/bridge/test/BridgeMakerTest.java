@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

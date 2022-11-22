@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.test.BridgeGame;
+import bridge.model.BridgeGame;
 import bridge.view.OutputView;
 import java.util.List;
 

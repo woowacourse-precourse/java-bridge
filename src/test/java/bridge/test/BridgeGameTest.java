@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.model.BridgeGame;
+import bridge.model.Bridgelocation;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
