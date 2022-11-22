@@ -52,10 +52,17 @@ public class BridgeController {
 	private void afterMoveProcess(BridgeGame bridgeGame) {
 		if (isGameEnd(bridgeGame)) {
 			if (isGameFailed(bridgeGame)) {
-				OutputView.printWhetherRestartOrNot();
-				restartProcess(bridgeGame, isUserSelectRestart());
+				String gameCommand = getUserGameCommand();
+				restartProcess(bridgeGame, isUserSelectRestart(gameCommand));
 			}
 		}
+	}
+
+	private String getUserGameCommand() {
+		return ExceptionHandler.getCorrectInput(() -> {
+			OutputView.printWhetherRestartOrNot();
+			return InputView.readGameCommand();
+		});
 	}
 
 	private boolean isGameEnd(BridgeGame bridgeGame) {
@@ -66,8 +73,8 @@ public class BridgeController {
 		return bridgeGame.isGameFailed();
 	}
 
-	private boolean isUserSelectRestart() {
-		return InputView.readGameCommand().equals("R");
+	private boolean isUserSelectRestart(final String gameCommand) {
+		return gameCommand.equals("R");
 	}
 
 	private void restartProcess(BridgeGame bridgeGame, boolean isUserSelectRestart) {
