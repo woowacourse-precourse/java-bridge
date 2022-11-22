@@ -8,7 +8,6 @@ import bridge.view.Print;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.model.BridgeGame.round;
 
 public class BridgeGameController {
     private BridgeGame bridgeGame = new BridgeGame();
@@ -28,7 +27,7 @@ public class BridgeGameController {
         bridge = bridgeGame.make(bridgeSize);
     }
 
-    public void setBridgeLength() { /*입력값 받기*/
+    public void setBridgeLength() {
         int retryCheckNumber = 1;
         while (retryCheckNumber != 0) {
             Print.requestBridgeLengthMessage();
@@ -52,7 +51,7 @@ public class BridgeGameController {
                 userRetryInput = validateRetryInput();
                 makeClearCondition();
             }
-        }while (round != bridge.size());
+        }while (BridgeGame.getRound() != bridge.size());
     }
 
     private void makeClearCondition() {
@@ -63,7 +62,6 @@ public class BridgeGameController {
             OutputView.downSide = "";
         }
     }
-
 
     public void printSemiResult(boolean crossPossible) {
         if (crossPossible == false) { mark.add("X"); }
