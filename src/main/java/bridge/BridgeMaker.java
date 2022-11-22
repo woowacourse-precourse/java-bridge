@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.data.BridgeDirection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,9 +9,6 @@ import static bridge.data.GameCommand.DOWN;
 import static bridge.data.GameCommand.UP;
 
 public class BridgeMaker {
-
-    private final int DOWN_NUMBER = 0;
-    private final int UP_NUMBER = 1;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -29,7 +28,7 @@ public class BridgeMaker {
     }
 
     private String createCommand(int number) {
-        if (number == UP_NUMBER) {
+        if (number == BridgeDirection.UP_NUMBER.getNumber()) {
             return UP.getCommand();
         }
 
