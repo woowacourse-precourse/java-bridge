@@ -3,7 +3,13 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Constant.MOVING_COMMAND_DOWN;
+import static bridge.Constant.MOVING_COMMAND_UP;
+
 public class BridgeResult {
+    private static final String BRIDGE_START = "[ ";
+    private static final String BRIDGE_MIDDLE = " | ";
+    private static final String BRIDGE_END = " ]";
     private final Bridge bridge;
     private final List<ResultFlag> upperLine = new ArrayList<>();
     private final List<ResultFlag> lowerLine = new ArrayList<>();
@@ -21,11 +27,11 @@ public class BridgeResult {
     }
 
     private void saveResult(String moveCommand) {
-        if (moveCommand.equals("U")) {
+        if (moveCommand.equals(MOVING_COMMAND_UP)) {
             upperLine.add(isCrossing(moveCommand));
             lowerLine.add(ResultFlag.NOTHING);
         }
-        if (moveCommand.equals("D")) {
+        if (moveCommand.equals(MOVING_COMMAND_DOWN)) {
             upperLine.add(ResultFlag.NOTHING);
             lowerLine.add(isCrossing(moveCommand));
         }
@@ -48,14 +54,14 @@ public class BridgeResult {
     }
 
     private String drawResult(List<ResultFlag> shape) {
-        String bracket = "[ ";
+        String bracket = BRIDGE_START;
         for (int index = 0; index < shape.size(); index++) {
             if (index != 0) {
-                bracket += " | ";
+                bracket += BRIDGE_MIDDLE;
             }
             bracket += shape.get(index).getShape();
         }
-        bracket += " ]";
+        bracket += BRIDGE_END;
         return bracket;
     }
 
