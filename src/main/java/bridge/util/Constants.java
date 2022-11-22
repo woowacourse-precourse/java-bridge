@@ -12,7 +12,6 @@ public class Constants {
     public static final String BRIDGE_START = "[ ";
     public static final String BRIDGE_SEPARATER = " | ";
     public static final String BRIDGE_END = " ]";
-    public static final String BRIDGE_WHITE_SPACE = " ";
     public static final int INITIAL_ATTEMPTS = 1;
     public static final String OUTPUT_LINE_BREAK = "\n";
     public static final String OUTPUT_FINAL_RESULT = "최종 게임 결과";

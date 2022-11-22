@@ -42,6 +42,7 @@ public class OutputView {
 
     public void printErrorMessage(IllegalArgumentException exception) {
         System.out.printf(ERROR_MESSAGE, exception.getMessage());
+        System.out.print(OUTPUT_LINE_BREAK);
     }
 
     public void printStartGame() {
