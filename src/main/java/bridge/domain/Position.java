@@ -1,7 +1,6 @@
 package bridge.domain;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Position {
@@ -24,26 +23,26 @@ public class Position {
         return POSITIONS.get(key);
     }
 
-    Position increase() {
-        validateKeyOfPosition(value + 1);
-        return POSITIONS.get(value + 1);
-    }
-
-    Position reset() {
-        return POSITIONS.get(0);
-    }
-
-    boolean isLessThan(int size) {
-        return value < size;
-    }
-
-    int value() {
-        return value;
-    }
-
     private static void validateKeyOfPosition(final int key) {
         if (!POSITIONS.containsKey(key)) {
             throw new IllegalArgumentException("Player의 위치 값은 0~19까지만 가능합니다.");
         }
+    }
+
+    public Position reset() {
+        return POSITIONS.get(0);
+    }
+
+    public Position increase() {
+        validateKeyOfPosition(value + 1);
+        return POSITIONS.get(value + 1);
+    }
+
+    public int value() {
+        return value;
+    }
+
+    public boolean isLessThan(int size) {
+        return value < size;
     }
 }

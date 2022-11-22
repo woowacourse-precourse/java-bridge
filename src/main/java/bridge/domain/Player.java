@@ -1,6 +1,7 @@
 package bridge.domain;
 
 public class Player {
+
     private Position position;
     private ChallengeNumbers challengeNumbers;
 
@@ -13,12 +14,12 @@ public class Player {
         return bridge.isLongerThan(position);
     }
 
-    public void move() {
-        position = position.increase();
-    }
-
     public void resetPosition() {
         position = position.reset();
+    }
+
+    public void move() {
+        position = position.increase();
     }
 
     public void increaseChallenges() {
