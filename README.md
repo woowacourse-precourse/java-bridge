@@ -1,37 +1,8 @@
 # 미션 - 다리 건너기
 ---
-
 ## 목표
 
 - 아래에 주어진 제약 사항과 기능 요구 사항들을 고려하여, 다리 건너기 게임을 완성한다.
-
-## 📝기능 구현 목록
-
-- [x] 사용자의 입력을 받는다. InputView
-  - [x] 위아래 칸중 하나의 칸만 이동 가능하다. InputView#readMoving()
-  - [x] 다리의 길이를 입력받아 그 값으로 생성된다. InputView#readBridgeSize()
-- [x] 다리를 생성할 때 이동가능유무는 0, 1 둘 중 무작위 값을 선택해서 만든다. BridgeMaker#makeBridge()
-- [x] 위 칸(1)을 건널 수 있으면 U, 아래 칸(0)을 건널 수 있으면 D로 표현한다. BridgePosition
-- [x] 움직임 기능을 추가한다. BridgeGame#move()
-  - [x] 이동은 U, D로 이동할 수 있다. BridgePosition#compare()
-  - [x] 이동을 할 수 있으면 O로 표시한다. BridgePosition#compare()
-  - [x] 이동을 할 수 없으면 X로 표시한다. BridgePosition#compare()
-  - [x] 선택하지 않은 칸은 공백 한 칸으로 표시한다. BridgePosition#compare()
-- [x] 결과를 저장하는 기능을 추가한다. BridgeRepository
-- [x] 다리를 출력한다. OutputView
-  - [x] 다리의 시작은 `[`, 끝은 `]`로 표현한다. OutputView#printMap()
-  - [x] 다리 칸의 구분은 ` | ` 로 표현한다. OutputView#printMap()
-  - [x] 현재까지 건넌 다리를 모두 출력한다. OutputView#printMap()
-- [x] 다리를 끝까지 건너면 게임은 종료된다.
-  - [x] 다리를 건너다 실패하면 그만두거나 다시 시작할 수 있다.
-    - [x] 이때, 재시작해도 처음에 만든 다리로 재사용된다.
-  - [x] 게임 종료시 총 시도한 횟수를 표시한다. OutputView#printResult()
-  - [x] 게임 종료시 성공 여부를 표시한다. OutputView#printResult()
-- [x] 사용자의 입력을 검증한다. ValidationUtils
-  - [x] 사용자의 잘못된 값을 입력하면, 예외를 발생시키기고 다시 입력을 받는다. ValidationUtils
-  - [x] 다리의 길이는 3이상 20이하의 숫자를 받을 수 있다. ValidationUtils#validateBridgeSize()
-  - [x] 이동할 칸은 U나 D만 받을 수 있다. ValidationUtils#validateMove()
-  - [x] 게임 재시작/종료 여부는 R(재시작), Q(종료)만 받을 수 있다. ValidationUtils#validateGameCommand()
 
 ## 🚀 기능 요구 사항
 
