@@ -62,7 +62,7 @@ public class OutputView {
 
     public void printResult(boolean isEnd, long count) {
         System.out.println("최종 게임 결과");
-        System.out.printf("게임 성공 여부: %s\n 총 시도한 횟수: %d\n", isSuccess(isEnd), count);
+        System.out.printf("게임 성공 여부: %s\n총 시도한 횟수: %d\n", isSuccess(isEnd), count);
     }
 
     private String isSuccess(boolean isEnd) {

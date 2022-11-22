@@ -14,7 +14,7 @@ class OutputViewTest extends NsTest {
     public void resultTest(boolean isSuccess, long value, String resultSuccess) {
         OutputView outputView = new OutputView();
         outputView.printResult(isSuccess, value);
-        String result = String.format("게임 성공 여부: %s\n 총 시도한 횟수: %d", resultSuccess, value);
+        String result = String.format("게임 성공 여부: %s\n총 시도한 횟수: %d", resultSuccess, value);
         assertThat(output()).contains(result);
 
     }
