@@ -48,26 +48,26 @@ public class Bridge {
     public List<String> getUserRouteInTargetBridge (String targetBridge) {
         List<String> userRouteInBridge = new ArrayList<>();
         for (int round=0; round<userRoute.size(); round++) {
-            String currentUserPosition = userRoute.get(round);
-            String availableDirection = bridge.get(round);
-            String currentMovingResult = getMovingResultInTargetBridge(currentUserPosition, availableDirection, targetBridge);
+            String currentPosition = userRoute.get(round);
+            String availableBridge = bridge.get(round);
+            String currentMovingResult = getMovingResultInTargetBridge(currentPosition, availableBridge, targetBridge);
             userRouteInBridge.add(currentMovingResult);
         }
         return userRouteInBridge;
     }
 
     /**
-     * @param currentUserPosition 현재 라운드에서 유저의 위치 (U or D)
-     * @param availableDirection 현재 라운드에서 이용 가능한 다리의 종류 (U or D)
+     * @param currentPosition 현재 라운드에서 유저의 위치 (U or D)
+     * @param availableBridge 현재 라운드에서 이용 가능한 다리의 종류 (U or D)
      * @param targetBridge 이동 결과를 얻고자 하는 다리
      *
      * @return 각 다리에 해당하는 유저의 이동 결과를 'O', 'X', ' '로 구분하여 반환합니다.
      */
-    public String getMovingResultInTargetBridge (String currentUserPosition, String availableDirection, String targetBridge) {
-        if (currentUserPosition.equals(targetBridge) == true) { // 이동 결과를 얻고자 하는 다리에 있는 경우
-            if (availableDirection.equals(currentUserPosition) == true) {
+    public String getMovingResultInTargetBridge (String currentPosition, String availableBridge, String targetBridge) {
+        if (currentPosition.equals(targetBridge) == true) { // 이동 결과를 얻고자 하는 다리에 있는 경우
+            if (availableBridge.equals(currentPosition) == true) {
                 return "O"; // 이동한 다리가 이용 가능한 다리였을 경우 'O' 반환
-            } if (availableDirection.equals(currentUserPosition) == false) {
+            } if (availableBridge.equals(currentPosition) == false) {
                 return "X"; // 이동한 다리가 이용 가능한 다리가 아니었을 경우 'X' 반환
             }
         }
