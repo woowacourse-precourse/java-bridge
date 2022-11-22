@@ -1,7 +1,7 @@
 # 기능 요구 사항
-- [ ] Application : main loop, UI와 로직을 통합
-  - [ ] 게임 진행
-  - [ ] 에러 처리
+- [x] Application : main loop, UI와 로직을 통합
+  - [x] 게임 진행
+  - [x] 에러 처리
 
 - [x] BridgeGame : 다리 건너기 게임을 관리하는 클래스
     - [x] 생성자 추가
