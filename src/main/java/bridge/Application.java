@@ -15,15 +15,32 @@ public class Application {
         System.out.println(bridgeState);
         List<String> currentBridgeState=bridgeMaker.initialBridge();
         String choicePosition;
+        String retryCommand="실패";
+        int countTry=0;
         int count=0;
-        while(true){
-            if(count>=bridgeState.size()){
+        String passFail="";
+        while (true) {
+            if (retryCommand=="Q" || count >= bridgeState.size()){
                 break;
             }
-            choicePosition = bridgeGame.move();
-            currentBridgeState = outputView.printMap(bridgeMaker.addBridge(currentBridgeState,bridgeState.get(count),choicePosition));
-            count++;
+            currentBridgeState=bridgeMaker.initialBridge();
+            countTry++;
+            count=0;
+            while (true) {
+                if (count >= bridgeState.size()) {
+                    passFail="성공";
+                    break;
+                }
+                choicePosition = bridgeGame.move();
+                currentBridgeState = outputView.printMap(
+                        bridgeMaker.addBridge(currentBridgeState, bridgeState.get(count), choicePosition));
+                if (currentBridgeState.get(0).contains("X") || currentBridgeState.get(1).contains("X")) {
+                    retryCommand = inputView.readGameCommand();
+                    break;
+                }
+                count++;
+            }
         }
-
+        outputView.printResult(currentBridgeState,passFail,countTry);
     }
 }
