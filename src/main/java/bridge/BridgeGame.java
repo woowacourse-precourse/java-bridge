@@ -15,9 +15,9 @@ public class BridgeGame {
 
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
+    private final DrawMap drawMap = new DrawMap();
     private List<String> newBridge;
     private int gameTrialCount = 1;
-    private DrawMap drawMap;
     private String currentMap;
 
     /**
@@ -68,7 +68,6 @@ public class BridgeGame {
      * 현재 결과를 그림으로 나타내주는 메서드
      */
     public String getCurrentMapInString(List<String> playerInput) {
-        drawMap = new DrawMap();
         return drawMap.returnMapToPrint(newBridge, playerInput);
     }
 
