@@ -15,7 +15,7 @@ public class ViewService {
 
     public String requestMovement() {
         outputView.askMovement();
-        return inputView.readMoving();
+        return inputView.readMovement();
     }
 
     public String requestDecision() {
