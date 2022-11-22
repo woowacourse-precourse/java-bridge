@@ -1,9 +1,7 @@
 package bridge;
 
-import bridge.UI.InputView;
-import bridge.UI.OutputView;
-import bridge.domain.BridgeMaker;
-import bridge.domain.GameState;
+import bridge.ui.InputView;
+import bridge.ui.OutputView;
 import java.util.List;
 
 public class Application {

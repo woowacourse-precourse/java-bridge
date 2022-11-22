@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.ui;
 
 public class InputChecker {
 

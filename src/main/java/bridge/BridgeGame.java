@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.domain.GameState;
 import java.util.ArrayList;
 import java.util.List;
 
