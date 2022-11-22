@@ -1,13 +1,17 @@
 package bridge;
 
+import bridge.exception.InputError;
+import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-
-import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.List;
-import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
@@ -44,6 +48,15 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 21, Integer.MAX_VALUE})
+    void 다리_생성하기_예외_테스트(int size) {
+        assertSimpleTest(() -> {
+            runException(String.valueOf(size));
+            assertThat(output()).containsOnlyOnce(InputError.INVALID_NUMBER_RANGE.getMessage());
         });
     }
 
