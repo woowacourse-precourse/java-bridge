@@ -35,7 +35,6 @@ public class BridgeMaker {
         final int DOWN_NUMBER = 0;
         final String UP = "U";
         final String DOWN = "D";
-
         Map<Integer, String> mapping = new HashMap<>() {{
             put(UP_NUMBER, UP);
             put(DOWN_NUMBER, DOWN);
