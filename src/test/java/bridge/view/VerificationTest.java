@@ -1,14 +1,13 @@
-package bridge.service;
+package bridge.view;
 
-import bridge.view.Valification;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-class ValificationTest {
-    Valification valification = new Valification();
+class VerificationTest {
+    Verification verification = new Verification();
 
     @Nested
     class verifyBridgeSizeTest {
@@ -18,7 +17,7 @@ class ValificationTest {
         void case1() {
             int testNumber = 2;
 
-            assertThatThrownBy(() -> valification.verifyBridgeSize(testNumber))
+            assertThatThrownBy(() -> verification.verifyBridgeSize(testNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
@@ -28,7 +27,7 @@ class ValificationTest {
         void case2() {
             int testNumber = 21;
 
-            assertThatThrownBy(() -> valification.verifyBridgeSize(testNumber))
+            assertThatThrownBy(() -> verification.verifyBridgeSize(testNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 
@@ -43,7 +42,7 @@ class ValificationTest {
         void caase1() {
             String test = "UU";
 
-            assertThatThrownBy(() -> valification.verifyUorD(test))
+            assertThatThrownBy(() -> verification.verifyUorD(test))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("U, D 두개 중에 하나 선택 해야 합니다.");
         }
@@ -53,7 +52,7 @@ class ValificationTest {
         void caase2() {
             String test = "DD";
 
-            assertThatThrownBy(() -> valification.verifyUorD(test))
+            assertThatThrownBy(() -> verification.verifyUorD(test))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("U, D 두개 중에 하나 선택 해야 합니다.");
         }
@@ -63,7 +62,7 @@ class ValificationTest {
         void caase3() {
             String test = "A";
 
-            assertThatThrownBy(() -> valification.verifyUorD(test))
+            assertThatThrownBy(() -> verification.verifyUorD(test))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("U, D 두개 중에 하나 선택 해야 합니다.");
         }
@@ -78,7 +77,7 @@ class ValificationTest {
         void caase1() {
             String test = "RR";
 
-            assertThatThrownBy(() -> valification.verifyQorR(test))
+            assertThatThrownBy(() -> verification.verifyQorR(test))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("R, Q 두개 중에 하나 선택 해야 합니다.");
         }
@@ -88,7 +87,7 @@ class ValificationTest {
         void caase2() {
             String test = "QQ";
 
-            assertThatThrownBy(() -> valification.verifyQorR(test))
+            assertThatThrownBy(() -> verification.verifyQorR(test))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("R, Q 두개 중에 하나 선택 해야 합니다.");
         }
@@ -98,7 +97,7 @@ class ValificationTest {
         void caase3() {
             String test = "U";
 
-            assertThatThrownBy(() -> valification.verifyQorR(test))
+            assertThatThrownBy(() -> verification.verifyQorR(test))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("R, Q 두개 중에 하나 선택 해야 합니다.");
         }
