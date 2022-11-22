@@ -89,4 +89,8 @@ public class OutputView {
         String quit = GameCommand.QUIT.getCommand();
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + restart + ", 종료: " + quit + ")");
     }
+
+    public void initializeMap() {
+        map = new String[Moving.values().length];
+    }
 }
