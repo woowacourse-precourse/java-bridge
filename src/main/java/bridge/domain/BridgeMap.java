@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.domain.util.Constant;
+import bridge.domain.util.Position;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public class BridgeMap {
     private LinkedHashMap<String, List<String>> bridgeMap = new LinkedHashMap<>() {{
-        put(Constant.MOVED_POSITION_UP, new ArrayList<>());
-        put(Constant.MOVED_POSITION_DOWN, new ArrayList<>());
+        put(Position.UP.getInitial(), new ArrayList<>());
+        put(Position.DOWN.getInitial(), new ArrayList<>());
     }};
     private final String SUCESS_CELL = "O";
     private final String FAILED_CELL = "X";
@@ -24,13 +24,13 @@ public class BridgeMap {
     }
 
     private void addMap(String cell, String moving) {
-        if (Objects.equals(moving, Constant.MOVED_POSITION_UP)) {
-            bridgeMap.get(Constant.MOVED_POSITION_UP).add(cell);
-            bridgeMap.get(Constant.MOVED_POSITION_DOWN).add(BLANK_CELL);
+        if (Objects.equals(moving, Position.UP.getInitial())) {
+            bridgeMap.get(Position.UP.getInitial()).add(cell);
+            bridgeMap.get(Position.DOWN.getInitial()).add(BLANK_CELL);
             return;
         }
-        bridgeMap.get(Constant.MOVED_POSITION_UP).add(BLANK_CELL);
-        bridgeMap.get(Constant.MOVED_POSITION_DOWN).add(cell);
+        bridgeMap.get(Position.UP.getInitial()).add(BLANK_CELL);
+        bridgeMap.get(Position.DOWN.getInitial()).add(cell);
     }
 
     public LinkedHashMap<String, List<String>> getMap() {
@@ -39,8 +39,8 @@ public class BridgeMap {
 
     public void initialization() {
         bridgeMap = new LinkedHashMap<>() {{
-            put(Constant.MOVED_POSITION_UP, new ArrayList<>());
-            put(Constant.MOVED_POSITION_DOWN, new ArrayList<>());
+            put(Position.UP.getInitial(), new ArrayList<>());
+            put(Position.DOWN.getInitial(), new ArrayList<>());
         }};
     }
 }

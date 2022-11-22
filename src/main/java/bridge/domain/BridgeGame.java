@@ -2,7 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.util.Constant;
+import bridge.domain.util.GameCommand;
 import bridge.domain.util.ValidationUtil;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -50,12 +50,12 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         ValidationUtil.restartValidation(gameCommand);
-        if (Objects.equals(gameCommand, Constant.RESTART)) {
+        if (Objects.equals(gameCommand, GameCommand.RESTART.getCommand())) {
             bridgeInitialization();
             retryCount++;
-            return true;
+            return GameCommand.RESTART.isState();
         }
-        return false;
+        return GameCommand.QUIT.isState();
     }
 
     private void bridgeInitialization() {

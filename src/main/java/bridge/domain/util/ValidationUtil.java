@@ -14,12 +14,12 @@ public class ValidationUtil {
     }
 
     public static void movedValidation(String move) {
-        if(!Objects.equals(move, Constant.MOVED_POSITION_UP) && !Objects.equals(move, Constant.MOVED_POSITION_DOWN)){
+        if(!Objects.equals(move, Position.UP.getInitial()) && !Objects.equals(move, Position.DOWN.getInitial())){
             throw new IllegalArgumentException(INVAILED_MOVE);
         }
     }
     public static void restartValidation(String move) {
-        if(!Objects.equals(move, Constant.RESTART) && !Objects.equals(move, Constant.QUIT)){
+        if(!Objects.equals(move, GameCommand.RESTART.getCommand()) && !Objects.equals(move, GameCommand.QUIT.getCommand())){
             throw new IllegalArgumentException(INVAILED_GAME_COMMAND);
         }
     }

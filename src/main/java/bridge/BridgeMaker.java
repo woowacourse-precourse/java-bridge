@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.util.Constant;
+import bridge.domain.util.Position;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +28,9 @@ public class BridgeMaker {
     }
 
     public String positionJudgement() {
-        if (bridgeNumberGenerator.generate() == 1) {
-            return Constant.MOVED_POSITION_UP;
+        if (bridgeNumberGenerator.generate() == Position.UP.getPositionNumber()) {
+            return Position.UP.getInitial();
         }
-        return Constant.MOVED_POSITION_DOWN;
+        return Position.DOWN.getInitial();
     }
 }
