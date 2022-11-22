@@ -1,9 +1,6 @@
 # 기능 목록
 
----
-
 ## domain
-
 ### Bridge
 - [X] 결과 bridge 저장
 - [X] `isEquals()`: Position과 bridge의 index value가 일치하는지 검증
@@ -51,7 +48,6 @@
 - [X] 재시도 커멘드 입력
 - [X] R 또한 Q가 아닐 시 예외처리
 <br>
----
 
 ## view
 ### InputView
