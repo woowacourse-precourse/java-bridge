@@ -7,7 +7,7 @@ public enum BlockExpression {
 
     private final String mark;
 
-    private BlockExpression(String mark) {
+    BlockExpression(String mark) {
         this.mark = mark;
     }
 
