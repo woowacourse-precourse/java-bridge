@@ -46,30 +46,14 @@ class ExceptionBasketTest {
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
-    @Test
+    @ValueSource(strings = {"A", "RR", "QQ"})
     @DisplayName("다시 시작할지 말지 R, Q이외를 누를경우 예외 처리")
-    void invalidRetryRequestInputKeyTest() {
+    @ParameterizedTest
+    void invalidRetryRequestInputKeyTest(String input) {
 
-        //R이나 Q 이외의 문자를 넣을 경우(에러)
         {
             assertThatThrownBy(() ->
-                    ExceptionBasket.invalidRetryRequestInputKey("A"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
-
-        //R을 두번 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.invalidRetryRequestInputKey("RR"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
-
-        //Q를 두번 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.invalidRetryRequestInputKey("QQ"))
+                    ExceptionBasket.invalidRetryRequestInputKey(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE);
         }
