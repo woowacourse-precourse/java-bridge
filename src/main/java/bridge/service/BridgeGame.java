@@ -13,6 +13,8 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
+    private static final String INVALID_LOCATION_MESSAGE = "다리의 범위를 벗어난 위치입니다.";
+
     private final List<String> bridge;
     private final MoveResult moveResult;
 
@@ -35,7 +37,14 @@ public class BridgeGame {
     }
 
     private boolean canMove(int location, BridgeCellType moveCommand) {
+        checkValidLocation(location);
         return Objects.equals(moveCommand.getCellType(), bridge.get(location));
+    }
+
+    private void checkValidLocation(int location) {
+        if (location >= bridge.size() || location < 0) {
+            throw new IllegalArgumentException(INVALID_LOCATION_MESSAGE);
+        }
     }
 
     /**
