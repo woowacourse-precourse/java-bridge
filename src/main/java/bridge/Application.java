@@ -25,6 +25,11 @@ public class Application {
         final Movement movement = askMoving();
         final Path path = bridgeGame.onMove(movement);
         printMap(path);
+        askRetrying();
+    }
+
+    private static void askRetrying() {
+        outputView.printRetrying();
     }
 
     private static void printMap(final Path path) {
