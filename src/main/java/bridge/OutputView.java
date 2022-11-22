@@ -38,7 +38,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> answer, List<Integer> result, int bridgeLength) {
+        int blankNumber = result.get(0);
+        int count = result.get(1);
+
+        String countStr = convertString(count);
+        String checkClear = isSuccess(blankNumber, bridgeLength);
+        ShowMessage(finish);
+        upBridge.getResultMap(answer, blankNumber, bridgeLength);
+        downBridge.getResultMap(answer, blankNumber, bridgeLength);
+        System.out.println(isClear + checkClear);
+        System.out.println(attemptNumber + countStr);
+    }
+
+    private String convertString(int count) {
+        return String.valueOf(count);
+    }
+
+    private String isSuccess(int blankNumber, int bridgeLength) {
+        if (blankNumber == bridgeLength) {
+            return success;
+        }
+        return fail;
     }
 
 }
