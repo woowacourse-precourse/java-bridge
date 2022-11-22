@@ -25,7 +25,7 @@ class MovingProcessingTest extends CustomNsTest {
 
         //중간에 하나 틀리는 경우
         {
-            command("4");
+            command("4"); //크기입력(신경 안써도되는 코드)
             movingProcessing = new MovingProcessing();
             output(); //원할한 테스트를 위한 버퍼 지우기
             ////////////////////////////////////////////////////
@@ -35,7 +35,7 @@ class MovingProcessingTest extends CustomNsTest {
             List<String> inputs = List.of("U", "D", "U");
             Iterator inputsIter = inputs.iterator();
             while (inputsIter.hasNext()) {
-                String input = (String)inputsIter.next();
+                String input = (String) inputsIter.next();
                 movingProcessing.compareBridgeToInput(input, bridge);
             }
             assertThat(output()).contains(
@@ -50,7 +50,7 @@ class MovingProcessingTest extends CustomNsTest {
 
         //다 맞는 경우
         {
-            command("4");
+            command("4");//크기입력(신경 안써도되는 코드)
             movingProcessing = new MovingProcessing();
             output(); //원할한 테스트를 위한 버퍼 지우기
             ////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ class MovingProcessingTest extends CustomNsTest {
             List<String> inputs = List.of("U", "D", "D", "D");
             Iterator inputsIter = inputs.iterator();
             while (inputsIter.hasNext()) {
-                String input = (String)inputsIter.next();
+                String input = (String) inputsIter.next();
                 movingProcessing.compareBridgeToInput(input, bridge);
             }
 
@@ -78,7 +78,7 @@ class MovingProcessingTest extends CustomNsTest {
 
         //중간에 잘못된 값이 잘못들어가면 다시 값을 받음
         {
-            command("4");
+            command("4");//크기입력(신경 안써도되는 코드)
             movingProcessing = new MovingProcessing();
             output(); //원할한 테스트를 위한 버퍼 지우기
             ////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ class MovingProcessingTest extends CustomNsTest {
             List<String> inputs = List.of("U", "D", "W", "D", "D");
             Iterator inputsIter = inputs.iterator();
             while (inputsIter.hasNext()) {
-                String input = (String)inputsIter.next();
+                String input = (String) inputsIter.next();
                 movingProcessing.compareBridgeToInput(input, bridge);
             }
             assertThat(output()).contains(
@@ -102,7 +102,5 @@ class MovingProcessingTest extends CustomNsTest {
                     "[   | O | O | O ]"
             );
         }
-
     }
-
 }
