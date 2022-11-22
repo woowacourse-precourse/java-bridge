@@ -18,47 +18,44 @@ public class Controller {
     private InputException inputException = new InputException();
     private BridgeGame bridgeGame;
 
+
+
     public List<String> bridgeMaker() {
         int size = inputException.checkLengthBridge(input.readBridgeSize());
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(size);
+        System.out.println(bridge);
         return bridge;
     }
 
     public void bridgeGame(List<String> bridge) {
         bridgeGame = new BridgeGame(bridge);
-        int bridgeIndex = 0;
-        int gameCount = 0;
-        while (true) {
-            String upDown = inputException.checkUpDown(input.readMoving());
-            boolean sucess = bridgeGame.move(upDown, bridgeIndex);
-            if(!checkSucess(sucess, gameCount)){
+        while (bridgeGame.stateGame()) {
+            if(!checkMoveSucess()){
                 break;
             }
-            gameCount++;
         }
+        output.printResult(bridgeGame.getGameCount());
     }
 
-    public boolean checkSucess(boolean sucess, int gameCount) {
-        if (!sucess) {
-            gameCount++;
-            output.printResult(gameCount);
-            String retry = inputException.checkRetry(input.readGameCommand());
-            if (!checkRetry(retry, gameCount)) {
+    public boolean checkMoveSucess() {
+        String upDown = inputException.checkUpDown(input.readMoving());
+        if (!bridgeGame.move(upDown)) {
+            if(!checkRetry()){
                 return false;
             }
+            return true;
         }
         return true;
     }
 
-    public boolean checkRetry(String retry, int gameCount) {
-        if (!bridgeGame.retry(retry)) {
-            output.printResult(gameCount);
-            return false;
+    public boolean checkRetry() {
+        String retryQuick = inputException.checkRetry(input.readGameCommand());
+        if (bridgeGame.retry(retryQuick)) {
+            bridgeGame.setup();
+            return true;
         }
-        return true;
+        return false;
     }
-
-
 }
