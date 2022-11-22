@@ -7,6 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
+    public static OutputView instance = new OutputView();
+
+    public static OutputView getInstance() {
+        return instance;
+    }
 
     public void printMap(HashMap<String, List<String>> mapInfo) {
         StringBuilder map = new StringBuilder();

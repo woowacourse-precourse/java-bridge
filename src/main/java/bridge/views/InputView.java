@@ -11,6 +11,11 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    public static InputView instance = new InputView();
+
+    public static InputView getInstance(){
+        return instance;
+    }
 
     public int readBridgeSize() {
         try{
@@ -55,6 +60,4 @@ public class InputView {
         System.out.println(msg);
         return Console.readLine();
     }
-
-
 }
