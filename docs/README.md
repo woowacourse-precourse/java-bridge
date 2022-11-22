@@ -26,17 +26,21 @@
 >### 👁 BridgeView
 >
 > * 입출력을 수행하는 UI
-> * **InputView**와 **OutputView**를 상속
+> * **InputView**와 **OutputView**을 필드로 삼아 동작
 > ### Method List
 >
->| No.          | 함수명               | 기능                      |   분류   |
->------------|:------------------|:------------------------|:------:|
->1 | readBridgeSize()  | 유저로부터 Bridge의 길이를 입력 받음 | INPUT  |
->2| readMoving()      | 유저로부터 이동할 칸을 입력 받음      | INPUT  |
->3| readGameCommand() | 유저로부터 게임 진행 여부를 입력 받음   | INPUT  |
->4| printMap()        | 현재까지 진행한 Bridge 현황 출력   | OUTPUT |
->5| printResult()     | 최종 결과 출력                | OUTPUT |
-
+>| No.          | 함수명               | 기능                                          |   분류   |
+>------------|:------------------|:--------------------------------------------|:------:|
+>1 | readBridgeSize()  | 유저로부터 Bridge의 길이를 입력 받음                     | INPUT  |
+>2| readMoving()      | 유저로부터 이동할 칸을 입력 받음                          | INPUT  |
+>3| readGameCommand() | 유저로부터 게임 진행 여부를 입력 받음                       | INPUT  |
+>4| printMap()        | 현재까지 진행한 Bridge 현황 출력                       | OUTPUT |
+>5| printResult()     | 최종 결과 출력                                    | OUTPUT |
+>6| getDirection()    | Bridge와 최종 State로 유저의 이동 방향을 도출             | OUTPUT |
+>7| getState() | 유저의 State를 도출, 전달받은 최종 State 외에 모두 SAFE로 처리 | OUTPUT|
+>8| updateMap()       | 진행한 Bridge 현황 UI를 UP, DOWN 별로 생성            | OUTPUT |
+>9|drawMap() | 현재까지 진행한 Bridge 현황 UI 생성                    | OUTPUT|
+>10|drawResult()| 최종 결과 UI 생성                                 | OUTPUT|                                     
 
 >### 🕹 BridgeController
 > * Bridge 게임을 진행하는 도메인 로직
