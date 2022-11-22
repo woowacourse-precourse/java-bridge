@@ -1,7 +1,8 @@
 package bridge.controller;
 
+import static bridge.constant.GameCommand.R;
+
 import bridge.BridgeGame;
-import bridge.constant.GameCommand;
 import bridge.constant.MovingDirection;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -39,13 +40,20 @@ public class BridgeController {
         if (bridgeGame.isNotFail()) {
             return true;
         }
+        return chooseRetryOrQuit();
+    }
+
+    private boolean chooseRetryOrQuit() {
         outputView.printRetryOrQuitPhrase();
-        GameCommand gameCommand = inputView.readGameCommand();
-        if (gameCommand == GameCommand.R) {
+        if (isRetry()) {
             bridgeGame.retry();
             return true;
         }
         return false;
+    }
+
+    private boolean isRetry() {
+        return inputView.readGameCommand() == R;
     }
 
     public void endGame() {
