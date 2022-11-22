@@ -73,4 +73,10 @@ public class InputView {
         }
     }
 
+
+    private void validCommand(String restart) {
+        if (!(restart.equals("R") || restart.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] 게임 재시작은 R, 종료는 Q로만 입력 가능합니다.");
+        }
+    }
 }
