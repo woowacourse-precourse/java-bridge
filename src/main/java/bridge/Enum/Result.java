@@ -6,7 +6,7 @@ public enum Result {
     SPACE(" "),
     ;
 
-    private String sign;
+    private final String sign;
 
     Result(String sign) {
         this.sign = sign;

@@ -9,7 +9,7 @@ public enum Error {
     GAME_COMMAND_ERROR("[ERROR] 재시작, 종료 입력은 R / Q 로만 입력 가능합니다"),
     ;
 
-    private String message;
+    private final String message;
 
     Error(String message) {
         this.message = message;
