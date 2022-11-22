@@ -37,11 +37,13 @@ public class BridgeController {
             bridgeGame.retry();
             this.newRound();
         } while (this.continueGame());
+        outputView.printResult(this.currentBridge(), bridgeGame.getGameResult(), bridgeGame.getGameCount());
     }
 
     public void newRound() {
         do {
             bridgeGame.move(inputView.readMoving());
+            outputView.printMap(this.currentBridge(), bridgeGame.getGameResult());
         } while (this.continueRound());
     }
 
