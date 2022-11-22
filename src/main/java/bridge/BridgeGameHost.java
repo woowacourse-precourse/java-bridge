@@ -6,50 +6,34 @@ import bridge.enums.GameResult;
 import bridge.enums.MovingDirection;
 import bridge.io.InputView;
 import bridge.io.OutputView;
-import bridge.validation.InputValidator;
+import bridge.mapper.GameCommandMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameHost {
 
-    private final InputValidator inputValidator = new InputValidator();
-    private final InputView inputView = new InputView(inputValidator);
-    private final BridgeChecker bridgeChecker = new BridgeChecker();
-    private final OutputView outputView = new OutputView(bridgeChecker);
-    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    private final BridgeGame bridgeGame = new BridgeGame();
-    private int trial=1;
-    private int bridgeSize;
-    private GameResult gameResult;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeGame bridgeGame;
 
-    private List<String> bridge;
+    public BridgeGameHost(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.bridgeGame = bridgeGame;
+    }
+
+    private GameProgress gameProgress = new GameProgress();
     private List<String> userInput = new ArrayList<>();
+    private List<String> bridge = new ArrayList<>();
 
     public void runGame() {
         startGame();
 
-        while(true) {
+        while(gameProgress.getGameOver() == GameOver.YET) {
             runOneStep();
-            if(bridgeGame.verifyGameSuccess(bridgeChecker.checkBridgeMatching(bridge, userInput), gameResult)==true) {
-                printRetrialComment();
-                String gameCommand = inputView.readGameCommand();
-
-                if(gameCommand.equals(GameCommand.Quit.getExpression())) {
-                    gameResult = GameResult.FAILED;
-                    break;
-                }
-
-                bridgeGame.retry(userInput);
-                trial++;
-            }
-
-            if(bridgeGame.verifyGameOver(bridge, userInput)== GameOver.OVER) {
-                gameResult = GameResult.SUCCESS;
-                break;
-            }
-
+            bridgeGame.verifyGameSuccess(bridge, userInput, gameProgress);
+            judgeNextStep();
         }
 
         endGame();
@@ -58,9 +42,8 @@ public class BridgeGameHost {
     public void startGame() {
         printStartingComment();
 
-        bridgeSize = inputView.readBridgeSizeUntilSuccess();
-
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+        int bridgeSize = inputView.readBridgeSizeUntilSuccess();
+        bridge = bridgeGame.getBridgeMaker().makeBridge(bridgeSize);
 
         System.out.println(bridge);
     }
@@ -77,10 +60,22 @@ public class BridgeGameHost {
         outputView.printMap(bridge, userInput);
     }
 
+    public void judgeNextStep() {
+        if(gameProgress.getGameResult()==GameResult.FAILED) {
+            printRetrialComment();
+            String gameCommand = inputView.readGameCommand();
+            gameProgress.gameCommand = GameCommandMapper.getInstance().stringToGameCommand(gameCommand);
+
+            if(gameProgress.gameCommand.equals(GameCommand.Retrial)) {
+                bridgeGame.retry(userInput, gameProgress);
+            }
+        }
+    }
+
     public void endGame() {
         System.out.println("최종 게임 결과");
         outputView.printMap(bridge,userInput);
-        outputView.printResult(trial, gameResult);
+        outputView.printResult(gameProgress);
     }
 
     public void printGuideComment() {
@@ -97,7 +92,4 @@ public class BridgeGameHost {
         return bridge;
     }
 
-    public List<String> getUserInput() {
-        return userInput;
-    }
 }
