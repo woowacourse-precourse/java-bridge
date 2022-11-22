@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
+    private int attempts = 1;
     private Bridge bridge;
     private Bridge user;
 
@@ -19,11 +20,21 @@ public class BridgeGame {
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
+    public int getAttempts() {
+        return attempts;
+    }
+
     public void initBridge(int size) {
         List<String> bridge = bridgeMaker.makeBridge(size);
 
         this.bridge = new Bridge(bridge);
         this.user = new Bridge(new ArrayList<>());
+    }
+
+    public List<List<String>> getResult() {
+        List<String> result = user.matchAnswer(bridge);
+
+        return List.of(result, user.getBridge());
     }
 
     /**
@@ -41,5 +52,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        attempts++;
+        user = new Bridge(new ArrayList<>());
     }
 }
