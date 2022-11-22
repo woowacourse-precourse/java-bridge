@@ -71,7 +71,7 @@ public class BridgeGame {
     public void selectRetry() {
         String gameCommand = inputView.readGameCommand();
 
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(Constants.RESTART)) {
             retry();
         }
     }
