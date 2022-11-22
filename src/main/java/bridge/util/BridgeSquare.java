@@ -1,18 +1,17 @@
 package bridge.util;
 
 import bridge.view.ExceptionMessage;
-import bridge.view.OutputView;
 
 import java.util.Arrays;
 
-public enum UpDown {
+public enum BridgeSquare {
     U(1,"U"),
     D(0,"D");
 
     private int choice;
     private String square;
 
-    UpDown(int choice, String square) {
+    BridgeSquare(int choice, String square) {
         this.choice = choice;
         this.square = square;
     }

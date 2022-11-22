@@ -14,8 +14,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(String result) {
-        System.out.println(result);
+    public static void printMap(String map) {
+        System.out.println(map);
     }
 
     /**
@@ -28,11 +28,11 @@ public class OutputView {
         printMap(result);
     }
 
-    public static void printSuccessOrFail(String result){
-        System.out.println("게임 성공 여부: " + result);
+    public static void printSuccessOrFail(String successStatus){
+        System.out.println("게임 성공 여부: " + successStatus);
     }
 
-    public static void printAttemptCount(int count){
-        System.out.println("총 시도한 횟수: " + count);
+    public static void printAttemptCount(int attempt){
+        System.out.println("총 시도한 횟수: " + attempt);
     }
 }
