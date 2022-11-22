@@ -56,7 +56,7 @@ public class OutputView {
     }
 
     private void printBridge(List<String> row) {
-        System.out.println("[" + String.join("|", row) + "]");
+        System.out.println("[ " + String.join(" | ", row) + " ]");
     }
 
     /**
