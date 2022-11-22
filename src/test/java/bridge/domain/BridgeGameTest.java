@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import bridge.BridgeNumberGenerator;
 import bridge.ManualNumberGenerator;
-import bridge.domain.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

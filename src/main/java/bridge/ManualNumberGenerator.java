@@ -6,7 +6,7 @@ public class ManualNumberGenerator implements BridgeNumberGenerator {
 
     private final List<Integer> numbers;
 
-    ManualNumberGenerator(List<Integer> numbers) {
+    public ManualNumberGenerator(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
