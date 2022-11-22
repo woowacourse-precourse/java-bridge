@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.BridgeMaker.NumberGenerator.BridgeNumberGenerator;
 import java.util.List;
 
 class TestNumberGenerator implements BridgeNumberGenerator {

@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.BridgeMaker.BridgeMaker;
-import bridge.BridgeMaker.NumberGenerator.BridgeNumberGenerator;
 import bridge.UI.Output.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
