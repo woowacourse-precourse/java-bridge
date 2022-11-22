@@ -28,9 +28,7 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
 
         String input = Console.readLine();
-        if(!input.equals("U") && !input.equals("D")){
-            throw new IllegalArgumentException("[ERROR] 입력 형식이 잘못되었습니다. (위: U, 아래: D)");
-        }
+        movingValidate(input);
 
         return input;
     }
@@ -55,6 +53,12 @@ public class InputView {
     public void rangeValidate(int number){
         if(number < 3 || number > 20){
             throw new IllegalArgumentException("[ERROR] 다리의 길이가 범위를 벗어납니다. (3 ~ 20)");
+        }
+    }
+
+    public void movingValidate(String move){
+        if(!move.equals("U") && !move.equals("D")){
+            throw new IllegalArgumentException("[ERROR] 입력 형식이 올바르지 않습니다. (위: U, 아래: D)");
         }
     }
 }
