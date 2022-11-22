@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.command.Command;
 import bridge.exception.ExceptionInput;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
@@ -13,6 +14,7 @@ public class BridgeController {
     public void start() {
         OutputView.printStart();
         initial();
+        progress();
     }
 
     private void initial() {
@@ -37,5 +39,32 @@ public class BridgeController {
     }
     private String getMoveCommand() {
         return ExceptionInput.validateInputMoveCommand(InputView.readMoving());
+    }
+
+    private void progress() {
+        while(bridgeGameService.success() && !bridgeGameService.isComplete()) {
+            moving();
+            OutputView.printMap(bridgeGameService.getBridge(), bridgeGameService.getSelections());
+        }
+        if(!bridgeGameService.isComplete()) {
+            retry();
+        }
+    }
+
+    private void retry() {
+        try {
+            String command = getRetryCommand();
+            if( command.equals(Command.RETRY.getCommand())) {
+                bridgeGameService.restart();
+                progress();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            retry();
+        }
+    }
+
+    private String getRetryCommand() {
+        return ExceptionInput.validateInputRetryCommand(InputView.readGameCommand());
     }
 }

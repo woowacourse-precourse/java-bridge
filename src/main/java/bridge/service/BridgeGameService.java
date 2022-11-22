@@ -3,6 +3,8 @@ package bridge.service;
 import bridge.constant.command.Command;
 import bridge.domain.BridgeGame;
 
+import java.util.List;
+
 public class BridgeGameService {
 
     private final BridgeGame bridgeGame;
@@ -16,7 +18,26 @@ public class BridgeGameService {
         bridgeGame.move(command);
     }
 
+    public boolean isComplete() {
+        if (success() && (bridgeGame.getBridgeSize() == bridgeGame.getSelectionsSize())) return true;
+        return false;
+    }
+
     public boolean success() {
-        if ( !bridgeGame)
+        if (!bridgeGame.getSelections().contains(Command.IMPOSSIBLE.getCommand())) return true;
+        return false;
+    }
+
+    public List<String> getSelections() {
+        return bridgeGame.getSelections();
+    }
+
+    public List<String> getBridge() {
+        return bridgeGame.getBridge();
+    }
+
+    public void restart() {
+        tryCnt++;
+        bridgeGame.retry();
     }
 }
