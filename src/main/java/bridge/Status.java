@@ -1,6 +1,6 @@
 package bridge;
 
-import java.util.StringJoiner;
+import java.util.*;
 
 public class Status {
     private StringJoiner up;
@@ -15,8 +15,8 @@ public class Status {
         this.down = new StringJoiner(" | ");
     }
 
-    public void addSuccess(Bridge bridge) {
-        if (bridge.getNow().equals("U")) {
+    public void addSuccess(String now) {
+        if (now.equals("U")) {
             up.add("O");
             down.add(" ");
             return;
@@ -25,8 +25,8 @@ public class Status {
         up.add(" ");
     }
 
-    public void addFail(Bridge bridge) {
-        if (bridge.getNow().equals("U")) {
+    public void addFail(String now) {
+        if (now.equals("U")) {
             up.add(" ");
             down.add("X");
             return;
