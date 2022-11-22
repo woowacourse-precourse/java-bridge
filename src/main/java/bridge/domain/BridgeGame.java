@@ -11,9 +11,9 @@ public class BridgeGame {
 
     private List<String> bridge;
 
-    private int tryCount = 1;
+    private int tryCount;
 
-    private int location = 0;
+    private int location;
 
     public BridgeGame(Player player) {
         this.player = player;
@@ -21,6 +21,8 @@ public class BridgeGame {
 
     public void generate(List<String> bridge) {
         this.bridge = bridge;
+        initLocation();
+        initTryCount();
     }
 
     public void move(String moving) {
@@ -47,7 +49,7 @@ public class BridgeGame {
     public void retry() {
         player.retry();
         increaseRetry();
-        location = 0;
+        initLocation();
     }
 
     public boolean isAllAnswer() {
@@ -64,5 +66,13 @@ public class BridgeGame {
 
     private void increaseLocation() {
         location++;
+    }
+
+    private void initLocation(){
+        location = 0;
+    }
+
+    private void initTryCount(){
+        tryCount = 1;
     }
 }
