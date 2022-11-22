@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class OutputViewTest {
 
-    @DisplayName("[ O | O | X ] 가 출력된다")
+    @DisplayName("[ O | O | X ] 가 출력된다.")
     @Test
     void printUpperMap() {
         List<String> bridge = List.of("U", "U", "D");
@@ -37,8 +37,17 @@ class OutputViewTest {
         );
     }
 
+    @DisplayName("[ O | O |   ] 가 출력된다.")
     @Test
     void printLowerMap() {
+        List<String> bridge = List.of("D", "D", "D");
+        List<String> moveMapList = List.of("O", "O" , "X");
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        new OutputView().printLowerMap(bridge, moveMapList);
+        assertThat(out.toString()).contains(
+                "[ O | O |   ]"
+        );
     }
 
     @Test
