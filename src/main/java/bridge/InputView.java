@@ -17,7 +17,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeLength=0;
+        int bridgeLength;
         while(true){
             printCommand.getBridgeLength();
             bridgeLength=getInput();
@@ -33,16 +33,20 @@ public class InputView {
         try{
             bridgeLength = Integer.valueOf(Console.readLine());
         }catch (NumberFormatException e){
-            System.out.println(ERROR_MESSAGE+FORMAT_MESSAGE);
-            try {
-                throw new IllegalArgumentException(ERROR_MESSAGE + FORMAT_MESSAGE);
-            }
-            catch (IllegalArgumentException error){
-                return 0;
-            }
+            bridgeLength=showError();
+            return bridgeLength;
         }
-            bridgeLength=validate.bridgeLengthRange(bridgeLength);
+        bridgeLength=validate.bridgeLengthRange(bridgeLength);
         return bridgeLength;
+    }
+    public int showError(){
+        System.out.println(ERROR_MESSAGE+FORMAT_MESSAGE);
+        try {
+            throw new IllegalArgumentException(ERROR_MESSAGE + FORMAT_MESSAGE);
+        }
+        catch (IllegalArgumentException error){
+            return 0;
+        }
     }
 
 
