@@ -37,7 +37,7 @@ public final class GameRunner {
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             String exceptionFullMessage = String
                     .format(DEFAULT_ERROR_FORMAT, ExceptionMessageUtils.WRONG_CONFIGURATION.getMessage());
-            System.out.printf(exceptionFullMessage);
+            System.out.println(exceptionFullMessage);
             return GameStatus.APPLICATION_EXIT;
         }
     }
