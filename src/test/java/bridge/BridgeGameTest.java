@@ -13,21 +13,21 @@ public class BridgeGameTest {
     @Test
     @DisplayName("잘못된 move 입력시 false return")
     void moveFailTest(){
-        BridgeGame game=new BridgeGame(3,new TestNumberGenerator(createTestList()));
+        BridgeGame game=new BridgeGame(3,new TestGenerator(createTestList()));
         assertThat(game.move("D")).isFalse();
     }
 
     @Test
     @DisplayName("올바른 move 입력시 true return")
     void moveSuccessTest(){
-        BridgeGame game=new BridgeGame(3,new TestNumberGenerator(createTestList()));
+        BridgeGame game=new BridgeGame(3,new TestGenerator(createTestList()));
         assertThat(game.move("U")).isTrue();
     }
 
     @Test
     @DisplayName("재실행 후 게임상태 확인")
     void retryTest(){
-        BridgeGame game=new BridgeGame(3,new TestNumberGenerator(createTestList()));
+        BridgeGame game=new BridgeGame(3,new TestGenerator(createTestList()));
         assertThat(game.retry("R")).isEqualTo(2);
         assertThat(game.getGameStatus()).isEqualTo(GameStatus.PLAY);
     }
@@ -35,7 +35,7 @@ public class BridgeGameTest {
     @Test
     @DisplayName("게임 종료 후 게임 상태 확인")
     void quitTest(){
-        BridgeGame game=new BridgeGame(3,new TestNumberGenerator(createTestList()));
+        BridgeGame game=new BridgeGame(3,new TestGenerator(createTestList()));
         assertThat(game.retry("Q")).isEqualTo(1);
         assertThat(game.getGameStatus()).isEqualTo(GameStatus.FAIL);
     }
@@ -47,11 +47,11 @@ public class BridgeGameTest {
         return test;
     }
 
-    static class TestNumberGenerator implements BridgeNumberGenerator {
+    static class TestGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
 
-        TestNumberGenerator(List<Integer> numbers) {
+        TestGenerator(List<Integer> numbers) {
             this.numbers = numbers;
         }
 
