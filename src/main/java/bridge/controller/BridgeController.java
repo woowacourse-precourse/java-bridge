@@ -64,11 +64,24 @@ public class BridgeController {
             return true;
         }
         // 성공 하지도 못했는데 재시작도 안하면 실패
-        if (bridgeGame.retry(inputView.readGameCommand()) == false) {
+        if (bridgeGame.retry(inputGameCommand()) == false) {
             resultOfGame = FAILURE;
             return true;
         }
         return false;
+    }
+
+    public String inputGameCommand(){
+        String gameCommand;
+        while(true){
+            try {
+                gameCommand = inputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e){
+                outputView.printExceptionMessage(e);
+            }
+        }
+        return gameCommand;
     }
 
     public void proceedMove() {
