@@ -17,9 +17,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        System.out.println(BRIDGE_SIZE_PHRASE);
-        String userInputLengthOfBridge = Console.readLine();
-        return validateBridgeLength(userInputLengthOfBridge);
+        try {
+            System.out.println(BRIDGE_SIZE_PHRASE);
+            String userInputLengthOfBridge = Console.readLine();
+            validateBridgeLength(userInputLengthOfBridge);
+            return Integer.parseInt(userInputLengthOfBridge);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+        return 0;
     }
 
     /**
@@ -42,27 +48,24 @@ public class InputView {
         return input;
     }
 
-    private static int validateBridgeLength(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+    private static void validateBridgeLength(String input) {
+        if (!input.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(INVALID_CANT_CONVERT_INTEGER);
-        } catch (IllegalArgumentException e) {
+        }
+        if (input.length() < 2 || input.length() > 20) {
             throw new IllegalArgumentException(INVALID_RANGE);
         }
     }
 
     private static void validateIsUOrD(String input) {
         if (!(input.equals("U") || input.equals("D"))) {
-            System.out.println(INVALID_VALUE);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_VALUE);
         }
     }
 
     private static void validateIsROrQ(String input) {
         if (!(input.equals("R") || input.equals("Q"))) {
-            System.out.println(INVALID_VALUE);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_VALUE);
         }
     }
 }
