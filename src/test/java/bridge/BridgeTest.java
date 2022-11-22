@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

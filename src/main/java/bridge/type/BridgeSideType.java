@@ -1,5 +1,6 @@
-package bridge;
+package bridge.type;
 
+import bridge.ExceptionMesssage;
 import java.util.Arrays;
 
 public enum BridgeSideType {
@@ -23,6 +24,6 @@ public enum BridgeSideType {
         return Arrays.stream(values())
                 .filter(bridgeSideType -> bridgeSideType.number == number)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMesssage.BRIDGE_STAIRS_TYPE_ERROR.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMesssage.BRIDGE_SIDE_TYPE_ERROR.getMessage()));
     }
 }

@@ -1,5 +1,6 @@
-package bridge;
+package bridge.type;
 
+import bridge.ExceptionMesssage;
 import java.util.Arrays;
 
 public enum BridgeGameCommandType {
@@ -27,6 +28,6 @@ public enum BridgeGameCommandType {
         return Arrays.stream(values())
                 .filter(gameCommandType -> gameCommandType.gameCommand.equals(command))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMesssage.BRIDGE_STAIRS_TYPE_ERROR.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMesssage.BRIDGE_SIDE_TYPE_ERROR.getMessage()));
     }
 }

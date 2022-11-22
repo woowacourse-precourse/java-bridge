@@ -1,5 +1,8 @@
-package bridge;
+package bridge.view;
 
+import bridge.type.BridgeGameCommandType;
+import bridge.type.BridgeSideType;
+import bridge.ExceptionMesssage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

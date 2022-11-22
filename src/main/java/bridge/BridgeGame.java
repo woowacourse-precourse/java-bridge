@@ -1,6 +1,9 @@
 package bridge;
 
-import java.util.List;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeMap;
+import bridge.type.BridgeGameCommandType;
+import bridge.type.BridgeSideType;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

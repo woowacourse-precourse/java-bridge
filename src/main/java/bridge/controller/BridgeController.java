@@ -1,4 +1,10 @@
-package bridge;
+package bridge.controller;
+
+import bridge.BridgeGame;
+import bridge.domain.BridgeMap;
+import bridge.type.BridgeGameCommandType;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeController {
 
