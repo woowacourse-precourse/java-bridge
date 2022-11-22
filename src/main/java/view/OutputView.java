@@ -10,8 +10,7 @@ public class OutputView {
     private static final OutputView outputView = new OutputView();
     private static final int FIRST_INDEX = NumberConstant.FIRST_INDEX.getConstant();
 
-    private OutputView() {
-    }
+    private OutputView() {}
 
     public static OutputView getInstance() {
         return outputView;
