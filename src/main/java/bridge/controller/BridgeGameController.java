@@ -36,6 +36,7 @@ public class BridgeGameController {
     }
 
     private void makeBridge() {
+        outputView.printStart();
         outputView.printInputLength();
 
         int size = inputView.readBridgeSize();
@@ -43,8 +44,6 @@ public class BridgeGameController {
         Bridge answerBridge = new Bridge(rawAnswerBridge);
         Bridge currentBridge = new Bridge(new ArrayList<>());
         bridgeGame.setUp(answerBridge, currentBridge);
-
-        outputView.printStart();
     }
 
     private void move() {
