@@ -45,15 +45,6 @@ public class BridgeController {
             return handleStartGame();
         }
     }
-    private void handleStartingGame(int size){
-        try {
-            validate.size(size);
-            buffer = bridgeGame.start(size);
-        }catch (IllegalArgumentException e){
-            outputView.printException(e.getMessage());
-            handleStartGame();
-        }
-    }
     private String handleMoveGame(){
         try {
             outputView.printMove();
