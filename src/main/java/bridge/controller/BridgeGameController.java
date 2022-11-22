@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Player;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -16,9 +17,14 @@ public class BridgeGameController {
     }
 
     public void run() {
+        initGame();
+        Player player = new Player();
+    }
+
+    private void initGame() {
         outputView.printGameStartMessage();
-        int bridgeSize = repeatCommand(inputView::readBridgeSize);
-        System.out.println(bridgeSize);
+        int size = repeatCommand(inputView::readBridgeSize);
+        bridgeGameService.initBridgeGame(size);
     }
 
     private <T> T repeatCommand(Supplier<T> reader) {
