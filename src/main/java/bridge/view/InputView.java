@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.model.ExceptionCode;
 import camp.nextstep.edu.missionutils.Console;
