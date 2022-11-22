@@ -43,4 +43,14 @@ public class BridgeTest {
         assertThat(upperBridge.get(1)).isEqualTo(BridgeInfo.CORRECT);
         assertThat(upperBridge.get(2)).isEqualTo(BridgeInfo.EMPTY);
     }
+
+    @DisplayName("게임이 끝났는 지 확인")
+    @Test
+    void gameEndCheck() {
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        bridge.update("U");
+        bridge.update("D");
+        bridge.update("D");
+        assertThat(bridge.isClear()).isEqualTo(true);
+    }
 }
