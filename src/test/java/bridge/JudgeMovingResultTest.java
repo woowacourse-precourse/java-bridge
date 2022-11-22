@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 class JudgeMovingResultTest {
 
     @DisplayName("이동이 가능한 경우 O를 반환")
@@ -27,4 +29,27 @@ class JudgeMovingResultTest {
 
         Assertions.assertThat(movingResult).isEqualTo(result);
     }
+
+    @DisplayName("선택한 이동경로 D에 X저장, U에 공백 저장")
+    @Test
+    void recordMovingByImpossible() {
+        JudgeMovingResult judgeMovingResult = new JudgeMovingResult();
+
+        Map<String, String> movingRecord = judgeMovingResult.recordMoving("D", "X");
+
+        Assertions.assertThat(movingRecord.get("D")).isEqualTo("X");
+        Assertions.assertThat(movingRecord.get("U")).isEqualTo(" ");
+    }
+
+    @DisplayName("선택한 이동경로 U에 O저장, D에 공백 저장")
+    @Test
+    void recordMovingBypossible() {
+        JudgeMovingResult judgeMovingResult = new JudgeMovingResult();
+
+        Map<String, String> movingRecord = judgeMovingResult.recordMoving("U", "O");
+
+        Assertions.assertThat(movingRecord.get("D")).isEqualTo(" ");
+        Assertions.assertThat(movingRecord.get("U")).isEqualTo("O");
+    }
+
 }
