@@ -1,7 +1,6 @@
 package bridge;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -26,5 +25,14 @@ public class InputViewValidationTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputViewValidation.isValidRangeOfBridgeSize(bridgeSize))
                 .withMessageStartingWith(ERROR_OUT_OF_RANGE);
+    }
+
+    @DisplayName("예외 처리 : 이동할 칸을 제대로 입력했는지 검증 (위: U, 아래: D)")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "u", "d", "g"})
+    void checkNotValidMovingCommandValidation(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputViewValidation.isValidMovingCommand(input))
+                .withMessageStartingWith(ERROR_NOT_VALID_MOVING_COMMAND);
     }
 }
