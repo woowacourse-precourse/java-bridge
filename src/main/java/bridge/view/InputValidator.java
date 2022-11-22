@@ -1,14 +1,13 @@
 package bridge.view;
 
 import bridge.model.Direction;
+import bridge.model.GameCommand;
 
 public class InputValidator {
 
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final String NUMBER_PATTERN = "\\d+";
-    private static final String RETRY = "R";
-    private static final String QUIT = "Q";
 
     private InputValidator() {
     }
@@ -46,6 +45,6 @@ public class InputValidator {
     }
 
     private static boolean isValidGameCommand(String command) {
-        return command.equals(RETRY) || command.equals(QUIT);
+        return GameCommand.QUIT.isSame(command) || GameCommand.RETRY.isSame(command);
     }
 }

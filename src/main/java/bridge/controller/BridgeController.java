@@ -5,6 +5,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
+import bridge.model.GameCommand;
 import bridge.model.GameResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -56,7 +57,7 @@ public class BridgeController {
 
     private boolean isGameEnd(GameResult result) {
         if (result.isGameOver()) {
-            return inputView.readGameCommand().equals("Q");
+            return GameCommand.QUIT.isSame(inputView.readGameCommand());
         }
         return true;
     }
