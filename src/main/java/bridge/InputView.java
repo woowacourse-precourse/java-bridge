@@ -15,6 +15,7 @@ public class InputView {
     private String command;
 
     public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         try {
             bridgeSize = Integer.parseInt(readLine());
         }catch(NumberFormatException e){
@@ -24,6 +25,7 @@ public class InputView {
     }
 
     public String readMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         movingPosition = readLine();
         return movingPosition;
     }
@@ -31,10 +33,11 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public Boolean readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         command = readLine();
-        if(command.equals(restart)) return "restart";
-        if(command.equals(quit)) return "quit";
+        if(command.equals(restart)) return true;
+        if(command.equals(quit)) return false;
         return null;
     }
 }

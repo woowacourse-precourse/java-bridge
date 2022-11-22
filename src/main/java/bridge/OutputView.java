@@ -38,6 +38,7 @@ public class OutputView {
             System.out.print(" X ");
             return;
         }
+        System.out.print("   ");
     }
 
     private void printBelowMap(String bridge, String answer){
@@ -49,6 +50,7 @@ public class OutputView {
             System.out.print(" X ");
             return;
         }
+        System.out.print("   ");
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -59,13 +61,13 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridge, answer);
         if(bridge.size() == answer.size() && answer.get(answer.size()-1).equals(rightAnswer)){
-            System.out.println("게임 성공 여부 : 성공");
-            System.out.println("총 시도한 횟수 : " + tryCount);
+            System.out.println("게임 성공 여부: 성공");
+            System.out.println("총 시도한 횟수: " + tryCount);
             return;
         }
         if(answer.get(answer.size()-1).equals(wrongAnswer)){
-            System.out.println("게임 성공 여부 : 실패");
-            System.out.println("총 시도한 횟수 : " + tryCount);
+            System.out.println("게임 성공 여부: 실패");
+            System.out.println("총 시도한 횟수: " + tryCount);
         }
     }
 }
