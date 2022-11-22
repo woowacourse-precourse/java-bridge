@@ -39,17 +39,17 @@ public class BridgeMaker {
 
     private String drawBridge(int randomNumber) {
         validateNumber(randomNumber);
-        if (randomNumber == Bridge.LOWER_BRIDGE.getNumber()) {
-            return Bridge.LOWER_BRIDGE.getDirection();
+        if (randomNumber == BridgeValue.LOWER_BRIDGE.getNumber()) {
+            return BridgeValue.LOWER_BRIDGE.getDirection();
         }
-        if (randomNumber == Bridge.UPPER_BRIDGE.getNumber()) {
-            return Bridge.UPPER_BRIDGE.getDirection();
+        if (randomNumber == BridgeValue.UPPER_BRIDGE.getNumber()) {
+            return BridgeValue.UPPER_BRIDGE.getDirection();
         }
         return null;
     }
 
     private void validateNumber(int randomNumber) {
-        if (randomNumber != Bridge.LOWER_BRIDGE.getNumber() && randomNumber != Bridge.UPPER_BRIDGE.getNumber()) {
+        if (randomNumber != BridgeValue.LOWER_BRIDGE.getNumber() && randomNumber != BridgeValue.UPPER_BRIDGE.getNumber()) {
             throw new IllegalArgumentException(NUMBER_IS_NOT_LOWER_UPPER_NUMBER);
         }
     }
