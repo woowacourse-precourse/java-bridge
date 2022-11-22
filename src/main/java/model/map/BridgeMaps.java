@@ -41,7 +41,7 @@ public class BridgeMaps {
     }
 
     private void compareType(PositionType positionType, PositionType playerType, Boolean result) {
-        if (positionType.isEquals(playerType)) {
+        if (positionType.equals(playerType)) {
             updateMap(positionType, result);
             return;
         }

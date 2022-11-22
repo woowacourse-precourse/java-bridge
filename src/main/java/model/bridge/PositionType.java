@@ -34,10 +34,6 @@ public enum PositionType {
                 .collect(Collectors.toList());
     }
 
-    public boolean isEquals(PositionType position) {
-        return this.equals(position);
-    }
-
     public boolean isEqualsMark(String mark) {
         return this.equals(valueOf(mark));
     }
