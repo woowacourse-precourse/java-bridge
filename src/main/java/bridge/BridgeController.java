@@ -15,7 +15,7 @@ public class BridgeController {
         showStartMessage();
         Bridge bridge=bridgeService.bridgeMaker();
         User user = new User();
-
+        play(user, bridge);
     }
 
     public void showStartMessage(){
