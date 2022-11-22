@@ -37,7 +37,8 @@ public class BridgeGame {
             input = inputView.readMoving();
             if (!midChecking()) return;
         }
-        OutputView.printResult(up, down, true, tryCount);
+        OutputView.printResultMap(up, down);
+        OutputView.printResult(true, tryCount);
     }
 
     /**
@@ -55,7 +56,8 @@ public class BridgeGame {
         if (!comparingInputBridge()) {
             wrongCase();
             if(choose()){
-                OutputView.printResult(up, down, false, tryCount);
+                OutputView.printResultMap(up, down);
+                OutputView.printResult(false, tryCount);
                 return false;
             }
             retry();
