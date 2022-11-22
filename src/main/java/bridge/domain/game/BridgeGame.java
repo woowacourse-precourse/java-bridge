@@ -45,7 +45,7 @@ public class BridgeGame {
         numberOfAttempts++;
     }
 
-    public String successOrNot() {
+    public String findOutSuccessOrNot() {
         if (inProgress()) {
             throw new IllegalStateException(LogicExceptionMessage.WRONG_USE_SUCCESS_OR_NOT);
         }

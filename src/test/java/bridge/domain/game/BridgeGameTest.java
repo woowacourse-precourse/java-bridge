@@ -66,13 +66,13 @@ public class BridgeGameTest {
             final String excepted) {
         bridgeGame.move(direction1);
         bridgeGame.move(direction2);
-        assertThat(bridgeGame.successOrNot()).isEqualTo(excepted);
+        assertThat(bridgeGame.findOutSuccessOrNot()).isEqualTo(excepted);
     }
 
     @DisplayName("게임 진행 중 성공 여부 반환 기능 호출 시 예외발생 테스트")
     @Test
     public void 게임_성공_여부_반환_예외_테스트() {
-        assertThatThrownBy(() -> bridgeGame.successOrNot())
+        assertThatThrownBy(() -> bridgeGame.findOutSuccessOrNot())
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage(LogicExceptionMessage.WRONG_USE_SUCCESS_OR_NOT);
     }

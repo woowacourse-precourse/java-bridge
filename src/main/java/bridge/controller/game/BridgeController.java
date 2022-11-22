@@ -23,7 +23,7 @@ public class BridgeController {
         OutputView.printGameStart();
         attemptGameClear();
         OutputView.printResult(bridgeMap.toString(),
-                game.successOrNot(), game.getNumberOfAttempts());
+                game.findOutSuccessOrNot(), game.getNumberOfAttempts());
     }
 
     private void attemptGameClear() {
