@@ -99,6 +99,5 @@ public class BridgeGame {
     public void setUp(){
         final int size = inputView.readBridgeSize();
         bridgeAnswer = bridgeMaker.makeBridge(size);
-        System.out.println(bridgeAnswer);
     }
 }
