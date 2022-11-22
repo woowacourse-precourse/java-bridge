@@ -60,10 +60,16 @@ public class BridgeGame {
 		return new MoveResultResponseDto(new MoveResult(bridge, movingStack.getMovingStack()));
 	}
 
+	/**
+	 * 현재 상황에 대한 다리 모양을 반환하는 메서드
+	 */
 	public MapResponseDto renderMap(BridgeResponseDto bridgeResponseDto) {
 		return new MapResponseDto(new MapRenderer(bridgeResponseDto.getBridge(), movingStack.getMovingStack()));
 	}
 
+	/*
+	 * 게임(라운드)이 끝났는지 확인해주는 메서드
+	 */
 	public MoveResultResponseDto checkGameIsEnd(MoveResultResponseDto moveResultResponseDto) {
 		if (!moveResultResponseDto.isCorrect()) {
 			initMovingStack();
@@ -75,6 +81,9 @@ public class BridgeGame {
 		return null;
 	}
 
+	/*
+	 * 현재 실행 횟수를 반환해주는 메서드
+	 */
 	public PlayCountResponseDto makePlayCountDto() {
 		return new PlayCountResponseDto(PlayCount.getInstance());
 	}
@@ -91,6 +100,9 @@ public class BridgeGame {
 		return false;
 	}
 
+	/*
+	 * 성공 여부를 반환해주는 메서드
+	 */
 	public MoveResultResponseDto success(MoveResultResponseDto finalResultResponseDto) {
 		if (finalResultResponseDto.isSuccess()) {
 			return finalResultResponseDto;
