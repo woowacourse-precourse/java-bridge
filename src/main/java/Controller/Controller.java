@@ -47,10 +47,10 @@ public class Controller {
         return false;
     }
 
-    public void start() {
-        boolean isContinue = true;
+    public void controller(boolean isContinue) {
         boolean isWin = false;
-        map.startMap();
+
+        util.start(map);
         while (isContinue) {
             isWin = play(0);
             isContinue = isContinue(isWin);

@@ -1,5 +1,6 @@
 package Util;
 
+import Model.Map;
 import View.InputView;
 import View.OutputView;
 
@@ -21,6 +22,11 @@ public class Util {
     public boolean determineIfContinue() {
         outputView.printContinueOrEndRequest();
         return inputView.readGameCommand();
+    }
+
+    public void start(Map map) {
+        outputView.printGameStart();
+        map.startMap();
     }
 
 }
