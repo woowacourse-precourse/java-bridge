@@ -72,10 +72,8 @@ public class InputView {
                 return command;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-
             }
         }
     }
-
 
 }
