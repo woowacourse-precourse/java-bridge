@@ -30,15 +30,15 @@ public class BridgeGameController {
     }
 
     public void start() {
-        try {
+//        try {
             System.out.println(Message.START_GAME.getMessage());
             System.out.println(Message.INPUT_SIZE.getMessage());
             inputSize = inputView.inputBridgeSize();
             bridges = bridgeMaker.makeBridge(inputSize);
             runGame();
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
+//        } catch (RuntimeException e) {
+//            System.out.println(e.getMessage());
+//        }
         outputView.printResult();
     }
 
@@ -69,6 +69,8 @@ public class BridgeGameController {
             if (inputRestart.equals(Message.RESTART.getMessage())) {
                 new BridgeGameController();
                 count++;
+            } else if (!inputRestart.equals(Message.RESTART.getMessage())) {
+                status = false;
             }
         }
     }
