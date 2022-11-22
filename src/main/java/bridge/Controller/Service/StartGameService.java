@@ -3,7 +3,7 @@ package bridge.Controller.Service;
 import Utils.ValidateUtils;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.Bridge;
-import bridge.Domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
