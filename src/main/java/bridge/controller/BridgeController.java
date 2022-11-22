@@ -46,12 +46,12 @@ public class BridgeController {
         List<BridgeGameResult> bridgeGameResults = new ArrayList<>();
         do {
             bridgeGameResults.clear();
-            createGameResult(bridgeGameResults, bridge);
+            determineResultByMoving(bridgeGameResults, bridge);
         } while (bridgeGame.retry(bridgeGameResults, bridge.size()));
         return bridgeGameResults;
     }
 
-    private void createGameResult(List<BridgeGameResult> bridgeGameResults, List<String> bridge) {
+    private void determineResultByMoving(List<BridgeGameResult> bridgeGameResults, List<String> bridge) {
         BridgeGameResult bridgeGameResult;
         int bridgeIndex = 0;
         do {
