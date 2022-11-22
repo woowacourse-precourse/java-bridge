@@ -1,6 +1,5 @@
-package bridge;
+package bridge.model;
 
-import bridge.model.ValidityCheck;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
