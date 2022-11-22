@@ -31,7 +31,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
     }
 
     /**
@@ -56,6 +58,18 @@ public class InputView {
         }
         if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException("[ERROR] 입력할 수 있는 값은 U(위 칸)와 D(아래 칸)로 제한됩니다.");
+        }
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부가 올바르게 입력되었는지 검사한다.
+     */
+    private void validateGameCommand(String gameCommand) {
+        if (gameCommand.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 하나의 문자를 입력하십시오.");
+        }
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 입력할 수 있는 값은 R(재시작)과 Q(종료)로 제한됩니다.");
         }
     }
 }
