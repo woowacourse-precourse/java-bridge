@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static bridge.Constants.*;
+import static bridge.Constants.DOWN;
+import static bridge.Constants.UP;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.

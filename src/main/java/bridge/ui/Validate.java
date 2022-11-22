@@ -1,7 +1,7 @@
 package bridge.ui;
 
 import static bridge.message.ExceptionMessage.*;
-import static java.lang.Character.*;
+import static java.lang.Character.isDigit;
 
 public class Validate {
 

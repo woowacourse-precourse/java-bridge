@@ -5,7 +5,7 @@ import bridge.ui.OutputView;
 
 import java.util.List;
 
-import static bridge.Constants.*;
+import static bridge.Constants.QUIT;
 import static bridge.message.Message.START;
 
 public class Application {
