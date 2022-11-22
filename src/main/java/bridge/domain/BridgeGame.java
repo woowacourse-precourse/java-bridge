@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.domain.generator.BridgeMaker;
-import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.domain.vo.BridgeSize;
 import bridge.domain.vo.MoveCommand;
 import bridge.domain.vo.RetryCommand;
@@ -19,15 +18,16 @@ public class BridgeGame {
 
     public Bridge getBridge(BridgeMaker bridgeMaker,
                             BridgeSize bridgeSize) {
-        bridgeGameRepository.setBridgeGameInfo(bridgeSize);
-        List<String> blocks = bridgeMaker.makeBridge(bridgeSize.getSize());
+        int size = bridgeSize.getSize();
+        bridgeGameRepository.init(size);
+        List<String> blocks = bridgeMaker.makeBridge(size);
         return new Bridge(blocks);
     }
 
     public MoveResult move(Bridge bridge,
                            MoveCommand command) {
         String message = command.getMessage();
-        boolean isSuccess = bridge.isMoveSuccess(bridgeGameRepository.findRound(), message);
+        boolean isSuccess = bridge.isMoveSuccess(bridgeGameRepository.getRound(), message);
         return new MoveResult(message, isSuccess);
     }
 
@@ -43,11 +43,11 @@ public class BridgeGame {
         if (bridgeGameRepository.isFinalRound()) {
             return true;
         }
-        bridgeGameRepository.goToNextRound();
+        bridgeGameRepository.addOneToRound();
         return false;
     }
 
     public GameResult closeGame() {
-        return new GameResult(bridgeGameRepository.findTryCount(), bridgeGameRepository.isFinalRound());
+        return new GameResult(bridgeGameRepository.getTryCount(), bridgeGameRepository.isFinalRound());
     }
 }

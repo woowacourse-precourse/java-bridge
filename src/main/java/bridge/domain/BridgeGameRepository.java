@@ -1,44 +1,40 @@
 package bridge.domain;
 
-import bridge.domain.vo.BridgeSize;
-import java.util.HashMap;
-import java.util.Map;
-
 public class BridgeGameRepository {
-
-    private static final String ROUND_KEY = "round";
-    private static final String TRY_COUNT_KEY = "tryCount";
-    private static final String FINAL_ROUND_KEY = "finalRound";
 
     private static final Integer ROUND_DEFAULT_VALUE = 1;
     private static final Integer TRY_COUNT_DEFAULT_VALUE = 1;
 
-    private final Map<String, Integer> localDb = new HashMap<>();
+    private int round;
+    private int tryCount;
+    private int finalRound;
 
-    public void setBridgeGameInfo(BridgeSize bridgeSize) {
-        localDb.put(ROUND_KEY, ROUND_DEFAULT_VALUE);
-        localDb.put(TRY_COUNT_KEY, TRY_COUNT_DEFAULT_VALUE);
-        localDb.put(FINAL_ROUND_KEY, bridgeSize.getSize());
+    public void init(int finalRound) {
+        round = ROUND_DEFAULT_VALUE;
+        tryCount = TRY_COUNT_DEFAULT_VALUE;
+        this.finalRound = finalRound;
     }
 
-    public int findRound() {
-        return localDb.get(ROUND_KEY);
+    public int getRound() {
+        return round;
     }
 
-    public int findTryCount() {
-        return localDb.get(TRY_COUNT_KEY);
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public void addOneToRound() {
+        round++;
+    }
+
+
+    public boolean isFinalRound() {
+        return round == finalRound;
     }
 
     public void retry() {
-        localDb.put(ROUND_KEY, ROUND_DEFAULT_VALUE);
-        localDb.computeIfPresent(TRY_COUNT_KEY, (key, tryCount) -> tryCount + 1);
+        round = ROUND_DEFAULT_VALUE;
+        tryCount++;
     }
 
-    public boolean isFinalRound() {
-        return localDb.get(ROUND_KEY).equals(localDb.get(FINAL_ROUND_KEY));
-    }
-
-    public void goToNextRound() {
-        localDb.computeIfPresent(ROUND_KEY, (key, roundValue) -> roundValue + 1);
-    }
 }
