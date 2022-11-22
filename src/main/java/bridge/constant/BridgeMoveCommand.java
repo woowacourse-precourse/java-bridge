@@ -10,11 +10,11 @@ public enum BridgeMoveCommand {
         this.command = command;
     }
 
-    public BridgeMoveCommand getByOrder(int order) {
+    public static BridgeMoveCommand getByOrder(int order) {
         return values()[order];
     }
 
-    public BridgeMoveCommand getByCommand(String command) {
+    public static BridgeMoveCommand getByCommand(String command) {
         for (int i = 0; i < values().length; i++) {
             if (command.equals(values()[i].command)) {
                 return values()[i];
