@@ -77,4 +77,12 @@ public class OutputView {
         }
         return "실패";
     }
+
+    public void printErrorMessage(Exception e){
+        System.out.println(e.getMessage());
+    }
+
+    public void printRetryGuide(int tryCnt, int maxtry){
+        System.out.printf("[ERROR] 다시 입력해주십시오. (최대 %d번의 기회 제공, 현재 %d번 시도)\n",maxtry,tryCnt);
+    }
 }
