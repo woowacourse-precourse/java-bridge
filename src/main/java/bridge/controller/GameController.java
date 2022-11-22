@@ -20,13 +20,12 @@ public class GameController {
         this.inputController = inputController;
     }
 
-    public String run() {
+    public void run() {
         Bridge bridge = createBridge();
         Player player = new Player();
         BridgeGame bridgeGame = new BridgeGame(bridge, player);
         crossABridge(bridge, player, bridgeGame);
         OutputView.printResult(result);
-        return result.getSuccessOrFailure();
     }
 
     private Bridge createBridge() {
