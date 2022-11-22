@@ -1,7 +1,7 @@
 package bridge.domainTest.modelTest;
 
-import bridge.domain.model.GameRecordGenerator;
-import bridge.domain.model.GameRecordMaker;
+import bridge.domain.model.RecordFormat;
+import bridge.domain.model.GameRecord;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -14,22 +14,14 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameRecordMakerTest {
-    static GameRecordMaker gameRecordMaker;
-    static GameRecordGenerator gameRecordGenerator;
+public class GameRecordTest {
+    static GameRecord gameRecord;
+    static RecordFormat recordFormat;
+
     @BeforeAll
-    public static void initialize(){
-        gameRecordMaker= new GameRecordMaker();
-        gameRecordGenerator= new GameRecordGenerator();
-    }
-
-    @ParameterizedTest
-    @MethodSource("provideGameRecordForMakeTotalRecord")
-    @DisplayName("입력된 횡단 결과에 맞게 모든 게임 기록을 반환하는지 확인한다.")
-    public void createResult(List<String> gameRecord, String expectedResult){
-        gameRecordMaker.updateResult(gameRecord);
-
-        assertThat(gameRecordMaker.getRecord()).isEqualTo(expectedResult);
+    public static void initialize() {
+        gameRecord = new GameRecord();
+        recordFormat = new RecordFormat();
     }
 
     private static Stream<Arguments> provideGameRecordForMakeTotalRecord() {
@@ -37,5 +29,14 @@ public class GameRecordMakerTest {
                 Arguments.of(List.of("O", " "), "[ O ]\n[   ]\n"),
                 Arguments.of(List.of(" |  ", " | O"), "[ O |   ]\n[   | O ]\n")
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideGameRecordForMakeTotalRecord")
+    @DisplayName("입력된 횡단 결과에 맞게 모든 게임 기록을 반환하는지 확인한다.")
+    public void createResult(List<String> gameRecord, String expectedResult) {
+        GameRecordTest.gameRecord.updateResult(gameRecord);
+
+        assertThat(GameRecordTest.gameRecord.getRecord()).isEqualTo(expectedResult);
     }
 }
