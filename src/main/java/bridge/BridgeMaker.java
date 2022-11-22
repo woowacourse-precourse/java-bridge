@@ -21,14 +21,15 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         while (bridge.size() != size) {
-            int number = bridgeNumberGenerator.generate();
-            if (number == 0) {
-                bridge.add("D");
-            }
-            if (number == 1) {
-                bridge.add("U");
-            }
+            bridge.add(toDirection(bridgeNumberGenerator.generate()));
         }
         return bridge;
+    }
+
+    private String toDirection(int number) {
+        if (number == 0) {
+            return "D";
+        }
+        return "U";
     }
 }
