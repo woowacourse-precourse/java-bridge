@@ -8,14 +8,14 @@ class BridgeTypeTest {
 
     @Test
     void 다리_타입_찾기_테스트() {
-        assertThat(Retry.findRetry("R")).isEqualTo(Retry.RESTART);
-        assertThat(Retry.findRetry("Q")).isEqualTo(Retry.QUIT);
+        assertThat(BridgeType.getBridgeType(1)).isEqualTo(BridgeType.UP_VALUE);
+        assertThat(BridgeType.getBridgeType(0)).isEqualTo(BridgeType.DOWN_VALUE);
     }
 
     @Test
     void 다리_타입_찾기_예외_테스트() {
-        assertThat(Retry.findRetry("R")).isNotEqualTo(Retry.QUIT);
-        assertThat(Retry.findRetry("Q")).isNotEqualTo(Retry.RESTART);
+        assertThat(BridgeType.getBridgeType(1)).isNotEqualTo(BridgeType.DOWN_VALUE);
+        assertThat(BridgeType.getBridgeType(0)).isNotEqualTo(BridgeType.UP_VALUE);
     }
 
 }
