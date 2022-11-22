@@ -32,4 +32,27 @@ public class BridgeMap {
     }
 
 
+    @Override
+    public String toString() {
+        StringBuilder resultString = new StringBuilder();
+        for (Character[] characters : map) {
+            StringBuilder oneLine = toString(characters);
+            resultString.append("[").append(removeEnd(oneLine)).append("]\n");
+        }
+        return resultString.toString();
+    }
+
+    public StringBuilder toString(Character[] characters) {
+        StringBuilder resultString = new StringBuilder();
+        for (Character character : characters) {
+            resultString.append(" ").append(character).append(" |");
+        }
+        return resultString;
+    }
+
+    public String removeEnd(StringBuilder resultString) {
+        return resultString.substring(0, resultString.length() - 1);
+    }
+
+
 }
