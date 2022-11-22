@@ -27,4 +27,8 @@ public class Controller {
 	public void result() {
 		bridgeProgram.totalResult();
 	}
+
+	public void winFailOrCount() {
+		bridgeProgram.winOrFail();
+	}
 }
