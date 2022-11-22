@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.Command;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -16,10 +17,9 @@ public class BridgeGameController {
     }
 
     public void startGame() {
-        outputView.printGameStartMessage();
-        outputView.printBridgeLengthInputMessage();
+        outputView.printStartMessage();
         int bridgeSize = inputView.readBridgeSize();
-        System.out.println();
+        outputView.nextLine();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
         crossBridge(bridgeGame);
@@ -28,23 +28,25 @@ public class BridgeGameController {
 
     private void crossBridge(BridgeGame bridgeGame) {
         boolean movingSuccess;
-        boolean allPass = false;
         do {
-            outputView.printMoveInputMessage();
-            String moving = inputView.readMoving();
-            movingSuccess = bridgeGame.move(moving);
+            movingSuccess = moveAndCheckMovingSuccess(bridgeGame);
             outputView.printMap(bridgeGame.getMovingMap());
             if (!movingSuccess) {
-                outputView.printRetryMessage();
-                if (inputView.readGameCommand().equals("R")) {
-                    bridgeGame.retry();
-                    continue;
-                }
-                else {
-                    break;
-                }
+                retryOrFinish(bridgeGame);
             }
-            allPass = bridgeGame.allPass();
-        } while (!allPass);
+        } while (movingSuccess && !bridgeGame.allPass());
+    }
+
+    private boolean moveAndCheckMovingSuccess(BridgeGame bridgeGame) {
+        outputView.printMoveInputMessage();
+        String moving = inputView.readMoving();
+        return bridgeGame.move(moving);
+    }
+
+    private void retryOrFinish(BridgeGame bridgeGame) {
+        outputView.printRetryMessage();
+        if (inputView.readGameCommand().equals(Command.RETRY.getLabel())) {
+            bridgeGame.retry();
+        }
     }
 }

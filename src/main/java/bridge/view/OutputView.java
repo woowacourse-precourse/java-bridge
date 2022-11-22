@@ -19,16 +19,10 @@ public class OutputView {
     private static final String TOTAL_TRY = "총 시도한 횟수: ";
 
     /**
-     * 게임 시작을 알리는 메세지를 출력한다.
+     * 게임 시작 시 필요한 메세지를 출력한다.
      */
-    public void printGameStartMessage() {
+    public void printStartMessage() {
         System.out.println(GAME_START_MESSAGE);
-    }
-
-    /**
-     * 다리 길이 입력을 요청하는 메세지를 출력한다.
-     */
-    public void printBridgeLengthInputMessage() {
         System.out.println(BRIDGE_LENGTH_INPUT_MESSAGE);
     }
 
@@ -56,7 +50,7 @@ public class OutputView {
         List<String> downLine = map.get(Moving.DOWN.ordinal());
         printOneLineMap(upLine);
         printOneLineMap(downLine);
-        System.out.println();
+        nextLine();
     }
 
     private void printOneLineMap(List<String> line) {
@@ -90,5 +84,9 @@ public class OutputView {
             return;
         }
         System.out.println(FAIL);
+    }
+
+    public void nextLine() {
+        System.out.println();
     }
 }
