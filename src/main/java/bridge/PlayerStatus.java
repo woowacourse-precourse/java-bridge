@@ -6,6 +6,7 @@ public class PlayerStatus {
 
     public PlayerStatus() {
     }
+
     public PlayerStatus(String direction, boolean isMatch) {
         this.direction = direction;
         this.isMatch = isMatch;

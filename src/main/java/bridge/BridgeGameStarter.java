@@ -14,6 +14,33 @@ public class BridgeGameStarter {
         this.bridgeMaker = bridgeMaker;
     }
 
+    private static int inputBridgeSize() {
+        try {
+            return ConsoleUtils.inputBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBridgeSize();
+        }
+    }
+
+    private static String inputmoving() {
+        try {
+            return ConsoleUtils.inputMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputmoving();
+        }
+    }
+
+    private static String inputGameCommand() {
+        try {
+            return ConsoleUtils.inputGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputGameCommand();
+        }
+    }
+
     public void start() {
         List<String> bridge = bridgeMaker.makeBridge(inputBridgeSize());
         int tryCount = 0;
@@ -21,7 +48,7 @@ public class BridgeGameStarter {
             tryCount++;
             Bridge userBridge = new Bridge(new ArrayList<>(), new ArrayList<>());
             PlayerStatus playerStatus = moveBridge(bridge, userBridge);
-            if(isFinishCondition(tryCount, userBridge, playerStatus)) {
+            if (isFinishCondition(tryCount, userBridge, playerStatus)) {
                 return;
             }
         }
@@ -77,32 +104,5 @@ public class BridgeGameStarter {
             return true;
         }
         return false;
-    }
-
-    private static int inputBridgeSize() {
-        try {
-            return ConsoleUtils.inputBridgeSize();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputBridgeSize();
-        }
-    }
-
-    private static String inputmoving() {
-        try {
-            return ConsoleUtils.inputMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputmoving();
-        }
-    }
-
-    private static String inputGameCommand() {
-        try {
-            return ConsoleUtils.inputGameCommand();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputGameCommand();
-        }
     }
 }

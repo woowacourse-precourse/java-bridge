@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
 
@@ -14,7 +13,7 @@ class BridgeTest {
 
     @BeforeEach
     void setUp() {
-        bridge = new Bridge(new ArrayList<>(), new ArrayList<>());;
+        bridge = new Bridge(new ArrayList<>(), new ArrayList<>());
     }
 
     @Test

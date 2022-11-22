@@ -6,22 +6,20 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final String BRIDGE_SIZE_OUT_OF_RANGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    private static final String INPUT_NOT_DIGIT = "[ERROR] 입력 값은 숫자가 아닙니다.";
     public static final String NOT_CORRECT_UP_OR_DOWN_INPUT = "[ERROR] 이동할 칸 입력은 위: U, 아래: D 중 하나를 입력해야 합니다.";
     public static final String NOT_CORRECT_RETRY_OR_QUIT_INPUT = "[ERROR] 재시도: R, 종료: Q 중 하나를 입력해야 합니다.";
-    private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
+    public static final String U_INPUT_CLIPPED_WORD = "U";
+    public static final String D_INPUT_CLIPPED_WORD = "D";
+    public static final String Q_INPUT_CLIPPED_WORD = "Q";
+    private static final String BRIDGE_SIZE_OUT_OF_RANGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String INPUT_NOT_DIGIT = "[ERROR] 입력 값은 숫자가 아닙니다.";
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String SELECT_GAME_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final int CLIPPED_WORD_LENGTH = 1;
-    public static final String U_INPUT_CLIPPED_WORD = "U";
-    public static final String D_INPUT_CLIPPED_WORD = "D";
     private static final String R_INPUT_CLIPPED_WORD = "R";
-    public static final String Q_INPUT_CLIPPED_WORD = "Q";
     private static final int BRIDGE_SIZE_MIN_VALUE = 3;
     private static final int BRIDGE_SIZE_MAX_VALUE = 20;
-    private static final String NEW_LINE = "\n";
 
     /**
      * 다리의 길이를 입력받는다.
