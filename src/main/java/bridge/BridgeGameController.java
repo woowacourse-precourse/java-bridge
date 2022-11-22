@@ -1,6 +1,7 @@
 package bridge;
 
-import java.util.List;
+import view.InputView;
+import view.OutputView;
 
 public class BridgeGameController {
     private BridgeGame bridgeGame;
