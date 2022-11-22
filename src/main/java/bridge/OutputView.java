@@ -14,12 +14,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> currentPath) {
-        StringBuilder upper = new StringBuilder();
-        StringBuilder lower = new StringBuilder();
+        int sz = currentPath.size()*4;
+
+        System.out.println("["+makePath(currentPath, ("U")).substring(0, sz-1)+"]");
+        System.out.println("["+makePath(currentPath, ("D")).substring(0, sz-1)+"]");
     }
 
     private String makePath(List<String> currentPath, String keyString) {
-        return currentPath.stream().map((String s) -> (s.equals(keyString)) ? " O " : "   ").collect(Collectors.joining());
+        return currentPath.stream().map((String s) -> (s.equals(keyString)) ? " O |" : "   |").collect(Collectors.joining());
     }
 
     /**
