@@ -6,7 +6,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeGameTest extends NsTest {
 
@@ -20,21 +23,13 @@ public class BridgeGameTest extends NsTest {
         assertThat(bridge).hasSize(5);
     }
 
-    @Test
-    void 예외_테스트_다리길이_음수() {
+    @DisplayName("잘못된 다리 길이 입력 시 예외 처리")
+    @ValueSource(ints = {-5, 0, 2, 22})
+    @ParameterizedTest
+    void 예외_테스트_다리길이(int input) {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> {
-                new BridgeGame(-5);
-            }).isInstanceOf(IllegalArgumentException.class);
-            output().contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_다리길이_범위초과() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> {
-                new BridgeGame(1);
+                new BridgeGame(input);
             }).isInstanceOf(IllegalArgumentException.class);
             output().contains(ERROR_MESSAGE);
         });
