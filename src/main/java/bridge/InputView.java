@@ -15,7 +15,7 @@ public class InputView {
                 number = tryNumInput();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e);
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             }
         }
         return number;
@@ -28,14 +28,14 @@ public class InputView {
             number = Integer.parseInt(input);
             validateNumber(number);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
         }
         return number;
     }
 
     public static void validateNumber(int number) {
         if (number < 3 || 20 < number) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
