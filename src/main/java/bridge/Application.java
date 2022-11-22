@@ -34,7 +34,7 @@ public class Application {
         return bridgeAnswer;
     }
 
-    public static List<String> phase3_getMoving(OutputView outputView,
+    public static Boolean phase3_getMoving(OutputView outputView,
                                                 InputView inputView,
                                                 BridgeGame bridgeGame){
         outputView.printGetSpaceToMove();
@@ -43,6 +43,15 @@ public class Application {
         List<String> tmpBridge = bridgeGame.move(canSuccess);
         outputView.printMap(tmpBridge);
 
-        return null;
+        return canSuccess;
+    }
+    public static Boolean phase4_whatIsNextAction(Boolean canSuccess,
+                                                  OutputView outputView,
+                                                  InputView inputView){
+        if (canSuccess == false){
+            outputView.printGetTryAgain();
+            String tryAgain = inputView.readGameCommand();
+            if (tryAgain=="Q")
+        }
     }
 }

@@ -35,7 +35,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String tryAgain = Console.readLine();
+        return validateTryAgain(tryAgain);
     }
 
 
@@ -53,5 +54,12 @@ public class InputView {
             return readMoving();
         }
         return moving;
+    }
+    public String validateTryAgain(String tryAgain){
+        if (!tryAgain.equals('R') && !tryAgain.equals('Q')) {
+            System.out.println(MOVING_LIMIT.getMessage());
+            return readMoving();
+        }
+        return tryAgain;
     }
 }
