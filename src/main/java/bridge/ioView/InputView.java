@@ -63,12 +63,12 @@ public class InputView {
     }
 
     private void validateMoving(String input) {
-        if (!isUpOrDown(input)) {
+        if (!isDirection(input)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "U또는 D로 입력하여야합니다.");
         }
     }
 
-    private boolean isUpOrDown(String input) {
+    private boolean isDirection(String input) {
         for (Direction direction : Direction.values()) {
             if (direction.equals(input)) {
                 return true;
@@ -91,12 +91,12 @@ public class InputView {
     }
 
     private void validateGameCommand(String input) {
-        if (!isRetryOrQuit(input)) {
+        if (!isGameCommand(input)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "R또는 Q로 입력하여야합니다.");
         }
     }
 
-    private boolean isRetryOrQuit(String input) {
+    private boolean isGameCommand(String input) {
         for (GameCommand gameCommand : GameCommand.values()) {
             if (gameCommand.equals(input)) {
                 return true;

@@ -30,6 +30,6 @@
   - [x] 숫자가 아님 - InputView#isDecimal()
   - [x] 3부터 20이 아님 - InputView#isInRange()
 - [x] 이동할 칸 유효 여부 체크 - InputView#validateMoving()
-  - [x] "U"나 "D"가 아님 - InputView#isUpOrDown()
+  - [x] "U"나 "D"가 아님 - InputView#isDirection()
 - [x] 재시작 여부 유효 여부 체크 - InputView#validateGameCommand()
-  - [x] "R"나 "Q"가 아님 - InputView#isRetryOrQuit()
+  - [x] "R"나 "Q"가 아님 - InputView#isGameCommand()
