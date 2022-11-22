@@ -55,4 +55,16 @@ class PlayerPathTest {
 
         assertThat(ordinalNumber).isEqualTo(4);
     }
+
+    @Test
+    void 사용자_이동경로는_기본적으로_생존했다고_판단한다(){
+        assertThat(new PlayerPath().getIsAlive()).isTrue();
+    }
+
+    @Test
+    void 사용자_이동경로를_직접_죽었다고_설정하는_것은_정상동작한다(){
+        PlayerPath playerPath = new PlayerPath();
+        playerPath.die();
+        assertThat(playerPath.getIsAlive()).isFalse();
+    }
 }
