@@ -2,6 +2,8 @@ package bridge;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import bridge.Domain.Judgement;
+import bridge.Domain.Record;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +20,6 @@ public class JudgementTest {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         judgement = new Judgement();
     }
-
 
     @DisplayName("사용자 입력한 다리와 실제 다리길이가 같은지, 즉 도달했는지 판단할 수 있다")
     @Test

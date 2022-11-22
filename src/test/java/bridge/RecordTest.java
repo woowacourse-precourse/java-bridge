@@ -2,6 +2,8 @@ package bridge;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import bridge.Domain.Judgement;
+import bridge.Domain.Record;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

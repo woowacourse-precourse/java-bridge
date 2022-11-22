@@ -1,7 +1,8 @@
 package bridge;
 
-import static bridge.Validator.validateBridgeRandomNum;
+import static bridge.Validator.Validator.validateBridgeRandomNum;
 
+import bridge.Type.DirectionType;
 import java.util.ArrayList;
 import java.util.List;
 

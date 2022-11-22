@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Utils;
 
 public class ErrorGenerator {
     private static final String ERROR_MSG_START="[ERROR] : ";

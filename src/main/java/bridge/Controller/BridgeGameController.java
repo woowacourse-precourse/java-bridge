@@ -1,7 +1,10 @@
-package bridge;
+package bridge.Controller;
 
-import static bridge.OutputView.*;
-import static bridge.InputView.*;
+import static bridge.View.OutputView.*;
+import static bridge.View.InputView.*;
+
+import bridge.BridgeGame;
+import bridge.View.InputView;
 
 public class BridgeGameController {
 

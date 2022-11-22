@@ -1,5 +1,6 @@
-package bridge;
+package bridge.Domain;
 
+import bridge.View.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package bridge;
+package bridge.Domain;
 
+import bridge.Domain.Record;
 import java.util.List;
 
 public class Judgement {

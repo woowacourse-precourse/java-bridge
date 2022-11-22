@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Type;
 
 public enum DirectionType {
     UP("U", 1),

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.Domain.Judgement;
+import bridge.Domain.Record;
 import java.util.List;
 
 /**
