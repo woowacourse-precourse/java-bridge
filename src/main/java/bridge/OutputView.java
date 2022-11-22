@@ -8,6 +8,13 @@ import java.util.List;
 public class OutputView {
 
     private final BridgeGame bridgeGame;
+    private final String LEFT_CONTAINER = "[ ";
+    private final String RIGHT_CONTAINER = " ]";
+    private final String ABOUT_RESULT = "최종 게임 결과";
+    private final String ABOUT_GAME_STATE = "게임 성공 여부: ";
+    private final String ABOUT_PLAYED_COUNT = "총 시도한 횟수: ";
+
+
 
     public OutputView(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
@@ -24,14 +31,14 @@ public class OutputView {
         List<StringBuilder> nowMap = bridgeGame.getMap(inputMoving);
         // 그대로일 때 출력
         for (int i = 0; i < 2; i++) {
-            System.out.println("[ " + nowMap.get(i) + " ]");
+            System.out.println(LEFT_CONTAINER + nowMap.get(i) + RIGHT_CONTAINER);
         }
     }
 
     public void printMapWhenFailed(String inputMoving) {
         List<StringBuilder> nowMapWhenFailed = bridgeGame.getMapWhenFailed(inputMoving);
         for (int i = 0; i < 2; i++) {
-            System.out.println("[ " + nowMapWhenFailed.get(i) + " ]");
+            System.out.println(LEFT_CONTAINER + nowMapWhenFailed.get(i) + RIGHT_CONTAINER);
         }
     }
 
@@ -42,10 +49,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
-        System.out.println("최종 게임 결과");
-        System.out.println("[ " + bridgeGame.FIRST_LINE_DATA + " ]");
-        System.out.println("[ " + bridgeGame.SECOND_LINE_DATA + " ]");
-        System.out.println("게임 성공 여부: " + bridgeGame.GAME_STATE);
-        System.out.println("총 시도한 횟수: " + bridgeGame.playedCount);
+        System.out.println(ABOUT_RESULT);
+        System.out.println(LEFT_CONTAINER + bridgeGame.FIRST_LINE_DATA + RIGHT_CONTAINER);
+        System.out.println(LEFT_CONTAINER + bridgeGame.SECOND_LINE_DATA + RIGHT_CONTAINER);
+        System.out.println(ABOUT_GAME_STATE + bridgeGame.GAME_STATE);
+        System.out.println(ABOUT_PLAYED_COUNT + bridgeGame.playedCount);
     }
 }
