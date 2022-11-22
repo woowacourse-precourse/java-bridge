@@ -3,6 +3,11 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        GameLauncher gameLauncher = new GameLauncher();
+        try {
+            gameLauncher.startGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
