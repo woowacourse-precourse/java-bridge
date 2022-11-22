@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class OutputViewTest {
 
     @DisplayName("다리 형태 생성 테스트")
