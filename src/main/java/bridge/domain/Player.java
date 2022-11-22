@@ -29,11 +29,11 @@ public class Player {
         initMoveHistory();
     }
 
-    public void increaseTryCount() {
+    private void increaseTryCount() {
         tryCount++;
     }
 
-    public void initMoveHistory() {
+    private void initMoveHistory() {
         moveHistory.clear();
     }
 }
