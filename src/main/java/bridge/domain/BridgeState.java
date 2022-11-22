@@ -26,5 +26,12 @@ public class BridgeState {
         return map;
     }
 
-
+    // 첫 번째 라운드 결과
+    private void convertResultFirstRound(String userInput, List<String> bridge) {
+        if (compareBridgeRootToUserInput(userInput, bridge)) {
+            convertCorrectResultFirstRound(userInput);
+        } else if (!compareBridgeRootToUserInput(userInput, bridge)) {
+            convertWrongResultFirstRound(userInput);
+        }
+    }
 }
