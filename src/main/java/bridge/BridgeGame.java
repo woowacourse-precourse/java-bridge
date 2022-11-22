@@ -60,4 +60,8 @@ public class BridgeGame {
         }
         GameController.setQuit();
     }
+
+    public Cross getCross() {
+        return cross;
+    }
 }
