@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public static int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         String bridgeSizeStr = Console.readLine();
         int bridgeSize = 0;
         try{

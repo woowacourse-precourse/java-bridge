@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,11 +12,12 @@ public class OutputView {
         for(int i = 0; i < size-1;i++){
             printMapChar(bridge.get(i), "U");
         }
-        printLastChar(bridge.get(size), "U", userInput);
+        printLastChar(bridge.get(size-1), "U", userInput);
+        System.out.print("[");
         for(int i = 0; i < size-1;i++){
             printMapChar(bridge.get(i), "D");
         }
-        printLastChar(bridge.get(size), "D", userInput);
+        printLastChar(bridge.get(size-1), "D", userInput);
     }
 
     private static int printMapChar(String bridgeChar, String upDown){
@@ -38,15 +38,14 @@ public class OutputView {
             System.out.println(" O ]");
             return 0;
         }
-        System.out.println(" X ]");
+        System.out.println("   ]");
         return 0;
     }
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     public void printResult() {
+        System.out.println("최종 게임 결과");
+        //다리 출력
+        System.out.println("게임 성공 여부 : ");
 
     }
 
