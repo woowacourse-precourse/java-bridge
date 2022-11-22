@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,11 +24,11 @@ public class BridgeMaker {
         for(int i = 0; i<size; i++) {
             int random = bridgeNumberGenerator.generate();
             if(random == BridgeSymbol.DOWN.getValue())
-                bridge.add(i, BridgeSymbol.DOWN.getSymbol());
+                bridge.add(BridgeSymbol.DOWN.getSymbol());
             if(random == BridgeSymbol.UP.getValue())
-                bridge.add(i, BridgeSymbol.UP.getSymbol());
+                bridge.add(BridgeSymbol.UP.getSymbol());
         }
+
         return bridge;
     }
-
 }
