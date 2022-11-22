@@ -19,4 +19,11 @@ public class BridgeController {
     crossed = true;
   }
 
+  public void makeBridgeByInput() {
+    outputView.printStart();
+    bridgeSize = inputView.readBridgeSize();
+    game = new BridgeGame(new Bridge((bridgeSize)));
+  }
+
+
 }
