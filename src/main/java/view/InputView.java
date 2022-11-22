@@ -41,14 +41,23 @@ public class InputView {
 	 */
 	public String readMoving() {
 		System.out.println(MESSAGE_READ_MOVING);
-		String moving = readLine();
-		validateMoving(moving);
+		String moving = readMovingUntilNoError();
 		return moving;
 	}
 
-	private void validateMoving(String moving) {
+	private String readMovingUntilNoError() {
+		while (true) {
+			try {
+				return validateMoving(readLine());
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+	private String validateMoving(String moving) {
 		if (moving.equals(MOVING_UP) || moving.equals(MOVING_DOWN)) {
-			return;
+			return moving;
 		}
 		throw new IllegalArgumentException(ERROR_MESSAGE_WRONG_MOVING_INPUT);
 	}
