@@ -93,4 +93,11 @@ public class BridgeController {
         downBridge.setLength(0);
         downBridge.append("[");
     }
+
+    private void editBuilder(BridgeGame bridgeGame) {
+        if (!bridgeGame.comparePositionLength()) {
+            upBridge.replace(upBridge.length() - 1, upBridge.length(), "|");
+            downBridge.replace(downBridge.length() - 1, downBridge.length(), "|");
+        }
+    }
 }
