@@ -21,7 +21,7 @@ public enum Position {
         this.generatedNumber = generatedNumber;
     }
 
-    public static String findAbbreviationByNumber(int generatedNumber) {
+    public static String getAbbreviation(int generatedNumber) {
         return Position.from(generatedNumber).abbreviation;
     }
 

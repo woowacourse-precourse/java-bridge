@@ -30,7 +30,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return IntStream.generate(bridgeNumberGenerator::generate)
                 .limit(size)
-                .mapToObj(Position::findAbbreviationByNumber)
+                .mapToObj(Position::getAbbreviation)
                 .collect(Collectors.toList());
     }
 

@@ -12,7 +12,7 @@ public enum SuccessAndFail {
         this.isSuccess = isSuccess;
     }
 
-    public  String getKoreanDisplay() {
+    public String getKoreanDisplay() {
         return koreanDisplay;
     }
 

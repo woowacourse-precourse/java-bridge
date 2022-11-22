@@ -1,16 +1,16 @@
 package bridge.controller;
 
 import static bridge.model.RetryAndQuit.isRetry;
-import static bridge.model.SurviveAndDie.isDie;
 import static bridge.model.SuccessAndFail.isSuccess;
+import static bridge.model.SurviveAndDie.isDie;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Position;
-import bridge.model.SurviveAndDie;
 import bridge.model.SuccessAndFail;
+import bridge.model.SurviveAndDie;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
