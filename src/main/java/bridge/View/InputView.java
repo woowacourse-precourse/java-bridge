@@ -15,6 +15,7 @@ public class InputView {
             try{
                 Size = Integer.parseInt(bridgeSize);
                 Try = false;
+                System.out.println(Size);
             } catch(NumberFormatException e){
                 throw new IllegalArgumentException(Constant.Length_Restrict());
             }
