@@ -52,6 +52,14 @@ public class GameController {
         moving = inputView.readMoving();
         return moving;
     }
+
+    public boolean isSuccess(int number) {
+        if (number == bridgeSize) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean isRetry() {
         String gameCommand;
         outputView.printGameCommand();
