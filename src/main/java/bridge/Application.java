@@ -12,7 +12,7 @@ import bridge.view.OutputView;
 //TODO 객체 관계 그래프 작성
 public class Application {
 
-    private static final InputView inputView = new InputViewProxy();
+    private static final InputView inputView = new InputViewProxy(new InputView());
     private static final OutputView outputView = new OutputView();
 
     public static void main(String[] args) {

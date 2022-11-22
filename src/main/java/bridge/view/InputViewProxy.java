@@ -11,33 +11,39 @@ public class InputViewProxy extends InputView {
 
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
+    private final InputView inputView;
+
+    public InputViewProxy(InputView inputView) {
+        this.inputView = inputView;
+    }
+
     @Override
     public BridgeSize readBridgeSize() {
         try {
-            return super.readBridgeSize();
+            return inputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
-            return this.readBridgeSize();
+            return readBridgeSize();
         }
     }
 
     @Override
     public MoveCommand readMoving() {
         try {
-            return super.readMoving();
+            return inputView.readMoving();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
-            return this.readMoving();
+            return readMoving();
         }
     }
 
     @Override
     public RetryCommand readGameCommand() {
         try {
-            return super.readGameCommand();
+            return inputView.readGameCommand();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
-            return this.readGameCommand();
+            return readGameCommand();
         }
     }
 
