@@ -10,6 +10,7 @@ public class BridgeMap {
     private final String MID = " | ";
     private final String CORRECT = "O";
     private final String MISS = "X";
+    private final String BLANK = " ";
 
     private List<List<String>> bridgeMap;
 
@@ -19,8 +20,25 @@ public class BridgeMap {
             bridgeMap.add(List.of(START,END));
         }
     }
-
-    public void updateMap(List<String> bridge, int cursor, boolean correct) {
+    public void updateChooseUpper(boolean correct) {
+        if (correct == true) {
+            bridgeMap.get(0).add(bridgeMap.size() - 2 , CORRECT);
+            bridgeMap.get(1).add(bridgeMap.size() - 2 , BLANK);
+            return;
+        }
+        bridgeMap.get(0).add(bridgeMap.size() - 2 , MISS);
+        bridgeMap.get(1).add(bridgeMap.size() - 2 , BLANK);
+    }
+    public void updateChooseLower(boolean correct) {
+        if (correct == true) {
+            bridgeMap.get(0).add(bridgeMap.size() - 2, BLANK);
+            bridgeMap.get(1).add(bridgeMap.size() - 2, CORRECT);
+            return;
+        }
+        bridgeMap.get(0).add(bridgeMap.size() - 2, BLANK);
+        bridgeMap.get(1).add(bridgeMap.size() - 2, MISS);
+    }
+    public void updateMap(List<String> bridge, boolean correct) {
 
     }
 }
