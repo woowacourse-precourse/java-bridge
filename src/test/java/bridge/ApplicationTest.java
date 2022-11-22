@@ -2,6 +2,7 @@ package bridge;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -45,6 +46,24 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 재시작_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "R","U","D","U");
+            assertThat(output()).contains("총 시도한 횟수: 2");
+            assertThat(output()).contains("게임 성공 여부: 성공");
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 종료_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "Q");
+            assertThat(output()).contains("총 시도한 횟수: 1");
+            assertThat(output()).contains("게임 성공 여부: 실패");
+        }, 1, 0, 1);
     }
 
     @Override
