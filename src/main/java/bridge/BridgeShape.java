@@ -14,4 +14,15 @@ public enum BridgeShape {
         this.shape = shape;
         this.number = number;
     }
+
+    public static boolean contains(String shape) {
+        return Arrays.stream(BridgeShape.values())
+            .map(BridgeShape::getShape)
+            .collect(Collectors.toList())
+            .contains(shape);
+    }
+
+    public String getShape() {
+        return this.shape;
+    }
 }
