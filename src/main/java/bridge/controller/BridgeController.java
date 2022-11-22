@@ -1,4 +1,9 @@
-package bridge;
+package bridge.controller;
+
+import bridge.domain.GameSymbol;
+import bridge.domain.ResultSymbol;
+import bridge.model.BridgeGame;
+import bridge.view.BridgeView;
 
 public class BridgeController {
 

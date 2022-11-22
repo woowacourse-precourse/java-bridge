@@ -1,4 +1,8 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.BridgeResult;
+import bridge.domain.GameSymbol;
+import bridge.domain.ResultSymbol;
 
 public class BridgeView {
 

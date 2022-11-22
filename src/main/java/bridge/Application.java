@@ -1,5 +1,11 @@
 package bridge;
 
+import bridge.controller.BridgeController;
+import bridge.model.BridgeGame;
+import bridge.view.BridgeView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class Application {
 
     public static void main(String[] args) {
