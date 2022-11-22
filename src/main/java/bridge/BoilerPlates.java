@@ -3,8 +3,8 @@ package bridge;
 public class BoilerPlates {
 	public static void printFinalFailedUp(String mapU,String mapD,int gameCount){
 		System.out.println("최종 게임 결과");
-		System.out.println("게임 성공 여부: 실패");
 		addMessageAfterCheckLength(mapU, "| X ]", mapD, "|   ]", " X ]", "   ]");
+		System.out.println("게임 성공 여부: 실패");
 		System.out.println("총 시도한 횟수: "+gameCount);
 	}
 
