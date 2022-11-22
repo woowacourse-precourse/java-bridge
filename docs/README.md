@@ -54,10 +54,12 @@
   - 사용자에게 입력을 받고, 입력값에 대한 에러 체크를 하는 클래스
 - OutputView
   - 사용자에게 안내 메시지를 출력하는 클래스
+- ValidationCheck
+  - 사용자 입력에 대해 예외처리하는 클래스
 
 # 3. 클래스의 함수 정의
 - BridgeController
-  - gamePrepare()
+  - init()
     - 게임 시작 전 초기 세팅을 도와주는 함수
     - 게임 시작 메세지를 출력, 다리 길이를 사용자에게 받아 다리를 만드는 함수
   - run()
@@ -69,29 +71,29 @@
   - gameOver()
     - 게임이 종료된 후에 작업
     - 다리를 건너는데 성공했는지 체크 후, 다시 시도할지 물어보는 함수
-  - retry()
+  - isRetry()
     - 재시도의 여부를 체크하는 함수
 - BridgeGame
   - Constructor
     - 게임 시작 전에 변수 초기화 실행
-  - gameInProgress
-    - 유저 인풋에 맞게 upBridge, downBridge 생성
-  - lastMapResult
-    - 게임 종료후 최종결과 upBridge, downBridge 출력 + 게임시도횟수, 게임결과 출력
-  - gameSuccess
-    - 게임 결과에 따라 "성공","실패" 출력
-  - makeBridge
-    - movingInput에 맞게 makeupBridge,makedownBridge 호출
-  - makeUpBridge
-    - movingInput에 맞게 upBridge 결과 추가
-  - makeDownBridge
-    - - movingInput에 맞게 downBridge 결과 추가
-  - isRetry
-    - 재시도한다면 변수들 초기화 작업 후, true 반환
+  - move
+    - 유저 인풋에 맞게 upBridge, downBridge 생성하고, moveCount 증가
+  - createBridgeResult
+    - move 결과에 따라 upBridge,downBridge에 결과를 추가하고
+    - 이동에 실패하였다면 progressStatus를 false 로 수정한다.
   - isOver
     - 게임 종료 여부 확인
+  - retry
+    - 재시도한다면 변수들 초기화 작업 후, true 반환
+  - initBeforeRestart
+    - 재시도 전에 변수 초기화
+  - gameSuccess
+    - 게임 결과에 따라 "성공","실패" 출력
   - isSuccess
     - 게임 성공 여부 확인
+  - gameCount
+    - 게임 재시도 횟수 체크
+    - 
 - BridgeNumberGenerator & BridgeMaker
   - generate : 다리 생성
 - InputView
@@ -101,6 +103,7 @@
     - 다리 위,아래 선택 input
   - readGameCommand 
     - 게임 재시작 여부 input
+- Validation Check : 예외 처리
   - toInts 
     - 다리 길이 변수 숫자로 바꾸는 함수
   - isBlank 
@@ -114,6 +117,10 @@
 - OutputView
   - PrintMap
     - 게임 결과 출력하는 함수
+  - printBridge
+    - printMap upBridge, downBridge에 대해 두 번 호출
+  - printResult
+    - 게임 종료 후 마지막 출력물들을 호출하는 함수
   - printGameStartMessage
     - 게임 시작 메세지
   - printBridgeRequestMessage
