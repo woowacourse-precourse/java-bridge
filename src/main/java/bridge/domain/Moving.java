@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.Direction;
 import bridge.exception.BridgeError;
 import bridge.exception.ErrorException;
 

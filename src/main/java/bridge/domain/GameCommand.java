@@ -15,8 +15,9 @@ public class GameCommand {
     }
 
     private void checkInvalidGameCommand() {
-        if(!gameCommand.equals(RESTART_GAME) && !gameCommand.equals(END_GAME)){
+        if (!gameCommand.equals(RESTART_GAME) && !gameCommand.equals(END_GAME)) {
             throw new ErrorException(BridgeError.INVALID_GAME_STATUS);
-        };
+        }
+        ;
     }
 }
