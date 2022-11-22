@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.utils.Constants.Direction;
 import java.util.ArrayList;
 import java.util.List;
 import bridge.utils.Constants.Command;
@@ -23,11 +24,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<String>();
         for (int i = 0; i < size; i++) {
-            if (this.bridgeNumberGenerator.generate() == 0) {
-                bridge.add(Command.DOWN);
-                continue;
-            }
-            bridge.add(Command.UP);
+            int randomNumber = this.bridgeNumberGenerator.generate();
+            bridge.add(Direction.getDirection(randomNumber));
         }
         return bridge;
     }

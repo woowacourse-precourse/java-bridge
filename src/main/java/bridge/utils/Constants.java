@@ -1,5 +1,7 @@
 package bridge.utils;
 
+import java.util.Arrays;
+
 public final class Constants {
 
     public final class ErrorState {
@@ -51,5 +53,25 @@ public final class Constants {
 
         public static final String SUCCESS = "성공";
         public static final String FAIL = "실패";
+    }
+
+    public enum Direction {
+        UP("U", 1),
+        DOWN("D", 0);
+
+        public final String command;
+        public final int randomNumber;
+
+        Direction(String command, int randomNumber) {
+            this.command = command;
+            this.randomNumber = randomNumber;
+        }
+
+        public static String getDirection(int randomNumber) {
+            if(randomNumber == 0) {
+                return DOWN.command;
+            }
+            return UP.command;
+        }
     }
 }
