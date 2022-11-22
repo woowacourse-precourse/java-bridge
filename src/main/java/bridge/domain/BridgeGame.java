@@ -1,7 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import java.util.List;
 
 /**
@@ -14,14 +14,14 @@ public class BridgeGame {
     private boolean isEnd = false;
     private boolean isSuccess = false;
 
-    public BridgeGame(int size) {
+    public BridgeGame(int size, BridgeNumberGenerator generator) {
         this.stage = 0;
         this.totalTryCount = 0;
-        makeBridge(size);
+        makeBridge(size, generator);
     }
 
-    private void makeBridge(int size) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private void makeBridge(int size, BridgeNumberGenerator generator) {
+        BridgeMaker bridgeMaker = new BridgeMaker(generator);
         this.bridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 

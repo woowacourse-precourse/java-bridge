@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.FinalGameResult;
 import bridge.domain.GameCommand;
@@ -34,7 +35,7 @@ public class BridgeGameController {
     public void makeBridgeGame() {
         outputView.printStart();
         int bridgeSize = inputView.readBridgeSize();
-        this.bridgeGame = new BridgeGame(bridgeSize);
+        this.bridgeGame = new BridgeGame(bridgeSize, new BridgeRandomNumberGenerator());
     }
 
     public void progressGameStage() {
