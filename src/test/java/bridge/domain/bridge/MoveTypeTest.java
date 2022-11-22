@@ -1,5 +1,6 @@
 package bridge.domain.bridge;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -18,5 +19,18 @@ class MoveTypeTest {
         assertThatThrownBy(() -> MoveType.create("u"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] U 또는 D 를 입력해야 합니다.");
+    }
+    @Test
+    @DisplayName("U,D 를 입력받으면 해당하는 MoveType 이 생생되어야함")
+    public void 생성테스트(){
+        //given
+        String upInput = "U";
+        String downInput = "D";
+        //when
+        MoveType up = MoveType.create(upInput);
+        MoveType down = MoveType.create(downInput);
+        //then
+        assertThat(up).isEqualTo(MoveType.UP);
+        assertThat(down).isEqualTo(MoveType.DOWN);
     }
 }
