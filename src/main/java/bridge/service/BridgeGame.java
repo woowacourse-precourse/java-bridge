@@ -7,11 +7,11 @@ import static bridge.domain.bridge.BridgePasser.makeBridgePasser;
 import static bridge.domain.game.GameResult.makeGameResult;
 import static bridge.validate.GameValidation.validateGameSuccess;
 
-import bridge.domain.bridge.BridgeSize;
-import bridge.domain.game.GameRecord;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeAndPasser;
 import bridge.domain.bridge.BridgePasser;
+import bridge.domain.bridge.BridgeSize;
+import bridge.domain.game.GameRecord;
 import bridge.domain.game.GameResult;
 import bridge.value.BridgeCharacter;
 
@@ -40,7 +40,6 @@ public class BridgeGame {
 
     public void move() {
         validateGameSuccess(isGameSuccess());
-
         bridgePasser.move();
     }
 
