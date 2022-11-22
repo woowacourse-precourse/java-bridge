@@ -2,6 +2,7 @@ package controller;
 
 import bridge.*;
 import bridge.model.GameEnd;
+import bridge.model.RetryDTO;
 import bridge.move.CompareMove;
 import bridge.util.InputView;
 import bridge.util.OutputView;
@@ -18,6 +19,7 @@ public class BridgeController {
 	private final CompareMove compareMove=new CompareMove();
 	private final ViewClear viewClear=new ViewClear();
 	private final BridgeGame bridgeGame = new BridgeGame();
+	private final RetryController retryController=new RetryController();
 
 	private List<String> bridge_list;
 	private int TRY_COUNT=1;
@@ -85,14 +87,14 @@ public class BridgeController {
 	}
 
 	private String gameResultReturn(){
-		System.out.println(GAME_RESULT);
 		return GAME_RESULT;
 	}
 
 	private void retryConfig(){
-		viewClear.viewClear(outputView);
-		TRY_COUNT++;
-		RESULT_CONDITION=GameEnd.SUCCESS.toString();
-		GAME_RESULT="";
+		RetryDTO retryDTO=new RetryDTO(viewClear,TRY_COUNT,RESULT_CONDITION,GAME_RESULT);
+		RetryDTO result_DTO = retryController.retryConfig(retryDTO, outputView);
+		TRY_COUNT= result_DTO.TRY_COUNT;
+		RESULT_CONDITION=result_DTO.RESULT_CONDITION;
+		GAME_RESULT=result_DTO.GAME_RESULT;
 	}
 }
