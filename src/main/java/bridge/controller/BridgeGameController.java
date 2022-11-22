@@ -4,22 +4,30 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeWalker;
-import bridge.domain.MoveRecord;
 import bridge.domain.type.GameCommandType;
 import bridge.domain.type.RoundResultType;
 import bridge.validator.BridgeSizeValidator;
+import bridge.validator.CommandValidator;
 import bridge.validator.GameCommandValidator;
 import bridge.validator.MoveCommandValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    BridgeGame bridgeGame;
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
+    private BridgeGame bridgeGame;
 
     public void runGame() {
+        outputView.printGameStartMessage();
+        bridgeGame = BridgeGame.from(createBridgeByUserInputSize());
+        runRound();
+        outputView.printResult(
+                bridgeGame.getClearDescription(), bridgeGame.getGameTryCountDescription(), bridgeGame.getMoveRecord()
+        );
+    }
+
+    private void runRound() {
         try {
             repeatRound();
         } catch (IllegalArgumentException e) {
@@ -27,50 +35,82 @@ public class BridgeGameController {
         }
     }
 
-    public void repeatRound() {
-        outputView.printGameStartMessage();
-        bridgeGame = new BridgeGame(new BridgeWalker(new MoveRecord(), createBridgeByUserInputSize()));
-        RoundResultType roundResultType;
-        do {
+    private void repeatRound() {
+        moveUntilRoundExit();
+        while (!bridgeGame.isClear() && isRestart()) {
             bridgeGame.retry();
-            roundResultType = runRound();
-        } while (!roundResultType.equals(RoundResultType.CLEAR) && getGameCommand().equals(GameCommandType.RESTART));
-        outputView.printResult(
-                bridgeGame.getClearDescription(), bridgeGame.getGameTryCountDescription(), bridgeGame.getMoveRecord()
-        );
+            moveUntilRoundExit();
+        }
     }
 
-    public RoundResultType runRound() {
+    private void moveUntilRoundExit() {
         RoundResultType roundResultType;
         do {
             roundResultType = bridgeGame.move(getMoveCommand());
             outputView.printMap(bridgeGame.getMoveRecord());
         } while (roundResultType.equals(RoundResultType.PLAYING));
-        return roundResultType;
     }
 
-    public Bridge createBridgeByUserInputSize() {
-        BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
-        int bridgeSize = bridgeSizeValidator.getValidBridgeSize(inputView.readBridgeSize());
+    private boolean isRestart() {
+        if (getGameCommand().equals(GameCommandType.RESTART)) {
+            return true;
+        }
+        return false;
+    }
+
+    private Bridge createBridgeByUserInputSize() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return Bridge.from(bridgeMaker.makeBridge(bridgeSize));
+        return Bridge.from(bridgeMaker.makeBridge(inputBridgeSizeByUser()));
     }
 
-    public String getMoveCommand() {
-        MoveCommandValidator moveCommandValidator = new MoveCommandValidator();
-        String userMove = moveCommandValidator.getValidCommand(inputView.readMoving());
-        return userMove;
+    private int inputBridgeSizeByUser(){
+        String inputBridgeSize;
+        BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
+        do{
+            inputBridgeSize = inputView.readBridgeSize();
+        } while(!isValidBridgeSize(inputBridgeSize));
+        return bridgeSizeValidator.getValidBridgeSize(inputBridgeSize);
     }
 
-    public GameCommandType getGameCommand() {
+    private boolean isValidBridgeSize(String bridgeSize){
+        BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
+        try{
+            bridgeSizeValidator.getValidBridgeSize(bridgeSize);
+        }catch (IllegalArgumentException e){
+            outputView.printErrorMessage(e.getMessage());
+            return false;
+        }
+        return true;
+    }
 
+    private String getMoveCommand() {
+        CommandValidator moveCommandValidator = new MoveCommandValidator();
+        String moveCommand;
+        do {
+            moveCommand = inputView.readMoving();
+        } while (!isErrorCommand(moveCommand, moveCommandValidator));
+        return moveCommand;
+    }
+
+    private GameCommandType getGameCommand() {
         if (bridgeGame.isClear()) {
             return GameCommandType.QUIT;
         }
-        GameCommandValidator gameCommandValidator = new GameCommandValidator();
-        GameCommandType gameCommandType = GameCommandType.findByCommand(
-                gameCommandValidator.getValidCommand(inputView.readGameCommand())
-        );
-        return gameCommandType;
+        CommandValidator gameCommandValidator = new GameCommandValidator();
+        String gameCommand;
+        do {
+            gameCommand = inputView.readGameCommand();
+        } while (!isErrorCommand(gameCommand, gameCommandValidator));
+        return GameCommandType.findByCommand(gameCommand);
+    }
+
+    private boolean isErrorCommand(String command, CommandValidator commandValidator) {
+        try {
+            commandValidator.getValidCommand(command);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return false;
+        }
+        return true;
     }
 }
