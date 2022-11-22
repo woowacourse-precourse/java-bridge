@@ -11,7 +11,7 @@ public class InputValidator {
         validateRange(Integer.parseInt(bridgeSize));
     }
 
-    private static void validateFormat(String bridgeSize) {
+    public static void validateFormat(String bridgeSize) {
         try{
             Integer.parseInt(bridgeSize);
         } catch(NumberFormatException e) {
@@ -19,7 +19,7 @@ public class InputValidator {
         }
     }
 
-    private static void validateRange(int bridgeSize) {
+    public static void validateRange(int bridgeSize) {
         if(bridgeSize < MIN_RANGE || bridgeSize > MAX_RANGE) {
             OUT_OF_RANGE.throwException();
         }

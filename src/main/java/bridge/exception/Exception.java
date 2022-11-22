@@ -14,6 +14,10 @@ public enum Exception {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public void throwException() {
         throw new IllegalArgumentException(message);
     }
