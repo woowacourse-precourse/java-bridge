@@ -10,7 +10,7 @@ public enum PlayerStatus {
 
     PlayerStatus(String name) {
         this.name = name;
-        tryCount = 0;
+        tryCount = 1;
     }
 
     public String getName() {
