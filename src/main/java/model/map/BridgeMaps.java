@@ -34,19 +34,11 @@ public class BridgeMaps {
         return map.getStage();
     }
 
-    public void updateMaps(PositionType playerType, Boolean result) {
-        for (PositionType positionType : PositionType.values()) {
-            compareType(positionType, playerType, result);
-        }
-    }
+    public void updateMaps(PositionType playerType, boolean result) {
+        PositionType otherType = PositionType.getOtherType(playerType);
 
-    private void compareType(PositionType positionType, PositionType playerType, Boolean result) {
-        if (positionType.equals(playerType)) {
-            updateMap(positionType, result);
-            return;
-        }
-
-        updateMap(positionType, null);
+        updateMap(playerType, result);
+        updateMap(otherType, null);
     }
 
     private void updateMap(PositionType position, Boolean result) {
