@@ -9,7 +9,7 @@ public class GameRunner {
         this.outputView = new OutputView();
     }
 
-    public Player play(){
+    public Player play()throws IllegalArgumentException{
         String input = inputView.readMoving();
         game.move(input);
         outputView.printMap(game);
@@ -17,7 +17,7 @@ public class GameRunner {
     }
 
 
-    public void run(){
+    public void start()throws IllegalArgumentException{
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         game = new BridgeGame(new BridgeGameInfo(inputView.readBridgeSize()));
         while(true) {
@@ -28,6 +28,15 @@ public class GameRunner {
             game.retry();
         }
         outputView.printResult(game);
+    }
+
+    public void run(){
+        try{
+            start();;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
 }

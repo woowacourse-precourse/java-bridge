@@ -68,6 +68,10 @@ player 의 status 분류를 위한 enum
 
 # GameRunner
 
-### run
+### start
 
     게임 실행
+
+### run
+
+    게임을 예외 처리하며 실행
