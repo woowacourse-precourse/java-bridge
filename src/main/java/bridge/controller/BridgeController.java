@@ -48,7 +48,6 @@ public class BridgeController {
 
         while (!success && retry) {
             success = move();
-
             retry = askRetry(success);
         }
 
@@ -61,7 +60,6 @@ public class BridgeController {
      * @return 끝까지 도달 여부
      */
     private boolean move() {
-        int position = 0;
         boolean complete = false;
         List<String> bridge = bridgeGame.getBridge();
 
@@ -71,11 +69,10 @@ public class BridgeController {
             MovingResultDto resultDto = bridgeGame.move(moving);
             complete = resultDto.getCompleteness();
             result = resultDto.getResult();
-            position = resultDto.getPosition();
 
             outputView.printMap(bridge, result);
 
-            if (position == bridge.size()) {
+            if (resultDto.getPosition() == bridge.size()) {
                 return true;
             }
         }

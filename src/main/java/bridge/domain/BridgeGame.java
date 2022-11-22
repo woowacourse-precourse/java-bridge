@@ -50,7 +50,6 @@ public class BridgeGame {
         if (correctPosition.equals(commend)) {
             position += 1;
             result.add("O");
-
             return new MovingResultDto(result, position, false);
         }
 
