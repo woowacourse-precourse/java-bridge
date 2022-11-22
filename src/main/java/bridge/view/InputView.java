@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.InputValidator;
+import bridge.InputManagement;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -8,15 +8,12 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private final String RETRY = "R";
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = Console.readLine().strip();
-
-        new InputValidator(input).isInRangeSize();
+        new InputManagement(input).isNumber();
         return Integer.parseInt(input);
     }
 
@@ -25,7 +22,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine().strip();
-        new InputValidator(input).isUpOrDown();
+        new InputManagement(input).isUpOrDown();
         return input;
     }
 
@@ -34,7 +31,8 @@ public class InputView {
      */
     public boolean readGameCommand() {
         String input = Console.readLine().strip();
-        new InputValidator(input).isRetryOrQuit();
-        return input.equals(RETRY);
+        InputManagement inputManagement = new InputManagement(input);
+        inputManagement.isRetryOrQuit();
+        return inputManagement.isRetry();
     }
 }
