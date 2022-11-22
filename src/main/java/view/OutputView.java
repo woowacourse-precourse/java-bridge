@@ -1,5 +1,7 @@
 package view;
 
+import bridge.BridgeGame;
+
 import java.util.List;
 
 /**
@@ -16,12 +18,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> userInput) {
+    public void printMap(BridgeGame bridgeGame) {
         StringBuilder firstRow = new StringBuilder("[");
         StringBuilder secondRow = new StringBuilder("[");
 
-        firstRow = drawFirstRowInMap(bridge, userInput, firstRow);
-        secondRow = drawSecondRowInMap(bridge, userInput, secondRow);
+        firstRow = drawFirstRowInMap(bridgeGame.getBridge(), bridgeGame.getUserInput(), firstRow);
+        secondRow = drawSecondRowInMap(bridgeGame.getBridge(), bridgeGame.getUserInput(), secondRow);
 
         System.out.println(wrapUpMap(firstRow,secondRow));
     }
@@ -84,11 +86,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String result) {
+        String[] split = result.split(",");
+        System.out.println("게임 성공 여부: "+split[1]);
+        System.out.println("총 시도한 횟수: "+split[0]);
     }
 
     public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 
     public void printAskingForSize() {
@@ -96,6 +102,11 @@ public class OutputView {
     }
 
     public void printSelection() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println();
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public void printRetry(){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }
