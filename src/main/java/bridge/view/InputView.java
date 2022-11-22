@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.exception.IllegalArgumentExceptionMessage.ILLEGAL_BRIDGE_LENGTH;
+import static bridge.exception.IllegalArgumentExceptionMessage.ILLEGAL_GAME_COMMAND;
 
 import bridge.bridge.BridgePosition;
 import camp.nextstep.edu.missionutils.Console;
@@ -8,6 +9,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     public static final int BRIDGE_LOWER_INCLUSIVE = 3;
     public static final int BRIDGE_UPPER_INCLUSIVE = 20;
+    public static final String GAME_RESTART = "R";
+    public static final String GAME_QUIT = "Q";
 
     public int readBridgeSize() throws IllegalArgumentException {
         try {
@@ -30,10 +33,15 @@ public class InputView {
         return BridgePosition.fromString(moving);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand() throws IllegalArgumentException {
+        String gameCommand = Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
+    }
+
+    private void validateGameCommand(String gameCommand) throws IllegalArgumentException {
+        if (!gameCommand.equals(GAME_RESTART) && !gameCommand.equals(GAME_QUIT)) {
+            throw new IllegalArgumentException(ILLEGAL_GAME_COMMAND.getMessage());
+        }
     }
 }
