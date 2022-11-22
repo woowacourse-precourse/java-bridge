@@ -31,4 +31,8 @@ public class OutputView {
         System.out.print("[ERROR] ");
         System.out.println(message);
     }
+
+    public void printEmptyLine() {
+        System.out.println();
+    }
 }
