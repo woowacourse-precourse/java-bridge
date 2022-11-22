@@ -49,7 +49,11 @@ class ApplicationTest extends NsTest {
 
     @Override
     protected void runMain() {
-        Application.main(new String[]{});
+        try {
+            Application.main(new String[]{});
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
