@@ -6,6 +6,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.dto.ResultDTO;
 import bridge.model.Bridge;
 import bridge.model.User;
+import bridge.util.Converter;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -18,6 +19,7 @@ public class BridgeController {
     private final Validator validator;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
+    private final Converter converter;
 
     public BridgeController() {
         outputView = new OutputView();
@@ -25,6 +27,7 @@ public class BridgeController {
         validator = new Validator();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame();
+        converter = new Converter();
     }
 
     public void run() {
@@ -40,7 +43,7 @@ public class BridgeController {
         while (true) {
             boolean end = isCross(size, bridge, user);
             if (isEnd(end)) {
-                return new ResultDTO(user.convertToMapDTO(), end, count);
+                return new ResultDTO(converter.convertToMapDTO(user), end, count);
             }
             count = initGame(user, count);
         }
@@ -82,7 +85,7 @@ public class BridgeController {
         String moving = inputMoving();
         String pass = getPass(bridge, round, moving);
         bridgeGame.move(user, moving, pass);
-        outputView.printMap(user.convertToMapDTO());
+        outputView.printMap(converter.convertToMapDTO(user));
         return pass.equals(SUCCESS.getPictogram());
     }
 
