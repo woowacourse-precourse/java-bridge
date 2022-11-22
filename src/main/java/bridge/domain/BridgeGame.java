@@ -26,26 +26,6 @@ public class BridgeGame {
         this.index = 0;
     }
 
-    public List<String> getBridge() {
-        return bridge;
-    }
-
-    public List<String> getUpBridge() {
-        return upBridge;
-    }
-
-    public List<String> getDownBridge() {
-        return downBridge;
-    }
-
-    public boolean getIsQuit() {
-        return isQuit;
-    }
-
-    public int getIndex() {
-        return index;
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -109,4 +89,25 @@ public class BridgeGame {
         this.isQuit = false;
         this.index = 0;
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public List<String> getUpBridge() {
+        return upBridge;
+    }
+
+    public List<String> getDownBridge() {
+        return downBridge;
+    }
+
+    public boolean getIsQuit() {
+        return isQuit;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
 }
