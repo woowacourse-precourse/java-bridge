@@ -2,6 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import bridge.gameController.GameController;
 import bridge.service.BridgeGame;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -14,9 +15,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameTest {
 
-    List<String> bridge;
+    private List<String> bridge;
 
-    BridgeGame bridgeGame = new BridgeGame();
+    private BridgeGame bridgeGame = new BridgeGame();
+
+    private GameController gameController = new GameController();
 
     @Nested
     class makeBridgeTest {
@@ -70,9 +73,9 @@ class BridgeGameTest {
         void retryContainsTest(String element, boolean expected) {
             assertThat(bridgeGame.retry(element)).isEqualTo(expected);
         }
-
     }
 }
+
 
 
 
