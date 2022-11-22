@@ -33,26 +33,25 @@ public class BridgePlay {
     }
 
     private void startGame() {
-        while(bridgeGame.isNotGameEnd()) {
-            getPlayerMove();
-            crossBridge();
-            if(bridgePlayer.checkMoveSuccess()) {
-                bridgeGame.retry(false);
+        while (bridgeGame.isNotGameEnd()) {
+            if (isSuccessCrossBridge()) {
                 continue;
             }
-            getPlayControlNumber();
-            if (bridgePlayer.isRestart()) {
-                bridgeGame.retry(true);
+            if (isRestartGame()) {
+                bridgeGame.retry();
                 continue;
             }
             break;
         }
     }
 
-    private void crossBridge() {
-        outputView.printPlayerMoveMessage();
+    private boolean isSuccessCrossBridge() {
+        getPlayerMove();
         bridgeGame.move();
+        boolean isSuccess = bridgePlayer.checkMoveSuccess();
         outputView.printMap(bridgeGame.getRetryStatus());
+        bridgeGame.checkRetryGameResult(isSuccess);
+        return isSuccess;
     }
 
     private void makeBridge(int bridgeLength) {
@@ -71,9 +70,11 @@ public class BridgePlay {
         bridgePlayer.saveInputCommand(moveNumber);
     }
 
-    private void getPlayControlNumber() {
+    private boolean isRestartGame() {
         outputView.printPlayControlMessage();
         String controlNumber = inputView.readGameCommand();
         bridgePlayer.saveInputCommand(controlNumber);
+
+        return bridgePlayer.isRestart();
     }
 }
