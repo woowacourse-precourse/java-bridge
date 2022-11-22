@@ -11,6 +11,8 @@ public class InputView {
         } catch (NumberFormatException e) {
             handleInputException(e);
         }
+
+        System.out.println();
         return bridgeSize;
     }
 

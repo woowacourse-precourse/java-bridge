@@ -11,6 +11,7 @@ public class OutputView {
 
     public static void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 
     public static void printMap(BridgeGameTrialResult trialResult) {
