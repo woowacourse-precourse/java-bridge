@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,5 +28,20 @@ class RoundTest {
 
         // then
         Assertions.assertThat(round.getRound()).isEqualTo(3);
+    }
+
+    @DisplayName("라운드를 초기화 하면 라운드는 0이 된다.")
+    @Test
+    void initRoundCount() {
+        // given
+        for(int play = 1; play <= 3; play++){
+            round.plusRound();
+        }
+
+        // when
+        round.initRound();
+
+        // then
+        Assertions.assertThat(round.getRound()).isEqualTo(0);
     }
 }
