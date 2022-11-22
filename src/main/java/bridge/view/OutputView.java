@@ -47,7 +47,11 @@ public class OutputView {
     }
 
     public void printRestart() {
-        System.out.println(TextType.RETRY_MESSAGE);
+        System.out.println(TextType.RETRY_MESSAGE.getText());
+    }
+
+    public void printMove() {
+        System.out.println(TextType.MOVE_MESSAGE.getText());
     }
 
     public void initMap(Bridge firstBridge, List<String> upBridgeMap, List<String> downBridgeMap) {
