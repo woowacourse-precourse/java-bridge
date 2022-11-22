@@ -3,7 +3,6 @@ package bridge.service;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.User;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +11,6 @@ import java.util.List;
 public class BridgeGame {
     private User user = new User(1);
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    //TODO( 정답 다리 생성 부분 service로 옮기기)
 
     public String userBridge() {
         return user.toString();
