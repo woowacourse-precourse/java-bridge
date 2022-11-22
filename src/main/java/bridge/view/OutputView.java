@@ -46,6 +46,10 @@ public class OutputView {
         System.out.println(TextType.START_MESSAGE.getText());
     }
 
+    public void printRestart() {
+        System.out.println(TextType.RETRY_MESSAGE);
+    }
+
     public void initMap(Bridge firstBridge, List<String> upBridgeMap, List<String> downBridgeMap) {
         upBridgeMap.add(TextType.BRIDGE_START.getText());
         downBridgeMap.add(TextType.BRIDGE_START.getText());
