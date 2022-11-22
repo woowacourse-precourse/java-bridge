@@ -10,22 +10,27 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final List<String> bridges = new ArrayList<>();
+    private static final int DOWN_NUMBER = 0;
 
-    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
+    private final BridgeNumberGenerator bridgeNumberGenerator;
+
+    public BridgeMaker(final BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
-    public List<String> makeBridge(int size) {
-        String[] goUpDown = {Message.GO_DOWN.getMessage(), Message.GO_UP.getMessage()};
-        for (int i = 0; i < size; i++) {
-            bridges.add(goUpDown[bridgeNumberGenerator.generate()]);
+    public List<String> makeBridge(final int bridgeSize) {
+        List<String> bridge = new ArrayList<>();
+        for (int repeat = 0; repeat < bridgeSize; repeat++) {
+            bridge.add(generateAnswer());
         }
-        return bridges;
+        return bridge;
+    }
+
+    private String generateAnswer() {
+        int generatedNumber = bridgeNumberGenerator.generate();
+        if (generatedNumber == DOWN_NUMBER) {
+            return Message.GO_DOWN.getMessage();
+        }
+        return Message.GO_UP.getMessage();
     }
 }
