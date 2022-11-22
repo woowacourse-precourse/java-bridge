@@ -48,6 +48,10 @@ public class Bridge {
         return BridgeInfo.WRONG;
     }
 
+    public boolean isClear() {
+        return answer.size() == correct.size() && correct.get(correct.size() - 1);
+    }
+
     public void reset() {
         correct.clear();
     }

@@ -11,9 +11,11 @@ import java.util.List;
 public class BridgeGame {
     private Bridge bridge;
     private BridgeMaker maker;
+    private int count;
 
     public BridgeGame() {
         maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        count = 1;
     }
 
     /**
@@ -33,6 +35,7 @@ public class BridgeGame {
     public boolean retry(String userInput) {
         if (userInput.equals(Token.RESTART.getMark())) {
             bridge.reset();
+            count++;
             return true;
         }
         return false;
@@ -48,5 +51,13 @@ public class BridgeGame {
 
     public List<BridgeInfo> getLowerBridge() {
         return bridge.getBridgeInfo(Token.DOWN.getMark());
+    }
+
+    public boolean isClear() {
+        return bridge.isClear();
+    }
+
+    public int getCount() {
+        return count;
     }
 }
