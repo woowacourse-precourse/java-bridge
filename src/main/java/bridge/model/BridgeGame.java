@@ -38,7 +38,7 @@ public class BridgeGame {
     }
 
     private void validateMove(int nextIdx) {
-        if(nextIdx >= bridge.size()){
+        if (nextIdx >= bridge.size()) {
             throw new IllegalStateException(BridgeError.END_OF_BRIDGE.getMessage());
         }
     }
