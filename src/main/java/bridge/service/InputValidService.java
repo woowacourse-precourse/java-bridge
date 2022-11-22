@@ -1,17 +1,13 @@
 package bridge.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import bridge.util.ErrorConst;
 import bridge.util.GameConst;
 
 public class InputValidService {
 
 	public Integer validBridgeSize(String bridgeSize) {
-		checkIsNumber(bridgeSize);
-		Integer bridgeSizeNumber = Integer.valueOf(bridgeSize);
-		checkNumberRange(bridgeSizeNumber);
+		Integer bridgeSizeNumber = checkIsNumber(bridgeSize);
+		checkBridgeSizeRange(bridgeSizeNumber);
 		return bridgeSizeNumber;
 	}
 
@@ -29,18 +25,16 @@ public class InputValidService {
 		return userCommand;
 	}
 
-	private void checkNumberRange(Integer bridgeSizeNumber) {
+	private void checkBridgeSizeRange(Integer bridgeSizeNumber) {
 		if (bridgeSizeNumber < GameConst.MIN_BRIDGE_SIZE || GameConst.MAX_BRIDGE_SIZE < bridgeSizeNumber) {
 			throw new IllegalArgumentException(ErrorConst.OUT_OF_RANGE_BRIDGE_SIZE_ERROR);
 		}
 	}
 
-	private void checkIsNumber(String bridgeSize) {
-		List<Integer> bridgeSizeNumbers = bridgeSize.chars().mapToObj(i -> i - 48).collect(Collectors.toList());
-		long count = bridgeSizeNumbers.stream()
-			.filter(i -> GameConst.MIN_NUMBER <= i && i <= GameConst.MAX_NUMBER)
-			.count();
-		if (bridgeSize.length() != count) {
+	private Integer checkIsNumber(String bridgeSize) {
+		try {
+			return Integer.valueOf(bridgeSize);
+		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(ErrorConst.NOT_NUMBER_ERROR);
 		}
 	}

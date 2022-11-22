@@ -18,8 +18,8 @@ class InputValidServiceTest {
 		inputValidService = new InputValidService();
 	}
 
-	@DisplayName("bridgeSize 의 예외값으로 실패 테스트 - 숫자가 아닌 경우, bridgeSize 가 3~20 이 아닌 경우")
-	@ValueSource(strings = {"@!", " ", "2", "21"})
+	@DisplayName("bridgeSize 의 예외값으로 실패 테스트 - 정수 및 숫자가 아닌 경우, bridgeSize 가 3~20 이 아닌 경우")
+	@ValueSource(strings = {"@!", " ", "2", "21", "3.4"})
 	@ParameterizedTest
 	void validBridgeSizeErrorTest(String bridgeSize) {
 		Assertions.assertThatThrownBy(() -> inputValidService.validBridgeSize(bridgeSize))
