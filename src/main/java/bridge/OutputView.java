@@ -62,4 +62,8 @@ public class OutputView {
         IS_SUCCESS.getMessage(res);
         TRY_COUNT.getMessage(Integer.toString(retCnt));
     }
+
+    public static void printError(String message) {
+        System.out.println(message);
+    }
 }

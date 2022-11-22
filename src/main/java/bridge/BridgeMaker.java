@@ -21,7 +21,7 @@ public class BridgeMaker {
                 int size = InputView.readBridgeSize();
                 return makeBridge(size);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printError(e.getMessage());
             }
         }
     }

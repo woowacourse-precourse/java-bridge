@@ -34,7 +34,7 @@ public class Bridge {
             try{
                 return InputView.readMoving();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printError(e.getMessage());
             }
         }
     }
@@ -43,7 +43,7 @@ public class Bridge {
             try{
                 return InputView.readGameCommand();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printError(e.getMessage());
             }
         }
     }
