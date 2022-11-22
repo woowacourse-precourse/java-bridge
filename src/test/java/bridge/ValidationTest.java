@@ -3,8 +3,6 @@ package bridge;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 
 class ValidationTest {
@@ -30,5 +28,13 @@ class ValidationTest {
         assertThatThrownBy(() -> Validation.validateMoveTo(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] : 이동할 다리는 위(U) 또는 아래(D) 이어야 합니다.");
+    }
+
+    @ValueSource(strings = {"a", "r", "q", "", " ", " \n", "0", "3", "R ", "RR"})
+    @ParameterizedTest(name = "[{index}] input = {0}[test]")
+    void 재시작_여부_검증_테스트(String input) {
+        assertThatThrownBy(() -> Validation.validateRestart(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] : 재시도 여부는 종료(Q) 또는 재시도(R) 이어야 합니다.");
     }
 }

@@ -93,7 +93,7 @@ public class GameController {
 
     public boolean getRestartCommand(BridgeGame bridgeGame) {
         String command = inputView.readGameCommand();
-        Validation.validateContinue(command);
+        Validation.validateRestart(command);
         if (command.equals("R")) {
             bridgeGame.retry();
             return true;
