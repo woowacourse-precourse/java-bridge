@@ -36,8 +36,6 @@ public class OutputView {
     }
 
 
-
-
     public List<String> uBridge(List<String> progressBridge) {
         List<String> uBridge = new ArrayList<>(progressBridge);
         Collections.replaceAll(uBridge, "D", " ");
@@ -57,7 +55,6 @@ public class OutputView {
     }
 
 
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -72,9 +69,6 @@ public class OutputView {
         }
         System.out.println("\n게임 성공 여부: " + result + "\n총 시도한 횟수: " + gameCount);
     }
-
-
-
 
 
     public String toString(List<String> bridge) {

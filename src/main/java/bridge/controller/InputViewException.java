@@ -24,7 +24,6 @@ public class InputViewException {
     }
 
 
-
     private static void error01Check(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException(error01);
@@ -55,7 +54,6 @@ public class InputViewException {
             throw new IllegalArgumentException(error05);
         }
     }
-
 
 
     public void readBridgeSizeException(String input) {
