@@ -12,20 +12,49 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest extends NsTest {
     @Test
-    void check_move() {
+    void move_테스트() {
         BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         assertThat(bridgeGame.move("U")).isTrue();
     }
+
     @Test
-    void check_wrong_move() {
+    void wrong_move_테스트() {
         BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         assertThat(bridgeGame.move("D")).isFalse();
+    }
+
+    @Test
+    void convert_테스트_O() {
+        BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        assertThat(bridgeGame.convertResultOfStepToString(true)).isEqualTo("O");
+    }
+
+    @Test
+    void convert_테스트_X() {
+        BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        assertThat(bridgeGame.convertResultOfStepToString(false)).isEqualTo("X");
+    }
+    @Test
+    void retry_테스트(){
+        BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        User user = bridgeGame.getUser();
+        bridgeGame.retry();
+        assertThat(user).isNotEqualTo(bridgeGame.getUser());
     }
 
     @Override
