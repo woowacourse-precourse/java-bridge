@@ -46,14 +46,23 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String command = readLine();
-        validateCommand(command);
-        return readLine();
+        if(validateCommand(command)){
+            return command;
+        }while(true){
+            String retryCommand = readLine();
+            if (validateCommand(retryCommand)){
+                return retryCommand;}}
     }
 
-    private void validateCommand(String command) {
-        if(command.equals("U") || command.equals("D")){
-            System.out.println("U 또는 D를 입력해");
-        }
+    private boolean validateCommand(String command) {
+        try {
+            if (command.equals("U") || command.equals("D")) {
+                return true;
+            }
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] U 또는 D를 입력해주세요.");
+            return false;}
     }
 
     /**
