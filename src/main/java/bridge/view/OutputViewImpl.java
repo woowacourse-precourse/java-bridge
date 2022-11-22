@@ -1,29 +1,21 @@
 package bridge.view;
 
+import static bridge.type.OutputMessageType.*;
+
 import bridge.data.dto.responseDto.FinalResultResponseDto;
 import bridge.data.dto.responseDto.InGameCommandResponseDto;
 import bridge.type.MapComponentType;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 public class OutputViewImpl implements OutputView{
 
-    private static final String MAP_HEAD = "[ ";
-    private static final String MAP_DELIMITER = " | ";
-    private static final String MAP_TAIL = " ]";
-    private static final String MAP_O_MARK = "O";
-    private static final String MAP_X_MARK = "X";
-    private static final String MAP_BLANK = " ";
-
-
     @Override
     public void printMessage(Object message) {
-        System.out.println();
-        System.out.println(message.toString());
+        System.out.println("\n" + message.toString());
     }
 
     @Override
@@ -46,14 +38,14 @@ public class OutputViewImpl implements OutputView{
                 .limit(responseDto.getMoves().size() - 1)
                 .map(component::equals)
                 .map(this::getOOrBlank)
-                .collect(Collectors.joining(MAP_DELIMITER)));
+                .collect(Collectors.joining(MAP_DELIMITER.toString())));
     }
 
     private String getOOrBlank(boolean isMatch) {
         if (isMatch) {
-            return MAP_O_MARK;
+            return MAP_O_MARK.toString();
         }
-        return MAP_BLANK;
+        return MAP_BLANK.toString();
     }
 
     private String getLastElementAddedRow(Entry<String, String> lineEntry, InGameCommandResponseDto responseDto) {
