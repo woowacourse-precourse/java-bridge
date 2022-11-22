@@ -41,6 +41,16 @@ public class BridgeGameController {
         bridgeGame.initBridge(bridgeSize);
     }
 
+    private void moveAndResult() {
+        bridgeGame.initPlayer();
+
+        do {
+            bridgeGame.move(getMoveCommand());
+            outputView.printMap(bridgeGame.getBridgeMap());
+            outputView.printDivisionLine();
+        } while (bridgeGame.moveAgain());
+    }
+
     private String getMoveCommand() {
         String input;
         do {
