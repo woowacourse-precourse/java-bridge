@@ -15,9 +15,9 @@ public class BridgeComparator {
         return BRIDGE_FAIL;
     }
 
-    public boolean isExpressionX(int location, List<String> bridgeUpMap, List<String> bridgeDownMap) {
-        if (isBridgeMapLocationContainX(location, bridgeUpMap)) return true;
-        if (isBridgeMapLocationContainX(location, bridgeDownMap)) return true;
+    public boolean isExpressionX(int location, List<List<String>> bridgeMap) {
+        if (isBridgeMapLocationContainX(location, bridgeMap.get(0))) return true;
+        if (isBridgeMapLocationContainX(location, bridgeMap.get(1))) return true;
         return false;
     }
 

@@ -16,7 +16,7 @@ public class BridgeGame {
     private static final int INDEX_PLUS = 1;
     private final List<String> bridge;
     private final BridgeComparator bridgeComparator;
-    private static BridgeMap bridgeMap;
+    private BridgeMap bridgeMap;
     private int location;
     private int retryCount;
 
@@ -85,7 +85,7 @@ public class BridgeGame {
     }
 
     public boolean isFail() {
-        return bridgeComparator.isExpressionX(location, bridgeMap.getBridgeUpMap(), bridgeMap.getBridgeDownMap());
+        return bridgeComparator.isExpressionX(location, bridgeMap.getBridgeMap());
     }
 
     public void countRetry() {

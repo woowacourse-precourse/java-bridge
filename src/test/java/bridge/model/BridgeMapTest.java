@@ -30,8 +30,8 @@ class BridgeMapTest {
 
         //when
         bridgeMap.makeBridgeUpMap(location,expression);
-        List<String> bridgeUpMap = bridgeMap.getBridgeUpMap();
-        String result = bridgeUpMap.get(location);
+        List<List<String>> bridgeMap = this.bridgeMap.getBridgeMap();
+        String result = bridgeMap.get(0).get(location);
 
         //then
         assertEquals(expectedResult,result);
@@ -46,9 +46,9 @@ class BridgeMapTest {
         String expectedResult = "X";
 
         //when
-        bridgeMap.makeBridgeUpMap(location,expression);
-        List<String> bridgeUpMap = bridgeMap.getBridgeUpMap();
-        String result = bridgeUpMap.get(location);
+        bridgeMap.makeBridgeDownMap(location,expression);
+        List<List<String>> bridgeMap = this.bridgeMap.getBridgeMap();
+        String result = bridgeMap.get(1).get(location);
 
         //then
         assertEquals(expectedResult,result);
@@ -70,7 +70,8 @@ class BridgeMapTest {
         bridgeMap.makeBridgeMap(location,moving,expression);
         bridgeMap.makeBridgeMap(location1,moving,expression1);
         bridgeMap.makeBridgeMap(location2,moving,expression2);
-        List<String> result = bridgeMap.getBridgeUpMap();
+        List<List<String>> map = bridgeMap.getBridgeMap();
+        List<String> result = map.get(0);
 
         //then
         assertThat(result).containsSequence("O", "O", "X");
@@ -92,8 +93,8 @@ class BridgeMapTest {
         bridgeMap.makeBridgeMap(location,moving,expression);
         bridgeMap.makeBridgeMap(location1,moving,expression1);
         bridgeMap.makeBridgeMap(location2,moving,expression2);
-        List<String> result = bridgeMap.getBridgeDownMap();
-
+        List<List<String>> map = bridgeMap.getBridgeMap();
+        List<String> result = map.get(1);
         //then
         assertThat(result).containsSequence("O", "O", "X");
     }
