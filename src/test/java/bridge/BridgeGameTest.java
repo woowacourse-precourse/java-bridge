@@ -38,4 +38,16 @@ class BridgeGameTest {
     // then
     assertTrue(bridgeGame.canCross());
   }
+
+  @Test
+  void 시작_혹은_재시작_시에_게임_우승_여부가_false로_반환되는가() {
+
+    // given
+    Bridge bridge = new Bridge(3);
+    BridgeGame bridgeGame = new BridgeGame(bridge);
+
+    // then
+    assertFalse(bridgeGame.isWin());
+  }
+
 }
