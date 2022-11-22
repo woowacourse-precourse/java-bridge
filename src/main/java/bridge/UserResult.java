@@ -7,8 +7,8 @@ public class UserResult {
     private String lowerResult;
 
     public UserResult() {
-        this.upperResult = null;
-        this.lowerResult = null;
+        this.upperResult = "";
+        this.lowerResult = "";
     }
 
     public void plusResult(String inputBridge, boolean isRightBridge) {
