@@ -1,28 +1,27 @@
 package bridge;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        return 0;
+    public static int readBridgeLength() {
+        System.out.println(Messages.BRIDGE_LENGTH_QUESTION);
+        String input = Console.readLine();
+        InputValidator.validateBridgeLengthInput(input);
+        return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
+    public static BridgeGameMovingInput readMoving() {
+        System.out.println(Messages.MOVING_SELECTION_QUESTION);
+        String input = Console.readLine();
+        InputValidator.validateBridgeGameMovingInput(input);
+        return BridgeGameMovingInput.fromKey(input);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+    public static BridgeGameCommandInput readGameCommand() {
+        System.out.println(Messages.GAME_COMMAND_SELECTION_QUESTION);
+        String input = Console.readLine();
+        InputValidator.validateBridgeGameCommandInput(input);
+        return BridgeGameCommandInput.fromKey(input);
     }
 }
