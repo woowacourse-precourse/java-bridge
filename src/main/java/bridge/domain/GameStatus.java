@@ -22,7 +22,7 @@ public class GameStatus {
         this.bottomBridge = new Bridge();
     }
 
-    public int getTryCount() {
+    public int getNumberOfTry() {
         return this.numberOfTry;
     }
 

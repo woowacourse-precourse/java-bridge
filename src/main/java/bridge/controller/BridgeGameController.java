@@ -78,7 +78,7 @@ public class BridgeGameController {
     private void wantToRetry(String userInput) {
         if (userInput.equals(RETRY)) {
             bridgeGame.retry(gameStatus);
-            NumberOfTryValidator.validateNumberOfTry(gameStatus.getTryCount());
+            NumberOfTryValidator.validateNumberOfTry(gameStatus.getNumberOfTry());
             copyBridge = new Bridge(bridge.copyBridge());
         }
     }

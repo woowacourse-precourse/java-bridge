@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(InGameMessage.FINAL_GAME_RESULT);
         printMap(gameStatus);
         System.out.println(InGameMessage.WHETHER_GAME_IS_SUCCESSFUL + gameStatus.getGameResult());
-        System.out.println(InGameMessage.TOTAL_TRY_COUNT + Integer.toString(gameStatus.getTryCount()));
+        System.out.println(InGameMessage.TOTAL_TRY_COUNT + Integer.toString(gameStatus.getNumberOfTry()));
     }
 
     public String bridgeToMap(Bridge bridge) {
