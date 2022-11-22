@@ -38,98 +38,97 @@ public class OutputView {
         topLine = new StringBuilder();
         bottomLine = new StringBuilder();
 
-        createMap(gameResult, topLine, bottomLine);
+        createMap(gameResult);
 
         System.out.println(topLine);
         System.out.println(bottomLine);
     }
 
-    private void createMap(GameResult gameResult, StringBuilder topLine, StringBuilder bottomLine) {
-        List<String> bridge = gameResult.getResult();
-
-        appendExceptLast(bridge, topLine, bottomLine);
-        appendLast(gameResult, topLine, bottomLine);
+    private void createMap(GameResult gameResult) {
+        appendExceptLast(gameResult);
+        appendLast(gameResult);
     }
 
 
-    private void appendLast(GameResult result, StringBuilder topLine, StringBuilder bottomLine) {
+    private void appendLast(GameResult result) {
         ViewStatus status = result.getNextViewStatus();
         List<String> bridge = result.getResult();
         String lastPosition = bridge.get(bridge.size() - 1);
         if (status == ViewStatus.DETERMINE_CONTINUE) {
-            appendLastWhenWrong(lastPosition, topLine, bottomLine);
+            appendLastWhenWrong(lastPosition);
             return;
         }
-        appendLastWhenCorrect(lastPosition, topLine, bottomLine);
+        appendLastWhenCorrect(lastPosition);
     }
 
-    private void appendLastWhenCorrect(String lastPosition, StringBuilder topLine, StringBuilder bottomLine) {
-        appendUpLastWhenCorrect(lastPosition, topLine);
-        appendDownLastWhenCorrect(lastPosition, bottomLine);
+    private void appendLastWhenCorrect(String lastPosition) {
+        appendUpLastWhenCorrect(lastPosition);
+        appendDownLastWhenCorrect(lastPosition);
     }
 
-    private void appendUpLastWhenCorrect(String lastPosition, StringBuilder line) {
+    private void appendUpLastWhenCorrect(String lastPosition) {
         if (lastPosition.equals("U")) {
-            line.append(CORRECT).append(CLOSE_BRACKET);
+            topLine.append(CORRECT).append(CLOSE_BRACKET);
             return;
         }
-        line.append(SPACE).append(CLOSE_BRACKET);
+        topLine.append(SPACE).append(CLOSE_BRACKET);
     }
 
-    private void appendDownLastWhenCorrect(String lastPosition, StringBuilder line) {
+    private void appendDownLastWhenCorrect(String lastPosition) {
         if (lastPosition.equals("D")) {
-            line.append(CORRECT).append(CLOSE_BRACKET);
+            bottomLine.append(CORRECT).append(CLOSE_BRACKET);
             return;
         }
-        line.append(SPACE).append(CLOSE_BRACKET);
+        bottomLine.append(SPACE).append(CLOSE_BRACKET);
     }
 
 
-    private void appendLastWhenWrong(String lastPosition, StringBuilder topLine, StringBuilder bottomLine) {
-        appendUpLastWhenWrong(lastPosition, topLine);
-        appendDownLastWhenWrong(lastPosition, bottomLine);
+    private void appendLastWhenWrong(String lastPosition) {
+        appendUpLastWhenWrong(lastPosition);
+        appendDownLastWhenWrong(lastPosition);
     }
 
-    private void appendDownLastWhenWrong(String lastPosition, StringBuilder line) {
+    private void appendDownLastWhenWrong(String lastPosition) {
         if (lastPosition.equals("U")) {
-            line.append(WRONG).append(CLOSE_BRACKET);
+            bottomLine.append(WRONG).append(CLOSE_BRACKET);
             return;
         }
-        line.append(SPACE).append(CLOSE_BRACKET);
+        bottomLine.append(SPACE).append(CLOSE_BRACKET);
     }
 
-    private void appendUpLastWhenWrong(String lastPosition, StringBuilder line) {
+    private void appendUpLastWhenWrong(String lastPosition) {
         if (lastPosition.equals("D")) {
-            line.append(WRONG).append(CLOSE_BRACKET);
+            topLine.append(WRONG).append(CLOSE_BRACKET);
             return;
         }
-        line.append(SPACE).append(CLOSE_BRACKET);
+        topLine.append(SPACE).append(CLOSE_BRACKET);
     }
 
-    private void appendExceptLast(List<String> bridge, StringBuilder topLine, StringBuilder bottomLine) {
+    private void appendExceptLast(GameResult gameResult) {
+        List<String> bridge = gameResult.getResult();
         topLine.append(OPEN_BRACKET);
         bottomLine.append(OPEN_BRACKET);
         for (int index = 0; index < bridge.size() - 1; index++) {
             String currentPosition = bridge.get(index);
-            appendUp(currentPosition, topLine);
-            appendDown(currentPosition, bottomLine);
+            appendUp(currentPosition);
+            appendDown(currentPosition);
         }
     }
 
-    private void appendUp(String position, StringBuilder line) {
+    private void appendUp(String position) {
         if (position.equals("U")) {
-            line.append(CORRECT).append(SEPARATOR);
+            topLine.append(CORRECT).append(SEPARATOR);
             return;
         }
-        line.append(SPACE).append(SEPARATOR);
+        topLine.append(SPACE).append(SEPARATOR);
     }
 
-    private void appendDown(String position, StringBuilder line) {
+    private void appendDown(String position) {
         if (position.equals("D")) {
-            line.append(CORRECT).append(SEPARATOR);
+            bottomLine.append(CORRECT).append(SEPARATOR);
             return;
         }
-        line.append(SPACE).append(SEPARATOR);
+        bottomLine.append(SPACE).append(SEPARATOR);
     }
 
     /**
