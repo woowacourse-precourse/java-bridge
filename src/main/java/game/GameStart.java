@@ -47,4 +47,9 @@ public class GameStart {
         }
     }
 
+    public boolean getReGame() {
+        return regame;
+    }
+
+
 }
