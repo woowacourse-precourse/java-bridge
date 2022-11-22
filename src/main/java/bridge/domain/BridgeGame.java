@@ -40,4 +40,9 @@ public class BridgeGame {
     public void increaseRoundCount() {
         round.plusRound();
     }
+
+    // 게임시도 횟수를 증가시키는 기능
+    public void increaseGameAttemptCount() {
+        gameAttempt.plusAttempt();
+    }
 }
