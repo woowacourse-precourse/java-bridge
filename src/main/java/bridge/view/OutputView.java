@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.Bridge;
 import bridge.BridgeGame;
 import bridge.enums.OutMsg;
 
