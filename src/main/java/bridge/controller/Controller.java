@@ -12,6 +12,7 @@ import java.util.List;
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeGame bridgeGame;
 
     public Controller() {
@@ -27,7 +28,6 @@ public class Controller {
 
     Bridge createBridge() {
         String inputSize = inputView.readBridgeSize();
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
         if (!bridgeMaker.validateBridgeSize(inputSize)) {
@@ -60,17 +60,15 @@ public class Controller {
     }
 
     boolean isAnswer() {
-        if (!bridgeGame.getIsAnswer()) {
+        if (!bridgeGame.getIsAnswer())
             return checkCommand();
-        }
         return false;
     }
 
     boolean checkCommand() {
         String command = inputView.readGameCommand();
-        if (!bridgeGame.validateGameCommand(command)) {
+        if (!bridgeGame.validateGameCommand(command))
             return checkCommand();
-        }
         return bridgeGame.isExit(command);
     }
 }
