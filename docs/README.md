@@ -53,3 +53,20 @@
 * 필요한 메서드 추가 가능
 ### OutputView
 * 메서드의 이름 변경 불가, 인자와 반환 타입 필요에 따라 추가
+
+### Referee
+#### : analyze() : 다리를 비교하여 결과를 리턴해주는 메서드
+
+---
+
+### GameCommand (enum)
+*  R, Q 
+
+### MoveCommand (enum)
+*  U, D 
+
+### ErrorMessage 
+* 에러 메시지를 정의해놓은 클래스
+
+### Validation
+* 사용자 입력 값에 대한 유효성 검사를 하는 역할
