@@ -9,6 +9,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.User;
 import bridge.domain.BridgeGame;
+import bridge.util.BridgeMapUpdater;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -18,6 +19,7 @@ public class BridgeGameController {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final BridgeMapUpdater bridgeMapUpdater = new BridgeMapUpdater();
 
     public void start() {
         printStartGame();
@@ -37,17 +39,26 @@ public class BridgeGameController {
 
     public void moveBridge(BridgeGame bridgeGame, User user) {
         while (!user.isGameOver()) {
-            outputView.printChoiceUpOrDown();
-            String moveUpOrDown = inputView.readMoving();
+            String moveUpOrDown = choiceMove();
             boolean pass = bridgeGame.isPass(moveUpOrDown);
-            outputView.printMap(bridgeGame.getLocation(), pass, moveUpOrDown);
+            printMap(bridgeGame.getLocation(), pass, moveUpOrDown);
             runPassOrFailCase(pass, bridgeGame, user);
-            completeBridge(bridgeGame, user);
+            isArriveByEnd(bridgeGame, user);
         }
         printResult(user);
     }
 
-    public void completeBridge(BridgeGame bridgeGame, User user) {
+    private String choiceMove() {
+        outputView.printChoiceUpOrDown();
+        return inputView.readMoving();
+    }
+
+    private void printMap(int location, boolean pass, String moveUpOrDow) {
+        bridgeMapUpdater.setMap(location, pass, moveUpOrDow);
+        outputView.printMap(bridgeMapUpdater.getUpdatedBridgeMap());
+    }
+
+    public void isArriveByEnd(BridgeGame bridgeGame, User user) {
         if (bridgeGame.isEndOfLocation()) {
             user.finishWithWin();
         }
@@ -66,7 +77,7 @@ public class BridgeGameController {
 
     public void runFailCase(BridgeGame bridgeGame, User user, String gameCommand) {
         if (gameCommand.equals(RETRY.getCommand())) {
-            outputView.clearMap();
+            bridgeMapUpdater.clearMap();
             user.increaseTryCount();
             bridgeGame.retry();
         }
@@ -76,6 +87,6 @@ public class BridgeGameController {
     }
 
     public void printResult(User user) {
-        outputView.printResult(user);
+        outputView.printResult(user, bridgeMapUpdater.getUpdatedBridgeMap());
     }
 }
