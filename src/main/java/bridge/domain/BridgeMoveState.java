@@ -24,6 +24,10 @@ public class BridgeMoveState {
         return state.size();
     }
 
+    public boolean getLastState() {
+        return state.get(getMoveCount() - 1);
+    }
+
     public void update(String moving, boolean canMove) {
         String state = makeState(canMove);
         if (moving.equals(UP)) {
