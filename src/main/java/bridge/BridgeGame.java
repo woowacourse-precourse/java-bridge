@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.PlayResult;
-import bridge.domain.Stage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,7 @@ public class BridgeGame {
 
     private int attempts;
 
-    public BridgeGame(final List<Stage> stages) {
+    public BridgeGame(final List<String> stages) {
         this.roundResults = new HashMap<>();
         this.bridge = new Bridge(stages);
         this.attempts = 1;

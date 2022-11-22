@@ -23,6 +23,17 @@ public enum Direction {
             .orElseThrow(IllegalArgumentException::new);
     }
 
+    public static Direction of(final String shape) {
+        return Arrays.stream(values())
+            .filter(direction -> direction.matchShape(shape))
+            .findAny()
+            .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public boolean matchShape(final String shape) {
+        return this.shape.equals(shape);
+    }
+
     private boolean matchNumber(final int number) {
         return this.number == number;
     }

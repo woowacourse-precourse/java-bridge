@@ -3,11 +3,9 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.PlayResult;
-import bridge.domain.Stage;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BridgeController {
 
@@ -15,69 +13,62 @@ public class BridgeController {
 
     private final InputView inputView;
 
+    private final OutputView outputView;
+
     public BridgeController() {
         inputView = new InputView();
+        outputView = new OutputView();
     }
 
     public void start() {
-        // 다리 생성 테스트
         setUpBridge();
-
-        // 다리 건너기 테스트
-        play();
-
-        // 최종 결과
-        printOutput();
+        playGame();
+        printResult();
     }
 
     private void setUpBridge() {
         game = new BridgeGame(buildBridge(inputView.readBridgeSize()));
     }
 
-    private List<Stage> buildBridge(final int bridgeSize) {
+    private List<String> buildBridge(final int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println("bridge = " + bridge);
-        return bridge
-            .stream()
-            .map(Stage::new)
-            .collect(Collectors.toList());
-    }
-
-    private void play() {
-        playGame();
-
-        if (!game.isClear()) {
-            askRestart();
-        }
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void playGame() {
+        processGame();
+
+        if (!game.isClear()) {
+            processRestart();
+        }
+    }
+
+    private void processGame() {
         for (int round = 0; round < game.getStages(); round++) {
-            PlayResult playResult = game.move(round, inputView.readMoving());
+            String direction = inputView.readMoving();
+            outputView.printMap(direction, game.move(round, direction));
 
             if (game.isOver()) {
                 break;
             }
-            System.out.println("통과!");
         }
     }
 
-    private void askRestart() {
+    private void processRestart() {
         String commend = inputView.readGameCommand();
 
         if ("R".equals(commend)) {
             resetGame();
-            play();
+            playGame();
         }
     }
 
     private void resetGame() {
         game.retry();
+        outputView.clearMap();
     }
 
-    private void printOutput() {
-        System.out.println("게임 결과: " + (game.isClear() ? "승리" : "패배"));
-        System.out.println("재시도: " + game.getAttempts());
+    private void printResult() {
+        outputView.printResult(game.isClear(), game.getAttempts());
     }
 }
