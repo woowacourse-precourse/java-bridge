@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.domain.BridgeGame;
 import org.assertj.core.api.SoftAssertions;

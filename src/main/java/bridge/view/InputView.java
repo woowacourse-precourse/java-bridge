@@ -1,17 +1,12 @@
-package bridge;
+package bridge.view;
 
-import bridge.domain.BridgeGame;
+import bridge.controller.BridgeSetting;
 import camp.nextstep.edu.missionutils.Console;
-
-import java.util.Collections;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
-    private static final int MIN_RANGE = 3;
-    private static final int MAX_RANGE = 20;
     private static final String rangeErrorMessage = "[ERROR] 다리길이는 3이상 20이하 입니다.";
 
     /**
@@ -20,13 +15,18 @@ public class InputView {
     public int readBridgeSize() {
         InputViewType inputViewType = InputViewType.BRIDGE_SIZE;
         inputViewType.printMessage();
+        return readBridgeSizeWithInputType(inputViewType);
+    }
+
+    private int readBridgeSizeWithInputType(InputViewType inputViewType) {
         while (true) {
-            String input = getString(inputViewType);
+            String input = readInputByInputType(inputViewType);
             int number = Integer.parseInt(input);
-            if (number >= MIN_RANGE && number <= MAX_RANGE) {
+            if (number >= BridgeSetting.MIN_RANGE && number <= BridgeSetting.MAX_RANGE) {
+                System.out.println();
                 return number;
             }
-            System.out.println(rangeErrorMessage);
+            System.out.println(rangeErrorMessage + "\n");
         }
     }
 
@@ -36,7 +36,7 @@ public class InputView {
     public String readMoving() {
         InputViewType inputViewType = InputViewType.MOVING;
         inputViewType.printMessage();
-        return getString(inputViewType);
+        return readInputByInputType(inputViewType);
     }
 
     /**
@@ -45,10 +45,10 @@ public class InputView {
     public String readGameCommand() {
         InputViewType inputViewType = InputViewType.GAME_COMMAND;
         inputViewType.printMessage();
-        return getString(inputViewType);
+        return readInputByInputType(inputViewType);
     }
 
-    private String getString(InputViewType inputViewType) {
+    private String readInputByInputType(InputViewType inputViewType) {
         while(true) {
             try {
                 String input = Console.readLine();
