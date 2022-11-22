@@ -39,12 +39,15 @@ public class GameController {
     }
 
     public void makeBridgeForGame(){
-        bridgeSize = inputView.readBridgeSize();
-        if(!checkException.checkBridgeSize(bridgeSize)){
-            makeBridgeForGame();
+        while(true){
+            bridgeSize = inputView.readBridgeSize();
+            if(!checkException.checkBridgeSize(bridgeSize)){
+                continue;
+            }
+            System.out.println();
+            bridge = bridgeMaker.makeBridge(bridgeSize);
+            break;
         }
-        System.out.println();
-        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     public void addBridgeMove(String direction) {
@@ -76,8 +79,8 @@ public class GameController {
     }
 
     public void runGame(){
-        stage++;
         addBridgeMove(inputView.readMoving());
+        stage++;
         outputView.printMap(upBridge,downBridge);
         System.out.println();
     }
