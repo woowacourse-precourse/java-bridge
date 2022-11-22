@@ -24,6 +24,6 @@ public class Bridge {
     }
 
     public int getBridgeEnd() {
-        return bridge.size() - 1;
+        return bridge.size();
     }
 }
