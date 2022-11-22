@@ -209,7 +209,7 @@ public class BridgeGame {
         }
 
         //System.out.println("check" + check);
-        if(check == 0){
+        if(check != 0){
             gameResult(resultFinal, bridgeLen, bridges, startCount);
         }
 
