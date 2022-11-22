@@ -2,7 +2,7 @@ package bridge.exception;
 
 import bridge.constant.message.ErrorMessage;
 
-public class ExceptionInput {
+public class InputException {
 
     private static StringBuilder sb;
 
@@ -27,7 +27,7 @@ public class ExceptionInput {
     public static String validateInputRetryCommand(String command) {
         sb = new StringBuilder(ErrorMessage.NOTICE.getMessage());
         if (!(command.equals("R") || command.equals("Q"))) {
-            sb.append(ErrorMessage.ERROR_INPUT_MOVE_RANGE.getMessage());
+            sb.append(ErrorMessage.ERROR_INPUT_END_RANGE.getMessage());
             throw new IllegalArgumentException(sb.toString());
         }
         return command;
