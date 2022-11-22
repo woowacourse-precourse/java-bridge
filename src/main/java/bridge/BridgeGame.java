@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,15 +19,19 @@ public class BridgeGame {
     private int numberOfTimes;
     private int count;
     private boolean isWin;
-
+    private int correctCount;
     public BridgeGame(int size){
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        for(int i=0; i<size; i++){
-            this.bridgeUp.add(" ");
-            this.bridgeDown.add(" ");
-        }
-        this.dashBoard.add(bridgeDown); //0
-        this.dashBoard.add(bridgeUp); //1
+        bridgeUp = new ArrayList<String>();
+        bridgeDown = new ArrayList<String>();
+        dashBoard = new ArrayList<>();
+//        for(int i=0; i<size; i++){
+//            this.bridgeUp.add(" ");
+//            this.bridgeDown.add(" ");
+//        }
+//        this.dashBoard.add(bridgeDown); //0
+//        this.dashBoard.add(bridgeUp); //1
+        this.correctCount=0;
         this.count =0;
         this.numberOfTimes =0;
         isWin =false;
@@ -34,9 +39,11 @@ public class BridgeGame {
     public void setBridge(int size) {
         rightWayBridge = bridgeMaker.makeBridge(size);
     }
-
+    public int getBridgeSize(){
+        return rightWayBridge.size();
+    }
     public void checkWin() {
-        if(this.count == rightWayBridge.size()){
+        if(this.correctCount == rightWayBridge.size()){
             this.isWin = true;
         }
     }
@@ -83,6 +90,7 @@ public class BridgeGame {
     private void moveDown(){
         if(rightWayBridge.get(count).equals("D")){
             this.dashBoard.get(0).set(count, RIGHT);
+            this.correctCount +=1;
             return;
         }
         this.dashBoard.get(0).set(count, WRONG);
@@ -91,6 +99,7 @@ public class BridgeGame {
     private void moveUp(){
         if(rightWayBridge.get(count).equals("U")){
             this.dashBoard.get(1).set(count, RIGHT);
+            this.correctCount +=1;
             return;
         }
         this.dashBoard.get(1).set(count, WRONG);
@@ -105,7 +114,7 @@ public class BridgeGame {
     public void retry() {
         numberOfTimes +=1;
         //초기화
-        int size = this.bridgeUp.size();
+        int size = this.rightWayBridge.size();
         for(int i=0; i<size; i++){
             this.bridgeUp.add(" ");
             this.bridgeDown.add(" ");
@@ -113,5 +122,6 @@ public class BridgeGame {
         this.dashBoard.add(bridgeDown); //0
         this.dashBoard.add(bridgeUp); //1
         this.count =0;
+        this.correctCount =0;
     }
 }
