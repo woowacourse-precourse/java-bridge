@@ -18,7 +18,6 @@ import org.mockito.MockedStatic;
 import java.util.List;
 
 public class BridgeGameTest {
-    private static Bridge bridge;
     private static BridgeGame game;
     private static MockedStatic<Randoms> mock;
 
@@ -28,8 +27,7 @@ public class BridgeGameTest {
         mock.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                 .thenReturn(1, 0, 1);
         BridgeLength bridgeLength = new BridgeLength(3);
-        bridge = new Bridge(bridgeLength);
-        game = new BridgeGame(bridge);
+        game = new BridgeGame(bridgeLength);
     }
 
     @AfterEach
