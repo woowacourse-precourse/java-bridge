@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,11 +12,11 @@ public class OutputView {
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String UP = "U";
     private static final String DOWN = "D";
-    private static final String START_LINE = "[ ";
-    private static final String CONTENTS_LINE_WITH_BLANK = "  | ";
-    private static final String CONTENTS_LINE_WITHOUT_BLANK = "%s | ";
-    private static final String END_LINE_WITH_BLANK = "  ]";
-    private static final String END_LINE_WITHOUT_BLANK = "%s ]\n";
+    private static final String START = "[";
+    private static final String END = "]";
+    private static final String SEPARATOR = "|";
+    private static final String CONTENTS = " %s ";
+    private static final String BLANK = " ";
     private static final String RESULT = "최종 게임 결과";
     private static final String GAME_SUCCESS = "게임 성공 여부: 성공";
     private static final String GAME_FAILED = "게임 성공 여부: 실패";
@@ -36,39 +37,25 @@ public class OutputView {
     }
 
     private void printUpperLineOfMap(List<String> userMoved, List<String> matchingStatus) {
-        printStartLine();
-        for (int i = 0; i < userMoved.size() - 1; i++) {
-            printContentsLine(userMoved.get(i), matchingStatus.get(i), UP);
-        }
-        printEndLine(userMoved.get(userMoved.size() - 1), matchingStatus.get(userMoved.size() - 1), UP);
+        String matchingMap = String.join(SEPARATOR, getMatchingMap(userMoved, matchingStatus, UP));
+        System.out.println(START + matchingMap + END);
     }
 
     private void printLowerLineOfMap(List<String> userMoved, List<String> matchingStatus) {
-        printStartLine();
-        for (int i = 0; i < userMoved.size() - 1; i++) {
-            printContentsLine(userMoved.get(i), matchingStatus.get(i), DOWN);
-        }
-        printEndLine(userMoved.get(userMoved.size() - 1), matchingStatus.get(userMoved.size() - 1), DOWN);
+        String matchingMap = String.join(SEPARATOR, getMatchingMap(userMoved, matchingStatus, DOWN));
+        System.out.println(START + matchingMap + END);
     }
 
-    private void printStartLine() {
-        System.out.print(START_LINE);
-    }
-
-    private void printContentsLine(String moving, String matching, String typeOfLine) {
-        if (moving.equals(typeOfLine)) {
-            System.out.printf(CONTENTS_LINE_WITHOUT_BLANK, matching);
-            return;
+    private List<String> getMatchingMap(List<String> userMoved, List<String> matchingStatus, String direction) {
+        List<String> matchingMap = new ArrayList<>();
+        for (int i = 0; i < userMoved.size(); i++) {
+            if (userMoved.get(i).equals(direction)) {
+                matchingMap.add(String.format(CONTENTS, matchingStatus.get(i)));
+                continue;
+            }
+            matchingMap.add(String.format(CONTENTS, BLANK));
         }
-        System.out.print(CONTENTS_LINE_WITH_BLANK);
-    }
-
-    private void printEndLine(String moving, String matching, String typeOfLine) {
-        if (moving.equals(typeOfLine)) {
-            System.out.printf(END_LINE_WITHOUT_BLANK, matching);
-            return;
-        }
-        System.out.println(END_LINE_WITH_BLANK);
+        return matchingMap;
     }
 
     /**
