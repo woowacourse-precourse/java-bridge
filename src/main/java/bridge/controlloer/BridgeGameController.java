@@ -61,13 +61,20 @@ public class BridgeGameController {
         while (Result.SUCCESS.equals(result)) {
             result = bridgeGame.move(bridge, readMoving());
             outputView.printMap(bridgeGame.getBridgeResult(), result);
-            if (result.equals(Result.FAIL) && chooseRetryOrEnd().equals(Result.SUCCESS)) {
-                bridgeGame.retry();
-                attempts++;
-                result = Result.SUCCESS;
+            if (result.equals(Result.FAIL)) {
+                result = retryOrEnd();
             }
         }
         end(result);
+    }
+
+    private Result retryOrEnd() {
+        if (chooseRetryOrEnd().equals(Result.SUCCESS)) {
+            bridgeGame.retry();
+            attempts++;
+            return Result.SUCCESS;
+        }
+        return Result.FAIL;
     }
 
     private Result chooseRetryOrEnd() {
