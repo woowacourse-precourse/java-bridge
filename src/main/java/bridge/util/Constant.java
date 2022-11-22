@@ -4,8 +4,8 @@ public class Constant {
 
     public static final int ONESTEP = 1;
     public static final int ONECOUNT = 1;
-    public static final String UP = "U";
-    public static final String DOWN = "D";
+    public static final String UPLOCATION = "U";
+    public static final String DOWNLOCATION = "D";
     public static final String CORRECTSPOT = "O";
     public static final String UNCORRECTSPOT = "X";
     public static final String NOSPOT = " ";
@@ -17,6 +17,9 @@ public class Constant {
     public static final int DOWN_NUMBER = 0;
     public static final int UP_NUMBER = 1;
     public static final int MINIMUM_TRY = 1;
+    public static final int BRIDGE_LENGTH_ERROR = -1;
+    public static final String BRIDGE_MOVE_ERROR = "FAIL";
+    public static final String COMMAND_ERROR = "FAIL";
     public static final String SELECT_MOVE_LOCATION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     public static final String INPUT_RESTART_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
