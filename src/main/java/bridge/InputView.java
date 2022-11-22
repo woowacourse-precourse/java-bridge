@@ -16,7 +16,7 @@ public class InputView {
         System.out.println();
         try {
             checkBridgeLength(bridgeLength);
-//            Integer.parseInt(bridgeLength);
+            Integer.parseInt(bridgeLength);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             return readBridgeSize();
@@ -32,7 +32,6 @@ public class InputView {
         String upDown = readLine();
         try {
             checkUpOrDown(upDown);
-//            return upDown;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] U 또는 D를 입력해야 합니다.");
             return readMoving();
@@ -47,7 +46,7 @@ public class InputView {
         printRetryInst();
         String retryOrNot = readLine();
         try{
-//            checkRetryOrNot(retryOrNot);
+            checkRetryOrNot(retryOrNot);
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR] R 또는 Q를 입력해야 합니다.");
             return readGameCommand();
@@ -82,10 +81,9 @@ public class InputView {
         }
     }
 
-//    public static void checkRetryOrNot(String retryOrNot) throws IllegalArgumentException{
-//        if (!retryOrNot.equals("R") && !retryOrNot.equals("Q")) {
-//            throw new IllegalArgumentException();
-//        }
-//
-//    }
+    public static void checkRetryOrNot(String retryOrNot) throws IllegalArgumentException{
+        if (!retryOrNot.equals("R") && !retryOrNot.equals("Q")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

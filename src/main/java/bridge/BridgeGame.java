@@ -27,7 +27,7 @@ public class BridgeGame {
 
         UpperBridge upperBridge = new UpperBridge("U");
         LowerBridge lowerBridge = new LowerBridge("D");
-
+        System.out.println("this is structure" + BridgeMaker.bridgeStructure);
         while (newGame.bridge.size() <= bridgeLength - 1) {
 
             String userUpDown = InputView.readMoving();
@@ -40,13 +40,10 @@ public class BridgeGame {
                 break;
             }
 
-            // send the result to printMap in a form
-//            System.out.println();
         }
-        // maybe can do overriding instead
 
         if (newGame.bridge.equals(BridgeMaker.bridgeStructure)) {
-            BridgeGameManager.finish( "성공",upperBridge,lowerBridge);
+            BridgeGameManager.finish("성공", upperBridge, lowerBridge);
         }
 
     }
