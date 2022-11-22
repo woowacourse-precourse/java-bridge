@@ -16,6 +16,7 @@ public class OutputView {
     public void printMap(List<String> bridge, List<String> userMove) {
         printOneSideMap(bridge, userMove, "U");
         printOneSideMap(bridge, userMove, "D");
+        System.out.println();
     }
 
     /**
