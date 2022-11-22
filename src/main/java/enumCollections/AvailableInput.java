@@ -12,20 +12,12 @@ public enum AvailableInput {
         this.userInput = userInput;
     }
 
-    public static String get(AvailableInput occasion) {
-        return occasion.userInput;
+    public String getUserInput() {
+        return this.userInput;
     }
 
     public static boolean isGameCommand(String input) {
         return input.equals(QUIT_COMMAND.userInput) || input.equals(RETRY_COMMAND.userInput);
-    }
-
-    public static int getBridgeSizeRange(AvailableInput range) {
-        return Integer.valueOf(get(range));
-    }
-
-    public static String getRetryCommandValue() {
-        return RETRY_COMMAND.userInput;
     }
 
     public static int getBridgeMinimumSizeValue() {

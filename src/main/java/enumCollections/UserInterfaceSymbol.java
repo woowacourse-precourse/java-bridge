@@ -14,14 +14,14 @@ public enum UserInterfaceSymbol {
         this.symbol = symbol;
     }
 
-    public String getSymbol() {
-        return this.symbol;
-    }
-
     public static String getMovableSymbol(boolean moved) {
         if (moved) {
             return AVAILABLE_TO_MOVE.symbol;
         }
         return UNAVAILABLE_TO_MOVE.symbol;
+    }
+
+    public String getSymbol() {
+        return this.symbol;
     }
 }
