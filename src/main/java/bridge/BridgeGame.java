@@ -18,7 +18,8 @@ public class BridgeGame {
     // 사용자 입력을 저장하는 문자열 리스트
     private List<String> userInput;
     // 사용자 try 횟수 및 다음 횟수 인덱스
-    private int tries;
+    private int tries; // 사용자의 총 시도
+    private int bridgeLen; // 다리의 길이
 
     public BridgeGame() {
         gameInput = new InputView();
@@ -26,7 +27,6 @@ public class BridgeGame {
 
         bridge = new ArrayList<>();
         userInput = new ArrayList<>();
-        tries = 0;
     }
     /**
      * 사용자의 전체 게임 종료까지의 과정
@@ -53,9 +53,11 @@ public class BridgeGame {
      * @return 다음 게임을 수행할 지 아닐 지에 대한 입력 - true : 다음 게임 수행 / false : 다음 게임을 수행하지 않음
      */
     boolean play() {
+        // 사용자 게임 시작에 대한 알림과 함께 초기 길이 값 입력받기
+        setAnswer();
 
-
-        //
+        // 한 게임 사이클의 종료
+        // retry : 다음 게임을 수행할 지 아닐 지에 대한 입력
         return retry();
     }
     /**
@@ -64,6 +66,20 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+    }
+
+    /**
+     * 초기 시작 알림 출력과 함께
+     * 다리의 길이 입력받기 및 다리 추가하기
+     */
+    void setAnswer() {
+        String input = gameInput.readBridgeSize();
+        bridgeLen = checkBridgeLenCommand(input);
+    }
+
+    int checkBridgeLenCommand(String input) {
+        // implement
+        return 0;
     }
 
     /**

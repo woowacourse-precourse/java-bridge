@@ -57,6 +57,20 @@ class ApplicationTest extends NsTest {
         Application.main(new String[]{});
     }
 
+    @DisplayName("다리 길이는 3부터 20 사이의 숫자여야 합니다")
+    @ValueSource(strings = {"", "QR", "q", "r", "!", "1", "2", "2.9", "31"})
+    @ParameterizedTest
+    void 다리_길이_예외_테스트(String input) {
+        assertThatThrownBy(() -> new BridgeGame().checkBridgeLenCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 다리_길이_정상_테스트() {
+        assertThat(new BridgeGame().checkGameCommand("3")).isEqualTo(3);
+        assertThat(new BridgeGame().checkGameCommand("20")).isEqualTo(20);
+    }
+
     @DisplayName("Q, R 이외의 재시작 입력에 대한 예외 처리")
     @ValueSource(strings = {"", "QR", "q", "r", "!"})
     @ParameterizedTest
