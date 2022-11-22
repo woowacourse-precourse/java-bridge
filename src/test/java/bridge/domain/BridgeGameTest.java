@@ -57,4 +57,28 @@ class BridgeGameTest {
         assertThat(bridgeGame.isCorrect()).isTrue();
     }
 
+    @Test
+    @DisplayName("게임이 끝났는지 상태를 확인할 수 있다. ")
+    void tryGameOverSuccess() {
+
+        for (String step : bridge) {
+            bridgeGame.move(bridge, step, movingMap);
+        }
+
+        boolean isGameOver = bridgeGame.isGameOver(bridge.size(), movingMap);
+
+        assertThat(isGameOver).isTrue();
+    }
+
+    @Test
+    @DisplayName("게임이 끝났는지 상태를 확인할 수 있다. ")
+    void tryGameOverFail() {
+        bridgeGame.move(bridge, "U", movingMap);
+        bridgeGame.move(bridge, "U", movingMap);
+        bridgeGame.move(bridge, "U", movingMap);
+
+        boolean isGameOver = bridgeGame.isGameOver(bridge.size(), movingMap);
+
+        assertThat(isGameOver).isFalse();
+    }
 }
