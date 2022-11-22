@@ -13,7 +13,6 @@ public class GameProcess {
 
     int userBridgeSize = bridgeSizeProcess();
     List<String> bridgeAnswer = bridgeGenerateProcess(userBridgeSize);
-
     List<String> userInput = new ArrayList<>();
     Integer gameTryCount = 0;
 
@@ -74,9 +73,6 @@ public class GameProcess {
 
     public void bridgeGameProcess() {
         RoundResult roundResult = new RoundResult(true, true, "Q");
-//        boolean passFail = true;
-//        boolean passFailFinal = true;
-//        String userGameCommandInput = "Q";
         do {
             roundResult = new RoundResult(true, true, "Q");
             RoundResult gameRoundResult = gameRound(roundResult.passFail, roundResult.passFailFinal, roundResult.userGameCommandInput);
@@ -85,10 +81,7 @@ public class GameProcess {
             roundResult.setPassFailFinal(gameRoundResult.isPassFailFinal());
             gameTryCount++;
         } while (roundResult.userGameCommandInput.equals("R"));
-        System.out.println();
-        System.out.println("최종 게임 결과");
-        outputView.printMap(userInput, roundResult.passFailFinal);
-        System.out.println();
+        outputView.printResult(userInput, roundResult.passFailFinal);
         gamePassFail(roundResult.passFailFinal);
         System.out.println("총 시도한 횟수: " + gameTryCount);
     }
@@ -126,6 +119,4 @@ public class GameProcess {
         Map<Boolean, String> gameResultPrint = Map.of(true, "성공", false, "실패");
         System.out.println("게임 성공 여부: " + gameResultPrint.get(passFailFinal));
     }
-
-
 }
