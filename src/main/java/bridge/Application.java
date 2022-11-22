@@ -20,7 +20,7 @@ public class Application {
 
     public void runningGame(BridgeGame game) {
         boolean playing = true;
-        while (playing) {
+        while (playing && game.moveResult.size() < game.bridge.size()) {
             playing = moving(game);
             output.printMap(game.bridge, game.moveResult);
             if (!playing) {
@@ -30,14 +30,16 @@ public class Application {
     }
 
     public void closingGame(BridgeGame game) {
+        output.printResult(game);
     }
 
-    private boolean moving(BridgeGame game){
+
+    private boolean moving(BridgeGame game) {
         output.printAskMovement();
         return game.move(input.readMoving());
     }
 
-    private boolean playAgain(BridgeGame game){
+    private boolean playAgain(BridgeGame game) {
         output.printAskRetry();
         return game.retry(input.readGameCommand());
     }

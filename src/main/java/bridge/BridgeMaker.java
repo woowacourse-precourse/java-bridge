@@ -7,7 +7,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     static final int MIN_BRIDGE_SIZE = 3;
     static final int MAX_BRIDGE_SIZE = 20;
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -27,6 +26,7 @@ public class BridgeMaker {
         }
         return bridge;
     }
+
 
     private String choiceUpDown() {
         String[] bridgeTable = {"D", "U"};
