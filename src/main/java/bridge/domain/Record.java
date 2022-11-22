@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Record {
-    private List<String> upBridgeResult;
-    private List<String> downBridgeResult;
+    private final List<String> upBridgeResult;
+    private final List<String> downBridgeResult;
 
     public Record() {
         upBridgeResult = new ArrayList<>();
@@ -30,8 +30,8 @@ public class Record {
     }
 
     public void initialize() {
-        upBridgeResult = new ArrayList<>();
-        downBridgeResult = new ArrayList<>();
+        upBridgeResult.clear();
+        downBridgeResult.clear();
     }
 
     private String getResultString(boolean moveSuccess) {

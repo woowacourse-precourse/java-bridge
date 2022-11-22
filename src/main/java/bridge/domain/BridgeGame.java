@@ -6,9 +6,9 @@ import bridge.utils.Validator;
 import java.util.List;
 
 public class BridgeGame {
-    List<String> answerBridge;
-    User user;
-    Result result;
+    private final List<String> answerBridge;
+    private final User user;
+    private final Result result;
 
     public BridgeGame(List<String> answerBridge, User user, Result result) {
         this.answerBridge = answerBridge;

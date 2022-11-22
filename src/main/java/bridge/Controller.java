@@ -10,9 +10,9 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class Controller {
-    Service service = new Service();
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    private final Service service = new Service();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
         printGameStartMessage();

@@ -6,11 +6,11 @@ import bridge.utils.Converter;
 import java.util.List;
 
 public class Service {
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    Converter converter = new Converter();
-    Record record = new Record();
-    BridgeGame game;
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private final Converter converter = new Converter();
+    private final Record record = new Record();
+    private BridgeGame game;
 
     public void prepareGame(String bridgeSizeInput) {
         int bridgeSize = converter.toIntFromString(bridgeSizeInput);
