@@ -1,7 +1,10 @@
 package bridge.model;
 
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.DTO.MoveRecord;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
@@ -12,26 +15,28 @@ import bridge.BridgeRandomNumberGenerator;
  */
 public class BridgeGame {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final BridgeMaker bridgeMaker;
+    private static final int INIT_LOCATION = -1;
+    private static final int INIT_TRIAL = 1;
+
     private final Bridge bridge;
+    private final BridgeMaker bridgeMaker;
 
-    private int currentLocation;
+    private List<MoveRecord> records = Collections.emptyList();
     private int trial;
+    private int currentLocation;
 
-    public BridgeGame(int size) {
-        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        this.bridge = new Bridge(bridgeMaker.makeBridge(size));
+    public BridgeGame(int bridgeSize) {
+        currentLocation = INIT_LOCATION;
+        trial = INIT_TRIAL;
+
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public boolean start(String step) {
-        return bridge.checkStep(currentLocation, step);
-    }
-
-    public boolean move(String step) {
+    public void move(String step) {
         currentLocation += 1;
-        return bridge.checkStep(currentLocation, step);
+        boolean success = bridge.checkStep(currentLocation, step);
+        records.add(MoveRecord.addRecord(step, success));
     }
 
     public boolean isOver() {
@@ -43,8 +48,7 @@ public class BridgeGame {
     }
 
     public void retry() {
-        trial = 0;
+        currentLocation = INIT_LOCATION;
+        trial += 1;
     }
-
-
 }
