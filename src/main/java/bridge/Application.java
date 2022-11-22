@@ -4,6 +4,10 @@ public class Application {
 
     public static void main(String[] args) {
         GameLauncher gameLauncher = new GameLauncher();
-        gameLauncher.startGame();
+        try {
+            gameLauncher.startGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -3,11 +3,13 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+    private InputException inputException = new InputException();
 
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String playerInput = Console.readLine();
-        return Integer.parseInt(playerInput);
+        int bridgeSize = inputException.validBridgeSize(playerInput);
+        return bridgeSize;
     }
 
     public String readMoving() {
