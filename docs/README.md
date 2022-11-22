@@ -8,7 +8,7 @@
   - [ ] 다리 건너기 게임을 시작한다. - BridgeGame.start()
     - [ ] 기존 다리가 있는지 검사한다. - BridgeMaker.hasBridge()
       - [ ] 기존 다리가 없으면 만든다. - BridgeMaker.makeBridge()
-        - [ ] 다리 길이를 입력 받는다. - InputView.readBridgeSize()
+        - [x] 다리 길이를 입력 받는다. - InputView.readBridgeSize()
           - [x] 올바른 값인지 검사한다. - CustomException.checkBridgeSize()
             - [x] 예외 메세지를 출력한다. - OutputView.printExceptionMessage()
       - [ ] 다리가 있으면 이동한다. - BridgeGame.move()

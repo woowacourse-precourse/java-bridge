@@ -1,15 +1,30 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+import exception.CustomException;
+import exception.ExceptionMessage;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    private CustomException customException = new CustomException();
+    private OutputView outputView = new OutputView();
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        outputView.printMessage("다리의 길이를 입력해주세요.");
+        try {
+            int input = Integer.parseInt(Console.readLine());
+            if (customException.checkBridgeSize(input)) return input;
+            return readBridgeSize();
+        } catch (NumberFormatException e) {
+            outputView.printExceptionMessage(ExceptionMessage.INVALID_INPUT);
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -23,6 +38,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = Console.readLine();
+        return input;
     }
 }
