@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class OutputView {
 
+    private String finalResult;
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -18,6 +19,7 @@ public class OutputView {
         makeUpperMap(sb, bridge, userPosition);
         sb.append("\n");
         makeLowerMap(sb, bridge, userPosition);
+        finalResult = sb.toString();
         System.out.println(sb.toString());
     }
 
@@ -80,12 +82,24 @@ public class OutputView {
      */
     public void printResult(boolean isSuccess, int count) {
         StringBuilder stringBuilder = new StringBuilder();
+        printFinalResult(stringBuilder);
+        printStatistics(stringBuilder, isSuccess, count);
+
+
+        System.out.println(stringBuilder);
+    }
+
+    public void printFinalResult(StringBuilder stringBuilder){
+        stringBuilder.append("최종 게임 결과\n");
+        stringBuilder.append(finalResult).append("\n");
+    }
+    public void printStatistics(StringBuilder stringBuilder ,boolean isSuccess, int count) {
         stringBuilder.append("게임 성공 여부: ");
         if (isSuccess)
             stringBuilder.append("성공");
         if (!isSuccess)
             stringBuilder.append("실패");
         stringBuilder.append("\n총 시도한 횟수: ").append(count);
-        System.out.println(stringBuilder);
     }
+
 }
