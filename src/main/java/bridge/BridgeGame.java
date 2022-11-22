@@ -58,5 +58,15 @@ public class BridgeGame {
         }
     }
 
-
+    public String crossResult(String moving, int location, List<String> bridge, List<String> upBridgeResult, List<String> downBridgeResult){
+        boolean compareResult = compare(bridge, moving, location);
+        if (compareResult) {
+            addSuccess(moving, upBridgeResult, downBridgeResult);
+        }
+        if (!compareResult) {
+            addFail(moving, upBridgeResult, downBridgeResult);
+            return "실패";
+        }
+        return "성공";
+    }
 }
