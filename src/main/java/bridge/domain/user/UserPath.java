@@ -20,6 +20,11 @@ public class UserPath {
         downPath.addPath(status);
     }
 
+    public void clearUserPath() {
+        upPath.clearPath();
+        downPath.clearPath();
+    }
+
     @Override
     public String toString() {
         return String.format("%s%s", upPath, downPath);
