@@ -1,6 +1,8 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static bridge.Moving.UP;
@@ -42,7 +44,7 @@ public class BridgeGame {
     }
 
     public List<Result> getResults() {
-        return results;
+        return Collections.unmodifiableList(results);
     }
 
     /**
