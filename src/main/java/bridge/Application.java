@@ -35,6 +35,7 @@ public class Application {
             String move = inputView.getMove();
             // 다리를 출력합니다 --> output view
             bridgeGame.move(bridge, move);
+            outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
             whenItFails(bridgeSize, bridge);
             // 마지막 칸 도착시,최종 게임 결과
             // 다리 출력, 게임 성공 여부 출력,시도 횟수 출력
