@@ -1,11 +1,20 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    public void printMap() {
+    public void printMap(List<List<String>> bridgeMap) {
+
+        for (int i = 0; i < bridgeMap.size(); i++) {
+            for (int j = 0; j < bridgeMap.get(i).size(); j++) {
+                System.out.print(bridgeMap.get(i).get(j));
+            }
+            System.out.println();
+        }
     }
 
     /**
