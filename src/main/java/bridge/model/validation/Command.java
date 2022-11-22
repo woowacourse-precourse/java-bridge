@@ -3,20 +3,15 @@ package bridge.model.validation;
 import java.util.Arrays;
 
 public enum Command {
-    RETRY("R", true),
-    QUIT("Q", false);
+    RETRY("R"),
+    QUIT("Q");
 
     private final String key;
-    private final boolean isRetry;
 
-    Command(String key, boolean isRetry) {
+    Command(String key) {
         this.key = key;
-        this.isRetry = isRetry;
     }
 
-    public String getKey() {
-        return key;
-    }
 
     public boolean isRetry() {
         return this == RETRY;
@@ -25,7 +20,7 @@ public enum Command {
     public static Command of(String input) {
         validate(input);
 
-        if(input.equals(RETRY.key)){
+        if (input.equals(RETRY.key)) {
             return RETRY;
         }
         return QUIT;
