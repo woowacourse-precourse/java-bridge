@@ -18,4 +18,7 @@ public class Bridge {
     return bridge.size();
   }
 
+  public boolean isSame(int index, String direction) {
+    return bridge.get(index).equals(direction);
+  }
 }
