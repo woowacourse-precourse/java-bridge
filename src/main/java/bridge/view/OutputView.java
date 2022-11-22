@@ -12,6 +12,8 @@ public class OutputView {
     private static final String INFIX = "| ";
     private static final String SUFFIX = " ]";
     private static final int FIRST = 0;
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
 
     private static String[] map = new String[Moving.values().length];
 
@@ -48,7 +50,24 @@ public class OutputView {
         map[notSelectedIndex] = PREFIX + " " + SUFFIX;
     }
 
-    public void printResult() {
+    public void printResult(boolean isGameSuccess, int trialCount) {
+        System.out.println("최종 게임 결과");
+        printCurrentMap();
+        printWhetherGameSuccess(isGameSuccess);
+        printTrialCount(trialCount);
+    }
+
+    private void printWhetherGameSuccess(boolean isGameSuccess) {
+        System.out.print("게임 성공 여부: ");
+        if (isGameSuccess) {
+            System.out.println(SUCCESS);
+            return;
+        }
+        System.out.println(FAIL);
+    }
+
+    private void printTrialCount(int trialCount) {
+        System.out.println("총 시도한 횟수: " + trialCount);
     }
 
     public void printGameStartNotice() {
