@@ -1,4 +1,9 @@
 package bridge.util;
 
-public class GameCommand {
+public final class GameCommand {
+
+    public static final String QUIT = "Q";
+
+    private GameCommand() {}
+
 }

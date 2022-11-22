@@ -73,7 +73,7 @@
 - [x] 이동 가능한 입력이 아니면 예외를 발생시킨다. #validateInputMoveCommand()
 - [x] 이동 가능한 입력인지 확인한다. #isMoveCommand()
 - [ ] 종료, 재시작 입력이 아니면 예외를 발생시킨다. #validateInputGameCommand()
-- [ ] 종료 입력인지 확인한다. #isEndCommand()
+- [x] 종료 입력인지 확인한다. #isEndCommand()
 - [ ] 재시작 입력인지 확인한다. #isRestartCommand()
 - [ ] 재시작 상황인지 확인한다. #isRestartGame()
 - [ ] 총 시도 횟수를 늘린다. #addTryCount()
