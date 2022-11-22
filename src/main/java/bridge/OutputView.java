@@ -32,7 +32,8 @@ public class OutputView {
     public void printResult(List<List<String>> bridgeMap, boolean clear, int trial) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printMap(bridgeMap);
-
+        System.out.println();
+        clearMessage(clear);
         System.out.println(NUM_OF_TRIAL + trial);
     }
 }
