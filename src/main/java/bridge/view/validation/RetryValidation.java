@@ -1,5 +1,7 @@
 package bridge.view.validation;
 
+import static bridge.view.Message.ERROR_RETRY_MESSAGE;
+
 public class RetryValidation {
 
     public static boolean retryValidation(String input){
@@ -14,7 +16,7 @@ public class RetryValidation {
 
     private static void inNotValidation(String input){
         if(!(input.equals("R") || input.equals("Q"))){
-            System.out.println("[ERROR] R 또는 Q만 입력 가능합니다.");
+            System.out.println(ERROR_RETRY_MESSAGE);
             throw new IllegalArgumentException();
         }
     }

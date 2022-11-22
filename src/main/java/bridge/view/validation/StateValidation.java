@@ -1,5 +1,7 @@
 package bridge.view.validation;
 
+import static bridge.view.Message.ERROR_STATE_MESSAGE;
+
 public class StateValidation {
 
     public static boolean stateValidation(String input){
@@ -14,7 +16,7 @@ public class StateValidation {
 
     private static void inNotValidation(String input){
         if(!(input.equals("D") || input.equals("U"))){
-            System.out.println("[ERROR] D 또는 U만 입력 가능합니다.");
+            System.out.println(ERROR_STATE_MESSAGE);
             throw new IllegalArgumentException();
         }
     }
