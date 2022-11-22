@@ -4,30 +4,28 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputViewTest {
-    InputView inputView = new InputView();
-    private static Constant constant = new Constant();
 
     @Test
     void 다리길이_예외() {
         String Input = "30";
-        assertThatThrownBy(() -> inputView.checkLengthValidate(Input))
+        assertThatThrownBy(() -> InputView.checkLengthValidate(Input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(constant.Length_Restrict());
+                .hasMessage(Constant.Length_Restrict());
     }
 
     @Test
     void 이동관련_입력_예외() {
         String input = "A";
-        assertThatThrownBy(() -> inputView.checkMoveValidate(input))
+        assertThatThrownBy(() -> InputView.checkMoveValidate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(constant.Move_Restrict());
+                .hasMessage(Constant.Move_Restrict());
     }
 
     @Test
     void 게임_재시작관련_입력_예외() {
         String input = "C";
-        assertThatThrownBy(() -> inputView.checkRetryValidate(input))
+        assertThatThrownBy(() -> InputView.checkRetryValidate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(constant.Replay_Restrict());
+                .hasMessage(Constant.Replay_Restrict());
     }
 }
