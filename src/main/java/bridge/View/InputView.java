@@ -42,4 +42,14 @@ public class InputView {
     private String inputValue(){
         return Console.readLine();
     }
+
+    public int getReadBridgeSize(){
+        try {
+            return readBridgeSize();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return getReadBridgeSize();
+        }
+    }
+
 }

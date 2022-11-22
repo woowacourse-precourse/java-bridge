@@ -23,7 +23,7 @@ public class Controller {
 
     public void startGame() {
         outputView.printGameStart();
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = inputView.getReadBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
         tryGame(bridgeSize, bridgeGame);
         tryCount += 1;
