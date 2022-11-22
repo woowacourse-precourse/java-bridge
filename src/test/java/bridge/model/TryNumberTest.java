@@ -1,9 +1,7 @@
-package bridge;
+package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.model.BridgeGame;
-import bridge.model.TryNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

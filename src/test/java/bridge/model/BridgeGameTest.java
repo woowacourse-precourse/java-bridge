@@ -1,10 +1,9 @@
-package bridge;
+package bridge.model;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.model.BridgeGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
