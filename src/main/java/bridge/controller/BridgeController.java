@@ -10,6 +10,7 @@ import bridge.util.Converter;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.ArrayList;
 
 import static bridge.model.Case.*;
 
@@ -34,7 +35,7 @@ public class BridgeController {
         outputView.printStartNotice();
         int size = inputBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
-        ResultDTO resultDTO = crossBridge(size, bridge, new User());
+        ResultDTO resultDTO = crossBridge(size, bridge, new User(new ArrayList<>()));
         outputView.printResult(resultDTO);
     }
 

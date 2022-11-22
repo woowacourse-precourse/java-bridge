@@ -1,12 +1,12 @@
 package bridge.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private List<Path> path = new ArrayList<>();
+    private List<Path> path;
 
-    public User() {
+    public User(List<Path> path) {
+        this.path = path;
     }
 
     public void addPath(Path path) {
