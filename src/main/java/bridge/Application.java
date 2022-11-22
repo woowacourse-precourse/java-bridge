@@ -3,7 +3,6 @@ package bridge;
 import static bridge.Constant.*;
 
 import bridge.BridgeGame.MoveResult;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -34,11 +33,10 @@ public class Application {
         while (flag == 1) {
             count++;
             gameResult = playGame(bridgeGame);
+            flag = gameResult.flag;
             if (gameResult.flag == MOVERESULT_FLAG_INVALID) {
                 flag = retryGame(bridgeGame);
-                continue;
             }
-            flag = gameResult.flag;
         }
         return new FinalResult(count, gameResult);
     }
