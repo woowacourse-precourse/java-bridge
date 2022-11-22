@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.message.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -73,12 +74,14 @@ public class InputView {
         try {
             Integer.parseInt(bridgeSize);
         } catch (NumberFormatException e) {
+            printErrorMessage(ErrorMessage.BRIDGE_SIZE_TYPE_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
     private void validateBridgeSizeRange(int bridgeSize) {
         if (bridgeSize >= BRIDGE_SIZE_MIN && bridgeSize >= BRIDGE_SIZE_MAX) {
+            printErrorMessage(ErrorMessage.BRIDGE_SIZE_RANGE_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -96,6 +99,7 @@ public class InputView {
 
     private void validateMoveFormat(String moveCommand) {
         if (!moveCommand.equals(MOVE_COMMAND_UP) && !moveCommand.equals(MOVE_COMMAND_DOWN)) {
+            printErrorMessage(ErrorMessage.MOVE_COMMAND_FORMAT_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -111,7 +115,12 @@ public class InputView {
 
     private void validateGameFailFormat(String failCommand) {
         if (!failCommand.equals(FAIL_COMMAND_RETRY) && !failCommand.equals(FAIL_COMMAND_QUIT)) {
+            printErrorMessage(ErrorMessage.GAME_END_COMMAND_FORMAT_ERROR);
             throw new IllegalArgumentException();
         }
+    }
+
+    public void printErrorMessage(ErrorMessage errorMessage) {
+        System.out.println(errorMessage.getMessage());
     }
 }
