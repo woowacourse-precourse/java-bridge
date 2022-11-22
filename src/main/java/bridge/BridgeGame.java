@@ -18,9 +18,10 @@ public class BridgeGame {
 
     BridgeGame(List<String> BRIDGE_ANSWER) {
         this.BRIDGE_ANSWER = BRIDGE_ANSWER;
+    }
 
+    public void Start() {
         Repeat();
-
         printResult(success, tryCount);
         printMap(playerList, BRIDGE_ANSWER);
     }
@@ -71,7 +72,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private void move(String playerInput) {
+    public void move(String playerInput) {
         playerList.add(playerInput);
         String(playerInput);
         printMap(playerList, BRIDGE_ANSWER);
@@ -83,7 +84,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private Boolean retry() {
+    public Boolean retry() {
         Boolean result = false;
         while (true) {
             try {
@@ -98,5 +99,9 @@ public class BridgeGame {
         if (string.equals("R")) { return true; }
         if (string.equals("Q")) { return false; }
         return false;
+    }
+
+    public void SetMoveCount(int number) {
+        moveCount = number;
     }
 }
