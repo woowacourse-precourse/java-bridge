@@ -5,7 +5,8 @@ public enum TextType {
     UP("U"),
     DOWN("D"),
     RESTART("R"),
-    EXIT("Q");
+    EXIT("Q"),
+    START_MESSAGE("다리 건너기 게임을 시작합니다.");
 
     private final String text;
 
