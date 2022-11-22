@@ -14,7 +14,7 @@ public class NumberValidation extends ValidationDecorator{
     try {
       int num = Integer.parseInt(input);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException(ExceptionMessage.NOT_A_NUMBER.getMessage());
+      throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.NOT_A_NUMBER.getMessage());
     }
   }
 }

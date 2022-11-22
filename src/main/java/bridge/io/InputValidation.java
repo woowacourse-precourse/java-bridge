@@ -4,10 +4,9 @@ import bridge.io.validation.*;
 
 public class InputValidation {
 
-  public int validateAndReturnBridgeSize(String size) {
+  public void validateBridgeSize(String size) {
     Validation validation = new RangeValidation(new NumberValidation(new NullValidation()));
     validation.validate(size);
-    return Integer.parseInt(size);
   }
 
   public String validateAndReturnMove(String move) {

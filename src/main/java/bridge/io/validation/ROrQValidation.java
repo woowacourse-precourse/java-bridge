@@ -13,7 +13,7 @@ public class ROrQValidation extends ValidationDecorator{
   public void validate(String input) {
     super.validate(input);
     if (!input.equals(ControlKey.RETRY.getKey()) && !input.equals(ControlKey.QUIT.getKey())) {
-      throw new IllegalArgumentException(ExceptionMessage.NOT_R_OR_Q.getMessage());
+      throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.NOT_R_OR_Q.getMessage());
     }
   }
 }

@@ -13,7 +13,7 @@ public class UOrDValidation extends ValidationDecorator{
   public void validate(String input) {
     super.validate(input);
     if (!input.equals(ControlKey.UP.getKey()) && !input.equals(ControlKey.DOWN.getKey())) {
-      throw new IllegalArgumentException(ExceptionMessage.NOT_U_OR_D.getMessage());
+      throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.NOT_U_OR_D.getMessage());
     }
   }
 }
