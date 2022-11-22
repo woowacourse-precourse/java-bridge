@@ -12,10 +12,13 @@ public class Application {
     public static void main(String[] args) {
         BridgeGame game = new BridgeGame(new BridgeGameService());
         Result result;
+
         game.start();
+
         do {
             result = game.move();
         } while (result.equals(FAIL) && game.retry().equals(RESTART));
+
         game.finish();
     }
 }
