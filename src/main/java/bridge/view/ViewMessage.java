@@ -20,6 +20,6 @@ public class ViewMessage {
     }
 
     public static void printEndGameMessage() {
-        System.out.println(Message.INPUT_GAME_COMMAND.getMessage());
+        System.out.println(Message.RESULT.getMessage());
     }
 }

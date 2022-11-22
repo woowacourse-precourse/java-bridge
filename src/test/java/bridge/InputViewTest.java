@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.view.InputView;
+import bridge.view.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,7 +15,7 @@ class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "12ab", "ab12", "ab", "-ab", "-1ab", "0", "-12", "25", "1"})
     void createBridgeLengthWrongInput(String input) {
-        assertThatThrownBy(() -> InputView.validateBridgeSize(input))
+        assertThatThrownBy(() -> Validator.validateBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +23,7 @@ class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"u", "d", "UD", "12", "", "!"})
     void createMovingWrongInput(String input) {
-        assertThatThrownBy(() -> InputView.validateMoving(input))
+        assertThatThrownBy(() -> Validator.validateMoving(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
