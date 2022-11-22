@@ -19,4 +19,8 @@ public enum Move {
             return DOWN;
         else return null;
     }
+
+    public String getUpperCode() {
+        return upperCode;
+    }
 }
