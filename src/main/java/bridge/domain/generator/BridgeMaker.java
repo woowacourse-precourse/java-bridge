@@ -2,8 +2,6 @@ package bridge.domain.generator;
 
 import bridge.BridgeNumberGenerator;
 import bridge.domain.MoveCommand;
-import bridge.input.validate.BasicBridgeValidator;
-import bridge.input.validate.BridgeValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +12,9 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final BridgeValidator bridgeValidator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-        this.bridgeValidator = new BasicBridgeValidator();
-    }
-
-    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator, BridgeValidator bridgeValidator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
-        this.bridgeValidator = bridgeValidator;
     }
 
     /**
@@ -37,7 +28,6 @@ public class BridgeMaker {
             String command = MoveCommand.parseValueToCommand(value);
             bridge.add(command);
         }
-        bridgeValidator.validateBridge(bridge);
         return bridge;
     }
 }
