@@ -1,5 +1,7 @@
 package bridge.game;
 
+import bridge.etc.GameState;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -18,17 +20,26 @@ public class BridgeGame {
      *
      * @param input 사용자가 입력한 입력값
      */
-    public Integer move(String input) {
+    public GameState move(String input) {
         checkInputLength(input);
         checkMoveInput(input);
 
         bridge.pass(input);
 
         if(bridge.isClear()) {
-            return count;
+            return GameState.CLEAR;
         }
 
-        return 0;
+        return GameState.CONTINUE;
+    }
+
+    /**
+     * 게임 시도 횟수를 반환하는 메소드
+     *
+     * @return 게임 시도 횟수
+     */
+    public Integer getTryCount() {
+        return this.count;
     }
 
     /**
