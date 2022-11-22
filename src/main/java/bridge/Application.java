@@ -4,6 +4,7 @@ import bridge.controller.BridgeGameController;
 import bridge.domain.BridgeGame;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
+import bridge.ui.ValidateInputBridgeGame;
 
 public class Application {
 
@@ -11,7 +12,7 @@ public class Application {
         // TODO: 프로그램 구현
         BridgeGameController bridgeGameController = new BridgeGameController(
                 new BridgeGame(), new BridgeMaker(new BridgeRandomNumberGenerator()),
-                new OutputView(), new InputView()
+                new OutputView(), new InputView(new ValidateInputBridgeGame())
         );
         bridgeGameController.play();
     }
