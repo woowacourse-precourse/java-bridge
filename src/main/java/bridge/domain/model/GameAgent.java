@@ -7,9 +7,11 @@ import java.util.List;
 
 public class GameAgent {
 
+
     private List<String> bridge;
 
     public GameAgent() {
+
         this.bridge = new ArrayList<>();
     }
 
@@ -17,8 +19,8 @@ public class GameAgent {
         this.bridge = bridge;
     }
 
-    public boolean checkPossibleToCross(String playerWantedToGo, int currentBridgeLocation) {
-        String bridgeDirection = bridge.get(currentBridgeLocation);
+    public boolean checkPossibleToCross(String playerWantedToGo, int trial) {
+        String bridgeDirection = bridge.get(trial);
         return bridgeDirection.equals(playerWantedToGo);
     }
 

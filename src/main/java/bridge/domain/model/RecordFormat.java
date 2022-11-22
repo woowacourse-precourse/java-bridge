@@ -8,17 +8,13 @@ import bridge.domain.constant.GameRecordFormat;
 import java.util.List;
 import java.util.ListIterator;
 
-public class GameRecordGenerator {
-    private final int FIRST_TRIAL = 1;
+public class RecordFormat {
     private List<String> currentGameRecord;
+
     public void generate(boolean crossedBridgeState, BridgeDirection currentDirection) {
         String result = CrossedState.transform(crossedBridgeState);
         GameRecord gameRecord = GameRecord.findLocation(currentDirection);
         currentGameRecord = gameRecord.generate(result);
-    }
-
-    private boolean isFirstTrial(int trial) {
-        return trial == FIRST_TRIAL;
     }
 
     private String makeFormat(boolean isFirst, String record) {
@@ -26,8 +22,7 @@ public class GameRecordGenerator {
         return gameRecordFormat.generate(record);
     }
 
-    public void updateCurrentRecord(int trial) {
-        boolean isFirst = isFirstTrial(trial);
+    public void updateCurrentRecord(boolean isFirst) {
         ListIterator<String> currentResult = currentGameRecord.listIterator();
 
         while (currentResult.hasNext()) {
@@ -36,7 +31,7 @@ public class GameRecordGenerator {
         }
     }
 
-    public List<String> getCurrentGameRecord(){
+    public List<String> getCurrentGameRecord() {
         return currentGameRecord;
     }
 

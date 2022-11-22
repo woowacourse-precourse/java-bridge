@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class GameRecordMaker {
+public class GameRecord {
     private List<List<String>> TOTAL_RESULT;
 
-    public GameRecordMaker() {
+    public GameRecord() {
         TOTAL_RESULT = List.of(new ArrayList<>(), new ArrayList<>());
     }
 
