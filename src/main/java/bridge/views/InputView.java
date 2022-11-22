@@ -1,6 +1,7 @@
 package bridge.views;
 
 import bridge.utils.ValidateUtils;
+import bridge.utils.constants.BridgeGameCommand;
 import bridge.utils.constants.BridgeMove;
 import bridge.utils.constants.BridgeSize;
 
@@ -40,7 +41,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        try{
+            String input = getInput(BridgeGameCommand.READ_GAME_COMMAND);
+            ValidateUtils.isCorrectGameCommand(input);
+            return input;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     private String getInput(String msg){
