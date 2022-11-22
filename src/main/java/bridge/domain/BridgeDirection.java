@@ -4,15 +4,19 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public enum BridgeDirection {
-    DOWN(1, "D"),
-    UP(0, "U");
+    DOWN(0, "D"),
+    UP(1, "U");
 
     private final int directionNumber;
     private final String direction;
 
-    private BridgeDirection(int directionNumber, String direction) {
+    BridgeDirection(int directionNumber, String direction) {
         this.directionNumber = directionNumber;
         this.direction = direction;
+    }
+
+    public int getNumber(){
+        return directionNumber;
     }
 
     public static String getDirection(int directionNumber) {

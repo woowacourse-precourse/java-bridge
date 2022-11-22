@@ -3,6 +3,8 @@ package bridge.view;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static bridge.domain.BridgeDirection.*;
+
 
 public class OutputView {
 
@@ -16,10 +18,13 @@ public class OutputView {
     private static final String BRIDGE_DELIMITER = " | ";
     private static final String BRIDGE_SUFFIX = " ]";
 
+
     public static void printMap(List<List<String>> map) {
-        for (List<String> mapLayer : map)
-            System.out.println(mapLayer.stream().
-                    collect(Collectors.joining(BRIDGE_DELIMITER, BRIDGE_PREFIX, BRIDGE_SUFFIX)));
+
+        System.out.println(map.get(UP.getNumber()).stream()
+               .collect(Collectors.joining(BRIDGE_DELIMITER, BRIDGE_PREFIX, BRIDGE_SUFFIX)));
+        System.out.println(map.get(DOWN.getNumber()).stream()
+                .collect(Collectors.joining(BRIDGE_DELIMITER, BRIDGE_PREFIX, BRIDGE_SUFFIX)));
     }
 
     public static void printResult(List<List<String>> map, String gameResult, int trialCount) {
