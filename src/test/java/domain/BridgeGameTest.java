@@ -61,4 +61,13 @@ public class BridgeGameTest {
         assertThat(bridgeGameService.isComplete());
     }
 
+    @DisplayName("시도한 횟수 확인 실패")
+    @ValueSource(ints = {0, 5, 20})
+    @ParameterizedTest
+    void 시도한_횟수확인_실패_테스트(int retry) {
+        for (int i = 0; i < retry; i++) bridgeGameService.restart();
+
+        assertThat(bridgeGameService.getTryCnt()).isNotEqualTo(retry);
+    }
+
 }
