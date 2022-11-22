@@ -36,7 +36,7 @@ public class BridgeGame {
         while (proceed) {
             gameService.move(InputView.readMoving());
             OutputView.printMap(gameService.getMap());
-            proceed = gameService.CanKeepGoingGame();
+            proceed = gameService.canKeepGoingGame();
         }
         if (gameService.isNotPass()) {
             retry();

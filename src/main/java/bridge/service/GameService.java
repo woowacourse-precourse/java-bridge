@@ -39,7 +39,7 @@ public class GameService {
         return map.getMap();
     }
 
-    public boolean CanKeepGoingGame() {
+    public boolean canKeepGoingGame() {
         if (user.getCountInputMoveDirection() == bridge.size() || !canMove()) {
             return false;
         }
