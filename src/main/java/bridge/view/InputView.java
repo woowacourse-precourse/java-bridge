@@ -4,8 +4,8 @@ import static bridge.BridgeMaker.toInt;
 import static bridge.BridgeMaker.validateBridgeSizeRange;
 import static bridge.BridgeMaker.validateBridgeSizeType;
 
-import bridge.model.RetryAndQuit;
 import bridge.model.Position;
+import bridge.model.RetryAndQuit;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,6 +13,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     OutputView outputView = new OutputView();
+
     /**
      * 다리의 길이를 입력받는다.
      */

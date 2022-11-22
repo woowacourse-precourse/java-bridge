@@ -17,7 +17,7 @@ class PositionTest {
     }
 
     @Test
-    void 다이어그램_표기_테스트(){
+    void 다이어그램_표기_테스트() {
         Assertions.assertTrue(Position.UP.isRightPlace(Position.UP));
         Assertions.assertFalse(Position.UP.isRightPlace(Position.DOWN));
     }

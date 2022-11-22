@@ -1,11 +1,11 @@
 package bridge.view;
 
-import static bridge.util.Constants.OUTPUT_LINE_BREAK;
 import static bridge.util.Constants.OUTPUT_ATTEMPTS;
 import static bridge.util.Constants.OUTPUT_ENGER_MOVING;
 import static bridge.util.Constants.OUTPUT_ENTER_BRIDGE_SIZE;
 import static bridge.util.Constants.OUTPUT_ENTER_RETRY_OR_QUIT;
 import static bridge.util.Constants.OUTPUT_FINAL_RESULT;
+import static bridge.util.Constants.OUTPUT_LINE_BREAK;
 import static bridge.util.Constants.OUTPUT_START_GAME;
 import static bridge.util.Constants.OUTPUT_SUCCESS_OR_FAIL;
 import static bridge.util.ErrorMessage.ERROR_MESSAGE;
