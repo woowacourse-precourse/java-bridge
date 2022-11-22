@@ -19,28 +19,39 @@ public class BridgeCommandController {
 		this.outputView = outputView;
 	}
 
-	public String getRetryOrQuit(MoveCommandDto moveCommandDto) {
-		String gameCommand = checkMoveCommand(moveCommandDto);
-		return receiveGameResult(gameCommand, moveCommandDto);
+	public String getGameCommand(BridgeMoveController bridgeMoveController) {
+		MoveCommandDto moveCommandDto = bridgeMoveController.receiveMoveCommandDto();
+		return getRetryOrQuit(bridgeMoveController, moveCommandDto);
 	}
 
-	private String checkMoveCommand(MoveCommandDto moveCommandDto) {
-		if (isNotMove(moveCommandDto)) {
-			return getInputCommand();
-		}
-		return CommandSymbols.RETRY;
-	}
-
-	private boolean isNotMove(MoveCommandDto moveCommandDto) {
-		return !moveCommandDto.isAbleToMove();
-	}
-
-	private String getInputCommand() {
+	public String getInputCommand() {
 		String gameCommand;
 		do {
 			gameCommand = inputGameCommand();
 		} while (CommandChecker.isEqualToError(gameCommand));
 		return gameCommand;
+	}
+
+	public boolean isCommandRetry(String gameCommand) {
+		return CommandChecker.isEqualToRetry(gameCommand);
+	}
+
+	private String getRetryOrQuit(BridgeMoveController bridgeMoveController,
+		MoveCommandDto moveCommandDto) {
+		String gameCommand = bridgeMoveController.checkMoveCommand(this, moveCommandDto);
+		return receiveGameResult(gameCommand, moveCommandDto);
+	}
+
+	private String receiveGameResult(String gameCommand, MoveCommandDto moveCommandDto) {
+		if (isQuit(gameCommand, moveCommandDto)) {
+			outputView.receiveGameResult(bridgeGame.sendGameResult());
+			return CommandSymbols.QUIT;
+		}
+		return CommandSymbols.RETRY;
+	}
+
+	private boolean isQuit(String gameCommand, MoveCommandDto moveCommandDto) {
+		return CommandChecker.isEqualToQuit(gameCommand) || moveCommandDto.isGameClear();
 	}
 
 	private String inputGameCommand() {
@@ -55,25 +66,9 @@ public class BridgeCommandController {
 	private String commandCheck() {
 		String gameCommand = inputView.readGameCommand();
 		bridgeGame.retry(gameCommand);
-		checkResetOutput(gameCommand);
+		outputView.checkResetOutput(gameCommand);
 		return gameCommand;
 	}
 
-	private void checkResetOutput(String gameCommand) {
-		if (CommandChecker.isEqualToRetry(gameCommand)) {
-			outputView.resetOutputView();
-		}
-	}
 
-	private String receiveGameResult(String gameCommand, MoveCommandDto moveCommandDto) {
-		if (isQuit(gameCommand, moveCommandDto)) {
-			outputView.receiveGameResult(bridgeGame.sendGameResult());
-			return CommandSymbols.QUIT;
-		}
-		return CommandSymbols.RETRY;
-	}
-
-	private boolean isQuit(String gameCommand, MoveCommandDto moveCommandDto) {
-		return CommandChecker.isEqualToQuit(gameCommand) || moveCommandDto.isGameClear();
-	}
 }

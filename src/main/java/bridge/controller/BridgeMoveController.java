@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.dto.MoveCommandDto;
 import bridge.model.BridgeGame;
-import bridge.utils.CommandChecker;
+import bridge.utils.CommandSymbols;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,25 +17,14 @@ public class BridgeMoveController {
 		this.outputView = outputView;
 	}
 
-	public void processBridgeMove() {
+	public void processBridgeMove(BridgeCommandController bridgeCommandController) {
 		String gameCommand;
 		do {
-			gameCommand = getGameCommand();
-		} while (isCommandRetry(gameCommand));
+			gameCommand = bridgeCommandController.getGameCommand(this);
+		} while (bridgeCommandController.isCommandRetry(gameCommand));
 	}
 
-	private String getGameCommand() {
-		BridgeCommandController bridgeCommandController =
-			new BridgeCommandController(bridgeGame, inputView, outputView);
-		MoveCommandDto moveCommandDto = receiveMoveCommandDto();
-		return bridgeCommandController.getRetryOrQuit(moveCommandDto);
-	}
-
-	private boolean isCommandRetry(String gameCommand) {
-		return CommandChecker.isEqualToRetry(gameCommand);
-	}
-
-	private MoveCommandDto receiveMoveCommandDto() {
+	public MoveCommandDto receiveMoveCommandDto() {
 		MoveCommandDto moveCommandDto;
 		do {
 			moveCommandDto = readMoveCommand();
@@ -43,9 +32,21 @@ public class BridgeMoveController {
 		return moveCommandDto;
 	}
 
+	public String checkMoveCommand(BridgeCommandController bridgeCommandController,
+		MoveCommandDto moveCommandDto) {
+		if (isNotMove(moveCommandDto)) {
+			return bridgeCommandController.getInputCommand();
+		}
+		return CommandSymbols.RETRY;
+	}
+
+	private boolean isNotMove(MoveCommandDto moveCommandDto) {
+		return !moveCommandDto.isAbleToMove();
+	}
+
 	private MoveCommandDto readMoveCommand() {
 		try {
-			return readUserInput();
+			return readUserMoveInput();
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 		}
@@ -56,7 +57,7 @@ public class BridgeMoveController {
 		return moveCommandDto.isAbleToMove() && !moveCommandDto.isGameClear();
 	}
 
-	private MoveCommandDto readUserInput() {
+	private MoveCommandDto readUserMoveInput() {
 		MoveCommandDto moveCommandDto = bridgeGame.move(inputView.readMoving());
 		outputView.receiveMoveCommandResult(moveCommandDto);
 		outputView.printMap();

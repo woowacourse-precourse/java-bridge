@@ -10,15 +10,17 @@ public class BridgeGameController {
 	private static final InputView inputView = new InputView();
 	private static final OutputView outputView = new OutputView();
 	private static final BridgeGame bridgeGame = new BridgeGame();
+	private static final BridgeMakeController bridgeMakeController =
+		new BridgeMakeController(bridgeGame, inputView);
+	private static final BridgeMoveController bridgeMoveController =
+		new BridgeMoveController(bridgeGame, inputView, outputView);
+	private static final BridgeCommandController bridgeCommandController =
+		new BridgeCommandController(bridgeGame, inputView, outputView);
 
 	public void run() {
-		BridgeMakeController bridgeMakeController = new BridgeMakeController(bridgeGame, inputView);
-		BridgeMoveController bridgeMoveController =
-			new BridgeMoveController(bridgeGame, inputView, outputView);
-
 		startView.printGameStartMessage();
 		bridgeMakeController.makeBridge();
-		bridgeMoveController.processBridgeMove();
+		bridgeMoveController.processBridgeMove(bridgeCommandController);
 		outputView.printResultMessage();
 	}
 }

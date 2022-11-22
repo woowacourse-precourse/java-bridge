@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.dto.GameResultDto;
 import bridge.dto.MoveCommandDto;
+import bridge.utils.CommandChecker;
 import bridge.utils.MoveChecker;
 
 import java.util.ArrayList;
@@ -48,8 +49,10 @@ public class OutputView {
 		gameResult = gameResultDto;
 	}
 
-	public void resetOutputView() {
-		moveHistory.clear();
+	public void checkResetOutput(String gameCommand) {
+		if (CommandChecker.isEqualToRetry(gameCommand)) {
+			resetOutputView();
+		}
 	}
 
 	@Override public String toString() {
@@ -156,5 +159,9 @@ public class OutputView {
 
 		totalTry.append(OutputMessages.TOTAL_TRY);
 		return totalTry.append(gameResult.getTotalTry()).append("\n");
+	}
+
+	private void resetOutputView() {
+		moveHistory.clear();
 	}
 }
