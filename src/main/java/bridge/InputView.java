@@ -1,6 +1,9 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import org.mockito.internal.matchers.Equals;
+
+import java.util.Objects;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -84,6 +87,10 @@ public class InputView {
 
             // 올바르지 않은 값이라면 에러 발생 후 메시지 출력
         }
+    }
+
+    public boolean isValidMoving(String inputMove) {
+        return Objects.equals(inputMove, "D") || Objects.equals(inputMove, "U");
     }
 
     /**

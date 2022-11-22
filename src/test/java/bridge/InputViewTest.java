@@ -57,4 +57,24 @@ public class InputViewTest {
         // then
         assertThat(bool).isEqualTo(false);
     }
+
+    @Test
+    void 이동할_칸을_올바르게_입력했을_때() {
+        InputView iv = new InputView();
+        String moving = "U";
+
+        boolean bool = iv.isValidMoving(moving);
+
+        assertThat(bool).isEqualTo(true);
+    }
+
+    @Test
+    void 이동할_칸을_올바르지_않게_입력했을_때() {
+        InputView iv = new InputView();
+        String moving = "A";
+
+        boolean bool = iv.isValidMoving(moving);
+
+        assertThat(bool).isEqualTo(false);
+    }
 }
