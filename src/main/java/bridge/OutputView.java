@@ -1,53 +1,46 @@
 package bridge;
 
 import java.util.List;
+import java.util.stream.Stream;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
-
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap(List<String> bridge, int coordinate, boolean doesPlayerSucceedMoving) {
-        printFirstLine(bridge, coordinate, doesPlayerSucceedMoving);
-        printSecondLine(bridge, coordinate, doesPlayerSucceedMoving);
+    private static String targetOfFirstLine = "U";
+    private static String targetOfSecondLine = "D";
+    public void printMap(List<String> bridge, int playerLocation, boolean isMovingAvailable) {
+        printFirstLine(bridge, playerLocation, isMovingAvailable);
+        printSecondLine(bridge, playerLocation, isMovingAvailable);
     }
 
-    public void printFirstLine(List<String> bridge, int coordinate, boolean doesPlayerSucceedMoving) {
+    public void printFirstLine(List<String> bridge, int playerLocation, boolean isMovingAvailable) {
         printStartPart();
-        printMiddlePart(bridge, coordinate, "U");
-        printEndPart( bridge.get(coordinate+1), doesPlayerSucceedMoving, "U");
+        printMiddlePart(bridge, playerLocation, targetOfFirstLine);
+        printEndPart( bridge.get(playerLocation+1), isMovingAvailable, targetOfFirstLine);
     }
 
-    public void printSecondLine(List<String> bridge, int coordinate, boolean doesPlayerSucceedMoving) {
+    public void printSecondLine(List<String> bridge, int playerLocation, boolean isMovingAvailable) {
         printStartPart();
-        printMiddlePart(bridge, coordinate, "D");
-        printEndPart( bridge.get(coordinate+1), doesPlayerSucceedMoving, "D");
+        printMiddlePart(bridge, playerLocation, targetOfSecondLine);
+        printEndPart( bridge.get(playerLocation+1), isMovingAvailable, targetOfSecondLine);
     }
-
 
     private void printStartPart() {
         System.out.print("[ ");
     }
 
-    private void printMiddlePart(List<String> bridge, int coordinate, String direction) {
-        for (int i = -1; i <= coordinate; i ++) {
-            if (i == -1) continue;
-            if (bridge.get(i).equals(direction)) {
-                System.out.print("O | ");
-            }
-            if(!bridge.get(i).equals(direction)) {
-                System.out.print("  | ");
-            }
-        }
+    private void printMiddlePart(List<String> bridge, int playerLocation, String target) {
+        Stream<String> bridgeStream = bridge.stream()
+                                            .limit(playerLocation + 1)
+                                            .map(str -> {
+                                                if (str == target) {
+                                                    return "O";
+                                                }
+                                                return " ";
+                                            });
+        bridgeStream.forEach(str -> System.out.print(str + " | "));
     }
 
-    private void printEndPart(String bridgeNextLocation, boolean doesPlayerSucceedMoving, String direction) {
-        if (doesPlayerSucceedMoving) {
+    private void printEndPart(String bridgeNextLocation, boolean isMovingAvailable, String direction) {
+        if (isMovingAvailable) {
             if (direction.equals(bridgeNextLocation)) {
                 System.out.println("O ]");
             }
@@ -55,7 +48,7 @@ public class OutputView {
                 System.out.println(("  ]"));
             }
         }
-        if (!doesPlayerSucceedMoving) {
+        if (!isMovingAvailable) {
             if (direction.equals(bridgeNextLocation)) {
                 System.out.println("  ]");
             }
@@ -65,24 +58,19 @@ public class OutputView {
         }
     }
 
-    public void printWholeBridge() {
-
+    public void printResult(List<String> bridge, int playerLocation, boolean isMovingAvailable) {
+        System.out.println("\n최종 게임 결과");
+        if (playerLocation == bridge.size()-1) {
+            printMap(bridge, playerLocation-1, isMovingAvailable);
+            System.out.println("게임 성공 여부: 성공");;
+        }
+        if (playerLocation < bridge.size()-1) {
+            printMap(bridge, playerLocation, isMovingAvailable);
+            System.out.println("게임 성공 여부: 실패");
+        }
     }
 
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult(int trialNumber, int coordinate, List<String> bridge) {
-        if (coordinate == bridge.size()-1) {
-            System.out.println("게임 성공 여부: 성공");
-            System.out.println(("총 시도한 횟수: " + trialNumber));
-        }
-        if (coordinate < bridge.size()-1) {
-            System.out.println("게임 성공 여부: 실패");
-            System.out.println("총 시도한 횟수: " + trialNumber);
-        }
+    public void printTrialNumber(int trialNumber) {
+        System.out.println("총 시도한 횟수: " + trialNumber);
     }
 }
