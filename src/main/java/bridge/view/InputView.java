@@ -75,6 +75,7 @@ public class InputView {
      */
     public static String readMoving() {
         String move = "";
+        System.out.println("");
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         try{
             move = readLine();
