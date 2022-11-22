@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +26,7 @@ class BridgeGameTest {
     @DisplayName("다리를 이동하기 위한 입력이 U, D 이외의 값 이외일때 예외가 발생한다.")
     @Test
     void inputMoveShapeExceptionTest() {
-        assertThatThrownBy(() -> new BridgeGame().move(bridge.getShape(), "O"))
+        assertThatThrownBy(() -> new BridgeGame().move(bridge.getShape().get(0), "O"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
@@ -40,9 +42,11 @@ class BridgeGameTest {
     @Test
     void movingResultTest() {
         BridgeGame bridgeGame = new BridgeGame();
-        gameResult = bridgeGame.move(bridge.getShape(), "U");
-        assertThat(gameResult.getUpBridgeResult())
-                .contains("O");
+        for (String str : bridge.getShape()) {
+            gameResult = bridgeGame.move(str, "U");
+            assertThat(gameResult.getUpBridgeResult())
+                    .contains("O");
+        }
     }
 
     @CsvSource(value = {"R:true", "Q:false"}, delimiter = ':')
