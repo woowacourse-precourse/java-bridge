@@ -1,23 +1,31 @@
 package bridge.domain;
 
+import java.util.List;
+
 public class BridgeGame {
 
     private static final String INVALID_MOVEMENT_ERROR = "[ERROR] U(위 칸)와 D(아래 칸) 중 하나의 문자만 입력해야 합니다.";
     private static final String INVALID_GAME_COMMAND_ERROR = "[ERROR] R(재시작)과 Q(종료) 중 하나의 문자만 입력해야 합니다.";
     private static final String RETRY_COMMAND_CODE = "R";
     private static final String QUIT_COMMAND_CODE = "Q";
+    private static final int INITIAL_VALUE_OF_TRY_COUNT = 1;
 
     private final Bridge bridge;
-    private final PlayerData playerData = new PlayerData();
+    private final Map map;
+    private int countOfTry;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+        map = new Map();
+        countOfTry = INITIAL_VALUE_OF_TRY_COUNT;
     }
 
     public boolean move(String movement) {
         validateMovement(movement);
-        playerData.add(movement);
-        if (bridge.contain(playerData.getIndexOfMovementRecord(), movement)) {
+        map.drawMovement(movement);
+        boolean hasMoved = bridge.contain(map.getLength() - 1, movement);
+        map.replaceLastToFailMark(hasMoved);
+        if (hasMoved) {
             return true;
         }
         return false;
@@ -26,22 +34,26 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         validateGameCommand(gameCommand);
         if (gameCommand.equals(RETRY_COMMAND_CODE)) {
-            playerData.clearMovementRecord();
-            playerData.increaseCountOfTry();
+            map.clear();
+            countOfTry++;
             return true;
         }
         return false;
     }
 
     public boolean checkWin() {
-        if (bridge.isSame(playerData.getMovementRecord())) {
+        if (bridge.getLength() == map.getLength() && !map.hasFailMark()) {
             return true;
         }
         return false;
     }
 
-    public PlayerData getPlayerData() {
-        return playerData;
+    public int getCountOfTry() {
+        return countOfTry;
+    }
+
+    public List<String> getResult() {
+        return map.getMap();
     }
 
     private void validateMovement(String movement) {
