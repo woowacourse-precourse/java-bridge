@@ -8,7 +8,6 @@ import java.util.Optional;
 public class BridgeGameDaoImpl implements BridgeGameDao {
 
     private static final String GAME_NOT_FOUND = "해당하는 ID를 가진 게임이 존재하지 않습니다.";
-
     private final BridgeGameRepository bridgeGameRepository;
 
     public BridgeGameDaoImpl() {

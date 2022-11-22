@@ -23,5 +23,4 @@ public class GameInitRequestDto {
             throw new IllegalStateException(String.format(BAD_BRIDGE_SIZE_MESSAGE.toString(), bridgeSize));
         }
     }
-
 }

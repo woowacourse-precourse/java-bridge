@@ -23,13 +23,14 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class BridgeGameController {
+
+    private static final String INIT_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final BridgeGameService gameService;
     private final InputView inputView;
     private final OutputView outputView;
     private final Map<GameStateType, Runnable> gameStateMap;
     private GameStateType state;
     private String sessionId;
-
 
     private BridgeGameController() {
         this.gameService = new BridgeGameServiceImpl();
@@ -113,6 +114,7 @@ public class BridgeGameController {
      * 사용자의 입력 실수를 잡아내고, 해당 단계를 재실행합니다.
      */
     public void manipulate() {
+        outputView.printMessage(INIT_MESSAGE);
         while (state != STATE_DONE) {
             try {
                 gameStateMap.get(state).run();
