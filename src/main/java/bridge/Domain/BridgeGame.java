@@ -17,6 +17,12 @@ public class BridgeGame {
     public final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private GameStatus gameStatus;
 
+    public BridgeGame(int bridgeLength) {
+        gameStatus = GameStatus.PROGRESSING;
+        bridgeData.setBridge(bridgeMaker.makeBridge(bridgeLength));
+        bridgeData.initializeTotalAttempt();
+    }
+
     public void move(String nextStep) {
         gameStatus = GameStatus.PROGRESSING;
         bridgeData.addBridgeDesignByUser(nextStep);
@@ -62,11 +68,5 @@ public class BridgeGame {
 
     public boolean isGameFailed() {
         return gameStatus == GameStatus.FAILED;
-    }
-
-    public BridgeGame(int bridgeLength) {
-        gameStatus = GameStatus.PROGRESSING;
-        bridgeData.setBridge(bridgeMaker.makeBridge(bridgeLength));
-        bridgeData.initializeTotalAttempt();
     }
 }

@@ -11,6 +11,10 @@ import java.util.Objects;
  */
 public class OutputView {
 
+    public OutputView() {
+        System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
+    }
+
     public void printMap(List<String> bridgeDesignByUser, List<String> bridge) {
         System.out.print(StandardTools.BRIDGE_HEAD);
         printUpperBridge(bridgeDesignByUser, bridge);
@@ -102,9 +106,5 @@ public class OutputView {
             System.out.println(FrontMan.FINAL_GAME_RESULT);
             printMap(bridgeByUser, bridge);
         }
-    }
-
-    public OutputView() {
-        System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
     }
 }

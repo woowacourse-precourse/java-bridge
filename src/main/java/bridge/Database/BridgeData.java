@@ -14,16 +14,16 @@ public class BridgeData {
         this.bridge = bridge;
     }
 
+    public int getTotalAttempt() {
+        return this.totalAttempt;
+    }
+
     public List<String> copyBridge() {
         return List.copyOf(this.bridge);
     }
 
     public List<String> copyBridgeByUser() {
         return List.copyOf(this.bridgeByUser);
-    }
-
-    public int getTotalAttempt() {
-        return this.totalAttempt;
     }
 
     public void increaseAttempts() {
