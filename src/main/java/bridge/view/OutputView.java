@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.constant.OutputViewConstants.*;
+
 import bridge.domain.BridgeGame;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,19 +10,6 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
-    private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-    private static final String START = "[";
-    private static final String END = "]";
-    private static final String SEPARATOR = "|";
-    private static final String CONTENTS = " %s ";
-    private static final String BLANK = " ";
-    private static final String RESULT = "최종 게임 결과";
-    private static final String GAME_SUCCESS = "게임 성공 여부: 성공";
-    private static final String GAME_FAILED = "게임 성공 여부: 실패";
-    private static final String TOTAL_ATTEMPTS = "총 시도한 횟수: %d\n";
 
     public void printGameStart() {
         System.out.println(GAME_START);
