@@ -60,7 +60,9 @@ public class BridgeGameController {
         Result result = Result.SUCCESS;
         while (Result.SUCCESS.equals(result)) {
             result = bridgeGame.move(bridge, readMoving());
-            outputView.printMap(bridgeGame.getBridgeResult(), result);
+            if (!result.equals(Result.ARRIVED)) {
+                outputView.printMap(bridgeGame.getBridgeResult(), result);
+            }
             if (result.equals(Result.FAIL)) {
                 result = retryOrEnd();
             }
