@@ -38,14 +38,21 @@ public class BridgeGameController {
         outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserRoute());
     }
 
+    /**
+     * 이동이 제대로 되었는지 확인하는 메서드
+     */
     public boolean isCorrectMove() {
         return bridgeGame.isCorrectMove();
     }
 
 
-    public void endGame(int count) {
+    /**
+     * 게임을 종료하고 결과를 출력하는 메서드
+     */
+    public void endGame() {
         List<String> bridge = bridgeGame.getBridge();
         List<String> userRoute = bridgeGame.getUserRoute();
+        int count = bridgeGame.getGameCount();
         outputView.printResult(bridge, userRoute, count);
     }
 
