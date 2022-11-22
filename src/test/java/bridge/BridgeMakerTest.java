@@ -38,13 +38,5 @@ class BridgeMakerTest {
                 assertThat(moving).isIn(movingValues);
             }
         }
-
-        @DisplayName("범위에 벗어난 다리 길이 입력 -> 예외 발생")
-        @ValueSource(ints = {1, 25, -3})
-        @ParameterizedTest
-        void should_ThrowIllegalArgumentException_When_GiveWrongBridgeSize(Integer input) {
-            assertThatThrownBy(() -> bridgeMaker.makeBridge(input))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
     }
 }

@@ -15,6 +15,7 @@ public class InputView {
     public int readBridgeSize() {
         try {
             int bridgeSize = getBridgeSizeAfterAnnounce();
+            validateSize(bridgeSize);
             return bridgeSize;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -36,6 +37,14 @@ public class InputView {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.INPUT_ONLY_NUMBER_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE));
         }
+    }
+
+    private void validateSize(int size) {
+        if (MINIMUM_SIZE <= size && size <= MAXIMUM_SIZE) {
+            return;
+        }
+        throw new IllegalArgumentException(
+                String.format(ErrorMessage.WRONG_BRIDGE_SIZE_FORMAT.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE));
     }
 
     public String readMoving() {
