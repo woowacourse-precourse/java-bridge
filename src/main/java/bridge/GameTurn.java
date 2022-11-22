@@ -53,8 +53,11 @@ public class GameTurn {
         return bridgeLength;
     }
 
-    public static void ExceptionBridgeDirection(){
+    public static void ExceptionBridgeDirection(String direction){
         //이동할 방향 예외 처리
+        if(!direction.equals("U") && !direction.equals("D")){
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다");
+        }
     }
 
     public static void BridgeGameEnd(List<String> bridge, int cnt){
