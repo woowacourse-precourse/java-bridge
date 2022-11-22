@@ -8,17 +8,21 @@
    - [x] 이동 값을 입력 받아야한다. - InputView.readMoving()
      - [x] 입력값 의 유효성 검사를 해야한다. - InputView.isValidMoveCommand()
        - [x] 입력값이 "U" 또는 "D" 이어야 한다. - InputView.validateMoveFormat()
-- 잘못된 값을 입력한경우 [ERROR] 로 시작하는 에러 메세지를 출력 하고 입력을 다시 받아야한다.
+- [ ] 다리와 이동경로 간에 비교 결과를 얻어야한다.  - service.Referee.makeComparePath()
+  - [ ] 현재 위치의 경로가 움직일수있는 경로라면 O, 아니면 X 를 얻어야한다. - service.Referee.comparePath()
+  - [ ] 이동 경로가 위(U) 이면 1, 아래(D) 라면 0을 얻어야한다. - service.Referee.convertPath()
+- [ ] 전체 이동 경로를 출력해야한다. - OutPutView.printMap()
+  - [ ] 경로 리스트를 [ word | word ] 와 같은 포맷으로 만들어야한다. - OutPutView.toStringWithPath() 
+- [ ] 게임 성공 여부를 구해야한다.
+- [x] 사용자의 총 시도 횟수를 카운트 해야한다. - BridgeGame.addTotalCount()
 - [x] 게임 실패시 사용자가 입력한 값에 따라 재시작 또는 게임 종료 유무를 제공해야한다. - BridgeGameRun.isRetry()
   - [x] 게임 종료, 재시작 유무를 입력 받아야한다. - InputView.readGameCommand()
     - [x] 종료, 재시작 유무 입력 값에 대해 유효성 겁사를 해야한다. - InputView.isValidFailCommand()
     - [x] 입력값이 R 또는 Q 이어야 한다. - InputView.validateGameFailFormat()
 - [x] 재시작시 이동 경로를 초기화 한다. - BridgeGame.retry()
-- [ ] 종료시 프로그램이 종료되도록 해야한다. 
-- [ ] 사용자의 총 시도 횟수를 표시해야한다.
-  - [x] 사용자의 총 시도 횟수를 카운트 해야한다. - BridgeGame.addTotalCount()
-- 사용자가 이동할때마다 경로를 표시 해야한다. 
-- 게임 진행중 안내 메세지 또는 결과 메세지를 표시 해야한다.
+- [ ] 종료시 프로그램이 종료되도록 해야한다.
+  - [ ] 최종 이동 경로와 게임 성공 여부 및 총 시도한 횟수를 출력해야한다.
+- [ ]잘못된 값을 입력한경우 [ERROR] 로 시작하는 에러 메세지를 출력 하고 입력을 다시 받아야한다.
 
 ---
 
