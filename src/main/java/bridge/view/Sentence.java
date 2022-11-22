@@ -24,7 +24,7 @@ public enum Sentence {
     THREE_SIZE_BLANK("   "),
     THREE_SIZE_X(" X "),
 
-    DELIMETER("|"),
+    DELIMITER("|"),
     START_BRIDGE("["),
     END_BRIDGE("]"),
 

@@ -1,13 +1,11 @@
 package bridge.utils;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import bridge.Application;
-
 import camp.nextstep.edu.missionutils.test.NsTest;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class EmptyCheckerTest extends NsTest {
 

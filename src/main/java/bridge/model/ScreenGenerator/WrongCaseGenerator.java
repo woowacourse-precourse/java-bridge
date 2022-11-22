@@ -1,9 +1,7 @@
 package bridge.model.ScreenGenerator;
 
 import bridge.view.Sentence;
-
 import java.util.List;
-
 import java.util.stream.Collectors;
 
 public class WrongCaseGenerator implements ScreenGenerator {
@@ -15,26 +13,27 @@ public class WrongCaseGenerator implements ScreenGenerator {
     private static final int SECOND_ROW_GEN = 0;
 
     @Override
-    public void generatedTable(List<String> answer, int current) {
+    public void generatedTable(final List<String> answer, final int current) {
         BridgeEachRowGenerator bridgeEachRowGenerator = new BridgeEachRowGenerator(answer, current - 1);
         rowAppender(answer, current, bridgeEachRowGenerator);
     }
 
-    private void rowAppender(List<String> answer, int current, BridgeEachRowGenerator bridgeEachRowGenerator) {
+    private void rowAppender(final List<String> answer, final int current,
+            final BridgeEachRowGenerator bridgeEachRowGenerator) {
         firstRowAnswer = bridgeEachRowGenerator.generateRowInList(FIRST_ROW_GEN);
         secondRowAnswer = bridgeEachRowGenerator.generateRowInList(SECOND_ROW_GEN);
         inputIsU(answer, current);
         inputIsD(answer, current);
     }
 
-    private void inputIsU(List<String> answer, int current) {
+    private void inputIsU(final List<String> answer, final int current) {
         if (answer.get(current).equals(Sentence.UP_CHUNK.getValue())) {
             firstRowAnswer.add(Sentence.THREE_SIZE_BLANK.getValue());
             secondRowAnswer.add(Sentence.THREE_SIZE_X.getValue());
         }
     }
 
-    private void inputIsD(List<String> answer, int current) {
+    private void inputIsD(final List<String> answer, final int current) {
         if (answer.get(current).equals(Sentence.DOWN_CHUNK.getValue())) {
             firstRowAnswer.add(Sentence.THREE_SIZE_X.getValue());
             secondRowAnswer.add(Sentence.THREE_SIZE_BLANK.getValue());
@@ -43,9 +42,9 @@ public class WrongCaseGenerator implements ScreenGenerator {
 
     @Override
     public String toString() {
-        return firstRowAnswer.stream().collect(Collectors.joining(Sentence.DELIMETER.getValue(),
+        return firstRowAnswer.stream().collect(Collectors.joining(Sentence.DELIMITER.getValue(),
                 Sentence.START_BRIDGE.getValue(), Sentence.END_BRIDGE.getValue())) +
-                "\n" + secondRowAnswer.stream().collect(Collectors.joining(Sentence.DELIMETER.getValue(),
+                "\n" + secondRowAnswer.stream().collect(Collectors.joining(Sentence.DELIMITER.getValue(),
                 Sentence.START_BRIDGE.getValue(), Sentence.END_BRIDGE.getValue()));
     }
 }

@@ -1,11 +1,8 @@
 package bridge.model.ScreenGenerator;
 
 import bridge.Application;
-
 import java.util.List;
-
 import org.assertj.core.api.Assertions;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 

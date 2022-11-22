@@ -1,16 +1,11 @@
 package bridge.model.ScreenGenerator;
 
 import bridge.Application;
-
 import bridge.view.Sentence;
 import camp.nextstep.edu.missionutils.test.NsTest;
-
 import java.util.List;
-
 import org.assertj.core.api.Assertions;
-
 import org.junit.jupiter.api.DisplayName;
-
 import org.junit.jupiter.api.Test;
 
 class BridgeEachRowGeneratorTest extends NsTest {

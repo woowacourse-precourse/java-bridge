@@ -1,23 +1,22 @@
 package bridge.model.ScreenGenerator;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import bridge.view.Sentence;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BridgeEachRowGenerator {
+
+    private static final int DIVISOR = 2;
 
     private final List<String> answer;
     private final int current;
 
-    private static final int DIVISOR = 2;
-
-    public BridgeEachRowGenerator(List<String> answer, int current) {
+    public BridgeEachRowGenerator(final List<String> answer, final int current) {
         this.answer = answer;
         this.current = current;
     }
 
-    public List<String> generateRowInList(int divisor) {
+    public List<String> generateRowInList(final int divisor) {
         List<String> rowAnswer = new ArrayList<>();
         for (int i = 0; i <= current; i++) {
             rowAnswer.add(addOkOrBlank(answer, i, divisor));
@@ -25,7 +24,7 @@ public class BridgeEachRowGenerator {
         return rowAnswer;
     }
 
-    private String addOkOrBlank(List<String> answer, int index, int divisor) {
+    private String addOkOrBlank(final List<String> answer, final int index, final int divisor) {
         List<String> zeroAndBlank = List.of(Sentence.THREE_SIZE_O.getValue(), Sentence.THREE_SIZE_BLANK.getValue());
         StringBuilder sb = new StringBuilder();
         if (answer.get(index).equals(Sentence.UP_CHUNK.getValue())) {

@@ -1,9 +1,7 @@
 package bridge.model.ScreenGenerator;
 
 import bridge.view.Sentence;
-
 import java.util.List;
-
 import java.util.stream.Collectors;
 
 public class CorrectCaseGenerator implements ScreenGenerator {
@@ -15,12 +13,12 @@ public class CorrectCaseGenerator implements ScreenGenerator {
     private List<String> firstRowAnswer;
 
     @Override
-    public void generatedTable(List<String> answer, int current) {
+    public void generatedTable(final List<String> answer, final int current) {
         BridgeEachRowGenerator bridgeEachRowGenerator = new BridgeEachRowGenerator(answer, current);
         rowAppender(bridgeEachRowGenerator);
     }
 
-    private void rowAppender(BridgeEachRowGenerator bridgeEachRowGenerator) {
+    private void rowAppender(final BridgeEachRowGenerator bridgeEachRowGenerator) {
         firstRowAnswer = bridgeEachRowGenerator.generateRowInList(SELECT_FIRST);
         secondRowAnswer = bridgeEachRowGenerator.generateRowInList(SELECT_SECOND);
     }
@@ -28,10 +26,10 @@ public class CorrectCaseGenerator implements ScreenGenerator {
     @Override
     public String toString() {
         return firstRowAnswer.stream().collect(
-                Collectors.joining(Sentence.DELIMETER.getValue(), Sentence.START_BRIDGE.getValue(),
-                Sentence.END_BRIDGE.getValue())) + "\n" + secondRowAnswer.stream().collect(
-                Collectors.joining(Sentence.DELIMETER.getValue(), Sentence.START_BRIDGE.getValue(),
-                Sentence.END_BRIDGE.getValue()));
+                    Collectors.joining(Sentence.DELIMITER.getValue(), Sentence.START_BRIDGE.getValue(),
+                    Sentence.END_BRIDGE.getValue())) + "\n" + secondRowAnswer.stream().collect(
+                    Collectors.joining(Sentence.DELIMITER.getValue(), Sentence.START_BRIDGE.getValue(),
+                    Sentence.END_BRIDGE.getValue()));
     }
 }
 

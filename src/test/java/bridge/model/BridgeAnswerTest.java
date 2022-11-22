@@ -3,9 +3,7 @@ package bridge.model;
 import bridge.Application;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-
 import camp.nextstep.edu.missionutils.test.NsTest;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +17,7 @@ class BridgeAnswerTest extends NsTest {
                     BridgeLength.from(5));
             int result = bridgeAnswer.compareWithUserMove(3, "U");
             if (result != 1 && result != 2 && result != 3) {
-                    throw new IllegalArgumentException("generated result is not valid.");
+                throw new IllegalArgumentException("generated result is not valid.");
             }
         }
     }

@@ -3,20 +3,20 @@ package bridge.model;
 import bridge.model.ScreenGenerator.CorrectCaseGenerator;
 import bridge.model.ScreenGenerator.ScreenGenerator;
 import bridge.model.ScreenGenerator.WrongCaseGenerator;
-
 import java.util.List;
 
 public class BridgeScreenModeSelector {
 
-    private final List<String> answer;
-    private final int current;
-    private final int printCase;
 
     private static final int REACHED_END = 1;
     private static final int COMPARE_SAME = 2;
     private static final int COMPARE_DIFFERENT = 3;
 
-    BridgeScreenModeSelector(List<String> answer, int current, int printCase) {
+    private final List<String> answer;
+    private final int current;
+    private final int printCase;
+
+    BridgeScreenModeSelector(final List<String> answer,final  int current, final int printCase) {
         this.answer = answer;
         this.current = current;
         this.printCase = printCase;

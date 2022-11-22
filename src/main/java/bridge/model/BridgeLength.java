@@ -4,9 +4,10 @@ import bridge.view.Sentence;
 
 public class BridgeLength {
 
-    private final Integer length;
     private static final int MIN_LIMIT = 3;
     private static final int MAX_LIMIT = 20;
+
+    private final Integer length;
 
     private BridgeLength(final int length) {
         if (!isBetweenRange(length)) {

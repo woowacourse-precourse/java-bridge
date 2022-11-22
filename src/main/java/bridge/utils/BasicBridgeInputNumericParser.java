@@ -1,9 +1,7 @@
 package bridge.utils;
 
 import bridge.model.BridgeLength;
-
 import java.util.stream.Stream;
-
 import java.util.function.IntFunction;
 
 public class BasicBridgeInputNumericParser {

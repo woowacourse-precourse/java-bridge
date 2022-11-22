@@ -1,13 +1,11 @@
 package bridge.utils;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import bridge.Application;
-
 import camp.nextstep.edu.missionutils.test.NsTest;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BasicBridgeInputNumericParserTest extends NsTest {
 
