@@ -19,19 +19,17 @@ public class BridgeGameController {
             try {
                 choiceGameMode();
             } catch (IllegalArgumentException ex) {
-                handleErrors(ex.getMessage());
+                handleErrors(GameException.valueOf(ex.getMessage()));
             }
         }
     }
 
-    private void handleErrors(String errorMessage) {
-        if (GameException.isSystemError(errorMessage)) {
-            OutputView.printSystemError(errorMessage);
+    private void handleErrors(GameException gameException) {
+        if (GameException.isSystemError(gameException)) {
             gameProgress = GameProgress.EXIT;
-            return;
         }
 
-        OutputView.printError(errorMessage);
+        OutputView.printError(gameException);
     }
 
     private void choiceGameMode() {

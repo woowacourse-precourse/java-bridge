@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.GameException;
 import bridge.domain.MoveResult;
 import bridge.domain.Player;
 
@@ -9,16 +10,12 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String GAME_END = "최종 게임 결과";
     private static final String GAME_RESULT = "게임 성공 여부: ";
     private static final String GAME_TRY_COUNTS = "총 시도한 횟수: ";
     private static final String COMMA_SPACE = ", ";
     private static final String VERTICAL_BAR = "|";
-
-    private static final String GAME_ERROR = "[ERROR] ";
-    private static final String SYSTEM_ERROR = "[SYSTEM ERROR] ";
 
     private OutputView() {
     }
@@ -57,11 +54,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printError(String errorMessage) {
-        System.out.println(GAME_ERROR + errorMessage);
-    }
-
-    public static void printSystemError(String errorMessage) {
-        System.out.println(SYSTEM_ERROR + errorMessage);
+    public static void printError(GameException gameException) {
+        System.out.println(gameException.toString());
     }
 }

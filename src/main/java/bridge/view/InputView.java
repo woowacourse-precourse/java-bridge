@@ -35,7 +35,7 @@ public class InputView {
 
     private static void validateInt(String string) {
         if (!isAllDigit(string)) {
-            throw new IllegalArgumentException(GameException.INVALID_INTEGER.getMessage());
+            throw new IllegalArgumentException(GameException.INVALID_INTEGER.name());
         }
     }
 
