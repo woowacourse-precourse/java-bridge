@@ -50,9 +50,4 @@ public class BridgeGameController {
     public boolean compareBridgeLength() {
         return bridgeGame.getBridge().compareLength(bridgeGame.getUserInput());
     }
-
-    public boolean isRestart(String gameCommand) {
-        return GameCommand.fromCommand(gameCommand)
-                .isRestart();
-    }
 }
