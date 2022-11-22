@@ -53,23 +53,36 @@ public class OutputView {
             return 0;
         } return number;
     }
-    public static int validatorNumberRange(int input){
-        if (input < 3 || input > 20){
+    public static int validatorNumberRange(int input) {
+        try {
+            if (input < 3 || input > 20) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 3 ~ 20 사이의 숫자를 입력해주세요.");
             return 0;
-        } return input;
+        }
+        return input;
     }
 
-    public static String validatorUserSelect(String user){
-        if (user.equals("D") || user.equals("U")) {return user;}
-        System.out.println("[ERROR] U 혹은 D만 입력해 주세요.");
-        return "";
+    public static String validatorUserSelect(String user) {
+        try {
+            if (user.equals("D") || user.equals("U")) {return user;}
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] U 혹은 D만 입력해 주세요.");
+            return "";
+        }
     }
 
     public static String validatorRetryUserSelect(String user){
-        if(user.equals("R") || user.equals("Q")) {return user;}
-        System.out.println("[ERROR] R 혹은 Q만 입력해 주세요.");
-        return "";
+        try {
+            if (user.equals("R") || user.equals("Q")) {return user;}
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] R 혹은 Q만 입력해 주세요.");
+            return "";
+        }
     }
 
     public static void printCount(int count){
