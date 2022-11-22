@@ -47,7 +47,6 @@ public class BridgeController {
         }
     }
 
-
     // 출력
     public StringBuffer printMapController(List<String> nowBridge, List<String> generatedBridge) {
         return outputView.printMap(nowBridge, generatedBridge);

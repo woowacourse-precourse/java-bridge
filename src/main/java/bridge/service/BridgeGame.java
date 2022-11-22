@@ -76,9 +76,11 @@ public class BridgeGame {
         return false;
     }
 
-    public String printResultService(int count, List<String> nowBridge, List<String> generatedBridge) {
-        StringBuffer bridgeScreen = bridgeController.printMapController(nowBridge, generatedBridge);
-        String gameSuccess = isGameWin(nowBridge, generatedBridge);
+    public StringBuffer printMapService(List<String> nowBridge, List<String> generatedBridge) {
+        return bridgeController.printMapController(nowBridge, generatedBridge);
+    }
+
+    public String printResultService(int count, StringBuffer bridgeScreen, String gameSuccess) {
         return bridgeController.printResultController(count, bridgeScreen, gameSuccess);
     }
 

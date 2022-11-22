@@ -41,13 +41,7 @@ class ApplicationTest extends NsTest {
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
-            assertThat(output()).contains(
-                    "최종 게임 결과",
-                    "[ O |   | O ]",
-                    "[   | O |   ]",
-                    "게임 성공 여부: 성공",
-                    "총 시도한 횟수: 1"
-            );
+            assertThat(output()).contains("최종 게임 결과", "[ O |   | O ]", "[   | O |   ]", "게임 성공 여부: 성공", "총 시도한 횟수: 1");
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
@@ -90,9 +84,8 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 예외_테스트_게임_재시작_여부_R_또는_Q가_아닌_문자를_입력하는_경우() {
-        assertThatThrownBy(() -> {
-            bridgeException.gameCommandException("G");
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> bridgeException.gameCommandException("G")
+        ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] R, Q 중에서 하나의 문자를 입력하시오.");
     }
 
@@ -180,8 +173,7 @@ class ApplicationTest extends NsTest {
         String output = outputView.printResult(2, bridgeScreen, LOSE.getElement());
 
         // then
-        assertEquals("최종 게임 결과\n" + "[ O |   | X ]\n[   | O |   ]\n"
-                + "\n" + "게임 성공 여부: 실패\n" + "총 시도한 횟수: 2", output);
+        assertEquals("최종 게임 결과\n" + "[ O |   | X ]\n[   | O |   ]\n" + "\n" + "게임 성공 여부: 실패\n" + "총 시도한 횟수: 2", output);
     }
 
 
