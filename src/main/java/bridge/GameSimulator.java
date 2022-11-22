@@ -8,9 +8,9 @@ import java.util.List;
 
 public class GameSimulator {
 
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private BridgeGame bridgeGame = new BridgeGame();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void simulateGame() {
         int bridgeSize = initializeGame();
@@ -44,7 +44,7 @@ public class GameSimulator {
             userRoute.add(moving);
             outputView.printMap(userRoute, bridge);
 
-            if(!bridgeGame.move(moving, bridge)) {
+            if (!bridgeGame.move(moving, bridge)) {
                 break;
             }
         }
@@ -53,14 +53,15 @@ public class GameSimulator {
 
     /**
      * 게임 한 라운드가 끝난 뒤 game clear 체크 및 game retry를 한다.
+     *
      * @return 재시작 여부
      */
     private boolean gameover(List<String> userRoute, List<String> bridge) {
-        if(bridgeGame.checkCrossingBridge(userRoute, bridge)) {
+        if (bridgeGame.checkCrossingBridge(userRoute, bridge)) {
             return false;
         }
 
-        if(inputView.readGameCommand()) {
+        if (inputView.readGameCommand()) {
             bridgeGame.retry(userRoute);
             return true;
         }

@@ -10,7 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private final OutputView outputView = new OutputView();
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
 
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
