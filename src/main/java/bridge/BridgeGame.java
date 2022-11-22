@@ -1,23 +1,60 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import java.util.List;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+public class BridgeGame {
+    private int size;
+    private boolean[] stepStatus;
+    private int stepNumber;
+    private int tryNumber;
+    private List<String> bridge;
+    private final BridgeMaker bridgeMaker;
+
+    public BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public boolean getStepStatus(int idx) {
+        return this.stepStatus[idx];
+    }
+
+    public int getStepNumber() {
+        return this.stepNumber;
+    }
+
+    public int getTryNumber() {
+        return this.tryNumber;
+    }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
+    public void initializeBridgeGame(int size) {
+        this.stepNumber = 0;
+        this.stepStatus = new boolean[size];
+        this.tryNumber = 1;
+        this.size = size;
+        this.bridge = this.bridgeMaker.makeBridge(this.size);
+    }
+
+    public boolean terminateCheck() {
+        return (this.size == this.stepNumber) && (this.stepStatus[this.size - 1]);
+    }
+
     public void retry() {
+        this.stepNumber = 0;
+        this.stepStatus = new boolean[this.size];
+        this.tryNumber++;
+    }
+
+    public boolean move(String userInput) {
+        if (this.bridge.get(this.stepNumber).equals(userInput)) {
+            this.stepStatus[this.stepNumber] = true;
+            this.stepNumber++;
+            return true;
+        }
+        this.stepNumber++;
+        return false;
     }
 }
