@@ -1,10 +1,8 @@
 package bridge.service;
 
-import bridge.service.itf.CheckService;
 import bridge.type.ResultType;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
