@@ -1,10 +1,10 @@
 package bridge.view;
 
 import bridge.domain.Attempt;
+import bridge.domain.Bridge;
 import bridge.domain.Status;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -38,64 +38,9 @@ public class OutputView {
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * 첫번째 행 문자열과 두번째 행 문자열을 나눠 생성한다.
      */
-    public static void printMap(List<String> bridge, List<String> user) {
-        String firstRow = makeFirstRow(bridge, user);
-        String secondRow = makeSecondRow(bridge, user);
-
-        System.out.println("[ " + firstRow + " ]");
-        System.out.println("[ " + secondRow + " ]\n");
-    }
-
-    private static String makeFirstRow(List<String> bridge, List<String> user) {
-        String[] status = initializeArray(user.size());
-
-        for (int index = 0; index < user.size(); index++) {
-            status[index] = compareFirstRowValue(bridge.get(index), user.get(index));
-            if (status[index].equals("X")) {
-                break;
-            }
-        }
-
-        return joinByPipe(status);
-    }
-
-    private static String makeSecondRow(List<String> bridge, List<String> user) {
-        String[] status = initializeArray(user.size());
-
-        for (int index = 0; index < user.size(); index++) {
-            status[index] = compareSecondRowValue(bridge.get(index), user.get(index));
-            if (status[index].equals("X")) {
-                break;
-            }
-        }
-
-        return joinByPipe(status);
-    }
-
-    private static String[] initializeArray(int size) {
-        return Stream.iterate(0, index -> index < size, index -> index + 1)
-                .map(string -> " ")
-                .toArray(String[]::new);
-    }
-
-    private static String compareFirstRowValue(String bridgeValue, String userValue) {
-        if (bridgeValue.equals("U") && bridgeValue.equals(userValue)) {
-            return "O";
-        }
-        if (userValue.equals("U")) {
-            return "X";
-        }
-        return " ";
-    }
-
-    private static String compareSecondRowValue(String bridgeValue, String userValue) {
-        if (bridgeValue.equals("D") && bridgeValue.equals(userValue)) {
-            return "O";
-        }
-        if (userValue.equals("D")) {
-            return "X";
-        }
-        return " ";
+    public static void printMap(Bridge bridge, List<String> user) {
+        System.out.println("[ " + joinByPipe(bridge.makeRow(user, "U")) + " ]");
+        System.out.println("[ " + joinByPipe(bridge.makeRow(user, "D")) + " ]\n");
     }
 
     private static String joinByPipe(String[] status) {
@@ -111,7 +56,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> bridge, List<String> user) {
+    public static void printResult(Bridge bridge, List<String> user) {
         printMap(bridge, user);
     }
 

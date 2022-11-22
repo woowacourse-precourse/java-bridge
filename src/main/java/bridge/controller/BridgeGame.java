@@ -1,23 +1,20 @@
 package bridge.controller;
 
 import bridge.domain.Attempt;
+import bridge.domain.Bridge;
 import bridge.domain.Command;
 import bridge.domain.Status;
 import bridge.service.BridgeGameService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> bridge;
+    private Bridge bridge;
     private final Attempt attempt;
     private final BridgeGameService bridgeGameService;
 
     public BridgeGame() {
-        bridge = new ArrayList<>();
         attempt = new Attempt();
         bridgeGameService = new BridgeGameService();
     }
@@ -26,7 +23,7 @@ public class BridgeGame {
     * 게임 진행을 위한 초기화 시 사용하는 메서드
     * */
     public void start() {
-        bridge = bridgeGameService.initializeGame();
+        bridge = new Bridge(bridgeGameService.initializeGame());
     }
 
     /**
