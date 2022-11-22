@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.domain.Command;
 import bridge.domain.Player;
 import bridge.in.InputView;
 import bridge.out.MapViewDto;
