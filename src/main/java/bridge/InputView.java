@@ -39,6 +39,7 @@ public class InputView {
     public static String readGameCommand() {
         String("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String string = Console.readLine().toUpperCase();
+        System.out.println(string);
         if (!(string.equals("R") || string.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다.");
         }

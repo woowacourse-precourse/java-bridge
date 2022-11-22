@@ -26,27 +26,29 @@ public class BridgeGame {
         printMap(playerList, BRIDGE_ANSWER);
     }
 
-    private void Repeat() {
-        Boolean keepPlay = true;
+    public Boolean Repeat() {
         Boolean retry = true;
         while (retry) {
             Play();
-            if (playerList.equals(BRIDGE_ANSWER)) { break; }
+            if (playerList.equals(BRIDGE_ANSWER)) {
+                success = true;
+                break; }
             retry = retry();
-            keepPlay = retry;
         }
+        return retry;
     }
 
-    private void Play() {
+    public Boolean Play() {
         moveCount = 0;
         playerList.clear();
+        success = false;
         Boolean repeat = true;
         while (repeat && (moveCount < BRIDGE_ANSWER.size())) { repeat = Proceed(); }
-        if (playerList.equals(BRIDGE_ANSWER)) { success = true; }
         tryCount ++;
+        return true;
     }
 
-    private Boolean Proceed() {
+    public Boolean Proceed() {
         String playerInput;
         while (true) {
             try {
@@ -57,7 +59,7 @@ public class BridgeGame {
         return AnalyzeBridgeInput(playerInput);
     }
 
-    private Boolean AnalyzeBridgeInput(String playerInput) {
+    public Boolean AnalyzeBridgeInput(String playerInput) {
         if (BRIDGE_ANSWER.get(moveCount).equals(playerInput))
         { move(playerInput);
             return true; }
@@ -101,7 +103,27 @@ public class BridgeGame {
         return false;
     }
 
+    public List<String> GetPlayerList() {
+        return playerList;
+    }
+
+    public void SetPlayerList(List<String> list) {
+        playerList = list;
+    }
+
     public void SetMoveCount(int number) {
         moveCount = number;
+    }
+
+    public Boolean GetSuccess() {
+        return success;
+    }
+
+    public int GetTryCount() {
+        return tryCount;
+    }
+
+    public int GetMoveCount() {
+        return moveCount;
     }
 }
