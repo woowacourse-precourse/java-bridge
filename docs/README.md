@@ -35,7 +35,6 @@
 9. BridgeMakerTest: bridge maker 클래스와 관련된 test
    - 잘 작동하는지 
 10. MoveTest
-   - 기본적으로 u와 d가 정상적으로 작동하는지 (분리)
    - 숫자를 넣을 경우
    - 옵션을 포함한 string을 입력할 경우 
 11. GameTest

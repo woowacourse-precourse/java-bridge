@@ -50,13 +50,21 @@ class GameTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 0, 1, 0, 1);
     }
-    @DisplayName("예외 재시도 값 테스트")
+    @DisplayName("예외 재시도 값으로 non-valid String Command 테스트")
     @Test
-    void exception_retry_test() {
+    void exception_retry_String_test() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "D", "U", "U", "E");
             assertThat(output()).contains(ErrorMessage.ERROR_NOT_VALID_COMMAND.getDescription());
             }, 0, 1, 0);
+    }
+    @DisplayName("예외 재시도 값으로 integer Command 테스트")
+    @Test
+    void exception_retry_integer_test() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "U", "U", "5");
+            assertThat(output()).contains(ErrorMessage.ERROR_NOT_VALID_COMMAND.getDescription());
+        }, 0, 1, 0);
     }
     @Override
     protected void runMain() {
