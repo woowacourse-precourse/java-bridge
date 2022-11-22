@@ -3,7 +3,7 @@ package bridge;
 public enum BridgeStructure {
 
     START("[ "),
-    TRUE("O "),
+    TRUE("O"),
     SEPARATOR(" | "),
     END(" ]"),
     FALSE(" X ]");
