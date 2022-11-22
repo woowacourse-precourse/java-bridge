@@ -13,12 +13,11 @@ import java.io.PrintStream;
 import java.util.List;
 
 public class OutputViewTest {
-    private static OutputView outputView;
+    private static final OutputView outputView = OutputView.getInstance();
     private static OutputStream out;
 
     @BeforeEach
     void beforeEach() {
-        outputView = new OutputView();
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
     }
