@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 
 import static bridge.utils.constant.Constants.*;
 
-import bridge.domain.BridgeBlock;
 import bridge.domain.Direction;
 
 /**

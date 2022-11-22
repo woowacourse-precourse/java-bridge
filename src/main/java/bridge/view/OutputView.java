@@ -27,10 +27,8 @@ public class OutputView {
     public void printResult(PlayerStatus status, BridgeStatus bridgeStatus) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(bridgeStatus);
-        String successOrNot = status.getName();
-        int tryCount = status.getTryCount();
-        System.out.println(SUCCESS_OR_NOT_MESSAGE + successOrNot);
-        System.out.println(TRY_COUNT_MESSAGE + tryCount);
+        System.out.println(SUCCESS_OR_NOT_MESSAGE + status.getName());
+        System.out.println(TRY_COUNT_MESSAGE + status.getTryCount());
     }
 
     public void printGameStart() {
