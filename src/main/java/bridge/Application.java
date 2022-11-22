@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -32,40 +33,35 @@ public class Application {
 
     private static List<String> makeBridge() {
         outputView.printStart();
-        while (true) {
-            try {
-                outputView.printBridgeSizeInput();
-                List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-                return bridge;
-            } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printError("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            }
+        try {
+            outputView.printBridgeSizeInput();
+            List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+            return bridge;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printError("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
+        return new ArrayList<>();
     }
 
     private static Boolean move() {
-        while (true) {
-            try {
-                outputView.printMoveInput();
-                Boolean success = bridgeGame.move(inputView.readMoving());
-                outputView.printMap(bridgeGame.getMoveRecord());
-                return success;
-            } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printError("움직임은 U, D만 입력할 수 있습니다.");
-            }
+        try {
+            outputView.printMoveInput();
+            Boolean success = bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.getMoveRecord());
+            return success;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printError("움직임은 U, D만 입력할 수 있습니다.");
         }
+        return false;
     }
 
     private static void command() {
-        while (true) {
-            try {
-                outputView.printCommandInput();
-                String command = inputView.readGameCommand();
-                bridgeGame.command(command);
-                return;
-            } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printError("커맨드는 R, Q만 입력할 수 있습니다.");
-            }
+        try {
+            outputView.printCommandInput();
+            String command = inputView.readGameCommand();
+            bridgeGame.command(command);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printError("커맨드는 R, Q만 입력할 수 있습니다.");
         }
     }
 
