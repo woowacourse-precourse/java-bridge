@@ -11,10 +11,14 @@ public class BridgeGameRunner {
     }
 
     public void run() {
-        bridgeController.startGame();
-        do {
-            bridgeController.onGame();
-        } while (bridgeController.isNotFailure());
-        bridgeController.endGame();
+        try {
+            bridgeController.startGame();
+            do {
+                bridgeController.onGame();
+            } while (bridgeController.isNotEnd());
+            bridgeController.endGame();
+        } catch (RuntimeException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 }

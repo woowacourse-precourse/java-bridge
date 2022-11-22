@@ -1,8 +1,8 @@
 package bridge.controller;
 
+import bridge.BridgeGame;
 import bridge.constant.GameCommand;
 import bridge.constant.MovingDirection;
-import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -32,8 +32,11 @@ public class BridgeController {
         outputView.printMap(bridgeGame);
     }
 
-    public boolean isNotFailure() {
-        if (!bridgeGame.fail()) {
+    public boolean isNotEnd() {
+        if (bridgeGame.isFinished()) {
+            return false;
+        }
+        if (bridgeGame.isNotFail()) {
             return true;
         }
         outputView.printRetryOrQuitPhrase();
