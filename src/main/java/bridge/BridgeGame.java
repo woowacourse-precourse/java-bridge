@@ -48,6 +48,37 @@ public class BridgeGame {
         return Objects.equals(bridgeData, inputMoving);
     }
 
+    public void makeMapWhenFirstTime(String inputMoving) {
+        if (Objects.equals(inputMoving, "U")) {
+            firstData.append("O");
+            secondData.append(" ");
+        }
+        if (Objects.equals(inputMoving, "D")) {
+            firstData.append(" ");
+            secondData.append("O");
+        }
+    }
+
+    public void makeMapWhenNormalState(String inputMoving) {
+        if (Objects.equals(inputMoving, "U")) {
+            firstData.append(" | O");
+            secondData.append(" |  ");
+        }
+        if (Objects.equals(inputMoving, "D")) {
+            firstData.append(" |  ");
+            secondData.append(" | O");
+        }
+    }
+
+    public List<StringBuilder> getMap(String inputMoving) {
+        if (firstData.length() > 0) {
+            makeMapWhenNormalState(inputMoving);
+            return List.of(firstData, secondData);
+        }
+        makeMapWhenFirstTime(inputMoving);
+        return List.of(firstData, secondData);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
