@@ -2,7 +2,6 @@ package bridge.logic;
 
 import bridge.domain.GameCommand;
 import bridge.domain.MovingResult;
-import bridge.view.View;
 import java.util.List;
 
 /**
