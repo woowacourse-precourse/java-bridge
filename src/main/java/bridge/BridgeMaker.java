@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    static final int INPUT_DOWN = 0;
+    static final int INPUT_UP = 1;
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -22,12 +25,12 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> result = new ArrayList<>();
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             int createNumber = bridgeNumberGenerator.generate();
-            if(createNumber == 0) {
+            if (createNumber == INPUT_DOWN) {
                 result.add("D");
             }
-            if(createNumber == 1) {
+            if (createNumber == INPUT_UP) {
                 result.add("U");
             }
         }
