@@ -56,7 +56,7 @@ public class Application {
     }
     
     public static String checkSuccessOrFailure(BridgeGame bridgeGame) {
-    	String successOrFailure = "실패";
+    	String successOrFailure = "";
     	successOrFailure = bridgeGame.checkSuccessFailure();
     	return successOrFailure;
     }

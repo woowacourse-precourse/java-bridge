@@ -15,7 +15,7 @@ public class InputView {
 	 * 다리의 길이를 입력받는다.
 	 */
 	public int readBridgeSize() {
-		while (bridgeLength == 0) {
+		do { 
 			System.out.println("\n다리의 길이를 입력해주세요.");
 			String bridgeLengthStr = Console.readLine();
 			try {
@@ -23,7 +23,7 @@ public class InputView {
 			} catch (IllegalArgumentException e) {
 				System.out.println("[ERROR] 다리의 길이는 3이상 20이하의 정수입니다.");
 			}
-		}
+		} while (bridgeLength < 3 || bridgeLength > 20);
 		return this.bridgeLength;
 	}
 
@@ -66,7 +66,7 @@ public class InputView {
 	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 	 */
 	public String readGameCommand() {
-		while (restartOrQuit.equals("")) {
+		do {
 			System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q");
 			String tempRestartOrQuit = Console.readLine();
 			try {
@@ -74,7 +74,7 @@ public class InputView {
 			} catch (IllegalArgumentException e) {
 				System.out.println("[ERROR] R와 Q만 선택하세요.");
 			}
-		}
+		} while (!restartOrQuit.equals("R") && !restartOrQuit.equals("Q"));
 		return restartOrQuit;
 	}
 

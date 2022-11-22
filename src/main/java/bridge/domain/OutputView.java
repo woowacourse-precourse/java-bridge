@@ -29,7 +29,7 @@ public class OutputView {
 
 	public String getAndPrintCurrentStateBridge(List<List<String>> upDownBridgeList) {
 		printMap(upDownBridgeList);
-		printCurrentStateBridge(upDownBridgeList);
+		System.out.println(this.currentStateBridge);
 		return this.currentStateBridge;
 	}
 
