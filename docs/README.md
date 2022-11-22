@@ -32,3 +32,4 @@
 - Attempt를 int 가 아닌 class 로 사용하도록 변경
 - user 를 List가 아닌 Bridge class를 사용하도록 변경
 - BridgeMaker 에서 메소드 추가 없이 Line Enum을 사용하도록 변경
+- 사용자 입력에 대한 예외 처리를 InputView 에서 하도록 변경

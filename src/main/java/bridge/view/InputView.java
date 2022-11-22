@@ -9,15 +9,29 @@ import static camp.nextstep.edu.missionutils.Console.*;
  */
 public class InputView {
 
+    private static final int LOWER_BOUND_INCLUDE = 3;
+    private static final int UPPER_BOUND_INCLUDE = 20;
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
         try {
-            String size = readLine();
-            return Integer.parseInt(size);
-        } catch (IllegalArgumentException e) {
+            int size = Integer.parseInt(readLine());
+            validateSize(size);
+            return size;
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 다리의 길이에 대한 입력이 잘못되었습니다.");
+        }
+    }
+
+    /**
+     * 다리의 길이에 대한 예외처리를 하는 메서드
+     * @param size 다리의 길이
+     */
+    private static void validateSize(int size) {
+        if (size < LOWER_BOUND_INCLUDE || size > UPPER_BOUND_INCLUDE) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
@@ -25,12 +39,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        String move = readLine();
+        String moving = readLine();
 
-        if (!(move.equals("D") || move.equals("U")))
-            throw new IllegalArgumentException("이동할 칸에 대한 입력이 잘못되었습니다.");
+        validateMoving(moving);
 
-        return move;
+        return moving;
+    }
+
+    private static void validateMoving(String moving) {
+        if (!(moving.equals("D") || moving.equals("U")))
+            throw new IllegalArgumentException("[ERROR] 이동할 칸에 대한 입력이 잘못되었습니다.");
     }
 
     /**
@@ -39,12 +57,16 @@ public class InputView {
     public static Command readGameCommand() {
         String command = readLine();
 
-        if (!(command.equals("R") || command.equals("Q")))
-            throw new IllegalArgumentException("재시작 옵션 대한 입력이 잘못되었습니다.");
+        validateCommand(command);
 
         if (command.equals("R"))
             return Command.RESTART;
 
         return Command.QUIT;
+    }
+
+    private static void validateCommand(String command) {
+        if (!(command.equals("R") || command.equals("Q")))
+            throw new IllegalArgumentException("[ERROR] 재시작 옵션 대한 입력이 잘못되었습니다.");
     }
 }

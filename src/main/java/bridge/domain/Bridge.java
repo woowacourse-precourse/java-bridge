@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private static final int LOWER_BOUND_INCLUDE = 3;
-    private static final int UPPER_BOUND_INCLUDE = 20;
     private final List<String> bridge;
 
     private Bridge(List<String> bridge) {
@@ -18,7 +16,6 @@ public class Bridge {
      * @return Bridge 객체
      */
     public static Bridge of(List<String> bridge) {
-        validate(bridge);
         return new Bridge(bridge);
     }
 
@@ -28,16 +25,6 @@ public class Bridge {
      */
     public static Bridge start() {
         return new Bridge(new ArrayList<>());
-    }
-
-    /**
-     * 길이에 대한 예외처리를 하는 메서드
-     * @param bridge: 문자열 리스트로 이루어진 다리
-     */
-    private static void validate(List<String> bridge) {
-        if (bridge.size() < LOWER_BOUND_INCLUDE || bridge.size() > UPPER_BOUND_INCLUDE) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
     }
 
     /**
