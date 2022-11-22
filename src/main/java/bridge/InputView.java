@@ -41,13 +41,20 @@ public class InputView {
     }
 
     public void validateReadMoving(String nextCell){
-        if(!nextCell.equals("U") || !nextCell.equals("D"))
+        if(!nextCell.equals("U") && !nextCell.equals("D"))
             throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
     }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String retry = Console.readLine();
+        return retry;
+    }
+
+    public void validateReadGameCommand(String retry){
+        if(!retry.equals("U") && !retry.equals("Q"))
+            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
     }
 }
