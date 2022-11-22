@@ -5,12 +5,12 @@ import bridge.bridge.BridgeMaker;
 import java.util.List;
 
 public class Result {
-    private static final String START_BRIDGE_CHARACTER = "[";
-    private static final String SUCCESS = " O ";
-    private static final String FAIL = " X ";
-    private static final String SEPARATOR = "|";
-    private static final String BLANK = "   ";
-    private static final String END_BRIDGE_CHARACTER = "]";
+    private static final String START_BRIDGE_CHARACTER = "[ ";
+    private static final String SUCCESS = "O";
+    private static final String FAIL = "X";
+    private static final String SEPARATOR = " | ";
+    private static final String BLANK = " ";
+    private static final String END_BRIDGE_CHARACTER = " ]";
     private String topBridgeResult;
     private String bottomBridgeResult;
     
@@ -20,9 +20,9 @@ public class Result {
     public void updateBridge(List<String> bridge, List<String> moves) {
         setBridgeMap();
         findFail(bridge, moves);
-        topBridgeResult = topBridgeResult.substring(0, topBridgeResult.length() - 1);
+        topBridgeResult = topBridgeResult.substring(0, topBridgeResult.length() - 3);
         topBridgeResult += END_BRIDGE_CHARACTER;
-        bottomBridgeResult = bottomBridgeResult.substring(0, bottomBridgeResult.length() - 1);
+        bottomBridgeResult = bottomBridgeResult.substring(0, bottomBridgeResult.length() - 3);
         bottomBridgeResult += END_BRIDGE_CHARACTER;
     }
 
@@ -63,12 +63,12 @@ public class Result {
 
     private void isFailedBridgeMap(String bridge) {
         if (bridge.equals(BridgeMaker.UP_BRIDGE_PHRASE)) {
-            topBridgeResult += (FAIL + END_BRIDGE_CHARACTER);
-            bottomBridgeResult += (BLANK + END_BRIDGE_CHARACTER);
+            topBridgeResult += (FAIL + SEPARATOR);
+            bottomBridgeResult += (BLANK + SEPARATOR);
         }
         if (bridge.equals(BridgeMaker.DOWN_BRIDGE_PHRASE)) {
-            topBridgeResult += (BLANK + END_BRIDGE_CHARACTER);
-            bottomBridgeResult += (FAIL + END_BRIDGE_CHARACTER);
+            topBridgeResult += (BLANK + SEPARATOR);
+            bottomBridgeResult += (FAIL + SEPARATOR);
         }
     }
 }

@@ -12,6 +12,7 @@ public class Application {
         GameController gameController = new GameController(bridgeGame, result);
 
         OutputView.printStart();
+        gameController.setEternalThing();
         gameController.playGame();
     }
 }

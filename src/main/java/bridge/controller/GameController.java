@@ -24,15 +24,16 @@ public class GameController {
     }
 
     public void playGame() {
-        setEternalThing();
-
         do {
             round();
             countTry++;
-            successResult();
+            if ((bridgeSize == bridgeGame.getMoves().size()) && (!isFailed())) {
+                successResult();
+                break;
+            }
             failedAndEndGame();
             bridgeGame.reset();
-        } while (retry);
+        } while ((retry));
     }
 
     private void round() {
@@ -44,12 +45,9 @@ public class GameController {
     }
 
     private boolean isFailed() {
-        for (int failedIndex = 0; failedIndex < bridgeGame.getMoves().size(); failedIndex++) {
-            if (!bridge.get(failedIndex).equals(bridgeGame.getMoves().get(failedIndex))) {
-                return true;
-            }
-        }
-        return false;
+        int current = bridgeGame.getMoves().size() - 1;
+
+        return !bridge.get(current).equals(bridgeGame.getMoves().get(current));
     }
 
     private void setBridge(BridgeController bridgeController) {
@@ -60,7 +58,7 @@ public class GameController {
         this.bridgeSize = bridgeController.getBridgeSize();
     }
 
-    private void setEternalThing() {
+    public void setEternalThing() {
         BridgeController bridgeController = new BridgeController();
         setBridge(bridgeController);
         setBridgeSize(bridgeController);
@@ -80,11 +78,10 @@ public class GameController {
     }
 
     private void successResult() {
-        if ((bridgeSize == bridgeGame.getMoves().size()) && (!isFailed())) {
             OutputView.printEndResult();
             OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
             OutputView.printResult(SUCCESS);
             OutputView.printTotalAttempts(countTry);
-        }
+
     }
 }
