@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.controller.BridgeController;
 import bridge.model.BridgeGame;
-import bridge.model.BridgeMaker;
 import bridge.view.ConsolidatedView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
