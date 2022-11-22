@@ -22,18 +22,18 @@ public class InputValidatorTest {
     @ValueSource(ints = {2, 1})
     @ParameterizedTest
     void should_minBridgeSizeException_When_inputBridgeSize(Integer size) {
-        final String NOT_MIN_SIZE = "다리의 길이는 최소 3이상이어야 합니다.";
+        final String NOT_MIN_SIZE = "다리의 길이는 3이상이어야 합니다.";
         String bridgeSize = String.valueOf(size);
         assertThatThrownBy(() -> new BridgeSizeRequestDto(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_MIN_SIZE);
     }
 
-    @DisplayName("다리 길이를 입력할 때 20이상이라면 예외 처리")
+    @DisplayName("다리 길이를 입력할 때 20초과라면 예외 처리")
     @ValueSource(strings = {"21", "50", "80", "100000"})
     @ParameterizedTest
     void should_maxBridgeSizeException_When_inputBridgeSize(String bridgeSize) {
-        final String NOT_MAX_SIZE = "다리의 길이는 최대 20미만이어야 합니다.";
+        final String NOT_MAX_SIZE = "다리의 길이는 20이하이어야 합니다.";
         assertThatThrownBy(() -> new BridgeSizeRequestDto(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_MAX_SIZE);
