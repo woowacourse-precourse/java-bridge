@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
-
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.List;
@@ -16,13 +14,11 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        List<String> randomBridge =
-                Stream.generate(() -> {
-                    if (bridgeNumberGenerator.generate() == 1) return "U";
-                    return "D";
-                }).limit(size)
-                        .collect(Collectors.toList());
 
-        return randomBridge;
+        return Stream.generate(() -> {
+            if (bridgeNumberGenerator.generate() == 1) return "U";
+            return "D";
+        }).limit(size)
+                .collect(Collectors.toList());
     }
 }
