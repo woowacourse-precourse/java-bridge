@@ -34,4 +34,25 @@ public class BridgeGameController {
             }
         }
     }
+
+    private static boolean move() {
+        String command = getMoving();
+        boolean result = game.move(command);
+        outputView.printMap(game.getUpperBridge());
+        outputView.printMap(game.getLowerBridge());
+        outputView.printEmptyLine();
+        return result;
+    }
+
+    private static String getMoving() {
+        outputView.printMessage(Message.MOVING);
+        while (true) {
+            try {
+                String command = inputView.readMoving();
+                return command;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 }
