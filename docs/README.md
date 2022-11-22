@@ -5,11 +5,11 @@
 
 ## 👩‍💻 구현할 기능 목록
 ### BridgeGame
-- [ ] 게임을 시작한다.
+- [x] 게임을 시작한다.
 - [x] 플레이어가 선택한 칸으로 이동한다.
-    - [ ] 선택한 칸을 이동할 수 없으면 게임을 재시작하거나 종료할 수 있다.
-- [ ] 게임을 재시작한다.
-- [ ] 다리를 끝까지 건너면 게임을 종료한다.
+    - [x] 선택한 칸을 이동할 수 없으면 게임을 재시작하거나 종료할 수 있다.
+- [x] 게임을 재시작한다.
+- [x] 다리를 끝까지 건너면 게임을 종료한다.
 
 ### BridgeMaker
 - [x] 다리 길이에 맞는 다리를 생성한다.
@@ -91,10 +91,10 @@ R
 ## ✅ 프로그래밍 요구사항
 
 ### 요구사항
-- [ ] 함수의 길이가 10라인을 넘어가지 않도록 구현한다.
-    - [ ] 함수가 한 가지 일만 잘 하도록 구현한다.
-- [ ] 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
-- [ ] `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
-- [ ] `InputView` 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
-- [ ] `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
+- [x] 함수의 길이가 10라인을 넘어가지 않도록 구현한다.
+    - [x] 함수가 한 가지 일만 잘 하도록 구현한다.
+- [x] 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
+- [x] `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
+- [x] `InputView` 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
+- [x] `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
 

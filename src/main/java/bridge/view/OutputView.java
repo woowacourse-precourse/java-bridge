@@ -80,12 +80,18 @@ public class OutputView {
     }
 
     public void makeMap(Bridge bridge, List<String> upBridgeMap, List<String> downBridgeMap) {
-        if (bridge.equals(Bridge.UP_CORRECT) || bridge.equals(Bridge.DOWN_WRONG)) {
+        if (bridge.equals(Bridge.UP_CORRECT)) {
             upBridgeMap.add(TextType.POSSIBLE_SPACE.getText());
-            downBridgeMap.add(TextType.IMPOSSIBLE_SPACE.getText());
+            downBridgeMap.add(" ");
 
-        } else if (bridge.equals(Bridge.UP_WRONG) || bridge.equals(Bridge.DOWN_CORRECT)) {
+        } else if (bridge.equals(Bridge.UP_WRONG)) {
             upBridgeMap.add(TextType.IMPOSSIBLE_SPACE.getText());
+            downBridgeMap.add(" ");
+        } else if (bridge.equals(Bridge.DOWN_WRONG)) {
+            upBridgeMap.add(" ");
+            downBridgeMap.add(TextType.IMPOSSIBLE_SPACE.getText());
+        } else if (bridge.equals(Bridge.DOWN_CORRECT)) {
+            upBridgeMap.add(" ");
             downBridgeMap.add(TextType.POSSIBLE_SPACE.getText());
         }
     }

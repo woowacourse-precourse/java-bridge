@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.type.Bridge;
 import bridge.type.TextType;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridges;
-    private List<Bridge> results;
+    private List<Bridge> results = new ArrayList<>();
     private int tryCount;
     private int pos;
 
@@ -20,13 +21,12 @@ public class BridgeGame {
      */
     public boolean move(String move) {
         if (bridges.get(pos).equals(move)) {
-            makeResult(true,bridges.get(pos));
+            makeResult(true,move);
             pos++;
             return true;
         }
 
-        makeResult(false,bridges.get(pos));
-        tryCount++;
+        makeResult(false,move);
         return false;
     }
 
@@ -36,17 +36,36 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        pos = 0;
+        results.clear();
+        tryCount++;
+    }
+
+    public List<Bridge> getResults() {
+        return results;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public int getPos() {
+        return pos;
+    }
+
+    public List<String> getBridges() {
+        return bridges;
     }
 
     public BridgeGame(List<String> bridges) {
         this.bridges = bridges;
+        this.tryCount = 1;
     }
 
     private void makeResult(boolean correctMove, String bridge) {
-
-        if (correctMove && bridge.equals(TextType.UP)) results.add(Bridge.UP_CORRECT);
-        else if (!correctMove && bridge.equals(TextType.UP)) results.add(Bridge.UP_WRONG);
-        else if (correctMove && bridge.equals(TextType.DOWN)) results.add(Bridge.DOWN_CORRECT);
-        else if (!correctMove && bridge.equals(TextType.DOWN)) results.add(Bridge.DOWN_WRONG);
+        if (correctMove && bridge.equals(TextType.UP.getText())) results.add(Bridge.UP_CORRECT);
+        else if (!correctMove && bridge.equals(TextType.UP.getText())) results.add(Bridge.UP_WRONG);
+        else if (correctMove && bridge.equals(TextType.DOWN.getText())) results.add(Bridge.DOWN_CORRECT);
+        else if (!correctMove && bridge.equals(TextType.DOWN.getText())) results.add(Bridge.DOWN_WRONG);
     }
 }
