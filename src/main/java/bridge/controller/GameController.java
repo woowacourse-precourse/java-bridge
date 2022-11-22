@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.Bridge;
 import bridge.domain.User;
 import bridge.service.BridgeGame;
+import bridge.service.BridgeService;
 import bridge.service.constant.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -14,6 +15,7 @@ public class GameController {
     private static final InputView inputView = InputView.getInstance();
     private static final OutputView outputView = OutputView.getInstance();
     private static final BridgeGame game = BridgeGame.getInstance();
+    private static final BridgeService bridgeService = BridgeService.getInstance();
 
     public static GameController instance = new GameController();
 
@@ -23,11 +25,12 @@ public class GameController {
 
     private GameController() {}
 
-    public BridgeGame create() {
+    public Bridge createMap() {
         try {
+            return bridgeService.create(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return create();
+            return createMap();
         }
     }
 
