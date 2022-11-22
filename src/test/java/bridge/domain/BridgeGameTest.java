@@ -53,6 +53,15 @@ class BridgeGameTest {
         assertThat(player.getBridgeMap()).isEqualTo(answer);
     }
 
+    @DisplayName("사용자의 BridgeRoute가 정상적으로 반영되는지 확인")
+    @Test
+    void move_사용자의_BridgeRoute_반영되는지_확인() {
+        List<String> answer = Arrays.asList("U", "D");
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        assertThat(player.getBridgeRoute()).isEqualTo(answer);
+    }
+
     @Test
     void retry() {
     }
