@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputController {
-    private InputView inputView ;
+    private InputView inputView;
 
     public InputController(InputView view) {
         this.inputView = view;

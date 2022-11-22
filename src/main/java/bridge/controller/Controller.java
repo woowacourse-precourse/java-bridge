@@ -14,8 +14,8 @@ public class Controller {
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
+    private final InputController inputController;
 
-    private InputController inputController;
     private Bridge bridge;
     private OutputView outputView;
     private List<String> choices;
