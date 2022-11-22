@@ -8,7 +8,6 @@ import java.io.PrintStream;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CheckExceptionTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
