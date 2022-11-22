@@ -19,10 +19,10 @@ public class BridgeGameController {
         initialize();
         while (retry) {
             String moving = moving();
-            if (bridgeGame.lose(moving)) {
+            if (bridgeGame.isLose(moving)) {
                 retryOrQuit();
             }
-            if (bridgeGame.win(moving)) {
+            if (bridgeGame.isWin(moving)) {
                 printResult(WIN_GAME);
                 break;
             }

@@ -45,10 +45,10 @@ public class BridgeGame {
     }
 
     private String convertMovingToAnswer(String moving, String bridgeSide) {
-        if (!lose(moving) && moving.equals(bridgeSide)) {
+        if (!isLose(moving) && moving.equals(bridgeSide)) {
             return RIGHT_ANSWER;
         }
-        if (lose(moving) && moving.equals(bridgeSide)) {
+        if (isLose(moving) && moving.equals(bridgeSide)) {
             return WRONG_ANSWER;
         }
         return NOT_CHOSEN;
@@ -79,11 +79,11 @@ public class BridgeGame {
     /**
      * 게임 승리 여부를 확인할 때 사용하는 메서드
      */
-    public boolean lose(String moving) {
+    public boolean isLose(String moving) {
         return !bridge.get(MovingData.getLastIndex()).equals(moving);
     }
 
-    public boolean win(String moving) {
-        return !lose(moving) && bridge.size() == MovingData.getSize();
+    public boolean isWin(String moving) {
+        return !isLose(moving) && bridge.size() == MovingData.getSize();
     }
 }

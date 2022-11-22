@@ -107,7 +107,7 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("U");
         bridgeGame.move("U");
-        boolean winBridgeGame = bridgeGame.win("U");
+        boolean winBridgeGame = bridgeGame.isWin("U");
 
         assertThat(winBridgeGame).isEqualTo(true);
     }
