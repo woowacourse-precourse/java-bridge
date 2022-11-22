@@ -16,6 +16,6 @@ public enum CommandOption {
     }
 
     public static boolean isRetry(String command){
-        return command.equals(QUIT.command);
+        return command.equals(RESTART.command);
     }
 }
