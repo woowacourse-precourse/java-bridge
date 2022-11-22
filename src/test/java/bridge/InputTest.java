@@ -2,6 +2,8 @@ package bridge;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -19,8 +21,25 @@ public class InputTest extends IOTest {
         systemIn("04");
         InputView inputTest = new InputView();
         assertThatThrownBy(inputTest::readBridgeSize)
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
+
+    @Test
+    void 아무것도_없는_사이즈_테스트() {
+        systemIn("");
+        InputView inputTest = new InputView();
+        assertThatThrownBy(inputTest::readBridgeSize)
+                .isInstanceOf(NoSuchElementException.class);
+    }
+
+    @Test
+    void 음수_사이즈_테스트() {
+        systemIn("-3");
+        InputView inputTest = new InputView();
+        assertThatThrownBy(inputTest::readBridgeSize)
+                .isInstanceOf(NoSuchElementException.class);
+    }
+
 
     @Test
     void 올바른_칸_입력_테스트() {
@@ -33,10 +52,18 @@ public class InputTest extends IOTest {
 
     @Test
     void UD_이외의_칸_입력_테스트() {
+        systemIn("X");
+        InputView inputTest = new InputView();
+        assertThatThrownBy(inputTest::readMoving)
+                .isInstanceOf(NoSuchElementException.class);
+    }
+
+    @Test
+    void UD_이외의_칸_입력_테스트2() {
         systemIn("");
         InputView inputTest = new InputView();
         assertThatThrownBy(inputTest::readMoving)
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 }
 
