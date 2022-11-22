@@ -71,7 +71,16 @@ public class Player {
 
     public boolean retry() {
         String command = inputView.readGameCommand();
+        if(!isValidCommand(command)){
+            throw new IllegalArgumentException("[ERROR] 재시도를 위해서는 R 그리고 종료를 위해서는 Q를 입력하여야 합니다.");
+        }
         return command.equals("R");
+    }
+
+    private boolean isValidCommand(String command) {
+        if(command.equals("R") || command.equals("Q"))
+            return true;
+        return false;
     }
 
     public void currentPositionReset(){
