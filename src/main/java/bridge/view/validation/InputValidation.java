@@ -6,7 +6,7 @@ import bridge.type.RetryType;
 
 public class InputValidation {
 
-    public boolean test(String readLine, boolean isDigit) {
+    public boolean isBridgeSizeValid(String readLine, boolean isDigit) {
         try {
             isDigit = isDigits(readLine);
         } catch (IllegalArgumentException e) {
@@ -15,7 +15,7 @@ public class InputValidation {
         return isDigit;
     }
 
-    public boolean test1(String readLine, boolean isPattern) {
+    public boolean isMovePositionValid(String readLine, boolean isPattern) {
         try {
             isPattern = isPositionPattern(readLine);
         } catch (IllegalArgumentException e) {
@@ -24,7 +24,7 @@ public class InputValidation {
         return isPattern;
     }
 
-    public boolean test2(String readLine, boolean isPattern) {
+    public boolean isGameCommandValid(String readLine, boolean isPattern) {
         try {
             isPattern = isRetryPattern(readLine);
         } catch (IllegalArgumentException e) {
