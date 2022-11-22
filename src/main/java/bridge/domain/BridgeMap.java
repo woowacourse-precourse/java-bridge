@@ -11,6 +11,9 @@ public class BridgeMap {
     public static final String FINISH_BRACKET = "]";
     public static final String DIVIDING_LINE = "|";
     public static final String EMPTY_SPACE = "   ";
+
+
+
     private final Stack<String> upStairs = new Stack<>();
     private final Stack<String> downStairs = new Stack<>();
 
@@ -22,7 +25,7 @@ public class BridgeMap {
         addFinishBracket();
     }
 
-    private void addFinishBracket() {
+    public void addFinishBracket() {
         upStairs.add(FINISH_BRACKET);
         downStairs.add(FINISH_BRACKET);
     }
@@ -34,14 +37,14 @@ public class BridgeMap {
         return stairs;
     }
 
-    private void addDividingLine() {
+    public void addDividingLine() {
         if (upStairs.size() != 1 && downStairs.size() != 1) {
             upStairs.push(DIVIDING_LINE);
             downStairs.push(DIVIDING_LINE);
         }
     }
 
-    private void pushValue(MapType mapType) {
+    public void pushValue(MapType mapType) {
         if (mapType.getStairs().equals(Stairs.UP_STAIRS.getAbbreviation())) {
             upStairs.push(mapType.getMapValue());
             downStairs.push(EMPTY_SPACE);
@@ -52,14 +55,14 @@ public class BridgeMap {
         }
     }
 
-    private void deleteFinishBracket() {
+    public void deleteFinishBracket() {
         if (upStairs.peek().equals(FINISH_BRACKET) && downStairs.peek().equals(FINISH_BRACKET)) {
             upStairs.pop();
             downStairs.pop();
         }
     }
 
-    private void mapInit() {
+    public void mapInit() {
         if (upStairs.isEmpty() && downStairs.isEmpty()) {
             upStairs.push(START_BRACKET);
             downStairs.push(START_BRACKET);
