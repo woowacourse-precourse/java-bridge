@@ -10,6 +10,10 @@ public class BridgeController {
         outputView.printAskLength();
         makeBridge();
         System.out.println();
+        do {
+            playGame();
+            gameOver();
+        } while (bridgeGame.isOngoing());
     }
 
     private void makeBridge() {
@@ -51,5 +55,10 @@ public class BridgeController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void gameOver() {
+        outputView.printRestart();
+        restartOrQuit();
     }
 }

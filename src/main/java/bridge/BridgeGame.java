@@ -82,6 +82,14 @@ public class BridgeGame {
         return count;
     }
 
+    public boolean isOngoing() {
+        if (moving.isEmpty()) {
+            return true;
+        }
+        int pathLastIndex = moving.size() - 1;
+        return moving.size() != bridge.size() && moving.get(pathLastIndex).equals(bridge.get(pathLastIndex));
+    }
+
     private void validateSize(int size) {
         if (size < BridgeConstant.MIN_LENGTH || BridgeConstant.MAX_LENGTH < size) {
             throw new IllegalArgumentException(ExceptionConstant.INCORRECT_LENGTH.getMessage());
