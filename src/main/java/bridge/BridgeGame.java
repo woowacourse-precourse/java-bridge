@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.validation.BridgeGameValidator.checkCommand;
 import static bridge.validation.BridgeGameValidator.checkMoving;
 
 import bridge.domain.Bridge;
@@ -29,9 +30,14 @@ public class BridgeGame {
         return canMove;
     }
 
-    public void retry() {
-        bridgeGameResult.increaseTryCount();
-        bridgeGameResult.initMoveState();
+    public boolean retry(String inputCommand) {
+        checkCommand(inputCommand);
+        if (inputCommand.equals(RETRY)) {
+            bridgeGameResult.increaseTryCount();
+            bridgeGameResult.initMoveState();
+            return true;
+        }
+        return false;
     }
 
     public boolean hasBridgeToMove(int moveCount) {
