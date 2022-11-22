@@ -23,4 +23,8 @@ public class Controller {
 	public void startGame() {
 		bridgeProgram.loop();
 	}
+
+	public void result() {
+		bridgeProgram.totalResult();
+	}
 }
