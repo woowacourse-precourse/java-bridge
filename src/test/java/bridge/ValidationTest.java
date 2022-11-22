@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.BridgeSize;
+import bridge.validation.Validation;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

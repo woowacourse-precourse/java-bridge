@@ -1,4 +1,4 @@
-package bridge;
+package bridge.validation;
 
 public class Validation {
     private static final String ERROR_MESSAGE = "[ERROR] ";

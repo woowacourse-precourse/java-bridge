@@ -1,5 +1,6 @@
-package bridge;
+package bridge.model;
 
+import bridge.validation.Validation;
 import bridge.type.MovingType;
 
 public class Moving {

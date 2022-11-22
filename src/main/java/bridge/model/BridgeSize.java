@@ -1,4 +1,6 @@
-package bridge;
+package bridge.model;
+
+import bridge.validation.Validation;
 
 public class BridgeSize {
     private int size;

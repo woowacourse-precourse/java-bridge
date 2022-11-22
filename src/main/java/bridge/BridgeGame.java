@@ -1,5 +1,10 @@
 package bridge;
 
+import bridge.model.Bridge;
+import bridge.model.BridgeSize;
+import bridge.model.Bridges;
+import bridge.model.Moving;
+import bridge.model.Retry;
 import bridge.type.MovingType;
 
 import java.util.Map;
