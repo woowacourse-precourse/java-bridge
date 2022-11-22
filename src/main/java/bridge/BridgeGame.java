@@ -33,9 +33,6 @@ public class BridgeGame {
         return movingHistory;
     }
 
-    /**
-     * 다리에 끝까지 도착했는지 여부 리턴
-     */
     public boolean isEnd() {
         return index == bridge.size();
     }
