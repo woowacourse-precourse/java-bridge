@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Player {
 
+    private static final String CORRECT = "O";
+    private static final String WRONG = "X";
+    private static final String SPACE = " ";
+
     private final List<String> upsideBridge = new ArrayList<>();
 
     private final List<String> downsideBridge = new ArrayList<>();
@@ -14,42 +18,34 @@ public class Player {
     }
 
     public void correctUpsideBridge(int location) {
-        upsideBridge.add(location, "O");
-        downsideBridge.add(location, " ");
+        upsideBridge.add(location, CORRECT);
+        downsideBridge.add(location, SPACE);
     }
 
     public void correctDownsideBridge(int location) {
-        upsideBridge.add(location, " ");
-        downsideBridge.add(location, "O");
+        upsideBridge.add(location, SPACE);
+        downsideBridge.add(location, CORRECT);
     }
 
     public void wrongUpsideBridge(int location) {
-        upsideBridge.add(location, "X");
-        downsideBridge.add(location, " ");
+        upsideBridge.add(location, WRONG);
+        downsideBridge.add(location, SPACE);
     }
 
     public void wrongDownsideBridge(int location) {
-        upsideBridge.add(location, " ");
-        downsideBridge.add(location, "X");
+        upsideBridge.add(location, SPACE);
+        downsideBridge.add(location, WRONG);
     }
 
     public boolean isFailToAnswer() { // retry 위한 조건
-        return upsideBridge.contains("X") || downsideBridge.contains("X");
+        return upsideBridge.contains(WRONG) || downsideBridge.contains(WRONG);
     }
 
     public boolean isAllAnswer(int size) {
         int count = 0;
-        for(String upside : upsideBridge){
-            if(upside.equals("O")){
-                count++;
-            }
-        }
 
-        for(String downside : downsideBridge){
-            if(downside.equals("O")){
-                count++;
-            }
-        }
+        count = countUpsideCorrect(count) + countDownsideCorrect(count);
+
         return count == size;
     }
 
@@ -64,5 +60,23 @@ public class Player {
     private void initProgress() { // 재시도를 할 시, 현재 위치, 윗 다리 현재 진행도, 아랫다리 현재 진행도를 모두 초기화해준다.
         this.upsideBridge.clear();
         this.downsideBridge.clear();
+    }
+
+    private int countUpsideCorrect(int count){
+        for(String upside : upsideBridge){
+            if(upside.equals(CORRECT)){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private int countDownsideCorrect(int count){
+        for(String downside : downsideBridge){
+            if(downside.equals(CORRECT)){
+                count++;
+            }
+        }
+        return count;
     }
 }
