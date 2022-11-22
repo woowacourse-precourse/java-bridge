@@ -27,11 +27,12 @@ public class BridgeGame {
     }
 
     public boolean checkPassable(){
-        return bridge.checkPassable(mark);
+        int current = mark.size()-1;
+        return bridge.checkPassable(mark.get(current),current);
     }
 
     public boolean gameComplete() {
-        return mark.equals(bridge.getBridge());
+        return bridge.isSameBridge(mark);
     }
 
     /**

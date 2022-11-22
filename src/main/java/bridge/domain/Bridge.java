@@ -25,12 +25,11 @@ public class Bridge {
         return bridgeMaker.makeBridge(size);
     }
 
-    public boolean checkPassable(List<String> mark) {
-        int current = mark.size()-1;
-        return mark.get(current).equals(bridge.get(current));
+    public boolean checkPassable(String movingPoint, int index) {
+        return movingPoint.equals(bridge.get(index));
     }
 
-    public List<String> getBridge() {
-        return bridge;
+    public boolean isSameBridge(List<String> mark) {
+        return bridge.equals(mark);
     }
 }
