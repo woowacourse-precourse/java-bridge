@@ -43,6 +43,17 @@ public class BridgeGame {
         }
     }
 
+    public boolean canMove() {
+        List<String> bridge = bridgeRepository.getBridge();
+        List<String> progress = bridgeRepository.getProgress();
+        int lastMove = progress.size() - 1;
+
+        if (progress.isEmpty()) {
+            return true;
+        }
+        return progress.get(lastMove).equals(bridge.get(lastMove));
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

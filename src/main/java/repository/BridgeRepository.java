@@ -14,4 +14,12 @@ public class BridgeRepository {
     public void saveProgress(String direction) {
         progress.add(direction);
     }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
+    public List<String> getProgress() {
+        return this.progress;
+    }
 }
