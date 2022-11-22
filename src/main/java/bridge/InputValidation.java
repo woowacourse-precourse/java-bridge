@@ -1,4 +1,4 @@
-package bridge.UI;
+package bridge;
 
 public class InputValidation {
 

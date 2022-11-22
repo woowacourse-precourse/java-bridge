@@ -1,6 +1,6 @@
-package bridge.UI;
+package bridge;
 
-import bridge.businesslogic.Bridge;
+import bridge.Bridge;
 
 import java.util.List;
 

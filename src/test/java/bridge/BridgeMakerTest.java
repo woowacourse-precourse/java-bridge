@@ -1,4 +1,4 @@
-package bridge.businesslogic;
+package bridge;
 
 import bridge.TestNumberGenerator;
 import org.junit.jupiter.api.DisplayName;

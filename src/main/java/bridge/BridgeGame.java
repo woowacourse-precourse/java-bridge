@@ -1,9 +1,4 @@
-package bridge.businesslogic;
-
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.UI.InputView;
-import bridge.UI.OutputView;
+package bridge;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

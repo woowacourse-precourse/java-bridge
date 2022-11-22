@@ -1,4 +1,4 @@
-package bridge.businesslogic.bridgehistorystatus;
+package bridge;
 
 public class BridgeCrossingHistory {
     private final StringBuilder upLine;
