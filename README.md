@@ -291,3 +291,38 @@ int number = bridgeNumberGenerator.generate();
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 🚀 기능 요구 사항 정리
+
+1. 다리 길이를 입력한다.
+
+- 0과 1중 랜덤으로 받는다.
+- 3 ~ 20 사이의 숫자가 아니면 `IllegalArgumentException`을 발생시키고 "[ERROR]" 로 시작하는 메세지를 날리며 그 부분부터 다시 시작한다.
+- 자연수가 아니면 `IllegalArgumentException`을 발생시키고 "[ERROR]" 로 시작하는 메세지를 날리며 그 부분부터 다시 시작한다.
+- 잘못 입력했을 경우 범위내에 올바른 숫자를 입력한다.
+
+2. 가고 싶은 위치를 입력한다.
+
+- U와 D 둘중에 하나만 입력이 가능하다.
+- U와 D가 아니면 `IllegalArgumentException`을 발생시키고 "[ERROR]" 로 시작하는 메세지를 날리며 그 부분부터 다시 시작한다.
+- 알파벳이 아니면 `IllegalArgumentException`을 발생시키고 "[ERROR]" 로 시작하는 메세지를 날리며 그 부분부터 다시 시작한다.
+- 잘못 입력했을 경우 다시 U 또는 D를 입력한다.
+
+
+3. 틀렸을 경우 재시작(R) 종료(Q)를 입력한다.
+
+- R와 Q 둘중에 하나만 입력이 가능하다.
+- R와 Q가 아니면 `IllegalArgumentException`을 발생시키고 "[ERROR]" 로 시작하는 메세지를 날리며 그 부분부터 다시 시작한다.
+- 알파벳이 아니면 `IllegalArgumentException`을 발생시키고 "[ERROR]" 로 시작하는 메세지를 날리며 그 부분부터 다시 시작한다.
+- 잘못 입력했을 경우 다시 재시작(R) 또는 종료(Q)를 입력한다.
+
+4. 전부 맞추거나 틀린경우 최종게임결과, 성공여부, 총 시도한 횟수를 나타내고 종료한다
+- 진행한 게임 결과를 출력한다
+- 게임 성공 여부를 출력한다
+- 총 시도한 횟수를 출력한다
+
+
+
+
+
+
