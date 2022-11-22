@@ -1,23 +1,46 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import java.util.List;
+
+// 다리 건너기 게임을 관리하는 클래스
 public class BridgeGame {
+    static List<String> bridge;
+    static int position;
+    static boolean dead = false;
+    static int tryCount;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    public void makeGame(int bridgeSize) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+        position = -1;
+        tryCount = 1;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public void move(String userDirection) {
+        String correctDirection = bridge.get(position + 1);
+        position++;
+        if (!userDirection.equals(correctDirection)) dead = true;
     }
+
+    public void retry(String gameCommand) {
+        if (gameCommand.equals("R")) {
+            dead = false;
+            position = -1;
+            tryCount++;
+        }
+    }
+
+    public boolean playing() {
+        if (position >= bridge.size() - 1) return false;
+        if (dead) return false;
+        return true;
+    }
+
+    public boolean getDeath() { return dead; }
+    public String getCurStep() { return bridge.get(position); }
+    public int getTryCount() { return tryCount; }
+
+
 }
