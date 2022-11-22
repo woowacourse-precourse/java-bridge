@@ -7,6 +7,7 @@ public class OutputView {
     private static final String GAME_START_PROMPT = "다리 건너기 게임을 시작합니다.\n\n다리의 길이를 입력해주세요.";
     private static final String INPUT_DIRECTION_PROMPT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String RETRY_PROMPT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String RESULT_PROMPT = "최종 게임 결과";
     private static final String PASS_FAIL_PROMPT = "게임 성공 여부: ";
     private static final String PASS_SIGN = "성공";
     private static final String FAIL_SIGN = "실패";
@@ -43,6 +44,10 @@ public class OutputView {
 
     public void printRetryPrompt() {
         System.out.println(RETRY_PROMPT);
+    }
+
+    public void printResultPrompt() {
+        System.out.println(RESULT_PROMPT);
     }
 
     private String getResult(boolean passOrFail) {

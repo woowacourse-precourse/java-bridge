@@ -34,6 +34,8 @@ public class BridgeGameView {
     }
 
     public void printGameResult(TryCount tryCount, Crossing crossing) {
+        outputView.printResultPrompt();
+        printCurrentMap(crossing);
         outputView.printResult(tryCount.getValue(), crossing.isPass());
     }
 
