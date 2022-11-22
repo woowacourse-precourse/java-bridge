@@ -8,12 +8,24 @@ public class PlayerBridge {
     private final List<String> upBridge = new ArrayList<>();
     private final List<String> downBridge = new ArrayList<>();
 
-    public void addUpRoot(String moving){
-        upBridge.add(moving);
+    public void addUpRootRight(){
+        upBridge.add("O");
+        downBridge.add(" ");
     }
 
-    public void addDownRoot(String moving){
-        downBridge.add(moving);
+    public void addDownRootRight(){
+        downBridge.add("O");
+        upBridge.add(" ");
+    }
+
+    public void addUpRootWrong(){
+        upBridge.add("X");
+        downBridge.add(" ");
+    }
+
+    public void addDownRootWrong(){
+        downBridge.add("X");
+        upBridge.add(" ");
     }
 
     public String makePlayerBridgeForm(){
