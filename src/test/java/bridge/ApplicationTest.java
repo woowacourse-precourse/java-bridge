@@ -1,15 +1,15 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
+import static camp.nextstep.edu.missionutils.test.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.util.Lists.*;
 
-import bridge.model.BridgeMaker;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 import bridge.utils.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.List;
-import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
@@ -51,7 +51,7 @@ class ApplicationTest extends NsTest {
 
     @Override
     protected void runMain() {
-        Application.main(new String[]{});
+        Application.main(new String[] {});
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {

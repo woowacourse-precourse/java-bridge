@@ -3,6 +3,7 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.model.CrossBridgeType;
 import bridge.utils.BridgeNumberGenerator;
 
 /**
