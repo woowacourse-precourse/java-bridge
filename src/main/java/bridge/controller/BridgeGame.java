@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.service.BridgeGenerateService;
-import bridge.domain.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -10,7 +9,6 @@ public class BridgeGame {
     private static int position;
     private static int trialCount = 0;
     private static boolean onMovableCompartment = true;
-    private static boolean isTryingToClearGame = true;
     private static List<String> bridge;
 
     private final OutputView outputView;
@@ -26,10 +24,8 @@ public class BridgeGame {
     public void Run() {
         outputView.printGameStartNotice();
         bridge = generateBridge();
-        while (isTryingToClearGame) {
-            trialCount++;
-            playGame();
-        }
+        playGame();
+        outputView.printResult(onMovableCompartment, trialCount);
     }
 
     private List<String> generateBridge() {
@@ -38,14 +34,14 @@ public class BridgeGame {
     }
 
     private void playGame() {
+        trialCount++;
+
         moveUntilFailOrSuccess();
         if (onMovableCompartment) {
-            quit();
             return;
         }
-        String gameCommand = askGameCommand();
-        if (gameCommand.equals("Q")) {
-            quit();
+        if (askGameCommand().equals("R")) {
+            retry();
         }
     }
 
@@ -79,12 +75,7 @@ public class BridgeGame {
         return inputView.readGameCommand();
     }
 
-    private void quit() {
-        outputView.printResult(onMovableCompartment, trialCount);
-        isTryingToClearGame = false;
-    }
-
-    private boolean retry(String gameCommand) {
-        return gameCommand.equals(GameCommand.RESTART.getCommand());
+    private void retry() {
+        playGame();
     }
 }
