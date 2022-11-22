@@ -1,5 +1,6 @@
 package bridge.validation;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,6 +44,24 @@ class GameCommandValidationTest {
     void isUpperCaseUDTest(String gameCommand) {
         // when, then
         assertThatThrownBy(() -> validation.isUpperCaseRQ(gameCommand))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("총 유효성 테스트 : 입력이 올바른 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void correctTest(String gameCommand) {
+        // when, then
+        assertThatNoException().isThrownBy(() -> validation.totalValidate(gameCommand));
+    }
+
+    @DisplayName("총 유효성 테스트 : 입력이 틀린 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "알", "큐", "RQ", "QR", "3", "~"})
+    void inCorrectTest(String gameCommand) {
+        // when, then
+        assertThatThrownBy(() -> validation.totalValidate(gameCommand))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
