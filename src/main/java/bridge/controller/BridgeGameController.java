@@ -1,8 +1,11 @@
 package bridge.controller;
 
+import bridge.domain.ClearStatus;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.List;
 
 public class BridgeGameController {
 
@@ -87,6 +90,21 @@ public class BridgeGameController {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 최종 결과 출력
+     * */
+    private void getFinalResult() {
+        List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
+
+        boolean crossAllBridge = bridgeGame.isCrossAllBridge();
+        ClearStatus clearStatus = ClearStatus.getMessageByClear(crossAllBridge);
+        String clearMessage = clearStatus.getMessage();
+
+        int tryCount = bridgeGame.getTryCount();
+
+        outputView.printResult(bridgeMap, clearMessage, tryCount);
     }
 
 }
