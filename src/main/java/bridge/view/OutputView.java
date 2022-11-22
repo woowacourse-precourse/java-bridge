@@ -1,11 +1,15 @@
 package bridge.view;
 
 import bridge.domain.BridgeGameResult;
-import bridge.domain.BridgeMoveState;
 import java.util.List;
 
 public class OutputView {
 
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String MOVE = "O";
+    private static final String STOP = "X";
+    private static final String BLANK = " ";
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_END = " ]";
     private static final String BRIDGE_DIVIDE = " | ";
@@ -45,27 +49,40 @@ public class OutputView {
         System.out.println(GAME_TRY_COUNT + gameResult.getTryCount());
     }
 
-    public void printMap(BridgeGameResult gameResult) {
-        BridgeMoveState moveState = gameResult.getMoveState();
-        System.out.println(format(moveState.getUpState()));
-        System.out.println(format(moveState.getDownState()) + separateLine());
-    }
-
-    private String format(List<String> state) {
-        StringBuilder result = new StringBuilder();
-        result.append(BRIDGE_START);
-        addState(state, result);
-        result.append(BRIDGE_END);
-        return result.toString();
-    }
-
-    private static void addState(List<String> state, StringBuilder result) {
-        for (int moveCount = 0; moveCount < state.size(); moveCount++) {
-            if (moveCount != 0) {
-                result.append(BRIDGE_DIVIDE);
+    public void printMap(List<String> bridge, List<Boolean> state) {
+        StringBuilder upMap = new StringBuilder();
+        StringBuilder downMap = new StringBuilder();
+        for (int index = 0; index < state.size(); index++) {
+            if (index != 0) {
+                upMap.append(BRIDGE_DIVIDE);
+                downMap.append(BRIDGE_DIVIDE);
             }
-            result.append(state.get(moveCount));
+            upMap.append(makeUp(bridge.get(index), state.get(index)));
+            downMap.append(makeDown(bridge.get(index), state.get(index)));
         }
+        System.out.println(BRIDGE_START + upMap + BRIDGE_END);
+        System.out.println(BRIDGE_START + downMap + BRIDGE_END);
+    }
+
+    private String makeUp(String bridge, boolean state) {
+        if (bridge.equals(UP) && state || !bridge.equals(UP) && !state) {
+            return makePrintFormat(state);
+        }
+        return BLANK;
+    }
+
+    private String makeDown(String bridge, boolean state) {
+        if (bridge.equals(DOWN) && state || !bridge.equals(DOWN) && !state) {
+            return makePrintFormat(state);
+        }
+        return BLANK;
+    }
+
+    private String makePrintFormat(boolean state) {
+        if (state) {
+            return MOVE;
+        }
+        return STOP;
     }
 
     private String separateLine() {
