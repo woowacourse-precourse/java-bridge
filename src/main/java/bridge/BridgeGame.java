@@ -7,6 +7,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private int cnt = 1;
     private final String CORRECT = "O";
     private final String WRONG = "X";
     private final String NOTHING = " ";
@@ -15,23 +16,23 @@ public class BridgeGame {
 
     public BridgeGame(List<String> correctBridge) {
         this.correctBridge = correctBridge;
-        for (int i = 0; i < 2; i++)
-            this.bridgePattern.add(new ArrayList<>());
+        newBridgePattern();
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String moving, int bridgeNum) {
+    public boolean move(String moving, int bridgeNum) {
         int moveNum = toMovingNumber(moving);
         String answer = this.correctBridge.get(bridgeNum);
         this.bridgePattern.get(1 - moveNum).add(NOTHING);
-
-        if (moving.equals(answer))
+        if (moving.equals(answer)) {
             this.bridgePattern.get(moveNum).add(CORRECT);
-        if (!moving.equals(answer))
-            this.bridgePattern.get(moveNum).add(WRONG);
+            return true;
+        }
+        this.bridgePattern.get(moveNum).add(WRONG);
+        return false;
     }
 
     private int toMovingNumber(String moving) {
@@ -45,8 +46,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public int retry() {
         newBridgePattern();
+        this.cnt += 1;
+        return this.cnt;
     }
 
     private void newBridgePattern() {
@@ -55,8 +58,5 @@ public class BridgeGame {
             this.bridgePattern.add(new ArrayList<>());
     }
 
-    public List<List<String>> getBridgePattern() {
-        return bridgePattern;
-    }
 
 }
