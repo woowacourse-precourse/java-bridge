@@ -23,4 +23,11 @@ public class ExceptionCase {
         }
     }
 
+    static public int isInputAllNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 자연수를 입력해주세요.");
+        }
+    }
 }
