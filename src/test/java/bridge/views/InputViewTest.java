@@ -91,12 +91,12 @@ class InputViewTest {
         @Test
         @DisplayName("invalid moving direction(any characters cause an exception except for U or D)")
         void invalidMovingDirection() {
-            String[] inputs = { "s", "UD", "UP", "Down" };
+            String[] inputs = { "s", "UD", "3", "UP", "Down" };
             for (String input : inputs) {
                 setInput(input);
                 OutputStream out = new ByteArrayOutputStream();
                 assertThrows(NoSuchElementException.class, () -> {
-                    inputView.readBridgeSize();
+                    inputView.readMoving();
                     assertThat(out.toString()).contains(ErrorMessage.PREFIX_ERROR_MESSAGE.getMessage());
                 });
             }

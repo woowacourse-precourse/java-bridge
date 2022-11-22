@@ -58,7 +58,7 @@ public class InputView {
                 InputValidator.validateMoveDirection(moveDirection);
                 return moveDirection;
             } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printErrorMessage(ErrorMessage.INVALID_MOVE_DIRECTION.getMessage());
+                outputView.printErrorMessage(illegalArgumentException.getMessage());
             }
         }
     }

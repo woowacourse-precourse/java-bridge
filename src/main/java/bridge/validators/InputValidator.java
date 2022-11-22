@@ -40,8 +40,10 @@ public class InputValidator {
         return false;
     }
 
-    public static boolean validateMoveDirection(String moveDirectionInput) {
-        return moveDirectionInput.equals(UP) || moveDirectionInput.equals(DOWN);
+    public static void validateMoveDirection(String moveDirectionInput) {
+        if (!(moveDirectionInput.equals(UP) || moveDirectionInput.equals(DOWN))) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MOVE_DIRECTION.getMessage());
+        }
     }
 
     public static void validateRetryInput(String retryInput) {
