@@ -3,10 +3,10 @@ package bridge.domain.bridge;
 public class BridgeSize {
     public static final String ERROR_INPUT_IS_NUMBER = "[ERROR] 다리의 길이는 숫자만 입력 가능합니다!";
     public static final String ERROR_SIZE_IN_RANGE = "[ERROR] 다리의 길이는 3이상 20이하입니다.";
+    private static final Integer MIN_SIZE = 3;
+    private static final Integer MAX_SIZE = 20;
 
     private final Integer size;
-    private final Integer MIN_SIZE = 3;
-    private final Integer MAX_SIZE = 20;
 
     public BridgeSize(final String input) {
         validateInputIsNumber(input);
