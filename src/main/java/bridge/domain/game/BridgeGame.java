@@ -1,7 +1,5 @@
 package bridge.domain.game;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.command.BridgeMoveCommand;
 import bridge.domain.command.BridgeRestartCommand;
 import java.util.ArrayList;
