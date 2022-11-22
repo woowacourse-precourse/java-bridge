@@ -13,7 +13,6 @@ class BridgeGameTest {
     @Test
     void RepeatTest1() {
         String[] input = {"u", "d", "d"};
-
         byte[] buf = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
 

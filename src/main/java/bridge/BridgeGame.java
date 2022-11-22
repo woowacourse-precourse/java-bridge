@@ -87,16 +87,8 @@ public class BridgeGame {
         return playerList;
     }
 
-    public void SetPlayerList(List<String> list) {
-        playerList = list;
-    }
-
     public void SetMoveCount(int number) {
         moveCount = number;
-    }
-
-    public Boolean GetSuccess() {
-        return success;
     }
 
     public int GetTryCount() {
