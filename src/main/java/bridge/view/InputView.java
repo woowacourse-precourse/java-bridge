@@ -4,9 +4,6 @@ import bridge.system.SystemValue;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
     public int readBridgeSize() {
@@ -34,7 +31,7 @@ public class InputView {
         return input;
     }
 
-    private void validateOfBridgeSize(String input){
+    private void validateOfBridgeSize(String input) {
         validateForConsistOfNumber(input);
         validateForRangeOfNumber(input);
     }
@@ -53,16 +50,16 @@ public class InputView {
         }
     }
 
-    private void validateForUpAndDown(String text){
+    private void validateForUpAndDown(String text) {
         Pattern pattern = Pattern.compile(SystemValue.REGEX_CONSIST_UD);
-        if (!pattern.matcher(text).matches()){
+        if (!pattern.matcher(text).matches()) {
             throw new IllegalArgumentException("[ERROR] 다리 선택 입력 값이 정해진 U, D 값이 아닙니다.");
         }
     }
 
-    private void validateForRetryOrQuit(String text){
+    private void validateForRetryOrQuit(String text) {
         Pattern pattern = Pattern.compile(SystemValue.REGEX_CONSIST_RQ);
-        if (!pattern.matcher(text).matches()){
+        if (!pattern.matcher(text).matches()) {
             throw new IllegalArgumentException("[ERROR] 재시도 입력 값이 정해진 R, Q 값이 아닙니다.");
         }
     }
