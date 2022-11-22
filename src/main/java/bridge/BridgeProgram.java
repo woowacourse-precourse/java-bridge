@@ -83,4 +83,15 @@ public class BridgeProgram {
 	public void totalResult() {
 		outputView.printResult(upBridge,downBridge);
 	}
+
+	public void checkMoving(int i) {
+		String userMoving = checkMovingInput();
+		if (bridgeGame.move(userMoving)) {
+			upMoving(i);
+		}
+		if (!bridgeGame.move(userMoving)) {
+			downMoving(i);
+		}
+		outputView.printMap(upBridge,downBridge);
+	}
 }
