@@ -21,6 +21,7 @@ public class Judge {
             return SUCCESS;
         return FAIL;
     }
+
     public boolean isFinish() {
         if (isAlive() && (player.size() < bridge.size()))
             return false;

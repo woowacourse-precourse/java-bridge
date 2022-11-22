@@ -11,7 +11,7 @@ public class Validation {
             if ((size < 3) || (size > 20)) {
                 throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
         }
     }

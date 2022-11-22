@@ -40,7 +40,7 @@ public class Run {
             new OutputView().printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
             Judge judge = new Judge(bridgeGame.getBridge(), bridgeGame.getPlayer());
             isFinish = judge.isFinish();
-        } while(!isFinish);
+        } while (!isFinish);
     }
 
     private void askWhatToDo(BridgeGame bridgeGame) {
@@ -53,7 +53,7 @@ public class Run {
     }
 
     private int getBridgeSize() {
-        while(true) {
+        while (true) {
             try {
                 return new InputView().readBridgeSize();
             } catch (IllegalArgumentException e) {
@@ -63,7 +63,7 @@ public class Run {
     }
 
     private String getMoving() {
-        while(true) {
+        while (true) {
             try {
                 return new InputView().readMoving();
             } catch (IllegalArgumentException e) {
@@ -73,7 +73,7 @@ public class Run {
     }
 
     private String getGameCommand() {
-        while(true) {
+        while (true) {
             try {
                 return new InputView().readGameCommand();
             } catch (IllegalArgumentException e) {
