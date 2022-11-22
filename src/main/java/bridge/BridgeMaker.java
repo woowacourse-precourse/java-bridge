@@ -14,22 +14,10 @@ public class BridgeMaker {
     private static final int DOWN_NUMBER = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeBridge(int size) {
-        List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            int number = bridgeNumberGenerator.generate();
-            if (number == DOWN_NUMBER) {
-                bridge.add(DOWN);
-                continue;
-            }
-            bridge.add(UP);
-        }
-        return bridge;
-    }
+
 
 }
