@@ -4,34 +4,35 @@ package bridge;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 
+import static bridge.Message.BRIDGE_END;
+import static bridge.Message.BRIDGE_MIDDLE;
+import static bridge.Message.BRIDGE_START;
+import static bridge.Message.COMMAND;
+import static bridge.Message.EMPTY;
+import static bridge.Message.MOVE;
+import static bridge.Message.RESULT;
+import static bridge.Message.SIZE;
+import static bridge.Message.START;
+import static bridge.Message.SUCCESS;
+import static bridge.Message.TRY;
+
 import java.util.ArrayList;
 import java.util.List;
 public class OutputView {
 
-    private static final String EMPTY = " ";
-    private final static String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private final static String SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
 
-    private final static String MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-
-    private final static String COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-
-
-    private static final List<String> RESULT_MESSAGE =
-            new ArrayList<String>(List.of("최종 게임 결과",  "게임 성공 여부: ","총 시도한 횟수: "));
-    private static final List<String> BRIDGE_MESSAGE = new ArrayList<String>(List.of("[ "," | ", " ]"));
 
     public void printStartMessage(){
-        System.out.println(START_MESSAGE);
+        System.out.println(START.OF());
     }
     public void printSizeMessage(){
-        System.out.println(SIZE_MESSAGE);
+        System.out.println(SIZE.OF());
     }
     public void printMoveMessage(){
-        System.out.println(MOVE_MESSAGE);
+        System.out.println(MOVE.OF());
     }
     public void printCommandMessage(){
-        System.out.println(COMMAND_MESSAGE);
+        System.out.println(COMMAND.OF());
     }
     public void printErrorMessage(String errorMessage){
         System.out.println(errorMessage);
@@ -47,25 +48,36 @@ public class OutputView {
 
 
     public String drawMap(List<Glass> history, State lastState){
-        List<String> map= new ArrayList<String>(List.of(BRIDGE_MESSAGE.get(0),BRIDGE_MESSAGE.get(0)));
+        List<String> map= new ArrayList<String>(List.of(BRIDGE_START.OF(),BRIDGE_START.OF()));
 
         for(int hIdx = 0; hIdx < history.size(); hIdx++){
-            int dir = getDirection(history, hIdx, lastState);
-            State state = getState(hIdx, history.size(), lastState);
+            int dir = isLastGlass(history, hIdx, lastState);
+            State state = isLastState(hIdx, history.size(), lastState);
 
             updateMap(map, dir, state);
         }
-        return map.get(0) + System.lineSeparator() + map.get(1) + System.lineSeparator() ;
+        return combineMap(map);
     }
 
-    public State getState(int historyIdx, int historySize, State lastState){
+    public String combineMap(List<String> map){
+        int popLen = BRIDGE_MIDDLE.OF().length();
+        String upSide = map.get(1);
+        String downSide = map.get(0);
+
+        upSide = upSide.substring(0, upSide.length()-popLen) + BRIDGE_END.OF();
+        downSide = downSide.substring(0, downSide.length()-popLen) + BRIDGE_END.OF();
+
+        return upSide + System.lineSeparator() + downSide + System.lineSeparator();
+    }
+
+    public State isLastState(int historyIdx, int historySize, State lastState){
         if(historyIdx == historySize -1){
             return lastState;
         }
         return State.SAFE;
     }
 
-    public Integer getDirection(List<Glass> history, int historyIdx, State lastState){
+    public Integer isLastGlass(List<Glass> history, int historyIdx, State lastState){
         int direction = history.get(historyIdx).DIRECTION();
         if(historyIdx == history.size() - 1 && !lastState.ALIVE()){
             return 1 - direction;
@@ -74,17 +86,17 @@ public class OutputView {
     }
 
     public void updateMap(List<String> map, int dir, State state){
-        map.set(dir, map.get(dir) + state.OX() + BRIDGE_MESSAGE.get(1));
-        map.set(1-dir, map.get(1-dir) + EMPTY + BRIDGE_MESSAGE.get(1));
+        map.set(dir, map.get(dir) + state.OX() + BRIDGE_MIDDLE.OF());
+        map.set(1-dir, map.get(1-dir) + EMPTY.OF() + BRIDGE_MIDDLE.OF());
     }
 
 
     public String drawResult(List<Glass> history, State lastState, int play){
         String message = "";
-        message += RESULT_MESSAGE.get(0) + System.lineSeparator();
+        message += RESULT.OF() + System.lineSeparator();
         message += drawMap(history, lastState) + System.lineSeparator();
-        message += RESULT_MESSAGE.get(1) + lastState.RESULT() + System.lineSeparator();
-        message += RESULT_MESSAGE.get(2) + play;
+        message += SUCCESS.OF() + lastState.RESULT() + System.lineSeparator();
+        message += TRY.OF() + play;
 
         return message;
     }

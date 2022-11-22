@@ -1,26 +1,50 @@
 package bridge;
 
+import static bridge.Command.QUIT;
+import static bridge.Command.RESTART;
+import static bridge.Glass.DOWN;
+import static bridge.Glass.UP;
+import static bridge.Message.ERROR_COMMAND;
+import static bridge.Message.ERROR_HEAD;
+import static bridge.Message.ERROR_MOVE;
+import static bridge.Message.ERROR_SIZE;
+
+import java.util.Objects;
+
 public class ExceptionHandler {
-    private static final String ERROR_HEAD = "[ERROR] ";
-    private static final String ERROR_SIZE = "다리 길이는 3부터 20 사이의 정수여야 합니다.";
-    private static final String ERROR_MOVE = "이동 가능한 방향은 U 또는 D여야 합니다.";
-    private static final String ERROR_COMMAND = "입력 값은 R(Restart) 또는 Q(Quit) 여야 합니다.";
 
-    public static String ERROR_HEAD(){return ERROR_HEAD;}
 
-    public Integer validBridgeSize(String size){
+    public String reEnter(BridgeView view, IllegalArgumentException error){
+        String errorMessage = error.getMessage();
+
+        while(true){
+            try{
+                view.printErrorMessage(ERROR_HEAD.OF() + errorMessage);
+                return viewControlByError(view, errorMessage);
+            }
+            catch(IllegalArgumentException e){ continue;}
+        }
+    }
+
+    public String viewControlByError(BridgeView view, String errorMessage){
+        if(errorMessage.equals(ERROR_SIZE.OF())) return validBridgeSize(view.sizeIO());
+        if(errorMessage.equals(ERROR_MOVE.OF())) return validMoving(view.moveIO());
+        return validGameCommand(view.commandIO());
+    }
+
+    public String validBridgeSize(String size){
         int newSize = excParseInt(size);
-        if(newSize < 3 || newSize > 20) throw new IllegalArgumentException(ERROR_SIZE);
-        return newSize;
+        if(newSize < 3 || newSize > 20) throw new IllegalArgumentException(ERROR_SIZE.OF());
+        return size;
     }
 
     public String validMoving(String move){
-        if(move != "U" && move != "D") throw new IllegalArgumentException(ERROR_MOVE);
+        if(!move.equals(UP.MOVE()) && !move.equals(DOWN.MOVE())) throw new IllegalArgumentException(ERROR_MOVE.OF());
         return move;
     }
 
     public String validGameCommand(String command){
-        if(command != "R" && command != "Q") throw new IllegalArgumentException(ERROR_COMMAND);
+        if(!command.equals(RESTART.KEY()) && !command.equals(QUIT.KEY())) throw new IllegalArgumentException(ERROR_COMMAND.OF());
         return command;
     }
 
@@ -29,7 +53,7 @@ public class ExceptionHandler {
             return Integer.parseInt(input);
         }
         catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_SIZE);
+            throw new IllegalArgumentException(ERROR_SIZE.OF());
         }
     }
 
