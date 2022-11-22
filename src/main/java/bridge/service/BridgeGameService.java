@@ -4,7 +4,6 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgePassed;
-import java.util.List;
 
 public class BridgeGameService {
 

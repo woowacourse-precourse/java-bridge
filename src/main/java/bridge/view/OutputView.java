@@ -2,9 +2,8 @@ package bridge.view;
 
 import bridge.GameStatus;
 import bridge.domain.BridgePassed;
-import bridge.enumeration.GameCommand;
-import bridge.map.Map;
 import bridge.enumeration.GuideMessage;
+import bridge.map.Map;
 import java.util.List;
 
 /**

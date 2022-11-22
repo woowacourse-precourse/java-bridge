@@ -26,8 +26,6 @@ public class BridgeGame {
     public void play() {
         Bridge bridge = makeBridge();
         while (!gameStatus.getEnd()) {
-            // TODO: 로그 지우기
-            System.out.println(bridge.getBridge());
             crossBridge(bridge);
         }
         outputView.printFinalMap(bridgePassed);
