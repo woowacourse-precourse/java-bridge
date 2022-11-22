@@ -11,6 +11,10 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
+    public static final String ONLY_NUMBER = "^\\d*$";
+    public static final String MOVE_COMMANDS = "^[DU]$";
+    public static final String GAME_COMMANDS = "^[RQ]$";
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -33,8 +37,7 @@ public class InputView {
     }
 
     private void isNumber(String bridge) {
-        String regex = "^\\d*$";
-        if(!Pattern.matches(regex,bridge)){
+        if(!Pattern.matches(ONLY_NUMBER,bridge)){
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }
@@ -65,8 +68,7 @@ public class InputView {
     }
 
     private void isMovingCommand(String command) {
-        String regex = "^[DU]$";
-        if(!Pattern.matches(regex, command)){
+        if(!Pattern.matches(MOVE_COMMANDS, command)){
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCHING_MOVING_COMMAND.getMessage());
         }
     }
@@ -91,8 +93,7 @@ public class InputView {
     }
 
     private void isGameCommand(String command) {
-        String regex = "^[RQ]$";
-        if(!Pattern.matches(regex, command)) {
+        if(!Pattern.matches(GAME_COMMANDS, command)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCHING_GAME_COMMAND.getMessage());
         }
     }
