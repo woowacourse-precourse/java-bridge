@@ -52,13 +52,11 @@ public class BridgeGameController {
                 break;
             }
         }
-        if(!bridgeGame.isCompletedGame()){
-            askRetry();
-        }
+        askRetry();
     }
 
     private void askRetry(){
-        if(inputView.readGameCommand().equals(BridgeGameCommand.RETRY)){
+        if(!bridgeGame.isCompletedGame() && inputView.readGameCommand().equals(BridgeGameCommand.RETRY)){
             gameRetry();
         }
     }
