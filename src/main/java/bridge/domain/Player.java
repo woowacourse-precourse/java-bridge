@@ -14,7 +14,7 @@ public class Player {
         this.isMoving = false;
     }
 
-    public void movePlayer() {
+    public void moveOneSpace() {
         currentPosition++;
         isMoving = true;
     }

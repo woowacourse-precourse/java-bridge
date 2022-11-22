@@ -33,7 +33,7 @@ public class BridgeGame {
     public boolean move(String moveCommand) {
         validateMoveCommand(moveCommand);
         if (isMovable(moveCommand)) {
-            player.movePlayer();
+            player.moveOneSpace();
             return true;
         }
         player.stopPlayer();
