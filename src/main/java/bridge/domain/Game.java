@@ -32,6 +32,10 @@ public class Game {
         setWinGame(true);
     }
 
+    public void GameDone() {
+        setGameDone(true);
+    }
+
 
 
 }
