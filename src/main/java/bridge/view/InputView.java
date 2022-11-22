@@ -69,7 +69,9 @@ public class InputView {
     }
 
     private String inputGameCommand() {
-        return Console.readLine();
+        String gameCommand = Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
     }
 
     /**
@@ -89,6 +91,12 @@ public class InputView {
 
     private void validateMoveCommand(String moveCommand) {
         if (!moveCommand.matches("[" + Command.MOVE_UPPER_LETTER.getCommand() + Command.MOVE_LOWER_LETTER.getCommand() + "]")) {
+            throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_MOVE_COMMAND_FORM.getMessage());
+        }
+    }
+
+    private void validateGameCommand(String gameCommand) {
+        if (!gameCommand.matches("[" + Command.GAME_QUIT_LETTER.getCommand() + Command.GAME_RETRY_LETTER.getCommand() + "]")) {
             throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_MOVE_COMMAND_FORM.getMessage());
         }
     }
