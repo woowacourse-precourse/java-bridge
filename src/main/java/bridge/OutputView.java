@@ -30,7 +30,7 @@ public class OutputView {
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
-     * 다리 길이, 현재 step, 게임 상태 정보를 받아 사용자에게 출력
+     * BridgeGame을 받아 다리의 상태를 출력
      */
     public void printMap(BridgeGame bridgeGame) {
         initBridgeMap();
@@ -91,7 +91,7 @@ public class OutputView {
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * BridgeGame을 받아 최종 결과를 출력
      */
     public void printResult(BridgeGame bridgeGame) {
         int step = bridgeGame.getStep();
