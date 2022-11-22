@@ -61,3 +61,8 @@
 ### BridgeTest
 - `inputLengthByUnderRange()` : 다리 길이가 3보다 작으면 예외가 발생한다.
 - `inputLengthByOverRange()` : 다리 길이가 20보다 크면 예외가 발생한다.
+
+### RoundTest
+- `inputMovingByInvalidValue()` : 이동할 칸 입력이 U 또는 D가 아니면 예외가 발생한다.
+- `inputMovingByU()` : 이동할 칸 입력이 U면 예외가 발생하지 않는다.
+- `inputMovingByD()` : 이동할 칸 입력이 D면 예외가 발생하지 않는다.
