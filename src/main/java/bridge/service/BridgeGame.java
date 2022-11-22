@@ -57,10 +57,8 @@ public class BridgeGame implements BridgeGameService {
 
     // break 조건 1
     @Override
-    public void isGameSuccess(String step) {
-        boolean checkSize = getUpStep().size() == bridge.size();
-        boolean checkLastStep = isValidLastStep(step);
-        this.successStatus = checkSize && checkLastStep;
+    public boolean getSuccessStatus() {
+        return successStatus;
     }
 
     // break 조건 2
@@ -87,16 +85,18 @@ public class BridgeGame implements BridgeGameService {
         }
     }
 
-    @Override
-    public boolean getSuccessStatus() {
-        return successStatus;
-    }
+
 
     private boolean isMovable(String step) {
         int index = countStepBeforeMoving();
         return Objects.equals(step, bridge.get(index));
     }
 
+    private void isGameSuccess(String step) {
+        boolean checkSize = getUpStep().size() == bridge.size();
+        boolean checkLastStep = isValidLastStep(step);
+        this.successStatus = checkSize && checkLastStep;
+    }
 
     private int countStepBeforeMoving() {
         if (getUpStep().isEmpty()) {
