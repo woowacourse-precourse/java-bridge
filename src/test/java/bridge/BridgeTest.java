@@ -20,9 +20,9 @@ public class BridgeTest {
         player = new Player();
     }
 
-    @DisplayName("유저의 선택과 answerBridge 비교 결과 테스트 - ")
+    @DisplayName("플레이어 choices와 answerBridge 비교 결과 테스트")
     @Test
-    void compareToTest_empty() {
+    void compareToTest() {
         List<Boolean> firstResult = makeSituation("U");
         assertThat(firstResult).isEqualTo(List.of(true));
 
