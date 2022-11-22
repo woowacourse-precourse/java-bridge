@@ -95,9 +95,19 @@ public class OutputView {
     public static void printResult(List<String> movings, boolean status) {
         messageFinalResult();
         printMap(movings, status);
+        printIsSuccess(status);
     }
 
     private static void messageFinalResult() {
         System.out.println("최종 게임 결과");
+    }
+
+    private static void printIsSuccess(boolean status) {
+        if (status) {
+            System.out.println("게임 성공 여부: 성공");
+        }
+        if (!status) {
+            System.out.println("게임 성공 여부: 실패");
+        }
     }
 }
