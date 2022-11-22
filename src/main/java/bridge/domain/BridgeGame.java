@@ -11,7 +11,6 @@ public class BridgeGame {
 
     private int challenge;
     private List<String> mark;
-    private boolean complete;
     private final Bridge bridge;
 
     public BridgeGame(Bridge bridge) {
@@ -27,11 +26,14 @@ public class BridgeGame {
         mark.add(movePlace);
         boolean passable = bridge.checkPassable(mark);
 
-        this.complete = gameComplete();
+        gameComplete();
+        if(gameComplete()){
+            return false;
+        }
         return passable;
     }
 
-    private boolean gameComplete() {
+    public boolean gameComplete() {
         return mark.equals(bridge.getBridge());
     }
 
@@ -51,9 +53,5 @@ public class BridgeGame {
 
     public int getChallenge() {
         return challenge;
-    }
-
-    public boolean getComplete() {
-        return complete;
     }
 }

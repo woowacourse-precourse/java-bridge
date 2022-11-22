@@ -82,9 +82,9 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
-        printMap(bridgeGame,bridgeGame.getComplete());
+        printMap(bridgeGame,bridgeGame.gameComplete());
         String result = "실패";
-        if (bridgeGame.getComplete()) {
+        if (bridgeGame.gameComplete()) {
             result = "성공";
         }
         System.out.println("\n게임 성공 여부: " + result);

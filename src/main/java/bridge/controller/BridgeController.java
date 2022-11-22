@@ -48,7 +48,7 @@ public class BridgeController {
         String movePlace = requestMovingPoint();
         boolean passable = bridgeGame.move(movePlace);
 
-        return !bridgeGame.getComplete() && passable;
+        return passable;
     }
 
     public void bridgeGame(){
@@ -61,12 +61,12 @@ public class BridgeController {
         do {
             bridgeGame.retry();
             bridgeGame();
-            outputView.printMap(bridgeGame,bridgeGame.getComplete());
+            outputView.printMap(bridgeGame,bridgeGame.gameComplete());
         } while (isGameOver());
     }
 
     public boolean isGameOver(){
-        return !bridgeGame.getComplete() && requestRetry();
+        return !bridgeGame.gameComplete() && requestRetry();
     }
 
     public void start() {
