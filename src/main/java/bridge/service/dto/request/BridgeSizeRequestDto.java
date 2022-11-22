@@ -1,6 +1,6 @@
 package bridge.service.dto.request;
 
-import bridge.domain.BridgeSize;
+import bridge.validator.BridgeSize;
 
 public class BridgeSizeRequestDto {
     private final BridgeSize size;

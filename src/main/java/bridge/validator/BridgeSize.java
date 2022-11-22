@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.validator;
 
 import java.util.regex.Pattern;
 
