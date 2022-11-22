@@ -56,34 +56,35 @@ public class BridgeGameController {
         outputView.printResult(bridge, userRoute, count);
     }
 
-    public boolean retry() {
+
+    /**
+     * 게임을 재실행 하는 메서드(재실행 할 경우에 맞게 값 초기화 및 게임 시작)
+     */
+    public void retry() {
+        bridgeGame.retry();
+        play();
+    }
+
+    /**
+     * 사용자가 재실행을 원하는지 입력 받는 메서드
+     */
+    private boolean wantRetry() {
         GameCommand gameCommand = inputView.readGameCommand();
-        if (wantRetry(gameCommand)) {
-            bridgeGame.retry();
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean wantRetry(GameCommand command) {
-        if (GameCommand.RETRY.equals(command)) {
-            return true;
-        }
-        return false;
+        return GameCommand.RETRY.equals(gameCommand);
     }
 
 
+    /**
+     * 게임을 진행하는 메서드
+     */
     public void play() {
         for (int i = 0; i < bridgeGame.getBridge().size(); i++) {
             move();
-            if (!isCorrectMove() && retry()) {
-                play();
+            if (!isCorrectMove() && wantRetry()) {
+                retry();
                 break;
             }
         }
     }
 
-    public int getCount() {
-        return this.bridgeGame.getGameCount();
-    }
 }
