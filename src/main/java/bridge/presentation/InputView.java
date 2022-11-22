@@ -1,6 +1,5 @@
 package bridge.presentation;
 
-import bridge.ExceptionHandler;
 import bridge.data.Error;
 import camp.nextstep.edu.missionutils.Console;
 
