@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
  */
 public class BridgeMaker {
 
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
