@@ -10,7 +10,7 @@ import bridge.domain.bridgeInfo.Length;
 import bridge.domain.result.PassingPositions;
 import bridge.domain.userInfo.Position;
 import bridge.domain.result.Result;
-import bridge.view.InputView;
+import bridge.handler.InputHandler;
 import bridge.view.OutputView;
 import java.util.List;
 
@@ -18,19 +18,19 @@ public class BridgeController {
 
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
-    private final InputView inputView;
+    private final InputHandler inputHandler;
     private final OutputView outputView;
 
     public BridgeController(BridgeNumberGenerator bridgeNumberGenerator) {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridgeGame = new BridgeGame();
-        inputView = new InputView();
+        inputHandler = new InputHandler();
         outputView = new OutputView();
     }
 
     public void startGame() {
         outputView.printStartGame();
-        Length length = getLengthLoop();
+        Length length = inputHandler.getLength();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
         Bridge bridge = createBridge(bridgeNumbers);
         PassingPositions passingPositions = createPassingPositions(bridge);
@@ -55,7 +55,7 @@ public class BridgeController {
     }
 
     private boolean isUserWantQuit() {
-        GameCommand gameCommand = getGameCommandLoop();
+        GameCommand gameCommand = inputHandler.getGameCommand();
         return gameCommand.isSameQuit();
     }
 
@@ -73,28 +73,11 @@ public class BridgeController {
 
     private Result getResult(PassingPositions passingPositions, int distance) {
         Result result;
-        Direction direction = getDirectionLoop();
+        Direction direction = inputHandler.getDirection();
         Position position = createPosition(distance, direction);
         bridgeGame.move(position, passingPositions);
         result = passingPositions.makeResult(distance);
         return result;
-    }
-
-    private Length getLengthLoop() {
-        Length length;
-        do {
-            length = createLength();
-        } while (length == null);
-        return length;
-    }
-
-    private Length createLength() {
-        try {
-            return new Length(inputView.readBridgeSize());
-        } catch (IllegalArgumentException ex) {
-            outputView.printError(ex.getMessage());
-        }
-        return null;
     }
 
     private Bridge createBridge(List<String> bridgeNumbers) {
@@ -110,43 +93,7 @@ public class BridgeController {
         return new PassingPositions(bridge);
     }
 
-    private Direction getDirectionLoop() {
-        Direction direction;
-        do {
-            direction = createDirection();
-        } while (direction == null);
-        return direction;
-    }
-
-    private Direction createDirection() {
-        try {
-            return new Direction(inputView.readMoving());
-        } catch (IllegalArgumentException ex) {
-            outputView.printError(ex.getMessage());
-        }
-        return null;
-    }
-
     private Position createPosition(int distance, Direction direction) {
         return new Position(distance, direction);
     }
-
-    private GameCommand getGameCommandLoop() {
-        GameCommand gameCommand;
-        do {
-            gameCommand = createGameCommand();
-        } while (gameCommand == null);
-        return gameCommand;
-    }
-
-    private GameCommand createGameCommand() {
-        try {
-            return new GameCommand(inputView.readGameCommand());
-        } catch (IllegalArgumentException ex) {
-            outputView.printError(ex.getMessage());
-        }
-        return null;
-    }
-
-
 }
