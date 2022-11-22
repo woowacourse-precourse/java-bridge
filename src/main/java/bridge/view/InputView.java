@@ -4,6 +4,7 @@ import static bridge.Constants.INPUT_BRIDGE_SIZE;
 import static bridge.Constants.INPUT_MOVING_SQUARE;
 import static bridge.Constants.INPUT_RESTART_OR_TERMINATE;
 
+import bridge.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -20,7 +21,9 @@ public class InputView {
             System.out.println(INPUT_BRIDGE_SIZE);
             bridgeSize = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(
+                ErrorMessage.INVALID_BRIDGE_SIZE_FORMAT
+            );
         }
         return bridgeSize;
     }

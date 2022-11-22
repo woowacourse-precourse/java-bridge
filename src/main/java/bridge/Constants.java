@@ -26,5 +26,4 @@ public final class Constants {
     public static final String INPUT_MOVING_SQUARE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     public static final String INPUT_RESTART_OR_TERMINATE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-
 }
