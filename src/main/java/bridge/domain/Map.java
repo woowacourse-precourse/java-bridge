@@ -20,15 +20,20 @@ public class Map {
   }
 
   public void updateMap(String moveDir, String bridgeDir) {
-    upLineShape.add(getString(moveDir, bridgeDir, true));
-    downLineShape.add(getString(moveDir, bridgeDir, false));
+    String successOrFail = getSuccessOrFailure(moveDir, bridgeDir);
+    upLineShape.add(getUpLineString(moveDir, successOrFail));
+    downLineShape.add(getDownLineString(moveDir, successOrFail));
   }
 
-  /** 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다. */
   public String getMapString() {
     String upLine = getLineString(this.upLineShape);
     String downLine = getLineString(this.downLineShape);
     return upLine + "\n" + downLine;
+  }
+
+  public void clearMap() {
+    this.upLineShape.clear();
+    this.downLineShape.clear();
   }
 
   private String getLineString(List<String> lineShape) {
@@ -39,21 +44,24 @@ public class Map {
         .toString();
   }
 
-  private static String getSuccessOrFailure(String moveDir, String bridgeDir) {
+  private String getSuccessOrFailure(String moveDir, String bridgeDir) {
     if (moveDir.equals(bridgeDir)) {
       return MOVE_SUCCESS_SIGN;
     }
     return MOVE_FAIL_SIGN;
   }
 
-  private static String getString(String moveDir, String bridgeDir, boolean isUp) {
-    String successOrFail = getSuccessOrFailure(moveDir, bridgeDir);
+  private String getUpLineString(String moveDir, String successOrFail){
     if (moveDir.equals(Direction.UP.getDirection())) {
-      if (isUp) return successOrFail;
-      return BRIDGE_BLACK_SHAPE;
-    } else {
-      if (isUp) return BRIDGE_BLACK_SHAPE;
       return successOrFail;
     }
+    return BRIDGE_BLACK_SHAPE;
+  }
+
+  private String getDownLineString(String moveDir, String successOrFail){
+    if (moveDir.equals(Direction.DOWN.getDirection())) {
+      return successOrFail;
+    }
+    return BRIDGE_BLACK_SHAPE;
   }
 }

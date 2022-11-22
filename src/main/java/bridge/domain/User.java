@@ -9,7 +9,7 @@ public class User {
 
   public User() {
     this.moveStatus = new ArrayList<>();
-    this.tryCount = 0;
+    this.tryCount = 1;
   }
 
   public void move(String direction) {
@@ -22,7 +22,7 @@ public class User {
     return bridgeShapes.get(index).equals(moveStatus.get(index));
   }
 
-  public void startNewGame() {
+  public void retryGame() {
     this.tryCount++;
     this.moveStatus.clear();
   }

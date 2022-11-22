@@ -15,10 +15,8 @@ public class BridgeGame {
     this.map = new Map();
   }
 
-  public void gameInit(int length) {
-    this.user.startNewGame();
+  public void setNewBridge(int length) {
     this.bridge = new Bridge(bridgeMaker.makeBridge(length));
-    this.map = new Map();
   }
 
   /** 사용자가 칸을 이동할 때 사용하는 메서드 */
@@ -28,7 +26,10 @@ public class BridgeGame {
   }
 
   /** 사용자가 게임을 다시 시도할 때 사용하는 메서드 */
-  public void retry() {}
+  public void retry() {
+    this.map.clearMap();
+    this.user.retryGame();
+  }
 
   public boolean isTryFinish() {
     return !user.isCorrectlyMove(bridge.getBridgeShapes()) || isTrySuccess();

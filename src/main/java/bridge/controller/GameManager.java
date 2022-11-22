@@ -28,7 +28,7 @@ public class GameManager {
   private void gameStart() {
     int length = readBridgeSize();
     do {
-      bridgeGame.gameInit(length);
+      bridgeGame.setNewBridge(length);
       tryMove(); // 시도가 끝날 때 까지 이동
     } while (!checkIsGameFinish());
     printResult(bridgeGame, user.getTryCount());
@@ -50,6 +50,7 @@ public class GameManager {
 
   private boolean checkRetryByInput(String input) {
     if (input.equals(GameCommand.RETRY.getCommand())) {
+      bridgeGame.retry();
       return true;
     }
     return false;
