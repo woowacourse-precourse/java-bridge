@@ -38,4 +38,10 @@ class ProgressTest{
         assertThat(bridgeGame.move("S")).isFalse();
     }
 
+    @Test
+    @DisplayName("시작 재시작 검증")
+    void retryTest() {
+        assertThat(bridgeGame.retry("Q")).isFalse();
+        assertThat(bridgeGame.retry("R")).isTrue();
+    }
 }
