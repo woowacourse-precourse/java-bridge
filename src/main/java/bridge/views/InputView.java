@@ -1,10 +1,8 @@
 package bridge.views;
 
 import bridge.utils.ValidateUtils;
-import bridge.utils.constants.BridgeGameCommand;
-import bridge.utils.constants.BridgeMove;
-import bridge.utils.constants.BridgeSize;
 
+import bridge.utils.constants.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -19,7 +17,7 @@ public class InputView {
 
     public int readBridgeSize() {
         try{
-            String input = getInput(BridgeSize.READ_BRIDGE_SIZE_MESSAGE);
+            String input = getInput(InputMessage.READ_BRIDGE_SIZE_MESSAGE.getMessage());
             ValidateUtils.isCorrectRangeNumbers(input);
             return Integer.parseInt(input);
         }catch (IllegalArgumentException e){
@@ -33,7 +31,7 @@ public class InputView {
      */
     public String readMoving() {
         try{
-            String input = getInput(BridgeMove.READ_BRIDGE_MOVE_MESSAGE);
+            String input = getInput(InputMessage.READ_BRIDGE_MOVE_MESSAGE.getMessage());
             ValidateUtils.isCorrectMoveValue(input);
             return input;
         }catch (IllegalArgumentException e){
@@ -47,7 +45,7 @@ public class InputView {
      */
     public String readGameCommand() {
         try{
-            String input = getInput(BridgeGameCommand.READ_GAME_COMMAND);
+            String input = getInput(InputMessage.READ_GAME_RETRY_COMMAND.getMessage());
             ValidateUtils.isCorrectGameCommand(input);
             return input;
         }catch (IllegalArgumentException e){
