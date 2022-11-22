@@ -24,7 +24,7 @@ public class Application {
             else if(c == 2){flag = 0; break;}
         }
         //최종 결과 출력
-        OutputView ov = new OutputView(bg.curidx,bg.curbridge);
+        OutputView ov = new OutputView(bg.curidx,bg.curbridge,bg.curmov);
         ov.printResult(flag,cnt);
         } catch(Exception e) {System.out.println("[ERROR]");}
     }
