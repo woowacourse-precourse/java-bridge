@@ -30,11 +30,11 @@ public class MapShape {
         lowerMap.clear();
     }
 
-    public String upperMapToString() {
+    public String convertUpperMapToString() {
         return getJoinWithSplitUnit(upperMap);
     }
 
-    public String lowerMapToString() {
+    public String convertLowerMapToString() {
         return getJoinWithSplitUnit(lowerMap);
     }
 

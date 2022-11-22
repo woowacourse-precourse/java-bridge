@@ -29,12 +29,12 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(INPUT_LENGTH_MESSAGE);
-        String inputLength = readLine();
+        String inputSize = readLine();
         try{
-            validation.isValidateSize(inputLength);
-            return Integer.parseInt(inputLength);
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            validation.isValidateSize(inputSize);
+            return Integer.parseInt(inputSize);
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
         }
         return readBridgeSize();
     }
@@ -48,8 +48,8 @@ public class InputView {
         try{
             validation.isValidateMove(inputMove);
             return inputMove;
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
         }
         return readMoving();
     }
@@ -63,8 +63,8 @@ public class InputView {
         try{
             validation.isValidateCommand(inputCommand);
             return inputCommand;
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
         }
         return readGameCommand();
     }

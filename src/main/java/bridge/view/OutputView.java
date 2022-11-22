@@ -32,8 +32,8 @@ public class OutputView {
     }
 
     private void printMapOfCase() {
-        System.out.println(HEAD_BRACKET + mapShape.upperMapToString() + TAIL_BRACKET);
-        System.out.println(HEAD_BRACKET + mapShape.lowerMapToString() + TAIL_BRACKET);
+        System.out.println(HEAD_BRACKET + mapShape.convertUpperMapToString() + TAIL_BRACKET);
+        System.out.println(HEAD_BRACKET + mapShape.convertLowerMapToString() + TAIL_BRACKET);
     }
 
     /**
