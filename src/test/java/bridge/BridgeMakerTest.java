@@ -1,6 +1,5 @@
-package bridge.service;
+package bridge;
 
-import bridge.BridgeMaker;
 import bridge.Constants.ErrorMessageConstant;
 import bridge.util.BridgeNumberGenerator;
 import bridge.util.BridgeRandomNumberGenerator;
