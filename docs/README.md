@@ -27,12 +27,12 @@
     - 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수이다.
 
 ## ✔요구 사항
-- [ ] 사용자가 잘못된 값을 입력할 경우 ```IllegalArgumentException```를 발생시키고, ```"[ERROR]"```로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [x] 사용자가 잘못된 값을 입력할 경우 ```IllegalArgumentException```를 발생시키고, ```"[ERROR]"```로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
       ```Exception```이 아닌 ```IllegalArgumentException```, ```IllegalStateException``` 등과 같은 명확한 유형을 처리한다.
-- [ ] indent depth 2까지만
-- [ ] else 쓰지 않기
-- [ ] 도메인 로직에 단위 테스트, UI 로직은 제외
+- [x] indent depth 2까지만
+- [x] else 쓰지 않기
+- [x] 도메인 로직에 단위 테스트, UI 로직은 제외
 - [ ] 메서드 길이 10이하로
-- [ ] 메서드 파라미터 개수는 최대 3개
-- [ ] 클래스 별 요구사항 다 지켰는지 확인
-- [ ] ```BridgeGame``` 클래스에서 ```InputView```, ```OutputView``` 를 사용하지 않는다.
+- [x] 메서드 파라미터 개수는 최대 3개
+- [x] 클래스 별 요구사항 다 지켰는지 확인
+- [x] ```BridgeGame``` 클래스에서 ```InputView```, ```OutputView``` 를 사용하지 않는다.
