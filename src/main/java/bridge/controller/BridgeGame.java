@@ -73,8 +73,8 @@ public class BridgeGame {
     private void move() {
         outputView.printMovingInputNotice();
         String moving = inputView.readMoving();
-        onMovableCompartment = bridge.get(position++).equals(moving);
-        outputView.printMap(position, moving, onMovableCompartment);
+        onMovableCompartment = bridge.get(position).equals(moving);
+        outputView.printMap(position++, moving, onMovableCompartment);
     }
 
     private String askGameCommand() {
