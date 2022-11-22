@@ -8,6 +8,7 @@ import bridge.domain.Result;
 import bridge.service.BridgeGame;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
+import java.util.List;
 
 public class BridgeGameController implements GameController {
     private final InputView input = new InputView();
@@ -33,9 +34,12 @@ public class BridgeGameController implements GameController {
     private void play() {
         while (game.checkCross() && game.movable()) {
             output.printMove();
-            ExceptionTemplate template = () -> game.move(input.readCommand(), game.recentResult().stateSize());
-            Result recentResult = (Result) template.check();
-            output.printMap(recentResult);
+            ExceptionTemplate template = () -> {
+                String command = input.readCommand();
+                int crossCount = game.recentResult().stateSize();
+                return game.move(command, crossCount);
+            };
+            output.printMap((Result) template.check());
         }
         end(checkRestart());
     }
@@ -50,7 +54,10 @@ public class BridgeGameController implements GameController {
     private boolean checkRestart() {
         if (!game.recentResult().movable()) {
             output.printRestart();
-            ExceptionTemplate template = () -> game.retry(input.readCommand());
+            ExceptionTemplate template = () -> {
+                String command = input.readCommand();
+                return game.retry(command);
+            };
             return (boolean) template.check();
         }
         return false;
@@ -64,7 +71,11 @@ public class BridgeGameController implements GameController {
 
     private Bridge makeBridge() {
         output.printInputBridgeSize();
-        ExceptionTemplate template = () -> new Bridge(bridgeMaker.makeBridge(input.readBridgeSize()));
+        ExceptionTemplate template = () -> {
+            int bridgeSize = input.readBridgeSize();
+            List<String> randomBridge = bridgeMaker.makeBridge(bridgeSize);
+            return new Bridge(randomBridge);
+        };
         return (Bridge) template.check();
     }
 }
