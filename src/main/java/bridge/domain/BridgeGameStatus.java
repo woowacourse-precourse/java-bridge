@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.common.ErrorMessage;
+import java.util.Arrays;
+
 public enum BridgeGameStatus {
     PLAY("R"),
     QUIT("Q");
@@ -10,6 +13,13 @@ public enum BridgeGameStatus {
         this.command = command;
     }
 
+    public static BridgeGameStatus of(String command) {
+        return Arrays.stream(values())
+                .filter(gameStatus -> gameStatus.command.equals(command))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidGameStatusCommand()));
+    }
+
     public static BridgeGameStatus gameStart() {
         return PLAY;
     }
@@ -18,11 +28,11 @@ public enum BridgeGameStatus {
         return PLAY;
     }
 
-    public boolean isRunning() {
+    public boolean isPlayStatus() {
         return this.equals(PLAY);
     }
 
-    public boolean isGameOver() {
+    public boolean isQuitStatus() {
         return this.equals(QUIT);
     }
 }
