@@ -10,13 +10,6 @@ public class ExceptionCase {
         }
     }
 
-    static public void isInputBound(int input) {
-
-        if (!(input >= 3 && input <= 20)) {
-            throw new IllegalArgumentException("다리의 길이는 3부터 20사이의 숫자여야 합니다.");
-        }
-    }
-
     static public void isInputTry(String input) {
         if (!(input.equals("R") || input.equals("Q"))) {
             throw new IllegalArgumentException(OutputView.getErrorMessageInputTry());
