@@ -20,6 +20,18 @@ public class BridgeApp {
         this.command = "";
     }
 
+    public void run() {
+        startGame();
+        while (true) {
+            moveOnBridge();
+            int arrive = bridgeGame.move(move);
+            outputView.printMap(bridgeGame.getUp(), bridgeGame.getDown());
+            if (checkGame(bridgeGame, arrive) == 0) {
+                return;
+            }
+        }
+    }
+
     public void startGame() {
         int bridgeSize = -1;
         while (bridgeSize < 3 || bridgeSize > 20) {
