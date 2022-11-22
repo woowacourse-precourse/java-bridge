@@ -10,6 +10,10 @@ public class Bridge {
         this.bridge = new ArrayList<>();
     }
 
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
+    }
+
     public List<String> getBridge() {
         return this.bridge;
     }

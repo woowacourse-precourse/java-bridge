@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
-import bridge.util.BridgeNumberGenerator;
 
 public class Application {
 

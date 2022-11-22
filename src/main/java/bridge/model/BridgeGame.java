@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,13 +15,14 @@ public class BridgeGame {
     private final static String STEP_EMPTY = " ";
     private final static String STEP_CORRECT = "O";
     private final static String STEP_WRONG = "X";
-    List<String> answerMove;
-    List<String> playerMove;
+    Bridge answerMove;
+    Bridge playerMove;
     GameStatus status;
 
-    public BridgeGame(Bridge gameBridge) {
-        this.answerMove = gameBridge.getBridge();
-        this.playerMove = new ArrayList<>();
+    public BridgeGame(int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.answerMove = new Bridge(bridgeMaker.makeBridge(size));
+        this.playerMove = new Bridge();
         this.status = GameStatus.SUCCESS;
     }
 
@@ -28,7 +31,7 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
-        return answerMove.equals(playerMove);
+        return answerMove.getBridge().equals(playerMove.getBridge());
     }
 
     /**
@@ -39,7 +42,7 @@ public class BridgeGame {
     public void move() {
         InputView inputView = new InputView();
         String step = inputView.readMoving();
-        playerMove.add(step);
+        playerMove.addBridge(step);
     }
 
     /**
@@ -48,7 +51,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        this.playerMove = new ArrayList<>();
+        this.playerMove = new Bridge();
         this.status = GameStatus.SUCCESS;
     }
 
@@ -66,8 +69,8 @@ public class BridgeGame {
     private List<String> makeEachBridge(String way) {
         List<String> result = new ArrayList<>();
 
-        for (int index = 0; index < playerMove.size(); index++) {
-            String resultStep = checkStep(way, playerMove.get(index), answerMove.get(index));
+        for (int index = 0; index < playerMove.getBridge().size(); index++) {
+            String resultStep = checkStep(way, playerMove.getBridge().get(index), answerMove.getBridge().get(index));
             result.add(resultStep);
         }
         return result;

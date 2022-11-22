@@ -1,17 +1,14 @@
 package bridge.controller;
 
-import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.Command;
-import bridge.util.BridgeMaker;
-import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    BridgeGame bridgeGame = new BridgeGame(makeGameBridge());
+    BridgeGame bridgeGame = new BridgeGame(getBridgeSize());
     int gameCount;
     boolean play;
 
@@ -44,13 +41,9 @@ public class BridgeGameController {
         return bridgeGame.getStatus().isLife();
     }
 
-    private Bridge makeGameBridge() {
+    private int getBridgeSize() {
         outputView.printStartMessage();
-
-        int bridgeSize = inputView.readBridgeSize();
-
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return bridgeMaker.makeBridge(bridgeSize);
+        return inputView.readBridgeSize();
     }
 
     private boolean askRetry() {
