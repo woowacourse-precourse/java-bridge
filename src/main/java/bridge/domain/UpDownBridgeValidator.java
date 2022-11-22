@@ -1,42 +1,45 @@
 package bridge.domain;
 
-import static bridge.domain.UpDownBridge.getDownBridge;
-import static bridge.domain.UpDownBridge.getUpBridge;
-
 import bridge.messages.ErrorMessage;
 import bridge.messages.Message;
 
+import java.util.List;
+
 public class UpDownBridgeValidator {
 
-    public static void validateUpDownBridge() {
-        validateUpBridgeNull();
-        validateUpBridgeData();
-        validateDownBridgeNull();
-        validateDownBridgeData();
+    public static void validateUpBridge(List<String> upBridge) {
+        validateUpBridgeNull(upBridge);
+        validateUpBridgeData(upBridge);
     }
 
-    private static void validateUpBridgeNull() {
-        if (getUpBridge().isEmpty()) {
+    public static void validateDownBridge(List<String> downBridge) {
+        validateDownBridgeNull(downBridge);
+        validateDownBridgeData(downBridge);
+    }
+
+    private static void validateUpBridgeNull(List<String> upBridge) {
+        if (upBridge.isEmpty()) {
             throw new IllegalStateException(ErrorMessage.BRIDGE_IS_EMPTY.getErrorMessage());
         }
     }
 
-    private static void validateDownBridgeNull() {
-        if (getDownBridge().isEmpty()) {
-            throw new IllegalStateException(ErrorMessage.BRIDGE_IS_EMPTY.getErrorMessage());
-        }
-    }
-
-    private static void validateUpBridgeData() {
-        if (!getUpBridge().contains(Message.MOVE_SUCCESS.getMessage()) && !getUpBridge().contains(
-                Message.MOVE_FAIL.getMessage()) && !getUpBridge().contains(Message.BLANK.getMessage())) {
+    private static void validateUpBridgeData(List<String> upBridge) {
+        if (!upBridge.contains(Message.MOVE_SUCCESS.getMessage()) && !upBridge.contains(
+                Message.MOVE_FAIL.getMessage()) && !upBridge.contains(Message.BLANK.getMessage())) {
             throw new IllegalStateException(ErrorMessage.BRIDGE_HAS_WRONG_DATA.getErrorMessage());
         }
     }
 
-    private static void validateDownBridgeData() {
-        if (!getDownBridge().contains(Message.MOVE_SUCCESS.getMessage()) && !getDownBridge().contains(
-                Message.MOVE_FAIL.getMessage()) && !getDownBridge().contains(Message.BLANK.getMessage())) {
+
+    private static void validateDownBridgeNull(List<String> downBridge) {
+        if (downBridge.isEmpty()) {
+            throw new IllegalStateException(ErrorMessage.BRIDGE_IS_EMPTY.getErrorMessage());
+        }
+    }
+
+    private static void validateDownBridgeData(List<String> downBridge) {
+        if (!downBridge.contains(Message.MOVE_SUCCESS.getMessage()) && !downBridge.contains(
+                Message.MOVE_FAIL.getMessage()) && !downBridge.contains(Message.BLANK.getMessage())) {
             throw new IllegalStateException(ErrorMessage.BRIDGE_HAS_WRONG_DATA.getErrorMessage());
         }
     }

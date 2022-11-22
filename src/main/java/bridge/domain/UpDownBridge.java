@@ -1,6 +1,7 @@
 package bridge.domain;
 
-import static bridge.domain.UpDownBridgeValidator.validateUpDownBridge;
+import static bridge.domain.UpDownBridgeValidator.validateDownBridge;
+import static bridge.domain.UpDownBridgeValidator.validateUpBridge;
 
 import bridge.messages.Message;
 
@@ -14,7 +15,8 @@ public class UpDownBridge {
     public static void makeUpDownBridge(String inputDirection, String moveResult) {
         addUpBridge(inputDirection, moveResult);
         addDownBridge(inputDirection, moveResult);
-        validateUpDownBridge();
+        validateUpBridge(upBridge);
+        validateDownBridge(downBridge);
     }
 
     public static void initBridge() {
