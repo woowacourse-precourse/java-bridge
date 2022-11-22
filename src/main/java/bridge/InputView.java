@@ -28,7 +28,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(MESSAGE_INPUT_BRIDGE_STEP);
-        return null;
+        String movingCommand = Console.readLine();
+        InputViewValidation.isValidMovingCommand(movingCommand);
+        return movingCommand;
     }
 
     /**
