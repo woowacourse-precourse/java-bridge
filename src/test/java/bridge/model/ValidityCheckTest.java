@@ -34,4 +34,26 @@ class ValidityCheckTest {
             assertTrue(validityCheck.stringChecker(testNumber2));
         }
     }
+
+    @DisplayName("다리의 길이 범위(3~20)밖 일시 False / 범위 안 일시 True")
+    @Nested
+    class 범위_확인 {
+        @Test
+        void case_범위_밖() {
+            String rangeOut1 = "21";
+            String rangeOut2 = "2";
+
+            assertFalse(validityCheck.numberRangeChecker(rangeOut1));
+            assertFalse(validityCheck.numberRangeChecker(rangeOut2));
+        }
+
+        @Test
+        void case_범위_안() {
+            String rangeIn1 = "11";
+            String rangeIn2 = "16";
+
+            assertTrue(validityCheck.numberRangeChecker(rangeIn1));
+            assertTrue(validityCheck.numberRangeChecker(rangeIn2));
+        }
+    }
 }
