@@ -6,54 +6,66 @@ import bridge.constant.GameInInformation;
 import java.util.NoSuchElementException;
 
 public class ValidException {
-    public void validInteger(String inputString){
+    public boolean validInteger(String inputString){
+        boolean isCan = false;
         try{
             Integer.parseInt(inputString);
+            isCan = true;
         } catch (NumberFormatException e){
             System.out.println(ErrorMessage.ERROR_MESSAGE + ErrorMessage.INPUT_INTEGER);
             throw new NoSuchElementException();
-        }
-        catch (NoSuchElementException e){
+        } catch (NoSuchElementException e){
             System.out.println(ErrorMessage.ERROR_MESSAGE + ErrorMessage.INPUT_INTEGER);
             throw new IllegalArgumentException();
+        } finally {
+            if(!isCan) return false;
+            return true;
         }
     }
 
-    public void validIntegerRange(int length){
+    public boolean validIntegerRange(int length){
         if(!(3 <= length && length <= 20)){
             System.out.println(ErrorMessage.ERROR_MESSAGE + ErrorMessage.INPUT_VALID_RANGE);
-            throw new IllegalArgumentException();
+            return false;
         }
+        return true;
     }
 
-    public void validMoveNextStep(String next){
-        validStringLength(next);
-        validMoveStringType(next);
+    public boolean validMoveNextStep(String next){
+        boolean length = validStringLength(next);
+        boolean type = validMoveStringType(next);
+        if(length && type) return true;
+        return false;
     }
 
-    public void validOrder(String order){
-        validStringLength(order);
-        validOrderType(order);
+    public boolean validOrder(String order){
+        boolean length = validStringLength(order);
+        boolean orderType = validOrderType(order);
+        if(length && orderType) return true;
+        return false;
     }
 
-    private void validStringLength(String next){
+    private boolean validStringLength(String next){
         if(next.length() != 1){
             System.out.println(ErrorMessage.ERROR_MESSAGE);
-            throw new IllegalArgumentException();
+            return false;
         }
+        return true;
     }
 
-    private void validMoveStringType(String next){
+    private boolean validMoveStringType(String next){
         if(!next.equals(GameInInformation.UP) && !next.equals(GameInInformation.DOWN)) {
             System.out.println(ErrorMessage.ERROR_MESSAGE + ErrorMessage.INPUT_NEXT_POSITION);
-            throw new IllegalArgumentException();
+            return false;
         }
+        return true;
     }
 
-    private void validOrderType(String order){
-        if(order.equals(GameInInformation.RESTART)) return;
-        if(order.equals(GameInInformation.QUIT)) return;
-        System.out.println(ErrorMessage.ERROR_MESSAGE + ErrorMessage.INPUT_NEXT_GAME_MODE);
-        throw new IllegalArgumentException();
+    private boolean validOrderType(String order){
+        if(!order.equals(GameInInformation.RESTART) && !order.equals(GameInInformation.QUIT)) {
+            System.out.println(ErrorMessage.ERROR_MESSAGE + ErrorMessage.INPUT_NEXT_POSITION);
+            return false;
+        }
+        return true;
     }
 }
