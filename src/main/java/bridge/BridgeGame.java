@@ -16,8 +16,8 @@ public class BridgeGame {
     private int tryCount = 0;
     private final int counting = 1;
     private final String quit = "Q";
-    private final boolean willRetry = true;
-    private final boolean willNotRetry = false;
+    private final boolean terminated = true;
+    private final boolean notTerminated = false;
 
     public BridgeGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -32,9 +32,9 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         List<String> moves = new ArrayList<>();
-        boolean retry = play(bridgeSize, bridge, moves);
-        while (retry) {
-            retry = retry(bridgeSize, bridge, moves);
+        boolean isTerminated = play(bridgeSize, bridge, moves);
+        while (!isTerminated) {
+            isTerminated = retry(bridgeSize, bridge, moves);
         }
         outputView.printResult(moves, bridge, tryCount);
     }
@@ -49,10 +49,10 @@ public class BridgeGame {
             move(moves);
             outputView.printMap(moves, bridge);
             if (!isRightMove(moves.get(i), bridge.get(i))) {
-                return willRetry;
+                return notTerminated;
             }
         }
-        return willNotRetry;
+        return terminated;
     }
 
     /**
@@ -77,7 +77,7 @@ public class BridgeGame {
     public boolean retry(int bridgeSize, List<String> bridge, List<String> moves) {
         String retryInput = inputView.readGameCommand();
         if (retryInput.equals(quit)) {
-            return false;
+            return terminated;
         }
         return play(bridgeSize, bridge, moves);
     }
