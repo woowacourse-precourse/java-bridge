@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.type.DirectionType;
-
 import java.util.Collections;
 import java.util.List;
 
