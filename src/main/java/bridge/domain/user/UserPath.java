@@ -27,6 +27,6 @@ public class UserPath {
 
     @Override
     public String toString() {
-        return String.format("%s%s", upPath, downPath);
+        return String.format("%s%s\n", upPath, downPath);
     }
 }

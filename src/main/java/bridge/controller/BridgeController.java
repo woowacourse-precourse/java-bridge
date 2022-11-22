@@ -14,8 +14,10 @@ public class BridgeController {
     private BridgeGame bridgeGame;
 
     public void init() {
+        outputView.printStartMessage();
         try {
             String size = inputView.readBridgeSize();
+            outputView.printEmptyLine();
             validateBridgeSize(size);
 
             int bridgeSize = Integer.parseInt(size);
@@ -55,6 +57,9 @@ public class BridgeController {
     }
 
     public void quit() {
+        if (bridgeGame.isSuccess()) {
+            return;
+        }
         bridgeGame.changeGameStatus(GameStatus.FAIL);
         String userPathLog = bridgeGame.getUserPathLog();
         outputView.printResult(userPathLog, bridgeGame.getResultStatus(), bridgeGame.getTryCount());
