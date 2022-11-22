@@ -17,8 +17,8 @@ public class BridgeGameTest {
         bridgeGame = new BridgeGame();
     }
 
-    @Test
     @DisplayName("사용자가 칸을 올바르게 이동한 경우를 테스트")
+    @Test
     void moveRight() {
         String moving = "U";
         List<String> bridge = List.of("U", "D", "D");
@@ -28,8 +28,8 @@ public class BridgeGameTest {
         assertThat(movingResult.getResult()).isEqualTo("O");
     }
 
-    @Test
     @DisplayName("사용자가 칸을 올바르게 이동하지 않은 경우를 테스트")
+    @Test
     void moveWrong() {
         String moving = "U";
         List<String> bridge = List.of("U", "D", "D");
@@ -37,6 +37,22 @@ public class BridgeGameTest {
 
         MovingResult movingResult = bridgeGame.move(moving, bridge, round);
         assertThat(movingResult.getResult()).isEqualTo("X");
+    }
+
+    @DisplayName("사용자가 재시작을 한 경우를 테스트")
+    @Test
+    void retryTrue() {
+        String gameCommand = "R";
+
+        assertThat(bridgeGame.retry(gameCommand)).isTrue();
+    }
+
+    @DisplayName("사용자가 재시작을 하지 않은 경우를 테스트")
+    @Test
+    void retryFalse() {
+        String gameCommand = "Q";
+
+        assertThat(bridgeGame.retry(gameCommand)).isFalse();
     }
 
 }
