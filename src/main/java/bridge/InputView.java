@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class InputView {
     private static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String INPUT_MOVE_MESSAGE = "이동한 칸을 선택해주세요.";
+    private static final String INPUT_MOVE_MESSAGE = "이동한 칸을 선택해주세요. (위: U, 아래: D)";
 
     private static final int BRIDGE_MIN_RANGE = 3;
     private static final int BRIDGE_MAX_RANGE = 20;
