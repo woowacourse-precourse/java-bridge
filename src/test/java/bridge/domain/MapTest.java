@@ -1,14 +1,13 @@
 package bridge.domain;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MapTest {
   @ParameterizedTest(name = "{index}: {displayName}")
@@ -23,7 +22,7 @@ public class MapTest {
 
   @Test
   @DisplayName("지도를 초기화하면 빈 배열이 된다.")
-  void clearMapTest(){
+  void clearMapTest() {
     Map map = new Map();
     map.updateMap("U", "U");
     map.updateMap("U", "D");

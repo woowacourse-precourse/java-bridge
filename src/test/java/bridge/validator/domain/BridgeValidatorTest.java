@@ -1,19 +1,18 @@
 package bridge.validator.domain;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeMaker;
 import bridge.exception.InvalidDirectionException;
 import bridge.exception.LengthOutOfRangeException;
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.List;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class BridgeValidatorTest {
   BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());

@@ -1,11 +1,11 @@
 package bridge.validator.view;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import bridge.exception.NotIntegerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class NumberInputValidatorTest {
   @ParameterizedTest(name = "{index}: {displayName} input:{0}")
