@@ -1,8 +1,6 @@
 package bridge;
-
 import java.util.ArrayList;
 import java.util.List;
-
 public class MoveStatus {
     List<String> moveUpper = new ArrayList<>();
     List<String> moveDowner = new ArrayList<>();
@@ -16,7 +14,6 @@ public class MoveStatus {
         }
         return makeStatusMap(moveUpper, moveDowner);
     }
-
     private List<List<String>> makeStatusMap(List<String> moveUpper, List<String> moveDowner) {
         if(moveMap.isEmpty()){
             moveMap.add(moveUpper);
@@ -27,12 +24,10 @@ public class MoveStatus {
         moveMap.set(1,moveDowner);
         return moveMap;
     }
-
     private void addDowner(boolean checkIfAvailableToMove) {
         moveUpper.add("   ");
         moveDowner.add(successResult(checkIfAvailableToMove));
     }
-
     private void addUpper(boolean checkIfAvailableToMove) {
         moveUpper.add(successResult(checkIfAvailableToMove));
         moveDowner.add("   ");

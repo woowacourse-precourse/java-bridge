@@ -1,7 +1,5 @@
 package bridge;
-
 import java.util.List;
-
 public class BridgeGameController {
     InputView  inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -37,7 +35,6 @@ public class BridgeGameController {
         tryCount++;
         return moveProcess(moveValue, bridge);
     }
-
     private boolean moveProcess(int moveValue, List<String> bridge) {
         while (moveValue < bridge.size()) {
             String moves = inputView.readMoving();
@@ -49,7 +46,6 @@ public class BridgeGameController {
         outputView.printResult(this,bridgeGame,true);
         return true;
     }
-
     public int getTryCount() {
         return tryCount;
     }
