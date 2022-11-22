@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.BridgeMoveCommand;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +30,6 @@ public class BridgeMaker {
     }
 
     private String changeInt2Str(int dir) {
-        if (dir == 0) {
-            return "U";
-        }
-        return "D";
+        return BridgeMoveCommand.getByOrder(dir).command;
     }
 }
