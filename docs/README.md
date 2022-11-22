@@ -52,6 +52,6 @@
     - [x] BridgeGame의 비지니스 로직을 담당하는 메서드는 user를 파라미터로 받도록 수정
     - [x] BridgeGame 에서 bridge 필드 제거
     - [x] BridgeGame 싱글톤으로 구현
-- [ ] BridgeService 생성
-    - [ ] 게임 진행이 될 다리 생성
-- [ ] GameController create 메서드에서 다리를 생성하도록 수정
+- [x] BridgeService 생성
+    - [x] 게임 진행이 될 다리 생성
+- [x] GameController create 메서드에서 다리를 생성하도록 수정
