@@ -13,15 +13,15 @@ public class UpsideResults extends OneSideResults {
     @Override
     public void update(String playerMove, String matchResult) {
         if (CommandKeys.isUp(playerMove)) {
-            super.getResults().add(matchResult);
+            addResult(matchResult);
         }
         if (CommandKeys.isDown(playerMove)) {
-            super.getResults().add(BLANK_SPACE);
+            addResult(BLANK_SPACE);
         }
     }
 
-    @Override
-    public void reset() {
-        super.getResults().clear();
+    private void addResult(String result) {
+        super.getResults()
+                .add(result);
     }
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeMakerTest {
+
     @DisplayName("입력값에 해당하는 길이의 다리를 생성한다.")
     @ParameterizedTest
     @CsvSource(value = {"3:3", "12:12", "15:15", "20:20"}, delimiter = COLON)

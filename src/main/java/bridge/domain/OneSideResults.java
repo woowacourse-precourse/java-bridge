@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class OneSideResults {
+
     private final List<String> results;
 
     public OneSideResults() {
@@ -12,7 +13,9 @@ public abstract class OneSideResults {
 
     public abstract void update(String playerMove, String matchResult);
 
-    public abstract void reset();
+    public void reset() {
+        results.clear();
+    };
 
     public List<String> getResults() {
         return results;

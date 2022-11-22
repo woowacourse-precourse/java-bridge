@@ -1,25 +1,23 @@
 package bridge.view;
 
+import static bridge.util.Constants.BLANK_SPACE;
+
 import bridge.domain.BridgeGame;
 import bridge.domain.OneSideResults;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다. 1. OutputView의 패키지는 변경할 수 🌴있다.🌴 2. OutputView의 메서드의 이름은 변경할 수 🌴없고🌴, 인자와 반환 타입은
- * 필요에 따라 추가하거나 변경할 수 🌴있다.🌴 3. 값 출력을 위해 필요한 메서드를 추가할 수 🌴있다.🌴
- */
 public class OutputView {
 
-    private final static String BRIDGE_HEAD = "[";
-    private final static String BRIDGE_TAIL = "]";
-    private final static String BLANK_SPACE = " ";
-    private final static String BRIDGE_PARTITION = "|";
-    private final static String FINAL_RESULT_TITLE = "최종 게임 결과";
-    private final static String SUCCESS_OR_FAILURE_TITLE = "게임 성공 여부: %s";
-    private final static String TOTAL_TRIAL_COUNT_TITLE = "총 시도한 횟수: ";
-    private final static String GAME_START_TITLE = "다리 건너기 게임을 시작합니다.";
+    private static final String BRIDGE_HEAD = "[";
+    private static final String BRIDGE_TAIL = "]";
+    private static final String BRIDGE_PARTITION = "|";
+
+    private static final String FINAL_RESULT_TITLE = "최종 게임 결과";
+    private static final String SUCCESS_OR_FAILURE_TITLE = "게임 성공 여부: ";
+    private static final String TOTAL_TRIAL_COUNT_TITLE = "총 시도한 횟수: ";
+    private static final String GAME_START_TITLE = "다리 건너기 게임을 시작합니다.";
 
     public static void printGameStart() {
         System.out.println(GAME_START_TITLE);
@@ -39,11 +37,11 @@ public class OutputView {
 
     private static void updateMap(StringJoiner oneSideMap, OneSideResults oneSideResults) {
         oneSideMap.add(BRIDGE_HEAD);
-        addResults(oneSideMap, oneSideResults);
+        addOneSideResults(oneSideMap, oneSideResults);
         oneSideMap.add(BRIDGE_TAIL);
     }
 
-    private static void addResults(StringJoiner oneSideMap, OneSideResults oneSideResults) {
+    private static void addOneSideResults(StringJoiner oneSideMap, OneSideResults oneSideResults) {
         final List<String> results = oneSideResults.getResults();
         final int startNumberInclusive = 0;
         final int endNumberExclusive = results.size();
@@ -80,10 +78,10 @@ public class OutputView {
     }
 
     private static void printSuccessOrFailure(String finalResult) {
-        System.out.println(String.format(SUCCESS_OR_FAILURE_TITLE, finalResult));
+        System.out.println(SUCCESS_OR_FAILURE_TITLE + finalResult);
     }
 
-    public static void printTotalTrialCount(int totalTrialCount) {
+    private static void printTotalTrialCount(int totalTrialCount) {
         System.out.println(TOTAL_TRIAL_COUNT_TITLE + totalTrialCount);
     }
 }

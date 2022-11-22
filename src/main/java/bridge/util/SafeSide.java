@@ -1,6 +1,7 @@
 package bridge.util;
 
 public enum SafeSide {
+
     UP(1, "U"),
     DOWN(0, "D");
 
@@ -12,8 +13,8 @@ public enum SafeSide {
         this.letter = letter;
     }
 
-    public static String chooseUpOrDown(int randomNumber) {
-        if (randomNumber == SafeSide.UP.number) {
+    public static String chooseUpOrDown(int number) {
+        if (number == SafeSide.UP.number) {
             return SafeSide.UP.letter;
         }
         return SafeSide.DOWN.letter;

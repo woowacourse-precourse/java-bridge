@@ -9,6 +9,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class Controller {
+
     private static final int INITIAL_INDEX = -1;
 
     private final List<String> answerBridge;
@@ -22,9 +23,7 @@ public class Controller {
 
     private List<String> createAnswerBridge(int bridgeSize) {
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(answerBridge); // 추후 삭제🚨
-        return answerBridge;
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     public void start() {
@@ -42,7 +41,7 @@ public class Controller {
         if (bridgeGame.hasWrongMove()) {
             final String playerCommand = InputView.readGameCommand();
             checkIfContinueOrNot(playerCommand);
-            index = firstOrLastIndex(index, playerCommand);
+            index = moveToFirstOrLastIndex(index, playerCommand);
         }
         return index;
     }
@@ -56,7 +55,7 @@ public class Controller {
         }
     }
 
-    private int firstOrLastIndex(int index, String playerCommand) {
+    private int moveToFirstOrLastIndex(int index, String playerCommand) {
         if (CommandKeys.isRetry(playerCommand)) {
             index = toFirstIndex();
         }
