@@ -34,6 +34,6 @@ public class TotalResult {
 
     @Override
     public String toString() {
-        return String.format("< TotalResult win=%b tryCnt=%d >", win(), tryCnt);
+        return String.format("< TotalResult bridgeGame=%s win=%b >", bridgeGame.toString(), winGame());
     }
 }
