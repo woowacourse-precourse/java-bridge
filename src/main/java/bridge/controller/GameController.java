@@ -77,8 +77,6 @@ public class GameController {
         outputView.printBridge(bridgeShape.getUpBridge(), bridgeShape.getDownBridge());
     }
 
-
-    /////
     private void controlMove() {
         if (size == GAME_STATUS.getIdx() && bridgeGame.getCanMove()) {
             GAME_STATUS.turnoffGamePower();
@@ -90,7 +88,6 @@ public class GameController {
             retry();
         }
     }
-    ///////
 
     private void retry() {
         viewRetry();
