@@ -10,15 +10,18 @@ public class BridgeGame {
 
     private final int size;
     private final List<String> bridge;
-    private final List<String> userMoveState = new ArrayList<>();
-    private final List<Boolean> userResult = new ArrayList<>();
+    private final List<String> userMoveState;
+    private final List<Boolean> userResult;
     private int currentPosition;
-    private int tryCount = 1;
+    private int tryCount;
 
     public BridgeGame(int size) {
         this.size = size;
         this.bridge = bridgeFromUserInput();
+        this.tryCount = 1;
         this.currentPosition = 0;
+        this.userMoveState = new ArrayList<>();
+        this.userResult = new ArrayList<>();
     }
 
 
@@ -26,8 +29,7 @@ public class BridgeGame {
      * 다리 만들기
      */
     public List<String> bridgeFromUserInput() {
-        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
-        return bridge;
+        return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 
     public List<String> getBridge() {
@@ -83,4 +85,7 @@ public class BridgeGame {
     }
 
 
+    public int getCurrentPosition() {
+        return this.currentPosition;
+    }
 }
