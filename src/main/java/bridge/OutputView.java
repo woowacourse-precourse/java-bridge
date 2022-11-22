@@ -24,6 +24,9 @@ public class OutputView {
         if(bridge.get(position_map.indexOf(1)).equals("U") && moving.equals("D")) {
             System.out.print("   ");
         }
+        if(bridge.get(position_map.indexOf(1)).equals("D") && moving.equals("D")) {
+            System.out.print("   ");
+        }
         if(bridge.get(position_map.indexOf(1)).equals("D") && moving.equals("U")) {
             System.out.print(" X ");
         }
@@ -42,6 +45,9 @@ public class OutputView {
             System.out.print(" O ");
         }
         if(bridge.get(position_map.indexOf(1)).equals("D") && moving.equals("U")) {
+            System.out.print("   ");
+        }
+        if(bridge.get(position_map.indexOf(1)).equals("U") && moving.equals("U")) {
             System.out.print("   ");
         }
         if(bridge.get(position_map.indexOf(1)).equals("U") && moving.equals("D")) {
