@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     public List<String> bridge;
+    public List<String> userMoving = new ArrayList<>();
     public int count;
 
     public BridgeGame(List<String> bridge){
@@ -19,7 +20,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(String move) {
+        int index = userMoving.size();
+        if(this.bridge.get(index).equals(move)){
+            userMoving.add(move);
+            return true;
+        }
+        userMoving.add(move);
+        return false;
     }
 
     /**
