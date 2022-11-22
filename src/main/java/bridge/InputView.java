@@ -13,6 +13,7 @@ public class InputView {
      */
     public static String readBridgeSize() {
         System.out.println(Constant.INITIAL_MESSAGE);
+
         return Console.readLine();
     }
 
@@ -25,7 +26,6 @@ public class InputView {
 
         return Console.readLine();
     }
-
 
 
     /**

@@ -9,16 +9,17 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private enum UpDown{
-        UP(1,"U"),
-        DOWN(0,"D");
+    private enum UpDown {
+        UP("U"),
+        DOWN("D");
 
         String upDown;
 
-        UpDown(int generateNumber, String upDown) {
+        UpDown(String upDown) {
             this.upDown = upDown;
         }
-        public String getUpDown(){
+
+        public String getUpDown() {
             return upDown;
         }
 
@@ -37,7 +38,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(size);
-        for (int i = Constant.ZERO ; i < size ; i++){
+        for (int i = Constant.ZERO; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
             UpDown origin = selectUpDownFromOrigin(randomNumber);
             bridge.add(origin.getUpDown());

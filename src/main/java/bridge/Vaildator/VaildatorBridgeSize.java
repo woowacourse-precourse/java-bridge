@@ -4,11 +4,8 @@ import bridge.Constant;
 
 public class VaildatorBridgeSize {
 
-
-
     private static String userInputBridgeString;
     public static int userInputBridgeSize;
-
 
 
     public VaildatorBridgeSize(String userInputBridgeString) {
