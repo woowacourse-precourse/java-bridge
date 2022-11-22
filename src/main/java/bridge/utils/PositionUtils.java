@@ -1,7 +1,10 @@
-package bridge;
+package bridge.utils;
 
+import bridge.domain.Bridge;
+import bridge.domain.Player;
 import bridge.type.PositionType;
 import bridge.type.RetryType;
+import bridge.view.InputView;
 
 public class PositionUtils {
 

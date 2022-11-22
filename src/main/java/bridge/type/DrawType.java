@@ -1,6 +1,6 @@
 package bridge.type;
 
-import bridge.Draw;
+import bridge.domain.Draw;
 import bridge.type.suppoter.DrawSupporter;
 
 public enum DrawType implements DrawSupporter {

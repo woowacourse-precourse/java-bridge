@@ -1,5 +1,6 @@
-package bridge;
+package bridge.domain;
 
+import bridge.service.BridgeMaker;
 import bridge.type.PositionType;
 
 import java.util.List;

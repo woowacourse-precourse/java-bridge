@@ -1,6 +1,8 @@
 package bridge;
 
-public class CustomBridgeRandomNumberGenerator implements BridgeNumberGenerator{
+import bridge.service.BridgeNumberGenerator;
+
+public class CustomBridgeRandomNumberGenerator implements BridgeNumberGenerator {
 
     private static final int FIXED_NUMBER = 1;
 
