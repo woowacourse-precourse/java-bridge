@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.code.BridgeMap;
 import bridge.code.GameStatus;
@@ -14,8 +15,8 @@ public class BridgeGame {
     private final GameResult result;
     private int gameStatus;
 
-    public BridgeGame(int size) {
-        this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+    public BridgeGame(int size, BridgeNumberGenerator generator) {
+        this.bridge = new BridgeMaker(generator).makeBridge(size);
         this.result = new GameResult();
         this.gameStatus = GameStatus.PLAY;
     }
