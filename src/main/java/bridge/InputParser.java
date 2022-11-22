@@ -6,12 +6,18 @@ import view.InputView;
 import view.OutputView;
 
 /**
- * 뷰를 관리하는 클래스
+ * Inputview를 관리하는 클래스.
+ * <p>
+ * 입력 예외도 여기에서 처리함.
  */
-public class ViewManager {
+public class InputParser {
     InputView inputView = new InputView();
     OutputView outPutView = new OutputView();
 
+    /**
+     * 다리길이를 받아서 예외를 검출하고 BridgeGame에 전달.
+     * @return 다리 길이
+     */
     public int getBridgeSize(){
         int bridgeSize;
         while(true) {
@@ -22,13 +28,6 @@ public class ViewManager {
                 ExceptionData.EXCEPTION_SIZE.printExceptionData();
             }
         }
-    }
-
-    private int validateSize(int bridgeSize) throws IllegalArgumentException{
-        if(bridgeSize < BridgeData.MINIMUM_LENGTH || bridgeSize > BridgeData.MAXIMUM_LENGTH){
-            throw new IllegalArgumentException();
-        }
-        return bridgeSize;
     }
 
     public String getMoveCommand(){
@@ -43,6 +42,26 @@ public class ViewManager {
         }
     }
 
+    public String getGameCommand(){
+        String gameCommand;
+        while(true) {
+            try{
+                gameCommand = inputView.readGameCommand();
+                return validateGameCommand(gameCommand);
+            }catch(IllegalArgumentException e){
+                ExceptionData.EXCEPTION_RESTART.printExceptionData();
+            }
+        }
+    }
+
+
+    private int validateSize(int bridgeSize) throws IllegalArgumentException{
+        if(bridgeSize < BridgeData.MINIMUM_LENGTH || bridgeSize > BridgeData.MAXIMUM_LENGTH){
+            throw new IllegalArgumentException();
+        }
+        return bridgeSize;
+    }
+
     private String validateMove(String moveCommand) throws IllegalArgumentException {
         try {
             if (!moveCommand.equals(BridgeData.UP) && !moveCommand.equals(BridgeData.DOWN)) {
@@ -54,21 +73,10 @@ public class ViewManager {
         }
     }
 
-    public String getGameCommand(){
-        String gameCommand;
-        while(true) {
-            try{
-                gameCommand = inputView.readGameCommand();
-                return validateMove(gameCommand);
-            }catch(IllegalArgumentException e){
-                ExceptionData.EXCEPTION_RESTART.printExceptionData();
-            }
-        }
-    }
 
-    private String validateCommand(String gameCommand) throws IllegalArgumentException {
+    private String validateGameCommand(String gameCommand) throws IllegalArgumentException {
         try {
-            if (!gameCommand.equals(BridgeData.RESTART) || !gameCommand.equals(BridgeData.QUIT)) {
+            if (!gameCommand.equals(BridgeData.RESTART) && !gameCommand.equals(BridgeData.QUIT)) {
                 throw new IllegalArgumentException();
             }
             return gameCommand;
@@ -76,4 +84,5 @@ public class ViewManager {
             throw new IllegalArgumentException();
         }
     }
+
 }

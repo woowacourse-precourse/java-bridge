@@ -34,7 +34,6 @@ public class BridgeMaker {
         if(bridgePiece == 0){
             return BridgeData.DOWN;
         }
-
         return BridgeData.UP;
     }
 }
