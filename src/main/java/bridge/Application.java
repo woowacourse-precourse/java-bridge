@@ -1,8 +1,16 @@
 package bridge;
 
-public class Application {
 
+public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGame bridgeGame = new BridgeGame();
+        InputView inputView = new InputView();
+        inputView.readBridgeSize(bridgeGame);
+        while (bridgeGame.isInProgress) {
+            while (bridgeGame.inputResult) {
+                inputView.readMoving(bridgeGame);
+            }
+            inputView.readGameCommand(bridgeGame);
+        }
     }
 }

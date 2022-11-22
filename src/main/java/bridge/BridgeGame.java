@@ -1,23 +1,68 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import java.util.List;
+import java.util.Objects;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+public class BridgeGame {
+    public boolean isInProgress;
+    public boolean inputResult;
+    public String isCleared;
+    private List<String> bridge;
+    private int size;
+    public int stage;
+    private int attempts;
+
+
+    public void start(String stringSize) {
+        try {
+            int size = Integer.parseInt(stringSize);
+            if (size < 3 || size > 20)
+                throw new IllegalArgumentException();
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            this.isInProgress = true;
+            this.size = size;
+            this.stage = 1;
+            this.attempts = 1;
+            this.bridge = bridgeMaker.makeBridge(size);
+            this.isCleared = "실패";
+            this.inputResult = true;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public void move(String input) {
+        if (!Objects.equals(input, "U") && !Objects.equals(input, "D"))
+            throw new IllegalArgumentException("[ERROR] 잘못된 값입니다.");
+        if (size == stage) {
+            this.isCleared = "성공";
+            this.isInProgress = false;
+            this.inputResult = false;
+            return;
+        }
+        if (!Objects.equals(input, bridge.get(stage))) {
+            inputResult = false;
+        }
+        stage++;
+    }
+
+    public void retry(String input) {
+        if (!Objects.equals(input, "R") && !Objects.equals(input, "Q"))
+            throw new IllegalArgumentException("[ERROR] 잘못된 값입니다.");
+        if (Objects.equals(input, "R")) {
+            this.inputResult = true;
+            this.stage = 1;
+            this.attempts++;
+        }
+        if (Objects.equals(input, "Q")) {
+            this.result();
+        }
+    }
+
+    public void result() {
+        this.isInProgress = false;
+        System.out.println("최종 게임 결과");
+        System.out.println("게임 성공 여부: " + isCleared);
+        System.out.println("총 시도한 횟수: " + attempts);
     }
 }
