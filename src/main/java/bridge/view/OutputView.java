@@ -46,6 +46,7 @@ public class OutputView {
         System.out.println(GAME_RESULT_HEADER);
         printMap(resultMap);
         System.out.printf(GAME_RESULT_IS_SUCCESS_GAME, isSuccess);
+        System.out.println();
         System.out.printf(GAME_RESULT_PLAY_COUNT, gamePlayCount);
     }
 }
