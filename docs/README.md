@@ -150,6 +150,19 @@ Q
   
 - 총 시도한 횟수
 ---
+## 실제 실행 화면
+- 끝까지 게임을 진행하는 경우  
+  - 게임을 다시 시도함 
+  ![idea64_rq6pGPMWNl](https://user-images.githubusercontent.com/61807355/203266757-b8bf36df-47c8-4d48-81fa-7ea508bbddbe.gif)
+- 중간에 게임을 종료하는 경우 
+  - 게임을 다시 시도하지 않음
+- ![idea64_Qf5ocAuQSr](https://user-images.githubusercontent.com/61807355/203272763-bef60bde-f5b1-4c47-84cc-9be88c6f651a.gif)
+
+- 잘못된 입력을 할시에 [ERROR]와 상황에 맞는 메시지를 출력후 다시 입력을 받는다
+  ![idea64_SGEv67lXpL](https://user-images.githubusercontent.com/61807355/203273035-76044c76-cba5-4e4d-8dc8-12447c0d91ed.gif)
+
+
+---
 
 ## 도메인 기반 패키지 구조 구현을 목적으로 합니다
 - 프로그램의 domain 영역을 3가지로 나눕니다
