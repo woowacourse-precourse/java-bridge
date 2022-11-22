@@ -21,7 +21,10 @@ public class GameStart {
     }
 
     private void StartMoving() {
-
+        if ((bridgeGame.getBridge()).size() == (bridgeGame.getProgress1().size())) {
+            regame =false;
+            return;
+        }
         String moving = inputView.readMoving();
         bridgeGame.move(moving);
         List<String> P1 = bridgeGame.getProgress1();
