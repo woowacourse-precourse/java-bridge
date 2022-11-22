@@ -2,7 +2,7 @@ package bridge.Controller;
 
 import bridge.BridgeGame;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.Model.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.View.Message;
 import bridge.View.OutputView;
 
