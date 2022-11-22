@@ -4,7 +4,7 @@ public enum BridgeMoveCommand {
     MOVE_UP("U"),
     MOVE_DOWN("D");
 
-    private String command;
+    public final String command;
 
     BridgeMoveCommand(String command) {
         this.command = command;
