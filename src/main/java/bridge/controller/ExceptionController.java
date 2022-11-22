@@ -1,31 +1,26 @@
-package bridge;
+package bridge.controller;
 
-import bridge.message.ErrorMessage;
+import bridge.model.message.Message;
+import bridge.model.message.ErrorMessage;
 
 public class ExceptionController {
     public ExceptionController() {
     }
-    public boolean validateBridgeLengthIsNum(String num) {
-        for (int i = 0; i < num.length(); i++) {
-            if (!Character.isDigit(num.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-    public boolean validateBridgeLengthRange(int num) {
-        return ((3 <= num) && (num <= 20));
-    }
-    public void validateBridgeLength(String bridgeLengthStr) {
-        if (!this.validateBridgeLengthIsNum(bridgeLengthStr)) {
-            throw new IllegalArgumentException(ErrorMessage.WARNING_BRIDGE_INPUT_TYPE.getErrorMessage());
-        }
-        int bridgeLength = Integer.parseInt(bridgeLengthStr);
-        if (!this.validateBridgeLengthRange(bridgeLength)) {
-            throw new IllegalArgumentException(ErrorMessage.WARNING_BRIDGE_SIZE_RANGE.getErrorMessage());
-        }
-    }
-    public void validateBridgeGenerate() {
 
+    public void checkBridgeSize(String input) {
+        try {
+            int size = Integer.parseInt(input);
+            isValidRange(size);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            String message = ErrorMessage.ERROR_PREFIX.getErrorMessage() + ErrorMessage.ERROR_BRIDGE_SIZE.getErrorMessage();
+            throw new IllegalArgumentException(message);
+        }
     }
+    public void checkMoving(final String input) {
+        if (!isValidMoving(input)) {
+            String message = ErrorMessage.ERROR_PREFIX.getErrorMessage() + ErrorMessage.ERROR_MOVING.getErrorMessage();
+            throw new IllegalArgumentException(message);
+        }
+    }
+
 }
