@@ -5,12 +5,16 @@ import java.util.List;
 public class Bridge {
     private final List<String> bridge;
 
+    public List<String> getBridge() {
+        return bridge;
+    }
+
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
 
     public boolean isCorrect(List<String> inputDirections) {
-        return bridge.get(bridge.size() - 1).equals(inputDirections.get(inputDirections.size() - 1));
+        return bridge.get(inputDirections.size() - 1).equals(inputDirections.get(inputDirections.size() - 1));
     }
 
     public boolean isCleared(List<String> inputDirections){

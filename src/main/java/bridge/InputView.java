@@ -13,12 +13,12 @@ public class InputView {
     public int readBridgeSize() {
         String readLine = Console.readLine();
         try {
-            int size = Integer.parseInt(readLine);
-            return size;
+            return Integer.parseInt(readLine);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
+
 
 
     /**
@@ -31,7 +31,8 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public RetryResponse readGameCommand() {
+        String readLine = Console.readLine();
+        return RetryResponse.of(readLine);
     }
 }
