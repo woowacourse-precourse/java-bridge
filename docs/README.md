@@ -70,7 +70,7 @@
 - [ ] 다리 길이를 검증한다. #validateBridgeSize()
 - [x] 변환이 되는지 검증한다. #validateConvert()
 - [x] 다리 길이의 범위를 검증한다. #validateBridgeSizeRange()
-- [ ] 이동 가능한 입력이 아니면 예외를 발생시킨다. #validateInputMoveCommand()
+- [x] 이동 가능한 입력이 아니면 예외를 발생시킨다. #validateInputMoveCommand()
 - [x] 이동 가능한 입력인지 확인한다. #isMoveCommand()
 - [ ] 종료, 재시작 입력이 아니면 예외를 발생시킨다. #validateInputGameCommand()
 - [ ] 종료 입력인지 확인한다. #isEndCommand()

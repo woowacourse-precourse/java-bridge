@@ -99,6 +99,12 @@ public class BridgeGame {
         }
     }
 
+    public void validateInputMoveCommand(String command) {
+        if (!isMoveCommand(command)) {
+            throw new IllegalArgumentException(OUT_OF_RANGE);
+        }
+    }
+
     private boolean isMoveCommand(String command) {
         if (UP.equals(command) || DOWN.equals(command)) {
             return true;
