@@ -7,7 +7,7 @@ import bridge.controller.request.GameRequest;
 import bridge.controller.request.MoveRequest;
 import bridge.domain.model.GameResult;
 import bridge.domain.model.ScoreMap;
-import bridge.domain.service.BridgeGame;
+import bridge.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

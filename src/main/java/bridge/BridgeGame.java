@@ -1,4 +1,4 @@
-package bridge.domain.service;
+package bridge;
 
 import static bridge.domain.enums.Result.FAIL;
 import static bridge.domain.enums.Result.SUCCESS;
