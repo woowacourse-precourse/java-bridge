@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.domain.BridgeNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +22,9 @@ public class BridgeMaker {
         List<String> bridgedata = new ArrayList<>();
 
         for(int i = 0; i < size ; i++){
-            bridgedata.add(String.valueOf(bridgeNumberGenerator.generate()));
+            int number = bridgeNumberGenerator.generate();
+            if( number == 1) bridgedata.add("U");
+            if( number == 0) bridgedata.add("D");
         }
         return bridgedata;
     }

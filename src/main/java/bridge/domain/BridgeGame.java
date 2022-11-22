@@ -19,10 +19,10 @@ public class BridgeGame {
 
     public void move(String moveStep, String bridgeIndexData, int index) {
 
-        if(moveStep.equals("U") && bridgeIndexData.equals("0")) { gameResult(printView.wrong(), printView.space(), index);}
-        if(moveStep.equals("U") && bridgeIndexData.equals("1")) { gameResult(printView.correct(), printView.space(), index);}
-        if(moveStep.equals("D") && bridgeIndexData.equals("0")) { gameResult(printView.space(), printView.correct(), index);}
-        if(moveStep.equals("D") && bridgeIndexData.equals("1")) { gameResult(printView.space(), printView.wrong(), index);}
+        if(moveStep.equals("U") && bridgeIndexData.equals("D")) { gameResult(printView.wrong(), printView.space(), index);}
+        if(moveStep.equals("U") && bridgeIndexData.equals("U")) { gameResult(printView.correct(), printView.space(), index);}
+        if(moveStep.equals("D") && bridgeIndexData.equals("D")) { gameResult(printView.space(), printView.correct(), index);}
+        if(moveStep.equals("D") && bridgeIndexData.equals("U")) { gameResult(printView.space(), printView.wrong(), index);}
     }
 
     private void gameResult(String up, String down, int index) {
