@@ -47,6 +47,50 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 종합_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("  ", "*", "4567", "21","3",
+                    "R", "U", "D", "D",
+                    "R", "UD", "D",
+                    "X", "Q");
+            assertThat(output()).contains(
+                    "[ERROR] 값을 입력해주세요.",
+                    "[ERROR] 숫자 외 다른 문자는 입력할 수 없습니다.",
+                    "[ERROR] 한 글자 또는 두 글자만 입력해주세요.",
+                    "[ERROR] 3 이상 20 이하의 자연수를 입력해주세요.",
+                    "[ERROR] U 또는 D를 입력해주세요.",
+                    "[ERROR] 한 글자만 입력해주세요.",
+                    "[ERROR] R 또는 Q를 입력해주세요.",
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+
+            int indexOfFirstErrorMsg = output().indexOf("[ERROR] 값을 입력해주세요.");
+            int indexOfSecondErrorMsg = output().indexOf("[ERROR] 숫자 외 다른 문자는 입력할 수 없습니다.");
+            int indexOfThirdErrorMsg = output().indexOf("[ERROR] 한 글자 또는 두 글자만 입력해주세요.");
+            int indexOfFourthErrorMsg = output().indexOf("[ERROR] 3 이상 20 이하의 자연수를 입력해주세요.");
+            int indexOfFifthErrorMsg = output().indexOf("[ERROR] U 또는 D를 입력해주세요.");
+            int indexOfSixthErrorMsg = output().indexOf("[ERROR] 한 글자만 입력해주세요.");
+            int indexOfSeventhErrorMsg = output().indexOf("[ERROR] R 또는 Q를 입력해주세요.");
+
+            assertThat(indexOfFirstErrorMsg)
+                    .isLessThan(indexOfSecondErrorMsg)
+                    .isLessThan(indexOfThirdErrorMsg)
+                    .isLessThan(indexOfFourthErrorMsg)
+                    .isLessThan(indexOfFifthErrorMsg)
+                    .isLessThan(indexOfSixthErrorMsg)
+                    .isLessThan(indexOfSeventhErrorMsg);
+
+            int upSideIndex = output().indexOf("[ O |   |   ]");
+            int downSideIndex = output().indexOf("[   | O | X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
