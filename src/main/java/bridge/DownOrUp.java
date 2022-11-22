@@ -1,6 +1,6 @@
 package bridge;
 
-public enum DorU {
+public enum DownOrUp {
 
     UP("U", 1),
     DOWN("D", 0);
@@ -8,7 +8,7 @@ public enum DorU {
     private final String name;
     private final Integer number;
 
-    DorU(String name, Integer number) {
+    DownOrUp(String name, Integer number) {
         this.name = name;
         this.number = number;
     }

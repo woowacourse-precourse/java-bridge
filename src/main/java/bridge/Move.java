@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.BridgeGame.move;
-import static bridge.DorU.UP;
+import static bridge.DownOrUp.UP;
 
 
 public class Move {

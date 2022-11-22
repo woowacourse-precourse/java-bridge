@@ -3,7 +3,7 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.OutputView.printStartGame;
-import static bridge.DorU.*;
+import static bridge.DownOrUp.*;
 import static bridge.ErrorMessage.*;
 import static bridge.BridgeGameMessage.*;
 
