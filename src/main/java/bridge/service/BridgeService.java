@@ -10,11 +10,11 @@ import java.util.List;
  */
 public class BridgeService {
 
-    public void save(List<String> bridge) {
-        AnswerBridge.getInstance().setBridge(bridge);
-    }
-
     public AnswerBridge find() {
         return AnswerBridge.getInstance();
+    }
+
+    public void save(List<String> bridge) {
+        AnswerBridge.getInstance().setBridge(bridge);
     }
 }
