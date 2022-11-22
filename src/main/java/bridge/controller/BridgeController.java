@@ -1,7 +1,7 @@
 package bridge.controller;
 
-import bridge.Bridge;
-import bridge.BridgeGame;
+import bridge.model.Bridge;
+import bridge.service.BridgeGame;
 import bridge.io.InputView;
 import bridge.io.OutputView;
 

@@ -1,7 +1,8 @@
-package bridge;
+package bridge.service;
 
 import bridge.enums.ControlKey;
 import bridge.enums.MapOutputFormat;
+import bridge.model.Bridge;
 
 import java.util.ArrayList;
 import java.util.List;
