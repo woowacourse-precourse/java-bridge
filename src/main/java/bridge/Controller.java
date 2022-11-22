@@ -15,18 +15,14 @@ public class Controller {
     }
 
     public void start() {
-        outputView.printBridgeGameStart();
-        BridgeGame bridgeGame = createBridgeGame(readBridgeSize());
+        this.outputView.printBridgeGameStart();
+        final BridgeGame bridgeGame = createBridgeGame(readBridgeSize());
 
         do {
             moveToEndOfBridge(bridgeGame);
         } while (!bridgeGame.isWin() && doRetryOrNot(readGameCommand(), bridgeGame));
 
-        outputView.printResult(bridgeGame);
-    }
-
-    private int readBridgeSize() {
-        return inputView.readBridgeSize(outputView::printBridgeSizeInput);
+        this.outputView.printResult(bridgeGame);
     }
 
     private BridgeGame createBridgeGame(int bridgeSize) {
@@ -35,16 +31,11 @@ public class Controller {
         );
     }
 
-    private GameCommand readGameCommand() {
-        return inputView.readGameCommand(outputView::printGameCommandInput);
-    }
-
     private void moveToEndOfBridge(BridgeGame bridgeGame) {
         boolean moveResult = true;
         while (!bridgeGame.isWin() && moveResult) {
-            String moveDirection = inputView.readMoving(outputView::printBridgeMoveDirectionInput);
-            moveResult = bridgeGame.move(moveDirection);
-            outputView.printMap(bridgeGame.getMoveHistory());
+            moveResult = bridgeGame.move(readMoving());
+            this.outputView.printMap(bridgeGame.getMoveHistory());
         }
     }
 
@@ -54,5 +45,17 @@ public class Controller {
             return true;
         }
         return false;
+    }
+
+    private int readBridgeSize() {
+        return this.inputView.readBridgeSize(this.outputView::printBridgeSizeInput);
+    }
+
+    private GameCommand readGameCommand() {
+        return this.inputView.readGameCommand(this.outputView::printGameCommandInput);
+    }
+
+    private String readMoving() {
+        return this.inputView.readMoving(this.outputView::printBridgeMoveDirectionInput);
     }
 }

@@ -61,18 +61,18 @@ public class BridgeGame {
     }
 
     public Bridge getBridge() {
-        return bridge;
+        return this.bridge;
     }
 
     public int getCurrentPosition() {
-        return currentPosition;
+        return this.currentPosition;
     }
 
     public List<History> getMoveHistory() {
-        return moveHistory;
+        return this.moveHistory;
     }
 
     public int getTryCount() {
-        return tryCount;
+        return this.tryCount;
     }
 }

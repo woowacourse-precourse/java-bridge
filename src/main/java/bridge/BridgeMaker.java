@@ -26,7 +26,7 @@ public class BridgeMaker {
         List<String> result = new ArrayList<>();
         for (int curr = 0; curr < size; curr++) {
             result.add(
-                    makeBlock(bridgeNumberGenerator.generate())
+                    makeBlock(this.bridgeNumberGenerator.generate())
             );
         }
         return unmodifiableList(result);
