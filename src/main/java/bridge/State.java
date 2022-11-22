@@ -25,8 +25,8 @@ public enum State {
     public String RESULT(){return this.RESULT;}
     public Boolean ALIVE(){return this.ALIVE;}
 
-    public State stateOf(Boolean alive){ return BY_ALIVE.get(alive); }
-    public State stateOf(String ox)    { return BY_OX.get(ox);       }
+    public static State stateOf(Boolean alive){ return BY_ALIVE.get(alive); }
+    public static State stateOf(String ox)    { return BY_OX.get(ox);       }
 
 
 
