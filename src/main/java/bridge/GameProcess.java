@@ -23,16 +23,20 @@ public class GameProcess {
     public static void gameStart(){
         outputView.printStart();
         try {
-            size = getSize();
-            bridge = bridgeMaker.makeBridge(size);
-            while (true) {
-                gameCnt++;
-                if (!gameRunning(bridge, size)) break;
-            }
-            gameEnd(makingBridge, gameCnt);
+            gameProceeding();
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
+    }
+
+    private static void gameProceeding() {
+        size = getSize();
+        bridge = bridgeMaker.makeBridge(size);
+        while (true) {
+            gameCnt++;
+            if (!gameRunning(bridge, size)) break;
+        }
+        gameEnd(makingBridge, gameCnt);
     }
 
     public static int getSize() {
