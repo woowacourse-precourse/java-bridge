@@ -1,6 +1,8 @@
 package view;
 
+import bridge.BridgeGame;
 import camp.nextstep.edu.missionutils.Console;
+import domain.Bridge;
 import domain.Message;
 import exception.BridgeException;
 
@@ -9,11 +11,12 @@ import exception.BridgeException;
  */
 public class InputView {
     private static BridgeException bridgeException = new BridgeException();
+    private BridgeGame bridgeGame = new BridgeGame();
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println(Message.INPUT_BRIDGE_LENGTH.get());
         String bridgeLength = Console.readLine();
         int bridgeLen = bridgeException.validateBridgeSize(bridgeLength);
@@ -24,14 +27,16 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
-        return null;
+    public String readMoving(){
+        System.out.println(Message.INPUT_MOVING_UP_OR_DOWN.get());
+        String move = Console.readLine();
+        return move;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
+    public String readGameCommand() {
         return null;
     }
 }
