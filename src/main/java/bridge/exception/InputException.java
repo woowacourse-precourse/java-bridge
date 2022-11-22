@@ -2,6 +2,11 @@ package bridge.exception;
 
 public class InputException {
 
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String RESTART = "R";
+    private static final String QUIT = "Q";
+
     public void inputNullException(String input) throws IllegalArgumentException {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] input is null");
@@ -45,12 +50,12 @@ public class InputException {
     public void inputMoveException(String input) {
         inputNullException(input);
         inputNoOneCharException(input);
-        inputInvalidCharException(input, "U", "D");
+        inputInvalidCharException(input, UP, DOWN);
     }
 
     public void inputRestartException(String input) {
         inputNullException(input);
         inputNoOneCharException(input);
-        inputInvalidCharException(input, "R", "Q");
+        inputInvalidCharException(input, RESTART, QUIT);
     }
 }
