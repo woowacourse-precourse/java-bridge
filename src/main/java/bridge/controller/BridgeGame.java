@@ -1,9 +1,9 @@
 package bridge.controller;
-import bridge.model.BridgeStatus;
+import bridge.model.CrossingStatus;
 import bridge.constant.Game;
 
 public class BridgeGame {
-    private BridgeStatus bridgeStatus = new BridgeStatus();
+    private CrossingStatus bridgeStatus = new CrossingStatus();
     public boolean move(String movement, String space) {
         if(movement.equals(space)) {
             bridgeStatus.addStatus(movement, Game.CROSS_SUCCESS);

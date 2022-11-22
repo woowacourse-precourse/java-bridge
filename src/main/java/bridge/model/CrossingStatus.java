@@ -1,11 +1,12 @@
 package bridge.model;
 
+import bridge.constant.BridgeStatus;
 import bridge.constant.Game;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeStatus {
+public class CrossingStatus {
     private static List<String> upBridgeStatus;
     private static List<String> downBridgeStatus;
 
@@ -14,7 +15,7 @@ public class BridgeStatus {
         downBridgeStatus = new ArrayList<>();
     }
     public void addStatus(String movement, String status) {
-        if(movement.equals(Game.BRIDGE_GENERATE_UP)) {
+        if(movement.equals(BridgeStatus.UP.getStatus())) {
             upBridgeStatus.add(status);
             downBridgeStatus.add(Game.CROSS_NOT);
             return;

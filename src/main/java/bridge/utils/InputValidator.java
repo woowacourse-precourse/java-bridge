@@ -1,5 +1,6 @@
 package bridge.utils;
 
+import bridge.constant.BridgeStatus;
 import bridge.constant.Error;
 import bridge.constant.Game;
 
@@ -20,7 +21,7 @@ public class InputValidator {
         return size;
     }
     public void isMovementValid(String movement) {
-        if (!movement.equals(Game.BRIDGE_GENERATE_DOWN) && !movement.equals(Game.BRIDGE_GENERATE_UP)) {
+        if (!movement.equals(BridgeStatus.UP.getStatus()) && !movement.equals(BridgeStatus.DOWN.getStatus())) {
             throw new IllegalArgumentException(Error.MOVEMENT_VALID.getError());
         }
     }

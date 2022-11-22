@@ -2,7 +2,7 @@ package bridge.model;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.constant.Game;
+import bridge.constant.BridgeStatus;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -22,8 +22,8 @@ class BridgeMakerTest {
         assertEquals(bridge.size(), size);
         for (String s : bridge) {
             assertTrue(
-                    s.equals(Game.BRIDGE_GENERATE_UP) ||
-                            s.equals(Game.BRIDGE_GENERATE_DOWN));
+                    s.equals(BridgeStatus.UP.getStatus()) ||
+                            s.equals(BridgeStatus.DOWN.getStatus()));
         }
     }
 }

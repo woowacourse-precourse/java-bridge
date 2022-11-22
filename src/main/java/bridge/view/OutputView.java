@@ -2,12 +2,12 @@ package bridge.view;
 
 import bridge.constant.Game;
 import bridge.constant.IOMessage;
-import bridge.model.BridgeStatus;
+import bridge.model.CrossingStatus;
 
 import java.util.List;
 
 public class OutputView {
-    BridgeStatus bridgeStatus = new BridgeStatus();
+    CrossingStatus bridgeStatus = new CrossingStatus();
     public void printStart() {
         System.out.println(IOMessage.START_GAME);
         System.out.println();

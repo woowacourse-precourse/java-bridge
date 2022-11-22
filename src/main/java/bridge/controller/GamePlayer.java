@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeMaker;
-import bridge.model.BridgeStatus;
+import bridge.model.CrossingStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -15,7 +15,7 @@ public class GamePlayer {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private List<String> bridge = new ArrayList<>();
     private final BridgeGame bridgeGame = new BridgeGame();
-    private BridgeStatus bridgeStatus = new BridgeStatus();
+    private CrossingStatus bridgeStatus = new CrossingStatus();
     private static int gameCount = 0;
     public void play() {
         this.bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
