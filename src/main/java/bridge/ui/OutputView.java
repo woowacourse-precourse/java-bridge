@@ -2,7 +2,6 @@ package bridge.ui;
 
 import bridge.model.Answer;
 import bridge.model.Bridge;
-import bridge.model.Direction;
 import bridge.model.GameMessage;
 import bridge.model.Result;
 import java.util.List;

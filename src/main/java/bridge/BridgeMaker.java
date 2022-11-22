@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.model.Direction;
 import bridge.model.ErrorMessage;
 import java.util.List;
