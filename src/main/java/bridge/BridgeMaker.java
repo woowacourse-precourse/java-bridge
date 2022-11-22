@@ -22,7 +22,11 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generate = bridgeNumberGenerator.generate();
-            boolean b = generate == 1 ? bridge.add("U") : bridge.add("D");
+            if(generate == 1){
+                bridge.add("U");
+                continue;
+            }
+            bridge.add("D");
         }
         return bridge;
     }

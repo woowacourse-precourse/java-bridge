@@ -46,9 +46,9 @@ public class InputValidate {
         try{
             Double.parseDouble(length);
         }
-        catch(NumberFormatException e){
+        catch(Exception e){
             System.out.print(BRIDGE_INTEGER_MESSAGE);
-            throw new NoSuchElementException();
+            throw new NoSuchElementException(BRIDGE_INTEGER_MESSAGE);
         }
     }
 }
