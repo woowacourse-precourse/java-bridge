@@ -20,7 +20,13 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-
+        for(int i=0;i<size;i++){
+            int n = this.bridgeNumberGenerator.generate();
+            if(n==0)
+                bridge.add("D");
+            if(n==1)
+                bridge.add("U");
+        }
         return bridge;
     }
 }
