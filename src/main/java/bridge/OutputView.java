@@ -112,8 +112,8 @@ public class OutputView {
         System.out.printf("총 시도한 횟수: %d\n", count);
     }
 
-    private String doesSuccess(boolean clear){
-        if(clear){
+    private String doesSuccess(boolean clear) {
+        if (clear) {
             return "성공";
         }
         return "실패";
