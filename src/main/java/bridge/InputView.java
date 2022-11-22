@@ -15,8 +15,16 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리 길이를 입력해주세요");
-        Integer bridgeSize = Integer.valueOf(Console.readLine());
-        return bridgeSize;
+        String bridgeSize = Console.readLine();
+        try {
+            String BridgeSize = bridgeSize;
+            Exception.BridgeSizeCheck(BridgeSize);
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            return -1;
+        }
+        return Integer.valueOf(bridgeSize);
     }
 
     /**
@@ -25,6 +33,13 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String Moving = Console.readLine();
+        try {
+            Exception.WrongInsert(Moving, "U", "D");
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] U, D 이외의 값을 입력하였습니다.");
+            return "EXIT";
+        }
         return Moving;
     }
 
@@ -34,6 +49,13 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String gameCommand = Console.readLine();
+        try {
+            Exception.WrongInsert(gameCommand, "R", "Q");
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] R, Q 이외의 값을 입력하였습니다.");
+            return "EXIT";
+        }
         return gameCommand;
     }
 }
