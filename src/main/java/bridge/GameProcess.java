@@ -29,7 +29,7 @@ public class GameProcess {
             gameCnt++;
             if (!gameRunning(bridge,size)) break;
         }
-        gameEnd();
+        gameEnd(makingBridge,status,gameCnt);
     }
 
     public static int getSize() {
@@ -65,6 +65,7 @@ public class GameProcess {
         return status;
     }
 
-    public static void gameEnd(){
+    public static void gameEnd(List<String> makingBridge, String status, int gameCnt){
+        outputView.printResult(makingBridge,status,gameCnt);
     }
 }
