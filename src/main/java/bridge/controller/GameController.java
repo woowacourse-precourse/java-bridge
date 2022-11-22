@@ -1,21 +1,16 @@
 package bridge.controller;
 
-import java.util.List;
-
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.MapMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    MapMaker mapMaker = new MapMaker();
     BridgeGame bridgeGame;
-    boolean hasMoved;
     boolean hasRetried;
 
     private void setUpGame() {
@@ -36,10 +31,11 @@ public class GameController {
     }
 
     private void play() {
+        boolean hasMoved;
         do {
             outputView.printMovingDirectionInputNotice();
             hasMoved = moveByInput();
-            outputView.printMap(mapMaker.makeMap(bridgeGame.getPlayerData().getMovementRecord(), hasMoved));
+            outputView.printMap(bridgeGame.getResult());
             if (bridgeGame.checkWin()) {
                 break;
             }
@@ -55,7 +51,6 @@ public class GameController {
             return moveByInput();
         }
     }
-
 
     private void reTry() {
         outputView.printRestartOrQuitInputNotice();
@@ -73,8 +68,7 @@ public class GameController {
     }
 
     private void end() {
-        List<String> map = mapMaker.makeMap(bridgeGame.getPlayerData().getMovementRecord(), hasMoved);
-        outputView.printResult(map, bridgeGame.checkWin(), bridgeGame.getPlayerData().getCountOfTry());
+        outputView.printResult(bridgeGame.getResult(), bridgeGame.checkWin(), bridgeGame.getCountOfTry());
     }
 
     public void run() {
