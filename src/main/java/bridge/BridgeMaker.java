@@ -21,14 +21,14 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        while(bridge.size() < size){
+        while (bridge.size() < size) {
             bridge.add(converter());
         }
         return bridge;
     }
 
-    private String converter(){
-        if(bridgeNumberGenerator.generate() == 0) {
+    private String converter() {
+        if (bridgeNumberGenerator.generate() == 0) {
             return "D";
         }
         return "U";
