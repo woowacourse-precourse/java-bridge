@@ -39,7 +39,7 @@ public class BridgeGame {
         count++;
     }
 
-    public void makeUserInputList (String userInput, boolean state) {
+    private void makeUserInputList (String userInput, boolean state) {
         if (userInput.equals("U")) {
             inputUp(state);
         }
@@ -48,7 +48,7 @@ public class BridgeGame {
         }
     }
 
-    public void inputUp (boolean state) {
+    private void inputUp (boolean state) {
         if (state) {
             bridgeLineOne.add("O");
         }
@@ -58,7 +58,7 @@ public class BridgeGame {
         bridgeLineTwo.add(" ");
     }
 
-    public void inputDown (boolean state) {
+    private void inputDown (boolean state) {
         if (state) {
             bridgeLineTwo.add("O");
         }
