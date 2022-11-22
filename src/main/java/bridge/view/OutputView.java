@@ -6,6 +6,8 @@ import bridge.domain.game.BridgeGameResult;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static bridge.util.Constants.*;
+
 
 public class OutputView {
     StringBuilder sb = new StringBuilder();
@@ -22,62 +24,64 @@ public class OutputView {
     }
 
     public void printStartGuide() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(START_GUIDE);
     }
 
     public void printInputBridgeLengthGuide() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(INPUT_BRIDGE_LENGTH_GUIDE);
     }
 
     public void printInputMovingGuide() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(INPUT_MOVING_GUIDE);
     }
 
     public void printInputRestartOptionGuide() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(INPUT_RESTART_OPTION_GUIDE);
     }
 
     public void printFinalResultGuide() {
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_RESULT_GUIDE);
     }
 
     public String getBridgeStatus(BridgeGameResult bridgeGameResult) {
         sb.setLength(0);
         sb.append(getSingleBridgeStatus(bridgeGameResult.getUpperBridge()))
-                .append("\n")
+                .append(SEPARATOR)
                 .append(getSingleBridgeStatus(bridgeGameResult.getDownBridge()))
-                .append("\n");
+                .append(SEPARATOR);
         return sb.toString();
     }
 
     private String getSingleBridgeStatus(List<String> bridge) {
         return bridge.stream()
-                .collect(Collectors.joining(" | ", "[ ", " ]"));
+                .collect(Collectors.joining(RESULT_MAP_DELIMITER,
+                        RESULT_MAP_PREFIX,
+                        RESULT_MAP_SUFFIX));
     }
 
     private String getResultString(int count, boolean isCorrect) {
         sb.setLength(0);
 
         sb.append(getIsCorrectString(isCorrect))
-                .append("\n")
+                .append(SEPARATOR)
                 .append(getCountString(count))
-                .append("\n");
+                .append(SEPARATOR);
         return sb.toString();
     }
 
     private String getCountString(int count) {
-        return String.format("총 시도한 횟수: %d", count);
+        return String.format(COUNT_STRING_GUIDE, count);
     }
 
     private String getIsCorrectString(boolean isCorrect) {
-        return String.format("게임 성공 여부: %s", changeIsCorrectToString(isCorrect));
+        return String.format(IS_CORRECT_STRING_GUIDE, changeIsCorrectToString(isCorrect));
     }
 
     private String changeIsCorrectToString(boolean isCorrect) {
         if (isCorrect) {
-            return "성공";
+            return CORRECT_STRING;
         }
-        return "실패";
+        return WRONG_STRING;
     }
 
     public void printErrorMessage(Exception e) {
@@ -85,6 +89,6 @@ public class OutputView {
     }
 
     public void printRetryGuide(int tryCnt, int maxtry) {
-        System.out.printf("[ERROR] 다시 입력해주십시오. (최대 %d번의 기회 제공, 현재 %d번 시도)\n", maxtry, tryCnt);
+        System.out.printf(RETRY_GUIDE, maxtry, tryCnt);
     }
 }

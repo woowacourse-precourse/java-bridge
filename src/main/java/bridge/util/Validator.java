@@ -2,42 +2,44 @@ package bridge.util;
 
 import bridge.domain.game.MovingType;
 
+import static bridge.util.Constants.*;
+
 public class Validator {
 
     public static void validateBridgeLength(int length) {
-        if (length < 3 || length > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3 이상 20 이하여야 합니다.");
+        if (length < MIN_LENGTH_OF_BRIDGE || length > MAX_LENGTH_OF_BRIDGE) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_OF_BRIDGE);
         }
     }
 
     public static void validateStringIsNumeric(String input) {
-        if (!input.matches("[+-]?\\d+(\\.\\d+)?")) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야합니다.");
+        if (!input.matches(REGULAR_EXPRESSION_FOR_NUM)) {
+            throw new IllegalArgumentException(IS_NOT_NUMERIC_VALUE);
         }
     }
 
     public static void validateMovingType(String input) {
         String upperInput = input.toUpperCase();
         if (!MovingType.isContains(upperInput)) {
-            throw new IllegalArgumentException("[ERROR] 입력된 이동 옵션 값이 유효한 옵션이 아닙니다.");
+            throw new IllegalArgumentException(INVALID_MOVING_TYPE);
         }
     }
 
     public static void validateStringIsEnglish(String input) {
-        if (!input.matches("^[a-zA-Z]*$")) {
-            throw new IllegalArgumentException("[ERROR] 입력 값은 영어여야 합니다.");
+        if (!input.matches(REGULAR_EXPRESSION_FOR_ENG)) {
+            throw new IllegalArgumentException(IS_NOT_ENGLISH);
         }
     }
 
     public static void validateRestartOption(String input) {
         String upperInput = input.toUpperCase();
-        if (!upperInput.equals("Q") && !upperInput.equals("R")) {
-            throw new IllegalArgumentException("[ERROR] 입력된 재시작 옵션 값이 유효한 옵션이 아닙니다.");
+        if (!upperInput.equals(RESTART_OPTION) && !upperInput.equals(QUIT_OPTION)) {
+            throw new IllegalArgumentException(INVALID_RESTART_OPTION);
         }
     }
 
     public static boolean isNeedRestart(String input) {
-        return input.equals("R");
+        return input.equals(RESTART_OPTION);
     }
 }
 

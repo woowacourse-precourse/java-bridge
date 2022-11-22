@@ -8,6 +8,8 @@ import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import static bridge.util.Constants.*;
+
 public class BridgeGameController {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
@@ -42,14 +44,14 @@ public class BridgeGameController {
     }
 
     private int readBridgeLength() {
-        for (int tryCnt = 1; tryCnt <= 2; tryCnt++) {
+        for (int tryCnt = 1; tryCnt <= MAX_TRY_OF_READ_BRIDGE_LENGTH; tryCnt++) {
             try {
                 return inputView.readBridgeLength();
             } catch (IllegalArgumentException e) {
-                callRetryGuide(tryCnt, 2, e);
+                callRetryGuide(tryCnt, MAX_TRY_OF_READ_BRIDGE_LENGTH, e);
             }
         }
-        throw new IllegalArgumentException("[ERROR] 입력 시도 횟수 초과");
+        throw new IllegalArgumentException(EXCEED_THE_NUMBER_OF_TRY);
     }
 
     private void firstRoundStart() {
@@ -76,14 +78,14 @@ public class BridgeGameController {
     }
 
     private String readMoving() {
-        for (int tryCnt = 1; tryCnt <= 2; tryCnt++) {
+        for (int tryCnt = 1; tryCnt <= MAX_TRY_OF_READ_MOVING; tryCnt++) {
             try {
                 return inputView.readMoving();
             } catch (IllegalArgumentException e) {
-                callRetryGuide(tryCnt, 2, e);
+                callRetryGuide(tryCnt, MAX_TRY_OF_READ_MOVING, e);
             }
         }
-        throw new IllegalArgumentException("[ERROR] 입력 시도 횟수 초과");
+        throw new IllegalArgumentException(EXCEED_THE_NUMBER_OF_TRY);
     }
 
     private boolean getIsNeedRestart(boolean isSuccess) {
@@ -96,14 +98,14 @@ public class BridgeGameController {
     }
 
     private String readRestartOption() {
-        for (int tryCnt = 1; tryCnt <= 2; tryCnt++) {
+        for (int tryCnt = 1; tryCnt <= MAX_TRY_OF_READ_RESTART_OPTION; tryCnt++) {
             try {
                 return inputView.readRestartOption();
             } catch (IllegalArgumentException e) {
-                callRetryGuide(tryCnt, 2, e);
+                callRetryGuide(tryCnt, MAX_TRY_OF_READ_RESTART_OPTION, e);
             }
         }
-        throw new IllegalArgumentException("[ERROR] 입력 시도 횟수 초과");
+        throw new IllegalArgumentException(EXCEED_THE_NUMBER_OF_TRY);
     }
 
     private void callRetryGuide(int tryCnt, int maxTry, IllegalArgumentException e) {

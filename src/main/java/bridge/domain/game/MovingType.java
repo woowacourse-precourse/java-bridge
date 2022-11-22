@@ -8,6 +8,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static bridge.util.Constants.NO_MATCHING_MOVING_TYPE_FOUND;
+
 public enum MovingType {
     MOVING_UP(1, "U"),
     MOVING_DOWN(0, "D");
@@ -40,7 +42,7 @@ public enum MovingType {
     public static MovingType getMovingTypeByNumNotation(int numNotation) {
         return Optional
                 .ofNullable(movingTypeByNumNotation.get(numNotation))
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 찾을 수 없음"));
+                .orElseThrow(() -> new IllegalArgumentException(NO_MATCHING_MOVING_TYPE_FOUND));
     }
 
     public static boolean isContains(String engNotation) {

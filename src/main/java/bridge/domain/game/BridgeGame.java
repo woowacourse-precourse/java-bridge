@@ -2,6 +2,9 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
 
+import static bridge.util.Constants.ROUND_COUNT_INIT_VALUE;
+import static bridge.util.Constants.USER_LOCATION_INIT_VALUE;
+
 public class BridgeGame {
     Bridge realBridge;
     BridgeGameResult bridgeGameResult;
@@ -10,7 +13,7 @@ public class BridgeGame {
 
     public BridgeGame(Bridge bridge) {
         this.initSettings();
-        this.gameRoundCount = 1;
+        this.gameRoundCount = ROUND_COUNT_INIT_VALUE;
         this.realBridge = bridge;
     }
 
@@ -27,7 +30,7 @@ public class BridgeGame {
     }
 
     private void initSettings() {
-        this.userLocation = -1;
+        this.userLocation = USER_LOCATION_INIT_VALUE;
         this.bridgeGameResult = new BridgeGameResult();
     }
 

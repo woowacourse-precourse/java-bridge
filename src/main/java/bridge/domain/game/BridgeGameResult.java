@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static bridge.util.Constants.*;
+
 public class BridgeGameResult {
     private final List<String> upperBridge;
     private final List<String> downBridge;
@@ -32,13 +34,13 @@ public class BridgeGameResult {
     }
 
     private void updateDownBridge(String correctString) {
-        upperBridge.add(" ");
+        upperBridge.add(NO_INPUT);
         downBridge.add(correctString);
     }
 
     private void updateUpperBridge(String correctString) {
         upperBridge.add(correctString);
-        downBridge.add(" ");
+        downBridge.add(NO_INPUT);
     }
 
     private boolean isUpperBridgeMoving(String userMovingOption) {
@@ -47,9 +49,9 @@ public class BridgeGameResult {
 
     private String changeCorrectToString(boolean correct) {
         if (correct) {
-            return "O";
+            return IS_CORRECT;
         }
-        return "X";
+        return IS_WRONG;
     }
 
 
