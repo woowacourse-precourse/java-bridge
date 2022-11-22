@@ -46,10 +46,13 @@ public class Bridge {
         }
     }
 
+    /**
+     * 다리 칸들의 총 개수를 반환
+     * @return 다리 칸의 개수
+     */
     public int getNumOfCells() {
         return this.allowMove.size();
     }
-
 
     /**
      * 다리의 길이를 검증
