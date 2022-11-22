@@ -36,4 +36,24 @@ public class GameController {
         setBridge(bridgeController);
         setBridgeSize(bridgeController);
     }
+
+    private void failedAndEndGame() {
+        if (bridgeGame.getMoves().size() < bridgeSize) {
+            retry = bridgeGame.retry();
+
+            if (!retry) {
+                OutputView.printEndResult();
+                OutputView.printResult(FAIL);
+                OutputView.printTotalAttempts(countTry);
+            }
+        }
+    }
+
+    private void successResult() {
+        if (bridge.size() == bridgeGame.getMoves().size()) {
+            OutputView.printEndResult();
+            OutputView.printResult(SUCCESS);
+            OutputView.printTotalAttempts(countTry);
+        }
+    }
 }
