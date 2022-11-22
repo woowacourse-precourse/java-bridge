@@ -1,4 +1,7 @@
-package bridge;
+package bridge.controller;
+
+import bridge.view.InputView;
+import bridge.domain.Player;
 
 public class InputController {
     public static int checkSize(InputView inputView) {
