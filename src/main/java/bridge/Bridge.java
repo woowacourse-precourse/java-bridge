@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -71,5 +70,9 @@ public class Bridge {
         }
 
         return result;
+    }
+
+    public boolean isLastSpot(int currentPosition) {
+        return currentPosition == bridge.size() - 1;
     }
 }

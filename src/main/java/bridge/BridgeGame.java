@@ -16,7 +16,12 @@ public class BridgeGame {
 
     public void start(){
         makeBridge();
-        play();
+        do {
+            player.init();
+            play();
+        }while(!player.isSuccess() && retry());
+
+        System.out.println("게임 종료");
     }
 
     public void makeBridge(){
@@ -25,7 +30,8 @@ public class BridgeGame {
 
     public void play(){
         while(move()){
-
+//            if(bridge.isFinished(player.getCurrentPosition()))
+//                break;
         }
     }
 
@@ -36,7 +42,17 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move() {
-        return bridge.isCorrectSpot(player.getNextIdx(), player.getNextSpot());
+        // 마지막 칸이 아니고 && 성공한 경우 -> true;
+        boolean isCorrectSpot = bridge.isCorrectSpot(player.getNextIdx(), player.getNextSpot());
+        if(!isCorrectSpot) // 틀린 경우 false
+            return false;
+
+        if(bridge.isLastSpot(player.getCurrentPosition())){
+            player.success = true;
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -44,6 +60,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        return player.retry();
     }
 }

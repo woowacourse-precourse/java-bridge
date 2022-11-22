@@ -5,6 +5,7 @@ import java.util.List;
 public class Player {
 
     private int currentPosition = -1;
+    public boolean success = false;
 
     private final InputView inputView = new InputView();
 
@@ -29,5 +30,22 @@ public class Player {
 
     public String getNextSpot(){
         return inputView.readMoving();
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public boolean retry() {
+        String command = inputView.readGameCommand();
+        return command.equals("R");
+    }
+
+    public void init(){
+        currentPosition = -1;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 }
