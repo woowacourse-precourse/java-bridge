@@ -11,4 +11,8 @@ public class InputParser {
             throw new NotNumberInputException();
         }
     }
+
+    public static String parseToUpperCase(String command) {
+        return command.trim().toUpperCase();
+    }
 }

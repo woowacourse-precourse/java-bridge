@@ -27,7 +27,7 @@ public class BridgeGameController {
     //입력 잘못된경우엔 빈 결과를 반환한다.
     public GameResult move(String moveCommand) {
         try {
-            return bridgeService.move(moveCommand.toUpperCase());
+            return bridgeService.move(InputParser.parseToUpperCase(moveCommand));
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
             return GameResult.of(List.of(), ViewStatus.INVALID_MOVE_INPUT);
@@ -36,7 +36,7 @@ public class BridgeGameController {
 
     public ViewStatus retry(String command) {
         try {
-            return bridgeService.retry(command.toUpperCase());
+            return bridgeService.retry(InputParser.parseToUpperCase(command));
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
             return ViewStatus.DETERMINE_CONTINUE;
