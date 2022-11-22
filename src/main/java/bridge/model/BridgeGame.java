@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.BridgeController;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,8 @@ public class BridgeGame {
         this.currentPosition = 0;
         this.gameResult = true;
     }
+
+
 
 
 
@@ -44,5 +48,40 @@ public class BridgeGame {
         this.gameCount++;
         this.currentPosition = 0;
         this.gameResult = true;
+    }
+
+
+    // Getters --------------------------------------------------------
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public void setBridge(List<String> bridge) {
+        this.bridge = bridge;
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
+
+    public void setGameCount(int gameCount) {
+        this.gameCount = gameCount;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(int currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+
+    public boolean getGameResult() {
+        return gameResult;
+    }
+
+    public void setGameResult(boolean gameResult) {
+        this.gameResult = gameResult;
     }
 }
