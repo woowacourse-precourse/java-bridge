@@ -11,11 +11,11 @@ public class InputView extends InputConfig {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public String readBridgeSize() {
         System.out.println(START_BRIDGE_GAME+"\n");
         System.out.println(INPUT_BRIDGE_LENGTH);
 
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     /**
