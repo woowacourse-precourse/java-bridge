@@ -37,7 +37,9 @@ public class OutputView {
     }
 
     private String successToString(boolean success) {
-        if (success) return "성공";
+        if (success){
+            return "성공";
+        }
         return "실패";
     }
 
