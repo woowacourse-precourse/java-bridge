@@ -16,7 +16,7 @@ public class BridgeServiceTest {
         int bridgeSize = 5;
 
         // when
-        List<String> bridge = bridgeService.makeBridge(bridgeSize);
+        List<String> bridge = bridgeService.makeBridgeGame(bridgeSize);
 
         // then
         assertThat(bridge.size()).isEqualTo(bridgeSize);
