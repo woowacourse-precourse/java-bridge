@@ -62,10 +62,12 @@
 - [ ] BridgeController
     - [ ] 게임의 시작과 진행, 결과를 컨트롤 한다. (startGame)
     - [ ] 시작 문구를 출력하고, 사용자에게 다리 길이를 입력받아 다리를 생성한다. (setUpBridgeGame)
+      - [ ] exception이 발생하면 에러 메시지를 출력 후 다시 입력받는다.
     - [ ] BridgeGame을 진행한다. (proceedBridgeGame)
         - [ ] 시작 할 때 마다 userMoving을 초기화 해준다.
         - [ ] 시작 시 총 게임 횟수를 추가한다.
         - [ ] 사용자의 입력이 Bridge와 비교하여 다르거나, 끝까지 도달 할 때 까지 움직힌다. (move)
+            - [ ] exception이 발생하면 에러 메시지를 출력 후 다시 입력받는다.
         - [ ] 게임을 승리하거나 실패하고 retry를 하지 않았을 때 게임을 종료한다. (decideEndOfGame)
     - [ ] 게임의 승패 여부와 결과, 총 도전 횟수를 출력한다.
 
