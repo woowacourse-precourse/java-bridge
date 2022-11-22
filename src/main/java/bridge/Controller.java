@@ -53,4 +53,13 @@ public class Controller {
         outputView.printMap(userMap.getUserMap(), bridgeGame.getCur());
         return moveSuccess;
     }
+
+    private boolean requestRetryCommand() {
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestRetryCommand();
+        }
+    }
 }
