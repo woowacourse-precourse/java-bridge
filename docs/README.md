@@ -19,7 +19,7 @@
 - [x] 사용자의 마지막 선택을 반환한다. #getLastChoice
 
 ### ClearStatus: 최종 결과 출력시 성공, 실패를 반환하기 위한 논리 기반의 열거형 클래스
-- [ ] 성공 참거짓 유무에 따른 열거형 자료의 집합을 반환한다. #getMessageByClear
+- [x] 성공 참거짓 유무에 따른 열거형 자료의 집합을 반환한다. #getMessageByClear
 - [ ] 성공 참거짓 유무의 문자열을 반환한다. #getMessage
 
 ### InputView : 입력 관련 출력
