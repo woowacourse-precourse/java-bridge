@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Util.VerificationUtil;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CustomTest extends NsTest {
 
@@ -18,10 +20,8 @@ public class CustomTest extends NsTest {
     @ValueSource(strings = {"H", "i", "!"})
     @ParameterizedTest
     void bridgeSize_numeric_test(String strings) {
-        assertSimpleTest(() -> {
-            runException(strings);
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+        assertThatThrownBy(() -> VerificationUtil.verifyNumeric(strings))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("다리 길이가 3 이상 20 이하에 속하지 않는 경우 예외처리")
@@ -32,6 +32,14 @@ public class CustomTest extends NsTest {
             runException(strings);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("이동할 칸 입력이 U 또는 D가 아닌 경우 예외처리")
+    @ValueSource(strings = {"u", "d", "H", "i", ""})
+    @ParameterizedTest
+    void moving_test(String strings) {
+        assertThatThrownBy(() -> VerificationUtil.verifyMoving(strings))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 
