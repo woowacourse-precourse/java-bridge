@@ -37,4 +37,12 @@ class MoveLogTest {
         Assertions.assertThat(downLog.size()).isEqualTo(0);
     }
 
+    @DisplayName("아무 것도 저장되어있지 않은 상태로 잘 생성되는지 확인")
+    @Test
+    void checkMoveLogAfterGenerated() {
+        MoveLog testMoveLog = new MoveLog(8);
+        List<String> log = testMoveLog.getBridgeMoveLog().get(BridgeType.UP);
+        Assertions.assertThat(log.size()).isEqualTo(0);
+    }
+
 }
