@@ -9,8 +9,8 @@ public class BridgeGameController {
     private final InputView inputView = new InputView();
     private final BridgeGame bridgeGame;
 
-    public BridgeGameController() {
-        this.bridgeGame = new BridgeGame();
+    public BridgeGameController(BridgeGame bridgeGame) {
+        this.bridgeGame = bridgeGame;
     }
 
     public void startGame() {

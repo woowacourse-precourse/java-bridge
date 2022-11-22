@@ -1,5 +1,8 @@
 package bridge;
 
+import repository.BridgeRepository;
+
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -9,8 +12,18 @@ public class BridgeGame {
     private static final String BRIDGE_SIZE_REGEX = "([3-9]|1[0-9]|20)";
     private static final String ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
+    private final BridgeRepository bridgeRepository;
+
+    public BridgeGame(BridgeRepository bridgeRepository) {
+        this.bridgeRepository = bridgeRepository;
+    }
+
     public void generateBridge(String bridgeSize) {
         validateBridgeSize(bridgeSize);
+
+        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = maker.makeBridge(Integer.parseInt(bridgeSize));
+        bridgeRepository.saveBridge(bridge);
     }
 
     private void validateBridgeSize(String bridgeSize) {
