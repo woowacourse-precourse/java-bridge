@@ -27,7 +27,16 @@ public class InputViewTest extends NsTest {
 
     }
 
-    
+    @DisplayName("입력 받은 다리 길이가 3~20 사이가 아닌 경우")
+    @Test
+    void createBridgeSizeRange() {
+        assertSimpleTest(() -> {
+            runException("45","2","-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
 
 
 
