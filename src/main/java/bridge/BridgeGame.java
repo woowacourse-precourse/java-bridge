@@ -19,13 +19,19 @@ public class BridgeGame {
     private static int tryCount =1;
     private ArrayList<String> oriPlayerMove;
     private int moveCount =0;
-    private boolean isLive = true;
+    private static boolean isLive = true;
+
+
     private MapArray mapArray;
 
     public BridgeGame(BridgeMaker bm) {
         this.bridge = bm.makeBridge(getInput().readBridgeSize());
         this.mapArray = new MapArray("","");
 
+    }
+
+    public static void setIsLive(boolean isLive) {
+        BridgeGame.isLive = isLive;
     }
 
     public InputView getInput() {
