@@ -14,4 +14,8 @@ public class BridgeGame {
     }
 
     public int getPosition(){ return this.position;}
+
+    public void move() {
+        position++;
+    }
 }
