@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class ExceptionTest {
+    InputView inputView = new InputView();
     @DisplayName("다리 길이 입력시 숫자가 아닌 경우 예외 처리 테스트")
     @Test
     void BridgeLengthInputNotNumberExceptionTest() {
         // given
         String inputNotNumber = "22";
-        InputView inputView = new InputView();
 
         // when, then
         assertThatThrownBy(() -> inputView.validateBridgeLength(inputNotNumber))
@@ -26,7 +26,6 @@ public class ExceptionTest {
     void validateIsUOrDTest() {
         // given
         String inputNotUOrD = "K";
-        InputView inputView = new InputView();
 
         // when, then
         assertThatThrownBy(() -> inputView.validateIsUOrD(inputNotUOrD))
@@ -39,7 +38,6 @@ public class ExceptionTest {
     void validateIsROrQTest() {
         // given
         String inputNotROrQ = "K";
-        InputView inputView = new InputView();
 
         // when, then
         assertThatThrownBy(() -> inputView.validateIsROrQ(inputNotROrQ))
