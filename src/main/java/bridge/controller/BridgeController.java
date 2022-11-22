@@ -20,16 +20,19 @@ public class BridgeController {
 
     public void play() {
         try {
+            boolean gameSuccess = true;
             outputView.printStart();
             Bridge bridge = new Bridge(inputView.readBridgeSize());
             makedBridge = bridgeMaker.makeBridge(bridgeLength);
             do {
+                playCount += 1;
                 userResult = new UserResult();
                 if (moveBridge(bridge.getBridgeLength())) {
                     break;
                 }
-            }while(bridgeGame.retry(inputView.readGameRetryCommand()));
-            outputView.printResult();
+                gameSuccess = bridgeGame.retry(inputView.readGameRetryCommand());
+            }while(gameSuccess);
+            outputView.printResult(userResult, gameSuccess, playCount);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -39,7 +42,7 @@ public class BridgeController {
         boolean success = true;
         for (int i=0; i<bridgeLength; i++) {
             success = bridgeGame.move(userResult, inputView.readMoving(), makedBridge.get(i));
-            outputView.printMap();
+            outputView.printMap(userResult);
             if (!success) {
                 return success;
             }
