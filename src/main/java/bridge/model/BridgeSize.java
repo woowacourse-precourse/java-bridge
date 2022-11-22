@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.model;
 
 import bridge.constant.Bridge;
 import bridge.constant.ErrorMessage;
