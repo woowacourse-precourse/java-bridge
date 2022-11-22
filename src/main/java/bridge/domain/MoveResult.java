@@ -1,16 +1,14 @@
 package bridge.domain;
 
 public enum MoveResult {
-    SUCCESS("O", true),
-    FAIL("X", false),
-    OTHER(" ", false);
+    SUCCESS("O"),
+    FAIL("X"),
+    OTHER(" ");
 
     final String result;
-    final boolean canMove;
 
-    MoveResult(String result, boolean canMove) {
+    MoveResult(String result) {
         this.result = result;
-        this.canMove = canMove;
     }
 
     public static MoveResult decide(Move destination, Move moveTo) {

@@ -58,12 +58,19 @@ public class BridgeGameController {
     private void play() {
         while (gameStatus == GameStatus.PLAYING) {
             moveBridge();
+            checkClear();
             if (gameStatus == GameStatus.DEATH) {
                 askRetry();
             }
         }
 
         gameProgress = GameProgress.END;
+    }
+
+    private void checkClear() {
+        if (bridgeGame.isClear()) {
+            gameStatus = GameStatus.CLEAR;
+        }
     }
 
     private void askRetry() {
@@ -76,7 +83,10 @@ public class BridgeGameController {
     }
 
     private void moveBridge() {
-        gameStatus = bridgeGame.move(InputView.readMoving());
+        if (!bridgeGame.move(InputView.readMoving())) {
+            gameStatus = GameStatus.DEATH;
+        }
+
         OutputView.printMap(bridgeGame.getPlayer());
     }
 
