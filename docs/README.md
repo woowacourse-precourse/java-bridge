@@ -1,0 +1,58 @@
+## 기능 구현 내용
+
+    │       └── bridge
+    │           ├── Application.java
+    │           ├── BridgeGameProgram.java
+    │           ├── BridgeMaker.java
+    │           ├── BridgeNumberGenerator.java
+    │           ├── BridgeRandomNumberGenerator.java
+    │           ├── io
+    │           │   ├── InputView.java
+    │           │   ├── Message.java
+    │           │   └── OutputView.java
+    │           ├── model
+    │           │   ├── Bridge.java
+    │           │   └── BridgeGame.java
+    │           └── utils
+    │               ├── BridgeDirection.java
+    │               ├── GameCommand.java
+    │               ├── GameStatus.java
+    │               ├── Mark.java
+    │               └── Validator.java
+
+
+### 입출력
+| 기능              | 구현여부 |
+|-----------------|------|
+| 다리길이 입력         | O    |
+| 이동할 칸 입력        | O    |
+| 게임 종료여부 입력      | O    |
+| 입력값 요구하는 메시지 출력 | O    |
+| 이동한 다리의 상태 출력   | O    |
+| 최종 결과 출력        | O    |
+
+### 게임 상태
+| 기능   | 구현여부 |
+|------|------|
+| 종료   | O    |
+| 게임 중 | O    |
+
+### 입력값 유효성 체크
+| 기능                       | 구현여부 |
+|--------------------------|------|
+| 다리 길이 : 3이상 20이하의 숫자만 허용 | O    |
+| 이동할 칸 : U 또는 D만 허용       | O    |
+| 게임 진행 여부 : R 또는 Q만 허용    | O    |
+
+### 다리 생성
+| 기능               | 구현여부 |
+|------------------|------|
+| 입력받은 길이의 다리 생성   | O    |
+| 이동가능 칸인지 체크 후 반환 | O    |
+
+### 다리 게임
+| 기능                     | 구현여부 |
+|------------------------|------|
+| 다리 칸 이동                | O    |
+| 재시도 선택 시 현재까지의 이동 칸 리셋 | O    |
+| 종료 선택 시 게임 종료          | O    |
