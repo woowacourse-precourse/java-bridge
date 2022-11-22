@@ -48,14 +48,6 @@ public class Controller {
         return retryOrExit();
     }
 
-    private int retryOrExit() {
-        if (askCommand().equals(RETRY)) {
-            game.retry();
-            return doGame() + RETRY_ADD_COUNT;
-        }
-        return INITIAL_TRIAL_COUNT;
-    }
-
     private TrialResult tryToMove() {
         try {
             TrialResult trialResult = game.move(INPUT_VIEW.readDirection());
@@ -65,6 +57,14 @@ public class Controller {
             OUTPUT_VIEW.printException(exception.getMessage());
             return tryToMove();
         }
+    }
+
+    private int retryOrExit() {
+        if (askCommand().equals(RETRY)) {
+            game.retry();
+            return doGame() + RETRY_ADD_COUNT;
+        }
+        return INITIAL_TRIAL_COUNT;
     }
 
     private GameCommand askCommand() {
