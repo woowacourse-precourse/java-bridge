@@ -1,6 +1,8 @@
 package bridge.view;
 
 import bridge.controller.BridgeGameController;
+import bridge.controller.dto.GameResult;
+import bridge.controller.dto.MoveResult;
 
 public class DefaultView implements View {
 
@@ -43,17 +45,17 @@ public class DefaultView implements View {
     private void playGame() {
         boolean isMove, isEnd;
         do {
-            isMove = inputMove();
-            isEnd = controller.checkGameProgress();
-            outputBridgeMap();
+            MoveResult result = inputMove();
+            isMove = result.isMove();
+            isEnd = result.isEnd();
+            outputBridgeMap(result.getMap());
         } while (isMove && !isEnd);
-        if (isEnd) {
-            return;
+        if (!isMove) {
+            inputGameCommand();
         }
-        inputGameCommand();
     }
 
-    private boolean inputMove() {
+    private MoveResult inputMove() {
         outputView.printReadMove();
         String move;
         try {
@@ -65,8 +67,7 @@ public class DefaultView implements View {
         return controller.moveBridge(move);
     }
 
-    private void outputBridgeMap() {
-        String map = controller.createMap();
+    private void outputBridgeMap(String map) {
         outputView.printMap(map);
         System.out.println();
     }
@@ -89,8 +90,7 @@ public class DefaultView implements View {
     }
 
     private void outputResult() {
-        String map = controller.createMap();
-        String result = controller.createResult();
-        outputView.printResult(map, result);
+        GameResult gameResult = controller.createResult();
+        outputView.printResult(gameResult.getMap(), gameResult.getResult());
     }
 }

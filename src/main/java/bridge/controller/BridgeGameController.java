@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import bridge.controller.dto.GameResult;
+import bridge.controller.dto.MoveResult;
 import bridge.domain.BridgeCell;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.Command;
@@ -19,13 +21,14 @@ public class BridgeGameController {
         service.createBridge(bridgeSize, bridgeNumberGenerator);
     }
 
-    public boolean moveBridge(String move) {
+    public MoveResult moveBridge(String move) {
         BridgeCell cell = BridgeCell.getBridgeCell(move);
-        return service.moveBridge(cell);
-    }
 
-    public String createMap() {
-        return service.createMap();
+        boolean isMove = service.moveBridge(cell);
+        boolean isEnd = service.checkGameProgress();
+        String map = service.createMap();
+
+        return new MoveResult(isMove, isEnd, map);
     }
 
     public boolean runCommand(String input) {
@@ -36,11 +39,9 @@ public class BridgeGameController {
         return false;
     }
 
-    public boolean checkGameProgress() {
-        return service.checkGameProgress();
-    }
-
-    public String createResult() {
-        return service.createResult();
+    public GameResult createResult() {
+        String map = service.createMap();
+        String result = service.createResult();
+        return new GameResult(map, result);
     }
 }
