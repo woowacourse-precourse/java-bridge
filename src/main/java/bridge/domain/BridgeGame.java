@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.validation.BridgeGameValidation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class BridgeGame {
     }
 
     public List<String> getBridgeCurrStatus() {
-        return bridgeCurrStatus;
+        return Collections.unmodifiableList(bridgeCurrStatus);
     }
 
     /**
