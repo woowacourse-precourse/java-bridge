@@ -57,7 +57,6 @@
 
 - 📂 domain
   - ☕️ BridgeConstant: 다리 도메인에 해당하는 상수들을 관리한다. 
-  - ☕️ BridgeMaker: 다리를 생성하는 역할을 한다.
   - ☕️ BridgeMap: `Result` 를 통해 다리의 상태를 현황을 도식화한다.
   - ☕️ BridgeType: 다리의 종류를 관리한다.
   - ☕️ CommandType: 사용자 명령 종류를 관리한다.
@@ -69,6 +68,7 @@
   - ☕️ OutputView: 게임 진행에 따른 메세지 출력 기능을 담당한다.
   
 - ☕️ Application: 프로그램을 실행한다.
+- ☕️ BridgeMaker: 다리를 생성하는 역할을 한다.
 - ☕️ BridgeGameRunner: 다리 게임의 전체 흐름을 실행한다.
 - ☕️ BridgeNumberGenerator: 다리 숫자 생성기의 규격을 정의한다. (interface)
 - ☕️ BridgeRandomNumberGenerator: 다리 생성에 필요한 랜덤 숫자를 생성한다.
