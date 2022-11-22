@@ -18,4 +18,17 @@ public class BridgeGameTest {
         game.move("D");
         assertThat(game.checkCurrentStatus()).isFalse();
     }
+
+    @DisplayName("다리를 다 건넜는지 확인하는 기능에 대한 테스트")
+    @Test
+    public void checkIfWinTest() {
+        BridgeGame game = new BridgeGame(List.of("U", "D", "U"));
+        assertThat(game.checkIfWin()).isFalse();
+        game.move("U");
+        assertThat(game.checkIfWin()).isFalse();
+        game.move("D");
+        assertThat(game.checkIfWin()).isFalse();
+        game.move("U");
+        assertThat(game.checkIfWin()).isTrue();
+    }
 }
