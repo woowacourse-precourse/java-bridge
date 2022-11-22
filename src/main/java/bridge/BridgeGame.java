@@ -5,6 +5,27 @@ package bridge;
  */
 public class BridgeGame {
 
+    private final String MOVE_POSSIBLE = " O ";
+    private final String MOVE_IMPOSSIBLE = " X ";
+    private final String NOT_SELECTED = "   ";
+    private final String BRIDGE_START = "[";
+    private final String BRIDGE_END = "]";
+    private final String BRIDGE_MIDDLE = "|";
+
+    private StringBuilder upperBridge = new StringBuilder();
+    private StringBuilder lowerBridge = new StringBuilder();
+    private int acrossBridge = 0;
+
+    private int count = 1;
+
+
+    public List<String> makeBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -27,10 +48,28 @@ public class BridgeGame {
     public void printInputBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
-    public void printSelectBridgeUpDown() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+
+    public int accrosBridgePlus() {
+        return this.acrossBridge = acrossBridge + 1;
     }
-    public void printRestartOrQuit() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
+    public int getAcrossBridge() {
+        return acrossBridge;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public int countPlus() {
+        return this.count = count + 1;
+    }
+
+    public StringBuilder getLowerBridge() {
+        return lowerBridge;
+    }
+
+    public StringBuilder getUpperBridge() {
+        return upperBridge;
     }
 }
