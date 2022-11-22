@@ -23,4 +23,27 @@ public class BridgeGameTest {
     void moveDanger() {
         Assertions.assertThat(bridgeGame.move(Latitude.DOWN)).isEqualTo(false);
     }
+
+    @Test
+    @DisplayName("")
+    void isProcessing() {
+        bridgeGame.move(Latitude.UP);
+        Assertions.assertThat(bridgeGame.isProcessing()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("")
+    void isProcessingByPlayerDeath() {
+        bridgeGame.move(Latitude.DOWN);
+        Assertions.assertThat(bridgeGame.isProcessing()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("")
+    void isProcessingByPlayerWin() {
+        bridgeGame.move(Latitude.UP);
+        bridgeGame.move(Latitude.DOWN);
+        bridgeGame.move(Latitude.DOWN);
+        Assertions.assertThat(bridgeGame.isProcessing()).isEqualTo(false);
+    }
 }
