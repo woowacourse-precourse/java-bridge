@@ -1,11 +1,7 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-
-import camp.nextstep.edu.missionutils.test.NsTest;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -17,19 +13,20 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class DomainTest {
-    private OutputView outputView = null;
+
     private InputView inputView = null;
     private BridgeGame bridgeGame = null;
-    ArrayList<String> bridgeSet(){
+
+    ArrayList<String> bridgeSet() {
         ArrayList<String> bridge = new ArrayList<>();
         bridge.add("U");
         bridge.add("U");
         bridge.add("D");
         return bridge;
     }
+
     @BeforeEach
     void SetUp() {
-        outputView= new OutputView();
         inputView = new InputView();
         bridgeGame = new BridgeGame(bridgeSet());
     }
@@ -46,19 +43,19 @@ public class DomainTest {
     @DisplayName("다리 길이 잘못된 값 입력 한글")
     @Test
     void lengthWrongChar() {
-        assertThat(inputView.checkMessage("안녕",ErrorMessage.BRIDGELENGTHERROREXCEPTION)).contains("[ERROR]");
+        assertThat(inputView.checkMessage("안녕", ErrorMessage.BRIDGELENGTHERROREXCEPTION)).contains("[ERROR]");
     }
 
     @DisplayName("다리 길이 잘못된 값 입력 숫자")
     @Test
     void lengthWrongNumber() {
-        assertThat(inputView.checkMessage("2",ErrorMessage.BRIDGELENGTHERROREXCEPTION)).contains("[ERROR]");
+        assertThat(inputView.checkMessage("2", ErrorMessage.BRIDGELENGTHERROREXCEPTION)).contains("[ERROR]");
     }
 
 
     @Test
     void bridge_generate() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(0,1,1));
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(0, 1, 1));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("D", "U", "U");
@@ -67,17 +64,17 @@ public class DomainTest {
     @DisplayName("위아래 입력")
     @Test
     void inputUpValue() {
-        assertThat(inputView.checkMessage("U",ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("PASS");
-        assertThat(inputView.checkMessage("D",ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("PASS");
-        assertThat(inputView.checkMessage("dkfjsdkf",ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("ERROR");
+        assertThat(inputView.checkMessage("U", ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("PASS");
+        assertThat(inputView.checkMessage("D", ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("PASS");
+        assertThat(inputView.checkMessage("dkfjsdkf", ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("ERROR");
     }
 
     @DisplayName("재시작 종료 입력 받는 것 체크")
     @Test
     void RestartOrQuitValue() {
-        assertThat(inputView.checkMessage("R",ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("PASS");
-        assertThat(inputView.checkMessage("Q",ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("PASS");
-        assertThat(inputView.checkMessage("dfddf",ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("ERROR");
+        assertThat(inputView.checkMessage("R", ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("PASS");
+        assertThat(inputView.checkMessage("Q", ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("PASS");
+        assertThat(inputView.checkMessage("dfddf", ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("ERROR");
     }
 
     @DisplayName("다리만큼 다왔으면 게임 오버")
@@ -107,9 +104,6 @@ public class DomainTest {
         assertThat(bridgeGame.retry("R")).isTrue();
         assertThat(bridgeGame.retry("F")).isFalse();
     }
-
-
-
 
 
 }

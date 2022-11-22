@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private ArrayList<String> bridge;
     private int nowOn = 0;
     private boolean gameOver = false;
     private boolean win = false;
+    private ArrayList<String> bridge;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = new ArrayList<>(bridge);

@@ -12,7 +12,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        input = validInput(input,ErrorMessage.BRIDGELENGTHERROREXCEPTION);
+        input = validInput(input, ErrorMessage.BRIDGELENGTHERROREXCEPTION);
         return Integer.parseInt(input);
     }
 
@@ -21,7 +21,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        input = validInput(input,ErrorMessage.WRONGMOVEINPUTEXCEPTION);
+        input = validInput(input, ErrorMessage.WRONGMOVEINPUTEXCEPTION);
         return input;
     }
 
@@ -30,11 +30,11 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
-        input = validInput(input,ErrorMessage.WRONGGAMEENDINPUTEXCEPTION);
+        input = validInput(input, ErrorMessage.WRONGGAMEENDINPUTEXCEPTION);
         return input;
     }
 
-    public String validInput(String input,ErrorMessage errorMessage){
+    public String validInput(String input, ErrorMessage errorMessage) {
         String checkMessage = this.checkMessage(input, errorMessage);
         while (!checkMessage.equals(ErrorMessage.PASS.getErrorMessage())) {
             System.out.println(checkMessage);

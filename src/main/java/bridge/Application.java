@@ -6,7 +6,6 @@ public class Application {
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
     private boolean runGame;
-
     private int tryNumber = 1;
     private String lastText = "";
 
