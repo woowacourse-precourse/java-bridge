@@ -9,4 +9,11 @@ public class BridgeGame {
         turn++;
         return turn;
     }
+    public int retry(String restart) {
+        int cnt=0;
+        if(!restart.equals("R")){
+            return cnt;
+        }
+        return 1;
+    }
 }
