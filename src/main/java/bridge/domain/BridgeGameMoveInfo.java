@@ -35,4 +35,14 @@ public class BridgeGameMoveInfo {
         }
         signBuilder.append(WRONG_SIGN);
     }
+
+    public String MapInfo() {
+        StringBuilder upLine = new StringBuilder(up);
+        StringBuilder downLine = new StringBuilder(down);
+
+        upLine.setCharAt(upLine.length() - 1, ']');
+        downLine.setCharAt(downLine.length() - 1, ']');
+
+        return upLine + "\n" + downLine;
+    }
 }
