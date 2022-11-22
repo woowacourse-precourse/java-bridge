@@ -18,7 +18,7 @@ public enum Move {
         if ("D".equals(direction) || "0".equals(direction)) {
             return Move.DOWN;
         }
-        throw new IllegalArgumentException("[ERROR]");
+        throw new IllegalArgumentException("올바르지 않은 방향이 입력되었습니다. (입력:" + direction + ")");
     }
 
     public static Move from(int number) {
@@ -28,7 +28,7 @@ public enum Move {
         if (number == 1) {
             return Move.UP;
         }
-        throw new IllegalArgumentException("[ERROR]");
+        throw new IllegalArgumentException("올바르지 않은 방향이 입력되었습니다. (입력:" + number + ")");
     }
 
     public String getDirection() {

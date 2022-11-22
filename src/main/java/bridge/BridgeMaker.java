@@ -35,7 +35,7 @@ public class BridgeMaker {
 
     private void validate(int size) {
         if (size <= 0) {
-            throw new IllegalArgumentException("[ERROR] 다리 사이즈가 너무 작습니다." + String.valueOf(size));
+            throw new IllegalArgumentException("다리 사이즈는 양수여야합니다. (입력:" + size + ")");
         }
     }
 }

@@ -16,7 +16,7 @@ public enum GameCommand {
                 return c;
             }
         }
-        throw new IllegalArgumentException("[ERROR]");
+        throw new IllegalArgumentException("올바르지 않은 Command 값이 입력되었습니다. (입력:" + command + ")");
     }
 
     public String getCommand() {

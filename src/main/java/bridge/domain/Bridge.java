@@ -30,7 +30,7 @@ public class Bridge {
 
     private void validate(int length, List<String> bridge) {
         if (bridge.size() != length) {
-            throw new IllegalArgumentException("[ERROR] bridge size mismatch");
+            throw new IllegalArgumentException("다리 사이즈가 올바르지 않습니다. (현재:" + length + ")");
         }
         for (String b : bridge) {
             Move.from(b);
@@ -39,7 +39,7 @@ public class Bridge {
 
     public static void validateLength(int length) {
         if (length < BRIDGE_SIZE_MIN || BRIDGE_SIZE_MAX < length) {
-            throw new IllegalArgumentException("[ERROR] bridge size mismatch");
+            throw new IllegalArgumentException("다리 길이가 범위를 벗어났습니다. (현재:" + length + ")");
         }
     }
 
