@@ -25,10 +25,10 @@ public class BridgeGame {
         bridge = new Bridge(answerBridge);
     }
 
-    public List<String> move(String direction) {
+    public boolean move(String direction) {
         validate.validateContainWord(direction,UP,DOWN);
         visited.add(direction);
-        return visited;
+        return isRightDirection(visited.size()-1,direction);
     }
 
     public boolean isRightDirection(int idx, String direction) {
