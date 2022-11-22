@@ -2,6 +2,7 @@ package bridge.domain.game;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.command.BridgeRestartCommand;
 import java.util.List;
 
 /**
@@ -34,14 +35,7 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public int retry(String command) {
-		//ENUM으로 뺴기
-		if (command.equals("Q")) {
-			return END_GAME;
-		}
-		if (command.equals("R")) {
-			return RETRY_GAME;
-		}
-		return 0;
+		return BridgeRestartCommand.getRestartCode(command);
 	}
 
 
