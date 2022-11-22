@@ -17,6 +17,8 @@ public class ViewTest extends ApplicationTest {
     private TestInput testInput = new TestInput(3, "U","R");
     private Integer outputInt;
     private String outputStr;
+    private UserDTO userDTO;
+    private User user;
     @Test
     void InputTest(){
         InputView inputView = new InputView(testInput);
@@ -29,7 +31,13 @@ public class ViewTest extends ApplicationTest {
     void printMapTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printMap(false,2,"D");
+        user = new User();
+        userDTO = new UserDTO();
+        user.addPosition();
+        user.addPosition();
+        user.failResult();
+        userDTO.setUserDTO(user);
+        outputView.printMap(userDTO,"D");
         assertThat(output()).contains(
                 "[ O |   |   ]",
                 "[   | O | X ]"
@@ -38,8 +46,11 @@ public class ViewTest extends ApplicationTest {
     @Test
     void printFirstMapTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
+        user = new User();
+        userDTO = new UserDTO();
+        userDTO.setUserDTO(user);
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printMap(true,0,"U");
+        outputView.printMap(userDTO,"U");
         assertThat(output()).contains(
                 "[ O ]",
                 "[   ]"
@@ -49,7 +60,12 @@ public class ViewTest extends ApplicationTest {
     void printSecondMapTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printMap(false,1,"U");
+        user = new User();
+        userDTO = new UserDTO();
+        user.failResult();
+        user.addPosition();
+        userDTO.setUserDTO(user);
+        outputView.printMap(userDTO,"U");
         assertThat(output()).contains(
                 "[ O | X ]",
                 "[   |   ]"

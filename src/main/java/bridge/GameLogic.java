@@ -37,7 +37,8 @@ public class GameLogic {
     private void playOneGame(){
         catchMoveException();
         bridgeGame.isCorrect(inputMove);
-        outputView.printMap(bridgeGame.getUser().getResult(),bridgeGame.getUser().getPosition(),inputMove);
+        userDTO.setUserDTO(bridgeGame.getUser());
+        outputView.printMap(userDTO,inputMove);
         bridgeGame.move();
         changeLine();
         checkEnd();
