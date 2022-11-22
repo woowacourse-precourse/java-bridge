@@ -33,4 +33,13 @@ class ValidationTest {
                         validation.validationMoving("Q"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("게임 종료 및 재시행 값 검증")
+    void movingValueValidation_fault2() {
+        Assertions.assertThatThrownBy(() ->
+                        validation.validationIsExitCommand("W"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
