@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeMakerTest {
 
-    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     @DisplayName("입력한 길이와 다리 길이가 일치한다")
     @ValueSource(ints = 10)
@@ -31,7 +31,7 @@ class BridgeMakerTest {
         @DisplayName("1이면 " + MOVE_TO_UPPER_BLOCK + "를 반환한다.")
         @Test
         public void When_InputOne_Expect_U() {
-            BridgeMaker bridgeMaker = new BridgeMaker(() -> 1);
+            bridgeMaker = new BridgeMaker(() -> 1);
             boolean result = isCreateSpecificValue(bridgeMaker, MOVE_TO_UPPER_BLOCK);
             assertThat(result).isTrue();
         }
@@ -39,7 +39,7 @@ class BridgeMakerTest {
         @DisplayName("0이면 " + MOVE_TO_LOWER_BLOCK + "를 반환한다.")
         @Test
         public void When_InputZero_Expect_D() {
-            BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);
+            bridgeMaker = new BridgeMaker(() -> 0);
             boolean result = isCreateSpecificValue(bridgeMaker, MOVE_TO_LOWER_BLOCK);
             assertThat(result).isTrue();
         }
@@ -47,7 +47,7 @@ class BridgeMakerTest {
         @DisplayName("그외의 값이면 예외를 반환한다.")
         @Test
         public void When_InputWrongValue_Expect_Exception() {
-            BridgeMaker bridgeMaker = new BridgeMaker(() -> 2);
+            bridgeMaker = new BridgeMaker(() -> 2);
             assertThatThrownBy(() -> bridgeMaker.makeBridge(10))
                     .isInstanceOf(IllegalArgumentException.class);
         }

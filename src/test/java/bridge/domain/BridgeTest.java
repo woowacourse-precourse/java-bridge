@@ -48,7 +48,6 @@ class BridgeTest {
         public void When_RightValue_Expect_CreateInstance(int rightSize) {
             assertThatNoException().isThrownBy(() -> new Bridge(createBlocks(rightSize)));
         }
-
     }
 
     @DisplayName("특정한 라운드의 값과")
@@ -127,6 +126,7 @@ class BridgeTest {
             assertThat(bridge.isFinalRound(3)).isFalse();
         }
     }
+
     private List<String> createBlocks(int size) {
         return IntStream.range(0, size)
                 .mapToObj(idx -> getRandomBlock())

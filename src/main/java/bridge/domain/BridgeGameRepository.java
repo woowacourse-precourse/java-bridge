@@ -29,5 +29,4 @@ public class BridgeGameRepository {
         round = ROUND_DEFAULT_VALUE;
         tryCount++;
     }
-
 }
