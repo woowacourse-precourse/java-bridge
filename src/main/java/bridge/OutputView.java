@@ -23,6 +23,27 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+
+    public void printStart() {
+        System.out.println(START);
+    }
+
+    public void printSize() {
+        System.out.println(BRIDGE_SIZE);
+    }
+
+    public void printMove() {
+        System.out.println(USER_MOVE);
+    }
+
+    public void printRetry() {
+        System.out.println(RETRY);
+    }
+
+    public void printError() {
+        System.out.println(ERROR);
+    }
+
     public void printMap(GameSimulation game) {
         for (int i=0; i <2 ; i++) {
             System.out.println(START_MAP);
