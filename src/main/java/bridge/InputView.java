@@ -50,7 +50,7 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
 
-        if(!isRestartQuit(input)){
+        if(isRestartQuit(input)){
             throw  new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q 두 가지 입력만 가능합니다.");
         }
         if(input.equals("R")){
@@ -61,7 +61,7 @@ public class InputView {
 
     // 게임 재시도 여부 입력이 R 또는 Q인지 예외처리
     private static boolean isRestartQuit(String input){
-        if(!input.equals("R") || !input.equals("Q")){
+        if(input.equals("R") || input.equals("Q")){
             return false;
         }
         return true;
