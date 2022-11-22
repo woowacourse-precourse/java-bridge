@@ -50,4 +50,16 @@ public class BridgeGame {
         }
         crossed = false;
     }
+
+    public String getMap() {
+        return mapMaker.getMap();
+    }
+
+    public String getResultMap() {
+        return mapMaker.makeResultMap();
+    }
+
+    private void initMap() {
+        mapMaker.initBridge();
+    }
 }
