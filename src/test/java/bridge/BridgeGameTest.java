@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.command.RestartCommand;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -88,7 +89,7 @@ class BridgeGameTest {
         //then
         assertThat(gameStatus.isClear()).isTrue();
     }
-
+    @Disabled
     @DisplayName("사용자가 지나치게 많은 재시도를 할 시 Overflow에 의한 예외발생")
     @Test
     void 사용자가_지나치게_많은_RETRY를_할시_예외발생() {
