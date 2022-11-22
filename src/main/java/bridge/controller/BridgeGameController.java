@@ -1,9 +1,6 @@
 package bridge.controller;
 
-import bridge.model.BridgeGame;
-import bridge.model.BridgeLength;
-import bridge.model.BridgeMoving;
-import bridge.model.BridgeCommand;
+import bridge.model.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -22,7 +19,7 @@ public class BridgeGameController {
     public void go() {
         int bridgeSize = start();
         do {
-            if(bridgeGame.checkEndPoint()){
+            if(isPassBridgeEnd()){
                 break;
             }
             play();
@@ -31,6 +28,9 @@ public class BridgeGameController {
         end();
     }
 
+    private boolean isPassBridgeEnd() {
+        return bridgeGame.checkEndPoint();
+    }
 
 
     private int start() {
@@ -42,9 +42,7 @@ public class BridgeGameController {
 
     private BridgeLength getBridgeLength() {
         try {
-            String size = inputView.readBridgeSize();
-            BridgeLength bridgeLength = BridgeLength.createBridgeLength(size);
-            return bridgeLength;
+            return BridgeLength.createBridgeLength(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
             return getBridgeLength();
@@ -58,9 +56,7 @@ public class BridgeGameController {
 
     private String getMoving() {
         try {
-            String moving = inputView.readMoving();
-            BridgeMoving.createBridgeMoving(moving);
-            return moving;
+            return BridgeMoving.createBridgeMoving(inputView.readMoving()).getMoving();
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
             return getMoving();
@@ -78,9 +74,7 @@ public class BridgeGameController {
 
     private String getCommand() {
         try {
-            String command = inputView.readGameCommand();
-            BridgeCommand bridgeCommand = BridgeCommand.createBridgeCommand(command);
-            return command;
+            return BridgeCommand.createBridgeCommand(inputView.readGameCommand()).getCommand();
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
             return getCommand();
@@ -89,7 +83,7 @@ public class BridgeGameController {
 
     private boolean isRetryOrClose(int size, String retryOrClose) {
         BridgeCommand bridgeCommand = BridgeCommand.createBridgeCommand(retryOrClose);
-        if (bridgeCommand.getCommand()) {
+        if (bridgeCommand.isRetry()) {
             bridgeGame.retry(size);
             return true;
         }
