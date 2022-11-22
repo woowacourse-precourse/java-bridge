@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import org.junit.platform.commons.util.StringUtils;
 

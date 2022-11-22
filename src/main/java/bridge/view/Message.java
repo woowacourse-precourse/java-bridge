@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 public class Message {
   public static void startMessage() {
