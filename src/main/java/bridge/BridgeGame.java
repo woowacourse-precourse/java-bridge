@@ -25,7 +25,37 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(String bridge, String moving) {
+        if (isCross(bridge, moving)) {
+            moveIsCrossTrue(moving);
+            return true;
+        }
+        moveIsCrossFalse(moving);
+        return false;
+    }
+
+    public void moveIsCrossTrue(String moving) {
+        if (moving.equals(GameCommand.UP.getGameCommand())) {
+            upBridge.add(Symbol.CAN_MOVE.getSymbol());
+            downBridge.add(Symbol.UN_CHOSEN.getSymbol());
+        }
+        if (moving.equals(GameCommand.DOWN.getGameCommand())) {
+            upBridge.add(Symbol.UN_CHOSEN.getSymbol());
+            downBridge.add(Symbol.CAN_MOVE.getSymbol());
+        }
+    }
+
+    public void moveIsCrossFalse(String moving) {
+        if (moving.equals(GameCommand.UP.getGameCommand())) {
+            upBridge.add(Symbol.CANT_MOVE.getSymbol());
+            downBridge.add(Symbol.UN_CHOSEN.getSymbol());
+        }
+        if (moving.equals(GameCommand.DOWN.getGameCommand())) {
+            upBridge.add(Symbol.UN_CHOSEN.getSymbol());
+            downBridge.add(Symbol.CANT_MOVE.getSymbol());
+        }
+    }
+
     public boolean isCross(String bridge, String moving) {
         if (bridge.equals(moving)) {
             return true;
