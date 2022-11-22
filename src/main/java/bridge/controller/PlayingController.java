@@ -40,7 +40,6 @@ public class PlayingController {
     }
 
     private Moving move() {
-        outputView.printInputMoving();
         Moving input = inputView.readMoving();
         bridgeGame.move();
         movings.add(input);
@@ -54,7 +53,6 @@ public class PlayingController {
     }
 
     private void retryByInput() {
-        outputView.printGameCommand();
         GameCommand gameCommand = inputView.readGameCommand();
         if (gameCommand == GameCommand.R) {
             retry();

@@ -10,9 +10,6 @@ import java.util.List;
  */
 public class OutputView {
     private static final String START = "다리 건너기 게임을 시작합니다.";
-    private static final String INPUT_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String WRONG = "X";
     private static final String CORRECT = "O";
     private static final String SEPARATOR = " | ";
@@ -90,18 +87,6 @@ public class OutputView {
     public void printStart() {
         System.out.println(START);
         printNewLine();
-    }
-
-    public void printInputSize() {
-        System.out.println(INPUT_SIZE);
-    }
-
-    public void printInputMoving() {
-        System.out.println(INPUT_MOVING);
-    }
-
-    public void printGameCommand() {
-        System.out.println(GAME_COMMAND);
     }
 
     public void printNewLine() {
