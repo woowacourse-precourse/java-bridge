@@ -2,6 +2,9 @@ package bridge.dto;
 
 import bridge.domain.GameResult;
 
+/**
+ * view 쪽으로 게임 결과를 알려주는 클래스
+ */
 public final class BridgeGameResultDto {
     private static final String SMALLER_THAN_ONE_MESSAGE = "시도 횟수는 1이상이어야 합니다";
     private static final String LOG_NOT_NULL_MESSAGE = "playLog 에는 null 이 들어올 수 없습니다";

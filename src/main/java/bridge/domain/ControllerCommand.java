@@ -3,6 +3,9 @@ package bridge.domain;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * 재시도, 종료에 해당하는 P,Q를 담당하는 클래스
+ */
 enum ControllerCommand {
     RETRY("R"),
     QUIT("Q");

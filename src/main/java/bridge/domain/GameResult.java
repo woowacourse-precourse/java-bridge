@@ -1,5 +1,8 @@
 package bridge.domain;
 
+/**
+ * 게임의 결과가 성공, 실패로 나뉘는 경우를 담당하는 클래스
+ */
 public enum GameResult {
     SUCCESS("성공"),
     FAILURE("실패");

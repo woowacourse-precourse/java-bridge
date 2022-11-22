@@ -5,6 +5,9 @@ import bridge.command.BridgeSizeCommand;
 
 import java.util.List;
 
+/**
+ * 게임에서 사용되는 다리를 담당하는 클래스 입니다
+ */
 final class Bridge {
     private final List<String> positions;
 

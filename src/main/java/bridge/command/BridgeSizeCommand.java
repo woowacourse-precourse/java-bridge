@@ -2,6 +2,9 @@ package bridge.command;
 
 import java.util.regex.Pattern;
 
+/**
+ * bridge 사아즈를 입력받는 커맨드 객체입니다
+ */
 public class BridgeSizeCommand {
     private static final Pattern NUMBERS = Pattern.compile("^\\d+$");
     private static final String BRIDGE_NULL_MESSAGE = "입력에 null 이 포함되었습니다";

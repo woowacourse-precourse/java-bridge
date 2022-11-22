@@ -3,6 +3,9 @@ package bridge.domain;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * 게임에서 위, 아래의 위치를 담당하는 클래스
+ */
 enum Position {
     UP("U"),
     DOWN("D");

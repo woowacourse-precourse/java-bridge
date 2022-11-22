@@ -1,5 +1,8 @@
 package bridge.dto;
 
+/**
+ * 게임 결과 출력에 사용되는 로그름 담고 있는 클래스
+ */
 public final class PlayLogDto {
     private static final String NULL_MESSAGE = "로그에는 null 이 들어오면 안됩니다";
     private final String log;

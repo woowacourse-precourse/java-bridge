@@ -1,5 +1,8 @@
 package bridge.domain;
 
+/**
+ * 우리가 원하는 형태로 결과를 만들어주는 책임을 가지고 있는 클래스
+ */
 final class Logger {
     private static final String NOT_NULL_MESSAGE = "다음 위치에 null 이 들어올 수 없습니다";
     private static final String BLANK_SIGN = "   |";

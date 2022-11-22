@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/**
+ * 방문했던 결과에 관련된 모든 데이터를 가지고 있는 클래스
+ */
 final class Visited {
     private final List<Position> positions;
     private final Logger logger;
