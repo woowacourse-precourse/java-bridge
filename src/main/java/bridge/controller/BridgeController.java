@@ -66,4 +66,14 @@ public class BridgeController {
         String retryInput = inputView.readGameCommand();
         gameRetry(retryInput, bridgeGame, user);
     }
+
+    private void correctPrintMap(String userInputValue) {
+        if (userInputValue.equals("U")) {
+            upBridge.append(correctBridge);
+            downBridge.append(emptyBridge);
+            return;
+        }
+        downBridge.append(correctBridge);
+        upBridge.append(emptyBridge);
+    }
 }
