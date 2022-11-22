@@ -20,4 +20,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
+    public boolean hasBridge() {
+        return true;
+    }
 }
