@@ -19,7 +19,6 @@ public class OutputView {
      */
     public void printMap(List<String> bridgeData) {
         while(orderView.checkRestart){
-            orderView.retryCount++;
             stepBridge(bridgeData);
             if(!exitLoop()) {break;}
         }
@@ -33,21 +32,24 @@ public class OutputView {
     }
 
     public void stepBridge(List<String> bridgeData) {
+        orderView.retryCount++;
         for(int index = 0 ; index < bridgeData.size(); index++) {
-            orderView.lineSkip();
+            if(index != 0) orderView.lineSkip();
             System.out.println(orderView.MOVE_STEP);
             bridgeGame.move(inputView.readMoving(), bridgeData.get(index), index);
             if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) break;
             successBridge(index, bridgeData);
-
         }
     }
 
     private void successBridge(int index, List<String> bridgeData) {
         if(index == bridgeData.size()-1 && orderView.checkAnswerIndex == 0) {
             orderView.checkAnswerIndex = 2;
+            orderView.lineSkip();
             System.out.println(orderView.THE_GAME_RESULT);
-            bridgeGame.finalGameResult();
+            bridgeGame.extractBracket(bridgeGame.upSide,bridgeGame.downSide);
+            orderView.lineSkip();
+            bridgeGame.printFailOrSuccessCase();
         }
     }
     /**

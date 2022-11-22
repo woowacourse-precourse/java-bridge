@@ -34,7 +34,7 @@ public class BridgeGame {
             firstResult(upSide.get(index), downSide.get(index));
         }
         if(index > 0){
-            restResult();
+            restResult(upSide, downSide);
         }
     }
 
@@ -58,7 +58,10 @@ public class BridgeGame {
         OutputView outputView =new OutputView();
         if(checkRestart.equals("Q")){
             System.out.println(orderView.THE_GAME_RESULT);
-            finalGameResult();
+            //finalGameResult();
+            extractBracket(upSide,downSide);
+            orderView.lineSkip();
+            printFailOrSuccessCase();
         }
         if(checkRestart.equals("R")){
             orderView.checkAnswerIndex = 0;
@@ -80,7 +83,7 @@ public class BridgeGame {
         printFailOrSuccessCase();
     }
 
-    private void printFailOrSuccessCase() {
+    public void printFailOrSuccessCase() {
         if(orderView.checkAnswerIndex == 1){
             System.out.println();
             System.out.println(orderView.SUCCESS_OR_FAIL+" "+orderView.FAIL);
@@ -88,14 +91,15 @@ public class BridgeGame {
         }
         if(orderView.checkAnswerIndex == 2){
             System.out.println();
-            System.out.println(orderView.SUCCESS_OR_FAIL+": "+orderView.SUCCESS);
-            System.out.println(orderView.TOTAL_COUNT+": "+orderView.retryCount);
+            System.out.println(orderView.SUCCESS_OR_FAIL+" "+orderView.SUCCESS);
+            System.out.println(orderView.TOTAL_COUNT+" "+orderView.retryCount);
         }
     }
 
-    private void restResult() {
+    private void restResult(List<String> upSideList, List<String> downSideList) {
         String checkRestart = "";
-        extractBracket();
+        extractBracket(upSideList, downSideList);
+        if(orderView.checkAnswerIndex == 1) restContainsX();
         orderView.lineSkip();
         if(!checkRestResult(upSide, downSide)){
             orderView.checkAnswerIndex = 1;
@@ -103,14 +107,15 @@ public class BridgeGame {
             System.out.println(orderView.EXIT_OR_CONTINUE);
             checkRestart = orderView.continueOrExit();
             checkRestartOrQuit(checkRestart);
+            orderView.lineSkip();
         }
     }
 
-    private void extractBracket() {
-        System.out.print(changeToBracket(upSide));
+    public void extractBracket(List<String> upSideList, List<String> downSideList) {
+        System.out.print(changeToBracket(upSideList));
         orderView.lineSkip();
-        System.out.print(changeToBracket(downSide));
-        orderView.lineSkip();
+        System.out.print(changeToBracket(downSideList));
+        //13:07orderView.lineSkip();
     }
 
     private boolean checkRestResult(List<String> upSide, List<String> downSide) {
@@ -128,14 +133,12 @@ public class BridgeGame {
         for(int i = 0; i < extractBracket.size() ; i++){
             bridgeData += extractBracket.get(i);
         }
-        if(bridgeData.contains("X")){
-            restContainsX();
-        }
         return bridgeData.replaceAll("]\\[","|");
     }
 
     private void restContainsX(){
         // 빼야함
+        orderView.checkAnswerIndex = 1;
         BridgeController bridgeController = new BridgeController();
         OutputView outputView =new OutputView();
         String pickrestart = "";
@@ -144,6 +147,9 @@ public class BridgeGame {
         if(pickrestart.equals("Q")){
             orderView.checkAnswerIndex = 1;
             System.out.println(orderView.THE_GAME_RESULT);
+            extractBracket(upSide,downSide);
+            orderView.lineSkip();
+            printFailOrSuccessCase();
         }
         if(pickrestart.equals("R")){
             orderView.checkAnswerIndex = 0;
