@@ -17,6 +17,7 @@ public class BridgeGame {
     int trial = 1;
     int success = 0;
 
+
     public void game(List<String> bridge){
         while (status == 0) {
             if (stage == bridge.size() + 1) {
@@ -123,7 +124,29 @@ public class BridgeGame {
         outputView.printResult();
         outputView.printMap(bridge, stage-1, status);
         outputView.printSuccess(success);
+        outputView.printFailure(success);
         outputView.printTrialAmount(trial);
+    }
+
+
+    public List<List<String>> createBridges(List<String> bridge, int stageIndex){
+        List<String> upperBridge = createUpperBridge(bridge);
+        List<String> bottomBridge = createBottomBridge(bridge);
+        upperBridge.set(stageIndex, "]");
+        bottomBridge.set(stageIndex, "]");
+        List<List<String>> bothBridges = new ArrayList<>(Arrays.asList(upperBridge,bottomBridge));
+        return bothBridges;
+    }
+
+    public void moveSuccess(List<List<String>> bothBridges, int stageIndex){
+        if (bothBridges.get(0).get(stageIndex - 1).equals(" O ")) {
+            bothBridges.get(0).set((stageIndex-1), "   ");
+            bothBridges.get(1).set((stageIndex-1), " X ");
+        }
+        if (bothBridges.get(1).get(stageIndex - 1).equals(" O ")) {
+            bothBridges.get(1).set((stageIndex-1), "   ");
+            bothBridges.get(0).set((stageIndex-1), " X ");
+        }
     }
 
 }
