@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public enum State {
 
-    UP(0, "D"),
-    DOWN(1, "U"),
+    UP(1, "U"),
+    DOWN(0, "D"),
     No_VALUE(-1, "");
 
     private final int zeroOrOne;
@@ -22,6 +22,10 @@ public enum State {
                 .findAny()
                 .orElse(No_VALUE);
 
+    }
+
+    public static boolean isUP(String position) {
+        return position.equals(UP.position);
     }
 
     public String getPosition() {

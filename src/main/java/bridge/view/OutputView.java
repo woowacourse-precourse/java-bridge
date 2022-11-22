@@ -3,10 +3,8 @@ package bridge.view;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static bridge.view.Message.PRINT_ACCESS_MESSAGE;
-import static bridge.view.Message.PRINT_ATTEMPT_COUNT_MESSAGE;
-import static bridge.view.Message.PRINT_FAIL_MESSAGE;
-import static bridge.view.Message.PRINT_RESULT_MESSAGE;
+import static bridge.State.isUP;
+import static bridge.view.Message.*;
 
 public class OutputView {
 
@@ -19,20 +17,19 @@ public class OutputView {
         printPlayerBridgeDown(playerBridge);
         buildBottom();
         System.out.println(top);
-        System.out.println(down);
-        System.out.println("\n");
+        System.out.println(down+"\n");
     }
 
     public void buildTop() {
         top = new StringBuilder();
-        top.append("[ ");
+        top.append(BRIDGE_OPEN);
         down = new StringBuilder();
-        down.append("[ ");
+        down.append(BRIDGE_OPEN);
     }
 
     public void buildBottom() {
-        top.append(" ]");
-        down.append(" ]");
+        top.append(BRIDGE_CLOSE);
+        down.append(BRIDGE_CLOSE);
     }
 
     public void printPlayerBridgeTop(Map<Integer, ArrayList<String>> playerBridge) {
@@ -40,18 +37,17 @@ public class OutputView {
             checkUpper(playerBridge.get(i).get(0), playerBridge.get(i).get(1));
 
             if (i != (playerBridge.size() - 1)) {
-                top.append(" | ");
+                top.append(BRIDGE_DIV);
             }
         }
     }
 
     void checkUpper(String target, String target2) {
-        if (target.equals("U")) {
+        if (isUP(target)) {
             top.append(target2);
+            return;
         }
-        if (target.equals("D")) {
-            top.append(" ");
-        }
+        top.append(BRIDGE_BLANK);
     }
 
     public void printPlayerBridgeDown(Map<Integer, ArrayList<String>> playerBridge) {
@@ -59,18 +55,17 @@ public class OutputView {
             checkDowner(playerBridge.get(i).get(0), playerBridge.get(i).get(1));
 
             if (i != (playerBridge.size() - 1)) {
-                down.append(" | ");
+                down.append(BRIDGE_DIV);
             }
         }
     }
 
     void checkDowner(String target, String target2) {
-        if (target.equals("U")) {
-            down.append(" ");
+        if (isUP(target)) {
+            down.append(BRIDGE_BLANK);
+            return;
         }
-        if (target.equals("D")) {
-            down.append(target2);
-        }
+        down.append(target2);
     }
 
     public void printResult(Map<Integer, ArrayList<String>> playerBridge, boolean isSuccess) {

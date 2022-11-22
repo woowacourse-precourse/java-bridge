@@ -15,6 +15,11 @@ public class Message {
 
     public static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
     public static final String INPUT_STATE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String INPUT_RETRY = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String INPUT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
+    public static final String BRIDGE_DIV = " | ";
+    public static final String BRIDGE_OPEN = "[ ";
+    public static final String BRIDGE_CLOSE = " ]";
+    public static final String BRIDGE_BLANK = " ";
 
 }
