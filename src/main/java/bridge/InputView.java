@@ -16,12 +16,20 @@ public class InputView {
     private static final String REGEX_FOR_MOVING = "^[UD]*?";
     private static final String REGEX_FOR_GAME_COMMAND = "^[RQ]*?";
 
+
+    private void gameStartPhrase() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        gameStartPhrase();
         System.out.println("다리의 길이를 입력해주세요.");
         String bridgeSize = Console.readLine();
+        System.out.println();
         validateBridgeSize(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
