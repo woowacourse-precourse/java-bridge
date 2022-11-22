@@ -16,6 +16,7 @@ class BridgeMakerTest {
         this.bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
+    @DisplayName("입력 받은 수에 맞게 다리를 생성 한다.")
     @Test
     void makeBridge() {
         List<String> bridge = bridgeMaker.makeBridge(10);

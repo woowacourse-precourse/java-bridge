@@ -28,7 +28,7 @@ public class BridgeGame {
     /**
      * 게임 초기화
      */
-    public void initBridge(List<String> bridge) {
+    public void init(List<String> bridge) {
         this.bridge = bridge;
         this.userRoute = new ArrayList<>();
         this.gameCount = 1;

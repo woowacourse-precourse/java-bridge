@@ -49,3 +49,17 @@
                 - [O] 재시작할 경우 전에 만든 다리를 활용해, 게임을 진행한다. BridgeGame#retry
 - [O] 게임 종료
 - [O] 게임이 종료 될 경우 성공 여부 및 시도 횟수를 출력한다. OutputView#printResult
+
+## 위의 기능 테스트 목록
+
+- [O] 입력 받은 수에 맞게 다리를 생성 한다. BridgeMakerTest#makeBridge
+- [O] 해당 칸을 건널 수 있는지 없는지 판단한다. - 성공 BridgeGameTest#movable
+- [O] 해당 칸을 건널 수 있는지 없는지 판단한다. - 실패 BridgeGameTest#unmovable
+- [O] 재시작할 경우 전에 만든 다리를 활용한다. BridgeGameTest#retry
+
+## 기타 테스트 목록
+
+- [O] 게임 초기화 BridgeGameTest#initGame
+- [O] 0, 1을 위, 아래로 변환 BridgeMakerTest#convertNumberToString
+- [O] 0, 1 으로 생성 되는지 확인 BridgeRandomNumberGeneratorTest#generate
+
