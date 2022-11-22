@@ -16,11 +16,13 @@ class BridgeGameTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private Bridge bridge;
     private GameResult gameResult;
+    private BridgeGame bridgeGame;
 
     @BeforeEach
     void setUp() {
         bridge = new Bridge(5);
         gameResult = new GameResult();
+        bridgeGame = new BridgeGame();
     }
 
     @DisplayName("다리를 이동하기 위한 입력이 U, D 이외의 값 이외일때 예외가 발생한다.")
@@ -39,16 +41,25 @@ class BridgeGameTest {
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
+    @DisplayName("다리모양에 맞는 인풋을 넣었을때 제대로 gameResult 에 세팅이 되는지 테스트.")
     @Test
-    void movingResultTest() {
-        BridgeGame bridgeGame = new BridgeGame();
-        for (String str : bridge.getShape()) {
-            gameResult = bridgeGame.move(str, "U");
-            assertThat(gameResult.getUpBridgeResult())
-                    .contains("O");
-        }
+    void successMovingTest() {
+        bridgeGame.initGameResult();
+        gameResult = bridgeGame.move("U", "U");
+        assertThat(gameResult.getUpBridgeResult().get(0)).isEqualTo("O");
+        assertThat(gameResult.getDownBridgeResult().get(0)).isEqualTo(" ");
     }
 
+    @DisplayName("다리모양과 틀린 인풋을 넣었을때 제대로 gameResult 에 세팅이 되는지 테스트.")
+    @Test
+    void failMovingTest() {
+        bridgeGame.initGameResult();
+        gameResult = bridgeGame.move("D", "U");
+        assertThat(gameResult.getUpBridgeResult().get(0)).isEqualTo("X");
+        assertThat(gameResult.getDownBridgeResult().get(0)).isEqualTo(" ");
+    }
+
+    @DisplayName("재시작 인풋에 대한 플래그를 잘 리턴하는지 테스트")
     @CsvSource(value = {"R:true", "Q:false"}, delimiter = ':')
     @ParameterizedTest
     void inputRetryOrEndFlagTest(String element, boolean expected) {
