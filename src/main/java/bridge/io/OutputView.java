@@ -1,7 +1,7 @@
 package bridge.io;
 
 import bridge.BridgeChecker;
-import bridge.enums.GameResult;
+import bridge.GameProgress;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,8 +47,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int trial, GameResult gameResult) {
-        System.out.printf("게임 성공 여부: %s" + System.lineSeparator(), gameResult.getComment());
-        System.out.printf("총 시도한 횟수: %d", trial);
+    public void printResult(GameProgress gameProgress) {
+        System.out.printf("게임 성공 여부: %s" + System.lineSeparator(), gameProgress.getGameResult().getComment());
+        System.out.printf("총 시도한 횟수: %d", gameProgress.getTrial());
     }
 }
