@@ -3,7 +3,7 @@ package bridge.model;
 public enum ResultFlag {
     SUCCESS("O", "성공"),
     FAIL("X", "실패"),
-    NOTHING("", "");
+    NOTHING(" ", " ");
 
     private final String shape;
     private final String mean;
