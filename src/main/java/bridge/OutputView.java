@@ -17,8 +17,8 @@ public class OutputView {
     public void printMap(GameResult gameResult) {
         List<String> upperPath = gameResult.getPlayerPath().get(UPPER);
         List<String> lowerPath = gameResult.getPlayerPath().get(LOWER);
-        System.out.println("[" + String.join(" | ", upperPath + " ] "));
-        System.out.println("[" + String.join(" | ", lowerPath + " ] "));
+        System.out.println("[" + String.join(" | ", upperPath) + "]");
+        System.out.println("[" + String.join(" | ", lowerPath) + "]");
     }
 
     /**
