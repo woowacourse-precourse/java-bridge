@@ -4,16 +4,12 @@ import bridge.Application;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.*;
 
-import java.io.Console;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class GameControllerRestartTest extends NsTest {
-
-    private GameController gameController = new GameController();
 
     @Order(1)
     @DisplayName("중간에 이동입력시 잘못된 값을 입력해도 결과가 제대로 출력된다.")
