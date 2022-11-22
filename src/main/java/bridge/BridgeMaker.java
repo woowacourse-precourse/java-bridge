@@ -9,6 +9,7 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
@@ -19,12 +20,13 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             bridge.add(randomBlock());
         }
         return bridge;
     }
-    private String randomBlock(){
+
+    private String randomBlock() {
         final String upDown = "DU";
         char result = upDown.charAt(bridgeNumberGenerator.generate());
         return Character.toString(result);

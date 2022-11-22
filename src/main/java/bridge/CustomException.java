@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.NoSuchElementException;
-
 public class CustomException {
     public static final String ERROR_HEAD = "[ERROR] ";
     public static final String NOT_NULL = "입력은 NULL이 불가능합니다.";
@@ -16,25 +14,32 @@ public class CustomException {
     public static void InputNotNullException() {
         throw new IllegalArgumentException(ERROR_HEAD + NOT_NULL);
     }
-    public static void NotBlankException(){
+
+    public static void NotBlankException() {
         throw new IllegalArgumentException(ERROR_HEAD + NOT_BLANK);
     }
-    public static void NotNumberException(){
-        throw new IllegalArgumentException(ERROR_HEAD+NOT_NUMBER);
+
+    public static void NotNumberException() {
+        throw new IllegalArgumentException(ERROR_HEAD + NOT_NUMBER);
     }
-    public static void StartWithZeroException(){
-        throw new IllegalArgumentException(ERROR_HEAD+NOT_START_ZERO);
+
+    public static void StartWithZeroException() {
+        throw new IllegalArgumentException(ERROR_HEAD + NOT_START_ZERO);
     }
-    public static void NotNumberRangeException(){
+
+    public static void NotNumberRangeException() {
         throw new IllegalArgumentException(ERROR_HEAD + OUT_OF_RANGE);
     }
-    public static void CommandLengthException(){
-        throw new IllegalArgumentException(ERROR_HEAD+OUT_OF_COMMAND_RANGE);
+
+    public static void CommandLengthException() {
+        throw new IllegalArgumentException(ERROR_HEAD + OUT_OF_COMMAND_RANGE);
     }
-    public static void NoSuchCommandException(){
-        throw new IllegalArgumentException(ERROR_HEAD+NOT_MOVING_COMMAND);
+
+    public static void NoSuchCommandException() {
+        throw new IllegalArgumentException(ERROR_HEAD + NOT_MOVING_COMMAND);
     }
-    public static void NoSuchMovingException(){
-        throw new IllegalArgumentException(ERROR_HEAD+NOT_QUIT_RETRY);
+
+    public static void NoSuchMovingException() {
+        throw new IllegalArgumentException(ERROR_HEAD + NOT_QUIT_RETRY);
     }
 }

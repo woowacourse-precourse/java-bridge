@@ -2,9 +2,7 @@ package bridge;
 
 
 public enum Block {
-    NULL_BLOCK(0," "),
-    TRUE_BLOCK(1,"O"),
-    FALSE_BLOCK(-1, "X");
+    NULL_BLOCK(0, " "), TRUE_BLOCK(1, "O"), FALSE_BLOCK(-1, "X");
     private int correct_size;
     private String result;
 

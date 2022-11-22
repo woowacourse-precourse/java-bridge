@@ -8,8 +8,7 @@ import java.util.Map;
 public class OutputView {
     private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private final String GAME_SUCCESS_RESULT = "게임 성공 여부: ";
-    private final Map<Boolean, String> GAME_RESULT = Map.of(true, "성공",
-            false, "실패");
+    private final Map<Boolean, String> GAME_RESULT = Map.of(true, "성공", false, "실패");
     private final String GAME_TRY = "총 시도한 횟수: ";
     private final String FINAL_GAME_MAP = "최종 게임 결과";
 

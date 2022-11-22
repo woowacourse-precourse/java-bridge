@@ -10,27 +10,31 @@ public class BridgeGameController {
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame bridgeGame;
-    public BridgeGameController(){
+
+    public BridgeGameController() {
         inputView = new InputView();
         outputView = new OutputView();
         outputView.printGameStartMessage();
         bridgeGame = new BridgeGame(inputView.readBridgeSize());
         System.out.println();
     }
-    public void run(){
+
+    public void run() {
         startGame();
         endGame();
     }
-    private void startGame(){
-        while(bridgeGame.isCorrect() == NOT_OVER && bridgeGame.isGameOver() == false){
+
+    private void startGame() {
+        while (bridgeGame.isCorrect() == NOT_OVER && bridgeGame.isGameOver() == false) {
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.lastMoveToString());
-            if(bridgeGame.isGameOver() == FAIL){
+            if (bridgeGame.isGameOver() == FAIL) {
                 bridgeGame.retry(inputView.readGameCommand());
             }
         }
     }
-    private void endGame(){
+
+    private void endGame() {
         outputView.printFinalGameMap(bridgeGame.lastMoveToString());
         outputView.printResult(bridgeGame.isCorrect());
         outputView.printGameTryResultMessage(bridgeGame.userTry());
