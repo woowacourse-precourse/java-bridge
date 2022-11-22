@@ -8,11 +8,7 @@ public class Application {
         startGame(bridgeGame);
         boolean flag = true;
         while (flag) {
-        while(moveGame(bridgeGame)){
-        }
-        //게임 리트라이/끝
-            //false: 끝
-            //true; rery--===
+            while(moveGame(bridgeGame)){}
             flag = endOrRetry(bridgeGame);
         }
     }
@@ -72,10 +68,10 @@ public class Application {
         do {
             try {
                 flag = false;
-                endOrRetry1(bridgeGame);
+                return endOrRetry1(bridgeGame);
             } catch (IllegalArgumentException e) {flag = true;}
         } while (flag);
-        return false;
+        return true;
     }
 
     public static boolean endOrRetry1(BridgeGame bridgeGame){

@@ -5,8 +5,11 @@ import java.util.List;
 
 public class BridgeGame {
     private static List<String> bridge;
+    private boolean win;
     private int nowIdx;
     private int tryTimes;
+    private String recentInput;
+
     BridgeGame(){
         this.nowIdx = 0;
         this.tryTimes = 1;
@@ -19,20 +22,28 @@ public class BridgeGame {
     }
 
     private void makeBridge(int bridgeSize){
-        BridgeMaker bridgeMaker = new BridgeMaker (new BridgeNumberGenerator() {
-            @Override
-            public int generate() {
-                return 0;
-            }
-        });
+        BridgeMaker bridgeMaker = new BridgeMaker (new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     public boolean move(String userInput) {
+        this.recentInput = userInput;
         if(userInput.equals(bridge.get(nowIdx))){
+            if(nowIdx == bridge.size()-1){
+                return endGame(userInput);
+            }
             nowIdx++;
             return true;
         }
+        return false;
+    }
+
+    private boolean endGame(String userInput){
+        if(userInput.equals(bridge.get(nowIdx))){
+            this.win = true;
+            return false;
+        }
+        this.win = false;
         return false;
     }
 
@@ -56,4 +67,10 @@ public class BridgeGame {
     public int getTryTimes(){
         return tryTimes;
     }
+
+    public int getNowIdx(){return nowIdx;}
+
+    public boolean getWin(){return win;}
+
+    public String getRecentInput(){return recentInput;}
 }
