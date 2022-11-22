@@ -53,4 +53,15 @@ public class BridgeProgram {
 			checkMoving(upBridge.size());
 		}
 	}
+
+	public boolean checkRetry() {
+		if (upBridge.contains(" X ") || downBridge.contains(" X ")) {
+			String userRetry = checkRetryInput();
+			if (!bridgeGame.retry(userRetry)) {
+				return false;
+			}
+			setNumber();
+		}
+		return true;
+	}
 }
