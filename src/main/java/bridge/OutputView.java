@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static bridge.Code.PrintCode.*;
 
 /**
@@ -22,7 +25,29 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> tmpBridge) {
+        System.out.println("[" + setFillUpMap(tmpBridge) + "]");
+        System.out.println("[" + setFillDownMap(tmpBridge) + "]");
+    }
+    public String setFillUpMap(List<String> tmpBridge){
+        String upMap = " ";
+        for (int index=0; index<tmpBridge.size(); index++) {
+            if (tmpBridge.get(index).equals('U')) upMap += "O ";
+            if (tmpBridge.get(index).equals('D')) upMap += "  ";
+            if (tmpBridge.get(index).equals('F')) upMap += "X ";
+            if (index + 1 < tmpBridge.size()) upMap += "| ";
+        }
+        return upMap;
+    }
+    public String setFillDownMap(List<String> tmpBridge){
+        String upMap = " ";
+        for (int index=0; index<tmpBridge.size(); index++) {
+            if (tmpBridge.get(index).equals('U')) upMap += "  ";
+            if (tmpBridge.get(index).equals('D')) upMap += "O ";
+            if (tmpBridge.get(index).equals('F')) upMap += "X ";
+            if (index + 1 < tmpBridge.size()) upMap += "| ";
+        }
+        return upMap;
     }
 
     /**

@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,19 +10,30 @@ public class BridgeGame {
 
     private int gameCount;
     private List<String> bridgeAnswer;
+    private int nowStep;
 
     public void startGameSetCount(){
-        gameCount = 1;
+        this.gameCount = 1;
+        this.nowStep = 0;
     }
     public void setBridgeAnswer(List<String> bridgeAnswer){
         this.bridgeAnswer = bridgeAnswer;
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public List<String> move(String moving) {
+        List<String> tmpBridge = this.bridgeAnswer.subList(0,nowStep);
+        if (tmpBridge.get(nowStep).equals(moving)){
+            this.nowStep += 1;
+            return tmpBridge;
+        }
+        tmpBridge.set(nowStep,"F");
+        this.nowStep = 0;
+        return tmpBridge;
     }
 
     /**
