@@ -6,7 +6,11 @@ import org.junit.jupiter.api.Test;
 import ui.InputView;
 import ui.OutputView;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Scanner;
 
 import static bridge.ApplicationTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,6 +18,10 @@ import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BridgeGameTest {
+
+    public static InputStream generateUserInput(String input) {
+        return new ByteArrayInputStream(input.getBytes());
+    }
 
     @DisplayName("다리를 생성하는 기능, 위 칸이면 \"U\", 아래 칸이면 \"D\"로 표현해야 한다.")
     @Test
@@ -38,5 +46,15 @@ public class BridgeGameTest {
         bridgeGame.setNewBridge(List.of("U", "D", "D"));
         assertEquals(bridgeGame.calculateScore(List.of("U", "D", "U")), 2);
 
+    }
+
+    @DisplayName("입력한 이동 값을 반환한다.")
+    @Test
+    void moveTest() {
+        BridgeGame bridgeGame = new BridgeGame(new OutputView(), new InputView());
+        InputStream in = generateUserInput("U");
+        System.setIn(in);
+        Scanner sc = new Scanner(System.in);
+        assertThat(bridgeGame.move()).isInstanceOf(String.class);
     }
 }
