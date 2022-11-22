@@ -8,21 +8,13 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private int currentPosition = 0;
-    private int tryCount = 1;
     private List<BridgeStatus> bridgeStatus = new ArrayList<>();
     private final Bridge bridge;
+    private int currentPosition = 0;
+    private int tryCount = 1;
 
     public BridgeGame(int bridgeSize) {
         bridge = new Bridge(bridgeSize);
-    }
-
-    public boolean determineMove(String command) {
-        if (bridge.isCorrectDirection(currentPosition, command)) {
-            return move(command);
-        }
-        bridgeStatus.add(new BridgeStatus(command, false));
-        return false;
     }
 
     public boolean determineRetry(String command) {
@@ -32,7 +24,7 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean isEndPosition(int bridgeSize) {
+    public boolean isSucess(int bridgeSize) {
         return currentPosition == bridgeSize;
     }
 
@@ -42,9 +34,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String command) {
-        bridgeStatus.add(new BridgeStatus(command, true));
-        currentPosition++;
-        return true;
+        if (bridge.isCorrectDirection(currentPosition, command)) {
+            bridgeStatus.add(new BridgeStatus(command, true));
+            currentPosition++;
+            return true;
+        }
+        bridgeStatus.add(new BridgeStatus(command, false));
+        return false;
     }
 
     /**

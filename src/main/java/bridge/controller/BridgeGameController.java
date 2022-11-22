@@ -24,7 +24,7 @@ public class BridgeGameController {
                 break;
             }
         }
-        outputView.printResult(bridgeGame.getBridgeStatus(), isSucess(), bridgeGame.getTryCount());
+        outputView.printResult(bridgeGame.getBridgeStatus(), bridgeGame.isSucess(bridgeSize), bridgeGame.getTryCount());
     }
 
     private void init() {
@@ -33,10 +33,10 @@ public class BridgeGameController {
     }
 
     private boolean startRound() {
-        boolean isMove = bridgeGame.determineMove(setMoving());
+        boolean isMove = bridgeGame.move(setMoving());
         outputView.printMap(bridgeGame.getBridgeStatus());
         if (isMove) {
-            return !isSucess();
+            return !bridgeGame.isSucess(bridgeSize);
         }
         boolean isRetry = bridgeGame.determineRetry(setRetry());
         if (isRetry) {
@@ -45,9 +45,9 @@ public class BridgeGameController {
         return false;
     }
 
-    private boolean isSucess() {
-        return bridgeGame.isEndPosition(bridgeSize);
-    }
+    // private boolean isSucess() {
+    //     return bridgeGame.isEndPosition(bridgeSize);
+    // }
 
     private int setBridgeSize() {
         while (true) {

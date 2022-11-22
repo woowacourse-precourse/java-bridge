@@ -38,9 +38,7 @@
 ### 로직
 - [x] **게임 시작/재시작/종료** (`BridgeGameController`)
 - [x] **다리의 길이만큼 0과 1을 이용하여 무작위 값 생성** (`BridgeMaker`)
-- [x] 사용자가 입력한 **칸 이동 가능 여부 판단 및 이동** (`BridgeGame`)
-  - [x] 이동 가능 여부 판단 (`BridgeGame-determineMove`)
-  - [x] 칸 이동 (`BridgeGame-move`)
+- [x] 사용자가 입력한 **칸 이동** (`BridgeGam-move`)
   - [x] 사용자 칸 이동 상태 기록 (`BridgeStatus`)
 - [x] 사용자가 입력한 **재시도 여부 판단 및 재시도** (`BridgeGame`)
   - [x] 재시도 여부 판단 (`BridgeGame-determineRetry`)
