@@ -61,10 +61,10 @@ class UtilTest {
             "aa, true"
     })
     void isStringTest(String input, boolean isSuccess) {
-            boolean isTrue = Util.isString(input);
+        boolean isTrue = Util.isString(input);
 
-            assertThat(isTrue)
-                    .isEqualTo(isSuccess);
+        assertThat(isTrue)
+                .isEqualTo(isSuccess);
     }
 
     @DisplayName("1입력시 U, 0입력시 D 리턴 테스트 코드")
@@ -80,13 +80,24 @@ class UtilTest {
         }
     }
 
-    @DisplayName("숫자열을 정수로 바꿔준다. 범위는 1~20이 최대다")
+    @DisplayName("숫자열을 정수로 바꿔준다. 범위는 1~20이 최대다(실패 케이스)")
     @ParameterizedTest
-    @ValueSource(strings={"0", "-1", "111222333444555666777888999000", "010"})
-    void stringToIntegerTest() {
+    @ValueSource(strings = {"0", "-1", "111222333444555666777888999000", "010"})
+    void stringToIntegerFailTest(String input) {
         assertThatThrownBy(() ->
-                Util.stringToInteger("0"))
+                Util.stringToInteger(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("숫자열을 정수로 바꿔준다. 범위는 1~20이 최대다(성공 케이스)")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "4", "5", "19", "20"})
+    void stringToIntegerSuccessTest(String input) {
+        int number = Util.stringToInteger(input);
+
+        boolean isTrue = (number >= 1 && number <= 20);
+        assertThat(isTrue)
+                .isTrue();
     }
 }
