@@ -8,7 +8,7 @@ public class InputValidator {
     }
 
     public static void checkMovingDirection(String direction) {
-        if ( (direction.equals('U') || direction.equals('D')) == false ) {
+        if ( (direction.equals("U") || direction.equals("D")) == false ) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D로 입력해야 합니다.");
         }
     }
