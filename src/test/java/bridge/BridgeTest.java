@@ -40,9 +40,11 @@ public class BridgeTest extends NsTest {
     @Test
     void isSameBridgeTest() {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
-        List<String> mark = new ArrayList<>(List.of("U", "D", "U"));
+        List<String> copyBridge = new ArrayList<>(List.of("U", "D", "U"));
+        List<String> nonCopyBridge = new ArrayList<>(List.of("U", "D", "D"));
 
-        assertThat(bridge.isSame(mark)).isTrue();
+        assertThat(bridge.isSame(copyBridge)).isTrue();
+        assertThat(bridge.isSame(nonCopyBridge)).isFalse();
     }
 
     @Override
