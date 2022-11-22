@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.model.entity.Move;
 import bridge.model.entity.Retry;
-import bridge.util.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Console;
 
