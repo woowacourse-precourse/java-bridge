@@ -17,6 +17,7 @@ public class GameController {
     private static int currentPosition = 0;
     private static int tryCount = 1;
     private static int bridgeSize;
+
     private static List<String> bridge;
 
     private final InputView inputView;
