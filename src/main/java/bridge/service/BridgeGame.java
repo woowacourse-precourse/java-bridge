@@ -14,7 +14,6 @@ import bridge.repository.PlayerRepository;
  */
 public class BridgeGame {
     private final PlayerRepository playerRepository;
-    private final String RETRY = "R";
     private final String QUIT = "Q";
 
     public BridgeGame() {

@@ -9,7 +9,6 @@ public class Player {
     private Long numberOfTry;
     private List<String> upperBridge;
     private List<String> lowerBridge;
-    private final int START_POSITION = 0;
     private final String POSSIBLE = " O ";
     private final String IMPOSSIBLE = " X ";
     private final String EMPTY = "   ";
