@@ -32,7 +32,23 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(MOVE_INPUT_MSG);
+        String result = BRIDGE_MOVE_INPUT_ERROR;
+        while (result.equals(BRIDGE_MOVE_INPUT_ERROR)) {
+            result = tryMoveInput();
+        }
+        return result;
+    }
+
+    private String tryMoveInput() {
+        try {
+            String moveCommandInput = Console.readLine();
+            Validation.checkMoveCommand(moveCommandInput);
+            return moveCommandInput;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return BRIDGE_MOVE_INPUT_ERROR;
     }
 
     /**
