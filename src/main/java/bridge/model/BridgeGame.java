@@ -21,13 +21,14 @@ public class BridgeGame {
     private final Bridge bridge;
     private final BridgeMaker bridgeMaker;
 
-    private List<MoveRecord> records = Collections.emptyList();
+    private final List<MoveRecord> records;
     private int trial;
     private int currentLocation;
 
     public BridgeGame(int bridgeSize) {
         currentLocation = INIT_LOCATION;
         trial = INIT_TRIAL;
+        records = new ArrayList<>();
 
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
