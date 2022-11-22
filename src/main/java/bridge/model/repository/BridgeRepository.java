@@ -17,7 +17,7 @@ public class BridgeRepository {
         this.bridges = new Bridges(bridges);
     }
 
-    public void gameFail() {
+    public void modifyToGameFail() {
         successOrFail = SuccessOrFail.FAIL;
     }
 
@@ -48,7 +48,4 @@ public class BridgeRepository {
     public List<String> findBridgeMap() {
         return bridges.findBridgeMapByPosition(position);
     }
-
-//    public void createBridge(List<String> bridges) {
-//    }
 }

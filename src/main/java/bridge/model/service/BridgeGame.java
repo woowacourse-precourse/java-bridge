@@ -37,7 +37,7 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         boolean isRestartGame = gameCommand.equals(Constant.RESTART_GAME);
         if (!isRestartGame) {
-            bridgeRepository.gameFail();
+            bridgeRepository.modifyToGameFail();
         }
         bridgeRepository.initPosition();
         bridgeRepository.addRetryCount();
