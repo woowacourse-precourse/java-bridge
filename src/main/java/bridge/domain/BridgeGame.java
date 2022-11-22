@@ -12,12 +12,11 @@ import java.util.Objects;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final int bridgeSize;
     private final MoveResultJudgement moveResultJudgement;
     private int currentDistance = 0;
     private int retryCount = 1;
     private boolean isGame = false;
-    private BridgeMap bridgeMap = new BridgeMap();
+    private final BridgeMap bridgeMap = new BridgeMap();
 
     public BridgeGame(int readBridgeSize) {
         try {
@@ -25,8 +24,7 @@ public class BridgeGame {
         } catch (IllegalArgumentException err) {
             System.out.println(err);
         }
-        this.bridgeSize = readBridgeSize;
-        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(readBridgeSize);
         this.moveResultJudgement = new MoveResultJudgement(bridge);
     }
 
