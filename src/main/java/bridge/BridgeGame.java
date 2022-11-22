@@ -35,7 +35,7 @@ public class BridgeGame {
         return bridge.size() == user.getRound();
     }
 
-    public boolean isMovable(String direction){
+    public boolean isMovable(String direction) {
         int round = user.getRound();
         return bridge.get(round).equals(direction);
     }
