@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.List;
 
 public enum Bridge {
-    DOWN("D", 0, List.of(0, 1)), UP("U", 1, List.of(1, 0));
+    DOWN("D", 0, List.of(1, 0)), UP("U", 1, List.of(0, 1));
 
     private final String direction;
     private final int number;
