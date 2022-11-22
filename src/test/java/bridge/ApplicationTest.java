@@ -32,7 +32,6 @@ class ApplicationTest extends NsTest {
                 "게임 성공 여부: 성공",
                 "총 시도한 횟수: 1"
             );
-
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
