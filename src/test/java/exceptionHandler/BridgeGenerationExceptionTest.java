@@ -23,6 +23,8 @@ class BridgeGenerationExceptionTest {
     void 다리_생성_잘못된_값_입력_예외_테스트(List<String> movableSides) {
         assertThatThrownBy(() -> BridgeGenerationException.validate(movableSides))
                 .hasMessage(ExceptionMessage.SELECT_SIDE.getMessage());
+        assertThatThrownBy(() -> SideSelectionException.validate(movableSides))
+                .hasMessage(ExceptionMessage.SELECT_SIDE.getMessage());
     }
 
     @ParameterizedTest
@@ -53,6 +55,8 @@ class BridgeGenerationExceptionTest {
     @DisplayName("빈 문자열이 입력되었을 경우 예외 처리한다.")
     void 빈_문자열_예외_테스트() {
         assertThatThrownBy(() -> BridgeGenerationException.validate(List.of(" ")))
+                .hasMessage(ExceptionMessage.EMPTY_STRING.getMessage());
+        assertThatThrownBy(() -> SideSelectionException.validate(List.of(" ")))
                 .hasMessage(ExceptionMessage.EMPTY_STRING.getMessage());
     }
 
