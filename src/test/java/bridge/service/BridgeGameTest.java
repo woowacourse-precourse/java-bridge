@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeGameTest {
 
@@ -76,27 +77,22 @@ class BridgeGameTest {
         assertThat(bridgeGame.moveAgain()).isFalse();
     }
 
-    @DisplayName("가장 마지막이 O면 게임의 클리어 확인")
+    @DisplayName("다리 길이제한 검증 예외테스트")
     @Test
-    void 가장마지막_결과가_O_이고_그위치를알면_클리어() {
+    void 다리길이의_제한을_넘는_21_길이가_주어지면_예외출력() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.initBridge(3);
-        bridgeGame.initPlayer();
 
-        int expectTryCount = 3;
-        for (int move = 0; move < expectTryCount; move++) {
-            bridgeGame.move(BridgeUtil.UP);
-        }
-
-        assertThat(bridgeGame.getBridgeMap()
-                             .get(0)
-                             .get(expectTryCount - 1)
-                              .equals(BridgeUtil.UP))
-                .isEqualTo(bridgeGame.isClearGame());
+        assertThatThrownBy(() -> bridgeGame.validateBridgeSize("21"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("다리 길이 숫자 검증 예외테스트")
     @Test
-    void validateBridgeSize() {
+    void 다리길이가_숫자로변환을_못하는_문자가_주어지면_예외출력() {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        assertThatThrownBy(() -> bridgeGame.validateBridgeSize("a"))
+                .isInstanceOf(NumberFormatException.class);
     }
 
     @Test
