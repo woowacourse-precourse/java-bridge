@@ -27,13 +27,13 @@ public class BridgeMaker {
     }
 
     public String createRandomNumber(){
-        if(bridgeNumberGenerator.generate() == 1){
+        int randomNumber = bridgeNumberGenerator.generate();
+        if(randomNumber == 1){
             return "U";
         }
-        else{
+        if(randomNumber == 0){
             return "D";
         }
-        //throw new IllegalArgumentException("[ERROR] 랜덤 생성기가 제대로 작동하지 않습니다.");
-        //return "U";
+        throw new IllegalArgumentException("[ERROR] 랜덤 생성기가 제대로 작동하지 않습니다.");
     }
 }
