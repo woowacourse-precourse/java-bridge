@@ -57,23 +57,4 @@ class BridgeGameRepositoryTest {
             assertThat(bridgeGameRepository.getRound()).isEqualTo(1);
         }
     }
-
-    @DisplayName("현재라운드가 finalRound와")
-    @Nested
-    class FinalRound {
-
-        @DisplayName("일치하면 true를 반환한다.")
-        @Test
-        void When_FinalRoundIsEqualToRound_Expect_True() {
-            bridgeGameRepository.addOneToRound();
-            bridgeGameRepository.addOneToRound();
-            assertThat(bridgeGameRepository.isFinalRound(new Bridge(List.of("U","U","U")))).isTrue();
-        }
-
-        @DisplayName("일치하지않으면 false를 반환한다.")
-        @Test
-        void When_FinalRoundIsNotEqualToRound_Expect_False() {
-            assertThat(bridgeGameRepository.isFinalRound(new Bridge(List.of("U","U","U")))).isFalse();
-        }
-    }
 }

@@ -108,6 +108,25 @@ class BridgeTest {
                     .isInstanceOf(UnsupportedOperationException.class);
         }
     }
+
+    @DisplayName("들어온 라운드 값이")
+    @Nested
+    class FinalRound {
+
+        @DisplayName("마지막 라운드라면 true를 반환한다.")
+        @Test
+        void When_FinalRoundIsEqualToRound_Expect_True() {
+            Bridge bridge = new Bridge(List.of("U", "U", "U","U"));
+            assertThat(bridge.isFinalRound(4)).isTrue();
+        }
+
+        @DisplayName("마지막 라운드가 아니라면 false를 반환한다.")
+        @Test
+        void When_FinalRoundIsNotEqualToRound_Expect_False() {
+            Bridge bridge = new Bridge(List.of("U", "U", "U","U"));
+            assertThat(bridge.isFinalRound(3)).isFalse();
+        }
+    }
     private List<String> createBlocks(int size) {
         return IntStream.range(0, size)
                 .mapToObj(idx -> getRandomBlock())

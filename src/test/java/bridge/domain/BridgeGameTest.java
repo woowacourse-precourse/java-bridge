@@ -19,15 +19,15 @@ class BridgeGameTest {
 
     private BridgeGame bridgeGame;
 
+    @BeforeEach
+    void init() {
+        bridgeGame = BridgeGame.of(new MockBridgeGameRepository(), new MockBridgeMaker(), new BridgeSize(3));
+    }
 
     @DisplayName("move로 생성된 MoveResult는")
     @Nested
     class Move {
 
-        @BeforeEach
-        void init() {
-            bridgeGame = new BridgeGame(new MockTrueBridgeGameRepository(), new Bridge(List.of("U", "D", "U")));
-        }
 
         @DisplayName("이동 결과가")
         @Nested
@@ -71,11 +71,6 @@ class BridgeGameTest {
     @Nested
     class Retry {
 
-        @BeforeEach
-        void init() {
-            bridgeGame = new BridgeGame(new MockTrueBridgeGameRepository(), new Bridge(List.of("U", "D", "U")));
-        }
-
         @DisplayName("R이면 True를 반환한다")
         @Test
         void When_RetryCommandIsR_Expect_True() {
@@ -94,11 +89,6 @@ class BridgeGameTest {
     @DisplayName("Final라운드가 맞다면")
     @Nested
     class IsFinalRound {
-
-        @BeforeEach
-        void init() {
-            bridgeGame = new BridgeGame(new MockTrueBridgeGameRepository(), null);
-        }
 
         @DisplayName("gameClear는 true를 반환한다.")
         @Test
@@ -121,7 +111,11 @@ class BridgeGameTest {
 
         @BeforeEach
         void init() {
-            bridgeGame = new BridgeGame(new MockFalseBridgeGameRepository(), null);
+            bridgeGame = BridgeGame.of(
+                    new MockBridgeGameRepository(),
+                    new MockBridgeSizeFalseMaker(),
+                    new BridgeSize(3)
+            );
         }
 
         @DisplayName("gameClear는 false를 반환한다.")
@@ -139,21 +133,11 @@ class BridgeGameTest {
         }
     }
 
-    class MockTrueBridgeGameRepository extends BridgeGameRepository {
-        @Override
-        public boolean isFinalRound(Bridge bridge) {
-            return true;
-        }
+    class MockBridgeGameRepository extends BridgeGameRepository {
 
         @Override
-        public void retry() {
-        }
-    }
-
-    class MockFalseBridgeGameRepository extends BridgeGameRepository {
-        @Override
-        public boolean isFinalRound(Bridge bridge) {
-            return false;
+        public int getRound() {
+            return 3;
         }
 
         @Override
@@ -169,6 +153,16 @@ class BridgeGameTest {
         @Override
         public List<String> makeBridge(int size) {
             return List.of("U", "D", "U");
+        }
+    }
+
+    class MockBridgeSizeFalseMaker extends BridgeMaker {
+        public MockBridgeSizeFalseMaker() {
+            super(null);
+        }
+        @Override
+        public List<String> makeBridge(int size) {
+            return List.of("U", "D", "U","U");
         }
     }
 }

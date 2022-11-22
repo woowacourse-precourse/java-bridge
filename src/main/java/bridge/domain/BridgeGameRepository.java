@@ -25,11 +25,6 @@ public class BridgeGameRepository {
         round++;
     }
 
-
-    public boolean isFinalRound(Bridge bridge) {
-        return bridge.getFinalRound() == round;
-    }
-
     public void retry() {
         round = ROUND_DEFAULT_VALUE;
         tryCount++;
