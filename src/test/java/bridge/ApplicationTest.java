@@ -7,17 +7,12 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.controller.InputController;
 import camp.nextstep.edu.missionutils.test.NsTest;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 
 class ApplicationTest extends NsTest {
 
@@ -55,6 +50,42 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("입력 예외 테스트")
+    class ExceptionTest {
+        @ParameterizedTest
+        @DisplayName("- 다리길이 예외 발생.")
+        @ValueSource(strings = {"1","22",""})
+        void wrongBridgeLengthInput(String input) {
+            assertSimpleTest(() -> {
+                InputController.init();
+                runException(input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @ParameterizedTest
+        @DisplayName("- 방향 입력 예외 발생.")
+        @ValueSource(strings = {"1","H",""})
+        void wrongInput(String input) {
+            assertSimpleTest(() -> {
+                InputController.init();
+                runException("3", input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @ParameterizedTest
+        @DisplayName("- 재시작 입력 예외 발생.")
+        @ValueSource(strings = {"1","H",""})
+        void wrongRestartInput(String input) {
+            assertRandomNumberInRangeTest(() -> {
+                InputController.init();
+                runException("D","U","D", input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }, 0,1,1);
+        }
     }
 
     @Override
