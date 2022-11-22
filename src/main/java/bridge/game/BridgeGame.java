@@ -1,7 +1,7 @@
 package bridge.game;
 
-import bridge.generator.BridgeMaker;
-import bridge.generator.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.input.UserMove;
 import java.util.ArrayList;
 import java.util.List;
