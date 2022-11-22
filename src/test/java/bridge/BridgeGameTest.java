@@ -125,4 +125,18 @@ public class BridgeGameTest {
         Boolean result = player.isGameClear(bridge.getSize());
         assertTrue(result);
     }
+
+    @DisplayName("모든 다리를 건너는 것이 실패했는지 테스트")
+    @Test
+    void 모든_다리_이동_실패() {
+        Bridge bridge =  new Bridge(List.of("D","D","U"));
+        List<String> positions = List.of("D","D","D");
+        positions.stream()
+                .forEach(position -> bridgeGame.move(playerId, bridge, position));
+        PlayerRepository playerRepository = PlayerRepository.getInstance();
+        Player player = playerRepository.findById(playerId);
+
+        Boolean result = player.isGameClear(bridge.getSize());
+        assertFalse(result);
+    }
 }
