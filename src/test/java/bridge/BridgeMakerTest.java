@@ -22,19 +22,19 @@ public class BridgeMakerTest {
                 .contains("D", "U");
     }
 
-    @DisplayName("0과 1에 U또는 D가 매핑되는 것 확인")
-    @Test
-    void DOWN_매핑_테스트() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        assertThat(bridgeMaker.getMovableSide(0))
-                .isEqualTo("D");
-    }
+//    @DisplayName("0과 1에 U또는 D가 매핑되는 것 확인")
+//    @Test
+//    void DOWN_매핑_테스트() {
+//        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+//        assertThat(bridgeMaker.getMovableSide(0))
+//                .isEqualTo("D");
+//    }
 
-    @DisplayName("0과 1에 U또는 D가 매핑되는 것 확인")
-    @Test
-    void UP_매핑_테스트() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        assertThat(bridgeMaker.getMovableSide(1))
-                .isEqualTo("U");
-    }
+//    @DisplayName("0과 1에 U또는 D가 매핑되는 것 확인")
+//    @Test
+//    void UP_매핑_테스트() {
+//        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+//        assertThat(bridgeMaker.getMovableSide(1))
+//                .isEqualTo("U");
+//    }
 }

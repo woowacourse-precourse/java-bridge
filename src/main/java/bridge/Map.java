@@ -15,12 +15,6 @@ public class Map {
         bridgeUserInterface.add(new ArrayList<>());
     }
 
-    private void addSymbolToMap(Side side, String symbol) {
-        this.bridgeUserInterface
-                .get(side.getIndex())
-                .add(symbol);
-    }
-
     public List<List<String>> get() {
         return Collections.unmodifiableList(bridgeUserInterface);
     }
@@ -34,5 +28,11 @@ public class Map {
         for (List<String> bridgeSide : bridgeUserInterface) {
             bridgeSide.clear();
         }
+    }
+
+    private void addSymbolToMap(Side side, String symbol) {
+        this.bridgeUserInterface
+                .get(side.getIndex())
+                .add(symbol);
     }
 }

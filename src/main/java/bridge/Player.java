@@ -12,10 +12,6 @@ public class Player {
         this.footprints = footprints;
     }
 
-    private void validate(String movableSide) {
-        BridgeGenerationException.validate(movableSide);
-    }
-
     public void move(String movingSide) {
         validate(movingSide);
         footprints.add(movingSide);
@@ -31,5 +27,9 @@ public class Player {
 
     public String getLastMoving() {
         return footprints.get(getCurrentPosition());
+    }
+
+    private void validate(String movableSide) {
+        BridgeGenerationException.validate(movableSide);
     }
 }

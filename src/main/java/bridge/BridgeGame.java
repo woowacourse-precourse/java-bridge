@@ -18,10 +18,6 @@ public class BridgeGame {
         this.trial = INITIALIZED_TRIAL;
     }
 
-    private void addTrial() {
-        this.trial++;
-    }
-
     public void generateBridge(final int bridgeSize) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
@@ -49,11 +45,6 @@ public class BridgeGame {
         return false;
     }
 
-    private void initialize_game() {
-        this.player.initializePosition();
-        this.map.initialize();
-    }
-
     public GameStatus getGameStatus() {
         if (this.bridge.isLastPosition(this.player.getCurrentPosition())) {
             return GameStatus.SUCCESS;
@@ -74,5 +65,14 @@ public class BridgeGame {
 
     public List<List<String>> getMap() {
         return this.map.get();
+    }
+
+    private void initialize_game() {
+        this.player.initializePosition();
+        this.map.initialize();
+    }
+
+    private void addTrial() {
+        this.trial++;
     }
 }

@@ -20,7 +20,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public String getMovableSide(int generationNumber) {
+    private String getMovableSide(int generationNumber) {
         return Side.getBridgeSavingFormat(generationNumber);
     }
 }
