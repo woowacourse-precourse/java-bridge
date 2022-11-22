@@ -40,7 +40,7 @@ public class BridgeGameController {
         while(index != bridgeGame.getBridgeSize()){
             isSuccess = bridgeGame.move(bridgeGame.getBridges().get(index), inputView.readMoving());
             outputView.printMap(bridgeGame.getBridges(), index++, isSuccess);
-            if(!isSuccess){ // 움직이는데 실패
+            if(!isSuccess){
                 index = getIndex(index);
             }
             if(!isRunning) break;
