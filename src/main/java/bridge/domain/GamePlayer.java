@@ -29,16 +29,12 @@ public class GamePlayer {
 
     public void run() {
         isInitialized();
+
         do {
             move();
-
-            if (bridgeGame.isEnd()) {
-                break;
-            }
-
         } while (isGameSustainable());
 
-        outputView.printResult(bridgeGame.getLog(), bridgeGame.isEnd(), retryCount);
+        outputView.printResult(bridgeGame.getLog(), bridgeGame.isBridgeCrossCompleted(), retryCount);
     }
 
     private void move() {
@@ -47,23 +43,29 @@ public class GamePlayer {
     }
 
     private boolean isGameSustainable() {
+        if (bridgeGame.isBridgeCrossCompleted()) {
+            return false;
+        }
+
+        if (bridgeGame.isBridgeCrossFailure()) {
+            return gameOverReadCommand();
+        }
+
+        return true;
+    }
+
+    private boolean gameOverReadCommand() {
         String gameCommand = inputView.readGameCommand();
 
         if (gameCommand.equals(GameKeySet.QUIT.getKeySet())) {
             return false;
         }
 
-        isRetry(gameCommand);
+        retryTask();
         return true;
     }
 
-    private void isRetry(String gameCommand) {
-        if (gameCommand.equals(GameKeySet.RESTART.getKeySet())) {
-            retry();
-        }
-    }
-
-    private void retry() {
+    private void retryTask() {
         bridgeGame.retry();
         retryCount++;
     }

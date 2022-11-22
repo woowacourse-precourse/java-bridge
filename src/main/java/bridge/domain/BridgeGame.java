@@ -44,24 +44,31 @@ public class BridgeGame {
     }
 
     /**
+     * 다리 건너기 성공 확인 메서드
+     */
+    public boolean isBridgeCrossCompleted() {
+        return isEndBridgeSize() && isRecentMovable();
+    }
+
+    /**
+     * 다리 건너기 실패 확인 메서드
+     */
+    public boolean isBridgeCrossFailure() {
+        return !isRecentMovable();
+    }
+
+    /**
      * 사용자가 건넌 다리가 건널수있는 다리인지 확인하는 메서드
      */
-    public boolean isMovable() {
+    private boolean isRecentMovable() {
         return isMovable(userCrossBridge.size() - 1);
     }
 
     /**
      * 사용자가 건넌 다리가 건널수있는 다리인지 인덱스별로 확인하는 메서드
      */
-    public boolean isMovable(int userCrossBridgeIndex) {
-        return generateBridge.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex)) && !isEnd();
-    }
-
-    /**
-     * 게임이 끝났는지 확인하는 메서드
-     */
-    public boolean isEnd() {
-        return generateBridge.size() <= userCrossBridge.size();
+    private boolean isMovable(int userCrossBridgeIndex) {
+        return generateBridge.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex))/* && !isEndBridgeSize()*/;
     }
 
     /**
@@ -77,5 +84,9 @@ public class BridgeGame {
      */
     public BridgeLog getLog() {
         return bridgeLog;
+    }
+
+    private boolean isEndBridgeSize() {
+        return generateBridge.size() <= userCrossBridge.size();
     }
 }
