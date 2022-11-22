@@ -74,4 +74,14 @@ class ApplicationTest extends NsTest {
         String str=Utils.change_delimter(List.of("U","D","U","U"));
         assertThat(str).isEqualTo("[ U | D | U | U ]");
     }
+    @DisplayName("결과값 위쪽 아래쪽이 정상적인 format으로 저장되는지 테스트")
+    @Test
+    void setPositionTest(){
+        BridgeGame bridgeGame=new BridgeGame();
+        String up_status=bridgeGame.set_upposition("U",true);
+        String down_status=bridgeGame.set_upposition("D",true);
+        assertThat(up_status).isEqualTo("pass");
+        assertThat(down_status).isEqualTo("pass");
+
+    }
 }
