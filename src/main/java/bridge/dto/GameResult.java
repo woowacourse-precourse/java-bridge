@@ -14,7 +14,6 @@ public class GameResult {
         this.nextViewStatus = nextViewStatus;
     }
 
-    //복사본을 리턴한다. unmodifiable이므로 안전.
     public List<String> getResult() {
         return List.copyOf(result);
     }
