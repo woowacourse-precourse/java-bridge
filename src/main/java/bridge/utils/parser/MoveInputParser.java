@@ -2,9 +2,7 @@ package bridge.utils.parser;
 
 import bridge.constant.BridgePhrase;
 import bridge.domain.resources.Move;
-
 import bridge.utils.EmptyAndNullChecker;
-
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -21,10 +19,10 @@ public class MoveInputParser {
 
     private static <T> T parseWithApply(final String input, final Function<String, T> Function) {
         return Stream.of(input)
-            .map(String::trim)
-            .filter(str -> str.matches("^[A-Z]*$"))
-            .map(Function)
-            .findFirst()
-            .orElseThrow(()-> new IllegalArgumentException(BridgePhrase.ERROR_PARSER_MOVE.getMessage()));
+                .map(String::trim)
+                .filter(str -> str.matches("^[A-Z]*$"))
+                .map(Function)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(BridgePhrase.ERROR_PARSER_MOVE.getMessage()));
     }
 }

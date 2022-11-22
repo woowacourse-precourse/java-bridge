@@ -15,7 +15,7 @@ public enum Constant {
 
     private final String value;
 
-    Constant(String value) {
+    Constant(final String value) {
         this.value = value;
     }
 

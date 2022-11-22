@@ -2,9 +2,7 @@ package bridge.utils.parser;
 
 import bridge.constant.BridgePhrase;
 import bridge.domain.resources.bridge.BridgeSize;
-
 import bridge.utils.EmptyAndNullChecker;
-
 import java.util.function.IntFunction;
 import java.util.stream.Stream;
 
@@ -21,11 +19,11 @@ public class BridgeSizeInputParser {
 
     private static <T> T parseWithApply(final String input, final IntFunction<T> function) {
         return Stream.of(input)
-            .map(String::trim)
-            .filter(str -> str.matches("^[0-9]*$"))
-            .map(Integer::parseInt)
-            .map(function::apply)
-            .findFirst()
-            .orElseThrow(()-> new IllegalArgumentException(BridgePhrase.ERROR_PARSER_BRIDGE_SIZE.getMessage()));
+                .map(String::trim)
+                .filter(str -> str.matches("^[0-9]*$"))
+                .map(Integer::parseInt)
+                .map(function::apply)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(BridgePhrase.ERROR_PARSER_BRIDGE_SIZE.getMessage()));
     }
 }

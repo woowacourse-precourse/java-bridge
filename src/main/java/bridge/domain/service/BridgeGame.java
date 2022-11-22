@@ -1,9 +1,8 @@
 package bridge.domain.service;
 
+import bridge.domain.resources.bridge.Bridge;
 import bridge.domain.resources.GameCommand;
 import bridge.domain.resources.Move;
-import bridge.domain.resources.bridge.Bridge;
-
 import java.util.Objects;
 
 public class BridgeGame {
@@ -39,7 +38,7 @@ public class BridgeGame {
         ++totalAttempts;
     }
 
-    public int getStepDistance(){
+    public int getStepDistance() {
         return bridgeStateService.getInputCount();
     }
 

@@ -1,24 +1,20 @@
 package bridge.controller;
 
-import bridge.constant.BridgePhrase;
-
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-
-import bridge.domain.service.BridgeGame;
-
+import bridge.constant.BridgePhrase;
 import bridge.domain.resources.bridge.Bridge;
 import bridge.domain.resources.bridge.BridgeSize;
-
 import bridge.domain.resources.GameCommand;
 import bridge.domain.resources.Move;
-
+import bridge.domain.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
 
     private static final boolean ONE_MORE_TRY = true;
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
@@ -50,6 +46,7 @@ public class BridgeGameController {
     }
 
     private Bridge makeBridge(final BridgeMaker bridgeMaker, final BridgeSize bridgeSize) {
+        outputView.print(BridgePhrase.EMPTY_STRING);
         return new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
     }
 

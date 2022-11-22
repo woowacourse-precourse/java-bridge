@@ -3,16 +3,16 @@ package bridge.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import bridge.constant.BridgePhrase;
+import bridge.domain.resources.bridge.BridgeSize;
 import bridge.domain.resources.GameCommand;
 import bridge.domain.resources.Move;
-import bridge.domain.resources.bridge.BridgeSize;
 import bridge.utils.parser.BridgeSizeInputParser;
 import bridge.utils.parser.GameCommandInputParser;
 import bridge.utils.parser.MoveInputParser;
 
 public class InputView {
 
-    public BridgeSize readBridgeSize() {
+    public final BridgeSize readBridgeSize() {
         String bridgeSizeInput = inputWithMessage(BridgePhrase.INPUT_BRIDGE_SIZE);
         try {
             return BridgeSizeInputParser.parseBridgeSize(bridgeSizeInput);
@@ -22,7 +22,7 @@ public class InputView {
         }
     }
 
-    public Move readMoving() {
+    public final Move readMoving() {
         String moveInput = inputWithMessage(BridgePhrase.INPUT_MOVE);
         try {
             return MoveInputParser.parseMove(moveInput);
@@ -32,7 +32,7 @@ public class InputView {
         }
     }
 
-    public GameCommand readGameCommand() {
+    public final GameCommand readGameCommand() {
         String gameCommandInput = inputWithMessage(BridgePhrase.INPUT_GAME_COMMAND);
         try {
             return GameCommandInputParser.parseGameCommand(gameCommandInput);
