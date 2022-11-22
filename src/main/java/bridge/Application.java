@@ -19,7 +19,7 @@ public class Application {
         System.out.println(answer_list);
 
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.move(inputView, answer_list);
+        int rslt = bridgeGame.move(inputView, answer_list);
 
 
     }
