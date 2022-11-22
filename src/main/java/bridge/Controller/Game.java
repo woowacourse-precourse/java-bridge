@@ -23,7 +23,7 @@ public class Game {
             if(isStart) { // 다리를 다 건넜을 때
                 break;
             }
-            isStartOrEnd();
+            isStart = isStartOrEnd();
         }
     }
 
@@ -55,6 +55,6 @@ public class Game {
 
     private boolean isStartOrEnd() {
         OutputView.printStartOrEnd();
-        InputView.readGameCommand();
+        return bridgeGame.retry(InputView.readGameCommand());
     }
 }
