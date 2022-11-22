@@ -19,8 +19,7 @@ import static bridge.model.value.OutMessage.*;
  */
 public class OutputView {
     public void printMessage(OutMessage message){
-        System.out.println();
-        System.out.println(message.getMessage());
+        System.out.printf(message.getMessage());
     }
 
     /**
@@ -33,7 +32,6 @@ public class OutputView {
         String downMap = createPrintMap(bridgeMapDto.getDownMap());
         System.out.println(upMap);
         System.out.println(downMap);
-        System.out.println();
     }
 
     private String createPrintMap(List<String> map){

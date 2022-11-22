@@ -22,12 +22,17 @@ public class Controller {
     }
 
     public void startGame() { //다리 게임 시작
-        out.printMessage(START_MESSAGE);
+        printStartMessage();
         createBridge(); //다리 생성
         while(game.keepGoingGame()) { //사용자 문자가 "R"인가?
             moveAndResult();
         }
         printResult(game.getPrintResultDto());
+    }
+
+    public void printStartMessage(){
+        out.printMessage(START_MESSAGE);
+        out.printMessage(PRINT_ENTER);
     }
 
     private void moveAndResult() {
@@ -46,6 +51,7 @@ public class Controller {
         try {
             out.printMessage(INPUT_BRIDGE_MESSAGE);
             createGameField();
+            out.printMessage(PRINT_ENTER);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             createBridge();
@@ -71,6 +77,7 @@ public class Controller {
 
     public void printState() {
         out.printMap(BridgeMapDto.of(game.getBridgeMap()));
+        out.printMessage(PRINT_ENTER);
     }
 
     public void retry() {
@@ -89,6 +96,7 @@ public class Controller {
     public void printResult(PrintResultDto dto) {
         out.printMessage(PRINT_RESULT_MESSAGE);
         out.printMap(dto.getMapDto());
+        out.printMessage(PRINT_ENTER);
         out.printSuccessOrNot(dto.getState());
         out.printTryCount(dto.getRetryCountDto());
     }
