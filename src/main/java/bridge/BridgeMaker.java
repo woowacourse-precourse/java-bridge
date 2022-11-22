@@ -1,10 +1,5 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
-import bridge.model.Bridge;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +17,6 @@ public class BridgeMaker {
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-    }
-
-    public Bridge inputMakeBridge() {
-        OutputView.getOutputView().printStartMessage();
-        int bridgeSize = InputView.getInputView().readBridgeSize();
-        return new Bridge(bridgeSize);
     }
 
     /**

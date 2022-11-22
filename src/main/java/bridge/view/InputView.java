@@ -10,24 +10,15 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public final String ERROR_PREFIX = "[ERROR] ";
-    public final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
-    public final String INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public final String INPUT_RETRY_OR_QUIT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-
-    private static final InputView inputView = new InputView();
-
-    private InputView() {
-    }
-
-    public static InputView getInputView() {
-        return inputView;
-    }
+    public static final String ERROR_PREFIX = "[ERROR] ";
+    public static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    public static final String INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String INPUT_RETRY_OR_QUIT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         printInputMessage(INPUT_BRIDGE_SIZE_MESSAGE);
         return Integer.parseInt(getInputValue(new ValidateBridgeSize()));
     }
@@ -35,7 +26,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         printInputMessage(INPUT_MOVE_MESSAGE);
         return getInputValue(new ValidateMove());
     }
@@ -43,12 +34,12 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         printInputMessage(INPUT_RETRY_OR_QUIT_MESSAGE);
         return getInputValue(new ValidateCommand());
     }
 
-    private String getInputValue(Validator validator) {
+    private static String getInputValue(Validator validator) {
         String readValue = Console.readLine();
         while (true) {
             try {
@@ -61,11 +52,11 @@ public class InputView {
         }
     }
 
-    private void printInputMessage(String message) {
+    private static void printInputMessage(String message) {
         System.out.println(message);
     }
 
-    private void printInputErrorMessage(IllegalArgumentException e) {
+    private static void printInputErrorMessage(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 }

@@ -7,7 +7,7 @@ import static bridge.util.BridgeConstant.SUCCESS_BLOCK;
 import static bridge.util.BridgeConstant.FALL_BLOCK;
 
 public class BridgeMapMaker {
-    public void addBridgeMapBlock(Player player, boolean success) {
+    public void addBlockBridgeMap(Player player, boolean success) {
         String block = getBlock(success);
         int playerYPosition = player.getYPosition();
         BridgeMap.getBridgeMap().addBridgeMap(block, playerYPosition);
