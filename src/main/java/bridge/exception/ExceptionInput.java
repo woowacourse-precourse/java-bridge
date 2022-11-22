@@ -23,4 +23,13 @@ public class ExceptionInput {
         }
         return command;
     }
+
+    public static String validateInputRetryCommand(String command) {
+        sb = new StringBuilder(ErrorMessage.NOTICE.getMessage());
+        if (!(command.equals("R") || command.equals("Q"))) {
+            sb.append(ErrorMessage.ERROR_INPUT_MOVE_RANGE.getMessage());
+            throw new IllegalArgumentException(sb.toString());
+        }
+        return command;
+    }
 }
