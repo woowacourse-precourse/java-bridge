@@ -94,14 +94,18 @@ public class OutputView {
      * BridgeGame을 받아 최종 결과를 출력
      */
     public void printResult(BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame);
+        printResultStatistic(bridgeGame);
+    }
+
+    private void printResultStatistic(BridgeGame bridgeGame){
         int step = bridgeGame.getStep();
         BridgeGameStstus status = bridgeGame.getStatus();
-
         String passOrFail = "성공";
         if(status == BridgeGameStstus.FAIL){
             passOrFail = "실패";
         }
-
         System.out.println("게임 성공 여부: " + passOrFail);
         System.out.println("총 시도한 횟수: " + (step - 1));
     }
