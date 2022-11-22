@@ -128,4 +128,31 @@ public class BridgeTest {
         assertThatThrownBy(() -> validateInput.validateBridgeSizeRange(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("문자 하나만 입력 안할 시 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "AS", "exception"})
+    void 문자_하나가_아닐시_예외처리_테스트(String word) {
+        ValidateInput validateInput = new ValidateInputBridgeGame();
+        assertThatThrownBy(() -> validateInput.validateWordLength(word))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("'U' 또는 'D' 중에 하나를 선택 안할 시 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "R", "Q", "exception"})
+    void 문자_선택_U와_D중_예외처리_테스트(String word) {
+        ValidateInput validateInput = new ValidateInputBridgeGame();
+        assertThatThrownBy(() -> validateInput.validateMovingSpaceWord(word))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("'R' 또는 'Q' 중에 하나를 선택 안할 시 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "U", "D", "exception"})
+    void 문자_선택_R과_Q중_예외처리_테스트(String word) {
+        ValidateInput validateInput = new ValidateInputBridgeGame();
+        assertThatThrownBy(() -> validateInput.validateGameCommandWord(word))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
