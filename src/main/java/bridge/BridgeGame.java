@@ -21,7 +21,12 @@ public class BridgeGame {
     }
 
     public void startGame() {
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = -1;
+        try {
+            bridgeSize = inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 다리 길이는 3 이상 20 이하의 숫자로 입력해 주세요");
+        }
         this.answerBridge = bridgeMaker.makeBridge(bridgeSize);
         boolean isContinue;
         int count = 0;
@@ -65,6 +70,17 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
+        boolean inputResult = false;
+        try {
+            inputResult = retryInput();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            retryInput();
+        }
+        return inputResult;
+    }
+
+    public boolean retryInput() {
         String retryCommand = inputView.readGameCommand();
         if (retryCommand.equals("R")) {
             return true;
