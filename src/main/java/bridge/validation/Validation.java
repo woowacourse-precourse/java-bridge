@@ -16,6 +16,13 @@ public class Validation {
         }
     }
 
+    // 다리의 길이 입력값이 0으로 시작하는지 검증하느 기능
+    public static void checkBridgeLengthStartZero(String bridgeLength) {
+        if (bridgeLength.charAt(0) == ZERO) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_LENGTH_START_ZERO);
+        }
+    }
+
     // 다리의 길이 입력값이 3이상 20이하인지 검증하는 기능
     public static void checkBridgeLengthRange3To20(String bridgeLengthInput) {
         int bridgeLength = Integer.parseInt(bridgeLengthInput);
