@@ -12,7 +12,6 @@ public class Application {
         if(errorCheck.errorCheckReadBridgeSize(sizeString)){
             gameService.playGame(Integer.parseInt(sizeString));
         }
-
     }
 
 
