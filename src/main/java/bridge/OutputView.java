@@ -16,19 +16,19 @@ public class OutputView {
         StringBuilder upUI;
         StringBuilder downUI;
 
-        upUI = progressUI(bridgeGame.getMoveProgress(), true, bridgeGame.isMoveOk());
-        downUI = progressUI(bridgeGame.getMoveProgress(), false, bridgeGame.isMoveOk());
+        upUI = progressUI(bridgeGame,true);
+        downUI = progressUI(bridgeGame, false);
 
         System.out.println(upUI);
         System.out.println(downUI);
     }
 
-    private StringBuilder progressUI(List<String> progress, boolean isUp, boolean isMoveOk){
+    private StringBuilder progressUI(BridgeGame bridgeGame, boolean isUp){
         StringBuilder sb = new StringBuilder();
         sb.append("[ ");
-        for(int i=0; i<progress.size(); i++){
-            sb.append(progressUIMiddle(progress.get(i), isUp, isMoveOk));
-            if(progress.size()-1 != i){
+        for(int i=0; i<bridgeGame.getMoveProgress().size(); i++){
+            sb.append(progressUIMiddle(bridgeGame, isUp, i));
+            if(bridgeGame.getMoveProgress().size()-1 != i){
                 sb.append(" | ");
             }
         }
@@ -36,18 +36,20 @@ public class OutputView {
         return sb;
     }
 
-    private String progressUIMiddle(String direction, boolean isUp, boolean isMoveOk){
-        if(isUp && direction.equals("U")){
-            if(isMoveOk)
-                return "O";
-            return "X";
+    private String progressUIMiddle(BridgeGame bridgeGame, boolean isUp, int index){
+        if(isUp && bridgeGame.getMoveProgress().get(index).equals("U")){
+            return middleResult(bridgeGame,index);
         }
-        if(!isUp && direction.equals("D")){
-            if(isMoveOk)
-                return "O";
-            return "X";
+        if(!isUp && bridgeGame.getMoveProgress().get(index).equals("D")){
+            return middleResult(bridgeGame,index);
         }
         return " ";
+    }
+
+    private String middleResult(BridgeGame bridgeGame, int index){
+        if(!bridgeGame.isMoveOk() && index == bridgeGame.getMoveProgress().size()-1)
+            return "X";
+        return "O";
     }
 
     /**
