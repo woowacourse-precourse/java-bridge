@@ -1,5 +1,7 @@
 package bridge.service;
 
+import bridge.domain.Command;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +21,20 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> commandNumbers = new ArrayList<>();
+        List<String> commandKey = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            commandNumbers.add(String.valueOf(bridgeNumberGenerator.generate()));
+            int number = bridgeNumberGenerator.generate();
+            commandKey.add(mapToCommandKey(number));
         }
-        return commandNumbers;
+        return commandKey;
+    }
+
+    private String mapToCommandKey(int commandNumber) {
+        if (commandNumber == 0) {
+            return "D";
+        } else if (commandNumber == 1) {
+            return "U";
+        }
+        throw new IllegalArgumentException("잘못된 커멘드 입니다.");
     }
 }

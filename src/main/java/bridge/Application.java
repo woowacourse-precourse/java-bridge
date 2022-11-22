@@ -18,8 +18,12 @@ public class Application {
 
     public static void main(String[] args) {
         Application application = new Application();
-        application.init();
-        application.start();
+        try {
+            application.init();
+            application.start();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]" + e.getMessage());
+        }
     }
 
     public void init() {
