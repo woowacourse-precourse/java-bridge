@@ -18,4 +18,16 @@ public class GameController {
         return new GameController();
     }
 
+    public void move() {
+        boolean isMoveSuccess = game.move(inputView.readMoving());
+        outputView.printMap(game.getResult());
+        if (!isMoveSuccess) {
+            retry();
+        }
+    }
+
+    public void retry(){
+
+    }
+
 }
