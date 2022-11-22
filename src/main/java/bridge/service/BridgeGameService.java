@@ -14,7 +14,6 @@ public class BridgeGameService extends OutputConfig {
         } catch(IllegalArgumentException e) {
             System.out.println(ERROR_MEESAGE+" 입력한 길이 값이 정수가 아닙니다.");
         }
-
         return isNumeric;
     }
     public Boolean isValidBridgeRange(int bridgeSize) {
