@@ -48,13 +48,17 @@ public class InputView {
         System.out.println(printInput);
         String input = Console.readLine();
         try {
-            if (!input.equals(command1) && !input.equals(command2)) {
-                throw new IllegalArgumentException(errorName);
-            }
+            checkAlphabet(command1, command2, errorName, input);
             return input;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    private static void checkAlphabet(String command1, String command2, String errorName, String input) {
+        if (!input.equals(command1) && !input.equals(command2)) {
+            throw new IllegalArgumentException(errorName);
+        }
     }
 }
