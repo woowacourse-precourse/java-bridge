@@ -14,7 +14,6 @@ public class Validation {
     private static final String NO_INPUT = "입력이 없습니다.";
     private static final String NOT_CORRECT_CHARACTER = "올바른 문자가 아닙니다.";
 
-    // 사용자 입력이 올바른지 확인 - 숫자인지
     public static void verifyUserInputBridgeLength(String input){
         verifyUserInputIsEmpty(input.length());
         verifyUserInputIsNumber(input);
@@ -33,7 +32,6 @@ public class Validation {
         if(length == 0) errorThrow(NO_INPUT);
     }
 
-    // 사용자 입력이 올바른지 확인 - 문자 하나
     public static void verifyUserInputIsCharacter(String input, Mode mode){
         verifyUserInputIsEmpty(input.length());
         verifyUserInputIsCommand(input, mode);
