@@ -80,6 +80,20 @@ public class InputView {
     }
 
     private String validateGameCommand(String input){
+        try{
+            return validateRestartSymbol(input);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return readGameCommand();
+        }
+    }
+
+    private String validateRestartSymbol(String input){
+        if(!input.equals(Constants.RESTART) && !input.equals(Constants.QUIT)){
+            throw new IllegalArgumentException(Constants.RESTART_SYMBOL_ERROR_MESSAGE);
+        }
+
         return input;
     }
 }
