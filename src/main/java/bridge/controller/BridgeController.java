@@ -17,17 +17,17 @@ public class BridgeController {
 
     public void run() {
         InputView.printStartMessage();
-        playBridgeGame(player);
+        playBridgeGame();
         OutputView.printResult(bridgeGame);
     }
 
-    private void playBridgeGame(Player player) {
+    private void playBridgeGame() {
         do {
-            playUntilFailure(player);
+            playUntilFailure();
         } while (!bridgeGame.isReached() && retry());
     }
 
-    private void playUntilFailure(Player player) {
+    private void playUntilFailure() {
         do {
             move();
             OutputView.printMap(bridgeGame);
@@ -44,13 +44,13 @@ public class BridgeController {
         }
     }
 
-    private boolean move() {
+    private void move() {
         try {
             String moveCommand = InputView.readMoving();
-            return bridgeGame.move(moveCommand);
+            bridgeGame.move(moveCommand);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return move();
+            move();
         }
     }
 
