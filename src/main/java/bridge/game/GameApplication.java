@@ -1,6 +1,6 @@
 package bridge.game;
 
-import bridge.bridge.BridgeGame;
+import bridge.BridgeGame;
 import bridge.input.InputView;
 import bridge.output.OutputView;
 
