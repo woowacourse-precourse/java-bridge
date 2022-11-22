@@ -51,7 +51,11 @@ public class BridgeGameManager {
     }
 
     private void moveProgress(BridgeGame bridgeGame) {
-        bridgeGame.move(readMoving());
+        try {
+            bridgeGame.move(readMoving());
+        } catch (IllegalStateException e) {
+            outputView.printErrorMessage(e.getMessage());
+        }
     }
 
     private String readMoving() {
