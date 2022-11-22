@@ -1,41 +1,43 @@
 package bridge.domain;
 
-import bridge.constant.BridgeSymbol;
-
 import java.util.Collections;
 import java.util.List;
 
 public class Map {
-    private static final String SPACE = " ";
+    private static final String OPEN = "[";
+    private static final String MIDDLE = " | ";
+    private static final String CLOSE = "]";
+    private static final String BLANK = " ";
+
     private StringBuilder upMap;
     private StringBuilder downMap;
 
     public Map() {
-        this.upMap = new StringBuilder(BridgeSymbol.OPEN.getState() + SPACE);
-        this.downMap = new StringBuilder(BridgeSymbol.OPEN.getState() + SPACE);
+        this.upMap = new StringBuilder(OPEN + BLANK);
+        this.downMap = new StringBuilder(OPEN + BLANK);
     }
 
     public void makeUpMap(String result) {
-        upMap.append(result).append(BridgeSymbol.MIDDLE.getState());
-        downMap.append(BridgeSymbol.BLANK.getState()).append(BridgeSymbol.MIDDLE.getState());
+        upMap.append(result).append(MIDDLE);
+        downMap.append(BLANK).append(MIDDLE);
     }
 
     public void makeDownMap(String result) {
-        upMap.append(BridgeSymbol.BLANK.getState()).append(BridgeSymbol.MIDDLE.getState());
-        downMap.append(result).append(BridgeSymbol.MIDDLE.getState());
+        upMap.append(BLANK).append(MIDDLE);
+        downMap.append(result).append(MIDDLE);
     }
 
     public void resetMap() {
-        upMap = new StringBuilder(BridgeSymbol.OPEN.getState() + SPACE);
-        downMap = new StringBuilder(BridgeSymbol.OPEN.getState() + SPACE);
+        upMap = new StringBuilder(OPEN + BLANK);
+        downMap = new StringBuilder(OPEN + BLANK);
     }
 
     private String getUpMap() {
-        return upMap.substring(0, upMap.length() - 2) + BridgeSymbol.CLOSE.getState();
+        return upMap.substring(0, upMap.length() - 2) + CLOSE;
     }
 
     private String getDownMap() {
-        return downMap.substring(0, downMap.length() - 2) + BridgeSymbol.CLOSE.getState();
+        return downMap.substring(0, downMap.length() - 2) + CLOSE;
     }
 
     public List<String> getAllMap() {
