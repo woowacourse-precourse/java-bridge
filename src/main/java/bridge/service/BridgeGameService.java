@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.domain.Attempt;
 import bridge.domain.Bridge;
 import bridge.domain.Command;
 import bridge.domain.Result;
@@ -12,7 +13,7 @@ import static bridge.view.OutputView.*;
 
 public class BridgeGameService {
 
-    private int attempt;
+    private Attempt attempt;
     private Bridge bridge;
     private List<String> user;
 
@@ -21,12 +22,12 @@ public class BridgeGameService {
      */
     public void start() {
         printStart();
-        attempt = 0;
+        attempt = Attempt.begin();
         bridge = Bridge.make(readBridgeSize());
     }
 
     public Result move() {
-        attempt++;
+        attempt.increase();
         user = new ArrayList<>();
         while (bridge.isProceeding(user)) {
             printMoveOptionInput();

@@ -29,3 +29,4 @@
 
 # 🔧 리팩토링한 부분
 - BridgeGame에서 InputView 와 OutputView를 사용하지 않도록 변경
+- Attempt를 int 가 아닌 class 로 사용하도록 변경
