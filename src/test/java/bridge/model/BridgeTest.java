@@ -1,4 +1,3 @@
-/*
 package bridge.model;
 
 import org.assertj.core.api.Assertions;
@@ -21,15 +20,21 @@ class BridgeTest {
 
     @ParameterizedTest
     @DisplayName("다리 생성")
-    @ValueSource(strings = {"3","6"})
+    @ValueSource(strings = {"3", "6"})
     void checkSetBridge(String input) {
 
         InputStream in = getPlayerInput(input);
         System.setIn(in);
 
-        Bridge bridge = new Bridge();
-        System.out.println("bridge = " + bridge.getBridge());
-        Assertions.assertThat(bridge.getBridge().size()).isEqualTo(Integer.parseInt(input));
 
     }
-}*/
+
+    @Test
+    @DisplayName("다리 생성")
+    void generateBridge() {
+        Bridge bridge;
+        bridge = new Bridge(new ArrayList<>(List.of("U", "D", "D")));
+
+        Assertions.assertThat(bridge.getBridge().size()).isEqualTo(3);
+    }
+}
