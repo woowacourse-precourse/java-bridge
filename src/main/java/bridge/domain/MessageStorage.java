@@ -11,11 +11,11 @@ public enum MessageStorage {
 
     private final String message;
 
-    MessageStorage(String message){
-        this.message=message;
+    MessageStorage(String message) {
+        this.message = message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return this.message;
     }
 }

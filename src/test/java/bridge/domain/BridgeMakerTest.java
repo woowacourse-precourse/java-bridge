@@ -15,7 +15,7 @@ class BridgeMakerTest {
     private BridgeMaker bridgeMaker;
 
     @BeforeEach
-    void init(){
+    void init() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
@@ -25,7 +25,7 @@ class BridgeMakerTest {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge).containsExactly("U","D","D");
+        assertThat(bridge).containsExactly("U", "D", "D");
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {

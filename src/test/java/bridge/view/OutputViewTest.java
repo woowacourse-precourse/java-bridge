@@ -13,14 +13,14 @@ import static bridge.view.OutputView.*;
 
 class OutputViewTest {
     private final String MAP = String.join(System.lineSeparator(),
-            "[ O |   | X |   ]","[   | O |   | X ]\n");
+            "[ O |   | X |   ]", "[   | O |   | X ]\n");
     private final String RESULT = String.join(System.lineSeparator(),
-            "최종 게임 결과","[ O |   | X |   ]","[   | O |   | X ]","","게임 성공 여부: 성공","총 시도한 횟수: 1\n");
-    private final List<String> bridgeCorrect1 = List.of("U","O");
-    private final List<String> bridgeCorrect2 = List.of("D","O");
-    private final List<String> bridgeCorrect3 = List.of("U","X");
-    private final List<String> bridgeCorrect4 = List.of("D","X");
-    private final List<List<String>> bridgeCorrects = List.of(bridgeCorrect1,bridgeCorrect2,bridgeCorrect3,bridgeCorrect4);
+            "최종 게임 결과", "[ O |   | X |   ]", "[   | O |   | X ]", "", "게임 성공 여부: 성공", "총 시도한 횟수: 1\n");
+    private final List<String> bridgeCorrect1 = List.of("U", "O");
+    private final List<String> bridgeCorrect2 = List.of("D", "O");
+    private final List<String> bridgeCorrect3 = List.of("U", "X");
+    private final List<String> bridgeCorrect4 = List.of("D", "X");
+    private final List<List<String>> bridgeCorrects = List.of(bridgeCorrect1, bridgeCorrect2, bridgeCorrect3, bridgeCorrect4);
 
 
     @DisplayName("현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력하는지 테스트")
@@ -40,7 +40,7 @@ class OutputViewTest {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        printResult(bridgeCorrects,"성공",1);
+        printResult(bridgeCorrects, "성공", 1);
 
         assertThat(RESULT).isEqualTo(out.toString());
     }
