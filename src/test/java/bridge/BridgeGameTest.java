@@ -48,7 +48,7 @@ public class BridgeGameTest {
 
     @DisplayName("플레이어 위쪽 다리 이동 성공 후 경로가 올바른지 테스트")
     @Test
-    void 플레이어_위쪽_다리_이동_경로() {
+    void 플레이어_위쪽_다리_이동_성공_경로() {
         Bridge bridge =  new Bridge(List.of("U","D","U"));
         String position = "U";
         bridgeGame.move(playerId, bridge, position);
@@ -57,6 +57,19 @@ public class BridgeGameTest {
         List<String> upperBridge = pathTravel.getUpperBridge();
 
         assertTrue(upperBridge.get(0).equals(POSSIBLE));
+    }
+
+    @DisplayName("플레이어 위쪽 다리 이동 실패 후 경로가 올바른지 테스트")
+    @Test
+    void 플레이어_위쪽_다리_이동_실패_경로() {
+        Bridge bridge =  new Bridge(List.of("D","D","U"));
+        String position = "U";
+        bridgeGame.move(playerId, bridge, position);
+
+        PathTravel pathTravel = bridgeGame.getPathTravel(playerId);
+        List<String> upperBridge = pathTravel.getUpperBridge();
+
+        assertTrue(upperBridge.get(0).equals(IMPOSSIBLE));
     }
 
 }
