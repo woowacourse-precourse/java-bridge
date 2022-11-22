@@ -37,4 +37,27 @@ class RoundTest {
         getUserInput("D");
         assertThat(InputView.readMoving()).isEqualTo("D");
     }
+
+    @DisplayName("재시도 여부 입력이 R 또는 Q가 아니면 예외가 발생한다.")
+    @Test
+    void inputCommandByInvalidValue() {
+        getUserInput("a");
+        assertThatThrownBy(InputView::readGameCommand)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 재시도 여부 입력은 R 또는 Q여야 합니다.");
+    }
+
+    @DisplayName("재시도 여부 입력이 R이면 예외가 발생하지 않는다.")
+    @Test
+    void inputCommandByR() {
+        getUserInput("R");
+        assertThat(InputView.readGameCommand()).isEqualTo("R");
+    }
+
+    @DisplayName("재시도 여부 입력이 Q면 예외가 발생하지 않는다.")
+    @Test
+    void inputCommandByQ() {
+        getUserInput("Q");
+        assertThat(InputView.readGameCommand()).isEqualTo("Q");
+    }
 }
