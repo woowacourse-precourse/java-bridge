@@ -77,4 +77,18 @@ class BridgeGameTest {
         assertThat(gameResult.getResult()).isEqualTo("실패");
         assertThat(gameResult.getRetryCount()).isEqualTo(1);
     }
+
+    @Test
+    void 정상_다리를_건너면_해당_방향에_O가_그려져야한다() {
+        bridgeGame.move(Moving.UP);
+        assertThat(bridgeGame.getGameMap()).isEqualTo("[ O ]\n[   ]");
+
+        bridgeGame.move(Moving.DOWN);
+        assertThat(bridgeGame.getGameMap())
+                .isEqualTo("[ O |   ]\n[   | O ]");
+
+        bridgeGame.move(Moving.UP);
+        assertThat(bridgeGame.getGameMap())
+                .isEqualTo("[ O |   | O ]\n[   | O |   ]");
+    }
 }
