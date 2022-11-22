@@ -50,7 +50,7 @@ class BridgeGameServiceTest {
 
         GameMoveDto gameMoveDto = bridgeGameService.play(new Player(), "U");
 
-        assertThat(gameMoveDto.getResult().get(0)).isEqualTo(List.of(MoveResult.FAIL));
+        assertThat(gameMoveDto.getResult()).contains(List.of(MoveResult.FAIL));
     }
 
     @Test
@@ -90,9 +90,7 @@ class BridgeGameServiceTest {
     void isGameOver_메서드는_사용자가_다리건너기에_성공하면_true를_반환한다() {
         bridgeGameService.initializeBridgeGame(3);
         Player player = new Player();
-        bridgeGameService.play(player, "D");
-        bridgeGameService.play(player, "D");
-        bridgeGameService.play(player, "U");
+        play(player, List.of("D", "D", "U"));
 
         assertThat(bridgeGameService.isGameOver(player)).isTrue();
     }
@@ -101,15 +99,19 @@ class BridgeGameServiceTest {
     void gameOver_메서드는_사용자를_입력받아_GameResultDto를_반환한다() {
         bridgeGameService.initializeBridgeGame(3);
         Player player = new Player();
-        bridgeGameService.play(player, "D");
-        bridgeGameService.play(player, "D");
-        bridgeGameService.play(player, "U");
+        play(player, List.of("D", "D", "U"));
 
         GameResultDto gameResultDto = bridgeGameService.gameOver(player);
 
         assertThat(gameResultDto.getCount()).isEqualTo(1);
         assertThat(gameResultDto.getVictory()).isEqualTo(Victory.VICTORY);
         assertThat(gameResultDto.getGameMoveDto()).isInstanceOf(GameMoveDto.class);
+    }
+
+    private void play(Player player, List<String> commands) {
+        for (String command : commands) {
+            bridgeGameService.play(player, command);
+        }
     }
 
     static class TestBridgeNumberGenerator implements BridgeNumberGenerator {
