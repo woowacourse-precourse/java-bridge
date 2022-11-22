@@ -42,14 +42,14 @@ public class OutputView {
 
     // 최종 결과를 출력하는 메소드
     public void printResult(int attempt, boolean outcome, List<String> passHistory) {
-        System.out.println("\n최종 게임 결과");
+        PrintCommon.RESULT.print();
         printMap(passHistory);
 
         if (outcome) {
-            System.out.println(PrintCommon.RESULT + "성공");
+            System.out.println(PrintCommon.RESULT_CLEAR + "성공");
         }
         if (!outcome) {
-            System.out.println(PrintCommon.RESULT + "실패");
+            System.out.println(PrintCommon.RESULT_CLEAR + "실패");
         }
         System.out.println(PrintCommon.RESULT_NUMBER.toString() + attempt);
     }
