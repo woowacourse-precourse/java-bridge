@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.model.Bridge;
+import bridge.model.PlayerStatus;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,7 +13,33 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(final Bridge bridge, final PlayerStatus playerStatus) {
+        String direction = playerStatus.getStep();
+        boolean matchingFlag = playerStatus.isMatchingFlag();
+
+        if (direction.equals("U")) {
+            moveUpBridge(bridge, matchingFlag);
+            return;
+        }
+        if (direction.equals("D")) {
+            moveDownBridge(bridge, matchingFlag);
+        }
+    }
+
+    private void moveUpBridge(final Bridge bridge, final boolean matchingFlag) {
+        if (matchingFlag) {
+            bridge.moveUpBridgeCorrect();
+            return;
+        }
+        bridge.moveUpBridgeInCorrect();
+    }
+
+    private void moveDownBridge(final Bridge bridge, final boolean matchingFlag) {
+        if (matchingFlag) {
+            bridge.moveDownBridgeCorrect();
+            return;
+        }
+        bridge.moveDownBridgeInCorrect();
     }
 
     /**
@@ -18,6 +47,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(final String command) {
+        return command.equals("Q");
     }
 }
