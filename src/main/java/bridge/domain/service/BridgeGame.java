@@ -51,5 +51,10 @@ public class BridgeGame {
         return step == bridge.size();
     }
 
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+
+
 
 }
