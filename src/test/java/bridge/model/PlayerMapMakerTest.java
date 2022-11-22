@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PlayerMapMakerTest {
 
     private static final List<String> bridge = List.of("U", "D", "D");
-    private static final PlayerMapMaker playerMapMaker = new PlayerMapMaker(bridge);
+    private static final PlayerMapMaker playerMapMaker = new PlayerMapMaker(new BridgeMapMaker(bridge));
 
     @DisplayName("n번째 칸으로 이동한 후 다리 건너기를 성공했을 때의 경로를 반환한다")
     @ParameterizedTest

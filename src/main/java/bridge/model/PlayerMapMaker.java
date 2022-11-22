@@ -7,8 +7,7 @@ public class PlayerMapMaker {
     private final PlayerMap successMap;
     private final PlayerMap failureMap;
 
-    public PlayerMapMaker(List<String> bridge) {
-        BridgeMapMaker bridgeMapMaker = new BridgeMapMaker(bridge);
+    public PlayerMapMaker(BridgeMapMaker bridgeMapMaker) {
         successMap = bridgeMapMaker.getSuccessBridgeMap();
         failureMap = bridgeMapMaker.getFailureBridgeMap();
     }
