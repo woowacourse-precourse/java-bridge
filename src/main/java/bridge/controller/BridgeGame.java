@@ -1,11 +1,8 @@
 package bridge.controller;
 
+import bridge.constant.GameProgressKeyword;
 import bridge.domain.Bridge;
 import bridge.domain.User;
-import bridge.util.BridgeCalculator;
-import bridge.view.InputView;
-import bridge.constant.MessageOutput;
-import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -23,63 +20,44 @@ public class BridgeGame {
         this.user = new User();
     }
 
-    public void start() {
-        attemptAcross();
-        showResult();
+    public Bridge getBridge() {
+        return bridge;
     }
 
-    public void attemptAcross() {
-        boolean aRound = true;
-        while(aRound) {
-            inOrderAcross();
-            if(user.getIsSuccess()) break;
-            aRound = retry();
-            restartAcross();
-        }
+    public User getUser() {
+        return user;
     }
 
-    public void showResult() {
-        OutputView.printResult(bridge, user);
+    public boolean isSuccess() {
+        return user.getIsSuccess();
     }
 
+    public void setSuccess() {
+        user.setIsSuccess(true);
+    }
 
-    public void inOrderAcross() {
-        boolean movingResult;
-        for(int i=0 ; i<bridge.getSize() ; i++) {
-            movingResult = move(i);
-            if(!movingResult) break;
-            if(movingResult && (i == bridge.getSize()-1)) user.setIsSuccess(true);
-        }
-        // 성공로직
+    public int getSize() {
+        return bridge.getSize();
+    }
+
+    public String getIndexResult(int index) {
+        return bridge.getIndexResult(index);
     }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int index) {
-        // move를 boolean을 return 하도록 해도 될까
-        OutputView.printLine(MessageOutput.INQUIRE_MOVE_BLOCK);
-        String input = InputView.readMoving();
+    public void move(String input) {
         user.addSelect(input);
-        boolean isSuccess = BridgeCalculator.compareInputAndResult(input, bridge.getIndexResult(index));
-        OutputView.printMap(bridge, user);
-        return isSuccess;
-    }
-
-    public void restartAcross() {
-        user.resetSelect();
-        user.tryAgain();
     }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        OutputView.printLine(MessageOutput.INQUIRE_REGAIN_GAME);
-        String decision = InputView.readGameCommand();
-        boolean isRetry = BridgeCalculator.whetherRetryOrQuit(decision);
-        return isRetry;
+    public void retry() {
+        user.resetSelect();
+        user.tryAgain();
     }
 }
