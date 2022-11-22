@@ -27,6 +27,21 @@ class ApplicationTest extends NsTest {
         }, 0, 1, 0);
     }
 
+    @DisplayName("다리 사이즈가 4이고, 위-아래-위 순으로 이동하다가 실패하여 게임을 그만하는 경우")
+    @Test
+    void enterBridgeSize4AndMovementUDUAlsoNotRetry() {
+        assertRandomNumberInRangeTest(() -> {
+            run("4", "U", "D", "U", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | X ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+        }, 0, 1, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
