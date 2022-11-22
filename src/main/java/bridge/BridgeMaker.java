@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.bridgeGenerator.BridgeRandomType;
+import bridge.BridgeGenerator.BridgeRandomType;
 
 import java.util.ArrayList;
 import java.util.List;

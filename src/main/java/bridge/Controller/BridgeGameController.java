@@ -2,9 +2,9 @@ package bridge.Controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.bridgeGame.BridgeGame;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.BridgeGame.BridgeGame;
+import bridge.View.InputView;
+import bridge.View.OutputView;
 
 public class BridgeGameController {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());

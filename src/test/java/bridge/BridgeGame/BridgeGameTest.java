@@ -1,4 +1,4 @@
-package bridge.bridgeGame;
+package bridge.BridgeGame;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

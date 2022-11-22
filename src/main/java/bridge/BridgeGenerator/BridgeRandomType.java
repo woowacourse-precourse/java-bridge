@@ -1,4 +1,4 @@
-package bridge.bridgeGenerator;
+package bridge.BridgeGenerator;
 
 import java.util.Arrays;
 
