@@ -75,6 +75,25 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void commad_예외_테스트(){
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "U", "X");
+            assertThat(output()).contains(
+            "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+            ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void move_예외_테스트(){
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "K");
+            assertThat(output()).contains(
+            ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[] {});
