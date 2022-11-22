@@ -14,7 +14,7 @@ public class BridgeGame {
     BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.movement = new ArrayList<>();
-        this.tried = 0;
+        this.tried = 1;
     }
 
     /**
