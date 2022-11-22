@@ -23,7 +23,6 @@ public class User {
         setTryCount(this.tryCount + ADD_RETRY_COUNT);
     }
 
-
     private void setSuccess() {
         isSuccessComplete = true;
     }
