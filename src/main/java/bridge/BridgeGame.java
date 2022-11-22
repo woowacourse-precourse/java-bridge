@@ -3,6 +3,8 @@ package bridge;
 import static bridge.constant.Commands.RETRY_COMMAND;
 
 import bridge.domain.Retry;
+import bridge.repository.BridgeMoveRepository;
+import bridge.service.BridgeMoveService;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -17,17 +19,24 @@ public class BridgeGame {
     public static final String CANNOT_CROSS_BRIDGE = "X";
 
     private final List<String> bridge;
+    private final BridgeMoveController bridgeMoveController;
     private int count = 0;
 
     public BridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        int bridgeSize = getBridgeSize(bridgeMaker);
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        this.bridgeMoveController = new BridgeMoveController(bridgeSize, new BridgeMoveService(new BridgeMoveRepository(), bridge));
+    }
+
+    private int getBridgeSize(BridgeMaker bridgeMaker) {
         int bridgeSize = 0;
         try {
             bridgeSize = bridgeMaker.readBridgeSize();
         } catch (IllegalArgumentException e) {
             new OutputView().printException(e.getMessage());
         }
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        return bridgeSize;
     }
 
     public void run() {
@@ -45,7 +54,8 @@ public class BridgeGame {
      */
     public void move() {
         String successful = GAME_SUCCESS;
-        List<String>[] moveBridge = new BridgeMoveController(bridge).run();
+        bridgeMoveController.clear();
+        List<String>[] moveBridge = bridgeMoveController.run();
         count++;
         successful = checkSuccessful(successful, moveBridge);
         if (successful != null) {
