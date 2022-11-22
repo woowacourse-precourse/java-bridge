@@ -15,6 +15,7 @@ public class GameStart {
     boolean isSuccess;
     boolean isRestart;
     int countOfPlay;
+    int countOfMove;
 
 
     public GameStart() {
@@ -31,16 +32,17 @@ public class GameStart {
             isSuccess = play();
             isRestart = checkRestart(isSuccess);
         }
-        outputView.printResult(bridge.size()-1, isSuccess, countOfPlay);
+        outputView.printResult(countOfMove, isSuccess, countOfPlay);
     }
 
     private boolean play() {
-        for (int countOfMove = 0; countOfMove < bridge.size(); countOfMove++) {
+        for (countOfMove = 0; countOfMove < bridge.size(); countOfMove++) {
             boolean isMove = move(countOfMove);
             if (!isMove) {
                 return false;
             }
         }
+        countOfMove--;
         return true;
     }
 
