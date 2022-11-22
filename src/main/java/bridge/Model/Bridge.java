@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    public static final Bridge bridge = new Bridge();
+    public static final Bridge getInstance = new Bridge();
     private static List<String> up = new ArrayList<>();
     private static List<String> down = new ArrayList<>();
     private boolean rightAnswer = true; // X 결과가 나올 경우 게임 재시작 호출하기 위해서
@@ -16,11 +16,11 @@ public class Bridge {
     }
 
     public void updateUp(String up) {
-        Bridge.up.add(up);
+        this.up.add(up);
     }
 
     public void updateDown(String down) {
-        Bridge.down.add(down);
+        this.down.add(down);
     }
 
     public List<String> getUp() {

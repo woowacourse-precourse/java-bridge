@@ -21,10 +21,10 @@ public class BridgeGame {
 
     public List<List<String>> move(List<String> madeBridge, String userDirection) {
         List<List<String>> userBridge = new ArrayList<>();
-        BridgeJudge.getInstance.judgeReflect(userDirection, madeBridge.get(index), Bridge.bridge);
+        BridgeJudge.getInstance.judgeReflect(userDirection, madeBridge.get(index), Bridge.getInstance);
 
-        userBridge.add(BridgeJudge.getBridgeMapUp(Bridge.bridge.getUp(), count));
-        userBridge.add(BridgeJudge.getBridgeMapDown(Bridge.bridge.getDown(), count));
+        userBridge.add(BridgeJudge.getBridgeMapUp(Bridge.getInstance.getUp(), count));
+        userBridge.add(BridgeJudge.getBridgeMapDown(Bridge.getInstance.getDown(), count));
 
         count++;
         index++;
@@ -61,7 +61,7 @@ public class BridgeGame {
     private void retryInit() {
         index = 0;
         count = 1;
-        Bridge.bridge.init();
+        Bridge.getInstance.init();
         BridgeJudge.getInstance.init();
         tried++;
     }
