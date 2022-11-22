@@ -56,16 +56,18 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moveBridgePosition = readLine();
+        moveBridgePosition = validateMoving(moveBridgePosition);
         return moveBridgePosition;
     }
 
-    private void validateMoving(String moveBridgePosition){
+    private String validateMoving(String moveBridgePosition){
         try {
             checkMoving(moveBridgePosition);
         }catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] ");
-            readMoving();
+            System.out.println("[ERROR] U,D 둘 중 하나를 입력하세요.");
+            return readMoving();
         }
+        return moveBridgePosition;
     }
 
     private void checkMoving(String moveBridgePosition) {
