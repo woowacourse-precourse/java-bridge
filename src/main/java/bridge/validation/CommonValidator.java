@@ -1,6 +1,6 @@
 package bridge.validation;
 
-public class InputViewValidator {
+public class CommonValidator {
 
     private static final String UP = "U";
     private static final String DOWN = "D";
@@ -39,6 +39,6 @@ public class InputViewValidator {
         return !(moving.equals(UP) || moving.equals(DOWN));
     }
 
-    private InputViewValidator() {
+    private CommonValidator() {
     }
 }
