@@ -3,6 +3,8 @@ package bridge;
 import bridge.constant.Token;
 import bridge.domain.Bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -38,5 +40,13 @@ public class BridgeGame {
 
     public void start(int size) {
         bridge = new Bridge(maker.makeBridge(size));
+    }
+
+    public List<BridgeInfo> getUpperBridge() {
+        return bridge.getBridgeInfo(Token.UP.getMark());
+    }
+
+    public List<BridgeInfo> getLowerBridge() {
+        return bridge.getBridgeInfo(Token.DOWN.getMark());
     }
 }
