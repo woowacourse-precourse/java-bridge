@@ -26,14 +26,14 @@ public class InputException {
     }
 
     public String checkUpDown(String upDown){
-        if(!upDown.equals("U") || !upDown.equals("D")){
+        if(!upDown.equals("U") && !upDown.equals("D")){
             throw new IllegalArgumentException("[ERROR]U,D만 입력 가능합니다");
         }
         return upDown;
     }
 
     public String checkRetry(String retry){
-        if(!retry.equals("R") || !retry.equals("Q")){
+        if(!retry.equals("R") && !retry.equals("Q")){
             throw new IllegalArgumentException("[ERROR]R,Q만 입력 가능합니다");
         }
         return retry;
