@@ -37,13 +37,6 @@ public class BridgeMachine {
         return checkReplay(bridgeGame, bridge,getReplayCommand());
     }
 
-    private boolean chooseReplay(BridgeGame bridgeGame, Bridge bridge) {
-        OutputView.printMap(bridge.getBridgeMap(), index);
-        if (checkReplay(bridgeGame, bridge, getReplayCommand())){
-            return false;
-        }
-        return true;
-    }
     private boolean checkReplay(BridgeGame bridgeGame, Bridge bridge, String replay) {
         if (replay.equals(UserCommand.REPLAY.getCommand())) {
             bridgeGame.retry(bridge);
