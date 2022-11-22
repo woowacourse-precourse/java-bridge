@@ -10,8 +10,8 @@ public class BridgeGame {
     private final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private List<String> bridge;
-    private List<Integer> up = new ArrayList<>();
-    private List<Integer> down = new ArrayList<>();
+    private List<String> up = new ArrayList<>();
+    private List<String> down = new ArrayList<>();
     private int round = 0;
     private String input;
 
@@ -40,5 +40,16 @@ public class BridgeGame {
 
     public boolean comparingInputBridge(String input) {
         return input.equals(bridge.get(round));
+    }
+
+    public void correctCase(){
+        round++;
+        if(input.equals("U")){
+            up.add(" O ");
+            down.add("   ");
+            return;
+        }
+        up.add("   ");
+        down.add(" O ");
     }
 }
