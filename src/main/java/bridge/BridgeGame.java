@@ -20,7 +20,7 @@ public class BridgeGame {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    public void createBridge(int size) {
+    public void generateBridge(int size) {
         bridge = bridgeMaker.makeBridge(size);
     }
 

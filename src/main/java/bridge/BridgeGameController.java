@@ -25,7 +25,7 @@ public class BridgeGameController {
             outputView.printRetry();
             return bridgeGame.retry(inputView.readGameCommand());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR]" + e.getMessage());
             retry();
         }
         return true;
@@ -35,9 +35,9 @@ public class BridgeGameController {
         try {
             outputView.printSize();
             int bridgeSize = inputView.readBridgeSize();
-            bridgeGame.createBridge(bridgeSize);
+            bridgeGame.generateBridge(bridgeSize);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR]" + e.getMessage());
             init();
         }
     }
@@ -46,7 +46,7 @@ public class BridgeGameController {
         try {
             move();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR]" + e.getMessage());
             start();
         }
     }
