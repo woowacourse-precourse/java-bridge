@@ -6,7 +6,8 @@ public enum NumberConstant {
     FIRST_TRY(1),
     ONE_LETTER(1),
     TWO_LETTERS(2),
-    FIRST_INDEX(0);
+    FIRST_INDEX(0),
+    ONE(1);
 
     public final int numberConstant;
 
