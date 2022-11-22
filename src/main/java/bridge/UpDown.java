@@ -47,4 +47,16 @@ public enum UpDown {
         upBridges.add(BridgeGame.bridgeUP);
         downBridges.add(BridgeGame.bridgeDown);
     }
+
+    public static int test(String bridgeShape) {
+        UpDown shape = Arrays.stream(values())
+                .filter(value -> value.bridgeShape.equals(bridgeShape))
+                .findAny()
+                .orElse(null);
+        if (shape == null) {
+            return 0;
+        }
+        return shape.bridgeNumber;
+    }
+
 }
