@@ -38,11 +38,11 @@ public class BridgeGameController {
     public void setBridgeGame() {
         outputView.printGreeting();
         int size = inputView.readBridgeSize();
-        System.out.println();
         this.bridgeGame = new BridgeGame(this.bridgeMaker, size);
     }
 
     public void moves() {
+        System.out.println();
         bridgeGame.move(inputView.readMoving());
         outputView.printMap(bridgeGame.getUps(), bridgeGame.getDowns());
         status = bridgeGame.getStatus();
