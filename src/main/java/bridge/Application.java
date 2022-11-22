@@ -12,26 +12,23 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        CurrentBridgeState currentBridgeState = new CurrentBridgeState();
+        int tryNumber = 1;
 
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        int tryNumber = 1;
+
         while (true) {
-            List<List<String>> currentBridge = new ArrayList<>();
-            List<String> upBridgeResult = new ArrayList<>();
-            List<String> downBridgeResult = new ArrayList<>();
-            currentBridge.add(upBridgeResult);
-            currentBridge.add(downBridgeResult);
             boolean isPossibleMove = true;
             for (int turn = 0; turn < bridgeSize; turn++) {
                 String moveCommand = inputView.readMoving();
                 isPossibleMove = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
-                bridgeGame.move(currentBridge, moveCommand, isPossibleMove);
-                outputView.printMap(currentBridge);
+                bridgeGame.move(currentBridgeState, moveCommand, isPossibleMove);
+                outputView.printMap(currentBridgeState);
                 if (isPossibleMove == false) {
                     String gameCommand = inputView.readGameCommand();
                     if (gameCommand.equals("Q")) {
-                        outputView.printResult(currentBridge, isPossibleMove, tryNumber);
+                        outputView.printResult(currentBridgeState, isPossibleMove, tryNumber);
                         return ;
                     } else if (gameCommand.equals("R")) {
                         break;
@@ -39,7 +36,7 @@ public class Application {
                 }
             }
             if (isPossibleMove == true) {
-                outputView.printResult(currentBridge, isPossibleMove, tryNumber);
+                outputView.printResult(currentBridgeState, isPossibleMove, tryNumber);
                 return ;
             }
             tryNumber++;

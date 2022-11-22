@@ -16,10 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class BridgeGameTest {
 
     private BridgeGame bridgeGame;
+    private CurrentBridgeState currentBridgeState;
 
     @BeforeEach
     void beforeEach() {
         bridgeGame = new BridgeGame();
+        currentBridgeState = new CurrentBridgeState();
     }
 
     @ParameterizedTest
@@ -39,17 +41,13 @@ class BridgeGameTest {
     @DisplayName("판단한 결과값으로 이동 결과를 리턴하는 메서드 테스트")
     @CsvSource(value = {"U, true", "U, false", "D, true", "D, false"})
     void moveTest(String moveCommand, boolean isPossibleMove) {
-        List<List<String>> currentBridge = new ArrayList<>();
-        List<String> upBridgeResult = new ArrayList<>();
-        List<String> downBridgeResult = new ArrayList<>();
-        currentBridge.add(upBridgeResult);
-        currentBridge.add(downBridgeResult);
 
-        bridgeGame.move(currentBridge, moveCommand, isPossibleMove);
+        bridgeGame.move(currentBridgeState, moveCommand, isPossibleMove);
 
-        List<List<String>> expectedCurrentBridge = new ArrayList<>();
-        List<String> expectedUpBridgeResult = new ArrayList<>();
-        List<String> expectedDownBridgeResult = new ArrayList<>();
+        CurrentBridgeState expectedCurrentBridgeState = new CurrentBridgeState();
+
+        List<String> expectedUpBridgeResult = null;
+        List<String> expectedDownBridgeResult = null;
         if (moveCommand.equals("U")) {
             if (isPossibleMove == true) {
                 expectedUpBridgeResult = List.of("O");
@@ -61,15 +59,16 @@ class BridgeGameTest {
         } else if (moveCommand.equals("D")) {
             if (isPossibleMove == true) {
                 expectedUpBridgeResult = List.of(" ");
-                expectedDownBridgeResult = List.of("D");
+                expectedDownBridgeResult = List.of("O");
             } else if (isPossibleMove == false) {
                 expectedUpBridgeResult = List.of(" ");
                 expectedDownBridgeResult = List.of("X");
             }
         }
-        expectedCurrentBridge.add(upBridgeResult);
-        expectedCurrentBridge.add(downBridgeResult);
+        expectedCurrentBridgeState.setUpBridgeState(expectedUpBridgeResult);
+        expectedCurrentBridgeState.setDownBridgeState(expectedDownBridgeResult);
 
-        assertThat(currentBridge).isEqualTo(expectedCurrentBridge);
+        assertThat(currentBridgeState.getUpBridgeState()).isEqualTo(expectedCurrentBridgeState.getUpBridgeState());
+        assertThat(currentBridgeState.getDownBridgeState()).isEqualTo(expectedCurrentBridgeState.getDownBridgeState());
     }
 }
