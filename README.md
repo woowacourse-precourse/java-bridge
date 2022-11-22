@@ -266,7 +266,7 @@ public class BridgeMaker {
 
 ### BridgeRandomNumberGenerator 클래스
 
-- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- Random 값 추출은 제공된 `bridge.domain.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 #### 사용 예시
@@ -291,3 +291,111 @@ int number = bridgeNumberGenerator.generate();
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+
+## 
+### Enums
+
+#### GameCommand
+
+**type**
+
+- RETRY
+- QUIT
+
+**field**
+
+- String command : 재시작 여부 명령어 R/Q
+
+**method**
+
+- getCommand() ->  String
+  -  해당 열거형의 command 값을 반환
+- hasCommandOf(String) -> boolean
+  - 인자로 받은 문자열에 해당하는 enum의 존재 여부 반환
+
+
+
+#### MovingCommand
+
+**type**
+
+- UP
+- DOWN
+
+**field**
+
+- String command : 다음 위치 U/D
+- int number : 다음 위치에 해당하는 정수값
+
+**method**
+
+- getCommand -> String
+  - 해당 커맨드의 command 값 반환
+- commandOf(int) -> String
+  - 인자로 받은 정수에 해당하는 위치 커맨드 반환
+- hasCommandOf(String) -> boolean
+  - 인자로 받은 커맨드에 해당하는 enum의 존재 여부 반환
+
+
+
+
+
+### Class
+
+#### Bridge
+
+**field**
+
+- List\<String\> bridge : 다리
+
+**method**
+
+- getSize() -> int
+  - 해당 다리의 크기를 반환
+- getBridge() -> List\<String\>
+  - 해당 다리를 반환
+- connect(String)
+  - 다리에 인자로 받은 문자열을 추가한다
+- isSameSizeWith(Bridge) -> boolean
+  - 인자로 받은 다리와 같은 크기인지 확인
+- matchWith(Bridge) -> boolean
+  - 필드인 bridge의 마지막 요소와 인자로 받은 Bridge의 같은 인덱스 요소와 비교하여 같은지 확인한다
+- getLaneString(String, List<String>) -> String
+  - 다리 정보를 문자열로 반환한다
+
+
+
+#### BridgeGame
+
+**field**
+
+- Bridge answerBridge : 정답에 해당하는 다리
+- List\<Bridge\> records : 다리 게임 시도 기록들
+- Bridge onPlatingBridge : 현재 건너고 있는 다리 상태
+
+**method**
+
+- move(String)
+  - 현재 건너고 있는 다리에 다음 칸을 추가하며 이동
+- retry()
+  - 이전에 진행하던 다리를 records에 추가하고 새로운 다리를 생성한다
+- saveCurrentPlay()
+  - 현재 다리를 records 에 저장하는 메소드
+- isCorrect() -> boolean
+  - 현재 다리에서 새로운 이동이 정답 다리와 일치하는지 확인
+- isCompleted() -> boolean
+  - 현재 다리가 정답 다리와 크기가 같은지 확인
+- getNumberOfTrials() -> int
+  - records의 크기를 반환하여 총 시도 횟수를 반환
+- getResultBridge() -> Bridge
+  - 기록들을 비교하며 가장 정답에 근접한 Bridge를 반환
+- compare(Bridge, Bridge) -> Bridge
+  - 인자로 받은 두 다리를 비교하여 정답에 근접한 다리를 반환
+- getResultLaneOf(String) -> String
+  - 게임의 최종 결과 다리를 문자열로 반환
+- getBridgeLaneOf(String) -> String
+  - 현재 진행중인 다리를 문자열로 반환
+- getGameResult() -> String
+  - 게임의 성공/실패 여부를 반환
