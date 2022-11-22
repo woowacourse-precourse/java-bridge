@@ -1,9 +1,6 @@
 package bridge.util;
 
-import bridge.domain.BridgeType;
-
-import java.util.List;
-import java.util.Set;
+import bridge.domain.game.MovingType;
 
 public class Validator {
 
