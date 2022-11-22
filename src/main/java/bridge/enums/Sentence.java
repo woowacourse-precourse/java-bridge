@@ -22,4 +22,11 @@ public enum Sentence {
     public String getValue() {
         return value;
     }
+
+    public static String returnSuccessOrFailure(boolean trueOrFalse) {
+        if (!trueOrFalse) {
+            return FAILURE.getValue();
+        }
+        return SUCCESS.getValue();
+    }
 }
