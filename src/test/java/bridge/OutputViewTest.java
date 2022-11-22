@@ -51,6 +51,6 @@ public class OutputViewTest {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         outputView.printResult(true, 3);
-        Assertions.assertThat(out.toString()).isEqualTo("게임 성공 여부: 성공\n총 시도한 횟수: 3\n");
+        Assertions.assertThat(out.toString()).isEqualTo("최종 게임 결과\nnull\n게임 성공 여부: 성공\n총 시도한 횟수: 3\n");
     }
 }
