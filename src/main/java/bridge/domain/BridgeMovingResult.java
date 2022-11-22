@@ -1,7 +1,9 @@
 package bridge.domain;
 
+import static bridge.constant.BridgeConstant.DOWN_BRIDGE_INDEX;
 import static bridge.constant.BridgeConstant.FAIL;
 import static bridge.constant.BridgeConstant.PASS;
+import static bridge.constant.BridgeConstant.UPPER_BRIDGE_INDEX;
 
 import bridge.type.MovingType;
 import java.util.ArrayList;
@@ -28,8 +30,8 @@ public class BridgeMovingResult {
     }
 
     public void initialize() {
-        playingMap.get(0).clear();
-        playingMap.get(1).clear();
+        playingMap.get(UPPER_BRIDGE_INDEX).clear();
+        playingMap.get(DOWN_BRIDGE_INDEX).clear();
     }
 
     private void updateSidePlayingMap(List<String> movingRecord, int index) {
