@@ -24,7 +24,7 @@ public class BridgeTest {
 
     @Test
     @DisplayName("두 번째 자리 D")
-    void matches_test() {
+    void matchesTest() {
         Assertions.assertThat(this.bridge.matches(1, "D")).isEqualTo(true);
     }
 

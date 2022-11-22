@@ -7,7 +7,7 @@ import java.util.List;
 
 public class UsersRouteTest {
     @Test
-    void put_test() {
+    void putTest() {
         UsersRoute usersRoute = new UsersRoute();
         usersRoute.put("U");
         usersRoute.put("D");
