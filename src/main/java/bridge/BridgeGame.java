@@ -19,12 +19,15 @@ public class BridgeGame {
         InputView input = new InputView();
         OutputView printer = new OutputView();
         do {
+            String playerInput = "";
+            String userMove = "";
             for (int step = 0; step < bridge.size(); step++) {
-                String playerInput = input.readMoving();
-                String userMove = move(step, playerInput);
+                playerInput = input.readMoving();
+                userMove = move(step, playerInput);
                 printer.printMap(upResultToString(playerInput, userMove), downResultToString(playerInput, userMove));
                 if (!isSuccess(userMove)) break;
             }
+            if(isSuccess(userMove)) break;
         } while (retry(input.readGameCommand()));
     }
 
