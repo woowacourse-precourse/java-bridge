@@ -24,6 +24,7 @@ public class OutputView {
     public void printMap(List<String> upBridge, List<String> downBridge) {
         printBridgeInFormat(upBridge);
         printBridgeInFormat(downBridge);
+        System.out.println("");
     }
 
     public void printBridgeInFormat(List<String> ox) {
