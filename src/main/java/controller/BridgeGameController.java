@@ -1,12 +1,11 @@
 package controller;
 
 import model.BridgeGame;
-import model.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import util.Constants;
 import view.InputView;
 import view.OutputView;
-import util.Constants.*;
 
 import java.util.List;
 
