@@ -4,6 +4,8 @@ import bridge.model.value.PlayerMessage;
 
 import java.util.List;
 
+import static bridge.model.value.ErrorMessage.RETRY_ERROR;
+import static bridge.model.value.ErrorMessage.getMessage;
 import static bridge.model.value.PlayerMessage.QUIT;
 import static bridge.model.value.PlayerMessage.RETRY;
 
@@ -25,7 +27,7 @@ public class Player {
 
     private void validate(String answer){
         if(!QUIT.equals(answer) && !RETRY.equals(answer)){
-            throw new IllegalArgumentException("[ERROR] 재시작 입력값이 조건에 맞지 않습니다 R(재시작), Q(종료)" + answer);
+            throw new IllegalArgumentException(getMessage(RETRY_ERROR));
         }
     }
 

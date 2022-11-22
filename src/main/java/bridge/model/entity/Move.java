@@ -4,6 +4,8 @@ import bridge.model.value.PlayerMessage;
 
 import java.util.List;
 
+import static bridge.model.value.ErrorMessage.MOVE_ERROR;
+import static bridge.model.value.ErrorMessage.getMessage;
 import static bridge.model.value.PlayerMessage.DOWN;
 import static bridge.model.value.PlayerMessage.UP;
 
@@ -22,7 +24,7 @@ public class Move {
         if(UP.equals(move) || DOWN.equals(move)){
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 이동하기 위한 문자가 아닙니다. 다시 입력해주세요 :" + move);
+        throw new IllegalArgumentException(getMessage(MOVE_ERROR));
     }
 
     public static Move of(String move){

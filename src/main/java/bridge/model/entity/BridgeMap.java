@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.model.value.BridgeIngredient.*;
+import static bridge.model.value.ErrorMessage.BRIDGEMAP_ERROR;
+import static bridge.model.value.ErrorMessage.getMessage;
 
 public class BridgeMap {
     private final List<String> upMap = new ArrayList<>();
@@ -28,7 +30,7 @@ public class BridgeMap {
         if(BridgeIngredient.contains(map)){
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 맵에 생성될 인자가 유효하지 않습니다:" + map);
+        throw new IllegalArgumentException(getMessage(BRIDGEMAP_ERROR));
     }
 
     public List<String> getUpMap() {

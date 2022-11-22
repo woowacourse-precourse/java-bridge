@@ -1,11 +1,9 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.model.entity.UpAndDown.getDirection;
+import static bridge.model.value.UpAndDown.getDirection;
 
 
 public class BridgeMaker {

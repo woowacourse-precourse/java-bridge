@@ -1,7 +1,9 @@
 package bridge.model.entity;
 
+import bridge.model.value.ErrorMessage;
 import bridge.model.value.PlayerMessage;
 
+import static bridge.model.value.ErrorMessage.*;
 import static bridge.model.value.PlayerMessage.QUIT;
 import static bridge.model.value.PlayerMessage.RETRY;
 
@@ -15,7 +17,7 @@ public class Retry {
 
     private void validate(String answer) {
         if (isMatchMessage(answer)) return;
-        throw new IllegalArgumentException("[ERROR] 입력한 값이 조건에 맞지않습니다. U(위), D(아래): 다시 입력해주세요:" + answer);
+        throw new IllegalArgumentException(getMessage(RETRY_ERROR));
     }
 
     private static boolean isMatchMessage(String answer) {

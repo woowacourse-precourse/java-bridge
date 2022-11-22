@@ -1,7 +1,10 @@
-package bridge.model.entity;
+package bridge.model.value;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static bridge.model.value.ErrorMessage.NOT_BIT_ERROR;
+import static bridge.model.value.ErrorMessage.getMessage;
 
 public class UpAndDown {
     private static final Map<Integer, String> direction = new HashMap<>(
@@ -14,7 +17,7 @@ public class UpAndDown {
 
     private static void validate(Integer move){
         if(move != 0 && move != 1) {
-            throw new IllegalArgumentException("[ERROR] 0, 1 이외의 값이 들어왔습니다");
+            throw new IllegalArgumentException(getMessage(NOT_BIT_ERROR));
         }
     }
 

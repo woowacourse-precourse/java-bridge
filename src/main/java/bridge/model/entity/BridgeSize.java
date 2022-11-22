@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static bridge.model.value.BridgeRange.*;
+import static bridge.model.value.ErrorMessage.*;
 
 /*
 * 숫자여야 함
@@ -31,13 +32,13 @@ public class BridgeSize {
 
     private void isDigit(Pattern compile, String bridgeSize) {
         if(!compile.matcher(bridgeSize).find()){
-            throw new IllegalArgumentException("[ERROR] 입력값이 정수가 아닙니다. 다시 입력해주세요 :" + bridgeSize);
+            throw new IllegalArgumentException(getMessage(NOT_INTEGER_ERROR));
         }
     }
     private void outRange(String bridgeSize){
         int size = Integer.parseInt(bridgeSize);
         if(size > MAX || size < MIN){
-            throw new IllegalArgumentException("[ERROR] 입력값이 범위에서 벗어났습니다 3 ~ 20 다시 입력해주세요 :" + bridgeSize);
+            throw new IllegalArgumentException(getMessage(OUTRANGE_ERROR));
         }
     }
 
