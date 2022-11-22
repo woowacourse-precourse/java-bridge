@@ -18,7 +18,6 @@
     - [ ✅ ] 번호를 랜덤하게 생성한다 → BridgeRandomNumberGenerator.generate
     - [ ✅ ] 생성된 번호가 1이면 "U", 0이면 "D"를 더한다 → BridgeMaker.addMovableSpace
     - [ ✅ ] 이 과정에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
-    - [ ✅ ] 이 과정에서 `IllegalStatement`오류가 나면 종료한다
 
 ### 2. 게임 진행하기 → BridgeGameController.crossBridgeUntilFinish
 #### 1) 다리 건너기 → BridgeGameController.crossBridge
@@ -38,8 +37,9 @@
 - [ ✅ ] 입력받은 값이 "Q"면 종료한다 → BridgeGame.finish
 - [ ✅ ] 입력받은 값이 "R"이면 처음부터 재시작한다 → BridgeGame.retry
     - [ ✅ ] 플레이어를 부활시킨다 → Player.reVive
-    - [ ✅ ] 게임시도횟수를 1 늘린다
-    - [ ✅ ] 이전 판에 기록했던 이동칸 기록들을 삭제한다
+    - [ ✅ ] 재시작을 기록한다 → GameRecord.recordRetry
+        - [ ✅ ] 시도횟수를 1늘린다 → GameRecord.increaseTryCount
+        - [ ✅ ] 이전 판에 기록했던 이동칸 기록들을 삭제한다 → GameRecord.clearCrossedRecord
 - [ ✅ ] 이 과정들에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
 
 ### 3. 게임결과 출력하기
@@ -49,8 +49,8 @@
 
 
 ## 🚨 예외처리 기능목록
-- [  ] 아래 목록에 있는 예외가 발생할 시  `[ERROR]`로 시작하는 메시지를 출력한다
-- [  ] 공백이나 띄어쓰기만 입력된 경우, 음수가 입력된 경우도 고려해야 함
+- [ ✅ ] 아래 목록에 있는 예외가 발생할 시  `[ERROR]`로 시작하는 메시지를 출력한다
+- [ ✅ ] 공백이나 띄어쓰기만 입력된 경우, 음수가 입력된 경우도 고려해야 함
 ### 1. 다리 길이 입력 예외처리
 - [ ✅ ] 입력이 정수가 아니면 예외처리한다
 
