@@ -7,7 +7,6 @@ public class BridgeException {
     private static final String ERROR_IS_NOT_NUMBER = "숫자를 입력해 주세요.";
     private static final String ERROR_SIZE_ZERO = "적어도 한 글자 이상 입력 해야 합니다.(공백은 무시)";
 
-
     public static void invalidBridgeSize() {
         throw new IllegalArgumentException(ERROR_INVALID_BRIDGE_SIZE);
     }

@@ -21,7 +21,7 @@ public class BridgeGameController {
     private final Bridge bridge;
     private int tryCount;
 
-    public BridgeGameController(InputView inputView, OutputView outputView) {
+    public BridgeGameController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.outputView.printGameStart();
