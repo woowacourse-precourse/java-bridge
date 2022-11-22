@@ -12,9 +12,16 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = readLine();
-        if(bridgeSize.equals("a")) throw new IllegalArgumentException("[ERROR]");
+        int size;
+        try {
+            size = Integer.parseInt(bridgeSize);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 형식 오류");
+        }
+        if (size < 3) throw new IllegalArgumentException("[ERROR] 숫자가 범위를 초과함");
+        if (size > 20) throw new IllegalArgumentException("[ERROR] 숫자가 범위를 초과함");
 
-        return Integer.parseInt(bridgeSize);
+        return size;
     }
 
     /**
