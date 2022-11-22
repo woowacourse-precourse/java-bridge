@@ -31,8 +31,7 @@ public class GameController {
     }
 
     public void printLongMap(List<String> userInput, List<Boolean> result) {
-        outputView.printUpLineMap(userInput, result);
-        outputView.printDownLineMap(userInput, result);
+        outputView.printLongMap(userInput, result);
     }
 
     public void printShortMap(List<String> userInput, List<Boolean> result){
