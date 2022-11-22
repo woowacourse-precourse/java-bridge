@@ -41,10 +41,11 @@ public enum Position {
         return string.equals(position.abbreviation);
     }
 
-    public static String returnByPosition(Position diagramPosition, Position position, String string) {
-        if (position == diagramPosition) {
-            return string;
+    public static boolean isNone(Position diagramPosition, Position position) {
+        if (diagramPosition == position) {
+            return false;
         }
-        return BRIDGE_WHITE_SPACE;
+        return true;
     }
+
 }
