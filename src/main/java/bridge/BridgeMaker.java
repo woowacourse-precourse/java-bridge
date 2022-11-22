@@ -11,6 +11,7 @@ public class BridgeMaker implements BridgeFactory{
 
     public static final String TOP_ROW = "U";
     public static final String UNDER_ROW = "D";
+    private static final int UNDER_NUMBER = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -30,7 +31,7 @@ public class BridgeMaker implements BridgeFactory{
     }
 
     private String makeBridgeShape(final int bridgeNumber) {
-        if (bridgeNumber == 0) {
+        if (UNDER_NUMBER == bridgeNumber) {
             return UNDER_ROW;
         }
         return TOP_ROW;
