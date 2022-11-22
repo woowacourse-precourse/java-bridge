@@ -26,7 +26,7 @@ public class BridgeGame {
             while (keepPlay) {
                 keepPlay = Play();
             }
-            if (count.equals(BRIDGE_ANSWER.size())) {
+            if (playerList.equals(BRIDGE_ANSWER)) {
                 break;
             }
             retry = retry();
@@ -45,7 +45,7 @@ public class BridgeGame {
         while (repeat && (count < BRIDGE_ANSWER.size())) {
             repeat = Proceed();
         }
-        if (count.equals(BRIDGE_ANSWER.size())) {
+        if (playerList.equals(BRIDGE_ANSWER)) {
             success = true;
         }
         tryCount ++;
