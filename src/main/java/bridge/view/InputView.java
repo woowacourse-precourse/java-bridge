@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.util.BridgeUtil;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.util.BridgeUtil.*;

@@ -98,7 +98,4 @@ public class BridgeControllerTest {
         String result = bridgeController.play(bridge);
         assertThat("Q").isEqualTo(result);
     }
-
-
-
 }

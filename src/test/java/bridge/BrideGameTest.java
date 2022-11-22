@@ -15,12 +15,10 @@ public class BrideGameTest {
             String square = "U";
             String choice = "U";
             bridgeGame.move(square,choice);
-            //System.out.println(bridgeGame.toString());
             assertThat(bridgeGame.toString()).contains(
                     "[ O ]",
                     "[   ]"
             );
-
             int upSideIndex = bridgeGame.toString().indexOf("[ O ]");
             int downSideIndex = bridgeGame.toString().indexOf("[   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);

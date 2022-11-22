@@ -4,17 +4,13 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.InstanceOfAssertFactories.LIST;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.domain.BridgeGame;
 import bridge.domain.BridgeSize;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,9 +20,6 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     BridgeMaker bridgeMaker;
-
-
-
 
     @Test
     void 다리_생성_테스트() {
@@ -47,7 +40,6 @@ class ApplicationTest extends NsTest {
                 "게임 성공 여부: 성공",
                 "총 시도한 횟수: 1"
             );
-
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
@@ -73,7 +65,6 @@ class ApplicationTest extends NsTest {
                     "게임 성공 여부: 실패",
                     "총 시도한 횟수: 1"
             );
-
             int upSideIndex = output().indexOf("[ O |   |   ]");
             int downSideIndex = output().indexOf("[   | O | X ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
@@ -92,7 +83,6 @@ class ApplicationTest extends NsTest {
                     "게임 성공 여부: 성공",
                     "총 시도한 횟수: 2"
             );
-
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
@@ -107,7 +97,6 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(() -> {
             BridgeSize bridgeSize = new BridgeSize();
             bridgeSize.checkNumber(size);
-
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -125,7 +114,6 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("3", "R");
             assertThat(output()).contains(ERROR_MESSAGE);
-
         });
     }
 

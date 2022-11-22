@@ -75,7 +75,6 @@ public class BridgeController {
         }
     }
 
-
     public String endGame(List<List<String>> bridges){
         List<String> bridgeUp = bridges.get(0);
         List<String> bridgeDown = bridges.get(1);
