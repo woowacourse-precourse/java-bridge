@@ -8,6 +8,7 @@ public class Application {
         GameSystem system = new GameSystem();
         system.welcome();
         system.inputBridgeLength();
+        system.makeBridge();
         system.calculate();
         system.result();
     }

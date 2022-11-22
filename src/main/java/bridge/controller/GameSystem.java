@@ -35,6 +35,9 @@ public class GameSystem {
             inputBridgeLength();
         }
         saveSize = Integer.parseInt(input);
+    }
+
+    public void makeBridge() {
         game.saveBridge(make.makeBridge(saveSize));
     }
 
@@ -73,6 +76,7 @@ public class GameSystem {
     private String updateState() {
         count += game.getCorrect();
         if(game.getCorrect() == 0) {
+            count = 0;
             return inputState();
         }
         return "C";
