@@ -19,11 +19,11 @@ class MoveResultsTest {
 
     private static final String BLANK = " ";
     
-    private final MoveResults moveResults = new MoveResults();
+    private MoveResults moveResults;
 
     @BeforeEach
-    void init() {
-        moveResults.reset();
+    void setUp() {
+        moveResults = new MoveResults();
     }
 
     @ParameterizedTest(name = "{0}, {1}을 입력 받으면 upResult에는 {1}가, downResults에는 공백이 저장된다.")

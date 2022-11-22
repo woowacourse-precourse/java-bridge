@@ -64,7 +64,6 @@ class MoveCommandsTest {
         assertThat(actual).isFalse();
     }
 
-
     private static Stream<Arguments> provideArgumentsForOf() {
         final String MOVE_UP_COMMAND_STRING = "U";
         final String MOVE_DOWN_COMMAND_STRING = "D";

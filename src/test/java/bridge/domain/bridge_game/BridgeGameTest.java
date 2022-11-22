@@ -24,7 +24,7 @@ class BridgeGameTest {
     private MoveResults moveResults;
 
     @BeforeEach
-    void init() {
+    void setUp() {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
 
         player = new Player(
@@ -37,21 +37,21 @@ class BridgeGameTest {
 
     @DisplayName("Bridge와 같은 값을 입력 받으면 O를 반환한다. (Bridge의 값: U)")
     @Test
-    void moveTestTrue() {
+    void moveResultSuccess() {
         String moveResult = bridgeGame.moveResult(MOVE_UP_COMMAND);
         assertThat(moveResult).isEqualTo(MOVE_SUCCESS);
     }
 
     @DisplayName("Bridge와 다른 값을 입력 받으면 X를 반환한다. (Bridge의 값: U)")
     @Test
-    void moveTestFalse() {
+    void moveResultFail() {
         String moveResult = bridgeGame.moveResult(MOVE_DOWN_COMMAND);
         assertThat(moveResult).isEqualTo(MOVE_FAIL);
     }
 
     @DisplayName("Bridge와 같은 값을 입력받으면 Player의 position이 1 증가한다. (Bridge의 값: U)")
     @Test
-    void increasePosition() {
+    void moveSuccessIncreasePosition() {
         bridgeGame.move(MOVE_SUCCESS);
         int position = player.position();
 
@@ -60,7 +60,7 @@ class BridgeGameTest {
 
     @DisplayName("Bridge와 다른 값을 입력받으면 Player의 position에 변화가 없다. (Bridge의 값: U)")
     @Test
-    void nothingHappenedInPosition() {
+    void moveFailNothingHappenedInPosition() {
         bridgeGame.move(MOVE_FAIL);
         int position = player.position();
 
