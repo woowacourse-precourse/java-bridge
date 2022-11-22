@@ -51,13 +51,7 @@ public class Controller {
     public void onGoing() {
         do {
             stepForward();
-            if (bridgeGame.getIsCorrect() == false) {
-                break;
-            }
-            if (bridgeGame.isSuccess) {
-                break;
-            }
-        } while (true);
+        } while (bridgeGame.getIsCorrect() && !bridgeGame.isSuccess);
     }
 
     public boolean isQuit() {
@@ -75,13 +69,7 @@ public class Controller {
         System.out.println(bridgeGame.bridge);
         do {
             onGoing();
-            if (bridgeGame.isSuccess) {
-                break;
-            }
-            if (isQuit()) {
-                break;
-            }
-        } while(true);
+        } while (!bridgeGame.isSuccess && !isQuit());
         end();
     }
 }
