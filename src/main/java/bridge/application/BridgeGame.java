@@ -30,6 +30,9 @@ public class BridgeGame {
     }
 
     public void retry() {
+        count.increase();
+        userBridge.initialize();
+        moving.initialize();
     }
 
     public GameStatus getGameStatusByGameCommand(GameCommand gameCommand) {
