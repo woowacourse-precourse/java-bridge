@@ -79,6 +79,36 @@ public class InputViewTest {
                 .hasMessageStartingWith("[ERROR]");
     }
 
+    @DisplayName("건널 수 없는 다리를 골라 건넜을 경우, 재시작('R') OR 게임 종료('Q')의 입력을 받아야 한다. - 유효한 값 입력")
+    @ParameterizedTest
+    @ValueSource(strings = {"R","Q"})
+    void givenGameCommand_whenReadGameCommand_thenReturnGameCommand(String InputGameCommand){
+        // Given
+        InputStream inputStream = generateUserInput(InputGameCommand);
+        System.setIn(inputStream);
+
+        // When
+        String command = inputView.readGameCommand();
+
+        // Then
+        assertThat(command).containsPattern("[QR]");
+        assertThat(command).hasSize(1);
+    }
+
+    @DisplayName("건널 수 없는 다리를 골라 건넜을 경우, 재시작('R') OR 게임 종료('Q')의 입력을 받아야 한다. - 유효하지 않은 값 입력")
+    @ParameterizedTest
+    @ValueSource(strings = {"q","r","RQ","QR","1","1*","1Q","Q1"})
+    void givenGameCommand_whenReadGameCommand_thenThrowIllegalArgumentException(String retryOrQuit){
+        // Given
+        InputStream inputStream = generateUserInput(retryOrQuit);
+        System.setIn(inputStream);
+
+        // When & Then
+        assertThatThrownBy(()->inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
+
     private InputStream generateUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
