@@ -45,14 +45,14 @@ public class GameManager {
     public boolean movePointRoutine(int i) {
         outputView.printMovePoint();
         String wordUpDown = inputView.readMoving();
-        boolean checkSame = checkUpDown(wordUpDown, bridgeDTO, i);
+        boolean checkSame = checkUpDown(wordUpDown, i);
         if (!checkSame) {
-            missMatch(wordUpDown, bridgeDTO, i);
+            missMatch(wordUpDown, i);
         }
         return checkSame;
     }
 
-    public boolean checkUpDown(String wordUpDown, BridgeDTO bridgeDTO, int i) {
+    public boolean checkUpDown(String wordUpDown, int i) {
         if (wordUpDown.equals("U") && bridgeDTO.getBridge().get(i).equals("U")) {
             plusLine(outputView.COLLECT, outputView.BLANK);
             return true;
@@ -63,7 +63,7 @@ public class GameManager {
         }
         return false;
     }
-    public void missMatch(String wordUpDown, BridgeDTO bridgeDTO, int i) {
+    public void missMatch(String wordUpDown, int i) {
         if (wordUpDown.equals("U") && bridgeDTO.getBridge().get(i).equals("D")) {
             plusLine(outputView.FAIL, outputView.BLANK);
             return ;
