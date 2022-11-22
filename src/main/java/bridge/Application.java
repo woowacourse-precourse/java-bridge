@@ -6,10 +6,9 @@ import java.util.NoSuchElementException;
 
 public class Application {
 
-    private static final GamePlay gamePlay = new GamePlay();
-
     public static void main(String[] args) {
         try {
+            GamePlay gamePlay = new GamePlay();
             gamePlay.bridgeGameStart();
         } catch (NoSuchElementException e) {
             System.out.println(Error.INPUT_DETERMINE.getMessage());

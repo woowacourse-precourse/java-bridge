@@ -13,37 +13,37 @@ public class InputView {
     private static final int SIZE_MAX = 20;
 
     public int readBridgeSize() {
+        String input = getInput("다리의 길이를 입력해주세요.");
         try {
-            String input = getInput("다리의 길이를 입력해주세요.");
             validateAllNumber(input);
             validateNumberRange(input);
-            return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
+        return Integer.parseInt(input);
     }
 
     public String readMoving() {
+        String input = getInput("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         try {
-            String input = getInput("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             validateMoveCommand(input);
-            return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
+        return input;
     }
 
     public String readGameCommand() {
+        String input = getInput("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         try {
-            String input = getInput("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             validateGameCommand(input);
-            return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
+        return input;
     }
 
     private String getInput(String message) {
