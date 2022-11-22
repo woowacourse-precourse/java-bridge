@@ -3,7 +3,10 @@ package bridge.function;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.move.CompareMove;
 import bridge.util.InputView;
+import bridge.util.OutputView;
+import controller.BridgeController;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,21 +16,29 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class FunctionTest {
+class BridgeTest {
 
 	private final String error_message= "[ERROR]";
 
 	private static InputValidation iv;
 
 	private static InputView inputView;
+	private static OutputView outputView;
 
 	private static BridgeMaker bm;
+	private static CompareMove cm;
 	private static BridgeNumberGenerator bridgeNumberGenerator=new BridgeRandomNumberGenerator();
+	private static BridgeController bc;
+
+
 	@BeforeAll
 	static void initailize(){
 		iv=new InputValidation();
 		inputView=new InputView();
+		outputView=new OutputView();
 		bm=new BridgeMaker(bridgeNumberGenerator);
+		cm=new CompareMove();
+		bc=new BridgeController();
 	}
 
 	@Test
@@ -76,5 +87,31 @@ class FunctionTest {
 			assertThat(bridge_list.contains("U")).isTrue();
 		}
 		assertThat(bridge_list.contains("D")).isTrue();
+	}
+
+	@Test
+	@DisplayName("다리 움직임 값과 다리 리스트 비교 테스트")
+	void crossingTheBridgeResult1(){
+		//given
+		String bridge_move ="D";
+		String list_index ="U";
+
+		//when
+		String move_result = cm.compareInputAndIndex(bridge_move, list_index);
+		//then
+		assertThat(move_result).isEqualTo("OU");
+	}
+
+	@Test
+	@DisplayName("다리 움직임 값과 다리 리스트 비교 테스트2")
+	void crossingTheBridgeResult2(){
+		//given
+		String bridge_move ="D";
+		String list_index ="U";
+
+		//when
+		String move_result = cm.compareInputAndIndex(bridge_move, list_index);
+		//then
+		assertThat(move_result).isEqualTo("XD");
 	}
 }
