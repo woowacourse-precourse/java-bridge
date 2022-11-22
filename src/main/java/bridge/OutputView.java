@@ -41,7 +41,7 @@ public class OutputView {
         if(whereMove.getIndex()==0){
             mapList.get(whereMove.getIndex()).add("| "+whereMove.getCode()+" ");
             mapList.get(whereMove.getIndex()+1).add("|   ");
-        } else if (whereMove.getIndex()==1) {
+        }if (whereMove.getIndex()==1) {
             mapList.get(whereMove.getIndex()-1).add("|   ");
             mapList.get(whereMove.getIndex()).add("| "+whereMove.getCode()+" ");
         }
@@ -67,8 +67,9 @@ public class OutputView {
         System.out.println(String.format("총 시도한 횟수: %d",bridgeGame.getTryCount()));
     }
     public boolean checkPrintResult(InputView inputView,BridgeGame bridgeGame,BirdgeMoveType isPossibleMove){
-        printLastResult();
+
         if(inputView.checkBridgeSize(mapList.get(0).size())&&isPossibleMove.getCode().equals("O")){
+            printLastResult();
             System.out.println("게임 성공 여부: 성공");
             printResult(bridgeGame);
             return true;

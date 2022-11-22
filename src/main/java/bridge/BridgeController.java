@@ -38,7 +38,8 @@ public class BridgeController {
             outputView = new OutputView();
             bridgeGame.retry();
             return true;
-        } else if (restartCommand.equals("Q")) {
+        }
+        if (restartCommand.equals("Q")) {
             System.out.println("게임 성공 여부: 실패");
             outputView.printResult(bridgeGame);
             return false;
