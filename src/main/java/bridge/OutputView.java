@@ -1,16 +1,25 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    public static String RESULT_SUCCESS = "성공";
+    public static String RESULT_FAIL = "실패";
+    public static int BRIDGE_SIZE;
+    public static int CURRENT_LOCATION;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List moveCourse) {
+
     }
 
     /**
@@ -18,6 +27,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int currentLocation, int retryCount) {
+        InputView inputView = new InputView();
+        BRIDGE_SIZE = inputView.bridgeSize();
+        CURRENT_LOCATION = currentLocation;
+
+        System.out.print("게임 성공 여부: " );
+        if (CURRENT_LOCATION == BRIDGE_SIZE) {
+            System.out.println(RESULT_SUCCESS);
+        } else {
+            System.out.println(RESULT_FAIL);
+        }
+
+        System.out.println("총 시도한 횟수: "  + retryCount);
+
     }
 }
