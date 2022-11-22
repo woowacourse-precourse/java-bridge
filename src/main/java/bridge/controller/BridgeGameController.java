@@ -8,6 +8,8 @@ import bridge.util.BridgeViewConstructor;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import static bridge.enums.GameStatus.QUIT;
+
 public class BridgeGameController {
 
     private final InputView inputView = new InputView();
@@ -20,17 +22,17 @@ public class BridgeGameController {
         bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
     }
 
-    public void moveAStep(){
+    private void moveAStep(){
         player.addNewBridgeInput(inputView.readMoving());
         outputView.printMap(constructBridge());
     }
 
-    public void resetGame(){
+    private void resetGame(){
         player.clearBridge();
         player.increaseTrialCount();
     }
 
-    public void concludeGame(){
+    private void concludeGame(){
         outputView.printResult(constructBridge(), player.getTrialCount());
     }
 
@@ -40,15 +42,35 @@ public class BridgeGameController {
                 .constructBridge(player.getBridges(), bridge.getBridges());
     }
 
-    public boolean isPaused(){
+    public void runGame(){
+        while(true){
+            moveUntilStop();
+            if(isSuccess()) break;
+            if(isQuit())break;
+            resetGame();
+        }
+        concludeGame();
+    }
+
+    private boolean isQuit(){
+        return readFinalCommand().equals(QUIT.getCommand());
+    }
+
+    private void moveUntilStop(){
+        while(!(isSuccess() || isPaused())){
+            moveAStep();
+        }
+    }
+
+    private boolean isPaused(){
         return !bridge.isPlayerRightBridge(player);
     }
 
-    public boolean isSuccess(){
+    private boolean isSuccess(){
         return player.isGameFinished(bridge);
     }
 
-    public String readFinalCommand(){
+    private String readFinalCommand(){
         return inputView.readGameCommand();
     }
 }

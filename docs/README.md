@@ -103,6 +103,9 @@ getSymbol을 통해 문자열을 출력받아 BridgeViewConstructor에서 출력
 6. isSuccess : Player.isGameFinished를 출력해준다. 
 7. readFinalCommand : InputView.readGameCommand를 받아 반환한다. 
 8. constructBridge : 플레이어와 컴퓨터 리스트를 BridgeViewConstructor.constructBridge해 반환한다. 
+9. moveUntilStop : isPaused나 isSuccess일 때 까지 moveAStep해준다. 
+10. isQuit : 입력이 Q이면 참을 반환
+11. runGame : moveUntilStop을 반복한다. isSuccess이거나 isQuit면 반복을 멈추고 결과를 반환한다. 반복이 다시될 때 resetGame해준다. 
 
 ## Application
 ### BridgeGame
