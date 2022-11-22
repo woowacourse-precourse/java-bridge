@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 class ValidationTest {
-    @ValueSource(strings = {"03", "3.0", "a", "a2", "+3", "-3", "0", "", " ", "\n", "ㄱ", "1_000_000_000"})
+    @ValueSource(strings = {"03", "3.0", "a", "a2", "+3", "-3", "0", "", " ", "\n", "ㄱ", "1000000000"})
     @ParameterizedTest(name = "[{index}] input = {0}")
     void 다리_개수_양의_정수_이외의_예외처리_테스트(String input) {
         assertThatThrownBy(() -> Validation.isPositiveInteger(input))

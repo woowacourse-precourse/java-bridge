@@ -14,9 +14,6 @@ public class Bridge {
     }
 
     private String getCorrectPosition(int bridgePosition) {
-        if (this.bridge.size() <= bridgePosition) {
-            throw new IndexOutOfBoundsException("[ERROR} 다리에 접근할 수 없는 bridgePosition");
-        }
         return this.bridge.get(bridgePosition);
     }
 

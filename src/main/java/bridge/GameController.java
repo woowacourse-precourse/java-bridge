@@ -15,6 +15,13 @@ public class GameController {
         this.bridgeMaker = bridgeMaker;
     }
 
+    public void readyForGame() {
+        outputView.printStartGame();
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(createBridgeSize()));
+        BridgeGame bridgeGame = new BridgeGame();
+        manageGame(bridgeGame, bridge);
+    }
+
     public void manageGame(BridgeGame bridgeGame, Bridge bridge) {
         int tryCount = 1;
         while (true) {
@@ -25,6 +32,13 @@ public class GameController {
             tryCount++;
         }
     }
+
+    public void endGame(BridgeGame bridgeGame, Bridge bridge, int tryCount) {
+        outputView.printMapResult(bridge.getBridge(), bridgeGame.getUserPath());
+        outputView.printGameResult(bridgeGame.checkGameClear(bridge));
+        outputView.printTotalTry(tryCount);
+    }
+
 
     public int createBridgeSize() {
         try {
@@ -42,11 +56,14 @@ public class GameController {
         return convertStringToInt(bridgeSize);
     }
 
-    public void readyForGame() {
-        outputView.printStartGame();
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(createBridgeSize()));
-        BridgeGame bridgeGame = new BridgeGame();
-        manageGame(bridgeGame, bridge);
+    public boolean startGame(BridgeGame bridgeGame, Bridge bridge) {
+        try {
+            activateUserTurn(bridgeGame, bridge);
+            return bridgeGame.checkGameClear(bridge);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return startGame(bridgeGame, bridge);
+        }
     }
 
     public void activateUserTurn(BridgeGame bridgeGame, Bridge bridge) {
@@ -66,15 +83,6 @@ public class GameController {
         return userSelect;
     }
 
-    public boolean startGame(BridgeGame bridgeGame, Bridge bridge) {
-        try {
-            activateUserTurn(bridgeGame, bridge);
-            return bridgeGame.checkGameClear(bridge);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return startGame(bridgeGame, bridge);
-        }
-    }
 
     public boolean restartGame(boolean clear, BridgeGame bridgeGame) {
         if (clear) { // 게임 클리어면 종료
@@ -101,11 +109,4 @@ public class GameController {
         }
         return false;
     }
-
-    public void endGame(BridgeGame bridgeGame, Bridge bridge, int tryCount) {
-        outputView.printMapResult(bridge.getBridge(), bridgeGame.getUserPath());
-        outputView.printGameResult(bridgeGame.checkGameClear(bridge));
-        outputView.printTotalTry(tryCount);
-    }
-
 }

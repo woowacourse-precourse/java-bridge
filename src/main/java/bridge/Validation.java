@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class Validation {
     public static void isPositiveInteger(String bridgeSize) {
-        String pattern = "^[1-9]+[0-9]{8}$";
+        String pattern = "^[1-9]+[0-9]{0,8}$";
         if (!Pattern.matches(pattern, bridgeSize)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 10억 미만의 양의 정수이어야 합니다.");
         }
