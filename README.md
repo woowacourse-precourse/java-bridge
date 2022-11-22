@@ -291,3 +291,46 @@ int number = bridgeNumberGenerator.generate();
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 기능 정리
+
+- 입력
+  - 3이상 20 이하의 수 입력 => bridgeLength(x) => bridgeSize_in(o)
+  - 플레이 시 작성할 U/D 입력 => upAndDown_in
+  - 게임 재시작/종료 R/Q 입력 => retryAndQuit_in
+- 게임 기능
+  - 사용자 이동
+  - 게임 재시작
+  - 게임 종료
+- 생성 기능
+  - 다리사이즈에 맞는 랜덤 1, 0 필터링 리스트 생성 => List<Integer> bridgeFilter
+  - 다리사이즈에 맞는 다리 생성 => List<List<String>> bridge
+
+- 출력
+~~~
+  - "다리 건너기 게임을 시작합니다."
+  - "\n"
+  - "다리의 길이를 입력해주세요."
+  - bridgeSize_in //입력
+~~~
+~~~
+  - "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+  - upAndDown_in //입력
+  - printMap()
+~~~
+~~~
+  - "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+  - retryAndQuit_in //입력
+~~~
+~~~
+  - "최종 게임 결과"
+  - printMap()
+  - "게임 성공 여부: "+successAndFailCheck
+  - "총 시도한 횟수: "+trialNum
+~~~
+
+- 예외
+  - 입력
+    - 3미만, 20초과 예외
+    - 문자 예외
+    - null 예외

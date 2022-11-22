@@ -1,23 +1,74 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import java.util.ArrayList;
+import java.util.List;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+public class BridgeGame {
+    static List<String> trialMap_up = new ArrayList<>();
+    static List<String> trialMap_down = new ArrayList<>();
+    static final int MAXIMUM_LENGTH = 20;
+
+    public String validCheck(int successCount, int size) {
+        if (trialMap_down.contains(" X ") || trialMap_up.contains(" X "))
+            return "실패";
+        return "성공";
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public void move(String userDirection, List<String> bridge, int successCount) {
+        moveUpRoadEqualCount(userDirection, bridge, successCount);
+        moveUpRoadUnequalCount(userDirection, bridge, successCount);
+        moveDownRoadEqualCount(userDirection, bridge, successCount);
+        moveDownRoadUnequalCount(userDirection, bridge, successCount);
+    }
+
+    public void moveUpRoadEqualCount(String userDirection, List<String> bridge, int successCount) {
+        if (userDirection.equals(bridge.get(successCount))) {
+            if (userDirection.equals("U"))
+                trialMap_up.add(" O ");
+            if (userDirection.equals("D"))
+                trialMap_up.add("   ");
+        }
+    }
+
+    public void moveUpRoadUnequalCount(String userDirection, List<String> bridge, int successCount) {
+        if (!userDirection.equals(bridge.get(successCount))) {
+            if (userDirection.equals("U"))
+                trialMap_up.add(" X ");
+            if (userDirection.equals("D"))
+                trialMap_up.add("   ");
+        }
+    }
+
+    public void moveDownRoadEqualCount(String userDirection, List<String> bridge, int successCount) {
+        if (userDirection.equals(bridge.get(successCount))) {
+            if (userDirection.equals("U"))
+                trialMap_down.add("   ");
+            if (userDirection.equals("D"))
+                trialMap_down.add(" O ");
+        }
+    }
+
+    public void moveDownRoadUnequalCount(String userDirection, List<String> bridge, int successCount) {
+        if (!userDirection.equals(bridge.get(successCount))) {
+            if (userDirection.equals("U"))
+                trialMap_down.add("   ");
+            if (userDirection.equals("D"))
+                trialMap_down.add(" X ");
+        }
+    }
+
+    public int retry(String check) {
+        if (check.equals("R")) {
+            trialMap_up.clear();
+            trialMap_down.clear();
+            return -1;
+        }
+        return MAXIMUM_LENGTH + 1;
+    }
+
+    public int trialAddValidCheck(String check, int trialCount) {
+        if (check.equals("R"))
+            return trialCount + 1;
+        return trialCount;
     }
 }
