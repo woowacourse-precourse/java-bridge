@@ -147,10 +147,9 @@
 - [x] InputView`클래스에서만`camp.nextstep.edu.missionutils.Console`의`readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
 - [x] BridgeGame`클래스에서`InputView`,`OutputView` 를 사용하지 않는다.
 - [x] 실행 결과 예시 줄 바꿈, 빈 줄
-- [ ] 객체는 객체스럽게 사용한다
+- [x] 객체는 객체스럽게 사용한다
 - [x] 정적 팩토리 메서드
 - [x] 테스트 코드 리팩터링
 - [x] 스트림을 고려
 - [x] 4주차에 3주차 피드백 적용
-- [ ] 2주차 피드백 적용
-- [x] state pattern 적용?
+- [x] 2주차 피드백 적용
