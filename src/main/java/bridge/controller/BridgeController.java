@@ -6,7 +6,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.domain.bridgeInfo.Bridge;
 import bridge.domain.userInfo.GameCommand;
 import bridge.domain.bridgeInfo.Length;
-import bridge.domain.result.PassingPositions;
+import bridge.domain.result.MovedPositions;
 import bridge.domain.result.Result;
 import bridge.handler.InputHandler;
 import bridge.view.OutputView;
@@ -32,19 +32,19 @@ public class BridgeController {
         Length length = inputHandler.getLength();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
         Bridge bridge = createBridge(bridgeNumbers);
-        PassingPositions passingPositions = createPassingPositions(bridge);
-        Result result = playGame(length, passingPositions);
+        MovedPositions movedPositions = createMovedPositions(bridge);
+        Result result = playGame(length, movedPositions);
         outputView.printResult(result, bridgeGame.getAttemptCount());
     }
 
-    private Result playGame(Length length, PassingPositions passingPositions) {
+    private Result playGame(Length length, MovedPositions movedPositions) {
         Result result = null;
         while (true) {
-            result = playEachRound(length, passingPositions, result);
+            result = playEachRound(length, movedPositions, result);
             if (isStopGame(length, result)) {
                 break;
             }
-            bridgeGame.retry(passingPositions);
+            bridgeGame.retry(movedPositions);
         }
         return result;
     }
@@ -58,20 +58,20 @@ public class BridgeController {
         return gameCommand.isSameQuit();
     }
 
-    public Result playEachRound(Length length, PassingPositions passingPositions, Result result) {
+    public Result playEachRound(Length length, MovedPositions movedPositions, Result result) {
         int distance = -1;
         do {
             if (length.isSameLength(++distance)) {
                 return result;
             }
-            result = doEachRound(passingPositions, distance);
+            result = doEachRound(movedPositions, distance);
         } while (!result.isContainWrongAnswer());
         result.rollbackDistance();
         return result;
     }
 
-    private Result doEachRound(PassingPositions passingPositions, int distance) {
-        Result result = bridgeGame.getResult(passingPositions, distance);
+    private Result doEachRound(MovedPositions movedPositions, int distance) {
+        Result result = bridgeGame.getResult(movedPositions, distance);
         outputView.printMap(result);
         return result;
     }
@@ -85,7 +85,7 @@ public class BridgeController {
         return null;
     }
 
-    private PassingPositions createPassingPositions(Bridge bridge) {
-        return new PassingPositions(bridge);
+    private MovedPositions createMovedPositions(Bridge bridge) {
+        return new MovedPositions(bridge);
     }
 }

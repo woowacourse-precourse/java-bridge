@@ -5,21 +5,21 @@ import bridge.domain.userInfo.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassingPositions {
+public class MovedPositions {
 
-    private final List<Position> passingPositions = new ArrayList<>();
+    private final List<Position> movedPositions = new ArrayList<>();
     private final Bridge bridge;
 
-    public PassingPositions(Bridge bridge) {
+    public MovedPositions(Bridge bridge) {
         this.bridge = bridge;
     }
 
-    public void resetPassingPosition() {
-        passingPositions.clear();
+    public void resetMovedPosition() {
+        movedPositions.clear();
     }
 
-    public void addPassingPositions(Position position) {
-        passingPositions.add(position);
+    public void addMovedPositions(Position position) {
+        movedPositions.add(position);
     }
 
     public Result makeResult(int distance) {
@@ -30,7 +30,7 @@ public class PassingPositions {
     }
 
     private void moveLoop(List<ResultType> upDirections, List<ResultType> downDirections) {
-        passingPositions
+        movedPositions
                 .forEach(position -> {
                     if (position.isDirectionUp()) {
                         moveToUp(upDirections, downDirections, position);

@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.domain.result.PassingPositions;
+import bridge.domain.result.MovedPositions;
 import bridge.domain.result.Result;
 import bridge.domain.userInfo.Direction;
 import bridge.domain.userInfo.Position;
@@ -18,9 +18,9 @@ public class BridgeGame {
         inputHandler = new InputHandler();
     }
 
-    public Result getResult(PassingPositions passingPositions, int distance) {
-        move(distance, passingPositions);
-        return passingPositions.makeResult(distance);
+    public Result getResult(MovedPositions movedPositions, int distance) {
+        move(distance, movedPositions);
+        return movedPositions.makeResult(distance);
     }
 
     /**
@@ -28,10 +28,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(int distance, PassingPositions passingPositions) {
+    public void move(int distance, MovedPositions movedPositions) {
         Direction direction = inputHandler.getDirection();
         Position position = createPosition(distance, direction);
-        passingPositions.addPassingPositions(position);
+        movedPositions.addMovedPositions(position);
     }
 
     /**
@@ -39,8 +39,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(PassingPositions passingPositions) {
-        passingPositions.resetPassingPosition();
+    public void retry(MovedPositions movedPositions) {
+        movedPositions.resetMovedPosition();
         attemptCount++;
     }
 
