@@ -35,9 +35,7 @@ public class BridgeGamePlay {
     public void playGame(BridgeGame bridgeGame) {
         int count = bridgeGame.getCount();
         int bridgeSize = readBridgeSize();
-
         List<String> randomBridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
-
         if (!initGame(bridgeSize, bridgeGame, randomBridge)) {
             while (!bridgeGame.retry(bridgeSize, randomBridge)) {
                 count += 1;
