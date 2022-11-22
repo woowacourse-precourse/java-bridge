@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Stack;
 
 public class BridgeMap {
+    public static final String START_BRACKET = "[";
+    public static final String FINISH_BRACKET = "]";
+    public static final String DIVIDING_LINE = "|";
+    public static final String EMPTY_SPACE = "   ";
     private final Stack<String> upStairs = new Stack<>();
     private final Stack<String> downStairs = new Stack<>();
 
@@ -19,8 +23,8 @@ public class BridgeMap {
     }
 
     private void addFinishBracket() {
-        upStairs.add("]");
-        downStairs.add("]");
+        upStairs.add(FINISH_BRACKET);
+        downStairs.add(FINISH_BRACKET);
     }
 
     public List<Stack> makeListToSend() {
@@ -32,24 +36,24 @@ public class BridgeMap {
 
     private void addDividingLine() {
         if (upStairs.size() != 1 && downStairs.size() != 1) {
-            upStairs.push("|");
-            downStairs.push("|");
+            upStairs.push(DIVIDING_LINE);
+            downStairs.push(DIVIDING_LINE);
         }
     }
 
     private void pushValue(MapType mapType) {
         if (mapType.getStairs().equals(Stairs.UP_STAIRS.getAbbreviation())) {
             upStairs.push(mapType.getMapValue());
-            downStairs.push("   ");
+            downStairs.push(EMPTY_SPACE);
         }
         if (mapType.getStairs().equals(Stairs.DOWN_STAIRS.getAbbreviation())) {
             downStairs.push(mapType.getMapValue());
-            upStairs.push("   ");
+            upStairs.push(EMPTY_SPACE);
         }
     }
 
     private void deleteFinishBracket() {
-        if (upStairs.peek().equals("]") && downStairs.peek().equals("]")) {
+        if (upStairs.peek().equals(FINISH_BRACKET) && downStairs.peek().equals(FINISH_BRACKET)) {
             upStairs.pop();
             downStairs.pop();
         }
@@ -57,8 +61,8 @@ public class BridgeMap {
 
     private void mapInit() {
         if (upStairs.isEmpty() && downStairs.isEmpty()) {
-            upStairs.push("[");
-            downStairs.push("[");
+            upStairs.push(START_BRACKET);
+            downStairs.push(START_BRACKET);
         }
     }
 
