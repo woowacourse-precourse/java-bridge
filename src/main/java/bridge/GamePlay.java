@@ -41,7 +41,7 @@ public class GamePlay {
         return new BridgeMaker(bridgeNumberGenerator);
     }
 
-    public void gamePlay(List<String> bridge, PlayerMap playerMap) {
+    private void gamePlay(List<String> bridge, PlayerMap playerMap) {
         ++tryCount;
         boolean isWon = playTotalGame(bridge, playerMap);
 
@@ -71,7 +71,7 @@ public class GamePlay {
         outputView.printResult(isWon, tryCount);
     }
 
-    public int createBridgeSize() {
+    private int createBridgeSize() {
         outputView.printGameStart();
         outputView.printInputBridge();
 
@@ -81,7 +81,7 @@ public class GamePlay {
         return bridgeSize;
     }
 
-    public String createMove() {
+    private String createMove() {
         outputView.printInputMove();
         String move = inputView.readMoving();
 
@@ -94,7 +94,7 @@ public class GamePlay {
         return canMove(move, bridge, playerMap);
     }
 
-    public boolean canMove(String move, List<String> bridge, PlayerMap playerMap) {
+    private boolean canMove(String move, List<String> bridge, PlayerMap playerMap) {
         boolean canMove = bridgeGame.canMove(move, bridge);
         bridgeGame.move(move, bridge, playerMap);
         outputView.printMap(playerMap, bridgeGame.getPosition());
@@ -102,7 +102,7 @@ public class GamePlay {
         return canMove;
     }
 
-    public boolean isGameWon(List<String> bridge, PlayerMap playerMap) {
+    private boolean isGameWon(List<String> bridge, PlayerMap playerMap) {
         while (true) {
             boolean canMove = createCanMove(bridge, playerMap);
 
