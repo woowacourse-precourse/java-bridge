@@ -25,17 +25,21 @@ public class GameEntity extends BridgeGame implements GameRepository {
 
 
     public GameEntity() {
-        this.readMoving = new FrontController().readMoving();
-        this.bridgeEntity = new BridgeEntity().manageBridgeStatus();
+
         this.upRow = new StringBuilder("[");
         this.downRow = new StringBuilder("[");
+        this.bridgeEntity = new BridgeEntity().manageBridgeStatus();
+        this.readMoving = new FrontController().readMoving();
+
     }
+
+
 
     @Override
     public List<String> manageGameStatus() {
         String result = RESULT.interact();
-        String table = move();
-        String successful = SUCCESSFUL.interact() + predicateWin();
+        String table = move() + "\n";
+        String successful = SUCCESSFUL.interact() + predicateWin() + "\n";
         String tryResult = TRY_COUNT.interact() + String.format(" %d", countTry);
 
         List<String> gameStatus = List.of(result, table, successful, tryResult);
@@ -43,6 +47,12 @@ public class GameEntity extends BridgeGame implements GameRepository {
         return gameStatus;
     }
 
+    public void play() {
+        while ( predicateWin() != SUCCESS.interact()) {
+
+            move();
+        }
+    }
     private String predicateWin() {
         String predicate = "";
         if ( (bridgeEntity.get(bridgeEntity.size())).equals(readMoving)) {
@@ -58,27 +68,45 @@ public class GameEntity extends BridgeGame implements GameRepository {
     // 이동 기능
     @Override
     public String move() {
+
         String table = "";
         for (String entity : bridgeEntity) {
-            table = predicateRow(entity);
+            table +=  predicateRow(entity) + "\n";
+            predicateRetry(entity);
         }
 
         return table;
     }
 
-    private String predicateRow(String entity) {
-        if (readMoving.equals(entity) && readMoving.equals(UP.expressThat())) {
-            upRow.append(TRUE.buildStructure());
-            upRow.append(SEPARATOR.buildStructure());
-            upRow.setCharAt(upRow.length()-1, ']');
+    private void predicateRetry(String entity) {
+        if (readMoving != entity) { retry(new FrontController().readGameCommand()); }
+    }
 
+    private String predicateRow(String entity) {
+        if (readMoving.equals(entity) && readMoving.equals(UP.expressThat())){
+            addRow(upRow, downRow);
         }
-        if (readMoving.equals(entity) && readMoving.equals(DOWN.expressThat())) {
-            downRow.append(TRUE.buildStructure());
-            downRow.append(SEPARATOR.buildStructure());
-            downRow.setCharAt(downRow.length()-1, ']');
+        if (readMoving.equals(entity) && readMoving.equals(DOWN.expressThat())){
+            addRow(downRow, upRow);
         }
-        return upRow + "\n" + downRow;
+
+        return mapToResult(upRow, downRow);
+    }
+
+    private void addRow(StringBuilder trueRow, StringBuilder falseRow) {
+
+        falseRow.append(SEPARATOR.buildStructure());
+        trueRow.append(TRUE.buildStructure());
+
+    }
+
+    private String mapToResult(StringBuilder upRow, StringBuilder downRow) {
+        StringBuilder upRowResult = new StringBuilder(upRow);
+        upRowResult.setCharAt(upRowResult.length()-1, ']');
+        StringBuilder downRowResult = new StringBuilder(downRow);
+        downRowResult.setCharAt(downRowResult.length()-1, ']');
+
+        return upRowResult + "\n" + downRowResult;
     }
 
     @Override

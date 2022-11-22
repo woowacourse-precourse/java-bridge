@@ -2,10 +2,10 @@ package bridge;
 
 public enum BridgeStructure {
 
-    START("[ "),
-    TRUE("O"),
-    SEPARATOR(" | "),
-    END(" ]"),
+
+    TRUE(" O |"),
+    SEPARATOR("   |"),
+
     FALSE(" X ]");
 
 

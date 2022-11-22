@@ -1,12 +1,14 @@
 ## 기능 목록 
 ![image](https://www.notion.so/795b281f263d491faa3b7fb4007e2ea8#290f3f6e34474ac1a7e07f40ae2f23e8)
-1. [test fail] FrontController는 BridgeMaker를 생성한다.
-2. [test fail] FrontController는 생성된 다리를 BridgeEntity에 할당한다.
+1. [test pass] FrontController는 다리 길이를 입력 받는다.
+2. [test pass] FrontController는 생성된 다리를 BridgeEntity에 할당한다. / BridgeMaker, BridgeEntity [o]
 3. [test fail] FrontController는 BridgeEntity 내용을 통해 BridgeGame을 진행한다.
-4. [test fail] FrontController는 BridgeGame의 변경 내용을 BridgeEntity로 저장한다.
-5. [test fail] FrontController는 BridgeEntity의 내용을 OutputView의 기능으로 변환시킨다.
-6. [test fail] FrontController는 변환된 문자열을 return한다.
-7. [test fail] Application은 FrontController를 호출해서 실행한다.
+4. [test fail] FrontController는 사용자 이동을 입력 받는다.
+5. [test fail] FrontController는 BridgeGame의 변경 내용을 BridgeEntity로 저장한다.
+6. [test fail] FrontController는 성공 / 실패가 나올 때까지 이동을 입력받는다.
+   1. 사용자가 실패 시 재시도 / 종료를 입력받는다.
+7. [test fail] FrontController는 변환된 문자열을 return한다.
+8. [test fail] Application은 FrontController를 호출해서 실행한다.
 
 
 - 

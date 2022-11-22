@@ -16,31 +16,29 @@ import org.junit.jupiter.params.provider.ValueSource;
 class FrontControllerTest {
 
     private FrontController frontController;
-    private GameEntity gameEntity;
-    private BridgeEntity bridgeEntity;
 
     @BeforeEach
     void setUp() {
 
         frontController = new FrontController();
-        gameEntity = frontController.gameRepository();
-        bridgeEntity = frontController.bridgeRepository();
 
     }
 
 
 
 
+    @DisplayName("다리가 정상적으로 생성")
     @Test
-    public void buildBridgeAutomatically() throws Exception{
+    public void setBridgeEntity(){
         //given
+        BridgeEntity controller = frontController.bridgeRepository();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> expect = bridgeMaker.makeBridge(3);
 
-        //when
-        List<String> actual = frontController.bridgeRepository().manageBridgeStatus();
+        // when
+        List<String> entity = controller.manageBridgeStatus();
+        List<String> domain = bridgeMaker.makeBridge(3);
 
-        //then
-        assertEquals(expect, actual);
+        // then
+        assertEquals(domain, entity);
     }
 }

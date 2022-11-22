@@ -17,7 +17,7 @@ public enum GameStatus {
 
     public static GameStatus validate(String readLine) {
         return Arrays.stream(values())
-                .filter(enumValue -> enumValue.tellCommand().equals(readLine))
+                .filter(predicate -> predicate.tellCommand().equals(readLine))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_EXCEPTION.interact()));
     }

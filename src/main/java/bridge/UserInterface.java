@@ -14,7 +14,7 @@ public enum UserInterface {
     TRY_COUNT("총 시도한 횟수: "),
 
     INVALID_EXCEPTION("[ERROR] 잘못된 값이 입력되었습니다. 이동 가능한 입력은 'U', 'D', 'R', 'Q' 입니다."),
-    RANGE_OUT_OF_EXCEPTION("[ERROR] 입력 가능한 다리 길이는 3~20 입니다.");
+    RANGE_OUT_OF_EXCEPTION("[ERROR] 입력 가능한 다리 길이는 3~20의 자연수 입니다.");
 
 
     private final String userInterface;

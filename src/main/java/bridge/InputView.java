@@ -5,6 +5,7 @@ import static bridge.Expression.UP;
 import static bridge.GameStatus.QUIT;
 import static bridge.GameStatus.SELECT_RE_TRY;
 import static bridge.UserInterface.INSERT_SIZE;
+import static bridge.UserInterface.INVALID_EXCEPTION;
 import static bridge.UserInterface.RANGE_OUT_OF_EXCEPTION;
 import static bridge.UserInterface.RE_TRY;
 import static bridge.UserInterface.SELECT_ROW;
@@ -27,6 +28,8 @@ public class InputView {
         System.out.println(START.interact());
         System.out.println(INSERT_SIZE.interact());
         String readLine = Console.readLine();
+
+        if (readLine.matches("^[a-z]$")) {  throw new IllegalArgumentException(RANGE_OUT_OF_EXCEPTION.interact()); }
         if (parseInt(readLine) < 3 || parseInt(readLine) > 20) {
             throw new IllegalArgumentException(RANGE_OUT_OF_EXCEPTION.interact());
         }
