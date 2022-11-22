@@ -53,4 +53,19 @@ public class BridgeGame {
         }
         return FAIL;
     }
+    // 다음 라운드를 갈수 있는지 판단하는 기능
+    public boolean checkPlayNextRound(String userInput, List<String> bridge) {
+        if(userInput.equals(bridge.get(round.getRound()-1)) && round.getRound() < bridge.size()) {
+            return true;
+        }
+        return false;
+    }
+
+    public GameAttempt getGameAttempt() {
+        return gameAttempt;
+    }
+
+    public BridgeState getBridgeState() {
+        return bridgeState;
+    }
 }
