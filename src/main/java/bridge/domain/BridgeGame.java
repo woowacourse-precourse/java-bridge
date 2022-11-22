@@ -126,7 +126,7 @@ public class BridgeGame {
 
     /**
      *
-     * @param bridge 생성된 다리
+     * @param size 생성할 다리의 길이
      */
     public void makeBridge(int size){
         this.bridge = bridgeMaker.makeBridge(size);
