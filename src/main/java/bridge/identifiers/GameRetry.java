@@ -16,10 +16,10 @@ public enum GameRetry {
         return asString;
     }
 
-    public static GameRetry parseDirection(String directionValue) {
-        if (directionValue == RETRY.asString)
+    public static GameRetry parseRetry(String retryValue) {
+        if (retryValue == RETRY.asString)
             return RETRY;
-        if (directionValue == QUIT.asString)
+        if (retryValue == QUIT.asString)
             return QUIT;
         throw new CustomIllegalArgumentException(
                 "비정상적인 값"
