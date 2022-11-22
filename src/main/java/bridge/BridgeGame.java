@@ -46,11 +46,11 @@ public class BridgeGame {
 
     public void comparedBridge() {
         int lastIndex = movingPositions.size() - 1;
-        String bridgeValue = bridge.getBridge().get(lastIndex);
-        String movingPosition = movingPositions.get(lastIndex);
-        if(bridge.getBridge().size() < movingPositions.size()){
+        if (bridge.getBridge().size() < movingPositions.size()) {
             throw new IllegalStateException("다리의 크기보다 입력받은 개수가 클 수 없습니다.");
         }
+        String bridgeValue = bridge.getBridge().get(lastIndex);
+        String movingPosition = movingPositions.get(lastIndex);
         addResult(bridgeValue, movingPosition);
     }
 
@@ -95,8 +95,8 @@ public class BridgeGame {
         }
     }
 
-    private void countAttempt(){
-        if(Integer.MAX_VALUE <= count){
+    private void countAttempt() {
+        if (Integer.MAX_VALUE <= count) {
             throw new IllegalStateException("지나치게 많은 횟수의 재시작을 하였습니다. 최대 가능한 횟수는 2,147,483,647번 입니다.");
         }
         count++;
