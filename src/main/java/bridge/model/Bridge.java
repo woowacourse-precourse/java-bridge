@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 public class Bridge {
     private final String up;
