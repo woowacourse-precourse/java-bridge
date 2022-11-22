@@ -17,6 +17,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.io.*;
 import java.util.List;
 
+/*
 class BridgeGameTest {
     Bridge bridge;
     Result result = new Result();
@@ -58,3 +59,5 @@ class BridgeGameTest {
     }
 
 }
+
+ */

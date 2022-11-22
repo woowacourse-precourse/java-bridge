@@ -13,30 +13,20 @@ public class BridgeGame {
     private static final Boolean WRONG_ANSWER = Boolean.FALSE;
 
     private final Bridge bridge;
-    private final Result result;
-    private final InputController inputController;
-    private final Player player = new Player();
+    private final Player player;
 
-    public BridgeGame(Bridge bridge, Result result, InputController inputController) {
+    public BridgeGame(Bridge bridge, Player player) {
         this.bridge = bridge;
-        this.result = result;
-        this.inputController = inputController;
+        this.player = player;
     }
 
-    public void move() {
-        for (int trialNum = 0; trialNum < bridge.getBridgeSize(); trialNum++) {
-            movePlayer();
-            if (!checkAnswer()) {
-                retry();
-                break;
-            }
-            judgeTrue();
+    public void move(Movement directionInput, Result result) {
+        player.updateMovement(directionInput);
+        if (!checkAnswer()) {
+            judgeFalse(result);
+            return;
         }
-    }
-
-    private void movePlayer() {
-        Movement movementInput = inputController.getDirectionInput();
-        player.updateMovement(movementInput);
+        judgeTrue(result);
     }
 
     private boolean checkAnswer() {
@@ -46,23 +36,19 @@ public class BridgeGame {
         return true;
     }
 
-    private void judgeTrue() {
+    private void judgeTrue(Result result) {
         result.setGameResult(CORRECT_ANSWER);
         OutputView.printMap(result, player);
     }
 
-    private void judgeFalse() {
+    private void judgeFalse(Result result) {
         result.setGameResult(WRONG_ANSWER);
         OutputView.printMap(result, player);
     }
 
-    private void retry() {
-        judgeFalse();
-        if (inputController.retryCommandInput()) {
-            result.updateNumberOfTrials();
-            player.resetPlayer();
-            result.resetGameResult();
-            move();
-        }
+    public void retry(Result result) {
+        result.updateNumberOfTrials();
+        player.resetPlayer();
+        result.resetGameResult();
     }
 }

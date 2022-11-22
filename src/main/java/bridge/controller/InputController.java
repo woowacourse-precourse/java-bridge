@@ -44,7 +44,7 @@ public class InputController {
         return movement;
     }
 
-    public boolean retryCommandInput() {
+    public boolean getRetryCommandInput() {
         while (true) {
             try {
                 return readAndParseGameCommandInput();

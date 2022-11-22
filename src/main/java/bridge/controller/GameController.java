@@ -6,12 +6,15 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.Movement;
+import bridge.domain.Player;
 import bridge.domain.Result;
 import bridge.view.OutputView;
 
 public class GameController {
 
     private final InputController inputController;
+    private final Result result = new Result();
 
     public GameController(InputController inputController) {
         this.inputController = inputController;
@@ -19,7 +22,9 @@ public class GameController {
 
     public void run() {
         Bridge bridge = createBridge();
-        Result result = crossABridge(bridge);
+        Player player = new Player();
+        BridgeGame bridgeGame = new BridgeGame(bridge, player);
+        crossABridge(bridge, player, bridgeGame);
         OutputView.printResult(result);
     }
 
@@ -30,10 +35,24 @@ public class GameController {
         return new Bridge(bridge);
     }
 
-    private Result crossABridge(Bridge bridge) {
-        Result result = new Result();
-        BridgeGame bridgeGame = new BridgeGame(bridge, result, inputController);
-        bridgeGame.move();
-        return result;
+    private void crossABridge(Bridge bridge, Player player, BridgeGame bridgeGame) {
+        for (int step = 0; step < bridge.getBridgeSize(); step++) {
+            Movement directionInput = inputController.getDirectionInput();
+            bridgeGame.move(directionInput, result);
+            if (result.getSuccessOrFailure().equals("실패")) {
+                retryGame(bridge, player, bridgeGame);
+                break;
+            }
+        }
     }
+
+    private void retryGame(Bridge bridge, Player player, BridgeGame bridgeGame) {
+        boolean retryCommandInput = inputController.getRetryCommandInput();
+        if (retryCommandInput) {
+            bridgeGame.retry(result);
+            crossABridge(bridge, player, bridgeGame);
+        }
+    }
+
+
 }

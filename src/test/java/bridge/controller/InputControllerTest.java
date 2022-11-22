@@ -47,6 +47,6 @@ class InputControllerTest {
         InputStream in = new ByteArrayInputStream(commandInput.getBytes());
         System.setIn(in);
 
-        assertThat(inputController.retryCommandInput()).isTrue();
+        assertThat(inputController.getRetryCommandInput()).isTrue();
     }
 }
