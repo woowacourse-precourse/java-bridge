@@ -20,6 +20,10 @@ public class Game {
         isGameDone = gameDone;
     }
 
+    public boolean isWinGame() {
+        return isWinGame;
+    }
+
 
 
 }
