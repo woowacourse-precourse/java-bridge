@@ -12,12 +12,8 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        try {
-            bridgeGame.getBridge(new BridgeRandomNumberGenerator(), readBridgeSize());
-            printResult(run());
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
-        }
+        bridgeGame.getBridge(new BridgeRandomNumberGenerator(), readBridgeSize());
+        printResult(run());
     }
 
     private static void printResult(int counter) {
@@ -26,15 +22,30 @@ public class Application {
     }
 
     private static int readBridgeSize() {
-        return inputValidate.validateBridgeSize(inputView.readBridgeSize());
+        try {
+            return inputValidate.validateBridgeSize(inputView.readBridgeSize());
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     private static String readGameCommand() {
-        return inputValidate.validateRetry(inputView.readGameCommand());
+        try {
+            return inputValidate.validateRetry(inputView.readGameCommand());
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
+            return readGameCommand();
+        }
     }
 
     private static String readMoving() {
-        return inputValidate.validateMove(inputView.readMoving());
+        try {
+            return inputValidate.validateMove(inputView.readMoving());
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
+            return readMoving();
+        }
     }
 
     private static int run() {
