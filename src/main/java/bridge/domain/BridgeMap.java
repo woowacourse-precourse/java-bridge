@@ -21,9 +21,9 @@ public class BridgeMap {
 		for (int i = 0; i < playerBridge.size(); i++) {
 			String answerDir = answerBridge.get(i);
 			String playerDir = playerBridge.get(i);
-			if (UpDown.isUp(answerDir)) {
+			if (UpDown.isUp(playerDir)) {
 				addBridgeSpace(upSpace, downSpace, Util.isSameString(answerDir, playerDir));
-			} else if (UpDown.isDown(answerDir)) {
+			} else if (UpDown.isDown(playerDir)) {
 				addBridgeSpace(downSpace, upSpace, Util.isSameString(answerDir, playerDir));
 			}
 		}

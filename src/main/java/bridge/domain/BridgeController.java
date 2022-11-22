@@ -56,6 +56,6 @@ public class BridgeController {
 	private boolean isRestartInput() {
 		InputStringValidator restartInputValidator = new InputStringValidator(InputView.readGameCommand());
 		restartInputValidator.isValidateAlphabet(List.of(Constant.RESTART_YES.getValue(), Constant.RESTART_NO.getValue()));
-		return Util.isSameString(Constant.SUCCESS.getValue(), restartInputValidator.getInputValue());
+		return Util.isSameString(Constant.RESTART_YES.getValue(), restartInputValidator.getInputValue());
 	}
 }
