@@ -47,7 +47,11 @@ public class BridgeController {
 
     private int getBridgeSize() {
         outputView.printAskForBridgeSize();
-        return inputView.readBridgeSize();
+
+        int bridgeSize = 0;
+        bridgeSize = inputView.readBridgeSize();
+
+        return bridgeSize;
     }
 
     public String getWantToRetry() {
