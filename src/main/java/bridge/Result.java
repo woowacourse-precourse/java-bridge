@@ -32,5 +32,19 @@ public class Result {
         tryCount++;
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
 
+    public void setFail() {
+        isSuccess = "실패";
+    }
+
+    public String getIsSuccess() {
+        return isSuccess;
+    }
+
+    public List<List<String>> getResults() {
+        return results;
+    }
 }
