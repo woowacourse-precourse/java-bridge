@@ -24,9 +24,11 @@ public class PlayGame {
         int turn = 0;
         int tryCount = 1;
         while(turn < endTurn) {
-            Boolean matchResult = bridgeGame.move(crossAble, turn);
+            String move = inputView.readMoving();
+            Boolean matchResult = bridgeGame.move(crossAble, turn, move);
             if(!matchResult) {
-                Boolean isRetry = bridgeGame.retry();
+                String gameCommand = inputView.setGameCommand();
+                Boolean isRetry = bridgeGame.retry(gameCommand);
                 tryCount++;
                 if(isRetry){
                     continue;
