@@ -67,14 +67,12 @@ public class GameController {
         return true;
     }
 
-    private boolean isRestartOrQuit() {
+    private void isRestartOrQuit() {
         String gameCommand = InputView.readGameCommand();
         if (bridgeGame.isGameRestart(gameCommand)) {
             bridgeGame.retry();
             startGame();
-            return false;
         }
-        return true;
     }
 
     private boolean isFinalRound() {
