@@ -1,12 +1,11 @@
 package bridge;
 
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.BridgeGame;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class InputViewTest extends NsTest {
@@ -39,11 +38,10 @@ public class InputViewTest extends NsTest {
 
     @Test
     void 올바르지_않은_게임_명령어_입력_테스트() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        assertSimpleTest(() -> {
-            runException("3", "U", "D", "U", "A");
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "D", "D", "A");
             assertThat(output()).contains(ERROR_MESSAGE);
-        });
+        }, 1, 0, 1);
     }
 
     @Override
