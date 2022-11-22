@@ -15,4 +15,16 @@ public class Player {
     public void move(String moving) {
         map.add(moving);
     }
+
+    private void rollbackLastMoved() {
+        int lastMovedPosition = getLastMovedPosition();
+        if (lastMovedPosition == -1) {
+            return;
+        }
+        map.remove(lastMovedPosition);
+    }
+
+    private int getLastMovedPosition() {
+        return map.size() - 1;
+    }
 }
