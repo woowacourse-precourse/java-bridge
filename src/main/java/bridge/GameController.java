@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GameController {
@@ -9,7 +7,7 @@ public class GameController {
     private BridgeGame bridgeGame;
     private Bridge bridge;
     private BridgeSelection bridgeSelection;
-    private
+    private int trial = 0;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     public void setUpGame() {
@@ -17,13 +15,14 @@ public class GameController {
         bridgeSelection = new BridgeSelection();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(setBridgeSize());
+        trial++;
     }
 
     public void startGame() {
         inputView.printStartGame();
         setUpGame();
         progressMoving();
-
+        quitGame(trial);
     }
 
     public int setBridgeSize() {
@@ -40,6 +39,7 @@ public class GameController {
 
     public String setMoving() {
         try {
+            System.out.println();
             String input = inputView.readMoving();
             Validator.checkUpOrDown(input);
             return input;
@@ -51,11 +51,12 @@ public class GameController {
 
     public String setRetryOrQuit() {
         try {
+            System.out.println();
             String input = inputView.readGameCommand();
             Validator.checkRetryOrQuit(input);
             return input;
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception);
+            System.out.println(exception.getMessage());
         }
         return null;
     }
@@ -67,10 +68,10 @@ public class GameController {
             boolean matchMark = bridge.compare(index, selection);
             checkMoving(matchMark, selection);
             if (!matchMark) {
-
+                selectRetryOrQuit();
                 break;
             }
-        } //9
+        }
     }
 
     public void checkMoving(boolean matchMark, String selection) {
@@ -82,10 +83,24 @@ public class GameController {
     public void selectRetryOrQuit() {
         String decision = setRetryOrQuit();
         if (decision.equals("R")) {
+            trial++;
             bridgeSelection = new BridgeSelection();
+            progressMoving();
         }
-        if (decision.equals("Q")) {
+    }
 
+    public String checkFinishLine() {
+        List<List<String>> selections = bridgeSelection.getSelections();
+        for (List<String> selection : selections) {
+            if (selection.contains("X")) {
+                return "실패";
+            }
         }
+        return "성공";
+    }
+
+    public void quitGame(int trial) {
+        String gameResult = checkFinishLine();
+        outputView.printResult(bridgeSelection.getSelections(),gameResult,trial);
     }
 }

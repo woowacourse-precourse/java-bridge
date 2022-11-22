@@ -16,6 +16,11 @@ public class BridgeSelection {
         selections.add(downSelection);
     }
 
+    public int getSize() {
+        size = selections.get(0).size();
+        return size;
+    }
+
     public List<List<String>> getSelections() {
         return selections;
     }
