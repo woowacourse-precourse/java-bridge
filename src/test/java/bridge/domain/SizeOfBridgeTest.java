@@ -3,7 +3,7 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.utils.BridgeSizeInputParser;
+import bridge.utils.SizeInputParser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ class SizeOfBridgeTest {
     void null_input() {
         final String SIZE_INPUT = null;
 
-        assertThatThrownBy(() -> BridgeSizeInputParser.parseSizeOfBridge(SIZE_INPUT))
+        assertThatThrownBy(() -> SizeInputParser.parseSize(SIZE_INPUT))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR]");
 
@@ -35,7 +35,7 @@ class SizeOfBridgeTest {
     void char_input() {
         final String SIZE_INPUT = "three";
 
-        assertThatThrownBy(() -> BridgeSizeInputParser.parseSizeOfBridge(SIZE_INPUT))
+        assertThatThrownBy(() -> SizeInputParser.parseSize(SIZE_INPUT))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR]");
     }

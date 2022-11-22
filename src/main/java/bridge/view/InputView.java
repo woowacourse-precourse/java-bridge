@@ -1,72 +1,23 @@
 package bridge.view;
 
-import bridge.domain.GameCommand;
-import bridge.domain.MovingCommand;
-import bridge.domain.SizeOfBridge;
-import bridge.utils.BridgeSizeInputParser;
-import bridge.utils.CommandInputParser;
+import bridge.utils.SizeInputParser;
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public SizeOfBridge readBridgeSize() {
-        try {
-            String size = bridgeSizeInput();
-
-            return BridgeSizeInputParser.parseSizeOfBridge(size);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readBridgeSize();
-        }
-    }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public MovingCommand readMoving() {
-        try {
-            String command = movingCommandInput();
-
-            return CommandInputParser.parseMovingCommand(command);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readMoving();
-        }
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public GameCommand readGameCommand() {
-        try {
-            String command = GameCommandInput();
-
-            return CommandInputParser.parseGameCommand(command);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readGameCommand();
-        }
-    }
-
-    public String bridgeSizeInput() {
+    public int readBridgeSize() {
         printForInputMessage(Messages.SCAN_BRIDGE_SIZE);
-
-        return getInput();
+        
+        return SizeInputParser.parseSize(getInput());
     }
 
-    public String movingCommandInput() {
+    public String readMoving() {
         printForInputMessage(Messages.SCAN_MOVING_COMMAND);
 
         return getInput();
     }
 
-    public String GameCommandInput() {
+    public String readGameCommand() {
         printForInputMessage(Messages.SCAN_GAME_COMMAND);
 
         return getInput();
