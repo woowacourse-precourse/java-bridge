@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.Command;
+
 import java.util.ArrayList;
 import java.util.List;
 

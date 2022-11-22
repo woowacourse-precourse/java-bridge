@@ -1,5 +1,10 @@
 package bridge;
 
+import bridge.model.BridgeGame;
+import bridge.model.Command;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class Application {
     static InputView inputView;
     static OutputView outputView;
