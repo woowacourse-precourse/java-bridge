@@ -1,10 +1,10 @@
 package bridge.controller;
 
+import bridge.domain.command.Command;
 import bridge.domain.direction.Direction;
 import bridge.domain.factory.BridgeGameFactory;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.pedestrian.Pedestrian;
-import bridge.domain.command.Command;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -37,17 +37,6 @@ public class BridgeGameController {
         outputView.printResult(pedestrian.createMovingRecord(), bridgeGame.isEndLocation(pedestrian), bridgeGame.createRound());
     }
 
-    private BridgeGame createBridgeGame() {
-        while(true) {
-            try {
-                BridgeGameFactory bridgeGameFactory = new BridgeGameFactory();
-                return bridgeGameFactory.createBridgeGame(inputView.readBridgeSize());
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
     private void play(BridgeGame bridgeGame, Pedestrian pedestrian) {
         Command command = initializeStartCommand();
         while (!bridgeGame.isEndLocation(pedestrian) && isPlaying(command)) {
@@ -60,36 +49,16 @@ public class BridgeGameController {
         }
     }
 
-    private Command inputCommand() {
-        while(true) {
-            try {
-                return new Command(inputView.readGameCommand());
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
     private void executeMove(BridgeGame bridgeGame, Pedestrian pedestrian) {
         Direction direction = inputDirection();
         bridgeGame.move(pedestrian, direction);
         outputView.printMap(pedestrian.createMovingRecord());
     }
 
-    private Direction inputDirection() {
-        while(true) {
-            try {
-                return new Direction(inputView.readMoving());
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
     private void executeRetry(BridgeGame bridgeGame, Pedestrian pedestrian, Command command) {
         if (isPlaying(command)) {
             bridgeGame.retry(pedestrian);
-        };
+        }
     }
 
     private boolean isPlaying(Command command) {
@@ -98,5 +67,36 @@ public class BridgeGameController {
 
     private Command initializeStartCommand() {
         return new Command(START_COMMAND);
+    }
+
+    private Command inputCommand() {
+        while (true) {
+            try {
+                return new Command(inputView.readGameCommand());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private BridgeGame createBridgeGame() {
+        while (true) {
+            try {
+                BridgeGameFactory bridgeGameFactory = new BridgeGameFactory();
+                return bridgeGameFactory.createBridgeGame(inputView.readBridgeSize());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private Direction inputDirection() {
+        while (true) {
+            try {
+                return new Direction(inputView.readMoving());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
