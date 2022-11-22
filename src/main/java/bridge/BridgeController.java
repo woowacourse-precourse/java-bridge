@@ -13,6 +13,7 @@ public class BridgeController {
     private int size;
     void init(){
         try {
+            tryNumber=0;
             outputView.startPrint();
             size = inputView.readBridgeSize();
         }catch (IllegalArgumentException e){
@@ -33,20 +34,22 @@ public class BridgeController {
         run();
     }
     void run(){
+        tryNumber++;
+        outputView = new OutputView();
         Result result = null;
         for (int i = 0 ;i<size;i++) {
             result = runGame(i);
+            if (printRetry(result.getResultType().getWinLose())) {
+                run();
+                return;
+            }
         }
         endGame(result);
     }
     Result runGame(int index){
-        tryNumber++;
         makePlayer();
         Result result = bridgeGame.move(index);
         printResult(result, index);
-        if (printRetry(result.getResultType().getWinLose())) {
-            return runGame(index);
-        }
         return result;
     }
     public void endGame(Result result){
