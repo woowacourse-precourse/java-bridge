@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +12,8 @@ public class BridgeGame {
     private final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private List<String> bridge;
-    private List<String> up = new ArrayList<>();
-    private List<String> down = new ArrayList<>();
+    private final List<String> up = new ArrayList<>();
+    private final List<String> down = new ArrayList<>();
     private int round = 0;
     private String input;
 
@@ -29,13 +31,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        while(round != bridge.size()){
+        while (round != bridge.size()) {
             OutputView.movePrint();
             input = inputView.readMoving();
-            if(!comparingInputBridge()) {
+            if (!comparingInputBridge()) {
                 wrongCase();
             }
-            if(comparingInputBridge()){
+            if (comparingInputBridge()) {
                 correctCase();
             }
         }
@@ -74,5 +76,12 @@ public class BridgeGame {
         up.add("   ");
         down.add(" X ");
         OutputView.printMap(this.up, this.down);
+    }
+
+    public boolean choose() {
+        OutputView.chooseEndPrint();
+        String choice = Console.readLine();
+        ExceptionHandling.choiceChecking(choice);
+        return choice.equals("R");
     }
 }
