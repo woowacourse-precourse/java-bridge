@@ -1,11 +1,14 @@
 package bridge;
 
 
-import java.util.Arrays;
-
 import static bridge.BridgeGame.Bridge;
+import static bridge.InputView.Ending_Enter;
+import static bridge.InputView.Retry_Enter;
 
 public class Application {
+    public static final String FailPrint = "실패";
+    public static final String SuccessPrint = "성공";
+
     static InputView input = new InputView();
     static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     static BridgeMaker maker = new BridgeMaker(bridgeRandomNumberGenerator);
@@ -21,7 +24,6 @@ public class Application {
         init();
         System.out.println(Bridge);
         while (Location < Bridge.size() && bridgeGame.Ending()) {
-            System.out.println("Location : " + Location);
             Bridge_Move();
             Bridge_Check();
             EndingCheck();
@@ -50,19 +52,19 @@ public class Application {
     }
 
     private static void RetryPrint(String Retry_Command) {
-        if (Retry_Command.equals("R")) {
+        if (Retry_Command.equals(Retry_Enter)) {
             outputView.Delete_Bridge();
             TryNumber++;
             return;
         }
-        if (Retry_Command.equals("Q")) {
-            String Fail = "실패";
+        if (Retry_Command.equals(Ending_Enter)) {
+            String Fail = FailPrint;
             outputView.printResult(TryNumber, Fail);
         }
     }
     private static void EndingCheck(){
         if(Location==(Bridge.size()-1)){
-            String Success = "성공";
+            String Success = SuccessPrint;
             outputView.printResult(TryNumber, Success);
         }
     }
