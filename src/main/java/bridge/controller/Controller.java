@@ -83,4 +83,8 @@ public class Controller {
         }
         user.setQuit();
     }
+
+    public boolean GoRetry(String retryInput) {
+        return retryInput.equals("R");
+    }
 }
