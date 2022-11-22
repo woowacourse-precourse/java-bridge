@@ -1,10 +1,9 @@
 package bridge;
 
+import bridge.constants.BridgeConstants;
+import bridge.constants.Message;
+
 public class UserInputException {
-    final static int numSizeStart = 3;
-    final static int numSizeEnd = 20;
-    enum Route{U, D}
-    enum Restart{R, Q}
 
     public UserInputException(){
     }
@@ -16,7 +15,8 @@ public class UserInputException {
         return false;
     }
     public boolean checkBridgeSizeNum(String input) {
-        if(checkInputIsNum(input) && checkBridgeSizeRange(Integer.parseInt(input))){ return true; }
+        checkInputIsNum(input);
+        if(checkBridgeSizeRange(Integer.parseInt(input))){ return true; }
         return false;
     }
     public boolean checkMoveRoute(String input) {
@@ -28,24 +28,25 @@ public class UserInputException {
         return false;
     }
     // 정수 여부 확인
-    public boolean checkInputIsNum(String input) {
-        try { Integer.parseInt(input); } catch (NumberFormatException e) { return false; }
-        return true;
+    public void checkInputIsNum(String input) {
+        try {Integer.parseInt(input);}
+        catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Message.INPUT_PATTERN_ERROR_MESSAGE); }
     }
     // 입력받은 사이즈가 3 부터 20 사이의 숫자인지
     boolean checkBridgeSizeRange(int input) {
-        if (input >= this.numSizeStart && input <= this.numSizeEnd) { return true; }
+        if (input >= BridgeConstants.MIN_BRIDGE_SIZE && input <= BridgeConstants.MAX_BRIDGE_SIZE) { return true; }
         return false;
     }
     // 입력받은 문자가 U 혹은 D인지 체크
     boolean checkUorD(String input) {
-        if (input.equals("U") || input.equals("D")) {
+        if (input.equals(BridgeConstants.UP_DIRECTION) || input.equals(BridgeConstants.DOWN_DIRECTION)) {
             return true; }
         return false;
     }
     // 입력받은 문자가 R 혹은 Q인지 체크
     boolean checkRorQ(String input) {
-        if (input.equals("R") || input.equals("Q")) {
+        if (input.equals(BridgeConstants.RESTART) || input.equals(BridgeConstants.QUIT)) {
             return true; }
         return false;
     }

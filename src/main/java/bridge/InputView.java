@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constants.Message;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -11,22 +12,28 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input = Console.readLine();
-        if (!new UserInputException().checkInputException(1, input)){
-            throw new IllegalArgumentException("[ERROR]");
+        try {
+            String input = Console.readLine();
+            new UserInputException().checkInputException(1, input);
+            return Integer.parseInt(input);
+        }catch (IllegalArgumentException e){
+            OutputView.printException(e);
+            return readBridgeSize();
         }
-        return Integer.parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String input = Console.readLine();
-        if (!new UserInputException().checkInputException(2, input)){
-            throw new IllegalArgumentException("[ERROR]");
+        try {
+            String input = Console.readLine();
+            new UserInputException().checkInputException(2, input);
+            return input;
+        }catch (IllegalArgumentException e){
+            OutputView.printException(e);
+            return readMoving();
         }
-        return input;
     }
 
     /**
@@ -35,7 +42,7 @@ public class InputView {
     public String readGameCommand() {
         String input = Console.readLine();
         if (!new UserInputException().checkInputException(3, input)){
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(Message.COMMAND_ERROR_MESSAGE);
         }
         return input;
     }

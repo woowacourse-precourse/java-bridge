@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constants.BridgeConstants;
+
 import java.util.List;
 
 public class Application {
@@ -7,15 +9,16 @@ public class Application {
         // TODO: 프로그램 구현
         new OutputView().printGameStart();
         List<String> bridge = printAndReadBridgeSize();
-        int gameTryCount = 1;
+        int gameTryCount = BridgeConstants.GAME_TRY_START_COUNT;
         while (true){
             gameTryCount = new Gaming(bridge, gameTryCount).startGame();
-            if (gameTryCount == -1){break;}
+            if (gameTryCount == BridgeConstants.ESCAPE_LOOP_NUM){break;}
         }
     }
     /** 입력받은 길이의 다리를 생성하는 기능 */
     static List<String> printAndReadBridgeSize(){
         new OutputView().printGetBridgeSize();
-        return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(new InputView().readBridgeSize());
+        int size = new InputView().readBridgeSize();
+        return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 }

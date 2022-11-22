@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constants.BridgeConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class BridgeMaker {
     }
 
     private String getInitial(){
-        if (bridgeNumberGenerator.generate() == 0) return "D";
-        return "U";
+        if (bridgeNumberGenerator.generate() == BridgeConstants.NUMBER_OF_DOWN_DIRECTION) return BridgeConstants.DOWN_DIRECTION;
+        return BridgeConstants.UP_DIRECTION;
     }
 }
