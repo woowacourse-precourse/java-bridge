@@ -15,7 +15,8 @@ public class BridgeGame {
     }
 
     public void runGameSystem(List<String> bridge, int countOfTry) {
-        if (move(bridge, "O"))
+        GameClear gameClear = new GameClear(move(bridge, "O"));
+        if (gameClear.get())
             return;
         if (willRetry())
             retry(bridge, countOfTry);
