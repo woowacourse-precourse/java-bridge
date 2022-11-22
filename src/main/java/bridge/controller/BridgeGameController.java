@@ -31,8 +31,9 @@ public class BridgeGameController {
     }
 
     private boolean isOneMoreGame() throws IllegalAccessException {
-        if (isSuccess())
+        if (isSuccess()) {
             return false;
+        }
         return askRetry();
     }
 
@@ -73,8 +74,9 @@ public class BridgeGameController {
                 bridgeGame.setDead();
             }
         });
-        if (bridgeGame.isAlive())
+        if (bridgeGame.isAlive()) {
             bridgeGame.retry();
+        }
         return bridgeGame.isAlive();
     }
 

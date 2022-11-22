@@ -11,22 +11,22 @@ public class PlayerPath {
     private final List<Direction> currentPath = new ArrayList<>();
     private boolean isAlive = true;
 
-    public PlayerPath(){
+    public PlayerPath() {
     }
 
-    public void saveDirection(Direction direction){
+    public void saveDirection(Direction direction) {
         currentPath.add(direction);
     }
 
-    public List<Direction> getPath(){
+    public List<Direction> getPath() {
         return Collections.unmodifiableList(currentPath);
     }
 
-    public boolean getIsAlive(){
+    public boolean getIsAlive() {
         return isAlive;
     }
 
-    public void die(){
+    public void die() {
         isAlive = false;
     }
 }

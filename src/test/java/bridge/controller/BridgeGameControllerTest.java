@@ -115,7 +115,7 @@ class BridgeGameControllerTest extends InOutStreamTest {
 
         @Test
         void 게임_재시작_입력은_정상동작한다() {
-            assertSimpleTest(()->{
+            assertSimpleTest(() -> {
                 input("R");
                 boolean result = controller.askRetry();
                 assertThat(result).isTrue();
@@ -124,7 +124,7 @@ class BridgeGameControllerTest extends InOutStreamTest {
 
         @Test
         void 게임_종료_입력은_정상동작한다() {
-            assertSimpleTest(()->{
+            assertSimpleTest(() -> {
                 input("Q");
                 boolean result = controller.askRetry();
                 assertThat(result).isFalse();
@@ -133,7 +133,7 @@ class BridgeGameControllerTest extends InOutStreamTest {
 
         @Test
         void 게임_종료_입력은_잘못된_입력이_안올때까지_반복_동작한다() {
-            assertSimpleTest(()->{
+            assertSimpleTest(() -> {
                 input("1", " ", "*", "", "B", "Q");
                 boolean result = controller.askRetry();
                 assertThat(result).isFalse();
@@ -142,11 +142,11 @@ class BridgeGameControllerTest extends InOutStreamTest {
     }
 
     @Nested
-    class EndTest{
+    class EndTest {
 
         @Test
-        void 게임에_성공한_경우_정상동작한다(){
-            assertRandomNumberInRangeTest(()->{
+        void 게임에_성공한_경우_정상동작한다() {
+            assertRandomNumberInRangeTest(() -> {
                         input("3", "U", "U", "U");
                         controller.start();
                         controller.setDifficulty();
@@ -159,12 +159,12 @@ class BridgeGameControllerTest extends InOutStreamTest {
                         );
                     },
                     1, 1, 1
-                    );
+            );
         }
 
         @Test
-        void 게임에_실패한_경우_정상동작한다(){
-            assertRandomNumberInRangeTest(()->{
+        void 게임에_실패한_경우_정상동작한다() {
+            assertRandomNumberInRangeTest(() -> {
                         input("3", "U", "D", "R", "U", "U", "D", "Q");
                         controller.start();
                         controller.setDifficulty();

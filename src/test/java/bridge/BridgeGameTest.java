@@ -14,7 +14,7 @@ class BridgeGameTest {
     BridgeGame game;
 
     @BeforeEach
-    void init(){
+    void init() {
         game = new BridgeGame();
         game.initComponents(
                 new TestNumberGenerator(newArrayList(1, 0, 1)),
@@ -22,19 +22,19 @@ class BridgeGameTest {
     }
 
     @Test
-    void 사용자_경로_이동은_다리의_안전경로와_같을때_적절히_실행된다(){
+    void 사용자_경로_이동은_다리의_안전경로와_같을때_적절히_실행된다() {
         game.move(Direction.UP);
         assertThat(game.getPlayerPath().getIsAlive()).isTrue();
     }
 
     @Test
-    void 사용자_경로_이동은_다리의_안전경로와_다를때_적절히_실행된다(){
+    void 사용자_경로_이동은_다리의_안전경로와_다를때_적절히_실행된다() {
         game.move(Direction.DOWN);
         assertThat(game.getPlayerPath().getIsAlive()).isFalse();
     }
 
     @Test
-    void 게임_재시도_데이처_처리는_정상동작한다(){
+    void 게임_재시도_데이처_처리는_정상동작한다() {
         PlayerPath path1 = game.getPlayerPath();
         game.retry();
         PlayerPath path2 = game.getPlayerPath();
@@ -46,21 +46,22 @@ class BridgeGameTest {
     class CheckCompletelyMatchedTest {
 
         @Test
-        void 사용자경로길이가_다리_안전경로보다_모든부분이_일치해야_완전일치다(){
+        void 사용자경로길이가_다리_안전경로보다_모든부분이_일치해야_완전일치다() {
             game.move(Direction.UP);
             game.move(Direction.DOWN);
             game.move(Direction.UP);
             assertThat(game.isSuccess()).isTrue();
         }
+
         @Test
-        void 사용자경로길이가_다리_안전경로보다_짧으면_완전일치가_아니다(){
+        void 사용자경로길이가_다리_안전경로보다_짧으면_완전일치가_아니다() {
             game.move(Direction.UP);
             game.move(Direction.DOWN);
             assertThat(game.isSuccess()).isFalse();
         }
 
         @Test
-        void 사용자경로길이가_다리_안전경로와_첫부분이_다르면_완전일치가_아니다(){
+        void 사용자경로길이가_다리_안전경로와_첫부분이_다르면_완전일치가_아니다() {
             game.move(Direction.DOWN);
             game.move(Direction.DOWN);
             game.move(Direction.UP);
@@ -68,7 +69,7 @@ class BridgeGameTest {
         }
 
         @Test
-        void 사용자경로길이가_다리_안전경로와_중간부분이_다르면_완전일치가_아니다(){
+        void 사용자경로길이가_다리_안전경로와_중간부분이_다르면_완전일치가_아니다() {
             game.move(Direction.UP);
             game.move(Direction.UP);
             game.move(Direction.UP);
@@ -76,7 +77,7 @@ class BridgeGameTest {
         }
 
         @Test
-        void 사용자경로길이가_다리_안전경로와_끝부분이_다르면_완전일치가_아니다(){
+        void 사용자경로길이가_다리_안전경로와_끝부분이_다르면_완전일치가_아니다() {
             game.move(Direction.UP);
             game.move(Direction.DOWN);
             game.move(Direction.DOWN);
@@ -87,13 +88,13 @@ class BridgeGameTest {
     @Nested
     class GameOverJudgeTest {
         @Test
-        void 사용자경로가_다리_안전경로와_일치하면_게임은_끝나지않는다(){
+        void 사용자경로가_다리_안전경로와_일치하면_게임은_끝나지않는다() {
             game.move(Direction.UP);
             assertThat(game.isGameOver()).isFalse();
         }
 
         @Test
-        void 사용자경로가_다리_안전경로와_불일치하면_게임은_끝난다(){
+        void 사용자경로가_다리_안전경로와_불일치하면_게임은_끝난다() {
             game.move(Direction.DOWN);
             assertThat(game.isGameOver()).isTrue();
         }

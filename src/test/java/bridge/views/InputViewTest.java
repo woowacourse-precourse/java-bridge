@@ -47,7 +47,7 @@ class InputViewTest extends InOutStreamTest {
     class ReadMovingTest {
 
         @Test
-        void 이동방향_입력은_정상동작한다(){
+        void 이동방향_입력은_정상동작한다() {
             input("A");
 
             String expected = "A";
@@ -81,7 +81,7 @@ class InputViewTest extends InOutStreamTest {
     class ReadGameCommandTest {
 
         @Test
-        void 재시작_종료_입력은_정상동작한다(){
+        void 재시작_종료_입력은_정상동작한다() {
             input("A");
 
             String expected = "A";
@@ -111,7 +111,7 @@ class InputViewTest extends InOutStreamTest {
         }
     }
 
-    void inputAndExceptionTest(String inputMessage, Executable executable){
+    void inputAndExceptionTest(String inputMessage, Executable executable) {
         input(inputMessage);
         assertThatThrownBy(executable::execute)
                 .isInstanceOf(IllegalArgumentException.class);

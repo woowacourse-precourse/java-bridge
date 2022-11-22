@@ -13,8 +13,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class BridgeTest {
 
     @Test
-    void 안전경로가_주어지지_않으면_예외처리한다(){
-        assertThatThrownBy(()->{
+    void 안전경로가_주어지지_않으면_예외처리한다() {
+        assertThatThrownBy(() -> {
             Bridge bridge = new Bridge(null);
         }).isInstanceOf(IllegalStateException.class);
     }

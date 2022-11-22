@@ -22,20 +22,24 @@ public enum Direction {
     }
 
     public static Direction parseDirection(String directionValue) {
-        if (Objects.equals(directionValue, DOWN.asString))
+        if (Objects.equals(directionValue, DOWN.asString)) {
             return DOWN;
-        if (Objects.equals(directionValue, UP.asString))
+        }
+        if (Objects.equals(directionValue, UP.asString)) {
             return UP;
+        }
         throw new IllegalArgumentException(
                 DOWN.asString + " 또는 " + UP.asString + " 을 입력해야 합니다."
         );
     }
 
     public static Direction parseDirection(int directionValue) {
-        if (directionValue == DOWN.asInt)
+        if (directionValue == DOWN.asInt) {
             return DOWN;
-        if (directionValue == UP.asInt)
+        }
+        if (directionValue == UP.asInt) {
             return UP;
+        }
         throw new IllegalStateException(
                 DOWN.asInt + " 또는 " + UP.asInt + " 을 입력해야 합니다."
         );

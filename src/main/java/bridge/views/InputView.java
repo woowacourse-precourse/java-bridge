@@ -2,9 +2,6 @@ package bridge.views;
 
 import java.util.regex.Pattern;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView extends DefaultView {
 
     private static final String MSG_REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
@@ -15,9 +12,6 @@ public class InputView extends DefaultView {
     private static final String FORMAT_ONLY_NUMBER = "^[0-9]+$";
 
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         output(MSG_REQUEST_BRIDGE_SIZE);
         String input = input();
@@ -30,9 +24,6 @@ public class InputView extends DefaultView {
         validateOnlyNumber(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         output(MSG_REQUEST_MOVING_DIRECTION);
         String input = input();
@@ -44,9 +35,6 @@ public class InputView extends DefaultView {
         validateOnlyAlphabet(input);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         output(MSG_REQUEST_GAME_COMMAND);
         String input = input();
@@ -59,16 +47,18 @@ public class InputView extends DefaultView {
     }
 
     private void validateOnlyAlphabet(String input) {
-        if (!Pattern.matches(FORMAT_ONLY_ALPHABET, input))
+        if (!Pattern.matches(FORMAT_ONLY_ALPHABET, input)) {
             throw new IllegalArgumentException(
                     "알파벳만 입력해야 합니다."
             );
+        }
     }
 
-    private void validateOnlyNumber(String input){
-        if (!Pattern.matches(FORMAT_ONLY_NUMBER, input))
+    private void validateOnlyNumber(String input) {
+        if (!Pattern.matches(FORMAT_ONLY_NUMBER, input)) {
             throw new IllegalArgumentException(
                     "0 이상의 정수만 입력해야 합니다."
             );
+        }
     }
 }
