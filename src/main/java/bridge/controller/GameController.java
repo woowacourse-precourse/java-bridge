@@ -10,8 +10,13 @@ import bridge.view.OutputView;
 
 public class GameController {
 
-    private OutputView outputView = new OutputView();
-    private InputView inputView = new InputView();
+    private final OutputView outputView;
+    private final InputView inputView;
+
+    public GameController(OutputView outputView, InputView inputView) {
+        this.outputView = outputView;
+        this.inputView = inputView;
+    }
 
     public void start() {
         try {

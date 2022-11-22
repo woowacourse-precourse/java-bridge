@@ -13,7 +13,7 @@ import java.util.List;
 public class BridgeGame {
 
     private Bridge bridge;
-    private GameResult gameResult;
+    private final GameResult gameResult;
 
     public BridgeGame(int size) {
         makeBridge(size);
