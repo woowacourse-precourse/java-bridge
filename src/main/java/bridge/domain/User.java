@@ -19,4 +19,8 @@ public class User {
     public void setQuit() {
         this.quit = true;
     }
+
+    public boolean getQuit() {
+        return this.quit;
+    }
 }
