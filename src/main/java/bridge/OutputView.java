@@ -16,12 +16,12 @@ public class OutputView extends OutputConfig {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(HashMap<Integer, List<String>> result) {
-        System.out.print("[");
+        System.out.print("[ ");
         printUpper(result);
-        System.out.println("]");
-        System.out.print("[");
+        System.out.println(" ]");
+        System.out.print("[ ");
         printDown(result);
-        System.out.println("]");
+        System.out.println(" ]");
     }
 
     public void printUpper(HashMap<Integer, List<String>> result) {
@@ -35,7 +35,7 @@ public class OutputView extends OutputConfig {
             if (key==(result.size()-1)){
                 break;
             }
-            System.out.print("|");
+            System.out.print(" | ");
         }
     }
 
@@ -50,7 +50,7 @@ public class OutputView extends OutputConfig {
             if (key==(result.size()-1)){
                 break;
             }
-            System.out.print("|");
+            System.out.print(" | ");
         }
     }
 
