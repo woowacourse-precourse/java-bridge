@@ -21,15 +21,23 @@ public class BridgeService {
         }
     }
 
-    public static String validateMove(String input){
+    public static void validateMove(String input){
         if (!input.equals("U") && !input.equals("D"))
             throw new IllegalArgumentException(BridgeException.INVALID_MOVE.getErrorMessage());
-        return input;
     }
 
-    public static String validateRestartStatus(String input){
+    public static void validateRestartStatus(String input){
         if (!input.equals("R") && !input.equals("Q"))
             throw new IllegalArgumentException(BridgeException.INVALID_RESTART_STATUS.getErrorMessage());
-        return input;
     }
+
+    public static boolean movingResult(String input, String result){
+        if(input.equals(result))
+            return true;
+        if(!input.equals(result))
+            return false;
+
+        throw new IllegalArgumentException(BridgeException.INVALID_MOVE.getErrorMessage());
+    }
+
 }
