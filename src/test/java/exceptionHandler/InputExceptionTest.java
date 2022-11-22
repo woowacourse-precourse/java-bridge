@@ -1,7 +1,0 @@
-package exceptionHandler;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-class InputExceptionTest {
-
-}
