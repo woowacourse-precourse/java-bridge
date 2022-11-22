@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.data.BridgeGame;
 import bridge.data.UserBridge;
+import bridge.valid.InputValid;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,9 +18,13 @@ public class GameSystem {
     private final InputView inputView = new InputView();
     private final BridgeMaker make = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final BridgeGame game  = new BridgeGame();
+    private final InputValid inputvalid = new InputValid();
+
+    public void welcome() {
+        outputView.printWelcome();
+    }
 
     public void inputBridgeLength() {
-        outputView.printWelcome();
         saveSize = inputView.readBridgeSize();
         game.saveBridge(make.makeBridge(saveSize));
     }
