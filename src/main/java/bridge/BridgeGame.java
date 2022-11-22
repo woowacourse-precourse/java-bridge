@@ -7,10 +7,10 @@ import java.util.StringJoiner;
  */
 public class BridgeGame {
 
-    private static StringJoiner upBridge = new StringJoiner("|", "[", "]");
+    private static StringJoiner upBridge = new StringJoiner(" | ", "[", "]");
     private static StringJoiner downBridge = new StringJoiner("|", "[", "]");
     private static int gameCount = 0;
-    private static boolean gameResult = false;
+    private static boolean gameResult = true;
 
     public static StringJoiner getUpBridge() {
         return upBridge;
@@ -32,8 +32,8 @@ public class BridgeGame {
         gameCount += 1;
     }
 
-    public void success(){
-        gameResult = true;
+    public void fail(){
+        gameResult = false;
     }
 
     /**
@@ -47,6 +47,7 @@ public class BridgeGame {
         }
         if (!moving.equals(answer)) {
             mark(moving, "X");
+            fail();
         }
     }
 
