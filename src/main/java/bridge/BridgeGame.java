@@ -34,4 +34,14 @@ public class BridgeGame {
         }
         return true;
     }
+
+    public boolean isAllCrossed(Bridge bridge) {
+        int footholdsSize = bridge.getCrossed().size();
+        int crossedSize = bridge.getCrossed().size();
+
+        if (footholdsSize == crossedSize) {
+            return true;
+        }
+        return false;
+    }
 }
