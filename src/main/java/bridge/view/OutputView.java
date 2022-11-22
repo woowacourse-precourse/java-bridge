@@ -32,16 +32,15 @@ public class OutputView {
      */
     public void printMap(String selection, boolean isCorrect) {
         if (selection.equals(UP)) {
-            addMap(isCorrect, upsideBridge, downsideBridge);
+            makeMapView(isCorrect, upsideBridge, downsideBridge);
         }
         if (selection.equals(DOWN)) {
-            addMap(isCorrect, downsideBridge, upsideBridge);
+            makeMapView(isCorrect, downsideBridge, upsideBridge);
         }
-        System.out.println(upsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
-        System.out.println(downsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
+        printMapView();
     }
 
-    private void addMap(boolean isCorrect, List side, List opposite) {
+    private void makeMapView(boolean isCorrect, List side, List opposite) {
         if (isCorrect) {
             side.add(CORRECT);
             opposite.add(BLANK);
@@ -50,6 +49,11 @@ public class OutputView {
             side.add(WRONG);
             opposite.add(BLANK);
         }
+    }
+
+    private void printMapView() {
+        System.out.println(upsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
+        System.out.println(downsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
     }
 
     /**
@@ -63,8 +67,7 @@ public class OutputView {
             result = WIN;
         }
         System.out.println(ViewConstants.GAME_END);
-        System.out.println(upsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
-        System.out.println(downsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
+        printMapView();
         System.out.println(ViewConstants.WIN_OR_FAIL + result);
         System.out.println(ViewConstants.PLAY_TIME + playTime);
     }
