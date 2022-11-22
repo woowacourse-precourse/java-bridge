@@ -53,8 +53,8 @@ public class OutputView {
         String result = "";
         if(isBridgeSuccess) {result="성공";}
         if(!isBridgeSuccess) {result="실패";}
-        System.out.println("게임 성공 여부 : " + result);
-        System.out.println("총 시도한 횟수 : " + count);
+        System.out.println("게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수: " + count);
     }
 
 }

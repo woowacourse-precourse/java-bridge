@@ -8,11 +8,9 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    // InputViewn, OutputView 사용 불가
-// 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
     static List<String> bridge;
     static List<String> choice = new ArrayList<>();
-    int count = 1;
+    private static int count = 1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
