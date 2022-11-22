@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.enums.BridgeGameCommand;
 import bridge.enums.BridgeMoving;
+import bridge.enums.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 
@@ -16,7 +17,7 @@ public class InputView {
     public int readBridgeSize() {
         String size = Console.readLine();
         if (isEmptyOrNull(size) || !isNumber(size)) {
-            throw new IllegalArgumentException("잘못된 값이 입력되었습니다. 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.getMessage("INVALID_BRIDGE_SIZE"));
         }
         return Integer.parseInt(size);
     }
@@ -41,12 +42,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String moving = Console.readLine();
+        String input = Console.readLine();
         Arrays.stream(BridgeMoving.values())
-                .filter(cell -> cell.toString().equals(moving))
+                .filter(moving -> moving.toString().equals(input))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 칸을 입력하셨습니다."));
-        return moving;
+                .orElseThrow(() ->
+                        new IllegalArgumentException(ErrorMessage.getMessage("INVALID_MOVING")));
+        return input;
     }
 
     /**
@@ -57,7 +59,8 @@ public class InputView {
         Arrays.stream(BridgeGameCommand.values())
                 .filter(gameCommand -> gameCommand.name().equals(command))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("재시작 여부를 다시 입력해주세요."));
+                .orElseThrow(() ->
+                        new IllegalArgumentException(ErrorMessage.getMessage("INVALID_GAME_COMMAND")));
         return command;
     }
 }

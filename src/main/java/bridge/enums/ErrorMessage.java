@@ -3,7 +3,7 @@ package bridge.enums;
 import java.util.Arrays;
 
 public enum ErrorMessage {
-    INVALID_BRIDGE_SIZE("잘못된 값이 입력되었습니다. 숫자만 입력해주세요."),
+    INVALID_BRIDGE_SIZE("잘못된 값이 입력되었습니다. 양의 정수만 입력해주세요."),
     OUT_OF_RANGE_BRIDGE_SIZE("다리 길이는 "
             + BridgeRange.getMinValue() + "보다 크거나 같고 " + BridgeRange.getMaxValue()
             + "보다 작거나 같아야 합니다."),

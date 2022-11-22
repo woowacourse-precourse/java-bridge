@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.enums.BridgeMoving;
+import camp.nextstep.edu.missionutils.test.NsTest;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,5 +22,15 @@ public class MovingTest {
         InputView inputView = new InputView();
         System.setIn(new ByteArrayInputStream(str.getBytes()));
         assertThat(cellNames).contains(inputView.readMoving());
+    }
+
+    @ValueSource(strings = {"1", "hello", "A"})
+    @ParameterizedTest
+    void 틀린값_view(String str) {
+        System.setIn(new ByteArrayInputStream(str.getBytes()));
+        InputView inputView = new InputView();
+        assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
     }
 }
