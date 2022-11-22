@@ -23,7 +23,14 @@ public class View{
 	}
 
 	public String readMoving() {
-		return inputView.readMoving();
+		String moving;
+		try {
+			moving = inputView.readMoving();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			moving = readMoving();
+		}
+		return moving;
 	}
 
 	public String readRetry() {
