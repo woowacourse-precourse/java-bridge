@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -36,68 +35,12 @@ public class BridgeGame {
         throw new IllegalArgumentException("[ERROR] 유효하지 않은 상태 - U 또는 D만 입력되어야함");
     }
 
-    public String getMapToString() {
-        String map = mapToString(new StringBuilder("["), buildMap(record));
-        return map;
-    }
-
-    private String mapToString(StringBuilder stringBuilder, char[][] map) {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < map.length; j++) {
-                stringBuilder.append(String.format(" %c |", map[j][i]));
-            }
-            stringBuilder.deleteCharAt(stringBuilder.length() - 1).append("]\n[");
-        }
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        return stringBuilder.toString();
-    }
-
-    private char[][] buildMap(List<Integer> record) {
-        char[][] Map = initializeMap(record.size());
-        for (int i = 0; i < record.size(); i++) {
-            int currentRecord = record.get(i);
-            Map[i][getIndex(currentRecord)] = getResult(currentRecord);
-        }
-        return Map;
-    }
-
-    private char[][] initializeMap(int mapLength) {
-        char[][] Map = new char[mapLength][2];
-        for (int i = 0; i < mapLength; i++) {
-            Arrays.fill(Map[i], ' ');
-        }
-        return Map;
-    }
-
-    private int getIndex(int record) {
-        if (record == 1 || record == 3) {
-            return 0;
-        }
-        return 1;
-    }
-
-    private char getResult(int record) {
-        if (record == 1 || record == 4) {
-            return 'O';
-        }
-        return 'X';
-    }
-
     public boolean checkComplete() {
         if (record.size() == bridge.size() && !hasFail()) {
             success = "성공";
             return true;
         }
         return false;
-    }
-
-    public String getResult() {
-        StringBuilder stringBuilder = new StringBuilder("최종 게임 결과\n");
-        stringBuilder.append(getMapToString() + "\n");
-        stringBuilder.append("게임 성공 여부: ");
-        stringBuilder.append(success + "\n");
-        stringBuilder.append("총 시도한 횟수: " + trial);
-        return stringBuilder.toString();
     }
 
     /**
@@ -126,5 +69,17 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public List<Integer> getRecord() {
+        return record;
+    }
+
+    public String getSuccess() {
+        return success;
+    }
+
+    public int getTrial() {
+        return trial;
     }
 }
