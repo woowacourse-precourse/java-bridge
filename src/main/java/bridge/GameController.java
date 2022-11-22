@@ -8,6 +8,7 @@ public class GameController {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private List<String> bridge;
     private final BridgeGame bridgeGame = new BridgeGame();
+    private final OutputView outputView = new OutputView();
 
     public void getSizeAndMakeBridge() {
         int bridgeSize = 0;
@@ -29,6 +30,14 @@ public class GameController {
         return bridgeGame.move(bridge, inputMoving, inputIdx);
     }
 
+    public void printLongMap(List<String> userInput, List<Boolean> result) {
+        outputView.printUpLineMap(userInput, result);
+        outputView.printDownLineMap(userInput, result);
+    }
+
+    public void printShortMap(List<String> userInput, List<Boolean> result){
+        outputView.printShortMap(userInput,result);
+    }
     public List<String> getbridge() {
         return bridge;
     }

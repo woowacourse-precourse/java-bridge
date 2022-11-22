@@ -12,21 +12,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printUpLineMap(List<String> userInput,List<Boolean> result) {
-//        [ O |   |   ]
-//        [   | O | O ]
+    public void printShortMap(List<String> userInput, List<Boolean> result) {
+        System.out.print("[");
+        printByLine(userInput.get(0), result.get(0), "U");
+        System.out.println(" ]");
+        System.out.print("[");
+        printByLine(userInput.get(0), result.get(0), "D");
+        System.out.print(" ]");
+    }
 
+    public void printUpLineMap(List<String> userInput, List<Boolean> result) {
 //        [ O ]
 //        [   ]
-
-//        [ O | X ]
-//        [   |   ]
         System.out.print("[");
-        for(int i=0;i<userInput.size()-1;i++){
-            printByLine(userInput.get(i),result.get(i),"U");
+        for (int i = 0; i < userInput.size() - 1; i++) {
+            printByLine(userInput.get(i), result.get(i), "U");
             System.out.print(" |");
         }
-        printByLine(userInput.get(userInput.size()-1),result.get(userInput.size()-1),"U");
+        printByLine(userInput.get(userInput.size() - 1), result.get(userInput.size() - 1), "U");
         System.out.println(" ]");
 
 
