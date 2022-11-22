@@ -1,4 +1,4 @@
-package response;
+package bridge.response;
 
 public class UserInputException extends IllegalArgumentException {
 

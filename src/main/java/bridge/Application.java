@@ -1,13 +1,12 @@
 package bridge;
 
-import response.GameException;
-import response.UserInputException;
-import view.InputView;
-import view.OutputView;
+import bridge.response.GameException;
+import bridge.response.UserInputException;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Application {
 
-//    private static BridgeGame game = new BridgeGame();
     private static BridgeGame game;
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();

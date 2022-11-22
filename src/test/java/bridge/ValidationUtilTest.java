@@ -2,7 +2,7 @@ package bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.ValidationUtil;
+import bridge.util.ValidationUtil;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

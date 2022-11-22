@@ -1,4 +1,4 @@
-package response;
+package bridge.response;
 
 public enum ErrorResponse {
     INPUT_BRIDGE_SIZE_RANGE_ERROR("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다. 다시 입력하세요."),

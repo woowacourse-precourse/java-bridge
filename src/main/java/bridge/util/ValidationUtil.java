@@ -1,7 +1,7 @@
-package util;
+package bridge.util;
 
-import response.UserInputException;
-import response.ErrorResponse;
+import bridge.response.UserInputException;
+import bridge.response.ErrorResponse;
 
 public class ValidationUtil {
 

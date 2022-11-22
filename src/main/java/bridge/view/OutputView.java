@@ -1,7 +1,7 @@
-package view;
+package bridge.view;
 
 import bridge.BridgeGame;
-import response.UserInputException;
+import bridge.response.UserInputException;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -31,28 +31,28 @@ public class OutputView {
      * closeTopBridge(), closeBottomBridge() - 위, 아래 두개의 다리 끝("]")
      * printBridgeMapStatus() - 사용자 입력 다리 현 상태 출력
      */
-    private StringBuilder initTopBridge() {
+    public StringBuilder initTopBridge() {
         StringBuilder topBridge = new StringBuilder();
         topBridge.append("[");
 
         return topBridge;
     }
 
-    private StringBuilder initBottomBridge() {
+    public StringBuilder initBottomBridge() {
         StringBuilder bottomBridge = new StringBuilder();
         bottomBridge.append("[");
 
         return bottomBridge;
     }
 
-    private String closeTopBridge(StringBuilder topBridge) {
+    public String closeTopBridge(StringBuilder topBridge) {
         topBridge.deleteCharAt(topBridge.length() - 1);
         topBridge.append("]");
 
         return topBridge.toString();
     }
 
-    private String closeBottomBridge(StringBuilder bottomBridge) {
+    public String closeBottomBridge(StringBuilder bottomBridge) {
         bottomBridge.deleteCharAt(bottomBridge.length() - 1);
         bottomBridge.append("]");
 
@@ -66,7 +66,7 @@ public class OutputView {
      *  - 사용자 입력과 실제 다리 비교해서 그 결과 String 반환
      */
 
-    private StringBuilder printTopBridgeStatus(BridgeGame game, StringBuilder topBridge) {
+    public StringBuilder printTopBridgeStatus(BridgeGame game, StringBuilder topBridge) {
         for (int i = 0; i < game.getUserInput().size(); i++) {
             String appendTarget = getTopStringByStatus(game.getBridge().get(i), game.getUserInput().get(i));
 
@@ -75,7 +75,7 @@ public class OutputView {
         return topBridge;
     }
 
-    private StringBuilder printBottomBridgeStatus(BridgeGame game, StringBuilder bottomBridge) {
+    public StringBuilder printBottomBridgeStatus(BridgeGame game, StringBuilder bottomBridge) {
         for (int i = 0; i < game.getUserInput().size(); i++) {
             String appendTarget = getBottomStringByStatus(game.getBridge().get(i), game.getUserInput().get(i));
 
