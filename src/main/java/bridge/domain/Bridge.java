@@ -17,7 +17,7 @@ public class Bridge {
     }
 
     public boolean canMove(Movement movement) {
-        int nowIndex = movement.getMoveCount()-1;
+        int nowIndex = movement.getMoveCount() - 1;
         if (!movement.getMoving().equals(bridge.get(nowIndex))) {
             return false;
         }
