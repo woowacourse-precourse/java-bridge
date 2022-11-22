@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.GameCommand;
 import bridge.Moving;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -27,6 +28,17 @@ public class InputController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getMoving();
+        }
+    }
+
+    public static GameCommand getGameCommand() {
+        try {
+            outputView.printGameCommandInput();
+            String mark = inputView.readGameCommand();
+            return GameCommand.from(mark);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getGameCommand();
         }
     }
 }
