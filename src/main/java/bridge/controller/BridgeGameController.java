@@ -16,6 +16,16 @@ public class BridgeGameController {
         this.bridgeGame = new BridgeGame();
     }
 
+    private int getMakeBridgeSize() {
+        String input;
+
+        do {
+            input = inputView.readBridgeSize();
+        } while (!validateInputSetting(input));
+
+        return Integer.parseInt(input);
+    }
+
     private boolean validateInputSetting(String userInput) {
         try {
             bridgeGame.validateBridgeSize(userInput);

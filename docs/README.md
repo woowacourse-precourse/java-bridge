@@ -36,7 +36,7 @@
 
 ### BridgeGameController : 다리 건너기 게임의 흐름을 관리
 - [ ] 게임을 시작한다. #gameStart()
-- [ ] 다리 길이를 반환한다. #getMakeBridgeSize()
+- [x] 다리 길이를 반환한다. #getMakeBridgeSize()
 - [x] 설정 값을 검증한다. #validateInputSetting()
 - [ ] 게임에 대한 설정을 한다. #gameSetting()
 - [ ] 게임을 진행한다. #gamePlay()
