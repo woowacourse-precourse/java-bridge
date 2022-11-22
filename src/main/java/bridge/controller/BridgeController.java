@@ -52,14 +52,13 @@ public class BridgeController {
     private int judgeGameStatus(int step, int size){
         outputView.printMap(bridgeGame.fail(step));
         return checkRetry(size);
-
     }
 
     private int checkRetry(int size){
         outputView.printRetry();
         String letter = inputView.readGameCommand();
         validate.endLetter(letter);
-        if(letter == GameMessage.RETRY){
+        if(letter.equals(GameMessage.RETRY)){
             bridgeGame.retry();
             return playing(size);
         }

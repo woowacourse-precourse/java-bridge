@@ -27,6 +27,7 @@ public class OutputView {
      */
     public void printMap(List<List<String>> buffer) {
         for(int i = 0;i <2; i++){
+            System.out.println();
             for (int j = 0; j < buffer.get(i).size();j++)
                 System.out.print(buffer.get(i).get(j));
         }

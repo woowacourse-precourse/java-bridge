@@ -8,7 +8,7 @@ public class ValidateInput {
         return Integer.parseInt(input);
     }
     protected void endLetter(String input){
-        if(!input.equals(GameMessage.RETRY) || !input.equals(GameMessage.CLOSE)){
+        if(!input.equals(GameMessage.RETRY) && !input.equals(GameMessage.CLOSE)){
             throw new IllegalArgumentException();
         }
     }
