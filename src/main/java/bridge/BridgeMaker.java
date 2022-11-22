@@ -1,8 +1,10 @@
-package bridge.domain;
+package bridge;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import bridge.domain.Move;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
