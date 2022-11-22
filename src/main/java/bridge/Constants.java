@@ -4,7 +4,7 @@ public class Constants {
 	public static final String ERROR = "[ERROR]";
 	public static final String ERROR_NUMBER_PATTERN = ERROR + " 숫자로만 입력되지 않았습니다.";
 	public static final String ERROR_NUMBER_RANGE = ERROR + " 범위 내 숫자가 입력되지 않았습니다.";
-	public static final String ERROR_ALPHABET_INPUT = ERROR + " 알파벳으로 입력되지 않았습니다.";
+	public static final String ERROR_ALPHABET_INPUT = ERROR + " 알파벳 대문자로 입력되지 않았습니다.";
 	public static final String ERROR_U_D_INPUT = ERROR + " U또는 D만 입력할 수 있습니다.";
 	public static final String ERROR_R_Q_INPUT = ERROR + " R또는 Q만 입력할 수 있습니다.";
 	public static final String GAME_FAIL = "게임 성공 여부: 실패";
