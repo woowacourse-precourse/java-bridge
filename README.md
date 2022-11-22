@@ -275,7 +275,7 @@ public class BridgeMaker {
 
 ```java
 int number = bridgeNumberGenerator.generate();
-``` 
+```
 
 ### 라이브러리
 
