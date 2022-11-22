@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.model.BridgeMaker;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

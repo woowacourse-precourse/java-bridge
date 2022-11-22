@@ -1,6 +1,6 @@
-package bridge.model;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
+import bridge.model.MoveCommand;
 
 import java.util.ArrayList;
 import java.util.List;
