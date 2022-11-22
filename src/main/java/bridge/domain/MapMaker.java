@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MapMaker {
-    private static final String CHANGE_LINE = "\n";
+    private static final String LINE_CHANGE = "\n";
 
     public String makeMap(List<String> moves, boolean isFail) {
         List<String> upperMap = partialMap(moves, isFail, Constants.CODE_UP);
         List<String> lowerMap = partialMap(moves, isFail, Constants.CODE_DOWN);
 
-        return MapFlag.START.code() + String.join(MapFlag.JOIN.code(), upperMap) + MapFlag.END.code() + CHANGE_LINE +
-                MapFlag.START.code() + String.join(MapFlag.JOIN.code(), lowerMap) + MapFlag.END.code() + CHANGE_LINE;
+        return MapFlag.START.code() + String.join(MapFlag.JOIN.code(), upperMap) + MapFlag.END.code() + LINE_CHANGE +
+                MapFlag.START.code() + String.join(MapFlag.JOIN.code(), lowerMap) + MapFlag.END.code() + LINE_CHANGE;
     }
 
     private List<String> partialMap(List<String> moves, boolean isFail, String code) {
