@@ -71,10 +71,10 @@ public class OutputView {
     public static String printWinOrLose(BridgeGame bridgeGame) {
         int bridgeIndex = bridgeGame.getBridgeIndex() - 1;
 
-        if (bridgeGame.upperBridge.get(bridgeIndex).equals(WRONG_WAY_SIGN)) {
+        if (bridgeGame.upperBridge.get(bridgeIndex).equals(WRONG_WAY)) {
             return LOSE;
         }
-        if (bridgeGame.lowerBridge.get(bridgeIndex).equals(WRONG_WAY_SIGN)) {
+        if (bridgeGame.lowerBridge.get(bridgeIndex).equals(WRONG_WAY)) {
             return LOSE;
         }
         return WIN;
