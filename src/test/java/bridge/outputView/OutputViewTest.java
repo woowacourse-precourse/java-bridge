@@ -21,7 +21,8 @@ public class OutputViewTest extends NsTest {
     @ParameterizedTest
     void printMapTest(String printedMap1, String printedMap2, Integer countOfMove, Boolean isMove) {
         List<String> bridge = new ArrayList<String>(List.of("U", "D", "D", "U"));
-        outputView.printMap(bridge, countOfMove, isMove);
+        outputView.setBridge(bridge);
+        outputView.printMap(countOfMove, isMove);
         assertThat(output()).contains(printedMap1, printedMap2);
     }
 
@@ -30,16 +31,13 @@ public class OutputViewTest extends NsTest {
     @ParameterizedTest
     void printResultTest(List<String> printedMap, Integer countOfMove, Boolean isSuccess, Integer countOfPlay) {
         List<String> bridge = new ArrayList<String>(List.of("U", "D", "D", "U"));
-        outputView.printResult(bridge, countOfMove, isSuccess, countOfPlay);
+        outputView.setBridge(bridge);
+        outputView.printResult(countOfMove, isSuccess, countOfPlay);
         String successMessage = "성공";
         if (!isSuccess) {
             successMessage = "실패";
         }
-        assertThat(output()).contains(
-                printedMap.get(0),
-                printedMap.get(1),
-                successMessage,
-                countOfPlay.toString());
+        assertThat(output()).contains(printedMap.get(0), printedMap.get(1), successMessage, countOfPlay.toString());
     }
 
     private static Stream<Arguments> provideParametersForPrintMap() {

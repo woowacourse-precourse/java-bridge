@@ -12,6 +12,9 @@ public class GameStart {
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
     private List<String> bridge;
+    boolean isSuccess;
+    boolean isRestart;
+    int countOfPlay;
 
 
     public GameStart() {
@@ -22,28 +25,34 @@ public class GameStart {
     }
 
     public void run() {
-        inputBridge();
-        boolean isSuccess = false;
-        boolean isRestart = true;
-        int countOfPlay = 0;
+        start();
         while (!isSuccess && isRestart) {
             countOfPlay++;
             isSuccess = play();
             isRestart = checkRestart(isSuccess);
         }
-        outputView.printResult(bridge, bridge.size()-1, isSuccess, countOfPlay);
+        outputView.printResult(bridge.size()-1, isSuccess, countOfPlay);
     }
 
     private boolean play() {
         for (int countOfMove = 0; countOfMove < bridge.size()-1; countOfMove++) {
             String moveBlock = inputMove();
             boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
-            outputView.printMap(bridge, countOfMove, isMove);
+            outputView.printMap(countOfMove, isMove);
             if (!isMove) {
                 return false;
             }
         }
         return true;
+    }
+
+    private void start() {
+        outputView.printStartMessage();
+        inputBridge();
+        outputView.setBridge(bridge);
+        isSuccess = false;
+        isRestart = true;
+        countOfPlay = 0;
     }
 
     private boolean checkRestart(boolean isSuccess) {

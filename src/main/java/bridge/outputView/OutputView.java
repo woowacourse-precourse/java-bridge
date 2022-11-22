@@ -1,5 +1,6 @@
 package bridge.outputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,15 +8,21 @@ import java.util.List;
  */
 public class OutputView {
 
+    private List<String> bridge;
+
+    public OutputView() {
+        bridge = new ArrayList<>();
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, int countOfMove, boolean isMove) {
-        String message = makeMessageForPrintMap(bridge, countOfMove, isMove, "U");
+    public void printMap(int countOfMove, boolean isMove) {
+        String message = makeMessageForPrintMap(countOfMove, isMove, "U");
         System.out.println("[" + message + "]");
-        message = makeMessageForPrintMap(bridge, countOfMove, isMove, "D");
+        message = makeMessageForPrintMap(countOfMove, isMove, "D");
         System.out.println("[" + message + "]");
     }
 
@@ -24,15 +31,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridge, int countOfMove, boolean isSuccess, int countOfPlay) {
+    public void printResult(int countOfMove, boolean isSuccess, int countOfPlay) {
         System.out.println("최종 게임 결과");
-        printMap(bridge, countOfMove, isSuccess);
+        printMap(countOfMove, isSuccess);
         String successMessage = "성공";
         if (!isSuccess) {
             successMessage = "실패";
         }
         System.out.println("\n게임 성공 여부: " + successMessage);
         System.out.println("총 시도한 횟수: " + countOfPlay);
+    }
+
+    public void setBridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
     public void printStartMessage() {
@@ -51,18 +62,18 @@ public class OutputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
-    private String makeMessageForPrintMap(List<String> bridge, int countOfMove, boolean isMove, String target) {
+    private String makeMessageForPrintMap(int countOfMove, boolean isMove, String target) {
         String message = "";
         for (int i = 0; i < countOfMove; i++) {
-            String mark = makeMark(bridge, i, true, target);
+            String mark = makeMark(i, true, target);
             message += " " + mark + " |";
         }
-        String mark = makeMark(bridge, countOfMove, isMove, target);
+        String mark = makeMark(countOfMove, isMove, target);
         message += " " + mark + " ";
         return message;
     }
 
-    private String makeMark(List<String> bridge, int index, boolean isMove, String target) {
+    private String makeMark(int index, boolean isMove, String target) {
         if (bridge.get(index) == target && isMove) {
             return "O";
         }
