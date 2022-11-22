@@ -65,4 +65,21 @@ class PlayerTest {
         movedShape = player.getMovedResultByPosition(1);
         assertThat(movedShape).isEqualTo("X");
     }
+
+    @Test
+    void 마지막으로_이동한_결과_반환_테스트() {
+        String movingResult;
+
+        movingResult = "X";
+        이동_결과와_마지막_결과_비교(movingResult);
+
+        movingResult = "O";
+        이동_결과와_마지막_결과_비교(movingResult);
+    }
+
+    private void 이동_결과와_마지막_결과_비교(String movingResult) {
+        player.move(movingResult);
+        String lastMovedResult = player.getLastMovedResult();
+        assertThat(lastMovedResult).isEqualTo(movingResult);
+    }
 }
