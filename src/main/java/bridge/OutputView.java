@@ -35,8 +35,7 @@ public class OutputView {
      */
     private void addLastBridgeMap(StringBuilder upLine, StringBuilder downLine, String bridgeState, String moveCommand) {
         String isCorrect = "X";
-        if (moveCommand.equals(bridgeState))
-            isCorrect = "O";
+        if (moveCommand.equals(bridgeState)) isCorrect = "O";
 
         if (moveCommand.equals("U")) {
             insertResult(upLine, downLine, " " + isCorrect + " ]", "   ]");
@@ -84,8 +83,7 @@ public class OutputView {
      */
     private void bridgeStateValidate(List<String> bridge, List<String> move) {
         for (int i = 0; i < move.size() - 1; i++) {
-            if (!bridge.get(i).equals(move.get(i)))
-                throw new IllegalStateException("내부 상태이상: 중간에 일치하지 않는 부분이 있습니다.");
+            if (!bridge.get(i).equals(move.get(i))) throw new IllegalStateException("내부 상태이상: 중간에 일치하지 않는 부분이 있습니다.");
         }
     }
 
@@ -99,6 +97,9 @@ public class OutputView {
      *               출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String> bridge, List<String> move, int count) {
+        System.out.println("최종 게임 결과");
+        printMap(bridge, move);
+        System.out.println();
         if (bridge.equals(move)) {
             System.out.println("게임 성공 여부: 성공");
             System.out.println("총 시도한 횟수: " + count);
