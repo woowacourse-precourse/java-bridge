@@ -10,11 +10,11 @@ public enum Move {
             , (string, bridgeDirection) -> string.equals(bridgeDirection.getDirectionInitial())
             , (string, stepDirection) -> string.equals(stepDirection.getDirectionInitial())),
     WRONG("X"
-            , (string, bridgeDirection) -> true
+            , (string, bridgeDirection) -> !string.equals(bridgeDirection.getDirectionInitial())
             , (string, stepDirection) -> !string.equals(stepDirection.getDirectionInitial())),
     EMPTY(" "
-            , (string, bridgeDirection) -> !string.equals(bridgeDirection.getDirectionInitial())
-            , (string, stepDirection) -> string.equals(stepDirection.getDirectionInitial()));
+            , (string, bridgeDirection) -> string.equals(bridgeDirection.getDirectionInitial())
+            , (string, stepDirection) -> true);
 
     private final String status;
     private final BiPredicate<String, Direction> isMatchBridge;
