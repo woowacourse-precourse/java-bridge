@@ -27,4 +27,16 @@ public class BridgeGame {
 
     public void retry() {
     }
+
+    /**
+     * 다리 길이를 입력받아 다리를 생성하는 메서드
+     *
+     * @param bridgeSize
+     * @return
+     */
+    public List<String> createBridge(int bridgeSize) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
 }
