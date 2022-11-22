@@ -17,13 +17,17 @@ public class OutputView {
     public static void printMap(List<String>[] move) {
         for (int i = 0; i < move.length; i++) {
             System.out.print("[ ");
-            for (int j = 0; j < move[i].size(); j++) {
-                if (j != 0) {
-                    System.out.print(" | ");
-                }
-                System.out.print(move[i].get(j));
-            }
+            printInMap(move[i]);
             System.out.println(" ]");
+        }
+    }
+
+    public static void printInMap(List<String> move) {
+        for (int j = 0; j < move.size(); j++) {
+            if (j != 0) {
+                System.out.print(" | ");
+            }
+            System.out.print(move.get(j));
         }
     }
 
