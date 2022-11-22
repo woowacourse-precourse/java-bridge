@@ -11,8 +11,9 @@ public class Bridge {
         this.size = 0;
         this.bridgeShape = new ArrayList<>();
         for (String value : bridgeShape) {
-            add(value);
+            this.bridgeShape.add(value);
         }
+        this.size = this.bridgeShape.size();
     }
 
     public int getSize() {
@@ -27,14 +28,14 @@ public class Bridge {
         return bridgeShape.get(index).equals(upDown);
     }
 
-    public void add(String number) {
-        sizeUp();
-        if (number.equals("1")) {
-            bridgeShape.add("U");
-            return;
-        }
-        bridgeShape.add("D");
-    }
+//    public void add(String number) {
+//        sizeUp();
+//        if (number.equals("1")) {
+//            bridgeShape.add("U");
+//            return;
+//        }
+//        bridgeShape.add("D");
+//    }
 
     private void sizeUp() {
         size++;

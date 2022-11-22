@@ -21,7 +21,11 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int randomNum = bridgeNumberGenerator.generate();
-            newBridge.add(Integer.toString(randomNum));
+            if (randomNum == 1) {
+                newBridge.add("U");
+                continue;
+            }
+            newBridge.add("D");
         }
         return newBridge;
     }

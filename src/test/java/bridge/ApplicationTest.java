@@ -18,12 +18,20 @@ class ApplicationTest extends NsTest {
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridgeShape = bridgeMaker.makeBridge(3);
-        Bridge bridge = new Bridge(bridgeShape);
-        List<String> result = bridge.getBridgeShape();
-        System.out.println(result + "test");
-        assertThat(result).containsExactly("U", "D", "D");
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        System.out.println(bridge);
+        assertThat(bridge).containsExactly("U", "D", "D");
     }
+//    @Test
+//    void 다리_생성_테스트() {
+//        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+//        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+//        List<String> bridgeShape = bridgeMaker.makeBridge(3);
+//        Bridge bridge = new Bridge(bridgeShape);
+//        List<String> result = bridge.getBridgeShape();
+//        System.out.println(result + "test");
+//        assertThat(result).containsExactly("U", "D", "D");
+//    }
 
     @Test
     void 기능_테스트() {
