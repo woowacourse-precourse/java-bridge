@@ -51,7 +51,11 @@ public class InputView {
             }
         }
     }
-
+    private void validMoving(String moving) {
+        if (!(moving.equals("U") || moving.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 이동 입력은 U 또는 D로만 가능합니다");
+        }
+    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
