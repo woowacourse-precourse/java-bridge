@@ -24,13 +24,15 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            if (randomNumber == DOWN.getNumber()) {
-                bridge.add(DOWN.getMoving());
-            }
-            if (randomNumber == UP.getNumber()) {
-                bridge.add(UP.getMoving());
-            }
+            bridge.add(choseMoving(randomNumber));
         }
         return bridge;
+    }
+
+    private String choseMoving(int randomNumber) {
+        if (randomNumber == UP.getNumber()) {
+            return UP.getMoving();
+        }
+        return DOWN.getMoving();
     }
 }
