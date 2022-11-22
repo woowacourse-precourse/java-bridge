@@ -38,27 +38,43 @@ public class OutputView {
 
     private void addCorrectResult(List<String> bridge, List<Boolean> gameResult, int index) {
         if (gameResult.get(index)) {
-            if (bridge.get(index).equals("U")) {
-                upBridge.add("O");
-                downBridge.add(" ");
-            }
-            if (bridge.get(index).equals("D")) {
-                upBridge.add(" ");
-                downBridge.add("O");
-            }
+            addCorrectUpResult(bridge, index);
+            addCorrectDownResult(bridge, index);
+        }
+    }
+
+    private void addCorrectUpResult(List<String> bridge, int index) {
+        if (bridge.get(index).equals("U")) {
+            upBridge.add("O");
+            downBridge.add(" ");
+        }
+    }
+
+    private void addCorrectDownResult(List<String> bridge, int index) {
+        if (bridge.get(index).equals("D")) {
+            upBridge.add(" ");
+            downBridge.add("O");
         }
     }
 
     private void addMissResult(List<String> bridge, List<Boolean> gameResult, int index) {
         if (!gameResult.get(index)) {
-            if (bridge.get(index).equals("U")) {
-                upBridge.add(" ");
-                downBridge.add("X");
-            }
-            if (bridge.get(index).equals("D")) {
-                upBridge.add("X");
-                downBridge.add(" ");
-            }
+            addMissUpResult(bridge, index);
+            addMissDownResult(bridge, index);
+        }
+    }
+
+    private void addMissDownResult(List<String> bridge, int index) {
+        if (bridge.get(index).equals("D")) {
+            upBridge.add("X");
+            downBridge.add(" ");
+        }
+    }
+
+    private void addMissUpResult(List<String> bridge, int index) {
+        if (bridge.get(index).equals("U")) {
+            upBridge.add(" ");
+            downBridge.add("X");
         }
     }
 
