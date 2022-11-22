@@ -11,4 +11,8 @@ public class Player {
         this.map = map;
         this.gameAttempts = gameAttempts;
     }
+
+    public void move(String moving) {
+        map.add(moving);
+    }
 }
