@@ -20,20 +20,25 @@ public class BridgeGameController {
         bridgeGame = new BridgeGame(bridge, player);
     }
 
-    public Result move() {
+    public MoveResponseDto move() {
         outputView.askCommand();
-        Command command = inputView.readGameCommand();
+        Command command = inputView.readMoving();
         MoveResponseDto response = bridgeGame.move(command);
         outputView.printMap(new MapViewDto(response));
-        return response.getResult();
+        if (response.isAllCorrect()) {
+            outputView.printResult(response.getResult().getValue(), response.getAttemptCount());
+        }
+        return response;
     }
 
-    public void retry() {
+    public boolean retry() {
         outputView.askReplay();
-
-    }
-
-    public void showFinalGameResult() {
-
+        Command command = inputView.readGameCommand();
+        RetryResponseDto retry = bridgeGame.retry(command);
+        if (retry.isRetryGame()) {
+            return Boolean.TRUE;
+        }
+        outputView.printResult(Boolean.FALSE, retry.getAttemptCount());
+        return Boolean.FALSE;
     }
 }

@@ -22,7 +22,7 @@ public class BridgeGame {
         int currentLevel = player.checkCurrentLevel();
         player.enterCommand(command);
         Result result = bridge.compare(command, currentLevel);
-        MoveResponseDto response = new MoveResponseDto(command.toString(), result);
+        MoveResponseDto response = new MoveResponseDto(command.toString(), result, player.getAttemptCount());
         if (checkIfAllCorrect(result)) {
             response.setAllCorrect(Boolean.TRUE);
         }
@@ -37,9 +37,9 @@ public class BridgeGame {
     public RetryResponseDto retry(Command command) {
         if (command.equals(Command.RETRY)) {
             player.retry();
-            return new RetryResponseDto(Boolean.TRUE);
+            return new RetryResponseDto(Boolean.TRUE, player.getAttemptCount());
         }
-        return new RetryResponseDto(Boolean.FALSE);
+        return new RetryResponseDto(Boolean.FALSE, player.getAttemptCount());
     }
 
     //move

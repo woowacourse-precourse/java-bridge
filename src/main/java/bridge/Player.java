@@ -37,4 +37,8 @@ public class Player {
         }
         return Boolean.FALSE;
     }
+
+    public int getAttemptCount() {
+        return attemptCount;
+    }
 }
