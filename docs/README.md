@@ -8,7 +8,7 @@
    - [x] 이동 값을 입력 받아야한다. - InputView.readMoving()
      - [x] 입력값 의 유효성 검사를 해야한다. - InputView.isValidMoveCommand()
        - [x] 입력값이 "U" 또는 "D" 이어야 한다. - InputView.validateMoveFormat()
-- [ ] 다리와 이동경로 간에 비교 결과를 얻어야한다.  - service.Referee.makeComparePath()
+- [x] 다리와 이동경로 간에 비교 결과를 얻어야한다.  - service.Referee.makeComparePath()
   - [x] 현재 위치의 경로가 움직일수있는 경로라면 O, 아니면 X 를 얻어야한다. - service.Referee.comparePath()
   - [x] 이동 경로가 위(U) 이면 1, 아래(D) 라면 0을 얻어야한다. - service.Referee.convertPath()
 - [ ] 전체 이동 경로를 출력해야한다. - OutPutView.printMap()
