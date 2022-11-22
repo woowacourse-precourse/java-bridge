@@ -125,8 +125,8 @@ public class UnitTest {
     @DisplayName("이동 테스트")
     class MoveTest {
         @Test
-        @DisplayName("이동 실패")
-        void moveFail() {
+        @DisplayName("이동 도중 실패")
+        void moveFailOnPath() {
             InputView inputView = new TestInputView(4, List.of("U", "D", "U"));
 
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -142,8 +142,37 @@ public class UnitTest {
         }
 
         @Test
+        @DisplayName("이동 마지막 실패")
+        void moveFailOnEnd() {
+            InputView inputView = new TestInputView(4, List.of("U", "D", "D", "D"));
+
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker, inputView, outputView);
+
+            bridgeGame.move(List.of("U", "D", "D", "U"));
+
+            assertThat(outputStreamCaptor.toString().trim())
+                    .contains(
+                            "[ O |   |   |   ]",
+                            "[   | O | O | X ]"
+                    );
+        }
+
+        @Test
         @DisplayName("이동 성공")
         void moveSuccess() {
+            InputView inputView = new TestInputView(4, List.of("U", "D", "D", "U"));
+
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker, inputView, outputView);
+
+            bridgeGame.move(List.of("U", "D", "D", "U"));
+
+            assertThat(outputStreamCaptor.toString().trim())
+                    .contains(
+                            "[ O |   |   | O ]",
+                            "[   | O | O |   ]"
+                    );
         }
     }
 }
