@@ -8,28 +8,44 @@ import static view.InputViewConstants.*;
  */
 public class InputView {
 
+	public int readBridgeSize() {
+		System.out.println(MESSAGE_READ_BRIDGE_SIZE);
+		int bridgeSize = readBridgeSizeUntilNoError();
+		System.out.println();
+		return bridgeSize;
+	}
+
 	/**
 	 * 다리의 길이를 입력받는다.
 	 */
-	public int readBridgeSize() {
-		System.out.println(MESSAGE_READ_BRIDGE_SIZE);
-		int bridgeSize = validateBridgeSizeNumeric(readLine());
+	public int readBridgeSizeUntilNoError() {
+		while (true) {
+			try {
+				return Integer.parseInt(validateBridgeSize((readLine())));
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+	
+	private String validateBridgeSize(String bridgeSize) {
+		validateBridgeSizeNumeric(bridgeSize);
 		validateBridgeSizeRange(bridgeSize);
-		System.out.println();
 		return bridgeSize;
 	}
 
 	private int validateBridgeSizeNumeric(String bridgeSize) {
 		try {
-			int validateBridgeSize = Integer.parseInt(bridgeSize);
-			return validateBridgeSize;
+			int validBridgeSize = Integer.parseInt(bridgeSize);
+			return validBridgeSize;
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(ERROR_MESSAGE_NON_NUMERIC);
 		}
 	}
 
-	private void validateBridgeSizeRange(int bridgeSize) {
-		if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
+	private void validateBridgeSizeRange(String bridgeSize) {
+		int validBridgeSize = Integer.parseInt(bridgeSize);
+		if (validBridgeSize < MIN_BRIDGE_SIZE || validBridgeSize > MAX_BRIDGE_SIZE) {
 			throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
 		}
 	}
