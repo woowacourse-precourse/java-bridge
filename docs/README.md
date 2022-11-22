@@ -73,3 +73,8 @@ or
 * BrideRule 3~20 사이 입력값 U D R Q 가능
 * BridgeRandomNumberGenerator 다리생성을 위한 무작위값 생성
 * 다리유형 Enum 클래스 U(0) 와 D(1)
+
+### 리팩토링
+* BridgeRule란게 있지않고 MoveCommand나 RestartCommand에서 자체적으로 유효성검사 하면좋을듯
+* Bridge라는 객체만들어서 다리에대한 유효성도 거기서 검사하면 좋을듯
+* History라는 객체만들어서 move할때 기록 History에서하면 좋을듯
