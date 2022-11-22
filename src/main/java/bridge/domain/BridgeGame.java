@@ -64,4 +64,8 @@ public class BridgeGame {
     public int getTryCount() {
         return tryCount;
     }
+
+    public String getResultBridgeMap() {
+        return currentBridgeMap.getBridgeMap();
+    }
 }
