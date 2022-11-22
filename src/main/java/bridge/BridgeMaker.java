@@ -25,13 +25,18 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>(Collections.emptyList());
         for (int i = 0; i < size; i++) {
             int generator = bridgeNumberGenerator.generate();
-            if (generator == BridgeLayer.LOWER_LAYER.getLayer()) {
-                bridge.add("D");
-            }
-            if (generator == BridgeLayer.UPPER_LAYER.getLayer()) {
-                bridge.add("U");
-            }
+            addBridge(generator, bridge);
         }
         return bridge;
+    }
+
+    private void addBridge(int generator, List<String> bridge) {
+        if (generator == BridgeLayer.LOWER_LAYER.getLayer()) {
+            bridge.add("D");
+            return;
+        }
+        if (generator == BridgeLayer.UPPER_LAYER.getLayer()) {
+            bridge.add("U");
+        }
     }
 }
