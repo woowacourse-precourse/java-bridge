@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import bridge.domain.PlayResult;
 import bridge.domain.Stage;
 import java.util.HashMap;
@@ -11,18 +12,15 @@ import java.util.Map;
  */
 public class BridgeGame {
 
-    private final List<Stage> bridge;
+    private final Bridge bridge;
 
     private final Map<Integer, PlayResult> roundResults;
 
-    private int userMove;
-
     private int attempts;
 
-    public BridgeGame(final List<Stage> bridge) {
+    public BridgeGame(final List<Stage> stages) {
         this.roundResults = new HashMap<>();
-        this.bridge = bridge;
-        this.userMove = 0;
+        this.bridge = new Bridge(stages);
         this.attempts = 1;
     }
 
@@ -31,12 +29,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      *
-     * @return
      */
-    public PlayResult move(final String direction) {
-        PlayResult playResult = bridge.get(userMove).choose(direction);
-        roundResults.put(userMove, playResult);
-        userMove++;
+    public PlayResult move(final int round, final String direction) {
+        PlayResult playResult = bridge.choose(round, direction);
+        roundResults.put(round, playResult);
         return playResult;
     }
 
@@ -46,28 +42,31 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        userMove = 0;
         attempts += 1;
         roundResults.clear();
     }
 
     public boolean isClear() {
-        return userMove == bridge.size() && isAllPass();
+        return isAllPass();
     }
 
     private boolean isAllPass() {
-        return roundResults.values()
+        return roundResults.size() != 0 && roundResults.values()
             .stream()
             .allMatch(PlayResult::isPass);
     }
 
     public boolean isOver() {
-        return roundResults.values()
+        return roundResults.size() != 0 && roundResults.values()
             .stream()
             .anyMatch(PlayResult::isFail);
     }
 
     public int getAttempts() {
         return attempts;
+    }
+
+    public int getStages() {
+        return bridge.getStages();
     }
 }

@@ -43,10 +43,10 @@ public class Application {
     }
 
     private static void playGame() {
-        while (!game.isClear()) {
+        for (int round = 0; round < game.getStages(); round++) {
             System.out.println("방향 입력: ");
             String direction = Console.readLine();
-            PlayResult playResult = game.move(direction);
+            PlayResult playResult = game.move(round, direction);
 
             if (game.isOver()) {
                 break;
