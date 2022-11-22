@@ -1,0 +1,76 @@
+- docs(README): 제출 전 README 내용 추가
+- docs(docs/MyOwnMission): 나만의 임무에 대한 개발 회고 작성
+- docs(docs/README): 구현된 내용 기능 목록에 반영
+- style(ALL): 주석 제거 및 Java 코드컨벤션 적용
+- feat(main): main 메소드 내용 추가
+- refactor(test): ApplicationTest 수정
+- refactor(test): 기능목록 수정으로 인한 테스트 코드 제거
+- feat(controller): 게임 운영 예외처리 적용
+- feat(test): 예외처리 기능 추가로 인한 테스트 도움 메소드 추가
+- feat(exception): 게임 운영 추가 예외처리 기능 구현
+- test(exception): 게임 운영 추가 예외처리 기능 테스트
+- refactor(test): 게임 결과 모델 테스트 리팩토링
+- refactor(test): 다리 모델 테스트 리팩토링
+- feat(model): 다리 모델 예외처리 적용
+- feat(view): 예외처리 적용
+- refactor(exception): 이동 기능 예외처리 기능 삭제
+- feat(exception): 게임 운영 예외처리 기능 구현
+- feat(exception): 이동 기능 예외처리 기능 구현
+- feat(exception): 다리 모델 예외처리 기능 구현
+- feat(exception): 사용자 입력 예외처리 기능 구현
+- refactor(test): 예외처리 기능 테스트 리팩토링
+- test(exception): 게임 운영 예외처리 기능 테스트
+- test(exception): 이동 기능 예외처리 기능 테스트
+- test(exception): 다리 모델 예외처리 기능 테스트
+- test(exception): 사용자 입력 예외처리 기능 테스트
+- refactor(docs): 기능 목록 수정
+- refactor(controller): 게임 운영 기능 리팩토링
+- refactor(model): 다리 모델 리팩토링
+- refactor(test): 기능 리팩토링에 따른 테스트 코드 리팩토링
+- refactor(controller): 게임 전체 과정 운영 기능 리팩토링
+- feat(controller): 게임 전체 과정 운영 기능 구현
+- refactor(view): 게임 결과 출력 기능 리팩토링
+- feat(view): 게임 결과 출력 기능 구현
+- feat(controller): 게임 결과 반영 기능 구현
+- refactor(controller): 재시작까지의 게임 운영 기능 리팩토링
+- refactor(controller): 재시작까지의 게임 운영 기능 리팩토링
+- feat(controller): 재시작까지의 게임 운영 기능 구현
+- refactor(docs): 기능 목록 수정
+- feat(view): 게임 재시작 여부 입력 기능 구현
+- feat(controller): 재시도 기능 구현
+- test(controller): 재시도 기능 테스트
+- feat(view): 게임 재시작 여부 안내문 출력 기능 구현
+- refactor(docs): 기능 목록 수정 내용 추가
+- refactor(docs): 기능 목록 수정
+- refactor(controller): 이동한 칸 출력까지 게임 운영기능 리팩토링
+- refactor(constants): 이동 방향 열거 상수 클래스명 변경
+- feat(controller): 이동한 칸 출력까지 게임 운영 기능 구현
+- feat(view): 다리 건넌 기록 출력 기능 구현
+- feat(view): 이동할 칸 입력 기능 구현
+- feat(view): 다리 길이 입력 기능 구현
+- feat(controller): 이동 기능 구현 및 테스트 수정
+- refactor(model): 다리 모델 리팩토링
+- refactor(model): 다리 모델 리팩토링
+- test(controller): 이동 기능 테스트
+- refactor(root): 다리 생성 기능 리팩토링
+- feat(root): 다리 생성 기능 구현
+- test(root): 다리 생성 기능 테스트
+- feat(view): 이동할 칸 선택까지 안내문 출력 기능 구현
+- feat(model): 게임 결과 정보 모델 기능 구현
+- test(model): 게임 결과 정보 모델 테스트
+- refactor(model): 다리 건넌 기록 모델 static 설정
+- refactor(test): 다리 건넌 기록 모델 테스트 리팩토링
+- refactor(model): 다리 건넌 기록 모델 리팩토링
+- refactor(constants): 건너기 가능여부 상수와 중복 내용 제거
+- feat(constants): 건너기 가능여부 상수 추가
+- feat(model): 다리 건넌 기록 모델 기능 구현
+- test(model): 다리 건넌 기록 모델 테스트
+- feat(model): 다리 모델 구현
+- test(model): 다리 모델 테스트
+- feat(constants): 게임 결과 상수 생성
+- feat(constants): 이동할 칸 방향 상수 생성
+- feat(constants): 다리 표현 문자 상수 생성
+- feat(constants): 안내 문장 상수 생성
+- docs(docs/README): 기능 목록 작성
+- docs: 나만의 미션 설정
+- feat: setup precourse bridge game project

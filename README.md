@@ -1,5 +1,135 @@
 # 미션 - 다리 건너기
 
+## 💪 새로 시도한 나만의 미션
+
+- 개발을 시작하기 전, 4주차에서 시도할 나만의 미션을 설정하고 실천하려 노력하였습니다.
+- 나만의 미션 및 개발 후 회고 내용은 docs/MyOwnMission.md 파일에 정리되어 있습니다.
+
+##### <나만의 미션 및 회고>
+
+- [나만의 미션 및 회고](./docs/MyOwnMission.md)
+
+##### <나만의 미션 목록>
+
+- 3주차 개선, 유지
+  - TDD 방식 유지
+  - MVC 패턴 유지
+  - 메소드, 클래스 분리에 대해 고민하기
+  - 기능 목록 양식 활용 및 완성
+- 새로운 시도
+  - 개발 전 설정
+    - 변경되지 않는 필드에 `final` 키워드 붙이기
+    - 필드(인스턴스 변수) 수 줄이기
+    - 테스트 코드 리팩토링
+  - 개발 중 설정
+    - Model static화
+    - Model 내에서 처리 가능한 로직 고려
+    - Enum 적극 활용
+
+## 📄 미션 요구 사항 확인
+
+#### <프로그래밍 요구 사항>
+
+- [x] 기본 요구 사항
+
+  <details>
+    <summary><strong>< 기본 요구 사항 ></strong></summary>
+    <div markdown="1">
+      - 기존 요구사항 확인<br>
+      => JDK 11, 시작점 : Application.main(), build.gradle 수정 금지, 외부 라이브러리 사용 금지, JAVA 코드 컨벤션 적용, System.exit() 금지, ApplicationTest 모두 성공, 파일, 패키지 이름 수정 or 이동 금지, 3항 연산자 금지<br>
+      - 함수 최대한 작게<br>
+      - JUnit, AssertJ 활용 테스트 코드 작성<br>
+      - else 금지<br>
+      - 도메인 로직에 단위 테스트 구현. UI 로직은 제외<br>
+      - indent depth 3 이상 금지, 2까지만 허용<br>
+    </div>
+  </details>
+
+- [x] 추가 요구 사항
+
+  <details>
+    <summary><strong>< 추가 요구 사항 ></strong></summary>
+    <div markdown="1">
+      - 함수 길이 10라인 이상 금지 + 한 가지 일만 잘 하도록<br>
+      - 메서드 파라미터 개수 최대 3개<br>
+      - InputView, OutputView, BridgeGame, BridgeMaker, BridgeRandomNumberGenerator 활용<br>  </div>
+  </details>
+
+- [x] Class 요구 사항
+
+  <details>
+    <summary><strong>< InputView 요구 사항 ></strong></summary>
+    <div markdown="1">
+        (가능한 사항)<br>
+        - 패키지 변경<br>
+        - 메서드 시그니처(인자, 이름) 변경<br>
+        - 반환 타입 변경<br>
+        - 메서드 추가<br>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>< OutputView 요구 사항 ></strong></summary>
+    <div markdown="1">
+      (가능한 사항)<br>
+      - 패키지 변경<br>
+      - 메서드 인자, 반환 타입 추가 및 변경<br>
+      - 메서드 추가<br>
+      (불가능한 사항)<br>
+      - 메서드 이름 변경<br>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>< BridgeGame 요구 사항 ></strong></summary>
+    <div markdown="1">
+      (가능한 사항)<br>
+      - 필드(인스턴스 변수) 추가<br>
+      - 패키지 변경<br>
+      - 메서드 인자, 반환 타입 추가 및 변경<br>
+      - 메서드 추가<br>
+      (불가능한 사항)<br>
+      - 메서드 이름 변경<br>
+      - InputView 사용<br>
+      - OutputView 사용<br>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>< BridgeMaker 요구 사항 ></strong></summary>
+    <div markdown="1">
+      (불가능한 사항)<br>
+      - 필드(인스턴스 변수) 변경<br>
+      - 메서드의 시그니처(인자, 이름) 변경<br>
+      - 반환 타입 변경<br>
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>< BridgeRandomNumberGenerator 요구 사항 ></strong></summary>
+    <div markdown="1">
+      변경 금지
+    </div>
+  </details>
+
+- [x] 라이브러리 관련 요구 사항
+
+  <details>
+    <summary><strong>< 라이브러리 관련 요구 사항 ></strong></summary>
+    <div markdown="1">
+      - `camp.nextstep.edu.missionutils.Console.readLine` 활용<br>
+    </div>
+  </details>
+
+#### <과제 진행 요구 사항>
+
+- [x] Fork & Clone
+- [x] 구현 전 docs/README.md 기능 목록 정리
+- [x] 커밋은 기능 목록 단위로
+- [x] 커밋 메세지 컨벤션
+
+---
+
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
