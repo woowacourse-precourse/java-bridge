@@ -25,8 +25,7 @@ class ApplicationTest extends NsTest {
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
-//            System.out.println("this is bridge"+bridge);
-//            System.out.println("this is string"+String.valueOf(output()));
+
             assertThat(output()).contains(
                 "최종 게임 결과",
                 "[ O |   | O ]",
@@ -37,8 +36,7 @@ class ApplicationTest extends NsTest {
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
-//            System.out.println(upSideIndex);
-//            System.out.println(downSideIndex);
+
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
 

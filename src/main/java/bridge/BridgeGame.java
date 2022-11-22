@@ -27,27 +27,28 @@ public class BridgeGame {
 
         UpperBridge upperBridge = new UpperBridge("U");
         LowerBridge lowerBridge = new LowerBridge("D");
-        System.out.println("this is structure" + BridgeMaker.bridgeStructure);
-        while (newGame.bridge.size() <= bridgeLength - 1) {
 
+        moveLoop(newGame, upperBridge, lowerBridge);
+        getSuccess(newGame, upperBridge, lowerBridge);
+    }
+
+    public void moveLoop(BridgeGame newGame, UpperBridge upperBridge, LowerBridge lowerBridge){
+        while (newGame.bridge.size() <= bridgeLength - 1) {
             String userUpDown = InputView.readMoving();
 
-            // check the result
             BridgeGameManager gameManager = new BridgeGameManager();
-            boolean gameStatus = gameManager.inputChanger(userUpDown, newGame, upperBridge, lowerBridge);
-
+            boolean gameStatus = gameManager.addInputToBridge(userUpDown, newGame, upperBridge, lowerBridge);
             if (!gameStatus) {
                 break;
             }
-
         }
+    }
 
+    public void getSuccess(BridgeGame newGame, UpperBridge upperBridge, LowerBridge lowerBridge){
         if (newGame.bridge.equals(BridgeMaker.bridgeStructure)) {
             BridgeGameManager.finish("성공", upperBridge, lowerBridge);
         }
-
     }
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

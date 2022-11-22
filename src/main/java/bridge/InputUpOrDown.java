@@ -10,7 +10,7 @@ InputUpOrDown {
     private String upOrDown;
     private int zeroOrOne;
 
-    private InputUpOrDown(String upOrDown, int zeroOrOne) {
+    InputUpOrDown(String upOrDown, int zeroOrOne) {
         this.upOrDown = upOrDown;
         this.zeroOrOne = zeroOrOne;
     }
@@ -22,6 +22,4 @@ InputUpOrDown {
     public static String getUpOrDown(int zeroOrOne){
         return Arrays.stream(InputUpOrDown.values()).filter(inputUpOrDown -> inputUpOrDown.zeroOrOne==zeroOrOne).map(inputUpOrDown -> inputUpOrDown.upOrDown).findAny().orElseThrow(() -> new IllegalArgumentException());
     }
-
-
 }

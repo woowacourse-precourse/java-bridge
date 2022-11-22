@@ -11,17 +11,14 @@ public class LowerBridge extends GeneralBridge{
         lowerStatus = new ArrayList<>(bridgeLength);
     }
     void manageInput(String userUpDown, String checkedStatus){
-
         if(this.checker.equals(userUpDown)){
             lowerStatus.add(checkedStatus);
             return;
         };
         lowerStatus.add(" ");
-        return;
     }
     public String printBridge(){
         final String joinLowerBridge = String.join(" | ",lowerStatus);
-//        System.out.printf("[ %s ]\n",joinLowerBridge);
         return joinLowerBridge;
     }
 }
