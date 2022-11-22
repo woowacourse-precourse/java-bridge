@@ -1,4 +1,4 @@
-package bridge.DTO;
+package bridge.model;
 
 public class MoveRecord {
     private final String step;
