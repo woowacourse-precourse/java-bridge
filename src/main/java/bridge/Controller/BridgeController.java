@@ -39,7 +39,10 @@ public class BridgeController {
     }
 
     private String MovingCheck(String moving) {
-        return OutputView.MovingCheck(moving);
+        String val = OutputView.MovingCheck(moving);
+        if (!val.equals(moving))
+            MovingCheck(InputView.readMoving());
+        return moving;
     }
 
     private void Gaming(BridgeGame game) {
@@ -50,7 +53,9 @@ public class BridgeController {
 
     private void GameSelectRetry(BridgeGame game) {
         if (continue_game.equals(Retry)) {
-            continue_game = game.retry(OutputView.RetryCheck(InputView.readGameCommand()));
+            String val = OutputView.RetryCheck(InputView.readGameCommand());
+            if (val.isEmpty()) GameSelectRetry(game);
+            continue_game = game.retry(val);
         }
     }
 
