@@ -56,4 +56,9 @@ public class BridgeMonitor {
         this.lowerLine.append(END_BRACKET);
     }
 
+    public String getPicture(){
+        String picture = this.upperLine.toString() + "\n" + this.lowerLine.toString();
+        return picture;
+    }
+
 }
