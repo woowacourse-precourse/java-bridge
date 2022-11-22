@@ -17,7 +17,7 @@ public enum DorU {
         return name;
     }
 
-    public static String numberConvertName(int object) {
+    public static String numberConvertUpAndDown(int object) {
         if (object == DOWN.number) {
             return DOWN.name;
         }
