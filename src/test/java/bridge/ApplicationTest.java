@@ -56,11 +56,20 @@ class ApplicationTest extends NsTest {
         assertThat(bridgeGame.mapMaker.getMap()[0]).contains(expected);
     }
 
+    @Test
     void 성공_종료_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("5", "D", "D", "U", "U", "D");
             assertThat(output()).contains("결과", "성공");
             }, 0, 0, 1, 1, 0);
+    }
+
+    @Test
+    void 실패_재시작_종료_여부_질문_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "D","D","Q");
+            assertThat(output()).contains("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        }, 0, 0, 1);
     }
 
     @Test
