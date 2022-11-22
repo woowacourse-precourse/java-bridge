@@ -10,9 +10,6 @@ public enum ViewEnum {
     PRINT_CONTINUE_BRIDGE("   |"),
     PRINT_END_HAVE_BRIDGE(" %s ]\n"),
     PRINT_END_BRIDGE("   ]\n"),
-    PRINT_D("D"),
-    PRINT_U("U"),
-    PRINT_X("U"),
 
     OUTPUT_GAME_START_MESSAGE("다리 건너기 게임을 시작합니다"),
     OUTPUT_GAME_RESULT_MAP_PRINT_MESSAGE("최종 게임 결과"),
