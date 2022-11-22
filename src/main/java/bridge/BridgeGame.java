@@ -38,4 +38,11 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isCorrect(List<String> bridge, List<String> crossed) {
+        if (!crossed.get(crossed.size() - 1).equals(bridge.get(crossed.size() - 1))) {
+            return false;
+        }
+        return true;
+    }
 }
