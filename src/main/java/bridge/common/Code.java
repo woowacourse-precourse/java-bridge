@@ -4,7 +4,7 @@ public enum Code {
     SUCCESS("성공"),
     FAILURE("실패");
 
-    private String message;
+    private final String message;
 
     Code(String message) {
         this.message = message;
