@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Controller;
 
 import bridge.Model.BridgeGame;
 import bridge.View.UiMessage;
