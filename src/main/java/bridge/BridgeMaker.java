@@ -1,6 +1,5 @@
-package bridge.business;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.enumeration.MovingKey;
 
 import java.util.ArrayList;

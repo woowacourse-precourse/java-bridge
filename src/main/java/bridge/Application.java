@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.business.BridgeGame;
-import bridge.business.BridgeMaker;
 import bridge.business.BridgeResult;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
