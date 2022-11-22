@@ -1,75 +1,75 @@
 ## 🛠 기능 목록
 
--[ ] InputView
-    - [ ] "다리의 길이를 입력해주세요." 문구와 함께 사용자에게 다리 길이를 입력받는다. (readBridgeSize)
-        - [ ] camp.nextstep.edu.missionutils.Console 의 readLine() 메소드를 이용한다.
-        - [ ] BridgeSizeValidation클래스의 validate()메소드로 유효성 검사를 진행한다.
-        - [ ] 입력받은 다리 길이를 반환한다.
-    - [ ] "이동할 칸을 선택해주세요. (위: U, 아래: D)" 문구와 함께 사용자에게 움직임을 입력받는다.(readMoving)
-        - [ ] camp.nextstep.edu.missionutils.Console 의 readLine() 메소드를 이용한다.
-        - [ ] MovingValidation클래스의 validate()메소드로 유효성 검사를 진행한다.
-        - [ ] 입력받은 움직임을 반환한다.
-    - "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)" 문구와 함께 사용자에게 게임 커멘드를 입력받는다. (readGameCommand)
-        - [ ] camp.nextstep.edu.missionutils.Console 의 readLine() 메소드를 이용한다.
-        - [ ] GameCommandValidation클래스의 validate()메소드로 유효성 검사를 진행한다.
-        - [ ] 입력받은 게임 커멘드를 반환한다.
+-[x] InputView
+    - [x] "다리의 길이를 입력해주세요." 문구와 함께 사용자에게 다리 길이를 입력받는다. (readBridgeSize)
+        - [x] camp.nextstep.edu.missionutils.Console 의 readLine() 메소드를 이용한다.
+        - [x] BridgeSizeValidation클래스의 validate()메소드로 유효성 검사를 진행한다.
+        - [x] 입력받은 다리 길이를 반환한다.
+    - [x] "이동할 칸을 선택해주세요. (위: U, 아래: D)" 문구와 함께 사용자에게 움직임을 입력받는다.(readMoving)
+        - [x] camp.nextstep.edu.missionutils.Console 의 readLine() 메소드를 이용한다.
+        - [x] MovingValidation클래스의 validate()메소드로 유효성 검사를 진행한다.
+        - [x] 입력받은 움직임을 반환한다.
+    - [x] "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)" 문구와 함께 사용자에게 게임 커멘드를 입력받는다. (readGameCommand)
+        - [x] camp.nextstep.edu.missionutils.Console 의 readLine() 메소드를 이용한다.
+        - [x] GameCommandValidation클래스의 validate()메소드로 유효성 검사를 진행한다.
+        - [x] 입력받은 게임 커멘드를 반환한다.
 
 
-- [ ] OutputView
-    - [ ] "다리 건너기 게임을 시작합니다." 문구와 함께 게임을 시작한다. (printStartingPhrase)
-    - [ ] 지금까지 입력받은 사용자의 움직임을 맵으로 출력한다.(printMap)
-        - [ ] printUpperBridge(), printLowerBridge() 메소드를 활용한다.
-    - [ ] 위칸을 출력한다. (printUpperBridge)
-        - [ ] 출력의 시작은 '[' 이 기호로 시작한다.
-        - [ ] 출력의 끝은 ']' 이 기호로 끝낸다.
-        - [ ] 사용자가 U를 입력하고 그 입력이 맞음면 ' O ' 로 표시한다.
-        - [ ] 사용자가 U를 입력하고 그 입력이 틀리면 ' X ' 로 표시한다.
-        - [ ] 사용자가 D를 입력하였으면 '   '로 표시한다.
-        - [ ] 다리와 다리 사이는 '|'로 구분한다.
-    - [ ] 아래칸을 출력한다. (printLowerBridge)
-        - [ ] 출력의 시작은 '[' 이 기호로 시작한다.
-        - [ ] 출력의 끝은 ']' 이 기호로 끝낸다.
-        - [ ] 사용자가 D를 입력하고 그 입력이 맞음면 ' O ' 로 표시한다.
-        - [ ] 사용자가 D를 입력하고 그 입력이 틀리면 ' X ' 로 표시한다.
-        - [ ] 사용자가 U를 입력하였으면 '   '로 표시한다.
-        - [ ] 다리와 다리 사이는 '|'로 구분한다.
-    - [ ] 지금까지 입력한 결과를 출력한다. (printResult)
-        - [ ] '최종 게임 결과' 문구와 함께 출력한다.
-        - [ ] printUpperBridge(), printLowerBridge() 메소드를 활용한다.
-        - [ ] '게임 성공 여부: ' 문구와 함께 실패인지 성공인지 나타낸다.
-        - [ ] '총 시도한 횟수: ' 문구와 함께 총 시도한 횟수를 나타낸다.
+- [x] OutputView
+    - [x] "다리 건너기 게임을 시작합니다." 문구와 함께 게임을 시작한다. (printStartingPhrase)
+    - [x] 지금까지 입력받은 사용자의 움직임을 맵으로 출력한다.(printMap)
+        - [x] printUpperBridge(), printLowerBridge() 메소드를 활용한다.
+    - [x] 위칸을 출력한다. (printUpperBridge)
+        - [x] 출력의 시작은 '[' 이 기호로 시작한다.
+        - [x] 출력의 끝은 ']' 이 기호로 끝낸다.
+        - [x] 사용자가 U를 입력하고 그 입력이 맞음면 ' O ' 로 표시한다.
+        - [x] 사용자가 U를 입력하고 그 입력이 틀리면 ' X ' 로 표시한다.
+        - [x] 사용자가 D를 입력하였으면 '   '로 표시한다.
+        - [x] 다리와 다리 사이는 '|'로 구분한다.
+    - [x] 아래칸을 출력한다. (printLowerBridge)
+        - [x] 출력의 시작은 '[' 이 기호로 시작한다.
+        - [x] 출력의 끝은 ']' 이 기호로 끝낸다.
+        - [x] 사용자가 D를 입력하고 그 입력이 맞음면 ' O ' 로 표시한다.
+        - [x] 사용자가 D를 입력하고 그 입력이 틀리면 ' X ' 로 표시한다.
+        - [x] 사용자가 U를 입력하였으면 '   '로 표시한다.
+        - [x] 다리와 다리 사이는 '|'로 구분한다.
+    - [x] 지금까지 입력한 결과를 출력한다. (printResult)
+        - [x] '최종 게임 결과' 문구와 함께 출력한다.
+        - [x] printUpperBridge(), printLowerBridge() 메소드를 활용한다.
+        - [x] '게임 성공 여부: ' 문구와 함께 실패인지 성공인지 나타낸다.
+        - [x] '총 시도한 횟수: ' 문구와 함께 총 시도한 횟수를 나타낸다.
 
 
-- [ ] BridgeMaker
-    - [ ] 입력받은 다리 길이 만큼 Bridge를 생성한다. (makeBridge)
-        - [ ] bridgeNumberGenerator를 이용하여 생성한다.
-        - [ ] 1,0 을 U,D로 변환하여 Bridge를 생성한다. (convertToBridge)
+- [x] BridgeMaker
+    - [x] 입력받은 다리 길이 만큼 Bridge를 생성한다. (makeBridge)
+        - [x] bridgeNumberGenerator를 이용하여 생성한다.
+        - [x] 1,0 을 U,D로 변환하여 Bridge를 생성한다. (convertToBridge)
+            - [x] Enum Bridge를 활용한다.
+
+- [x] BridgeGame
+    - [x] 사용자의 입력을 userMoving에 더한다. (move)
+        - [x] 사용자의 입력이 생성된 Bridge와 일치하면 userMoving에 추가한다.
+        - [x] 사용자가 'U'를 입력하였을 때 일치하지 않으면 'UX'를, 'D'를 입력하였을 때 일치하지 않으면 'DX'를 입력한다. (canNotMove)
+        - [x] 일치하면 true, 일치하지 않으면 false를 반환한다.
+    - [x] 사용자의 게임 커맨드 입력이 R이면 ture를, Q이면 false를 반환한다. (retry)
+    - [x] 게임 재시작 시, userMoving을 초기화 한다. (resetUserMoving)
+    - [x] 사용자가 Bridge의 끝에 도달하였는지 true,false를 통해 알려준다. (isEndOfBridge)
+    - [x] 사용자가 게임에서 성공 하였는지 true,false를 통해 알려준다. (isSuccess)
+        - [x] Bridge의 끝에 도달하였고, 마지막 입력도 틀리지 않으면 성공했다고 판단한다.
+    - [x] 도전 횟수를 하나 더한다. (addAttemptCount)
 
 
-- [ ] BridgeGame
-    - [ ] 사용자의 입력을 userMoving에 더한다. (move)
-        - [ ] 사용자의 입력이 생성된 Bridge와 일치하면 userMoving에 추가한다.
-        - [ ] 사용자가 'U'를 입력하였을 때 일치하지 않으면 'UX'를, 'D'를 입력하였을 때 일치하지 않으면 'DX'를 입력한다. (canNotMove)
-        - [ ] 일치하면 true, 일치하지 않으면 false를 반환한다.
-    - [ ] 사용자의 게임 커맨드 입력이 R이면 ture를, Q이면 false를 반환한다. (retry)
-    - [ ] 게임 재시작 시, userMoving을 초기화 한다. (resetUserMoving)
-    - [ ] 사용자가 Bridge의 끝에 도달하였는지 true,false를 통해 알려준다. (isEndOfBridge)
-    - [ ] 사용자가 게임에서 성공 하였는지 true,false를 통해 알려준다. (isSuccess)
-        - [ ] Bridge의 끝에 도달하였고, 마지막 입력도 틀리지 않으면 성공했다고 판단한다.
-    - [ ] 도전 횟수를 하나 더한다. (addAttemptCount)
-
-
-- [ ] BridgeController
-    - [ ] 게임의 시작과 진행, 결과를 컨트롤 한다. (startGame)
-    - [ ] 시작 문구를 출력하고, 사용자에게 다리 길이를 입력받아 다리를 생성한다. (setUpBridgeGame)
-      - [ ] exception이 발생하면 에러 메시지를 출력 후 다시 입력받는다.
-    - [ ] BridgeGame을 진행한다. (proceedBridgeGame)
-        - [ ] 시작 할 때 마다 userMoving을 초기화 해준다.
-        - [ ] 시작 시 총 게임 횟수를 추가한다.
-        - [ ] 사용자의 입력이 Bridge와 비교하여 다르거나, 끝까지 도달 할 때 까지 움직힌다. (move)
-            - [ ] exception이 발생하면 에러 메시지를 출력 후 다시 입력받는다.
-        - [ ] 게임을 승리하거나 실패하고 retry를 하지 않았을 때 게임을 종료한다. (decideEndOfGame)
-    - [ ] 게임의 승패 여부와 결과, 총 도전 횟수를 출력한다.
+- [x] BridgeController
+    - [x] 게임의 시작과 진행, 결과를 컨트롤 한다. (startGame)
+    - [x] 시작 문구를 출력하고, 사용자에게 다리 길이를 입력받아 다리를 생성한다. (setUpBridgeGame)
+        - [x] exception이 발생하면 에러 메시지를 출력 후 다시 입력받는다.
+    - [x] BridgeGame을 진행한다. (proceedBridgeGame)
+        - [x] 시작 할 때 마다 userMoving을 초기화 해준다.
+        - [x] 시작 시 총 게임 횟수를 추가한다.
+        - [x] 사용자의 입력이 Bridge와 비교하여 다르거나, 끝까지 도달 할 때 까지 움직힌다. (move)
+            - [x] exception이 발생하면 에러 메시지를 출력 후 다시 입력받는다.
+        - [x] 게임을 승리하거나 실패하고 retry를 하지 않았을 때 게임을 종료한다. (decideEndOfGame)
+    - [x] 게임의 승패 여부와 결과, 총 도전 횟수를 출력한다.
 
 ## 🔧 기능 요구 사항
 
@@ -92,15 +92,15 @@
 
 ## ⚠️ 유효성 체크
 
-- [ ] bridgeSize
-    - [ ] 숫자인지 검사
-    - [ ] 3~20 사이의 숫자인지 검사
+- [x] bridgeSize
+    - [x] 숫자인지 검사
+    - [x] 3~20 사이의 숫자인지 검사
 
-- [ ] gameCommand
-    - [ ] Q 또는 R인지 검사
+- [x] gameCommand
+    - [x] Q 또는 R인지 검사
 
-- [ ] moving
-    - [ ] U 또는 D인지 검사
+- [x] moving
+    - [x] U 또는 D인지 검사
 
 ## 📌 추가 요구사항
 
@@ -115,10 +115,10 @@
 
 ## 📗학습 목록
 
-- [ ] 인터페이스
-- [ ] 클래스 분리
+- [x] 인터페이스
+- [x] 클래스 분리
 
 ## 🖌️ 클래스 다이어그램
- 
+
 ![bridge](https://user-images.githubusercontent.com/70315475/203222848-c8f7cecc-3514-4a25-b54c-ab8775ef388e.jpeg)
 
