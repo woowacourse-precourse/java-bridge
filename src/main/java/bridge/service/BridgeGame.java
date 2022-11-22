@@ -14,6 +14,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.gameCount = 1;
         setup();
     }
 
