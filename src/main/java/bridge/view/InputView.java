@@ -36,6 +36,6 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(Message.INPUT_RESTART_OR_EXIT_MESSAGE);
         String gameCommand = Console.readLine();
-        return parser.parsingGameCommand(gameCommand);
+        return parser.parseGameCommand(gameCommand);
     }
 }

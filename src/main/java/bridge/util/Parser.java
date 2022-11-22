@@ -19,7 +19,7 @@ public class Parser {
         return moving;
     }
 
-    public String parsingGameCommand(String gameCommand) {
+    public String parseGameCommand(String gameCommand) {
         if (IllegalArgument.isIncorrectGameCommand(gameCommand)) {
             throw new IllegalArgumentException(ErrorMessage.INCORRECT_GAME_COMMAND_ERROR);
         }
