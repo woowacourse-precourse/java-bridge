@@ -24,6 +24,8 @@ import bridge.constant.MovingDirection;
  */
 public class OutputView {
 
+    public static final int ONE = 1;
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -40,24 +42,32 @@ public class OutputView {
         System.out.print(PREFIX_BRIDGE.getShape());
         for (int i = 0; i < bridgeGame.getCurrentPosition(); i++) {
             printMiddleBridgeByDirection(bridgeGame, movingDirection, i);
-            if (i != bridgeGame.getCurrentPosition() - 1) {
+            if (isLastBridgePosition(bridgeGame, i)) {
                 System.out.print(MIDDLE_BRIDGE.getShape());
             }
         }
         System.out.println(SUFFIX_BRIDGE.getShape());
     }
 
+    private static boolean isLastBridgePosition(BridgeGame bridgeGame, int position) {
+        return position != (bridgeGame.getCurrentPosition() - ONE);
+    }
+
     private void printMiddleBridgeByDirection(BridgeGame bridgeGame,
         MovingDirection movingDirection, int position) {
         if (bridgeGame.hasSameDirectionAtPosition(position, movingDirection)) {
-            if (bridgeGame.hasCorrectDirectionAtPosition(position)) {
-                System.out.print(SAME_DIRECTION.getShape());
-                return;
-            }
-            System.out.print(DIFFERENT_DIRECTION.getShape());
+            printIsUserChoiceCorrect(bridgeGame, position);
             return;
         }
         System.out.print(NONE_DIRECTION.getShape());
+    }
+
+    private static void printIsUserChoiceCorrect(BridgeGame bridgeGame, int position) {
+        if (bridgeGame.hasCorrectDirectionAtPosition(position)) {
+            System.out.print(SAME_DIRECTION.getShape());
+            return;
+        }
+        System.out.print(DIFFERENT_DIRECTION.getShape());
     }
 
     /**
