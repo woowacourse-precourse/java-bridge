@@ -31,8 +31,8 @@ public class BridgeGameController {
         int bridgeSize = getBridgeSize();
         Bridge bridge = makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
-
-        if (!doBridgeGame(bridgeSize, bridgeGame)) {
+        int startPosition = 0;
+        if (!doBridgeGame(startPosition, bridgeSize, bridgeGame)) {
             return;
         }
         outputView.printResult(bridgeGame, true);
@@ -54,8 +54,7 @@ public class BridgeGameController {
         return new Bridge(strings);
     }
 
-    private boolean doBridgeGame(int bridgeSize, BridgeGame bridgeGame) {
-        int position;
+    private boolean doBridgeGame(int position, int bridgeSize, BridgeGame bridgeGame) {
         do {
             boolean isMovable = bridgeGame.isMovable(getMovingInput());
             position = moveOrNot(bridgeGame, isMovable);
