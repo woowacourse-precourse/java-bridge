@@ -1,6 +1,7 @@
 package bridge.domain.bridge;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
 
 public class Bridge {
     private BridgeNumber bridgeNumber;
