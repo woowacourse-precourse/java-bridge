@@ -5,7 +5,6 @@ public class BridgeResult {
 	private final int count;
 	private final boolean isClear;
 
-
 	public BridgeResult(String result, int count, boolean isClear) {
 		this.result = result;
 		this.count = count;
