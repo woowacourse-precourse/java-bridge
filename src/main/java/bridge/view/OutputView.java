@@ -25,8 +25,6 @@ public class OutputView {
     public static final String PARTITION = " | ";
     public static final String RIGHT_WALL = " ]";
 
-    public static final int START_PHASE = 1;
-
     public void printStart() {
         System.out.println(START_MESSAGE);
     }
