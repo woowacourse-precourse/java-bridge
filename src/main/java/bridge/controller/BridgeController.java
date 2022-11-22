@@ -4,6 +4,7 @@ import bridge.domain.bridgebuilder.BridgeGame;
 import bridge.domain.oxbridgebuilder.OXBridge;
 import bridge.domain.resources.Bridge;
 import bridge.domain.resources.ReOrQuit;
+import bridge.domain.resources.Tries;
 import bridge.domain.resources.UpOrDown;
 import bridge.utils.FirstInstanceBuilder;
 import bridge.utils.UDRQInstanceBuilder;
@@ -28,33 +29,35 @@ public class BridgeController {
         Bridge answerBridge = buildAnswerBridge();
         newLineForTheStart();
         OXBridge oxBridge = buildOXBridge();
-
-        runGame(answerBridge, oxBridge);
+        Tries tries = new Tries();
+        runGame(answerBridge, oxBridge, tries);
     }
 
-    private void runGame(Bridge answerBridge, OXBridge oxBridge) {
+    private void runGame(Bridge answerBridge, OXBridge oxBridge, Tries tries) {
         for (int bridgeIndex = 0; bridgeIndex < answerBridge.size(); bridgeIndex++) {
             BridgeGame.move(answerBridge, oxBridge, makeUD());
             printBridge(oxBridge);
             if (!oxBridge.isCorrectOrWrong()) {
-                bridgeIndex = returnToZeroOrQuit(makeRQ(), oxBridge);
+                bridgeIndex = returnToZeroOrQuit(makeRQ(), oxBridge, tries);
                 oxBridge = buildOXBridge();
             }
             if (bridgeIndex == answerBridge.size() - 1) {
-                printSuccess(oxBridge);
+                printSuccess(oxBridge, tries);
             }
         }
     }
 
-    private int returnToZeroOrQuit(ReOrQuit reOrQuit, OXBridge oxBridge) {
+    private int returnToZeroOrQuit(ReOrQuit reOrQuit, OXBridge oxBridge, Tries tries) {
         if (wannaRetry(reOrQuit)) {
+            tries.oneMoreTry();
             return RETURN_TO_BEGINNING;
         }
-        return beforeEndingGame(oxBridge);
+        return beforeEndingGame(oxBridge, tries);
     }
 
-    private int beforeEndingGame(OXBridge oxBridge) {
-        printLose(oxBridge);
+    private int beforeEndingGame(OXBridge oxBridge, Tries tries) {
+        printLose(oxBridge, tries);
+        tries.initializeTries();
         return END_GAME;
     }
 
@@ -66,14 +69,15 @@ public class BridgeController {
         outputView.print(NEW_LINE);
     }
 
-    private void printLose(OXBridge oxBridge) {
+    private void printLose(OXBridge oxBridge, Tries tries) {
         printResult(oxBridge);
-        outputView.printLose(oxBridge.getTries());
+        outputView.printLose(tries.getTries());
     }
 
-    private void printSuccess(OXBridge oxBridge) {
+    private void printSuccess(OXBridge oxBridge, Tries tries) {
         printResult(oxBridge);
-        outputView.printSuccess(oxBridge.getTries());
+        outputView.printSuccess(tries.getTries());
+        tries.initializeTries();
     }
 
     private void printBridge(OXBridge oxBridge) {

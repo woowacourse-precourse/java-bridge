@@ -3,9 +3,6 @@ package bridge.domain.oxbridgebuilder;
 import bridge.domain.resources.UpOrDown;
 
 public class OXBridge {
-
-    private static int tries;
-
     private final UDBridge upBridge;
     private final UDBridge downBridge;
     private boolean correctOrWrong;
@@ -16,7 +13,6 @@ public class OXBridge {
     }
 
     public static OXBridge from() {
-        tries++;
         return new OXBridge();
     }
 
@@ -49,10 +45,6 @@ public class OXBridge {
 
     public boolean isCorrectOrWrong() {
         return correctOrWrong;
-    }
-
-    public int getTries() {
-        return tries;
     }
 
     @Override
