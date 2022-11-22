@@ -40,6 +40,17 @@ public class BridgeGame {
         System.out.println();
     }
 
+    public int bridgeSize() {
+        int bridgeSize;
+        try {
+            bridgeSize = this.bridgeSizeGetter.getBridgeSizeFromConsole();
+        } catch (IllegalArgumentException exception) {
+            this.exceptionHandler.handleIllegalArgumentException(exception);
+            bridgeSize = bridgeSize();
+        }
+        return bridgeSize;
+    }
+
     public String move() {
         String move;
         try {
@@ -60,16 +71,5 @@ public class BridgeGame {
             gameCommand = retry();
         }
         return gameCommand;
-    }
-
-    public int bridgeSize() {
-        int bridgeSize;
-        try {
-            bridgeSize = this.bridgeSizeGetter.getBridgeSizeFromConsole();
-        } catch (IllegalArgumentException exception) {
-            this.exceptionHandler.handleIllegalArgumentException(exception);
-            bridgeSize = bridgeSize();
-        }
-        return bridgeSize;
     }
 }
