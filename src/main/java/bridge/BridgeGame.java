@@ -13,7 +13,6 @@ public class BridgeGame {
     private List<String> Ds = new ArrayList<>();
     private int index;
     private int count;
-    private OutputView outputView = new OutputView();
 
     BridgeGame(List<String> bridge) {
         this.bridge = bridge;
