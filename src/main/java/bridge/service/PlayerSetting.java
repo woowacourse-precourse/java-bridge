@@ -1,5 +1,7 @@
-package bridge;
+package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
 import bridge.dto.BridgeCorrectLocationDto;
 import bridge.dto.BridgeDto;
