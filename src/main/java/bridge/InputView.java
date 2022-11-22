@@ -1,7 +1,6 @@
 package bridge;
 import java.util.InputMismatchException;
-import java.util.Scanner;
-
+import camp.nextstep.edu.missionutils.Console;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -12,8 +11,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        Scanner sc = new Scanner(System.in);    int size;
-        try { size = sc.nextInt();  System.out.println(size); }
+        int size;
+        try {size= Integer.parseInt(Console.readLine());}
         catch (InputMismatchException e) {throw new IllegalArgumentException("[ERROR] 3에서 20사이의 숫자를 입력하세요.");}
         if (!(3 <= size && size <= 20)) {throw new IllegalArgumentException("[ERROR] 3에서 20사이의 숫자를 입력하세요.");}
         return size;
@@ -23,8 +22,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        Scanner sc=new Scanner(System.in);
-        String move=sc.next();
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String move;
+        try{
+            move=Console.readLine();
+        }catch(InputMismatchException e){throw new IllegalArgumentException("[ERROR] U 또는 D중 하나의 문자를 입력하세요.");}
+        if (!(move=="U"||move=="D")) {throw new IllegalArgumentException("[ERROR] U 또는 D중 하나의 문자를 입력하세요.");}
         return move;
     }
 
@@ -32,8 +35,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        Scanner sc=new Scanner(System.in);
-        String cmd=sc.next();
+        String cmd=Console.readLine();
         return null;
     }
 }

@@ -27,7 +27,7 @@ public class BridgeMaker {
         for (int i=0;i<size;i++){
             int bridgeNumber=bridgeNumberGenerator.generate();
             if (bridgeNumber==0){bridge.add("D");}
-            else if (bridgeNumber==1){bridge.add("U");}
+            if (bridgeNumber==1){bridge.add("U");}
         }
         return bridge;
     }
