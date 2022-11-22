@@ -7,6 +7,7 @@ import static bridge.constant.BridgeGameGuideConstant.INPUT_MOVE_DIRECTION;
 import static bridge.constant.BridgeGameGuideConstant.INPUT_RETRY_QUESTION;
 import static bridge.constant.BridgeGameGuideConstant.RESULT_OF_FINAL_GAME;
 import static bridge.constant.BridgeGameGuideConstant.RUN;
+import static bridge.constant.BridgeGameGuideConstant.TOTAL_ATTEMPT_NUMBER;
 import static bridge.constant.NumberConstant.FIRST_ROW;
 import static bridge.constant.NumberConstant.SECOND_ROW;
 
@@ -32,7 +33,7 @@ public class OutputView {
     }
 
     public CompareResult printMap(CompareResult compareResult) {
-        this.storedMap = Analyze.analyzePrintType(this.storedMap, compareResult);
+        Analyze.analyzePrintType(this.storedMap, compareResult);
 
         currentMapPrint();
 
@@ -90,6 +91,10 @@ public class OutputView {
 
     public void inputGameCommand() {
         System.out.print(INPUT_RETRY_QUESTION.getMessage());
+    }
+
+    public void printAttemptNumber(int attemptNumber) {
+        System.out.print(TOTAL_ATTEMPT_NUMBER.getMessage() + attemptNumber);
     }
 
 }

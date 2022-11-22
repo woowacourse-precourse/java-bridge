@@ -1,6 +1,7 @@
 package bridge.constant;
 
 public enum BridgeMaterialConstant {
+
     FIRST_TYPE_SUCCESS(" O "),
     FIRST_TYPE_FAIL(" X "),
     FIRST_TYPE_BLANK("   "),

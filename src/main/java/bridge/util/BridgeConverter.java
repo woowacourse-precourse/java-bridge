@@ -11,16 +11,16 @@ public final class BridgeConverter {
     }
 
     public static String covertToBridgeNumber(int bridgeNumber) {
+        String convertedBridgeNumber = null;
+
         try {
-            return Arrays.stream(InputKeyConstant.values())
-                         .filter(i -> i.getCode() == bridgeNumber)
-                         .findAny()
-                         .orElseThrow(ClassNotFoundException::new)
-                         .getFirstLetter();
+            convertedBridgeNumber = Arrays.stream(InputKeyConstant.values()).filter(i -> i.getCode() == bridgeNumber)
+                                          .findAny().orElseThrow(ClassNotFoundException::new).getFirstLetter();
         } catch (ClassNotFoundException e) {
             NO_SUCH_ELEMENT.error();
         }
-        return null;
+
+        return convertedBridgeNumber;
     }
 
 }

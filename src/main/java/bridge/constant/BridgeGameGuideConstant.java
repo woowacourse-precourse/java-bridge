@@ -10,7 +10,8 @@ public enum BridgeGameGuideConstant {
 
     RESULT_OF_FINAL_GAME("\n최종 게임 결과\n"),
     GAME_SUCCESS("\n게임 성공 여부: 성공\n"),
-    GAME_FAIL("\n게임 성공 여부: 살패\n");
+    GAME_FAIL("\n게임 성공 여부: 실패\n"),
+    TOTAL_ATTEMPT_NUMBER("총 시도한 횟수: ");
     final String message;
 
     BridgeGameGuideConstant(String message) {

@@ -43,9 +43,11 @@ public class ViewMaker {
     public boolean receiveUserGameCommand() {
         try {
             this.outputView.inputGameCommand();
+
             return this.outputView.isQuitGame(this.inputView.readGameCommand());
         } catch (IllegalArgumentException exception) {
             this.outputView.printError(exception.getMessage());
+
             return this.outputView.isQuitGame(this.inputView.readGameCommand());
         }
     }
@@ -59,7 +61,7 @@ public class ViewMaker {
     }
 
     public void printAttemptCount(int attemptNumber) {
-        System.out.println("총 시도한 횟수: " + attemptNumber);
+        this.outputView.printAttemptNumber(attemptNumber);
     }
 
 }

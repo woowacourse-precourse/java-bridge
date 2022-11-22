@@ -8,6 +8,7 @@ import static bridge.constant.ErrorConstant.NOT_FOUND_CODE;
 import java.util.NoSuchElementException;
 
 public enum ExceptionHandler {
+
     BRIDGE_SIZE {
         @Override
         public void error() {

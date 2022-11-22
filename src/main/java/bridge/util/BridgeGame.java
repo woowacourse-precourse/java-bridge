@@ -8,15 +8,21 @@ import bridge.view.ViewMaker;
 
 public final class BridgeGame {
 
-    private static int attemptNumber = 1;
-    private static int bridgeLocation = 0;
+    private static int attemptNumber;
+    private static int bridgeLocation;
 
     private BridgeGame() {
     }
 
-    public static void run() {
-        ViewMaker viewMaker = new ViewMaker(new BridgeMaker(new BridgeRandomNumberGenerator()));
+    private static void init() {
+        attemptNumber = 1;
+        bridgeLocation = 0;
+    }
 
+    public static void run() {
+        init();
+
+        ViewMaker viewMaker = new ViewMaker(new BridgeMaker(new BridgeRandomNumberGenerator()));
         Client.requestBridgeConstruction(viewMaker);
 
         while (true) {
@@ -24,7 +30,6 @@ public final class BridgeGame {
                 break;
             }
         }
-
     }
 
     private static boolean play(User user) {

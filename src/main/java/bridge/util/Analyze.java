@@ -1,5 +1,6 @@
 package bridge.util;
 
+import static bridge.constant.InputKeyConstant.RETRY;
 import static bridge.constant.InputKeyConstant.UP;
 import static bridge.constant.BridgeMaterialConstant.FIRST_TYPE_BLANK;
 import static bridge.constant.BridgeMaterialConstant.FIRST_TYPE_FAIL;
@@ -29,8 +30,8 @@ public final class Analyze {
         return storedMap;
     }
 
-    private static void reverseOneDepthToAnalyze(List<String> storedMap, String readDirection, boolean appropriate) {
-        if (appropriate) {
+    private static void reverseOneDepthToAnalyze(List<String> storedMap, String readDirection, boolean correctDirection) {
+        if (correctDirection) {
             twoDepthToAnalyzeSecondType(storedMap, readDirection);
             return;
         }
@@ -59,8 +60,8 @@ public final class Analyze {
         storedMap.set(SECOND_ROW.getCode(), storedMap.get(SECOND_ROW.getCode()) + bridgeMaterial);
     }
 
-    private static void oneDepthToAnalyze(List<String> storedMap, String readDirection, boolean appropriate) {
-        if (appropriate) {
+    private static void oneDepthToAnalyze(List<String> storedMap, String readDirection, boolean correctDirection) {
+        if (correctDirection) {
             twoDepthToAnalyzeFirstType(storedMap, readDirection);
             return;
         }
@@ -90,7 +91,7 @@ public final class Analyze {
     }
 
     public static boolean analyzeIsRetry(String gameCommand) {
-        return gameCommand.equals("R");
+        return gameCommand.equals(RETRY.getFirstLetter());
     }
 
 }

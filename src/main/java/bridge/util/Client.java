@@ -5,7 +5,7 @@ import bridge.view.ViewMaker;
 
 public final class Client {
 
-    private Client(){
+    private Client() {
     }
 
     public static void requestBridgeConstruction(final ViewMaker viewMaker) {

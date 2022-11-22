@@ -22,4 +22,5 @@ public enum InputKeyConstant {
     public String getFirstLetter() {
         return firstLetter;
     }
+
 }
