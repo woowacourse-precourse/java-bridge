@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.command.enums.PlayerMove;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +20,10 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridgeSquares = new ArrayList<>();
+        for (int squareIdx = 0; squareIdx < size; squareIdx++) {
+            bridgeSquares.add(PlayerMove.findMove(bridgeNumberGenerator.generate()));
+        }
+        return bridgeSquares;
     }
 }
