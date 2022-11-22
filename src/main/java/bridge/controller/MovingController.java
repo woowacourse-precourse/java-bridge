@@ -9,7 +9,7 @@ import bridge.service.BridgeGame;
 import bridge.utils.Notice;
 import bridge.view.InputView;
 
-public class RunController {
+public class MovingController {
 
 	public String checkMoving(String move) {
 		if (!(move.equals(Bridge.TOP.getOrder()) || move.equals(Bridge.BOTTOM.getOrder()))) {
