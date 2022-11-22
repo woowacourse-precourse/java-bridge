@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.List;
 
 public class BridgeGame {
-    private final int position;
+    private int position;
     private final List<String> bridge;
 
     public BridgeGame(List<String> bridge) {
@@ -29,4 +29,5 @@ public class BridgeGame {
     public void move() {
         position++;
     }
+
 }
