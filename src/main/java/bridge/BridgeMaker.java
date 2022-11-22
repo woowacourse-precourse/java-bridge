@@ -1,10 +1,7 @@
 package bridge;
 
-import static bridge.constant.BridgeSize.MAX_BRIDGE_SIZE;
-import static bridge.constant.BridgeSize.MIN_BRIDGE_SIZE;
 import static bridge.constant.Commands.DOWN_COMMAND;
 import static bridge.constant.Commands.UP_COMMAND;
-import static bridge.constant.ExceptionName.BRIDGE_MAKER_SIZE_EXCEPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,27 +20,7 @@ public class BridgeMaker {
 
     public int readBridgeSize() {
         String bridgeSize = new InputView().readBridgeSize();
-        return validateBridgeSize(bridgeSize);
-    }
-
-    private int validateBridgeSize(String bridgeSize) {
-        int integerBridgeSize = validateBridgeSizeInteger(bridgeSize);
-        validateBridgeSizeRange(integerBridgeSize);
-        return integerBridgeSize;
-    }
-
-    private int validateBridgeSizeInteger(String bridgeSize) {
-        try {
-            return Integer.parseInt(bridgeSize);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BRIDGE_MAKER_SIZE_EXCEPTION);
-        }
-    }
-
-    private void validateBridgeSizeRange(int integerBridgeSize) {
-        if (integerBridgeSize < MIN_BRIDGE_SIZE || integerBridgeSize > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(BRIDGE_MAKER_SIZE_EXCEPTION);
-        }
+        return new BridgeMakerValidate(bridgeSize).getBridgeSize();
     }
 
     /**
