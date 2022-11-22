@@ -7,7 +7,7 @@ import java.util.List;
  * InputView와 OutputView는 사용할 수 없다.
  */
 public class BridgeGame {
-
+    private final static int ONE = 1;
     private int compareCount = 0;
     private int challengeCount = 1;
     private boolean challengeResult = false;
@@ -41,8 +41,8 @@ public class BridgeGame {
     }
 
     public boolean isFinish(String bridgeSide) {
-        if(bridge.isLastCount(compareCount) || !bridge.isMatchBothIndexAndString(bridgeSide, compareCount-1)) {
-            if(bridge.isLastCount(compareCount) && bridge.isMatchBothIndexAndString(bridgeSide, compareCount-1)) {
+        if(bridge.isLastCount(compareCount) || !bridge.isMatchBothIndexAndString(bridgeSide, compareCount - ONE)) {
+            if(bridge.isLastCount(compareCount) && bridge.isMatchBothIndexAndString(bridgeSide, compareCount - ONE)) {
                 challengeResult = true;
             }
             return false;
@@ -79,6 +79,4 @@ public class BridgeGame {
     }
 
     public boolean getChallengeResult() { return challengeResult; }
-
-
 }

@@ -23,25 +23,20 @@ public class BridgeMap {
         this.lowerBridge = new LinkedList<>();
     }
 
-
     public void addUpperBridge(boolean isMatch) {
-        if (isMatch) {
-            upperBridge.add(CORRECT);
-            lowerBridge.add(NOT_SELECTED);
-            return;
-        }
-        upperBridge.add(INCORRECT);
-        lowerBridge.add(NOT_SELECTED);
+        addSelectBridge(isMatch, upperBridge, lowerBridge);
     }
 
     public void addLowerBridge(boolean isMatch) {
-        if (isMatch) {
-            lowerBridge.add(CORRECT);
-            upperBridge.add(NOT_SELECTED);
-            return;
-        }
-        lowerBridge.add(INCORRECT);
-        upperBridge.add(NOT_SELECTED);
+        addSelectBridge(isMatch, lowerBridge, upperBridge);
+    }
+
+    public String getUpperBridgeToString() {
+        return getSelectBridgeToString(upperBridge);
+    }
+
+    public String getLowerBridgeToString() {
+        return getSelectBridgeToString(lowerBridge);
     }
 
     private boolean isFinish(int bridgeSize) {
@@ -51,17 +46,20 @@ public class BridgeMap {
         return false;
     }
 
-    public String getUpperBridgeToString() {
-        StringBuffer bridge = new StringBuffer(upperBridge.toString().replace(COMMA, SEPARATOR));
+    private String getSelectBridgeToString(List<String> selectBridge) {
+        StringBuffer bridge = new StringBuffer(selectBridge.toString().replace(COMMA, SEPARATOR));
 
         bridge.insert(ONE, " ");
         return bridge.toString();
     }
 
-    public String getLowerBridgeToString() {
-        StringBuffer bridge = new StringBuffer(lowerBridge.toString().replace(COMMA, SEPARATOR));
-
-        bridge.insert(ONE, " ");
-        return bridge.toString();
+    private void addSelectBridge(boolean isMatch,List<String> selectBridge, List<String> notSelectBridge) {
+        if (isMatch) {
+            selectBridge.add(CORRECT);
+            notSelectBridge.add(NOT_SELECTED);
+            return;
+        }
+        selectBridge.add(INCORRECT);
+        notSelectBridge.add(NOT_SELECTED);
     }
 }
