@@ -12,7 +12,7 @@ public class UserMove {
 
     public void initMove() {
         moveCount = 0;
-        userLocation = new ArrayList<>();
+        userLocation.clear();
     }
 
     public int getUserBridgeSize() {
