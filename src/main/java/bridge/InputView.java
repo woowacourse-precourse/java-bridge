@@ -9,6 +9,7 @@ public class InputView {
 	private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다";
 	private static final String INPUT_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
 	private static final String INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+	private static final String INPUT_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 	private final static int MIN_RANGE = 3;
 	private final static int MAX_RANGE = 20;
 	private int size;
@@ -49,15 +50,13 @@ public class InputView {
 	}
 
 	private void bridgeSizeValidate() {
-		int size = Integer.parseInt(readBridgeSize());
 		if (!(size >= MIN_RANGE && size <= MAX_RANGE)) {
 			throw new IllegalArgumentException(ExceptionMessage.NOT_SIZE_RANGE.getExceptionMessage());
 		}
 	}
 
 	private int convertStringToInt() {
-		int input = Integer.parseInt(readBridgeSize());
-		return input;
+		return Integer.parseInt(readBridgeSize());
 	}
 
 	/**
@@ -65,13 +64,20 @@ public class InputView {
 	 */
 	public String readMoving() {
 		System.out.println("\n" +INPUT_MOVE_MESSAGE);
-		return Console.readLine().replace(" ", "");
+		return (Console.readLine().replace(" ", "")).toUpperCase();
+	}
+
+	public void movingValidate(String input) {
+		if (!(input.equals("D") || input.equals("U"))) {
+			throw new IllegalArgumentException(ExceptionMessage.NOT_MOVE_INVALID.getExceptionMessage());
+		}
 	}
 
 	/**
 	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 	 */
 	public String readGameCommand() {
-		return null;
+		System.out.println("\n" + INPUT_GAME_COMMAND_MESSAGE);
+		return Console.readLine();
 	}
 }
