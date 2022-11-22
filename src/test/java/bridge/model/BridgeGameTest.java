@@ -6,9 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static bridge.model.BridgePosition.BRIDGE_POSITION_UP;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -47,6 +50,22 @@ class BridgeGameTest {
     @CsvSource(value = {"R, true", "Q, false"})
     void returnTrueWhenCommandIsR(String command, boolean result) {
         assertThat(bridgeGame.retry(command)).isEqualTo(result);
+    }
+
+    @DisplayName("성공적으로 움직였는지 확인한다.")
+    @ParameterizedTest
+    @MethodSource("initSuccessMethodTest")
+    void returnTrueIfContainsO(final List<String> moveResult, final boolean result) {
+        assertThat(bridgeGame.isSuccess(moveResult)).isEqualTo(result);
+    }
+
+    private static Stream<Arguments> initSuccessMethodTest() {
+        return Stream.of(
+                Arguments.of(List.of("O", " "), true),
+                Arguments.of(List.of(" ", "O"), true),
+                Arguments.of(List.of("X", " "), false),
+                Arguments.of(List.of(" ", "X"), false)
+        );
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
