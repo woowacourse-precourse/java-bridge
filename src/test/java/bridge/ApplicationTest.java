@@ -9,6 +9,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -20,7 +21,6 @@ class ApplicationTest extends NsTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
     }
-
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
@@ -39,6 +39,7 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -46,6 +47,8 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+
 
     @Override
     protected void runMain() {
@@ -65,4 +68,72 @@ class ApplicationTest extends NsTest {
             return numbers.remove(0);
         }
     }
+
+    /*
+
+    @Test
+    void 다리길이_숫자_범위_테스트() {
+        int input = 21;
+        assertThatThrownBy(() -> {
+            InputView.bridgeLenRangeCheck(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
+
+
+    @Test
+    void 이동칸_예외_테스트() {
+        String input = "a";
+        System.setIn(in);
+        Throwable exception = assertThrows(IllegalArgumentException.class, () ->{
+           moveCheck(input);
+        });
+        assertThat(exception.getMessage()).contains("[ERROR]");
+
+    }
+
+
+
+    @Test
+    void 재시작_및_종료_예외_테스트() {
+        String input = "r";
+        System.setIn(in);
+        Throwable exception = assertThrows(IllegalArgumentException.class, () ->{
+            replayCheck(input);
+        });
+        assertThat(exception.getMessage()).contains("[ERROR]");
+
+    }
+
+
+    @Test
+    void 다리_이동_결과_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "U");
+            assertThat(output()).contains(
+                    "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                    "U",
+                    "[ O ]",
+                    "[   ]",
+                    "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                    "D",
+                    "[ O |   ]",
+                    "[   | O ]",
+                    "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                    "D",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
+            );
+
+        }, 1, 0, 1);
+    }
+
+     */
+
+
 }
