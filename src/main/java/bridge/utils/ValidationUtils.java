@@ -1,5 +1,7 @@
 package bridge.utils;
 
+import bridge.model.BridgePosition;
+import bridge.model.GameCommand;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.util.regex.Pattern;
@@ -13,8 +15,16 @@ import static bridge.exception.Errors.NOT_RIGHT_MOVE_COMMAND;
 public class ValidationUtils {
 
     private static final String NUMBER_REGEX = "^\\d+$";
-    private static final String MOVE_COMMAND_REGEX = "[U|D]";
-    private static final String GAME_COMMAND_REGEX = "[R|Q]";
+    private static final String MOVE_COMMAND_REGEX = "["
+            + BridgePosition.BRIDGE_POSITION_UP.getCommand()
+            + "|"
+            + BridgePosition.BRIDGE_POSITION_DOWN.getCommand()
+            + "]";
+    private static final String GAME_COMMAND_REGEX = "["
+            + GameCommand.RETRY.getSign()
+            + "|"
+            + GameCommand.QUIT.getSign()
+            + "]";
     private static final int MAXIMUM_BRIDGE_LENGTH = 20;
     private static final int MINIMUM_BRIDGE_LENGTH = 3;
 
