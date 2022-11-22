@@ -17,8 +17,9 @@ public class BridgeSize {
 
     private String isNumber(String str){
         if(!(pattern.matcher(str).matches())) {
-            System.out.println(ExceptionMessage.isNumberMsg());
-            return InputView.readBridgeSize();
+//            System.out.println(ExceptionMessage.isNumberMsg());
+//            return InputView.readBridgeSize();
+            throw new IllegalArgumentException(ExceptionMessage.isNumberMsg());
         }
         return str;
     }
@@ -26,8 +27,9 @@ public class BridgeSize {
     private String isRangeNumber(String str) {
         int size = Integer.parseInt(str);
         if(!(size >=3 && size <=20)) {
-            System.out.println(ExceptionMessage.isRangeNumberMsg());
-            return InputView.readBridgeSize();
+//            System.out.println(ExceptionMessage.isRangeNumberMsg());
+//            return InputView.readBridgeSize();
+            throw new IllegalArgumentException(ExceptionMessage.isRangeNumberMsg());
         }
         return str;
     }

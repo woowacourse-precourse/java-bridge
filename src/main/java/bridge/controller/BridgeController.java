@@ -4,7 +4,7 @@ import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeSize;
-import bridge.util.BridgeUtil;
+
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -13,7 +13,6 @@ import java.util.List;
 import static bridge.util.BridgeUtil.*;
 
 public class BridgeController {
-
     BridgeGame bridgeGame = new BridgeGame();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     BridgeSize bridgeSize = new BridgeSize();
@@ -28,8 +27,13 @@ public class BridgeController {
     }
 
     public List<String> makeBridge(){
-        int size = bridgeSize.checkNumber(InputView.readBridgeSize());
-        return bridgeMaker.makeBridge(size);
+        try {
+            int size = bridgeSize.checkNumber(InputView.readBridgeSize());
+            return bridgeMaker.makeBridge(size);
+        }catch (IllegalArgumentException e) {
+            inputError(e);
+            return makeBridge();
+        }
     }
 
     public String play(List<String> bridge){
@@ -52,7 +56,7 @@ public class BridgeController {
 
     public String crossBridge(List<String> bridge) {
         for (String s : bridge) {
-            String move = InputView.readMoving();
+            String move = inputMoving();
             List<List<String>> bridges = bridgeGame.move(s, move);
             OutputView.printMap(bridgeGame.toString());
             if (endGame(bridges).equals(FAIL.getValue())) {
@@ -60,6 +64,16 @@ public class BridgeController {
             }
         }
         return SUCCESS.getValue();
+    }
+
+    public String inputMoving(){
+        try {
+            String move = InputView.readMoving();
+            return move;
+        }catch (IllegalArgumentException e){
+            inputError(e);
+            return inputMoving();
+        }
     }
 
 
@@ -74,17 +88,29 @@ public class BridgeController {
     }
 
     public String replyQuit(String successStatus){
-        String reply;
         if(successStatus.equals(FAIL.getValue())) {
-            reply = InputView.readGameCommand();
-            return reply;
+            return inputGameCommand();
         }
         return QUIT.getValue();
+    }
+
+    public String inputGameCommand(){
+        try{
+            String reply = InputView.readGameCommand();
+            return reply;
+        }catch (IllegalArgumentException e){
+            inputError(e);
+            return inputGameCommand();
+        }
     }
 
     public void printResult(String successStatus, int attempt) {
         OutputView.printResult(bridgeGame.toString());
         OutputView.printSuccessOrFail(successStatus);
         OutputView.printAttemptCount(attempt);
+    }
+
+    public void inputError(IllegalArgumentException e){
+        System.out.println(e.getMessage());
     }
 }
