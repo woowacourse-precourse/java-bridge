@@ -14,24 +14,24 @@ public class Player {
 
 
     public void die() {
-        this.alive = false;
+        alive = false;
     }
 
     public void success() {
-        this.passedCount++;
+        passedCount++;
     }
 
     public void revive() {
-        this.alive = true;
-        this.passedCount = 0;
+        alive = true;
+        passedCount = 0;
     }
 
     // getter
     public boolean isAlive() {
-        return this.alive;
+        return alive;
     }
 
     public int getPassedCount() {
-        return this.passedCount;
+        return passedCount;
     }
 }

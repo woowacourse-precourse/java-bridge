@@ -27,7 +27,7 @@ public class Bridge {
         BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-        this.bridgeStates = bridgeMaker.makeBridge(bridgeSize);
+        bridgeStates = bridgeMaker.makeBridge(bridgeSize);
     }
 
 
@@ -40,7 +40,7 @@ public class Bridge {
     }
 
     public List<String> getBridgeStates() {
-        return this.bridgeStates;
+        return bridgeStates;
     }
 
     public String getBridgeState(int bridgeLocation) {

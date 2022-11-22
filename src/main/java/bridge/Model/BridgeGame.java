@@ -39,15 +39,15 @@ public class BridgeGame {
 
         if (command.equals(COMMAND_RETRY)) {
             player.revive();
-            this.retryCount++;
+            retryCount++;
         }
     }
 
     public void updateMaxPassedCount() {
         int passedCount = player.getPassedCount();
 
-        if (this.maxPassedCount < passedCount) {
-            this.maxPassedCount = passedCount;
+        if (maxPassedCount < passedCount) {
+            maxPassedCount = passedCount;
         }
     }
 
@@ -56,7 +56,7 @@ public class BridgeGame {
         List<String> bridgeStates = bridge.getBridgeStates();
 
         if (bridgeStates.size() <= playerNextLocation) {    // 다음에 이동할 곳이 인덱스를 벗어날 경우 끝에 도달한 것
-            this.maxPassedCount = playerNextLocation - 1;
+            maxPassedCount = playerNextLocation - 1;
 
             return true;
         }
@@ -88,15 +88,15 @@ public class BridgeGame {
 
     //getter
     public List<String> getBridgeStates() {
-        return this.bridge.getBridgeStates();
+        return bridge.getBridgeStates();
     }
 
     public int getRetryCount() {
-        return this.retryCount;
+        return retryCount;
     }
 
     public int getMaxPassedCount() {
-        return this.maxPassedCount;
+        return maxPassedCount;
     }
 
     public int getPassedCount() {
