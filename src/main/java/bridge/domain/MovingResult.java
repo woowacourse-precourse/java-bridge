@@ -13,4 +13,8 @@ public enum MovingResult {
     public String getMessage() {
         return message;
     }
+
+    public boolean isFail() {
+        return this.equals(FAIL);
+    }
 }

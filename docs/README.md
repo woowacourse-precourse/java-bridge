@@ -49,6 +49,7 @@
 
 ### MovingResult
 - 사용자 이동에 따른 결과를 담는 클래스
+- 사용자 이동의 결과가 Fail 여부 리턴 메서드
 
 ### BridgeGameAnswer
 - Bridge Game Answer 클래스
