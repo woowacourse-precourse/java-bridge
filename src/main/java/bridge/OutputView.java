@@ -1,14 +1,16 @@
 package bridge;
 
+import static bridge.constants.OutputConstants.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private final boolean SUCCESS = true;
+    private final boolean FAIL = false;
+
     private StringBuilder stringBuilderUp;
     private StringBuilder stringBuilderDown;
-
-    public OutputView() {
-    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -18,9 +20,9 @@ public class OutputView {
      */
     public void printMap(BridgeGame bridgeGame) {
         this.stringBuilderInit();
-        for (int i = 0; i < bridgeGame.getCurrentDownBridge().size(); i++) {
-            appendUpDown(bridgeGame, i);
-            if (i == bridgeGame.getCurrentUpBridge().size() - 1) {
+        for (int resultBridgeCurrentIndex = 0; resultBridgeCurrentIndex < bridgeGame.getCurrentDownBridge().size(); resultBridgeCurrentIndex++) {
+            appendUpDown(bridgeGame, resultBridgeCurrentIndex);
+            if (resultBridgeCurrentIndex == bridgeGame.getCurrentUpBridge().size() - 1) {
                 appendBracket();
                 break;
             }
@@ -36,25 +38,25 @@ public class OutputView {
     }
 
     private void appendDivision() {
-        stringBuilderUp.append(" | ");
-        stringBuilderDown.append(" | ");
+        stringBuilderUp.append(APPEND_DIVISION.getMessage());
+        stringBuilderDown.append(APPEND_DIVISION.getMessage());
     }
 
     private void appendBracket() {
-        stringBuilderUp.append(" ]");
-        stringBuilderDown.append(" ]");
+        stringBuilderUp.append(END_BRACKET.getMessage());
+        stringBuilderDown.append(END_BRACKET.getMessage());
     }
 
-    private void appendUpDown(BridgeGame bridgeGame, int i) {
-        stringBuilderUp.append(bridgeGame.getCurrentUpBridge().get(i));
-        stringBuilderDown.append(bridgeGame.getCurrentDownBridge().get(i));
+    private void appendUpDown(BridgeGame bridgeGame, int resultBridgeCurrentIndex) {
+        stringBuilderUp.append(bridgeGame.getCurrentUpBridge().get(resultBridgeCurrentIndex));
+        stringBuilderDown.append(bridgeGame.getCurrentDownBridge().get(resultBridgeCurrentIndex));
     }
 
     private void stringBuilderInit() {
         this.stringBuilderUp = new StringBuilder();
         this.stringBuilderDown = new StringBuilder();
-        this.stringBuilderUp.append("[ ");
-        this.stringBuilderDown.append("[ ");
+        this.stringBuilderUp.append(START_BRACKET.getMessage());
+        this.stringBuilderDown.append(START_BRACKET.getMessage());
     }
 
     /**
@@ -65,30 +67,14 @@ public class OutputView {
      * @param bridgeGame
      */
     public void printResult(boolean isSuccess, BridgeGame bridgeGame) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULT.getMessage());
         printMap(bridgeGame);
-        if (isSuccess == true) {
-            System.out.println("게임 성공 여부: "+ CheckSuccess.SUCCESS_GAME.getMessage());
+        if (isSuccess == SUCCESS) {
+            System.out.println(IS_SUCCESS_GAME.getMessage() + SUCCESS_GAME.getMessage());
         }
-        if (isSuccess == false) {
-            System.out.println("게임 성공 여부: " + CheckSuccess.FAIL_GAME.getMessage());
+        if (isSuccess == FAIL) {
+            System.out.println(IS_SUCCESS_GAME.getMessage() + FAIL_GAME.getMessage());
         }
-        System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
-    }
-
-    enum CheckSuccess {
-        SUCCESS_GAME("성공"),
-        FAIL_GAME("실패");
-
-        private boolean isSuccess;
-        private String message;
-
-        CheckSuccess(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
-        }
+        System.out.println(TRY_COUNT.getMessage() + bridgeGame.getTryCount());
     }
 }

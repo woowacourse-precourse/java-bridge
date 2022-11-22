@@ -1,31 +1,37 @@
 package bridge;
 
+
+import static bridge.constants.CommandConstants.*;
+import static bridge.constants.ExceptionConstants.*;
+
 public class ValidateBridge {
+    private static final int MIN_SIZE = 3;
+    private static final int MAX_SIZE = 20;
 
     static int validateBridgeSize(String beforeValidateSize) {
         int size = 0;
         try {
             size = Integer.parseInt(beforeValidateSize);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이가 숫자가 아닙니다");
+            throw new IllegalArgumentException(BRIDGE_SIZE_NOT_INTEGER.getMessage());
         }
 
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3이상 20이하여야 합니다.");
+        if (size < MIN_SIZE || size > MAX_SIZE) {
+            throw new IllegalArgumentException(BRIDGE_SIZE_OUT_OF_RANGE.getMessage());
         }
         return size;
     }
 
     static String validateMovement(String beforeMovement) {
-        if (!beforeMovement.equals("U") && !beforeMovement.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D로 입력해야 합니다.");
+        if (!beforeMovement.equals(MOVE_U.getCommand()) && !beforeMovement.equals(MOVE_D.getCommand())) {
+            throw new IllegalArgumentException(MOVE_COMMAND_NOT_U_OR_D.getMessage());
         }
         return beforeMovement;
     }
 
     static String validateRetry(String beforeValidateRetry) {
-        if (!beforeValidateRetry.equals("Q") && !beforeValidateRetry.equals("R")) {
-            throw new IllegalArgumentException("[ERROR] 재시작/종료 여부는 R이나 Q로 입력해야 합니다.");
+        if (!beforeValidateRetry.equals(RETRY_Q.getCommand()) && !beforeValidateRetry.equals(RETRY_R.getCommand())) {
+            throw new IllegalArgumentException(RETRY_COMMAND_NOT_R_OR_Q.getMessage());
         }
         return beforeValidateRetry;
     }

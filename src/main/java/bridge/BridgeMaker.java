@@ -1,7 +1,10 @@
 package bridge;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.constants.CommandConstants.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -23,11 +26,11 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             int random = bridgeNumberGenerator.generate();
             if (random == 0) {
-                bridge.add("D");
+                bridge.add(MOVE_D.getCommand());
                 continue;
             }
             if (random == 1) {
-                bridge.add("U");
+                bridge.add(MOVE_U.getCommand());
             }
         }
         return bridge;

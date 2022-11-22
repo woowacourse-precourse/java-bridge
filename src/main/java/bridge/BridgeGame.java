@@ -3,10 +3,13 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.constants.CommandConstants.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final int INIT_TRY_COUNT = 1;
 
     private List<String> bridge;
     private List<String> currentUpBridge;
@@ -15,7 +18,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.tryCount = 1;
+        this.tryCount = INIT_TRY_COUNT;
         initBridge();
     }
 
@@ -49,23 +52,23 @@ public class BridgeGame {
      */
     public boolean move(String movement, int index) {
         if (bridge.get(index).equals(movement)) {
-            moveOorX("O", movement);
+            moveOorX(MOVE_INPUT_O.getCommand(), movement);
             return true;
         }
         if (!bridge.get(index).equals(movement)) {
-            moveOorX("X", movement);
+            moveOorX(MOVE_INPUT_X.getCommand(), movement);
         }
         return false;
     }
 
     private void moveOorX(String ox, String movement) {
-        if (movement.equals("U")) {
+        if (movement.equals(MOVE_U.getCommand())) {
             currentUpBridge.add(ox);
-            currentDownBridge.add(" ");
+            currentDownBridge.add(MOVE_INPUT_BLANK.getCommand());
         }
-        if (movement.equals("D")) {
+        if (movement.equals(MOVE_D.getCommand())) {
             currentDownBridge.add(ox);
-            currentUpBridge.add(" ");
+            currentUpBridge.add(MOVE_INPUT_BLANK.getCommand());
         }
     }
 
@@ -77,7 +80,7 @@ public class BridgeGame {
      * @param retry
      */
     public boolean retry(String retry) {
-        if (retry.equals("R")) {
+        if (retry.equals(RETRY_R)) {
             this.tryCount++;
             initBridge();
             return true;
