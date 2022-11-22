@@ -45,5 +45,13 @@ public class BridgeGame {
         return onPlayingBridge.matchWith(answerBridge);
     }
 
+    public boolean isCompleted() {
+        if (onPlayingBridge.isSameSizeWith(answerBridge)) {
+            saveCurrentPlay();
+            return true;
+        }
+        return false;
+    }
+
     }
 }
