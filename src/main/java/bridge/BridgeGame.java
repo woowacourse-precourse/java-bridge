@@ -44,10 +44,6 @@ public class BridgeGame {
         return bridge.isFinish(player);
     }
 
-    public boolean isLose(){
-        return player.isPlayerWin();
-    }
-
     public void lose() {
         player.lose();
     }
