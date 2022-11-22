@@ -15,8 +15,8 @@
 - [X] 입력 받은 값으로 다리 생성
     - (BridgeMaker <- BridgeNumberGenerator <- BridgeRandomNumberGenerator)
 
-- [ ] 이동할 칸 입력 받기 (InputView)
-    - [ ] U or D 가 아닌 경우 예외 발생
+- [X] 이동할 칸 입력 받기 (InputView)
+    - [X] U or D 가 아닌 경우 예외 발생
 
 
     이동할 칸을 선택해주세요. (위: U, 아래: D)

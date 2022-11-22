@@ -4,6 +4,7 @@ import bridge.model.ValidityCheck;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.OutputView.printStartGame;
+import static bridge.enums.DorU.*;
 import static bridge.enums.ErrorMessage.*;
 import static bridge.enums.Sentence.*;
 
@@ -26,11 +27,17 @@ public class InputView {
         }
         return Integer.parseInt(inputBridgeLength);
     }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String getMoveString() {
+        System.out.println(MOVE.getValue());
+        String inputUpOrDown = Console.readLine();
+        if (!(inputUpOrDown.equals(UP.getName()) || inputUpOrDown.equals(DOWN.getName()))) {
+            throw new IllegalArgumentException(ER_NOT_UP_OR_DOWN.getMessage());
+        }
+        return inputUpOrDown;
     }
 
     /**
