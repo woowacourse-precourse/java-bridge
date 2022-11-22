@@ -82,4 +82,59 @@ class OutputViewTest {
         outputView.printResult(bridge, move, count);
         assertThat(outputStream.toString()).isEqualTo(result);
     }
+
+    @DisplayName("게임 시작 메시지 출력 테스트")
+    @Test
+    void 게임_시작_메시지_출력_테스트() {
+        final String result = "다리 건너기 게임을 시작합니다.\n";
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        outputView.printGameStartMessage();
+        assertThat(outputStream.toString()).isEqualTo(result);
+    }
+
+    @DisplayName("다리 길이 입력 메시지 출력 테스트")
+    @Test
+    void 다리_길이_입력_메시지_출력_테스트() {
+        final String result = "다리의 길이를 입력해주세요.\n";
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        outputView.printInputBridgeSizeMessage();
+        assertThat(outputStream.toString()).isEqualTo(result);
+    }
+
+    @DisplayName("이동 위치 입력 메시지 출력 테스트")
+    @Test
+    void 이동_위치_입력_메시지_출력_테스트() {
+        final String result = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        outputView.printInputMoveMessage();
+        assertThat(outputStream.toString()).isEqualTo(result);
+    }
+
+    @DisplayName("새 줄 출력 테스트")
+    @Test
+    void 새_줄_출력_테스트() {
+        final String result = "\n";
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        outputView.printNewLine();
+        assertThat(outputStream.toString()).isEqualTo(result);
+    }
+
+    @DisplayName("게임 재시작 메시지 출력 테스트")
+    @Test
+    void 게임_재시작_메시지_출력_테스트() {
+        final String result = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        outputView.printRestartMessage();
+        assertThat(outputStream.toString()).isEqualTo(result);
+    }
 }
