@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final List<String> POSITION_NAME = Arrays.asList("UP", "DOWN");
+    private static final List<String> POSITION_NAME = Arrays.asList("DOWN", "UP");
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {

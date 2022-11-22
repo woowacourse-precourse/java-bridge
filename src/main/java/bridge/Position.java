@@ -1,7 +1,7 @@
 package bridge;
 
 public enum Position {
-    UP(0, "U"), DOWN(1, "D");
+    UP(1, "U"), DOWN(0, "D");
 
     private int code;
     private String value;
