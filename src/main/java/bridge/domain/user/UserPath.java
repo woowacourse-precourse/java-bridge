@@ -10,6 +10,16 @@ public class UserPath {
         this.downPath = new Path();
     }
 
+    public void addUserPath(boolean status, MoveType moveType) {
+        if (moveType == MoveType.UP_TYPE) {
+            upPath.addPath(status);
+            downPath.addEmptyPath();
+            return;
+        }
+        upPath.addEmptyPath();
+        downPath.addPath(status);
+    }
+
     @Override
     public String toString() {
         return String.format("%s%s", upPath, downPath);
