@@ -34,7 +34,7 @@ public class BridgeMaker {
             block += "U";
         }
         if (number == 0) {
-            block += "O";
+            block += "D";
         }
         return block;
     }

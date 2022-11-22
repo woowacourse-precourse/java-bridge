@@ -37,7 +37,7 @@ public class InputView {
 
     private void validMoving(String inputMoving) {
         // TODO: U, O를 상수로 관리
-        if (!inputMoving.contains("U") && !inputMoving.contains("O")) {
+        if (!inputMoving.contains("U") && !inputMoving.contains("D")) {
             throw new IllegalArgumentException();
         }
         if (inputMoving.length() != 1) {
