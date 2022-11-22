@@ -52,11 +52,27 @@ class BridgeGameTest {
         String userMove = "U";
         int location = 0;
 
-        @DisplayName("example4의 numbers 포함 숫자 확인2")
-        @Test
-        void moveResultTest() {
-            assertThat(bridgeGame.move(userMove, location, bridge)).isTrue();
+        @DisplayName("생성된 다리 후 사용자 입력값이 U 일 때 값 확인")
+        @ParameterizedTest
+        @CsvSource(value = {"U : true", "D : false"}, delimiter = ':')
+        void bridgeContainsTest(String element, boolean expected) {
+            assertThat(bridgeGame.move(element, location, bridge)).isEqualTo(expected);
         }
+
     }
 
+    @Nested
+    class retryTest {
+
+        @DisplayName("재시작 시 Q , R 입력값 확인")
+        @ParameterizedTest
+        @CsvSource(value = {"Q : false", "R : true"}, delimiter = ':')
+        void retryContainsTest(String element, boolean expected) {
+            assertThat(bridgeGame.retry(element)).isEqualTo(expected);
+        }
+
+    }
 }
+
+
+
