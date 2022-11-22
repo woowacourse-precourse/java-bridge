@@ -1,6 +1,6 @@
-package bridge.dto;
+package bridge.domain.dto;
 
-import bridge.util.StringUtils;
+import bridge.domain.util.StringUtils;
 
 import java.util.regex.Pattern;
 

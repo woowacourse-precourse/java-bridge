@@ -1,4 +1,4 @@
-package bridge.util;
+package bridge.domain.util;
 
 import java.util.Objects;
 

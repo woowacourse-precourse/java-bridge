@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -11,7 +12,7 @@ class DirectionTest {
     @ParameterizedTest
     @CsvSource({"1,U", "0,D"})
     public void changeDirectionNumberToDirection(int directionNumber, String direction) {
-        String result = Direction.findByDirectionNumber(directionNumber);
+        String result = Direction.directionNumberToDirection(directionNumber);
         assertThat(result).isEqualTo(direction);
     }
 }

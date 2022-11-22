@@ -1,8 +1,8 @@
 package bridge.view;
 
-import bridge.dto.BridgeSize;
-import bridge.dto.Command;
-import bridge.dto.Place;
+import bridge.domain.dto.BridgeSize;
+import bridge.domain.dto.Command;
+import bridge.domain.dto.Place;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
