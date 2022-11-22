@@ -111,25 +111,67 @@ class BridgeGameTest extends NsTest {
         bridgeGame = new BridgeGame(bridge);
 
         assertSimpleTest(() -> {
+            int numberOfTry = 2;
+
             command("U", "D", "D", "U");
             bridgeGame.move();
             bridgeGame.move();
             bridgeGame.move();
             bridgeGame.retry();
-            bridgeGame.printMap();
+
+            bridgeGame.printResult(numberOfTry);
 
             System.out.printf("isEnd 반환값: %b\n", bridgeGame.isEnd());
             System.out.printf("isMoveWrong 반환값: %b\n", bridgeGame.isMoveWrong());
 
             assertThat(output()).doesNotContain(ERROR_MESSAGE).contains(
+                    "최종 게임 결과",
                     "[ O |   | O ]",
                     "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2",
                     "isEnd 반환값: true",
                     "isMoveWrong 반환값: false"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        });
+    }
+
+
+    @DisplayName("BridgeGame 클래스 종합 테스트5")
+    @Test
+    void bridgeGameTest5() {
+        List<String> bridge = List.of("U", "D", "U");
+        bridgeGame = new BridgeGame(bridge);
+
+        assertSimpleTest(() -> {
+            int numberOfTry = 15;
+
+            command("U", "D", "D");
+            bridgeGame.move();
+            bridgeGame.move();
+            bridgeGame.move();
+
+            bridgeGame.printResult(numberOfTry);
+
+            System.out.printf("isEnd 반환값: %b\n", bridgeGame.isEnd());
+            System.out.printf("isMoveWrong 반환값: %b\n", bridgeGame.isMoveWrong());
+
+            assertThat(output()).doesNotContain(ERROR_MESSAGE).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 15",
+                    "isEnd 반환값: false",
+                    "isMoveWrong 반환값: true"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   |   ]");
+            int downSideIndex = output().indexOf("[   | O | X ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         });
     }
