@@ -58,6 +58,12 @@ public class Bridge {
         return true;
     }
 
+    public void initStatus() {
+        upStatus = new ArrayList<>();
+        downStatus = new ArrayList<>();
+        current = 0;
+    }
+
     public String toString() {
         String result = BRIDGE_START + String.join(MOVE_CONN, upStatus) + BRIDGE_END;
         result += "\n" + BRIDGE_START + String.join(MOVE_CONN, downStatus) + BRIDGE_END;
