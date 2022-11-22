@@ -42,7 +42,7 @@ public class BridgeGame {
     /**
      * 실제 게임이 진행되는 메서드
      */
-    private boolean play(int bridgeSize, List<String> bridge, List<String> moves) {
+    public boolean play(int bridgeSize, List<String> bridge, List<String> moves) {
         tryCount = tryCount + counting;
         moves.clear();
         for (int i = 0; i < bridgeSize; ++i) {
