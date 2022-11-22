@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.exception.GameExceptionHandler;
+import bridge.input.getter.BridgeSizeGetter;
 
 import java.util.List;
 
