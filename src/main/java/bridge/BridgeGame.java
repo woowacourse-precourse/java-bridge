@@ -29,57 +29,18 @@ public class BridgeGame {
     boolean success = true;
 
     public void move(List<String> bridge, String input, int cnt) {
-        OutputView outputView = new OutputView();
-        List<String> inputList = null;
-
-
-
-
-
         List<String> bridgeResultUp = new ArrayList<>();
         List<String> bridgeResultDown = new ArrayList<>();
 
-        System.out.println("bridge:"+bridge);
+//        System.out.println("bridge:"+bridge);
 
-        bridgeResultUp.add("[");
-        for(int i = 0; i < cnt+1; i++){
-            if(input.equals(bridge.get(cnt)) && bridge.get(i).equals("U")){     // 입력값, 첫째값 같으면, up
-                bridgeResultUp.add("O");
-            }
-            if(input.equals(bridge.get(cnt)) && bridge.get(i).equals("D")){     // 입력값, 첫째값 같으면, up
-                bridgeResultUp.add(" ");
-            }
-            if(!input.equals(bridge.get(cnt)) && input.equals("U")){     // 다르면 X
-                bridgeResultUp.add("X");
-            }
-            if(i != cnt){
-                bridgeResultUp.add("|");
-            }
+        bridgeResultUp = getBridgeUpList(bridge, input, cnt);
 
-            System.out.println("cnt:"+bridge.get(i));
-        }
-        bridgeResultUp.add("]");
-        System.out.println();
+//        System.out.println();
 
         System.out.println(bridgeResultUp);
 
-        bridgeResultDown.add("[");
-        for(int i = 0; i < cnt+1; i++){
-            if(input.equals(bridge.get(cnt)) && bridge.get(i).equals("U")){     // 입력값, 첫째값 같으면, up
-                bridgeResultDown.add(" ");
-            }
-            if(input.equals(bridge.get(cnt)) && bridge.get(i).equals("D")){     // 입력값, 첫째값 같으면, up
-                bridgeResultDown.add("O");
-            }
-            if(!input.equals(bridge.get(cnt)) && input.equals("D")){     // 다르면 X
-                bridgeResultDown.add(" ");
-                success = false;
-            }
-            if(i != cnt){
-                bridgeResultDown.add("|");
-            }
-        }
-        bridgeResultDown.add("]");
+        bridgeResultDown = getBridgeDownList(bridge, input, cnt);
 
         System.out.println(bridgeResultDown);
 
@@ -102,6 +63,54 @@ public class BridgeGame {
     public List<String> downList() {
         return this.bridgeDownList;
     }
+
+    private List<String> getBridgeUpList(List<String> bridge, String input, int cnt){
+        List<String> bridgeResultUp = new ArrayList<>();
+
+        bridgeResultUp.add("[");
+        for(int i = 0; i < cnt+1; i++){
+            if(input.equals(bridge.get(cnt)) && bridge.get(i).equals("U")){     // 입력값, 첫째값 같으면, up
+                bridgeResultUp.add("O");
+            }
+            if(input.equals(bridge.get(cnt)) && bridge.get(i).equals("D")){     // 입력값, 첫째값 같으면, up
+                bridgeResultUp.add(" ");
+            }
+            if(!input.equals(bridge.get(cnt)) && input.equals("U")){     // 다르면 X
+                bridgeResultUp.add("X");
+            }
+            if(i != cnt){
+                bridgeResultUp.add("|");
+            }
+//            System.out.println("cnt:"+bridge.get(i));
+        }
+        bridgeResultUp.add("]");
+
+        return bridgeResultUp;
+    }
+
+    private List<String> getBridgeDownList(List<String> bridge, String input, int cnt){
+        List<String> bridgeResultDown = new ArrayList<>();
+
+        bridgeResultDown.add("[");
+        for(int i = 0; i < cnt+1; i++){
+            if(input.equals(bridge.get(cnt)) && bridge.get(i).equals("U")){     // 입력값, 첫째값 같으면, up
+                bridgeResultDown.add(" ");
+            }
+            if(input.equals(bridge.get(cnt)) && bridge.get(i).equals("D")){     // 입력값, 첫째값 같으면, up
+                bridgeResultDown.add("O");
+            }
+            if(!input.equals(bridge.get(cnt)) && input.equals("D")){     // 다르면 X
+                bridgeResultDown.add(" ");
+                success = false;
+            }
+            if(i != cnt){
+                bridgeResultDown.add("|");
+            }
+        }
+        bridgeResultDown.add("]");
+        return bridgeResultDown;
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
