@@ -9,8 +9,8 @@ public class Game {
 	private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 	private final BridgeGame bridgeGame = new BridgeGame();
 
-	private static List<String> bridge = new ArrayList<>();
-	private static List<String> result = new ArrayList<>();
+	private List<String> bridge = new ArrayList<>();
+	private List<String> result = new ArrayList<>();
 
 	private int countOfGame = 1;
 

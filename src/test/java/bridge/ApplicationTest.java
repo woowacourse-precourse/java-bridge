@@ -80,6 +80,23 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         }, 1, 0, 1);
     }
+    @Test
+    @DisplayName("재시도 여부의 입력은 길이가 1이어야 한다.")
+    void retryTest1() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "RQ", "R", "U", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    @DisplayName("재시도 여부의 입력은 R 또는 Q")
+    void retryTest2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "D", "R", "U", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
 
 
     @Override
