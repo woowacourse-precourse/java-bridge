@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Player {
@@ -10,6 +11,6 @@ public class Player {
     }
 
     public List<String> getMovingChoices() {
-        return movingChoices;
+        return Collections.unmodifiableList(movingChoices);
     }
 }
