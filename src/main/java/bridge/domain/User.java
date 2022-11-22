@@ -31,8 +31,8 @@ public class User {
     return bridgeLength == moveStatus.size();
   }
 
-  public List<String> getMoveStatus() {
-    return this.moveStatus;
+  public int getMoveCount() {
+    return this.moveStatus.size();
   }
 
   public int getTryCount() {

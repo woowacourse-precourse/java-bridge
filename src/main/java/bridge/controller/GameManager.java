@@ -1,11 +1,11 @@
 package bridge.controller;
 
-import static bridge.view.InputView.*;
-import static bridge.view.OutputView.*;
-
 import bridge.domain.BridgeGame;
 import bridge.domain.GameCommand;
 import bridge.domain.User;
+
+import static bridge.view.InputView.*;
+import static bridge.view.OutputView.*;
 
 public class GameManager {
   private User user;
@@ -32,13 +32,13 @@ public class GameManager {
       bridgeGame.gameInit(length);
       tryMove(); // 시도가 끝날 때 까지 이동
     } while (!checkIsGameFinish());
-    printResult();
+    printResult(bridgeGame, user.getTryCount());
   }
 
   private void tryMove() {
     while (!bridgeGame.isTryFinish()) {
       bridgeGame.move(readMoving());
-      bridgeGame.showResult();
+      printMap(bridgeGame.getMap());
     }
   }
 
@@ -54,11 +54,5 @@ public class GameManager {
       return true;
     }
     return false;
-  }
-
-  private void printResult() {
-    printFinalResult(user.getMoveStatus(), bridgeGame.getBridgeShapes());
-    printGameSuccessOrFailure(bridgeGame.isTrySuccess());
-    printTotalTryCount(user.getTryCount());
   }
 }
