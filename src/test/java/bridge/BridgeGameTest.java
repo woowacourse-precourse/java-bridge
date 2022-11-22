@@ -104,6 +104,30 @@ public class BridgeGameTest {
         assertThat(finalResult.getNumAttempts()).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("다리 길이 입력 받아오기 테스트: 세 번의 시도 끝에 올바른 입력을 받아오는지 테스트")
+    void bridgeSizeTest() {
+        String input = makeConsoleInput("005");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        assertThat(BridgeGame.getBridgeGame().bridgeSize()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("이동할 칸 입력 받아오기 테스트: 네 번의 시도 끝에 올바른 입력을 받아오는지 테스트")
+    void moveTest() {
+        String input = makeConsoleInput("FFFU");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        assertThat(BridgeGame.getBridgeGame().move()).isEqualTo("U");
+    }
+
+    @Test
+    @DisplayName("다리 길이 입력 받아오기 테스트: 세 번의 시도 끝에 올바른 입력을 받아오는지 테스트")
+    void retryTest() {
+        String input = makeConsoleInput("rasQ");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        assertThat(BridgeGame.getBridgeGame().retry()).isEqualTo("Q");
+    }
+
     @AfterEach
     void clearInputStream() {
         boolean isConsoleExhausted = false;
