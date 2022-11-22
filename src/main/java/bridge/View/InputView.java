@@ -53,6 +53,20 @@ public class InputView {
     }
 
     private String validateMoving(String input){
+        try{
+            return validateMovingSymbol(input);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return readMoving();
+        }
+    }
+
+    private String validateMovingSymbol(String input){
+        if(!input.equals(Constants.UP) && !input.equals(Constants.DOWN)){
+            throw new IllegalArgumentException(Constants.MOVING_SYMBOL_ERROR_MESSAGE);
+        }
+
         return input;
     }
 
