@@ -1,20 +1,36 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
-    private List<String> userMoves = new ArrayList<>();
+    private int moveCount;
+    private int trial;
 
-    public void move(String moveInput) {
-        userMoves.add(moveInput);
+    public User() {
+        moveCount = 0;
+        trial = 0;
+    }
+
+    public void move() {
+        moveCount += 1;
     }
 
     public int getMoveCount() {
-        return userMoves.size();
+        return moveCount;
     }
 
-    public void clearUserMove() {
-        userMoves = new ArrayList<>();
+    public int getTrial() {
+        return trial;
+    }
+
+    public void retry() {
+        clearUserMove();
+        addTrialCount();
+    }
+
+    private void clearUserMove() {
+        moveCount = 0;
+    }
+
+    private void addTrialCount() {
+        trial += 1;
     }
 }
