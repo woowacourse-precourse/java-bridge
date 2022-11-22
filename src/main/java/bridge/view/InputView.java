@@ -56,7 +56,7 @@ public class InputView {
         }
     }
 
-    public static void throwError(List<String> properElements, String input, String errorMessage) throws IllegalArgumentException {
+    public void throwError(List<String> properElements, String input, String errorMessage) throws IllegalArgumentException {
         if (!properElements.contains(input)) {
             throw new IllegalArgumentException(errorMessage);
         }
