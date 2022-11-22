@@ -5,6 +5,10 @@ public abstract class OutputViewText {
     protected static final String MOVE_CORRECT = "O";
     protected static final String MOVE_WRONG = "X";
 
+    protected static final String BRIDGE_DELIMITER = " | ";
+    protected static final String BRIDGE_PREFIX = "[ ";
+    protected static final String BRIDGE_SUFFIX = " ]";
+
     protected static final String SUCCESS = "성공";
     protected static final String FAIL = "실패";
 

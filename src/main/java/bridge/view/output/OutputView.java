@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
-public class OutputView extends OutputViewText{
+public class OutputView extends OutputViewText {
 
     private BridgeGameDto dto;
 
@@ -28,7 +28,7 @@ public class OutputView extends OutputViewText{
         List<String> route = dto.getRoute();
         String output = IntStream.range(0, route.size())
                 .mapToObj(index -> getSign(index, road))
-                .collect(Collectors.joining(" | ","[ "," ]"));
+                .collect(Collectors.joining(BRIDGE_DELIMITER, BRIDGE_PREFIX, BRIDGE_SUFFIX));
         print(output);
     }
 
