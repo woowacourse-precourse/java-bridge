@@ -65,8 +65,7 @@ public class BridgeGame {
         cross(map, Moving.of(bridge.get(round - 1)), success);
         return map;
     }
-
-
+    
     private void cross(Map<Moving, List<String>> row, Moving moving, boolean isCorrectMoving) {
         Moving otherSide = getOtherSide(moving);
         if (isCorrectMoving) {
