@@ -11,20 +11,6 @@ public class Validater {
         validateBridgeSizeRange(input);
     }
 
-    public void validateIsNumeric(String input) {
-        final String REGEX = "[0-9]+";
-        if(!input.matches(REGEX)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_INT);
-        }
-    }
-
-    public void validateBridgeSizeRange(String input) {
-        int bridgeSize = Integer.valueOf(input);
-        if(!(bridgeSize >= 3 && bridgeSize <= 20)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_BRIDGE_SIZE);
-        }
-    }
-
     public void validateMovingInput(String input) {
         if (!(input.equals("D") || input.equals("U"))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_MOVE);
@@ -34,6 +20,20 @@ public class Validater {
     public void validateGameCommandInput(String input) {
         if (!(input.equals("Q") || input.equals("R"))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_COMMAND);
+        }
+    }
+
+    private void validateIsNumeric(String input) {
+        final String REGEX = "[0-9]+";
+        if(!input.matches(REGEX)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_INT);
+        }
+    }
+
+    private void validateBridgeSizeRange(String input) {
+        int bridgeSize = Integer.valueOf(input);
+        if(!(bridgeSize >= 3 && bridgeSize <= 20)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_BRIDGE_SIZE);
         }
     }
 }
