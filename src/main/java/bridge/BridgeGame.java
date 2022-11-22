@@ -35,12 +35,8 @@ public class BridgeGame {
     public boolean move(String direction) {
         validate.validateContainWord(direction, UP, DOWN);
         visited.add(direction);
-        return isRightDirection(visited.size()-1, direction);
+        return bridge.isRightDirection(visited.size()-1, direction);
 
-    }
-
-    public boolean isRightDirection(int idx, String direction) {
-        return bridge.isRightDirection(idx, direction);
     }
 
     public List<String> getUpBridge() {
