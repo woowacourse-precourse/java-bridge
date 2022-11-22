@@ -20,13 +20,9 @@ public class Run {
         play(bridgeGame);
     }
 
-    public Run(BridgeGame bridgeGame) {
-        play(bridgeGame);
-    }
-
     private void play(BridgeGame bridgeGame) {
         playOneSet(bridgeGame);
-        SuccessFail isSuccess = bridgeGame.isSuccess(bridgeGame.bridge, bridgeGame.player);
+        SuccessFail isSuccess = bridgeGame.isSuccess();
 
         if (isSuccess == FAIL) {
             String gameCommand = getGameCommand();
@@ -37,7 +33,7 @@ public class Run {
             }
         }
 
-        new OutputView().printResult(bridgeGame.bridge, bridgeGame.player, attempts);
+        new OutputView().printResult(bridgeGame, attempts);
     }
 
     private void playOneSet(BridgeGame bridgeGame) {
@@ -45,7 +41,7 @@ public class Run {
         do {
             String moving = getMoving();
             bridgeGame.move(moving);
-            new OutputView().printMap(bridgeGame.bridge, bridgeGame.player);
+            new OutputView().printMap(bridgeGame.upBridge, bridgeGame.downBridge);
             isFinish = bridgeGame.isFinish();
         } while(!isFinish);
     }

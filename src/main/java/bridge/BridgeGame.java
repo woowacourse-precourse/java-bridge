@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.constant.SuccessFail.*;
+import static bridge.constant.Updown.DOWN;
+import static bridge.constant.Updown.UP;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -21,6 +23,8 @@ public class BridgeGame {
 
     public final List<String> bridge;
     public List<String> player = new ArrayList<>();
+    public List<String> upBridge = new ArrayList<>();
+    public List<String> downBridge = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -33,9 +37,26 @@ public class BridgeGame {
      */
     public void move(String moving) {
         player.add(moving);
+        int nowIdx = player.size() - 1;
+        if (moving.equals(UP.getKey())) {
+            downBridge.add(" ");
+            if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
+                upBridge.add("O");
+                return;
+            }
+            upBridge.add("X");
+        }
+        if (moving.equals(DOWN.getKey())) {
+            upBridge.add(" ");
+            if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
+                downBridge.add("O");
+                return;
+            }
+            downBridge.add("X");
+        }
     }
 
-    public SuccessFail isSuccess(List<String> bridge, List<String> player) {
+    public SuccessFail isSuccess() {
         if (bridge.equals(player))
             return SUCCESS;
         return FAIL;
@@ -67,5 +88,7 @@ public class BridgeGame {
      */
     public void retry() {
         player = new ArrayList<>();
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
     }
 }
