@@ -70,7 +70,4 @@ public class BridgeDTO {
         return downCase;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
 }

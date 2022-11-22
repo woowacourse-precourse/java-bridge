@@ -87,8 +87,4 @@ class BridgeDTOTest {
         bridgeDTO.move(1);
         assertThat(bridgeDTO.getDownCase()).containsExactly(BridgeCase.NOTHING, BridgeCase.ANSWER, BridgeCase.NOTHING);
     }
-
-    @Test
-    void setLength() {
-    }
 }
