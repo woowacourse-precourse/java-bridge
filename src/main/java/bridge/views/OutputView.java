@@ -1,4 +1,6 @@
-package bridge;
+package bridge.views;
+
+import bridge.domain.BridgeGame;
 
 import static bridge.constants.OutputConstants.*;
 

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.views;
 
 import static bridge.constants.InputConstants.*;
 import static camp.nextstep.edu.missionutils.Console.*;

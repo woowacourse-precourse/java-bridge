@@ -1,8 +1,15 @@
-package bridge;
+package bridge.controller;
+
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.views.InputView;
+import bridge.views.OutputView;
 
 import java.util.List;
 
-import static bridge.ValidateBridge.*;
+import static bridge.validate.ValidateBridge.*;
 
 public class Controller {
     private int bridgeIndex;
