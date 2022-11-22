@@ -3,7 +3,6 @@ package bridge;
 import java.util.*;
 
 public class Game {
-    private static final String BLANK = " ";
     private List<List<String>> runningList;
     private String success;
     private int location;
@@ -42,5 +41,15 @@ public class Game {
 
     public void setSuccess(String success) {
         this.success = success;
+    }
+
+    public void write(String direction, String answer) {
+        if (direction.equals("U")) {
+            runningList.get(0).add(answer);
+            runningList.get(1).add(" ");
+            return;
+        }
+        runningList.get(1).add(answer);
+        runningList.get(0).add(" ");
     }
 }

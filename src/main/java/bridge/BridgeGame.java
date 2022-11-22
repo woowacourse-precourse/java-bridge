@@ -32,7 +32,7 @@ public class BridgeGame {
      */
     public String move(String direction) {
         String checkOX = checkOX(direction, bridge.get(game.getLocation()));
-
+        game.write(direction, checkOX);
         if (checkOX.equals("O")) {
             game.forward();
         }
@@ -49,8 +49,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-
+    public boolean retry(String command) {
+        if (game.getSuccess().equals("실패") && command.equals("R")) {
+            return true;
+        }
+        return false;
     }
 
     public String checkOX(String user, String answer) {
@@ -66,5 +69,12 @@ public class BridgeGame {
             return false;
         }
         return true;
+    }
+
+    public boolean success() {
+        if (game.getSuccess().equals("성공")) {
+            return true;
+        }
+        return false;
     }
 }
