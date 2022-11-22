@@ -9,13 +9,13 @@ public class OutputView {
 
     private static final int BRIDGE_FIRST_TRY_INDEX = 0;
     private static final int BRIDGE_ONE_TRY_SPACE_SIZE = 4;
+    private static final int ADDITIONAL_NUMBER_FOR_EXCLUDE_BRACKET = 1;
     private static final String BRIDGE_FAIL_SPACE_BLANK = "   ";
     private static final String CLOSING_BRACKET = "]";
-
-    private static final StringBuilder upsideBridge = new StringBuilder("[]");
-    private static final StringBuilder downsideBridge = new StringBuilder("[]");
     private static final StringBuilder SUCCESSFUL_MARK = new StringBuilder(" O ");
     private static final StringBuilder FAILURE_MARK = new StringBuilder(" X ");
+    private static final StringBuilder upsideBridge = new StringBuilder("[]");
+    private static final StringBuilder downsideBridge = new StringBuilder("[]");
 
 
 
@@ -28,11 +28,6 @@ public class OutputView {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
     }
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public static void printMap() {
         System.out.println(upsideBridge);
         System.out.println(downsideBridge);
@@ -68,12 +63,18 @@ public class OutputView {
         }
     }
 
-    private static void moveUpside(int index) {
-        upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1,SUCCESSFUL_MARK);
-        downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1, BRIDGE_FAIL_SPACE_BLANK);
+    // forExcludeBracketIndex
+    /**
+     * 위 칸 입력 후 다리 건너기 성공했을 시 Map에 O 표시를 추가하는 메소드
+     * index에서 바로 insert 할 경우 닫는 괄호가 추가 되
+     * @param index
+     */
+    private static void moveSuccessUpside(int index) {
+        upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + ADDITIONAL_NUMBER_FOR_EXCLUDE_BRACKET ,SUCCESSFUL_MARK);
+        downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + ADDITIONAL_NUMBER_FOR_EXCLUDE_BRACKET , BRIDGE_FAIL_SPACE_BLANK);
     }
 
-    private static void moveDownside(int index) {
+    private static void moveSuccessDownside(int index) {
         upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1, BRIDGE_FAIL_SPACE_BLANK);
         downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1,SUCCESSFUL_MARK);
     }
@@ -88,12 +89,12 @@ public class OutputView {
         downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE *index+1,FAILURE_MARK);
     }
 
-    private static void deleteBridgeOverSecondTry(int index) {
+    private static void deleteBridgeMapOverSecondTry(int index) {
         upsideBridge.delete(BRIDGE_ONE_TRY_SPACE_SIZE * index , 2 * BRIDGE_ONE_TRY_SPACE_SIZE * index + 1);
         downsideBridge.delete(BRIDGE_ONE_TRY_SPACE_SIZE * index , 2 * BRIDGE_ONE_TRY_SPACE_SIZE * index + 1);
     }
 
-    private static void deleteBridgeFirstTry() {
+    private static void deleteBridgeMapFirstTry() {
         upsideBridge.delete(1, BRIDGE_ONE_TRY_SPACE_SIZE);
         downsideBridge.delete(1, BRIDGE_ONE_TRY_SPACE_SIZE);
     }
@@ -105,20 +106,20 @@ public class OutputView {
 
     public static void goBackBeforeOneStep(int index) {
         if (index > BRIDGE_FIRST_TRY_INDEX) {
-            deleteBridgeOverSecondTry(index);
+            deleteBridgeMapOverSecondTry(index);
             appendClosingBracket();
         }
         if (index == BRIDGE_FIRST_TRY_INDEX) {
-            deleteBridgeFirstTry();
+            deleteBridgeMapFirstTry();
         }
     }
 
     public static void moveSuccess(String moveSide, int index) {
         if (moveSide.equals("U")) {
-            moveUpside(index);
+            moveSuccessUpside(index);
         }
         if (moveSide.equals("D")) {
-            moveDownside(index);
+            moveSuccessDownside(index);
         }
         printMap();
         }
