@@ -34,7 +34,8 @@ class BridgeGameTest {
         List<String> bridge = List.of("U", "D", "U");
         List<String> player = List.of("U", "D", "U");
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        SuccessFail isSuccess = bridgeGame.isSuccess(bridge, player);
+        bridgeGame.player = player;
+        SuccessFail isSuccess = bridgeGame.isSuccess();
         assertThat(isSuccess).isEqualTo(SUCCESS);
     }
 
@@ -43,7 +44,8 @@ class BridgeGameTest {
         List<String> bridge = List.of("U", "D", "U");
         List<String> player = List.of("U", "D", "D");
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        SuccessFail isSuccess = bridgeGame.isSuccess(bridge, player);
+        bridgeGame.player = player;
+        SuccessFail isSuccess = bridgeGame.isSuccess();
         assertThat(isSuccess).isEqualTo(FAIL);
     }
 
