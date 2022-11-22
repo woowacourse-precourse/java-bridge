@@ -19,19 +19,21 @@ public class BridgeGameController {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         GameRecord gameRecord = new GameRecord();
 
-        playGame(bridgeGame, gameRecord);
+        GameResultModel gameResultModel = playGame(bridgeGame, gameRecord);
+        OutputView.printResult(gameResultModel);
     }
 
-    private void playGame(BridgeGame bridgeGame, GameRecord gameRecord) {
+    private GameResultModel playGame(BridgeGame bridgeGame, GameRecord gameRecord) {
         do {
             initializeGameRecord(gameRecord);
             moveUser(bridgeGame, gameRecord);
 
             if (gameRecord.isGameSuccess()) {
-                makeResultModel(gameRecord);
-                break;
+                 break;
             }
         } while (canRestart(bridgeGame));
+
+        return makeResultModel(gameRecord);
     }
 
     private boolean canRestart(BridgeGame bridgeGame) {
@@ -53,10 +55,9 @@ public class BridgeGameController {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private void makeResultModel(GameRecord gameRecord) {
-        GameResultModel gameResultModel = new GameResultModel(gameRecord.makeBridgeRecord(),
+    private GameResultModel makeResultModel(GameRecord gameRecord) {
+        return new GameResultModel(gameRecord.makeBridgeRecord(),
                 gameRecord.isGameSuccess(), gameRecord.getPlayTime());
-        OutputView.printResult(gameResultModel);
     }
 
     private void moveUser(BridgeGame bridgeGame, GameRecord gameRecord) {
