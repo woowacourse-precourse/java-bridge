@@ -2,9 +2,6 @@ package bridge.view;
 
 import bridge.model.BridgeGame;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static bridge.view.ViewEnum.*;
 
 /**

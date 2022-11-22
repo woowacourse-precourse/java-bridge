@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
     @DisplayName("위의 다리랑 아래 다리가 정상적으로 O X로 들어가는지 테스트")

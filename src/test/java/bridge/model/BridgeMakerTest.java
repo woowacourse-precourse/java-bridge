@@ -1,12 +1,13 @@
 package bridge.model;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeMakerTest {
     @DisplayName("다리가 0일 때 D, 1일 때 U로 리스트가 만들어 지는지 테스트")

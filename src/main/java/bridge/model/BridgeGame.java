@@ -1,14 +1,7 @@
 package bridge.model;
 
-import bridge.model.BridgeMaker;
-import bridge.model.BridgeNumberGenerator;
-import bridge.model.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
