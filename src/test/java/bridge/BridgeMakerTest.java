@@ -12,10 +12,10 @@ public class BridgeMakerTest {
     @DisplayName("입력된 크기만큼 다리가 만들어지는지 테스트")
     @ValueSource(ints = {3, 10, 20})
     @ParameterizedTest
-    void makeBridge(int input) {
+    void makeBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> list = bridgeMaker.makeBridge(input);
-        assertThat(list.size()).isEqualTo(input);
+        List<String> list = bridgeMaker.makeBridge(bridgeSize);
+        assertThat(list.size()).isEqualTo(bridgeSize);
         assertThat(list).containsAnyOf("U", "D");
     }
 }
