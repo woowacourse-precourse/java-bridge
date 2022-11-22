@@ -40,6 +40,20 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 출력_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("4", "D", "D", "U", "D");
+            assertThat(output()).contains(
+                "[   |   | O |   ]",
+                "[ O | O |   | O ]"
+            );
+            int upSideIndex = output().indexOf("[   |   | O |  ]");
+            int downSideIndex = output().indexOf("[ O | O |   | O ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 0, 0, 1, 0);
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
