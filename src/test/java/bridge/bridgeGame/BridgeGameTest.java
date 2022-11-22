@@ -19,4 +19,18 @@ class BridgeGameTest {
         // then
         assertThat(bridgeGame.getBridgeGameState().bridgeSize()).isEqualTo(5);
     }
+
+    @Test
+    public void retryTest() throws Exception {
+        // given
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeGame bridgeGame = new BridgeGame(bridgeNumberGenerator);
+
+        // when
+        bridgeGame.retry();
+        bridgeGame.retry();
+
+        // then
+        assertThat(bridgeGame.getTryCount()).isEqualTo(3);
+    }
 }
