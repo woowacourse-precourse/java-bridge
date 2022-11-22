@@ -1,16 +1,37 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class MyTest extends NsTest {
+
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @DisplayName("범위를 벗어난 숫자 입력시 예외 테스트")
+    @Test
+    void numberScopeExceptionTest() {
+        assertSimpleTest(() -> {
+            runException("2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2", "3", "u", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Test
     void 기능_테스트() {

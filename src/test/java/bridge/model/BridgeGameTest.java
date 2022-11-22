@@ -31,18 +31,7 @@ public class BridgeGameTest {
         Assertions.assertThat(bridgeGame.getCurrentPositions()).isEqualTo(List.of(List.of(" ", "X"), List.of("O", " ")));
     }
 
-
-    @DisplayName("재시작하는 경우 초기화 확인 테스트")
-    @Test
-    void retryThenCurrentMapClearTest() {
-        bridgeGame.move("D", "U", bridgeSize);
-        bridgeGame.move("D", "D", bridgeSize);
-        bridgeGame.retry();
-
-        Assertions.assertThat(bridgeGame.getCurrentPositions()).isEmpty();
-    }
-
-    @DisplayName("틀려서 초기화한 경우 사이즈와 시도 횟수를 확인하는 테스트")
+    @DisplayName("재시작한 경우 다음 stage 에 비교할 브릿지 인덱스, 현재 이동한 다리 맵, 시도 횟수를 확인하는 테스트")
     @Test
     void retry() {
         bridgeGame.move("U", "U", bridgeSize);
@@ -51,6 +40,7 @@ public class BridgeGameTest {
         bridgeGame.retry();
 
         assertThat(bridgeGame.nextIndex()).isEqualTo(0);
+        Assertions.assertThat(bridgeGame.getCurrentPositions()).isEmpty();
         assertThat(bridgeGame.getNumberOfAttempts()).isEqualTo(2);
     }
 
