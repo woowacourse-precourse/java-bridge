@@ -31,6 +31,16 @@ public class InputExceptionTest extends NsTest {
         });
     }
 
+    @DisplayName("범위를 벗어난 다리 길이 입력 테스트")
+    @ValueSource(strings = {"2", "21", "0", "52"})
+    @ParameterizedTest
+    void createInvalidRangeBridgeSize(String input) {
+        assertSimpleTest(() -> {
+            runException(input);
+            assertThat(output()).contains(InputException.OUT_OF_RANGE_BRIDGE_LENGTH.getExceptionMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
