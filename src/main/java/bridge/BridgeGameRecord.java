@@ -10,4 +10,9 @@ public class BridgeGameRecord {
     public List<String> getRecord() {
         return record;
     }
+
+    public void addNextPosition(String side) {
+        record.add(side);
+    }
+
 }
