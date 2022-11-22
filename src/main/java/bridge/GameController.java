@@ -1,8 +1,8 @@
-package bridge.controller;
+package bridge;
 
 import bridge.*;
-import bridge.model.Moving;
-import bridge.model.ReEnter;
+import bridge.Moving;
+import bridge.ReEnter;
 
 import java.util.List;
 

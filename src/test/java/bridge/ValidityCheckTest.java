@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge;
 
 import org.junit.jupiter.api.*;
 

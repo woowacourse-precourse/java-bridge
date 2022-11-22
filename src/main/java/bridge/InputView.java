@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.model.ValidityCheck;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.OutputView.printStartGame;

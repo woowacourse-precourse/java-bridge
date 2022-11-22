@@ -1,10 +1,6 @@
 package bridge;
 
 
-import bridge.controller.GameController;
-import bridge.model.Moving;
-import bridge.model.ReEnter;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
