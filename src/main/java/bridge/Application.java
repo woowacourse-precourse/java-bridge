@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.domain.Game;
-import bridge.makebridge.BridgeMaker;
-import bridge.makebridge.BridgeNumberGenerator;
 import bridge.ui.InputView;
 import java.util.List;
 
