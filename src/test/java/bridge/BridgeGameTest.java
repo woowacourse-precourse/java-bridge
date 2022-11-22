@@ -1,11 +1,8 @@
 package bridge;
 
-import bridge.dto.PathDTO;
+import bridge.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static bridge.model.Command.RETRY;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,10 +14,10 @@ class BridgeGameTest {
     @Test
     @DisplayName("사용자가 칸을 이동")
     void move() {
-        List<PathDTO> user = new ArrayList<>();
+        User user = new User();
         bridgeGame.move(user, any(), any());
 
-        assertEquals(1, user.size());
+        assertEquals(1, user.getPath().size());
     }
 
     @Test

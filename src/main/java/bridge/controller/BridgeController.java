@@ -3,15 +3,12 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.dto.MapDTO;
-import bridge.dto.PathDTO;
 import bridge.dto.ResultDTO;
 import bridge.model.Bridge;
+import bridge.model.User;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.ArrayList;
-import java.util.List;
 
 import static bridge.model.Case.*;
 
@@ -34,20 +31,25 @@ public class BridgeController {
         outputView.printStartNotice();
         int size = inputBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
-        ResultDTO resultDTO = crossBridge(size, bridge);
+        ResultDTO resultDTO = crossBridge(size, bridge, new User());
         outputView.printResult(resultDTO);
     }
 
-    private ResultDTO crossBridge(int size, Bridge bridge) {
+    private ResultDTO crossBridge(int size, Bridge bridge, User user) {
         int count = 1;
         while (true) {
-            List<PathDTO> pathDTO = new ArrayList<>();
-            boolean end = isCross(size, bridge, pathDTO);
+            boolean end = isCross(size, bridge, user);
             if (isEnd(end)) {
-                return new ResultDTO(new MapDTO(pathDTO), end, count);
+                return new ResultDTO(user.convertToMapDTO(), end, count);
             }
-            count++;
+            count = initGame(user, count);
         }
+    }
+
+    private int initGame(User user, int count) {
+        count++;
+        user.clear();
+        return count;
     }
 
     private boolean isEnd(boolean end) {
@@ -65,10 +67,10 @@ public class BridgeController {
         }
     }
 
-    private boolean isCross(int size, Bridge bridge, List<PathDTO> pathDTO) {
+    private boolean isCross(int size, Bridge bridge, User user) {
         boolean end = false;
         for (int round = 0; round < size; round++) {
-            if (!isMove(bridge, pathDTO, round)) {
+            if (!isMove(bridge, user, round)) {
                 break;
             }
             end = isSuccess(size, round);
@@ -76,11 +78,11 @@ public class BridgeController {
         return end;
     }
 
-    private boolean isMove(Bridge bridge, List<PathDTO> pathDTO, int round) {
+    private boolean isMove(Bridge bridge, User user, int round) {
         String moving = inputMoving();
         String pass = getPass(bridge, round, moving);
-        bridgeGame.move(pathDTO, moving, pass);
-        outputView.printMap(new MapDTO(pathDTO));
+        bridgeGame.move(user, moving, pass);
+        outputView.printMap(user.convertToMapDTO());
         return pass.equals(SUCCESS.getPictogram());
     }
 
