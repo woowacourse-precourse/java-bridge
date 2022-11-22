@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.util.BridgeUtil;
+import bridge.util.GameCommand;
 import bridge.util.View;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -95,23 +96,53 @@ class BridgeGameTest {
                 .isInstanceOf(NumberFormatException.class);
     }
 
+    @DisplayName("올바르지 않은 이동입력시 예외 발생")
     @Test
-    void validateInputMoveCommand() {
+    void 이동_입력_검증_예외테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
+        String input = "A";
+
+        assertThatThrownBy(() -> bridgeGame.validateInputMoveCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("올바르지 않은 게임입력시 예외 발생")
     @Test
     void validateInputGameCommand() {
+        BridgeGame bridgeGame = new BridgeGame();
+        String input = "A";
+
+        assertThatThrownBy(() -> bridgeGame.validateInputMoveCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("올바른 게임 입력시 정상 흐름")
     @Test
-    void isRestartGame() {
+    void 올바른_게임_입력시_정상_흐름() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.initBridge(3);
+        bridgeGame.initPlayer();
+
+        assertThat(bridgeGame.isRestartGame(GameCommand.RESTART)).isTrue();
+        assertThat(bridgeGame.isRestartGame(GameCommand.QUIT)).isFalse();
     }
 
+    @DisplayName("재시도 이후 시도횟수 1증가하여 2가 반환되는것 확인")
     @Test
-    void getTryCount() {
+    void 재시도_횟수_증가() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.initBridge(3);
+        bridgeGame.initPlayer();
+
+        bridgeGame.isRestartGame(GameCommand.RESTART);
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
     }
 
+    @DisplayName("다리를 모두 건넜는지 확인")
     @Test
-    void isCrossAllBridge() {
+    void 다리를_모두_건넜는지_확인() {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        assertThat(bridgeGame.isCrossAllBridge()).isIn(true, false);
     }
 }
