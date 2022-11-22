@@ -24,31 +24,15 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 다리_생성_테스트2() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0, 0, 1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(5);
-        assertThat(bridge).containsExactly("U", "D", "D", "D", "U");
-    }
-
-    @Test
-    void 다리_생성_테스트3() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(20);
-        assertThat(bridge).containsExactly("U", "D", "D", "D", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U");
-    }
-
-    @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
@@ -61,30 +45,6 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트2() {
-        assertSimpleTest(() -> {
-            runException("u");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트3() {
-        assertSimpleTest(() -> {
-            runException("21");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트4() {
-        assertSimpleTest(() -> {
-            runException(" ");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
