@@ -1,11 +1,17 @@
 package bridge;
 
+import bridge.resource.ErrorType;
+import bridge.resource.InputType;
+import bridge.view.Error;
+
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
+    private static final int MIN_BRIDGE_LENGTH = 3;
+    private static final int MAX_BRIDGE_LENGTH = 20;
+    private static final int DOWN = 0;
+    private static final int UP = 1;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -13,11 +19,31 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-        return null;
+        validateSize(size);
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int number = bridgeNumberGenerator.generate();
+            addBridge(bridge, number);
+        }
+        return bridge;
     }
+
+    private void addBridge(List<String> bridge, int number) {
+        if (number == DOWN) {
+            bridge.add(InputType.MOVE_DOWN_COMMAND.getCommand());
+            return;
+        }
+
+        if (number == UP) {
+            bridge.add(InputType.MOVE_UP_COMMAND.getCommand());
+            return;
+        }
+    }
+
+    private static void validateSize(int size) {
+        if (size < MIN_BRIDGE_LENGTH || size > MAX_BRIDGE_LENGTH)
+            throw new Error(ErrorType.RANGE);
+    }
+
 }
