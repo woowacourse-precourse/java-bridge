@@ -11,10 +11,19 @@ public class OutputView {
     private final static String GAME_RESULT = "게임 성공 여부: ";
     private final static String NUMBER_OF_ATTEMPTS = "총 시도한 횟수: ";
 
+    private static OutputView instance;
+
     private final MapDrawer mapDrawer;
 
-    public OutputView() {
+    private OutputView() {
         this.mapDrawer = new MapDrawer();
+    }
+
+    public static OutputView getInstance() {
+        if (instance == null) {
+            instance = new OutputView();
+        }
+        return instance;
     }
 
     public void printMap(List<MoveResult> moveResults) {

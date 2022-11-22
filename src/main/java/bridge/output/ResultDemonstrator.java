@@ -12,7 +12,7 @@ public class ResultDemonstrator {
     private final OutputView outputView;
 
     private ResultDemonstrator() {
-        this.outputView = new OutputView();
+        this.outputView = OutputView.getInstance();
     }
 
     public static ResultDemonstrator getResultDemonstrator() {
