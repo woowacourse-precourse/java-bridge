@@ -6,6 +6,10 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    static final String IS_SUCCESSFUL = "게임 성공 여부: ";
+    static final String SUCCESS = "성공";
+    static final String FAIL = "실패";
+    static final String TOTAL_TRIES = "총 시도한 횟수: ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -42,5 +46,17 @@ public class OutputView {
     }
     public void printInputCommand(){
         System.out.println(Messages.RETRY_MESSAGE);
+    }
+    private void printSuccess(boolean isSuccess) {
+        System.out.print(IS_SUCCESSFUL);
+        if (isSuccess) {
+            System.out.println(SUCCESS);
+            return;
+        }
+        System.out.println(FAIL);
+    }
+    private void printTries(int tries) {
+        System.out.print(TOTAL_TRIES);
+        System.out.println(tries);
     }
 }
