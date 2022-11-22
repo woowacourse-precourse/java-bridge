@@ -94,6 +94,8 @@ public class OutputView {
         startLadder(BridgeGame.totalCount - 1, bridgeMaker, BridgeGame.lastUserInput);
         if (!BridgeGame.isComplete) System.out.println(OutputMessage.SUCCEEDED.getMessage() + OutputMessage.FAIL.getMessage() + OutputMessage.ATTEMPT.getMessage() + BridgeGame.attempt);
         if (BridgeGame.isComplete) System.out.println(OutputMessage.SUCCEEDED.getMessage() + OutputMessage.SUCCESS.getMessage() + OutputMessage.ATTEMPT.getMessage() + BridgeGame.attempt);
+        BridgeGame.totalCount = 0;
+        BridgeGame.attempt = 1;
     }
 
     public static void main(String[] args) {}
