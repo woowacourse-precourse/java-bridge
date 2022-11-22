@@ -24,5 +24,14 @@ public class BridgeGameController {
             BridgeStatus bridgeStatus = bridgeGame.move(direction);
             outputView.printMap(bridgeStatus);
         }
+        retryOrQuit();
     }
+
+    public void retryOrQuit() {
+        String command = inputView.readGameCommand();
+        if(bridgeGame.retry(command)) {
+            playGame();
+        }
+    }
+
 }

@@ -10,4 +10,6 @@ public class Constants {
     public static final String COMMA = ",";
     public static final String DELIMITER = "|";
     public static final String ENTER = "\n";
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
 }
