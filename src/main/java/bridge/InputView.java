@@ -61,6 +61,22 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String flag="";
+        int stop =0;
+        while(stop!=1) {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            flag = Console.readLine();
+            stop =check.checkRetry(flag);
+            if (stop== 0)
+                commandError();
+        }
+        return flag;
+    }
+    public void commandError(){
+        try {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력하세요");
+        } catch (Exception e) {   //이거 Exception 하면 안되고 명확히 해야함
+            System.out.println(e);
+        }
     }
 }
