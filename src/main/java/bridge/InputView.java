@@ -46,4 +46,8 @@ public class InputView {
     public void validateMoving(String input) {
         Validator.validateContains(Arrays.asList("U", "D"), input);
     }
+
+    public void validateGameCommand(String input) {
+        Validator.validateContains(Arrays.asList("R", "Q"), input);
+    }
 }
