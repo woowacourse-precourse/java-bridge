@@ -37,7 +37,7 @@ public class BridgeGameController {
             try {
                 bridge = new Bridge(inputView.readBridgeSize());
                 break;
-            } catch (NumberFormatException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -37,10 +37,10 @@ public class InputView {
         return Console.readLine();
     }
 
-    public void inputLengthIsNumValidate(String inputLength) throws NumberFormatException {
+    public void inputLengthIsNumValidate(String inputLength) throws IllegalArgumentException {
         for (char ch : inputLength.toCharArray()) {
             if (!Character.isDigit(ch)) {
-                throw new NumberFormatException("[ERROR] 숫자인 값만 입력해야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 숫자인 값만 입력해야 합니다.");
             }
         }
     }
