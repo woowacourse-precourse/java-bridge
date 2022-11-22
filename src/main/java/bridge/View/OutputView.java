@@ -1,4 +1,6 @@
-package bridge;
+package bridge.View;
+
+import bridge.Constant.Constant;
 
 public class OutputView {
     public static StringBuilder up = new StringBuilder();
@@ -13,6 +15,15 @@ public class OutputView {
 
         up.append(Constant.Delimiter);
         down.append(Constant.Delimiter);
+    }
+    
+    public void printResult(boolean stop, int count) {
+        System.out.println(Constant.Result_of_game);
+        System.out.println(Constant.Front + up.substring(0, up.length() - 1) + " " + Constant.Back);
+        System.out.println(Constant.Front + down.substring(0, up.length() - 1) + " " + Constant.Back);
+        if (!stop) System.out.println(Constant.Result_of_try + Constant.Win);
+        if (stop) System.out.println(Constant.Result_of_try + Constant.Lose);
+        System.out.println(Constant.Total_Try + count);
     }
 
     public void moveUp(boolean stop) {
@@ -39,19 +50,8 @@ public class OutputView {
         }
     }
 
-    public void ResetAll(String cmd) {
-        if (cmd.equals(Constant.Restart)) {
-            up.delete(0, up.length());
-            down.delete(0, down.length());
-        }
-    }
-
-    public void printResult(boolean stop, int count) {
-        System.out.println(Constant.Result_of_game);
-        System.out.println(Constant.Front + up.substring(0, up.length() - 1) + " " + Constant.Back);
-        System.out.println(Constant.Front + down.substring(0, up.length() - 1) + " " + Constant.Back);
-        if (!stop) System.out.println(Constant.Result_of_try + Constant.Win);
-        if (stop) System.out.println(Constant.Result_of_try + Constant.Lose);
-        System.out.println(Constant.Total_Try + count);
+    public void ResetAll() {
+        up.delete(0, up.length());
+        down.delete(0, down.length());
     }
 }
