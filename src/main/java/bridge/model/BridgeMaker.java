@@ -29,11 +29,20 @@ public class BridgeMaker {
     }
 
     public int generateNumber(){
-        int number = bridgeNumberGenerator.generate();
-        validateRandomNumber(number);
+        int number = handleGenerateNumber();
         return number;
     }
 
+    private int handleGenerateNumber(){
+        try {
+            int number = bridgeNumberGenerator.generate();
+            validateRandomNumber(number);
+            return number;
+        }catch (IllegalArgumentException e){
+            e.getMessage();
+            return handleGenerateNumber();
+        }
+    }
     public void validateSize(int size) {
         if (size < 3 || 20 < size) {
             throw new IllegalArgumentException();

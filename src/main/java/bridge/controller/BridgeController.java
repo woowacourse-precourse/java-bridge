@@ -29,9 +29,18 @@ public class BridgeController {
             return handleStartGame();
         }
     }
+    private void handleStartingGame(int size){
+        try {
+            bridgeGame.start(size);
+        }catch (IllegalArgumentException e){
+            e.getMessage();
+            handleStartGame();
+        }
+    }
+
     public void startGame(){
         int size = handleStartGame();
-        bridgeGame.start(size);
+        handleStartingGame(size);
         playing(size);
     }
 
