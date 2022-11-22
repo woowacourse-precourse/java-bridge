@@ -1,6 +1,9 @@
 package bridge;
 import org.junit.jupiter.api.Test;
 
+import bridge.Constant.Constant;
+import bridge.View.InputView;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputViewTest {
