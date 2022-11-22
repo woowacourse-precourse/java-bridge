@@ -125,11 +125,6 @@
 
 [ BridgeErrorMessages Class ] : 에러발견시 throw 할 메시지 정보를 가지고 있는 클래스
 
-[ BridgeMaker Class ] : 다리를 생성하는 클래스
-
-- [x] 입력 받은 길이만틈 다리를 만드는 메서드
-- [x] 다리에 0 또는 1을 랜덤으로 부여하는 메서드
-
 [ MoveCommand Class ] : 열거형 클래스로 사용자의 입력인 U와 D를 각각 숫자 1과 0에 대응시킨다.
 
 - [x] 숫자 1과 0을 각각 "U"와 "D"에 대응시켜 반환하는 메서드
@@ -158,7 +153,7 @@
 
 - [x] 게임 첫 실행시 게임에 필요한 데이터를 초기화하는 메서드
 
-##### 🛠 DTO, Util 클래스들
+##### 🛠 그외 DTO, Util 등등 클래스들
 
 [ MoveCommandDto Class ] : 사용자의 입력 정보를 전달할 클래스
 
@@ -171,3 +166,8 @@
 [ CommandChecker Class ] : 받은 입력이 "Q"인지 "R"인지 "Error"인지 확인하는 클래스
 
 [ CommandSymbol Class ] : 재시작/종료/에러 문자열에 대한 상수를 가진 클래스
+
+[ BridgeMaker Class ] : 다리를 생성하는 클래스
+
+- [x] 입력 받은 길이만틈 다리를 만드는 메서드
+- [x] 다리에 0 또는 1을 랜덤으로 부여하는 메서드
