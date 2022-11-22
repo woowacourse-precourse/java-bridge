@@ -48,8 +48,12 @@ public class OutputView {
         System.out.println(PrintMessageConstant.PLEASE_ENTER_GAME_RETRY);
     }
 
-    public void printErrorMessage(RuntimeException e) {
-        System.out.println(String.format(PrintMessageConstant.ERROR_FORMAT, e.getMessage()));
+    public void printExpectedErrorMessage(IllegalArgumentException e) {
+        System.out.println(String.format(PrintMessageConstant.ERROR_EXPECTED_FORMAT, e.getMessage()));
+    }
+
+    public void printUnexpectedErrorMessage(Exception e) {
+        System.out.println(String.format(PrintMessageConstant.ERROR_UNEXPECTED_FORMAT, e.getMessage()));
     }
 
     private static String getSuccessOrNot(GameStatus gameStatus) throws IllegalArgumentException {
