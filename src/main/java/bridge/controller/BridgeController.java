@@ -21,7 +21,7 @@ public class BridgeController {
         }
     }
 
-    public void setGame(int size) { // 서비스?
+    public void setGame(int size) {
         bridge = new Bridge(size);
         bridgeGame = new BridgeGame(bridge);
     }
@@ -44,7 +44,7 @@ public class BridgeController {
         }
     }
 
-    public boolean bridgeRound() {  // 서비스?
+    public boolean bridgeRound() {
         String movePlace = requestMovingPoint();
         boolean passable = bridgeGame.move(movePlace, bridge);
 
@@ -53,7 +53,7 @@ public class BridgeController {
 
     public void bridgeGame(){
         while (bridgeRound()) {
-            outputView.printMap(bridgeGame.getMark(), true);
+            outputView.printMap(bridgeGame,true);
         }
     }
 
@@ -61,13 +61,17 @@ public class BridgeController {
         do {
             bridgeGame.retry();
             bridgeGame();
-            outputView.printMap(bridgeGame.getMark(), bridgeGame.getComplete());
-        } while (!bridgeGame.getComplete() && requestRetry());
+            outputView.printMap(bridgeGame,bridgeGame.getComplete());
+        } while (isGameOver());
+    }
+
+    public boolean isGameOver(){
+        return !bridgeGame.getComplete() && requestRetry();
     }
 
     public void start() {
         outputView.printIntro();
-        setGame(getBridgeSize());
+        setGame(requestBridgeSize());
         playGame();
         outputView.printResult(bridgeGame);
     }

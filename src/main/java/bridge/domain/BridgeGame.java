@@ -10,7 +10,6 @@ import java.util.List;
 public class BridgeGame {
 
     private int challenge;
-    private int current;
     private List<String> mark;
     private final Bridge bridge;
     private boolean complete;
@@ -26,15 +25,14 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String movePlace, Bridge bridge) {
-        boolean passable = bridge.checkPassable(movePlace, current);
+        boolean passable = bridge.checkPassable(movePlace, mark.size());
         mark.add(movePlace);
-        current++;
         this.complete = gameComplete(passable);
         return passable;
     }
 
     private boolean gameComplete(boolean passable) {
-        return current == bridge.getSize() && passable;
+        return mark.size() == bridge.getSize() && passable;
     }
 
     /**
@@ -43,7 +41,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        current = 0;
         mark = new ArrayList<>();
         challenge++;
     }

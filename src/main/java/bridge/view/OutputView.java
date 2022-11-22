@@ -30,11 +30,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> mark, boolean passable) {
+    public void printMap(BridgeGame bridgeGame, boolean passable) {
         List<String> upperBridge = new ArrayList<>();
         List<String> loserBridge = new ArrayList<>();
-        setBridge(upperBridge, mark, "U");
-        setBridge(loserBridge, mark, "D");
+        setBridge(upperBridge, bridgeGame.getMark(), "U");
+        setBridge(loserBridge, bridgeGame.getMark(), "D");
 
         if (!passable) {
             setImpassable(upperBridge, loserBridge);
@@ -82,7 +82,7 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
-        printMap(bridgeGame.getMark(), bridgeGame.getComplete());
+        printMap(bridgeGame,bridgeGame.getComplete());
         String result = "실패";
         if (bridgeGame.getComplete()) {
             result = "성공";
