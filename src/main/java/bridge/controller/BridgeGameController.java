@@ -1,9 +1,8 @@
 package bridge.controller;
 
-import bridge.domain.BridgeGame;
+import bridge.domain.BridgeUpDownGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
@@ -27,7 +26,8 @@ public class BridgeGameController {
 
     public static void executeBridgeGame() {
         //정보를 가진 다리를 생성하기
-        bridgeUpDown = BridgeGame.generateUpDownInformation(bridgeLengthInt);
-        //다리의 현재 상태 정보를 저장할 정보가 필요
+        bridgeUpDown = BridgeUpDownGenerator.generateUpDownInformation(bridgeLengthInt);
+        System.out.println(bridgeUpDown);
     }
 }
+
