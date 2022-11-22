@@ -31,7 +31,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> bridge, List<String> current, BridgeGame game) {
+        printMap(bridge, current);
+        printIsClear(game);
+        printTryCount(game);
+    }
+
+    private void printIsClear(BridgeGame game) {
+        System.out.print(ConstString.IS_CLEAR);
+        if (game.isClear()) {
+            System.out.println(ConstString.SUCCESS);
+            return;
+        }
+        System.out.println(ConstString.FAIL);
+    }
+
+    private void printTryCount(BridgeGame game) {
+        System.out.print(ConstString.TRY_COUNT);
+        System.out.printf("%d\n", game.getTryCount());
     }
     private void printFirstRow(List<String> bridge, List<String> current) {
         for (int i = 0; i < current.size(); i++) {
