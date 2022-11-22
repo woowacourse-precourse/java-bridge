@@ -24,4 +24,10 @@ public class ExceptionCaseTest {
         assertThatThrownBy(() -> ExceptionCase.isInputTry("W"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void U_D_이외의_값이_들어오는_경우() {
+        assertThatThrownBy(() -> ExceptionCase.isInputUpOrDown("W"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
