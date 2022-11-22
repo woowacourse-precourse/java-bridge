@@ -51,19 +51,19 @@ public enum ResultType {
 
     private static boolean findSelectedDirection(ResultType type, Position position, Bridge bridge) {
         if (position.isDirectionUp()) {
-            return moveToUp(type, position, bridge);
+            return findUpDirection(type, position, bridge);
         }
-        return moveToDown(type, position, bridge);
+        return findDownDirection(type, position, bridge);
     }
 
-    private static boolean moveToUp(ResultType type, Position position, Bridge bridge) {
+    private static boolean findUpDirection(ResultType type, Position position, Bridge bridge) {
         if (bridge.canMove(position)) {
             return type.direction.equals(UP) && type.isMovable.contains(MOVABLE);
         }
         return type.direction.equals(UP) && type.isMovable.contains(NOT_MOVABLE);
     }
 
-    private static boolean moveToDown(ResultType type, Position position, Bridge bridge) {
+    private static boolean findDownDirection(ResultType type, Position position, Bridge bridge) {
         if (bridge.canMove(position)) {
             return type.direction.equals(DOWN) && type.isMovable.contains(MOVABLE);
         }
