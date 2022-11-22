@@ -11,10 +11,16 @@ import bridge.SideMap;
  */
 public class OutputView {
 
+    int STARTING_POINT = 0;
     String BRIDGE_START = "[ ";
     String BRIDGE_END = " ]";
-    int STARTING_POINT = 0;
     String BRIDGE_SEPARATOR = " | ";
+
+
+    public void printGameIntro() {
+        System.out.println(GuidanceMessage.GAME_INTRO);
+        printNewLine();
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -58,23 +64,18 @@ public class OutputView {
         printTrialCount(bridgeGame);
     }
 
-    private static void printTrialCount(BridgeGame bridgeGame) {
-        System.out.print(GuidanceMessage.INFORM_TRIAL_COUNT);
-        System.out.println(bridgeGame.getTrialCount());
-    }
-
     private void printGameResult(BridgeGame bridgeGame) {
         System.out.print(GuidanceMessage.INFORM_IS_SUCCESS);
         System.out.println(bridgeGame.getGameResult().getMessage());
     }
 
+    private static void printTrialCount(BridgeGame bridgeGame) {
+        System.out.print(GuidanceMessage.INFORM_TRIAL_COUNT);
+        System.out.println(bridgeGame.getTrialCount());
+    }
+
     public void printError(IllegalArgumentException error) {
         System.out.print(ErrorMessage.PREFIX);
         System.out.println(error.getMessage());
-    }
-
-    public void printGameIntro() {
-        System.out.println(GuidanceMessage.GAME_INTRO);
-        printNewLine();
     }
 }

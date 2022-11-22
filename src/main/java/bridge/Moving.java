@@ -27,16 +27,16 @@ public enum Moving {
         return this.direction.equals(direction);
     }
 
+    public boolean isSameCommand(int command) {
+        return this.command == command;
+    }
+
     public boolean isUp() {
         return this == UP;
     }
 
     public boolean isDown() {
         return this == DOWN;
-    }
-
-    public boolean isSameCommand(int command) {
-        return this.command == command;
     }
 
     public String getDirection() {

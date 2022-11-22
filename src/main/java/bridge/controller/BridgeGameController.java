@@ -44,6 +44,30 @@ public class BridgeGameController {
         return Bridge.of(makeDirections(bridgeSize));
     }
 
+    private int readBridgeSize() {
+        int bridgeSize;
+
+        try {
+            bridgeSize = inputView.readBridgeSize();
+        } catch (IllegalArgumentException error) {
+            outputView.printError(error);
+            return readBridgeSize();
+        }
+        return bridgeSize;
+    }
+
+    private List<String> makeDirections(int bridgeSize) {
+        BridgeMaker bridgeMaker = getBridgeMaker();
+
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private BridgeMaker getBridgeMaker() {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+
+        return new BridgeMaker(numberGenerator);
+    }
+
     private void progressGame(BridgeGame bridgeGame, MovingHistory movingHistory) {
         boolean inProgress = IN_PROGRESS;
         while (inProgress) {
@@ -74,18 +98,6 @@ public class BridgeGameController {
         return moving;
     }
 
-    private int readBridgeSize() {
-        int bridgeSize;
-
-        try {
-            bridgeSize = inputView.readBridgeSize();
-        } catch (IllegalArgumentException error) {
-            outputView.printError(error);
-            return readBridgeSize();
-        }
-        return bridgeSize;
-    }
-
     private boolean updateGameStatus(BridgeGame bridgeGame, MovingResult movingResult, MovingHistory movingHistory) {
         if (movingResult.isFail()) {
             return askRestart(bridgeGame, movingHistory);
@@ -96,9 +108,6 @@ public class BridgeGameController {
         return IN_PROGRESS;
     }
 
-    private boolean isCompleted(BridgeGame bridgeGame) {
-        return bridgeGame.getGameResult().isSuccess();
-    }
 
     private boolean askRestart(BridgeGame bridgeGame, MovingHistory movingHistory) {
         GameCommand command = inputView.readGameCommand();
@@ -111,15 +120,7 @@ public class BridgeGameController {
         return GAME_OVER;
     }
 
-    private List<String> makeDirections(int bridgeSize) {
-        BridgeMaker bridgeMaker = getBridgeMaker();
-
-        return bridgeMaker.makeBridge(bridgeSize);
-    }
-
-    private BridgeMaker getBridgeMaker() {
-        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
-
-        return new BridgeMaker(numberGenerator);
+    private boolean isCompleted(BridgeGame bridgeGame) {
+        return bridgeGame.getGameResult().isSuccess();
     }
 }

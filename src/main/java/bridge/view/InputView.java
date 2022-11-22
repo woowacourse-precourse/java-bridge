@@ -23,6 +23,22 @@ public class InputView {
         return Integer.parseInt(bridgeSize);
     }
 
+    private void validateNonBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BLANK_INPUT);
+        }
+    }
+
+    private void validateNumeric(String input) {
+        if (isNonNumeric(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_INPUT);
+        }
+    }
+
+    private boolean isNonNumeric(String input) {
+        return !input.chars().allMatch(Character::isDigit);
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -39,21 +55,5 @@ public class InputView {
         System.out.println(GuidanceMessage.INPUT_GAME_COMMAND);
 
         return GameCommand.of(Console.readLine());
-    }
-
-    private void validateNonBlank(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BLANK_INPUT);
-        }
-    }
-
-    private void validateNumeric(String input) {
-        if (isNonNumeric(input)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_INPUT);
-        }
-    }
-
-    private boolean isNonNumeric(String input) {
-        return !input.chars().allMatch(Character::isDigit);
     }
 }
