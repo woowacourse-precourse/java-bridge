@@ -9,6 +9,15 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String CORRECT = "O";
+    private static final String MISS = "X";
+    private static final String SPACE = " ";
+    private static final String PREFIX = "[ ";
+    private static final String DELIMITER = " | ";
+    private static final String SUFFIX = " ]";
+    private static final String FAIL = "실패";
+    private static final String SUCCESS = "성공";
+
     private List<String> upBridge;
     private List<String> downBridge;
 
@@ -46,15 +55,15 @@ public class OutputView {
 
     private void addCorrectUpResult(List<String> bridge, int index) {
         if (Direction.UP.isSame(bridge.get(index))) {
-            upBridge.add("O");
-            downBridge.add(" ");
+            upBridge.add(CORRECT);
+            downBridge.add(SPACE);
         }
     }
 
     private void addCorrectDownResult(List<String> bridge, int index) {
         if (Direction.DOWN.isSame(bridge.get(index))) {
-            upBridge.add(" ");
-            downBridge.add("O");
+            upBridge.add(SPACE);
+            downBridge.add(CORRECT);
         }
     }
 
@@ -67,20 +76,20 @@ public class OutputView {
 
     private void addMissDownResult(List<String> bridge, int index) {
         if (Direction.DOWN.isSame(bridge.get(index))) {
-            upBridge.add("X");
-            downBridge.add(" ");
+            upBridge.add(MISS);
+            downBridge.add(SPACE);
         }
     }
 
     private void addMissUpResult(List<String> bridge, int index) {
         if (Direction.UP.isSame(bridge.get(index))) {
-            upBridge.add(" ");
-            downBridge.add("X");
+            upBridge.add(SPACE);
+            downBridge.add(MISS);
         }
     }
 
     private void printBridge(List<String> bridge) {
-        System.out.println("[ " + String.join(" | ", bridge) + " ]");
+        System.out.println(PREFIX + String.join(DELIMITER, bridge) + SUFFIX);
     }
 
 
@@ -93,8 +102,8 @@ public class OutputView {
 
     private String getResult(GameResult result) {
         if (result.isGameOver()) {
-            return "실패";
+            return FAIL;
         }
-        return "성공";
+        return SUCCESS;
     }
 }

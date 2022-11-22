@@ -4,13 +4,15 @@ import java.util.List;
 
 public class BridgeGame {
 
+    private static final int FIRST = 1;
+
     private final List<String> bridge;
     private int tryNumber;
     private GameResult gameResult;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.tryNumber = 1;
+        this.tryNumber = FIRST;
         gameResult = new GameResult();
     }
 
