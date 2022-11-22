@@ -1,9 +1,9 @@
 package bridge.model;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.DTO.MoveRecord;
+import bridge.config.BridgeComponent;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,9 +34,16 @@ public class BridgeGame {
     }
 
     public void move(String step) {
+        stepValidate(step);
         currentLocation += 1;
         boolean success = bridge.checkStep(currentLocation, step);
         records.add(MoveRecord.addRecord(step, success));
+    }
+
+    private void stepValidate(String step) {
+        if (!BridgeComponent.findBySymbol(step)) {
+            throw new IllegalArgumentException("U또는 D만 입력할 수 있습니다.");
+        }
     }
 
     public boolean isOver() {
