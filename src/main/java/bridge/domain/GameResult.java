@@ -1,36 +1,39 @@
 package bridge.domain;
 
+import bridge.code.BridgePosition;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GameResult {
 
-    private List<String> up;
-    private List<String> down;
+    private HashMap<Boolean, List<String>> resultMap;
+    private int index;
     private int attempts;
 
     public GameResult() {
         this.attempts = 1;
-        this.up=new ArrayList<>();
-        this.down=new ArrayList<>();
+        resetGameResult();
     }
 
+    private HashMap<Boolean, List<String>> initMap() {
+        HashMap<Boolean, List<String>> map = new HashMap<>();
+        map.put(BridgePosition.UP, new ArrayList<>());
+        map.put(BridgePosition.DOWN, new ArrayList<>());
 
+        return map;
+    }
 
-    public int updateResultMap(String input, String result) {
-        if(input.equals("U")){
-            up.add(result);
-            down.add(" ");
-            return 0;
-        }
-        down.add(result);
-        up.add(" ");
-        return 0;
+    public void updateResultMap(String input, String result) {
+        boolean isUp = input.equals("U");
+        resultMap.get(isUp).add(result);
+        resultMap.get(!isUp).add(" ");
+        index++;
     }
 
     public void resetGameResult() {
-        this.up=new ArrayList<>();
-        this.down=new ArrayList<>();
+        this.index = 0;
+        this.resultMap = initMap();
     }
 
     public int updateGameResult() {
@@ -42,12 +45,16 @@ public class GameResult {
         return attempts;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     public String upBridgeToString() {
-        return "[ " + String.join(" | ", up + " ]");
+        return "[ " + String.join(" | ", resultMap.get(BridgePosition.UP)) + " ]";
     }
 
     public String downBridgeToString() {
-        return "[ " + String.join(" | ",down + " ]");
+        return "[ " + String.join(" | ", resultMap.get(BridgePosition.DOWN)) + " ]";
     }
 
 }
