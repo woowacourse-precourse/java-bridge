@@ -15,7 +15,7 @@ public class BridgeGame {
     public BridgeGame(List<String> board){
         this.board = board;
         step = 0;
-        retryNum = 0;
+        retryNum = 1;
         result = true;
     }
     /**
