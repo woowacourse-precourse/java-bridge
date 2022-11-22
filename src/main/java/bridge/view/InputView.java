@@ -29,7 +29,6 @@ public class InputView {
 
     public Direction readDirection() {
         System.out.printf(DIRECTION_PROMPT_MESSAGE_FORMAT, UPPER.capitalLetter(), LOWER.capitalLetter());
-        System.out.println();
         String input = Console.readLine();
         validateSingleCharacter(input);
         return Direction.from(input);
@@ -37,7 +36,6 @@ public class InputView {
 
     public GameCommand readGameCommand() {
         System.out.printf(GAME_COMMAND_PROMPT_MESSAGE_FORMAT, RETRY.getCharacter(), EXIT.getCharacter());
-        System.out.println();
         String input = Console.readLine();
         validateSingleCharacter(input);
         return GameCommand.from(input);
