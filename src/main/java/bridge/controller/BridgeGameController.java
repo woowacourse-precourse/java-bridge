@@ -29,13 +29,7 @@ public class BridgeGameController {
             String sign = bridgeGame.move(movingCommand);
             bridgeGame.getBridgeGameResult().addResult(movingCommand, sign);
             outputView.printMap(bridgeGame.getBridgeGameResult());
-            if (!crossingBridge(sign)) {
-                break;
-            }
-//            if (bridgeGame.getBridge().compareLength(bridgeGame.getUser())) {
-//                break;
-//            }
-            if (compareBridgeLength()) {
+            if (!crossingBridge(sign) || compareBridgeLength()) {
                 break;
             }
         }
