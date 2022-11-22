@@ -54,5 +54,4 @@ public class Validate {
             throw new IllegalArgumentException("입력값은 R 또는 Q 여야 합니다.");
         }
     }
-
 }

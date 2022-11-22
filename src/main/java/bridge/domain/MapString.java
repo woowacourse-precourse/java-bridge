@@ -9,19 +9,31 @@ public class MapString {
         this.downstairs = downstairs;
     }
 
+    public void makeMapStringWhenSuccess(String input){
+        if (input.equals("U")){
+            upstairs += "O";
+            downstairs += " ";
+            return ;
+        }
+        upstairs += " ";
+        downstairs += "O";
+    }
+
+    public void makeMapStringWhenFail(String input){
+        if (input.equals("U")){
+            upstairs += "X";
+            downstairs += " ";
+            return ;
+        }
+        upstairs += " ";
+        downstairs += "X";
+    }
+
     public String getUpstairs(){
         return (this.upstairs);
     }
 
     public String getDownstairs(){
         return (this.downstairs);
-    }
-
-    public void setUpstairs(String str){
-        this.upstairs += str;
-    }
-
-    public void setDownstairs(String str){
-        this.downstairs += str;
     }
 }
