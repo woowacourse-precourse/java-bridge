@@ -52,8 +52,13 @@ public class Util {
     }
 
     private void validateNumber(String input){
-        String pattern = "^[0-9]+$";
-        if(!input.matches(pattern))
+        String numberPattern = "^[0-9]+$";
+        if(!input.matches(numberPattern))
             throw new IllegalArgumentException(ErrorMessage.NUMBER_ERROR.getErrorMessage());
+    }
+    private void validateCharacter(String input){
+        String  alphabetPattern = "^[A-Z]+$";
+        if(!input.matches(alphabetPattern))
+            throw new IllegalArgumentException(ErrorMessage.CHARACTER_ERROR.getErrorMessage());
     }
 }
