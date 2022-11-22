@@ -6,21 +6,28 @@ import view.InputView;
 
 public class Util {
 
-    public int inputSize(InputView inputView){
+    private InputView inputView;
+
+    public Util() {
+       inputView = new InputView();
+    }
+
+
+    public int inputSize(){
         inputView.readBridgeSize();
         int size = Integer.parseInt(Console.readLine());
         validateSize(size);
         return size;
     }
 
-    public String inputMoving(InputView inputView){
+    public String inputMoving(){
         inputView.readMoving();
         String moving = Console.readLine();
         validateMoving(moving);
         return moving;
     }
 
-    public String inputRestart(InputView inputView){
+    public String inputRetry(){
         inputView.readGameCommand();
         String restart = Console.readLine();
         validateRetry(restart);
