@@ -15,21 +15,21 @@
 
 - 받은 U,D 값을 비교해서 실패인지 성공인지 확인한다.Input,Generator-> (Judge) 
   - 성공 
-    - [] 기본 출력 구현 (Judge) ->Printer
-    - [] 위, 아래 input 값을 받는다. (Judge) ->Input
+    - [x] 기본 출력 구현 (Judge) ->Printer
+    - [x] 위, 아래 input 값을 받는다. (Judge) ->Input
   - 실패
-    - [] 기본 출력 구현 후, 다시할 것인지 출력을 구현한다. (Judge) ->Printer
-    - [] 다시하기 input 값을 받는다.(Judge) ->Input
+    - [x] 기본 출력 구현 후, 다시할 것인지 출력을 구현한다. (Judge) ->Printer
+    - [x] 다시하기 input 값을 받는다.(Judge) ->Input
 
 - 그에 따른 출력값을 구현한다.
-  - [] 다리 몇개 만들지 출력
+  - [x] 다리 몇개 만들지 출력
    
-  - [] 기본 출력 구현 : 기본 출력이란 [O|O|X] 요런 것 .Judge-> (Printer) 
+  - [x] 기본 출력 구현 : 기본 출력이란 [O|O|X] 요런 것 .Judge-> (Printer) 
 
-  - [] 위, 아래 어디갈지 출력
-  - [] 다시할지 아닐지 출력 구현
+  - [x] 위, 아래 어디갈지 출력
+  - [x] 다시할지 아닐지 출력 구현
     - 다시하면, 위 아래 어디갈지
-    - [] 다시안하면, 몇개 성공 실패했는지
+    - [x] 다시안하면, 몇개 성공 실패했는지
 
 - [] 예외사항 처리를 한다.
 
@@ -41,7 +41,12 @@
   - BridgeRandomNumberGenerator 클래스 : Generator 클래스에서 조금 더 세분화된 생성 클래스
 
 
+👻고찰
 
+- Application class의 역할은 무엇일까?
+  - 실행시키기 위해 존재하는 class인 것 같다.
+  - 그렇다면, 현재 상황 2022-11-22-오전 10시 18분 깃 상황에서의 judge method와 retry를 할지 안할지 결정하는 method를 application 클래스에 놓는게 아닌거 같다.
+  - 새로운 클래스를 생성해주자.
 
 
 
