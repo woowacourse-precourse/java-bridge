@@ -20,8 +20,12 @@ public class BridgeGame {
     }
 
     public void retry() {
-        count++;
+        increase();
         result.clear();
+    }
+
+    private void increase() {
+        count++;
     }
 
     public int getCount() {
