@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.BridgeShape;
 import bridge.Error;
 
 public class InputValidator {
@@ -17,6 +18,12 @@ public class InputValidator {
         }
     }
 
+    public void validateMoving(String moving) throws IllegalArgumentException {
+        if (!isPossibleMoving(moving)) {
+            throw new IllegalArgumentException(Error.IS_NOT_POSSIBLE_MOVING.getMessage());
+        }
+    }
+
     private boolean isNumeric(String string) {
         return string.chars()
             .allMatch(Character::isDigit);
@@ -24,5 +31,9 @@ public class InputValidator {
 
     private boolean isPossibleSize(int size) {
         return size >= MINIMUM_BRIDGE_SIZE && size <= MAXIMUM_BRIDGE_SIZE;
+    }
+
+    private boolean isPossibleMoving(String moving) {
+        return BridgeShape.contains(moving);
     }
 }
