@@ -13,5 +13,11 @@ public class BridgeGameController {
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         gameProcess(bridge);
     }
+    public void gameProcess(List<String> bridge) {
+        boolean gameContinueStatus = true;
+        while (gameContinueStatus) {
+            gameContinueStatus = checkIfContinue(bridge);
+        }
+    }
 
 }
