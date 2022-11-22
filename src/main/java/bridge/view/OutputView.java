@@ -17,7 +17,7 @@ public class OutputView {
      */
     public void printMap(GameResult gameResult) {
         String map = BridgeMapDrawingMachine.draw(gameResult);
-        System.out.println(map);
+        System.out.println(map + "\n");
     }
 
     /**
