@@ -17,9 +17,6 @@ public class Player {
         this.lastMoving = lastMoving;
     }
 
-    /**
-     * 현재 위치를 1 증가시킨다.
-     */
     public void locationUpdate() {
         this.location++;
     }
