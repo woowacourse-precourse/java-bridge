@@ -3,6 +3,7 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.constance.GameConstance;
 import bridge.domain.*;
+import bridge.facade.BridgeGameFacade;
 import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.GameRetryRequestDto;
 import bridge.service.dto.request.SelectBlockRequestDto;
@@ -16,20 +17,18 @@ import java.util.List;
  */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
-    private final Bridge bridge;
     private final Player player;
-    private BridgeStatus bridgeStatus;
+    private final BridgeGameFacade bridgeGameFacade;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Player player) {
+    public BridgeGame(BridgeMaker bridgeMaker, Player player, BridgeGameFacade bridgeGameFacade) {
         this.bridgeMaker = bridgeMaker;
-        this.bridge = bridge;
         this.player = player;
-        this.bridgeStatus = new BridgeStatus();
+        this.bridgeGameFacade = bridgeGameFacade;
     }
 
     public void create(BridgeSizeRequestDto dto) {
         List<String> bridge = bridgeMaker.makeBridge(dto.getBridgeSize());
-        this.bridge.init(bridge);
+        bridgeGameFacade.initBridge(bridge);
     }
 
     /**
@@ -40,35 +39,8 @@ public class BridgeGame {
     public BridgeResponseDto move(SelectBlockRequestDto dto) {
         int currentPosition = player.getCurrentPosition();
         String blockToMove = dto.getBlock();
-        String blockMark = expressionOfBlock(currentPosition, blockToMove);
-        BridgeStatus bridgeStatus = marking(blockMark, blockToMove);
+        BridgeStatus bridgeStatus = bridgeGameFacade.moveToBlock(currentPosition, blockToMove);
         return new BridgeResponseDto(bridgeStatus);
-    }
-
-    private String expressionOfBlock(int currentPosition, String block) {
-        if (bridge.canCross(currentPosition, block)) {
-            player.move();
-            isDoneCrossingBridge(player.getCurrentPosition());
-            return GameConstance.CROSSABLE_EXPRESSION;
-        }
-        player.fail();
-        return GameConstance.NOT_CROSSABLE_EXPRESSION;
-    }
-
-    private void isDoneCrossingBridge(int currentPosition) {
-        if(bridge.isDoneCrossingBridge(currentPosition)) {
-            player.success();
-        }
-    }
-
-    private BridgeStatus marking(String mark, String block) {
-        if(block.equals(GameConstance.UP_BLOCK_EXPRESSION)) {
-            bridgeStatus.addStatus(mark, GameConstance.EMPTY_BLOCK);
-            return bridgeStatus;
-        }
-
-        bridgeStatus.addStatus(GameConstance.EMPTY_BLOCK, mark);
-        return bridgeStatus;
     }
 
     public boolean playing() {
@@ -90,7 +62,7 @@ public class BridgeGame {
      */
     public boolean retry(GameRetryRequestDto dto) {
         if (canGameRetry(dto.getRetry())) {
-            gameInit();
+            bridgeGameFacade.gameInit();
             return true;
         }
         return false;
@@ -100,12 +72,8 @@ public class BridgeGame {
         return retry.equals(GameConstance.RETRY);
     }
 
-    private void gameInit() {
-        player.init();
-        bridgeStatus = new BridgeStatus();
-    }
-
     public GameResultResponseDto result() {
+        BridgeStatus bridgeStatus = bridgeGameFacade.finalGameResult();
         return new GameResultResponseDto(bridgeStatus, player);
     }
 }
