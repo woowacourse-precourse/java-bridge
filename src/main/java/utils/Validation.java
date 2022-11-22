@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 public class Validation {
     public static void bridgeSize(int size) {

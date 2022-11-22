@@ -1,7 +1,7 @@
 package bridge;
 
-import Utils.Common;
-import Utils.Validation;
+import utils.Common;
+import utils.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
