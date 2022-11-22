@@ -30,6 +30,10 @@ public class OutputView {
         }
     }
 
+    private boolean isUpperMap(List<String> bridge, List<String> states, int i) {
+        return (bridge.get(i).equals(Bridge.UP.getStr()) && states.get(i).equals("O")) || (!bridge.get(i).equals(Bridge.UP.getStr()) && !states.get(i).equals("O"));
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
