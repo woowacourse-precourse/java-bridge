@@ -17,9 +17,9 @@ public class BridgeController {
     private final ReadController readController;
     private BridgeGameService service;
 
-    public BridgeController() {
+    public BridgeController(ReadController readController) {
         this.outputView = new OutputView();
-        this.readController = new ReadController();
+        this.readController = readController;
     }
 
     public void run() {
