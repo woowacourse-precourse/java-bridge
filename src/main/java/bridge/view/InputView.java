@@ -10,7 +10,6 @@ public class InputView {
         out(InputMessage.START_GAME);
         blank();
         out(InputMessage.INPUT_BRIDGE_SIZE);
-        blank();
         int inputNum = 0;
         while (true) {
             String input = Console.readLine();
@@ -19,9 +18,10 @@ public class InputView {
                 break;
             } catch (NumberFormatException e) {
                 out(ExceptionMessage.NOT_INTEGER);
-                continue;
+                throw new NumberFormatException();
             }
         }
+        blank();
         return inputNum;
     }
     /*

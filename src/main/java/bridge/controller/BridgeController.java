@@ -16,7 +16,7 @@ public class BridgeController {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
-    public int count = 1;
+    public int count = 0;
     public List<String> start(){
         int BridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(BridgeSize);
@@ -32,6 +32,7 @@ public class BridgeController {
                 outputView.printResult();
                 System.out.println("게임 성공 여부: 성공");
                 System.out.println("총 시도한 횟수: "+count);
+                count++;
                 return true;
             }
             if (!(bridge.get(i).equals(movedResult.get(i)))) {
