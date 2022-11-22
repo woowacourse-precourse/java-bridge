@@ -30,14 +30,14 @@ public class InputView {
             int size = Integer.parseInt(input);
             return size;
         } catch (NumberFormatException e) {
-            System.err.println(new IllegalArgumentException("[ERROR] Only numbers allowed"));
+            System.out.println(new IllegalArgumentException("[ERROR] Only numbers allowed"));
             return 0;
         }
     }
 
     private int validateRange(int start, int end, int value) {
         if (value < start || value > end) {
-            System.err.println(new IllegalArgumentException("[ERROR] Numbers should be in the range of "
+            System.out.println(new IllegalArgumentException("[ERROR] Numbers should be in the range of "
                     + start + "~" + end));
             return 0;
         }
@@ -60,11 +60,11 @@ public class InputView {
 
     private boolean validateReadMoving(String input) {
         if (input.length() != 1) {
-            System.err.println(new IllegalArgumentException("[ERROR] Input should either be U or D"));
+            System.out.println(new IllegalArgumentException("[ERROR] Input should either be U or D"));
             return false;
         }
         if (!input.equals("U") && !input.equals("D")) {
-            System.err.println(new IllegalArgumentException("[ERROR] Input should either be U or D"));
+            System.out.println(new IllegalArgumentException("[ERROR] Input should either be U or D"));
             return false;
         }
         return true;
@@ -87,11 +87,11 @@ public class InputView {
 
     private boolean validateGameCommand(String input) {
         if (input.length() != 1) {
-            System.err.println(new IllegalArgumentException("[ERROR] Input should either be R or Q"));
+            System.out.println(new IllegalArgumentException("[ERROR] Input should either be R or Q"));
             return false;
         }
         if (!input.equals("R") && !input.equals("Q")) {
-            System.err.println(new IllegalArgumentException("[ERROR] Input should either be R or Q"));
+            System.out.println(new IllegalArgumentException("[ERROR] Input should either be R or Q"));
             return false;
         }
         return true;
