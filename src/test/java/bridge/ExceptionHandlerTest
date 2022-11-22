@@ -1,0 +1,28 @@
+package bridge.exception;
+
+import static org.assertj.core.api.Assertions.*;
+
+import bridge.exception.ExceptionHandler;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+public class ExceptionHandlerTest {
+
+    @ParameterizedTest
+    @DisplayName("다리 길이가 3 이상 20 이하의 자연수일 때 성공")
+    @ValueSource(strings = {"3", "10", "20"})
+    void checkBridgeSizeFirst(String input) {
+        assertThatCode(
+                () -> ExceptionHandler.sizeValidTest(input)
+        ).doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @DisplayName("다리 길이 입력이 3~20 사이의 자연수가 아니거나 숫자가 아닌 문자면 예외가 발생")
+    @ValueSource(strings = {"-1", "5.5", "8.8", "2", "21"})
+    void checkBridgeSizeSecond(String input) {
+        assertThatThrownBy(
+                () -> ExceptionHandler.sizeValidTest(input)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+}
