@@ -101,12 +101,14 @@ class BridgeGameTest {
         @Test
         void 플레이어와_다리를_비교하여_같으면_O가_되는지_확인() {
             String judgment = bridgeGame.judgment("U");
+
             assertThat(judgment).isEqualTo("O");
         }
 
         @Test
         void 플레이어와_다리를_비교하여_틀리다면_X가_되는지_확인() {
             String judgment = bridgeGame.judgment("D");
+
             assertThat(judgment).isEqualTo("X");
         }
     }
@@ -120,6 +122,7 @@ class BridgeGameTest {
             bridgeGame.restartOrQuit("R");
 
             int gameCount = bridgeGame.totalGameCount();
+
             assertThat(gameCount).isEqualTo(result);
         }
 
@@ -128,6 +131,7 @@ class BridgeGameTest {
             bridgeGame.restartOrQuit("Q");
 
             boolean success = bridgeGame.determiningSuccess();
+
             assertThat(success).isFalse();
         }
     }
@@ -138,12 +142,14 @@ class BridgeGameTest {
         @Test
         void 게임을_끝내는_조건_확인() {
             boolean notGameEnd = bridgeGame.isNotGameEnd("Q");
+
             assertThat(notGameEnd).isFalse();
         }
 
         @Test
         void 게임을_끝내지_않는_조건_확인() {
             boolean notGameEnd = bridgeGame.isNotGameEnd("");
+
             assertThat(notGameEnd).isTrue();
         }
     }
@@ -151,14 +157,16 @@ class BridgeGameTest {
     @Test
     void 필드에_지정된_gameCount_값을_불러와_지는지_확인() {
         int result = 1;
+
         int gameCount = bridgeGame.totalGameCount();
+
         assertThat(gameCount).isEqualTo(result);
     }
 
     @Test
     void determiningSuccess() {
-        boolean result = true;
         boolean success = bridgeGame.determiningSuccess();
+
         assertThat(success).isTrue();
     }
 }

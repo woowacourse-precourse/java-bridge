@@ -58,6 +58,7 @@ class BridgeStateTest {
             bridgeState.addBridge("U", "O");
 
             String upBridgeGenerate = bridgeState.upBridgeGenerate();
+
             assertThat(upBridgeGenerate).isEqualTo("[ O | O ]");
         }
 
@@ -68,13 +69,16 @@ class BridgeStateTest {
             bridgeState.addBridge("U", "O");
 
             String upBridgeGenerate = bridgeState.upBridgeGenerate();
+
             assertThat(upBridgeGenerate).isEqualTo("[ O | O | O ]");
         }
 
         @Test
         void upBridge가_실패_하였을_경우_확인() {
             bridgeState.addBridge("U", "X");
+
             String upBridgeGenerate = bridgeState.upBridgeGenerate();
+
             assertThat(upBridgeGenerate).isEqualTo("[ X ]");
         }
 
@@ -84,6 +88,7 @@ class BridgeStateTest {
             bridgeState.addBridge("U", "X");
 
             String upBridgeGenerate = bridgeState.upBridgeGenerate();
+
             assertThat(upBridgeGenerate).isEqualTo("[ O | X ]");
         }
     }
@@ -97,6 +102,7 @@ class BridgeStateTest {
             bridgeState.addBridge("D", "O");
 
             String downBridgeGenerate = bridgeState.downBridgeGenerate();
+
             assertThat(downBridgeGenerate).isEqualTo("[ O | O ]");
         }
 
@@ -107,6 +113,7 @@ class BridgeStateTest {
             bridgeState.addBridge("D", "O");
 
             String downBridgeGenerate = bridgeState.downBridgeGenerate();
+
             assertThat(downBridgeGenerate).isEqualTo("[ O | O | O ]");
         }
 
@@ -115,6 +122,7 @@ class BridgeStateTest {
             bridgeState.addBridge("D", "X");
 
             String downBridgeGenerate = bridgeState.downBridgeGenerate();
+
             assertThat(downBridgeGenerate).isEqualTo("[ X ]");
         }
 
@@ -124,6 +132,7 @@ class BridgeStateTest {
             bridgeState.addBridge("D", "X");
 
             String downBridgeGenerate = bridgeState.downBridgeGenerate();
+
             assertThat(downBridgeGenerate).isEqualTo("[ O | X ]");
         }
     }
@@ -136,8 +145,8 @@ class BridgeStateTest {
             bridgeState.addBridge("U", "O");
 
             bridgeState.reset();
-
             String upBridgeGenerate = bridgeState.upBridgeGenerate();
+
             assertThat(upBridgeGenerate).isEqualTo("[  ]");
         }
 
@@ -146,8 +155,8 @@ class BridgeStateTest {
             bridgeState.addBridge("U", "O");
 
             bridgeState.reset();
-
             String downBridgeGenerate = bridgeState.downBridgeGenerate();
+
             assertThat(downBridgeGenerate).isEqualTo("[  ]");
         }
     }
