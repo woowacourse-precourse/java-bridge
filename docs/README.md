@@ -94,6 +94,7 @@ Q
 - 게임 성공 여부: 성공
 - 시도한 횟수: 재시작한 횟수 + 1(최초 실행)
 
+---
 ## 🚀 기능 목록
 
 - [X] 게임 시작 문구를 출력한다. - OutputView#printGameStartMessage
@@ -118,6 +119,34 @@ Q
   - [X] 게임 성공 여부를 구한다. - OutputView#getResult
   - [X] 총 시도 횟수를 출력한다.
 
+---
 ## 기능 요구 사항
 
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+
+### 구현한 메서드 목록 / 파라미터 수 / 라인 수
+
+파라미터 수는 최대 3개, 라인 수는 최대 10줄이어야 한다. 
+- Application#main / 1 / 2
+- BridgeGameController#run / 0 / 10
+- BridgeGameController#startGame / 2 / 10
+- BridgeGameController#play / 2 / 10
+- BridgeGame#move / 2 / 8
+- BridgeGame#retry / 0 / 3
+- BridgeGame#makeBridgeMap / 1 / 9
+- BridgeGame#getIndex / 1 / 4
+- BridgeGame#getBridgeMap / 0 / 1
+- BridgeGame#getNumberOfTries / 0 / 1
+- BridgeGame#isSuccess / 0 / 1
+- BridgeMaker#makeBridge / 1 / 9
+- InputView#readBridgeSize / 0 / 10
+- InputView#readMoving / 0 / 9
+- InputView#readGameCommand / 0 / 9
+- InputView#isDigit / 1 / 3
+- InputView#validateBridgeSize / 1 / 3
+- InputView#validateMoveCommand / 1 / 4
+- InputView#validateGameCommand / 1 / 4
+- OutputView#printGameStartMessage / 0 / 2
+- OutputView#printMap / 2 / 6
+- OutputView#printResult / 2 / 7
+- OutputView#getResult / 1 / 4
