@@ -54,6 +54,12 @@ public class BridgeGame {
     public List<String> getProgress2() {
         return Progress2;
     }
-    public void retry() {
+    public boolean retry(String restart) {
+        if (restart.equals("R")) {
+            Progress1.clear();
+            Progress2.clear();
+            return true;
+        }
+        return false;
     }
 }
