@@ -15,17 +15,35 @@ public class ConsolidatedView {
     }
 
     public int inputBridgeSize() {
-        outputView.printMessageForBridgeSize();
-        return inputView.readBridgeSize();
+        while (true) {
+            try {
+                outputView.printMessageForBridgeSize();
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 
     public String inputMoving() {
-        outputView.printMessageForMoving();
-        return inputView.readMoving();
+        while (true) {
+            try {
+                outputView.printMessageForMoving();
+                return inputView.readMoving();
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 
     public String inputGameCommand() {
-        outputView.printMessageForGameCommand();
-        return inputView.readGameCommand();
+        while (true) {
+            try {
+                outputView.printMessageForGameCommand();
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 }
