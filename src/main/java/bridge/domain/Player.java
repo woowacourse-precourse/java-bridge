@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import java.util.List;
+import bridge.common.Code;
 
 public class Player {
     private static final int FIRST_GAME_COUNT = 1;
@@ -17,7 +17,7 @@ public class Player {
 
     public void move(BridgeGame bridgeGame, Move move) {
         MoveResult result = bridgeGame.move(round, move);
-        bridgeGameResult.addResult(round, result, move);
+        bridgeGameResult.addResult(round, PlayerMove.of(move, result));
         this.round = round.nextRound();
     }
 
@@ -29,6 +29,10 @@ public class Player {
 
     private void increaseGamePlayCount() {
         this.gamePlayCount++;
+    }
+
+    public Code checkGameSuccess() {
+        return bridgeGameResult.checkGameSuccess();
     }
 
     public int getGamePlayCount() {
