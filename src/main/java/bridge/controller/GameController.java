@@ -20,6 +20,7 @@ public class GameController {
     private List<String> bridge;
     private List<String> upBridge = new ArrayList<>();
     private List<String> downBridge = new ArrayList<>();
+    private List<String> resultGame = new ArrayList<>();
 
     private int bridgeSize = 0;
     private int stage = 0;
@@ -72,17 +73,17 @@ public class GameController {
         return false;
     }
 
-    public int startGame(){
+    public void startGame(){
         while(stage < bridgeSize){
             runGame();
             if(checkFail(stage)){
-                if(!bridgeGame.retry(inputView.readGameCommand())){
-                    break;
-                }
+                quitRetry();
                 clearGame();
+                return;
             }
         }
-        return tryNumber;
+        resultGame.add(viewMessage.RESULT_GAME_SUCCESS_MESSAGE.getMessage());
+        resultGame.add((String.valueOf(tryNumber)));
     }
 
     public void clearGame(){
@@ -94,5 +95,12 @@ public class GameController {
     public void increaseTryNumberAndStage(){
         stage++;
         tryNumber++;
+    }
+
+    public void quitRetry(){
+        if(!bridgeGame.retry(inputView.readGameCommand())){
+            resultGame.add(viewMessage.RESULT_GAME_FAIL_MESSAGE.getMessage());
+            resultGame.add((String.valueOf(tryNumber)));
+        }
     }
 }
