@@ -273,7 +273,7 @@ public class BridgeMaker {
 
 - 다리 칸을 생성하기 위한 Random 값은 아래와 같이 추출한다.
 
-```java
+``` java
 int number = bridgeNumberGenerator.generate();
 ``` 
 
