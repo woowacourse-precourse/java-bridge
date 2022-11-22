@@ -33,6 +33,12 @@ public class BridgeGame {
         return bridgeGenerateService.generateBridgeBySize(bridgeSize);
     }
 
+    private void initializeGame() {
+        position = 0;
+        onMovableCompartment = true;
+        outputView.initializeMap();
+    }
+
     private void move() {
         outputView.printMovingInputNotice();
         String moving = inputView.readMoving();
