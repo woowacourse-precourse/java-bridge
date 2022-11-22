@@ -21,14 +21,4 @@ class BridgeMakerTest {
         assertThat(bridge.size()).isEqualTo(6);
         assertThat(bridge).containsOnly("U", "D");
     }
-
-    @Test
-    @DisplayName("범위에 맞지 않는 사이즈로 다리를 만들 수 없다.")
-    void createBridgeWithNotInRange() {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(45))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
