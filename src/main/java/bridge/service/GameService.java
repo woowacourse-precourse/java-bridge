@@ -19,6 +19,7 @@ public class GameService {
 
     public void move(String moveDirection) {
         user.inputMoveDirection(moveDirection);
+        drawMap();
     }
 
     private boolean canMove() {
@@ -29,8 +30,11 @@ public class GameService {
         return false;
     }
 
-    public List<List<String>> drawMap() {
+    private void drawMap() {
         map.drawMap(user.getMoveDirectionNumber(), canMove());
+    }
+
+    public List<List<String>> getMap(){
         return map.getMap();
     }
 

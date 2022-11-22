@@ -34,7 +34,7 @@ public class BridgeGame {
         boolean proceed = true;
         while (proceed) {
             gameService.move(InputView.readMoving());
-            OutputView.printMap(gameService.drawMap());
+            OutputView.printMap(gameService.getMap());
             proceed = gameService.CanKeepGoingGame();
         }
         if (gameService.isNotPass()) {
@@ -50,7 +50,7 @@ public class BridgeGame {
     }
 
     public void end(){
-        List<List<String>> map = gameService.drawMap();
+        List<List<String>> map = gameService.getMap();
         String gameResult = gameService.getGameResult();
         int trialCount = gameService.getTrialCount();
         OutputView.printResult(map,gameResult,trialCount);
