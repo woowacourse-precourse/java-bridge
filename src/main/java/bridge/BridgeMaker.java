@@ -24,7 +24,7 @@ public class BridgeMaker {
 
     private void validateSize(int size) {
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
         }
     }
 

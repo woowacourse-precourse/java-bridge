@@ -1,12 +1,13 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.enums.ExceptionMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import domain.BridgeGame;
+
+import java.util.List;
 
 public class BridgeController {
     InputView inputView = new InputView();
@@ -15,19 +16,27 @@ public class BridgeController {
 
     public void run() {
         outputView.outputGameStart();
-        bridgeGame = createBridge();
+        bridgeGame = gameStart();
         movesBridge();
+        endGame();
     }
 
-    private BridgeGame createBridge() {
+    private BridgeGame gameStart() {
         try {
-            BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-            outputView.outputEnterBridgeSize();
-            return new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        } catch (IllegalArgumentException e) {
+            return new BridgeGame(makeBridge());
+        } catch (IndexOutOfBoundsException e) {
             outputView.outputException(ExceptionMessage.ERROR_NOT_RANGE_SIZE.getErrorMessage());
-            return createBridge();
+            return gameStart();
+        }
+    }
+
+    private List<String> makeBridge() {
+        try {
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            return bridgeMaker.makeBridge(inputView.readBridgeSize());
+        } catch (IllegalArgumentException e) {
+            outputView.outputException(ExceptionMessage.ERROR_NOT_NUMBER.getErrorMessage());
+            return makeBridge();
         }
     }
 
@@ -35,17 +44,14 @@ public class BridgeController {
         bridgeGame.initUserMove();
         do {
             move();
-        } while (!bridgeGame.moreAsk() && bridgeGame.gameResult());
-        if (!bridgeGame.gameResult()) {
+        } while (!bridgeGame.moreAsk() && bridgeGame.isSuccess());
+        if (!bridgeGame.isSuccess()) {
             fail();
-        } else {
-            endGame();
         }
     }
 
     private void move() {
         try {
-            outputView.outputChooseMovePosition();
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserMove());
         } catch (IllegalArgumentException e) {
@@ -56,11 +62,8 @@ public class BridgeController {
 
     private void fail() {
         try {
-            outputView.outputChooseRestartOrQuit();
             if (bridgeGame.retry(inputView.readGameCommand())) {
                 movesBridge();
-            } else {
-                endGame();
             }
         } catch (IllegalArgumentException e) {
             outputView.outputException(ExceptionMessage.errorInputRetryOrQuit());
@@ -69,7 +72,8 @@ public class BridgeController {
     }
 
     private void endGame() {
-        outputView.printResult(bridgeGame.getBridge(), bridgeGame.getUserMove(), bridgeGame.gameResult(), bridgeGame.getTryTimes());
+        outputView.printResultMap(bridgeGame.getBridge(), bridgeGame.getUserMove());
+        outputView.printResult(bridgeGame.isSuccess(), bridgeGame.getTryTimes());
     }
 
 }

@@ -6,6 +6,7 @@ public class InputView {
 
     public int readBridgeSize() {
         try {
+            OutputView.outputEnterBridgeSize();
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
@@ -13,10 +14,12 @@ public class InputView {
     }
 
     public String readMoving() {
+        OutputView.outputChooseMovePosition();
         return Console.readLine();
     }
 
     public String readGameCommand() {
+        OutputView.outputChooseRestartOrQuit();
         return Console.readLine();
     }
 

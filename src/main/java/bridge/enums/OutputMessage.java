@@ -15,7 +15,6 @@ public enum OutputMessage {
     MIDDLE_LINE(" | "),
     BLANK(" ");
 
-
     final private String message;
 
     OutputMessage(String message) {
@@ -39,11 +38,9 @@ public enum OutputMessage {
     }
 
     public static String bridgeResultTable(List<String> bridge, List<Boolean> userMove, String upDown) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(OPEN_BRACKET.getMessage());
-        stringBuilder.append(makeRow(bridge, userMove, upDown));
-        stringBuilder.append(CLOSE_BRACKET.getMessage());
-        return stringBuilder.toString();
+        return OPEN_BRACKET.getMessage() +
+                makeRow(bridge, userMove, upDown) +
+                CLOSE_BRACKET.getMessage();
     }
 
     private static String makeRow(List<String> bridge, List<Boolean> userMove, String upDown) {
@@ -52,18 +49,26 @@ public enum OutputMessage {
             if (row.length() != 0) {
                 row.append(MIDDLE_LINE.getMessage());
             }
-            row.append(getUserAnswerResult(bridge.get(i), userMove.get(i), upDown));
+            row.append(getUserAnswerOutput(bridge.get(i), userMove.get(i), upDown));
         }
         return row.toString();
     }
 
-    private static String getUserAnswerResult(String bridgeAnswer, Boolean userAnswer, String upDown) {
+    private static String getUserAnswerOutput(String bridgeAnswer, Boolean userAnswer, String upDown) {
         if (userAnswer) {
-            if (bridgeAnswer.equals(upDown)) {
-                return SuccessOrFail.Success.getShow();
-            }
-            return BLANK.getMessage();
+            return userAnswerSameOutput(bridgeAnswer, upDown);
         }
+        return userAnswerNotSameOutput(bridgeAnswer, upDown);
+    }
+
+    private static String userAnswerSameOutput(String bridgeAnswer, String upDown) {
+        if (bridgeAnswer.equals(upDown)) {
+            return SuccessOrFail.Success.getShow();
+        }
+        return BLANK.getMessage();
+    }
+
+    private static String userAnswerNotSameOutput(String bridgeAnswer, String upDown) {
         if (!bridgeAnswer.equals(upDown)) {
             return SuccessOrFail.Fail.getShow();
         }
@@ -77,4 +82,5 @@ public enum OutputMessage {
     public static String totalTryTimes(int tryTimes) {
         return String.format(OUTPUT_TOTAL_TRY_TIMES.getMessage(), tryTimes);
     }
+
 }

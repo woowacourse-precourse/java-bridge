@@ -3,7 +3,6 @@ package bridge.enums;
 public enum SuccessOrFail {
     Success(true, "성공", "O"),
     Fail(false, "실패", "X");
-    //이름 변경
     final private boolean check;
     final private String description;
     final private String show;
@@ -39,13 +38,6 @@ public enum SuccessOrFail {
             return Success.getDescription();
         }
         return Fail.getDescription();
-    }
-
-    public static String convertShow(boolean result) {
-        if (Success.isCheck() == result) {
-            return Success.getShow();
-        }
-        return Fail.getShow();
     }
 
 }
