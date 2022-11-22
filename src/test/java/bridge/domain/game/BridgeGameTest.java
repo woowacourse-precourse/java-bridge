@@ -1,8 +1,9 @@
-package bridge.domain.bridge;
+package bridge.domain.game;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.bridge.Bridge;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.player.Player;
 import org.assertj.core.api.Assertions;
