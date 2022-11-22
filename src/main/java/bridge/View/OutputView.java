@@ -1,5 +1,7 @@
 package bridge.View;
 
+import bridge.Domain.BridgeRow;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +22,8 @@ public class OutputView {
         List<String> check = new ArrayList<>();
         check.add("U"); //enum
         check.add("D"); //enum
-        for(int i=0; i<2; i++){ //여기 enum
-            String standard = check.get(i);
+        for(int index = 0; index< BridgeRow.getBridgeRowNumber(); index++){
+            String standard = check.get(index);
             printMapStartPoint(bridge, standard, position);
             printMapEndPoint(bridge.get(position), standard, success);
         }
@@ -29,9 +31,9 @@ public class OutputView {
     }
     public void printMapStartPoint(List<String> bridge, String standard, int position){
         System.out.print(BRIDGE_START);
-        for(int j=0; j<position; j++){
+        for(int index=0; index<position; index++){
             String eachSpace = BLANK;
-            if(standard.equals(bridge.get(j))){
+            if(standard.equals(bridge.get(index))){
                 eachSpace = CORRECT_SPACE;
             }
             System.out.print(BLANK + eachSpace + BLANK);

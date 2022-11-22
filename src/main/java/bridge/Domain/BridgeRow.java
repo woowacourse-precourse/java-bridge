@@ -7,15 +7,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum BridgeRow {
-    WIDTH1(1, "U"),
-    WIDTH2(0, "D");
+    WIDTH1(1, "U", "위"),
+    WIDTH2(0, "D", "아래");
 
     private int number;
     private String rowPosition;
+    private String rowExplain;
 
-    private BridgeRow(int number, String rowPosition){
+    private BridgeRow(int number, String rowPosition, String rowExplain){
         this.number = number;
         this.rowPosition = rowPosition;
+        this.rowExplain = rowExplain;
     }
 
     public int getNumber(){
@@ -39,4 +41,10 @@ public enum BridgeRow {
     public static final String getRowUsingNumber(int number){
         return map.get(number);
     }
+
+    public static final int getBridgeRowNumber(){
+        return (int)Arrays.stream(BridgeRow.values()).count();
+    }
+
+
 }

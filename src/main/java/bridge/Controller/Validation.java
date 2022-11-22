@@ -44,7 +44,7 @@ public class Validation {
 
     public static void validateInputIsValidMoving(String input){
         if(!BridgeRow.getRowPositions().contains(input)){
-            throw new IllegalArgumentException("다리 건너기 게임에서 올바른 입력이 아닙니다.");
+            throw new IllegalArgumentException("다리 건너기를 위한 올바른 입력이 아닙니다.");
         }
     }
 
