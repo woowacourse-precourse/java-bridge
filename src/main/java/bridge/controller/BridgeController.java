@@ -1,21 +1,11 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
-import bridge.view.OutputView;
 
 public class BridgeController {
-    private final OutputView outputView;
-    public BridgeController() {
-        outputView = new OutputView();
-    }
 
     public void run() {
-        try {
-            runControllers();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            outputView.printException(e.getMessage());
-        }
+        runControllers();
     }
 
     private void runControllers() {
