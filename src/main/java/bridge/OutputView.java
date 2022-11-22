@@ -15,16 +15,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame bridgeGame) {
-        System.out.print("[");
-        ArrayList<String> oriPlayerMove = bridgeGame.getOriPlayerMove();
-        ArrayList<String> playerMove = bridgeGame.getPlayerMove();
-        for (int i = 0; i < oriPlayerMove.size(); i++) {
-            if(oriPlayerMove.get(i).equals("U")&&playerMove.get(i).equals("O")){
-                System.out.println("O");
-            }
+    private void printMapOneLine(String string){
+        System.out.println("[ ");
+        for (int i = 0; i < string.length()-1; i++) {
+            System.out.print(string.charAt(i));
+            System.out.print(" | ");
         }
+        System.out.println(string.charAt(string.length())+" ]");
+    }
 
+    public void printMap(MapArray map) {
+        printMapOneLine(map.getUpBridge());
+        printMapOneLine(map.getDownBridge());
+        System.out.println();
     }
 
     /**
@@ -32,6 +35,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(MapArray map,boolean success) {
+        String result = "성공";
+        if(!success){
+            result = "실패";
+        }
+        System.out.println("최종 게임 결과");
+        printMap(map);
+        System.out.println("게임 성공 여부: "+result);
     }
 }

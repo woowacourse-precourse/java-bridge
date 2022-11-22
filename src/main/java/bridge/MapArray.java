@@ -18,7 +18,8 @@ public class MapArray {
             upBridge +=" ";
             downBridge += "O";
         }
-    }public void addMapX(String input){
+    }
+    public void addMapX(String input){
         if(input.equals("U")){
             upBridge += "X";
             downBridge += " ";
@@ -30,4 +31,11 @@ public class MapArray {
         }
     }
 
+    public String getUpBridge() {
+        return upBridge;
+    }
+
+    public String getDownBridge() {
+        return downBridge;
+    }
 }

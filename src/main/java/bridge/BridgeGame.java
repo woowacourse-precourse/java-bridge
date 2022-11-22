@@ -15,6 +15,7 @@ public class BridgeGame {
      */
     private final List<String> bridge;
     private ArrayList<String> playerMove;
+    private int tryCount =0;
     private ArrayList<String> oriPlayerMove;
     private int moveCount =0;
     public BridgeGame(List<String> bridge) {
@@ -55,6 +56,7 @@ public class BridgeGame {
      */
     public void retry() {
         playerMove.clear();
+        tryCount++;
         oriPlayerMove.clear();
         moveCount = 0;
     }
