@@ -48,4 +48,8 @@ public class Round {
                 .mapToObj(CACHE::get)
                 .collect(Collectors.toList());
     }
+
+    public static Round firstRound() {
+        return CACHE.get(ROUND_LOWER_BOUND);
+    }
 }
