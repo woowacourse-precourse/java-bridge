@@ -22,4 +22,10 @@ public class Validation {
         }
     }
 
+    // 다리의 길이 입력값이 0으로 시작하는지 검증하는 기능
+    private static void checkBridgeLengthStartZero(String bridgeLength) {
+        if (bridgeLength.charAt(0) == ZERO) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_LENGTH_START_ZERO);
+        }
+    }
 }
