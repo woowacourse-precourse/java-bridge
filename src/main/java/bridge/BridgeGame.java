@@ -61,5 +61,13 @@ public class BridgeGame {
         return records.size();
     }
 
+
+    public Bridge compare(Bridge bridge1, Bridge bridge2) {
+        if (bridge1.getSize() > bridge2.getSize()) return bridge1;
+        if (bridge1.getSize() < bridge2.getSize()) return bridge2;
+        if (bridge1.matchWith(answerBridge)) return bridge1;
+        return bridge2;
+    }
+
     }
 }
