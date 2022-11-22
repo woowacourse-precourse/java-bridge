@@ -39,7 +39,6 @@ public class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.setMoveResult(0);
         bridgeGame.setMoveResult(1);
-
         assertThat(bridgeGame.getGameResult().getUpBridge()).isEqualTo(List.of("O","X"));
         assertThat(bridgeGame.getGameResult().getDownBridge()).isEqualTo(List.of(" "," "));
     }
