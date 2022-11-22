@@ -22,6 +22,18 @@ public class BridgeController {
         this.movingMap = movingMap;
     }
 
+    public void run() {
+        outputView.printStartGame();
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        movingMap.init();
+        do {
+            bridgeGame.retry(movingMap);
+            playGame(bridge);
+            count++;
+        } while (!isGameOver && isRestart());
+        outputView.printResult(count, movingMap.getMovingMap(), isGameOver);
+    }
+
     public void playGame(List<String> bridge) {
         do {
             bridgeGame.move(bridge, inputView.readMoving(), movingMap);
