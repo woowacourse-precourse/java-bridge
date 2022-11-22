@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 import bridge.util.BridgeNumberGenerator;
 import java.util.ArrayList;
