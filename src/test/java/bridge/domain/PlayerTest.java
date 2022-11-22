@@ -51,4 +51,18 @@ class PlayerTest {
         movingPosition = player.getMovingPosition();
         assertThat(movingPosition).isEqualTo(1);
     }
+
+    @Test
+    void 다리의_위치를_받아_해당_위치에서_이동했던_기록_반환_테스트() {
+        String movedShape;
+
+        player.move("O");
+        player.move("X");
+
+        movedShape = player.getMovedResultByPosition(0);
+        assertThat(movedShape).isEqualTo("O");
+
+        movedShape = player.getMovedResultByPosition(1);
+        assertThat(movedShape).isEqualTo("X");
+    }
 }
