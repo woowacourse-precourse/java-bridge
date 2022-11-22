@@ -35,7 +35,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static void validateParseStringToInteger(String input) {
+    private static void validateParseStringToInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
