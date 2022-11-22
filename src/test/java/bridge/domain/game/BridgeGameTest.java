@@ -2,6 +2,7 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.Square;
+import bridge.domain.move.MoveResult;
 import bridge.domain.move.MoveType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -27,18 +28,22 @@ class BridgeGameTest {
         int curPosition = bridgeGame.getPosition();
         Square square = new Square(MoveType.UP);
 
-        bridgeGame.move(square);
+        SquareResult move = bridgeGame.move(square);
 
+        assertThat(move.getMoveResult()).isEqualTo(MoveResult.SUCCESS);
         assertThat(bridgeGame.getPosition()).isEqualTo(curPosition + 1);
     }
 
     @DisplayName("현재 위치가 다리의 길이와 같다면 참을 반환한다.")
     @Test
     void success() {
-        bridgeGame.move(new Square(MoveType.UP));
-        bridgeGame.move(new Square(MoveType.DOWN));
+        SquareResult moveUp = bridgeGame.move(new Square(MoveType.UP));
+        SquareResult moveDown = bridgeGame.move(new Square(MoveType.DOWN));
 
         boolean gameSuccess = bridgeGame.isFinalSuccess();
+
+        assertThat(moveUp.getMoveResult()).isEqualTo(MoveResult.SUCCESS);
+        assertThat(moveDown.getMoveResult()).isEqualTo(MoveResult.SUCCESS);
         assertThat(gameSuccess).isTrue();
     }
 
@@ -47,10 +52,11 @@ class BridgeGameTest {
     @Test
     void retryPosition() {
         Square square = new Square(MoveType.DOWN);
-        bridgeGame.move(square);
+        SquareResult move = bridgeGame.move(square);
 
         bridgeGame.retry();
 
+        assertThat(move.getMoveResult()).isEqualTo(MoveResult.FAIL);
         assertThat(bridgeGame.getPosition()).isEqualTo(0);
     }
 
@@ -59,10 +65,11 @@ class BridgeGameTest {
     void retryCount() {
         int retryCount = bridgeGame.getRetryCount();
         Square square = new Square(MoveType.DOWN);
-        bridgeGame.move(square);
+        SquareResult move = bridgeGame.move(square);
 
         bridgeGame.retry();
 
+        assertThat(move.getMoveResult()).isEqualTo(MoveResult.FAIL);
         assertThat(bridgeGame.getRetryCount()).isEqualTo(retryCount + 1);
     }
 }
