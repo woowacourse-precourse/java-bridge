@@ -8,10 +8,12 @@ import java.util.List;
 public class BridgeGame {
     List<String> answerBridge;
     User user;
+    Result result;
 
-    public BridgeGame(List<String> answerBridge, User user) {
+    public BridgeGame(List<String> answerBridge, User user, Result result) {
         this.answerBridge = answerBridge;
         this.user = user;
+        this.result = result;
     }
 
     public boolean move(String moveInput) {

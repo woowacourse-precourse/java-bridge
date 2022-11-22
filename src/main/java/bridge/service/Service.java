@@ -16,7 +16,8 @@ public class Service {
         int bridgeSize = converter.toIntFromString(bridgeSizeInput);
         List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
         User user = new User();
-        game = new BridgeGame(answerBridge, user);
+        Result result = new Result();
+        game = new BridgeGame(answerBridge, user, result);
     }
 
     public void move(String moveInput) {
