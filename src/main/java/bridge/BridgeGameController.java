@@ -4,11 +4,13 @@ public class BridgeGameController {
     private final static InputView inputView = new InputView();
     private final static OutputView outputView = new OutputView();
     private final static BridgeGame bridgeGame = new BridgeGame();
+    private final static GameResult gameResult = new GameResult();
 
     public void run() {
         outputView.printStart();
         init();
         do {
+            gameResult.setCount(gameResult.getCount() + 1);
             bridgeGame.newGame();
             start();
         } while (retry());
@@ -29,7 +31,7 @@ public class BridgeGameController {
     public void init() {
         int bridgeSize = inputView.readBridgeSize();
         bridgeGame.createBridge(bridgeSize);
-        while (checkEnd());
+        while (checkEnd()) ;
     }
 
     private static void start() {
@@ -43,7 +45,9 @@ public class BridgeGameController {
     }
 
     private boolean checkEnd() {
+        gameResult.save(bridgeGame.getGame());
         if (bridgeGame.success()) {
+            outputView.printResult(gameResult.getResult(), gameResult.getCount());
             return true;
         }
         return false;

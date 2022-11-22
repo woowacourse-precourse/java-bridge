@@ -44,14 +44,6 @@ public class GameSimulation {
         this.location = location;
     }
 
-
-    public String getAnswer() {
-        return answer;
-    }
-    public boolean isSuccess() {
-        return success;
-    }
-
     public void setSuccess(boolean success) {
         this.success = success;
     }
@@ -60,17 +52,8 @@ public class GameSimulation {
         return success;
     }
 
-    public List<String> getStep() {
-        return step;
-    }
-
-    public boolean isArrived() {
-        return step.size() == bridge.size();
-    }
-
     public void addLocation() {
         this.location += 1;
     }
-
 
 }
