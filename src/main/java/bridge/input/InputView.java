@@ -10,14 +10,18 @@ public class InputView {
         String input = Console.readLine();
         try {
             int inputLength = checkConvertToInt(input);
-            if (inputLength < 3 || inputLength > 20) {
-                throw new IllegalArgumentException(ERROR_NOT_IN_RANGE);
-            }
+            checkInRange(inputLength);
             return inputLength;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         return readBridgeSize();
+    }
+
+    private static void checkInRange(int inputLength) {
+        if (inputLength < 3 || inputLength > 20) {
+            throw new IllegalArgumentException(ERROR_NOT_IN_RANGE);
+        }
     }
 
     private static int checkConvertToInt(String input) {
