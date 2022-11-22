@@ -24,7 +24,7 @@ public class BridgeMaker {
             int number = bridgeNumberGenerator.generate();
             if(number == 1) bridgeNo.add("U");
             if(number == 0) bridgeNo.add("D");
-            System.out.println(bridgeNo);
+//            System.out.println(bridgeNo);
         }
         return bridgeNo;
     }
