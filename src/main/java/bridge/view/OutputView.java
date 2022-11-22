@@ -61,16 +61,8 @@ public class OutputView {
 
     private static void writeRoute(BridgeGame bridgeGame, List<Direction> route) {
         int lastIndex = route.size() - 1;
-        for (int index = 0; index < lastIndex; index++) {
-            Direction direction = route.get(index);
-            writeMessageByDirection(SUCCESS, direction);
-            writeDividingLine();
-        }
-        if (bridgeGame.isFailed()) {
-            writeMessageByDirection(FAIL, route.get(lastIndex));
-            return;
-        }
-        writeMessageByDirection(SUCCESS, route.get(lastIndex));
+        writeRouteWithoutLastPosition(route, lastIndex);
+        writeLastPosition(bridgeGame, route, lastIndex);
     }
 
     private static void writeBridgeFinish() {
@@ -100,5 +92,21 @@ public class OutputView {
             return;
         }
         System.out.println("실패");
+    }
+
+    private static void writeRouteWithoutLastPosition(List<Direction> route, int lastIndex) {
+        for (int index = 0; index < lastIndex; index++) {
+            Direction direction = route.get(index);
+            writeMessageByDirection(SUCCESS, direction);
+            writeDividingLine();
+        }
+    }
+
+    private static void writeLastPosition(BridgeGame bridgeGame, List<Direction> route, int lastIndex) {
+        if (bridgeGame.isFailed()) {
+            writeMessageByDirection(FAIL, route.get(lastIndex));
+            return;
+        }
+        writeMessageByDirection(SUCCESS, route.get(lastIndex));
     }
 }
