@@ -4,7 +4,8 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-
+test.java
+sugi.md
 ### macOS ###
 .DS_Store
 
