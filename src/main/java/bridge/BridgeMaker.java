@@ -23,9 +23,8 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         for (int i = 0; i < size; i++) {
-            int number = bridgeRandomNumberGenerator.generate();
+            int number = bridgeNumberGenerator.generate();
             if (number == Up.getValue()) { //1이 위칸
                 bridge.add(Up.getWord());
             } else if (number == Down.getValue()) {

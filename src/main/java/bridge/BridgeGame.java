@@ -40,7 +40,7 @@ public class BridgeGame {
         boolean success = move(bridge);
         count++;
         if (success) {
-            OutputView.printResult(Result, true);
+            OutputView.printResult(Result, success);
             end = false;
         } else {
             retry();
@@ -78,7 +78,8 @@ public class BridgeGame {
         InputView inputView = new InputView();
         String retryCommand = inputView.readGameCommand();
         if (Objects.equals(retryCommand, "Q")) {
-            OutputView.printResult(Result, false);
+            boolean fail = false;
+            OutputView.printResult(Result, fail);
             end = false;
         }
     }
