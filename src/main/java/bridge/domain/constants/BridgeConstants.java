@@ -8,6 +8,8 @@ public class BridgeConstants {
     public static final String BRIDGE_GAME_COMMAND_QUIT = "Q";
     public static final String BRIDGE_GAME_MOVING_UP = "U";
     public static final String BRIDGE_GAME_MOVING_DOWN = "D";
+    public static final Integer BRIDGE_GAME_MAKER_UP = 1;
+    public static final Integer BRIDGE_GAME_MAKER_DOWN = 0;
     public static final String BRIDGE_GAME_MOVING_SUCCESS = "O";
     public static final String BRIDGE_GAME_MOVING_FAIL = "X";
     public static final String BRIDGE_GAME_MOVING_BLANC = " ";
