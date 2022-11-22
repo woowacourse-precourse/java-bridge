@@ -1,16 +1,113 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    List<String> bridge = new ArrayList<>();
+    List<String> upResult = new ArrayList<>();
+    List<String> downResult = new ArrayList<>();
+    List<String> result = new ArrayList<>();
+    int tryCount = 1;
+
+    public void run() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        OutputView outputView = new OutputView();
+
+        int size = inputBridgeSize();
+        bridge = bridgeMaker.makeBridge(size);
+
+        while (!move()) {
+            if (!retry()) {
+                break;
+            }
+        }
+        outputView.printResult(successOrFail(result), tryCount, upResult, downResult);
+    }
+
+    private int inputBridgeSize() {
+        InputView inputView = new InputView();
+        int size;
+        while (true) {
+            try {
+                size = inputView.readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+        return size;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    private boolean move() {
+        OutputView outputView = new OutputView();
+        initResults();
+
+        System.out.println(bridge);
+
+        for (int i = 0; i < bridge.size(); i++) {
+            String userUpDownInput = inputMove();
+
+            upResult.add(i, " ");
+            downResult.add(i, " ");
+            result.add(i, "F");
+
+            if (userUpDownInput.equals("U")) {
+                if (bridge.get(i).equals("U")) {
+                    upResult.set(i, "O");
+                    result.set(i, "S");
+                } else {
+                    upResult.set(i, "X");
+                }
+            }
+
+            if (userUpDownInput.equals("D")) {
+                if (bridge.get(i).equals("D")) {
+                    downResult.set(i, "O");
+                    result.set(i, "S");
+                } else {
+                    downResult.set(i, "X");
+                }
+            }
+            outputView.printMap(upResult, downResult);
+        }
+        return successOrFail(result);
+    }
+
+    private String inputMove() {
+        InputView inputView = new InputView();
+        String userUpDownInput = "";
+
+        while (true) {
+            try {
+                userUpDownInput = inputView.readMoving();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+        return userUpDownInput;
+    }
+
+    private boolean successOrFail(List<String> result) {
+        if (result.contains("F"))
+            return false;
+        return true;
+    }
+
+    private void initResults() {
+        upResult.clear();
+        downResult.clear();
+        result.clear();
     }
 
     /**
@@ -18,6 +115,30 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        String gameCommand = inputGameCommand();
+
+        if (gameCommand.equals("R")) {
+            tryCount++;
+            return true;
+        } else { // 최종 게임 결과, 성공 여부, 총 시도 횟수
+            return false;
+        }
+
+    }
+
+    private static String inputGameCommand() {
+        InputView inputView = new InputView();
+        String gameCommand = "";
+
+        while (true) {
+            try {
+                gameCommand = inputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+        return gameCommand;
     }
 }
