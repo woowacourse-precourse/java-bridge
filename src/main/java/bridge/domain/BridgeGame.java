@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -32,34 +33,32 @@ public class BridgeGame {
         reGame.start();
     }
 
-    private List<String> correctMove(String input){
-        MapString mapString = new MapString();
+    private void correctMove(String input, MapString mapString){
         if (input.equals("U")){
-            MapString.upstairs += "O";
-            MapString.downstairs += " ";
-            return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
+            mapString.setUpstairs("O");
+            mapString.setDownstairs(" ");
+            return ;
         }
-        MapString.upstairs += " ";
-        MapString.downstairs += "O";
-        return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
+        mapString.setUpstairs(" ");
+        mapString.setDownstairs("O");
     }
 
-    private List<String> incorrectMove(String input){
-        MapString mapString = new MapString();
+    private void incorrectMove(String input, MapString mapString){
         if (input.equals("U")){
-            MapString.upstairs += "X";
-            MapString.downstairs += " ";
-            return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
+            mapString.setUpstairs("X");
+            mapString.setDownstairs(" ");
+            return ;
         }
-        MapString.upstairs += " ";
-        MapString.downstairs += "X";
-        return (mapString.makeMapString(MapString.upstairs, MapString.downstairs));
+        mapString.setUpstairs(" ");
+        mapString.setDownstairs("X");
     }
 
-    public List<String> makeMap(String input, boolean move){
+    public MapString makeMap(String input, boolean move, MapString mapString){
         if (move){
-            return (correctMove(input));
+            correctMove(input, mapString);
+            return (mapString);
         }
-        return (incorrectMove(input));
+        incorrectMove(input, mapString);
+        return (mapString);
     }
 }

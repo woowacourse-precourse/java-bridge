@@ -1,7 +1,10 @@
 package bridge.ui;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.MapString;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -23,9 +26,9 @@ public class OutputView {
         }
         System.out.println(str.charAt(index) + " ]");
     }
-    public void printMap(List<String> mapString) {
-        printEachString(mapString.get(0));
-        printEachString(mapString.get(1));
+    public void printMap(MapString mapString) {
+        printEachString(mapString.getUpstairs());
+        printEachString(mapString.getDownstairs());
         System.out.println();
     }
 
@@ -34,7 +37,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int result, List<String> mapString) {
+    public void printResult(int result, MapString mapString) {
         String[] strResult = {"실패", "성공"};
         System.out.println("최종 게임 결과");
         printMap(mapString);

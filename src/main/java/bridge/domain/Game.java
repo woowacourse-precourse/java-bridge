@@ -19,11 +19,9 @@ public class Game {
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
         this.inputView = new InputView();
-        this.mapString = new MapString();
+        this.mapString = new MapString("","");
         this.BRIDGE = bridge;
         this.BRIDGE_SIZE= bridgeSize;
-        MapString.downstairs = "";
-        MapString.upstairs = "";
         this.move = true;
     }
 
@@ -34,7 +32,7 @@ public class Game {
             }
         }
         if (this.move){
-            outputView.printResult(SUCCESS, mapString.makeMapString(MapString.upstairs, MapString.downstairs));
+            outputView.printResult(SUCCESS, mapString);
             return ;
         }
         routineWhenFail();
@@ -43,7 +41,7 @@ public class Game {
     private int oneMove(){
         String readMove = inputView.readMoving();
         this.move = bridgeGame.move(BRIDGE, readMove);
-        outputView.printMap(bridgeGame.makeMap(readMove, this.move));
+        outputView.printMap(bridgeGame.makeMap(readMove, this.move, mapString));
         bridgeGame.index++;
         return (bridgeGame.index);
     }
@@ -51,7 +49,7 @@ public class Game {
     private void routineWhenFail(){
         String retry = inputView.readGameCommand();
         if (retry.equals("Q")){
-            outputView.printResult(FAILURE, mapString.makeMapString(MapString.upstairs, MapString.downstairs));
+            outputView.printResult(FAILURE, mapString);
             return ;
         }
         bridgeGame.retry(BRIDGE, BRIDGE_SIZE);
