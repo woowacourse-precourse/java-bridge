@@ -51,4 +51,9 @@ public class BridgeController {
     public boolean continueGame() {
         return !bridgeGame.getGameResult() && inputView.readGameCommand().equals("R");
     }
+
+    public List<String> currentBridge() {
+        int curr = bridgeGame.getCurrentPosition();
+        return new ArrayList<>(bridgeGame.getBridge().subList(0, curr));
+    }
 }
