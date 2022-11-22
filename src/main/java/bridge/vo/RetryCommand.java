@@ -4,5 +4,4 @@ public enum RetryCommand {
 
     R,
     Q
-
 }

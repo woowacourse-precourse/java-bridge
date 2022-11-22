@@ -46,5 +46,4 @@ public class OutputView {
     public void printSpace() {
         System.out.println();
     }
-
 }

@@ -30,5 +30,4 @@ public class UserStatusTest {
         InputStream in = new ByteArrayInputStream(userDirectInputs.getBytes());
         System.setIn(in);
     }
-
 }

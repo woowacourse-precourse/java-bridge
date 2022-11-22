@@ -40,5 +40,4 @@ public class GameRetryCountTest {
             bridgeGame.retry("R");
         }
     }
-
 }

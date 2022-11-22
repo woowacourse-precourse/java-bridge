@@ -61,7 +61,6 @@ public class CurrentBridgeStatusMaker {
             updateBridge(DOWN_INDEX, BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
             return;
         }
-
         updateBridge(UP_INDEX, BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
         updateBridge(DOWN_INDEX, drawingBridge);
     }
@@ -70,5 +69,4 @@ public class CurrentBridgeStatusMaker {
         return String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(),
                 bridgeDrawing.toString());
     }
-
 }

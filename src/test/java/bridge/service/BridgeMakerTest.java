@@ -41,5 +41,4 @@ public class BridgeMakerTest {
 
         Assertions.assertThat(createdBridge).containsOnly("U", "D", "U", "U", "D", "D", "U");
     }
-
 }

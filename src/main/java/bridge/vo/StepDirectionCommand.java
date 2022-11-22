@@ -25,5 +25,4 @@ public enum StepDirectionCommand {
     public String toString() {
         return super.toString();
     }
-
 }

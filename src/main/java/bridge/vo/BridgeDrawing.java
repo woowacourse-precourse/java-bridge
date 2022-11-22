@@ -19,5 +19,4 @@ public enum BridgeDrawing {
     public String toString() {
         return drawing;
     }
-
 }

@@ -30,5 +30,4 @@ public class UserStatus {
     public void clear() {
         currentCrossedBridge = new ArrayList<>();
     }
-
 }

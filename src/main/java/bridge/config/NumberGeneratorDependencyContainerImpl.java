@@ -8,5 +8,4 @@ public class NumberGeneratorDependencyContainerImpl implements NumberGeneratorDe
     public BridgeNumberGenerator bridgeNumberGenerator() {
         return new BridgeRandomNumberGenerator();
     }
-
 }

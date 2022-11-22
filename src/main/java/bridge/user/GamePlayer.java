@@ -26,6 +26,5 @@ public class GamePlayer {
             bridgeGameController.move();
         } while (bridgeGameController.GameKeepGoingOrNot());
     }
-
 }
 

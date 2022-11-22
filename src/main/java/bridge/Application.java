@@ -13,5 +13,4 @@ public class Application {
         GamePlayer gamePlayer = new GamePlayer(numberGeneratorDependencyContainer);
         gamePlayer.playGame();
     }
-
 }

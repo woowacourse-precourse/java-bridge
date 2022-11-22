@@ -14,7 +14,7 @@ public class BridgeLengthValidator {
     }
 
     private static void checkNumberFormat(String input) {
-        if(!input.matches(NUMBER_REGEX))
+        if (!input.matches(NUMBER_REGEX))
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.toString(),
                             MIN_BRIDGE_LENGTH, MAX_BRIDGE_LENGTH));
@@ -32,11 +32,10 @@ public class BridgeLengthValidator {
     }
 
     private static void isInputMinBetweenMax(int length) {
-        if(length < MIN_BRIDGE_LENGTH || length > MAX_BRIDGE_LENGTH) {
+        if (length < MIN_BRIDGE_LENGTH || length > MAX_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.toString(),
                             MIN_BRIDGE_LENGTH, MAX_BRIDGE_LENGTH));
         }
     }
-
 }

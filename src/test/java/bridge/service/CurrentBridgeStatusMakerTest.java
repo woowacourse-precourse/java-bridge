@@ -21,5 +21,4 @@ public class CurrentBridgeStatusMakerTest {
         Assertions.assertThat(currentBridgeStatus.get(1).toString()).isEqualTo("[ O |   | O ]");
         Assertions.assertThat(currentBridgeStatus.get(0).toString()).isEqualTo("[   | O |   ]");
     }
-
 }

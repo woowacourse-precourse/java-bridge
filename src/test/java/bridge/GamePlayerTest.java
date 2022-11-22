@@ -105,5 +105,4 @@ public class GamePlayerTest {
         InputStream in = new ByteArrayInputStream(userInputs.getBytes());
         System.setIn(in);
     }
-
 }
