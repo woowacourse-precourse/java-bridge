@@ -1,13 +1,19 @@
 package bridge.service;
 
+import bridge.controller.BridgeController;
+import bridge.message.InputMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
+    public List<String> movedResult = new ArrayList<>();
     private static final String UP_LETTER = "U";
     private static final String DOWN_LETTER = "D";
-    private static final List<String> movedResult = new ArrayList<>();
+    private static final String RESTART = "R";
+    private static final String END = "Q";
     public static String gameResult = "";
+    public static int countOfTry = 1;
     public List<String> move(String moving) {
         movedResult.add(moving);
         return movedResult;
@@ -52,11 +58,12 @@ public class BridgeGame {
         }
         return down;
     }
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+
+    public boolean retry(String gameCommand) {
+        boolean retry = false;
+        if(gameCommand.equals(RESTART)){
+            retry = true;
+        }
+        return retry;
     }
 }
