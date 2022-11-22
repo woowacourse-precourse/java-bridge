@@ -1,4 +1,4 @@
-package bridge;
+package exception;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import bridge.Application;
 import bridge.number.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
