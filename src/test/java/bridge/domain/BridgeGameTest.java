@@ -45,6 +45,7 @@ class BridgeGameTest {
     @Test
     void returnGameResultWhenGiveCorrectMoveCommand() {
         GameResult result = bridgeGame.resultOfMove(true);
+
         assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_MOVE);
     }
 
