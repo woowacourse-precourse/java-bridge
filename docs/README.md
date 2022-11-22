@@ -463,23 +463,23 @@ Q
 <br>
 
 ### MVC 패턴
-- [x] **Model**은 **Controller**와 **View**에 **의존하지 않아야 한다**.
+- [x] Model은 Controller와 View에 의존하지 않아야 한다.
   - 오직 데이터값만 다룬다.
   - `Model` 내부에 `controller`와 `view`에 관련된 코드가 있으면 안된다. 즉, `controller`와 `view`의 클래스를 import 해서 사용하면 안된다.
 
 
-- [x] **View**는 **model에만 의존**해야 하고, **Controller에는 의존하면 안 된다.**
+- [x] View는 model에만 의존해야 하고, Controller에는 의존하면 안 된다.
   - `view` 내부에 `model`의 코드만 있을 수 있고, `controller`의 코드가 있으면 안된다.
 
 
-- [x] **View가 Model로부터 데이터를 받을 때**는, **사용자마다 다르게 보여주어야 하는 데이터에 대해서만 받아야 한다.**
+- [x] View가 Model로부터 데이터를 받을 때는, 사용자마다 다르게 보여주어야 하는 데이터에 대해서만 받아야 한다.
   - 사용자에게 보여주는 UI중 사용자 데이터 가져와야 되는 부분만 model에서 가져온다.
   - 즉, 모든 사용자에게 똑같이 보여주는 UI는 상수나 enum값을 활용하여 보여준다.
 
 
-- [x] **Controller**는 **Model**과 **View**에 의존해도 된다.
+- [x] Controller는 Model과 View에 의존해도 된다.
   - Controller가 model과 view의 중재자 역할을 하며 전체 로직을 구성하기 때문이다.
   - 따라서, Controller 내부에는 model, view와 관련된 코드가 있을 수 있다.
 
 
-- [x] **View가 Model로부터 데이터를 받을 때**, **반드시 Controller에서 받아야 한다.**
+- [x] View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다.
