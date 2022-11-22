@@ -15,7 +15,7 @@ public class Validation {
         try {
             return validUOrD(movingNext);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(String.format(ASK_INPUT_VALUE, ERROR_HEAD_MESSAGE));
+            throw new IllegalArgumentException(String.format(ASK_INPUT_CHARACTER_U_OR_D, ERROR_HEAD_MESSAGE));
         }
     }
 
@@ -30,7 +30,7 @@ public class Validation {
         try {
             return validBridgeLengthRange(Long.parseLong(bridgeSize));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(ASK_INPUT_NUMBER, ERROR_HEAD_MESSAGE));
+            throw new IllegalArgumentException(String.format(WRONG_LENGTH, ERROR_HEAD_MESSAGE));
         }
     }
 
