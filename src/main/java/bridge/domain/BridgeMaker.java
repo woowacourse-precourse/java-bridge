@@ -25,8 +25,7 @@ public class BridgeMaker {
   }
 
   private String getUpOrDown() {
-    final int zeroOrOne = bridgeNumberGenerator.generate();
-    if (zeroOrOne == 1) {
+    if (trueOrFalseByRandom()) {
       return Direction.UP.getDirection();
     }
     return Direction.DOWN.getDirection();
@@ -38,5 +37,9 @@ public class BridgeMaker {
       bridgeShape.add(getUpOrDown());
     }
     return bridgeShape;
+  }
+
+  private boolean trueOrFalseByRandom() {
+    return bridgeNumberGenerator.generate() == 1;
   }
 }
