@@ -12,7 +12,7 @@ public class Move {
         this.move = move;
     }
 
-    public boolean goToNextMove(String BridgeStep) {
+    public boolean makeMoveResult(String BridgeStep) {
         if (BridgeStep.equals(this.move)) {
             return true;
         }

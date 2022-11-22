@@ -34,7 +34,7 @@ public class Bridge {
         String nowStep = this.bridge.get(this.step);
         String nowMove = move.getMove();
         boolean nowResult = false;
-        if (move.goToNextMove(nowStep)) {
+        if (move.makeMoveResult(nowStep)) {
             nowResult = true;
         }
         return new BridgeResult(nowMove, nowResult);
