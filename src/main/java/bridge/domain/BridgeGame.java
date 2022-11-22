@@ -28,28 +28,35 @@ public class BridgeGame {
 
     public static void compareMove(String dir) {
         System.out.println(answerBridge);
-        boolean check = false;
         while (true) {
             String answer = BridgeService.moveBridge();
             BridgeService.viewBridge();
-            check = breakCompare(answer);
-            if (check) {
+            int check = breakCompare(answer);
+            if (check != 0) {
+                breakRun(check);
                 break;
             }
             dir = BridgeService.getInitMoveRow();
         }
     }
 
-    public static boolean breakCompare(String answer) {
+    public static int breakCompare(String answer) {
         if (answer.equals("X")) {
-            BridgeService.getInitRetryQuit();
-            return true;
+            return 1;
         }
         if (answerCount == BridgeService.getInputSize()) {
-            BridgeService.viewFinalResult(true);
-            return true;
+            return 2;
         }
-        return false;
+        return 0;
+    }
+
+    public static void breakRun(int check){
+        if(check == 1){
+            BridgeService.getInitRetryQuit();
+        }
+        if(check == 2){
+            BridgeService.viewFinalResult(true);
+        }
     }
 
     /**
