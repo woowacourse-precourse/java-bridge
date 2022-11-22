@@ -19,6 +19,16 @@ public class BridgeTest extends NsTest {
         assertThat(bridge.makeSubBridge(2)).doesNotContain(BridgeState.DOWN);
     }
 
+    @Test
+    void 마지막_다리_타일_확인_테스트() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 1, 1));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> tiles = bridgeMaker.makeBridge(3);
+        Bridge bridge = new Bridge(tiles);
+        boolean isLastTile = bridge.isLastTile(3);
+        assertThat(isLastTile).isTrue();
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
