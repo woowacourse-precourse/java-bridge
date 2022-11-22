@@ -11,7 +11,9 @@ public enum ExceptionMessage {
     INVALID_MOVING(String.format("이동할 칸은 %s중 하나만 가능합니다.",
             Arrays.toString(Stream.of(Moving.values()).map(Enum::toString).toArray()))),
     INVALID_GAME_COMMAND(String.format("재시도 여부는 %s중 하나만 가능합니다.",
-            Arrays.toString(Stream.of(GameCommand.values()).map(Enum::toString).toArray())));
+            Arrays.toString(Stream.of(GameCommand.values()).map(Enum::toString).toArray()))),
+    INVALID_BRIDGE_NUMBER(String.format("다리 제작을 위한 숫자는 %s중 하나만 가능합니다.",
+            Arrays.toString(Stream.of(Moving.values()).map(Moving::getNumber).toArray())));
 
     private final String message;
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
