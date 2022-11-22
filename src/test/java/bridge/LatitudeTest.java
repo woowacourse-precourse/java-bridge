@@ -42,4 +42,21 @@ public class LatitudeTest {
     void valueOfInvalidDirection(String direction) {
         Assertions.assertThat(Latitude.valueOfDirection(direction)).isEqualTo(null);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1})
+    @DisplayName("enum 순서로 객체 조회를 했을 때 enum 객체가 반환되는지 확인한다.")
+    void getDirectionByOrdinal(int ordinal) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(0, "D");
+        map.put(1, "U");
+        Assertions.assertThat(Latitude.getDirectionByOrdinal(ordinal)).isEqualTo(map.get(ordinal));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 3})
+    @DisplayName("enum 순서로 객체 조회에 실패했을 때 null 이 반환되는지 확인한다.")
+    void getDirectionByInvalidOrdinal(int ordinal) {
+        Assertions.assertThat(Latitude.getDirectionByOrdinal(ordinal)).isEqualTo(null);
+    }
 }
