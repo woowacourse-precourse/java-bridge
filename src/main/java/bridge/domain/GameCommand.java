@@ -27,6 +27,6 @@ public enum GameCommand {
         return Arrays.stream(GameCommand.values())
                 .filter(game -> Objects.equals(game.getCommand(), command))
                 .findFirst()
-                .orElseThrow();
+                .orElse(null);
     }
 }

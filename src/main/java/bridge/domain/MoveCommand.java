@@ -33,6 +33,6 @@ public enum MoveCommand {
                 .filter(move -> move.getValue() == value)
                 .map(move -> move.command)
                 .findFirst()
-                .orElseThrow();
+                .orElse(null);
     }
 }

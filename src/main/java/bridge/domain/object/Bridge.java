@@ -31,7 +31,9 @@ public class Bridge {
 
     private void validateRoute(final List<String> route) {
         if (route.size() > this.route.size()) {
-            throw new IllegalArgumentException("");
+            String errMessage = "[ERROR] 잘못된 접근입니다.";
+            System.out.println(errMessage);
+            throw new IllegalArgumentException();
         }
     }
 }
