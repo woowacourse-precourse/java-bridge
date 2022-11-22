@@ -33,11 +33,11 @@ public class OutputView {
     public void printResult(boolean isGameSuccess, int attemptCount) {
         System.out.println(OutputMessage.END_GAME_MESSAGE.getMessage());
         System.out.println(tempMap);
-        System.out.println(OutputMessage.GAME_RESULT_MESSAGE.getMessage() + printGameSuccessResult(isGameSuccess));
+        System.out.println(OutputMessage.GAME_RESULT_MESSAGE.getMessage() + getGameSuccessResult(isGameSuccess));
         System.out.println(OutputMessage.TOTAL_ATTEMPT_MESSAGE.getMessage() + attemptCount);
     }
 
-    private String printGameSuccessResult(boolean isGameSuccess){
+    private String getGameSuccessResult(boolean isGameSuccess){
         if(!isGameSuccess){
             return OutputMessage.FAIL.getMessage();
         }
