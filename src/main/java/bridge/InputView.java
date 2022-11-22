@@ -15,7 +15,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         final String REGEX = "[0-9]+";
 
         System.out.println("다리의 길이를 입력해주세요.");
@@ -23,12 +23,14 @@ public class InputView {
 
         if(bridgeSize.matches(REGEX) == false){
             System.out.println(NOT_ONLY_NUM);
-            throw new IllegalArgumentException();
+            readBridgeSize();
+//            throw new IllegalArgumentException();
         }
 
         if (Integer.parseInt(bridgeSize) <3 || Integer.parseInt(bridgeSize) > 20) {
             System.out.println(NOT_RANGE_NUM);
-            throw new IllegalArgumentException();
+            readBridgeSize();
+//            throw new IllegalArgumentException();
         }
 
         return Integer.parseInt(bridgeSize);
@@ -37,12 +39,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String bridgeMoving = Console.readLine();
         if (!bridgeMoving.equals("U") && !bridgeMoving.equals("D")) {
             System.out.println(NOT_UP_DOWN);
-            throw new IllegalArgumentException();
+            readMoving();
+//            throw new IllegalArgumentException();
         }
         return bridgeMoving;
     }
@@ -50,12 +53,13 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String reOrStop = Console.readLine();
         if (!reOrStop.equals("R") && !reOrStop.equals("Q")) {
             System.out.println(NOT_RE_QUIT);
-            throw new IllegalArgumentException();
+            readGameCommand();
+//            throw new IllegalArgumentException();
         }
         return reOrStop;
     }
