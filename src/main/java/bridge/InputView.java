@@ -19,17 +19,15 @@ public class InputView {
 
     //  10줄 초과! 리팩토링 필요  //
     private static String readUntilRightInput(){
-        String input = "";
         while(true){
-            input = Console.readLine();
             try{
+                String input = Console.readLine();
                 errorBridgeSizeOverRange(input);
-                break;
+                return input;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 3~20 사이의 값을 입력해야 합니다.");
             }
         }
-        return input;
     }
 
     public static void errorBridgeSizeOverRange(String input){
