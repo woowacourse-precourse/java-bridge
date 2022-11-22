@@ -53,6 +53,16 @@
   입력 되었을 때 예외처리, 제외되어야하는 문자들을 모아둔 리스트와
   비교하여 입력 값이 해당 리스트 안에 포함될 시 예외처리 하는 기능을
   구현한 메소드 - throwException과 출력하는 메시지가 다름
+ 
+### 2. BridgeNumberGenerator
+- 사전에 준비 된 메소드랜덤으로 0또는 1을 생성하는 기능
+
+
+### 3. BridgeMaker
+- judgeBridge() - enum을 사용하여 BridgeNumberGenerator를 통해 생성된 0과 1에 U,D 이름을 매핑해준다.
+- makeBridge() - 새로운 리스트를 생성 후 BridgeNumberGenerator를 이용해
+  0과 1을 랜덤으로 생성. 위에서 생성한 enum을 활용하여 0과 1에 해당하는
+  U, D를 리스트에 넣은 뒤 반환한다. 사용자가 입력한 값과 비교할 때 사용
 
 
 
