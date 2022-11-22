@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BridgeStatusUtilTest {
+class BridgeHistoryUtilTest {
 
-    private final BridgeStatusUtil statusUtil = new BridgeStatusUtil();
+    private final BridgeHistoryUtil statusUtil = new BridgeHistoryUtil();
 
     @Nested
     class CheckLastTest{

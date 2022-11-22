@@ -1,6 +1,6 @@
 package bridge.businesslogic.bridgehistorystatus;
 
-public class BridgeStatusUtil {
+public class BridgeHistoryUtil {
     public void checkLast(StringBuilder targetStatus,boolean isLastPickIsRight){
         if(!isLastPickIsRight && targetStatus.charAt(targetStatus.length() - 1) == 'O'){
             targetStatus.deleteCharAt(targetStatus.length() -1);

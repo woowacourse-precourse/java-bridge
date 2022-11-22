@@ -3,7 +3,7 @@ package bridge.businesslogic.bridgehistorystatus;
 public class BridgeCrossingHistory {
     private final StringBuilder upLine;
     private final StringBuilder downLine;
-    private final BridgeStatusUtil statusUtil = new BridgeStatusUtil();
+    private final BridgeHistoryUtil statusUtil = new BridgeHistoryUtil();
 
     public BridgeCrossingHistory(StringBuilder upLine, StringBuilder downLine) {
         this.upLine = upLine;
