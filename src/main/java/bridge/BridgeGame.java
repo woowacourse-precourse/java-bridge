@@ -83,6 +83,12 @@ public class BridgeGame {
     public String getBridgeStringOf(String side) {
         return onPlayingBridge.getLaneString(side, answerBridge.getBridge());
     }
-
+    
+    public String getGameResult() {
+        if (getResultBridge().isSameSizeWith(answerBridge)
+                && getResultBridge().matchWith(answerBridge)) {
+            return "성공";
+        }
+        return "실패";
     }
 }
