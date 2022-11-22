@@ -13,4 +13,8 @@ public class Bridge {
   public int getSize() {
     return bridgeRoute.size();
   }
+  public Mark matchRoute(String inputDirection, int movingCount) {
+    boolean isRight = bridgeRoute.get(movingCount).equals(inputDirection);
+    return Mark.toMark(inputDirection, isRight);
+  }
 }

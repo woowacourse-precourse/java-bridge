@@ -26,6 +26,6 @@ public enum BridgeDirection {
     return Stream.of(BridgeDirection.values())
         .filter(direction -> direction.getNumber() == generatedNumber)
         .findFirst()
-        .orElseThrow(IllegalAccessError::new);
+        .orElseThrow(IllegalArgumentException::new);
   }
 }
