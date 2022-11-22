@@ -28,41 +28,33 @@ public class OutputView {
         }
         return "   ";
     }
-    private static ArrayList<String> makeUpBridge(ArrayList<String> moveResult, List<String> bridge) {
-        ArrayList<String> upMap = new ArrayList<>();
 
-        for (int i = 0; i < moveResult.size(); i++) {
-            String move = moveResult.get(i);
-            String log = bridge.get(i);
-            upMap.add(checkForUpMap(move, log));
+    private static String checkForDownMap(String move, String log){
+        if(move.equals("success") && log.equals("U")){
+            return "   ";
         }
-
-        return upMap;
+        if(move.equals("success") && log.equals("D")){
+            return " O ";
+        }
+        if(move.equals("fail")&& log.equals("U")){
+            return " X ";
+        }
+        if(move.equals("fail")&& log.equals("D")){
+            return "   ";
+        }
+        return "   ";
     }
     public void printMap(ArrayList<String> moveResult, List<String> bridge) {
         ArrayList<String> upMap = new ArrayList<>();
         ArrayList<String> downMap = new ArrayList<>();
 
-        for(int i=0;i<moveResult.size();i++){
-            String move =moveResult.get(i);
+        for (int i = 0; i < moveResult.size(); i++) {
+            String move = moveResult.get(i);
             String log = bridge.get(i);
-            if(move.equals("success") && log.equals("U")){
-                upMap.add(" O ");
-                downMap.add("   ");
-            }
-            if(move.equals("success") && log.equals("D")){
-                upMap.add("   ");
-                downMap.add(" O ");
-            }
-            if(move.equals("fail")&& log.equals("U")){
-                upMap.add("   ");
-                downMap.add(" X ");
-            }
-            if(move.equals("fail")&& log.equals("D")){
-                upMap.add(" X ");
-                downMap.add("   ");
-            }
+            upMap.add(checkForUpMap(move, log));
+            downMap.add(checkForDownMap(move, log));
         }
+
         System.out.println(upMap.toString().replaceAll(", ", "|"));
         System.out.println(downMap.toString().replaceAll(", ", "|"));
     }
