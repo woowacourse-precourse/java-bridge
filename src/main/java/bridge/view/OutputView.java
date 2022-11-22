@@ -47,6 +47,7 @@ public class OutputView {
         if (!gameResult) {
             System.out.printf(MESSAGE_OUTPUT_SUCCESS_OR_NOT,MESSAGE_OUTPUT_FAIL);
         }
+        System.out.printf(MESSAGE_OUTPUT_TRY_COUNT,tryCount);
     }
     public void printBlank() {
         System.out.println();
