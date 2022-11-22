@@ -1,5 +1,6 @@
 package bridge.validation;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +54,24 @@ class BridgeSizeValidationTest {
     void isCorrectRangeTest(String bridgeSize) {
         // when, then
         assertThatThrownBy(() -> validation.isCorrectRange(bridgeSize))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("총 유효성 테스트 : 입력이 올바른 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"3", "4", "5", "10", "15", "19", "20"})
+    void correctTest(String bridgeSize) {
+        // when, then
+        assertThatNoException().isThrownBy(() -> validation.totalValidate(bridgeSize));
+    }
+
+    @DisplayName("총 유효성 테스트 : 입력이 틀린 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1", "2", "21", "twenty", "2o", "삼", "three"})
+    void inCorrectTest(String bridgeSize) {
+        // when, then
+        assertThatThrownBy(() -> validation.totalValidate(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
