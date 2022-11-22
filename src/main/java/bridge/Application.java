@@ -76,7 +76,7 @@ public class Application {
 
     private static String chooseNextSpace() {
         String moveNext = null;
-        while(moveNext == null) {
+        while (moveNext == null) {
             output.printMoveSpaceInputRequestMessage();
             moveNext = input.readMoving();
         }
@@ -93,13 +93,13 @@ public class Application {
     }
 
     private static void chooseGameContinue(boolean success) {
-        if (success) {
-            return;
+        if (!success) {
+            String gameCommand = null;
+            while (gameCommand == null) {
+                output.printChoseRetryInputRequestMessage();
+                gameCommand = input.readGameCommand();
+            }
+            state = game.retry(gameCommand);
         }
-
-        output.printChoseRetryInputRequestMessage();
-        String gameCommand = input.readGameCommand();
-
-        state = game.retry(gameCommand);
     }
 }

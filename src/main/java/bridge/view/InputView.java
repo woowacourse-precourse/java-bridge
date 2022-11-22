@@ -53,14 +53,26 @@ public class InputView {
     public String readMoving() {
         String input = Console.readLine();
 
-        input = validateMovingInputLength(input);
+        input = validateCommandInputLength(input);
         String validInput = validateMovingSpace(input);
         return validInput;
     }
 
-    private String validateMovingInputLength(String input) {
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public String readGameCommand() {
+        String gameCommand = Console.readLine();
+
+        gameCommand = validateCommandInputLength(gameCommand);
+        String validCommand = validateGameCommand(gameCommand);
+        return validCommand;
+    }
+
+
+    private String validateCommandInputLength(String input) {
         try {
-            checkMovingInputLength(input);
+            checkCommandInputLength(input);
             return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -68,7 +80,7 @@ public class InputView {
         return null;
     }
 
-    private void checkMovingInputLength(String input) {
+    private void checkCommandInputLength(String input) {
         if (input.length() != 1) {
             throw new IllegalArgumentException("[ERROR] 입력 가능한 길이를 초과하였습니다.");
         }
@@ -90,10 +102,20 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return Console.readLine();
+
+    private String validateGameCommand(String input) {
+        try {
+            checkGameCommand(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private void checkGameCommand(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] \"R\" 또는 \"Q\"만 입력 가능합니다. ");
+        }
     }
 }
