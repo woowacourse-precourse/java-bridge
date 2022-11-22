@@ -56,8 +56,13 @@ public class BridgeGamePlayer {
             }
             outputView.showMessage(RETRY_OR_QUIT.getMessage());
             gameSuccess=game.retry(bridge,inputView.readGameCommand());
-
         }
+        outputView.printResult(convertBool(gameSuccess),game.getChance(),game.showCurrentBoard());
+    }
+
+    private static String convertBool(boolean gameSuccess){
+        if(gameSuccess)return "성공";
+        return "실패";
     }
 
     private void gameResult(){
