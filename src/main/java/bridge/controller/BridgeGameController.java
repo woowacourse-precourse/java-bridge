@@ -1,8 +1,10 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeLane;
-import bridge.BridgeMaker;
+import bridge.domain.BridgeSize;
 import bridge.domain.GameCommand;
 
 import bridge.BridgeRandomNumberGenerator;
@@ -28,7 +30,7 @@ public class BridgeGameController {
 
     private void runGameWithoutExceptionControl() {
         printGameStartAlert();
-        int bridgeSize = getBridgeSizeInput();
+        BridgeSize bridgeSize = getBridgeSizeInput();
         makeRandomBridge(bridgeSize);
 
         do {
@@ -85,15 +87,15 @@ public class BridgeGameController {
         outputView.printResult(bridgeGame);
     }
 
-    private int getBridgeSizeInput() {
+    private BridgeSize getBridgeSizeInput() {
         outputView.printBridgeSizeInputAlert();
-        int bridgeSize =  inputView.readBridgeSize();
+        BridgeSize bridgeSize =  inputView.readBridgeSize();
         outputView.printEmptyLine();
         return bridgeSize;
     }
 
-    private void makeRandomBridge(int bridgeSize) {
+    private void makeRandomBridge(BridgeSize bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize.getSize()));
     }
 }
