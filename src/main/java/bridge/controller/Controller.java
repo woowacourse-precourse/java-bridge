@@ -24,17 +24,21 @@ public class Controller {
 
     public void play() {
         while (true) {
-            String moving = inputView.readMoving();
-            Result result = service.move(moving);
-            outputView.printMap(result);
+            Result result = moveAndPrint();
             if (isWin(result)) {
                 break;
             }
-            if (isLoss(result)) {
-                boolean finish = askFinish();
-                if (finish) break;
+            if (isLoss(result) && askFinish()) {
+                break;
             }
         }
+    }
+
+    private Result moveAndPrint() {
+        String moving = inputView.readMoving();
+        Result result = service.move(moving);
+        outputView.printMap(result);
+        return result;
     }
 
     private boolean askFinish() {
