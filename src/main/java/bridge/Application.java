@@ -15,6 +15,14 @@ public class Application {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
+    private static void playGameUntilEnd(List<String> bridge,int playCount){
+        while(true) {
+            if(playGame(bridge,playCount++)){
+                break;
+            }
+        }
+    }
+    
     private static boolean playGame(List<String> bridge, int count){
         BridgeGame bridgeGame = new BridgeGame();
         for(int i = 0 ; i < bridge.size(); i++){
@@ -25,7 +33,7 @@ public class Application {
         }
         return endGame(bridgeGame,"성공",count);
     }
-    
+
     private static String bridgeState(BridgeGame bridgeGame, List<String> bridge, int index){
         String userMove = InputView.repeatInputMoving();
         String rightWrong = bridgeGame.moveUpDown(bridge.get(index),userMove);
