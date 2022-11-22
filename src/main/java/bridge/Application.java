@@ -20,10 +20,8 @@ public class Application {
         BridgeMaker gameBridgeMaker = new BridgeMaker(gameBridgeRandomNumberGenerator);
         List<String> gameBridge = gameBridgeMaker.makeBridge(gameBridgeLength);
 
-
-
-
-
+        // 4.이동 위치 입력
+        String gameBridgeMoveKey = gameInputView.readMoving();
     }
 }
 
