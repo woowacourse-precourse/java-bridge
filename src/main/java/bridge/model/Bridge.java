@@ -24,15 +24,23 @@ public class Bridge {
             return PlayerStatus.CROSSED;
         }
         if (isSurviving(location, choice)) {
-            return PlayerStatus.SURVIVING;
+            return PlayerStatus.MOVING;
         }
         return PlayerStatus.DEAD;
     }
 
     private boolean isCrossed(int location, Moving choice) {
-        int lastIndex = bridge.size() - 1;
-        return lastIndex < location ||
-                (lastIndex == location && bridge.get(lastIndex) == choice);
+        return isOverBridge(location) ||
+                isLastMovingCorrect(location, choice);
+    }
+
+    private boolean isOverBridge(int location) {
+        return bridge.size() - 1 < location;
+    }
+
+    private boolean isLastMovingCorrect(int location, Moving choice) {
+        int lastLocation = bridge.size() - 1;
+        return lastLocation == location && bridge.get(lastLocation) == choice;
     }
 
     private boolean isSurviving(int location, Moving choice) {
