@@ -25,4 +25,11 @@ class ValidateBridgeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 이동할_칸이_U나_D가_아니면_예외() {
+        String move = "E";
+        assertThatThrownBy(() -> validateMovement(move))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
