@@ -33,9 +33,7 @@ public class Controller {
     public void startBridgeGame(BridgeGame bridgeGame) throws IllegalArgumentException {
         boolean isGaming = true;
         while (isGaming) {
-            BridgeGameResultDto moveResult = bridgeGame.move(inputView.readMoving());
-            outputView.printMap(moveResult.getGradingBoard());
-
+            BridgeGameResultDto moveResult = moveStep(bridgeGame);
             if (moveResult.getGameStatus().equals(GameStatus.SUCCESS)) {
                 isGaming = gameSuccess(moveResult);
             }
@@ -43,6 +41,17 @@ public class Controller {
                 isGaming = gameFail(bridgeGame,moveResult);
             }
         }
+    }
+
+    /**
+     * 칸 하나를 이동하는 기능
+     * @params bridgeGame 진행하고 있는 게임 객체
+     * @return BridgeGameResultDto step 이동 후 반환되는 평가값
+     * */
+    private BridgeGameResultDto moveStep(BridgeGame bridgeGame) throws IllegalArgumentException {
+        BridgeGameResultDto moveResult = bridgeGame.move(inputView.readMoving());
+        outputView.printMap(moveResult.getGradingBoard());
+        return moveResult;
     }
 
     /**
