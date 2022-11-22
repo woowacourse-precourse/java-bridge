@@ -58,4 +58,28 @@ public class OutputView {
         sideIndex.append(CLOSE_BRIDGE_POINT);
         return sideIndex.toString();
     }
+
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     *
+     * @param bridgeGame 실행중인 bridge game instance
+     */
+    public static void printResult(BridgeGame bridgeGame) {
+        System.out.println();
+        System.out.println(FINAL_GAME_RESULT_MESSAGE);
+        printMap(bridgeGame.getBridgeFormat());
+        System.out.println(GAME_RESULT_MESSAGE + isSuccessOrFail(bridgeGame));
+        System.out.println(TOTAL_TRY_COUNT_MESSAGE + bridgeGame.getTryCount());
+    }
+
+    /**
+     * 게임의 최종 결과에 따른 메시지를 반환하는 메소드
+     *
+     * @param bridgeGame 실행중인 bridge game instance
+     * @return Message
+     */
+    private static String isSuccessOrFail(BridgeGame bridgeGame) {
+        if (bridgeGame.isKeepGoing()) { return SUCCESS_MESSAGE; }
+        return FAIL_MESSAGE;
+    }
 }
