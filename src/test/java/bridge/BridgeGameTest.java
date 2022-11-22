@@ -2,6 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.code.GameStatus;
 import bridge.domain.BridgeGame;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,21 @@ public class BridgeGameTest {
         assertThat(game.move("U")).isTrue();
     }
 
+    @Test
+    @DisplayName("재실행 후 게임상태 확인")
+    void retryTest(){
+        BridgeGame game=new BridgeGame(3,new TestNumberGenerator(createTestList()));
+        assertThat(game.retry("R")).isEqualTo(2);
+        assertThat(game.getGameStatus()).isEqualTo(GameStatus.PLAY);
+    }
+
+    @Test
+    @DisplayName("게임 종료 후 게임 상태 확인")
+    void quitTest(){
+        BridgeGame game=new BridgeGame(3,new TestNumberGenerator(createTestList()));
+        assertThat(game.retry("Q")).isEqualTo(1);
+        assertThat(game.getGameStatus()).isEqualTo(GameStatus.FAIL);
+    }
     List<Integer> createTestList(){
         List<Integer> test=new ArrayList<>();
         for (int i = 0; i < 3; i++) {
