@@ -43,7 +43,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        return inputGameCommand();
     }
 
     private int toBridgeSize(String bridgeSizeCommand) {
@@ -66,6 +66,10 @@ public class InputView {
         String moveCommand = Console.readLine();
         validateMoveCommand(moveCommand);
         return moveCommand;
+    }
+
+    private String inputGameCommand() {
+        return Console.readLine();
     }
 
     /**
