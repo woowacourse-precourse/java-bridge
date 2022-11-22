@@ -33,7 +33,9 @@ public class BridgeController {
     }
 
     private BridgeGame new_BridgeGame() {
-        return new BridgeGame(OutputView.BridgeLengthCheck(InputView.readBridgeSize()));
+        int num = OutputView.BridgeLengthCheck(InputView.readBridgeSize());
+        if (num < 3 || num > 20) new_BridgeGame();
+        return new BridgeGame(num);
     }
 
     private String MovingCheck(String moving) {

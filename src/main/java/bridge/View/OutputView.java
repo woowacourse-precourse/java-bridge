@@ -43,32 +43,32 @@ public class OutputView {
         System.out.println(start);
     }
 
-    public static int BridgeLengthCheck(String val) throws IllegalArgumentException {
+    public static int BridgeLengthCheck(String val) {
         return PrintLenError(toInt(val));
     }
 
-    private static int PrintLenError(int len) throws IllegalArgumentException {
+    private static int PrintLenError(int len) {
         if (len >= 3 && len <= 20) {
             return len;
         }
         throw new IllegalArgumentException(error + LenError);
     }
 
-    private static int toInt(String val) throws IllegalArgumentException {
+    private static int toInt(String val) {
         if (!val.matches(VALID_NUMERIC_FORMAT)) {
             throw new IllegalArgumentException(error + LenError);
         }
         return Integer.parseInt(val);
     }
 
-    public static String MovingCheck(String moving) throws IllegalArgumentException {
+    public static String MovingCheck(String moving) {
         if (!MovingCheck.contains(moving)) {
             throw new IllegalArgumentException(error + MovingError);
         }
         return moving;
     }
 
-    public static String RetryCheck(String retry) throws IllegalArgumentException {
+    public static String RetryCheck(String retry)  {
         if (!ReQuCheck.contains(retry)) {
             throw new IllegalArgumentException(error + RetryQuitError);
         }
