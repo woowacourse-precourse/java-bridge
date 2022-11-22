@@ -8,8 +8,8 @@ public class BridgeGame {
     private static int location, countGame;
 
     public static void makeGame(int bridgeSize) {
-        BridgeNumberGenerator NumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(NumberGenerator);
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         bridge = bridgeMaker.makeBridge(bridgeSize);
         location = -1;
         countGame = 1;
@@ -33,7 +33,7 @@ public class BridgeGame {
         countGame++;
     }
 
-    public static boolean stop() {
+    public static boolean getstop() {
         return stop;
     }
 
