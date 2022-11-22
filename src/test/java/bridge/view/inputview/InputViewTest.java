@@ -24,7 +24,7 @@ class InputViewTest {
     public static final String QUIT = Command.Q.toString();
 
     @Nested
-    @DisplayName("사용자로부터 다리의 길이를 입력받는 readBridgeSize 테스트")
+    @DisplayName("사용자로부터 다리의 길이를 입력받는 readBridgeSize 메서드")
     class ReadBridgeSizeTest {
         @ParameterizedTest(name = "입력값 -> {0}")
         @ValueSource(strings = {"5", "13"})
@@ -66,7 +66,7 @@ class InputViewTest {
     }
 
     @Nested
-    @DisplayName("사용자가 이동할 칸을 입력받는 readMoving 메서드 테스트")
+    @DisplayName("사용자가 이동할 칸을 입력받는 readMoving 메서드")
     class readMovingTest {
         @Test
         @DisplayName("사용자가 이동할 칸을 선택하기 위해 U 또는 D를 입력할 수 있다.")
@@ -96,7 +96,7 @@ class InputViewTest {
     }
 
     @Nested
-    @DisplayName("게임 재시작/종료 여부를 입력받는 readGameCommand 매서드")
+    @DisplayName("게임 재시작/종료 여부를 입력받는 readGameCommand 메서드")
     class ReadGameCommandTest {
         @Test
         @DisplayName("게임 재시작/종료 여부를 결정하기 위해 R 또는 Q 를 입력할 수 있다.")
