@@ -59,7 +59,7 @@ public class BridgeGame {
         }
     }
 
-    public int gameState() {
+    private int gameState() {
         String upperLastElement = lastElementOfList(upperBridgeMap);
         String lowerLastElement = lastElementOfList(lowerBridgeMap);
         return calculateGameState(upperLastElement, lowerLastElement);
