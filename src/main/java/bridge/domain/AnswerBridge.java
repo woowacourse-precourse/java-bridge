@@ -47,10 +47,11 @@ public class AnswerBridge {
 
     public MoveResult check(Round round, Direction direction) {
         validateRound(round);
-        if (bridge.get(round).equals(direction)) {
-            return SUCCESS;
+        Direction validDirection = bridge.get(round);
+        if (validDirection.isNotSameDirection(direction)) {
+            return FAIL;
         }
-        return FAIL;
+        return SUCCESS;
     }
 
     private void validateRound(Round round) {
@@ -58,7 +59,7 @@ public class AnswerBridge {
             throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
         }
     }
-    
+
     public boolean isLastRound(Round round) {
         Round lastRound = Round.valueOf(bridge.size());
         return lastRound.equals(round);
