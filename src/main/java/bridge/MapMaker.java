@@ -3,52 +3,50 @@ package bridge;
 import bridge.enums.ControlKey;
 import bridge.enums.MapOutputFormat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MapMaker {
-  private StringBuilder builderTopLine;
-  private StringBuilder builderBottomLine;
+  private List<String> topLine;
+  private List<String> bottomLine;
+  private StringBuilder builder;
 
-  public String makeCurrentMap(Bridge bridge, int index, String move) {
+  public MapMaker() {
+    builder = new StringBuilder();
     initBridge();
-    for (int i = 0; i < index; i++) {
-      if (!bridge.canCross(move, index)) {
-        drawWrongWay(move);
-        break;
-      }
-      drawRightWay(move);
+  }
+
+  public void initBridge() {
+    topLine = new ArrayList<>();
+    bottomLine = new ArrayList<>();
+  }
+
+  public String makeMap(Bridge bridge, int index, String move) {
+    if (!bridge.canCross(move, index)) {
+      drawWay(move, MapOutputFormat.WRONG_WAY.getFormat());
+      return getBothLayer();
     }
-    finishBridge();
-    return builderTopLine + "\n" + builderBottomLine;
+    drawWay(move, MapOutputFormat.RIGHT_WAY.getFormat());
+    return getBothLayer();
   }
 
-  private void initBridge() {
-    builderTopLine = new StringBuilder();
-    builderBottomLine = new StringBuilder();
-    builderTopLine.append(MapOutputFormat.START_SQUARE_BRACKET.getFormat());
-    builderBottomLine.append(MapOutputFormat.START_SQUARE_BRACKET.getFormat());
+  public String makeResultMap() {
+    return getBothLayer();
   }
 
-  private void drawRightWay(String move) {
+  private void drawWay(String move, String way) {
     if (move.equals(ControlKey.UP.getKey())) {
-      builderTopLine.append(MapOutputFormat.RIGHT_WAY.getFormat() + MapOutputFormat.SEPARATOR.getFormat());
+      topLine.add(way);
+      bottomLine.add(MapOutputFormat.EMPTY_SPACE.getFormat());
       return;
     }
-    builderBottomLine.append(MapOutputFormat.EMPTY_SPACE.getFormat() + MapOutputFormat.SEPARATOR.getFormat());
+    topLine.add(MapOutputFormat.EMPTY_SPACE.getFormat());
+    bottomLine.add(way);
   }
 
-  private void drawWrongWay(String move) {
-    if (move.equals(ControlKey.UP.getKey())) {
-      builderTopLine.append(MapOutputFormat.WRONG_WAY.getFormat());
-      return;
-    }
-    builderBottomLine.append(MapOutputFormat.EMPTY_SPACE.getFormat());
-  }
-
-  private void finishBridge() {
-    builderTopLine.append(MapOutputFormat.END_SQUARE_BRACKET.getFormat());
-    builderBottomLine.append(MapOutputFormat.END_SQUARE_BRACKET.getFormat());
-  }
-
-  private void drawSuccessResultMap() {
-
+  private String getBothLayer() {
+    builder = null;
+    return builder.append(MapOutputFormat.START_SQUARE_BRACKET.getFormat()).append(String.join(MapOutputFormat.SEPARATOR.getFormat(), topLine)).append(MapOutputFormat.END_SQUARE_BRACKET.getFormat())
+      .append("\n").append(MapOutputFormat.START_SQUARE_BRACKET.getFormat()).append(String.join(MapOutputFormat.SEPARATOR.getFormat(), bottomLine)).append(MapOutputFormat.END_SQUARE_BRACKET.getFormat()).toString();
   }
 }
