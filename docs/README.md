@@ -26,6 +26,7 @@
 ### 기능 목록
 
 - [BridgeGame]
+  - 시작
   - 이동 가능한지 확인
   - 다리 끝인지 확인
   - 다음 칸으로 이동
@@ -35,7 +36,7 @@
 - [BridgeMaker]
   - 다리 생성
   - [BridgeRandomNumberGenerator]
-  - [BridgeNumberGenerator]시작
+  - [BridgeNumberGenerator]
 
 
 - [InputView]
