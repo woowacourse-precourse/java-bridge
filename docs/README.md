@@ -71,7 +71,7 @@
 ## GameResult
 - [X] gameClear 호출 전 isGameClear 값이 false인지 확인
 - [X] gameClear 호출 후 isGameClear 값이 true로 변경되는지 확인
-- [ ] retry() 여러번 호출 후 tryCount 값
+- [X] attempt() 여러번 호출 후 tryCount 값 확인
 
 ## InputValidator
 - [X] 다리 개수 입력시 숫자가 아닐 때 예외처리

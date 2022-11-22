@@ -30,4 +30,20 @@ class GameResultTest {
         //then
         assertThat(result).isEqualTo(expect);
     }
+
+    @Test
+    @DisplayName("attempt 3번 호출 후 tryCount 값이 같이 변하는가")
+    void getTryCountAfterCallAttempt3Times() throws Exception {
+        //given
+        GameResult gameResult = new GameResult();
+        int expect = 3;
+        //when
+        gameResult.attempt();
+        gameResult.attempt();
+        gameResult.attempt();
+
+        int result = gameResult.getTryCount();
+        //then
+        assertThat(result).isEqualTo(expect);
+    }
 }
