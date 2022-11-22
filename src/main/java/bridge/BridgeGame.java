@@ -9,7 +9,7 @@ import java.util.List;
 public class BridgeGame {
     private final int bridgeSize;
     private final List<String> bridge;
-    private List<String> moves;
+    private final List<String> moves;
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -49,8 +49,8 @@ public class BridgeGame {
         return this.moves;
     }
 
-    public boolean checkLastMove() {
+    public boolean equalLastMove() {
         int lastMoveCount = moves.size()-1;
-        return !moves.get(lastMoveCount).equals(bridge.get(lastMoveCount));
+        return moves.get(lastMoveCount).equals(bridge.get(lastMoveCount));
     }
 }
