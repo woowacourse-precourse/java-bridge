@@ -62,7 +62,7 @@ public class BridgeGame {
         while(player.getMovesCount()==0 || player.isMovable(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
             String moveTo = inputView.readMoving();
             player.move(moveTo);
-            result.makeMap(bridge.getIndexOf(player.getMovesLastIndex()), moveTo);
+            result.makeMap(moveTo, bridge.getIndexOf(player.getMovesLastIndex()));
             outputView.printMap(result);
         }
     }
