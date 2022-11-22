@@ -23,16 +23,16 @@ class BridgeGameTest {
 	@DisplayName("이동 테스트")
 	@ParameterizedTest
 	@MethodSource("generateData")
-	void 다리이동_테스트(List<String> bridges,List<String> move,int index,boolean expected){
+	void 다리이동_테스트(List<String> bridges,String moveCommand,int index,boolean expected){
 		BridgeGame bridgeGame = new BridgeGame();
-		Assertions.assertThat(bridgeGame.move(bridges,move,index)).isEqualTo(expected);
+		Assertions.assertThat(bridgeGame.move(bridges,moveCommand,index)).isEqualTo(expected);
 	}
 	static Stream<Arguments> generateData() {
 		return Stream.of(
-				Arguments.of(Arrays.asList("U", "D", "U"), Arrays.asList("U"), 0,true),
-				Arguments.of(Arrays.asList("U", "D", "U"), Arrays.asList("U", "D"), 1,true),
-				Arguments.of(Arrays.asList("U", "D", "U"), Arrays.asList("D"), 0,false),
-				Arguments.of(Arrays.asList("U", "D", "U"), Arrays.asList("U", "U"), 1,false)
+				Arguments.of(Arrays.asList("U", "D", "U"), "U", 0,true),
+				Arguments.of(Arrays.asList("U", "D", "U"), "D", 1,true),
+				Arguments.of(Arrays.asList("U", "D", "U"), "D", 0,false),
+				Arguments.of(Arrays.asList("U", "D", "U"), "U", 1,false)
 		);
 	}
 
