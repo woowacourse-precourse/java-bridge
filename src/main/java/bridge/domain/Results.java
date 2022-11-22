@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Results {
-
+    private static final String OPEN_BRACKET = "[ ";
 
     private final List<RoundResult> results;
     private StringBuilder up;
@@ -13,22 +13,18 @@ public class Results {
 
     public Results() {
         this.results = new ArrayList<>();
-        this.up = new StringBuilder("[ ");
-        this.down = new StringBuilder("[ ");
-    }
-
-    public Results(List<RoundResult> results) {
-        this.results = results;
+        this.up = new StringBuilder(OPEN_BRACKET);
+        this.down = new StringBuilder(OPEN_BRACKET);
     }
 
     public List<RoundResult> getResults() {
         return results;
     }
 
-    public void deleteAll(){
+    public void deleteAll() {
         this.results.clear();
-        this.up = new StringBuilder("[ ");
-        this.down = new StringBuilder("[ ");
+        this.up = new StringBuilder(OPEN_BRACKET);
+        this.down = new StringBuilder(OPEN_BRACKET);
     }
 
     public void addCurrentResult(RoundResult roundResult) {

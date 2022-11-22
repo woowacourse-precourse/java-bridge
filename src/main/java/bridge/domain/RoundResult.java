@@ -28,7 +28,7 @@ public class RoundResult {
     }
 
     private boolean isUp(){
-        return this.location.equals("U");
+        return this.location.equals(Command.UP);
     }
 
 }

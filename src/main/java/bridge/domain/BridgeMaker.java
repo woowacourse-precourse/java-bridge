@@ -32,8 +32,8 @@ public class BridgeMaker {
 
     private String covertUpOrDown(int num){
         if(num == 0){
-            return "D";
+            return Command.DOWN;
         }
-        return "U";
+        return Command.UP;
     }
 }

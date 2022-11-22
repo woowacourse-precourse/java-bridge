@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.Command;
 import bridge.domain.Results;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -10,6 +11,8 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeSystem {
+    private static final String GAME_SUCCESS = "성공";
+    private static final String GAME_FAIL = "실패";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -36,7 +39,7 @@ public class BridgeSystem {
             outputView.printMap(bridgeGame.getResults());
             checkAlive(bridgeGame);
         }
-        bridgeGame.setSuccessOrFail("성공");
+        bridgeGame.setSuccessOrFail(GAME_SUCCESS);
     }
 
     public void checkAlive(BridgeGame bridgeGame) {
@@ -47,10 +50,10 @@ public class BridgeSystem {
     }
 
     public void checkRetryOrQuit(BridgeGame bridgeGame, String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(Command.RETRY)) {
             bridgeGame.retry();
             return;
         }
-        bridgeGame.setSuccessOrFail("실패");
+        bridgeGame.setSuccessOrFail(GAME_FAIL);
     }
 }

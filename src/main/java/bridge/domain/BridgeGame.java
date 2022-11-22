@@ -6,6 +6,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String STATUS_MOVABLE = "O";
+    private static final String STATUS_UNMOVABLE = "X";
 
     private final List<String> bridge;
     private final Results results;
@@ -47,11 +49,11 @@ public class BridgeGame {
      */
     public void move(String userCommand) {
         if (userCommand.equals(bridge.get(getRound()))) {
-            this.results.addCurrentResult(new RoundResult(userCommand, "O"));
+            this.results.addCurrentResult(new RoundResult(userCommand, STATUS_MOVABLE));
             this.isAlive = true;
             return;
         }
-        this.results.addCurrentResult(new RoundResult(userCommand, "X"));
+        this.results.addCurrentResult(new RoundResult(userCommand, STATUS_UNMOVABLE));
         this.isAlive = false;
     }
 
@@ -62,7 +64,6 @@ public class BridgeGame {
      */
     public void retry() {
         trial++;
-        //results초기화
         this.results.deleteAll();
     }
 
