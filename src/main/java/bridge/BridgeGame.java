@@ -1,11 +1,14 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private List<String> topMap = new ArrayList<>();
+    private List<String> downMap = new ArrayList<>();
     public static BridgeGame instance;
 
     private BridgeGame() {
@@ -25,29 +28,64 @@ public class BridgeGame {
      *
      * @return
      */
-    public boolean move(String userInput, List<String> bridge, int cnt) {
-        if (userInput.equals("U")) {
-            if (moveUp(bridge, cnt)) {
-                return true;
-            }
+    public void move(String userInput, List<String> bridge, int cnt) {
+        if (isU(userInput)) {
+            moveUp(userInput, bridge, cnt);
         }
 
-        if (userInput.equals("D")) {
-            if (moveDown(bridge, cnt)) {
-                return true;
-            }
+        if (isD(userInput)) {
+            moveDown(userInput, bridge, cnt);
         }
-        return false;
     }
 
-    private boolean moveUp(List<String> bridge, int cnt) {
-        String upOrDown = bridge.get(cnt);
-        return upOrDown.equals("U");
+    private void moveDown(String userInput, List<String> bridge, int cnt) {
+        if (isAbleCross(bridge, cnt, userInput)) {
+            ableMoveDown();
+        }
+        if(!isAbleCross(bridge,cnt,userInput)) {
+            unAbleMoveDown();
+        }
     }
 
-    private boolean moveDown(List<String> bridge, int cnt) {
-        String upOrDown = bridge.get(cnt);
-        return upOrDown.equals("D");
+    private void unAbleMoveDown() {
+        topMap.add(Map.BLANK.getSymbol());
+        downMap.add(Map.CROSS_NO.getSymbol());
+    }
+
+    private void ableMoveDown() {
+        topMap.add(Map.BLANK.getSymbol());
+        downMap.add(Map.CROSS_OK.getSymbol());
+    }
+
+    private void moveUp(String userInput, List<String> bridge, int cnt) {
+        if (isAbleCross(bridge, cnt, userInput)) {
+            ableMoveUp();
+        }
+        if (!isAbleCross(bridge, cnt, userInput)) {
+            unAbleMoveUp();
+        }
+    }
+
+    private void unAbleMoveUp() {
+        topMap.add(Map.CROSS_NO.getSymbol());
+        downMap.add(Map.BLANK.getSymbol());
+    }
+
+    private void ableMoveUp() {
+        topMap.add(Map.CROSS_OK.getSymbol());
+        downMap.add(Map.BLANK.getSymbol());
+    }
+
+    private boolean isAbleCross(List<String> bridge, int cnt, String userInput) {
+        return bridge.get(cnt).equals(userInput);
+    }
+
+    private boolean isD(String userInput) {
+        return userInput.equals("D");
+    }
+
+    private boolean isU(String userInput) {
+        return userInput.equals("U");
     }
 
     /**
