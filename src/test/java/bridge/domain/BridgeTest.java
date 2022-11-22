@@ -34,7 +34,9 @@ class BridgeTest {
     @DisplayName("다리 모양이 U또는 D로 생성 되었는지 테스트.")
     @Test
     void bridgeShapeTest() {
-        assertThat(new Bridge(19).getShape())
-                .contains("U", "D");
+        Bridge bridge = new Bridge(20);
+        for (String str : bridge.getShape()) {
+            assertThat(List.of("U", "D")).contains(str);
+        }
     }
 }
