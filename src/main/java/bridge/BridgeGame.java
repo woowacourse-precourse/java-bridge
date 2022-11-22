@@ -14,6 +14,7 @@ public class BridgeGame {
     private int count = 1;
     private int tried = 1;
     String gameResult = "성공";
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

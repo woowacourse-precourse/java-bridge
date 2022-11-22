@@ -13,6 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class BridgeMakerTest {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
     @DisplayName("다리가 만들어질 때 U, D 로만 잘 만들어지는 확인")
     @Test
     void 다리가_생성_예외처리() {
