@@ -43,6 +43,10 @@ public class BridgeGame {
         lowerBridge = new ArrayList<>();
     }
 
+    private String getChoiceByPosition(int position) {
+        return player.getChoiceIndex(position);
+    }
+
     private String getBridgeByPosition(int position) {
         return bridge.getBridgeByIndex(position);
     }
