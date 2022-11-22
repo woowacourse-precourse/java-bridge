@@ -32,7 +32,7 @@ public class BridgeGame {
      */
     public boolean move(String moveCommand) {
         validateMoveCommand(moveCommand);
-        if (moveCommand.equals(bridge.get(player.getCurrentPosition()))) {
+        if (isMovable(moveCommand)) {
             player.movePlayer();
             return true;
         }
@@ -75,5 +75,9 @@ public class BridgeGame {
 
     public Player getPlayer() {
         return player;
+    }
+
+    private boolean isMovable(String moveCommand) {
+        return moveCommand.equals(bridge.get(player.getCurrentPosition()));
     }
 }
