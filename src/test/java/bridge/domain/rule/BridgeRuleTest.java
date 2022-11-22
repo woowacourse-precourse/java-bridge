@@ -69,5 +69,22 @@ class BridgeRuleTest {
 				.withMessageContaining("[ERROR]");
 	}
 
+	@DisplayName("이동 명령어 통과 테스트")
+	@ParameterizedTest
+	@ValueSource(strings = {"U","D"})
+	void 이동명령어는_U_D_만가능합니다(String input) {
+		BridgeRule bridgeRule = new BridgeRule();
+		assertThatCode(() -> bridgeRule.isMoveCommand(input))
+				.doesNotThrowAnyException();
+	}
 
+	@DisplayName("재시작 명령어 예외 테스트")
+	@ParameterizedTest
+	@ValueSource(strings = {"1","ㅁ"})
+	void 이동명령어는_U_D_이외에_입력되면안됩니다(String input) {
+		BridgeRule bridgeRule = new BridgeRule();
+		assertThatIllegalArgumentException()
+				.isThrownBy(()-> bridgeRule.isMoveCommand(input))
+				.withMessageContaining("[ERROR]");
+	}
 }
