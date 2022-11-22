@@ -2,7 +2,9 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.message.InputMessage.*;
+import static bridge.message.InputMessage.PLEASE_ENTER_BRIDGE_SIZE;
+import static bridge.message.InputMessage.PLEASE_ENTER_MOVE_COMMAND;
+import static bridge.message.InputMessage.PLEASE_ENTER_GAME_COMMAND;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
