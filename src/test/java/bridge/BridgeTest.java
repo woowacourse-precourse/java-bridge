@@ -16,4 +16,11 @@ class BridgeTest {
         assertTrue(bridge.isCorrect(List.of("U")));
     }
 
+    @DisplayName("정답인지 체크합니다.")
+    @Test
+    public void isClearDirection(){
+        Bridge bridge = new Bridge(List.of("U", "D", "U", "U"));
+        assertFalse(bridge.isCleared(List.of("U", "D", "U", "D")));
+        assertTrue(bridge.isCleared(List.of("U", "D", "U", "U")));
+    }
 }
