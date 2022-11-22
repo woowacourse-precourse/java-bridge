@@ -57,4 +57,16 @@ public class BridgeGame {
             return true;
         return false;
     }
+
+    public int getGameTryCount() {
+        return gameTryCount;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
 }
