@@ -9,8 +9,8 @@ public class BridgeMaker {
         UP(1,"U"),
         DOWN(0,"D");
 
-        private int num;
-        private String word;
+        private final int num;
+        private final String word;
         Direction(int num, String word) {
             this.num = num;
             this.word = word;
