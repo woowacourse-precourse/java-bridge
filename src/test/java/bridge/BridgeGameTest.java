@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.lang.reflect.Field;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
@@ -41,7 +44,12 @@ class BridgeGameTest {
     @DisplayName("입력 받은 이동 방향이 \"U\" 와 \"D\" 둘 중 하나 ")
     @ParameterizedTest
     @ValueSource(strings = {"U", "D"})
-    void moveDirectionOK(String direction) {
+    void moveDirectionOK(String direction) throws NoSuchFieldException, IllegalAccessException {
+        Field bridge = bridgeGame.getClass().getDeclaredField("bridge");
+        bridge.setAccessible(true);
+        List<String> answerBridge = List.of("U","D","D");
+        bridge.set(bridgeGame,new Bridge(answerBridge));
+
         assertDoesNotThrow(()->
                 bridgeGame.move(direction));
     }
