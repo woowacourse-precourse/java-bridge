@@ -97,6 +97,7 @@ class PlayerTest {
     @DisplayName("플레이어가 갖고 있는 이동한 다리를 가져온다.")
     void getPlayerBridge() {
         Player player = new Player();
+        player.makeNewPlayerBridge();
         assertThat(player.findPlayerBridge()).isInstanceOf(PlayerBridge.class);
     }
 
@@ -104,7 +105,7 @@ class PlayerTest {
     @DisplayName("플레이어가 사용한 코인을 가져온다.")
     void getCoinUsed() {
         Player player = new Player();
-        assertThat(player.findCoinUsed()).isInstanceOf(int.class);
+        assertThat(player.findCoinUsed()).isInstanceOf(Integer.class);
     }
 
 

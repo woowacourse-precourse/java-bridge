@@ -23,7 +23,7 @@ class PlayerBridgeTest {
     void addDownRootRight() {
         PlayerBridge playerBridge = new PlayerBridge();
         playerBridge.addDownRootRight();
-        assertThat(playerBridge.makePlayerBridgeForm()).contains("[  ]\n[ O ]");
+        assertThat(playerBridge.makePlayerBridgeForm()).contains("[   ]\n[ O ]");
     }
 
     @Test
