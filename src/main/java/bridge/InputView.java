@@ -31,8 +31,6 @@ public class InputView {
         validateNumber(command);
         validateRange(Integer.parseInt(command));
         return Integer.parseInt(command);
-        //TODO: 예외 처리 부분 고려, Validator를 따로 만들어야 하나. 아니면 input 클래스 내에서 메소드를 추가해야하나.
-        //TODO: 클래스 추가 관련해서 요구사항을 꼼꼼히 읽어볼 필요가 있다.
     }
 
     private void validateNumber(String command) {
