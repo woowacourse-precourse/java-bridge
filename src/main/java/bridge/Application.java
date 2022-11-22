@@ -15,14 +15,8 @@ public class Application {
         BridgeMaker newBridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> newBridge;
         int size = inputs.readBridgeSizeWithValidityCheck();
-        newBridge = newBridgeMaker.makeBridge(size); // 입력 받은 길이의 다리 빌드
-        System.out.println(newBridge); // 다리 출력 (디버그)
+        newBridge = newBridgeMaker.makeBridge(size);
         return newBridge;
-    }
-
-    public static int playCounter(int triedCounter) {
-        triedCounter++;
-        return triedCounter;
     }
 
     public static void main(String[] args) {
@@ -32,16 +26,15 @@ public class Application {
         int triedCounter = 0;
         while (retryPlay) {
             triedCounter++;
-            retryPlay = gamePlay(newBridge,currentResult,triedCounter);
+            retryPlay = gamePlay(newBridge, currentResult, triedCounter);
         }
     }
 
     static boolean gamePlay(List<String> newBridge, List<String> currentResult, int triedCounter) {
         int round;
-        boolean retryPlay=false;
+        boolean retryPlay = false;
         for (round = 0; round < newBridge.size(); round++) {
-            boolean stageResult = gamePlayMoving(newBridge, currentResult,round);
-            if (!stageResult) {
+            if (!gamePlayMoving(newBridge, currentResult, round)) {
                 retryPlay = whenItsWrong(currentResult);
                 break;
             }
@@ -50,18 +43,20 @@ public class Application {
         return retryPlay;
     }
 
-    static boolean gamePlayMoving(List<String>newBridge,List<String> currentResult, int round){
+    static boolean gamePlayMoving(List<String> newBridge, List<String> currentResult, int round) {
         String userAnswer = inputs.readMovingWithValidityCheck();
         boolean stageResult = bridgeGame.move(userAnswer, newBridge, round);
         outputs.designBridgeMap(newBridge, currentResult, stageResult, round);
 
         return stageResult;
     }
+
     static void printResultOrNot(List<String> newBridge, List<String> currentResult, int round, int triedCounter, boolean retryPlay) {
         if (!retryPlay) {
             outputs.printResult(newBridge, currentResult, round, triedCounter);
         }
     }
+
     static boolean whenItsWrong(List<String> currentResult) {
         String retryAnswer = inputs.readGameCommandWithValidityCheck();
         boolean retry = bridgeGame.retry(retryAnswer, currentResult);
