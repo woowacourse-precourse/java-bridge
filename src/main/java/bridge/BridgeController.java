@@ -29,8 +29,15 @@ public class BridgeController {
     }
 
     public void newRound() {
-
+        do {
+            bridgeGame.move(inputView.readMoving());
+        } while (this.continueRound());
     }
+
+
+
+
+
 
     public boolean continueRound() {
         return bridgeGame.getGameResult() && (bridgeGame.getCurrentPosition() < bridgeGame.getBridge().size());
