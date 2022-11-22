@@ -13,10 +13,10 @@ public class BridgeChecker {
 
         for(int i=0; i<userInput.size(); i++) {
             if(bridge.get(i).equals(userInput.get(i))==false) {
-                matchingResult.add(BlockExpression.Diff.getMark());
+                matchingResult.add(BlockExpression.DIFF.getMark());
                 break;
             }
-            matchingResult.add(BlockExpression.Same.getMark());
+            matchingResult.add(BlockExpression.SAME.getMark());
         }
         return matchingResult;
     }
@@ -28,7 +28,7 @@ public class BridgeChecker {
             if(bridge.get(i).equals(MovingDirection.Upper.getDirection())) {
                 upperBlocks.add(matchingResult.get(i));
             }else if(bridge.get(i).equals(MovingDirection.Lower.getDirection())) {
-                upperBlocks.add(BlockExpression.Empty.getMark());
+                upperBlocks.add(BlockExpression.EMPTY.getMark());
             }
         }
         return upperBlocks;
@@ -41,7 +41,7 @@ public class BridgeChecker {
             if(bridge.get(i).equals(MovingDirection.Lower.getDirection())) {
                 lowerBlocks.add(matchingResult.get(i));
             }else if(bridge.get(i).equals(MovingDirection.Upper.getDirection())) {
-                lowerBlocks.add(BlockExpression.Empty.getMark());
+                lowerBlocks.add(BlockExpression.EMPTY.getMark());
             }
         }
         return lowerBlocks;

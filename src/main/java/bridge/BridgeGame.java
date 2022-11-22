@@ -46,7 +46,7 @@ public class BridgeGame {
         List<String> matchingResult = bridgeChecker.checkBridgeMatching(bridge, userInput);
         final int LAST_INDEX = matchingResult.size()-1;
 
-        if(matchingResult.get(LAST_INDEX).equals(BlockExpression.Diff.getMark())) {
+        if(matchingResult.get(LAST_INDEX).equals(BlockExpression.DIFF.getMark())) {
             gameProgress.gameOver = GameOver.OVER;
             gameProgress.gameResult = GameResult.FAILED;
             return;

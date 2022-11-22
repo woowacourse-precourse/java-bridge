@@ -1,9 +1,9 @@
 package bridge.enums;
 
 public enum BlockExpression {
-    Same("O"),
-    Diff("X"),
-    Empty(" ");
+    SAME("O"),
+    DIFF("X"),
+    EMPTY(" ");
 
     private final String mark;
 
