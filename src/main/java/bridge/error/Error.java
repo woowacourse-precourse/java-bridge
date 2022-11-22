@@ -9,12 +9,13 @@ public enum Error {
     RETRY_INPUT_ERROR("재시도는 R, 종료는 Q로 입력해주세요.");
 
     private final String message;
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     Error(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return message;
+        return ERROR_PREFIX + message;
     }
 }
