@@ -9,11 +9,7 @@ import java.util.stream.IntStream;
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
-public class OutputView {
-
-    private static final String NOTHING = " ";
-    private static final String MOVE_CORRECT = "O";
-    private static final String MOVE_WRONG = "X";
+public class OutputView extends OutputViewText{
 
     private BridgeGameDto dto;
 
@@ -33,7 +29,7 @@ public class OutputView {
         String output = IntStream.range(0, route.size())
                 .mapToObj(index -> getSign(index, road))
                 .collect(Collectors.joining(" | ","[ "," ]"));
-        System.out.println(output);
+        print(output);
     }
 
     private String getSign(int index, String road) {
@@ -52,20 +48,24 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGameDto dto) {
-        System.out.println("최종 게임 결과");
+        print(FINAL_GAME_RESULT);
         printMap(dto);
-        System.out.println("\n게임 성공 여부: " + getSuccessInfo(dto));
-        System.out.println("총 시도한 횟수: " + dto.getCountOfTry());
+        print(SUCCESS_OR_NOT + getSuccessInfo(dto));
+        print(COUNT_OF_TRY + dto.getCountOfTry());
     }
 
     private String getSuccessInfo(BridgeGameDto dto) {
         if (dto.isSuccess()) {
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAIL;
     }
 
     public void printStartGame() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        print(START_GAME);
+    }
+
+    private void print(String string) {
+        System.out.println(string);
     }
 }
