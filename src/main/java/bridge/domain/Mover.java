@@ -24,7 +24,7 @@ public class Mover {
         return bridge.getUnMatchedPathResult(columnPosition);
     }
 
-    public void init() {
+    public void initialize() {
         columnPosition = 0;
     }
 

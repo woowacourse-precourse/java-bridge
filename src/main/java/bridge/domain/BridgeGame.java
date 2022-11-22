@@ -49,7 +49,7 @@ public class BridgeGame {
         validateRetry(retryCommand);
 
         if (retryCommand.equals(RETRY)) {
-            mover.init();
+            mover.initialize();
             gameCount++;
             return ViewStatus.DETERMINE_MOVE;
         }
