@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 public class Message {
 	private Message() {

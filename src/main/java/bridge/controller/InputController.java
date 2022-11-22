@@ -1,7 +1,9 @@
-package bridge;
+package bridge.controller;
 
 import bridge.validator.BridgeLengthValidate;
 import bridge.validator.CommandValidate;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class InputController {
 	public static int getBridgeSize() {

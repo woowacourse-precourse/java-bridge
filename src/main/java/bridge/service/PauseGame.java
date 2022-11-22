@@ -1,6 +1,6 @@
-package bridge;
+package bridge.service;
 
-public class Pause {
+public class PauseGame {
 	private static boolean paused = false;
 	private static int unPauseCount = 0;
 

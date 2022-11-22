@@ -1,6 +1,6 @@
-package bridge;
+package bridge.domain;
 
-import static bridge.Constants.*;
+import static bridge.util.Constants.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

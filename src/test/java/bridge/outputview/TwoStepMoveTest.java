@@ -1,6 +1,6 @@
 package bridge.outputview;
 
-import static bridge.Constants.*;
+import static bridge.util.Constants.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;
@@ -8,8 +8,8 @@ import java.util.HashMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import bridge.BridgeStatus;
-import bridge.OutputView;
+import bridge.service.BridgeStatus;
+import bridge.view.OutputView;
 
 public class TwoStepMoveTest {
 	BridgeStatus bridgeStatus = BridgeStatus.getInstance();

@@ -1,8 +1,15 @@
-package bridge;
+package bridge.controller;
 
-import static bridge.Constants.*;
+import static bridge.util.Constants.*;
 
 import java.util.HashMap;
+
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.service.BridgeGame;
+import bridge.service.PauseGame;
+import bridge.view.OutputView;
 
 public class GameController {
 	private int bridgeSize;
@@ -10,13 +17,13 @@ public class GameController {
 	private HashMap<String, String> status;
 
 	public GameController() {
-		getBridgeSize();
+		identifyBridgeSize();
 		constructBridge();
 		guessCorrectBridge();
 		showFinalResult();
 	}
 
-	private void getBridgeSize() {
+	private void identifyBridgeSize() {
 		OutputView.printStartGameMessage();
 		bridgeSize = InputController.getBridgeSize();
 		OutputView.printNewLine();
@@ -49,7 +56,7 @@ public class GameController {
 	}
 
 	private void examineFailure(BridgeGame bridgeGame) {
-		if (Pause.isNotPaused()) {
+		if (PauseGame.isNotPaused()) {
 			return;
 		}
 		selectRestartOrQuit(bridgeGame);
@@ -60,7 +67,6 @@ public class GameController {
 		selectRestart(bridgeGame, userSelectCommand);
 		selectQuit(bridgeGame, userSelectCommand);
 	}
-
 
 	private static void selectRestart(BridgeGame bridgeGame, String userSelectCommand) {
 		if (userSelectCommand.equals(RESTART)) {

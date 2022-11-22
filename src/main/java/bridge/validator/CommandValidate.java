@@ -1,14 +1,18 @@
 package bridge.validator;
 
-import static bridge.Constants.*;
-import static bridge.Message.*;
+import static bridge.util.Constants.*;
+import static bridge.util.Message.*;
 
 public class CommandValidate {
 
 	public static void validateCharacter(String input) {
-		if (input.length() != 1) {
+		if (isMultipleWords(input)) {
 			throw new IllegalArgumentException(ERROR_ONE_CHARACTER);
 		}
+	}
+
+	private static boolean isMultipleWords(String input) {
+		return input.length() != 1;
 	}
 
 	public static void validateEnglish(String input) {

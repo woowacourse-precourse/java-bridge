@@ -1,6 +1,6 @@
 package bridge.bridgegame;
 
-import static bridge.Constants.*;
+import static bridge.util.Constants.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,9 +9,9 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import bridge.Bridge;
-import bridge.BridgeGame;
-import bridge.Pause;
+import bridge.domain.Bridge;
+import bridge.service.BridgeGame;
+import bridge.service.PauseGame;
 
 public class EndTest {
 	Bridge bridgeLetters = new Bridge(List.of(UP, DOWN, UP, DOWN, UP));
@@ -26,14 +26,14 @@ public class EndTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (Pause.isPaused()) {
+		if (PauseGame.isPaused()) {
 			bridgeGame.end();
 		}
 
 		// then
 		assertAll(
 			() -> assertThat(bridgeGame.isEnd()).isTrue(),
-			() -> assertThat(Pause.isPaused()).isFalse()
+			() -> assertThat(PauseGame.isPaused()).isFalse()
 		);
 	}
 
@@ -53,7 +53,7 @@ public class EndTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (Pause.isPaused()) {
+		if (PauseGame.isPaused()) {
 			bridgeGame.end();
 		}
 

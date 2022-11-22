@@ -1,6 +1,6 @@
 package bridge.bridgegame;
 
-import static bridge.Constants.*;
+import static bridge.util.Constants.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,9 +9,9 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import bridge.Bridge;
-import bridge.BridgeGame;
-import bridge.Pause;
+import bridge.domain.Bridge;
+import bridge.service.BridgeGame;
+import bridge.service.PauseGame;
 
 public class RetryTest {
 	Bridge bridgeLetters = new Bridge(List.of(UP, DOWN, UP, DOWN, UP));
@@ -26,7 +26,7 @@ public class RetryTest {
 		bridgeGame.move(userSelectedCell);
 
 		// when
-		if (Pause.isPaused()) {
+		if (PauseGame.isPaused()) {
 			bridgeGame.retry();
 		}
 		String nextUserSelectedCell = UP;
@@ -34,7 +34,7 @@ public class RetryTest {
 		// then
 		assertAll(
 			() -> assertThat(bridgeGame.isMovable(bridgeLetters, nextUserSelectedCell)).isTrue(),
-			() -> assertThat(Pause.isPaused()).isFalse()
+			() -> assertThat(PauseGame.isPaused()).isFalse()
 		);
 	}
 }

@@ -1,6 +1,6 @@
-package bridge;
+package bridge.service;
 
-import static bridge.Constants.*;
+import static bridge.util.Constants.*;
 
 import java.util.HashMap;
 
@@ -49,19 +49,8 @@ public class BridgeStatus {
 		}
 	}
 
-	private void loadLowerCell(String userSelectedCell, String bridgeLetter) {
-		if (isDown(userSelectedCell)) {
-			buildLowerCell(bridgeLetter);
-			putStatus();
-		}
-	}
-
 	private static boolean isUp(String Letter) {
 		return Letter.equals(UP);
-	}
-
-	private static boolean isDown(String Letter) {
-		return Letter.equals(DOWN);
 	}
 
 	private void buildUpperCell(String bridgeLetter) {
@@ -79,11 +68,6 @@ public class BridgeStatus {
 		endCell();
 	}
 
-	private void endCell() {
-		upperCellBuilder.append(END_BRACKET);
-		lowerCellBuilder.append(END_BRACKET);
-	}
-
 	private void putMarkByLetterInUpperCell(String bridgeLetter) {
 		if (isUp(bridgeLetter)) {
 			upperCellBuilder.append(CORRECT_MARK);
@@ -92,6 +76,11 @@ public class BridgeStatus {
 			upperCellBuilder.append(WRONG_MARK);
 		}
 		lowerCellBuilder.append(EMPTY);
+	}
+
+	private void endCell() {
+		upperCellBuilder.append(END_BRACKET);
+		lowerCellBuilder.append(END_BRACKET);
 	}
 
 	private void putMultipleUpperCell(String bridgeLetter) {
@@ -113,6 +102,17 @@ public class BridgeStatus {
 			upperCellBuilder.append(VERTICAL_BAR).append(WRONG_MARK);
 		}
 		lowerCellBuilder.append(VERTICAL_BAR).append(EMPTY);
+	}
+
+	private void loadLowerCell(String userSelectedCell, String bridgeLetter) {
+		if (isDown(userSelectedCell)) {
+			buildLowerCell(bridgeLetter);
+			putStatus();
+		}
+	}
+
+	private static boolean isDown(String Letter) {
+		return Letter.equals(DOWN);
 	}
 
 	private void buildLowerCell(String bridgeLetter) {

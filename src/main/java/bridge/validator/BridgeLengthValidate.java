@@ -1,7 +1,7 @@
 package bridge.validator;
 
-import static bridge.Constants.*;
-import static bridge.Message.*;
+import static bridge.util.Constants.*;
+import static bridge.util.Message.*;
 
 public class BridgeLengthValidate {
 	public static void validateNumber(String input) {
@@ -11,9 +11,17 @@ public class BridgeLengthValidate {
 	}
 
 	public static void validateRange(String input) {
-		int number = Integer.parseInt(input);
-		if (number < 2 || number > 20) {
+		int number = getNumber(input);
+		if (isOutOfRange(number)) {
 			throw new IllegalArgumentException(ERROR_RANGE);
 		}
+	}
+
+	private static int getNumber(String input) {
+		return Integer.parseInt(input);
+	}
+
+	private static boolean isOutOfRange(int number) {
+		return number < 2 || number > 20;
 	}
 }
