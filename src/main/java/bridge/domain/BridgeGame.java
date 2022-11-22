@@ -26,4 +26,7 @@ public class BridgeGame {
     public boolean checkThisStep(String userInput) {
         return userInput.equals(getBridge().get(getPosition()));
     }
+    public void move() {
+        position++;
+    }
 }
