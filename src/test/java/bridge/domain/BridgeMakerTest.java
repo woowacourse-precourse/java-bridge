@@ -3,11 +3,6 @@ package bridge.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeLength;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeMove;
-import bridge.domain.BridgeRandomNumberGenerator;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +31,7 @@ class BridgeMakerTest {
     @MethodSource
     void makeBridge(BridgeLength bridgeLength) {
         Bridge bridge = bridgeMaker.makeBridge(bridgeLength);
-        assertThat(bridge.getBridgeLength()).isEqualTo(bridgeLength.getLength());
+        assertThat(bridge.getBridgeLength()).isEqualTo(bridgeLength);
         for (int round = 1; round <= bridge.getBridgeLength().getLength(); round++) {
             assertThat(bridge.getMove(round)).isInstanceOf(BridgeMove.class);
         }
