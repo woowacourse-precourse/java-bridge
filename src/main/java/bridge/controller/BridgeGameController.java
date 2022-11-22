@@ -21,10 +21,17 @@ public class BridgeGameController {
     }
 
     public void start() {
-        this.outputView.printStart();
-        int bridgeSize = inputView.readBridgeSize();
-        this.createNewGame(bridgeSize);
+        this.printStart();
+        this.createNewGame(readBridgeSize());
         this.play();
+    }
+
+    private void printStart() {
+        this.outputView.printStart();
+    }
+
+    private int readBridgeSize() {
+        return inputView.readBridgeSize();
     }
 
     private void createNewGame(int bridgeSize) {
@@ -32,8 +39,11 @@ public class BridgeGameController {
     }
 
     private void play() {
-        String moving = this.inputView.readMoving();
-        this.move(Position.create(moving));
+        this.move(Position.create(readMoving()));
+    }
+
+    private String readMoving() {
+        return this.inputView.readMoving();
     }
 
     private void move(Position position) {
@@ -85,9 +95,13 @@ public class BridgeGameController {
     }
 
     private void printGameResult(String message) {
+        this.printGameOverMessage();
+        this.printMap(bridgeGame);
+        this.printGameReport(message);
+    }
+
+    private void printGameOverMessage() {
         this.outputView.printGameOverMessage();
-        printMap(bridgeGame);
-        printGameReport(message);
     }
 
     private void printGameReport(String message) {
