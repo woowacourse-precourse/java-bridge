@@ -17,7 +17,6 @@ public class BridgeGenerationException extends InputException {
     protected static void validateEachSide(String side) {
         validateCommonException(side);
         validateSideSelection(side);
-        validateCharactersOnly(side);
     }
 
     private static void validateSideSelection(String side) {

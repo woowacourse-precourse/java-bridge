@@ -8,12 +8,6 @@ public class InputException {
         validateNullString(input);
     }
 
-    protected static void validateCharactersOnly(String value) {
-        if (value.matches(AvailableInput.NUMERIC_RANGE.getUserInput())) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_CHARACTER.getMessage());
-        }
-    }
-
     protected static void validateMinimumRange(int size) {
         if (size < AvailableInput.getBridgeMinimumSizeValue()) {
             throw new IllegalArgumentException(
