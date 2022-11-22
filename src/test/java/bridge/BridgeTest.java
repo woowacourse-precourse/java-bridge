@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.model.BridgeRandomNumberGenerator;
 import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
@@ -23,6 +24,26 @@ class BridgeTest extends NsTest {
                 .doesNotThrowAnyException();
     }
 
+    @Test
+    @DisplayName("플레이어 이동 시 올바른 입력")
+    void correctMove() {
+        assertThatCode(() -> Validator.checkMoveInput("U"))
+                .doesNotThrowAnyException();
+
+        assertThatCode(() -> Validator.checkMoveInput("D"))
+                .doesNotThrowAnyException();
+
+    }
+
+    @Test
+    void Random_Bridge_Make_Test() {
+        List<String> bridge;
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        int size = 10;
+        bridge = bridgeMaker.makeBridge(size);
+        assertThat(bridge.size()).isEqualTo(size);
+    }
 
     @Override
     protected void runMain() {
