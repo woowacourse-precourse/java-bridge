@@ -9,6 +9,7 @@ import bridge.domain.BridgeMoveJudgment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.BitSet;
 import java.util.List;
 
 public class BridgeTest {
@@ -33,6 +34,16 @@ public class BridgeTest {
         List<BridgeMoveJudgment> moveResult = bridgeGame.retry("R");
 
         assertThat(moveResult).isEqualTo(List.of());
+    }
+
+    @Test
+    @DisplayName("게임 종료 시 이동 결과 확인")
+    void 다리_게임_종료_이동_결과_확인_테스트() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move(List.of("U", "D", "D"), "U");
+        List<BridgeMoveJudgment> moveResult = bridgeGame.move(List.of("U", "D", "D"), "U");
+        List<BridgeMoveJudgment> quit = bridgeGame.retry("Q");
+        assertThat(moveResult).isEqualTo(List.of(CORRECT, EMPTY, WRONG, EMPTY));
     }
 
     @Test
