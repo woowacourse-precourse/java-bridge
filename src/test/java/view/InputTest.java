@@ -24,4 +24,12 @@ public class InputTest {
     void 다리생성_입력_숫자_성공_테스트(String size) {
         assertThatNoException().isThrownBy(() -> InputException.validateInputLength(size));
     }
+
+    @DisplayName("다리생성입력_숫자범위_실패")
+    @ValueSource(strings = {"0", "2", "21"})
+    @ParameterizedTest()
+    void 다리생성_입력_숫자범위_실패_테스트(String size) {
+        assertThatThrownBy(() -> InputException.validateInputLength(size))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
