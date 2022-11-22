@@ -57,14 +57,12 @@ public class BridgeGame {
     }
 
     private Boolean AnalyzeBridgeInput(String playerInput) {
-        if (BRIDGE_ANSWER.get(moveCount).equals(playerInput)) {
-            move(playerInput);
-            return true;
-        }
-        if (!BRIDGE_ANSWER.get(moveCount).equals(playerInput)) {
-            move(playerInput);
-            return false;
-        }
+        if (BRIDGE_ANSWER.get(moveCount).equals(playerInput))
+        { move(playerInput);
+            return true; }
+        if (!BRIDGE_ANSWER.get(moveCount).equals(playerInput))
+        { move(playerInput);
+            return false; }
         return false;
     }
 
@@ -86,11 +84,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Boolean retry() {
-        Boolean result;
+        Boolean result = false;
         while (true) {
             try {
-                String string = readGameCommand();
-                result = AnalyzeRetryInput(string);
+                result = AnalyzeRetryInput(readGameCommand());
                 break;
             } catch (IllegalArgumentException e) { OutputView.String("[ERROR] 유효한 값이 아닙니다."); }
         }
