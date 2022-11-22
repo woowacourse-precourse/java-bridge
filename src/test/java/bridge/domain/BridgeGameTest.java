@@ -39,4 +39,22 @@ class BridgeGameTest {
         String lastMovedResult = bridgeGame.getPlayer().getLastMovedResult();
         assertThat(lastMovedResult).isEqualTo("O");
     }
+
+    @Test
+    void 게임이_끝난_경우_테스트() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+
+        boolean isEnd = bridgeGame.isEnd();
+        assertThat(isEnd).isTrue();
+    }
+
+    @Test
+    void 게임이_끝나지_않은_경우_테스트() {
+        bridgeGame.move("U");
+
+        boolean isEnd = bridgeGame.isEnd();
+        assertThat(isEnd).isFalse();
+    }
 }
