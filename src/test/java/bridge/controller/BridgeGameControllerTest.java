@@ -10,7 +10,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameControllerTest extends NsTest{
-    private static final int BRIDGE_SIZE=5;
     BridgeGameController bridgeGameController;
 
     @BeforeEach
