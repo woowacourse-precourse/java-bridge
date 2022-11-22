@@ -56,8 +56,8 @@
 # 테스트 목록
 
 ## Bridge
-- [X] bridge 생성 및 요소 수 만큼 next 실행
-- [ ] 리셋 후에 요소 수 만큼 next 실행
+- [X] bridge 생성 후에 next 실행시 요소가 제대로 반환되는가
+- [X] 리셋 후에 요소 수 만큼 next 실행
 
 ## BridgeElement
 - [ ] 다리요소 생성 및 반환
