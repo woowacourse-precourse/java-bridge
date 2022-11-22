@@ -2,8 +2,9 @@ package bridge.validator;
 
 import static bridge.utils.BridgeConstant.MAXIMUM_BRIDGE_SIZE;
 import static bridge.utils.BridgeConstant.MINIMUM_BRIDGE_SIZE;
-
-import bridge.utils.message.ErrorMessage;
+import static bridge.utils.message.ErrorMessage.BLANK_VALUE;
+import static bridge.utils.message.ErrorMessage.INVALID_BRIDGE_SIZE;
+import static bridge.utils.message.ErrorMessage.NON_NUMERIC_VALUE;
 
 public class BridgeSizeValidator implements Validator {
     @Override
@@ -15,7 +16,7 @@ public class BridgeSizeValidator implements Validator {
 
     private void checkNonNumericValue(String inputValue) {
         if (isNonNumericValue(inputValue)) {
-            System.out.println(ErrorMessage.NON_NUMERIC_VALUE.getMessage());
+            System.out.println(NON_NUMERIC_VALUE.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -26,15 +27,15 @@ public class BridgeSizeValidator implements Validator {
 
     private void checkBlankValue(String inputValue) {
         if (inputValue.isBlank()) {
-            System.out.println(ErrorMessage.BLANK_VALUE.getMessage());
+            System.out.println(BLANK_VALUE.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     private void checkInvalidBridgeSize(String inputValue) {
         if (isInvalidBridgeSize(inputValue)) {
-            System.out.println(String.format(ErrorMessage.INVALID_BRIDGE_SIZE.getMessage(), MINIMUM_BRIDGE_SIZE,
-                    MAXIMUM_BRIDGE_SIZE));
+            System.out.println(
+                    String.format(INVALID_BRIDGE_SIZE.getMessage(), MINIMUM_BRIDGE_SIZE, MAXIMUM_BRIDGE_SIZE));
             throw new IllegalArgumentException();
         }
     }
