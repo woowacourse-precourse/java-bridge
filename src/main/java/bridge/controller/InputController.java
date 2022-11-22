@@ -6,15 +6,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputController {
-    private InputView inputView;
+    private static InputView inputView;
 
     public InputController(InputView view) {
         this.inputView = view;
     }
 
-    private List<Integer> recursions = Arrays.asList(1, 1, 1);
+    private static List<Integer> recursions = Arrays.asList(1, 1, 1);
 
-    public int setBridgeSize() {
+    public static int setBridgeSize() {
         try {
             System.out.println(Constants.GameProcessMessages.INPUT_BRIDGE_LENGTH);
             return inputView.readBridgeSize();
@@ -25,7 +25,7 @@ public class InputController {
         }
     }
 
-    public String setMoveChoice() {
+    public static String setMoveChoice() {
         try{
             System.out.println(Constants.GameProcessMessages.INPUT_WHERETO_MOVE);
             return inputView.readMoving();
@@ -36,7 +36,7 @@ public class InputController {
         }
     }
 
-    public String setGameCommand() {
+    public static String setGameCommand() {
         try {
             System.out.println(Constants.GameProcessMessages.INPUT_RETRY_ORNOT);
             return inputView.readGameCommand();
@@ -47,13 +47,13 @@ public class InputController {
         }
     }
 
-    private boolean checkMaxRecursion(int whichOne) {
+    private static boolean checkMaxRecursion(int whichOne) {
         Integer recursionCount = recursions.get(whichOne);
         recursions.set(whichOne, recursionCount+1);
         return checkIfRecursionExceed();
     }
 
-    private boolean checkIfRecursionExceed() {
+    private static boolean checkIfRecursionExceed() {
         for (int i=0; i<recursions.size(); i++) {
             if (recursions.get(i) > Constants.GameElements.MAX_RECURSION) {
                 return true;
@@ -62,7 +62,7 @@ public class InputController {
         return false;
     }
 
-    public void init() {
+    public static void init() {
         recursions = Arrays.asList(1, 1, 1);
     }
 }
