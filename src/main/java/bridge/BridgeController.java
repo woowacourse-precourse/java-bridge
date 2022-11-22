@@ -5,15 +5,16 @@ import bridge.enums.GameMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
+    private BridgeGame bridgeGame = new BridgeGame();
     private Map map = new Map();
     private BridgeSize bridgeSize;
     private List<String> bridge;
-    private BridgeGame bridgeGame;
     private int attempt = 1;
     private String result = "성공";
 
@@ -39,8 +40,7 @@ public class BridgeController {
     public void playGame() {
         for (int count = 0; count < bridgeSize.getBridgeSize(); count++) {
             enterMoving();
-            bridgeGame = new BridgeGame(bridge);
-            String check = bridgeGame.move(Moving.getMoving(), count);
+            String check = bridgeGame.move(bridge.get(count), Moving.getMoving());
             makeMap(check);
             showMap();
             if (isMismatch(check)) {
