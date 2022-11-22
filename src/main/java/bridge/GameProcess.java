@@ -59,11 +59,19 @@ public class GameProcess {
 
     private static String getStatus(List<String> bridge, int idx) {
         String moving = inputView.readMoving();
+        checkMoving(moving);
         String status = BridgeGame.rightOrWrong(bridge,moving,idx);
         makingBridge = bridgeGame.move(makingBridge,status,moving);
         outputView.printMap(makingBridge);
         return status;
     }
+
+    private static void checkMoving(String moving) {
+        if(!(moving.equals("U")||moving.equals("D"))){
+            throw new IllegalArgumentException(inputE);
+        }
+    }
+
 
     public static void gameEnd(List<String> makingBridge, String status, int gameCnt){
         outputView.printResult(makingBridge,status,gameCnt);
