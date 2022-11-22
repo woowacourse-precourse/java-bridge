@@ -7,20 +7,20 @@ import java.util.List;
 public class Bridge {
     private final List<String> movableSides;
 
-    public Bridge(List<String> movableSides) {
+    public Bridge(final List<String> movableSides) {
         validate(movableSides);
         this.movableSides = movableSides;
     }
 
-    public boolean isMovableSide(String selectedSides, int position) {
+    public boolean isMovableSide(final String selectedSides, final int position) {
         return movableSides.get(position).equals(selectedSides);
     }
 
-    public boolean isLastPosition(int playerPosition) {
+    public boolean isLastPosition(final int playerPosition) {
         return getLastIndex() == playerPosition;
     }
 
-    private void validate(List<String> movableSides) {
+    private void validate(final List<String> movableSides) {
         BridgeGenerationException.validate(movableSides);
     }
 

@@ -5,7 +5,6 @@ import exceptionHandler.BridgeSizeException;
 import exceptionHandler.InputException;
 
 public class InputView {
-
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
         BridgeSizeException.validate(bridgeSize);
