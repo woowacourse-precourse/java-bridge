@@ -10,21 +10,29 @@ public class BridgeHandler {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         boolean result = moveStep(bridgeGame);
+        System.out.println("The result is " + result);
     }
 
     public boolean moveStep(BridgeGame bridgeGame){
         int bridgeSize = bridgeGame.getBridgeSize();
-        List<String> trace = new ArrayList<>();
+        boolean stepResult;
+        System.out.println("bridgeSize: " + bridgeSize);
+        List<String> trace = new ArrayList<>(bridgeSize);
         String updown;
         for (int step = 0; step < bridgeSize; step++) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             updown = InputView.readMoving();
             trace.add(updown);
-            if(!bridgeGame.move(updown, step)){
-                OutputView.printMap(trace, false);
+            System.out.println("updown: " + updown);
+
+            stepResult = bridgeGame.move(updown, step);
+            System.out.println(stepResult);
+            if(!stepResult){
+//                OutputView.printMap(trace, false);
+//                return false;
+                System.out.println("Failed!");
                 return false;
             }
-            OutputView.printMap(trace, true);
+//            OutputView.printMap(trace, true);
         }
         return true;
     }

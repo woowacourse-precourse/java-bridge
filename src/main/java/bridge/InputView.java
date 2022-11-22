@@ -22,6 +22,7 @@ public class InputView {
         return num;
     }
     static public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         int bridgeLength = 0;
         try {
             bridgeLength = castInt(Console.readLine());
@@ -39,6 +40,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     static public String readMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = "";
         try {
             input = Console.readLine();
