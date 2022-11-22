@@ -57,5 +57,14 @@ public class BridgeGame {
         }
     }
 
+    public int retry(String check) {
+        if (check.equals("R")) {
+            trialMap_up.clear();
+            trialMap_down.clear();
+            return -1;
+        }
+        return MAXIMUM_LENGTH + 1;
+    }
+
 
 }
