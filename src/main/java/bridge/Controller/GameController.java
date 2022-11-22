@@ -5,7 +5,6 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.Model.BridgeGame;
 import bridge.View.InputView;
 import bridge.View.OutputView;
-import bridge.View.UiMessage;
 
 import java.util.Stack;
 
@@ -14,8 +13,6 @@ public class GameController {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         callReadBridgeSize(bridgeGame);
         startRun(bridgeGame);
-        bridgeGame.upperResult = UiMessage.EMPTY_GRAPH.getValue();
-        bridgeGame.lowerResult = UiMessage.EMPTY_GRAPH.getValue(); // 왜 테스트 다 함께 돌리면 에러가 나나
     }
 
     private void callReadBridgeSize(BridgeGame bridgeGame) {

@@ -5,14 +5,21 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.Model.BridgeGame;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-
+    @BeforeEach
+    void clean(){
+        BridgeGame.getBridgeGame().upperResult="[]";
+        BridgeGame.getBridgeGame().lowerResult="[]";
+    }
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
