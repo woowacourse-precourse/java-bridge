@@ -29,6 +29,10 @@ public class BridgeGameController {
         requestBlock();
     }
 
+    private String requestBridgeSize() {
+        return inputView.readBridgeSize();
+    }
+
     private void requestBlock() {
         try {
             bridgeGameService.move(inputView.readMoving());
@@ -49,16 +53,6 @@ public class BridgeGameController {
         determineFinishGame(movingResult);
     }
 
-    private void determineFinishGame(final MovingResult movingResult) {
-        if (movingResult.isFinish()) {
-            outputView.printResult(MessageGenerator.createMovedMessage(movingResult),
-                    bridgeGameService.getGameCount(),
-                    movingResult.getMovingResultStatus());
-            return;
-        }
-        requestBlock();
-    }
-
     private void requestPlayingAgain(MovingResult movingResult) {
         try {
             if (isRetry(inputView.readGameCommand())) {
@@ -70,6 +64,16 @@ public class BridgeGameController {
             outputView.printErrorMessage(exception.getMessage());
             requestPlayingAgain(movingResult);
         }
+    }
+
+    private void determineFinishGame(final MovingResult movingResult) {
+        if (movingResult.isFinish()) {
+            outputView.printResult(MessageGenerator.createMovedMessage(movingResult),
+                    bridgeGameService.getGameCount(),
+                    movingResult.getMovingResultStatus());
+            return;
+        }
+        requestBlock();
     }
 
     private void requestQuitGame(MovingResult movingResult) {
@@ -87,9 +91,4 @@ public class BridgeGameController {
         return InputValidator.validateGameCommand(inputGameCommand)
                 .equals(RETRY);
     }
-
-    private String requestBridgeSize() {
-        return inputView.readBridgeSize();
-    }
-
 }
