@@ -18,5 +18,4 @@ public class BridgeCommonDrawer extends BridgeDrawer {
             addWordIfMatches(command, MovingCommand.DOWN, Marker.EMPTY, Marker.CORRECT);
         }
     }
-
 }
