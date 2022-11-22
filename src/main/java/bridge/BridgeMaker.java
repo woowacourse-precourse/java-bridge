@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- * 필드 변경 불가능
- * 매서드 시그니쳐, 반환타입 변경 불가
+ * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다. 필드 변경 불가능 매서드 시그니쳐, 반환타입 변경 불가
  */
 public class BridgeMaker {
 

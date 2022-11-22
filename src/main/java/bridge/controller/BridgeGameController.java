@@ -4,10 +4,10 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.GameRecord;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 import bridge.model.BridgeStatusModel;
 import bridge.model.GameResultModel;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {

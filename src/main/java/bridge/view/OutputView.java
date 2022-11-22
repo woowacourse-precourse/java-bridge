@@ -5,10 +5,7 @@ import bridge.model.BridgeStatusModel;
 import bridge.model.GameResultModel;
 
 /**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- * 패키지 변경가능
- * 매서드 이름 변경 불가, 인자와 반환 타입은 추가, 변경 가능
- * 매서드 추가 가능
+ * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다. 패키지 변경가능 매서드 이름 변경 불가, 인자와 반환 타입은 추가, 변경 가능 매서드 추가 가능
  */
 public class OutputView {
 
