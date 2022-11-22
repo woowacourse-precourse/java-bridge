@@ -42,7 +42,7 @@ public class BridgeGame {
     public ViewStatus retry(String retryCommand) {
         validateRetry(retryCommand);
 
-        if(retryCommand.equals(RETRY)) {
+        if (retryCommand.equals(RETRY)) {
             columnPosition = 0;
             gameCount++;
             return ViewStatus.DETERMINE_MOVE;

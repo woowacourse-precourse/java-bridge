@@ -17,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeGameTest {
+
     private BridgeGame bridgeGame;
     private final List<String> arr = new ArrayList<>(List.of("U", "D", "U"));
 

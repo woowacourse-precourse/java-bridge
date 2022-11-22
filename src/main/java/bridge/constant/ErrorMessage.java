@@ -11,11 +11,11 @@ public enum ErrorMessage {
     POSITION_IN_FORM_OF_NUMBER(NOTICE.message + "다리 생성 도중 오류가 발생했습니다."),
     NOT_NUMBER(
             NOTICE.message +
-            String.format(
-                    "%d이상, %d이하의 \"정수\"만 입력하셔야 합니다.",
-                    Integer.MIN_VALUE,
-                    Integer.MAX_VALUE
-            )
+                    String.format(
+                            "%d이상, %d이하의 \"정수\"만 입력하셔야 합니다.",
+                            Integer.MIN_VALUE,
+                            Integer.MAX_VALUE
+                    )
     ),
     MOVE_COMMAND(
             NOTICE.message +

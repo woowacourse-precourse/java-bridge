@@ -12,7 +12,7 @@ class BridgeServiceTest {
 
     private final BridgeService bridgeService = new BridgeService();
 
-    @ValueSource(ints = {21,40,-1})
+    @ValueSource(ints = {21, 40, -1})
     @ParameterizedTest
     void throwErrorWhenSizeIsInvalid(int size) {
         assertThatThrownBy(() ->
@@ -20,14 +20,14 @@ class BridgeServiceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ValueSource(ints = {20,3,5})
+    @ValueSource(ints = {20, 3, 5})
     @ParameterizedTest
     void returnMakeBridgeResponseWhenSizeIsInvalid(int size) {
         assertThat(bridgeService.makeBridge(size))
                 .isEqualTo(ViewStatus.DETERMINE_MOVE);
     }
 
-    @ValueSource(strings = {"a","t","1"})
+    @ValueSource(strings = {"a", "t", "1"})
     @ParameterizedTest
     void throwErrorWhenInputWrong(String command) {
         bridgeService.makeBridge(3);
@@ -35,7 +35,7 @@ class BridgeServiceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ValueSource(strings = {"U","D"})
+    @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
     void returnResultWhenInputValid(String command) {
         bridgeService.makeBridge(3);

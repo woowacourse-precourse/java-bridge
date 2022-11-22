@@ -50,7 +50,6 @@ class BridgeTest {
         Assertions.assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.WIN);
     }
 
-
     @DisplayName("다음 건널 위치를 틀렸을 때의 게임 결과를 반환한다.")
     @CsvSource(value = {"0:D", "1:D", "2:U"}, delimiter = ':')
     @ParameterizedTest

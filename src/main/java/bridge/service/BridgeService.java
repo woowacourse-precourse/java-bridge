@@ -32,6 +32,6 @@ public class BridgeService {
     }
 
     public int getGameCount() {
-       return bridgeGame.getGameCount();
+        return bridgeGame.getGameCount();
     }
 }

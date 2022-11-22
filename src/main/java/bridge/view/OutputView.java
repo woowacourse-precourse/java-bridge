@@ -144,10 +144,10 @@ public class OutputView {
 
     private void printWinOrNot(ViewStatus status) {
         System.out.print(Directive.WIN_OR_NOT.getMessage());
-        if(status == ViewStatus.WIN) {
+        if (status == ViewStatus.WIN) {
             System.out.println(SUCCESS);
         }
-        if(status == ViewStatus.LOSE){
+        if (status == ViewStatus.LOSE) {
             System.out.println(FAIL);
         }
     }
