@@ -20,4 +20,10 @@ public class Validator {
             throw new IllegalArgumentException();   //U or D
         }
     }
+
+    public static void reStartValidate(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException();   //R or Q
+        }
+    }
 }
