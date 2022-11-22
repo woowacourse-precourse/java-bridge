@@ -7,7 +7,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import bridge.domain.BridgeMaker;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 class ApplicationTest extends NsTest {
