@@ -35,12 +35,11 @@ public class BridgeGameController {
     }
 
     private boolean isGameFinshed(BridgeGame bridgeGame, ResultType crossBridgeResult) {
-        if (isWon(bridgeGame, crossBridgeResult)) {
-            outputView.printResult(bridgeGame, crossBridgeResult);
-            return true;
-        }
         if (isDefeated(crossBridgeResult)) {
             return isGivedUp(bridgeGame, crossBridgeResult);
+        }
+        if (isWon(bridgeGame, crossBridgeResult)) {
+            return true;
         }
         return false;
     }
