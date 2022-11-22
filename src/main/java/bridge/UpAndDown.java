@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Arrays;
+
 public enum UpAndDown {
     UP("U",1,"위"), DOWN("D",0, "아래");
 
@@ -11,5 +13,15 @@ public enum UpAndDown {
         this.command = command;
         this.randomValue = randomValue;
         this.description = description;
+    }
+
+    public static UpAndDown findUpAndDown(int randomValue) {
+        return Arrays.stream(UpAndDown.values())
+                .filter(c -> c.getRandomValue() == randomValue)
+                .findFirst().get();
+    }
+    
+    public int getRandomValue() {
+        return randomValue;
     }
 }
