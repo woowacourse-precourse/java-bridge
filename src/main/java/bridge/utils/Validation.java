@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.utils;
 
 import java.util.regex.Pattern;
 

@@ -6,13 +6,8 @@ import bridge.view.OutputView;
 
 
 public class ConsoleController {
-    private final InputView inputView;
-    private final OutputView outputView;
-
-    public ConsoleController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-    }
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public int bridgeSizeConsole() {
         outputView.printStart();

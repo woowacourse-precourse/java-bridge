@@ -7,7 +7,7 @@ import java.util.Map;
 public class BridgeStatus {
     private final Map<String, StringBuilder> bridgeStatus = new HashMap<>();
     private String message;
-    protected boolean success;
+    private boolean success;
 
     public BridgeStatus() {
         bridgeStatus.put("U", new StringBuilder("[ "));
@@ -55,8 +55,8 @@ public class BridgeStatus {
     private void addWrong(final String idx) {
         bridgeStatus.get(idx).append("X");
         addBlank(idx);
-        success = false;
         addDelimiter();
+        success = false;
     }
 
     private void addBlank(final String idx) {
@@ -73,8 +73,8 @@ public class BridgeStatus {
     }
 
     public void reset() {
-        success = true;
         bridgeStatus.get("U").setLength(2);
         bridgeStatus.get("D").setLength(2);
+        success = true;
     }
 }

@@ -13,18 +13,10 @@ import bridge.controller.DataTransferController;
  * 메서드 추가, 변경 가능
  */
 public class BridgeGame {
-    private final ConsoleController consoleController;
-    private final DataTransferController dataTransferController;
+    private final ConsoleController consoleController = new ConsoleController();
+    private final DataTransferController dataTransferController = new DataTransferController();
     private int round = 0;
     private int tryCount = 1;
-
-    public BridgeGame(
-            final ConsoleController consoleController,
-            final DataTransferController dataTransferController
-    ) {
-        this.consoleController = consoleController;
-        this.dataTransferController = dataTransferController;
-    }
 
     public void run() {
         dataTransferController.makeBridge(consoleController.bridgeSizeConsole());

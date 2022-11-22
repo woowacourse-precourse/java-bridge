@@ -2,7 +2,7 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.service.Validation.*;
+import static bridge.utils.Validation.*;
 
 
 /**
@@ -20,7 +20,7 @@ public class InputView {
             int tmp = Integer.parseInt(input);
             isInRange(3, tmp, 20);
             return tmp;
-        } catch(IllegalArgumentException e) {
+        } catch(NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }

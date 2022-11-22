@@ -7,8 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static bridge.service.Validation.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static bridge.utils.Validation.*;
 
 class ValidationTest {
 
