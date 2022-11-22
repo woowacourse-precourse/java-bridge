@@ -3,6 +3,7 @@ package bridge;
 
 import bridge.data.Direction;
 import bridge.data.GameMark;
+import bridge.presentation.PlayerMap;
 
 import java.util.List;
 
