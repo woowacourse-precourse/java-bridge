@@ -14,6 +14,9 @@ public class BridgeMap {
 
     private List<List<String>> bridgeMap;
 
+    public List<List<String>> getBridgeMap() {
+        return bridgeMap;
+    }
     public BridgeMap() {
         bridgeMap = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
