@@ -1,8 +1,7 @@
-package service;
+package bridge;
 
 import constant.BothSideConstant;
 import constant.InputConstant;
-import generator.BridgeNumberGenerator;
 import constant.NumberConstant;
 import java.util.ArrayList;
 import java.util.Collections;
