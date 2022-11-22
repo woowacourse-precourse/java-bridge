@@ -1,5 +1,9 @@
-package bridge;
+package bridge.service;
 
+import bridge.domain.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.view.InputView;
@@ -55,36 +59,36 @@ public class BridgeGameService {
         return false;
     }
 
-    public BridgeGame makeBridgeGame(){
+    private BridgeGame makeBridgeGame(){
         Bridge bridge = makeBridge();
         Player player = makePlayer();
 
         return new BridgeGame(bridge, player);
     }
-    public Bridge makeBridge(){
+    private Bridge makeBridge(){
         int bridgeSize = InputView.readBridgeSize();
         List<String> bridge = getBridgeMaker().makeBridge(bridgeSize);
 
         return new Bridge(bridge);
     }
-    public Player makePlayer(){
+    private Player makePlayer(){
         return new Player();
     }
 
-    public boolean move(){
+    private boolean move(){
         String command = InputView.readMoving();
         return bridgeGame.move(command);
     }
 
-    public void retry(){
+    private void retry(){
         bridgeGame.retry();
     }
 
-    public boolean isGameSuccess(){
+    private boolean isGameSuccess(){
         return bridgeGame.isGameSuccess();
     }
 
-    public boolean isRetry(){
+    private boolean isRetry(){
         String command = InputView.readGameCommand();
         return command.equals(RETRY_COMMAND);
     }
