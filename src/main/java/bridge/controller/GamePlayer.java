@@ -27,13 +27,19 @@ public class GamePlayer {
     private void crossingBridge() {
         boolean successFlag = true;
         for(String space: this.bridge) {
-            successFlag = this.bridgeGame.move(inputView.readMoving(), space);
-            outputView.printMap(bridgeStatus.getUpBridgeStatus(), bridgeStatus.getDownBridgeStatus());
+            successFlag = moveAndPrint(space);
             if(!successFlag) {
                 break;
             }
         }
         retryOrExit(successFlag);
+    }
+
+    private boolean moveAndPrint(String space) {
+        boolean successFlag = true;
+        successFlag = this.bridgeGame.move(inputView.readMoving(), space);
+        outputView.printMap(bridgeStatus.getUpBridgeStatus(), bridgeStatus.getDownBridgeStatus());
+        return successFlag;
     }
     private void retryOrExit(boolean success) {
         if(success) {
