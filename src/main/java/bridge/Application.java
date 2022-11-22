@@ -46,7 +46,6 @@ public class Application {
                 return ;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
     }
@@ -58,7 +57,6 @@ public class Application {
                 return ;
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
-                continue;
             }
         }
     }

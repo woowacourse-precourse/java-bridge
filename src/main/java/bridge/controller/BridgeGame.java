@@ -5,7 +5,7 @@ import bridge.domain.Bridge;
 import bridge.domain.GameStatus;
 import bridge.domain.User;
 import bridge.service.BridgeGameService;
-import bridge.service.BridgeMaker;
+import bridge.BridgeMaker;
 
 public class BridgeGame {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
