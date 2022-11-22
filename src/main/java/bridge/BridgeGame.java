@@ -101,7 +101,7 @@ public class BridgeGame {
         }
     }
 
-    public List<StringBuilder> getResult(String inputMoving) {
+    public List<StringBuilder> getMapWhenFailed(String inputMoving) {
         if (firstData.length() > 0) {
             makeResultWhenNormalState(inputMoving);
             return List.of(firstData, secondData);
