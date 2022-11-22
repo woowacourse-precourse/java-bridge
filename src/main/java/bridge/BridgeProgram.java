@@ -94,4 +94,9 @@ public class BridgeProgram {
 		}
 		outputView.printMap(upBridge,downBridge);
 	}
+
+	public void clearList() {
+		upBridge.clear();
+		downBridge.clear();
+	}
 }
