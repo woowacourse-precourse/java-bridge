@@ -86,4 +86,11 @@ public class BridgeGame {
         this.up = new StringBuilder("[");
         this.down = new StringBuilder("[");
     }
+
+    public String isSuccess() {
+        if (location == bridgeSize - 1) {
+            return "성공";
+        }
+        return "실패";
+    }
 }
