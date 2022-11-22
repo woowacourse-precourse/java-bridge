@@ -118,4 +118,10 @@ public class BridgeController {
     private boolean userRetry(String retryInput) {
         return retryInput.equals("R");
     }
+
+    private void printResult(BridgeGame bridgeGame, User user) {
+        outputView.printResult(upBridge, downBridge);
+        outputView.printSuccessOrDefeat(bridgeGame.comparePositionLength());
+        outputView.printPlayerTryCount(user.getPlayCount());
+    }
 }
