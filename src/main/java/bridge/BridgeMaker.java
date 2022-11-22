@@ -30,6 +30,6 @@ public class BridgeMaker {
 
     public String getDirection(int number) {
         return BridgeChoice.fromNumber(number)
-                .getDirection();
+                .getSide();
     }
 }

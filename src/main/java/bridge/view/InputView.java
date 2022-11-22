@@ -59,7 +59,7 @@ public class InputView {
     }
 
     public void isMovingCommand(String alphabet) {
-        if (!(alphabet.equals(BridgeChoice.UP.getDirection()) || alphabet.equals(BridgeChoice.DOWN.getDirection()))) {
+        if (!(alphabet.equals(BridgeChoice.UP.getSide()) || alphabet.equals(BridgeChoice.DOWN.getSide()))) {
             throw new IllegalArgumentException(ExceptionMessage.MOVING_COMMAND.getErrorMessage());
         }
     }

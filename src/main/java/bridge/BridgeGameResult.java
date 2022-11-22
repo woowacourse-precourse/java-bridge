@@ -19,8 +19,8 @@ public class BridgeGameResult {
         resultMap = new HashMap<>();
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
-        resultMap.put(BridgeChoice.UP.getDirection(), upBridge);
-        resultMap.put(BridgeChoice.DOWN.getDirection(), downBridge);
+        resultMap.put(BridgeChoice.UP.getSide(), upBridge);
+        resultMap.put(BridgeChoice.DOWN.getSide(), downBridge);
         Success = true;
     }
 

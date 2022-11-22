@@ -6,11 +6,11 @@ public enum BridgeChoice {
     UP("U", 1),
     DOWN("D", 0);
 
-    private final String direction;
+    private final String side;
     private final int number;
 
-    BridgeChoice(String direction, int number) {
-        this.direction = direction;
+    BridgeChoice(String side, int number) {
+        this.side = side;
         this.number = number;
     }
 
@@ -21,7 +21,7 @@ public enum BridgeChoice {
                 .get();
     }
 
-    public String getDirection() {
-        return direction;
+    public String getSide() {
+        return side;
     }
 }
