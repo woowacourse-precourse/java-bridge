@@ -15,6 +15,15 @@ public enum BridgeShape {
         this.number = number;
     }
 
+    public static String getBridgeShapeByNumber(int number) {
+        BridgeShape[] bridgeShapes = BridgeShape.values();
+        return Arrays.stream(bridgeShapes)
+            .filter(bridgeShape -> bridgeShape.number == number)
+            .findFirst()
+            .orElse(DOWN)
+            .shape;
+    }
+
     public static boolean contains(String shape) {
         return Arrays.stream(BridgeShape.values())
             .map(BridgeShape::getShape)
