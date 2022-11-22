@@ -3,7 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.GameStatus.STATUS_PLAY;
+import static bridge.GameStatus.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -30,10 +30,17 @@ public class BridgeGame {
 
     public void move(String moving) {
         curBridge.add(moving);
+        compare();
 
+    }
+    private void compare(){
         int idx = curBridge.size();
-        System.out.println(curBridge);
-
+        if(!answerBridge.get(idx-1).equals(curBridge.get(idx-1))){
+            this.status = STATUS_FAIL;
+        }
+        if(answerBridge.size() == idx){
+            this.status = STATUS_SUCCESS;
+        }
     }
 
 
