@@ -35,8 +35,9 @@ public class InputView {
      */
     public String readMoving() {
         String userInput = readLine();
-        if ("U".equals(userInput) || "D".equals(userInput))
+        if ("U".equals(userInput) || "D".equals(userInput)) {
             return (userInput);
+        }
         throw (new IllegalArgumentException(INVALID_MOVING_ERROR_MESSAGE.toString()));
     }
 
