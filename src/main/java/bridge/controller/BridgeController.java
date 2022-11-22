@@ -3,7 +3,6 @@ package bridge.controller;
 import static bridge.constant.GameCommand.R;
 
 import bridge.BridgeGame;
-import bridge.constant.MovingDirection;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -28,8 +27,7 @@ public class BridgeController {
 
     public void onGame() {
         outputView.printOnGamePhrase();
-        MovingDirection movingDirection = inputView.readMoving();
-        bridgeGame.move(movingDirection);
+        bridgeGame.move(inputView.readMoving());
         outputView.printMap(bridgeGame);
     }
 

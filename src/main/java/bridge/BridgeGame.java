@@ -1,5 +1,9 @@
 package bridge;
 
+import static bridge.constant.GameState.PROCEEDING_FAIL;
+import static bridge.constant.GameState.PROCEEDING_SUCCESS;
+
+import bridge.constant.GameState;
 import bridge.constant.MovingDirection;
 import bridge.domain.AnswerBridge;
 import bridge.domain.UserBridge;
@@ -10,18 +14,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public static final String SUCCESS = "성공";
-    public static final String FAILURE = "실패";
     private final BridgeMaker bridgeMaker;
     private UserBridge userBridge;
     private AnswerBridge answerBridge;
+    private GameState gameState;
     private int currentPosition;
-    private boolean result;
     private int tryCount;
 
     public BridgeGame(BridgeMaker bridgeMaker) {
         currentPosition = 0;
-        result = false;
+        gameState = PROCEEDING_SUCCESS;
         tryCount = 1;
         this.bridgeMaker = bridgeMaker;
     }
@@ -41,16 +43,21 @@ public class BridgeGame {
      */
     public void move(MovingDirection movingDirection) {
         userBridge.setMovement(movingDirection);
-        compareAndSetResult(userBridge, answerBridge);
+        compareAndSetGameStatus(userBridge, answerBridge);
         currentPosition++;
+        changeStatusToEndIfFinished();
     }
 
-    private void compareAndSetResult(UserBridge userBridge, AnswerBridge answerBridge) {
-        if (isSameDirection(userBridge, answerBridge)) {
-            result = true;
-            return;
+    private void changeStatusToEndIfFinished() {
+        if (answerBridge.isLastPosition(this.currentPosition)) {
+            gameState = GameState.toEnd(gameState);
         }
-        result = false;
+    }
+
+    private void compareAndSetGameStatus(UserBridge userBridge, AnswerBridge answerBridge) {
+        if (!isSameDirection(userBridge, answerBridge)) {
+            gameState = PROCEEDING_FAIL;
+        }
     }
 
     private boolean isSameDirection(UserBridge userBridge, AnswerBridge answerBridge) {
@@ -64,14 +71,18 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        result = true;
+        gameState = PROCEEDING_SUCCESS;
         currentPosition = 0;
         userBridge.reset();
         tryCount++;
     }
 
+    public boolean isFinished() {
+        return gameState.isEnd();
+    }
+
     public boolean isNotFail() {
-        return result;
+        return gameState.isNotFail();
     }
 
     public int getCurrentPosition() {
@@ -90,14 +101,7 @@ public class BridgeGame {
         return userBridge.getMovingDirection(position) == answerBridge.getMovingDirection(position);
     }
 
-    public boolean isFinished() {
-        return answerBridge.isLastPosition(this.currentPosition);
-    }
-
     public String getResultPhrase() {
-        if (result == true) {
-            return SUCCESS;
-        }
-        return FAILURE;
+        return gameState.getResult();
     }
 }
