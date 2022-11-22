@@ -8,7 +8,11 @@ public class BridgeGame {
     static List<String> trialMap_down = new ArrayList<>();
     static final int MAXIMUM_LENGTH = 20;
 
-
+    public String validCheck(int successCount, int size) {
+        if (trialMap_down.contains(" X ") || trialMap_up.contains(" X "))
+            return "실패";
+        return "성공";
+    }
 
     public void move(String userDirection, List<String> bridge, int successCount) {
         moveUpRoadEqualCount(userDirection, bridge, successCount);
