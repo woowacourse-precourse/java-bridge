@@ -23,8 +23,6 @@ public class OutputView {
         downState = String.join("|", downResult);
         System.out.printf(BRIDGE_STATE, upState);
         System.out.printf(BRIDGE_STATE, downState);
-
-
     }
 
     /**
