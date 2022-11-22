@@ -2,6 +2,7 @@ package bridge.game;
 
 import static bridge.result.GameResult.SUCCESS;
 
+import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeController;
 import bridge.result.Result;
@@ -16,9 +17,9 @@ public class BridgeGame {
     private final GameController gameController;
     private Integer gameCount;
 
-    public BridgeGame() {
+    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
         this.gameController = new GameController();
-        this.bridgeController = new BridgeController(new BridgeRandomNumberGenerator());
+        this.bridgeController = new BridgeController(bridgeNumberGenerator);
         this.gameCount = START_GAME_COUNT;
     }
 
