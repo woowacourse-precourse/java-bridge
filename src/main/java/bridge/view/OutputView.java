@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.constants.InGameMessage;
+import bridge.domain.Bridge;
 import bridge.domain.GameStatus;
-import java.util.List;
 
 public class OutputView {
 
@@ -22,15 +22,15 @@ public class OutputView {
         System.out.println(InGameMessage.TOTAL_TRY_COUNT + Integer.toString(gameStatus.getTryCount()));
     }
 
-    public String bridgeToMap(List<String> bridge) {
+    public String bridgeToMap(Bridge bridge) {
         StringBuilder str = new StringBuilder();
 
-        for (int i = 0; i < bridge.size() - 1; i++) {
-            str.append(bridge.get(i));
+        for (int i = 0; i < bridge.getSize() - 1; i++) {
+            str.append(bridge.getDataForOutput(i));
             str.append(BRIDGE_DIVISION);
         }
 
-        str.append(bridge.get(bridge.size() - 1));
+        str.append(bridge.getDataForOutput(bridge.getSize() - 1));
         return str.toString();
     }
 

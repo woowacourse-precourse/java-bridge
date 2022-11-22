@@ -7,6 +7,10 @@ public class Bridge {
 
     private List<String> bridge;
 
+    public Bridge(){
+        this.bridge = new ArrayList<>();
+    }
+
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
@@ -25,6 +29,14 @@ public class Bridge {
 
     public int getSize() {
         return bridge.size();
+    }
+
+    public void addString(String s) {
+        bridge.add(s);
+    }
+
+    public String getDataForOutput(int i) {
+        return bridge.get(i);
     }
 
     @Override

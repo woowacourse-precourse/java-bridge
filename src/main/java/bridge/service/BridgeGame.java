@@ -31,8 +31,8 @@ public class BridgeGame {
 
     private boolean upAndCorrect(GameStatus gameStatus, Bridge bridge, String s) {
         if (bridge.checkTheBridge(s)) {
-            gameStatus.topBridge.add(CORRECT);
-            gameStatus.bottomBridge.add(WHITE_SPACE);
+            gameStatus.addStringToTopBridge(CORRECT);
+            gameStatus.addStringToBottomBridge(WHITE_SPACE);
             bridge.passToTheNextSpace();
             return true;
         }
@@ -41,8 +41,8 @@ public class BridgeGame {
 
     private void upAndWrong(GameStatus gameStatus, Bridge bridge, String s) {
         if (!bridge.checkTheBridge(s)) {
-            gameStatus.topBridge.add(WRONG);
-            gameStatus.bottomBridge.add(WHITE_SPACE);
+            gameStatus.addStringToBottomBridge(WRONG);
+            gameStatus.addStringToBottomBridge(WHITE_SPACE);
         }
     }
 
@@ -58,8 +58,8 @@ public class BridgeGame {
 
     private boolean downAndCorrect(GameStatus gameStatus, Bridge bridge, String s) {
         if (bridge.checkTheBridge(s)) {
-            gameStatus.bottomBridge.add(CORRECT);
-            gameStatus.topBridge.add(WHITE_SPACE);
+            gameStatus.addStringToBottomBridge(CORRECT);
+            gameStatus.addStringToTopBridge(WHITE_SPACE);
             bridge.passToTheNextSpace();
             return true;
         }
@@ -68,8 +68,8 @@ public class BridgeGame {
 
     private void downAndWrong(GameStatus gameStatus, Bridge bridge, String s) {
         if (!bridge.checkTheBridge(s)) {
-            gameStatus.bottomBridge.add(WRONG);
-            gameStatus.topBridge.add(WHITE_SPACE);
+            gameStatus.addStringToBottomBridge(WRONG);
+            gameStatus.addStringToTopBridge(WHITE_SPACE);
         }
     }
 }
