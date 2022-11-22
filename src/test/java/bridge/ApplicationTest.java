@@ -87,10 +87,11 @@ class ApplicationTest extends NsTest {
     }
     @Test
     void 예외_테스트4() {
-        assertThatThrownBy(() -> new BridgeGame())
-                .isInstanceOf(IllegalArgumentException.class);
+        assertSimpleTest(() -> {
+            runException("3", "X");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
-
 
     @Override
     protected void runMain() {
