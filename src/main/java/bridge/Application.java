@@ -30,7 +30,7 @@ public class Application {
             upBridgeResult = new ArrayList<>();
             downBridgeResult = new ArrayList<>();
             gameStatus = "성공";
-            //playGame();
+            playGame();
         } while(retryOrQuit());
         outputView.printResult(upBridgeResult, downBridgeResult, gameStatus, cnt);
     }
@@ -73,5 +73,26 @@ public class Application {
         return false;
     }
 
+    public static void playGame(){
+        try {
+            location = movePlayer();
+        } catch (IllegalArgumentException e){
+            playGame();
+            outputView.printError(e.getMessage());
+        }
+    }
+    public static int movePlayer() {
+        do{
+            outputView.printMoving();
+            String moving = inputView.readMoving();
+            boolean compareResult = bridgeGame.compare(bridge, moving, location);
+            gameStatus = bridgeGame.crossResult(moving, location, bridge, upBridgeResult, downBridgeResult);
+            if (gameStatus.equals("성공")){
+                location = bridgeGame.move(location);
+            }
+            outputView.printCrossResult(upBridgeResult, downBridgeResult);
+        } while (location < bridgeSize && gameStatus.equals("성공"));
+        return location;
+    }
 
 }
