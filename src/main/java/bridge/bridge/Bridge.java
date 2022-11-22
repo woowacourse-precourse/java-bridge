@@ -31,7 +31,10 @@ public class Bridge {
         );
     }
 
-    private Step selectStep(Direction bridgeSide, String playerDirection) {
+    private Step selectStep(
+            Direction bridgeSide,
+            String playerDirection
+    ) {
         if (!bridgeSide.equals(playerDirection)) {
             return Step.NONE;
         }

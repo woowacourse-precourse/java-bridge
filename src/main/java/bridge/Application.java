@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.controller.BridgeGame;
-import bridge.controller.Game;
+import bridge.game.BridgeGame;
+import bridge.game.Game;
 
 public class Application {
 

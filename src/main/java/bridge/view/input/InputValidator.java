@@ -29,27 +29,39 @@ public class InputValidator extends Validator {
 
     private static void validateLowerBridgeSize(int bridgeSize) {
         if (bridgeSize < BRIDGE_LOWER_INCLUSIVE) {
-            ExceptionHandler.throwException(new IllegalArgumentException(), ExceptionMessage.LOWER_BRIDGE_SIZE);
+            ExceptionHandler.throwException(
+                    new IllegalArgumentException(),
+                    ExceptionMessage.LOWER_BRIDGE_SIZE
+            );
         }
     }
 
     private static void validateUpperBridgeSize(int bridgeSize) {
         if (bridgeSize > BRIDGE_UPPER_INCLUSIVE) {
-            ExceptionHandler.throwException(new IllegalArgumentException(), ExceptionMessage.UPPER_BRIDGE_SIZE);
+            ExceptionHandler.throwException(
+                    new IllegalArgumentException(),
+                    ExceptionMessage.UPPER_BRIDGE_SIZE
+            );
         }
     }
 
     private static void validateMovingDirection(String moving) {
         if (!Direction.UP.equals(moving)
                 && !Direction.DOWN.equals(moving)) {
-            ExceptionHandler.throwException(new IllegalArgumentException(), ExceptionMessage.MOVING_DIRECTION);
+            ExceptionHandler.throwException(
+                    new IllegalArgumentException(),
+                    ExceptionMessage.MOVING_DIRECTION
+            );
         }
     }
 
     private static void validateRetryOrQuitCommand(String command) {
         if (!Command.RETRY.equals(command)
                 && !Command.QUIT.equals(command)) {
-            ExceptionHandler.throwException(new IllegalArgumentException(), ExceptionMessage.GAME_COMMAND);
+            ExceptionHandler.throwException(
+                    new IllegalArgumentException(),
+                    ExceptionMessage.GAME_COMMAND
+            );
         }
     }
 }

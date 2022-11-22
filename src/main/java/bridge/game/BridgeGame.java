@@ -104,7 +104,11 @@ public class BridgeGame implements BridgeContainer, ViewContainer, Game {
         List<List<String>> bridgeMap;
 
         bridgeMap = getBridgeMap();
-        outputView.printResult(bridgeMap, getSuccessOrFailure(), getTrial());
+        outputView.printResult(
+                bridgeMap,
+                getSuccessOrFailure(),
+                getTrial())
+        ;
     }
 
     private String getSuccessOrFailure() {
