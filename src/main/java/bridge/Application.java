@@ -1,11 +1,10 @@
 package bridge;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class Application {
     private static final InputView inputView = InputView.getInstance();
-    private static BridgeMaker bridgeMaker;
-    private static final BridgeGame bridgeGame = BridgeGame.getInstance();
 
     public static void main(String[] args) {
         start();
