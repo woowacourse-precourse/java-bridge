@@ -41,7 +41,8 @@ public class InputView {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자가 아닙니다. 다시 입력하세요.");
+            e.printStackTrace();
+            System.out.println(Error.ERROR_NOT_NUMBER.getMessage());
             return readBridgeSize();
         }
     }
@@ -50,7 +51,7 @@ public class InputView {
     private static String vaildMoveCommand(String move) {
         try {
             if (!MOVE_COMMAND.contains(move)) {
-                throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해 주세요.");
+                throw new IllegalArgumentException(Error.ERROR_NOT_COMMAD.getMessage());
             }
             return move;
         } catch (IllegalArgumentException e) {
@@ -62,7 +63,7 @@ public class InputView {
     private static String vaildRetryCommand(String command) {
         try {
             if (!RETRY_COMMAND.contains(command)) {
-                throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해 주세요.");
+                throw new IllegalArgumentException(Error.ERROR_NOT_COMMAD.getMessage());
             }
             return command;
         } catch (IllegalArgumentException e) {

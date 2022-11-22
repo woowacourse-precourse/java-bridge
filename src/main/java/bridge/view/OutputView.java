@@ -13,6 +13,8 @@ public class OutputView {
     static final String SPLIT = " | ";
     static final String[] PASS_FAIL = {"O", "X"};
     static final String EMPTY = " ";
+    static final String SUCCESS = "성공";
+    static final String FAIL = "실패";
 
     // report
     private static final String REPORT_TITLE = "\n최종 게임 결과";
@@ -95,8 +97,8 @@ public class OutputView {
      */
     public void printResult(boolean failFlag, int tryCount) {
         String result = "";
-        if (failFlag) result = "성공";
-        if (!failFlag) result = "실패";
+        if (failFlag) result = SUCCESS;
+        if (!failFlag) result = FAIL;
 
         System.out.println(REPORT_TITLE);
         System.out.println(up.toString() + "\n" + down.toString());

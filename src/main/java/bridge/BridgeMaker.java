@@ -1,6 +1,7 @@
 package bridge;
 
-import view.InputView;
+import bridge.view.Error;
+import bridge.view.InputView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,11 +52,11 @@ public class BridgeMaker {
 
     private static void validateBridgeSize(List<String> blocks) {
         if (blocks.size() > BRIDGE_MAX_LONG){
-            throw new IllegalArgumentException("[ERROR] 최대 20까지 입력할 수 있습니다.");
+            throw new IllegalArgumentException(Error.ERROR_MAX_BRIDGE.getMessage());
         }
 
         if (blocks.size() < BRIDGE_MIN_LONG){
-            throw new IllegalArgumentException("[ERROR] 최소 3이상의 숫자를 적어주세요.");
+            throw new IllegalArgumentException(Error.ERROR_MIN_BRIDGE.getMessage());
         }
     }
 
