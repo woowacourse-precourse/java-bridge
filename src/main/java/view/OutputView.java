@@ -3,7 +3,6 @@ package view;
 import static constant.Message.*;
 
 import bridge.Bridge;
-import constant.Message;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -18,6 +17,7 @@ public class OutputView {
     public void printMap(String movingResult) {
         System.out.println(movingResult);
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -25,7 +25,7 @@ public class OutputView {
      */
     public void printResult(Bridge bridge, String result) {
         System.out.println(PRINT_GAME_RESULT);
-        if (result == SUCCESS) {
+        if (result.equals(SUCCESS)) {
             printMap(bridge.movingResultToString(SUCCESS));
             System.out.println(String.format(PRINT_WHETHER_SUCCESS_OR_NOT, SUCCESS));
             System.out.println(String.format(TOTAL_NUMBERS_OF_ATTEMPTS, bridge.getGameCount()));

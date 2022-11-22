@@ -4,11 +4,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.Validation;
-import view.InputView;
-import view.OutputView;
 
 class BridgeGameTest extends NsTest {
     @Test

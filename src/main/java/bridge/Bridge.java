@@ -5,6 +5,7 @@ import static constant.Message.*;
 import java.util.List;
 
 public class Bridge {
+
     public static final int JUST_CROSSED = 1;
     public static final int CANNOT_CROSS_NEXT = 2;
     public static final int JUST_CROSSED_AND_CROSS_OVER = 3;
