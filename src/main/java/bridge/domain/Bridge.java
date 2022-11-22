@@ -17,12 +17,11 @@ public class Bridge {
         tryCount = 1;
     }
 
-    //new BridgeMaker(new BridgeRandomNumberGenerator())
     public void makeBridge(int bridgeSize, BridgeMaker bridgeMaker) {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public MoveResult move(String movePath) { // userPath에 movePath 추가 / 실패했는지, 성공했는지, 다리를 건넜는지 반환
+    public MoveResult move(String movePath) {
         userPath.add(movePath);
 
         if (isLastMoveSuccess() && isGameSuccess()) {
