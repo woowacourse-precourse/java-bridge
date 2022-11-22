@@ -1,5 +1,7 @@
 package bridge.view;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,6 +32,31 @@ public class OutputView {
         }
         return bridge;
     }
+
+
+
+
+    public List<String> uBridge(List<String> progressBridge) {
+        List<String> uBridge = new ArrayList<>(progressBridge);
+        Collections.replaceAll(uBridge, "D", " ");
+        Collections.replaceAll(uBridge, "0", " ");
+        Collections.replaceAll(uBridge, "U", "O");
+        Collections.replaceAll(uBridge, "1", "X");
+        return uBridge;
+    }
+
+    public List<String> dBridge(List<String> progressBridge) {
+        List<String> dBridge = new ArrayList<>(progressBridge);
+        Collections.replaceAll(dBridge, "U", " ");
+        Collections.replaceAll(dBridge, "1", " ");
+        Collections.replaceAll(dBridge, "D", "O");
+        Collections.replaceAll(dBridge, "0", "X");
+        return dBridge;
+    }
+
+
+
+
 
 
     /**
