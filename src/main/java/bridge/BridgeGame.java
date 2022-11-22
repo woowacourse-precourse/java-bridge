@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,14 +13,32 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    int try_count = 0;
+    public void move(InputView inputView, List<String> answer_list) {
+        this.try_count += 1;
+        OutputView outputView = new OutputView();
+        for (int i = 0; i<answer_list.size(); i++){
+            int ret = outputView.printMap(answer_list,inputView.readMoving());
+            if (ret == 0){
+                if (inputView.readGameCommand().equals("R")){
+                    retry(answer_list,inputView.readBridgeSize());
+                    return;}
+                outputView.printResult(try_count,0);
+                return;
+            }
+        }
+        outputView.printResult(try_count,1);
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(List<String> answer_list, int bs) {
+        InputView inputView = new InputView();
+        inputView.setBridge_size(bs);
+        move(inputView,answer_list);
     }
 }
