@@ -2,7 +2,6 @@ package bridge.controller;
 
 import static bridge.constant.GameCommand.RETRY;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import bridge.constant.GameCommand;
