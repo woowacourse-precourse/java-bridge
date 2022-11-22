@@ -10,23 +10,18 @@ public class Bridge {
     private static final String ERROR = "[ERROR] ";
     private static final String SIZE_ERROR = ERROR + "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
 
-    private final List<String> shape;
+    private final List<String> bridge;
 
-    public Bridge(List<String> shape) {
-        validateSize(shape.size());
-        this.shape = shape;
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
     public int getSize() {
-        return shape.size();
+        return bridge.size();
     }
 
     public boolean canMove(int place, String moving) {
-        return findShape(place).equals(moving);
-    }
-
-    private String findShape(int place) {
-        return shape.get(place);
+        return moving.equals(bridge.get(place));
     }
 
     private void validateSize(int size) {
@@ -43,12 +38,12 @@ public class Bridge {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Bridge bridge = (Bridge) o;
-        return Objects.equals(shape, bridge.shape);
+        Bridge bridge1 = (Bridge) o;
+        return Objects.equals(bridge, bridge1.bridge);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shape);
+        return Objects.hash(bridge);
     }
 }
