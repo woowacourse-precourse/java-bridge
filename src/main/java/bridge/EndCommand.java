@@ -1,14 +1,12 @@
 package bridge;
 
-public enum Command {
-    UP("U"),
-    DOWN("D"),
+public enum EndCommand {
     RESTART("R"),
     QUIT("Q");
 
     private final String commandStr;
 
-    Command(String commandStr) {
+    EndCommand(String commandStr) {
         this.commandStr = commandStr;
     }
 

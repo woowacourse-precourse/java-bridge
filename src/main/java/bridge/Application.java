@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Application {
     private static final InputView inputView = InputView.getInstance();
+    private static final OutputView outputView = OutputView.getInstance();
 
     public static void main(String[] args) {
         start();
@@ -13,8 +14,10 @@ public class Application {
     private static void start() {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = constructBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        play(bridge);
+        int tryCnt = play(bridgeGame);
+        calResult(bridgeGame, tryCnt);
     }
 
     private static List<String> constructBridge(int bridgeSize) {
@@ -22,25 +25,31 @@ public class Application {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private static void play(List<String> bridge) {
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        do {
-            String moveChoice = inputView.readMoving();
-            List<EnumMap<ChoiceOrResult, String>> curState = bridgeGame.move(moveChoice);
+    private static int play(BridgeGame bridgeGame) {
+        int tryCnt = 1;
+        while (!bridgeGame.isCompleted()) {
+            EnumMap<BridgeLine, List<String>> curState = bridgeGame.move(inputView.readMoving());
+            outputView.printMap(curState);
             if (bridgeGame.wasFailedToMove()) {
-                restartOrEndGame(bridgeGame);
+                tryCnt = restartOrEndGame(bridgeGame, tryCnt);
             }
-        } while (!bridgeGame.isCompleted());
-
+        }
+        return tryCnt;
     }
 
-    private static void restartOrEndGame(BridgeGame bridgeGame) {
+    private static void calResult(BridgeGame bridgeGame, int tryCnt) {
+        outputView.printResult(bridgeGame.getCurrentBridgeState(), bridgeGame.getGameState(), tryCnt);
+    }
+
+    private static int restartOrEndGame(BridgeGame bridgeGame, int tryCnt) {
         String command = inputView.readGameCommand();
 
-        if (command.equals(Command.QUIT.getCommandStr())) {
-            return;
+        if (command.equals(EndCommand.QUIT.getCommandStr())) {
+            return tryCnt;
         }
 
         bridgeGame.retry();
+        return tryCnt + 1;
     }
+
 }

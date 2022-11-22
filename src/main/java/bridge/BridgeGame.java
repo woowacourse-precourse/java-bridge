@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
@@ -11,15 +12,25 @@ import java.util.Map;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private final List<EnumMap<ChoiceOrResult, String>> currentBridgeState;
+    private final EnumMap<BridgeLine, List<String>> currentBridgeState;
     private int curPosition;
     private GameState gameState;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.currentBridgeState = new ArrayList<>();
+        this.currentBridgeState = new EnumMap<>(BridgeLine.class);
         this.curPosition = 0;
         this.gameState = GameState.PLAYING;
+        currentBridgeState.put(BridgeLine.UPPER, new ArrayList<>());
+        currentBridgeState.put(BridgeLine.LOWER, new ArrayList<>());
+    }
+
+    public EnumMap<BridgeLine, List<String>> getCurrentBridgeState() {
+        return currentBridgeState;
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 
     /**
@@ -27,35 +38,38 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<EnumMap<ChoiceOrResult, String>> move(String moveChoice) {
+    public EnumMap<BridgeLine, List<String>> move(String moveChoice) {
 
-        validateMove(curPosition);
-        calMoveResult(curPosition, moveChoice);
+        validateMove();
+        calMoveResult(moveChoice);
         updateState();
 
         curPosition++;
-        return Collections.unmodifiableList(currentBridgeState);
+        return currentBridgeState;
     }
 
-    private void validateMove(int curPosition) {
+    private void validateMove() {
         if (!gameState.equals(GameState.PLAYING)) {
             throw new IllegalStateException(ErrorMessage.MOVE_EXCEPTION.getMessage());
         }
     }
 
-    private void calMoveResult(int curPosition, String moveChoice) {
-        EnumMap<ChoiceOrResult, String> choiceAndResult = new EnumMap<>(Map.of(ChoiceOrResult.CHOICE, moveChoice));
+    private void calMoveResult(String moveChoice) {
+        BridgeLine moveToBridgeLine = BridgeLine.findBy(moveChoice);
+        String result = "X";
+
+        Arrays.stream(BridgeLine.values()).forEach(bridgeLine -> currentBridgeState.get(bridgeLine).add(" "));
+
         if (bridge.get(curPosition).equals(moveChoice)) {
-            choiceAndResult.put(ChoiceOrResult.RESULT, "O");
-            currentBridgeState.add(choiceAndResult);
-            return;
+            result = "O";
         }
-        choiceAndResult.put(ChoiceOrResult.RESULT, "X");
-        currentBridgeState.add(choiceAndResult);
+
+        currentBridgeState.get(moveToBridgeLine).set(curPosition, result);
     }
 
     private void updateState() {
-        if (currentBridgeState.get(curPosition).get(ChoiceOrResult.RESULT).equals("X")) {
+
+        if (getLastStepResult(BridgeLine.UPPER).equals("X") || getLastStepResult(BridgeLine.LOWER).equals("X")) {
             gameState = GameState.FAIL;
             return;
         }
@@ -64,6 +78,10 @@ public class BridgeGame {
             return;
         }
         gameState = GameState.PLAYING;
+    }
+
+    private String getLastStepResult(BridgeLine bridgeLine) {
+        return currentBridgeState.get(bridgeLine).get(curPosition);
     }
 
     public boolean wasFailedToMove() {
@@ -86,7 +104,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        currentBridgeState .clear();
+        currentBridgeState.get(BridgeLine.UPPER).clear();
+        currentBridgeState.get(BridgeLine.LOWER).clear();
         curPosition = 0;
         gameState = GameState.PLAYING;
     }

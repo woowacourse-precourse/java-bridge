@@ -10,4 +10,8 @@ public enum GameState {
     GameState(String message) {
         this.message = message;
     }
+
+    public String getMessage() {
+        return message;
+    }
 }

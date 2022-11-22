@@ -1,7 +1,6 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Objects;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -60,7 +59,8 @@ public class InputView {
     }
 
     private void validateMoveChoice(String moveChoice) {
-        if ((!moveChoice.equals("U")) && (!moveChoice.equals("D"))) {
+        if ((!moveChoice.equals(MoveCommand.UP.getCommandStr())) && (!moveChoice.equals(
+                MoveCommand.DOWN.getCommandStr()))) {
             throw new IllegalArgumentException(ErrorMessage.MOVE_CHOICE_EXCEPTION.getMessage());
         }
     }
@@ -83,7 +83,7 @@ public class InputView {
     }
 
     private void validateGameCommand(String command) {
-        if (!command.equals(Command.RESTART.getCommandStr()) && !command.equals(Command.QUIT.getCommandStr())) {
+        if (!command.equals(EndCommand.RESTART.getCommandStr()) && !command.equals(EndCommand.QUIT.getCommandStr())) {
             throw new IllegalArgumentException(ErrorMessage.GAME_END_CHOICE_EXCEPTION.getMessage());
         }
     }
