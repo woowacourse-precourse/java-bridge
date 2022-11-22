@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import bridge.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ class BridgeMakerTest extends NsTest {
         assertSimpleTest(() -> {
             runException("안녕");
             assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.BRIDGE_SIZE_IS_NOT_NUMBER);
         });
     }
 
@@ -25,6 +27,7 @@ class BridgeMakerTest extends NsTest {
         assertSimpleTest(() -> {
             runException("400");
             assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.BRIDGE_SIZE_IS_NOT_IN_RANGE);
         });
     }
 
