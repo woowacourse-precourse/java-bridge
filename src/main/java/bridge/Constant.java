@@ -10,4 +10,7 @@ public class Constant {
     public static final String CHOOSE_MOVE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String SUCCESS = "성공";
     public static final String FAIL = "실패";
+    public static final String INPUT_MOVE_ERROR = "[ERROR] 이동하는 입력이 잘못되었습니다.";
+    public static final String INPUT_RESTART_ERROR ="[ERROR] 재시작 입력이 잘못되었습니다. Q나 R을 입력하세요.";
+    public static final String INPUT_BRIDGE_SIZE_ERROR="[ERROR] 다리의 크기는 3이상 20이하여야 합니다.";
 }
