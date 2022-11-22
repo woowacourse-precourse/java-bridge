@@ -19,10 +19,18 @@
 2. 게임 종료 문구 출력
 3. 이동할 때마다 다리 건너기 결과 출력
 4. 예외 처리 메세지 출력
+### MapGenerator
+- Result로부터 Map형태로 String Sequence를 만들어줌
+- 데이터 타입으로 ResultType 사용
 
 ## Controller
 
 ### Application
+- GameController 실행
+- bridge game 반복
+- game 끝나면 결과 출력
+
+### BridgeGameController
 - InputView에서 입력값을 받아 Game으로 전달
 - OutputView를 통해 Game 결과 출력
 - 예외 발생시 catch 및 OutputView를 통해 출력
@@ -37,10 +45,22 @@
 - BridgeRandomNumberGenerator 클래스를 사용해 랜던한 다리 생성
 
 ## Model
-### Bridge
-- U와 D로 구성되어있는 List<String>를 필드로 가지고 있음
-- 위치와 이동방향을 입력으로 받아 필드의 브릿지와 비교
 
+### BridgeSize
+- input 예외 검사
+- size값 저장
 ### Result
 - 이동 실행 결과를 저장
-- 결과를 Map으로 생성
+- 윗칸, 아랫칸의 정보를 ResultType으로 저장
+
+### ResultType
+- Success:O, Fail:X의 쌍으로 갖고 있음
+- 성공, 혹은 실패로 변환
+
+### Direction
+- UP:U, DOWN:D의 쌍을 갖고 있음
+- U와 D를 입력으로 Direction Type 반환
+
+### GameCommand
+- RETRY:R, QUIT:Q의 쌍을 갖고 있음
+- R과 Q를 입력으로 GammeCommandType 반환
