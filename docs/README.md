@@ -50,25 +50,28 @@
 |함수이름|개요|
 |---|---|
 |BridgeGame.move| 사용자가 칸을 이동 |
-|BridgeGame.retry| 사용자가 게임을 다시 시도|
+|BridgeGame.retry| 사용자가 게임을 다시 시도 |
+|BridgeGame.isFinished| 게임이 끝났는지 출력 |
+|BrdigeGame.finish|게임의 최종결과를 축|
 
 |상태 이름|개요|
 |---|---|
-|BrdigeGame.State.INITIAL_STATE|게임시작 문구 출력|
-|BrdigeGame.State.SELECTION_STATE| 이동할 칸 입력 및 유효성 검증|
-|BrdigeGame.State.SUCCESS_TEST_STATE|이동할 칸의 성공/실패 결정|
-|BrdigeGame.State.FINISTH_TEST_STATE|이동할 칸이 종료지점에 다달았는지 검증|
-|BrdigeGame.State.END|게임종료문구 출력|
+|Application.State.INITIAL_STATE|게임시작 문구 출력|
+|Application.State.SELECTION_STATE| 이동할 칸 입력 및 유효성 검증|
+|Application.State.SUCCESS_TEST_STATE|이동할 칸의 성공/실패 결정|
+|Application.State.FINISTH_TEST_STATE|이동할 칸이 종료지점에 다달았는지 검증|
+|Application.State.END|게임종료문구 출력|
 
 
 |트리거 이름|처음 상태|전이 상태 |
 |:---|:---:|:---:|
-|BridgeGame.Trigger.IS_VALID|SELECTION_STATE|SELECTION_STATE|
-|BridgeGame.Trigger.IS_INVALID|SELECTION_STATE|SUCCESS_TEST_STATE|
-|BridgeGame.Trigger.SELECTION_FAILUE|SUCCESS_TEST_STATE|SELECTION_STATE|
-|BridgeGame.Trigger.SELECTION_SUCCESS|SUCCESS_TEST_STATE|FINISTH_TEST_STATE|
-|BridgeGame.Trigger.CONTINUE|FINISTH_TEST_STATE|SELECTION_STATE|
-|BridgeGame.Trigger.FINISH|FINISTH_TEST_STATE|END|
+|Application.Trigger.IS_VALID|SELECTION_STATE|SELECTION_STATE|
+|Application.Trigger.IS_INVALID| 모든 State| 해당 STATE|
+|Application.Trigger.SELECTION_FAILUE|SUCCESS_TEST_STATE|SELECTION_STATE|
+|Application.Trigger.SELECTION_SUCCESS|SUCCESS_TEST_STATE|FINISTH_TEST_STATE|
+|Application.Trigger.FINAL_SUCCESS|SUCCESS_TEST_STATE|FINISH_TEST_STATE|
+|Application.Trigger.CONTINUE|FINISTH_TEST_STATE|SELECTION_STATE|
+|Application.Trigger.FINISH|FINISTH_TEST_STATE|END|
 
 |함수이름|개요|
 |---|---|
