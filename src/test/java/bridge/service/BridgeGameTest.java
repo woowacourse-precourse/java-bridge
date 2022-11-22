@@ -10,7 +10,7 @@ import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.GameRetryRequestDto;
 import bridge.service.dto.request.SelectBlockRequestDto;
 import bridge.service.dto.response.BridgeResponseDto;
-import org.assertj.core.api.Assertions;
+import bridge.service.dto.response.GameResultResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,8 +58,19 @@ public class BridgeGameTest {
     void should_True_When_retry() {
         final String INPUT_RETRY = "R";
         GameRetryRequestDto dto = new GameRetryRequestDto(INPUT_RETRY);
-        boolean canRetry = bridgeGame.retry(dto);
+        boolean canRetry = bridgeGame.canRetry(dto);
         assertThat(canRetry).isTrue();
+    }
+
+    @DisplayName("게임 재시작 여부를 입력받아 재시작을 원한다면 현재까지 이동한 다리 상태 초기화")
+    @Test
+    void should_initBridgeStatus_When_retry() {
+        final String INPUT_RETRY = "R";
+        GameRetryRequestDto requestDto = new GameRetryRequestDto(INPUT_RETRY);
+       bridgeGame.canRetry(requestDto);
+        GameResultResponseDto responseDto = bridgeGame.result();
+       assertThat(responseDto.getBridgeStatus().getUpBlocks()).isEmpty();
+       assertThat(responseDto.getBridgeStatus().getDownBlocks()).isEmpty();
     }
 
     @DisplayName("게임 재시작 여부를 입력받아 그대로 게임종료를 원한다면 false")
@@ -67,7 +78,7 @@ public class BridgeGameTest {
     void should_False_When_retry() {
         final String INPUT_RETRY = "Q";
         GameRetryRequestDto dto = new GameRetryRequestDto(INPUT_RETRY);
-        boolean canRetry = bridgeGame.retry(dto);
-        assertThat(canRetry).isFalse();
+        boolean notRetry = bridgeGame.canRetry(dto);
+        assertThat(notRetry).isFalse();
     }
 }
