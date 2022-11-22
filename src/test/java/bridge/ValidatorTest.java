@@ -11,34 +11,34 @@ public class ValidatorTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @BeforeEach
-    void 생성자(){
+    void 생성자() {
         inputValidator = new InputValidator();
     }
 
     @Test
-    void 숫자_예외테스트(){
-        assertThatThrownBy(()-> inputValidator.returnNum("a"))
+    void 숫자_예외테스트() {
+        assertThatThrownBy(() -> inputValidator.returnNum("a"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE, "숫자로만 ");
     }
 
     @Test
-    void 범위_예외테스트(){
-        assertThatThrownBy(()->inputValidator.returnNum("35"))
+    void 범위_예외테스트() {
+        assertThatThrownBy(() -> inputValidator.returnNum("35"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE, "3부터 20 사이");
     }
 
     @Test
-    void upAndDown_Test(){
-        assertThatThrownBy(()->inputValidator.checkUpDown("T"))
+    void upAndDown_Test() {
+        assertThatThrownBy(() -> inputValidator.checkUpDown("T"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE, "U 또는 D");
     }
 
     @Test
-    void restartTest(){
-        assertThatThrownBy(()->inputValidator.checkRetry("U"))
+    void restartTest() {
+        assertThatThrownBy(() -> inputValidator.checkRetry("U"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE, "시작은 R, 종료는 Q");
     }

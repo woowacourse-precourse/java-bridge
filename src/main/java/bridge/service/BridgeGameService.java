@@ -32,7 +32,7 @@ public class BridgeGameService {
         run();
     }
 
-    public void run() {
+    private void run() {
         String map = EMPTY_MAP;
         while (map.equals(EMPTY_MAP)) {
             map = go(EMPTY_MAP);
@@ -66,7 +66,7 @@ public class BridgeGameService {
         return map;
     }
 
-    public boolean retry() {
+    private boolean retry() {
         String gameMode = inputView.readGameCommand();
         validator.checkRetry(gameMode);
         if (gameMode.equals(GameMode.RETRY.getKey())) {

@@ -13,7 +13,7 @@ public class StepTest {
     }
 
     @Test
-    void 논리값_성공여부_테스트(){
+    void 논리값_성공여부_테스트() {
         assertThat(SuccessStep.getResultbyStatus(false)).isEqualTo("실패");
         assertThat(SuccessStep.getResultbyStatus(true)).isEqualTo("성공");
     }
