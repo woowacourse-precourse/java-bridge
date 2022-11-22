@@ -1,5 +1,7 @@
 package bridge;
 
+import enums.RetryCommand;
+
 import java.util.List;
 
 /**
@@ -64,7 +66,7 @@ public class BridgeGame {
     }
 
     public boolean isRetry(String command) {
-        if (command.equals("R")) {
+        if (command.equals(RetryCommand.RETRY.getCommand())) {
             retry();
             return true;
         }

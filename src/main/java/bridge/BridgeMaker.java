@@ -1,5 +1,7 @@
 package bridge;
 
+import enums.MoveCommand;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +33,9 @@ public class BridgeMaker {
 
     private String generateUpOrDown(int generatedNumber) {
         if (generatedNumber == 0) {
-            return "D";
+            return MoveCommand.DOWN.getCommand();
         }
 
-        return "U";
+        return MoveCommand.UP.getCommand();
     }
 }

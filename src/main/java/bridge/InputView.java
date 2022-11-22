@@ -1,5 +1,7 @@
 package bridge;
 import camp.nextstep.edu.missionutils.Console;
+import enums.MoveCommand;
+import enums.RetryCommand;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -92,7 +94,7 @@ public class InputView {
     }
 
     private boolean validateMoving(String moving) {
-        if (!(moving.equals("U") || moving.equals("D"))) {
+        if (!(moving.equals(MoveCommand.UP.getCommand()) || moving.equals(MoveCommand.DOWN.getCommand()))) {
             System.out.println("[ERROR] 올바른 이동이 아닙니다.");
             throw new IllegalArgumentException();
         }
@@ -146,7 +148,7 @@ public class InputView {
     }
 
     private boolean validateRetry(String retry) {
-        if (!(retry.equals("R") || retry.equals("Q"))) {
+        if (!(retry.equals(RetryCommand.RETRY.getCommand()) || retry.equals(RetryCommand.END.getCommand()))) {
             System.out.println("[ERROR] 올바른 커멘드가 아닙니다.");
             throw new IllegalArgumentException();
         }

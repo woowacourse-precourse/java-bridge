@@ -1,5 +1,7 @@
 package bridge;
 
+import enums.MoveCommand;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -51,7 +53,7 @@ public class OutputView {
     }
 
     private void printWrongUpResult(String up, String moving) {
-        if (moving.equals("U")) {
+        if (moving.equals(MoveCommand.UP.getCommand())) {
             up = addBar(up);
             System.out.println(up + " X " + "]");
             return;
@@ -61,7 +63,7 @@ public class OutputView {
     }
 
     private void printWrongDownResult(String down, String moving) {
-        if (moving.equals("D")) {
+        if (moving.equals(MoveCommand.DOWN.getCommand())) {
             down = addBar(down);
             System.out.println(down + " X " + "]");
             return;
@@ -101,7 +103,7 @@ public class OutputView {
     }
 
     private String addUp(String curr) {
-        if (curr.equals("U")) {
+        if (curr.equals(MoveCommand.UP.getCommand())) {
             return " O ";
         }
 
@@ -109,7 +111,7 @@ public class OutputView {
     }
 
     private String addDown(String curr) {
-        if (curr.equals("D")) {
+        if (curr.equals(MoveCommand.DOWN.getCommand())) {
             return " O ";
         }
 
