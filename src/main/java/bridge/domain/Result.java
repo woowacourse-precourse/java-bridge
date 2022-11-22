@@ -29,7 +29,7 @@ public class Result {
     }
 
     public String getWinningResult() {
-        if(!moveSuccess) {
+        if (!moveSuccess) {
             return GameState.LOOSE.getLabel();
         }
         return GameState.WIN.getLabel();

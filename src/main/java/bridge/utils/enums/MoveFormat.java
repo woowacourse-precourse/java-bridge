@@ -15,7 +15,7 @@ public enum MoveFormat {
 
     public static String findLabelByValue(int value) {
         for (MoveFormat moveFormat : MoveFormat.values()) {
-            if(moveFormat.value == value) {
+            if (moveFormat.value == value) {
                 return moveFormat.label;
             }
         }

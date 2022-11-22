@@ -16,13 +16,13 @@ public class Validator {
     }
 
     public static void checkMoveInput(String moveInput) {
-        if(!MoveFormat.MOVE_UP.isEqual(moveInput) && !MoveFormat.MOVE_DOWN.isEqual(moveInput)) {
+        if (!MoveFormat.MOVE_UP.isEqual(moveInput) && !MoveFormat.MOVE_DOWN.isEqual(moveInput)) {
             throw new IllegalArgumentException(Errors.UNREQUIRED.getMessage());
         }
     }
 
     public static void checkRetryInput(String retryInput) {
-        if(!RetryFormat.RETRY.isEqual(retryInput) && !RetryFormat.QUIT.isEqual(retryInput)) {
+        if (!RetryFormat.RETRY.isEqual(retryInput) && !RetryFormat.QUIT.isEqual(retryInput)) {
             throw new IllegalArgumentException(Errors.UNREQUIRED.getMessage());
         }
     }
