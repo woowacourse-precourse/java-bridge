@@ -78,7 +78,7 @@
 - [ ] 재시작 상황인지 확인한다. #isRestartGame()
 - [x] 총 시도 횟수를 늘린다. #addTryCount()
 - [x] 총 시도 횟수를 반환한다. #getTryCount()
-- [ ] 사용자가 다리를 모두 건넜는지 확인한다. #isCrossAllBridge()
+- [x] 사용자가 다리를 모두 건넜는지 확인한다. #isCrossAllBridge()
 
 ### InputMessage : 입력 요청 메시지
 

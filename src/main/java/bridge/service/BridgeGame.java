@@ -151,4 +151,7 @@ public class BridgeGame {
         return tryCount;
     }
 
+    public boolean isCrossAllBridge() {
+        return crossAllBridge;
+    }
 }
