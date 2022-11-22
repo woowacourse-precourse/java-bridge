@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Round {
+    public static final int NEXT_ROUND = 1;
     public static final int ROUND_LOWER_BOUND = 1;
     public static final int ROUND_UPPER_BOUND = 20;
     private static final Map<Integer, Round> CACHE = new HashMap<>();
@@ -51,5 +52,9 @@ public class Round {
 
     public static Round firstRound() {
         return CACHE.get(ROUND_LOWER_BOUND);
+    }
+
+    public Round nextRound() {
+        return CACHE.getOrDefault(this.number + NEXT_ROUND, this);
     }
 }
