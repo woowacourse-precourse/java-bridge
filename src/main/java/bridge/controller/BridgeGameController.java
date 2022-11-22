@@ -32,8 +32,6 @@ public class BridgeGameController {
         }
 
          outputView.printFinalResult(bridgeGame, isSuccess);
-     }
-        outputView.printResult(bridgeGame.getGameRoundCount(), isSuccess);
     }
 
     private Bridge createBridge() {
