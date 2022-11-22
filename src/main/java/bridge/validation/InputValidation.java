@@ -1,6 +1,10 @@
 package bridge.validation;
 
 import static bridge.constants.ErrorMessage.*;
+import static bridge.domain.GameCommand.QUIT;
+import static bridge.domain.GameCommand.RETRY;
+import static bridge.domain.Moving.DOWN;
+import static bridge.domain.Moving.UP;
 
 public class InputValidation {
 
@@ -24,13 +28,13 @@ public class InputValidation {
     }
 
     public static void validateReadMoving(String moving) {
-        if (!moving.equals("U") && !moving.equals("D")) {
+        if (!moving.equals(UP.getMoving()) && !moving.equals(DOWN.getMoving())) {
             throw new IllegalArgumentException(INVALID_MOVING_ERROR.getMessage());
         }
     }
 
     public static void validateReadGameCommand(String gameCommand) {
-        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+        if (!gameCommand.equals(RETRY.getGameCommand()) && !gameCommand.equals(QUIT.getGameCommand())) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND_ERROR.getMessage());
         }
     }

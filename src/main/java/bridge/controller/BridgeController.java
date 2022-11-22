@@ -8,6 +8,8 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.domain.GameCommand.QUIT;
+
 public class BridgeController {
 
     private final InputView inputView;
@@ -68,7 +70,7 @@ public class BridgeController {
 
     private boolean checkRetry(BridgeGame bridgeGame) {
         String gameCommand = inputView.readGameCommand();
-        if (gameCommand.equals("Q")) {
+        if (gameCommand.equals(QUIT.getGameCommand())) {
             printFailFinalResult(bridgeGame);
             return false;
         }
