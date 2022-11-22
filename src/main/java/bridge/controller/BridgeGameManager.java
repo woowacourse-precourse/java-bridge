@@ -8,6 +8,7 @@ import bridge.viewer.InputView;
 import bridge.viewer.OutputView;
 
 public class BridgeGameManager {
+    public static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     public static String readGameCommand() {
         System.out.println(InputView.GAME_COMMAND_MESSAGE);
         return InputView.readGameCommand();
@@ -29,5 +30,9 @@ public class BridgeGameManager {
         GameResult gameResult = bridge.play(userTable);
         OutputView.printMap(userTable, gameResult);
         return gameResult;
+    }
+
+    public static void showStartMessage() {
+        System.out.println(START_MESSAGE);
     }
 }

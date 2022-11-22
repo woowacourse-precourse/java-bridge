@@ -15,6 +15,6 @@ public class BridgeExceptionTest {
         assertThatThrownBy(() -> {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             bridgeMaker.makeBridge(size);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalStateException.class);
     }
 }
