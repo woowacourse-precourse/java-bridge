@@ -61,7 +61,7 @@ public class BridgeGameController {
             return false;
         }
         String replay = inputView.readGameCommand();
-        if (replay.equals(Restart.getGameCommand())) {
+        if (isRestart(replay)) {
             return true;
         }
         return false;
