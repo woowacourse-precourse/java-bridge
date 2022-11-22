@@ -73,7 +73,7 @@ public class BridgeGameTest {
         }
     }
 
-    @DisplayName("이동을 시도할 때에는")
+    @DisplayName("이동을 시도할 때에")
     @Nested
     class MoveTests {
 
@@ -84,7 +84,7 @@ public class BridgeGameTest {
             bridgeGame = new BridgeGame(Arrays.asList("UUD".split("")));
         }
 
-        @DisplayName("산 상태로 움직이는 건 성공해야 한다.")
+        @DisplayName("산 상태로 이동하는 건 성공해야 한다.")
         @Test
         void moveWhileAliveTest() {
             bridgeGame.move(InGameCommandType.MOVE_UP);
@@ -92,7 +92,7 @@ public class BridgeGameTest {
             bridgeGame.move(InGameCommandType.MOVE_DOWN);
         }
 
-        @DisplayName("죽은 상태로 움직이면 실패해야 한다.")
+        @DisplayName("죽은 상태로 이동하는 건 실패해야 한다.")
         @Test
         void moveWhileDeadTest() {
             bridgeGame.move(InGameCommandType.MOVE_UP);
@@ -102,7 +102,7 @@ public class BridgeGameTest {
         }
     }
 
-    @DisplayName("재시작/종료 명령어를 입력할 때에는")
+    @DisplayName("재시작/종료 명령어를 입력할 때에")
     @Nested
     class RetryTests {
 
@@ -113,7 +113,7 @@ public class BridgeGameTest {
             bridgeGame = new BridgeGame(Arrays.asList("DUU".split("")));
         }
 
-        @DisplayName("죽은 상태로 재시작하는 건 성공해야 한다.")
+        @DisplayName("죽은 상태로 재시작 하는 건 성공해야 한다.")
         @Test
         void retryWhileDeadTest() {
             bridgeGame.move(InGameCommandType.MOVE_UP);
