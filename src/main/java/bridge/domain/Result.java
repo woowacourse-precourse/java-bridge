@@ -28,6 +28,13 @@ public class Result {
         return GameState.PLAYING.name();
     }
 
+    public String getWinningResult() {
+        if(!moveSuccess) {
+            return GameState.LOOSE.getLabel();
+        }
+        return GameState.WIN.getLabel();
+    }
+
     private void updateMoveSuccess(List<String> answerBridge, int lastIndex, String moveInput) {
         moveSuccess = answerBridge.get(lastIndex).equals(moveInput);
     }
