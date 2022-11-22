@@ -2,10 +2,13 @@ package bridge.game;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.generator.Answer;
+import bridge.generator.BridgeRandomNumberGenerator;
 import bridge.input.UserMove;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -50,26 +53,28 @@ class BridgeGameTest {
     }
 
     @DisplayName("현재까지 이동 결과 조회 기능 테스트")
-    @ValueSource(strings = {"U", "D"})
-    @ParameterizedTest
-    void showCurrentResult(String destination) {
+    @RepeatedTest(10)
+    void showCurrentResult() {
         //given
-        bridgeGame.moveCycle(UserMove.getUserMove(destination));
+        String move = getRandomMove();
+        bridgeGame.moveCycle(UserMove.getUserMove(move));
         String answer = bridgeGame.showRightDestinationInArea(0);
         //when
         List<Move> moves = bridgeGame.showCurrentMap();
         //then
         assertThat(moves.size()).isEqualTo(1);
-        assertThat(moves.get(0).getDestination()).isEqualTo(destination);
-        assertThat(moves.get(0).isSuccess()).isEqualTo(destination.equals(answer));
+        assertThat(moves.get(0).getDestination()).isEqualTo(move);
+        assertThat(moves.get(0).isSuccess()).isEqualTo(move.equals(answer));
     }
 
     @DisplayName("재도전 기능 테스트")
-    @Test
-    void retry() {
+    @ValueSource(ints = {1, 2, 3, 4, 5})
+    @ParameterizedTest
+    void retry(int cycleCount) {
         //given
-        bridgeGame.moveCycle(UserMove.getUserMove("D"));
-        bridgeGame.moveCycle(UserMove.getUserMove("U"));
+        for (int i = 0; i < cycleCount; i++) {
+            bridgeGame.moveCycle(UserMove.getUserMove(getRandomMove()));
+        }
         //when
         bridgeGame.retry();
         //when
@@ -78,19 +83,19 @@ class BridgeGameTest {
     }
 
     @DisplayName("이동 결과 반환 받기 테스트")
-    @ValueSource(strings = {"U", "D"})
-    @ParameterizedTest
-    void moveResult(String destination) {
+    @RepeatedTest(10)
+    void moveResult() {
         //given
-        bridgeGame.moveCycle(UserMove.getUserMove(destination));
+        String move = getRandomMove();
+        bridgeGame.moveCycle(UserMove.getUserMove(move));
         String answer = bridgeGame.showRightDestinationInArea(0);
         //when
         Result result = bridgeGame.moveResult();
         //then
-        if (destination.equals(answer)) {
+        if (move.equals(answer)) {
             assertThat(result).isEqualTo(Result.CONTINUE);
         }
-        if (!destination.equals(answer)) {
+        if (!move.equals(answer)) {
             assertThat(result).isEqualTo(Result.FAIL);
         }
     }
@@ -157,25 +162,25 @@ class BridgeGameTest {
     }
 
     @DisplayName("게임 캐릭터가 이동할 칸의 이동 가능 여부 체크 테스트")
-    @ValueSource(strings = {"U", "D"})
-    @ParameterizedTest
-    void isAbleToMove(String destination) {
+    @RepeatedTest(10)
+    void isAbleToMove() {
         //given
+        String move = getRandomMove();
         String answer = bridgeGame.showRightDestinationInArea(character.showNextArea());
-        boolean expect = answer.equals(destination);
-        character.setNextMove(UserMove.getUserMove(destination));
+        boolean expect = answer.equals(move);
+        character.setNextMove(UserMove.getUserMove(move));
         int nextArea = character.showNextArea();
         //when
-        boolean ableToMove = bridgeGame.isAbleToMove(nextArea, destination);
+        boolean ableToMove = bridgeGame.isAbleToMove(nextArea, move);
         //then
         assertThat(ableToMove).isEqualTo(expect);
     }
 
     @DisplayName("다음 진행 결과 만들기")
-    @Test
+    @RepeatedTest(10)
     void makeMove() {
         //given
-        String destination = "U";
+        String destination = getRandomMove();
         boolean isSuccess = true;
         //when
         Move move = bridgeGame.makeMove(destination, isSuccess);
@@ -185,34 +190,40 @@ class BridgeGameTest {
     }
 
     @DisplayName("다음 이동 결과 저장")
-    @ValueSource(strings = {"U", "D"})
-    @ParameterizedTest
-    void saveNextMove(String destination) {
+    @RepeatedTest(10)
+    void saveNextMove() {
         //given
-        character.setNextMove(UserMove.getUserMove(destination));
+        String move = getRandomMove();
+        character.setNextMove(UserMove.getUserMove(move));
         String answer = bridgeGame.showRightDestinationInArea(character.showNextArea());
-        boolean moveResult = destination.equals(answer);
+        boolean moveResult = move.equals(answer);
         //when
         bridgeGame.saveNextMove();
         //then
         List<Move> currentResult = bridgeGame.showCurrentMap();
         assertThat(currentResult.size()).isEqualTo(1);
-        assertThat(currentResult.get(0).getDestination()).isEqualTo(destination);
+        assertThat(currentResult.get(0).getDestination()).isEqualTo(move);
         assertThat(currentResult.get(0).isSuccess()).isEqualTo(moveResult);
     }
 
     @DisplayName("입력한 곳으로 캐릭터가 이동시 결과 저장 후 이동")
-    @ValueSource(strings = {"U", "D"})
-    @ParameterizedTest
-    void moveCycle(String destination) {
+    @RepeatedTest(10)
+    void moveCycle() {
         //given
+        String move = getRandomMove();
         //when
-        bridgeGame.moveCycle(UserMove.getUserMove(destination));
+        bridgeGame.moveCycle(UserMove.getUserMove(move));
         //then
-        assertThat(character.showNextDestination()).isEqualTo(destination);
+        assertThat(character.showNextDestination()).isEqualTo(move);
         assertThat(character.showCurrentLocation()).isEqualTo(0);
         List<Move> moves = bridgeGame.showCurrentMap();
         assertThat(moves.size()).isEqualTo(1);
-        assertThat(moves.get(0).getDestination()).isEqualTo(destination);
+        assertThat(moves.get(0).getDestination()).isEqualTo(move);
+    }
+
+    String getRandomMove() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        int answerNumber = bridgeRandomNumberGenerator.generate();
+        return Answer.getAnswerByNumber(answerNumber).getLetter();
     }
 }
