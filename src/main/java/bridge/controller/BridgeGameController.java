@@ -27,14 +27,14 @@ public class BridgeGameController {
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
-        boolean movingSuccess;
+        boolean keepGoing;
         do {
-            movingSuccess = moveAndCheckMovingSuccess(bridgeGame);
+            keepGoing = moveAndCheckMovingSuccess(bridgeGame);
             outputView.printMap(bridgeGame.getMovingMap());
-            if (!movingSuccess) {
-                retryOrFinish(bridgeGame);
+            if (!keepGoing && retryGame(bridgeGame)) {
+                keepGoing = true;
             }
-        } while (movingSuccess && !bridgeGame.allPass());
+        } while (keepGoing && !bridgeGame.allPass());
     }
 
     private boolean moveAndCheckMovingSuccess(BridgeGame bridgeGame) {
@@ -43,10 +43,12 @@ public class BridgeGameController {
         return bridgeGame.move(moving);
     }
 
-    private void retryOrFinish(BridgeGame bridgeGame) {
+    private boolean retryGame(BridgeGame bridgeGame) {
         outputView.printRetryMessage();
         if (inputView.readGameCommand().equals(Command.RETRY.getLabel())) {
             bridgeGame.retry();
+            return true;
         }
+        return false;
     }
 }
