@@ -2,7 +2,6 @@ package bridge.model;
 
 import bridge.BridgeRandomNumberGenerator;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,16 +9,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static final BridgeComparator bridgeComparator = new BridgeComparator();
-    private static final BridgeCalculator BRIDGE_CALCULATOR = new BridgeCalculator();
+    private static BridgeComparator bridgeComparator = new BridgeComparator();
+    private static BridgeCalculator bridgeCalculator = new BridgeCalculator();
     private final List<String> bridge;
     private BridgeMap bridgeMap;
     private int location;
     private int retryCount;
 
     private BridgeGame(int size) {
-        this.location = BRIDGE_CALCULATOR.getInitLocation();
-        this.retryCount = BRIDGE_CALCULATOR.getInitRetryCount();
+        this.location = bridgeCalculator.getInitLocation();
+        this.retryCount = bridgeCalculator.getInitRetryCount();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
         bridgeMap = BridgeMap.createBridgeMap(size);
@@ -54,7 +53,7 @@ public class BridgeGame {
     }
 
     private void countLocation() {
-        location += BRIDGE_CALCULATOR.countNum(location);
+        location += bridgeCalculator.countNum(location);
     }
 
 
@@ -77,7 +76,7 @@ public class BridgeGame {
     }
 
     private void initLocation() {
-        location = BRIDGE_CALCULATOR.getInitLocation();
+        location = bridgeCalculator.getInitLocation();
     }
 
     public boolean isFail() {
@@ -85,7 +84,7 @@ public class BridgeGame {
     }
 
     public void countRetry() {
-        retryCount += BRIDGE_CALCULATOR.countNum(retryCount);
+        retryCount += bridgeCalculator.countNum(retryCount);
     }
 
 }
