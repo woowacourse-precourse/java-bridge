@@ -1,23 +1,42 @@
 package bridge;
 
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
+import static java.util.stream.Collectors.*;
+
 public class BridgeMaker {
-
+    private final int minLength = 3;
+    private final int maxLength = 20;
     private final BridgeNumberGenerator bridgeNumberGenerator;
+
+    public final static List<String> UP_DOWN_SELECTOR = List.of("D", "U");
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
+    public List<String> makeRandomBridgeProcess(String size){
+        validationBridgeInteger(size);
+        validationBridgeRange(Integer.valueOf(size));
+        return makeBridge(Integer.valueOf(size));
+    }
+    private void validationBridgeInteger(String size){
+        if (!Pattern.matches("[0-9]*", size)){
+            throw new IllegalArgumentException(Errors.ONLY_NUMBER.getMessage());
+        }
+    }
+    private void validationBridgeRange(int size){
+        if(size < minLength || size > maxLength){
+            throw new IllegalArgumentException(Errors.BRIDGE_LENGTH.getMessage());
+        }
+    }
+
     public List<String> makeBridge(int size) {
-        return null;
+        return  IntStream.range(0, size)
+                .map(n -> bridgeNumberGenerator.generate())
+                .mapToObj(UP_DOWN_SELECTOR::get)
+                .collect(toList());
     }
 }
