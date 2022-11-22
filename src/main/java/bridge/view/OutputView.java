@@ -31,7 +31,7 @@ public class OutputView {
     public void printResult(String userPathLog, String gameResult, int tryCount) {
         System.out.println(GAME_END_MESSAGE);
         System.out.print(userPathLog);
-        System.out.println(String.format(GAME_RESULT_MESSAGE + GAME_TRY_COUNT_MESSAGE, gameResult, tryCount));
+        System.out.print(String.format(GAME_RESULT_MESSAGE + GAME_TRY_COUNT_MESSAGE, gameResult, tryCount));
     }
 
     public void printErrorMessage(String message) {
