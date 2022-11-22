@@ -21,9 +21,9 @@ public class OutputView {
 
     public static void printMap(List<List<String>> map) {
 
-        System.out.println(map.get(UP.getNumber()).stream()
+        System.out.println(map.get(UP.getDirectionNumber()).stream()
                .collect(Collectors.joining(BRIDGE_DELIMITER, BRIDGE_PREFIX, BRIDGE_SUFFIX)));
-        System.out.println(map.get(DOWN.getNumber()).stream()
+        System.out.println(map.get(DOWN.getDirectionNumber()).stream()
                 .collect(Collectors.joining(BRIDGE_DELIMITER, BRIDGE_PREFIX, BRIDGE_SUFFIX)));
     }
 

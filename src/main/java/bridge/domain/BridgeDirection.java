@@ -15,8 +15,12 @@ public enum BridgeDirection {
         this.direction = direction;
     }
 
-    public int getNumber(){
+    public int getDirectionNumber() {
         return directionNumber;
+    }
+
+    public String getDirection() {
+        return direction;
     }
 
     public static String getDirection(int directionNumber) {
@@ -29,7 +33,7 @@ public enum BridgeDirection {
     public static int getDirectionNumber(String direction) {
         return Arrays.stream(values())
                 .filter(BridgeDirection -> BridgeDirection.direction.equals(direction))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException("[ERROR] 0과 1외의 무작위 값이 발생하였습니다 "))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("[ERROR] U와 D외의 값을 입력하였습니다. "))
                 .directionNumber;
     }
 
