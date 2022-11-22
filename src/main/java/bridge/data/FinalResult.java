@@ -1,5 +1,7 @@
 package bridge.data;
 
+import bridge.constant.GameResult;
+
 import java.util.List;
 
 public class FinalResult {
