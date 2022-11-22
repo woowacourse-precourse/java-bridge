@@ -1,7 +1,6 @@
 package bridge.view;
 
-import bridge.model.Error;
-import bridge.view.Print;
+import bridge.utils.Error;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -17,7 +16,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() throws IllegalArgumentException{
-        String userInput = getUserInput();
+        String userInput = Console.readLine().trim();
         isNumber(userInput);
         int bridgeSize = Integer.parseInt(userInput);
         numberRangeCheck(bridgeSize);

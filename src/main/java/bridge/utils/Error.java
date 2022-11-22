@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.utils;
 
 public enum Error {
     NOT_A_NUMBER("[ERROR] 숫자 외의 문자가 포함되어있습니다."),
