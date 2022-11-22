@@ -18,11 +18,8 @@ public class Application {
         String success;
 
         while (true) {
-            if (bridgeGame.move(bridge)){
-                success = "성공";
-                break;
-            }
-            success = "실패";
+            success = successFail(bridge);
+            if (success == "성공")break;
 
             if(bridgeGame.retry()){
                 trial++;
@@ -31,5 +28,12 @@ public class Application {
             break;
         }
         outputView.printResult(success, trial);
+    }
+
+    private static String successFail(List<String> bridge){
+        if (bridgeGame.move(bridge)){
+            return "성공";
+        }
+        return "실패";
     }
 }
