@@ -4,7 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.Game;
 import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
-import bridge.util.BridgeRandomNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
