@@ -83,4 +83,22 @@ public class BridgeGameTest {
         // Then
         assertThat(bridgeGame.getNumberOfTries()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("게임 재시도할 경우 기존의 다리 사용하는지 확인 ")
+    void retry_PlayerCommandsClear_KeepTryCount() {
+        // Given
+        BridgeGame bridgeGame = new BridgeGame(3, Arrays.asList("U", "D", "D"));
+
+        // When
+        if (!bridgeGame.move("D", 0)) {
+            bridgeGame.retry();
+        }
+        boolean firstStep = bridgeGame.move("U", 0);
+        boolean secondStep = bridgeGame.move("D", 1);
+        boolean thirdStep = bridgeGame.move("D", 2);
+
+        // Then
+        assertThat(bridgeGame.isSuccess()).isEqualTo(true);
+    }
 }
