@@ -103,7 +103,10 @@ public class BridgeGame {
     public Boolean retry(int bridgeSize, List<String> randomBridge) {
         printChooseRetryGameMessage();
         String retryGameInput = readGameCommand();
-        if (retryGameInput.equals(QUIT)) return true;
+        if (retryGameInput.equals(QUIT)) {
+            printFinalGameResultMessage(false);
+            return true;
+        }
 
         BridgeGame bridgeGame = new BridgeGame();
         return initGame(bridgeSize, bridgeGame, randomBridge);
@@ -121,6 +124,7 @@ public class BridgeGame {
                 return false;
             }
         }
+        printFinalGameResultMessage(true);
         return true;
     }
 }

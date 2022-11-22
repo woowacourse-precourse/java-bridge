@@ -27,6 +27,11 @@ public class OutputView {
         System.out.println(CHOOSE_RETRY_GAME_MESSAGE);
     }
 
+    public static void printFinalGameResultMessage(boolean isEntered) {
+        if (isEntered) System.out.print(ENTER);
+        System.out.println(FINAL_GAME_RESULT_MESSAGE);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
