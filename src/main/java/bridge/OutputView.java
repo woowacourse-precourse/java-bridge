@@ -9,22 +9,42 @@ import java.util.List;
 public class OutputView {
 
     private static final String EMPTY = " ";
+    private final static String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private final static String SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+
+    private final static String MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
+    private final static String COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
+
     private static final List<String> RESULT_MESSAGE =
             new ArrayList<String>(List.of("최종 게임 결과",  "게임 성공 여부: ","총 시도한 횟수: "));
     private static final List<String> BRIDGE_MESSAGE = new ArrayList<String>(List.of("[ "," | ", " ]"));
 
-    public void printMap(List<Glass> history, State lastState) {
-        System.out.println(drawMap(history, lastState));
+    public void printStartMessage(){
+        System.out.println(START_MESSAGE);
+    }
+    public void printSizeMessage(){
+        System.out.println(SIZE_MESSAGE);
+    }
+    public void printMoveMessage(){
+        System.out.println(MOVE_MESSAGE);
+    }
+    public void printCommandMessage(){
+        System.out.println(COMMAND_MESSAGE);
+    }
+    public void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
     }
 
 
     public void printResult(List<Glass> history, State lastState, int play) {
         System.out.println(drawResult(history, lastState, play));
     }
-
-    public void printErrorMessage(String errorMessage){
-        System.out.println(errorMessage);
+    public void printMap(List<Glass> history, State lastState) {
+        System.out.println(drawMap(history, lastState));
     }
+
 
     public String drawMap(List<Glass> history, State lastState){
         List<String> map= new ArrayList<String>(List.of(BRIDGE_MESSAGE.get(0),BRIDGE_MESSAGE.get(0)));
