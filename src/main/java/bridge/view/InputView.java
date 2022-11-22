@@ -2,6 +2,7 @@ package bridge.view;
 
 import static bridge.exception.IllegalArgumentExceptionMessage.ILLEGAL_BRIDGE_LENGTH;
 
+import bridge.bridge.BridgePosition;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -24,11 +25,9 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
+    public BridgePosition readMoving() throws IllegalArgumentException {
+        String moving = Console.readLine();
+        return BridgePosition.fromString(moving);
     }
 
     /**
