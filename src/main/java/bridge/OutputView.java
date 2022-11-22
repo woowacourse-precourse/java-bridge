@@ -74,4 +74,7 @@ public class OutputView {
     public static void printTotalTry(int totalTry){
         System.out.println(TOTAL_TRY+IS+totalTry);
     }
+    public static void printError(String errorMessage){
+        System.out.println(errorMessage);
+    }
 }
