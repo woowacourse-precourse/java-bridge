@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.command.BridgeSize;
+import bridge.command.Movement;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -16,11 +17,12 @@ public class Application {
         printTitle();
         final BridgeSize bridgeSize = askBridgeSize();
         final BridgeGame bridgeGame = createBridgeGame(bridgeSize);
-        askMoving();
+        final Movement movement = askMoving();
     }
 
-    private static void askMoving() {
+    private static Movement askMoving() {
         outputView.printMoving();
+        return inputView.readMoving();
     }
 
     private static BridgeGame createBridgeGame(final BridgeSize bridgeSize) {
