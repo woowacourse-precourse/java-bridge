@@ -46,8 +46,7 @@ public class InputView {
             input = Console.readLine();
             checkInputObject(methodType, input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.println("다시 입력해주세요");
+            System.out.print(e.getMessage() + " 다시 입력해주세요.\n");
             input = checkInputMethod(methodType);
         }
         return input;
