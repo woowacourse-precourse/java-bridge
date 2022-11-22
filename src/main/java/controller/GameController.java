@@ -35,8 +35,7 @@ public class GameController {
             move = InputView.readMoving();
             success = BridgeGame.move(bridge, move, i);
             OutputView.printMap(BridgeGame.getUp_bridge(), BridgeGame.getDown_bridge());
-            if (success == false)
-                break;
+            if (success == false) break;
         }
         return success;
     }

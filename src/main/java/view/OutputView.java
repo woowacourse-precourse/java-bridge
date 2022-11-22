@@ -15,8 +15,6 @@ public class OutputView {
     public static void printMap(List<String> up_bridge, List<String> down_bridge) {
         System.out.println(make_string(up_bridge));
         System.out.println(make_string(down_bridge)+"\n");
-        //System.out.println(up_bridge.toString().replaceAll(","," |"));
-        //System.out.println(down_bridge.toString().replaceAll(","," |")+"\n");
     }
     public static String make_string(List<String> bridge){
         String str_bridge = "[ ";
