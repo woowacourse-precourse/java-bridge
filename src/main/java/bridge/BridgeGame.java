@@ -17,7 +17,7 @@ public class BridgeGame {
         try {
             int size = Integer.parseInt(stringSize);
             if (size < 3 || size > 20)
-                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException();
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             this.isInProgress = true;
             this.size = size;
