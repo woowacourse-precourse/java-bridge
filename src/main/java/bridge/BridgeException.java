@@ -4,7 +4,8 @@ import view.InputView;
 
 public class BridgeException {
     private final String BRIDGE_SIZE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    private final String MOVE_SIDE_INPUT_ERROR = "[ERROR] 이동할 칸은 U 또는 D여야 합니다.";
+    private final String MOVE_SIDE_INPUT_ERROR = "[ERROR] 이동할 칸 입력은 U 또는 D여야 합니다.";
+    private final String RETRY_COMMAND_INPUT_ERROR = "[ERROR] 게임 재시작 여부를 위한 입력은 R 또는 Q여야 합니다.";
 
     public int bridgeSizeInputException() {
         try {
@@ -49,7 +50,25 @@ public class BridgeException {
 
     public void isCommandUOrD(String sideToMove) {
         if (!sideToMove.equals("U") && !sideToMove.equals("D")) {
-            throw new IllegalArgumentException(MOVE_SIDE_INPUT_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public String retryException(String retryCommand) {
+        try {
+            isCommandROrQ(retryCommand);
+        } catch (IllegalArgumentException e) {
+            System.out.println(RETRY_COMMAND_INPUT_ERROR);
+            retryCommand = new InputView().readGameCommand();
+            retryCommand = retryException(retryCommand);
+            return retryCommand;
+        }
+        return retryCommand;
+    }
+
+    public void isCommandROrQ(String retryCommand) {
+        if (!retryCommand.equals("R") && !retryCommand.equals("Q")) {
+            throw new IllegalArgumentException();
         }
     }
 }

@@ -54,10 +54,21 @@ public class BridgeController {
     public int gameFailed(int tryCount) {
         if (bridgeGame.isFailed(moveResult)) {
             String retryCommand = new InputView().readGameCommand();
-            tryCount = failedCase(tryCount, retryCommand);
-            return tryCount;
+            retryCommand = retryCommandIsROrQ(retryCommand);
+            if (retryCommand.equals("R") || retryCommand.equals("Q")) {
+                tryCount = failedCase(tryCount, retryCommand);
+                return tryCount;
+            }
         }
         return tryCount;
+    }
+
+    public String retryCommandIsROrQ(String retryCommand) {
+        if (!retryCommand.equals("R") && !retryCommand.equals("Q")) {
+            retryCommand = new BridgeException().retryException(retryCommand);
+            return retryCommand;
+        }
+        return retryCommand;
     }
 
     public int failedCase(int tryCount, String retryCommand) {
