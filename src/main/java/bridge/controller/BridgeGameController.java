@@ -33,6 +33,8 @@ public class BridgeGameController {
             try {
                 resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
 
+            }catch (IllegalArgumentException e) {
+                System.out.println(e);
             }finally {
                 System.out.println("오류");
             }
