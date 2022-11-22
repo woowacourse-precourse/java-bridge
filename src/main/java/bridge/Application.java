@@ -21,9 +21,12 @@ public class Application {
 
     public static List<String> phase2_setBridge(OutputView outputView,
                                                 InputView inputView,
-                                                BridgeMaker bridgeMaker){
+                                                BridgeMaker bridgeMaker,
+                                                BridgeGame bridgeGame){
         outputView.printGetBridgeLength();
         int bridgeLength = inputView.readBridgeSize();
-        return bridgeMaker.makeBridge(bridgeLength);
+        List<String> bridgeAnswer = bridgeMaker.makeBridge(bridgeLength);
+        bridgeGame.setBridgeAnswer(bridgeAnswer);
+        return bridgeAnswer;
     }
 }
