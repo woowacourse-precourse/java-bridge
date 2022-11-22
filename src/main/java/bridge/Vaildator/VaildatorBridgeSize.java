@@ -23,7 +23,6 @@ public class VaildatorBridgeSize {
         if (!userInputBridgeString.matches(Constant.REGEX)) {
             throw new IllegalArgumentException(Constant.ERROR + Constant.INPUT_BRIDGE_SIZE_STRING);
         }
-
     }
 
     private void rangeValidate() {
