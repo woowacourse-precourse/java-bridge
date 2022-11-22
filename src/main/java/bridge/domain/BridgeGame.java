@@ -42,6 +42,7 @@ public class BridgeGame {
     public boolean isPlaying() {
         return gameStatus == GameStatusType.PLAYING;
     }
+
     public boolean isEnd() {
         return stageCount == bridgeInfo.size() && gameStatus != GameStatusType.FAIL;
     }
@@ -53,6 +54,7 @@ public class BridgeGame {
     public boolean isPassed(int index, String moving) {
         return bridgeInfo.get(index).equals(moving);
     }
+
     public void increaseStageCount() {
         stageCount++;
     }
