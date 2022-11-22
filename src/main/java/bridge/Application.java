@@ -3,6 +3,7 @@ package bridge;
 import static bridge.Constant.*;
 
 import bridge.BridgeGame.MoveResult;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -52,7 +53,7 @@ public class Application {
         int length = inputView.readBridgeSize();
         System.out.println();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(length);
+        List<String> bridge = bridgeMaker.makeBridge(length, new ArrayList<>());
         return new BridgeGame(bridge);
     }
 
