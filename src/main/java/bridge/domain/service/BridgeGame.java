@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain.service;
 
 import static bridge.domain.enums.Result.FAIL;
 import static bridge.domain.enums.Result.SUCCESS;
@@ -7,6 +7,8 @@ import static bridge.domain.enums.Status.PROGRESS_STATUS;
 import static bridge.domain.enums.Status.SUCCESS_STATUS;
 
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.controller.request.BridgeSizeRequest;
 import bridge.controller.request.MoveRequest;
 import bridge.domain.enums.Result;
