@@ -94,7 +94,6 @@ class ApplicationTest extends NsTest {
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
-
         private final List<Integer> numbers;
 
         TestNumberGenerator(List<Integer> numbers) {
