@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.BridgeMove;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,17 +26,16 @@ public class BridgeMaker {
             int number= bridgeNumberGenerator.generate();
             bridges.add(convertNumber2Bridge(number));
         }
-
         return bridges;
     }
 
     private String convertNumber2Bridge(int number) {
         String bridge = null;
         if (number == 0) {
-            bridge = "D";
+            bridge = BridgeMove.MOVE_DOWN.getMove();
         }
         if (number == 1) {
-            bridge = "U";
+            bridge = BridgeMove.MOVE_UP.getMove();
         }
         return bridge;
     }
