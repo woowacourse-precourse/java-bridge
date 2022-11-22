@@ -28,14 +28,22 @@ public class GameResult {
     }
 
     public void setUpBridgeResult(String output) {
+        validate(output);
         upBridgeResult.add(output);
     }
 
     public void setDownBridgeResult(String output) {
+        validate(output);
         downBridgeResult.add(output);
     }
 
     public void setBridgeGameResult(boolean bridgeGameResult) {
         this.bridgeGameResult = bridgeGameResult;
+    }
+
+    public void validate(String output) {
+        if (!output.equals("O") && !output.equals("X") && !output.equals(" ")) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 값이 들어왔습니다.");
+        }
     }
 }
