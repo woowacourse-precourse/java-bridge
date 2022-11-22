@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.bridgeMaker.BridgeMaker;
-import bridge.bridgeMaker.BridgeNumberGenerator;
 import bridge.bridgeMaker.BridgeRandomNumberGenerator;
 import bridge.input.InputView;
 
@@ -36,13 +35,16 @@ public class GameStart {
         do {
             outputView.printInputSizeMessage();
             bridgeSize = inputView.readBridgeSize();
-        } while (bridgeSize != 0);
+        } while (bridgeSize == 0);
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private String move() {
-        outputView.printInputMoveMessage();
-        String moveBlock = inputView.readMoving();
+    private String inputMove() {
+        String moveBlock = "";
+        do {
+            outputView.printInputMoveMessage();
+            moveBlock = inputView.readMoving();
+        } while (moveBlock.equals(""));
         return moveBlock;
     }
 
@@ -52,7 +54,7 @@ public class GameStart {
         do {
             countOfPlay++;
             for (countOfMove = 0; countOfMove < bridgeSize; countOfMove++) {
-                String moveBlock = move();
+                String moveBlock = inputMove();
                 boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
                 outputView.printMap(bridge, countOfMove, isMove);
                 if (!isMove) {
