@@ -1,10 +1,7 @@
 package bridge.service.validator;
 
-import bridge.exception.BridgeIllegalArgumentException;
-import bridge.service.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import bridge.setting.BridgeMakerEnum;
-import bridge.setting.Setting;
-import bridge.view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.service.BridgeRandomNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.service.validator.BridgeGameEnd;
 import bridge.service.validator.BridgeLength;
 import bridge.service.validator.BridgeMaker;
