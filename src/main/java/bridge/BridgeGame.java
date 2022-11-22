@@ -18,8 +18,8 @@ public class BridgeGame {
         String moving = inputView.readMoving();
         String target = bridge.get(index);
 
-        if (target.equals(moving)){
-            return "O";
+            if (target.equals(moving)){
+                return "O";
         }
         return  "X";
     }
