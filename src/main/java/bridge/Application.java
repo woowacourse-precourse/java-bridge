@@ -13,14 +13,12 @@ public class Application {
 
     public static void main(String[] args) {
         int trial = 0;
-
         initView();
         initBridge();
         user = new User();
 
         greetings();
         List<String> answer = init();
-        System.out.println("answer = " + answer.toString());
         askUntilDone(answer, trial);
     }
 
