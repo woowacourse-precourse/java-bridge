@@ -36,6 +36,17 @@ public class InputViewTest extends NsTest {
         });
     }
 
+    @DisplayName("U 또는 D 의외에 이동할 칸을 입력받았을 경우")
+    @Test
+    void checkMovingPlace() {
+        assertSimpleTest(
+                () -> {
+                    runException("K","45");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
 
 
 
