@@ -81,7 +81,18 @@ public class BridgeGame {
         if (userInput.get(userInput.size() - 1).equals("Q")) {
             return "실패";
         }
-
         return "성공";
+    }
+
+    public int getCurrentProgress(){
+        return this.userInput.size();
+    }
+
+    public String getDirectionAt(int index){
+        return this.userInput.get(index);
+    }
+
+    public boolean compareTo(int index){
+        return this.userInput.get(index).equals(this.bridge.get(index));
     }
 }
