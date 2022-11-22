@@ -21,13 +21,14 @@ class CurrentBridgeTest {
     @DisplayName("CurrentBridge는 현재 구역을 까지의 위구역과 아래구역을 가지고 있어야 한다.")
     void currentBridgeHaveCurrentShape() {
         // given
-        List<String> currentShape = List.of("U", "D", "U");
+        List<String> currentShape1 = List.of("U");
+        List<String> currentShape2 = List.of("U", "D");
+        List<String> currentShape3 = List.of("U", "D", "U");
 
         // when
-        currentBridge.setSection(List.of("U"), "U");
-        currentBridge.setSection(List.of("U", "D"), "D");
-
-        currentBridge.setSection(currentShape, "U");
+        currentBridge.setSection(currentShape1, "U");
+        currentBridge.setSection(currentShape2, "D");
+        currentBridge.setSection(currentShape3, "U");
 
         // then
         assertEquals(List.of("O", " ", "O"), currentBridge.getUpperSection());
@@ -38,13 +39,14 @@ class CurrentBridgeTest {
     @DisplayName("CurrentBridge는 입력값과 다리의 구역이 틀리면 X를 포함한 리스트를 반환 해야한다.")
     void currentBridgeHaveX() {
         // given
-        List<String> currentShape = List.of("U", "D", "U");
+        List<String> currentShape1 = List.of("U");
+        List<String> currentShape2 = List.of("U", "D");
+        List<String> currentShape3 = List.of("U", "D", "U");
 
         // when
-        currentBridge.setSection(List.of("U"), "U");
-        currentBridge.setSection(List.of("U", "D"), "D");
-
-        currentBridge.setSection(currentShape, "D");
+        currentBridge.setSection(currentShape1, "U");
+        currentBridge.setSection(currentShape2, "D");
+        currentBridge.setSection(currentShape3, "D");
 
         // then
         assertEquals(List.of("O", " ", " "), currentBridge.getUpperSection());
@@ -52,7 +54,7 @@ class CurrentBridgeTest {
     }
 
     @Test
-    @DisplayName("마지막 구역이 O이면 true를 리턴한다.")
+    @DisplayName("isSuccessLastSection 메서드는 마지막 구역이 O이면 true를 리턴한다.")
     void lastSectionOTrue() {
         // given
         List<String> currentShape = List.of("U", "D", "U");
@@ -66,7 +68,7 @@ class CurrentBridgeTest {
     }
 
     @Test
-    @DisplayName("마지막 구역이 X이면 false를 리턴한다.")
+    @DisplayName("isSuccessLastSection 메서드는 마지막 구역이 X이면 false를 리턴한다.")
     void lastSectionXFalse() {
         // given
         List<String> currentShape = List.of("U", "D", "U");
