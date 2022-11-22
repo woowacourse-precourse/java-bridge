@@ -1,12 +1,14 @@
 package bridge;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ApplicationTestSelf extends NsTest {
+class BridgeSizeTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
@@ -26,6 +28,7 @@ class ApplicationTestSelf extends NsTest {
         });
     }
 
+    @DisplayName("다리 생성 잘못된 입력")
     @Test
     void 예외_테스트_숫자_범위_미일치_1() {
         assertSimpleTest(() -> {
