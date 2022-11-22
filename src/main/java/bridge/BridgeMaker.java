@@ -30,7 +30,7 @@ public class BridgeMaker {
         return bridgeNumber;
     }
 
-    public String numberToUpDown (int number) {
+    private String numberToUpDown (int number) {
 
         if (number == 1) {
             return "U";
