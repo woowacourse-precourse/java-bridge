@@ -20,4 +20,8 @@ public class Bridge {
                 .collect(Collectors.toList());
         return new Bridge(possibleMovements);
     }
+
+    public List<Movement> getPossibleMovements() {
+        return possibleMovements;
+    }
 }
