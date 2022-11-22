@@ -18,6 +18,8 @@ public class OutputView {
         String correctMove = bridge.get(bridge.size() - 1);
         bridge = bridge.subList(0, bridge.size() - 1);
         List<String> bridgeMap = this.maskLastMove(bridge, correctMove, gameResult);
+        System.out.println(this.toString(this.uBridge(bridgeMap)));
+        System.out.println(this.toString(this.dBridge(bridgeMap)));
     }
 
 
