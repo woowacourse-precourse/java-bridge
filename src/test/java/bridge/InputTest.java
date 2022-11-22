@@ -1,4 +1,4 @@
-package bridgetest;
+package bridge;
 
 import bridge.model.Validation;
 import org.junit.jupiter.api.DisplayName;

@@ -1,17 +1,18 @@
-package bridgetest;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.controller.BridgeGameController;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.util.Lists.newArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BridgeGameTest {
+class BridgeGameTest extends NsTest {
     BridgeGameController bridgeGameController = new BridgeGameController();
     @DisplayName("입력된 이동값과 다리정보가 같다면 true를 리턴")
     @Test
@@ -30,8 +31,8 @@ class BridgeGameTest {
     @DisplayName("다리 생성 테스트")
     @Test
     void 다리_생성(){
-        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(newArrayList(1,1,1,0));
-        BridgeMaker bridgeMaker = new BridgeMaker(testNumberGenerator);
+        NumberGenerator NumberGenerator = new NumberGenerator(newArrayList(1,1,1,0));
+        BridgeMaker bridgeMaker = new BridgeMaker(NumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(4);
         assertThat(bridge).containsExactly("U","U","U","D");
     }
@@ -45,7 +46,6 @@ class BridgeGameTest {
         assertThat(true).isEqualTo(game.checkSuccess());
         assertThat(1).isEqualTo(game.getTryNumber());
     }
-    /*
     @DisplayName("다리건너기 게임 2번 시도만에 성공")
     @Test
     void 두번_시도만에_성공(){
@@ -84,12 +84,12 @@ class BridgeGameTest {
     protected void runMain() {
        bridgeGameController.run();
     }
-    */
-    static class TestNumberGenerator implements BridgeNumberGenerator {
+
+    static class NumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
 
-        TestNumberGenerator(List<Integer> numbers) {
+        NumberGenerator(List<Integer> numbers) {
             this.numbers = numbers;
         }
 
