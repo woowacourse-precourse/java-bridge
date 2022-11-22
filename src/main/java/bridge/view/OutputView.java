@@ -4,6 +4,8 @@ import bridge.Cross;
 
 import java.util.List;
 
+import static bridge.Constants.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -16,8 +18,6 @@ public class OutputView {
   public static final String ASK_RESTART_OR_END_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
   public static final String GAME_RESULT = "최종 게임 결과";
   public static final String GAME_RESULT_MESSAGE = "게임 성공 여부: ";
-  public static final String SUCCESS = "성공";
-  public static final String FAIL = "실패";
 
 
   public void printGameStartMessage() {

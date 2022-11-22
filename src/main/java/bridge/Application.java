@@ -11,8 +11,9 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        BridgeGame bridgeGame = new BridgeGame();
 
-        GameController gameController = new GameController(bridgeMaker, inputView, outputView);
+        GameController gameController = new GameController(bridgeMaker, inputView, outputView, bridgeGame);
         gameController.playGame();
     }
 }
