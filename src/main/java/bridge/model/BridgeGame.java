@@ -41,9 +41,8 @@ public class BridgeGame {
 
         for (int i = 0; i < userBridge.size(); i++) {
             String passStatus = pass(userBridge.get(i), bridge.get(i));
-            List<Moving> moving = getMovingStatus(i);
-            movingStatus.get(moving.get(0).ordinal()).add(passStatus);
-            movingStatus.get(moving.get(1).ordinal()).add(Pass.NOTHING.getLabel());
+            movingStatus.get(getMovingStatus(i).get(0).ordinal()).add(passStatus);
+            movingStatus.get(getMovingStatus(i).get(1).ordinal()).add(Pass.NOTHING.getLabel());
         }
         return movingStatus;
     }
