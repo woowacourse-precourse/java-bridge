@@ -31,17 +31,10 @@ class BridgeGameTest {
         assertThat(bridgeGame.isX(mark, result)).isTrue();
     }
 
-    @Test
-    @DisplayName("재시작에 관한 테스트")
-    public void retryTest() {
-        String cmd = "R";
-        assertThat(bridgeGame.retry(cmd)).isTrue();
-    }
-
-    @Test
-    @DisplayName("종료에 관한 테스트")
-    public void quitTest() {
-        String cmd = "Q";
-        assertThat(bridgeGame.retry(cmd)).isFalse();
+    @DisplayName("재시작과 종료에 관한 테스트")
+    @ParameterizedTest
+    @CsvSource({"R,true", "Q,false"})
+    public void quitTest(String cmd, boolean expected) {
+        assertThat(bridgeGame.retry(cmd)).isEqualTo(expected);
     }
 }
