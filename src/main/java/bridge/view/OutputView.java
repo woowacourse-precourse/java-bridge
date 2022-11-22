@@ -68,6 +68,11 @@ public class OutputView {
         System.out.println(OUTPUT_RESULT_MESSAGE + LINE +  currentStateOfBridge);
         System.out.println(OUTPUT_RESULT_IS_SUCCESS + result);
         System.out.println(OUTPUT_RESULT_TRY_NUMBER + this.attempt);
+        initAttempt();
+    }
+
+    void initAttempt(){
+        this.attempt = 0;
     }
 
 }
