@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.domain.GameCommand;
 import bridge.validator.domain.DirectionValidator;
+import bridge.validator.domain.GameCommandValidator;
 import bridge.validator.view.NumberInputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -29,7 +29,7 @@ public class InputView {
   public static String readGameCommand() {
     printCheckRetryInputMessage();
     String gameCommand = Console.readLine();
-    GameCommand.validateGameCommand(gameCommand);
+    GameCommandValidator.validate(gameCommand);
     return gameCommand;
   }
 }

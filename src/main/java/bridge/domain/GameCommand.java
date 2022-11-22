@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.exception.InvalidGameCommandException;
-
 public enum GameCommand {
   RETRY("R"),
   QUIT("Q");
@@ -9,15 +7,6 @@ public enum GameCommand {
 
   GameCommand(String command) {
     this.command = command;
-  }
-
-  public static void validateGameCommand(String inputGameCommand) {
-    for (GameCommand gameCommand : GameCommand.values()) {
-      if (gameCommand.command.equals(inputGameCommand)) {
-        return;
-      }
-    }
-    throw new InvalidGameCommandException();
   }
 
   public String getCommand() {
