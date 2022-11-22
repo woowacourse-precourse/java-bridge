@@ -11,14 +11,15 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        int inputValue = Integer.valueOf(input);
-        if (!validateBridgeSize(inputValue)) throw new IllegalArgumentException();
-        return inputValue;
+        validateBridgeSize(input);
+        return Integer.valueOf(input);
     }
 
     /**
@@ -26,9 +27,8 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-
-        if (input.matches("^[U|D]$")) return input;
-        throw new IllegalArgumentException();
+        validateMovingCommand(input);
+        return input;
     }
 
     /**
@@ -36,14 +36,28 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
-
-        if (input.matches("^[R|Q]$")) return input;
-        throw new IllegalArgumentException();
+        validateGameCommand(input);
+        return input;
     }
 
-    private boolean validateBridgeSize(int input) {
-        if (input < 3 || input > 20) return false;
-        return true;
+    private void validateBridgeSize(String input) {
+        try {
+            int value = Integer.valueOf(input);
+            if (value < 3 || value > 20)
+                throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 정수여야 합니다.");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 정수여야 합니다.");
+        }
+    }
+
+    private void validateMovingCommand(String input) {
+        if (!MovingCommand.hasCommandOf(input))
+            throw new IllegalArgumentException("이동할 칸은 U 또는 D로 이동할 수 있습니다.");
+    }
+
+    private void validateGameCommand(String input) {
+        if (!GameCommand.hasCommandOf(input))
+            throw new IllegalArgumentException("재시도 여부는 R 또는 Q로 입력해주세요.");
     }
 
 }
