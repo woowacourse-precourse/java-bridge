@@ -26,7 +26,7 @@ public class BridgeGameController {
         List<String> bridge = initialBridge();
         bridgeGame = new BridgeGame(bridge);
         processGame();
-
+        outputView.printResult(bridgeGame);
     }
 
     private List<String> initialBridge() {
@@ -39,11 +39,12 @@ public class BridgeGameController {
         return inputView.readBridgeSize();
     }
 
-    private boolean processGame() {
+    private void processGame() {
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             boolean roundResult = playRound();
             if (!roundResult) {
                 gameCommand();
+                break;
             }
         }
     }
