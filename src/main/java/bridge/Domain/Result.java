@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Result {
     private List<List<String>> map;
-    private String isSuccess;
+    private String crossBridgeResult;
     private int tryCount;
 
     public Result(){
@@ -17,7 +17,7 @@ public class Result {
             map.add(new ArrayList<>());
         }
 
-        isSuccess = Constants.FAIL;
+        crossBridgeResult = Constants.FAIL;
         tryCount = 1;
     }
 
@@ -73,15 +73,15 @@ public class Result {
         return map;
     }
 
-    public void setIsSuccess(String isSuccess) {
-        this.isSuccess = isSuccess;
+    public void setCrossBridgeResult(String crossBridgeResult) {
+        this.crossBridgeResult = crossBridgeResult;
     }
 
     @Override
     public String toString() {
         return "최종 게임 결과\n" +
                 replaceMapStringForm() +
-                "\n게임 성공 여부: " + isSuccess +
+                "\n게임 성공 여부: " + crossBridgeResult +
                 "\n총 시도한 횟수: " + tryCount;
     }
 

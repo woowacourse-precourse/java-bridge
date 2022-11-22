@@ -47,7 +47,7 @@ public class BridgeGame {
         move();
 
         if(player.isSuccess(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
-            result.setIsSuccess(Constants.SUCCESS);
+            result.setCrossBridgeResult(Constants.SUCCESS);
             return;
         }
 
