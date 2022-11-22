@@ -7,7 +7,7 @@ public enum GameResult {
 
     private String isPass;
     private boolean trueOrFalse;
-    private GameResult(String isPass, boolean trueOrFalse){
+    GameResult(String isPass, boolean trueOrFalse){
         this.isPass = isPass;
         this.trueOrFalse = trueOrFalse;
     }
