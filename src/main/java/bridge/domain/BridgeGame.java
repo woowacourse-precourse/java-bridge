@@ -1,9 +1,32 @@
 package bridge.domain;
 
+import java.util.List;
+
+import bridge.domain.strategy.BridgeNumberGenerator;
+import bridge.domain.strategy.BridgeRandomNumberGenerator;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final int bridgeSize;
+    private final List<String> bridge;
+
+    public BridgeGame(final int bridgeSize) {
+        this.bridgeSize = bridgeSize;
+        this.bridge = createBridge(bridgeSize);
+    }
+
+    private List<String> createBridge(final int bridgeSize) {
+        BridgeNumberGenerator bridgeNumberGenerator = selectBridgeNumberGeneratorStrategy();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private BridgeNumberGenerator selectBridgeNumberGeneratorStrategy() {
+        return new BridgeRandomNumberGenerator();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
