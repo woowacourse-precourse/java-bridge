@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -108,5 +110,20 @@ public class outputViewTest {
         // Then
         assertEquals("최종 게임 결과\n\n[   | O |   ]\n[ O |   | X ]\n\n게임 성공 여부: 실패\n"
                 , outputMessage.toString().replace("\r", ""));
+    }
+
+    @DisplayName("게임을 시도한 횟수를 받아 총 시도한 횟수를 출력해줘야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1","10","15","20","25","30"})
+    void givenNumberOfAttempts_whenPrintTotalAttemptsMade_thenReturnPrintTotalAttemptsMade(String inputNumberOfAttempts){
+        // Given
+        int numberOfAttempts = Integer.parseInt(inputNumberOfAttempts);
+
+        // When
+        outputView.printTotalAttemptsMade(numberOfAttempts);
+
+        // Then
+        assertEquals("총 시도한 횟수: " + numberOfAttempts
+                , outputMessage.toString().replace("\r",""));
     }
 }
