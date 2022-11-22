@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.core.exception.Error;
+import bridge.core.exception.InvalidInputException;
+
 import java.util.List;
 
 public class Bridge {
@@ -11,7 +14,7 @@ public class Bridge {
     }
 
     public Boolean checkPassableBlock(Integer currentPosition, String selectBlock) {
-        // TODO : 인덱스가 범위를 벗어나는 경우에 대해서 처리해야 함
+        validate(selectBlock);
         String passableBlock = bridgeMap.get(currentPosition);
         if (selectBlock.equals(passableBlock)) return true;
         return false;
@@ -24,5 +27,14 @@ public class Bridge {
 
     public List<String> getBridgeMapUntil(Integer currentPosition) {
         return bridgeMap.subList(0, currentPosition + 1);
+    }
+
+    //== validation ==//
+    private void validate(String selectBlock) {
+        if (selectBlock.equals("U") || selectBlock.equals("D")) {
+            return;
+        }
+        throw new InvalidInputException(Error.SELECT_BLOCK_ERROR);
+
     }
 }
