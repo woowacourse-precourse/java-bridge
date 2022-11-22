@@ -4,11 +4,12 @@ package bridge;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
+    int bridge_size;
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize(int bs) {
+        this.bridge_size = bs;
         return 0;
     }
 
