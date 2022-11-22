@@ -34,9 +34,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String nextCell = Console.readLine();
+        validateReadMoving(nextCell);
+        return nextCell;
     }
 
+    public void validateReadMoving(String nextCell){
+        if(!nextCell.equals("U") || !nextCell.equals("D"))
+            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
