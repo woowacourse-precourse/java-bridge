@@ -29,4 +29,44 @@ public class InputViewTest {
                     .isThrownBy(() -> inputView.validateBridgeSize(input));
         }
     }
+
+    @Test
+    void 다리선택_예외검출() {
+        List<String> inputs = Arrays.asList("12", "u", "a", "d", "UD");
+
+        for (String input: inputs) {
+            Assertions.assertThatThrownBy(() -> inputView.validateMoving(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Test
+    void 다리선택_정상값() {
+        List<String> inputs = Arrays.asList("U", "D");
+
+        for (String input: inputs) {
+            Assertions.assertThatNoException()
+                    .isThrownBy(() -> inputView.validateMoving(input));
+        }
+    }
+
+    @Test
+    void 재시작_예외검출() {
+        List<String> inputs = Arrays.asList("q", "r", "QR", "RQ", "1", "23", "");
+
+        for (String input: inputs) {
+            Assertions.assertThatThrownBy(() -> inputView.validateGameCommand(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Test
+    void 재시작_정상값() {
+        List<String> inputs = Arrays.asList("Q", "R");
+
+        for (String input: inputs) {
+            Assertions.assertThatNoException()
+                    .isThrownBy(() -> inputView.validateGameCommand(input));
+        }
+    }
 }
