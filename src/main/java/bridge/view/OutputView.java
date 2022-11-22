@@ -3,7 +3,6 @@ package bridge.view;
 import bridge.domain.GameCommand;
 import bridge.domain.Moving;
 import bridge.utils.Converter;
-import java.util.Scanner;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -24,6 +23,7 @@ public class OutputView {
         for (String compartment : map) {
             System.out.println(compartment);
         }
+        System.out.println();
     }
 
     private static void makeMap(int position, String movingResult, int selectedIndex) {
