@@ -10,7 +10,7 @@ public class BridgeGameProgram {
 
     private static final String SUCCESS = "성공";
     private static boolean go = true;
-    
+
     //model
     Bridge bridge = new Bridge();
     //view
