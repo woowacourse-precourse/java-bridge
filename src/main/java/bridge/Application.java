@@ -10,11 +10,12 @@ public class Application {
 
     public static void main(String[] args) {
         outputView.printStart();
-        play(inputView.readBridgeSize());
+        Bridge bridge = bridgeGame.setBridge(inputView.readBridgeSize());
+        play(bridge);
+        outputView.printResult(bridgeGame, bridge);
     }
 
-    public static void play(BridgeSize size) {
-        Bridge bridge = bridgeGame.setBridge(size);
+    public static void play(Bridge bridge) {
         while (!bridgeGame.isFinish(bridge)) {
             if (bridgeGame.isMoving(bridge, move(bridge))) {
                 continue;
@@ -23,7 +24,6 @@ public class Application {
                 break;
             }
         }
-        outputView.printResult(bridgeGame, bridge);
     }
 
     private static Moving move(Bridge bridge) {
