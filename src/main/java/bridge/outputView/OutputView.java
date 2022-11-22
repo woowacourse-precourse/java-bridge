@@ -77,7 +77,7 @@ public class OutputView {
         if (bridge.get(index) == target && isMove) {
             return "O";
         }
-        if (bridge.get(index) == target && !isMove) {
+        if (bridge.get(index) != target && !isMove) { // 수정 필요
             return "X";
         }
         return " ";

@@ -35,7 +35,7 @@ public class GameStart {
     }
 
     private boolean play() {
-        for (int countOfMove = 0; countOfMove < bridge.size()-1; countOfMove++) {
+        for (int countOfMove = 0; countOfMove < bridge.size(); countOfMove++) {
             String moveBlock = inputMove();
             boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
             outputView.printMap(countOfMove, isMove);
