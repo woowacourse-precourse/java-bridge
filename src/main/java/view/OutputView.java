@@ -13,8 +13,19 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<String> up_bridge, List<String> down_bridge) {
-        System.out.println(up_bridge.toString().replaceAll(","," |"));
-        System.out.println(down_bridge.toString().replaceAll(","," |")+"\n");
+        System.out.println(make_string(up_bridge));
+        System.out.println(make_string(down_bridge)+"\n");
+        //System.out.println(up_bridge.toString().replaceAll(","," |"));
+        //System.out.println(down_bridge.toString().replaceAll(","," |")+"\n");
+    }
+    public static String make_string(List<String> bridge){
+        String str_bridge = "[ ";
+        for (int i=0;i<bridge.size();i++) {
+            if(i==0) str_bridge+=bridge.get(i);
+            else str_bridge += " | " + bridge.get(i);
+        }
+        str_bridge+=" ]";
+        return str_bridge;
     }
 
     /**
