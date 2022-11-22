@@ -23,16 +23,13 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-
         for (int idx = 0; idx < size; idx++) {
             int bridgeShape = bridgeNumberGenerator.generate();
             if(bridgeShape == U.numMoveDirection) {
                 bridge.add(U.strMoveDirection);
                 continue;
             }
-
-            if(bridgeShape == D.numMoveDirection)
-                bridge.add(D.strMoveDirection);
+            bridge.add(D.strMoveDirection);
         }
         return bridge;
     }

@@ -1,11 +1,11 @@
 package bridge.domain;
 
-public enum GameRetry {
+public enum GameRetryCommand {
     R("R") , Q("Q");
 
     public String command;
 
-    GameRetry(String command) {
+    GameRetryCommand(String command) {
         this.command = command;
     }
 }

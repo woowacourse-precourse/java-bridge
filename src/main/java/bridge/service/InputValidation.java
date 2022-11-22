@@ -1,7 +1,7 @@
 package bridge.service;
 
-import static bridge.domain.GameRetry.Q;
-import static bridge.domain.GameRetry.R;
+import static bridge.domain.GameRetryCommand.Q;
+import static bridge.domain.GameRetryCommand.R;
 import static bridge.domain.MoveDirection.D;
 import static bridge.domain.MoveDirection.U;
 import static bridge.domain.BridgeLength.MAX;
