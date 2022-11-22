@@ -23,7 +23,7 @@ public class BridgeController {
             outputView.printAskDirection();
             move();
             outputView.printMap(bridgeGame.makeBridgeResult());
-        } while (bridgeGame.isEnd());
+        } while (bridgeGame.isNotEnd());
     }
 
     private void move() {

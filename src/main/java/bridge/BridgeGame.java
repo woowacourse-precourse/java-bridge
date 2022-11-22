@@ -65,13 +65,13 @@ public class BridgeGame {
     }
 
     public String winOrLose() {
-        if (moving.size() == bridge.size() && isEnd()) {
+        if (moving.size() == bridge.size() && isNotEnd()) {
             return BridgeConstant.WIN;
         }
         return BridgeConstant.LOSE;
     }
 
-    public boolean isEnd() {
+    public boolean isNotEnd() {
         return moving.get(moving.size() - 1).equals(bridge.get(bridge.size() - 1));
     }
 
