@@ -24,7 +24,7 @@ public class Application {
             while (CURRENT_LOCATION-- > 0) {
                 String nextMove = bridgeGame.move();
                 boolean successOrFail = outputView.printMap(idx++, bridge, nextMove);
-                outputView.printResult(gameCnt, CURRENT_LOCATION);
+                outputView.printResult(gameCnt, CURRENT_LOCATION, successOrFail);
                 canYouRetry(successOrFail);
             }
         }catch(Exception e) { }
