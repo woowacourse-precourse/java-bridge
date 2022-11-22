@@ -70,4 +70,20 @@ class BridgeGameTest {
         gameAttempts = bridgeGame.getGameAttempts();
         assertThat(gameAttempts).isEqualTo(2);
     }
+
+    @Test
+    void 마지막_이동이_실패인지_판별하는_테스트_실패인_경우() {
+        bridgeGame.move("D");
+
+        boolean isLastMovedFailure = bridgeGame.isLastMovedFailure();
+        assertThat(isLastMovedFailure).isTrue();
+    }
+
+    @Test
+    void 마지막_이동이_실패인지_판별하는_테스트_성공인_경우() {
+        bridgeGame.move("U");
+
+        boolean isLastMovedFailure = bridgeGame.isLastMovedFailure();
+        assertThat(isLastMovedFailure).isFalse();
+    }
 }
