@@ -11,11 +11,9 @@ import java.util.Objects;
 
 public class BridgeGame {
     private final InputView inputView;
-    private final OutputView outputView;
 
-    public BridgeGame(InputView inputView, OutputView outputView) {
+    public BridgeGame(InputView inputView) {
         this.inputView = inputView;
-        this.outputView = outputView;
     }
 
     public boolean move(Bridge bridge, Player player) {
@@ -28,11 +26,11 @@ public class BridgeGame {
     public boolean retry(Player player) {
         if (player.isSuccess()) return false;
         String gameCommand = inputView.readGameCommand();
-        if (Objects.equals(gameCommand, MatchConst.Button.RETRY_BOTTON)) {
+        if (Objects.equals(gameCommand, MatchConst.Button.RETRY_BUTTON)) {
             player.removeAllMatcher();
             return true;
         }
-        if (Objects.equals(gameCommand, MatchConst.Button.END_BOTTON)) {
+        if (Objects.equals(gameCommand, MatchConst.Button.END_BUTTON)) {
             return false;
         }
         throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());

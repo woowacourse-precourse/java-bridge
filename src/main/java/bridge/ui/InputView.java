@@ -38,13 +38,13 @@ public class InputView {
     }
 
     private void validationMoving(String moving){
-        if(!Objects.equals(moving, Button.UP_BOTTON) && !Objects.equals(moving, Button.DOWN_BOTTON)){
+        if(!Objects.equals(moving, Button.UP_BUTTON) && !Objects.equals(moving, Button.DOWN_BUTTON)){
             throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());
         }
     }
 
     private void validationGamieCommand(String gameCommand){
-        if(!Objects.equals(gameCommand, Button.RETRY_BOTTON) && !Objects.equals(gameCommand, Button.END_BOTTON)){
+        if(!Objects.equals(gameCommand, Button.RETRY_BUTTON) && !Objects.equals(gameCommand, Button.END_BUTTON)){
             throw new IllegalArgumentException(ErrorCode.WRONG_INPUT.getMessage());
         }
     }

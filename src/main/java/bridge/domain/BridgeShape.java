@@ -1,14 +1,13 @@
 package bridge.domain;
 
-import bridge.constant.MatchConst;
 import bridge.constant.MatchConst.Button;
 
 import java.util.Arrays;
 
 public enum BridgeShape {
-    UP(1, Button.UP_BOTTON),
-    DOWN(0,Button.DOWN_BOTTON),
-    NONE(-1,Button.NONE_BOTTON);
+    UP(1, Button.UP_BUTTON),
+    DOWN(0,Button.DOWN_BUTTON),
+    NONE(-1,Button.NONE_BUTTON);
 
     private final int shapeNumber;
     private final String shapeKeyword;

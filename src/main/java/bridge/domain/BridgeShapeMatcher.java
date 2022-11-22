@@ -7,10 +7,10 @@ import bridge.constant.MatchConst.Button;
 
 
 public enum BridgeShapeMatcher {
-    UP_TRUE(Button.UP_BOTTON,true, "O", " "),
-    UP_FALSE(Button.UP_BOTTON,false,"X", " "),
-    DOWN_TRUE(Button.DOWN_BOTTON,true, " " , "O"),
-    DOWN_FALSE(Button.DOWN_BOTTON,false, " " , "X"),
+    UP_TRUE(Button.UP_BUTTON,true, "O", " "),
+    UP_FALSE(Button.UP_BUTTON,false,"X", " "),
+    DOWN_TRUE(Button.DOWN_BUTTON,true, " " , "O"),
+    DOWN_FALSE(Button.DOWN_BUTTON,false, " " , "X"),
     NONE(null, false, " ", " ");
 
     private String direction;

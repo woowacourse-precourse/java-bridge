@@ -18,7 +18,7 @@ public class BridgeGameService {
     private final OutputView outputView = new OutputView();
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    private final BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
+    private final BridgeGame bridgeGame = new BridgeGame(inputView);
     private Player player;
     private Bridge bridge;
 
