@@ -1,7 +1,7 @@
 package bridge.service;
 
 import bridge.type.DirectionType;
-import utils.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package bridge.service;
+package bridge;
 
 import bridge.domain.Bridge;
-import utils.BridgeNumberGenerator;
+import bridge.service.BridgeMakeService;
 
 import java.util.List;
 

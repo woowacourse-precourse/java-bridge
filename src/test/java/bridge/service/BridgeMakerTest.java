@@ -1,8 +1,9 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
 import org.junit.jupiter.api.Test;
-import utils.BridgeNumberGenerator;
-import utils.BridgeRandomNumberGenerator;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 
