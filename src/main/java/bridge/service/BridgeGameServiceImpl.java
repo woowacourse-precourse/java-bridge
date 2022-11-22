@@ -1,5 +1,8 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.data.dao.BridgeGameDao;
 import bridge.data.dao.BridgeGameDaoImpl;
 import bridge.data.dto.requestDto.FailMenuRequestDto;
@@ -24,7 +27,7 @@ public class BridgeGameServiceImpl implements BridgeGameService {
     @Override
     public GameInitResponseDto initGame(GameInitRequestDto requestDto) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMakerImpl(bridgeNumberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(requestDto.getBridgeSize());
         BridgeGame savedBridgeGame = bridgeGameDao.insertBridgeGame(new BridgeGame(bridge));
         return new GameInitResponseDto(savedBridgeGame.getSessionId());
