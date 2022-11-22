@@ -34,15 +34,15 @@ public class OutputView {
     }
 
     public String getStageStatus(String lineName, String foothold, String input) {
-        if (!lineName.equals(foothold)) {
+        if (!lineName.equals(input)) {
             return "   ";
         }
 
         if (foothold.equals(input)) {
-            return " o ";
+            return " O ";
         }
 
-        return " x ";
+        return " X ";
     }
 
 

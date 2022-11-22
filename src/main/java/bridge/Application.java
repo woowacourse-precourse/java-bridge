@@ -33,7 +33,7 @@ public class Application {
     private static void crossUntilEnd(Bridge bridge) {
         while (bridgeGame.isCorrect(bridge)) {
             cross(bridge);
-            if (!bridgeGame.isAllCrossed(bridge)) {
+            if (bridgeGame.isAllCrossed(bridge)) {
                 break;
             }
         }

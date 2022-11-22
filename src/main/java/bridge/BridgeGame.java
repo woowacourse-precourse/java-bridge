@@ -32,7 +32,9 @@ public class BridgeGame {
         List<String> footholds = bridge.getFootholds();
         List<String> crossed = bridge.getCrossed();
         int lastFootholdIndex = bridge.getCrossed().size() - 1;
-
+        if (crossed.size() == 0) {
+            return true;
+        }
         if (!crossed.get(lastFootholdIndex).equals(footholds.get(lastFootholdIndex))) {
             return false;
         }
@@ -50,7 +52,7 @@ public class BridgeGame {
     }
 
     public void resetCrossed(Bridge bridge) {
-        bridge.setCrossed(Arrays.asList());
+        bridge.setCrossed(new ArrayList<>());
     }
 
     public void increaseTried(Bridge bridge) {
