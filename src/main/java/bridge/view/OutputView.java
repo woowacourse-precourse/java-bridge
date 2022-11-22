@@ -19,7 +19,7 @@ public class OutputView {
     private final static String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final static String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private final static String GAME_CHECK_SUCCESS_MESSAGE = "게임 성공 여부: %s";
-    private final static String GAME_TRY_COUNT_MESSAGE = "총 시도한 횟수: $d";
+    private final static String GAME_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
     private final static String LINE_BREAK = System.lineSeparator();
 
     public void printStartMessage() {
