@@ -22,5 +22,4 @@ class BridgeMakerTest {
         // expect
         assertThatThrownBy(() -> bridgeMaker.makeBridge(VALID_NUMBER)).isInstanceOf(IllegalArgumentException.class);
     }
-
 }
