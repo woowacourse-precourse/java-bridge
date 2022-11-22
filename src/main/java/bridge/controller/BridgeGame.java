@@ -33,6 +33,19 @@ public class BridgeGame {
         return bridgeGenerateService.generateBridgeBySize(bridgeSize);
     }
 
+    private void playGame() {
+        moveUntilFailOrSuccess();
+        if (onMovableCompartment) {
+            quit();
+            return;
+        }
+        String gameCommand = askGameCommand();
+        if (gameCommand.equals("Q")) {
+            quit();
+            return;
+        }
+    }
+
     private void moveUntilFailOrSuccess() {
         initializeGame();
 
