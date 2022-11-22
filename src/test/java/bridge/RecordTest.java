@@ -10,10 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RecordTest {
-    List<String> bridge;
     Record movingRecord;
-    BridgeMaker bridgeMaker;
-    Judgement judgement;
+
     @BeforeEach
     void beforeEach(){
         movingRecord = new Record();
