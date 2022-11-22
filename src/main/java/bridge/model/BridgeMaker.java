@@ -1,5 +1,6 @@
 package bridge.model;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static BridgeNumberGenerator bridgeNumberGenerator = null;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -25,8 +26,8 @@ public class BridgeMaker {
         for(int num = 0; num < size; num++){
             double ran = Math.random()*2;
             //generate();
-            int rand =  (int) ran;
-            //int rand = bridgeNumberGenerator.generate();
+            //int rand =  (int) ran;
+            int rand = bridgeNumberGenerator.generate();
             //System.out.println("rand: " + rand);
             // 0이면 U, 1이면 D
             if(rand == 1){
@@ -37,4 +38,5 @@ public class BridgeMaker {
         }
         return bridges;
     }
+
 }

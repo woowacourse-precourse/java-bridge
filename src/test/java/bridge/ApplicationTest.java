@@ -27,7 +27,6 @@ class ApplicationTest extends NsTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
     }
-/*
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
@@ -46,7 +45,6 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
- */
 
     @Test
     void 예외_테스트() {

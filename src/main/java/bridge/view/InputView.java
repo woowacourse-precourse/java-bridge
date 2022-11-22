@@ -38,14 +38,11 @@ public class InputView {
                 if(checkInputSizeString(bridgeLen)){
                     return Integer.parseInt(bridgeLen);
                 }
-
             }
             catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
         }
-
-
     }
 
     public static boolean checkInputSizeString(String bridgeLen) {

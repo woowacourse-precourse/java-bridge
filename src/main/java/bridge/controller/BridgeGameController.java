@@ -35,8 +35,6 @@ public class BridgeGameController {
 
             }catch (IllegalArgumentException e) {
                 System.out.println(e);
-            }finally {
-                System.out.println("오류");
             }
 
             if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen+1){
