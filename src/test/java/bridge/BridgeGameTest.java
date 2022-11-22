@@ -25,11 +25,11 @@ class BridgeGameTest {
 
     @Test
     void 재시작_메서드_테스트() {
-        assertThat(bridgeGame.retry("R")).isTrue();
+        assertThat(bridgeGame.retry(Command.RETRY.useCommand())).isTrue();
     }
 
     @Test
     void 종료_메서드_테스트() {
-        assertThat(bridgeGame.quit("Q")).isTrue();
+        assertThat(bridgeGame.quit(Command.QUIT.useCommand())).isTrue();
     }
 }
