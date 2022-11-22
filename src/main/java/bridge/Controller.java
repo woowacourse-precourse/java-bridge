@@ -19,4 +19,8 @@ public class Controller {
 	public void setBridge() {
 		bridgeProgram.useBridge();
 	}
+
+	public void startGame() {
+		bridgeProgram.loop();
+	}
 }
