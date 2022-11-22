@@ -40,6 +40,8 @@ public class Game {
         return gameCount;
     }
 
-
+    public void restartGame() {
+        gameCount += 1;
+    }
 
 }
