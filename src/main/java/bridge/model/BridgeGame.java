@@ -13,7 +13,7 @@ public class BridgeGame {
     private final List<String> userMoveState = new ArrayList<>();
     private final List<Boolean> userResult = new ArrayList<>();
     private int currentPosition;
-    private int retryCount;
+    private int tryCount = 1;
 
     public BridgeGame(int size) {
         this.size = size;
@@ -48,7 +48,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String userInput) {
-        Boolean moveResult = userInput.equals(bridge.get(currentPosition));
+        boolean moveResult = userInput.equals(bridge.get(currentPosition));
         userResult.add(moveResult);
         userMoveState.add(userInput + "_" + moveResult);
         currentPosition += 1;
@@ -65,7 +65,7 @@ public class BridgeGame {
      */
     public boolean retry(String userInput) {
         if (userInput.equals("R")) {
-            retryCount += 1;
+            tryCount += 1;
             currentPosition -= 1;
             userResult.remove(currentPosition);
             userMoveState.remove(currentPosition);
@@ -74,8 +74,8 @@ public class BridgeGame {
         return false;
     }
 
-    public int getRetryCount() {
-        return retryCount;
+    public int getTryCount() {
+        return tryCount;
     }
 
     public boolean isGameOver() {
