@@ -31,9 +31,12 @@ public class InputView {
     // 사용자가 이동할 칸을 입력받는다.
     public static String readMoving() {
         String select = readInput();
-        if(possibleMovingSelect(select)) {
-            return select;
+        try {
+            if(possibleMovingSelect(select)) return select;
+        } catch(IllegalArgumentException e) {
+            return readMoving();
         }
+
         return null;
     }
 
@@ -41,9 +44,12 @@ public class InputView {
     // 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
     public static String readGameCommand() {
         String decision = readInput();
-        if(possibleRetryDecision(decision)) {
-            return decision;
+        try {
+            if(possibleRetryDecision(decision)) return decision;
+        } catch(IllegalArgumentException e) {
+            return readGameCommand();
         }
+
         return null;
     }
 }

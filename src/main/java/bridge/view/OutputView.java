@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     public static String printSuccessOrFail(String line, String bridge, String user) {
-        if(line.equals(bridge)) {
+        if(line.equals(user)) {
             if(bridge.equals(user)) return BridgeStructure.CORRECT_SYMBOL;
             if(!bridge.equals(user)) return BridgeStructure.FAIL_SYMBOL;
         }

@@ -20,7 +20,8 @@ public class BridgeValidator {
     public static boolean possibleMovingSelect(String select) {
         // constant로 대체
         if(!select.equals("U") && !select.equals("D")) {
-            throw new IllegalArgumentException();
+            System.out.println(ErrorOutput.WRONG_SPACE_TO_MOVE_CHARACTER);
+            throw new IllegalArgumentException(ErrorOutput.WRONG_SPACE_TO_MOVE_CHARACTER);
         }
 
         return true;
@@ -29,7 +30,8 @@ public class BridgeValidator {
     public static boolean possibleRetryDecision(String decision) {
         // constant로 대체
         if(!decision.equals("R") && !decision.equals("Q")) {
-            throw new IllegalArgumentException();
+            System.out.println(ErrorOutput.WRONG_RETRY_OR_QUIT_CHARACTER);
+            throw new IllegalArgumentException(ErrorOutput.WRONG_RETRY_OR_QUIT_CHARACTER);
         }
 
         return true;

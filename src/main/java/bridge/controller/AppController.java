@@ -1,7 +1,7 @@
 package bridge.controller;
 
-import bridge.constant.GameProgressKeyword;
 import bridge.constant.MessageOutput;
+import bridge.util.BridgeCalculator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -21,8 +21,8 @@ public class AppController {
         boolean aRound = true;
         while(aRound) {
             inOrderCrossOver();
-            if(bridgeGame.isSuccess()) break;
-            if(!inquiryRetry()) break;
+            if(bridgeGame.isSuccess()) break; //성공하면 종료
+            if(!inquiryRetry()) break; //다시 시도안하면 종료
             bridgeGame.retry();
         }
     }
@@ -30,32 +30,25 @@ public class AppController {
     void inOrderCrossOver() {
         boolean movingResult;
         for(int i=0 ; i<bridgeGame.getSize() ; i++) {
-            movingResult = calculatePossibleMoving(i);
+            movingResult = tryMoving(i);
             OutputView.printMap(bridgeGame.getBridge(), bridgeGame.getUser());
-            if(!movingResult) break;
-            if(movingResult && (i == bridgeGame.getSize()-1)) bridgeGame.setSuccess();
+            if(!movingResult) break; //실패하면 그만
+            if(movingResult && (i == bridgeGame.getSize()-1)) bridgeGame.setSuccess(); //성공하고 마지막이면 성공
         }
     }
 
-    boolean calculatePossibleMoving(int index) {
+    boolean tryMoving(int index) {
         OutputView.printLine(MessageOutput.INQUIRE_MOVE_BLOCK);
         String input = InputView.readMoving();
         bridgeGame.move(input);
-        boolean isSuccess = false;
-        if(input.equals(bridgeGame.getIndexResult(index))) {
-            isSuccess = true;
-        }
+        boolean isSuccess = BridgeCalculator.compareInputAndResult(input, bridgeGame.getIndexResult(index));
         return isSuccess;
     }
 
     public boolean inquiryRetry() {
         OutputView.printLine(MessageOutput.INQUIRE_REGAIN_GAME);
         String decision = InputView.readGameCommand();
-        boolean isRetry = false;
-        if(decision.equals(GameProgressKeyword.RETRY_GAME)) {
-            isRetry = true;
-        }
-
+        boolean isRetry = BridgeCalculator.whetherRetryOrQuit(decision);
         return isRetry;
     }
 
