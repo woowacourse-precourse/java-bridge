@@ -1,4 +1,4 @@
-package bridge.constantTest;
+package bridge.domainTest.constantTest;
 import bridge.domain.constant.CrossingState;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

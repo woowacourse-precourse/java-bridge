@@ -1,4 +1,4 @@
-package bridge.constantTest;
+package bridge.domainTest.constantTest;
 
 import bridge.domain.constant.BridgeDirection;
 import bridge.domain.constant.CrossingState;

@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.domain.constant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,28 +8,29 @@ import java.util.function.Function;
 
 public enum GameRecord {
 
-    UPSIDE(BridgeDirection.UP, (result)->List.of(result, GameRecordSymbol.SPACING.getSymbol())),
-    DOWNSIDE(BridgeDirection.DOWN, (result)->List.of(GameRecordSymbol.SPACING.getSymbol(), result));
-    private BridgeDirection direction;
-    private Function<String, List<String>> generator;
-    GameRecord(BridgeDirection bridgeDirection, Function generator){
+    UPSIDE(BridgeDirection.UP, (result) -> List.of(result, GameRecordSymbol.SPACING.getSymbol())),
+    DOWNSIDE(BridgeDirection.DOWN, (result) -> List.of(GameRecordSymbol.SPACING.getSymbol(), result));
+    private final BridgeDirection direction;
+    private final Function<String, List<String>> generator;
+
+    GameRecord(BridgeDirection bridgeDirection, Function generator) {
         this.direction = bridgeDirection;
-        this.generator=generator;
+        this.generator = generator;
     }
 
-    public List<String> generate(String result){
-        return new ArrayList<>(this.generator.apply(result));
+    private static boolean isSameDirection(GameRecord gameRecord, BridgeDirection direction) {
+        return gameRecord.direction == direction;
     }
 
-    private static boolean isSameDirection(GameRecord gameRecord, BridgeDirection direction){
-        return gameRecord.direction==direction;
-    }
-
-    public static GameRecord findLocation(BridgeDirection direction){
+    public static GameRecord findLocation(BridgeDirection direction) {
         return Arrays.stream(GameRecord.values())
                 .filter(gameRecord -> GameRecord.isSameDirection(gameRecord, direction))
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
+    }
+
+    public List<String> generate(String result) {
+        return new ArrayList<>(this.generator.apply(result));
     }
 
 }

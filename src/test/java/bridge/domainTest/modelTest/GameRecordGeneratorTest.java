@@ -1,4 +1,4 @@
-package bridge.domainTest;
+package bridge.domainTest.modelTest;
 import bridge.domain.constant.BridgeDirection;
 import bridge.domain.model.GameRecordGenerator;
 import org.junit.jupiter.api.DisplayName;

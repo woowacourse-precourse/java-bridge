@@ -42,5 +42,5 @@ public class OutputView {
     public void printTotalTrial(int numberOfTrial){
         System.out.printf("총 시도한 횟수: %d\n", numberOfTrial);
     }
-    
+
 }

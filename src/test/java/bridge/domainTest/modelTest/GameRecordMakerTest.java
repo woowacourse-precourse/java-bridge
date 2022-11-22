@@ -1,4 +1,4 @@
-package bridge.domainTest;
+package bridge.domainTest.modelTest;
 import bridge.domain.model.GameRecordMaker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package bridge.service.constant;
+package bridge.controller.cosntant;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;

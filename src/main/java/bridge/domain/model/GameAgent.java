@@ -1,27 +1,25 @@
-package bridge.domain;
+package bridge.domain.model;
 
-import bridge.constant.BridgeDirection;
+import bridge.domain.constant.BridgeDirection;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GameAgent{
+public class GameAgent {
 
     private List<String> bridge;
 
-    public GameAgent(){
-        this.bridge=new ArrayList<>();
+    public GameAgent() {
+        this.bridge = new ArrayList<>();
     }
 
-    public void initialize(List<String> bridge){
-        this.bridge=bridge;
+    public void initialize(List<String> bridge) {
+        this.bridge = bridge;
     }
-    public boolean checkPossibleToCross(String playerWantedToGo, int currentBridgeLocation){
+
+    public boolean checkPossibleToCross(String playerWantedToGo, int currentBridgeLocation) {
         String bridgeDirection = bridge.get(currentBridgeLocation);
         return bridgeDirection.equals(playerWantedToGo);
     }
 
-    public BridgeDirection getCurrentDirection(int currentBridgeLocation){
-        String currentBridgeDirection=bridge.get(currentBridgeLocation);
-        return BridgeDirection.findByWordBridgeDirection(currentBridgeDirection);
-    }
 }

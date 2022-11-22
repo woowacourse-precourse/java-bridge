@@ -1,9 +1,7 @@
 package bridge;
 
-import bridge.constant.BridgeState;
+import bridge.domain.constant.BridgeDirection;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -25,11 +23,10 @@ public class BridgeMaker {
      */
 
     public List<String> makeBridge(int bridgeLength) {
-        Stream<String> bridge = Stream.generate(bridgeNumberGenerator::generate)
+        List<String> bridge = Stream.generate(bridgeNumberGenerator::generate)
                                         .limit(bridgeLength)
-                                        .filter(BridgeState::validateBridgeState)
-                                        .map(BridgeState::transform);
-
-        return bridge.collect(Collectors.toList());
+                                        .map(BridgeDirection::transformToWordDirection)
+                                        .collect(Collectors.toUnmodifiableList());
+        return bridge;
     }
 }

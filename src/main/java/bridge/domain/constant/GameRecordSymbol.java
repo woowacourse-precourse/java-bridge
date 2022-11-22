@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.domain.constant;
 
 public enum GameRecordSymbol {
     START_BRACKET("[ "),
@@ -7,11 +7,14 @@ public enum GameRecordSymbol {
     SPACING(" "),
     BLANK(""),
     NEW_LINE("\n");
-    private String gameRecordSymbol;
-    GameRecordSymbol(String gameRecordSymbol){
-        this.gameRecordSymbol=gameRecordSymbol;
+    private final String gameRecordSymbol;
+
+    GameRecordSymbol(String gameRecordSymbol) {
+        this.gameRecordSymbol = gameRecordSymbol;
     }
-    public String getSymbol(){
+
+    public String getSymbol() {
         return gameRecordSymbol;
-    };
+    }
+
 }

@@ -18,73 +18,24 @@ public class InputView {
     public InputView(){
         outputView = new OutputView();
     }
-    public String checkBridgeSize(){
-        try{
-            String bridgeLength = Console.readLine();
-            InputException.checkBridgeLengthInput(bridgeLength);
-            return bridgeLength;
-        }catch (IllegalArgumentException illegalArgumentException){
-            String errorMessage= Exception.getErrorMessage(illegalArgumentException.getMessage());
-            outputView.printErrorMessage(errorMessage);
-        }
-        return null;
-    }
 
-    public int readBridgeSize() {
-        String bridgeLength="";
-        do {
-            outputView.printEnterBridgeLength();
-            bridgeLength=checkBridgeSize();
-        }while (Objects.isNull(bridgeLength));
-        return Integer.parseInt(bridgeLength);
+
+    public String readBridgeSize() {
+        return Console.readLine();
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String checkMoving(){
-        try{
-            String moving = Console.readLine();
-            InputException.validateMovingInput(moving);
-            return moving;
-        }catch (IllegalArgumentException illegalArgumentException){
-            String errorMessage= Exception.getErrorMessage(illegalArgumentException.getMessage());
-            outputView.printErrorMessage(errorMessage);
-        }
-        return null;
-    }
     public String readMoving() {
-        String moving="";
-        do{
-            outputView.printEnterMoving();
-            moving=checkMoving();
-        }while (Objects.isNull(moving));
-        return moving;
+        return Console.readLine();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String checkGameCommand() {
-        try {
-            String gameCommand = Console.readLine();
-            InputException.validateGameCommandInput(gameCommand);
-            return gameCommand;
-        } catch (IllegalArgumentException illegalArgumentException) {
-            String errorMessage = Exception.getErrorMessage(illegalArgumentException.getMessage());
-            outputView.printErrorMessage(errorMessage);
-        }
-        return null;
-    }
 
     public String readGameCommand() {
-
-        String gameCommand = "";
-        do {
-            outputView.printEnterGameCommand();
-            gameCommand = checkGameCommand();
-        } while (Objects.isNull(gameCommand));
-
-        return gameCommand;
+        return Console.readLine();
     }
 }

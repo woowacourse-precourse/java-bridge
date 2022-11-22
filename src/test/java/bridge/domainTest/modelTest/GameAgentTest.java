@@ -1,4 +1,4 @@
-package bridge.domainTest;
+package bridge.domainTest.modelTest;
 
 import bridge.domain.constant.BridgeDirection;
 import bridge.domain.model.GameAgent;
@@ -36,17 +36,6 @@ public class GameAgentTest {
         List<String> bridgeMade = List.of("U", "D", "U");
         GameAgent gameAgent= createGameAgent(bridgeMade);
         assertThat(gameAgent.checkPossibleToCross(playerWantTogo, currentLocation)).isEqualTo(result);
-    }
-
-    @ParameterizedTest
-    @DisplayName("현재 다리 방향을 반환하는지 검사한다.")
-    @CsvSource(value = {"0: U", "1: D", "2: U"}, delimiter = ':')
-    public void findCurrentBridgeDirection(int currentLocation, String direction){
-        List<String> bridgeMade = List.of("U", "D", "U");
-        GameAgent gameAgent= createGameAgent(bridgeMade);
-        BridgeDirection currentBridgeDirection = gameAgent.getCurrentDirection(currentLocation);
-        BridgeDirection expectedBridgeDirection = BridgeDirection.findByWordBridgeDirection(direction);
-        assertThat(currentBridgeDirection).isEqualTo(expectedBridgeDirection);
     }
 
 }
