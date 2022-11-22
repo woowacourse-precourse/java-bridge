@@ -114,4 +114,8 @@ public class BridgeController {
         }
         user.setQuit();
     }
+
+    private boolean userRetry(String retryInput) {
+        return retryInput.equals("R");
+    }
 }
