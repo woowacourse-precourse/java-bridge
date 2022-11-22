@@ -42,7 +42,7 @@ public class Game {
     public boolean checkRetry(BridgeGame bridgeGame, int nowIndex){
         if(!outputView.checkSameMove(userBridge,answerBridge,nowIndex)){
             String gameCommand=inputView.readGameCommand();
-            if(gameCommand=="Q"){
+            if(gameCommand.equals("Q")){
                 return false;
             }
             bridgeGame.retry();
