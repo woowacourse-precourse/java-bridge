@@ -18,7 +18,6 @@ public class OutputView {
         Bridge bridge = bridgeGame.getBridge();
         List<String> crossedBridge = bridge.getCrossedBridge(position);
 
-        new StringBuilder();
         printCrossedUp(crossedBridge, isMovable, new StringBuilder());
         printCrossedDown(crossedBridge, isMovable, new StringBuilder());
         System.out.println(" ");
