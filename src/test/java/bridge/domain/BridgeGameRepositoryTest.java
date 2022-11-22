@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -9,11 +10,11 @@ import org.junit.jupiter.api.Test;
 
 class BridgeGameRepositoryTest {
 
-    private final BridgeGameRepository bridgeGameRepository = new BridgeGameRepository();
+    private BridgeGameRepository bridgeGameRepository;
 
     @BeforeEach
     void init() {
-        bridgeGameRepository.init(3);
+        bridgeGameRepository = new BridgeGameRepository();
     }
 
     @DisplayName("round의 기본값은 1이다.")
@@ -66,13 +67,13 @@ class BridgeGameRepositoryTest {
         void When_FinalRoundIsEqualToRound_Expect_True() {
             bridgeGameRepository.addOneToRound();
             bridgeGameRepository.addOneToRound();
-            assertThat(bridgeGameRepository.isFinalRound()).isTrue();
+            assertThat(bridgeGameRepository.isFinalRound(new Bridge(List.of("U","U","U")))).isTrue();
         }
 
         @DisplayName("일치하지않으면 false를 반환한다.")
         @Test
         void When_FinalRoundIsNotEqualToRound_Expect_False() {
-            assertThat(bridgeGameRepository.isFinalRound()).isFalse();
+            assertThat(bridgeGameRepository.isFinalRound(new Bridge(List.of("U","U","U")))).isFalse();
         }
     }
 }

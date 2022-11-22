@@ -11,21 +11,20 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeGameRepository bridgeGameRepository;
+    private final Bridge bridge;
 
-    public BridgeGame(BridgeGameRepository bridgeGameRepository) {
+    public BridgeGame(BridgeGameRepository bridgeGameRepository, Bridge bridge) {
         this.bridgeGameRepository = bridgeGameRepository;
+        this.bridge = bridge;
     }
 
-    public Bridge createBridge(BridgeMaker bridgeMaker,
-                               BridgeSize bridgeSize) {
-        int size = bridgeSize.getSize();
-        bridgeGameRepository.init(size);
-        List<String> blocks = bridgeMaker.makeBridge(size);
-        return new Bridge(blocks);
+    public static BridgeGame of(BridgeMaker bridgeMaker,
+                                BridgeSize bridgeSize) {
+        List<String> blocks = bridgeMaker.makeBridge(bridgeSize.getSize());
+        return new BridgeGame(new BridgeGameRepository(), new Bridge(blocks));
     }
 
-    public MoveResult move(Bridge bridge,
-                           MoveCommand command) {
+    public MoveResult move(MoveCommand command) {
         String message = command.getMessage();
         boolean isSuccess = bridge.isMoveSuccess(bridgeGameRepository.getRound(), message);
         return new MoveResult(message, isSuccess);
@@ -40,7 +39,7 @@ public class BridgeGame {
     }
 
     public boolean isGameClear() {
-        if (bridgeGameRepository.isFinalRound()) {
+        if (bridgeGameRepository.isFinalRound(bridge)) {
             return true;
         }
         bridgeGameRepository.addOneToRound();
@@ -48,6 +47,6 @@ public class BridgeGame {
     }
 
     public GameResult closeGame() {
-        return new GameResult(bridgeGameRepository.getTryCount(), bridgeGameRepository.isFinalRound());
+        return new GameResult(bridgeGameRepository.getTryCount(), bridgeGameRepository.isFinalRound(bridge));
     }
 }

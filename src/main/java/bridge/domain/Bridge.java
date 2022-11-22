@@ -25,6 +25,10 @@ public class Bridge {
         return blocks.get(round-ROUND_VALUE_TO_BLOCKS_INDEX).equals(message);
     }
 
+    public int getFinalRound() {
+        return blocks.size();
+    }
+
     public List<String> getBlocks() {
         return Collections.unmodifiableList(blocks);
     }

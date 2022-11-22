@@ -7,12 +7,10 @@ public class BridgeGameRepository {
 
     private int round;
     private int tryCount;
-    private int finalRound;
 
-    public void init(int finalRound) {
-        round = ROUND_DEFAULT_VALUE;
-        tryCount = TRY_COUNT_DEFAULT_VALUE;
-        this.finalRound = finalRound;
+    public BridgeGameRepository() {
+        this.round = ROUND_DEFAULT_VALUE;
+        this.tryCount = TRY_COUNT_DEFAULT_VALUE;
     }
 
     public int getRound() {
@@ -28,8 +26,8 @@ public class BridgeGameRepository {
     }
 
 
-    public boolean isFinalRound() {
-        return round == finalRound;
+    public boolean isFinalRound(Bridge bridge) {
+        return bridge.getFinalRound() == round;
     }
 
     public void retry() {
