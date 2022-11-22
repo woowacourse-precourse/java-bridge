@@ -103,4 +103,14 @@ public class Controller {
         downBuilder.append(correctBridge);
         upBuilder.append(emptyBridge);
     }
+
+    public void wrongPrintMap(String userInputValue) {
+        if (userInputValue.equals(MOVE_UP)) {
+            upBuilder.append(wrongBridge);
+            downBuilder.append(emptyBridge);
+            return;
+        }
+        downBuilder.append(wrongBridge);
+        upBuilder.append(emptyBridge);
+    }
 }
