@@ -22,8 +22,7 @@ public class BridgeGame {
             position_map.set(position+1,1);
         }
         if(!moving.equals(bridge.get(position))) {
-            position_map.set(position,0);
-            position_map.set(position+1,-1);
+            position_map.set(position,-1);
         }
         return position_map;
     }
