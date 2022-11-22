@@ -34,8 +34,12 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public boolean isCorrect(List<String> bridge, List<String> crossed) {
-        if (!crossed.get(crossed.size() - 1).equals(bridge.get(crossed.size() - 1))) {
+    public boolean isCorrect(Bridge bridge) {
+        List<String> footholds = bridge.getFootholds();
+        List<String> crossed = bridge.getCrossed();
+        int lastFootholdIndex = bridge.getCrossed().size() - 1;
+
+        if (!crossed.get(lastFootholdIndex).equals(footholds.get(lastFootholdIndex))) {
             return false;
         }
         return true;
