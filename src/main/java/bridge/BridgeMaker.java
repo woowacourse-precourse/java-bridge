@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.Move;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,11 +9,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
-    private static final int UPPER_NUMBER = 1;
-    private static final String CAN_MOVE_UP = "U";
-    private static final String CAN_MOVE_DOWN = "D";
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -26,20 +23,12 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            int number = bridgeNumber();
-            bridge.add(convertToBridgeStatus(number));
+            bridge.add(bridgeNumber());
         }
         return bridge;
     }
 
-    private String convertToBridgeStatus(int number) {
-        if (number == UPPER_NUMBER) {
-            return CAN_MOVE_UP;
-        }
-        return CAN_MOVE_DOWN;
-    }
-
-    private int bridgeNumber() {
-        return bridgeNumberGenerator.generate();
+    private String bridgeNumber() {
+        return Move.getMoving(bridgeNumberGenerator.generate());
     }
 }

@@ -1,8 +1,6 @@
 package bridge.model;
 
 public class Moving {
-    private static final String MOVE_TO_UP = "U";
-    private static final String MOVE_TO_DOWN = "D";
     private final String moving;
 
     public Moving(String move) {
@@ -21,6 +19,6 @@ public class Moving {
     }
 
     private boolean isValidSpaceToMove(String move) {
-        return move.equals(MOVE_TO_UP) || move.equals(MOVE_TO_DOWN);
+        return move.equals(Move.U.toString()) || move.equals(Move.D.toString());
     }
 }
