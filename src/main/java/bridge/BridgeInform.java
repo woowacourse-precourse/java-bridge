@@ -42,6 +42,10 @@ public class BridgeInform {
         return directions;
     }
 
+    public void initDirection() {
+        this.directions.clear();
+    }
+
     public void setExit(String exit) {
         validateCorrectExit(exit);
         this.exit = exit;
