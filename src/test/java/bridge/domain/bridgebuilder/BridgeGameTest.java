@@ -1,8 +1,7 @@
 package bridge.domain.bridgebuilder;
 
 import bridge.domain.oxbridgebuilder.OXBridge;
-import bridge.domain.resources.Bridge;
-import bridge.domain.resources.UpOrDown;
+import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,13 +13,27 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeGameTest {
 
-    Bridge bridge;
     OXBridge oxBridge;
-    UpOrDown upOrDown;
+    List<String> bridgeUD;
 
     @BeforeEach
     void setInstances() {
         oxBridge = OXBridge.from();
+        bridgeUD = List.of("U", "D", "U");
+    }
+
+    @DisplayName("bridgeUD에 담긴 모든 내용물에 접근하여 비교가 잘 되는지 테스트(true만 반환)")
+    @MethodSource("rightArgumentProvider")
+    @ParameterizedTest
+    void isEqualsRightTest(String inputUD, int answerBridgeIndex, boolean result) {
+        Assertions.assertThat(BridgeGame.isEquals(inputUD, bridgeUD, answerBridgeIndex)).isEqualTo(result);
+    }
+
+    @DisplayName("bridgeUD에 담긴 모든 내용물에 접근하여 비교가 잘 되는지 테스트(false만 반환)")
+    @MethodSource("wrongTestArgumentProvider")
+    @ParameterizedTest
+    void isEqualsWrongTest(String inputUD, int answerBridgeIndex, boolean result) {
+        Assertions.assertThat(BridgeGame.isEquals(inputUD, bridgeUD, answerBridgeIndex)).isEqualTo(result);
     }
 
     @DisplayName("Bridge가 잘 만들어지는지 size로 확인하는 테스트")
@@ -37,16 +50,6 @@ class BridgeGameTest {
         Assertions.assertThat(BridgeGame.retry(inputRQ)).isEqualTo(result);
     }
 
-    @DisplayName("비교가 잘 되어 알맞은 boolean을 반환하는지 테스트")
-    @MethodSource("moveTestArgumentProvider")
-    @ParameterizedTest
-    void moveTest(int bridgeSize, String inputUD) {
-        bridge = Bridge.of(bridgeSize);
-        upOrDown = UpOrDown.of(inputUD);
-        oxBridge.addUD(upOrDown, true);
-        Assertions.assertThat(BridgeGame.move(bridge, oxBridge, upOrDown)).isInstanceOf(Boolean.class);
-    }
-
     private static Stream<Arguments> retryTestArgumentProvider() {
 
         return Stream.of(
@@ -55,15 +58,19 @@ class BridgeGameTest {
         );
     }
 
-    private static Stream<Arguments> moveTestArgumentProvider() {
-
+    private static Stream<Arguments> rightArgumentProvider() {
         return Stream.of(
-                Arguments.of(3, "U"),
-                Arguments.of(4, "U"),
-                Arguments.of(5, "U"),
-                Arguments.of(10, "U"),
-                Arguments.of(15, "U"),
-                Arguments.of(20, "U")
+            Arguments.of("U", 0, true),
+            Arguments.of("D", 1, true),
+            Arguments.of("U", 2, true)
+        );
+    }
+
+    private static Stream<Arguments> wrongTestArgumentProvider() {
+        return Stream.of(
+            Arguments.of("D", 0, false),
+            Arguments.of("U", 1, false),
+            Arguments.of("D", 2, false)
         );
     }
 }
