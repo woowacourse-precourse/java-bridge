@@ -10,6 +10,7 @@ public class OutputView {
     private List<String> ups;
     private List<String> downs;
 
+    private String greetingMsg = "다리 건너기 게임을 시작합니다.";
     private String gameResultMsg = "최종 게임 결과";
     private String gameSucceedMsg = "게임 성공 여부: ";
     private String totalTriesMsg = "총 시도한 횟수: ";
@@ -44,6 +45,11 @@ public class OutputView {
         System.out.println();
         System.out.println(gameSucceedMsg + success);
         System.out.println(totalTriesMsg + tries);
+    }
+
+    public void printGreeting() {
+        System.out.println(greetingMsg);
+        System.out.println();
     }
 
 }
