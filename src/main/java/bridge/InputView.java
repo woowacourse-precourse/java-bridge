@@ -3,6 +3,9 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+    InputView() {
+
+    }
 
     //다리의 길이를 입력받는다.
     public int readBridgeSize() {
@@ -11,7 +14,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         try {
             bridgelength = Integer.parseInt(Console.readLine());
-            if(bridgelength < 3 || bridgelength > 20){
+            if (bridgelength < 3 || bridgelength > 20) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -29,7 +32,7 @@ public class InputView {
         String moving = "";
         try {
             moving = Console.readLine();
-            if(moving.equals("U") == false && moving.equals("D") == false) {
+            if (moving.equals("U") == false && moving.equals("D") == false) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

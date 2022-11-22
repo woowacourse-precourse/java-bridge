@@ -10,7 +10,6 @@ public class BridgeInform {
     private int directionsize = 0;
 
     BridgeInform(int size) {
-        //validateRange(size);
         this.size = size;
     }
 
@@ -19,7 +18,6 @@ public class BridgeInform {
     }
 
     public void setDirection(String direction) {
-        //validateCorrectDirection(direction);
         this.directionsize++;
         directions.add(direction);
     }

@@ -23,10 +23,10 @@ public class BridgeMaker {
 
         for (int loaction = 1; loaction <= size; loaction++) {
             int randomnumber = bridgeNumberGenerator.generate();
-            if(randomnumber == 1) {
+            if (randomnumber == 1) {
                 result.add("U");
             }
-            if(randomnumber == 0) {
+            if (randomnumber == 0) {
                 result.add("D");
             }
         }
