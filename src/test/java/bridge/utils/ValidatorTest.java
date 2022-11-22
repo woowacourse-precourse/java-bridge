@@ -3,6 +3,7 @@ package bridge.utils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ValidatorTest {
@@ -32,5 +33,12 @@ class ValidatorTest {
     void inputInvalidCommand() {
         assertThatThrownBy(() -> Validator.validateGameCommand("E"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("게임 재시작/종료 여부를 입력 시 R, Q 이 정확히 입력되면 예외처리를 하지 않는다.")
+    @Test
+    void inputValidCommand() {
+        assertThatCode(() -> Validator.validateGameCommand(Value.QUIT))
+                .doesNotThrowAnyException();
     }
 }
