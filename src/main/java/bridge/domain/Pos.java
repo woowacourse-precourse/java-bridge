@@ -10,9 +10,11 @@ public enum Pos {
     }
 
     public static String findPos(int num) {
-        if (num == U.pos) {
-            return U.name();
+        for (Pos o : Pos.values()) {
+            if (num == o.pos) {
+                return o.name();
+            }
         }
-        return D.name();
+        throw new IllegalStateException("BridgeNumberGenerator 를 사용하여 조회 하세요.");
     }
 }
