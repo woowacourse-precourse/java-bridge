@@ -28,7 +28,7 @@
 - [x] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. #readGameCommand
 
 ### OutputView : 결과 관련 출력
-- [ ] 다리 건너기 게임을 시작한다는 메시지를 출력한다. #printGameStart
+- [x] 다리 건너기 게임을 시작한다는 메시지를 출력한다. #printGameStart
 - [ ] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다. #printMap
 - [ ] 에러 메시지를 출력한다. #printErrorMessage
 - [ ] 게임의 최종 결과를 정해진 형식에 맞춰 출력한다. #printResult
