@@ -14,7 +14,7 @@ public class OutputView {
         String top ="["+preBridge(gameInfo)[1]+nowBridge(gameInfo)[1]+"]";
         String bottom ="["+preBridge(gameInfo)[0]+nowBridge(gameInfo)[0]+"]";
         System.out.println(top);
-        System.out.println(bottom);
+        System.out.println(bottom+'\n');
     }
     public String[] preBridge(BridgeGameInfo gameInfo){
         String[] pre = new String[2];
@@ -51,6 +51,8 @@ public class OutputView {
     public void printResult(BridgeGameInfo gameInfo) {
         String result = "실패";
         if(gameInfo.getPlayer().equals("O"))result="성공";
+        System.out.println("최종 게임 결과");
+        printMap(gameInfo);
         System.out.println("게임 성공 여부: "+result);
         System.out.println("총 시도한 횟수: "+gameInfo.getTrial());
     }
