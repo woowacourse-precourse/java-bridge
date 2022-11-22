@@ -117,4 +117,11 @@ public class Controller {
     public void printBuilder() {
         outputView.printMap(upBuilder, downBuilder);
     }
+
+    public void initBuilder() {
+        upBuilder.setLength(0);
+        upBuilder.append("[");
+        downBuilder.setLength(0);
+        downBuilder.append("[");
+    }
 }
