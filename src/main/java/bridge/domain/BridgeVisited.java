@@ -14,4 +14,26 @@ public class BridgeVisited {
     public String printMoveInfo() {
         return moveInfo.MapInfo();
     }
+
+    public boolean isRemained(final Bridge bridge) {
+        if (isEnd(bridge)) {
+            return false;
+        }
+        return isAllStepCorrect(bridge);
+    }
+
+    private boolean isEnd(final Bridge bridge) {
+        return positions.size() == bridge.getSize();
+    }
+
+    private boolean isAllStepCorrect(final Bridge bridge) {
+        final int bound = positions.size();
+
+        for (int index = 0; index < bound; index++) {
+            if (!bridge.isEqual(index, positions.get(index))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
