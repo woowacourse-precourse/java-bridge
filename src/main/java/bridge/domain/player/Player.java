@@ -30,10 +30,6 @@ public class Player {
         return moving.size() == size;
     }
 
-    public int getTryCount() {
-        return tryCount;
-    }
-
     public boolean equalsTop(BridgeDirection direction) {
         return this.getTop().equals(direction.getInitial());
     }
@@ -44,5 +40,9 @@ public class Player {
 
     public String getTop() {
         return moving.get(getTopIndex());
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }

@@ -40,6 +40,11 @@ public class BridgeGame {
         return map;
     }
 
+    public void retry() {
+        player.clear();
+        player.plusTryCount();
+    }
+
     private String getMoveResult(BridgeDirection direction) {
         if (player.equalsTop(direction) && bridge.isMovable(player)) {
             return MOVABLE;
@@ -51,11 +56,6 @@ public class BridgeGame {
         }
 
         return SPACE;
-    }
-
-    public void retry() {
-        player.clear();
-        player.plusTryCount();
     }
 
     public List<List<String>> getMap() {
