@@ -18,6 +18,9 @@ public abstract class Command {
         return message;
     }
 
+    /**
+     * 허용되는 메시지 값들을 등록하는 추상 메소드
+     */
     protected abstract List<String> getCorrectValues();
 
     private void validate(String message,
