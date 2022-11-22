@@ -13,7 +13,7 @@
 - [x] 게임 오버 판단
 
 ### BridgeController
-- [] 다리 생성
+- [x] 다리 생성
 - [] 게임 실행
 
 ### ERROR
