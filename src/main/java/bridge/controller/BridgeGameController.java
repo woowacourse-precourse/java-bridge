@@ -9,7 +9,6 @@ import java.util.List;
 
 public class BridgeGameController {
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private static final String QUIT_MESSAGE = "최종 게임 결과";
     private static final String RETRY_COMMAND = "R";
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -38,7 +37,6 @@ public class BridgeGameController {
     }
 
     private void printGameResult(BridgeGame bridgeGame) {
-        printQuitMessage();
         outputView.printResult(bridgeGame);
     }
 
@@ -48,10 +46,6 @@ public class BridgeGameController {
             bridgeGame.retry();
             crossingBridge(bridgeGame);
         }
-    }
-
-    private void printQuitMessage() {
-        System.out.println(QUIT_MESSAGE);
     }
 
     private String getMoveCommand() {
