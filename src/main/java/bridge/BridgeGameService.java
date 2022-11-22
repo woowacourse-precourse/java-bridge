@@ -90,4 +90,14 @@ public class BridgeGameService {
         return true;
     }
 
+    public void printResult(List<String> bridge, List<String> map, Integer tryCount) {
+        outputView.printResult(getStatusSuccessFail(bridge, map), tryCount);
+    }
+
+    private String getStatusSuccessFail(List<String> bridge, List<String> map) {
+        if (isSuccess(bridge, map)) {
+            return "성공";
+        }
+        return "실패";
+    }
 }
