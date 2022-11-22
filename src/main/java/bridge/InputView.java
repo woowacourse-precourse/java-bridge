@@ -17,24 +17,23 @@ public class InputView {
         return bridgeSize;
     }
 
-    //  10줄 초과! 리팩토링 필요  //
     private static String readUntilRightInput(){
         while(true){
             try{
                 String input = Console.readLine();
-                errorBridgeSizeOverRange(input);
-                return input;
+                return errorBridgeSizeOverRange(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 3~20 사이의 값을 입력해야 합니다.");
             }
         }
     }
 
-    public static void errorBridgeSizeOverRange(String input){
+    public static String errorBridgeSizeOverRange(String input){
         int bridgeSize = Integer.parseInt(input);
         if(bridgeSize < 3 || 20 < bridgeSize){
             throw new IllegalArgumentException();
         }
+        return input;
     }
 
     /**
@@ -50,18 +49,18 @@ public class InputView {
         while(true){
            try{
                String input = readMoving();
-               errorInputNotUOrD(input);
-               return input;
+               return errorInputNotUOrD(input);
            }catch (IllegalArgumentException e) {
                System.out.println("[ERROR] U 또는 D를 입력해야 합니다.");
            }
         }
     }
 
-    public static void errorInputNotUOrD(String input){
+    public static String errorInputNotUOrD(String input){
         if(!input.equals("U") && !input.equals("D")){
             throw new IllegalArgumentException();
         }
+        return input;
     }
 
     /**
@@ -77,17 +76,17 @@ public class InputView {
         while(true){
             try{
                 String input = readGameCommand();
-                errorInputNotROrQ(input);
-                return input;
+                return errorInputNotROrQ(input);
             }catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] R 또는 Q를 입력해야 합니다.");
             }
         }
     }
 
-    public static void errorInputNotROrQ(String input){
+    public static String errorInputNotROrQ(String input){
         if(!input.equals("R") && !input.equals("Q")){
             throw new IllegalArgumentException();
         }
+        return input;
     }
 }
