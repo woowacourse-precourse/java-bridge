@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.model.Command;
-import bridge.model.Direction;
+import bridge.model.game.Command;
+import bridge.model.game.Direction;
 
 public enum Message {
     GAME_START("다리 건너기 게임을 시작합니다.\n"),

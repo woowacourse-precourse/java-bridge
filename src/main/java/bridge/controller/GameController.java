@@ -1,8 +1,8 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.model.BridgeGame;
-import bridge.model.GameState;
+import bridge.model.game.BridgeGame;
+import bridge.model.game.GameState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

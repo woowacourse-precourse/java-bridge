@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.game;
 
 public enum GameState {
     FINISH_SUCCESS(0, true, true),

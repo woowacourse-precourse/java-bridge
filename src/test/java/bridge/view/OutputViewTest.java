@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.BridgeMaker;
-import bridge.model.BridgeGame;
+import bridge.model.game.BridgeGame;
 import bridge.utill.TestBridgeGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;

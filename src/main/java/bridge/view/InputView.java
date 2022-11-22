@@ -1,9 +1,9 @@
 package bridge.view;
 
 import bridge.exception.ErrorMsg;
-import bridge.model.BridgeInfo;
-import bridge.model.Command;
-import bridge.model.Direction;
+import bridge.model.bridge.BridgeInfo;
+import bridge.model.game.Command;
+import bridge.model.game.Direction;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.function.Supplier;
