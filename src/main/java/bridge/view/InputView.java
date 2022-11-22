@@ -18,7 +18,7 @@ public class InputView {
             num = UserException.parseInt(input);
             UserException.numberRange(num);
         } catch (IllegalArgumentException e) {
-            readBridgeSize();
+            throw new IllegalArgumentException();
         }
         return num;
     }
@@ -32,7 +32,7 @@ public class InputView {
         try {
             UserException.movingException(input);
         } catch (IllegalArgumentException e) {
-            readMoving();
+            throw new IllegalArgumentException();
         }
         return input;
     }
@@ -46,7 +46,7 @@ public class InputView {
         try {
             UserException.reGameException(input);
         } catch (IllegalArgumentException e) {
-            readGameCommand();
+            throw new IllegalArgumentException();
         }
         return input;
     }
