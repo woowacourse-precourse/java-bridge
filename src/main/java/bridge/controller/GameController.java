@@ -33,6 +33,8 @@ public class GameController {
     private int tryNumber = 1;
     private String moving = "";
 
+    private String retryChoice = "";
+
     public void init() {
         outputView.printGameStart();
         System.out.println();
@@ -108,7 +110,7 @@ public class GameController {
         while(stage < bridgeSize){
             runGame();
             if(checkFail(stage)){
-                if(quitRetry()){
+                if(!retryChoice()){
                     return;
                 }
                 clearGame();
@@ -124,14 +126,24 @@ public class GameController {
         downBridge.clear();
     }
 
+    public boolean retryChoice(){
+        while(true){
+            retryChoice = inputView.readGameCommand();
+            if(!checkException.checkInputRetryChoice(retryChoice)){
+                continue;
+            }
+            return quitRetry(retryChoice);
+        }
+    }
 
-    public boolean quitRetry(){
-        if(!bridgeGame.retry(inputView.readGameCommand())){
+
+    public boolean quitRetry(String retryChoice){
+        if(!bridgeGame.retry(retryChoice)){
             resultGame.add(viewMessage.RESULT_GAME_FAIL_MESSAGE.getMessage());
             resultGame.add((String.valueOf(tryNumber)));
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     public void addFinishGameResult(){
