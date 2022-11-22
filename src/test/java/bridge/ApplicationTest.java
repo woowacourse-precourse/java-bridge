@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.model.BridgeMaker;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ class ApplicationTest extends NsTest {
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
+
             assertThat(output()).contains(
                 "최종 게임 결과",
                 "[ O |   | O ]",
@@ -35,8 +37,10 @@ class ApplicationTest extends NsTest {
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
+
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+
     }
 
     @Test
