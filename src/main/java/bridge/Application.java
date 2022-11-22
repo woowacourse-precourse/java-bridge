@@ -1,8 +1,15 @@
 package bridge;
 
+import bridge.controller.GameController;
+import bridge.view.TypeChange;
+import bridge.view.Verification;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        GameController gameController = new GameController(new InputView(new Verification(), new TypeChange()), new OutputView());
+        gameController.play();
     }
 }
