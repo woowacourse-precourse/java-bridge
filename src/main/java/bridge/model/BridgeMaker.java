@@ -15,12 +15,14 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++) {
-            if(bridgeNumberGenerator.generate() == 0) {
-                bridge.add(Game.BRIDGE_GENERATE_DOWN);
-                continue;
-            }
-            bridge.add(Game.BRIDGE_GENERATE_UP);
+            String upDown = judgeUporDown(bridgeNumberGenerator.generate());
+            bridge.add(upDown);
         }
         return bridge;
+    }
+
+    private String judgeUporDown(int number) {
+        if(number == 0) return Game.BRIDGE_GENERATE_DOWN;
+        return Game.BRIDGE_GENERATE_UP;
     }
 }
