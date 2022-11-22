@@ -66,6 +66,7 @@ public class BridgeGame {
             canMove = move(bridges, position);
             if (!canMove) {
                 canMove = retry(position);
+                continue;
             }
             position++;
         }
