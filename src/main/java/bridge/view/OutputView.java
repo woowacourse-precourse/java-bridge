@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.Status;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,12 +105,7 @@ public class OutputView {
     }
 
     private static void printIsSuccess(boolean status) {
-        if (status) {
-            System.out.println("게임 성공 여부: 성공");
-        }
-        if (!status) {
-            System.out.println("게임 성공 여부: 실패");
-        }
+        System.out.println("게임 성공 여부: " + Status.convertCheckToMessage(status));
     }
 
     private static void printTryCount(int tryCount) {
