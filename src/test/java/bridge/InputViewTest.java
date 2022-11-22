@@ -22,4 +22,5 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리 길이는 자연수여야 합니다.");
     }
+
 }
