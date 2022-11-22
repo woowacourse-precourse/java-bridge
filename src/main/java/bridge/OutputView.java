@@ -35,7 +35,10 @@ public class OutputView {
         }
         System.out.println();
 
-
+        if(success){
+            System.out.println("게임 성공 여부: " + successMessage);
+        }
+        System.out.println("총 시도한 횟수: " + count);
 
     }
 
