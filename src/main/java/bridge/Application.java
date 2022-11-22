@@ -6,8 +6,11 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-
-        BridgeGameController controller = new BridgeGameController();
-        controller.runGame();
+        try {
+            BridgeGameController controller = new BridgeGameController();
+            controller.runGame();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
