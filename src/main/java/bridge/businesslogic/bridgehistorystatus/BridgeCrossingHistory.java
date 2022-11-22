@@ -1,11 +1,11 @@
-package bridge.businesslogic.bridgestatus;
+package bridge.businesslogic.bridgehistorystatus;
 
-public class BridgeCrossingStatus {
+public class BridgeCrossingHistory {
     private final StringBuilder upLine;
     private final StringBuilder downLine;
     private final BridgeStatusUtil statusUtil = new BridgeStatusUtil();
 
-    public BridgeCrossingStatus(StringBuilder upLine, StringBuilder downLine) {
+    public BridgeCrossingHistory(StringBuilder upLine, StringBuilder downLine) {
         this.upLine = upLine;
         this.downLine = downLine;
     }

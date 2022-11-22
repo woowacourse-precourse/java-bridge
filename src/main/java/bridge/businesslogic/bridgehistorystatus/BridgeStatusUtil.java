@@ -1,4 +1,4 @@
-package bridge.businesslogic.bridgestatus;
+package bridge.businesslogic.bridgehistorystatus;
 
 public class BridgeStatusUtil {
     public void checkLast(StringBuilder targetStatus,boolean isLastPickIsRight){

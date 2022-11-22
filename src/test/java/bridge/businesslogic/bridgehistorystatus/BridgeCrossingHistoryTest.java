@@ -1,4 +1,4 @@
-package bridge.businesslogic.bridgestatus;
+package bridge.businesslogic.bridgehistorystatus;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BridgeCrossingStatusTest {
+class BridgeCrossingHistoryTest {
 
-    private BridgeCrossingStatus bridgeCrossing;
+    private BridgeCrossingHistory bridgeCrossing;
 
     @Nested
     class UpdateStatusTest{
@@ -18,7 +18,7 @@ class BridgeCrossingStatusTest {
         void updateStatus_case1() {
             StringBuilder upLine = new StringBuilder();
             StringBuilder downLine = new StringBuilder();
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             bridgeCrossing.updateStatus("U");
             assertThat(upLine.toString()).isEqualTo("O");
             assertThat(downLine.toString()).isEqualTo(" ");
@@ -29,7 +29,7 @@ class BridgeCrossingStatusTest {
         void updateStatus_case2() {
             StringBuilder upLine = new StringBuilder();
             StringBuilder downLine = new StringBuilder();
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             bridgeCrossing.updateStatus("D");
             assertThat(upLine.toString()).isEqualTo(" ");
             assertThat(downLine.toString()).isEqualTo("O");
@@ -40,7 +40,7 @@ class BridgeCrossingStatusTest {
         void updateStatus_case3() {
             StringBuilder upLine = new StringBuilder("O");
             StringBuilder downLine = new StringBuilder(" ");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             bridgeCrossing.updateStatus("U");
             assertThat(upLine.toString()).isEqualTo("O | O");
             assertThat(downLine.toString()).isEqualTo("  |  ");
@@ -51,7 +51,7 @@ class BridgeCrossingStatusTest {
         void updateStatus_case4() {
             StringBuilder upLine = new StringBuilder("O");
             StringBuilder downLine = new StringBuilder(" ");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             bridgeCrossing.updateStatus("D");
             assertThat(upLine.toString()).isEqualTo("O |  ");
             assertThat(downLine.toString()).isEqualTo("  | O");
@@ -66,7 +66,7 @@ class BridgeCrossingStatusTest {
         void clearAll_case1(){
             StringBuilder upLine = new StringBuilder();
             StringBuilder downLine = new StringBuilder();
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             bridgeCrossing.clearAll();
             assertThat(upLine.toString()).isEqualTo("");
             assertThat(downLine.toString()).isEqualTo("");
@@ -77,7 +77,7 @@ class BridgeCrossingStatusTest {
         void clearAll_case2(){
             StringBuilder upLine = new StringBuilder("O |   | O");
             StringBuilder downLine = new StringBuilder("  | O |  ");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             bridgeCrossing.clearAll();
             assertThat(upLine.toString()).isEqualTo("");
             assertThat(downLine.toString()).isEqualTo("");
@@ -91,7 +91,7 @@ class BridgeCrossingStatusTest {
         void getBridgeStatus_case1(){
             StringBuilder upLine = new StringBuilder("O");
             StringBuilder downLine = new StringBuilder(" ");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O ]");
             assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   ]");
         }
@@ -101,7 +101,7 @@ class BridgeCrossingStatusTest {
         void getBridgeStatus_case2(){
             StringBuilder upLine = new StringBuilder(" ");
             StringBuilder downLine = new StringBuilder("O");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[   ]");
             assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[ O ]");
         }
@@ -111,7 +111,7 @@ class BridgeCrossingStatusTest {
         void getBridgeStatus_case3(){
             StringBuilder upLine = new StringBuilder("O");
             StringBuilder downLine = new StringBuilder(" ");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ X ]");
             assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   ]");
         }
@@ -121,7 +121,7 @@ class BridgeCrossingStatusTest {
         void getBridgeStatus_case4(){
             StringBuilder upLine = new StringBuilder(" ");
             StringBuilder downLine = new StringBuilder("O");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[   ]");
             assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[ X ]");
         }
@@ -131,7 +131,7 @@ class BridgeCrossingStatusTest {
         void getBridgeStatus_case5(){
             StringBuilder upLine = new StringBuilder("O | O");
             StringBuilder downLine = new StringBuilder("  |  ");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O | O ]");
             assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   |   ]");
         }
@@ -141,7 +141,7 @@ class BridgeCrossingStatusTest {
         void getBridgeStatus_case6(){
             StringBuilder upLine = new StringBuilder("O | O");
             StringBuilder downLine = new StringBuilder("  |  ");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ O | X ]");
             assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   |   ]");
         }
@@ -151,7 +151,7 @@ class BridgeCrossingStatusTest {
         void getBridgeStatus_case7(){
             StringBuilder upLine = new StringBuilder("O |  ");
             StringBuilder downLine = new StringBuilder("  | O");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O |   ]");
             assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   | O ]");
         }
@@ -161,7 +161,7 @@ class BridgeCrossingStatusTest {
         void getBridgeStatus_case8(){
             StringBuilder upLine = new StringBuilder("O |  ");
             StringBuilder downLine = new StringBuilder("  | O");
-            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
             assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ O |   ]");
             assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   | X ]");
         }

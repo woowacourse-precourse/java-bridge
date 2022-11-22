@@ -1,4 +1,4 @@
-package bridge.businesslogic.bridgestatus;
+package bridge.businesslogic.bridgehistorystatus;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
