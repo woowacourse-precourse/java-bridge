@@ -1,6 +1,6 @@
 package bridge.constant;
 
-public enum ExceptionMessage {
+public enum ErrorMessage {
 
     LENGTH_OVER_RANGE_ERROR_MESSAGE("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."),
     LENGTH_NON_NUMBER_ERROR_MESSAGE("[ERROR] 다리 길이는 숫자여야 합니다."),
@@ -9,7 +9,7 @@ public enum ExceptionMessage {
 
     private String message;
 
-    ExceptionMessage(String message) {
+    ErrorMessage(String message) {
         this.message = message;
     }
 

@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.constant.ExceptionMessage;
+import bridge.constant.ErrorMessage;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,7 +34,7 @@ public class BridgeLength {
         if (isLengthNumberCorrect(length)) {
             return;
         }
-        throw new IllegalArgumentException(ExceptionMessage.LENGTH_NON_NUMBER_ERROR_MESSAGE.getMessage());
+        throw new IllegalArgumentException(ErrorMessage.LENGTH_NON_NUMBER_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isLengthNumberCorrect(String length) {
@@ -46,7 +46,7 @@ public class BridgeLength {
         if (isLengthRangeCorrect(length)) {
             return;
         }
-        throw new IllegalArgumentException(ExceptionMessage.LENGTH_OVER_RANGE_ERROR_MESSAGE.getMessage());
+        throw new IllegalArgumentException(ErrorMessage.LENGTH_OVER_RANGE_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isLengthRangeCorrect(String length) {

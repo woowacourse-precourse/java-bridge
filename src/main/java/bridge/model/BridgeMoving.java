@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.constant.ExceptionMessage;
+import bridge.constant.ErrorMessage;
 import bridge.constant.Moving;
 
 public class BridgeMoving {
@@ -24,7 +24,7 @@ public class BridgeMoving {
         if (isMovingFormatCorrect(moving)) {
             return;
         }
-        throw new IllegalArgumentException(ExceptionMessage.MOVING_NON_FORMAT_ERROR_MESSAGE.getMessage());
+        throw new IllegalArgumentException(ErrorMessage.MOVING_NON_FORMAT_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isMovingFormatCorrect(String moving) {
