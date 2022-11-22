@@ -10,7 +10,39 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("BridgeMap 클래스")
 class BridgeMapTest {
-	
+	@Nested
+	@DisplayName("getMovingResult 메소드는")
+	class Describe_getMovingResult {
+
+		@Nested
+		@DisplayName("만약 이동결과가 성공이라면")
+		class Context_moving_Result_success {
+			private MovingResult movingResult = new MovingResult("U", true);
+
+			@Test
+			@DisplayName("true를 반환한다.")
+			void it_returns_true() {
+				BridgeMap bridgeMap = new BridgeMap();
+				bridgeMap.addMovingResult(movingResult);
+				assertThat(bridgeMap.getMovingResult()).isTrue();
+			}
+		}
+
+		@Nested
+		@DisplayName("만약 이동결과가 실라면")
+		class Context_moving_Result_fail {
+			private MovingResult movingResult = new MovingResult("U", false);
+
+			@Test
+			@DisplayName("false를 반환한다.")
+			void it_returns_false() {
+				BridgeMap bridgeMap = new BridgeMap();
+				bridgeMap.addMovingResult(movingResult);
+				assertThat(bridgeMap.getMovingResult()).isFalse();
+			}
+		}
+	}
+
 	@Nested
 	@DisplayName("getSplitMap 메소드는")
 	class Describe_getSplitMap {

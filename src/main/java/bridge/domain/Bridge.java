@@ -6,8 +6,9 @@ import java.util.List;
 public class Bridge extends BridgeValidator {
 	private final boolean MOVING_SUCCESS = true;
 	private final boolean MOVING_FAIL = false;
-	private List<String> bridge;
 	private int currentLocation = 0;
+	private List<String> bridge;
+	private BridgeMap bridgeMap = new BridgeMap();
 
 	public Bridge(List<String> bridge) {
 		validateBridge(bridge);
@@ -15,12 +16,22 @@ public class Bridge extends BridgeValidator {
 		this.bridge = bridge;
 	}
 
-	public MovingResult checkUserMoving(String userMoving) {
+	public void checkUserMoving(String userMoving) {
 		String currentBridgeDirection = bridge.get(currentLocation++);
+		boolean isMovingSuccess = MOVING_FAIL;
 		if (currentBridgeDirection.equals(userMoving)) {
-			return new MovingResult(userMoving, MOVING_SUCCESS);
+			isMovingSuccess = MOVING_SUCCESS;
 		}
-		return new MovingResult(userMoving, MOVING_FAIL);
+		MovingResult movingResult = new MovingResult(userMoving, isMovingSuccess);
+		bridgeMap.addMovingResult(movingResult);
+	}
+
+	public BridgeMap getBridgeMap() {
+		return bridgeMap;
+	}
+
+	public boolean getMovingResult() {
+		return bridgeMap.getMovingResult();
 	}
 
 	public boolean isCrossBridge() {
@@ -30,7 +41,8 @@ public class Bridge extends BridgeValidator {
 		return false;
 	}
 
-	public void resetCurrentLocation() {
+	public void resetGame() {
 		this.currentLocation = 0;
+		bridgeMap.resetMap();
 	}
 }

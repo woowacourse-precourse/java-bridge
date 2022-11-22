@@ -10,8 +10,8 @@ public class User extends MovingValidator {
 		this.moving = moving;
 	}
 
-	public MovingResult checkMoving(Bridge bridge) {
-		MovingResult movingResult = bridge.checkUserMoving(moving);
-		return movingResult;
+	public boolean checkMoving(Bridge bridge) {
+		bridge.checkUserMoving(moving);
+		return bridge.getMovingResult();
 	}
 }

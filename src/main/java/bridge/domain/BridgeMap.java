@@ -1,17 +1,25 @@
 package bridge.domain;
 
 import bridge.utils.Convertor;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BridgeMap {
 	private final String NEVER_MOVE = "[ERROR] 이동결과가 없으므로 출력형식에 맞게 이동결과를 변환할 수 없습니다.\n";
 	private final int MIN_MOVE_NUMBER = 1;
-
-	List<MovingResult> map = new ArrayList<>();
+	private LinkedList<MovingResult> map = new LinkedList<>();
 
 	public void addMovingResult(MovingResult movingResult) {
 		map.add(movingResult);
+	}
+
+	public boolean getMovingResult() {
+		MovingResult movingResult = map.getLast();
+		return movingResult.isMovingSuccess();
+	}
+
+	public void resetMap() {
+		map.clear();
 	}
 
 	public List<String> getSplitMap() {

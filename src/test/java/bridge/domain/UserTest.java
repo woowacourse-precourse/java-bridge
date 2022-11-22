@@ -49,9 +49,8 @@ class UserTest {
 				movings.stream()
 					.forEach(moving -> {
 						User user = new User(moving);
-						MovingResult movingResult = user.checkMoving(bridge);
-						MovingResult expected = new MovingResult(moving, true);
-						assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
+						boolean movingResult = user.checkMoving(bridge);
+						assertThat(movingResult).isTrue();
 					});
 			}
 		}
@@ -68,9 +67,8 @@ class UserTest {
 				movings.stream()
 					.forEach(moving -> {
 						User user = new User(moving);
-						MovingResult movingResult = user.checkMoving(bridge);
-						MovingResult expected = new MovingResult(moving, false);
-						assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
+						boolean movingResult = user.checkMoving(bridge);
+						assertThat(movingResult).isFalse();
 					});
 			}
 		}

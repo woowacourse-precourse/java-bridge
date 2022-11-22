@@ -3,6 +3,8 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -68,13 +70,14 @@ class BridgeTest {
 			List<String> userMoving = new ArrayList<>(Arrays.asList("D", "U", "D"));
 
 			@Test
-			@DisplayName("false를 포함한 이동결과 객체를 반환한다.")
+			@DisplayName("false를 포함한 이동결과 객체를 bridgeMap에 저장한다.")
 			void it_returns_moving_result_include_false() {
 				Bridge bridge = new Bridge(InputBridge);
 				userMoving.stream()
 					.forEach(direction -> {
-						MovingResult movingResult = bridge.checkUserMoving(direction);
-						assertThat(movingResult.isMovingSuccess()).isFalse();
+						bridge.checkUserMoving(direction);
+						BridgeMap bridgeMap = bridge.getBridgeMap();
+						assertThat(bridgeMap.getMovingResult()).isFalse();
 					});
 			}
 		}
@@ -90,12 +93,48 @@ class BridgeTest {
 				Bridge bridge = new Bridge(InputBridge);
 				userMoving.stream()
 					.forEach(direction -> {
-						MovingResult movingResult = bridge.checkUserMoving(direction);
-						assertThat(movingResult.isMovingSuccess()).isTrue();
+						bridge.checkUserMoving(direction);
+						BridgeMap bridgeMap = bridge.getBridgeMap();
+						assertThat(bridgeMap.getMovingResult()).isTrue();
 					});
 			}
 		}
 	}
+
+	@Nested
+	@DisplayName("getBridgeMap 메소드는")
+	class Describe_getBridgeMap {
+		private List<String> inputBridge = new ArrayList<>(Arrays.asList("U", "D", "D", "U"));
+		private List<String> movings = new ArrayList<>(Arrays.asList("U", "U", "D", "U"));
+
+		private List expectedMovingResults = List.of(
+			new MovingResult("U", true),
+			new MovingResult("U", false),
+			new MovingResult("D", true),
+			new MovingResult("U", true)
+		);
+
+		@Test
+		@DisplayName("이동결과들을 반환한다.")
+		void it_returns_moving_results() {
+			Bridge bridge = new Bridge(inputBridge);
+			BridgeGame bridgeGame = new BridgeGame(bridge);
+			movings.stream()
+				.forEach(moving -> {
+					InputStream in = new ByteArrayInputStream(moving.getBytes());
+					System.setIn(in);
+					bridgeGame.move();
+				});
+
+			BridgeMap expected = new BridgeMap();
+			expectedMovingResults.stream()
+				.forEach(movingResult -> {
+					expected.addMovingResult((MovingResult) movingResult);
+				});
+			assertThat(bridge.getBridgeMap()).usingRecursiveComparison().isEqualTo(expected);
+		}
+	}
+
 
 	@Nested
 	@DisplayName("isCrossBridge 메소드는")
