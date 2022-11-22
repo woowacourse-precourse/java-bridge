@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.service.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
@@ -14,19 +15,18 @@ import java.util.List;
 
 public class BridgeController {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
     private final BridgeGame bridgeGame;
     private final InputHandler inputHandler;
     private final OutputView outputView;
 
-    public BridgeController(BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
+    public BridgeController() {
         bridgeGame = new BridgeGame();
         inputHandler = new InputHandler();
         outputView = new OutputView();
     }
 
     public void startGame() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView.printStartGame();
         Length length = inputHandler.getLength();
