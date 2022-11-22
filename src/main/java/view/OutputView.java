@@ -22,34 +22,35 @@ public class OutputView {
         StringBuilder firstRow = new StringBuilder("[");
         StringBuilder secondRow = new StringBuilder("[");
 
-        firstRow = drawFirstRowInMap(bridgeGame.getBridge(), bridgeGame.getUserInput(), firstRow);
-        secondRow = drawSecondRowInMap(bridgeGame.getBridge(), bridgeGame.getUserInput(), secondRow);
+        firstRow = drawFirstRowInMap(bridgeGame, firstRow);
+        secondRow = drawSecondRowInMap(bridgeGame, secondRow);
 
         System.out.println(wrapUpMap(firstRow,secondRow));
+        System.out.println();
     }
 
-    private StringBuilder drawFirstRowInMap(List<String> bridge, List<String> userInput, StringBuilder map) {
-        for (int i = 0; i < userInput.size(); i++) {
+    private StringBuilder drawFirstRowInMap(BridgeGame bridgeGame, StringBuilder map) {
+        for (int i = 0; i < bridgeGame.getCurrentProgress(); i++) {
 
-            if (userInput.get(i).equals("U")) {
-                boolean isCorrect = userInput.get(i).equals(bridge.get(i));
+            if (bridgeGame.getDirectionAt(i).equals("U")) {
+                boolean isCorrect = bridgeGame.compareTo(i);
                 map = markMap(map, isCorrect);
-                continue;
+            }else if(bridgeGame.getDirectionAt(i).equals("D")){
+                map = fillMap(map);
             }
-            map = fillMap(map);
         }
         return map;
     }
 
-    private StringBuilder drawSecondRowInMap(List<String> bridge, List<String> userInput, StringBuilder map) {
-        for (int i = 0; i < userInput.size(); i++) {
+    private StringBuilder drawSecondRowInMap(BridgeGame bridgeGame, StringBuilder map) {
+        for (int i = 0; i < bridgeGame.getCurrentProgress(); i++) {
 
-            if (userInput.get(i).equals("D")) {
-                boolean isCorrect = userInput.get(i).equals(bridge.get(i));
+            if (bridgeGame.getDirectionAt(i).equals("D")) {
+                boolean isCorrect = bridgeGame.compareTo(i);
                 map = markMap(map, isCorrect);
-                continue;
+            }else if(bridgeGame.getDirectionAt(i).equals("U")){
+                map = fillMap(map);
             }
-            map = fillMap(map);
         }
         return map;
     }
