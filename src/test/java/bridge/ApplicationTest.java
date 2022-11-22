@@ -38,7 +38,40 @@ class ApplicationTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
+    @Test
+    void 중간_종료_기능_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
 
+            int upSideIndex = output().indexOf("[ O |   |   ]");
+            int downSideIndex = output().indexOf("[   | O | X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+    @Test
+    void 재시작_종료_기능_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "R","U", "D", "U");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
