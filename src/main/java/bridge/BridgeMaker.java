@@ -31,10 +31,10 @@ public class BridgeMaker {
 
     private String mapToCommand(int command){
         if(command == COMMAND_CONSTANTS.MOVE_UP.getValue()){
-            return COMMAND_CONSTANTS.MOVE_UP.getCommnad();
+            return COMMAND_CONSTANTS.MOVE_UP.getCommand();
         }
         if(command == COMMAND_CONSTANTS.MOVE_DOWN.getValue()){
-            return COMMAND_CONSTANTS.MOVE_DOWN.getCommnad();
+            return COMMAND_CONSTANTS.MOVE_DOWN.getCommand();
         }
         return null;
     }
