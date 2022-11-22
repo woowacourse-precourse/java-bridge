@@ -93,6 +93,6 @@ class BridgeGameTest {
 		//given
 		BridgeGame bridgeGame = new BridgeGame();
 		//when, then
-		assertTrue(bridgeGame.retry(new GameCommandRequestDto("R")));
+		assertNotNull(bridgeGame.retry(new GameCommandRequestDto("R")));
 	}
 }

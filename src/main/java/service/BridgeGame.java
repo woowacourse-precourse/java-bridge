@@ -92,13 +92,13 @@ public class BridgeGame {
 	/**
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
 	 */
-	public boolean retry(GameCommandRequestDto gameCommandRequestDto) {
+	public PlayCountResponseDto retry(GameCommandRequestDto gameCommandRequestDto) {
 		GameCommand gameCommand = new GameCommand(gameCommandRequestDto.getGameCommand());
 		if (gameCommand.isRetry()) {
 			PlayCount.getInstance().addCount();
-			return true;
+			return new PlayCountResponseDto(PlayCount.getInstance());
 		}
-		return false;
+		return null;
 	}
 
 	/*

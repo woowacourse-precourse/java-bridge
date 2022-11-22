@@ -96,7 +96,7 @@ public class GameController {
 			return false;
 		}
 		GameCommandRequestDto gameCommandRequestDto = inputView.readGameCommand();
-		return bridgeGame.retry(gameCommandRequestDto);
+		return bridgeGame.retry(gameCommandRequestDto) != null;
 	}
 
 	private void finish(MapResponseDto mapResponseDto, MoveResultResponseDto moveResultResponseDto) {
