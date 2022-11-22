@@ -8,27 +8,18 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
-    @Nested
-    class MoveErrorTest {
-        @DisplayName("이동 명령어로 소문자 u를 입력했을 때 예외 발생")
-        @Test
-        void testLowerU() {
-            assertThatThrownBy(() -> {
-                Player player = new Player(new Map());
-                player.move("u", "U");
-            }).isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @DisplayName("이동 명령어로 소문자 d를 입력했을 때 예외 발생")
-        @Test
-        void testLowerD() {
-            assertThatThrownBy(() -> {
-                Player player = new Player(new Map());
-                player.move("d", "D");
-            }).isInstanceOf(IllegalArgumentException.class);
-        }
+    @DisplayName("이동 명령어로 소문자를 입력했을 때 예외 발생")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void testLower(String command) {
+        assertThatThrownBy(() -> {
+            Player player = new Player(new Map());
+            player.move(command.toLowerCase(), command);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Nested
