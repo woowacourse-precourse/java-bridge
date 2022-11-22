@@ -79,7 +79,9 @@ public class GameController {
     }
 
     private boolean successOrFailure(BridgeGame bridgeGame, int finalIndex, Cross cross) {
-        isSuccess(bridgeGame.getBridge(), finalIndex, cross);
+        Bridge bridge = bridgeGame.getBridge();
+
+        isSuccess(bridge, finalIndex, cross);
 
         return isFailure(bridgeGame, cross);
     }
