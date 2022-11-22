@@ -63,8 +63,7 @@ public class BridgeGame {
         while(this.tryGame) {
             move(bridge, passBridge, moveInput);
             if(bridge.size() == this.moveCount - 1) {
-                endBridgeGame(passBridge, moveInput, "성공");
-                return;
+                endBridgeGame(passBridge, moveInput, "성공"); return;
             }
             this.tryGame = retry(this.tryGame);
         }
