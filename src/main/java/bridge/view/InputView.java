@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.ConsoleReader;
+import io.ConsoleReader;
 import bridge.domain.BridgeLength;
 import bridge.domain.MovingCommand;
 import bridge.domain.RetryCommand;

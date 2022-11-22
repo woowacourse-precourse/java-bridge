@@ -3,7 +3,7 @@ package bridge.view;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.times;
 
-import bridge.ConsoleReader;
+import io.ConsoleReader;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
