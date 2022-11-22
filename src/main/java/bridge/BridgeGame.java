@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,13 +16,28 @@ public class BridgeGame {
         USER_LOSE, USER_WIN, NOTHING_HAPPENED
     }
 
-    List<String> map;
+    List<Direction> map;
     int rowIndex, columnIndex;
+    List<Direction> track;
+    int tryCount;
 
     public BridgeGame(List<String> map) {
-        this.map = map;
+        setMap(map);
         rowIndex = 0;
         columnIndex = -1;
+        track = new ArrayList<>();
+        tryCount = 0;
+    }
+
+    private void setMap(List<String> _map) {
+        this.map = new ArrayList<>();
+        for (String area : _map) {
+            if (area == "U") {
+                this.map.add(Direction.UP);
+                continue;
+            }
+            this.map.add(Direction.DOWN);
+        }
     }
 
     /**
@@ -42,6 +58,7 @@ public class BridgeGame {
     }
 
     public void move(Direction direction) {
+        track.add(direction);
         if (direction == Direction.UP) {
             moveUp();
         } else if (direction == Direction.DOWN) {
@@ -64,17 +81,17 @@ public class BridgeGame {
     }
 
     public boolean checkIfUserLose() {
-        String whichDirectionIsSafe = map.get(columnIndex);
-        if (whichDirectionIsSafe.equals("U") && rowIndex == 1) {
+        Direction whichDirectionIsSafe = map.get(columnIndex);
+        if (whichDirectionIsSafe == Direction.UP && rowIndex == 1) {
             return true;
-        } else if (whichDirectionIsSafe.equals("D") && rowIndex == 0) {
+        } else if (whichDirectionIsSafe == Direction.DOWN && rowIndex == 0) {
             return true;
         }
         return false;
     }
 
     public boolean checkIfUserWin() {
-        if (columnIndex >= map.size()-1) {
+        if (columnIndex >= map.size() - 1) {
             return true;
         }
         return false;
@@ -89,5 +106,26 @@ public class BridgeGame {
     public void retry() {
         rowIndex = 0;
         columnIndex = -1;
+        tryCount += 1;
+    }
+
+    public List<Direction> getMap() {
+        return map;
+    }
+
+    public int getRowIndex() {
+        return rowIndex;
+    }
+
+    public int getColumnIndex() {
+        return columnIndex;
+    }
+
+    public List<Direction> getTrack() {
+        return track;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }
