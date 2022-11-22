@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.constant.command.Command;
+import bridge.constant.message.GameMessage;
 import bridge.domain.BridgeGame;
 
 import java.util.List;
@@ -39,5 +40,14 @@ public class BridgeGameService {
     public void restart() {
         tryCnt++;
         bridgeGame.retry();
+    }
+
+    public String gameStatus() {
+        if (!isComplete()) return GameMessage.GAME_RESULT_FAIL.getMessage();
+        return GameMessage.GAME_RESULT_SUCCESS.getMessage();
+    }
+
+    public int getTryCnt() {
+        return tryCnt;
     }
 }
