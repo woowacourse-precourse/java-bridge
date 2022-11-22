@@ -8,6 +8,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import static bridge.common.BridgeGameConstants.FAILED;
+import static bridge.common.BridgeGameConstants.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputViewTest {
@@ -33,7 +35,7 @@ class OutputViewTest {
     void 결과_테스트1(){
         OutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        String result = "실패";
+        String result = FAILED;
         outputView.printResult(result);
         assertThat(outputStream.toString()).contains("최종 게임 결과");
     }
@@ -43,7 +45,7 @@ class OutputViewTest {
     void 결과_테스트2(){
         OutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        String result = "실패";
+        String result = FAILED;
         outputView.printResult(result);
         assertThat(outputStream.toString()).contains("게임 성공 여부:");
     }
@@ -53,9 +55,29 @@ class OutputViewTest {
     void 결과_테스트3(){
         OutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        String result = "성공";
+        String result = SUCCESS;
         outputView.printResult(result);
         assertThat(outputStream.toString()).contains("총 시도한 횟수:");
+    }
+
+    @Test
+    @DisplayName("게임이 종료될 때, 호출이 올바른지 테스트")
+    void 결과_테스트4(){
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        String result = SUCCESS;
+        outputView.printResult(result);
+        assertThat(outputStream.toString()).contains(SUCCESS);
+    }
+
+    @Test
+    @DisplayName("게임이 종료될 때, 호출이 올바른지 테스트")
+    void 결과_테스트5(){
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        String result = FAILED;
+        outputView.printResult(result);
+        assertThat(outputStream.toString()).contains(FAILED);
     }
 
 
