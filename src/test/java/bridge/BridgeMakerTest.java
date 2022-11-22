@@ -18,7 +18,7 @@ class BridgeMakerTest {
     void setUp() {
         numberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(numberGenerator);
-        bridgeSize = 3;
+        bridgeSize = 10;
     }
 
     @AfterEach
@@ -31,9 +31,8 @@ class BridgeMakerTest {
     @Test
     void createRandomBridge() {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-
         Assertions.assertThat(bridge)
-                .containsOnly("U","D")
+                .containsAnyOf("U", "D")
                 .hasSize(bridgeSize);
     }
 }
