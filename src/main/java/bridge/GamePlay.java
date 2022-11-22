@@ -17,4 +17,15 @@ public class GamePlay {
         bridgeGame = new BridgeGame();
         tryCount = 0;
     }
+
+    public void gameStart() {
+        int bridgeSize = createBridgeSize();
+
+        BridgeMaker bridgeMaker = createBridgeMaker();
+
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        PlayerMap playerMap = new PlayerMap(bridgeSize);
+
+        gamePlay(bridge, playerMap);
+    }
 }
