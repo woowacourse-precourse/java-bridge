@@ -32,7 +32,7 @@ public class InputValidator {
         if (input.length() != 1) {
             throw new IllegalArgumentException(MOVING_COMMAND_ERROR);
         }
-        if (!input.equals("U") && !input.equals("D")){
+        if (!input.equals(CommandType.UP.getValue()) && !input.equals(CommandType.DOWN.getValue())){
             throw new IllegalArgumentException(MOVING_COMMAND_ERROR);
         }
     }
@@ -41,7 +41,7 @@ public class InputValidator {
         if (input.length() != 1) {
             throw new IllegalArgumentException(RETRY_COMMAND_ERROR);
         }
-        if (!input.equals("R") && !input.equals("Q")){
+        if (!input.equals(CommandType.RETRY.getValue()) && !input.equals(CommandType.QUIT.getValue())){
             throw new IllegalArgumentException(RETRY_COMMAND_ERROR);
         }
     }

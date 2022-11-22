@@ -13,15 +13,12 @@ public class MovingHistory {
         this.downCells = new ArrayList<>();
     }
 
-    public void addMoving(String moving, boolean movingStatus) {
-        if (moving.equals(CommandType.DOWN.getCell())){
-            downCells.add(GameResult.getMovingSign(movingStatus));
-            upCells.add(" ");
-        }
-        if (moving.equals(CommandType.UP.getCell())){
-            upCells.add(GameResult.getMovingSign(movingStatus));
-            downCells.add(" ");
-        }
+    public List<String> getUpCells() {
+        return upCells;
+    }
+
+    public List<String> getDownCells() {
+        return downCells;
     }
 
     public void clearHistory() {
@@ -29,11 +26,14 @@ public class MovingHistory {
         downCells.clear();
     }
 
-    public List<String> getUpCells() {
-        return upCells;
-    }
-
-    public List<String> getDownCells() {
-        return downCells;
+    public void addMoving(String moving, boolean movingStatus) {
+        if (moving.equals(CommandType.DOWN.getValue())){
+            downCells.add(GameResult.getMovingSign(movingStatus));
+            upCells.add(" ");
+        }
+        if (moving.equals(CommandType.UP.getValue())){
+            upCells.add(GameResult.getMovingSign(movingStatus));
+            downCells.add(" ");
+        }
     }
 }

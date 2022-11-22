@@ -6,13 +6,13 @@ public enum CommandType {
     RETRY("R"),
     QUIT("Q");
 
-    private final String cell;
+    private final String value;
 
-    CommandType(String cell) {
-        this.cell = cell;
+    CommandType(String value) {
+        this.value = value;
     }
 
-    public String getCell() {
-        return cell;
+    public String getValue() {
+        return value;
     }
 }
