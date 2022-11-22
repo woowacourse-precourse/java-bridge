@@ -7,7 +7,6 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGame {
-    private static int bridgeSize;
     private static int position;
     private static int trialCount = 0;
     private static boolean onMovableCompartment = true;
@@ -35,9 +34,7 @@ public class BridgeGame {
 
     private List<String> generateBridge() {
         outputView.printBridgeSizeInputNotice();
-        bridgeSize = inputView.readBridgeSize();
-        System.out.println();
-        return bridgeGenerateService.generateBridgeBySize(bridgeSize);
+        return bridgeGenerateService.generateBridgeBySize(inputView.readBridgeSize());
     }
 
     private void playGame() {
@@ -61,7 +58,7 @@ public class BridgeGame {
     }
 
     private boolean isPlaying() {
-        return onMovableCompartment && position < bridgeSize;
+        return onMovableCompartment && position < bridge.size();
     }
 
     private void initializeGame() {
