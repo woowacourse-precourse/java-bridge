@@ -5,20 +5,13 @@ import bridge.domain.Command;
 import bridge.domain.Status;
 
 public class Application {
-
     public static void main(String[] args) {
         BridgeGame bridgeGame = new BridgeGame();
-        Status status;
         bridgeGame.start();
-        while (true) {
+        Status status;
+        do {
             status = bridgeGame.move();
-            if (status == Status.SUCCESS) {
-                break;
-            }
-            if (bridgeGame.retry() == Command.QUIT) {
-                break;
-            }
-        }
+        } while (status != Status.SUCCESS && bridgeGame.retry() != Command.QUIT);
         bridgeGame.finish(status);
     }
 }
