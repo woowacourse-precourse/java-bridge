@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeGameResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -8,6 +9,7 @@ public class BridgeController {
 	public void run() {
 		printBridgeGameStart();
 		BridgeGame bridgeGame = initializeBridgeGame();
+		playBridgeGame(bridgeGame);
 
 	}
 
@@ -20,5 +22,52 @@ public class BridgeController {
 		int bridgeSize = InputView.readBridgeSize();
 
 		return new BridgeGame(bridgeSize);
+	}
+
+	private void playBridgeGame(BridgeGame bridgeGame) {
+		while (isGameProcessing(bridgeGame)) {
+			String moving = getUserMoving();
+
+			bridgeGame.move(moving);
+			OutputView.printMap(BridgeGameResult.getMoveCount());
+
+			afterMoveProcess(bridgeGame);
+		}
+	}
+
+	private boolean isGameProcessing(BridgeGame bridgeGame) {
+		return bridgeGame.isGameProcessing();
+	}
+
+	private String getUserMoving() {
+		OutputView.printInputMoving();
+		return InputView.readMoving();
+	}
+
+	private void afterMoveProcess(BridgeGame bridgeGame) {
+		if (isGameEnd(bridgeGame)) {
+			if (isGameFailed(bridgeGame)) {
+				OutputView.printWhetherRestartOrNot();
+				restartProcess(bridgeGame, isUserSelectRestart());
+			}
+		}
+	}
+
+	private boolean isGameEnd(BridgeGame bridgeGame) {
+		return bridgeGame.isGameEnd();
+	}
+
+	private boolean isGameFailed(BridgeGame bridgeGame) {
+		return bridgeGame.isGameFailed();
+	}
+
+	private boolean isUserSelectRestart() {
+		return InputView.readGameCommand().equals("R");
+	}
+
+	private void restartProcess(BridgeGame bridgeGame, boolean isUserSelectRestart) {
+		if (isUserSelectRestart) {
+			bridgeGame.retry();
+		}
 	}
 }
