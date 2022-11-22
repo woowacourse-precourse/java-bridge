@@ -22,7 +22,7 @@ public enum BridgeGameStatus {
         return this.equals(PLAY);
     }
 
-    public boolean isNotRunning() {
+    public boolean isGameOver() {
         return this.equals(QUIT);
     }
 }

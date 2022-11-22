@@ -22,4 +22,8 @@ public class BridgeGameService {
     public boolean isRunning() {
         return bridgeGame.isRunning();
     }
+
+    public boolean isGameOver() {
+        return bridgeGame.isGameOver();
+    }
 }

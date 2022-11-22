@@ -42,4 +42,8 @@ public class BridgeGame {
     public boolean isRunning() {
         return gameStatus.isRunning();
     }
+
+    public boolean isGameOver() {
+        return gameStatus.isGameOver();
+    }
 }
