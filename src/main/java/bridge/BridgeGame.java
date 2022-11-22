@@ -10,9 +10,19 @@ public class BridgeGame {
     private final List<String> upMapper;
     private final List<String> downMapper;
     private int movingCount;
+    private int gameCount;
     public BridgeGame() {
         upMapper = new LinkedList<>();
         downMapper = new LinkedList<>();
+        gameCount = 1;
+    }
+
+    public int getMovingCount() {
+        return movingCount;
+    }
+
+    public int getGameCount() {
+        return gameCount;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -47,6 +57,7 @@ public class BridgeGame {
         upMapper.clear();
         downMapper.clear();
         movingCount = 0;
+        gameCount++;
     }
 
     public int countMoving() {
