@@ -6,11 +6,10 @@ import java.util.Arrays;
 
 public class MovingValidator {
 
-    public static boolean validateMoving(String moving) {
+    public static void validateMoving(String moving) {
         Arrays.stream(Row.values())
                 .filter(row -> moving.equals(row.getCode()))
                 .findFirst()
                 .orElseThrow(WrongMovingException::new);
-        return true;
     }
 }

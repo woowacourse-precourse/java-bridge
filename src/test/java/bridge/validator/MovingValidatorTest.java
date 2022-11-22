@@ -1,7 +1,6 @@
 package bridge.validator;
 
 import static bridge.validator.MovingValidator.validateMoving;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.exception.WrongMovingException;
@@ -15,7 +14,7 @@ class MovingValidatorTest {
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
     void movingMustBeUorD(String input) {
-        assertThat(validateMoving(input)).isTrue();
+        validateMoving(input);
     }
 
     @DisplayName("이동할 칸이 U나 D가 아닐경우 예외 처리한다.")
@@ -25,5 +24,4 @@ class MovingValidatorTest {
         assertThatThrownBy(() -> validateMoving(input))
                 .isInstanceOf(WrongMovingException.class);
     }
-
 }
