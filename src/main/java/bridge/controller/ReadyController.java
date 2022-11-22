@@ -5,7 +5,6 @@ import bridge.model.SlabDTO;
 import bridge.type.GlassType;
 import bridge.type.PositionType;
 import bridge.util.Console;
-
 import java.util.List;
 
 public class ReadyController extends Controller {
@@ -23,7 +22,7 @@ public class ReadyController extends Controller {
 
     private void getTitleMessage() {
         Console.printLine("┏━━━━━━━━━━━┓");
-        Console.printLine("   다리 건너기");
+        Console.printLine("  다리 건너기");
         Console.printLine("┗━━━━━━━━━━━┛");
         Console.printLine("우아한테크코스 5기 프리코스 4주차 미션");
         Console.printLine("만든이: 윤창욱 (Laeng)");
@@ -32,7 +31,7 @@ public class ReadyController extends Controller {
 
     private void getIntroduceHeader() {
         Console.printLine("┏━━━━━━━━━━━┓");
-        Console.printLine("   게임 소개 ");
+        Console.printLine("    게임 소개 ");
         Console.printLine("┗━━━━━━━━━━━┛");
     }
 

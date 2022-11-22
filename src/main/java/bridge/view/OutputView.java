@@ -18,6 +18,7 @@ public class OutputView {
      */
     public void printMap(List<List<String>> maps) {
         maps.forEach(map -> Console.printLine(this.affixMapDelimiter(map)));
+        Console.printLine("");
     }
 
     private String affixMapDelimiter(List<String> map) {
@@ -36,7 +37,6 @@ public class OutputView {
         Console.printLine(Lang.get(Lang.GAME_RESULT));
 
         this.printMap(maps);
-        Console.printLine("");
 
         Console.printLine(Lang.format(Lang.IS_GAME_PASS, this.getGameStatusText(isPass)));
         Console.printLine(Lang.format(Lang.TOTAL_ATTEMPT, tries));

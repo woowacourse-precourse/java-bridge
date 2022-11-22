@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_MESSAGE = Env.ERROR_MESSAGE_PREFIX;
 
     @Test
     void 다리_생성_테스트() {
@@ -25,18 +25,22 @@ class ApplicationTest extends NsTest {
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
-            assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
-            );
+            this.checkContainsOutputResult();
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+    }
+
+    void checkContainsOutputResult() {
+        assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   | O ]",
+                "[   | O |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 1"
+        );
     }
 
     @Test
