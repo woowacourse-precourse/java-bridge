@@ -62,6 +62,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트4(){
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "D", "D", "K");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
 
 
     @Override
