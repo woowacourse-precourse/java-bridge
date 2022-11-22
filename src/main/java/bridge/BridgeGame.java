@@ -42,7 +42,6 @@ public class BridgeGame {
             return false;
         }
         createBridge(inputBridgeSize);
-        System.out.println(bridge);
         return true;
 
     }
