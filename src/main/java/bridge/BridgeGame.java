@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,7 +13,20 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+
+    private final List<Glass> BRIDGE;
+    private static Integer step;
+    private static Integer play;
+
+
+    public State move(Glass user) {
+        return State.stateOf(user == BRIDGE.get(step++));
+    }
+
+    public Integer play() { return play;    }
+    public Integer step() { return step;    }
+    public List<Glass> history() {
+        return BRIDGE.subList(0, step);
     }
 
     /**
@@ -19,5 +35,22 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        play++;
+        step = 0;
+    }
+
+    public List<Glass> initBridge(List<String> bridge){
+        List<Glass> newBridge= new ArrayList<Glass>();
+
+        for(String move: bridge){
+            newBridge.add(Glass.glassOf(move));
+        }
+        return newBridge;
+    }
+
+    BridgeGame(List<String> bridge){
+        step = 0;
+        play = 1;
+        BRIDGE = initBridge(bridge);
     }
 }
