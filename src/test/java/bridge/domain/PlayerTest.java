@@ -3,12 +3,16 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
@@ -22,23 +26,20 @@ class PlayerTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Nested
-    class AliveTest {
-        @DisplayName("정답 입력")
-        @Test
-        void right3Wrong1() {
-            Player player = new Player(new Map());
-            player.move("U", "U");
-            assertThat(player.isAlive()).isEqualTo(true);
-        }
+    @DisplayName("정답이 U일 때 정답/오답을 입력한 경우 각각 게임 성공 여부 true/false")
+    @MethodSource("ProvideAnswer")
+    @ParameterizedTest
+    void testAliveWhenTakeRightOrWrongAnswers(String command, boolean expected) {
+        Player player = new Player(new Map());
+        player.move(command, "U");
+        assertEquals(expected, player.isAlive());
+    }
 
-        @DisplayName("오답 입력")
-        @Test
-        void right4() {
-            Player player = new Player(new Map());
-            player.move("U", "D");
-            assertThat(player.isAlive()).isEqualTo(false);
-        }
+    private static Stream<Arguments> ProvideAnswer() {
+        return Stream.of(
+                Arguments.of("U", true),
+                Arguments.of("D", false)
+        );
     }
 
     @Nested
