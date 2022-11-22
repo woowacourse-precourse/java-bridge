@@ -33,12 +33,17 @@ public class Application {
         while (flag == 1) {
             count++;
             gameResult = playGame(bridgeGame);
-            flag = gameResult.flag;
-            if (gameResult.flag == MOVERESULT_FLAG_INVALID) {
-                flag = retryGame(bridgeGame);
-            }
+            flag = retryOrNot(gameResult, bridgeGame);
         }
         return new FinalResult(count, gameResult);
+    }
+
+    private static int retryOrNot(MoveResult gameResult, BridgeGame bridgeGame) {
+        int flag = gameResult.flag;
+        if (gameResult.flag == MOVERESULT_FLAG_INVALID) {
+            flag = retryGame(bridgeGame);
+        }
+        return flag;
     }
 
     public static int retryGame(BridgeGame bridgeGame) {
