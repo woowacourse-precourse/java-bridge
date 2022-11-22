@@ -3,6 +3,7 @@ package bridge.game.context;
 import bridge.domain.bridge.BridgeSize;
 import bridge.domain.code.BridgePosition;
 import bridge.domain.code.GameStatus;
+import bridge.domain.count.RepeatCount;
 
 public class FakeContext implements BridgeGameContext {
     private final GameStatus status;
@@ -18,7 +19,7 @@ public class FakeContext implements BridgeGameContext {
 
     @Override
     public void generateBridge(BridgeSize bridgeSize) {
-        
+
     }
 
     @Override
@@ -32,8 +33,8 @@ public class FakeContext implements BridgeGameContext {
     }
 
     @Override
-    public Integer getRepeatCount() {
-        return 0;
+    public RepeatCount getRepeatCount() {
+        return RepeatCount.initializeRepeatCount();
     }
 
     @Override

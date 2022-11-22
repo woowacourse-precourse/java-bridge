@@ -11,7 +11,7 @@ public class ResultVerificationStatus implements BridgeGameStatus {
         var gameStatus = context.gameStatus();
         var gameRepeatCount = context.getRepeatCount();
 
-        outputView.printResult(gameHistory, gameStatus.getCode(), gameRepeatCount);
+        outputView.printResult(gameHistory, gameStatus, gameRepeatCount);
         return new GameEndStatus();
     }
 

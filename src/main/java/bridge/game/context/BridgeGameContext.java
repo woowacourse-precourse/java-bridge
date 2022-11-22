@@ -3,6 +3,7 @@ package bridge.game.context;
 import bridge.domain.bridge.BridgeSize;
 import bridge.domain.code.BridgePosition;
 import bridge.domain.code.GameStatus;
+import bridge.domain.count.RepeatCount;
 
 public interface BridgeGameContext {
     void generateBridge(BridgeSize bridgeSize);
@@ -11,7 +12,7 @@ public interface BridgeGameContext {
 
     String getCachedHistory();
 
-    Integer getRepeatCount();
+    RepeatCount getRepeatCount();
 
     void retry();
 

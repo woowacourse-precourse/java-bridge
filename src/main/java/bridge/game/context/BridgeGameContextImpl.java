@@ -6,15 +6,16 @@ import bridge.domain.bridge.maker.BridgeMaker;
 import bridge.domain.bridge.maker.BridgeRandomNumberGenerator;
 import bridge.domain.code.BridgePosition;
 import bridge.domain.code.GameStatus;
+import bridge.domain.count.RepeatCount;
 import bridge.game.BridgeGame;
 
 public class BridgeGameContextImpl implements BridgeGameContext {
     private BridgeGame bridgeGame;
-    private Integer repeatCount = 1;
+    private RepeatCount repeatCount = RepeatCount.initializeRepeatCount();
     private String cachedHistory;
 
     private void plusRepeatCount() {
-        this.repeatCount += 1;
+        repeatCount = repeatCount.increment(1);
     }
 
     @Override
@@ -34,8 +35,8 @@ public class BridgeGameContextImpl implements BridgeGameContext {
     }
 
     @Override
-    public Integer getRepeatCount() {
-        return this.repeatCount;
+    public RepeatCount getRepeatCount() {
+        return repeatCount;
     }
 
     @Override
