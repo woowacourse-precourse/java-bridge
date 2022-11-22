@@ -1,6 +1,6 @@
 <div style="text-align:center">
 
-# 우아한테크코스 웹 백엔드 프리코스 <br> 4주차 미션 : java-bridge(징검다리)
+# 우아한테크코스 웹 백엔드 프리코스 <br> 4주차 미션 : java-bridge(다리 건너기)
 
 </div>
 
@@ -10,7 +10,7 @@
 
 </div>
 
-<img src = "https://user-images.githubusercontent.com/43123236/202985097-8cc85853-e5f2-4139-a2a0-452e44a66080.png">
+<img src = "https://user-images.githubusercontent.com/43123236/203305898-e2c3114b-da6a-4cdd-aa82-167e9de06225.png">
 
 ## 기능 목록
 
