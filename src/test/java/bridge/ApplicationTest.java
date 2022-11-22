@@ -67,6 +67,26 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @DisplayName("사용자 게임 재시작시 시도 횟수 증가 확인")
+    @Test
+    void checkUserRetrial() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "R", "D", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[   ]",
+                    "[ X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[   ]");
+            int downSideIndex = output().indexOf("[ X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
