@@ -46,9 +46,10 @@ public class InputView {
      */
     public String readMoving() {
         String nextStepInput;
+        System.out.println("U 또는 D를 입력해주세요");
         nextStepInput = Console.readLine();
         if (!nextStepInput.equals("U") && !nextStepInput.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] 한글자의 U 또는 D를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 한글자의 U 또는 D만 입력이 가능해요.");
         }
         return nextStepInput;
     }
