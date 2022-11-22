@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.bridge.BridgePosition;
 import bridge.bridgeGame.BridgeGame;
 import bridge.bridgeGame.BridgeGameState;
 
@@ -28,5 +29,11 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
         System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    public void printRequestBridgeMoving() {
+        System.out.printf("이동할 칸을 선택해주세요. (위: %s, 아래: %s)\n",
+                BridgePosition.BRIDGE_UP.getPosition(),
+                BridgePosition.BRIDGE_DOWN.getPosition());
     }
 }
