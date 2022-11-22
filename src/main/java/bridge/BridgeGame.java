@@ -91,11 +91,14 @@ public class BridgeGame {
     }
 
     private String getFailOrWhitespace(Key key) {
-        StringBuilder ret = new StringBuilder();
+        StringBuilder ret = new StringBuilder(getSeparator(player.getPosition(), 0));
 
-        ret.append(getSeparator(player.getPosition(), 0));
-        ret.append(compareBridgeIndexWithKey(player.getPosition(), key, FAIL));
+        String addString = FAIL;
+        if (bridge.get(player.getPosition()).equals(key.command())) {
+            addString = WHITESPACE;
+        }
 
+        ret.append(addString);
         return ret.toString();
     }
 }
