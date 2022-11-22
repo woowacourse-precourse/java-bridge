@@ -37,7 +37,13 @@ public class InputView {
     public String readMoving() {
         out(InputMessage.INPUT_MOVING);
         String input = Console.readLine();
+        rightMove(input);
         return input;
+    }
+    private void rightMove(String input) {
+        if(!(input.equals("U")||input.equals("D"))) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_RIGHT_MOVE);
+        }
     }
 
     public String readGameCommand() {
