@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.data.Direction;
+import bridge.presentation.PlayerMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
