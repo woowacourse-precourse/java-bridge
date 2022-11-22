@@ -118,4 +118,6 @@
 
 ## 🖌️ 클래스 다이어그램
 
-![bridge](https://user-images.githubusercontent.com/70315475/202899486-4c570dee-17ef-4003-aaf1-d65bd0990450.jpeg)
+![bridge-2](https://user-images.githubusercontent.com/70315475/203196537-c15a46ad-1ac8-41b4-b4fd-550e0509ad20.jpeg)
+
+
