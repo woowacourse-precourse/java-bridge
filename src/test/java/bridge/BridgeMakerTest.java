@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.service.BridgeMaker;
 import bridge.service.BridgeRandomNumberGenerator;
 
 import org.assertj.core.api.Assertions;
