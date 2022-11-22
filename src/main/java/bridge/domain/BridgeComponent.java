@@ -2,7 +2,8 @@ package bridge.domain;
 
 public enum BridgeComponent {
     UP(1,"U"),
-    DOWN(0,"D");
+    DOWN(0,"D"),
+    NOTHING(2,"NOTHING");
 
     private final int componentNumber;
     private final String componentLetter;
