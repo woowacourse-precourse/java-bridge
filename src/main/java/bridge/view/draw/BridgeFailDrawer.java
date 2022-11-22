@@ -16,15 +16,15 @@ public class BridgeFailDrawer extends BridgeDrawer {
         commonMakeBridgeFormat();
         int lastIndex = userBridge.size() - 1;
         String command = userBridge.get(lastIndex);
-        addWordIfMatches(command, MovingCommand.UP, "X", " ");
-        addWordIfMatches(command, MovingCommand.DOWN, " ", "X");
+        addWordIfMatches(command, MovingCommand.UP, Marker.IN_CORRECT, Marker.EMPTY);
+        addWordIfMatches(command, MovingCommand.DOWN, Marker.EMPTY, Marker.IN_CORRECT);
     }
 
     private void commonMakeBridgeFormat() {
         for (int i = 0; i < userBridge.size() - 1; ++i) {
             String command = userBridge.get(i);
-            addWordIfMatches(command, MovingCommand.UP, "O", " ");
-            addWordIfMatches(command, MovingCommand.DOWN, " ", "O");
+            addWordIfMatches(command, MovingCommand.UP, Marker.CORRECT, Marker.EMPTY);
+            addWordIfMatches(command, MovingCommand.DOWN, Marker.EMPTY, Marker.CORRECT);
         }
     }
 }
