@@ -51,7 +51,7 @@ public class Bridge {
         }
     }
     public boolean ableToCross(int index,String userCommand){
-        if(bridgeCanCross.get(index)==userCommand){
+        if(bridgeCanCross.get(index).equals(userCommand)){
             return true;
         }
         return false;
