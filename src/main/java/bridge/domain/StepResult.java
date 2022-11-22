@@ -7,7 +7,7 @@ import java.util.Arrays;
 public enum StepResult {
 
     UPPER_SUCCESS("U", Constant.MOVE_SUCCESS, "O"),
-    UPPER_FAIL("U",  Constant.MOVE_FAIL, "X"),
+    UPPER_FAIL("U", Constant.MOVE_FAIL, "X"),
     LOWER_SUCCESS("D", Constant.MOVE_SUCCESS, "O"),
     LOWER_FAIL("D", Constant.MOVE_FAIL, "X"),
     NO_RESULT("null", Constant.MOVE_FAIL, "null");

@@ -10,7 +10,7 @@ public class InputValidator {
     private static final String ALPHA_REGEX = "^[a-zA-Z]+$";
 
     private static final String BRIDGE_LENGTH_FORMAT_ERROR_MESSAGE = "다리 길이는 숫자만 입력할 수 있습니다.";
-    private static final String BRIDGE_LENGTH_RANGE_ERROR_MESSAGE= "다리 길이는 3이상, 20이하의 크기만 가능합니다.";
+    private static final String BRIDGE_LENGTH_RANGE_ERROR_MESSAGE = "다리 길이는 3이상, 20이하의 크기만 가능합니다.";
     private static final String DIRECTION_CHOICE_ERROR_MESSAGE = "다리 선택은 알파벳 U, D만 입력할 수 있습니다.";
     private static final String GAME_RETRY_CHOICE_ERROR_MESSAGE = "게임 재시작 여부는 알파벳 R, Q만 입력할 수 있습니다.";
 
