@@ -1,9 +1,7 @@
 package bridge.Model;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 public class BridgeResult {
     private static final String UPPER_BRIDGE = "U";
@@ -38,15 +36,6 @@ public class BridgeResult {
     public void clear(){
         currentMap.get(UPPER_BRIDGE).clear();
         currentMap.get(LOWER_BRIDGE).clear();
-    }
-
-    public String getLastResult(){
-        String upperBridgeLast = currentMap.get(UPPER_BRIDGE).getLast();
-        String lowerBridgeLast = currentMap.get(LOWER_BRIDGE).getLast();
-        if (upperBridgeLast.equals(" ")){
-            return lowerBridgeLast;
-        }
-        return upperBridgeLast;
     }
 
     @Override
