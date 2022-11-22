@@ -41,6 +41,26 @@ public class BridgeGameTest extends NsTest {
         }, 1, 0, 0);
     }
 
+    @Test
+    void 다리게임_재시작() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "U", "R", "U", "D", "D");
+            assertThat(output()).contains(
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "Q",
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+
+            int firstTry = output().indexOf("[ O |   | X ]");
+            int secondTry = output().indexOf("[ O |   |   ]");
+            assertThat(firstTry).isLessThan(secondTry);
+        }, 1, 0, 0);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
