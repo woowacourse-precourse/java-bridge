@@ -55,45 +55,18 @@ public class OutputView {
                 printDown.add("X");
             }
         }
-        return printAsBridge(printUp, printDown);
+        return printMap(printUp, printDown);
+    }
+    public static String[] printMap(List<String> UpBridge, List<String> DownBridge) {
+        String Up = FRONT_BRACKET + printAsBridge(UpBridge) +  BACK_BRACKET;
+        String Down = FRONT_BRACKET + printAsBridge(DownBridge) +  BACK_BRACKET;
+        //System.out.println(FRONT_BRACKET + printAsBridge(UpBridge) +  BACK_BRACKET);
+        //System.out.println(FRONT_BRACKET + printAsBridge(DownBridge) +  BACK_BRACKET);
+        return new String[] {Up,Down};
     }
 
-    public static void compareBridge(int loop, List<String> bridge, List<String> map) {
-        if ((Objects.equals(bridge.get(loop), map.get(loop))) && (Objects.equals(map.get(loop), "U"))) {
-            putUpO();
-        }
-        if ((!Objects.equals(bridge.get(loop), map.get(loop))) && (Objects.equals(map.get(loop), "U"))) {
-            putUpX();
-        }
-        if ((Objects.equals(bridge.get(loop), map.get(loop))) && (Objects.equals(map.get(loop), "D"))) {
-            putDownO();
-        }
-        if ((!Objects.equals(bridge.get(loop), map.get(loop))) && (Objects.equals(map.get(loop), "D"))) {
-            putDownX();
-        }
-    }
-    public static void putUpO(){
-
-    }
-
-    public static void putUpX(){
-
-    }
-
-    public static void putDownO(){
-
-    }
-
-    public static void putDownX(){
-
-    }
-
-    public static String[] printAsBridge(List<String> printUp, List<String> printDown) {
-        String printUptoString = String.join(" | ", printUp);
-        printUptoString = "[ " + printUptoString + " ]";
-        String printDowntoString = String.join(" | ", printDown);
-        printDowntoString = "[ " + printDowntoString + " ]";
-        return new String[]{printDowntoString, printUptoString};
+    public static String printAsBridge(List<String> resultBridge){
+        return String.join(" | ", resultBridge);
     }
 
     /**
