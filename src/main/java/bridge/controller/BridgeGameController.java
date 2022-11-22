@@ -3,9 +3,10 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.domain.BridgeStatus;
 import bridge.domain.Direction;
-import bridge.domain.PlayerStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import static bridge.domain.PlayerStatus.*;
 
 public class BridgeGameController {
     private BridgeGame bridgeGame;
@@ -17,18 +18,17 @@ public class BridgeGameController {
         int bridgeSize = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
         playGame();
+        outputView.printResult(bridgeGame.getGameStatus(), bridgeGame.getBridgeStatus());
     }
 
     public void playGame() {
-        BridgeStatus bridgeStatus = null;
         while(bridgeGame.isPlaying()) {
             Direction direction = inputView.readMoving();
-            bridgeStatus = bridgeGame.move(direction);
+            BridgeStatus bridgeStatus = bridgeGame.move(direction);
             outputView.printMap(bridgeStatus);
         }
-        retryOrQuit();
-        PlayerStatus finalStatus = bridgeGame.getGameStatus();
-        outputView.printResult(finalStatus, bridgeStatus);
+        if(bridgeGame.getGameStatus() == FAIL)
+            retryOrQuit();
     }
 
     public void retryOrQuit() {
