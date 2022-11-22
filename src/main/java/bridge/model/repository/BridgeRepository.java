@@ -14,7 +14,7 @@ public class BridgeRepository {
     private static SuccessOrFail successOrFail = SuccessOrFail.SUCCESS;
 
     public void createBridge(List<String> bridges) {
-        this.bridges = new Bridges(bridges);
+        BridgeRepository.bridges = new Bridges(bridges);
     }
 
     public void modifyToGameFail() {
