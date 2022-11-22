@@ -9,7 +9,7 @@ import bridge.constant.Direction;
  * 플레이어의 선택을 관리하는 클래스
  */
 public class PlayerChoice {
-    List<Direction> choices;
+    private final List<Direction> choices;
 
     public PlayerChoice() {
         choices = new ArrayList<Direction>();
