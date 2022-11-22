@@ -12,6 +12,7 @@ import static bridge.view.OutputMessage.SUCCESS;
 import static bridge.view.OutputMessage.findMessage;
 
 import bridge.dto.StepResponseDto;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class MessageMaker implements MessageFactory{
@@ -34,7 +35,7 @@ public class MessageMaker implements MessageFactory{
         for (int step = 0; step < steps.size(); step++) {
             judgeMessageLocation(step, SUCCESS);
         }
-        return replaceFinalMessage(upperBridge, underBridge);
+        return replaceStepMessage(upperBridge, underBridge);
     }
 
     @Override
@@ -46,15 +47,17 @@ public class MessageMaker implements MessageFactory{
             }
             judgeMessageLocation(step, SUCCESS);
         }
-        return replaceFinalMessage(upperBridge, underBridge);
+        return replaceStepMessage(upperBridge, underBridge);
     }
 
     @Override
     public String finalMessage(final StepResponseDto stepResponseDto) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        String retryCount = decimalFormat.format(stepResponseDto.getRetryCount());
         if (stepResponseDto.isFinal()) {
-            return findMessage(FINAL_SUCCESS) + NEW_LINE + RETRY_MESSAGE + stepResponseDto.getRetryCount();
+            return findMessage(FINAL_SUCCESS) + NEW_LINE + RETRY_MESSAGE + retryCount;
         }
-        return findMessage(FINAL_FAIL) + NEW_LINE + RETRY_MESSAGE + stepResponseDto.getRetryCount();
+        return findMessage(FINAL_FAIL) + NEW_LINE + RETRY_MESSAGE + retryCount;
     }
 
     private void judgeMessageLocation(final int step, final OutputMessage message) {
@@ -70,7 +73,7 @@ public class MessageMaker implements MessageFactory{
         underBridge.append(underMessage).append(findMessage(SPLIT));
     }
 
-    private String replaceFinalMessage(StringBuilder upperBridge, StringBuilder underBridge) {
+    private String replaceStepMessage(StringBuilder upperBridge, StringBuilder underBridge) {
         upperBridge.deleteCharAt(upperBridge.length() - 1).append(findMessage(END_LINE));
         underBridge.deleteCharAt(upperBridge.length() - 1).append(findMessage(END_LINE));
         return upperBridge + NEW_LINE + underBridge + NEW_LINE;
