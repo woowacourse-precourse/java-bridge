@@ -33,4 +33,12 @@ public final class BridgeGame {
     public boolean isFinish() {
         return !visited.isRemained(bridge);
     }
+
+    public BridgeGameResult result() {
+        return visited.result(bridge);
+    }
+
+    public String printMoveInfo() {
+        return visited.printMoveInfo();
+    }
 }
