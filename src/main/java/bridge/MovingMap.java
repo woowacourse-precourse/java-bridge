@@ -33,6 +33,15 @@ public class MovingMap {
         return NOT_SELECTED;
     }
 
+    public boolean isLastStepCorrect() {
+        for (String upAndDown : movingMap.keySet()) {
+            if (getLastStep(upAndDown).equals(CORRECT)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getLastStep(String upAndDown) {
         List<String> stateList = movingMap.get(upAndDown);
         return stateList.get(stateList.size() - 1);
