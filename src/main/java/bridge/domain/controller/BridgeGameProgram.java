@@ -1,5 +1,7 @@
 package bridge.domain.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constants.GuideMessage;
 import bridge.domain.model.Bridge;
 import bridge.domain.model.CrossBridge;
