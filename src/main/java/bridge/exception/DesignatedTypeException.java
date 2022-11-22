@@ -16,17 +16,17 @@ public class DesignatedTypeException {
         }//if
     }//unitNumberCheck
 
-    public static void UDcheck(String movement) {
+    public static void UDCheck(String movement) {
         if (!(movement.equals("D") || movement.equals("U"))) {
             System.out.println(BASIC_ERROR_MESSAGE + " 지정된 문자를 입력해 주세요.");
             throw new IllegalArgumentException(BASIC_ERROR_MESSAGE + " 지정된 문자를 입력해 주세요.");
         }//if
-    }// UDcheck
+    }// UDCheck
 
-    public static void RQcheck(String movement) {
+    public static void RQCheck(String movement) {
         if (!(movement.equals("R") || movement.equals("Q"))) {
             System.out.println(BASIC_ERROR_MESSAGE + " 지정된 문자를 입력해 주세요.");
             throw new IllegalArgumentException(BASIC_ERROR_MESSAGE + " 지정된 문자를 입력해 주세요.");
         }//if
-    }// RQcheck
+    }// RQCheck
 }//end class

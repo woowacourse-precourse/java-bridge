@@ -10,12 +10,12 @@ public class BridgeGameController {
     BridgeGame bridgeGame = new BridgeGame();
     int challengeCount = 1;
 
-    public void excute() {
+    public void execute() {
         List<String> userSelectResult = new ArrayList<>();
         bridgeGame.startSetUp();
         List<String> computerResult = bridgeGame.make();
         loopGameUnit(userSelectResult, computerResult);
-    }// excute
+    }// execute
 
     private void loopGameUnit(List<String> userSelectResult, List<String> computerResult) {
         boolean loopController = true;
@@ -24,7 +24,7 @@ public class BridgeGameController {
             boolean unitSuccess = bridgeGame.isUnitSuccess(userSelectResult, computerResult);
             boolean gameSuccess = bridgeGame.isGameSuccess(userSelectResult, computerResult, unitSuccess);
             boolean willRestart = isUnitFail(unitSuccess, gameSuccess);
-            restart(willRestart, userSelectResult);
+            userSelectResult = restart(willRestart, userSelectResult);
             loopController = isLoopFinish(userSelectResult, unitSuccess, gameSuccess, challengeCount, willRestart);
         }//while
     }//loopGameUnit
@@ -37,7 +37,7 @@ public class BridgeGameController {
     }//isUnitFail
 
     private List<String> restart(boolean willRestart, List<String> userSelectResult) {
-        if (willRestart == true) {
+        if (willRestart) {
             challengeCount++;
             userSelectResult.clear();
         }//if
@@ -48,7 +48,7 @@ public class BridgeGameController {
             List<String> userSelectResult, boolean unitSuccess, boolean gameSuccess, int challengeCount, boolean willRestart) {
         OutputView outputView = new OutputView();
         boolean loopController = true;
-        if ((willRestart == false && !unitSuccess) || gameSuccess) {
+        if ((!willRestart && !unitSuccess) || gameSuccess) {
             outputView.printResult(userSelectResult, unitSuccess, gameSuccess, challengeCount);
             loopController = false;
         }//if

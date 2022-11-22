@@ -22,7 +22,7 @@ public class InputView {
         try {
             String movement = Console.readLine();
             SizeOverException.oneWordCheck(movement);
-            DesignatedTypeException.UDcheck(movement);
+            DesignatedTypeException.UDCheck(movement);
             return movement;
         } catch (IllegalArgumentException e) {
             return readMoving();
@@ -33,7 +33,7 @@ public class InputView {
         try {
             String command = Console.readLine();
             SizeOverException.oneWordCheck(command);
-            DesignatedTypeException.RQcheck(command);
+            DesignatedTypeException.RQCheck(command);
             return command;
         } catch (IllegalArgumentException e) {
             return readGameCommand();

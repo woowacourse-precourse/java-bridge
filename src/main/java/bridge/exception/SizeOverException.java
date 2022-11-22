@@ -1,7 +1,5 @@
 package bridge.exception;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class SizeOverException {
     private static final String BASIC_ERROR_MESSAGE = "[ERROR]";
 
