@@ -4,26 +4,18 @@ import java.util.List;
 
 public class Result {
 
-    private List<String> totalMovingResult;
-    private String currentResult;
+    private List<List<String>> totalMovingResult;
 
-    public Result(List<String> totalMovingResult) {
+    private List<String> currentResult;
+
+    public Result(List<List<String>> totalMovingResult) {
         this.totalMovingResult = totalMovingResult;
     }
-
-    public String getCurrentResult() {
-        return currentResult;
-    }
-
-    public void setCurrentResult(String currentResult) {
+    public void setCurrentResult(List<String> currentResult) {
         this.currentResult = currentResult;
     }
 
-    public List<String> getTotalMovingResult() {
-        return totalMovingResult;
-    }
-
-    public void addMovingResult(String movingResult){
+    public void addTotalMovingResult(List<String> movingResult){
         totalMovingResult.add(movingResult);
     }
     public void clearResult(){

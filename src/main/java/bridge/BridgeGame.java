@@ -3,6 +3,7 @@ package bridge;
 import controller.Util;
 import model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,15 +44,19 @@ public class BridgeGame {
     }
 
     public void enterResult(){
+        List<String> currentResult = new ArrayList<>();
         String movingResult = compareBridge();
-        result.setCurrentResult(movingResult);
-        result.addMovingResult(movingResult);
+        currentResult.add(movingResult);
+        currentResult.add(user.getCurrentMoving());
+        result.setCurrentResult(currentResult);
+        result.addTotalMovingResult(currentResult);
     }
 
     private String compareBridge(){
         int currentLocation = user.getMovingRoute().size();
-        if(user.getCurrentMoving().equals(bridge.getAnswer(currentLocation)))
+        if(user.getCurrentMoving().equals(bridge.getAnswer(currentLocation))){
             return "O";
+        }
         return "X";
     }
 
