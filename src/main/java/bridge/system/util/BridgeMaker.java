@@ -13,9 +13,9 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeBridge(int bridgeSize) {
+    public List<String> makeBridge(int size) {
         List<String> randomBridge = new ArrayList<>();
-        for (int i = 0; i < bridgeSize; i++) {
+        for (int i = 0; i < size; i++) {
             randomBridge.add(generateRandomUpAndDownNum());
         }
         return randomBridge;
