@@ -11,9 +11,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = Integer.parseInt(readLine());
+        int bridgeSize = 0;
+        try {
+            bridgeSize = ExceptionCase.isInputAllNumber(readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bridgeSize = readBridgeSize();
+        }
         return bridgeSize;
     }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
