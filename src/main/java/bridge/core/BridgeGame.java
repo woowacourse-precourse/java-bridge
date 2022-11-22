@@ -39,12 +39,15 @@ public class BridgeGame {
 
     public ProcessCondition move(String selectBlock) {
         try {
-            if (bridge.checkPassableBlock(gameStatusOperator.changePosition(), selectBlock)) return PassCondition.PASS;
+            int nextPosition = gameStatusOperator.changePosition();
+            if (bridge.checkPassableBlock(nextPosition, selectBlock)) return PassCondition.PASS;
             return PassCondition.FAIL;
         } catch (InvalidInputException e) {
             gameStatusOperator.turnBackPosition();
             ExceptionHandler.handle(e);
             return null;
+        } catch (Exception e) {
+            throw new CommonException(Error.FAIL, "플레이어 이동");
         }
     }
 
