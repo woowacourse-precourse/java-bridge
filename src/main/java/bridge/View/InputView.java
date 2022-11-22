@@ -44,7 +44,7 @@ public class InputView {
         return input;
     }
 
-    private static void validateBridgeLength(String input) {
+    public static void validateBridgeLength(String input) {
         if (Integer.parseInt(input) < 2 || Integer.parseInt(input) > 20) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getErrorMessage());
         }
