@@ -1,8 +1,8 @@
 package bridge.Bridge;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
-
-import camp.nextstep.edu.missionutils.Console;
 
 import bridge.InputView;
 import bridge.OutputView;
