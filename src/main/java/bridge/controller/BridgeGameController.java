@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import bridge.model.BridgeGame;
+import bridge.model.BridgeMaker;
+
 import java.util.ArrayList;
 
 import static bridge.model.BridgeGame.*;
@@ -15,12 +18,12 @@ public class BridgeGameController {
     static int check = 0;
 
 
-    public static void bridgeGame(){
+    public void bridgeGame(){
         int bridgeLen = 0;
         bridgeLen = readBridgeSize();
 
         bridgeLenRangeCheck(bridgeLen);
-        bridges = makeBridge(bridgeLen);
+        bridges =  makeBridge(bridgeLen);
 
         for(int count = 0; count < bridgeLen; count++){
             String move = readMoving();

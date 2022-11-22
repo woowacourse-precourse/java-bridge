@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.model.BridgeGame.resultFinal;
-import static bridge.model.BridgeMaker.makeBridge;
 import static bridge.view.InputView.*;
 import static bridge.view.OutputView.printMap;
 import static bridge.view.OutputView.printResult;
@@ -14,6 +13,7 @@ import static bridge.view.OutputView.printResult;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private BridgeMaker bridgeMaker;
     static ArrayList<String> equalsCheck = new ArrayList<>();
     public static ArrayList<String> resultFinal = new ArrayList<>();
     static int successCount = 0;
@@ -48,14 +48,6 @@ public class BridgeGame {
 
         moveResultFirst(index, move);
 
-        /*
-        if(index != 0){
-            moveResultSecond1(first, second, move);
-            moveResultSecond2(index, first, second, move);
-            moveResultSecond3(index, first, second, move);
-        }
-
-         */
 
         // 2
         if(index != 0){
@@ -91,7 +83,6 @@ public class BridgeGame {
         printMap(first, second);
         inputResultFinal(index, bridgeLen, first, second);
         resultFinal = optionRandQ(index, startCount, bridgeLen, bridges);
-        //System.out.println("result:" + resultFinal.toString());
 
         return resultFinal;
     }

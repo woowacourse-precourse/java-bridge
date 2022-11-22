@@ -104,7 +104,7 @@ class ApplicationTest extends NsTest {
             return numbers.remove(0);
         }
     }
-
+/*
     @Test
     void 다리_이동_결과_테스트() {
         assertRandomNumberInRangeTest(() -> {
@@ -131,4 +131,6 @@ class ApplicationTest extends NsTest {
 
         }, 1, 0, 1);
     }
+
+ */
 }

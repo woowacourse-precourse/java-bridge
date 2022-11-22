@@ -10,14 +10,10 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-    }
-
-    public static int test(BridgeNumberGenerator bridgeNumberGenerator){
-        return bridgeNumberGenerator.generate();
     }
 
     /**
@@ -30,11 +26,12 @@ public class BridgeMaker {
             double ran = Math.random()*2;
             //generate();
             int rand =  (int) ran;
+            //int rand = bridgeNumberGenerator.generate();
             System.out.println("rand: " + rand);
             // 0이면 U, 1이면 D
-            if(rand == 0){
+            if(rand == 1){
                 bridges.add("U");
-            }else if(rand == 1){
+            }else if(rand == 0){
                 bridges.add("D");
             }
         }
