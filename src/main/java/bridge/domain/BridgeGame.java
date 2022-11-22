@@ -9,14 +9,12 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final int bridgeSize;
     private final List<String> bridge;
     private int userPosition;
     private int countGameTry;
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridgeSize = bridgeSize;
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
         userPosition = 0;
         countGameTry = 1;
@@ -59,7 +57,7 @@ public class BridgeGame {
     }
 
     public Boolean isClear() {
-        return bridgeSize == userPosition;
+        return bridge.size() == userPosition;
     }
 
     private Boolean canMove(String inputGoingBlock) {
