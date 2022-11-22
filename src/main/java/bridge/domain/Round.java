@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import static bridge.util.Constant.FIRST_ROUND;
+import static bridge.util.Constant.*;
 
 public class Round {
 
@@ -22,7 +22,7 @@ public class Round {
 
     //라운드를 초기화하는 기능
     public void initRound() {
-        round = 0;
+        round = INIT;
     }
 
     public int getRound() {

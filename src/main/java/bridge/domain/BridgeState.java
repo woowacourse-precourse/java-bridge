@@ -13,7 +13,7 @@ public class BridgeState {
     private final Round round;
 
     public BridgeState(Round round) {
-        this.map = new ArrayList<>(List.of("[ ]", "[ ]"));
+        this.map = new ArrayList<>(List.of(INIT_MAP, INIT_MAP));
         this.round = round;
     }
 
@@ -96,7 +96,7 @@ public class BridgeState {
 
     // map과 round를 초기화 하는 기능
     public void init() {
-        map = new ArrayList<>(List.of("[ ]", "[ ]"));
+        map = new ArrayList<>(List.of(INIT_MAP, INIT_MAP));
         round.initRound();
     }
 

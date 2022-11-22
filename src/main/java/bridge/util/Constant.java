@@ -10,6 +10,8 @@ public class Constant {
     public static final String BRIDGE_MOVE_INPUT_ERROR = "fail";
     public static final String GAME_COMMAND_INPUT_ERROR = "fail";
     public static final char ZERO = '0';
+    public static final String INIT_MAP = "[ ]";
+    public static final int INIT = 0;
     public static final String BLANK = " ";
     public static final String FIRST_ROUND_CORRECT = " O ";
     public static final String FIRST_ROUND_WRONG = " X ";
