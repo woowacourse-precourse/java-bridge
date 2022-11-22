@@ -11,8 +11,6 @@ public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
     private static final int MATCH_TO_DOWN = 0;
-    private static final int MATCH_TO_UP = 1;
-
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -36,10 +34,6 @@ public class BridgeMaker {
         if (number == MATCH_TO_DOWN) {
             return GameCommand.DOWN.getGameCommand();
         }
-        if (number == MATCH_TO_UP) {
-            return GameCommand.UP.getGameCommand();
-        }
-        // TODO: 예외 처리
-        return "ERROR";
+        return GameCommand.UP.getGameCommand();
     }
 }
