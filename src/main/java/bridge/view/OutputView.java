@@ -16,7 +16,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> usedMap, boolean isCross) {
+    public static void printMap(List<String> usedMap, boolean isCross) {
         StringBuilder result = new StringBuilder("[");
         result.append(String.join("|", outputMapBuilder(usedMap, CrossBridgeType.UPPER_BRIDGE, isCross)));
         result.append("]\n[");
@@ -25,7 +25,8 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public List<String> outputMapBuilder(List<String> usedMap, CrossBridgeType crossBridgeType, boolean isCross) {
+    public static List<String> outputMapBuilder(List<String> usedMap, CrossBridgeType crossBridgeType,
+        boolean isCross) {
         int mapSize = usedMap.size();
         List<String> result = new ArrayList<>();
         for (int i = 0; i < mapSize; i++) {
@@ -38,14 +39,14 @@ public class OutputView {
         return result;
     }
 
-    public String blockMapStatus(String bridge, CrossBridgeType crossBridgeType) {
+    public static String blockMapStatus(String bridge, CrossBridgeType crossBridgeType) {
         if (!bridge.equals(crossBridgeType.getStringKey()))
             return " X ";
         return "   ";
 
     }
 
-    public String crossMapStatus(String bridge, CrossBridgeType crossBridgeType) {
+    public static String crossMapStatus(String bridge, CrossBridgeType crossBridgeType) {
 
         if (bridge.equals(crossBridgeType.getStringKey()))
             return " O ";
@@ -58,7 +59,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> usedMap, boolean isCross, int attemptCount) {
+    public static void printResult(List<String> usedMap, boolean isCross, int attemptCount) {
         System.out.println("최종 게임 결과");
         printMap(usedMap, isCross);
         if (isCross == GameStatus.SUCCESS.getBooleanKey())

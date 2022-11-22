@@ -3,8 +3,7 @@ package bridge.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.model.Bridge;
 import bridge.model.CrossBridgeType;
 import bridge.utils.Validator;
 import bridge.view.InputView;
@@ -14,15 +13,11 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-    private int bridgeSize;
-    private List<String> bridge;
-    private int attemptCount = 0;
     boolean isCross;
     int round;
-    InputView inputView = new InputView();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    OutputView outputView = new OutputView();
+    private int attemptCount = 0;
+
+    Bridge bridge;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -30,7 +25,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(int round, String moveKey) {
-        String crossablePosition = bridge.get(round);
+        String crossablePosition = bridge.crossablePosition(round);
         if (moveKey.equals(CrossBridgeType.UPPER_BRIDGE.getStringKey()) && crossablePosition.equals(
             CrossBridgeType.UPPER_BRIDGE.getStringKey()))
             return true;
@@ -48,7 +43,7 @@ public class BridgeGame {
     public boolean retry() {
         while (true) {
             try {
-                String command = inputView.readGameCommand();
+                String command = InputView.readGameCommand();
                 Validator.checkValueOfReadGameCommand(command);
                 return equalStringCommand("R", command);
             } catch (Exception e) {
@@ -63,66 +58,32 @@ public class BridgeGame {
         return false;
     }
 
-    public void playGame(List<String> bridge) {
+    public void playGame(Bridge bridge) {
         this.bridge = bridge;
         while (true) {
+            attemptCount++;
             if (!moveBridge())
                 break;
             if (!retry())
                 break;
         }
-        printResult(round, isCross, attemptCount);
-    }
-
-    public List<String> makeBridge() {
-        bridgeSize = readBridgeSize();
-        return bridgeMaker.makeBridge(bridgeSize);
+        printResult(attemptCount);
     }
 
     public boolean moveBridge() {
-        attemptCount++;
-        for (round = 0; round != bridgeSize; round++) {
-            isCross = move(round, readBridgeMove());
-            printMap(round, isCross);
+        for (round = 0; round != bridge.getBridgeSize(); round++) {
+            isCross = move(round, bridge.readBridgeMove());
+            bridge.printMap(round, isCross);
             if (!isCross)
                 break;
         }
-        if (round == bridge.size())
+        if (round == bridge.getBridgeSize())
             return false;
         return true;
     }
 
-    public void printResult(int round, boolean isCross, int attemptCount) {
-        List<String> usedMap = new ArrayList<>(bridge.subList(0, round));
-        outputView.printResult(usedMap, isCross, attemptCount);
-    }
-
-    public void printMap(int round, boolean isCross) {
-        List<String> usedMap = new ArrayList<>(bridge.subList(0, round + 1));
-        outputView.printMap(usedMap, isCross);
-    }
-
-    public int readBridgeSize() {
-        while (true) {
-            try {
-                String inputBridgeSize = inputView.readBridgeSize();
-                Validator.checkValueOfReadBridgeSize(inputBridgeSize);
-                return Integer.parseInt(inputBridgeSize);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    public String readBridgeMove() {
-        while (true) {
-            try {
-                String inputBridgeMove = inputView.readMoving();
-                Validator.checkValueOfReadBridgeMove(inputBridgeMove);
-                return inputBridgeMove;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public void printResult(int attemptCount) {
+        List<String> usedMap = new ArrayList<>(bridge.getUsedMap(round));
+        OutputView.printResult(usedMap, isCross, attemptCount);
     }
 }
