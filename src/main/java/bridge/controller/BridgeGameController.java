@@ -45,10 +45,6 @@ public class BridgeGameController {
         return false;
     }
 
-    // private boolean isSucess() {
-    //     return bridgeGame.isEndPosition(bridgeSize);
-    // }
-
     private int setBridgeSize() {
         while (true) {
             try {
