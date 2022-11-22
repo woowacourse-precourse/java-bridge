@@ -1,23 +1,35 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class BridgeGame {
+    private final List<String> userPath;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    public BridgeGame() {
+        this.userPath = new ArrayList<String>();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public List<String> getUserPath() {
+        return this.userPath;
+    }
+
+    public void move(String userPath) {
+        this.userPath.add(userPath);
+    }
+
     public void retry() {
+        this.userPath.clear();
     }
+
+    public int getBridgePosition() {
+        return this.userPath.size() - 1;
+    }
+
+    public boolean checkGameClear(Bridge bridge) {
+        // 마지막이 같고 현재 다리 위치가 마지막이면 게임 clear
+        return bridge.getLastBridge().equals(this.userPath.get(getBridgePosition())) &&
+                getBridgePosition() == bridge.getBridge().size() - 1;
+    }
+
 }
