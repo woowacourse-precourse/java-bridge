@@ -5,6 +5,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.Utils.Bridge.BridgeMaker;
+import bridge.Utils.Bridge.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -42,10 +44,11 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
-            runException("a");
+            runException("E");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
 
     @Override
     protected void runMain() {
