@@ -12,6 +12,7 @@ public class BridgeGame {
     private List<String> bridge;
     private List<String> current = new ArrayList<>();
     private int tryCount = 0;
+    private String retryOrQuit = ConstString.RETRY;
     public void init() throws IllegalArgumentException {
         output.printStartGame();
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -23,7 +24,32 @@ public class BridgeGame {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    
+
+    public void update() throws IllegalArgumentException {
+        while (!isClear() && retryOrQuit.equals(ConstString.RETRY)) {
+            try {
+                playOneGame();
+                retry();
+            }
+            catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException(e.getMessage());
+            }
+        }
+    }
+
+    private void playOneGame() throws IllegalArgumentException {
+        while (!isOver() && !isClear()) {
+            String step = input.readMoving();
+            try {
+                move(step);
+            }
+            catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException(e.getMessage());
+            }
+            output.printMap(bridge, current);
+        }
+    }
+
     public void end() {
         output.printResult(bridge, current, this);
     }
@@ -33,7 +59,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String step) throws IllegalArgumentException{
+    private void move(String step) throws IllegalArgumentException{
         if (!(step.equals(ConstString.UP) || step.equals(ConstString.DOWN))) {
             throw new IllegalArgumentException(ConstString.INPUT_MOVE_ERROR);
         }
@@ -45,7 +71,30 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    private void retry() throws IllegalArgumentException{
+        try {
+            if (isRetry()) {
+                tryCount++;
+                current.clear();
+            }
+        }
+        catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    private boolean isRetry() throws IllegalArgumentException{
+        if (isClear()) {
+            return false;
+        }
+        retryOrQuit = input.readGameCommand();
+        if (!retryOrQuit.equals(ConstString.RETRY) && !retryOrQuit.equals(ConstString.QUIT)) {
+            throw new IllegalArgumentException(ConstString.INPUT_RETRY_OR_QUIT_ERROR);
+        }
+        if (retryOrQuit.equals(ConstString.RETRY)) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isOver() {
