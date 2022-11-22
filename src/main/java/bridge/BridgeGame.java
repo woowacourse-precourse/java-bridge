@@ -15,17 +15,8 @@ public class BridgeGame {
 
     public void run() {
         outputView.printInitMessage();
-        retryUntilInitAvailableBridge();
+        bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
         runUntilGameEnds();
-    }
-
-    private void retryUntilInitAvailableBridge() {
-        try  {
-            bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            retryUntilInitAvailableBridge();
-        }
     }
 
     private void runUntilGameEnds() {
@@ -38,35 +29,14 @@ public class BridgeGame {
     }
 
     private boolean isGameFailEnded() {
-        if (!retryUntilGetAvailableMove()) {
-            if (!retryUntilGetAvailableRetryMsg()) {
+        if (!move()) {
+            if (!retry()) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean retryUntilGetAvailableMove() {
-        boolean moveSuccessful;
-        try {
-            moveSuccessful = move();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            moveSuccessful = retryUntilGetAvailableMove();
-        }
-        return moveSuccessful;
-    }
-
-    private boolean retryUntilGetAvailableRetryMsg() {
-        boolean retry;
-        try {
-            retry = retry();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            retry = retryUntilGetAvailableRetryMsg();
-        }
-        return retry;
-    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
