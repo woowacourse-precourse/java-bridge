@@ -12,4 +12,11 @@ public class BridgeSizeTest {
         assertThatThrownBy(() -> new BridgeSize("abcd"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("다리 길이 입력 값이 3이상 20이하가 아니면 예외가 발생한다.")
+    @Test
+    void checkBridgeSizeInputRange() {
+        assertThatThrownBy(() -> new BridgeSize("1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
