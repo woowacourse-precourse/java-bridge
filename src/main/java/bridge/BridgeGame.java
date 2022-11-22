@@ -95,6 +95,10 @@ public class BridgeGame {
         return moving.size() == bridge.size() && moving.get(pathLastIndex).equals(bridge.get(pathLastIndex));
     }
 
+    private boolean isWinInRow(int index) {
+        return moving.get(index).equals(bridge.get(index));
+    }
+
     private void validateSize(int size) {
         if (size < BridgeConstant.MIN_LENGTH || BridgeConstant.MAX_LENGTH < size) {
             throw new IllegalArgumentException(ExceptionConstant.INCORRECT_LENGTH.getMessage());
