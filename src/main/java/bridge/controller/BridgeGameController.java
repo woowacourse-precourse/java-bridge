@@ -33,21 +33,7 @@ public class BridgeGameController {
             outputView.printMap(bridge, bridgeStatus);
 
             if (gameSuccess(bridge)) break;
-
-            if (bridgeGame.isFailure()) {
-                String gameCommand = inputView.readGameCommand();
-
-                if (gameCommand.equals("Q")) {
-                    outputView.printResult();
-                    outputView.printFailure();
-                    break;
-                }
-
-                if (gameCommand.equals("R")) {
-                    bridgeGame.retry();
-                    trialCnt++;
-                }
-            }
+            if (gameFailure()) break;
         }
     }
 
@@ -56,6 +42,25 @@ public class BridgeGameController {
             outputView.printResult();
             outputView.printSuccess();
             return true;
+        }
+
+        return false;
+    }
+
+    private boolean gameFailure() {
+        if (bridgeGame.isFailure()) {
+            String gameCommand = inputView.readGameCommand();
+
+            if (gameCommand.equals("Q")) {
+                outputView.printResult();
+                outputView.printFailure();
+                return true;
+            }
+
+            if (gameCommand.equals("R")) {
+                bridgeGame.retry();
+                trialCnt++;
+            }
         }
 
         return false;
