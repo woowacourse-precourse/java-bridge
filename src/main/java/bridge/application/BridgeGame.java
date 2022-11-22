@@ -1,6 +1,6 @@
 package bridge.application;
 
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.BridgeType;
 import bridge.domain.Result;
 import java.util.ArrayList;

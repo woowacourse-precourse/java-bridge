@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.application.BridgeGame;
-import bridge.domain.BridgeMaker;
 import bridge.domain.CommandType;
 import bridge.domain.Result;
 import bridge.presentation.InputView;

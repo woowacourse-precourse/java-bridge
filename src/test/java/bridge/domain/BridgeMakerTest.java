@@ -3,6 +3,7 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

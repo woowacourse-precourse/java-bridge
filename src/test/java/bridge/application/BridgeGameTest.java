@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.BridgeNumberGenerator;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.Result;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
