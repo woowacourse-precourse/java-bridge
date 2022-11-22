@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MainTest extends NsTest {
+public class IntegrationTest extends NsTest {
 
     @Test
     @DisplayName("통합 테스트, 성공 여부 : 성공")
-    void integrateSuccessTest() {
+    void successTest() {
         assertRandomNumberInRangeTest(() -> {
             run("4", "U", "D", "D", "R", "U", "D", "U", "U");
             assertThat(output()).contains(
@@ -27,7 +27,7 @@ public class MainTest extends NsTest {
 
     @Test
     @DisplayName("통합 테스트, 성공 여부 : 실패")
-    void integrateFailTest() {
+    void failTest() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "R", "D", "U", "R", "D", "D", "U", "Q");
             assertThat(output()).contains(
