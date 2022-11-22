@@ -53,9 +53,13 @@ public class InputView {
      */
     public String readMoving() {
         String movement;
-        printCommand.getMovement();
-        movement= Console.readLine();
-        validate.isUpOrDown(movement);
+        while(true){
+            printCommand.getMovement();
+            movement= Console.readLine();
+            if(validate.isUpOrDown(movement)){
+                break;
+            }
+        }
         return movement;
     }
 

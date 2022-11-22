@@ -19,10 +19,17 @@ public class Validator {
         }
         return bridgeLength;
     }
-    public void isUpOrDown(String input){
+    public boolean isUpOrDown(String input){
         if(!input.equals("U")&&!input.equals("D")){
-            throw new IllegalArgumentException(ERROR_MESSAGE+UD_MESSAGE);
+            System.out.println(ERROR_MESSAGE+UD_MESSAGE);
+            try {
+                throw new IllegalArgumentException(ERROR_MESSAGE+UD_MESSAGE);
+            }
+            catch (IllegalArgumentException error){
+                return false;
+            }
         }
+        return true;
     }
 
     public void isRestartOrQuit(String input){
