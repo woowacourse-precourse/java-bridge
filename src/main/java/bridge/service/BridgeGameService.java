@@ -107,6 +107,9 @@ public class BridgeGameService {
         return command;
     }
 
+    /**
+    * 최종 결과를 출력할 때 사용하는 메서드
+    * */
     public void printResult(Status status, List<String> bridge, int attempt) {
         OutputView.printFinalGameResult();
         OutputView.printResult(bridge, userMoving);
