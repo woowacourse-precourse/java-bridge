@@ -16,7 +16,7 @@ public class BridgeGameTest {
 
     @BeforeEach
     void generateBridge() {
-        BridgeNumberGenerator numberGenerator = new RecordTest.TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         this.bridgeGame = new BridgeGame(new Bridge(bridge));
