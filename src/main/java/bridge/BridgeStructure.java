@@ -2,12 +2,10 @@ package bridge;
 
 public enum BridgeStructure {
 
-    FIRST_TRUE("[ O |"),
-    MIDDLE_TRUE(" O |"),
-    LAST_TRUE(" O ]"),
-
-    FIRST_COLUMN("[ O ]"),
-    UN_KNOWN("   |"),
+    START("[ "),
+    TRUE("O "),
+    SEPARATOR(" | "),
+    END(" ]"),
     FALSE(" X ]");
 
 

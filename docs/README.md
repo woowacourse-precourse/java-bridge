@@ -1,12 +1,12 @@
 ## 기능 목록 
 ![image](https://www.notion.so/795b281f263d491faa3b7fb4007e2ea8#290f3f6e34474ac1a7e07f40ae2f23e8)
-1. [test fail] FrontController에서 InputView의 입력자, 다리 생성에 필요한 정보, 게임 실행에 필요한 정보, 출력에 필요한 정보를 스스로 관리한다.
-2. [test fail] FrontController에서 BridgeMaker를 생성한다.
-3. [test fail] FrontController에서 생성된 BridgeMaker를 BridgeGame에 전달하여 게임 진행을 연산한다.
-4. [test fail] FrontController에서 BridgeGame은 GameRepository를 통해 변경되는 GameEntity의 상태를 관리한다.
-5. [test fail] GameEntity의 현재 상태가 FrontController에서 처리되고 출력 형태로 변환된다.
-6. [test fail] FrontController에서 게임 결과를 출력 기능으로 처리하여 return 한다.
-7. [test fail] Application은 FrontController를 호출하여 실행한다.
+1. [test fail] FrontController는 BridgeMaker를 생성한다.
+2. [test fail] FrontController는 생성된 다리를 BridgeEntity에 할당한다.
+3. [test fail] FrontController는 BridgeEntity 내용을 통해 BridgeGame을 진행한다.
+4. [test fail] FrontController는 BridgeGame의 변경 내용을 BridgeEntity로 저장한다.
+5. [test fail] FrontController는 BridgeEntity의 내용을 OutputView의 기능으로 변환시킨다.
+6. [test fail] FrontController는 변환된 문자열을 return한다.
+7. [test fail] Application은 FrontController를 호출해서 실행한다.
 
 
 - 

@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.ui.Expression.DOWN;
-import static bridge.ui.Expression.UP;
+import static bridge.Expression.DOWN;
+import static bridge.Expression.UP;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,13 +35,14 @@ public class BridgeMaker {
 
     private String expressionByNumber(int bridgeNumber) {
         String expression = "";
-        if (bridgeNumber == 0 ) {
+        if (bridgeNumber == 0) {
             expression = DOWN.expressThat();
         }
-        if ( bridgeNumber == 1 ) {
+        if (bridgeNumber == 1) {
             expression = UP.expressThat();
         }
 
         return expression;
     }
+
 }

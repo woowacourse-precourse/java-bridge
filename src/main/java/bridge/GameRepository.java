@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public interface GameRepository {
-    int manageRetryStatus(String status);
+    List<String> manageGameStatus();
 }

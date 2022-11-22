@@ -1,14 +1,5 @@
-package bridge.ui;
+package bridge;
 
-import static bridge.ui.UserInterface.INSERT_SIZE;
-import static bridge.ui.UserInterface.RESULT;
-import static bridge.ui.UserInterface.RE_TRY;
-import static bridge.ui.UserInterface.SELECT_ROW;
-import static bridge.ui.UserInterface.START;
-import static bridge.ui.UserInterface.SUCCESSFUL;
-import static bridge.ui.UserInterface.TRY_COUNT;
-
-import bridge.FrontController;
 import java.util.List;
 
 /**
@@ -16,17 +7,23 @@ import java.util.List;
  */
 public class OutputView {
 
-    private String guideLine;
+
     FrontController frontController;
+    GameEntity gameEntity;
+
+    public OutputView() {
+        this.frontController = new FrontController();
+        this.gameEntity = frontController.gameRepository();
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> printMap() {
-
-        return frontController.bridgeRepository();
+    public String printMap() {
+        System.out.println(gameEntity.moveNTimes());
+        return gameEntity.moveNTimes();
     }
 
     /**
@@ -34,31 +31,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String printResult(String userInterface) {
+    public String printResult(List<String> entityResult) {
 
-        System.out.println(RESULT.interact());
-
-        System.out.println(SUCCESSFUL.interact());
-
-        System.out.println(TRY_COUNT.interact());
+        String userInterface = "";
+        entityResult = frontController.gameRepository().manageGameStatus();
+        for (String entity : entityResult) {
+            System.out.println(entity);
+            userInterface = entity;
+        }
 
         return userInterface;
-    }
-
-    public void start() {
-        System.out.println(START.interact());
-    }
-
-    public void insertBridgeSize() {
-        System.out.println(INSERT_SIZE.interact());
-    }
-
-    public void selectRow() {
-        System.out.println(SELECT_ROW.interact());
-    }
-
-    public void chooseRetry(){
-        System.out.println(RE_TRY.interact());
     }
 
 }

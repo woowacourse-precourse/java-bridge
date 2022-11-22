@@ -8,6 +8,7 @@ import static bridge.UserInterface.INSERT_SIZE;
 import static bridge.UserInterface.RANGE_OUT_OF_EXCEPTION;
 import static bridge.UserInterface.RE_TRY;
 import static bridge.UserInterface.SELECT_ROW;
+import static bridge.UserInterface.START;
 import static java.lang.Integer.parseInt;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -17,20 +18,16 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private Exception exception;
-
-    public InputView() {
-        this.exception = new Exception();
-    }
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
 
+        System.out.println(START.interact());
         System.out.println(INSERT_SIZE.interact());
         String readLine = Console.readLine();
-        if ( parseInt(readLine) < 3 || parseInt(readLine) > 20) {
+        if (parseInt(readLine) < 3 || parseInt(readLine) > 20) {
             throw new IllegalArgumentException(RANGE_OUT_OF_EXCEPTION.interact());
         }
 
@@ -68,7 +65,7 @@ public class InputView {
         if (readLine.equals(SELECT_RE_TRY.tellCommand())) {
             readLine = SELECT_RE_TRY.tellCommand();
         }
-        if (readLine.equals(QUIT.tellCommand())){
+        if (readLine.equals(QUIT.tellCommand())) {
             readLine = QUIT.tellCommand();
         }
 
