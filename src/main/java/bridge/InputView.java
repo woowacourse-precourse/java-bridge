@@ -46,15 +46,15 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String command = readLine();
-        if(validateCommand(command)){
+        if(validateMoving(command)){
             return command;
         }while(true){
             String retryCommand = readLine();
-            if (validateCommand(retryCommand)){
+            if (validateMoving(retryCommand)){
                 return retryCommand;}}
     }
 
-    private boolean validateCommand(String command) {
+    private boolean validateMoving(String command) {
         try {
             if (command.equals("U") || command.equals("D")) {
                 return true;
@@ -70,7 +70,24 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return readLine();
+        String command = readLine();
+        if(validateCommand(command)){
+            return command;
+        }while(true){
+            String retryCommand = readLine();
+            if (validateCommand(retryCommand)){
+                return retryCommand;}}
+    }
+
+    private boolean validateCommand(String command) {
+        try {
+            if (command.equals("R") || command.equals("Q")) {
+                return true;
+            }
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] R 또는 Q를 입력해주세요.");
+            return false;}
     }
 
 
