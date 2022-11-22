@@ -18,7 +18,7 @@ public class BridgeGame {
 
     public boolean move(String moveInput) {
         validateMoveInput(moveInput);
-        user.move(moveInput);
+        user.move();
         result.updateResult(user.getMoveCount(), moveInput, answerBridge);
         return result.isMoveSuccess();
     }
@@ -28,7 +28,7 @@ public class BridgeGame {
     }
 
     public void retry() {
-        user.clearUserMove();
+        user.move();
     }
 
     private void validateMoveInput(String moveInput) {
