@@ -1,6 +1,7 @@
 package bridge.domain.command;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public enum BridgeMoveCommand {
 	UP("U", 1),
@@ -26,8 +27,24 @@ public enum BridgeMoveCommand {
 				.anyMatch(bridgeMoveCommand -> bridgeMoveCommand.command.equals(input));
 
 	}
+	public static int getNumber(String input){
+		return Arrays.stream(values())
+				.filter(bridgeMoveCommand -> bridgeMoveCommand.command.equals(input))
+				.findAny()
+				.orElseThrow(NoSuchElementException::new)
+				.getNumber();
+
+	}
+	public static int getSize(){
+		return (int) Arrays.stream(values())
+				.count();
+	}
 
 	public String getCommand() {
 		return command;
+	}
+
+	public int getNumber() {
+		return number;
 	}
 }
