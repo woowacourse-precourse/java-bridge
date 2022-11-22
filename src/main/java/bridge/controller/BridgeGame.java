@@ -54,7 +54,6 @@ public class BridgeGame {
     }
 
     public void playGame(List<String> bridge) {
-        System.out.println(bridge);
         this.bridge = bridge;
         while (true) {
             if (!moveBridge())
@@ -96,9 +95,9 @@ public class BridgeGame {
     }
 
     public int readBridgeSize() {
-        int inputBridgeSize = inputView.readBridgeSize();
+        String inputBridgeSize = inputView.readBridgeSize();
         Validator.checkValueOfReadBridgeSize(inputBridgeSize);
-        return inputBridgeSize;
+        return Integer.parseInt(inputBridgeSize);
     }
 
     public String readBridgeMove() {
