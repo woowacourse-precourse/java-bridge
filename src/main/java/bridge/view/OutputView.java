@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.CurrentBridgeState;
 
 import java.util.List;
 

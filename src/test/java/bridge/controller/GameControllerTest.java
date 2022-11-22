@@ -1,5 +1,7 @@
-package bridge;
+package bridge.controller;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.CurrentBridgeState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class BridgeGameTest {
+class GameControllerTest {
 
     private BridgeGame bridgeGame;
     private CurrentBridgeState currentBridgeState;
