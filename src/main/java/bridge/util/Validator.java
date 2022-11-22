@@ -1,5 +1,7 @@
 package bridge.util;
 
+import static bridge.util.Constant.*;
+
 public class Validator {
 
     private static final int MIN_BRIDGE_SIZE = 3;
@@ -7,37 +9,37 @@ public class Validator {
 
     public static void validateNumericInputType(String input) {
         if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException(Constant.ALLOW_ONLY_NUM);
+            throw new IllegalArgumentException(ALLOW_ONLY_NUM);
         }
     }
 
     public static void validateBridgeSize(int size) {
         if (size < MIN_BRIDGE_SIZE || size > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(Constant.ALLOW_3_TO_20);
+            throw new IllegalArgumentException(ALLOW_3_TO_20);
         }
     }
 
     public static void validateMovingInput(String input) {
-        if (!input.equals(Constant.UP) && !input.equals(Constant.DOWN)) {
-            throw new IllegalArgumentException(Constant.ALLOW_U_OR_D);
+        if (!input.equals(UPLOCATION) && !input.equals(DOWNLOCATION)) {
+            throw new IllegalArgumentException(ALLOW_U_OR_D);
         }
     }
 
     public static void validateGameCommandInput(String input) {
-        if (!input.equals(Constant.RESTART) && !input.equals(Constant.QUIT)) {
-            throw new IllegalArgumentException(Constant.ALLOW_R_OR_Q);
+        if (!input.equals(RESTART) && !input.equals(QUIT)) {
+            throw new IllegalArgumentException(ALLOW_R_OR_Q);
         }
     }
 
     public static void validateLocationNum(int locationNum) {
-        if (locationNum != Constant.DOWN_NUMBER && locationNum != Constant.UP_NUMBER) {
-            throw new IllegalArgumentException(Constant.ALLOW_0_OR_1);
+        if (locationNum != DOWN_NUMBER && locationNum != UP_NUMBER) {
+            throw new IllegalArgumentException(ALLOW_0_OR_1);
         }
     }
 
     public static void validateTryCount(int tryCount) {
-        if (tryCount < Constant.MINIMUM_TRY) {
-            throw new IllegalArgumentException(Constant.NOT_ALLOW_UNDER_1);
+        if (tryCount < MINIMUM_TRY) {
+            throw new IllegalArgumentException(NOT_ALLOW_UNDER_1);
         }
     }
 }
