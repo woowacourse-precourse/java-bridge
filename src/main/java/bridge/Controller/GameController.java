@@ -1,10 +1,15 @@
-package bridge;
+package bridge.Controller;
+
+import bridge.Constant.Constant;
+import bridge.Model.BridgeGame;
+import bridge.View.InputView;
+import bridge.View.OutputView;
 
 public class GameController {
     public static void setGame() {
         final OutputView Output = new OutputView();    
         BridgeGame.makeGame(InputView.readBridgeSize());
-        while (BridgeGame.playing()) {
+        while (BridgeGame.play()) {
             printMove(Output);
             if (BridgeGame.stop()) 
                 resetGame(Output);
@@ -20,7 +25,7 @@ public class GameController {
     public static void resetGame(OutputView Output) {
         String cmd = InputView.readGameCommand();
         if(cmd.equals(Constant.Restart)){
-            BridgeGame.retry();
+            BridgeGame.replay();
             Output.ResetAll();
         }
     }
