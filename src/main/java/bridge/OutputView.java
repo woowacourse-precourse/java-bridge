@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +13,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> move, boolean success){
+        List<String> map = makeMove(move, success);
+        for(String str : map){
+            System.out.print(str);
+        }
+        System.out.println("\n");
     }
 
     /**
@@ -18,6 +26,98 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> move, boolean success, int tryNum) {
+        System.out.println("최종 게임 결과");
+        printMap(move, success);
+        System.out.println("게임 성공 여부: " + booleanToString(success));
+        System.out.println("총 시도한 횟수: " + tryNum);
+    }
+
+    // U,D로 이루어진 배열을 매개변수로 받아 최종적으로 출력할 List를 반환한다.
+    public List<String> makeMove(List<String> move, boolean success){
+        List<String> result = new ArrayList<>();
+        List<String> upperMove = makeUpperMove(move, success);
+        List<String> underMove = makeUnderMove(move, success);
+        upperMove = addBracket(addBar(upperMove));
+        underMove = addBracket(addBar(underMove));
+        result = mergeUpperUnderMove(upperMove, underMove);
+        return result;
+    }
+
+    public List<String> makeUpperMove(List<String> move, boolean success){
+        List<String> upperMove = new ArrayList<>();
+        for(String str : move){
+            upperMove.add(UToO(str));
+        }
+        if(!success && upperMove.get(upperMove.size() - 1) == "O"){
+            upperMove.set(upperMove.size()-1, "X");
+        }
+        return upperMove;
+    }
+
+    public List<String> makeUnderMove(List<String> move, boolean success){
+        List<String> underMove = new ArrayList<>();
+        for(String str : move){
+            underMove.add(DToO(str));
+        }
+        if(!success && underMove.get(underMove.size() - 1) == "O"){
+            underMove.set(underMove.size()-1, "X");
+        }
+        return underMove;
+    }
+
+    public String UToO(String move){
+        if(move.equals("U")){
+            return "O";
+        }
+        return " ";
+    }
+
+    public String DToO(String move){
+        if(move.equals("D")){
+            return "O";
+        }
+        return " ";
+    }
+
+    public List<String> mergeUpperUnderMove(List<String> upperMove, List<String> underMove){
+        List<String> result = new ArrayList<>();
+        for(String str : upperMove){
+            result.add(str + " ");
+        }
+        result.add("\n");
+        for(String str : underMove){
+            result.add(str + " ");
+        }
+        return result;
+    }
+
+    // |를 추가하는 함수
+    public List<String> addBar(List<String> move){
+        List<String> result = new ArrayList<>();
+        for(int i = 0; i < move.size() - 1; i++){
+            result.add(move.get(i));
+            result.add("|");
+        }
+        result.add(move.get(move.size()-1));
+        return result;
+    }
+
+    // 대괄호를 추가하는 함수
+    public List<String> addBracket(List<String> move){
+        List<String> result = new ArrayList<>();
+        result.add("[");
+        for(String str : move){
+            result.add(str);
+        }
+        result.add("]");
+        return result;
+    }
+
+    public String booleanToString(boolean success){
+        if(success){
+            return "성공";
+        }
+        return "실패";
     }
 }
