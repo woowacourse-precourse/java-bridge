@@ -13,6 +13,4 @@ public class Constant {
     public static final String BRIDGE_SIZE_REGEX = "^[0-9]+$";
     public static final String RESTART_GAME = "R";
     public static final String QUIT_GAME = "Q";
-    public static final String LOWER_BRIDGE = "D";
-    public static final String UPPER_BRIDGE = "U";
 }

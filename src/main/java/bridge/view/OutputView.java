@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.constant.Constant;
 import bridge.constant.Message;
+import bridge.model.domain.Bridge;
 import bridge.model.domain.BridgeSign;
 import bridge.model.domain.SuccessOrFail;
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridgeMap, boolean isRightLastBridgePick) {
-        printOneSideBridge(bridgeMap, isRightLastBridgePick, Constant.UPPER_BRIDGE);
-        printOneSideBridge(bridgeMap, isRightLastBridgePick, Constant.LOWER_BRIDGE);
+        printOneSideBridge(bridgeMap, isRightLastBridgePick, Bridge.UPPER_BRIDGE.getSign());
+        printOneSideBridge(bridgeMap, isRightLastBridgePick, Bridge.LOWER_BRIDGE.getSign());
         System.out.println();
     }
 

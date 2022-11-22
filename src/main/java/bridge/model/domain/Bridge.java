@@ -28,4 +28,8 @@ public enum Bridge {
                 .filter(bridge -> bridge.sign.equals(sign))
                 .count() != Constant.NOTHING;
     }
+
+    public String getSign() {
+        return sign;
+    }
 }
