@@ -23,7 +23,7 @@ public class BridgeGame {
      */
     public String move(String inputValue) {
         playerMovement.addMovement(inputValue);
-        return currentBridgeMap.getBridgeMap(inputValue, isEqualBridgeByIndex(inputValue));
+        return currentBridgeMap.getBridgeMap(inputValue, isAllEqualSoFar());
     }
 
     /**
@@ -37,11 +37,19 @@ public class BridgeGame {
         playerMovement = new PlayerMovement();
     }
 
-    private boolean isEqualBridgeByIndex(String inputValue) {
-        return bridge.isEqualByIndex(inputValue, playerMovement.getMovementCount() - 1);
+    private boolean isAllEqualSoFar() {
+        return bridge.isAllEqualSoFar(playerMovement.getMovement());
     }
 
     public boolean isFinish() {
+        if (isEndBridge()) {
+            return true;
+        }
+
+        return isAllEqualSoFar();
+    }
+
+    private boolean isEndBridge() {
         return bridge.getBridgeSize() == playerMovement.getMovementCount();
     }
 
