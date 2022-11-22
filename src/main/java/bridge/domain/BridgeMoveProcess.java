@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.constant.GameState;
 import bridge.view.InputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class BridgeMoveProcess {
     }
 
     public BridgePrinting makeUserBridge(List<Boolean> upState, List<Boolean> downState,
-        String nowIndex) {
+                                         String nowIndex) {
         BridgePrinting bridgePrinting = new BridgePrinting(upState, downState);
         bridgePrinting.addTraceLocation(convertNowIndex(nowIndex));
         bridgePrinting.makeBridge();

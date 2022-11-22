@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.constant.GameState;
 import bridge.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
