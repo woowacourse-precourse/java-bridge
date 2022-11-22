@@ -6,10 +6,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 class BridgeMakerTest {
@@ -24,7 +22,7 @@ class BridgeMakerTest {
         Assertions.assertThat(bridge).contains("U", "D");
     }
 
-    @DisplayName("다리 생성 시 U, D 이외의 값이 포함되어 있으면 예외처리를 하는지")
+    @DisplayName("다리 생성 시 U, D 이외의 값이 포함되어 있으면 예외처리를 하는정")
     @Test
     void checkRandomBridge() {
         Assertions.assertThatThrownBy(()-> Validator.validateMovingWord("H"))
