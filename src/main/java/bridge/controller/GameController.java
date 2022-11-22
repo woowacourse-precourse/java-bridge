@@ -28,11 +28,13 @@ public class GameController {
     /* 인스턴스 변수 */
     private int bridgeSize = 0;
     private int stage = 0;
-    private int tryNumber = 0;
+    private int tryNumber = 1;
 
     public void init() {
         outputView.printGameStart();
+        System.out.println();
         bridgeSize = inputView.readBridgeSize();
+        System.out.println();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
@@ -65,9 +67,10 @@ public class GameController {
     }
 
     public void runGame(){
-        increaseTryNumberAndStage();
+        stage++;
         addBridgeMove(inputView.readMoving());
         outputView.printMap(upBridge,downBridge);
+        System.out.println();
     }
 
     public boolean checkFail(int stage){
@@ -92,14 +95,11 @@ public class GameController {
 
     public void clearGame(){
         stage = 0;
+        tryNumber++;
         upBridge.clear();
         downBridge.clear();
     }
 
-    public void increaseTryNumberAndStage(){
-        stage++;
-        tryNumber++;
-    }
 
     public boolean quitRetry(){
         if(!bridgeGame.retry(inputView.readGameCommand())){
@@ -118,6 +118,7 @@ public class GameController {
     public void endGame(){
         System.out.println(viewMessage.RESULT_GAME_MESSAGE.getMessage());
         outputView.printMap(upBridge,downBridge);
+        System.out.println();
         outputView.printResult(resultGame.get(GAME_SUCCESS_OR_FAIL_NUMBER), resultGame.get(GAME_TRY_NUMBER));
     }
 }
