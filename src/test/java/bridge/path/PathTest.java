@@ -46,6 +46,26 @@ class PathTest {
         assertThat(actualFormat).isEqualTo(expectedFormat);
     }
 
+    @DisplayName("searchesFailed")
+    @ParameterizedTest(name = "[{index}] {arguments}")
+    @CsvSource({
+            "'UP, DOWN, DOWN, DOWN', 'UP, DOWN, DOWN, DOWN', false",
+            "'UP, DOWN, DOWN, UP', 'UP, DOWN, DOWN, UP', false",
+            "'UP, DOWN, DOWN, UP', 'UP, DOWN, DOWN, DOWN', true"
+    })
+    void searchesFailed(
+            final String rawlyActualMovements,
+            final String rawlyExpectedMovements,
+            final boolean expectedResult
+    ) {
+        final List<Movement> actualMovements = parseMovements(rawlyActualMovements);
+        final List<Movement> expectedMovements = parseMovements(rawlyExpectedMovements);
+        final Path path = Path.of(actualMovements, expectedMovements);
+
+        final boolean actualResult = path.searchesFailed();
+        assertThat(actualResult).isEqualTo(expectedResult);
+    }
+
     private List<Movement> parseMovements(String rawMovements) {
         return Arrays.stream(rawMovements.split(", "))
                 .map(Movement::valueOf)
