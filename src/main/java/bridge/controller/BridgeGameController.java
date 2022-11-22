@@ -1,13 +1,13 @@
 package bridge.controller;
 
 import bridge.constant.enumtype.UIMessage;
-import bridge.service.BridgeGameInputService;
+import bridge.service.BridgeGameService;
 
 public class BridgeGameController {
-    private BridgeGameInputService bridgeGameInputService;
+    private BridgeGameService bridgeGameService;
 
     private BridgeGameController() {
-        bridgeGameInputService = new BridgeGameInputService();
+        bridgeGameService = new BridgeGameService();
     }
 
     private static class InnerBridgeGameController {
@@ -20,8 +20,11 @@ public class BridgeGameController {
 
     public void bridgeGameStart() {
         System.out.println(UIMessage.INFO_GAME_START.getValue());
-        bridgeGameInputService.createBridge();
-        bridgeGameInputService.moveBridge();
-        bridgeGameInputService.printResult();
+        bridgeGameService.createBridge();
+        Boolean isPassedMoving = bridgeGameService.moveBridge();
+        if (!isPassedMoving) {
+            bridgeGameService.bridgeGameRetry();
+        }
+        bridgeGameService.printResult();
     }
 }
