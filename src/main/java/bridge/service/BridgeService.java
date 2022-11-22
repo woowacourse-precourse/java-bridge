@@ -3,7 +3,7 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 import java.util.List;
 
 public class BridgeService {
@@ -11,10 +11,10 @@ public class BridgeService {
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-    public Bridge bridgeMaker() {
+    public BridgeGame bridgeGameMaker() {
         int bridgeSize = askBridgeSize();
-        Bridge bridge = new Bridge(makeBridge(bridgeSize));
-        return bridge;
+        BridgeGame bridgeGame = new BridgeGame(makeBridgeGame(bridgeSize));
+        return bridgeGame;
     }
 
     public int askBridgeSize() {
@@ -22,7 +22,7 @@ public class BridgeService {
         return bridgeSize;
     }
 
-    public List<String> makeBridge(int bridgeSize) {
+    public List<String> makeBridgeGame(int bridgeSize) {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         return bridge;
     }
