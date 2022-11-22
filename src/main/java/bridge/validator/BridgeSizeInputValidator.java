@@ -3,6 +3,8 @@ package bridge.validator;
 public class BridgeSizeInputValidator {
 
     public static final String ERROR_PREFIX = "[ERROR] ";
+    private static final int MIN_SIZE = 3;
+    private static final int MAX_SIZE = 20;
 
     public static void validate(String input) throws IllegalArgumentException {
         typeCheck(input);
@@ -18,8 +20,8 @@ public class BridgeSizeInputValidator {
     }
 
     public static void rangeCheck(String input) {
-        if (Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "다리의 크기는 3 ~ 20 이여야 합니다.");
+        if (Integer.parseInt(input) < MIN_SIZE || Integer.parseInt(input) > MAX_SIZE) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "다리의 크기는" + MIN_SIZE + "~" + MAX_SIZE + "이여야 합니다.");
         }
     }
 }
