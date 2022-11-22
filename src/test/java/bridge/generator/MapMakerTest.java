@@ -1,7 +1,9 @@
-package bridge.game;
+package bridge.generator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.game.Move;
+import bridge.game.Result;
 import bridge.generator.Answer;
 import bridge.generator.MapMaker;
 import java.util.ArrayList;

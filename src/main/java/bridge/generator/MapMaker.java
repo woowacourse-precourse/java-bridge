@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapMaker {
-
     public String makeMap(List<Move> moves) {
         return getUpperBridgeMap(moves) + getLowerBridge(moves);
     }
