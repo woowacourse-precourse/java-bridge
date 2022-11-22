@@ -65,6 +65,9 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + rerun);
     }
 
+    static public void printStartGuide(){
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+    }
     static public void printLengthGuide(){
         System.out.println("다리의 길이를 입력해주세요.");
     }
