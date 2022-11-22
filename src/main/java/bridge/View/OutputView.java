@@ -26,6 +26,7 @@ public class OutputView {
     }
 
     public void printResult(GameResult gameResult, int round) {
+        System.out.println();
         System.out.println(Message.FINAL_RESULT_MESSAGE);
         printMap(gameResult);
         System.out.println();
