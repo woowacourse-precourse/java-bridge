@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
+    private static List<String> bridge;
+    private static StringBuilder upResult;
+    private static StringBuilder downResult;
     static List<String> result = new ArrayList<>();
-    static List<String> bridge;
-    static StringBuilder upResult;
-    static StringBuilder downResult;
     static int matchNum;
 
     public BridgeGame(List<String> bridge) {
