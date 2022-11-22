@@ -28,6 +28,10 @@ public class Game {
         isWinGame = winGame;
     }
 
+    public void winGame() {
+        setWinGame(true);
+    }
+
 
 
 }
