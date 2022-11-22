@@ -13,7 +13,7 @@ public class MapMaker {
     private static final String EMPTY = " ";
 
     public static List<String> make(Bridge bridge, PlayerSteps steps) {
-        Columns columnsWithoutLastColumn = makeMapWithoutLastColumn(steps.getSteps());
+        Columns columnsWithoutLastColumn = makeMapWithoutLastColumn(steps);
         Column lastColumn = makeLastColumnByComparison(bridge, steps);
 
         Columns completeColumns = columnsWithoutLastColumn.add(lastColumn);
@@ -43,20 +43,20 @@ public class MapMaker {
         return INCORRECT_NODE;
     }
 
-    private static Columns makeMapWithoutLastColumn(List<Node> bridgeNodes) {
+    private static Columns makeMapWithoutLastColumn(PlayerSteps steps) {
         Columns columnsWithOutLastColumn = new Columns();
 
-        for (int i = 0; i < bridgeNodes.size() - 1; i++) {
-            Column columnOfMap = makeAColumnFromSteps(bridgeNodes, i);
+        for (int i = 0; i < steps.size() - 1; i++) {
+            Column columnOfMap = makeAColumnFromSteps(steps, i);
             columnsWithOutLastColumn.add(columnOfMap);
         }
 
         return columnsWithOutLastColumn;
     }
 
-    private static Column makeAColumnFromSteps(List<Node> steps, int nodeIdx) {
+    private static Column makeAColumnFromSteps(PlayerSteps steps, int nodeIdx) {
         String upAppend = EMPTY, downAppend = EMPTY;
-        if (steps.get(nodeIdx).equals(Node.UP)) {
+        if (steps.isUpperStepFor(nodeIdx)) {
             upAppend = CORRECT_NODE;
             return new Column(upAppend, downAppend);
         }

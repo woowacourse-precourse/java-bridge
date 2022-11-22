@@ -2,7 +2,6 @@ package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,8 +46,7 @@ class PlayerStepsTest {
             Bridge mockBridge = Bridge.of(List.of("D", "U"));
             PlayerSteps steps = new PlayerSteps(2);
             assertThatIllegalStateException()
-                    .isThrownBy(() -> steps.isLastStepSameWithBridge(mockBridge))
-                    .withMessageStartingWith("steps가 비어있습니다.");
+                    .isThrownBy(() -> steps.isLastStepSameWithBridge(mockBridge));
         }
     }
 
@@ -78,29 +76,6 @@ class PlayerStepsTest {
     }
 
     @Nested
-    @DisplayName("getSteps() 테스트")
-    class GetNodesTest {
-        PlayerSteps playerSteps;
-
-        @BeforeEach
-        public void setUp() {
-            playerSteps = new PlayerSteps(10);
-        }
-
-        @Test
-        @DisplayName("추가한 순서대로 노드를 읽어온다")
-        public void getSteps() {
-            List<Node> willBeAdded = List.of(Node.UP, Node.DOWN, Node.DOWN, Node.UP);
-            for (Node node : willBeAdded) {
-                playerSteps.add(node);
-            }
-            List<Node> steps = playerSteps.getSteps();
-
-            assertEquals(steps, willBeAdded);
-        }
-    }
-
-    @Nested
     @DisplayName("clearSteps() 테스트")
     class ClearStepsTest {
         PlayerSteps playerSteps;
@@ -120,8 +95,7 @@ class PlayerStepsTest {
             playerSteps.clearSteps();
 
             // then
-            List<Node> stepsAfterClear = playerSteps.getSteps();
-            assertThat(stepsAfterClear).isEmpty();
+            assertThat(playerSteps.size()).isZero();
         }
     }
 }
