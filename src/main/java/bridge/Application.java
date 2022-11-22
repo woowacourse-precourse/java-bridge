@@ -18,12 +18,17 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println(START);
-        List<String> bridge = requestBridge();
-        Player player = new Player(bridge);
+
+        Player player = createPlayer();
 
         playBridgeGame(player);
 
         output.printResult(player);
+    }
+
+    private static Player createPlayer() {
+        List<String> bridge = requestBridge();
+        return new Player(bridge);
     }
 
     private static void playBridgeGame(Player player) {
