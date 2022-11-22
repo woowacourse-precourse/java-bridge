@@ -1,7 +1,10 @@
 package bridge.model;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.config.BridgeComponent;
+import bridge.model.Bridge;
+import bridge.model.MoveRecord;
 
 import java.util.ArrayList;
 import java.util.List;
