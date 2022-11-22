@@ -28,6 +28,11 @@ public class BridgeGame {
         if(gameComplete()){
             return false;
         }
+        return checkPassable();
+    }
+
+    public boolean checkPassable(){
+
         return bridge.checkPassable(mark);
     }
 
