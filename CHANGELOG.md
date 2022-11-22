@@ -1,3 +1,5 @@
+- style: U와 D 상수로 관리
+- docs(CHANGELOG.md): CHNGELOG.md 파일 작성
 - test(UserTest): move() 함수가 올바른 반환값을 반환하는지 테스트 추가
 - docs(docs/README.md): 기능 요구사항 함수명 변경
 - refactor(User): isCrossBridge 함수 명 역할에 맞게 checkCrossBridge로 변경
