@@ -5,6 +5,7 @@ import bridge.domain.vo.BridgeGameResult;
 import java.util.List;
 
 import static bridge.domain.BridgeGame.RETRY_COUNT;
+import static bridge.domain.BridgeGame.isSuccess;
 import static bridge.domain.vo.BridgeGameResult.*;
 import static bridge.view.enumeration.Format.*;
 import static bridge.view.enumeration.Message.*;
@@ -68,7 +69,7 @@ public class OutputView {
     public static void printResult(List<BridgeGameResult> bridgeGameResults, int bridgeSize) {
         printLastGameResultMessage();
         printMap(bridgeGameResults);
-        printIsSuccess(bridgeGameResults.size(), bridgeSize);
+        printIsSuccess(bridgeGameResults, bridgeSize);
         printRetryCount();
     }
 
@@ -76,8 +77,8 @@ public class OutputView {
         System.out.println(LAST_GAME_RESULT_MESSAGE.getMessage());
     }
 
-    private static void printIsSuccess(int bridgeGameResultSize, int bridgeSize) {
-        if (bridgeGameResultSize == bridgeSize) {
+    private static void printIsSuccess(List<BridgeGameResult> bridgeGameResults, int bridgeSize) {
+        if (isSuccess(bridgeGameResults, bridgeSize)) {
             System.out.println(WHETHER_SUCCESS.getMessage() + SUCCESS.getMessage());
             return;
         }
