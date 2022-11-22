@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.code.GameStatus;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -33,5 +34,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    private void updateResult(String input, boolean isMoveSuccess) {
+        HashMap<Boolean,String> map=new HashMap<>();
+        map.put(true,"O");
+        map.put(false,"X");
+        result.updateResultMap(input, map.get(isMoveSuccess));
+        if (bridge.size()==result.getIndex()) {
+            this.gameStatus=GameStatus.SUCCESS;
+        }
     }
 }
