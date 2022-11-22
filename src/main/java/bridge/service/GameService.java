@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.domain.bridge.Square;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.BridgeResult;
 import bridge.domain.game.Command;
@@ -9,15 +10,12 @@ import bridge.dto.GameResultDto;
 
 public class GameService {
 
+    private final BridgeGame bridgeGame;
+
     private BridgeResult bridgeResult = new BridgeResult();
 
-    private BridgeGame bridgeGame;
-
-    private int bridgeSize;
-
-    public void initGame(BridgeGame bridgeGame, int bridgeSize) {
+    public GameService(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
-        this.bridgeSize = bridgeSize;
     }
 
     public BridgeResultDto getFormattedEachMoveResult(SquareResult result) {
@@ -25,14 +23,13 @@ public class GameService {
         return bridgeResult.toDto();
     }
 
-    public void isSuccessMoveBridge(SquareResult squareResult) {
-        if (squareResult.isMoveSuccess()) {
-            bridgeGame.move(bridgeSize);
-        }
+    public SquareResult moveBridge(String move) {
+        Square userSquare = Square.of(move);
+        return bridgeGame.move(userSquare);
     }
 
     public void isEndOfBridgeExit() {
-        if (bridgeGame.isGameSuccess(bridgeSize)) {
+        if (bridgeGame.isGameFinalSuccess()) {
             bridgeGame.exitGame();
         }
     }
@@ -59,9 +56,5 @@ public class GameService {
                 bridgeResult.toDto(),
                 bridgeResult.getMoveSuccessResult(),
                 bridgeGame.getRetryCount());
-    }
-
-    public int getCurrentPosition() {
-        return bridgeGame.getPosition();
     }
 }

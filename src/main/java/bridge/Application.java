@@ -1,16 +1,20 @@
 package bridge;
 
-import bridge.controller.BridgeGameController;
+import bridge.controller.BridgeController;
+import bridge.controller.GameController;
+import bridge.domain.bridge.Bridge;
+import bridge.domain.game.BridgeGame;
 import bridge.service.BridgeService;
 import bridge.service.GameService;
 
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGameController controller = new BridgeGameController(
-                new BridgeService(),
-                new GameService());
+        BridgeController bridgeController = new BridgeController(new BridgeService());
+        Bridge bridge = bridgeController.createBridge();
 
-        controller.run();
+        BridgeGame bridgeGame = bridgeController.createBridgeGame(bridge);
+        GameController gameController = new GameController(new GameService(bridgeGame));
+        gameController.run();
     }
 }
