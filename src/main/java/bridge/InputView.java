@@ -19,6 +19,19 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public int readBridgeSizeUntilConstant() {
+        int bridgeSize;
+        while (true) {
+            try {
+                bridgeSize = readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bridgeSize;
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -29,6 +42,19 @@ public class InputView {
         return input;
     }
 
+    public String readMovingUntilConstant() {
+        String input;
+        while(true) {
+            try {
+                input = readMoving();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return input;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
@@ -36,6 +62,19 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
         validateGameCommand(input);
+        return input;
+    }
+
+    public String readGameCommandUntilConstant() {
+        String input;
+        while(true) {
+            try {
+                input = readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return input;
     }
 
