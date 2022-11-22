@@ -65,7 +65,7 @@ public class OutputView {
     public void printResult(List<String> answer, int n, boolean result) {
         System.out.println("최종 게임 결과");
         printMap(answer, n, result);
-        System.out.print("게임 성공 여부 : ");
+        System.out.print("게임 성공 여부: ");
         if (result){
             System.out.println("성공");
             return;

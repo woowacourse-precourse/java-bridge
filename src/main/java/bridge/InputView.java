@@ -19,14 +19,19 @@ public class InputView {
 
     public int validateBridgeSize(String l) {
         int bridgeLength = 0;
+
         try {
             bridgeLength = Integer.parseInt(l);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
+            System.out.println("[ERROR] 숫자를 입력하세요.");
+        //    return readBridgeSize();
+          //  throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
-        if (bridgeLength < 3 || bridgeLength > 20)
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-
+        if (bridgeLength < 3 || bridgeLength > 20){
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            //   return readBridgeSize();
+            // throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
         return bridgeLength;
     }
 
