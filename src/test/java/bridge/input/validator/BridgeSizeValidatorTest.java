@@ -1,4 +1,4 @@
-package bridge;
+package bridge.input.validator;
 
 import bridge.input.validator.code.BridgeSizeValidationCode;
 import bridge.input.validator.BridgeSizeValidator;
