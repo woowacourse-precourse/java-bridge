@@ -16,7 +16,7 @@ public class InputView {
                 String sizeTmp = Console.readLine();
                 if (checkInputSizeString(sizeTmp)) return Integer.parseInt(sizeTmp);
             }
-            catch (IllegalAccessException e){
+            catch (IllegalArgumentException e){
                 System.out.println(e);
             }
         }
