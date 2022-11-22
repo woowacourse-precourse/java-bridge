@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.BridgePair;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -27,11 +29,7 @@ public class BridgeMaker {
         List<String> map = new ArrayList<>();
         for (int i = 0; i < size; i++){
             int randomNumber = bridgeNumberGenerator.generate();
-            if (randomNumber == 0){
-                map.add(DOWN.getValue());
-                continue;
-            }
-            map.add(UP.getValue());
+            map.add(BridgePair.findPair(randomNumber).getValue());
         }
         return map;
     }
