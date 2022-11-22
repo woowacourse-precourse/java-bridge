@@ -1,8 +1,6 @@
 package bridge.Controller;
 
 import bridge.Domain.BridgeGame;
-import bridge.Domain.BridgeNumberGenerator;
-import bridge.Domain.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
@@ -35,8 +33,7 @@ public class BridgeController {
     }
 
     private BridgeGame new_BridgeGame() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        return new BridgeGame(bridgeNumberGenerator, OutputView.BridgeLengthCheck(InputView.readBridgeSize()));
+        return new BridgeGame(OutputView.BridgeLengthCheck(InputView.readBridgeSize()));
     }
 
     private String MovingCheck(String moving) {
