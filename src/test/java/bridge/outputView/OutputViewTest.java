@@ -43,16 +43,16 @@ public class OutputViewTest extends NsTest {
     private static Stream<Arguments> provideParametersForPrintMap() {
         return Stream.of(
                 Arguments.of("[ O |   |   | O ]", "[   | O | O |   ]", 3, true),
-                Arguments.of( "[ O |   |   | X ]", "[   | O | O |   ]", 3, false),
-                Arguments.of( "[ O |   ]", "[   | X ]", 1, false)
+                Arguments.of( "[ O |   |   |   ]", "[   | O | O | X ]", 3, false),
+                Arguments.of( "[ O | X ]", "[   |   ]", 1, false)
         );
     }
 
     private static Stream<Arguments> provideParametersForPrintResult() {
         return Stream.of(
                 Arguments.of(List.of("[ O |   |   | O ]", "[   | O | O |   ]"), 3, true, 3),
-                Arguments.of( List.of("[ O |   |   | X ]", "[   | O | O |   ]"), 3, false, 2),
-                Arguments.of( List.of("[ O |   ]", "[   | X ]"), 1, false, 2)
+                Arguments.of( List.of("[ O |   |   |   ]", "[   | O | O | X ]"), 3, false, 2),
+                Arguments.of( List.of("[ O | X ]", "[   |   ]"), 1, false, 2)
         );
     }
 

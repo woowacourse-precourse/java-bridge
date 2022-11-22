@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.input.ValidationType;
+import bridge.type.ValidationType;
 
 import java.util.List;
 

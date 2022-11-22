@@ -1,6 +1,6 @@
 package bridge.outputView;
 
-import bridge.input.ValidationType;
+import bridge.type.ValidationType;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package bridge.input;
+package bridge.type;
 
 import java.util.Arrays;
 import java.util.List;
