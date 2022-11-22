@@ -23,22 +23,25 @@ public class InputView {
         }
     }
     }
-    public int checkError(String Input){
+
+    public int checkError(String Input) {
         isNumber(Input);
-        int size=Integer.parseInt(Input);
+        int size = Integer.parseInt(Input);
         isRange(size);
         System.out.println();
         return size;
     }
-    public void isNumber(String Input){
-        try{
+
+    public void isNumber(String Input) {
+        try {
             Double.parseDouble(Input);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR);
         }
     }
-    public void isRange(int Size){
-        if(!(Size>=3&&Size<=20)){
+
+    public void isRange(int Size) {
+        if (!(Size >= 3 && Size <= 20)) {
             throw new IllegalArgumentException(ERROR);
         }
     }
@@ -47,18 +50,19 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        while(true){
-            try{
-                String Input=Console.readLine();
+        while (true) {
+            try {
+                String Input = Console.readLine();
                 return isUD(Input);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
             }
         }
     }
-    public String isUD(String Input){
-        if(!(Input.equals("U")||Input.equals("D"))){
+
+    public String isUD(String Input) {
+        if (!(Input.equals("U") || Input.equals("D"))) {
             throw new IllegalArgumentException(ERROR_UD);
         }
         return Input;
@@ -78,8 +82,9 @@ public class InputView {
             }
     }
     }
-    public String isRQ(String Input){
-        if(!(Input.equals("R")||Input.equals("Q"))){
+
+    public String isRQ(String Input) {
+        if (!(Input.equals("R") || Input.equals("Q"))) {
             throw new IllegalArgumentException(ERROR_RQ);
         }
         return Input;

@@ -10,57 +10,65 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String printMap(String map,String Input, int count) {
-        if(Input.equals("U")){
-            map= printUMap(map,"O",count);}
-        if(Input.equals("D")){
-            map= printDMap(map,"O",count);}
-        System.out.println(map);
-        System.out.println();
-        return map;
-    }
-    public String printFailMap(String map,String Input, int count){
-        if(Input.equals("U")){
-            map=printUMap(map,"X",count);}
-        if(Input.equals("D")){
-            map=printDMap(map,"X",count);}
+    public String printMap(String map, String Input, int count) {
+        if (Input.equals("U")) {
+            map = printUMap(map, "O", count);
+        }
+        if (Input.equals("D")) {
+            map = printDMap(map, "O", count);
+        }
         System.out.println(map);
         System.out.println();
         return map;
     }
 
-    public String printUMap(String map,String Input,int count){
-        String answer="";
-        if(count==1){
-        answer="[ "+Input+" ]\n[   ]";
-        return answer;
+    public String printFailMap(String map, String Input, int count) {
+        if (Input.equals("U")) {
+            map = printUMap(map, "X", count);
         }
-    return mergeUMap(map,Input,count);
+        if (Input.equals("D")) {
+            map = printDMap(map, "X", count);
+        }
+        System.out.println(map);
+        System.out.println();
+        return map;
     }
-    public String mergeUMap(String map,String Input,int count){
-        String answer="";
-        answer+=map.substring(0,(count-1)*4);
-        answer+="| "+Input+" ]\n";
-        int index=map.indexOf("[",1);
-        answer+=map.substring(index,index+(count-1)*4);
-        answer+="|   ]";
-        return answer;
-    }
-    public String printDMap(String map,String Input,int count){
-        String answer="";
-        if(count==1){
-            answer="[   ]\n[ "+Input+" ]";
+
+    public String printUMap(String map, String Input, int count) {
+        String answer = "";
+        if (count == 1) {
+            answer = "[ " + Input + " ]\n[   ]";
             return answer;
         }
-        return mergeDMap(map,Input,count);
+        return mergeUMap(map, Input, count);
     }
-    public String mergeDMap(String map,String Input,int count){
-        String answer="";
-        answer+=map.substring(0,(count-1)*4);
-        answer+="|   ]\n";
-        int index=map.indexOf("[",1);
-        answer+=map.substring(index,index+(count-1)*4);
-        answer+="| "+Input+" ]";
+
+    public String mergeUMap(String map, String Input, int count) {
+        String answer = "";
+        answer += map.substring(0, (count - 1) * 4);
+        answer += "| " + Input + " ]\n";
+        int index = map.indexOf("[", 1);
+        answer += map.substring(index, index + (count - 1) * 4);
+        answer += "|   ]";
+        return answer;
+    }
+
+    public String printDMap(String map, String Input, int count) {
+        String answer = "";
+        if (count == 1) {
+            answer = "[   ]\n[ " + Input + " ]";
+            return answer;
+        }
+        return mergeDMap(map, Input, count);
+    }
+
+    public String mergeDMap(String map, String Input, int count) {
+        String answer = "";
+        answer += map.substring(0, (count - 1) * 4);
+        answer += "|   ]\n";
+        int index = map.indexOf("[", 1);
+        answer += map.substring(index, index + (count - 1) * 4);
+        answer += "| " + Input + " ]";
         return answer;
     }
     /**

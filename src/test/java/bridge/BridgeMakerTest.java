@@ -14,11 +14,11 @@ class BridgeMakerTest {
 
     @DisplayName("메소드 리턴값 테스트")
     @Test
-    void generate_test(){
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator=new BridgeRandomNumberGenerator();
+    void generate_test() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-       int  number= bridgeMaker.generateBridge();
-       assertThat(number).isBetween(0,1);
+        int number = bridgeMaker.generateBridge();
+        assertThat(number).isBetween(0, 1);
     }
     @DisplayName("숫자에따라 UD추가하는 메소드 테스트")
     @Test
@@ -33,7 +33,6 @@ class BridgeMakerTest {
     @DisplayName("다리를 만드는 메소드 테스트")
     @Test
     void makeBridge_test(){
-
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator=new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> Bridge=new ArrayList<>();
