@@ -48,7 +48,7 @@
 - [ ] 최종 결과를 반환한다. #getFinalResult()
 
 ### BridgeGame : 다리 건너기 게임을 관리
-- [ ] 총 시도횟수를 초기화 한다. #initTryCount()
+- [x] 총 시도횟수를 초기화 한다. #initTryCount()
 - [ ] 다리를 초기화 한다. #initBridge()
 - [ ] 사용자 위치를 초기화 한다. #initPlayer()
 - [ ] 사용자가 칸을 이동한다. #move()
