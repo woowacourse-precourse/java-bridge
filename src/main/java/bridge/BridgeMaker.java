@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.domain.gameManagement.BridgeMakingValidator;
+import bridge.view.InputView;
+
 import java.util.List;
 
 /**
@@ -19,5 +22,18 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    public int takeBridgeSize() {
+        InputView inputView = new InputView();
+        String receivedBridgeSize = inputView.readBridgeSize();
+
+        try {
+            BridgeMakingValidator.validate(receivedBridgeSize);
+            return Integer.parseInt(receivedBridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return takeBridgeSize();
+        }
     }
 }
