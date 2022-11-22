@@ -47,7 +47,6 @@ class BridgeGameMapTest {
         BridgeGameMap bridgeGameMap = new BridgeGameMap();
         bridgeGameMap.updateMap("U", "U");
         bridgeGameMap.reset();
-
         assertThat(bridgeGameMap.getUpSide().isEmpty()).isEqualTo(true);
         assertThat(bridgeGameMap.getDownSide().isEmpty()).isEqualTo(true);
     }

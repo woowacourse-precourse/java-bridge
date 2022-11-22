@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.BridgeGame;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,6 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("D");
-
         assertThat(bridgeGame.getPlayer()).isEqualTo(List.of("U", "D", "D"));
     }
 
@@ -28,7 +26,6 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("U");
-
         assertThat(bridgeGame.isEnd()).isEqualTo(true);
     }
 
@@ -38,7 +35,6 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
         bridgeGame.move("U");
         bridgeGame.move("D");
-
         assertThat(bridgeGame.isEnd()).isEqualTo(false);
     }
 
@@ -49,8 +45,6 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("D");
-
-
         assertThat(bridgeGame.isEnd()).isEqualTo(false);
     }
 
@@ -61,7 +55,6 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
         bridgeGame.move("U");
         bridgeGame.move("D");
-
         assertThat(bridgeGame.canStandOnCurrentBridge()).isEqualTo(true);
     }
 
@@ -71,7 +64,6 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
         bridgeGame.move("U");
         bridgeGame.move("U");
-
         assertThat(bridgeGame.canStandOnCurrentBridge()).isEqualTo(false);
     }
 
@@ -83,7 +75,6 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("U");
         bridgeGame.retry();
-
         softAssertions.assertThat(bridgeGame.getPlayer()).as("플레이어 비우기").isEqualTo("");
         softAssertions.assertThat(bridgeGame.getTryCount()).as("시도 횟수 카운트").isEqualTo(1);
     }

@@ -15,7 +15,6 @@ class BridgeMakerTest {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(6);
-
         assertThat(bridge.size()).isEqualTo(6);
         assertThat(bridge).containsOnly("U", "D");
     }

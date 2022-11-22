@@ -19,7 +19,6 @@ class InputViewTypeTest {
     void sizeMustBeDigit(String input) {
         inputViewType = InputViewType.BRIDGE_SIZE;
         String nullStr = null;
-
         assertThrows(IllegalArgumentException.class, () -> {
             inputViewType.validate(input);
         });
@@ -36,7 +35,6 @@ class InputViewTypeTest {
     void movingMustBeUorD(String input) {
         inputViewType = InputViewType.MOVING;
         String nullStr = null;
-
         assertThrows(IllegalArgumentException.class, () -> {
             inputViewType.validate(nullStr);
         });
@@ -50,7 +48,6 @@ class InputViewTypeTest {
     void commandMustBeRorQ(String input) {
         inputViewType = InputViewType.GAME_COMMAND;
         String nullStr = null;
-
         assertThrows(IllegalArgumentException.class, () -> {
             inputViewType.validate(nullStr);
         });
