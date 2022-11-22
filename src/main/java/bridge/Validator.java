@@ -14,7 +14,7 @@ public class Validator {
         }
     }
 
-    public static void validateRestartButton(String restartButton) + {
+    public static void validateRestartButton(String restartButton) {
         if (!restartButton.equals("R") || !restartButton.equals("Q")) {
             throw new IllegalArgumentException("[ERROR] 다시 시도는 Q 또는 R을 입력해야합니다.");
         }
