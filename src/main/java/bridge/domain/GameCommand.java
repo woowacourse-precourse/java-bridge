@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public enum GameCommand {
-    RESTART ("R", "재시도"),
-    QUIT ("Q", "종료");
+    RESTART("R", "재시도"),
+    QUIT("Q", "종료");
 
     private final String command;
     private final String word;

@@ -18,7 +18,9 @@ class InputViewTest {
             return "2131af";
         }
     }
+
     private static InputView inputView;
+
     @BeforeAll
     static void setInputView() {
         inputView = new InputView(new ConsoleBridgeInput(), new BasicBridgeValidator());

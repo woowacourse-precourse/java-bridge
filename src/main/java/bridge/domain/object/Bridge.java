@@ -21,7 +21,7 @@ public class Bridge {
 
     public boolean checkDifferentRoute(final List<String> route) {
         validateRoute(route);
-        for (int i =0; i < route.size(); i++) {
+        for (int i = 0; i < route.size(); i++) {
             if (!Objects.equals(route.get(i), this.route.get(i))) {
                 return true;
             }

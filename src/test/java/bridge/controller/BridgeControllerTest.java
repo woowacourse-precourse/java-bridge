@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class BridgeControllerTest {
     private static BridgeController bridgeController;
+
     @BeforeAll
     static void setBridgeController() {
         bridgeController = new BridgeController();

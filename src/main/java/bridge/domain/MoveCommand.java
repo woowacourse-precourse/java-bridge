@@ -3,8 +3,8 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum MoveCommand {
-    UP ("U","위", 1),
-    DOWN ("D","아래", 0);
+    UP("U", "위", 1),
+    DOWN("D", "아래", 0);
 
     private final String command;
     private final String word;

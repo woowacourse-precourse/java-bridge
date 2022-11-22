@@ -54,8 +54,8 @@ class OutputViewTest {
         outputView.printMap(bridgeGame);
 
         assertThat(outputMessage.toString()).isEqualTo(
-                "[ O |   | O | O | X ]\r\n" +
-                         "[   | O |   |   |   ]\r\n");
+                        "[ O |   | O | O | X ]\r\n" +
+                        "[   | O |   |   |   ]\r\n");
     }
 
     @DisplayName("게임 실패 안내 문구를 출력한다.")
@@ -81,10 +81,10 @@ class OutputViewTest {
         outputView.printResult("실패", bridgeGame);
 
         assertThat(outputMessage.toString()).isEqualTo(
-                "최종 게임 결과\r\n" +
-                "[ O |   | O | O | X ]\r\n" +
-                "[   | O |   |   |   ]\r\n" +
-                "게임 성공 여부: 실패\r\n" +
-                "총 시도한 횟수: 1\r\n");
+                        "최종 게임 결과\r\n" +
+                        "[ O |   | O | O | X ]\r\n" +
+                        "[   | O |   |   |   ]\r\n" +
+                        "게임 성공 여부: 실패\r\n" +
+                        "총 시도한 횟수: 1\r\n");
     }
 }

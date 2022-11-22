@@ -38,7 +38,7 @@ class BridgeTest {
     @Test
     void checkCorrectRouteExcept() {
         assertThatThrownBy(
-                () ->bridge.checkCorrectRoute(List.of("U", "D", "U", "D"))
+                () -> bridge.checkCorrectRoute(List.of("U", "D", "U", "D"))
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -62,7 +62,7 @@ class BridgeTest {
     @Test
     void checkDifferentRouteExcept() {
         assertThatThrownBy(
-                () ->bridge.checkDifferentRoute(List.of("U", "D", "U", "D"))
+                () -> bridge.checkDifferentRoute(List.of("U", "D", "U", "D"))
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }
