@@ -40,7 +40,13 @@ public class GameProgress {
 
     public void resetGameResult() { this.gameResult = GameResult.UNDETERMINED;}
 
-    public void gameFailed() {this.gameResult = GameResult.FAILED;}
+    public void gameFailed() {
+        this.gameResult = GameResult.FAILED;
+        this.gameOver = GameOver.OVER;
+    }
 
-    public void gameSuccess() {this.gameResult = GameResult.SUCCESS;}
+    public void gameSuccess() {
+        this.gameResult = GameResult.SUCCESS;
+        this.gameOver = GameOver.OVER;
+    }
 }
