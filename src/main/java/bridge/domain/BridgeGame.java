@@ -22,4 +22,8 @@ public class BridgeGame {
     public boolean comparePositionLength() {
         return this.bridge.size() == this.position;
     }
+
+    public boolean checkThisStep(String userInput) {
+        return userInput.equals(getBridge().get(getPosition()));
+    }
 }
