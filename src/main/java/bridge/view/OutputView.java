@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.map.Map;
+import bridge.message.GuideMessage;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -50,7 +51,23 @@ public class OutputView {
         if (!player.isGameClear()) {
             gameClearResult = "실패";
         }
-        System.out.println("게임 성공 여부: " + gameClearResult);
-        System.out.println("총 시도한 횟수: " + player.getGameCount());
+        System.out.println(GuideMessage.SUCCESS_OR_FAIL.getMessage() + gameClearResult);
+        System.out.println(GuideMessage.WHOLE_TRY.getMessage() + player.getGameCount());
+    }
+
+    public void printStart() {
+        System.out.println(GuideMessage.START.getMessage());
+    }
+
+    public void printBridgeSize() {
+        System.out.println(GuideMessage.INPUT_BRIDGE_SIZE.getMessage());
+    }
+
+    public void printMoving() {
+        System.out.println(GuideMessage.INPUT_MOVING.getMessage());
+    }
+
+    public void printRetry() {
+        System.out.println(GuideMessage.INPUT_RETRY.getMessage());
     }
 }
