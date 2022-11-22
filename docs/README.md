@@ -26,6 +26,7 @@
 
 - [x] BridgeRetryCommand : 재시도 명령 정보 Enum
     - [x] 명령 정의(재시도=R,나가기=Q)
+    - [x] 명령어로 탐색
 
 - [x] BridgeMaker : 다리 정보를 만드는 클래스
     - [x] 다리 생성 후 반환
