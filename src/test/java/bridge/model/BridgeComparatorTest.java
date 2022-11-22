@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class BridgeComparatorTest {
 
     private BridgeComparator bridgeComparator;
@@ -30,7 +32,7 @@ class BridgeComparatorTest {
         String result = bridgeComparator.compareBridge(bridge, moving, 0);
 
         //then
-        Assertions.assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result);
     }
 
     @DisplayName("이동한 곳에 다리가 없으면 X 반환")
@@ -46,7 +48,7 @@ class BridgeComparatorTest {
         String result = bridgeComparator.compareBridge(bridge, moving, 0);
 
         //then
-        Assertions.assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result);
     }
 
     @DisplayName("해당 다리 결과 위치에 X 표시가 있으면 true 반환 테스트")
@@ -62,6 +64,20 @@ class BridgeComparatorTest {
         boolean result = bridgeComparator.isExpressionX(1,bridgeMap);
 
         //then
-        Assertions.assertEquals(true,result);
+        assertEquals(true,result);
+    }
+
+    @DisplayName("사용자의 위치가 다리 끝에 도달 했는지 체크하는 기능 테스트")
+    @Test
+    void generateEndPoint(){
+        //given
+        List<String> bridge = new ArrayList<>(List.of("O", "O","X"));
+        int location=2;
+
+        //when
+        boolean result = bridgeComparator.isEndPoint(bridge,location);
+
+        //then
+        assertEquals(true,result);
     }
 }
