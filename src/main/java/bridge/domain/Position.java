@@ -14,6 +14,10 @@ public enum Position {
         this.value = value;
     }
 
+    public String getCommand() {
+        return command;
+    }
+
     public static String getCommandByValue(int value) {
         return Arrays.stream(Position.values())
                 .filter(position -> position.value == value)
