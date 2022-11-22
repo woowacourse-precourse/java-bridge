@@ -1,9 +1,5 @@
 package bridge.views;
 
-import bridge.exceptions.CustomIllegalArgumentException;
-import bridge.exceptions.CustomIllegalStateException;
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.regex.Pattern;
 
 /**
@@ -64,14 +60,14 @@ public class InputView extends DefaultView {
 
     private void validateOnlyAlphabet(String input) {
         if (!Pattern.matches(FORMAT_ONLY_ALPHABET, input))
-            throw new CustomIllegalArgumentException(
+            throw new IllegalArgumentException(
                     "알파벳만 입력해야 합니다."
             );
     }
 
     private void validateOnlyNumber(String input){
         if (!Pattern.matches(FORMAT_ONLY_NUMBER, input))
-            throw new CustomIllegalArgumentException(
+            throw new IllegalArgumentException(
                     "0 이상의 정수만 입력해야 합니다."
             );
     }

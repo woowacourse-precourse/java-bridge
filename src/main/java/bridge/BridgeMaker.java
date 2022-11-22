@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.exceptions.CustomIllegalArgumentException;
 import bridge.identifiers.Direction;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class BridgeMaker {
 
     private void validate(int size){
         if(size < BRIDGE_MIN_LENGTH || BRIDGE_MAX_LENGTH < size)
-            throw new CustomIllegalArgumentException(
+            throw new IllegalArgumentException(
                     "다리의 길이는 3이상 20이하의 값이어야 합니다."
             );
     }

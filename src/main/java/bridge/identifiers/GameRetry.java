@@ -1,8 +1,5 @@
 package bridge.identifiers;
 
-import bridge.exceptions.CustomIllegalArgumentException;
-import bridge.exceptions.CustomIllegalStateException;
-
 public enum GameRetry {
     RETRY("R"), QUIT("Q");
 
@@ -21,8 +18,8 @@ public enum GameRetry {
             return RETRY;
         if (retryValue == QUIT.asString)
             return QUIT;
-        throw new CustomIllegalArgumentException(
-                "비정상적인 값"
+        throw new IllegalArgumentException(
+                RETRY.asString + " 또는 " + QUIT.asString + " 을 입력해야 합니다."
         );
     }
 }

@@ -1,6 +1,7 @@
 package bridge.views;
 
 import bridge.identifiers.Direction;
+import bridge.paths.PlayerPath;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
  */
 public class OutputView extends DefaultView{
 
+    public static final String FORMAT_ERROR_MESSAGE = "[ERROR] {0}";
     private static final String FORMAT_MAP = "[ {0} ]";
     private static final String FORMAT_MAP_DELIMITER = " | ";
     private static final String FORMAT_WHETHER_SUCCESS = "게임 성공 여부: {0}";
@@ -26,6 +28,13 @@ public class OutputView extends DefaultView{
     private static final String MSG_GAME_SUCCESS = "성공";
     private static final String MSG_GAME_FAILURE = "실패";
 
+    public void printErrorMessage(String message) {
+        output(MessageFormat.format(
+                FORMAT_ERROR_MESSAGE,
+                message
+        ));
+    }
+
     public void printWelcome() {
         output(MSG_WELCOME);
         printLineSeparator();
@@ -36,8 +45,9 @@ public class OutputView extends DefaultView{
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Direction> playerPath, boolean isGameOver) {
-        Map<Direction, List<String>> messageParts = makeMessagePartsByDirection(playerPath, isGameOver);
+    public void printMap(PlayerPath playerPath) {
+        Map<Direction, List<String>> messageParts
+                = makeMessagePartsByDirection(playerPath.getPath(), playerPath.getIsAlive());
         output(applyMapFormat(messageParts.get(Direction.UP)));
         output(applyMapFormat(messageParts.get(Direction.DOWN)));
         printLineSeparator();
@@ -88,11 +98,11 @@ public class OutputView extends DefaultView{
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<Direction> playerPath, boolean isGameOver, boolean isSuccess, int countAttempt) {
+    public void printResult(PlayerPath playerPath, boolean isSuccess) {
         output(MSG_FINAL_RESULT);
-        printMap(playerPath, isGameOver);
+        printMap(playerPath);
         output(makeWhetherSuccessMessage(isSuccess));
-        output(makeAttemptCountMessage(countAttempt));
+        output(makeAttemptCountMessage(playerPath.getOrdinalNumber()));
     }
 
     private String makeWhetherSuccessMessage(boolean isSuccess){

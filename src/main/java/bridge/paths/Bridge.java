@@ -1,6 +1,5 @@
 package bridge.paths;
 
-import bridge.exceptions.CustomInternalOperationError;
 import bridge.identifiers.Direction;
 
 import java.util.List;
@@ -19,8 +18,8 @@ public class Bridge {
 
     private void validate(List<String> securePath){
         if(securePath == null)
-            throw new CustomInternalOperationError(
-                    "다리 길이가 사용자가 입력한 길이와 다릅니다."
+            throw new IllegalStateException(
+                    "컴퓨터 상태가 이상합니다."
             );
     }
 

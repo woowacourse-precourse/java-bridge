@@ -1,6 +1,5 @@
 package bridge.views;
 
-import bridge.exceptions.CustomIllegalArgumentException;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.NoSuchElementException;
@@ -13,10 +12,10 @@ public class DefaultView {
     }
 
     protected String input(){
-        try{
+        try {
             return Console.readLine();
         } catch (NoSuchElementException e){
-            throw new CustomIllegalArgumentException(
+            throw new IllegalArgumentException(
                     "입력값이 있는 입력을 해야 합니다."
             );
         }
