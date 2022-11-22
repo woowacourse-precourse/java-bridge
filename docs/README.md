@@ -94,4 +94,4 @@
 - [X] GamePlayer 필드들 클래스로 빼기
 - [ ] GameResult 메서드명 변경
 - [ ] GameStatus 메서드명 변경
-- [ ] BridgeGame -> BridgeMover로 변경
+- [X] BridgeGame -> BridgeMatcher로 변경

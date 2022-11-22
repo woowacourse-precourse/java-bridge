@@ -3,14 +3,14 @@ package bridge;
 public class GameStatus {
     private static final int DEFAULT_POSITION = 0;
     private final int bridgeSize;
-    private final BridgeGame bridgeGame;
+    private final BridgeMatcher bridgeMatcher;
     private final GameResult gameResult = new GameResult();
 
     private int pivot = 0;
 
     public GameStatus(int bridgeSize) {
         this.bridgeSize = bridgeSize;
-        bridgeGame = new BridgeGame(bridgeSize);
+        bridgeMatcher = new BridgeMatcher(bridgeSize);
     }
 
     public GameResult getResult() {
@@ -18,13 +18,13 @@ public class GameStatus {
     }
 
     public void retry() {
-        bridgeGame.retry();
+        bridgeMatcher.init();
         gameResult.retry();
         pivot = DEFAULT_POSITION;
     }
 
     public boolean cross(Command command) {
-        if(bridgeGame.move(command)) {
+        if(bridgeMatcher.match(command)) {
             gameResult.addMapSuccess(command);
             pivotUp();
             return true;

@@ -5,13 +5,13 @@ import java.util.Objects;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-public class BridgeGame {
+public class BridgeMatcher {
 
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     private final Bridge bridge;
 
-    public BridgeGame(int bridgeSize) {
+    public BridgeMatcher(int bridgeSize) {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
@@ -20,7 +20,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(Command command) {
+    public boolean match(Command command) {
         return Objects.equals(command.getValue(), bridge.next().getElement());
     }
 
@@ -29,7 +29,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void init() {
         bridge.reset();
     }
 }
