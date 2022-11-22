@@ -25,4 +25,13 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    /**
+     * 발생한 에러에 대해 맞춰 출력한다.
+     * <p>
+     *
+     */
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }
