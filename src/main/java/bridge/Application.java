@@ -6,10 +6,10 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            BridgeGame bridgeGame = new BridgeGame();
-            bridgeGame.start();
-            bridgeGame.loop();
-            bridgeGame.finish();
+            BridgeProgram bridgeProgram = new BridgeProgram();
+            bridgeProgram.start();
+            bridgeProgram.loop();
+            bridgeProgram.finish();
         } catch (NoSuchElementException e) {
             System.out.println("[ERROR]" + e.getMessage());
         }
