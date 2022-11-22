@@ -10,12 +10,13 @@ import java.util.List;
 public class BridgeGame {
 
     private final Bridge bridge;
-
+    private final List<Direction> histories;
     private int pointer = 0;
     private int tryCount = 1;
 
     BridgeGame(List<String> bridge) {
         this.bridge = new Bridge(bridge);
+        this.histories = new ArrayList<>();
     }
 
     /**
@@ -25,6 +26,7 @@ public class BridgeGame {
      */
     public boolean move(Direction userDirection) {
         boolean canMoved = bridge.canMoveTo(userDirection, pointer);
+        histories.add(userDirection);
         if (canMoved) {
             increasePointer();
 
@@ -40,6 +42,7 @@ public class BridgeGame {
         }
     }
 
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -49,11 +52,11 @@ public class BridgeGame {
         if (command.getType().equals(Command.Retry.getType())) {
             initializePointer();
             tryCount++;
+            histories.clear();
             return true;
         }
         return false;
     }
-    
 
     public void initializePointer() {
         pointer = 0;
