@@ -20,7 +20,7 @@ public enum MovingDirection {
                 return direction;
             }
         }
-        throw INVALID_INPUT_MOVING_DIRECTION.getValue();
+        throw INVALID_INPUT_MOVING_DIRECTION.getException();
     }
 
     private static boolean isSameDirection(String inputMovingDirection,
@@ -31,10 +31,15 @@ public enum MovingDirection {
 
     public static String getDirection(int directionNumber) {
         for (MovingDirection movingDirection : MovingDirection.values()) {
-            if (movingDirection.directionNumber.equals(String.valueOf(directionNumber))) {
+            if (isSameDirectionNUmber(directionNumber, movingDirection)) {
                 return movingDirection.direction;
             }
         }
-        throw NOT_FOUND_DIRECTION.getValue();
+        throw NOT_FOUND_DIRECTION.getException();
+    }
+
+    private static boolean isSameDirectionNUmber(int directionNumber,
+        MovingDirection movingDirection) {
+        return movingDirection.directionNumber.equals(String.valueOf(directionNumber));
     }
 }
