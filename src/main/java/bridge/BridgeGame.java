@@ -23,24 +23,31 @@ public class BridgeGame {
         return (bridgeIndex < bridge.size() - 2);
     }
 
+    private void correct() {
+        isCorrect = true;
+        bridgeIndex++;
+    }
+
+    private void incorrect() {
+        isCorrect = false;
+        bridgeIndex++;
+    }
+
+    private void success() {
+        isSuccess = true;
+        bridgeIndex++;
+    }
+
     public void move(String moving) {
         if (!isCorrect(moving)) {
-            System.out.println("can move and is not correct");
-            isCorrect = false;
-            bridgeIndex++;
+            incorrect();
             return;
         }
-        if (canMove() && isCorrect(moving)) {
-            System.out.println("can move and is correct");
-            isCorrect = true;
-            bridgeIndex++;
+        if (canMove()){
+            correct();
             return;
         }
-        if (!canMove() && isCorrect(moving)) {
-            System.out.println("cannot move and correct -> you success");
-            isSuccess = true;
-            bridgeIndex++;
-        }
+        success();
     }
 
     public void retry() {
