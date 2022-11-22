@@ -1,8 +1,16 @@
 package bridge;
 
+import bridge.view.OutputView;
+
 public class Application {
 
+    private static final OutputView outputView = new OutputView();
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        printTitle();
+    }
+
+    private static void printTitle() {
+        outputView.printTitle();
     }
 }
