@@ -45,13 +45,18 @@ public class GameRecord {
         return resultRecord.get(resultRecord.size() - 1);
     }
 
-    public void updatePlayTime() {
+    private void updatePlayTime() {
         playTime++;
     }
 
-    public void clear() {
+    private void clear() {
         moveRecord.clear();
         resultRecord.clear();
+    }
+
+    public void initialize() {
+        clear();
+        updatePlayTime();
     }
 
     private void makeSingleBridge(StringBuilder upperRow, StringBuilder lowerRow) {

@@ -28,11 +28,11 @@ public class BridgeGameController {
 
     private GameResultModel playGame(BridgeGame bridgeGame, GameRecord gameRecord) {
         do {
-            initializeGameRecord(gameRecord);
+            gameRecord.initialize();
             moveUser(bridgeGame, gameRecord);
 
             if (gameRecord.isGameSuccess()) {
-                 break;
+                break;
             }
         } while (checkRetryInput(bridgeGame));
 
@@ -43,11 +43,6 @@ public class BridgeGameController {
         OUTPUT_VIEW.printGameRestartRequest();
         String retryInput = INPUT_VIEW.readGameCommand();
         return bridgeGame.retry(retryInput);
-    }
-
-    private void initializeGameRecord(GameRecord gameRecord) {
-        gameRecord.clear();
-        gameRecord.updatePlayTime();
     }
 
     private List<String> makeBridge() {

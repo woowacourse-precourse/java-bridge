@@ -10,10 +10,10 @@ class GameRecordTest {
     private final GameRecord gameRecord = new GameRecord();
 
     @Test
-    @DisplayName("update할때마다 playTime은 1씩 증가")
+    @DisplayName("게임 초기화 할때마다 playTime은 1씩 증가")
     void updatePlayTimeAndGetPlayTime() {
-        gameRecord.updatePlayTime();
-        gameRecord.updatePlayTime();
+        gameRecord.initialize();
+        gameRecord.initialize();
 
         assertThat(gameRecord.getPlayTime()).isEqualTo(2);
     }
@@ -33,7 +33,7 @@ class GameRecordTest {
     void recordClear() {
         gameRecord.addRecord("U", true);
 
-        gameRecord.clear();
+        gameRecord.initialize();
 
         assertThat(gameRecord.makeBridgeRecord().toCharArray()).doesNotContain('O', 'X');
     }
