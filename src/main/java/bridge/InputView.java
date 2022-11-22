@@ -43,6 +43,22 @@ public class InputView  {
         }
         return gameCommand;
     }
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public static String readMoving() {
+        String moving ="";
+        while(true){
+            try{
+                moving =validate.validateMoving(input());
+                break;
+            }catch (IllegalArgumentException e){
+                ErrorMessage.INVALID_MOVING.getDesc();
+            }
+        }
+        return moving;
+    }
+
 
     public InputView(){
         this.validate = new Validate();
