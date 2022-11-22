@@ -38,4 +38,14 @@ class BridgeTest {
         boolean move = bridge.canMoveForward(square, position);
         assertThat(move).isFalse();
     }
+
+    @DisplayName("다리에 끝에 도달했다면 참을 반환한다.")
+    @Test
+    void endOfBridge() {
+        int position = 4;
+
+        boolean endOfBridge = bridge.isEndOfBridge(position);
+
+        assertThat(endOfBridge).isTrue();
+    }
 }
