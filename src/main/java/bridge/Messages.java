@@ -7,8 +7,9 @@ public enum Messages {
     RETRY_MESSAGE(MessageType.PLAIN,  "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q"),
     ERROR_INPUT_BRIDGE_MESSAGE(MessageType.ERROR, "다리 길이는 3부터 20 사이의 숫자여야 합니다."),
     ERROR_INPUT_MOVE_MESSAGE(MessageType.ERROR, "U(대문자), D(대문자)만 입력 가능합니다."),
-    ERROR_RETRY_MESSAGE(MessageType.ERROR, "R(대문자), Q(대문자)만 입력 가능합니다.");
-
+    ERROR_RETRY_MESSAGE(MessageType.ERROR, "R(대문자), Q(대문자)만 입력 가능합니다."),
+    IS_NOT_NUMBER(MessageType.ERROR, "다리 길이는 숫자여야 합니다.")
+    ;
     private final String message;
     private final MessageType messageType;
 
