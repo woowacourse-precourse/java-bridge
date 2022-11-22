@@ -13,19 +13,6 @@ import org.junit.jupiter.api.Test;
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-
-    @DisplayName("OutputView와 협력하여 게임 시작 메시지를 출력한다.")
-    @Test
-    void gameStartMessage(){
-        assertRandomNumberInRangeTest(() -> {
-            run();
-            assertThat(output()).contains(
-                "다리 건너기 게임을 시작합니다."
-                        ,"다리의 길이를 입력해주세요."
-            );
-
-        }, 1, 0, 1);
-    }
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));

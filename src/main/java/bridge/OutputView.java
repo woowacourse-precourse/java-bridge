@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -13,14 +15,38 @@ public class OutputView {
     private static final Character PANEL_SEPARATOR = '|';
     private static final Character BRIDGE_START_EDGE = '[';
     private static final Character BRIDGE_END_EDGE = ']';
-    private static final Character CORRECT = 'O';
-    private static final Character WRONG = 'X';
+    private static final String CORRECT = " O ";
+    private static final String WRONG = " X ";
+    private static final String NONE = "   ";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge) {
+    public void printMap(List<String> bridge, List<String> input) {
+        StringBuilder builder = new StringBuilder();
+        String upBridgeString = generateBridgeString(bridge, input, Direction.U);
+        String downBridgeString = generateBridgeString(bridge, input, Direction.D);
+        System.out.println(upBridgeString);
+        System.out.println(downBridgeString);
+    }
+
+    private String generateBridgeString(List<String> bridge, List<String> input, Direction direction) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(BRIDGE_START_EDGE);
+        for(int i = 0; i < input.size(); i++){
+            builder.append(getCorrectMark(bridge.get(i), input.get(i), validateSelect(input.get(i), direction)));
+        }
+        return builder.append(BRIDGE_END_EDGE).toString();
+    }
+
+    private boolean validateSelect(String inputDirection, Direction direction){
+        return !inputDirection.equals(direction.name());
+    }
+    private String getCorrectMark(String panel, String inputDirection, boolean isNone){
+        if(isNone)return NONE;
+        if(panel.equals(inputDirection)) return CORRECT;
+        return WRONG;
     }
 
     /**

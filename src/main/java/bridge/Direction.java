@@ -1,7 +1,7 @@
 package bridge;
 
 public enum Direction {
-    D, U;
+    D, U, NONE;
 
     public static Direction valueOf(int generate) {
         if (generate == 0) {

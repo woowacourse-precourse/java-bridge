@@ -1,10 +1,9 @@
 package bridge;
 
 public class Application {
-    private InputView input;
-    private OutputView output;
-    private BridgeGame bridgeGame;
-
+    private final InputView input;
+    private final OutputView output;
+    private int tryCount = 0;
     Application() {
         this.input = new InputView();
         this.output = new OutputView();
@@ -18,6 +17,7 @@ public class Application {
     private Bridge gameStart() {
         this.output.printGameStart();
         this.output.printInputLengthRequestMessage();
+        tryCount++;
         return createBridge(input.readBridgeSize());
     }
 
@@ -25,15 +25,20 @@ public class Application {
         return new BridgeGame(bridge);
     }
 
-    private void nextPanelByPlayer() {
+    private Result nextPanels(BridgeGame game) {
+        Result result = game.move(input.readMoving());
+        while(result.equals(Result.SAME)){
+            result = game.move(input.readMoving());
+        }
+        return result;
     }
 
     public static void main(String[] args) {
         Application app = new Application();
         Bridge bridge = app.gameStart();
         BridgeGame game = new BridgeGame(bridge);
-        game.move(app.input.readMoving());
-        // TODO: 프로그램 구현
+        Result result = app.nextPanels(game);
+
     }
 
 }
