@@ -1,6 +1,6 @@
-package bridge.view;
+package bridge.domain;
 
-public enum Map {
+public enum MapFlag {
     START("[ "),
     END(" ]"),
     JOIN(" | "),
@@ -10,7 +10,7 @@ public enum Map {
 
     private final String code;
 
-    Map(String code){
+    MapFlag(String code){
         this.code = code;
     }
 

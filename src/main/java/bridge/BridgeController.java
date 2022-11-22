@@ -4,6 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.GameState;
 import bridge.domain.InputValidator;
+import bridge.domain.MapMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -22,12 +23,12 @@ public class BridgeController {
         GameState gameState;
         do {
             gameState = bridgeGame.move(getInputMoving());
-            outputView.printMap(gameState.getMoves(), gameState.isFall());
+            outputView.printMap(map(gameState));
             if (gameState.isFall() && isInputGameCommandRetry()) {
                 bridgeGame.retry();
             }
         } while (gameState.isCrossing());
-        outputView.printResult(gameState.getMoves(), gameState.isFall(), gameState.getAttempt());
+        outputView.printResult(map(gameState), gameState.isFall(), gameState.getAttempt());
     }
 
     private int getInputBridgeSize() {
@@ -61,5 +62,10 @@ public class BridgeController {
             System.out.println(e.getMessage());
             return isInputGameCommandRetry();
         }
+    }
+
+    private String map(GameState gameState) {
+        MapMaker mapMaker = new MapMaker();
+        return mapMaker.makeMap(gameState.getMoves(), gameState.isFall());
     }
 }
