@@ -29,7 +29,7 @@ public class BridgeGame {
     public void move(String moving) {
         validateMoving(moving);
         GameStatus gameStatusAfterMoving = bridgeReferee.judge(moving);
-        gameStatus = gameStatusAfterMoving;
+        this.gameStatus = gameStatusAfterMoving;
         bridgeDrawer.record(moving, gameStatusAfterMoving);
     }
 
