@@ -16,6 +16,11 @@ public class Player {
         map.add(moving);
     }
 
+    public void retry() {
+        rollbackLastMoved();
+        increaseGameAttempts();
+    }
+
     private void increaseGameAttempts() {
         gameAttempts++;
     }
