@@ -9,6 +9,10 @@ public class GameStatus {
         this.failure = failure;
     }
 
+    public boolean isSuccess(int bridgeSize, int movingSize){
+        return !failure && bridgeSize == movingSize;
+    }
+
     public boolean isClear() {
         return clear;
     }

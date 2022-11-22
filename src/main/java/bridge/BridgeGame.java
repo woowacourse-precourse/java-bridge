@@ -61,7 +61,7 @@ public class BridgeGame {
     }
 
     private void successJudgment() {
-        if (!gameStatus.isFailure() && bridge.getBridge().size() == movingPositions.size()) {
+        if (gameStatus.isSuccess(bridge.getBridge().size(), movingPositions.size())) {
             gameStatus.setClear(true);
         }
     }
