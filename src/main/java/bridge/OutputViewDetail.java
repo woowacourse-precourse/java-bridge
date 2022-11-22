@@ -16,7 +16,7 @@ public enum OutputViewDetail {
     SUCCESS_OR_FAIL("게임 성공 여부: %s"),
     TRY_NUMBER("총 시도한 횟수: %d"),
     SUCCESS("성공"),
-    FAIL("실패");
+    FAIL("실패"),;
 
     private final String message;
 

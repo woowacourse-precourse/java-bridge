@@ -8,6 +8,9 @@ public class Validate {
     private final static String RESTART_OR_QUIT_PATTERN = "^[RQ]*$";
     private final static int MAX_BRIDGE_SIZE = 20;
     private final static int MIN_BRIDGE_SIZE = 3;
+    private final static String RANGE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private final static String MOVING_ERROR = "[ERROR] 이동할 칸은 U또는 D 중 하나의 문자여야 합니다.";
+    private final static String COMMAND_ERROR = "[ERROR] 게임 재시작/종료 여부는 R또는 Q 중 하나의 문자여야합니다.";
 
     private boolean isNumeric(String input) {
         return Pattern.matches(NUMERIC_PATTERN, input);
@@ -23,7 +26,7 @@ public class Validate {
 
     public void isBridgeSize(String input){
         if (!isBridgeSizeRange(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(RANGE_ERROR);
         }
     }
 
@@ -33,7 +36,7 @@ public class Validate {
 
     public void isMoving(String input) {
         if (!isUpOrDown(input)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MOVING_ERROR);
         }
     }
 
@@ -43,7 +46,7 @@ public class Validate {
 
     public void isGameCommand(String input) {
         if (!isRestartOrQuit(input)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(COMMAND_ERROR);
         }
     }
 }
