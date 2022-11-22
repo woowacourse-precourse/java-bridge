@@ -50,7 +50,7 @@ public class BridgeGame {
     }
 
     public boolean success() {
-        if (game.getSuccess()) {
+        if (game.getSuccess() == true) {
             return true;
         }
         return false;
