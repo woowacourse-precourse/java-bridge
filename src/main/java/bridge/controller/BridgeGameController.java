@@ -6,26 +6,26 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.type.RestartType;
 import bridge.type.ResultType;
 import bridge.MoveLog;
+import bridge.util.InputExceptionHandler;
 import bridge.util.Message;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
     OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
+    InputExceptionHandler inputExceptionHandler = new InputExceptionHandler();
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
     public void run() {
         outputView.printMessage(Message.START);
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = inputExceptionHandler.getBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize), new MoveLog(bridgeSize));
         playBridgeGame(bridgeGame);
     }
 
     private void playBridgeGame(BridgeGame bridgeGame) {
         while (true) {
-            String userMove = inputView.readMoving();
+            String userMove = inputExceptionHandler.getMoving();
             ResultType crossBridgeResult = bridgeGame.move(userMove);
             outputView.printMap(bridgeGame.getMoveLog());
             if (isGameFinshed(bridgeGame, crossBridgeResult)) {
@@ -46,7 +46,7 @@ public class BridgeGameController {
     }
 
     private boolean isGivedUp(BridgeGame bridgeGame, ResultType crossBridgeResult) {
-        String userAnswer = inputView.readGameCommand();
+        String userAnswer = inputExceptionHandler.getGameCommand();
         if (userAnswer.equals(RestartType.QUIT.getCommands())) {
             outputView.printResult(bridgeGame, crossBridgeResult);
             return true;

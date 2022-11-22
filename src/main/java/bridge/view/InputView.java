@@ -17,13 +17,14 @@ public class InputView {
     public int readBridgeSize() {
         outputView.printMessage(Message.BRIDGE_SIZE);
         String sizeInput = Console.readLine();
-        System.out.println();
+        outputView.enterLine();
         try {
             return Integer.parseInt(sizeInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Message.ERROR_NOT_NUMBER.getMessage());
         }
     }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.

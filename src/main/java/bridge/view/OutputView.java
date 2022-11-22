@@ -49,4 +49,8 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printError(IllegalArgumentException error) {
+        System.out.println(error.getMessage());
+    }
+
 }
