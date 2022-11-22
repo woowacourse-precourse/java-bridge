@@ -25,8 +25,8 @@ public class InputView {
      */
     public static String readMoving() {
         String guide = "이동할 칸을 선택해주세요. (위: %s, 아래: %s)";
-        System.out.println(String.format(
-                guide, Direction.UP.toString(), Direction.DOWN.toString()));
+        System.out.printf(
+                (guide) + "%n", Direction.UP, Direction.DOWN);
         return readLine();
     }
 
@@ -35,8 +35,8 @@ public class InputView {
      */
     public static String readGameCommand() {
         String guide = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)";
-        System.out.println(String.format(
-                guide, Progress.RETRY.toString(), Progress.QUIT.toString()));
+        System.out.printf(
+                (guide) + "%n", Progress.RETRY, Progress.QUIT);
         return readLine();
     }
 

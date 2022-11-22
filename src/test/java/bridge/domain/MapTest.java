@@ -11,6 +11,36 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class MapTest {
+    private static Stream<Arguments> provideArguments() {
+        return Stream.of(
+                Arguments.of(List.of(true, true, true, true), List.of(
+                                List.of("[ O ]",
+                                        "[   ]"),
+                                List.of("[ O |   ]",
+                                        "[   | O ]"),
+                                List.of("[ O |   | O ]",
+                                        "[   | O |   ]"),
+                                List.of("[ O |   | O |   ]",
+                                        "[   | O |   | O ]")),
+                        "4번 모두 성공"),
+                Arguments.of(List.of(true, false), List.of(
+                                List.of("[ O ]",
+                                        "[   ]"),
+                                List.of("[ O |   ]",
+                                        "[   | X ]")),
+                        "2번째에서 실패"),
+                Arguments.of(List.of(true, true, false), List.of(
+                                List.of("[ O ]",
+                                        "[   ]"),
+                                List.of("[ O |   ]",
+                                        "[   | O ]"),
+                                List.of("[ O |   | X ]",
+                                        "[   | O |   ]")),
+                        "3번째에서 실패"
+                )
+        );
+    }
+
     @DisplayName("길이가 4인 다리에 대해 지도 생성")
     @MethodSource("provideArguments")
     @ParameterizedTest(name = "{index}: {2}")
@@ -22,36 +52,6 @@ class MapTest {
             map.update(commands.get(i), isAnswers.get(i));
             assertThat(map.getCurrentMap()).isEqualTo(maps.get(i));
         }
-    }
-
-    private static Stream<Arguments> provideArguments() {
-        return Stream.of(
-                Arguments.of(List.of(true, true, true, true), List.of(
-                        List.of("[ O ]",
-                                "[   ]"),
-                        List.of("[ O |   ]",
-                                "[   | O ]"),
-                        List.of("[ O |   | O ]",
-                                "[   | O |   ]"),
-                        List.of("[ O |   | O |   ]",
-                                "[   | O |   | O ]")),
-                        "4번 모두 성공"),
-                Arguments.of(List.of(true, false), List.of(
-                        List.of("[ O ]",
-                                "[   ]"),
-                        List.of("[ O |   ]",
-                                "[   | X ]")),
-                        "2번째에서 실패"),
-                Arguments.of(List.of(true, true, false), List.of(
-                        List.of("[ O ]",
-                                "[   ]"),
-                        List.of("[ O |   ]",
-                                "[   | O ]"),
-                        List.of("[ O |   | X ]",
-                                "[   | O |   ]")),
-                        "3번째에서 실패"
-                )
-        );
     }
 
     private void validateSameLengths(List<Boolean> isAnswers, List<List<String>> maps) {

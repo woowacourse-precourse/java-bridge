@@ -1,7 +1,7 @@
 package bridge.domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -13,6 +13,21 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
+    private static Stream<Arguments> provideAnswer() {
+        return Stream.of(
+                Arguments.of("U", true),
+                Arguments.of("D", false)
+        );
+    }
+
+    private static Stream<Arguments> provideSucceedArguments() {
+        return Stream.of(
+                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "D"), true, "최종 정답"),
+                Arguments.of(List.of("U", "D"), List.of("U", "U"), false, "다리 끝에 도달 전에 오답"),
+                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "U"), false, "다리 끝에서 오답")
+        );
+    }
+
     @DisplayName("이동 명령어로 소문자를 입력했을 때 예외 발생")
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
@@ -32,13 +47,6 @@ class PlayerTest {
         assertEquals(expected, player.isAlive());
     }
 
-    private static Stream<Arguments> provideAnswer() {
-        return Stream.of(
-                Arguments.of("U", true),
-                Arguments.of("D", false)
-        );
-    }
-
     @DisplayName("최종 게임 승리 여부 검사")
     @MethodSource("provideSucceedArguments")
     @ParameterizedTest(name = "{index}: {3}")
@@ -48,13 +56,5 @@ class PlayerTest {
             player.move(inputs.get(i), bridge.get(i));
         }
         assertThat(player.hasSucceeded(bridge)).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> provideSucceedArguments() {
-        return Stream.of(
-                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "D"), true, "최종 정답"),
-                Arguments.of(List.of("U","D"), List.of("U","U"), false, "다리 끝에 도달 전에 오답"),
-                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "U"), false, "다리 끝에서 오답")
-        );
     }
 }

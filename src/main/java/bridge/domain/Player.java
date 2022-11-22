@@ -22,7 +22,7 @@ public class Player {
      * 플레이어 이동에 따라 생사여부(게임 실패 여부)와 지도 업데이트
      *
      * @param direction: 이동 방향(U, D)
-     * @param answer: 정답 방향(U, D)
+     * @param answer:    정답 방향(U, D)
      */
     public boolean move(String direction, String answer) {
         validateDirection(direction);

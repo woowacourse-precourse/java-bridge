@@ -54,7 +54,7 @@ class InputViewTest {
         @Override
         protected void runMain() {
             InputView inputView = new InputView();
-            inputView.readBridgeSize();
+            InputView.readBridgeSize();
         }
     }
 
@@ -70,7 +70,7 @@ class InputViewTest {
         @Override
         protected void runMain() {
             InputView inputView = new InputView();
-            inputView.readMoving();
+            InputView.readMoving();
         }
     }
 
@@ -86,7 +86,7 @@ class InputViewTest {
         @Override
         protected void runMain() {
             InputView inputView = new InputView();
-            inputView.readGameCommand();
+            InputView.readGameCommand();
         }
     }
 

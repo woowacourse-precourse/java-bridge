@@ -13,17 +13,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class BridgeGameTest {
-    @DisplayName("오답 입력 시 재시작/종료 커맨드 정상 작동 여부 테스트")
-    @MethodSource("provideRetryTestArguments")
-    @ParameterizedTest(name = "{index}: {3}")
-    void testRetryAndQuit(String command, boolean expectedIsRetry, int expectedTrial, String message) {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player(new Map()));
-        assertThat(bridgeGame.getTrial()).isEqualTo(1);
-        boolean isRetry = bridgeGame.retry(command);
-        assertThat(isRetry).isEqualTo(expectedIsRetry);
-        assertThat(bridgeGame.getTrial()).isEqualTo(expectedTrial);
-    }
-
     private static Stream<Arguments> provideRetryTestArguments() {
         return Stream.of(
                 Arguments.of("R", true, 2, "재시작"),
@@ -31,9 +20,20 @@ class BridgeGameTest {
         );
     }
 
+    @DisplayName("오답 입력 시 재시작/종료 커맨드 정상 작동 여부 테스트")
+    @MethodSource("provideRetryTestArguments")
+    @ParameterizedTest(name = "{index}: {3}")
+    void testRetryAndQuit(String command, boolean expectedIsRetry, int expectedTrial, String message) {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"), new Player(new Map()));
+        assertThat(bridgeGame.getTrial()).isEqualTo(1);
+        boolean isRetry = bridgeGame.retry(command);
+        assertThat(isRetry).isEqualTo(expectedIsRetry);
+        assertThat(bridgeGame.getTrial()).isEqualTo(expectedTrial);
+    }
+
     @Test
     void testValidate() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player(new Map()));
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"), new Player(new Map()));
         assertThat(bridgeGame.getTrial()).isEqualTo(1);
         assertThatThrownBy(() -> bridgeGame.retry("q"))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -41,7 +41,7 @@ class BridgeGameTest {
 
     @Test
     void testErrorMessage() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player(new Map()));
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"), new Player(new Map()));
         assertThat(bridgeGame.getTrial()).isEqualTo(1);
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> bridgeGame.retry("q"));
         assertThat(e.getMessage()).isEqualTo("[ERROR] R(재시작) 또는 Q(종료)만 입력할 수 있습니다.");

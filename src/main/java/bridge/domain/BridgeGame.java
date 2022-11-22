@@ -11,7 +11,7 @@ public class BridgeGame {
     private final List<String> PROGRESS_COMMANDS = newArrayList(
             Progress.RETRY.toString(), Progress.QUIT.toString());
 
-    private List<String> bridge;
+    private final List<String> bridge;
     private Player player;
     private int trial;
 

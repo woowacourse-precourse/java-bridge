@@ -20,7 +20,7 @@ class BridgeMakerTest {
     }
 
     @DisplayName("다리 길이가 3 미만, 20 초과 경우에 대한 예외 처리")
-    @ValueSource(ints = {-100,-1, 0, 1, 2, 21, 30, 100, 1000})
+    @ValueSource(ints = {-100, -1, 0, 1, 2, 21, 30, 100, 1000})
     @ParameterizedTest
     void outOfRangeBridgeLength(Integer input) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
