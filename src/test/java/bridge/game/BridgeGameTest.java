@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 public class BridgeGameTest extends BridgeGameTestTool{
 
-    @ParameterizedTest(name = "move test Case {index}")
+    @ParameterizedTest(name = "Case {index}")
     @ArgumentsSource(MovingTestData.class)
     void moveTest(List<String> bridge, List<String> movingRoute) {
         try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {
@@ -57,7 +57,7 @@ public class BridgeGameTest extends BridgeGameTestTool{
         }
     }
 
-    @ParameterizedTest(name = "isContinue test Case {index}")
+    @ParameterizedTest(name = "Case {index}")
     @ArgumentsSource(IsContinueTestData.class)
     void isContinueTest(List<String> bridge, List<String> movingRoute, boolean expected) {
         try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {
@@ -91,15 +91,14 @@ public class BridgeGameTest extends BridgeGameTestTool{
             BridgeGame bridgeGame = new BridgeGame(bridge.size());
             bridgeGame.retry();
             bridgeGame.retry();
-            int excepted = 3;
 
             int result = bridgeGame.getBridgeGameDto().getCountOfTry();
 
-            assertThat(result).isEqualTo(excepted);
+            assertThat(result).isEqualTo(3);
         }
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Case {index}")
     @ArgumentsSource(IsSuccessTestData.class)
     void isSuccessTest(List<String> bridge, List<String> movingRoute, boolean expected) {
         try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {

@@ -14,14 +14,14 @@ import java.util.stream.Stream;
 
 public class BridgeMakerTest {
 
-    @ParameterizedTest(name = "makeBridgeTest Case {index}")
+    @ParameterizedTest(name = "Case {index}")
     @ArgumentsSource(MakeBridgeTestData.class)
-    void makeBridgeTest(List<Integer> mockData, List<String> except) {
+    void makeBridgeTest(List<Integer> mockData, List<String> expected) {
         BridgeNumberGenerator mockBridgeNumberGenerator = mockedBridgeNumberGenerator(mockData);
 
         List<String> result = new BridgeMaker(mockBridgeNumberGenerator).makeBridge(mockData.size());
 
-        assertThat(result).isEqualTo(except);
+        assertThat(result).isEqualTo(expected);
     }
 
     BridgeNumberGenerator mockedBridgeNumberGenerator(List<Integer> mockData) {

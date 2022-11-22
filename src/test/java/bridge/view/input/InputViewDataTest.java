@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class InputViewDataTest {
 
-    @ParameterizedTest(name = "BRIDGE_LENGTH_isCorrectTest Case : {0}")
+    @ParameterizedTest(name = "Case : {0}")
     @ArgumentsSource(BridgeLengthTestData.class)
     void BRIDGE_LENGTH_isCorrectTest(String input, boolean expected) {
          boolean result = InputViewData.BRIDGE_LENGTH.isCorrect(input);
@@ -34,7 +34,7 @@ public class InputViewDataTest {
         }
     }
 
-    @ParameterizedTest(name = "MOVING_ROUTE_isCorrectTest Case : {0}")
+    @ParameterizedTest(name = "Case : {0}")
     @ArgumentsSource(MovingRouteTestData.class)
     void MOVING_ROUTE_isCorrectTest(String input, boolean expected) {
         boolean result = InputViewData.MOVING_ROUTE.isCorrect(input);
@@ -55,7 +55,7 @@ public class InputViewDataTest {
         }
     }
 
-    @ParameterizedTest(name = "RETRY_isCorrectTest Case : {0}")
+    @ParameterizedTest(name = "Case : {0}")
     @ArgumentsSource(RetryTestData.class)
     void RETRY_isCorrectTest(String input, boolean expected) {
         boolean result = InputViewData.RETRY.isCorrect(input);
