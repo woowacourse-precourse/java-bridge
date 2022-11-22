@@ -1,8 +1,18 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGame bridgeGame = new BridgeGame();
+        int bridgeSize = bridgeGame.startGame();
+        List<String> bridge = bridgeGame.makeBridge(bridgeSize);
+        System.out.println(bridge);
+
+        bridgeGame.move(bridge);
+
+
+
     }
 }
