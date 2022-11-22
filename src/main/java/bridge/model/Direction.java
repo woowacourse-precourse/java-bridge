@@ -19,7 +19,7 @@ public enum Direction {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력입니다. U 또는 D를 입력해주세요."));
     }
 
-    public boolean canMove(String command) {
+    public boolean correct(String command) {
         return command.equals(this.command);
     }
 }

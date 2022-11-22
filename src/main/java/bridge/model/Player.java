@@ -1,33 +1,27 @@
 package bridge.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
 
-    public static final int INITIAL_POSITION = -1;
-    private int position = INITIAL_POSITION;
+    private List<Direction> route = new ArrayList<>();
     private boolean inWater = false;
 
-    public boolean canMove(List<String> bridge, Direction direction) {
-        String nextPosition = bridge.get(position + 1);
-        return direction.canMove(nextPosition);
-    }
-
-    public void move() {
-        position++;
+    public void move(List<String> bridge, Direction direction) {
+        route.add(direction);
+        if (direction.correct(bridge.get(route.size() - 1))) {
+            inWater = true;
+        }
     }
 
     public boolean isCrossed(List<String> bridge) {
-        return position == bridge.size() - 1;
+        return route.size() == bridge.size() && !inWater;
     }
 
     public void backInitialPosition() {
-        position = INITIAL_POSITION;
+        route = new ArrayList<>();
         inWater = false;
-    }
-
-    public void fallIntoWater() {
-        inWater = true;
     }
 
     public boolean isInWater() {
