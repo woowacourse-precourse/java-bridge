@@ -16,9 +16,10 @@ public class Controller {
     private final BridgeGame bridgeGame;
     private final InputView inputView;
     private final OutputView outputView;
-    private int bridgeLengthIndex = 0, gameAttempts = 1;
-    private String rOrQ = "";
-    private boolean success = SUCCESS;
+
+    private int bridgeLengthIndex, gameAttempts;
+    private String rOrQ;
+    private boolean gameSuccess;
 
     public Controller(BridgeGame bridgeGame, InputView inputView, OutputView outputView) {
         this.bridgeGame = bridgeGame;
@@ -33,18 +34,25 @@ public class Controller {
 
     private void play() {
         List<String> bridge = bridgeInit();
+        initializeVariable();
         while (bridgeLengthIndex < bridge.size()) {
             printResult(bridge);
             checkFailure();
             if (checkQuit()) break;
+            gameSuccess = SUCCESS;
             checkRetry();
         }
         checkResult();
     }
 
+    private void initializeVariable() {
+        gameAttempts = 1; //게임 시작과 동시에 시도 횟수 1
+        rOrQ = "";
+    }
+
     private void checkResult() {
-        if (success) outputView.printResult(SUCCESS, gameAttempts);
-        if (!success) outputView.printResult(FAIL, gameAttempts);
+        if (gameSuccess) outputView.printResult(SUCCESS, gameAttempts);
+        if (!gameSuccess) outputView.printResult(FAIL, gameAttempts);
     }
 
     private void checkRetry() {
@@ -59,7 +67,7 @@ public class Controller {
 
     private boolean checkQuit() {
         if (bridgeGame.quit(rOrQ)) {
-            success = FAIL;
+            gameSuccess = FAIL;
             rOrQ = "";
             return true;
         }
