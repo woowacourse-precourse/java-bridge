@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class Application {
     private static final BridgeGame bridgeGame = new BridgeGame();
     private static final InputView inputView = new InputView();
