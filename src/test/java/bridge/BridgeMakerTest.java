@@ -8,7 +8,10 @@ import static org.assertj.core.util.Lists.newArrayList;
 import bridge.ApplicationTest.TestNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeMakerTest extends NsTest {
 
@@ -29,23 +32,14 @@ public class BridgeMakerTest extends NsTest {
         assertThat(bridge).containsExactly("U", "D", "D");
     }
 
-    @Test
-    void 예외_테스트_다리길이_음수() {
+    @DisplayName("잘못된 다리 길이 입력 시 예외 처리")
+    @ValueSource(ints = {-5, 0, 2, 22})
+    @ParameterizedTest
+    void 예외_테스트_다리길이_음수(int input) {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> {
                 BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-                bridgeMaker.makeBridge(-5);
-            }).isInstanceOf(IllegalArgumentException.class);
-            output().contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_다리길이_범위초과() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> {
-                BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-                bridgeMaker.makeBridge(1);
+                bridgeMaker.makeBridge(input);
             }).isInstanceOf(IllegalArgumentException.class);
             output().contains(ERROR_MESSAGE);
         });
