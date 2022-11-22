@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ApplicationTest extends NsTest {
 
@@ -42,6 +42,17 @@ class ApplicationTest extends NsTest {
     void 이동할_칸_예외_테스트(String input){
         assertThatThrownBy(() -> ValidateInput.validateMoving(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:O", "1:X"}, delimiter = ':')
+    void 이동_테스트(int position,StringBuilder expected){
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0,1));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(4);
+        BridgeGame bridgeGame = new BridgeGame(bridge, position, true);
+        bridgeGame.move("U");
+        assertThat(bridgeGame.mapMaker.getMap()[0]).contains(expected);
     }
 
     @Test
