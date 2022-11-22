@@ -24,8 +24,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int idx = 0; idx < size; idx++) {
-            int bridgeShape = bridgeNumberGenerator.generate();
-            if(bridgeShape == U.numMoveDirection) {
+            int moveDirection = bridgeNumberGenerator.generate();
+            if(moveDirection == U.numMoveDirection) {
                 bridge.add(U.strMoveDirection);
                 continue;
             }

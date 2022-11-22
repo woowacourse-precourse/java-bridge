@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.MoveDirection;
 import bridge.domain.SuccessOrFail;
 import static bridge.domain.SuccessOrFail.실패;
 
@@ -19,7 +20,8 @@ public class BridgeService {
         outputView.printGameStartMessage();
         int bridgeLength = inputBridgeLength();
         makeBridge(bridgeLength);
-        TryPlayerMove();
+        RepeatPlayerMoveBeforeGameFinish();
+        outputView.printResult(bridgeGame);
     }
 
     public int inputBridgeLength(){
@@ -47,32 +49,31 @@ public class BridgeService {
 
     public void makeBridge(int bridgeLength){
         List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
-        bridgeGame.initializeBridgeGame(bridge);
+        bridgeGame.initializeBridgeGameAtGameStart(bridge);
     }
 
-    public void TryPlayerMove(){
+    public void RepeatPlayerMoveBeforeGameFinish(){
         boolean doRetry = true;
         while(!bridgeGame.isFinish()){
-            if(!inputPlayerMoveDirection())
+            if(!inputPlayerMoveDirectionAndValidation())
                 continue;
             outputView.printMap(bridgeGame);
-            if(!isDoRetry(doRetry))
+            if(!doRetry(doRetry))
                 return;
         }
         bridgeGame.gameSuccess();
-        outputView.printResult(bridgeGame);
     }
 
-    private boolean isDoRetry(boolean doRetry) {
+    private boolean doRetry(boolean doRetry) {
         if(bridgeGame.isMoveSuccess().equals(실패))
-            doRetry = bridgeGame.retry(inputGameRetryCommand());
+            doRetry = bridgeGame.retry(inputGameRetryCommandAndValidation());
         if(!doRetry)
             outputView.printResult(bridgeGame);
 
         return doRetry;
     }
 
-    public boolean inputPlayerMoveDirection(){
+    public boolean inputPlayerMoveDirectionAndValidation(){
         outputView.printRequestMoveDirectionMessage();
         String moveDirection = inputView.readMoving();
 
@@ -84,7 +85,7 @@ public class BridgeService {
         return true;
     }
 
-    public String inputGameRetryCommand(){
+    public String inputGameRetryCommandAndValidation(){
         while(true){
             outputView.printRetryGameMessage();
             String gameRetryCommand = inputView.readGameCommand();
