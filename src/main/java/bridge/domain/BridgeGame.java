@@ -16,7 +16,7 @@ public class BridgeGame {
     private List<String> bridge = new ArrayList<>();
     private Integer trialCount = 1;
     private GameState gameState = GameState.RUNNING;
-    private BridgeProgress progress = new BridgeProgress();
+    private final BridgeProgress progress = new BridgeProgress();
 
     /**
      *

@@ -1,6 +1,5 @@
 package bridge.domain.constants;
 
-import java.util.Map;
 
 public enum Command {
     MOVE_UP("U"),
@@ -8,7 +7,7 @@ public enum Command {
     RETRY("R"),
     QUIT("Q");
 
-    private String command;
+    private final String command;
     Command(String command) {
         this.command = command;
     }

@@ -7,7 +7,7 @@ public enum BlockSymbol {
     WRONG("X"),
     BLANK(" ");
 
-    private String symbol;
+    private final String symbol;
     BlockSymbol(String symbol){
         this.symbol = symbol;
     }

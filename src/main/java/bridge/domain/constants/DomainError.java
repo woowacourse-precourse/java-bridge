@@ -17,7 +17,7 @@ public enum DomainError {
             "이상" +
             Constant.MAXIMUM_LENGTH_INCLUSIVE.getValue() +
             "이하의 정수여야 합니다.");
-    private String message;
+    private final String message;
     DomainError(String message){
         this.message = message;
     }

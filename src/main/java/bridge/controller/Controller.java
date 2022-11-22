@@ -99,8 +99,9 @@ public class Controller {
      * @return 상태에 해당하는 문자열
      */
     private String gameStateToString(GameState gameState){
-        if (gameState == GameState.CLEAR) return OutputText.CLEAR.getMessage();
-        return OutputText.FAIL.getMessage();
+        if (gameState == GameState.CLEAR) return OutputText.STATE_CLEAR.getMessage();
+        if (gameState == GameState.FAIL) return OutputText.STATE_FAIL.getMessage();
+        return OutputText.STATE_NONE.getMessage();
     }
 
     /**

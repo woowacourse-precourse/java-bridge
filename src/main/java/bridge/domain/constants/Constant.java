@@ -4,7 +4,7 @@ public enum Constant {
     MINIMUM_LENGTH_INCLUSIVE(3),
     MAXIMUM_LENGTH_INCLUSIVE(20);
 
-    private int value;
+    private final int value;
     Constant(int value){
         this.value = value;
     }

@@ -24,7 +24,7 @@ public class InputView {
      */
     private void validateInteger(String userInput){
         try {
-            int toInteger = Integer.parseInt(userInput);
+            Integer.parseInt(userInput);
         }
         catch (NumberFormatException exception){
             throw new IllegalArgumentException(ViewError.IS_NOT_INTEGER.getMessage());

@@ -12,8 +12,9 @@ public enum OutputText {
     MAP_START("[ "),
     MAP_END(" ]"),
     BLOCK_BORDER(" | "),
-    CLEAR("성공"),
-    FAIL("실패");
+    STATE_CLEAR("성공"),
+    STATE_FAIL("실패"),
+    STATE_NONE("잘못된 상태");
 
     private String message;
     OutputText(String message){
