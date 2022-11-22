@@ -32,22 +32,32 @@
 -----
 ## 각 클래스 기능
 ### View
-InputView : 화면에 입력을 받기 위한 
-OutputView : 
+- InputView : 화면에 입력을 받기 위한 안내 문구와 데이터 입력을 받아서 Controller에게 반환하는 클래스.
+- OutputView : Controller에게 데이터를 받아 결과를 출력하는 클래스
 
 ### Controller
-Controller : 
-Validation : 
+- Controller : View와 Domain사이에서 데이터를 조작하거나 전달하는 과정을 담당. 게임 전반적인 흐름을 담당.
+- Validation : 예외처리에 대한 내용을 모아둔 클래스.
 
 ### Domain
-Bridge : 
-BridgeGame : 
-BridgeMaker : 
-BridgeNumberGenerator : 
-BridgeRandomNumberGenerator : 
-BridgeRow : 
-Command : 
-Movement :
+도메인 로직과 UI로직을 분리하고 Bridge, Command, Movement에 대한 클래스 객체를 생성하여 테스트를 진행하기 용이하게 구현하였습니다.
+- Bridge : 다리 게임에서 정답 리스트를 가지고 있는 클래스. 생성자에서 다리 길이를 입력 받으면 BridgeMaker를 이용하여 생성된 다리를 저장(Bridge클래스를 따로 두고 생성자에서 검증을 하기 떄문에 단위테스트에 용이)
+- BridgeGame : 다리 건너기 게임에 대한 게임 정보를 가지고 있는 클래스. 
+- BridgeMaker : 다리 길이를 입력받아서 랜덤으로 정답 리스트를 생성.
+- BridgeNumberGenerator : 숫자 생성 인터페이스
+- BridgeRandomNumberGenerator : 0과 1사이에서 랜덤한 값을 반환. => Enum클래스를 이용해서 랜덤 숫자 범위를 늘릴 수 있게 구현했습니다.
+- BridgeRow : 내가 공들여 만든 Enum클래스. 다리 건너기 게임의 행 숫자, 행 문자(U 또는 D), 행 한글설명(위 또는 아래)를 연결지어서 게임 확장성을 높였습니다.
+- Command : 게임 재시작 또는 종료에 대한 커맨드를 저장하는 클래스. 생성자에서 커맨드 입력을 받으면 검증 과정을 거쳐서 저장. 클래스를 따로 분리하여 검증하는 과정을 거치기 때문에 단위 테스트에 용이함.
+- Movement : 게임 움직임(위 또는 아래)에 대한 정보를 저장하는 클래스. 생성자에서 움직임을 입력받으면 검증 과정을 거쳐서 저장. 클래스를 따로 분리하여 검증하는 과정을 거치기 떄문에 단위 데스트에 용이함.
+
+
+### Enum 클래스 BridgeRow를 이용하여 게임의 확장성을 높일 수 있다.
+- BridgeRandomNumberGenerator 클래스에서 숫자 범위를 enum클래스 객체의 숫자로 지정하면, enum 클래스 내부에 정의된 객체만큼의 행으로 다리 게임을 진행 할 수 있다.
+- BridgeMaker를 통해서 정답 리스트를 만들 경우, Enum클래스에서 정의된 객체들을 이용하여 랜덤 숫자와 매칭되는 행 문자(U or D or ..)을 반환하여 정답 리스트를 생성하여 폭이 3 이상인 경우에도 게임을 진행 할 수 있다.
+- OutputView 클래스를 통해서 맵을 출력할 경우에도 Enum클래스의 객체 숫자를 이용하여 3행 이상의 게임에서도 맵 출력이 가능하게 구현하였다.
+- Movement에서 사용자에게 입력받은 움직임을 검증할 떄, Enum클래스 객체에 존재하는 행 문자일 경우 정상 처리하여 게임을 진행하도록 구현.
+
+-> 위와 같은 기능을 더해서 Enum클래스 객체를 추가하거나 수정하여 3행 이상의 다리 건너기 게임이 가능하도록 구현하였습니다.
 
 
 ---------
