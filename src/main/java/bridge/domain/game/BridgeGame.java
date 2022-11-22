@@ -1,9 +1,7 @@
 package bridge.domain.game;
 
 import bridge.domain.Bridge;
-
 import java.util.List;
-import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,13 +13,21 @@ public class BridgeGame {
     private Bridge bridge;
     private Progress progress;
     private int totalTrial;
+    private boolean success;
+
+    public int getTotalTrial() {
+        return totalTrial;
+    }
+    public boolean isSuccess() {
+        return success;
+    }
 
     public BridgeGame(List<String> answerBridge) {
         progress = new Progress();
         bridge = new Bridge(answerBridge);
-        totalTrial = 0;
+        totalTrial = 1;
+        success = true;
     }
-
 
     public Bridge getBridge() {
         return bridge;
@@ -34,6 +40,9 @@ public class BridgeGame {
      */
     public String move(String userStep) {
         SuccessStep whetherSuccess = bridge.go(userStep);
+        if (!whetherSuccess.getStatus()){
+            success = false;
+        }
         return progress.saveProgress(whetherSuccess, userStep);
     }
 
@@ -43,11 +52,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        success = true;
+        bridge.initNowPosition();
         totalTrial++;
         progress = new Progress();
     }
 
-    public boolean dieOrNot(SuccessStep successStep) {
-        return successStep.getStatus();
-    }
 }

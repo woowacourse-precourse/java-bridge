@@ -8,11 +8,15 @@ import java.util.List;
 
 public class Bridge {
     private List<String> answerBridge;
-    private static int nowPosition;
+    private int nowPosition;
     private InputValidator inputValidator;
 
     public int getNowPosition() {
         return nowPosition;
+    }
+
+    public void initNowPosition(){
+        nowPosition = 0;
     }
 
     public Bridge(List<String> answer) {
