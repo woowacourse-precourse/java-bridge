@@ -40,7 +40,7 @@ public class OutputView {
 
 
     public void printReStart() {
-
+        System.out.println(RESTART_COMMAND_MESSAGE);
     }
 
     /**
