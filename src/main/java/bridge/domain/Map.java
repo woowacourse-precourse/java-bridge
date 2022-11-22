@@ -44,23 +44,35 @@ public class Map {
         List<String> upperPath = new ArrayList<>();
         List<String> lowerPath = new ArrayList<>();
         for (int i = 0; i < passedPath.size(); i++) {
-            String direction = passedPath.get(i);
-            String isAnswer = arePaths.get(i);
-            if (direction.equals(Direction.UP.toString())) {
-                upperPath.add(isAnswer);
-                lowerPath.add(Mark.UNKNOWN.toString());
-                continue;
-            }
-            if (direction.equals(Direction.DOWN.toString())) {
-                upperPath.add(Mark.UNKNOWN.toString());
-                lowerPath.add(isAnswer);
-            }
+            fillPaths(upperPath, lowerPath, i);
         }
         return newArrayList(makePathStringFormat(upperPath), makePathStringFormat(lowerPath));
     }
 
     public List<String> getPassedPath() {
         return passedPath;
+    }
+
+    private void fillPaths(List<String> upperPath, List<String> lowerPath, int index) {
+        String direction = passedPath.get(index);
+        String isAnswer = arePaths.get(index);
+        if (direction.equals(Direction.UP.toString())) {
+            fillUpperPath(upperPath, lowerPath, isAnswer);
+            return;
+        }
+        if (direction.equals(Direction.DOWN.toString())) {
+            fillLowerPath(upperPath, lowerPath, isAnswer);
+        }
+    }
+
+    private void fillUpperPath(List<String> upperPath, List<String> lowerPath, String isAnswer) {
+        upperPath.add(isAnswer);
+        lowerPath.add(Mark.UNKNOWN.toString());
+    }
+
+    private void fillLowerPath(List<String> upperPath, List<String> lowerPath, String isAnswer) {
+        upperPath.add(Mark.UNKNOWN.toString());
+        lowerPath.add(isAnswer);
     }
 
     private void validateSameArrayLength() {

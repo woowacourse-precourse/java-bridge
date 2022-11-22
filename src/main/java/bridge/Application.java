@@ -52,7 +52,7 @@ public class Application {
             try {
                 willRetry = bridgeGame.retry(InputView.readGameCommand());
                 return willRetry;
-            } catch (IllegalArgumentException | IllegalStateException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -75,7 +75,7 @@ public class Application {
                 boolean isAnswer = bridgeGame.move(InputView.readMoving(), round);
                 OutputView.printMap(bridgeGame.getMap());
                 return isAnswer;
-            } catch (IllegalArgumentException | IllegalStateException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
