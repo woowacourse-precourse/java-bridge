@@ -2,22 +2,44 @@
 
 ## Application
 - [X] 게임 플레이어 구동
-- [X] 예외 응답 처리
-## GamePlayer 
-- [X] 게임 실행
-- [X] 시도한 횟수 카운트
+## Bridge
+- [X] 한 칸씩 요소 제공
+  - [X] 제공 후 pivot 값 증가
+- [X] 피봇값 0으로 초기화
+## BridgeElement
+- [X] 생성시 한 글자의 문자로 변환
+- [X] 문자값 반환
+## BridgeMaker
+- [X] 주어진 크기 만큼 다리 제작
+## GamePlayer
+- [X] 게임 레코더 생성
+- [X] 게임 종료시까지 게임 진행
+  - [X] 사용자 이동할 때마다 BridgeMap 현황 출력
+- [X] 게임 종료 후 결과 출력
 ## BridgeMap
 - [X] 초기 세팅
 - [X] 이동 성공시 표시
 - [X] 이동 실패시 표시
 - [X] 지도 출력
-## BridgeGame
-- [X] 다리 이동
-- [X] 게임 재실행
-- [X] 횡단 가능 여부 판단
-## BridgeMaker
-- [X] 랜덤 다리 생성
-  - [X] [예외] 입력값이 범위 검증
+## BridgeMatcher
+- [X] 다리와 움직임 요청 비교
+- [X] 다리 이동 현황 초기화
+## GameRecorder
+- [X] 기록 시작
+- [X] 게임 결과 반환
+- [X] 이동동작 기록
+  - [X] 기록시 pivot 증가
+    - [X]pivot 증가시 횡단 완료여부 파악
+## GameResult
+- [X] 결과 기록을 위한 세팅
+  - [X] 시행횟수 추가
+  - [X] bridgeMap 초기화
+- [X] 게임 완료 여부 반환
+- [X] 게임 완료 여부 체크
+- [X] bridgeMap에 성공적인 이동 추가
+- [X] bridgeMap에 실패한 이동 추가
+- [X] bridgeMap 반환
+- [X] 시행 횟수 반환
 ## BridgeRandomNumberGenerator
 - [X] 다리 요소 생성
 ## InputView
