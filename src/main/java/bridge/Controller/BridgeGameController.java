@@ -20,11 +20,26 @@ public class BridgeGameController {
 
     public void makeBridge(int size) {
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
+        isSuccessGame();
+    }
+
+    public void isSuccessGame() {
+        while(!bridgeGame.isSuccessGame() && !retry.equals("Q")){
+            String moveDirection = inputView.readMoving();
+
+        }
+
+        if (bridgeGame.isSuccessGame()) {
+            printGameMessage();
+            printGameMap();
+            printGameResult(true);
+        }
     }
 
     public void printGameMessage() {
         outputView.printMapMessage();
     }
+
 
     public void printGameMap() {
         outputView.printMap(bridgeGame.renderBridgeMap().getResultUp());
