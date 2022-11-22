@@ -1,7 +1,12 @@
-package bridge;
+package bridge.controller;
 
-import static bridge.InputView.RESTART;
+import static bridge.view.InputView.RESTART;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.MovingMap;
 import java.util.List;
 
 public class BridgeController {

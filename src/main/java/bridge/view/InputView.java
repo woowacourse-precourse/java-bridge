@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.UpAndDown;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 

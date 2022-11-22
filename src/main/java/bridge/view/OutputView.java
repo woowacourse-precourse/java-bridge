@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.UpAndDown;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
