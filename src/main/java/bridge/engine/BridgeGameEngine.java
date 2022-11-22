@@ -6,6 +6,7 @@ import bridge.model.Bridge;
 import bridge.model.BridgeSize;
 import bridge.model.Crossing;
 import bridge.model.PassOrFail;
+import bridge.model.TryCount;
 import bridge.model.UpOrDown;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,5 +51,9 @@ public class BridgeGameEngine {
 
     public Crossing createCrossing() {
         return new Crossing(new ArrayList<>());
+    }
+
+    public TryCount getTryCount() {
+        return bridgeGame.getTryCount();
     }
 }

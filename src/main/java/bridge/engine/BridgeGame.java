@@ -40,4 +40,8 @@ public class BridgeGame {
 
         crossing.clear();
     }
+
+    public TryCount getTryCount() {
+        return tryCount;
+    }
 }
