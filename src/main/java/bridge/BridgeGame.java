@@ -37,8 +37,10 @@ public class BridgeGame {
     private GameResult playGame(GameStatus gameStatus) {
         GameResult gameResult = playOneTry(gameStatus);
         while (!gameResult.isSuccess()) {
-            String gameCommand = requestGameCommand();
-            if (gameCommand.equals(GameCommandType.RETRY.getCode())) gameResult = retry(gameStatus);
+            if (GameCommandType.QUIT.getCode().equals(requestGameCommand())) {
+                break;
+            }
+            gameResult = retry(gameStatus);
         }
         return gameResult;
     }
