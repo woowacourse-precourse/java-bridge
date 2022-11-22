@@ -50,4 +50,8 @@ public class BridgeGame {
     public void resetCrossed(Bridge bridge) {
         bridge.setCrossed(Arrays.asList());
     }
+
+    public void increaseTried(Bridge bridge) {
+        bridge.setTried(bridge.getTried() + 1);
+    }
 }
