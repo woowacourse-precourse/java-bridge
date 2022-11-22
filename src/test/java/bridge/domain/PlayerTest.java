@@ -35,4 +35,11 @@ public class PlayerTest {
         assertThat(player.getNextPosition()).isEqualTo(0);
         assertThat(player.getStatus()).isEqualTo(PlayerStatus.PLAYING);
     }
+
+    @DisplayName("총 시도 횟수가 제대로 누적이 되는지 확인한다.")
+    @Test
+    void checkTryCountAfterAddition() {
+        PlayerStatus status = player.getStatus();
+        assertThat(status.getTryCount()).isBetween(3,6);
+    }
 }
