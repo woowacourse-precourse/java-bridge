@@ -13,6 +13,7 @@ public class User {
     public User() {
         movingRoute = new ArrayList<>();
     }
+
     public String getCurrentMoving() {
         return currentMoving;
     }
@@ -25,11 +26,12 @@ public class User {
         return movingRoute.size();
 
     }
-    public void addMovingRoute(String moving){
+
+    public void addMovingRoute(String moving) {
         movingRoute.add(moving);
     }
 
-    public void clearUser(){
+    public void clearUser() {
         movingRoute.clear();
         currentMoving = null;
     }

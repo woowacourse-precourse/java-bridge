@@ -9,42 +9,51 @@ public class Util {
     private InputView inputView;
 
     public Util() {
-       inputView = new InputView();
+        inputView = new InputView();
     }
 
 
-    public int inputSize(){
+    public int inputSize() {
         inputView.readBridgeSize();
-        int size = Integer.parseInt(Console.readLine());
+        String sizeCheck = Console.readLine();
+        validateNumber(sizeCheck);
+        int size = Integer.parseInt(sizeCheck);
         validateSize(size);
         return size;
     }
 
-    public String inputMoving(){
+    public String inputMoving() {
         inputView.readMoving();
         String moving = Console.readLine();
         validateMoving(moving);
         return moving;
     }
 
-    public String inputRetry(){
+    public String inputRetry() {
         inputView.readGameCommand();
         String restart = Console.readLine();
         validateRetry(restart);
         return restart;
     }
 
-    private void validateSize(int size){
-        if(size < 3 || size >20)
+    private void validateSize(int size) {
+        if (size < 3 || size > 20)
             throw new IllegalArgumentException(ErrorMessage.SIZE_ERROR.getErrorMessage());
     }
 
-    private void validateMoving(String moving){
-        if(!moving.equals("U") && !moving.equals("D"))
+    private void validateMoving(String moving) {
+        if (!moving.equals("U") && !moving.equals("D"))
             throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getErrorMessage());
     }
-    private void validateRetry(String retry){
-        if(!retry.equals("R") && !retry.equals("Q"))
+
+    private void validateRetry(String retry) {
+        if (!retry.equals("R") && !retry.equals("Q"))
             throw new IllegalArgumentException(ErrorMessage.RESTART_ERROR.getErrorMessage());
+    }
+
+    private void validateNumber(String input){
+        String pattern = "^[0-9]+$";
+        if(!input.matches(pattern))
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_ERROR.getErrorMessage());
     }
 }

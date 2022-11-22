@@ -4,7 +4,6 @@ import model.Bridge;
 import model.GameResult;
 import model.MovingResult;
 import model.User;
-import view.InputView;
 import view.OutputView;
 
 public class Service {
@@ -13,7 +12,8 @@ public class Service {
     private GameResult gameResult;
 
     private OutputView outputView;
-    public Service(){
+
+    public Service() {
         user = new User();
         movingResult = new MovingResult();
         gameResult = new GameResult();
@@ -31,12 +31,12 @@ public class Service {
         }
     }
 
-    public void enterMoving(String moving){
+    public void enterMoving(String moving) {
         user.setCurrentMoving(moving);
         user.addMovingRoute(moving);
     }
 
-    public void showMoving(){
+    public void showMoving() {
         outputView.printMap(movingResult);
     }
 
@@ -48,9 +48,9 @@ public class Service {
         return "X";
     }
 
-    public boolean checkRetry (String retry) {
-        if (retry.equals("Q")){
-            outputView.printResult(gameResult,movingResult);
+    public boolean checkRetry(String retry) {
+        if (retry.equals("Q")) {
+            outputView.printResult(gameResult, movingResult);
             return true;
         }
         user.clearUser();
@@ -59,11 +59,10 @@ public class Service {
         return false;
     }
 
-    public boolean checkSuccess(Bridge bridge){
-        if(user.sizeMovingRoute() == bridge.sizeBridge() && compareBridge(bridge).equals("O"))
-        {
+    public boolean checkSuccess(Bridge bridge) {
+        if (user.sizeMovingRoute() == bridge.sizeBridge() && compareBridge(bridge).equals("O")) {
             gameResult.setSuccess(true);
-            outputView.printResult(gameResult,movingResult);
+            outputView.printResult(gameResult, movingResult);
             return true;
         }
         return false;

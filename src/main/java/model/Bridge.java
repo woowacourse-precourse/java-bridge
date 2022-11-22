@@ -14,7 +14,7 @@ public class Bridge {
         return bridge.get(currentLocation - 1);
     }
 
-    public int sizeBridge(){
+    public int sizeBridge() {
         return bridge.size();
     }
 

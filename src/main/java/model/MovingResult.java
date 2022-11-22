@@ -26,17 +26,20 @@ public class MovingResult {
     public void addDownResult(String moving) {
         downResult.add(moving);
     }
-    public int sizeUpResult(){
+
+    public int sizeUpResult() {
         return upResult.size();
     }
-    public String upResultAt(int location){
+
+    public String upResultAt(int location) {
         return upResult.get(location);
     }
 
-    public String downResultAt(int location){
+    public String downResultAt(int location) {
         return downResult.get(location);
     }
-    public int sizeDownResult(){
+
+    public int sizeDownResult() {
         return downResult.size();
     }
 

@@ -16,13 +16,13 @@ public class GameResult {
     }
 
     public String isSuccess() {
-        if(success == true)
+        if (success == true)
             return "성공";
         return "실패";
     }
 
     public void addRetry() {
-        retry+=1;
+        retry += 1;
     }
 
     public void setSuccess(boolean success) {
