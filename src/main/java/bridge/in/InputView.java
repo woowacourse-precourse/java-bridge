@@ -60,7 +60,7 @@ public class InputView {
         return convertInputToCommand(input, RETRY_COMMAND);
     }
 
-    private void validateBridgeSizeInput(String input) {
+    public void validateBridgeSizeInput(String input) {
         validateBridgeSizeRange(validateParseInteger(input));
     }
 
@@ -80,7 +80,7 @@ public class InputView {
         }
     }
 
-    private void validateCommand(List<Command> commands, String inputCommand, int validSize) {
+    public void validateCommand(List<Command> commands, String inputCommand, int validSize) {
         checkNotLargeThenValidSize(inputCommand, validSize);
         checkValidateCommandInput(commands, inputCommand);
     }

@@ -1,10 +1,12 @@
-package bridge;
+package bridge.service;
 
+import bridge.MoveResponseDto;
+import bridge.RetryResponseDto;
 import bridge.domain.Bridge;
 import bridge.domain.Command;
 import bridge.domain.Player;
-import bridge.service.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -24,6 +26,7 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("사용자가 칸을 이동할 때 사용하는 메서드 테스트")
     void moveTest() {
         MoveResponseDto move = bridgeGame.move("U");
 
@@ -33,6 +36,7 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("사용자가 재시작 할때 사용하는 메서드 테스트")
     void retryTest() {
         Command commandRetry = Command.RETRY;
 
@@ -44,6 +48,7 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("사용자가 종료 할때 사용하는 메서드 테스트")
     void exitTest() {
         Command commandExit = Command.EXIT;
 
