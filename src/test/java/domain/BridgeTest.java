@@ -17,7 +17,7 @@ public class BridgeTest {
         bridge.setDownBridge();
     }
 
-    @DisplayName("윗 다리 성공 테스트")
+    @DisplayName("upBridge 성공 테스트")
     @Test
     void createSuccessUpBridge() {
         bridge.succeedUpMovement();
@@ -26,7 +26,7 @@ public class BridgeTest {
         assertThat(upBridge).isEqualTo("[ O ]");
     }
 
-    @DisplayName("밑 다리 성공 테스트")
+    @DisplayName("downBridge 다리 성공 테스트")
     @Test
     void createSuccessDownBridge() {
         bridge.succeedDownMovement();
@@ -35,7 +35,7 @@ public class BridgeTest {
         assertThat(downBridge).isEqualTo("[ O ]");
     }
 
-    @DisplayName("윗 다리 실패 테스트")
+    @DisplayName("upBridge 다리 실패 테스트")
     @Test
     void createFailUpBridge() {
         bridge.failUpMovement();
@@ -44,7 +44,7 @@ public class BridgeTest {
         assertThat(upBridge).isEqualTo("[ X ]");
     }
 
-    @DisplayName("밑 다리 실패 테스트")
+    @DisplayName("downBridge 다리 실패 테스트")
     @Test
     void createFailDownBridge() {
         bridge.failDownMovement();
