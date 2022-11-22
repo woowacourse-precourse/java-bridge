@@ -43,4 +43,7 @@ public class BridgeGame {
         this.resultRepositiory = new ResultRepository();
     }
 
+    public void gameOver(String successOrFailure) {
+        resultRepositiory.saveFinalResult(numberOfAttempt, successOrFailure);
+    }
 }
