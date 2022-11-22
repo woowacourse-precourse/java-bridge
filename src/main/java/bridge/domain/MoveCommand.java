@@ -1,21 +1,27 @@
-package bridge.controller;
+package bridge.domain;
 
 import java.util.Arrays;
 
 public enum MoveCommand {
-    UP ("U", 1),
-    DOWN ("D", 0);
+    UP ("U","위", 1),
+    DOWN ("D","아래", 0);
 
     private final String command;
+    private final String word;
     private final int value;
 
-    MoveCommand(String command, int value) {
+    MoveCommand(String command, String word, int value) {
         this.command = command;
+        this.word = word;
         this.value = value;
     }
 
     public String getCommand() {
         return command;
+    }
+
+    public String getWord() {
+        return word;
     }
 
     public int getValue() {
