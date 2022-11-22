@@ -71,5 +71,20 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(int count, MoveResult gameResult) {
+        System.out.println(MESSAGE_RESULT);
+        System.out.println(constructBridgeShape(gameResult.flag, gameResult.nowBridge));
+        System.out.print(MESSAGE_IS_SUCCESS);
+        printWhetherSuccessOrNot(gameResult.flag, count);
+    }
+
+    public void printWhetherSuccessOrNot(int flag, int count) {
+        if (flag == MOVERESULT_FLAG_FULL) {
+            System.out.println(MESSAGE_SUCCESS);
+            System.out.println(MESSAGE_TOTAL_TRIAL + count);
+        }
+        if (flag == MOVERESULT_FLAG_INVALID) {
+            System.out.println(MESSAGE_FAILURE);
+            System.out.println(MESSAGE_TOTAL_TRIAL + count);
+        }
     }
 }
