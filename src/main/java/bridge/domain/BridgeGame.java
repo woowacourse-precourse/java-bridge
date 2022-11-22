@@ -3,12 +3,10 @@ package bridge.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.BridgeMaker.*;
-
 public class BridgeGame {
     private final Bridge bridge;
-    private List<PassResult> top;
-    private List<PassResult> bottom;
+    private List<MoveResult> top;
+    private List<MoveResult> bottom;
     private int playCount;
 
     public BridgeGame(Bridge bridge) {
@@ -39,29 +37,29 @@ public class BridgeGame {
 
     public void pass(Direction direction) {
         if (direction.equals(Direction.UP)) {
-            top.add(PassResult.PASS);
-            bottom.add(PassResult.NONE);
+            top.add(MoveResult.PASS);
+            bottom.add(MoveResult.NONE);
         }
         if (direction.equals(Direction.DOWN)) {
-            bottom.add(PassResult.PASS);
-            top.add(PassResult.NONE);
+            bottom.add(MoveResult.PASS);
+            top.add(MoveResult.NONE);
         }
     }
 
     public void fail(Direction direction) {
         if (direction.equals(Direction.UP)) {
-            top.add(PassResult.FAIL);
-            bottom.add(PassResult.NONE);
+            top.add(MoveResult.FAIL);
+            bottom.add(MoveResult.NONE);
         }
         if (direction.equals(Direction.DOWN)) {
-            bottom.add(PassResult.FAIL);
-            top.add(PassResult.NONE);
+            bottom.add(MoveResult.FAIL);
+            top.add(MoveResult.NONE);
         }
     }
 
     public GameResult isClear() {
-        long topCount = top.stream().filter(t -> t.equals(PassResult.PASS)).count();
-        long bottomCount = bottom.stream().filter(b -> b.equals(PassResult.PASS)).count();
+        long topCount = top.stream().filter(t -> t.equals(MoveResult.PASS)).count();
+        long bottomCount = bottom.stream().filter(b -> b.equals(MoveResult.PASS)).count();
         if (topCount + bottomCount == bridge.size()) {
             return GameResult.SUCCESS;
         }
@@ -76,11 +74,11 @@ public class BridgeGame {
         return playCount;
     }
 
-    public List<PassResult> getTop() {
+    public List<MoveResult> getTop() {
         return top;
     }
 
-    public List<PassResult> getBottom() {
+    public List<MoveResult> getBottom() {
         return bottom;
     }
 }

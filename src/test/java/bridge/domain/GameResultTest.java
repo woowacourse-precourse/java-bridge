@@ -23,14 +23,14 @@ class GameResultTest {
     @DisplayName("위쪽 다리에 대한 결과를 올바르게 반환하는지")
     @Test
     void top결과_반환() {
-        List<PassResult> result = List.of(PassResult.PASS, PassResult.NONE, PassResult.PASS, PassResult.NONE);
+        List<MoveResult> result = List.of(MoveResult.PASS, MoveResult.NONE, MoveResult.PASS, MoveResult.NONE);
         Assertions.assertThat(bridgeGame.getTop()).isEqualTo(result);
     }
 
     @DisplayName("아래쪽 다리에 대한 결과를 올바르게 반환하는지")
     @Test
     void bottom결과_반환() {
-        List<PassResult> result = List.of(PassResult.NONE, PassResult.PASS, PassResult.NONE, PassResult.PASS);
+        List<MoveResult> result = List.of(MoveResult.NONE, MoveResult.PASS, MoveResult.NONE, MoveResult.PASS);
         Assertions.assertThat(bridgeGame.getBottom()).isEqualTo(result);
     }
 

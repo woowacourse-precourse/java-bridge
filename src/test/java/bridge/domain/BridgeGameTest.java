@@ -20,16 +20,16 @@ class BridgeGameTest {
     @Test
     void 다리를_건널수_있는경우() {
         bridgeGame.move(0, Direction.UP);
-        Assertions.assertThat(bridgeGame.getTop().get(0)).isEqualTo(PassResult.PASS);
-        Assertions.assertThat(bridgeGame.getBottom().get(0)).isEqualTo(PassResult.NONE);
+        Assertions.assertThat(bridgeGame.getTop().get(0)).isEqualTo(MoveResult.PASS);
+        Assertions.assertThat(bridgeGame.getBottom().get(0)).isEqualTo(MoveResult.NONE);
     }
 
     @DisplayName("다리 한칸을 정상적으로 건너지 못한 경우")
     @Test
     void 다리를_건널수_없는경우() {
         bridgeGame.move(0, Direction.DOWN);
-        Assertions.assertThat(bridgeGame.getTop().get(0)).isEqualTo(PassResult.NONE);
-        Assertions.assertThat(bridgeGame.getBottom().get(0)).isEqualTo(PassResult.FAIL);
+        Assertions.assertThat(bridgeGame.getTop().get(0)).isEqualTo(MoveResult.NONE);
+        Assertions.assertThat(bridgeGame.getBottom().get(0)).isEqualTo(MoveResult.FAIL);
     }
 
     @DisplayName("재시도가 정상 동작하는 지(시도 횟수 증가 등)")

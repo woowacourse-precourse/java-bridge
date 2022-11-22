@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.GameResult;
-import bridge.domain.PassResult;
+import bridge.domain.MoveResult;
 
 public class OutputView {
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
@@ -14,7 +14,7 @@ public class OutputView {
 
     public void printMap(BridgeGame bridgeGame) {
         System.out.println(START_SUFFIX + getTopResult(bridgeGame) + END_SUFFIX);
-        System.out.println(START_SUFFIX + getBottomResult(bridgeGame) + END_SUFFIX + System.lineSeparator());
+        System.out.println(START_SUFFIX + getBottomResult(bridgeGame) + END_SUFFIX);
     }
 
     public void printResult(BridgeGame bridgeGame) {
@@ -27,7 +27,7 @@ public class OutputView {
 
     public String getTopResult(BridgeGame bridgeGame) {
         String result = "";
-        for (PassResult top : bridgeGame.getTop()) {
+        for (MoveResult top : bridgeGame.getTop()) {
             result += top.getValue() + LINE;
         }
         result = removeLastLine(result);
@@ -36,7 +36,7 @@ public class OutputView {
 
     public String getBottomResult(BridgeGame bridgeGame) {
         String result = "";
-        for (PassResult bottom : bridgeGame.getBottom()) {
+        for (MoveResult bottom : bridgeGame.getBottom()) {
             result += bottom.getValue() + LINE;
         }
         result = removeLastLine(result);
