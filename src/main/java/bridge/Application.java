@@ -12,20 +12,37 @@ public class Application {
         BridgeGame bridgeGame = startGame();
         int flag = 1;
         int count = 0;
+        FinalResult finalResult = runGame(flag, count, bridgeGame);
+        OutputView outputView = new OutputView();
+        outputView.printResult(finalResult.count, finalResult.gameResult);
+    }
+
+    public static class FinalResult {
+
+        public int count;
+        public MoveResult gameResult;
+
+        public FinalResult(int count, MoveResult gameResult) {
+            this.count = count;
+            this.gameResult = gameResult;
+        }
+    }
+
+    public static FinalResult runGame(int flag, int count, BridgeGame bridgeGame) {
         MoveResult gameResult = new MoveResult(0, null);
         while (flag == 1) {
             count++;
             gameResult = playGame(bridgeGame);
             if (gameResult.flag == MOVERESULT_FLAG_INVALID) {
-                System.out.println(MESSAGE_RESTART);
-                InputView inputView = new InputView();
-                flag = bridgeGame.retry(inputView.readGameCommand());
-                continue;
-            }
-            flag = gameResult.flag;
-        }
-        OutputView outputView = new OutputView();
-        outputView.printResult(count, gameResult);
+                flag = retryGame(bridgeGame);
+                continue; }
+            flag = gameResult.flag; }
+        return new FinalResult(count, gameResult); }
+
+    public static int retryGame(BridgeGame bridgeGame) {
+        System.out.println(MESSAGE_RESTART);
+        InputView inputView = new InputView();
+        return bridgeGame.retry(inputView.readGameCommand());
     }
 
     public static BridgeGame startGame() {
