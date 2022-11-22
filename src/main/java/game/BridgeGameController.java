@@ -17,6 +17,7 @@ public class BridgeGameController {
     private static String gameCommand = "";
 
     public static void runBridgeGame() {
+        outputView.printGameStart();
         setBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame.initialize(bridge);
