@@ -5,6 +5,17 @@ package bridge;
  */
 public class BridgeGame {
 
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    List<String> bridge;
+
+    public BridgeGame(int size) {
+        bridge = bridgeMaker.makeBridge(size);
+    }
+
+    public BridgeGame(List<String> bridgeMaker) {
+        bridge = bridgeMaker;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
