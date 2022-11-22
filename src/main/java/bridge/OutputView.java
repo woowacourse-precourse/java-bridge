@@ -32,14 +32,24 @@ public class OutputView {
     public void printResult() {
     }
 
-    public String checkMap(String command,int count,List<String>Bridge){
+    public String checkMap(String command,int count,List<String>Bridge) {
         int index = 0;
         // 1차원 배열에서 2의 배수씩 다음 칸으로 넘어가고, U는 0으로, D는 1로 표기하여 계산함
-        if (command.equals("U")){index =  (count*2)+0;}
-        if (command.equals("D")){index = (count*2)+1;}
-        if (Bridge.get(index).equals("1")){return Constants.CIRCLE_MARK;}
+        if (command.equals("U")) {
+            index = (count * 2) + 0;
+            if (Bridge.get(index).equals("0")) {
+                return Constants.CIRCLE_MARK;
+            }
+        }
+        if (command.equals("D")) {
+            index = (count * 2) + 1;
+            if (Bridge.get(index).equals("1")) {
+                return Constants.CIRCLE_MARK;
+            }
+        }
         return Constants.CROSS_MARK;
     }
+
     public void printOX(String mark,String command){
         if (command.equals("U")) {
             upBridgeMap.add(mark);
