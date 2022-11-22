@@ -43,18 +43,6 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printOneLineMap(List<String> line) {
-        System.out.print("[");
-        for (int i = 0; i < line.size(); i++) {
-            System.out.print(line.get(i));
-            if (i == line.size() - 1) {
-                break;
-            }
-            System.out.print("|");
-        }
-        System.out.println("]");
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -65,6 +53,18 @@ public class OutputView {
         printMap(map);
         printSuccess(success);
         System.out.println(Game.TOTAL_TRY.getMessage() + tryCount);
+    }
+
+    private void printOneLineMap(List<String> line) {
+        System.out.print("[");
+        for (int i = 0; i < line.size(); i++) {
+            System.out.print(line.get(i));
+            if (i == line.size() - 1) {
+                break;
+            }
+            System.out.print("|");
+        }
+        System.out.println("]");
     }
 
     private void printSuccess(boolean success) {
