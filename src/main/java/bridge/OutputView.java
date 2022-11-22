@@ -33,10 +33,12 @@ public class OutputView {
         if (round != size) {
             output = "실패";
         }
+        System.out.println(" ");
         System.out.println("게임 성공 여부: " + output);
     }
 
     public void printResultTotalMap(List<String> resultUp, List<String> resultDown) {
+        System.out.println(" ");
         System.out.println("최종 게임 결과");
         printMap(resultUp, resultDown);
     }

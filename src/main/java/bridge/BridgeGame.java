@@ -68,7 +68,6 @@ public class BridgeGame {
         bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> targetBridge = bridgeMaker.makeBridge(bridgeSize);
         bridge = new Bridge();
-        System.out.println(targetBridge);
         bridge.setTargetBridge(targetBridge);
     }
     public List<String> getBridge(){
