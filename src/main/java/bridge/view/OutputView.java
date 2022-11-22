@@ -1,7 +1,8 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeResult;
+
+import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -20,6 +21,10 @@ public class OutputView {
 
     private static final StringBuilder upsideBridge = new StringBuilder("[]");
     private static final StringBuilder downsideBridge = new StringBuilder("[]");
+    private static final StringBuilder SUCCESSFUL_MARK = new StringBuilder(" O ");
+    private static final StringBuilder FAILURE_MARK = new StringBuilder(" X ");
+
+
 
     public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -58,12 +63,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printSuccessOrFailureResult(int retryCount, boolean result) {
-        BridgeResult bridgeResult = new BridgeResult(result);
-        if (bridgeResult.getResult()){
+        if (true){
             System.out.println("게임 성공 여부: " + "성공");
             System.out.println("총 시도한 횟수: " + retryCount);
         }
-        if (!bridgeResult.getResult()) {
+        if (false) {
             System.out.println("게임 성공 여부: " + "실패");
             System.out.println("총 시도한 횟수: " + retryCount);
         }
@@ -76,24 +80,24 @@ public class OutputView {
         }
     }
 
-    private static void moveUpside(BridgeGame bridgeGame, String moveSide, int index) {
-        upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1,bridgeGame.createMoveMark(moveSide, index));
+    private static void moveUpside(int index) {
+        upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1,SUCCESSFUL_MARK);
         downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1, BRIDGE_FAIL_SPACE_BLANK);
     }
 
-    private static void moveDownside(BridgeGame bridgeGame, String moveSide, int index) {
+    private static void moveDownside(int index) {
         upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1, BRIDGE_FAIL_SPACE_BLANK);
-        downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1,bridgeGame.createMoveMark(moveSide, index));
+        downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + 1,SUCCESSFUL_MARK);
     }
 
-    private static void moveFailUpside(BridgeGame bridgeGame, String moveSide, int index) {
-        upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE *index+1,bridgeGame.createMoveMark(moveSide, index));
+    private static void moveFailUpside(int index) {
+        upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE *index+1,FAILURE_MARK);
         downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE *index+1, BRIDGE_FAIL_SPACE_BLANK);
     }
 
-    private static void moveFailDownside(BridgeGame bridgeGame, String moveSide, int index) {
+    private static void moveFailDownside(int index) {
         upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE *index+1, BRIDGE_FAIL_SPACE_BLANK);
-        downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE *index+1,bridgeGame.createMoveMark(moveSide,index));
+        downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE *index+1,FAILURE_MARK);
     }
 
     private static void deleteBridgeOverSecondTry(int index) {
@@ -121,22 +125,24 @@ public class OutputView {
         }
     }
 
-    public static void moveSuccess(BridgeGame bridgeGame, String moveSide, int index) {
-        if (bridgeGame.move(moveSide,index) && moveSide.equals("U")) {
-            moveUpside(bridgeGame, moveSide, index);
+    public static void moveSuccess(String moveSide, int index) {
+        if (moveSide.equals("U")) {
+            moveUpside(index);
         }
-        if (bridgeGame.move(moveSide, index) && moveSide.equals("D")) {
-            moveDownside(bridgeGame, moveSide, index);
+        if (moveSide.equals("D")) {
+            moveDownside(index);
         }
-    }
+        printMap();
+        }
 
-    public static void moveFail(BridgeGame bridgeGame, String moveSide, int index) {
-        if (!bridgeGame.move(moveSide, index) && moveSide.equals("U")) {
-            moveFailUpside(bridgeGame, moveSide, index);
+    public static void moveFail(String moveSide, int index) {
+        if (moveSide.equals("U")) {
+            moveFailUpside(index);
         }
-        if (!bridgeGame.move(moveSide, index) && moveSide.equals("D")) {
-            moveFailDownside(bridgeGame, moveSide, index);
+        if (moveSide.equals("D")) {
+            moveFailDownside(index);
         }
+        printMap();
     }
 
     public static void printBridgeResult(boolean result, int tryCount) {
