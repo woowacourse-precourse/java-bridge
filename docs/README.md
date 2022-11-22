@@ -11,13 +11,7 @@
 
 - [x] 다리의 길이를 입력받기
 - [x] 이동할 방향 입력
-- [ ] 게임 재시작 여부 입력
-
-- [ ] **[예외사항]**
-    - [ ] **[예외]** 다리의 길이는 null이 들어올 경우 IllegalArgumentException이 발생해야 한다
-    - [ ] **[예외]** 다리의 길이는 숫자가 아닐 경우 IllegalArgumentException이 발생해야 한다
-    - [ ] **[예외]** 다리의 길이는 3 이상 20 이하가 아닐 경우 IllegalArgumentException이 발생해야 한다
-
+- [x] 게임 재시작 여부 입력
   
 ### OutputView
 
