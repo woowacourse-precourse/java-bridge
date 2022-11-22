@@ -16,6 +16,7 @@ public class BridgeController {
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private BridgeGame bridgeGame;
     private String resultOfGame;
+    private int bridgeSize;
 
     public void startGame() {
         setUpBridgeGame();
@@ -26,11 +27,20 @@ public class BridgeController {
     public void setUpBridgeGame() {
         List<String> bridge;
 
-        outputView.printStartingPhrase();
-        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        inputBridgeSize();
+        bridge = bridgeMaker.makeBridge(this.bridgeSize);
         //실행 예시와 맞추기 위해 한 칸 띄워준다.
         System.out.println();
         bridgeGame = new BridgeGame(bridge);
+    }
+
+    public void inputBridgeSize(){
+        try{
+            this.bridgeSize = inputView.readBridgeSize();
+        } catch (IllegalArgumentException e){
+            System.out.println(e);
+            inputBridgeSize();
+        }
     }
 
     public void proceedBridgeGame() {
