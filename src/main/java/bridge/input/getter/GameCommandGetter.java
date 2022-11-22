@@ -13,7 +13,7 @@ public class GameCommandGetter {
     private final GameCommandValidator validator;
 
     private GameCommandGetter() {
-        this.inputView = InputView.getInputView();
+        this.inputView = InputView.getInstance();
         this.validator = new GameCommandValidator();
     }
 

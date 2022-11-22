@@ -13,7 +13,7 @@ public class InputView {
 
     }
 
-    public static InputView getInputView() {
+    public static InputView getInstance() {
         if (instance == null) {
             instance = new InputView();
         }
