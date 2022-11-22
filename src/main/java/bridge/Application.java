@@ -1,8 +1,15 @@
 package bridge;
 
-public class Application {
+import bridge.console.InputView;
 
+import java.util.List;
+
+public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InputView inputView = new InputView();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.play(bridge);
     }
 }
