@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.domain.enums.Command;
 import java.util.ArrayList;

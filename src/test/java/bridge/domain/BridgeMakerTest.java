@@ -2,6 +2,8 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

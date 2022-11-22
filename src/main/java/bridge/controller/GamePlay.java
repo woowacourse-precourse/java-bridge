@@ -1,8 +1,8 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.UserState;
 import bridge.domain.enums.Command;
 import bridge.view.InputView;
