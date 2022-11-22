@@ -9,7 +9,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.User;
 import bridge.domain.BridgeGame;
-import bridge.util.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
