@@ -39,4 +39,8 @@ public class BridgeGameResult {
         }
     }
 
+    public void retryResultUpDown(){
+        resultUp.clear();
+        resultDown.clear();
+    }
 }
