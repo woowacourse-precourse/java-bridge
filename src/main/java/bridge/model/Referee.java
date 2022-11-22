@@ -15,6 +15,7 @@ public class Referee {
 
     public Referee(Bridge bridge) {
         this.bridge = bridge.getBridge();
+        currentRoundNumber = 0;
     }
 
     public Score judgeMove(String moveDirection) {
@@ -52,7 +53,7 @@ public class Referee {
     }
 
     public void resetCurrentRoundNumber() {
-        currentRoundNumber = 0;
+        currentRoundNumber = 1;
     }
 
     public int getCurrentRoundNumber() {

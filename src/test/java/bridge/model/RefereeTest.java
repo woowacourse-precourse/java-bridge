@@ -23,11 +23,14 @@ class RefereeTest {
     void setUp() {
         bridge = new Bridge(List.of("U", "D", "U"));
         recordFirst = new Referee(bridge);
-        recordFirst.addCurrentRoundNumber();
-
         recordSecond = new Referee(bridge);
+        recordFinal = new Referee(bridge);
+
         recordFirst.addCurrentRoundNumber();
-        recordFirst.addCurrentRoundNumber();
+        recordSecond.addCurrentRoundNumber();
+        recordFinal.addCurrentRoundNumber();
+        recordFinal.addCurrentRoundNumber();
+        recordFinal.addCurrentRoundNumber();
     }
 
     @AfterEach
@@ -42,7 +45,7 @@ class RefereeTest {
     @Test
     void judgeMoveTest() {
         Score scoreFirst = recordFirst.judgeMove("D");
-        Score scoreSecond = recordSecond.judgeMove("D");
+        Score scoreSecond = recordSecond.judgeMove("U");
 
         assertThat(scoreFirst).isEqualTo(FAIL);
         assertThat(scoreSecond).isEqualTo(PASS);
@@ -52,7 +55,7 @@ class RefereeTest {
     @Test
     void isFailTest() {
         Boolean isRecordFirstFail = recordFirst.isFail("D");
-        Boolean isRecordSecondFail = recordSecond.isFail("D");
+        Boolean isRecordSecondFail = recordSecond.isFail("U");
 
         assertThat(isRecordFirstFail).isTrue();
         assertThat(isRecordSecondFail).isFalse();
@@ -62,9 +65,9 @@ class RefereeTest {
     @Test
     void isFinalRoundPassTest() {
         Boolean finalPass = recordFinal.isFinalRoundPass("U");
-        Boolean finalFail = recordFinal.isFinalRoundPass("D");
+        Boolean finalNotPass = recordFinal.isFinalRoundPass("D");
 
-        assertThat(finalPass).isEqualTo(true);
-        assertThat(finalFail).isEqualTo(false);
+        assertThat(finalPass).isTrue();
+        assertThat(finalNotPass).isFalse();
     }
 }
