@@ -21,6 +21,9 @@
 # 👩‍💻 Flow Chart
 ![flow chart img](./images/flowChart.png)
 
+# 🧾 Diagram
+![Diagram img](./images/Diagram.png)
+
 🤯 예상되는 어려움
 =
 1. 객체를 객체답게 사용하기
