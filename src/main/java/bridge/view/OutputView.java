@@ -92,7 +92,6 @@ public class OutputView {
         System.out.println(PREFIX + String.join(DELIMITER, bridge) + SUFFIX);
     }
 
-
     public void printResult(GameResult result, List<String> bridge, int tryNumber) {
         System.out.println("최종 게임 결과");
         printMap(bridge, result.getGameResult());
