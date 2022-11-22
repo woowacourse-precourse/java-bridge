@@ -22,7 +22,7 @@ class BridgeGameTest {
         gameStatus = new GameStatus();
     }
 
-    @DisplayName("다리 건너기에 성공했다면 게임 상태에 O와 공백 한 칸을 추가하고 false를 반환한다.")
+    @DisplayName("다리 건너기에 성공할 때 테스트")
     @Test
     public void failToCrossTheBridge() {
         assertThat(bridgeGame.move(gameStatus, bridge, "U")).isTrue();
@@ -30,7 +30,7 @@ class BridgeGameTest {
         assertThat(gameStatus.getBottomBridge().getDataForOutput(0)).isEqualTo(" ");
     }
 
-    @DisplayName("다리 건너기에 실패했다면 게임 상태에 X와 공백 한 칸을 추가하고 false를 반환한다.")
+    @DisplayName("다리 건너기에 실패할 때 테스트")
     @Test
     public void SucceedToCrossTheBridge() {
         assertThat(bridgeGame.move(gameStatus, bridge, "D")).isFalse();
