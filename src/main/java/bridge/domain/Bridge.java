@@ -18,4 +18,20 @@ public class Bridge {
     public void updateCurrentBlock() {
         currentBlock += 1;
     }
+
+    public void initGame() {
+        currentBlock = 0;
+    }
+
+    public int getLastBlock() {
+        return bridge.size() - 1;
+    }
+
+    public boolean isLastBlock(){
+        return currentBlock == getLastBlock();
+    }
+
+    public boolean isCorrectMovement(String movement){
+        return bridge.get(currentBlock).equals(movement);
+    }
 }
