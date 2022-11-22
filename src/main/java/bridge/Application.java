@@ -1,8 +1,16 @@
 package bridge;
 
 public class Application {
+    static BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        bridgeGame.gameStart();
+        while (true){
+            boolean isFinish = bridgeGame.gamePlay();
+            if (isFinish){
+                break;
+            }
+        }
     }
+
 }
