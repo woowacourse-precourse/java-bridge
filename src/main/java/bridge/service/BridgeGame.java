@@ -63,4 +63,11 @@ public class BridgeGame {
         return player.getLastChoice().equals(bridge.getBridgeByIndex(getNumberOfChoice() - 1));
     }
 
+    private boolean isAcrossLast() {
+        if (getBridgeLength() == getNumberOfChoice()) {
+            return true;
+        }
+        return false;
+    }
+
 }
