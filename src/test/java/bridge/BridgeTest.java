@@ -20,6 +20,15 @@ public class BridgeTest extends NsTest {
     }
 
     @Test
+    void 같은_타일_확인_테스트() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 1, 1));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> tiles = bridgeMaker.makeBridge(3);
+        Bridge bridge = new Bridge(tiles);
+        assertThat(bridge.isSameTile("U", 1)).isTrue();
+    }
+
+    @Test
     void 마지막_다리_타일_확인_테스트() {
         BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 1, 1));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
