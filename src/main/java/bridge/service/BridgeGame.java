@@ -23,9 +23,9 @@ public class BridgeGame {
 	}
 
 	public List<String> makeBridge(Integer bridgeSize) {
-		List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-		this.bridge.initBridge(bridge);
-		return bridge;
+		List<String> bridgeFromBridgeMaker = bridgeMaker.makeBridge(bridgeSize);
+		bridge.initBridge(bridgeFromBridgeMaker);
+		return bridgeFromBridgeMaker;
 	}
 
 	public String getUserBridgeStatus() {
