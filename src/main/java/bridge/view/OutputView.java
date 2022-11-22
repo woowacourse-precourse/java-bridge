@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.Player;
 import bridge.utils.UpDown;
 import java.util.ArrayList;
 import java.util.List;
