@@ -25,4 +25,18 @@ class BridgeTest {
         int bridgeSize = bridge.size();
         assertThat(bridgeSize).isEqualTo(testBridgeSize);
     }
+
+    @Test
+    void 다리_윗부분_반환_테스트() {
+        List<String> testBridge = List.of("U", "D", "U");
+        bridge = new Bridge(testBridge);
+
+        Bridge upBridge = bridge.getUpBridge();
+        List<String> expectBridge = List.of("U", " ", "U");
+        for (int position = 0; position < bridge.size(); position++) {
+            String bridgeShape = upBridge.getBridgeShapeByPosition(position);
+            String expectBridgeShape = expectBridge.get(position);
+            assertThat(bridgeShape).isEqualTo(expectBridgeShape);
+        }
+    }
 }
