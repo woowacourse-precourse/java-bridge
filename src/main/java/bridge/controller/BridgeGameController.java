@@ -21,11 +21,11 @@ public class BridgeGameController {
     }
 
     public void run() {
-        startBrideGame();
+        startBridgeGame();
         crossBridge();
     }
 
-    private void startBrideGame() {
+    private void startBridgeGame() {
         outputView.printStartMessage();
         correctBridge = makeBridge();
     }
