@@ -31,4 +31,16 @@ class BridgeGameTest {
                 .isEqualTo(List.of("U", "U", "D"));
     }
 
+    @DisplayName("입력 횟수에 따라 재시작이 정상적으로 실행된다.")
+    @Test
+    void retryGame() {
+        BridgeGame bridgeGame = new BridgeGame(SIZE);
+        bridgeGame.retry();
+        bridgeGame.move("U");
+        bridgeGame.retry();
+
+        assertThat(bridgeGame.getTryCount()).isEqualTo(3);
+        assertThat(bridgeGame.getInputBridge().size()).isEqualTo(0);
+    }
+
 }
