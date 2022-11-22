@@ -13,38 +13,34 @@ public class BridgeControl {
     public BridgeControl() {
         inputView = new InputView();
         outputView = new OutputView();
-
+        bridgeGame = new BridgeGame();
     }
 
     public void start() {
         //게임 시작 메시지 출력
         outputView.printGameStart();
-
-        try {
-            //다리 길이 입력받기 및 다리생성
-            getBridgeSize();
-            //게임 시작
+        //다리 길이 입력받기 및 다리생성
+        getBridgeSize();
+        //게임 시작
+        try{
             do{
                 bridgeGame.retry();
                 play();
             }while (isRetry());
-
-            //결과 출력
-            outputView.printResult(bridgeGame);
-
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            //getBridgeSize();
+        }
+        catch (NullPointerException e){
             return;
         }
-        return;
+
+        //결과 출력
+        outputView.printResult(bridgeGame);
 
     }
 
     private void getBridgeSize(){
         try {
             int size = inputView.readBridgeSize();
-            bridgeGame = new BridgeGame(size);
+            //bridgeGame = new BridgeGame();
             //다리생성
             bridgeGame.setBridge(size);
         }

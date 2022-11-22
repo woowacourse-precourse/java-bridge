@@ -20,7 +20,7 @@ public class BridgeGame {
     private int count;
     private boolean isWin;
     private int correctCount;
-    public BridgeGame(int size){
+    public BridgeGame(){
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeUp = new ArrayList<String>();
         bridgeDown = new ArrayList<String>();
