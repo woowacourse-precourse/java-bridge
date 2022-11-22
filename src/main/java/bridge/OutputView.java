@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import bridge.utils.BoilerPlates;
+
 public class OutputView {
     public String mapU = "[";
     public String mapD = "[";

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.utils;
 
 public class BoilerPlates {
 	public static void printFinalFailedUp(String mapU,String mapD,int gameCount){

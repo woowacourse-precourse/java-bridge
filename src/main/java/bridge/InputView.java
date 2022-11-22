@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.utils.BoilerPlates;
+import bridge.utils.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {

@@ -47,6 +47,20 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

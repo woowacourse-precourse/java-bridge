@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.BridgeGame;
+import bridge.InputView;
+
 public class GameController {
 	static void bridgeGameStart(BridgeGame game) {
 		while (true) {
