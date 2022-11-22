@@ -10,8 +10,6 @@ public class BridgeGame {
     private static final String MOVE_IMPOSSIBLE = "X";
     private static final String MOVE_POSSIBLE = "O";
     private static final String SPACE = " ";
-    private static final String MOVE_TO_DOWN = "D";
-    private static final String MOVE_TO_UP = "U";
     private final List<String> highBridge = new ArrayList<>();
     private final List<String> lowBridge = new ArrayList<>();
     private boolean SUCCESS = false;
@@ -54,10 +52,10 @@ public class BridgeGame {
     }
 
     private void makeMoveBridge(String moving, boolean success) {
-        if (moving.equals(MOVE_TO_UP)) {
+        if (moving.equals(Move.U.toString())) {
             up(success);
         }
-        if (moving.equals(MOVE_TO_DOWN)) {
+        if (moving.equals(Move.D.toString())) {
             down(success);
         }
     }
