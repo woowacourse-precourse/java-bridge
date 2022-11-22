@@ -21,7 +21,6 @@ public class ValidateTest {
 	@Test
 	void inputByWrongSize() {
 		testList = List.of("a", "ab", "2", "21", "123");
-		
 		for (String testItem : testList) {
 			exception = assertThrows(IllegalArgumentException.class, () -> validate.validateSize(testItem));
 			errorMessage = exception.getMessage();
@@ -33,7 +32,6 @@ public class ValidateTest {
 	@Test
 	void inputByWrongMove() {
 		testList = List.of("u", "UU", "d", "DD", "a", "A", "1", "123");
-		
 		for (String testItem : testList) {
 			exception = assertThrows(IllegalArgumentException.class, () -> validate.validateMove(testItem));
 			errorMessage = exception.getMessage();
@@ -45,7 +43,6 @@ public class ValidateTest {
 	@Test
 	void inputByWrongCommand() {
 		testList = List.of("q", "QQ", "r", "RR", "b", "B", "3", "321");
-		
 		for (String testItem : testList) {
 			exception = assertThrows(IllegalArgumentException.class, () -> validate.validateGameCommand(testItem));
 			errorMessage = exception.getMessage();
