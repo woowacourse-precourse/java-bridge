@@ -47,4 +47,10 @@ public class InputView {
         int size = strToInt(input);
         isBetweenRange(size);
     }
+
+    private void validMoveInput(String input){
+        if(!input.equals("D") && !input.equals("U")){
+            throw new IllegalArgumentException(Messages.ERROR_INPUT_MOVE_MESSAGE.getMessage());
+        }
+    }
 }
