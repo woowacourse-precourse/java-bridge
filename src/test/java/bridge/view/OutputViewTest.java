@@ -199,4 +199,21 @@ public class OutputViewTest {
             outputView.printResult(bridgeGame);
         }
     }
+    
+    @Nested
+    class PrintStartMessageTest extends NsTest {
+    
+        @Test
+        void printStartMessage() {
+            assertSimpleTest(() -> {
+                run();
+                assertThat(output()).contains("다리 건너기 게임을 시작합니다.");
+            });
+        }
+        
+        @Override
+        protected void runMain() {
+            outputView.printStartMessage();
+        }
+    }
 }
