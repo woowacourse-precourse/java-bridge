@@ -13,6 +13,9 @@ public class InputView {
     public InputView() {
     }
 
+    public InputView(BridgeGame bridgeGame) {
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
