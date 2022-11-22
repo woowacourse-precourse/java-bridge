@@ -24,13 +24,14 @@ public class BridgeMachine {
                 //게임 재시도 여부 판단하는 예외 메소드 추가
                 if (replay == UserCommand.REPLAY.getCommand()) {
                     bridgeGame.retry(bridge);
+                    index =0;
+                    totalTry++;
                     continue;
                 }
                 if (replay == UserCommand.END.getCommand()) {
                     break;
                 }
             }
-
             bridge.changeBridgeMap(index, userMoveCommand, "O");
             OutputView.printMap(bridge.getBridgeMap(), index);
             index++;
