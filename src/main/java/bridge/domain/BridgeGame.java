@@ -33,14 +33,14 @@ public class BridgeGame {
             String answer = BridgeService.moveBridge();
             BridgeService.viewBridge();
             check = breakCompare(answer);
-            if(check){
+            if (check) {
                 break;
             }
             dir = BridgeService.getInitMoveRow();
         }
     }
 
-    public static boolean breakCompare(String answer){
+    public static boolean breakCompare(String answer) {
         if (answer.equals("X")) {
             BridgeService.getInitRetryQuit();
             return true;
