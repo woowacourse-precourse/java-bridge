@@ -1,23 +1,60 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import java.util.ArrayList;
+import java.util.List;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+public class BridgeGame {
+    private User user;
+    private Bridge bridge;
+    BridgeMaker bridgeMaker;
+
+    public BridgeGame() {
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public List<String> move(String input) {
+        String move = new Move(input).getMove();
+        if (!checkMove(move)) {
+            user.setState(GameState.Over.getState());
+            move += "X";
+        } else if (user.getBridgeState().size() + 1 == bridge.getAnswer().size()) {
+            user.setState(GameState.Success.getState());
+        }
+        return user.addBridgeState(move);
+    }
+
+    private boolean checkMove(String move) {
+        if (move.equals(bridge.getAnswer().get(user.getBridgeState().size()))) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setBridge(String input) {
+        bridge = new Bridge(input);
+        user = new User();
+        setBridgeAnswer(bridgeMaker.makeBridge(bridge.getSize()));
+    }
+
+    public void setBridgeAnswer(List<String> answer) {
+        bridge.setAnswer(answer);
+    }
+
     public void retry() {
+        user.addTryTime();
+        user.setState(GameState.Playing.getState());
+        user.setBridgeState(new ArrayList<String>());
+    }
+
+    public String getUserState() {
+        return user.getState();
+    }
+
+    public List<String> getBridgeState() {
+        return user.getBridgeState();
+    }
+
+    public int getTryTime() {
+        return user.getTryTime();
     }
 }
