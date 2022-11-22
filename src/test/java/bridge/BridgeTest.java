@@ -13,10 +13,19 @@ class BridgeTest {
 
     @DisplayName("플레이어가 선택한 칸이 건널 수 있는 칸이면 true를 반환한다.")
     @ParameterizedTest
-    @ValueSource(ints = {-1, 1, 3})
-    void checkPassableBlock(Integer currentPosition) {
+    @ValueSource(ints = {0, 2, 4})
+    void checkPassableBlock(Integer nextPosition) {
         Bridge bridge = new Bridge(List.of("U", "D", "U", "D", "U"));
         String selectBlock = new String("U"); // 플레이어가 입력한 inputString
-        assertThat(bridge.checkPassableBlock(currentPosition, selectBlock)).isTrue();
+        assertThat(bridge.checkPassableBlock(nextPosition, selectBlock)).isTrue();
+    }
+
+    @DisplayName("플레이어가 선택한 칸이 건널 수 없는 칸이면 false를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2, 4})
+    void checkNonPassableBlock(Integer nextPosition) {
+        Bridge bridge = new Bridge(List.of("U", "D", "U", "D", "U"));
+        String selectBlock = new String("D"); // 플레이어가 입력한 inputString
+        assertThat(bridge.checkPassableBlock(nextPosition, selectBlock)).isFalse();
     }
 }
