@@ -1,7 +1,7 @@
 package bridge.domain.game;
 
-import bridge.domain.maker.BridgeMaker;
-import bridge.domain.maker.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 
 /**

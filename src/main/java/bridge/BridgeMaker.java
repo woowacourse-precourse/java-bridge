@@ -1,4 +1,4 @@
-package bridge.domain.maker;
+package bridge;
 
 import bridge.domain.command.BridgeMoveCommand;
 import java.util.ArrayList;
