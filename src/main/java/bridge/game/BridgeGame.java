@@ -9,6 +9,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String INPUT_TYPE_IS_NOT_PROPER = "[ERROR] 잘못된 입력 형식입니다.";
     private static final String RETRY_GAME = "R";
     private static final String QUIT_GAME = "Q";
 
@@ -70,5 +71,11 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    private void validateCommand(String command) {
+        if (!command.equals(RETRY_GAME) && !command.equals(QUIT_GAME)) {
+            throw new IllegalArgumentException(INPUT_TYPE_IS_NOT_PROPER);
+        }
     }
 }
