@@ -39,5 +39,12 @@ class ValidatorTest {
                 .hasMessageContaining(InputExceptionConstants.MOVE_COMMAND.getMessage());
     }
 
-
+    @ParameterizedTest
+    @ValueSource(strings = {"D", "U", "23"})
+    @DisplayName("게임 명령과 관계 없는 문자열이 입력될 경우 예외를 발생시킨다.")
+    void inputNoneGameCommand(String input) {
+        assertThatThrownBy(() -> validator.isGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(InputExceptionConstants.GAME_COMMAND.getMessage());
+    }
 }

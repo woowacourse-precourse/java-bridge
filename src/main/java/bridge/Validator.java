@@ -25,4 +25,10 @@ public class Validator {
         }
     }
 
+    public void isGameCommand(String input) {
+        if (!input.equals(InputConstants.RETRY_GAME.getValue()) || !input.equals(InputConstants.QUIT_GAME.getValue())) {
+            throw new IllegalArgumentException(InputExceptionConstants.GAME_COMMAND.getMessage());
+        }
+    }
+
 }
