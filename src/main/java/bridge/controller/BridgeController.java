@@ -55,7 +55,7 @@ public class BridgeController {
     }
 
     private boolean isUserWantQuit() {
-        GameCommand gameCommand = createGameCommandLoop();
+        GameCommand gameCommand = getGameCommandLoop();
         return gameCommand.isSameQuit();
     }
 
@@ -73,7 +73,7 @@ public class BridgeController {
 
     private Result getResult(PassingPositions passingPositions, int distance) {
         Result result;
-        Direction direction = createDirectionLoop();
+        Direction direction = getDirectionLoop();
         Position position = createPosition(distance, direction);
         bridgeGame.move(position, passingPositions);
         result = passingPositions.makeResult(distance);
@@ -110,7 +110,7 @@ public class BridgeController {
         return new PassingPositions(bridge);
     }
 
-    private Direction createDirectionLoop() {
+    private Direction getDirectionLoop() {
         Direction direction;
         do {
             direction = createDirection();
@@ -131,7 +131,7 @@ public class BridgeController {
         return new Position(distance, direction);
     }
 
-    private GameCommand createGameCommandLoop() {
+    private GameCommand getGameCommandLoop() {
         GameCommand gameCommand;
         do {
             gameCommand = createGameCommand();
