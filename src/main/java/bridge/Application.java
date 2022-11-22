@@ -12,33 +12,58 @@ public class Application {
 
     private static String GAME_STATE = "R";
     private static int gameCount = 1;
-    private static int index = 1;
 
-    public static void main(String[] args) {
+    private static void initGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         BridgeGame.bridgeSize = inputView.readBridgeSize();
         BridgeGame.bridge = bridgeMaker.makeBridge(BridgeGame.bridgeSize);
         BridgeGame.userPicks = new ArrayList<>();
         BridgeGame.isCorrect = false;
-        while (!GAME_STATE.equals("Q")) {
-            String userPick = inputView.readMoving();
-            BridgeGame.userPicks.add(userPick);
-            BridgeGame.isCorrect = bridgeGame.move();
-            outputView.printMap();
-            if (index == BridgeGame.bridgeSize && BridgeGame.isCorrect) {
-                outputView.printResult(gameCount);
-                return;
-            }
-            if (!BridgeGame.isCorrect) {
-                GAME_STATE = inputView.readGameCommand();
-                if (GAME_STATE == "Q") {
-                    outputView.printResult(gameCount);
-                    return;
-                }
-                if (GAME_STATE == "R") gameCount++;
-            }
-            index++;
-        }
+    }
 
+    private static boolean handleSuccess() {
+        if (BridgeGame.index == BridgeGame.bridgeSize && BridgeGame.isCorrect) {
+            outputView.printResult(gameCount);
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean handleFailure() {
+        if (!BridgeGame.isCorrect) {
+            GAME_STATE = inputView.readGameCommand();
+            if (GAME_STATE == "Q") {
+                outputView.printResult(gameCount);
+                return true;
+            }
+            if (GAME_STATE == "R") {
+                gameCount++;
+                bridgeGame.retry();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void updateUserPicks() {
+        String userPick = inputView.readMoving();
+        BridgeGame.userPicks.add(userPick);
+    }
+
+    private static void showMap() {
+        BridgeGame.isCorrect = bridgeGame.move();
+        outputView.printMap();
+    }
+
+    public static void main(String[] args) {
+        initGame();
+        while (!GAME_STATE.equals("Q")) {
+            updateUserPicks();
+            showMap();
+            if(handleSuccess()) return;
+            if(handleFailure() && GAME_STATE == "Q") return;
+            if(handleFailure() && GAME_STATE == "R") continue;
+            BridgeGame.index++;
+        }
     }
 }
