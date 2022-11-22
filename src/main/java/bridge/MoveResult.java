@@ -12,15 +12,19 @@ public class MoveResult {
         this.moveResult = moveResult;
     }
 
-    public Map<String, String> createPrintForm() {
+    public void printMap() {
+        OutputView.printMap(createMap());
+    }
+
+    private Map<String, String> createMap() {
         Map<String, String> printForm = new HashMap<>();
-        StringJoiner separator = new StringJoiner(" | ", "[ ", " ]");
-        printForm.put("U", upperPrintForm(separator));
-        printForm.put("D", lowerPrintForm(separator));
+        printForm.put("U", upperPrintForm());
+        printForm.put("D", lowerPrintForm());
         return printForm;
     }
 
-    private String upperPrintForm(StringJoiner separator) {
+    private String upperPrintForm() {
+        StringJoiner separator = new StringJoiner(" | ", "[ ", " ]");
         String upperResult = moveResult.get("U");
         for (int space = 0; space < upperResult.length(); space++) {
             String eachResult = "" + upperResult.charAt(space);
@@ -29,7 +33,8 @@ public class MoveResult {
         return separator.toString();
     }
 
-    private String lowerPrintForm(StringJoiner separator) {
+    private String lowerPrintForm() {
+        StringJoiner separator = new StringJoiner(" | ", "[ ", " ]");
         String lowerResult = moveResult.get("D");
         for (int space = 0; space < lowerResult.length(); space++) {
             String eachResult = "" + lowerResult.charAt(space);

@@ -26,22 +26,30 @@ public class BridgeGame {
      */
     public void move(List<String> bridge) {
         Map<String, String> gameResult = new HashMap<>();
+        initializeGameResult(gameResult);
         for (int space = 0; space < bridge.size(); space++) {
-            String direction = gameResult.get(space);
+            String direction = bridge.get(space);
             String result = compareMoving(direction);
             addGameResult(gameResult, direction, result);
-            MoveResult moveResult = new MoveResult(gameResult);
+            createPrintMap(gameResult);
         }
     }
 
     public String compareMoving(String eachBridgeSpace) {
-        if (eachBridgeSpace == new Moving().get())
+        String moving = new Moving().get();
+        if (eachBridgeSpace.equals(moving))
             return "O";
         return "X";
     }
 
+    public Map<String, String> initializeGameResult(Map<String, String> gameResult) {
+        gameResult.put("U", "");
+        gameResult.put("D", "");
+        return gameResult;
+    }
+
     public Map<String, String> addGameResult(Map<String, String> gameResult, String direction, String result) {
-        if (direction == "U") {
+        if (isUp(direction, result)) {
             gameResult.put("U", gameResult.get("U") + result);
             gameResult.put("D", gameResult.get("D") + " ");
             return gameResult;
@@ -49,6 +57,19 @@ public class BridgeGame {
         gameResult.put("U", gameResult.get("U") + " ");
         gameResult.put("D", gameResult.get("D") + result);
         return gameResult;
+    }
+
+    public boolean isUp(String direction, String result) {
+        if (direction.equals("U") && result.equals("O"))
+            return true;
+        if (direction.equals("D") && result.equals("X"))
+            return true;
+        return false;
+    }
+
+    public void createPrintMap(Map<String, String> gameResult) {
+        MoveResult moveResult = new MoveResult(gameResult);
+        moveResult.printMap();
     }
 
     /**
