@@ -1,9 +1,40 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    final static String DOWN = "D";
+    final static String UP = "U";
+    final static String CAN_GO = " O |";
+    final static String NOT_SELECT = "   |";
+    final static String CANNOT_GO = " X |";
+
+    private final List<String> resultSteps;
+    private final int bridgeSize;
+    private StringBuilder down;
+    private StringBuilder up;
+    private int location;
+
+    public BridgeGame(List<String> resultSteps, int bridgeSize) {
+        this.up = new StringBuilder("[");
+        this.down = new StringBuilder("[");
+        this.resultSteps = resultSteps;
+        this.bridgeSize = bridgeSize;
+        this.location = 0;
+    }
+
+    public String getDown() {
+        return down.toString();
+    }
+
+    public String getUp() {
+        return up.toString();
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
