@@ -19,10 +19,14 @@ public class BridgeGameController {
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     
     private int trialCnt;
+    private int bridgeSize;
+    private String movingCommand;
+    private String gameCommand;
 
     public void play() {
         trialCnt = INITIAL_TRIAL_CNT;
-        int bridgeSize = inputView.readBridgeSize();
+
+        userInputBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         playUntilGameOver(bridge);
@@ -30,14 +34,32 @@ public class BridgeGameController {
         outputView.printTrialCnt(trialCnt);
     }
 
+    private void userInputBridgeSize() {
+        try {
+            bridgeSize = inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bridgeSize = inputView.readBridgeSize();
+        }
+    }
+
     private void playUntilGameOver(List<String> bridge) {
         while(true) {
-            String movingCommand = inputView.readMoving();
+            userInputMoving();
             List<String> bridgeStatus = bridgeGame.move(movingCommand, bridge);
             outputView.printMap(bridge, bridgeStatus);
 
             if (gameSuccess(bridge)) break;
             if (gameFailure()) break;
+        }
+    }
+
+    private void userInputMoving() {
+        try {
+            movingCommand = inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            movingCommand = inputView.readMoving();
         }
     }
 
@@ -53,13 +75,22 @@ public class BridgeGameController {
 
     private boolean gameFailure() {
         if (bridgeGame.isFailure()) {
-            String gameCommand = inputView.readGameCommand();
+            userInputGameCommand();
 
             if (quit(gameCommand)) return true;
             retry(gameCommand);
         }
 
         return false;
+    }
+
+    private void userInputGameCommand() {
+        try {
+            gameCommand = inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            gameCommand = inputView.readGameCommand();
+        }
     }
 
     private boolean quit(String gameCommand) {
