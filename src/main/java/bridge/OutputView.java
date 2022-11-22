@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 enum Brackets {
     START("[ "), BLANK(" "), MATCH("O"), MISMATCH("X"), MIDDLE(" | "), END(" ]");
     private final String symbol;
@@ -24,15 +22,16 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "최종 게임 결과";
     private static final String SUCCESS_RESULT_MESSAGE = "게임 성공 여부: ";
     private static final String TRIAL_MESSAGE = "총 시도한 횟수: ";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    public void printMap(int step, List<String> answer, List<String> submitted) {
-        printUpperBridge(step, answer, submitted);
-        printLowerBridge(step, answer, submitted);
+    public void printMap(BridgeGame game) {
+        printBridge(UP, game);
+        printBridge(DOWN, game);
         System.out.println();
     }
 
@@ -41,43 +40,35 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int howFar, List<String> answer, List<String> submitted) {
+
+    public void printResult(BridgeGame game) {
         System.out.println(RESULT_MESSAGE);
-        printMap(howFar, answer, submitted);
+        printMap(game);
     }
 
-    public void printUpperBridge(int step, List<String> answer, List<String> submitted) {
+    public void printBridge(String upOrDown, BridgeGame game) {
         System.out.print(Brackets.START.getSymbol());
-        for (int loop = 0; loop < step; loop++) {
-            String loopAnswer = answer.get(loop);
-            String loopSubmitted = submitted.get(loop);
-            isMiddle(loop);
-            isMatch(UP, loopSubmitted, loopAnswer);
-            isMismatch(UP, loopSubmitted, loopAnswer);
-            isBlank(DOWN, loopSubmitted);
-        }
+        printPath(upOrDown,game);
         System.out.println(Brackets.END.getSymbol());
     }
 
-    public void printLowerBridge(int step, List<String> answer, List<String> submitted) {
-        System.out.print(Brackets.START.getSymbol());
-        for (int loop = 0; loop < step ; loop++) {
-            String loopAnswer = answer.get(loop);
-            String loopSubmitted = submitted.get(loop);
+    public void printPath(String upOrDown,BridgeGame game) {
+        for (int loop = 0; loop < game.howFar; loop++) {
+            String loopAnswer = game.bridgeRoute.get(loop);
+            String loopSubmitted = game.myRoute.get(loop);
             isMiddle(loop);
-            isMatch(DOWN, loopSubmitted, loopAnswer);
-            isMismatch(DOWN, loopSubmitted, loopAnswer);
-            isBlank(UP, loopSubmitted);
+            isMatch(upOrDown, loopSubmitted, loopAnswer);
+            isMismatch(upOrDown, loopSubmitted, loopAnswer);
+            isBlank(upOrDown, loopSubmitted);
         }
-        System.out.println(Brackets.END.getSymbol());
     }
 
     public void printSuccessOrFail(BridgeGame game) {
         String SorF = "실퍠";
-        System.out.print(SUCCESS_RESULT_MESSAGE);
         if (game.isSuccess) {
             SorF = "성공";
         }
+        System.out.print(SUCCESS_RESULT_MESSAGE);
         System.out.println(SorF);
     }
 
@@ -105,7 +96,7 @@ public class OutputView {
     }
 
     public void isBlank(String upOrDown, String submitted) {
-        if (submitted.equals(upOrDown)) {
+        if (!submitted.equals(upOrDown)) {
             System.out.print(Brackets.BLANK.getSymbol());
         }
     }

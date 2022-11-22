@@ -31,7 +31,8 @@ public class BridgeGame {
     }
 
     public void wrongAnswer() {
-        howFar=step+1;
+        step++;
+        howFar=step;
         step = 0;
     }
     public void rightAnswer() {

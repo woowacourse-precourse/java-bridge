@@ -22,7 +22,7 @@ public class Application {
 
     public static void totalResult(BridgeGame game){
         OutputView output = new OutputView();
-        output.printResult(game.howFar,game.bridgeRoute, game.myRoute);
+        output.printResult(game);
         output.printSuccessOrFail(game);
         output.printTrialCount(game);
     }
@@ -33,7 +33,8 @@ public class Application {
         Boolean isSuccess;
         for (int loop = 0; loop < length; loop++) {
             isSuccess = game.move(new InputView().readMoving(), loop);
-            output.printMap(game.howFar, game.bridgeRoute, game.myRoute);
+//            output.printMap(game.howFar, game.bridgeRoute, game.myRoute);
+            output.printMap(game);
             if (!isSuccess) return false;
         }
         return true;
