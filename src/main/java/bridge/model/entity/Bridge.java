@@ -1,10 +1,5 @@
 package bridge.model.entity;
 
-import bridge.model.value.PlayerMessage;
-import bridge.util.BridgeMaker;
-import bridge.util.BridgeRandomNumberGenerator;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.model.value.PlayerMessage.DOWN;

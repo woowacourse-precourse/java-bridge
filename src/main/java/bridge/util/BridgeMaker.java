@@ -1,6 +1,6 @@
 package bridge.util;
 
-import bridge.model.entity.UpAndDown;
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

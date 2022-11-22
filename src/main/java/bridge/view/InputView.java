@@ -1,10 +1,9 @@
 package bridge.view;
 
-import bridge.model.entity.BridgeSize;
 import bridge.model.entity.Move;
 import bridge.model.entity.Retry;
 import bridge.util.BridgeMaker;
-import bridge.util.BridgeRandomNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
