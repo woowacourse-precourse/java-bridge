@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BridgeTest {
+class BridgeGameTest {
 
     @DisplayName("생성자를 통해 만든 Bridge가 잘 반환되는지 테스트")
     @Test
@@ -16,7 +16,7 @@ class BridgeTest {
         List<String> list = List.of("U", "U", "D");
 
         //when
-        Bridge bridge = new Bridge(list);
+        BridgeGame bridge = new BridgeGame(list);
 
         //then
         assertThat(bridge.getBridge()).isEqualTo(list);
@@ -26,11 +26,11 @@ class BridgeTest {
     @Test
     public void increaseLocationTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
         int increaseLocation = 1;
 
         //when
-        bridge.increaseLocation();
+        bridge.move();
 
         //then
         assertThat(bridge.getLocation()).isEqualTo(increaseLocation);
@@ -40,7 +40,7 @@ class BridgeTest {
     @Test
     public void getLocationTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
         int nowLocation = 0;
 
         //when
@@ -54,12 +54,12 @@ class BridgeTest {
     @Test
     public void initLocationTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
         int initialLocation = 0;
-        bridge.increaseLocation();
+        bridge.move();
 
         //when
-        bridge.initLocation();
+        bridge.retry();
 
         //then
         assertThat(bridge.getLocation()).isEqualTo(initialLocation);
@@ -69,7 +69,7 @@ class BridgeTest {
     @Test
     public void isPassTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
         String moveUp = "U";
         String moveDown = "D";
 
