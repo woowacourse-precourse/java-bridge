@@ -35,4 +35,11 @@ public class GamePlay {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         return new BridgeMaker(bridgeNumberGenerator);
     }
+
+    public void gamePlay(List<String> bridge, PlayerMap playerMap) {
+        ++tryCount;
+        boolean isWon = playTotalGame(bridge, playerMap);
+
+        printGameResult(isWon, playerMap);
+    }
 }
