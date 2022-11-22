@@ -11,10 +11,8 @@ public class OutputView {
     public static void printMap(StringBuilder upperRoad, StringBuilder lowerRoad) {
         StringBuilder upperRoadFormat = new StringBuilder();
         StringBuilder lowerRoadFormat = new StringBuilder();
-
         appendSeparator(upperRoad, lowerRoad, upperRoadFormat, lowerRoadFormat);
         addStartEndSign(upperRoadFormat, lowerRoadFormat);
-
         System.out.println(upperRoadFormat);
         System.out.println(lowerRoadFormat);
         System.out.println();
@@ -46,6 +44,10 @@ public class OutputView {
         System.out.println(FINAL_RESULT);
         printMap(upperRoad, lowerRoad);
         System.out.print(SUCCESS_OR_NOT);
+        printSuccessOrNot(isSuccess, round);
+    }
+
+    private static void printSuccessOrNot(boolean isSuccess, int round) {
         if (isSuccess) {
             System.out.println(SUCCESS);
             System.out.println(ATTEMPT_COUNT + round);
