@@ -41,9 +41,9 @@ public class Application{
 
         String reOrStop = "";                                       //게임 재시작 여부
 
-        while(true) {
+        List<String> yourBridge = bridgeMake.makeBridge(bridgeLength);
 
-            List<String> yourBridge = bridgeMake.makeBridge(bridgeLength);
+        while(true) {
 
             String yesOrNo = "";
             howManyGames += 1;
