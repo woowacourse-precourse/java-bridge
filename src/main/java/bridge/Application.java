@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -20,28 +21,28 @@ public class Application {
         System.out.println("strings = " + strings);
 
         while (true) {
+            List<String> posList = new ArrayList<>();
+
             count++;
             try {
                 for (int i = 0; i < bridgeSize; i++) {
                     System.out.println("이동할 칸을 선택해주세요.");
                     String movingPos = inputView.readMoving(); // s : U or D // 1,3,5 위치
-                    boolean equals = movingPos.charAt(0) == (strings.get(0).charAt(i * 2));
+                    posList.add(movingPos);
+
                     if (!(movingPos.charAt(0) == (strings.get(0).charAt(i * 2)))) {
                         throw new IllegalArgumentException();
                     }
-                    outputView.printMap();
+                    outputView.printMap(posList, true);
                 }
-                System.out.println("게임 성공 여부: 성공");
-                System.out.println("총 시도한 횟수: " + count);
+                outputView.printResult(true, posList, count);
                 return;
             } catch (IllegalArgumentException e) {
-                System.out.println("틀렸습니다.");
+                outputView.printMap(posList, false);
                 System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
                 String s = inputView.readGameCommand();
                 if (s.equals("Q")) {
-                    outputView.printMap();
-                    System.out.println("게임 성공 여부: 실패");
-                    System.out.println("총 시도한 횟수: " + count);
+                    outputView.printResult(false, posList, count);
                     return;
                 };
             }

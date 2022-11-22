@@ -12,15 +12,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         while (true) {
-            Integer bridgeSize = Integer.valueOf(Console.readLine());
-            System.out.println("입력받은 값 : " + bridgeSize);
             try {
+                Integer bridgeSize = Integer.valueOf(Console.readLine());
+                System.out.println("입력받은 값 : " + bridgeSize);
                 if (bridgeSize >= 3 && bridgeSize <= 20) {
                     return bridgeSize;
                 }
                 throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 올바른 다리 숫자가 아닙니다.");
+                System.out.println("[ERROR] 올바른 숫자가 아닙니다.");
             }
         }
     }
