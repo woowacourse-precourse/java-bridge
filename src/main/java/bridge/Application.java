@@ -20,5 +20,6 @@ public class Application {
         // 실패 시 재시작 여부 입력 받음-> InputView 클래스의 readGameCommand()
         // 종료 시 -> OutputView 클래스의 printResult() -> 종료
         // 재시작 시 -> BridgeGame 클래스의 retry()
+        GameTurn.BridgeGameStart();
     }
 }

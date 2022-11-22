@@ -8,6 +8,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final InputView inputView = new InputView();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -26,28 +27,28 @@ public class BridgeGame {
     }
 
 
-    public List<String> moveUp(List<String> bridge){
+    public List<String> moveUp(List<String> bridge, String status){
         List<String> result = new ArrayList<>();
         if(bridge.get(0).length()<=3){
-            result.add(bridge.get(0).substring(0, bridge.get(0).length()-1) + status + "]");
-            result.add(bridge.get(1).substring(0, bridge.get(1).length()-1) + " " + "]");
+            result.add(bridge.get(0).substring(0, bridge.get(0).length()-1) + status + " ]");
+            result.add(bridge.get(1).substring(0, bridge.get(1).length()-1) + " " + " ]");
         }
         if(bridge.get(0).length()>3){
-            result.add(bridge.get(0).substring(0, bridge.get(0).length()-1) + "|" + status + "]");
-            result.add(bridge.get(1).substring(0, bridge.get(1).length()-1) + "|" + " " + "]");
+            result.add(bridge.get(0).substring(0, bridge.get(0).length()-1) + "| " + status + " ]");
+            result.add(bridge.get(1).substring(0, bridge.get(1).length()-1) + "| " + " " + " ]");
         }
         return result;
     }
 
-    public List<String> moveDown(List<String> bridge){
+    public List<String> moveDown(List<String> bridge, String status){
         List<String> result = new ArrayList<>();
         if(bridge.get(1).length()<=3){
-            result.add(bridge.get(0).substring(0,bridge.get(0).length()-1) + " " + "]");
-            result.add(bridge.get(1).substring(0,bridge.get(1).length()-1) + status + "]");
+            result.add(bridge.get(0).substring(0,bridge.get(0).length()-1) + " " + " ]");
+            result.add(bridge.get(1).substring(0,bridge.get(1).length()-1) + status + " ]");
         }
         if(bridge.get(1).length()>3){
-            result.add(bridge.get(0).substring(0,bridge.get(0).length()-1) + "|" + " " + "]");
-            result.add(bridge.get(1).substring(0,bridge.get(1).length()-1) + "|" + status + "]");
+            result.add(bridge.get(0).substring(0,bridge.get(0).length()-1) + "| " + " " + " ]");
+            result.add(bridge.get(1).substring(0,bridge.get(1).length()-1) + "| " + status + " ]");
         }
         return result;
     }

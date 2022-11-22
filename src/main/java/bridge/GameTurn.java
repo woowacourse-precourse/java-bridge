@@ -22,7 +22,10 @@ public class GameTurn {
         //게임 시작
         outputView.printStart();
         try {
-
+            BridgeGameTurn();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -34,8 +37,31 @@ public class GameTurn {
         Cnt = 0;
         while(true){
             Cnt++;
-            if(!)
+            if(!GameRun(bridge, bridgeLength)) {
+                break;
+            }
         }
+        BridgeGameEnd(bridgeFrame, Cnt);
+    }
+
+    public static boolean GameRun(List<String> bridge, int length) {
+        bridgeFrame = new ArrayList<>(Arrays.asList("[ ]","[ ]"));
+        for(int i=0; i<length; i++) {
+            String status = getStatus(bridge, i);
+            if(status.equals("X")){
+                return bridgeGame.retry(inputView.readGameCommand());
+            }
+        }
+        return false;
+    }
+
+    public static String getStatus(List<String> bridge, int idx) {
+        String moving = inputView.readMoving();
+        ExceptionBridgeDirection(moving);
+        String status = BridgeGame.rightOrWrong(bridge, moving, idx);
+        bridgeFrame = bridgeGame.move(bridgeFrame,status,moving);
+        outputView.printMap(bridgeFrame);
+        return status;
     }
 
     public static int getBridgeLength(){
