@@ -7,13 +7,13 @@ public class Result {
     private List<ResultType> firstRow;
     private List<ResultType> secondRow;
     private ResultType lastResultType;
-    private int count;
+    private int tryCount;
 
-    Result() {
+    Result(int count) {
         firstRow = new ArrayList<ResultType>();
         secondRow = new ArrayList<ResultType>();
         lastResultType = ResultType.FAIL;
-        count = 0;
+        tryCount = count;
     }
 
     public void appendResult(ResultType resultType, Direction direction) {
@@ -26,7 +26,6 @@ public class Result {
             firstRow.add(ResultType.EMPTY);
             secondRow.add(resultType);
         }
-        count += 1;
     }
 
     public List<ResultType> getFirstRow() {
@@ -38,7 +37,7 @@ public class Result {
     }
 
     public int getCount() {
-        return count;
+        return tryCount + 1;
     }
 
     public ResultType getLastResultType() {
