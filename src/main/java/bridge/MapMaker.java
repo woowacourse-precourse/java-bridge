@@ -21,14 +21,10 @@ public class MapMaker {
     bottomLine = new ArrayList<>();
   }
 
-  public String makeMap(Bridge bridge, int index, String move) {
-    if (!bridge.canCross(move, index)) {
-      drawWay(move, MapOutputFormat.WRONG_WAY.getFormat());
-      return getBothLayer();
-    }
-    drawWay(move, MapOutputFormat.RIGHT_WAY.getFormat());
+  public String getMap() {
     return getBothLayer();
   }
+
 
   public String makeResultMap() {
     return getBothLayer();
