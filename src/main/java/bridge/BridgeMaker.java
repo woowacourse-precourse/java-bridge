@@ -22,12 +22,9 @@ public class BridgeMaker {
         List<String> bridges = new ArrayList<>();
         for(int i=0;i<size;i++){
             int num = bridgeNumberGenerator.generate();
-            if(num==1){
-                bridges.add("U");
-            }
-            if(num==0){
-                bridges.add("D");
-            }
+
+            if(num==1){ bridges.add("U"); }
+            if(num==0){ bridges.add("D"); }
         }
         return bridges;
     }
