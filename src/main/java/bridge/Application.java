@@ -1,8 +1,15 @@
 package bridge;
 
 public class Application {
+    static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        try{
+            bridgeGame = new BridgeGame();
+            bridgeGame.startGame();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e);;
+        }
     }
 }
