@@ -17,7 +17,9 @@ public class GameController {
                 break;
             }
             bridgeGame.move();
+            outputView.printMap(bridgeGame.bridgeMap.getBridgeMap());
         }
+        outputView.printMap(bridgeGame.bridgeMap.getBridgeMap());
     }
 
     private void ending() {
@@ -28,7 +30,7 @@ public class GameController {
         bridgeGame = new BridgeGame(inputView.readBridgeSize());
         while (true) {
             simulate();
-            if (inputView.readGameCommand() == "Q") {
+            if (inputView.readGameCommand().equals("Q")) {
                 break;
             }
             bridgeGame.retry();

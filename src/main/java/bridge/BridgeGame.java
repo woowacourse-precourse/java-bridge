@@ -26,7 +26,7 @@ public class BridgeGame {
 
     // Compare input direction and cursor direction
     public boolean canMove(String direction) {
-        if (bridge.get(cursor) == direction) {
+        if (bridge.get(cursor).equals(direction)) {
             move();
             bridgeMap.updateMap(direction, true);
             return true;
