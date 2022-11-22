@@ -63,8 +63,13 @@ public class BridgeMonitor {
 
     public void turnBackOnce() {
         int lastIndexOfLine = this.upperLine.length() - 1;
-        this.upperLine.delete(lastIndexOfLine - 5, lastIndexOfLine - 1);
-        this.lowerLine.delete(lastIndexOfLine - 5, lastIndexOfLine - 1);
-    }
 
+        if (lastIndexOfLine > 4) {
+            this.upperLine.delete(lastIndexOfLine - 5, lastIndexOfLine - 1);
+            this.lowerLine.delete(lastIndexOfLine - 5, lastIndexOfLine - 1);
+            return;
+        }
+        this.upperLine.delete(lastIndexOfLine - 3, lastIndexOfLine);
+        this.lowerLine.delete(lastIndexOfLine - 3, lastIndexOfLine);
+    }
 }

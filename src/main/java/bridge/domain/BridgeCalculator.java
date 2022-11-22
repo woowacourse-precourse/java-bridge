@@ -15,6 +15,11 @@ public class BridgeCalculator {
         this.location = 0;
     }
 
+    public boolean isCrossCompletely() {
+        int bridgeSize = this.bridge.size();
+        return bridgeSize == location;
+    }
+
     public GameStatus go(String moving){
         boolean isCorrectMoving = this.bridge.get(this.location).equals(moving);
         if(!isCorrectMoving){

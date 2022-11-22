@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.ErrorMessage;
 import bridge.constant.GameStatus;
 import bridge.controller.BridgeController;
 
@@ -89,7 +90,7 @@ public class BridgeGame {
             return;
         }
         throw new IllegalArgumentException(String.format(
-                "[ERROR] 위로 이동하려면 \"%s\", 아래로 이동하려면 \"%s\"를 입력하세요.", UPPER_SIDE, LOWER_SIDE
+                ErrorMessage.WRONG_MOVING.getValue(), UPPER_SIDE, LOWER_SIDE
         ));
     }
 
@@ -98,7 +99,7 @@ public class BridgeGame {
             return;
         }
         throw new IllegalArgumentException(String.format(
-                "[ERROR] 게임을 재시작하려면 \"%s\", 종료하려면 \"%s\"를 입력하세요.", RETRY, QUIT
+                ErrorMessage.WRONG_GAME_COMMAND.getValue(), RETRY, QUIT
         ));
     }
 }

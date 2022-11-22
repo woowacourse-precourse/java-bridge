@@ -1,5 +1,6 @@
 package bridge.ui;
 
+import bridge.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -19,7 +20,7 @@ public class InputView {
             System.out.println();
             return bridgeSize;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 3에서 20 사이의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_NUMBER.getValue());
         }
     }
 

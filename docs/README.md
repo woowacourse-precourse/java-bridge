@@ -45,7 +45,7 @@
 
 ### BridgeCalculate
 - [x] 이동 성공 여부 계산
-- [ ] 게임 성공 여부 계산
+- [x] 게임 성공 여부 계산
 
 ### BridgeMonitor
 - [x] 한턴의 이동 후 현황 기록
