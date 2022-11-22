@@ -45,9 +45,11 @@ public class BridgeGame {
         }
     }
 
-    public void moveUpDown(String bridge,String inputUpOrDown){
+    public String moveUpDown(String bridge,String inputUpOrDown){
         String correct = moveEqualBridge(bridge,inputUpOrDown);
         addSpacebar(inputUpOrDown,correct);
+
+        return correct;
     }
 
     /**
