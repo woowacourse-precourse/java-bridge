@@ -15,9 +15,9 @@ public class OutputView {
      */
     public void printMap(List<String> userList, List<String> targetBridge) {
         String up = makeUpBridge(userList, targetBridge).toString();
-        System.out.println(up.replace(", ","|"));
+        System.out.println(up.replace(", ", "|"));
         String Down = makeDownBridge(userList, targetBridge).toString();
-        System.out.println(Down.replace(", ","|"));
+        System.out.println(Down.replace(", ", "|"));
     }
 
     public List<String> makeUpBridge(List<String> userList, List<String> tb) {
