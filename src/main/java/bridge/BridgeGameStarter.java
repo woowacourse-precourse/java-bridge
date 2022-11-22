@@ -14,10 +14,11 @@ public class BridgeGameStarter {
     private String completeOrNot = "";
 
     public void BridgeGamePlay(){
+        int gameCount = 1;
         OutputView.printGameHasStarted();
         this.bridgeLength = InputView.readBridgeSize();
         this.bridgeInfo = BridgeMaker.makeBridge(bridgeLength);
-        this.completeOrNot = BridgeGame.move(bridgeInfo, bridgeLength);
-        OutputView.printResult();
+        this.completeOrNot = BridgeGame.move(bridgeInfo, bridgeLength, gameCount);
+        OutputView.printResult(completeOrNot, bridgeInfo, gameCount ,bridgeLength);
     }
 }
