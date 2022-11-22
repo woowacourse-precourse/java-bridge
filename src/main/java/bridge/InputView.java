@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge;
 
 // TODO 시그니처(인자, 이름)와 반환 타입은 변경 가능합니다
 //  메서드 추가도 가능합니다

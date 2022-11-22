@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 import bridge.domain.FootrestLocation;

@@ -2,12 +2,8 @@ package bridge;
 
 import bridge.domain.ActionAfterGameStatus;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
 import bridge.domain.FootrestLocation;
 import bridge.domain.GameResultCode;
-import bridge.utils.BridgeMaker;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 public class BridgeGameController {
     private static BridgeGameController instance;

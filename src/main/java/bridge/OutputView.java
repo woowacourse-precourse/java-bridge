@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge;
 
 //TODO 주의! 메서드의 이름은 변경할 수 없습니다
 // 인자와 반환 타입은 추가, 변경 가능합니다

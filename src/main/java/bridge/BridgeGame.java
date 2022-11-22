@@ -1,8 +1,14 @@
-package bridge.domain;
+package bridge;
 
 // TODO 주의! InputView OutputView를 사용하지 않습니다.
 //  `BridgeGame`의 메서드의 이름은 변경할 수 없습니다
 //  인자와 반환 타입은 추가, 변경 가능합니다.
+
+import bridge.domain.Bridge;
+import bridge.domain.FootPrint;
+import bridge.domain.FootrestLocation;
+import bridge.domain.GameResultCode;
+import bridge.domain.Result;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
