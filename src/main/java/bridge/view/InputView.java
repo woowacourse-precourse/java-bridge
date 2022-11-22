@@ -1,8 +1,7 @@
 package bridge.view;
 
-import bridge.constant.BridgeLengthRule;
-import bridge.constant.BridgePattern;
-import bridge.constant.Command;
+import bridge.model.constant.BridgePattern;
+import bridge.model.constant.Command;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

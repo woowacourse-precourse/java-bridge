@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.model.constant;
 
 public enum GameCondition {
     IN_PROGRESS("현재 진행 중", "O"),

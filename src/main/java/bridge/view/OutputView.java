@@ -1,9 +1,9 @@
 package bridge.view;
 
 import bridge.model.Progress;
-import bridge.constant.BridgePattern;
-import bridge.constant.Command;
-import bridge.constant.GameCondition;
+import bridge.model.constant.BridgePattern;
+import bridge.model.constant.Command;
+import bridge.model.constant.GameCondition;
 import bridge.model.BridgeGame;
 import java.util.List;
 

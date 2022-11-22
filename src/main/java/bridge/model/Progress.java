@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.constant.BridgePattern;
+import bridge.model.constant.BridgePattern;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;

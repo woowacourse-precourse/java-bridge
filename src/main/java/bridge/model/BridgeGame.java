@@ -1,7 +1,7 @@
 package bridge.model;
 
-import bridge.constant.BridgePattern;
-import bridge.constant.GameCondition;
+import bridge.model.constant.BridgePattern;
+import bridge.model.constant.GameCondition;
 import java.util.List;
 
 /**

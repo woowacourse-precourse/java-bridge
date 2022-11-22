@@ -1,7 +1,7 @@
 package bridge.utils;
 
-import bridge.constant.BridgeLengthRule;
-import bridge.constant.BridgePattern;
+import bridge.model.constant.BridgeLengthRule;
+import bridge.model.constant.BridgePattern;
 import java.util.ArrayList;
 import java.util.List;
 
