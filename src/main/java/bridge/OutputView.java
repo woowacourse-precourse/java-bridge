@@ -12,54 +12,45 @@ public class OutputView {
      */
 
     public void printMap(BridgeDTO bridgeDTO){
-        System.out.printf("%s","[ ");
+        System.out.printf("%s", MessageCase.LEFTBRACKET.getMessage() + " ");
         printBridge(bridgeDTO.getUpCase(), bridgeDTO.getLength());
-        System.out.printf("%s", "]\n");
-        System.out.printf("%s", "[ ");
+        System.out.printf("%s", MessageCase.RIGHTBRACKET.getMessage() + "\n");
+        System.out.printf("%s", MessageCase.LEFTBRACKET.getMessage() + " ");
         printBridge(bridgeDTO.getDownCase(), bridgeDTO.getLength());
-        System.out.printf("%s", "]\n\n");
+        System.out.printf("%s", MessageCase.RIGHTBRACKET.getMessage() + "\n\n");
     }
 
     public void printBridge(BridgeCase [] bridgeCase, int length){
         for(int i = 0; i < length; i++){
-//            if(bridgeCase[i] == 0){
-//                System.out.printf("%s", "  ");
-//            }
-//            if(bridgeCase[i] == 1){
-//                System.out.printf("%s", "O ");
-//            }
-//            if(bridgeCase[i] == 2){
-//                System.out.printf("%s", "X ");
-//            }
             System.out.printf("%s", bridgeCase[i] + " ");
             if(i < length - 1) {
-                System.out.printf("%s", "| ");
+                System.out.printf("%s", MessageCase.DIVISION.getMessage() + " ");
             }
         }
     }
     public void printStart(){
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println(MessageCase.START.getMessage() + "\n");
     }
     public void printAskBridgeLength() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(MessageCase.BRIDESIZE.getMessage());
     }
     public void printAskMovingButton(){
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(MessageCase.MOVE.getMessage());
     }
     public void printAskGameRestart(){
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(MessageCase.RESTART.getMessage());
     }
     public void printSuccessedResult(BridgeDTO bridgeDTO ){
-        System.out.println("최종 게임 결과");
+        System.out.println(MessageCase.RESULT.getMessage());
         printMap(bridgeDTO);
-        System.out.println("게임 성공 여부: 성공");
+        System.out.println(MessageCase.GAMESUCCESS.getMessage());
     }
     public void printFailedResult(BridgeDTO bridgeDTO){
-        System.out.println("최종 게임 결과");
+        System.out.println(MessageCase.RESULT.getMessage());
         printMap(bridgeDTO);
-        System.out.println("게임 성공 여부: 실패");
+        System.out.println(MessageCase.GAMEFAILED.getMessage());
     }
     public void printGameCount(int gameCount){
-        System.out.println("총 시도한 횟수: " + gameCount);
+        System.out.println(MessageCase.GAMETRY.getMessage() + gameCount);
     }
 }
