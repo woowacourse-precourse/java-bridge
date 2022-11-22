@@ -18,7 +18,11 @@ public class OutputViewFormatter {
     }
 
     private String resultFormat(final List<String> results) {
-        return "[ " + String.join(" | ", results) + " ]";
+        final String BRIDGE_PREFIX = "[ ";
+        final String BRIDGE_SUFFIX = " ]";
+        final String BRIDGE_DELIMITER = " | ";
+
+        return BRIDGE_PREFIX + String.join(BRIDGE_DELIMITER, results) + BRIDGE_SUFFIX;
     }
 
     String finalResultFormat(final BridgeGame bridgeGame) {

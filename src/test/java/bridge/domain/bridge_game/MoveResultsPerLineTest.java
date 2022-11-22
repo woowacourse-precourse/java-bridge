@@ -2,9 +2,9 @@ package bridge.domain.bridge_game;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
+import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.bridge_game.MoveResultsPerLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ class MoveResultsPerLineTest {
     @Test
     void addMoveResults() {
         MoveResultsPerLine upLineResults = new MoveResultsPerLine(MOVE_UP_COMMAND);
-        upLineResults.addMoveResults(MOVE_UP_COMMAND, "O");
+        upLineResults.addMoveResults(MOVE_UP_COMMAND, MOVE_SUCCESS);
 
         assertThat(upLineResults.results()).containsOnly("O");
     }
@@ -23,8 +23,8 @@ class MoveResultsPerLineTest {
     @Test
     void addBlank() {
         MoveResultsPerLine upLineResults = new MoveResultsPerLine(MOVE_UP_COMMAND);
-        upLineResults.addMoveResults(MOVE_DOWN_COMMAND, "O");
+        upLineResults.addMoveResults(MOVE_DOWN_COMMAND, MOVE_SUCCESS);
 
-        assertThat(upLineResults.results()).containsOnly(" ");
+        assertThat(upLineResults.results()).containsOnly(MoveResultsPerLine.BLANK);
     }
 }

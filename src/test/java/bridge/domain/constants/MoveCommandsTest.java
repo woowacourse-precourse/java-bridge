@@ -2,7 +2,6 @@ package bridge.domain.constants;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -67,9 +66,12 @@ class MoveCommandsTest {
 
 
     private static Stream<Arguments> provideArgumentsForOf() {
+        final String MOVE_UP_COMMAND_STRING = "U";
+        final String MOVE_DOWN_COMMAND_STRING = "D";
+
         return Stream.of(
-                Arguments.of("U", MoveCommands.MOVE_UP_COMMAND),
-                Arguments.of("D", MoveCommands.MOVE_DOWN_COMMAND)
+                Arguments.of(MOVE_UP_COMMAND_STRING, MoveCommands.MOVE_UP_COMMAND),
+                Arguments.of(MOVE_DOWN_COMMAND_STRING, MoveCommands.MOVE_DOWN_COMMAND)
         );
     }
 }
