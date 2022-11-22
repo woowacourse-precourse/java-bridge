@@ -2,6 +2,12 @@ package bridge.view;
 
 import static bridge.Moving.DOWN;
 import static bridge.Moving.UP;
+import static bridge.constant.BridgeSymbol.BRIDGE_DELIMITER;
+import static bridge.constant.BridgeSymbol.BRIDGE_END;
+import static bridge.constant.BridgeSymbol.BRIDGE_START;
+import static bridge.constant.BridgeSymbol.MOVING_EMPTY;
+import static bridge.constant.BridgeSymbol.MOVING_O;
+import static bridge.constant.BridgeSymbol.MOVING_X;
 
 import bridge.Moving;
 import java.util.ArrayList;
@@ -14,12 +20,6 @@ import java.util.Map;
  */
 public class OutputView {
 
-    public static final String BRIDGE_START = "[ ";
-    public static final String BRIDGE_END = " ]";
-    public static final String BRIDGE_DELIMITER = " | ";
-    public static final String MOVING_O = "O";
-    public static final String MOVING_X = "X";
-    public static final String MOVING_EMPTY = " ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
