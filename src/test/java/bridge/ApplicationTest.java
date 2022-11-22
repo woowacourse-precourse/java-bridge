@@ -84,8 +84,19 @@ class ApplicationTest extends NsTest {
 
         @AfterEach
         @DisplayName("초기화")
-        void initializeTest() {
+        void initialize() {
             player.initialize();
+        }
+
+        @Test
+        @DisplayName("초기화 테스트")
+        void initializeTest() {
+            player.saveLastChoice("U", false);
+            player.getGameHistory();
+            player.initialize();
+
+            assertThat(player.getGameHistory()).isEqualTo(new ArrayList<>());
+            assertThat(player.getPosition()).isEqualTo(-1);
         }
 
         @ParameterizedTest
