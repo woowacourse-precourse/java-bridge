@@ -21,23 +21,41 @@ public class OutputView {
     private final boolean succeed = true;
     private final boolean notSucceed = false;
 
+    /**
+     * 게임을 시작하는 메시지를 출력한다.
+     */
     public void printStartMessage() {
         System.out.println(InputMessage.START_MESSAGE.getMessage());
     }
 
+    /**
+     * 다리의 길이를 입력하기 위한 안내 메시지를 출력한다.
+     */
     public void printBridgeSizeInputMessage() {
         System.out.println();
         System.out.println(InputMessage.BRIDGE_SIZE_INPUT_MESSAGE.getMessage());
     }
 
+    /**
+     * 입력 중 발생한 오류를 출력한다.
+     * @param errorMessage
+     */
     public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 
+    /**
+     * 다리를 건널 때, 위쪽으로 건널지 아래쪽으로 건널지
+     * 선택하기 위한 안내 메시지를 출력한다.
+     */
     public void printChooseMovingInputMessage() {
         System.out.println(InputMessage.MOVE_DIRECTION_INPUT_MESSAGE.getMessage());
     }
 
+    /**
+     * 게임에 실패 했을 때, 재시도 여부를 입력하기 위한
+     * 안내 메시지를 출력한다.
+     */
     public void printRetryInputMessage() {
         System.out.println();
         System.out.println(InputMessage.RETRY_INPUT_MESSAGE.getMessage());
