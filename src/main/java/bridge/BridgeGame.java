@@ -46,4 +46,32 @@ public class BridgeGame {
         return (selectedPath.size() == bridge.size()
                 && checkCurrentStatus());
     }
+
+    public String generateMap() {
+        if (selectedPath.isEmpty()) {
+            return ("");
+        }
+        return (generateRow("U") + "\n" + generateRow("D"));
+    }
+
+    private String generateRow(String rowIdentifier) {
+        List<String> row = new ArrayList<>();
+        int size = selectedPath.size();
+        for (int i = 0; i < size; i++) {
+            row.add(chooseAppropriateOne(rowIdentifier, i));
+        }
+        return ("[ " + String.join(" | ", row) + " ]");
+    }
+
+    private String chooseAppropriateOne(String rowIdentifier, int index) {
+        String bridgeOne = bridge.get(index);
+        String selectedOne = selectedPath.get(index);
+        if (!selectedOne.equals(rowIdentifier)) {
+            return (" ");
+        }
+        if (!selectedOne.equals(bridgeOne)) {
+            return ("X");
+        }
+        return ("O");
+    }
 }
