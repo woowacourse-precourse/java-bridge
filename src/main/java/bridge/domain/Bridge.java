@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +16,15 @@ public class Bridge {
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
+    }
+
+    public Bridge(int size) {
+        validateSize(size);
+        this.bridge = make(size);
+    }
+
+    private List<String> make(int size) {
+        return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 
     public int getSize() {
