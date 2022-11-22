@@ -1,8 +1,8 @@
 # 미션 - 다리건너기
 ## 기능 흐름도
 
-<img src="C:\java-bridge\docs\2.jpg" width="800" height="700">
-<img src="C:\java-bridge\docs\1.jpg" width="800" height="800">
+<img src="https://github.com/cgk95/java-bridge/blob/b099d5d893ecc01e137c247b4c877dd0c34d0aa8/docs/2.jpg" width="800" height="700">
+<img src="https://github.com/cgk95/java-bridge/blob/b099d5d893ecc01e137c247b4c877dd0c34d0aa8/docs/1.jpg" width="800" height="800">
 
 ---
 ## 기능 요구 사항
