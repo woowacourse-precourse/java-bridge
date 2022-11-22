@@ -65,7 +65,7 @@ public class OutputView {
     private void printSide(List<String> side) {
         for (int index = FIRST_INDEX; index < side.size(); index++) {
             System.out.print(side.get(index));
-            if (index < lastIndex(side)) {
+            if (isSmallerIndex(side, index)) {
                 printDelimeter();
             }
         }
@@ -81,30 +81,6 @@ public class OutputView {
         if (isFail(bothSide)) {
             printFail();
         }
-    }
-
-    private int lastIndex(List<String> side) {
-        return (side.size() - 1);
-    }
-
-    private void printStartSquareBracket() {
-        System.out.print(PrintConstant.START_SQUARE_BRACKET.getConstant());
-    }
-
-    private void printDelimeter() {
-        System.out.print(PrintConstant.DELIMETER.getConstant());
-    }
-
-    private void printEndSquareBracket() {
-        System.out.println(PrintConstant.END_SQUARE_BRACKET.getConstant());
-    }
-
-    private boolean isWin(List<List<String>> bothSide) {
-        return !BridgeGameValidator.isContainsWrongPath(bothSide);
-    }
-
-    private boolean isFail(List<List<String>> bothSide) {
-        return BridgeGameValidator.isContainsWrongPath(bothSide);
     }
 
     private void printWin() {
@@ -123,6 +99,34 @@ public class OutputView {
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.print(View.BLANK.message());
         System.out.println(tryNumber);
+    }
+
+    private boolean isSmallerIndex(List<String> side, int index) {
+        return index < lastIndex(side);
+    }
+
+    private int lastIndex(List<String> side) {
+        return (side.size() - NumberConstant.ONE.getConstant());
+    }
+
+    private boolean isWin(List<List<String>> bothSide) {
+        return !BridgeGameValidator.isContainsWrongPath(bothSide);
+    }
+
+    private boolean isFail(List<List<String>> bothSide) {
+        return BridgeGameValidator.isContainsWrongPath(bothSide);
+    }
+
+    private void printStartSquareBracket() {
+        System.out.print(PrintConstant.START_SQUARE_BRACKET.getConstant());
+    }
+
+    private void printDelimeter() {
+        System.out.print(PrintConstant.DELIMETER.getConstant());
+    }
+
+    private void printEndSquareBracket() {
+        System.out.println(PrintConstant.END_SQUARE_BRACKET.getConstant());
     }
 
     private static void insertLineBreak() {
