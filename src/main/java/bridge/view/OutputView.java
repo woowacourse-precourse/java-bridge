@@ -2,6 +2,7 @@ package bridge.view;
 
 import static bridge.constant.BridgeMessage.GAME_START_MESSAGE;
 import static bridge.constant.BridgeMessage.MOVE_BRIDGE_MESSAGE;
+import static bridge.constant.BridgeMessage.RETRY_BRIDGE_GAME_MESSAGE;
 
 import bridge.domain.Result;
 
@@ -33,6 +34,10 @@ public class OutputView {
 
     public void printMoveDirectionSelectMessage() {
         System.out.println(MOVE_BRIDGE_MESSAGE);
+    }
+
+    public void printRetryGameMessage() {
+        System.out.println(RETRY_BRIDGE_GAME_MESSAGE);
     }
 
     public void printErrorMessage(String message) {
