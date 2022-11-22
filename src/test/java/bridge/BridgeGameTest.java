@@ -25,6 +25,12 @@ public class BridgeGameTest {
         BridgeGame.setBridge(bridge);
     }
 
+    @DisplayName("게임을 성공으로 끝냈는지에 대한 boolean 값을 리턴한다")
+    @Test
+    void isSuccessFinishTest(){
+        assertThat(bridgeGame.isSuccessFinish()).isEqualTo(false);
+    }
+
     @DisplayName("성공 여부에 대한 문자열을 리턴한다")
     @Test
     void resultToStringTest(){
