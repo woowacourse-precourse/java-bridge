@@ -1,6 +1,5 @@
-package model.bridge;
+package bridge;
 
-import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

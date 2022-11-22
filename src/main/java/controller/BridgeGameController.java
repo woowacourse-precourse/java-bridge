@@ -1,8 +1,8 @@
 package controller;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import model.bridge.Bridge;
-import model.bridge.BridgeMaker;
 import model.bridge.BridgeSize;
 import model.bridge.MoveMark;
 import model.command.GameCommand;
