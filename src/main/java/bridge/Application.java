@@ -48,13 +48,8 @@ public class Application {
     }
 
     static private void printDownBridge() {
-        List<String> downString = new ArrayList<>();
-        for(int i=0; i<visited.size(); i++){
-            boolean rightDirection = bridgeGame.isRightDirection(i, visited.get(i));
-            String result = bridgeGame.getResult(i,"D", rightDirection);
-            downString.add(result);
-        }
-        outputView.printMap(downString);
+        List<String> downBridge = bridgeGame.getDownBridge();
+        outputView.printMap(downBridge);
     }
 
     static private void printUpBridge() {
