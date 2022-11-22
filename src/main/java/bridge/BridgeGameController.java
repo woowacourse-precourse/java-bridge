@@ -11,6 +11,7 @@ public class BridgeGameController {
     private int gameCount;
     private BridgeGame bridgeGame;
     private List<String> answerBridge;
+
     public BridgeGameController() {
         answerBridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(new InputView().readBridgeSize());
         gameCount = 1;
@@ -22,6 +23,7 @@ public class BridgeGameController {
             move();
             checkGameStatus();
         }
+        new OutputView().printResult(bridgeGame.getStatus(), updatedBridge(), gameCount);
     }
 
     public void move() {
@@ -54,7 +56,7 @@ public class BridgeGameController {
 
         for (int idx = 0; idx < bridgeGame.getRoute().size(); idx++) {
             currentBridge.get(checkDirection(bridgeGame.getRoute().get(idx))).add(findAnswer(idx, bridgeGame.getRoute().get(idx)));
-            currentBridge.get(1-checkDirection(bridgeGame.getRoute().get(idx))).add(" ");
+            currentBridge.get(1 - checkDirection(bridgeGame.getRoute().get(idx))).add(" ");
         }
         return currentBridge;
     }
