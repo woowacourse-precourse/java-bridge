@@ -59,7 +59,7 @@ public class InputView {
     private static String retryInputGameCommand() {
         try {
             String command = Console.readLine();
-            Validator.validateGameCommand(command);
+            Validator.validateRetryGameCommand(command);
             return command;
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());

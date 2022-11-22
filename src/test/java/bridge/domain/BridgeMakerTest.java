@@ -9,10 +9,9 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.List;
 
-
 class BridgeMakerTest {
 
-    @DisplayName("다리 생성 시 U, D 값만 포함되어 있는지")
+    @DisplayName("다리 생성 시 U, D 값만 포함되어 있는지 확인한다.")
     @Test
     void createRandomBridge() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -22,14 +21,14 @@ class BridgeMakerTest {
         Assertions.assertThat(bridge).contains("U", "D");
     }
 
-    @DisplayName("다리 생성 시 U, D 이외의 값이 포함되어 있으면 예외처리를 하는정")
+    @DisplayName("다리 생성 시 U, D 이외의 값이 포함되어 있으면 에러가 발생한다.")
     @Test
     void checkRandomBridge() {
         Assertions.assertThatThrownBy(()-> Validator.validateMovingWord("H"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("숫자 생성기에서 0과 1의 숫자만 생성되는지")
+    @DisplayName("숫자 생성시 0과 1만 출력되는 지 확인한다.")
     @Test
     void checkNumberGenerateIncludeZeroAndOne() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -42,5 +41,4 @@ class BridgeMakerTest {
         }
         Assertions.assertThat(randomNumber).contains(0,1);
     }
-
 }

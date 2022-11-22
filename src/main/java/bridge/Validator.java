@@ -23,7 +23,7 @@ public class Validator {
         }
     }
 
-    public static void validateGameCommand(String command) {
+    public static void validateRetryGameCommand(String command) {
         if (!command.equals("R") && !command.equals("Q")) {
             throw new IllegalArgumentException(RETRY_COMMAND_INPUT);
         }
