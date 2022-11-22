@@ -57,5 +57,9 @@ public class BridgeGame {
         return false;
     }
 
+    public int getNumberOfTrials() {
+        return records.size();
+    }
+
     }
 }
