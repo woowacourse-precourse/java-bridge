@@ -51,6 +51,16 @@ public class BridgeGame {
         }
         return moveHistory;
     }
+    public String returnResultValue(int i) {
+        if (userInput.get(i).equals(bridge.get(i))) {
+            return userInput.get(i);
+        }
+        if (!userInput.get(i).equals(bridge.get(i)) && userInput.get(i).equals("U")) {
+            return "UF";
+        }
+        return "DF";
+    }
+
     public boolean isMoveFinish() {
         if (userInput.size() == 0)
             return false;
