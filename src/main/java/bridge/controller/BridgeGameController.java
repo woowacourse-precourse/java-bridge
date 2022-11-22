@@ -21,11 +21,10 @@ public class BridgeGameController {
 
     public void startNewGame() {
         output.printStartMessage();
-        int size;
         while (true) {
             try {
                 System.out.println("다리의 길이를 입력해주세요.");
-                size = input.readBridgeSize();
+                int size = input.readBridgeSize();
                 this.bridge = new Bridge(size);
                 this.game = new BridgeGame(bridge);
             } catch (IllegalArgumentException e) {
@@ -47,10 +46,17 @@ public class BridgeGameController {
     }
 
     public void movePosition() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String direction = input.readMoving();
-        game.move(direction);
-        output.printMap(bridge);
+        while (true) {
+            try {
+                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                String direction = input.readMoving();
+                game.move(direction);
+                output.printMap(bridge);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void retryOrEndGame() {

@@ -16,7 +16,7 @@ public class InputView {
 
     public String readMoving() {
         String direction =Console.readLine();
-        // TODO: U 또는 D가 아닌 입력이 들어왔을 때의 예외 처리
+        InputValidator.checkMovingDirection(direction);
         return direction;
     }
 
