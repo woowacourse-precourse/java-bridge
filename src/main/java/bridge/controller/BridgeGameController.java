@@ -15,15 +15,7 @@ public class BridgeGameController {
 
     public BridgeGameController() {
         initiate();
-    }
-
-    public void gameStart() {
-        int count = 0;
-        do {
-            count++;
-        } while (Bridgemove(bridges, bridgeGame));
-        OutputView.printResult(bridgeGame, bridgeGame.gameSuccessMessage(), count);
-
+        gameStart();
     }
 
     private void initiate() {
@@ -32,12 +24,21 @@ public class BridgeGameController {
         bridgeGame = new BridgeGame();
     }
 
-    public Boolean Bridgemove(List<String> bridges, BridgeGame bridgeGame) {
+    private void gameStart() {
+        int count = 0;
+        do {
+            count++;
+        } while (Bridgemove(bridges, bridgeGame));
+        OutputView.printResult(bridgeGame, bridgeGame.gameSuccessMessage(), count);
+
+    }
+
+    private Boolean Bridgemove(List<String> bridges, BridgeGame bridgeGame) {
         for (String bridge : bridges) {
-            bridgeGame.move(new MoveBox(InputView.readMoving()).getMovebox(), bridge);
+            bridgeGame.move(InputController.getUserMoveBox(), bridge);
             OutputView.printMap(bridgeGame.upline(), bridgeGame.downline());
             if (bridgeGame.failCheck()) {
-                return bridgeGame.retry(new RestartStatus(InputView.readGameCommand()).getRestart());
+                return bridgeGame.retry(InputController.getRestartStatus());
             }
         }
         return false;
