@@ -9,10 +9,9 @@ import java.util.List;
 public class BridgeMaker {
 
     private static final int ZERO = 0;
-    private static final String INVALID_SIZE_ERROR = "3에서 20사이의 수를 입력해주세요.";
-
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String INVALID_SIZE_ERROR = "3에서 20사이의 수를 입력해주세요.";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
