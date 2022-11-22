@@ -6,7 +6,7 @@ public class InputExceptionHandle {
         try {
             int temp = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputException.COMMAND_LENGTH_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(InputException.NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 
