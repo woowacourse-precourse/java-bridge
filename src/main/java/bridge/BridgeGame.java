@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private int moveCount = 0;
-    private boolean isCorrect = true;
+    public int moveCount = 0;
+    public boolean isCorrect = true;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -17,9 +17,7 @@ public class BridgeGame {
      */
     public void move(String moving, List<String> bridge) {
         isCorrect = moving.equals(bridge.get(moveCount));
-        if (isCorrect) {
-            moveCount++;
-        }
+        moveCount++;
     }
 
     /**
