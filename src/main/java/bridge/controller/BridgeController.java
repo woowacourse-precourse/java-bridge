@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
-    InputView inputView = new InputView();
-    BridgeGame bridgeGame = new BridgeGame();
-    OutputView outputView = new OutputView();
-    String success = "실패";
+    private InputView inputView = new InputView();
+    private BridgeGame bridgeGame = new BridgeGame();
+    private OutputView outputView = new OutputView();
+    private String success = "실패";
     private List<String> bridge = new ArrayList<>();
 
     public void run() {
