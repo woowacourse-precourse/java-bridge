@@ -23,7 +23,7 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             //0이면 건널 수 있는 칸을 아래 칸('D')으로, 1이면 위 칸('U')으로 설정한다.
             int randomNumber = bridgeNumberGenerator.generate();
-            bridge.add(Path.getPath(randomNumber));
+            bridge.add(Path.getPathAlphabet(randomNumber));
         }
 
         return bridge;

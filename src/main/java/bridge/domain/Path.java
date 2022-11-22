@@ -12,7 +12,7 @@ public enum Path {
 		this.correspondingNumber = randomNumber;
 	}
 
-	public static String getPath(int randomNumber) {
+	public static String getPathAlphabet(int randomNumber) {
 		return valueOf(randomNumber).name();
 	}
 
