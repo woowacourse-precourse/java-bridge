@@ -37,7 +37,7 @@ public class OutputView {
         System.out.println("]");
     }
 
-    public List<String> designBridgeMap(List<String> bridgeAnswer, List<String> currentResult, boolean userChoice, int stage) {
+    public void designBridgeMap(List<String> bridgeAnswer, List<String> currentResult, boolean userChoice, int stage) {
         BridgeGame bridgeGame = new BridgeGame();
         if (userChoice) {
             currentResult = bridgeGame.printMapCorrect(bridgeAnswer, currentResult, stage);
@@ -45,7 +45,7 @@ public class OutputView {
         if (!userChoice) {
             currentResult = bridgeGame.printMapWrong(bridgeAnswer, currentResult, stage);
         }
-        return currentResult;
+        printMap(currentResult);
     }
 
 
