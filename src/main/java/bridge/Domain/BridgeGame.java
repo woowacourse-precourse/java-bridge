@@ -1,6 +1,7 @@
 package bridge.Domain;
 
-import java.util.ArrayList;
+import bridge.BridgeMaker;
+
 import java.util.List;
 
 import static org.assertj.core.util.Lists.newArrayList;

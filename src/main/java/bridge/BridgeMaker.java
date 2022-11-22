@@ -1,6 +1,4 @@
-package bridge.Domain;
-
-import camp.nextstep.edu.missionutils.Randoms;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
