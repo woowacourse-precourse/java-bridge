@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.util.validator.BridgeNumberValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,17 +40,11 @@ public class BridgeMaker {
     }
 
     public void addMovableSpace(List<String> bridge, int bridgeNumber) {
-        validateBridgeNumber(bridgeNumber);
+        BridgeNumberValidator.validate(bridgeNumber);
         if (bridgeNumber == UPPER_BRIDGE_NUMBER.getValue()) {
             bridge.add(UPPER_SPACE.getValue());
             return;
         }
         bridge.add(LOWER_SPACE.getValue());
-    }
-
-    public void validateBridgeNumber(int bridgeNumber) {
-        if (bridgeNumber < LOWER_BRIDGE_NUMBER.getValue() || UPPER_BRIDGE_NUMBER.getValue() < bridgeNumber) {
-            throw new IllegalStateException(BRIDGE_NUMBER_ERROR.getMessage());
-        }
     }
 }
