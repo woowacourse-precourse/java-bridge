@@ -6,7 +6,6 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class Game {
-
     static int size;
     static BridgeGame bridgeGame;
 

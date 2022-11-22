@@ -23,6 +23,7 @@ public class BridgeGame {
         }
         return (printMove(result,false));
     }
+
     private static StringBuilder printMove(List<String> result, boolean thisturn) {
         upResult = new StringBuilder("[");
         downResult = new StringBuilder("[");
@@ -32,6 +33,7 @@ public class BridgeGame {
         downResult.append("]");
         return new StringBuilder((upResult + "\n" + downResult));
     }
+
     private static void prePrint() {
         for (int index=0; index<result.size()-1; index++) {
             if (result.get(index).equals("U")) {
@@ -44,6 +46,7 @@ public class BridgeGame {
             downResult.append("|");
         }
     }
+
     private static void nowPrint(boolean thisturn) {
         if (thisturn) {
             nowTrue();
@@ -52,23 +55,27 @@ public class BridgeGame {
             nowFalse();
         }
     }
+
     private static void upTrue() {
         upResult.append(" O ");
         downResult.append("   ");
-
     }
+
     private static void upFalse() {
         upResult.append(" X ");
         downResult.append("   ");
     }
+
     private static void downTrue() {
         upResult.append("   ");
         downResult.append(" O ");
     }
+
     private static void downFalse() {
         upResult.append("   ");
         downResult.append(" X ");
     }
+
     private static void nowTrue() {
         if (result.get(result.size()-1).equals("U")) {
             upTrue();
@@ -77,6 +84,7 @@ public class BridgeGame {
             downTrue();
         }
     }
+
     private static void nowFalse() {
         if (result.get(result.size()-1).equals("U")) {
             upFalse();
@@ -85,6 +93,7 @@ public class BridgeGame {
             downFalse();
         }
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
