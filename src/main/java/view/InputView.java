@@ -50,14 +50,11 @@ public class InputView {
     public String readGameCommand() {
         do {
             System.out.printf((SELECT_REGAME_OR_QUIT) + "%n", REGAME, QUIT);
-            String gameCommand = Console.readLine();
             try {
-                validation.validGameCommand(gameCommand);
+                return validation.validGameCommand(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
-            return gameCommand;
         } while (true);
     }
 }
