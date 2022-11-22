@@ -19,6 +19,7 @@ public class BridgeMaker{
     }
 
     public String changeGenerateNumUpDown(int generateNum){
+
         if(generateNum == 1){
             return "U";
         }if(generateNum == 0){
