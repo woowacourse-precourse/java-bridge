@@ -3,7 +3,7 @@ package bridge.service;
 import static bridge.rule.AnswerChecker.convert;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
 import bridge.dto.BridgeResponseDto;
