@@ -75,10 +75,10 @@ public class OutputView {
     }
 
     public void printSuccess() {
-        System.out.println(GAME_SUCCESS_MESSAGE);
+        System.out.println(GAME_SUCCESS_MESSAGE.getMessage());
     }
 
     public void printFail() {
-        System.out.println(GAME_FAIL_MESSAGE);
+        System.out.println(GAME_FAIL_MESSAGE.getMessage());
     }
 }
