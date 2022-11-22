@@ -2,7 +2,7 @@ package bridge.service;
 
 import static bridge.domain.ResultMessageStatus.*;
 import static bridge.domain.ResultStatus.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
