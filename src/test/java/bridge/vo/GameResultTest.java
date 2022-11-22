@@ -28,7 +28,6 @@ class GameResultTest {
                     new StepResult(Step.D, true),
                     new StepResult(Step.U, true)
             ), new TryCountDto());
-
             //when && then
             assertFalse(gameResult.isFinishedFrom(getBridge()));
         }
@@ -42,7 +41,6 @@ class GameResultTest {
                     new StepResult(Step.U, true),
                     new StepResult(Step.D, false)
             ), new TryCountDto());
-
             //when && then
             assertFalse(gameResult.isFinishedFrom(getBridge()));
         }
@@ -56,7 +54,6 @@ class GameResultTest {
                     new StepResult(Step.U, true),
                     new StepResult(Step.D, true)
             ), new TryCountDto());
-
             //when && then
             assertTrue(gameResult.isFinishedFrom(getBridge()));
         }

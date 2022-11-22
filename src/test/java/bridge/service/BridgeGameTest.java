@@ -34,7 +34,6 @@ class BridgeGameTest {
             //given
             List<Step> steps = Step.from(List.of(UP, DOWN, UP, UP, DOWN));
             Iterator<Step> bridgeIter = getBridgeIter(steps);
-
             //when
             for (Step step : steps) {
                 assertTrue(bridgeGame.move(step, bridgeIter.next()).isCorrect());
@@ -47,8 +46,7 @@ class BridgeGameTest {
             //given
             List<Step> steps = Step.from(List.of(DOWN, UP, UP, DOWN));
             Iterator<Step> bridgeIter = getBridgeIter(steps);
-
-            //when.isCorrect()
+            //when && then
             assertTrue(bridgeGame.move(Step.D, bridgeIter.next()).isCorrect());
             assertTrue(bridgeGame.move(Step.U, bridgeIter.next()).isCorrect());
             assertFalse(bridgeGame.move(Step.D, bridgeIter.next()).isCorrect());
@@ -68,7 +66,6 @@ class BridgeGameTest {
                     .as("생성했을 때 기본값은 0").isEqualTo("0");
             //when
             bridgeGame.retry(tryCount);
-
             //then
             assertThat(tryCount.toString())
                     .as("매서드를 호출 후에는 카운트가 1 올라간다.").isEqualTo("1");

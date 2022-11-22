@@ -29,7 +29,6 @@ class BridgeMessageMakerTest {
                     new StepResult(Step.U, true),
                     new StepResult(Step.U, false)
             ));
-
             //then
             Assertions.assertThat(resultMessage)
                     .isEqualTo("[   | O | X ]" + System.lineSeparator() + "[ O |   |   ]");
@@ -44,7 +43,6 @@ class BridgeMessageMakerTest {
                     new StepResult(Step.U, true),
                     new StepResult(Step.U, false)
             ));
-
             //then
             Assertions.assertThat(resultMessage)
                     .isEqualTo("[ O | O | X ]" + System.lineSeparator() + "[   |   |   ]");
@@ -59,7 +57,6 @@ class BridgeMessageMakerTest {
                     new StepResult(Step.D, false),
                     new StepResult(Step.D, true)
             ));
-
             //then
             Assertions.assertThat(resultMessage)
                     .isEqualTo("[ O |   |   ]" + System.lineSeparator() + "[   | X | O ]");

@@ -53,7 +53,6 @@ class CommandTest {
         void givenRCommand_whenCallingIsRetrying_thenReturnsTrue() {
             //given
             Command command = Command.R;
-
             //when && then
             assertTrue(command.isRetrying());
         }

@@ -40,7 +40,6 @@ class BridgeServiceTest {
         void givenBridgeSize_whenMakingBridge_thenReturnsBridge(int bridgeSize) {
             //when
             Bridge bridge = bridgeService.makeBridge(bridgeSize);
-
             //then
             assertThat(bridge.size()).isEqualTo(bridgeSize);
         }
@@ -55,7 +54,6 @@ class BridgeServiceTest {
             //given
             List<Step> steps = Step.from(List.of(UP, DOWN, UP, UP, DOWN));
             Iterator<Step> bridgeIter = getBridgeIter(steps);
-
             //when
             for (Step step : steps) {
                 assertTrue(bridgeService.move(step, bridgeIter.next()).isCorrect());
@@ -68,8 +66,7 @@ class BridgeServiceTest {
             //given
             List<Step> steps = Step.from(List.of(DOWN, UP, UP, DOWN));
             Iterator<Step> bridgeIter = getBridgeIter(steps);
-
-            //when.isCorrect()
+            //when & then
             assertTrue(bridgeService.move(Step.D, bridgeIter.next()).isCorrect());
             assertTrue(bridgeService.move(Step.U, bridgeIter.next()).isCorrect());
             assertFalse(bridgeService.move(Step.D, bridgeIter.next()).isCorrect());
@@ -89,7 +86,6 @@ class BridgeServiceTest {
                     .as("생성했을 때 기본값은 0").isEqualTo("0");
             //when
             bridgeService.retry(tryCount);
-
             //then
             assertThat(tryCount.toString())
                     .as("매서드를 호출 후에는 카운트가 1 올라간다.").isEqualTo("1");

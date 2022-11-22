@@ -24,20 +24,26 @@ public class BridgeMessageMaker {
         return makeResult(upBridgeBuilder, downBridgeBuilder);
     }
 
-    private void makeBridgeMap(List<StepResult> results, StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder) {
+    private void makeBridgeMap(List<StepResult> results,
+                               StringBuilder upBridgeBuilder,
+                               StringBuilder downBridgeBuilder) {
         makeStartOfBridge(upBridgeBuilder, downBridgeBuilder);
         makeStepsOfBridge(results, upBridgeBuilder, downBridgeBuilder);
         makeEndOfBridge(upBridgeBuilder, downBridgeBuilder);
     }
 
-    private void makeStepsOfBridge(List<StepResult> results, StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder) {
+    private void makeStepsOfBridge(List<StepResult> results,
+                                   StringBuilder upBridgeBuilder,
+                                   StringBuilder downBridgeBuilder) {
         Iterator<StepResult> iterator = results.iterator();
         while (iterator.hasNext()) {
             makeEachStepOfBridge(upBridgeBuilder, downBridgeBuilder, iterator);
         }
     }
 
-    private void makeEachStepOfBridge(StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder, Iterator<StepResult> iterator) {
+    private void makeEachStepOfBridge(StringBuilder upBridgeBuilder,
+                                      StringBuilder downBridgeBuilder,
+                                      Iterator<StepResult> iterator) {
         StepResult result = iterator.next();
         if (result.isCorrect()) {
             handleCorrect(upBridgeBuilder, downBridgeBuilder, result.getBridgeStep());

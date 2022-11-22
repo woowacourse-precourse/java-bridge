@@ -61,10 +61,8 @@ class StepTest {
         void givenUAndDs_whenRunningFrom_thenReturnsSteps() {
             //given
             List<String> given = List.of("U", "D", "U", "D");
-
             //when
             List<Step> steps = Step.from(given);
-
             //then
             assertThat(steps).containsExactly(Step.U, Step.D, Step.U, Step.D);
         }
@@ -74,7 +72,6 @@ class StepTest {
         void givenNotUNorD_whenRunningFrom_thenThrowsException() {
             //given
             List<String> given = List.of("U", "D", "R", "D");
-
             //when && then
             assertThatThrownBy(() -> Step.from(given))
                     .isInstanceOf(IllegalArgumentException.class)

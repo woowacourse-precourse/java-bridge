@@ -34,10 +34,8 @@ class BridgeMakerTest {
             //given
             int bridgeSize = 4;
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
             //when
             List<String> target = bridgeMaker.makeBridge(bridgeSize);
-
             //then
             assertThat(target).hasSize(bridgeSize);
         }
@@ -47,10 +45,8 @@ class BridgeMakerTest {
         void whenBridgeSize_whenMakingBridge_thenMakesBridgeHavingOnlyUAndD() {
             //given
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
             //when
             List<String> target = bridgeMaker.makeBridge(10);
-
             //then
             assertThat(target).containsOnly(UP, DOWN);
         }
@@ -60,10 +56,8 @@ class BridgeMakerTest {
         void givenBridgeNumbers_whenMakingBridge_thenMakesBridgeHavingMatchingUpperCase() {
             //given
             BridgeMaker bridgeMaker = getMockBridgeMaker(List.of(0, 1, 0, 0, 1, 1, 1, 0));
-
             //when
             List<String> target = bridgeMaker.makeBridge(8);
-
             //then
             assertThat(target).containsExactly(DOWN, UP, DOWN, DOWN, UP, UP, UP, DOWN);
         }

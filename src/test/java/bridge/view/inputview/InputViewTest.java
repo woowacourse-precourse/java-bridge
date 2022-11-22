@@ -32,7 +32,6 @@ class InputViewTest {
         void whenReadingBridgeSize_thenReturnsBridgeSizeInput(String input) {
             //given
             InputView inputView = new MockInputView(List.of(input));
-
             //when && then
             assertThat(inputView.readBridgeSize())
                     .isEqualTo(Integer.valueOf(input));
@@ -44,7 +43,6 @@ class InputViewTest {
         void givenInputNotNumber_whenReadingBridgeSize_thenThrowsException(String input) {
             //given
             InputView inputView = new MockInputView(List.of(input));
-
             //when && then
             assertThatThrownBy(inputView::readBridgeSize)
                     .isInstanceOf(IllegalArgumentException.class)
@@ -57,7 +55,6 @@ class InputViewTest {
         void givenInputInvalidRange_whenReadingBridgeSize_thenThrowsException(String input) {
             //given
             InputView inputView = new MockInputView(List.of(input));
-
             //when && then
             assertThatThrownBy(inputView::readBridgeSize)
                     .isInstanceOf(IllegalArgumentException.class)
@@ -73,10 +70,8 @@ class InputViewTest {
         void whenReadingMoving_thenReturnsMovingPoint() {
             //given
             InputView inputView = new MockInputView(List.of(UP));
-
             //when
             String target = inputView.readMoving();
-
             //then
             assertThat(target).isEqualTo(UP);
         }
@@ -87,7 +82,6 @@ class InputViewTest {
         void givenNotUNorD_whenReadingMoving_thenReturnsMovingPoint(String input) {
             //given
             InputView inputView = new MockInputView(List.of(input));
-
             //when && then
             assertThatThrownBy(inputView::readMoving)
                     .isInstanceOf(IllegalArgumentException.class)
@@ -103,7 +97,6 @@ class InputViewTest {
         void givenROrQ_whenReadingGameCommand_thenReturnsCommand() {
             //given
             InputView inputView = new MockInputView(List.of(RETRY, QUIT));
-
             //when
             assertThat(inputView.readGameCommand()).isEqualTo(RETRY);
             assertThat(inputView.readGameCommand()).isEqualTo(QUIT);
@@ -115,7 +108,6 @@ class InputViewTest {
         void givenNotRNorQ_whenReadingGameCommand_thenThrowsException(String input) {
             //given
             InputView inputView = new MockInputView(List.of(input));
-
             //when
             assertThatThrownBy(inputView::readGameCommand)
                     .isInstanceOf(IllegalArgumentException.class)

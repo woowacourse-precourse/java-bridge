@@ -41,7 +41,6 @@ class OutputViewTest {
         void whenPrintingGameStartingMessage_thenPrintsGameStartingMessage() {
             //when
             outputView.printGameStartMessage();
-
             //then
             assertThat(captor.toString())
                     .isEqualTo(OutputView.GAME_STARTING_MESSAGE);
@@ -56,7 +55,6 @@ class OutputViewTest {
         void whenAskingBridgeSizeMessage_thenPrintsMessage() {
             //when
             outputView.printAskingBridgeSizeMessage();
-
             //then
             assertThat(captor.toString())
                     .isEqualTo(OutputView.ASKING_BRIDGE_SIZE_MESSAGE);
@@ -71,7 +69,6 @@ class OutputViewTest {
         void whenAskingNextStep_thenPrintsMessage() {
             //when
             outputView.printAskingNextStepMessage();
-
             //then
             assertThat(captor.toString())
                     .isEqualTo(OutputView.ASKING_NEXT_STEP_MESSAGE);
@@ -90,7 +87,6 @@ class OutputViewTest {
                     new StepResult(Step.U, true),
                     new StepResult(Step.U, false)
             ));
-
             //then
             assertThat(captor.toString())
                     .isEqualTo(String.format("[   | O | X ]%n" + "[ O |   |   ]%n"));
@@ -105,7 +101,6 @@ class OutputViewTest {
         void whenAskingGameCommandMessage_thenPrintsMessage() {
             //when
             outputView.printAskingGameCommandMessage();
-
             //then
             assertThat(captor.toString())
                     .isEqualTo(OutputView.ASKING_GAME_COMMAND_MESSAGE);
@@ -120,10 +115,8 @@ class OutputViewTest {
         void givenGameResult_whenPrintingResult_thenPrintsMessage() {
             //given
             GameResult gameResult = getGameResult();
-
             //when
             outputView.printResult(gameResult, false);
-
             //then
             assertThat(captor.toString())
                     .contains("최종 게임 결과", "[ O |   | X ]", "[   | O |   ]");
@@ -135,10 +128,8 @@ class OutputViewTest {
         void givenGameResult_whenPrintingResult_thenPrintsGamePassingMessage(boolean isFinished, String message) {
             //given
             GameResult gameResult = getGameResult();
-
             //when
             outputView.printResult(gameResult, isFinished);
-
             //then
             assertThat(captor.toString()).contains(message);
         }
@@ -148,10 +139,8 @@ class OutputViewTest {
         void givenGameResult_whenPrintingResult_thenPrintsGamePassingMessage() {
             //given
             GameResult gameResult = getGameResult();
-
             //when
             outputView.printResult(gameResult, true);
-
             //then
             assertThat(captor.toString())
                     .contains(String.format(OutputView.TRY_COUNT_MESSAGE_FORMAT, 2));
@@ -166,7 +155,6 @@ class OutputViewTest {
             TryCountDto tryCount = new TryCountDto();
             tryCount.addCount();
             tryCount.addCount();
-
             return new GameResult(stepResults, tryCount);
         }
     }
@@ -187,10 +175,8 @@ class OutputViewTest {
             //given
             String exceptionMessage = "테스트 예외입니다.";
             IllegalArgumentException exception = new IllegalArgumentException(exceptionMessage);
-
             //when
             outputView.printErrorMessage(exception);
-
             //then
             assertThat(captor.toString())
                     .isEqualTo(String.format(OutputView.ERROR_MESSAGE_FORMAT, exceptionMessage));

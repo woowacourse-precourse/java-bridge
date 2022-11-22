@@ -34,10 +34,8 @@ class InputViewProxyTest {
         void givenProxyAndInvalidInput_whenRunningMethod_thenPrintsErrorMessage() {
             //given
             InputViewInterface proxy = MockObjectMaker.makeMockProxyInputView(List.of("R", "U"));
-
             //when
             proxy.readMoving();
-
             //then
             assertThat(captor.toString())
                     .isEqualTo(String.format(OutputView.ERROR_MESSAGE_FORMAT,
@@ -50,7 +48,6 @@ class InputViewProxyTest {
             //given
             InputViewInterface proxy
                     = MockObjectMaker.makeMockProxyInputView(List.of("40", "1", "R", "1.5", "-5", "8"));
-
             //when && then
             assertThat(proxy.readBridgeSize()).isEqualTo(8);
         }

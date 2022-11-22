@@ -26,9 +26,8 @@ class BridgeControllerTest {
         void givenBridge_whenDoingGame_thenReturnsGameResult() {
             //given
             BridgeController bridgeController = MockObjectMaker.makeMockBridgeController(List.of(UP, DOWN, UP, UP));
-            Bridge bridge = new Bridge(Step.from(List.of(UP, DOWN, UP, UP)));
             //when
-            GameResult gameResult = bridgeController.doGame(bridge);
+            GameResult gameResult = bridgeController.doGame(new Bridge(Step.from(List.of(UP, DOWN, UP, UP))));
             //then
             assertThat(gameResult.getStepResults())
                     .containsExactly(
@@ -42,9 +41,8 @@ class BridgeControllerTest {
         void givenWrongInput_whenDoingGame_thenRepeatsAndReturnsGameResult() {
             //given
             BridgeController bridgeController = MockObjectMaker.makeMockBridgeController(List.of(UP, "ㅆ", DOWN, UP));
-            Bridge bridge = new Bridge(Step.from(List.of(UP, DOWN, UP)));
             //when
-            GameResult gameResult = bridgeController.doGame(bridge);
+            GameResult gameResult = bridgeController.doGame(new Bridge(Step.from(List.of(UP, DOWN, UP))));
             //then
             assertThat(gameResult.getStepResults())
                     .containsExactly(
@@ -62,10 +60,8 @@ class BridgeControllerTest {
         void givenInput_whenMakingBridge_thenReturnsBridgeOfInputSize() {
             //given
             BridgeController bridgeController = MockObjectMaker.makeMockBridgeController(List.of("5"));
-
             //when
             Bridge bridge = bridgeController.makeBridge();
-
             //then
             assertThat(bridge.size()).isEqualTo(5);
         }
@@ -75,10 +71,8 @@ class BridgeControllerTest {
         void givenWrongInput_whenMakingBridge_thenRepeatsAndReturnsBridgeOfInputSize() {
             //given
             BridgeController bridgeController = MockObjectMaker.makeMockBridgeController(List.of("2", "R", "S", "6"));
-
             //when
             Bridge bridge = bridgeController.makeBridge();
-
             //then
             assertThat(bridge.size()).isEqualTo(6);
         }

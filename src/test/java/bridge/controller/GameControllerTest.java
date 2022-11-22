@@ -36,10 +36,8 @@ class GameControllerTest {
             //given
             GameController gameController
                     = MockObjectMaker.makeMockGameController(List.of(0, 1, 0, 1), List.of("4", "D", "U", "D", "U"));
-
             //when
             gameController.doGame();
-
             //then
             assertOutputInGivenInputsWhenDoingGameThenPrintsMessage();
         }
@@ -50,10 +48,8 @@ class GameControllerTest {
             //given
             GameController gameController
                     = MockObjectMaker.makeMockGameController(List.of(0, 1, 0), List.of("3", "D", "O", "U", "D"));
-
             //when
             gameController.doGame();
-
             //then
             assertOutputInGivenInvalidInputsWhenDoingGameThenPrintsMessageAndInputAgain();
         }
@@ -64,10 +60,8 @@ class GameControllerTest {
             //given
             GameController gameController
                     = MockObjectMaker.makeMockGameController(List.of(1, 1, 0), List.of("3", "D", "R", "D", "Q"));
-
             //when
             gameController.doGame();
-
             //then
             assertOutputInGivenQuitingInputsWhenDoingGameThenPrintsMessage();
 
