@@ -1,23 +1,102 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    public static final String REPLAY_KEY = "R";
+    public static final String UPPER_SELECT = "U";
+    public static final String LOWER_SELECT = "D";
+
+    private static final String THIRD_BLANK = "   ";
+    private static final String POSSIBILITY = " O ";
+    private static final String IMPOSSIBILITY = " X ";
+
+    private int gameCount = 1;
+    private boolean gameSuccess = true;
+
+
+    private final List<String> bridgeRoad;
+    private final List<String> upperMove = new ArrayList<>();
+    private final List<String> lowerMove = new ArrayList<>();
+
+    public BridgeGame(List<String> bridgeRoad) {
+        this.bridgeRoad = bridgeRoad;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public boolean move(String move) {
+        boolean isCheck = true;
+
+        if (move.equals(UPPER_SELECT))
+            isCheck = isCheckUpperMove();
+
+        if (move.equals(LOWER_SELECT))
+            isCheck = isCheckLowerMove();
+
+        return isCheck;
     }
+
+    public boolean isCheckUpperMove() {
+        int size = upperMove.size();
+        lowerMove.add(THIRD_BLANK);
+
+        if (bridgeRoad.get(size).equals(UPPER_SELECT)) {
+            upperMove.add(POSSIBILITY);
+            return true;
+        }
+        upperMove.add(IMPOSSIBILITY);
+        return false;
+    }
+
+    public boolean isCheckLowerMove() {
+        int size = lowerMove.size();
+        upperMove.add(THIRD_BLANK);
+
+        if (bridgeRoad.get(size).equals(LOWER_SELECT)) {
+            lowerMove.add(POSSIBILITY);
+            return true;
+        }
+        lowerMove.add(IMPOSSIBILITY);
+        return false;
+    }
+
+    public boolean retry(String progress) {
+        if (progress.equals(REPLAY_KEY)) {
+            gameCount++;
+            upperMove.clear();
+            lowerMove.clear();
+            return true;
+        }
+        gameSuccess = false;
+        return false;
+    }
+
+    public boolean isCheckGame() {
+        return upperMove.size() == bridgeRoad.size();
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
+
+    public boolean isGameSuccess() {
+        return gameSuccess;
+    }
+
+    public List<String> getUpperMove() {
+        return upperMove;
+    }
+
+    public List<String> getLowerMove() {
+        return lowerMove;
+    }
+
+    public List<String> getBridgeRoad() {
+        return bridgeRoad;
+    }
+
 }
