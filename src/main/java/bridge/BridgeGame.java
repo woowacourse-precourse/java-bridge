@@ -11,8 +11,7 @@ public class BridgeGame {
     Boolean isSuccess = false;
 
     public BridgeGame(List<String> bridge) {
-        // 인덱스 에러 문제때문에 임의로 맨 뒤에 하나 더넣
-        bridge.add(bridge.get(bridge.size()-1));
+        bridge.add(" ");
         this.bridge = bridge;
     }
 
@@ -25,15 +24,15 @@ public class BridgeGame {
     }
 
     public void move(String moving) {
-        if (canMove() && isCorrect(moving)) {
-            System.out.println("can move and is correct");
-            isCorrect = true;
+        if (!isCorrect(moving)) {
+            System.out.println("can move and is not correct");
+            isCorrect = false;
             bridgeIndex++;
             return;
         }
-        if (canMove() && !isCorrect(moving)) {
-            System.out.println("can move and is not correct");
-            isCorrect = false;
+        if (canMove() && isCorrect(moving)) {
+            System.out.println("can move and is correct");
+            isCorrect = true;
             bridgeIndex++;
             return;
         }
