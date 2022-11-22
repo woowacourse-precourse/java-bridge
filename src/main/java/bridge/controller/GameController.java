@@ -23,16 +23,20 @@ public class GameController {
         }
     }
     public void crossBridge(List<String> bridge) {
+        bridgeGame.turnOffFlag();
         for(int currentIndex = 0; currentIndex < bridge.size(); currentIndex++) {
-            String result = bridgeGame.move(bridge.get(currentIndex), setDirection(inputView.readMoving()));
-            outputView.printMap(bridgeGame.userBridge());
-            if(result.equals("X")) {
+            if(makeResult(bridge, currentIndex).equals("X")) {
                 askRestartOrEnd();
                 return;
             }
         }
         outputView.printResult(bridgeGame.userBridge(), false, bridgeGame.userRetryCount() + "");
-        bridgeGame.turnOffFlag();
+    }
+
+    public String makeResult(List<String> bridge, int currentIndex) {
+        String result = bridgeGame.move(bridge.get(currentIndex), setDirection(inputView.readMoving()));
+        outputView.printMap(bridgeGame.userBridge());
+        return result;
     }
     public void askRestartOrEnd() {
         List<String> userResult = bridgeGame.calculateRestartOrEnd(setRetryOrQuit(inputView.readGameCommand()));
