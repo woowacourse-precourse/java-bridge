@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.domain.BridgeDirection;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -26,7 +27,7 @@ public class Map {
     }
 
     public List<List<String>> getMap() {
-        return map;
+        return Collections.unmodifiableList(map);
     }
 
     public void drawMap(int moveDirectionNumber, boolean canMove) {

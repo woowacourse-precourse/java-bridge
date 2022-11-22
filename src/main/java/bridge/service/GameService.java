@@ -4,6 +4,7 @@ import bridge.constant.GameConstant;
 import bridge.domain.User;
 import bridge.domain.Map;
 
+import java.util.Collections;
 import java.util.List;
 
 public class GameService {
@@ -36,7 +37,7 @@ public class GameService {
     }
 
     public List<List<String>> getMap(){
-        return map.getMap();
+        return Collections.unmodifiableList(map.getMap());
     }
 
     public boolean canKeepGoingGame() {
