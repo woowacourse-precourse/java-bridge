@@ -1,12 +1,12 @@
 package bridge.domain;
 
-public enum MovingResult {
+public enum MoveResult {
     SUCCESS("O"),
     FAIL("X");
 
     private final String message;
 
-    MovingResult(String message) {
+    MoveResult(String message) {
         this.message = message;
     }
 

@@ -13,7 +13,7 @@ public class BridgeGameAnswer {
     private static final int BRIDGE_LOWER_BOUND = 3;
     private static final int BRIDGE_UPPER_BOUND = 20;
 
-    private final Map<Round, Direction> answer;
+    private final Map<Round, Move> answer;
 
     public BridgeGameAnswer(List<String> bridge) {
         validate(bridge);
@@ -28,29 +28,29 @@ public class BridgeGameAnswer {
         }
     }
 
-    private Map<Round, Direction> convertAnswer(List<String> bridge) {
+    private Map<Round, Move> convertAnswer(List<String> bridge) {
         return convertMap(Round.getRoundsOrderByOrderAsc(), convertDirections(bridge));
     }
 
-    private Map<Round, Direction> convertMap(List<Round> rounds, List<Direction> directions) {
-        return IntStream.range(0, directions.size())
+    private Map<Round, Move> convertMap(List<Round> rounds, List<Move> moves) {
+        return IntStream.range(0, moves.size())
                 .boxed()
-                .collect(toMap(rounds::get, directions::get));
+                .collect(toMap(rounds::get, moves::get));
     }
 
-    private List<Direction> convertDirections(List<String> bridge) {
+    private List<Move> convertDirections(List<String> bridge) {
         return bridge.stream()
-                .map(Direction::of)
+                .map(Move::of)
                 .collect(toList());
     }
 
     // == public 메서드 ==
-    public MovingResult check(Round round, Direction direction) {
+    public MoveResult check(Round round, Move move) {
         validate(round);
-        if (answer.get(round).equals(direction)) {
-            return MovingResult.SUCCESS;
+        if (answer.get(round).equals(move)) {
+            return MoveResult.SUCCESS;
         }
-        return MovingResult.FAIL;
+        return MoveResult.FAIL;
     }
 
     private void validate(Round round) {

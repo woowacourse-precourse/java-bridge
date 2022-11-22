@@ -28,10 +28,10 @@
 ### BridgeMaker
 - makeBridge: BridgeNumberGenerator를 이용한 구현 
 
-### Direction
-- 위 아래 방향 Enum 클래스
+### Move
+- 위 아래 움직임 Enum 클래스
 - number(1, 0), initial(U, D)
-  - getInitialByDirectionNumber(int directionNumber)
+  - getCommandByBridgeNumber(int directionNumber)
 
 ### Player
 - 사용자 클래스 
@@ -48,7 +48,7 @@
 - nextRound: 다음 라운드로 이동
 - reset: 라운드에 MovingResult Fail 시에 reset
 
-### MovingResult
+### MoveResult
 - 사용자 이동에 따른 결과를 담는 클래스
 - 사용자 이동의 결과가 Fail 여부 리턴 메서드
 

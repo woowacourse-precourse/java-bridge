@@ -18,13 +18,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MovingResult move(Round round, Direction direction) {
-        MovingResult result = gameAnswer.check(round, direction);
+    public MoveResult move(Round round, Move move) {
+        MoveResult result = gameAnswer.check(round, move);
         checkGameQuit(round, result);
         return result;
     }
 
-    private void checkGameQuit(Round round, MovingResult result) {
+    private void checkGameQuit(Round round, MoveResult result) {
         if (gameAnswer.isLastRound(round) || result.isFail()) {
             gameStatus = BridgeGameStatus.QUIT;
         }

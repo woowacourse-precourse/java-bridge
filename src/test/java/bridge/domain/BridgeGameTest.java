@@ -14,16 +14,16 @@ class BridgeGameTest {
     @Test
     @DisplayName("[정상] 매 라운드와 방향을 입력, 정답일 경우 MovingResult.SUCCESS 반환한다.")
     void move_when_success() {
-        MovingResult result = bridgeGame.move(Round.valueOf(1), Direction.UP);
+        MoveResult result = bridgeGame.move(Round.valueOf(1), Move.UP);
 
-        assertThat(result).isEqualTo(MovingResult.SUCCESS);
+        assertThat(result).isEqualTo(MoveResult.SUCCESS);
     }
 
     @Test
     @DisplayName("[정상] 매 라운드와 방향을 입력, 오답일 경우 MovingResult.FAIL 반환한다.")
     void move_when_fail() {
-        MovingResult result = bridgeGame.move(Round.valueOf(1), Direction.DOWN);
+        MoveResult result = bridgeGame.move(Round.valueOf(1), Move.DOWN);
 
-        assertThat(result).isEqualTo(MovingResult.FAIL);
+        assertThat(result).isEqualTo(MoveResult.FAIL);
     }
 }

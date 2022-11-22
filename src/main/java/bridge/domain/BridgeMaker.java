@@ -22,7 +22,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return Stream.generate(bridgeNumberGenerator::generate)
                 .limit(size)
-                .map(Direction::getInitialByBridgeNumber)
+                .map(Move::getCommandByBridgeNumber)
                 .collect(Collectors.toList());
     }
 }

@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import bridge.common.ErrorMessage;
 import java.util.List;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,7 +36,7 @@ class BridgeGameAnswerTest {
     }
 
     private void assertCheckException(BridgeGameAnswer bridgeGameAnswer, int number) {
-        assertThatThrownBy(() -> bridgeGameAnswer.check(Round.valueOf(number), Direction.UP))
+        assertThatThrownBy(() -> bridgeGameAnswer.check(Round.valueOf(number), Move.UP))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.isInvalidRoundRange());
     }
@@ -49,8 +47,8 @@ class BridgeGameAnswerTest {
         List<String> bridge = List.of("U", "D", "U");
         BridgeGameAnswer gameAnswer = new BridgeGameAnswer(bridge);
 
-        MovingResult result = gameAnswer.check(Round.valueOf(1), Direction.UP);
-        assertThat(result).isEqualTo(MovingResult.SUCCESS);
+        MoveResult result = gameAnswer.check(Round.valueOf(1), Move.UP);
+        assertThat(result).isEqualTo(MoveResult.SUCCESS);
     }
 
     @Test
@@ -59,8 +57,8 @@ class BridgeGameAnswerTest {
         List<String> bridge = List.of("U", "D", "U");
         BridgeGameAnswer gameAnswer = new BridgeGameAnswer(bridge);
 
-        MovingResult result = gameAnswer.check(Round.valueOf(1), Direction.DOWN);
-        assertThat(result).isEqualTo(MovingResult.FAIL);
+        MoveResult result = gameAnswer.check(Round.valueOf(1), Move.DOWN);
+        assertThat(result).isEqualTo(MoveResult.FAIL);
     }
 
     @Test

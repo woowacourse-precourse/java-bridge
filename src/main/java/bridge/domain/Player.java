@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.List;
+
 public class Player {
     private static final int FIRST_GAME_COUNT = 1;
 
@@ -13,9 +15,9 @@ public class Player {
         this.gamePlayCount = FIRST_GAME_COUNT;
     }
 
-    public void move(BridgeGame bridgeGame, Direction direction) {
-        MovingResult result = bridgeGame.move(round, direction);
-        bridgeGameResult.addResult(round, result, direction);
+    public void move(BridgeGame bridgeGame, Move move) {
+        MoveResult result = bridgeGame.move(round, move);
+        bridgeGameResult.addResult(round, result, move);
         this.round = round.nextRound();
     }
 
