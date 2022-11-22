@@ -3,6 +3,8 @@ package bridge.view;
 import bridge.Progress;
 import bridge.constant.BridgePattern;
 import bridge.constant.Command;
+import bridge.constant.GameCondition;
+import bridge.model.BridgeGame;
 import java.util.List;
 
 /**
@@ -13,7 +15,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    private void printEmptyLine() {
+    public void printEmptyLine() {
         printMsg("");
     }
 
@@ -24,11 +26,11 @@ public class OutputView {
     }
 
     public void printException(String text) {
-        printMsg("[ERROR]" + text);
+        printMsg("[ERROR] " + text);
     }
 
     public void printSelectMsg() {
-        printEmptyLine();
+        //printEmptyLine();
         printMsg("이동할 칸을 선택해주세요. (" + BridgePattern.MOVE_UP.getDetail() + ": " + BridgePattern.MOVE_UP.getMove() + ", " +
                 BridgePattern.MOVE_DOWN.getDetail() + ": " + BridgePattern.MOVE_DOWN.getMove() + ")");
     }
@@ -49,6 +51,7 @@ public class OutputView {
         for (List<String> stage : progress.getProgress().values()) {
             printMsg(String.format("[ %s ]", String.join(" | ", stage)));
         }
+        printEmptyLine();
     }
 
     /**
@@ -56,6 +59,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame, GameCondition gameCondition) {
+        printEmptyLine();
+        printMsg("최종 게임 결과");
+        printMap(bridgeGame.exportProgress());
+        printMsg("게임 성공 여부");
     }
 }
+

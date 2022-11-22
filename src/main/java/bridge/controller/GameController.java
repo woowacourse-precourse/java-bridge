@@ -17,16 +17,18 @@ public class GameController {
 
     public void run() {
         try {
-            outputView.startMsg();
             List<String> bridge = generateBridge();
+            outputView.printEmptyLine();
             BridgeGame bridgeGame = new BridgeGame(bridge, new Progress(bridge.size()));
             GameCondition gameCondition = startGame(bridgeGame);
+            outputView.printResult(bridgeGame, gameCondition);
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception.getMessage());
         }
     }
 
     public List<String> generateBridge() {
+        outputView.startMsg();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
