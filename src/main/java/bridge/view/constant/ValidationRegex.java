@@ -3,8 +3,8 @@ package bridge.view.constant;
 public enum ValidationRegex {
     EMPTY_VALUE("^$"),
     NUMBER("^[0-9]+$"),
-    VALID_PANEL("^[UD]+$"),
-    VALID_RETRY_OPTION("^[RQ]+$");
+    VALID_PANEL("^[" + MoveOptions.UP.get() + MoveOptions.DOWN.get() + "]+$"),
+    VALID_RETRY_OPTION("^[" + RetryOptions.RETRY.get() + RetryOptions.QUIT.get() + "]+$");
 
     private final String regex;
 
