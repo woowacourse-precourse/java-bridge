@@ -82,10 +82,10 @@ public class OutputView {
     }
 
     public void printSuccessOrFail(BridgeGame bridgeGame) {
-        if (bridgeGame.getIsCorrect()){
+        if (bridgeGame.isSuccess){
             System.out.println(NEW_LINE.getMessage() + String.format(SUCCESS_OR_FAIL.getMessage(), SUCCESS.getMessage()));
         }
-        if (!bridgeGame.getIsCorrect()) {
+        if (!bridgeGame.isSuccess) {
             System.out.println(NEW_LINE.getMessage() + String.format(SUCCESS_OR_FAIL.getMessage(), FAIL.getMessage()));
         }
     }
