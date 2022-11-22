@@ -17,7 +17,7 @@ public class BridgePrintMaker {
         downStringJoiner.add(Move.getFilterBridgeMove(userSelectMove, Direction.DOWN, stepDirection));
     }
 
-    public List<String> getBridgePrint() {
-        return List.of(upStringJoiner.toString(), downStringJoiner.toString());
+    public String getBridgePrint() {
+        return upStringJoiner.toString() + "\n" + downStringJoiner.toString();
     }
 }
