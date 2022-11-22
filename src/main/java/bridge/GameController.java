@@ -56,21 +56,29 @@ public class GameController {
         }
         return "";
     }
-    public void all_print(){
+
+    public void all_print() {
         outputView().printMap();
         count++;
         total_print();
     }
 
-    public void start(){
+    public boolean moveCheck(String position) {
+        if (BridgeGame().move(position, Bridge(), count).equals("call")) {
+            if (retrycheck().equals("continue")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void start() {
         while (BridgeGame.game_status.equals("playing") && Bridge().size() != count) {
             String position = inputView().readMoving();
-            if (BridgeGame().move(position, Bridge(), count).equals("call")) {
-                if (retrycheck().equals("continue")) {
-                    continue;
-                }
-            }
+            if (!moveCheck(position)) continue;
             all_print();
         }
     }
 }
+
+
