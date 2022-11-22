@@ -13,8 +13,6 @@ public class BridgeMaker {
     public static final int FIRST_BLOCK = 0;
     public static final int MIN_SIZE = 3;
     public static final int MAX_SIZE = 20;
-    public static final String DOWN = "D";
-    public static final String UP = "U";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -49,9 +47,9 @@ public class BridgeMaker {
 
     private String generateBlock(int generatedNumber) {
         if (isDownCommand(generatedNumber)) {
-            return DOWN;
+            return Moving.DOWN.getDirection();
         }
-        return UP;
+        return Moving.UP.getDirection();
     }
 
     private boolean isDownCommand(int generatedNumber) {

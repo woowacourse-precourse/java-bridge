@@ -38,4 +38,8 @@ public enum Moving {
     public boolean isSameCommand(int command) {
         return this.command == command;
     }
+
+    public String getDirection() {
+        return direction;
+    }
 }
