@@ -19,15 +19,10 @@ class InputViewTest {
 
     @Test
     void 다리길이_입력_재입력_테스트() {
-        String input1 = "100";
-        String input2 = "five";
-        String input3 = "10";
-        InputStream in1 = new ByteArrayInputStream(input1.getBytes());
-        InputStream in2 = new ByteArrayInputStream(input2.getBytes());
-        InputStream in3 = new ByteArrayInputStream(input3.getBytes());
-        System.setIn(in1);
-        System.setIn(in2);
-        System.setIn(in3);
+        String[] input = {"100", "five", "10"};
+        for (int i = 0; i < input.length; i++) {
+            System.setIn(new ByteArrayInputStream(input[i].getBytes()));
+        }
         int size = new InputView().readBridgeSize();
         assertThat(size).isEqualTo(10);
     }
@@ -43,15 +38,10 @@ class InputViewTest {
 
     @Test
     void 이동할칸_입력_재입력_테스트() {
-        String input1 = "d";
-        String input2 = "2";
-        String input3 = "D";
-        InputStream in1 = new ByteArrayInputStream(input1.getBytes());
-        InputStream in2 = new ByteArrayInputStream(input2.getBytes());
-        InputStream in3 = new ByteArrayInputStream(input3.getBytes());
-        System.setIn(in1);
-        System.setIn(in2);
-        System.setIn(in3);
+        String input[] = {"d", "2", "D"};
+        for (int i = 0; i < input.length; i++) {
+            System.setIn(new ByteArrayInputStream(input[i].getBytes()));
+        }
         String moving = new InputView().readMoving();
         assertThat(moving).isEqualTo("D");
     }
@@ -67,15 +57,10 @@ class InputViewTest {
 
     @Test
     void 재시도여부_입력_재입력_테스트() {
-        String input1 = "q";
-        String input2 = "no";
-        String input3 = "Q";
-        InputStream in1 = new ByteArrayInputStream(input1.getBytes());
-        InputStream in2 = new ByteArrayInputStream(input2.getBytes());
-        InputStream in3 = new ByteArrayInputStream(input3.getBytes());
-        System.setIn(in1);
-        System.setIn(in2);
-        System.setIn(in3);
+        String input[] = {"q", "no", "Q"};
+        for (int i = 0; i < input.length; i++) {
+            System.setIn(new ByteArrayInputStream(input[i].getBytes()));
+        }
         String gameCommand = new InputView().readGameCommand();
         assertThat(gameCommand).isEqualTo("Q");
     }
