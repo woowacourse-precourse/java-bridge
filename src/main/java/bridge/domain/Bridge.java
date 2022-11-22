@@ -17,7 +17,7 @@ public class Bridge {
         return stages.get(round).choose(direction);
     }
 
-    public int getStages() {
+    public int getNumberOfStage() {
         return stages.size();
     }
 }
