@@ -109,6 +109,23 @@ class ApplicationTest extends NsTest {
 		assertThat(false).isEqualTo(bridgeGame.retry("Q"));
 	}
 
+	@Test
+	void move_U_기능_테스트() {
+		assertRandomNumberInRangeTest(() -> {
+			run("3", "U", "U", "U");
+			assertThat(output()).contains(
+				"최종 게임 결과",
+				"[ O | O | O ]",
+				"[   |   |   ]",
+				"게임 성공 여부: 성공",
+				"총 시도한 횟수: 1"
+			);
+			int upSideIndex = output().indexOf("[ O ]");
+			int downSideIndex = output().indexOf("[   ]");
+			assertThat(upSideIndex).isLessThan(downSideIndex);
+		}, 1, 1, 1);
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
