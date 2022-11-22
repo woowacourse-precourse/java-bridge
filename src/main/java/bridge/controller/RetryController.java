@@ -8,7 +8,7 @@ public class RetryController extends Controller {
         super();
     }
 
-    public boolean askGameRetryAndQuit() {
+    public boolean askToRetryAndQuitAfterReturnIsRetry() {
         return this.inputView.readGameCommand();
     }
 
@@ -30,5 +30,4 @@ public class RetryController extends Controller {
 
         return Lang.get(Lang.GAME_IS_FAIL);
     }
-
 }

@@ -58,7 +58,7 @@ public class InputView {
                 response
         );
 
-        return response.equals(Env.CODE_OF_QUIT);
+        return response.equals(Env.CODE_OF_RETRY);
     }
 
     private String getGameCommandResponse() {
