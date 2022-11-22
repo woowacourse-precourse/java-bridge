@@ -15,6 +15,6 @@ public class BridgeGameController {
     }
 
     public void run() {
-
+        outputView.printGameStartMessage();
     }
 }

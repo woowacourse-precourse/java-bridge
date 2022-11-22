@@ -57,3 +57,6 @@
 
 ### BridgeGameResult
 - 라운드 별 게임 결과를 추가하여 게임결과 클래스 
+
+### OutputView
+- 게임 시작 메시지 출력
