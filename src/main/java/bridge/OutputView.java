@@ -7,6 +7,8 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    static String upBridge="[";
+    static String downBridge="[";
     public void printStartString(){
         System.out.println("다리 건너기 게임을 시작합니다.\n" +
                 "\n" +
@@ -21,35 +23,50 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, String correctOrFailsign) {
-        String upBridge="[";
-        String downBridge="[";
-        for (int i = 0; i < correctOrFailsign.length(); i++) {
-            if(correctOrFailsign.substring(i, i+1).equals("O")){
-                if(bridge.get(i).equals("U")){
-                    upBridge+=" O ";
-                    downBridge+="   ";
-                }else{
-                    upBridge+="   ";
-                    downBridge+=" O ";
-                }
-            }else{
-                if(bridge.get(i).equals("U")){
-                    upBridge+="   ";
-                    downBridge+=" X ";
-                }else{
-                    upBridge+=" X ";
-                    downBridge+="   ";
-                }
-            }
-            if(i!=correctOrFailsign.length()-1){
-                upBridge+="|";
-                downBridge+="|";
-            }
-        }
-        upBridge+="]";
-        downBridge+="]";
+        makeMap(bridge, correctOrFailsign);
         System.out.println(upBridge);
         System.out.println(downBridge);
+        upBridge="[";
+        downBridge="[";
+    }
+    public void makeMap(List<String> bridge, String correctOrFailsign){
+        for (int i = 0; i < correctOrFailsign.length(); i++) {
+            if(correctOrFailsign.substring(i, i+1).equals("O")){
+                printIfSucces(bridge.get(i));
+            }else{
+                printIfFail(bridge.get(i));
+            }
+            printPartition(i, correctOrFailsign.length()-1);
+        }
+        printLast();
+    }
+    public void printPartition(int i, int size) {
+        if(i!=size){
+            upBridge+="|";
+            downBridge+="|";
+        }
+    }
+    public void printLast(){
+        upBridge+="]";
+        downBridge+="]";
+    }
+    public void printIfSucces(String upordown){
+        if(upordown.equals("U")){
+            upBridge+=" O ";
+            downBridge+="   ";
+        }else{
+            upBridge+="   ";
+            downBridge+=" O ";
+        }
+    }
+    public void printIfFail(String upordown){
+        if(upordown.equals("U")){
+            upBridge+="   ";
+            downBridge+=" X ";
+        }else{
+            upBridge+=" X ";
+            downBridge+="   ";
+        }
     }
     public void printReOrStart(){
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
