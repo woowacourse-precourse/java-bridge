@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameRoundTest extends NsTest {
 
-    GameRound gameRound = new GameRound(new InputView(), new OutputView(), new Bridge(Arrays.asList("U", "D", "U", "D")));
+    GameRound gameRound = new GameRound(new Bridge(Arrays.asList("U", "D", "U", "D")));
 
     @DisplayName("첫번째 값이 U랑 동일한지 테스트")
     @Test

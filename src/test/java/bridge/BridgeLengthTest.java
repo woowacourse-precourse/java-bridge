@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeLengthTest extends NsTest {
 
-    BridgeLength bridgeLength = new BridgeLength(new InputView());
+    BridgeLength bridgeLength = new BridgeLength();
 
     @DisplayName("다리 길이 정상 입력 테스트")
     @Test

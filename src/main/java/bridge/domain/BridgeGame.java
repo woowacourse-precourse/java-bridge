@@ -3,9 +3,7 @@ package bridge.domain;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.service.validator.BridgeGameEnd;
 import bridge.service.validator.BridgeLength;
-import bridge.service.validator.BridgeMaker;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.BridgeMaker;
 
 public class BridgeGame {
 
@@ -46,7 +44,7 @@ public class BridgeGame {
         }
     }
 
-    private boolean move(boolean isWin) {
+    public boolean move(boolean isWin) {
         if (!isWin)
             return false;
 

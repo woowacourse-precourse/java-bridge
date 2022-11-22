@@ -1,4 +1,4 @@
-package bridge.service.validator;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 import bridge.setting.BridgeMakerEnum;
