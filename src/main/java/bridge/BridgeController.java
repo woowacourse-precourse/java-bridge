@@ -21,7 +21,7 @@ public class BridgeController {
 
     public void makeBridgeController() {
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        int size = new InputView().readBridgeSize();
+        int size = new BridgeException().bridgeSizeInputException();
         bridge = bridgeMaker.makeBridgeByBridgeRandomNumberGenerator(size);
         blockCount = bridge.size();
         moveController();
