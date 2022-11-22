@@ -25,11 +25,11 @@ public class MovedPositions {
     public Result makeResult(int distance) {
         List<ResultType> upDirections = new ArrayList<>();
         List<ResultType> downDirections = new ArrayList<>();
-        moveLoop(upDirections, downDirections);
+        traverseMovedPositions(upDirections, downDirections);
         return new Result(upDirections, downDirections, distance);
     }
 
-    private void moveLoop(List<ResultType> upDirections, List<ResultType> downDirections) {
+    private void traverseMovedPositions(List<ResultType> upDirections, List<ResultType> downDirections) {
         movedPositions
                 .forEach(position -> {
                     if (position.isDirectionUp()) {
