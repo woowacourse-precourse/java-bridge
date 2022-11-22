@@ -6,8 +6,8 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    public static String upSide ="";
-    public static String downSide ="";
+    public static String upSide = "";
+    public static String downSide = "";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -18,29 +18,31 @@ public class OutputView {
         upSide = "[";
         downSide = "[";
         for (int i = 0; i < mark.size(); i++) {
-            if (bridge.get(i).equals("U")) {
-                if(i!=0){
-                    upSide += "|";
-                    downSide += "|";
-                }
-                upSide += " "+mark.get(i)+" ";
-                downSide += "   ";
-            }
-            if (bridge.get(i).equals("D")) {
-                if(i!=0){
-                    downSide += "|";
-                    upSide += "|";
-                }
-                downSide += " "+mark.get(i)+" ";
-                upSide += "   ";
-            }
+            if (bridge.get(i).equals("U")) { pickUpside(i, mark);}
+            if (bridge.get(i).equals("D")) { pickDownside(i, mark);}
         }
         upSide += "]";
         downSide += "]";
-        System.out.println(upSide);
-        System.out.println(downSide);
+        System.out.print(upSide + "\n" + downSide + "\n");
     }
 
+    private void pickUpside(int index, List<String> mark) {
+        if (index != 0) {
+            upSide += "|";
+            downSide += "|";
+        }
+        upSide += " " + mark.get(index) + " ";
+        downSide += "   ";
+    }
+
+    private void pickDownside(int index, List<String> mark) {
+        if (index != 0) {
+            upSide += "|";
+            downSide += "|";
+        }
+        downSide += " " + mark.get(index) + " ";
+        upSide += "   ";
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

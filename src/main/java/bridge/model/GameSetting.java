@@ -19,7 +19,6 @@ public class GameSetting {
         return bridge;
     }
 
-
     public List<String> make(int bridgeSize) { //입력값만큼 다리 만들고 랜덤값 넣기
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -33,7 +32,6 @@ public class GameSetting {
             Print.requestPickAPartOfBridgeMessage();
             try {
                 userInput = inputView.readMoving();
-                System.out.println("userInput 받은거 " + userInput );
                 retryCheckNumber = 0;
             } catch (IllegalArgumentException e) {
                 Print.exceptionMessage(e);

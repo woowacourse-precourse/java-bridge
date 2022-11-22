@@ -9,12 +9,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    //GameSetting gameSetting = new GameSetting();
     public static int round;
-    //private static List<String> mark = new ArrayList<>();
-    static int challenge = 1;
-
-    //List<String> bridge = gameSetting.getBridge();
+    private static int challenge = 1;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -56,7 +52,6 @@ public class BridgeGame {
         }
         return false;
     }
-
 
     public void getResult(List<String> mark, List<String> bridge){
         if(mark.size()==bridge.size() && mark.get(bridge.size()-1).equals("O")){
