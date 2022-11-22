@@ -12,7 +12,7 @@ public class InputValidatorImplImplTest {
     @Test
     void validateBridgeSizeTest_3_미만인_경우() {
         //given
-        int size = 2;
+        String size = "2";
         //when
         Throwable throwable = catchThrowable(() -> {
             inputValidator.validateBridgeSize(size);
@@ -24,7 +24,7 @@ public class InputValidatorImplImplTest {
     @Test
     void validateBridgeSizeTest_20_초과인_경우() {
         //given
-        int size = 21;
+        String size = "21";
         //when
         Throwable throwable = catchThrowable(() -> {
             inputValidator.validateBridgeSize(size);
@@ -36,7 +36,7 @@ public class InputValidatorImplImplTest {
     @Test
     void validateBridgeSizeTest_정상() {
         //given
-        int size = 10;
+        String size = "10";
         //when
         Throwable throwable = catchThrowable(() -> {
             inputValidator.validateBridgeSize(size);

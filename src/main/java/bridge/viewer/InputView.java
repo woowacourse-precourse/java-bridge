@@ -1,10 +1,14 @@
 package bridge.viewer;
 
+import bridge.exception.ExceptionMessage;
 import bridge.exception.ExceptionPrinter;
 import bridge.gameComponent.InputValidator;
-import bridge.util.Converter;
 import bridge.gameComponent.InputValidatorImpl;
+import bridge.util.Converter;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -21,16 +25,21 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+//    public int readBridgeSize() {
+//        System.out.println(inputBridgeSizeMessage);
+//        while(true) {
+//            try {
+//                String inputValue = Console.readLine();
+//                int bridgeSize = Converter.stringToInt(inputValue);
+//                validator.validateBridgeSize(bridgeSize);
+//                return bridgeSize;
+//            } catch (IllegalArgumentException e) {ExceptionPrinter.printException(e.getMessage());}
+//        }
+//    }
     public int readBridgeSize() {
         System.out.println(inputBridgeSizeMessage);
-        while(true) {
-            try {
-                String inputValue = Console.readLine();
-                int bridgeSize = Converter.stringToInt(inputValue);
-                validator.validateBridgeSize(bridgeSize);
-                return bridgeSize;
-            } catch (IllegalArgumentException e) {ExceptionPrinter.printException(e.getMessage());}
-        }
+        String size = validator.inputTemplate("validateBridgeSize");
+        return Converter.stringToInt(size);
     }
 
     /**
@@ -38,15 +47,8 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(inputMoveMessage);
-        while(true) {
-            try {
-                String move = Console.readLine();
-                validator.validateMove(move);
-                return move;
-            } catch (IllegalArgumentException e) {
-                ExceptionPrinter.printException(e.getMessage());
-            }
-        }
+        String move = validator.inputTemplate("validateMove");
+        return move;
     }
 
     /**
@@ -54,14 +56,7 @@ public class InputView {
      */
     public boolean readRetry() {
         System.out.println(inputRetryMessage);
-        while(true) {
-            try {
-                String retryQuit = Console.readLine();
-                validator.validateRetry(retryQuit);
-                return Converter.retryQuitToBoolean(retryQuit);
-            } catch (IllegalArgumentException e) {
-                ExceptionPrinter.printException(e.getMessage());
-            }
-        }
+        String retry = validator.inputTemplate("validateRetry");
+        return Converter.retryQuitToBoolean(retry);
     }
 }

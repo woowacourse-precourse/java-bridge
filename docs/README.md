@@ -62,5 +62,5 @@
   - [x] 게임 종료 GameMager#endGame()
 ---     
 ## 추가 기능
-- [ ] AOP 프록시를 이용하여 예외 발생시 다시 입력 받도록 구현
+- [x] 리플렉션을 이용하여 예외 발생시 다시 입력 받는 부가 관심사 분리
 - [x] 예외 메시지를 출력하는 기능 ExceptionPrinter#printException(ExceptionMessage message)
