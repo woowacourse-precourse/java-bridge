@@ -91,6 +91,10 @@ public class OutputView {
 		System.out.println(GAME_SUCCESS_OR_FAIL_MESSAGE + whetherGameSuccess);
 	}
 
+	public static void printExceptionMessage(final String message) {
+		System.out.println(message);
+	}
+
 	private static void printTotalTryCount(int totalTryCount) {
 		System.out.println(TOTAL_COUNT_MESSAGE + totalTryCount);
 	}

@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.common.utils.ExceptionHandler;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameResult;
 import bridge.view.InputView;
@@ -19,10 +20,11 @@ public class BridgeController {
 	}
 
 	private BridgeGame initializeBridgeGame() {
-		OutputView.printInputBridgeSize();
-		int bridgeSize = InputView.readBridgeSize();
-
-		return new BridgeGame(bridgeSize);
+		return ExceptionHandler.getCorrectInput(() -> {
+			OutputView.printInputBridgeSize();
+			int bridgeSize = InputView.readBridgeSize();
+			return new BridgeGame(bridgeSize);
+		});
 	}
 
 	private void playBridgeGame(BridgeGame bridgeGame) {
