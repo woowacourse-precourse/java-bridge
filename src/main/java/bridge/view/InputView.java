@@ -17,6 +17,11 @@ public class InputView {
         return Integer.parseInt(userInput);
     }
 
+    /**
+     *
+     * @param userInput 사용자 입력
+     * @exception IllegalArgumentException 사용자 입력이 정수가 아닌 경우 예외 발생
+     */
     private void validateInteger(String userInput){
         try {
             int toInteger = Integer.parseInt(userInput);
@@ -35,12 +40,16 @@ public class InputView {
         return userInput;
     }
 
+    /**
+     *
+     * @param userInput 사용자 입력
+     * @exception IllegalArgumentException 사용자가 입력한 문자열의 길이가 1이 아닌 경우 예외 발생
+     */
     private void validateLength(String userInput){
         if (userInput.length() != 1) {
             throw new IllegalArgumentException(ErrorMessage.COMMAND_LENGTH_OUT_OF_RANGE.getMessage());
         }
     }
-
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.

@@ -19,6 +19,9 @@ public class Controller {
         this.outputView = outputView;
     }
 
+    /**
+     * 게임을 실행
+     */
     public void run(){
         startGame();
         inputBridgeLength();
@@ -31,11 +34,17 @@ public class Controller {
         showResult();
     }
 
+    /**
+     * 게임을 시작
+     */
     private void startGame(){
         outputView.printGameStart();
         this.bridgeGame = new BridgeGame();
     }
 
+    /**
+     * 다리 길이를 입력
+     */
     private void inputBridgeLength(){
         try {
             outputView.printBridgeLengthInputRequest();
@@ -48,6 +57,9 @@ public class Controller {
         }
     }
 
+    /**
+     * 이동
+     */
     private void move(){
         try {
             outputView.printMoveInputRequest(Command.MOVE_UP.getCommand(), Command.MOVE_DOWN.getCommand());
@@ -59,6 +71,9 @@ public class Controller {
         }
     }
 
+    /**
+     * 재시도 및 종료
+     */
     private void retry(){
         try {
             outputView.printRetryInputRequest(Command.RETRY.getCommand(), Command.QUIT.getCommand());
@@ -70,17 +85,28 @@ public class Controller {
         }
     }
 
+    /**
+     * 결과 출력
+     */
     private void showResult(){
         outputView.printResult(gameStateToString(bridgeGame.getGameState()), bridgeGame.getTrialCount());
         showMap();
     }
 
+    /**
+     *
+     * @param gameState 게임의 상태
+     * @return 상태에 해당하는 문자열
+     */
     private String gameStateToString(GameState gameState){
         if (gameState == GameState.CLEAR) return OutputText.CLEAR.getMessage();
         return OutputText.FAIL.getMessage();
     }
 
+    /**
+     * 현재 진행 상황의 지도를 출력
+     */
     private void showMap(){
-        outputView.printMap(bridgeGame.getProgress().asString());
+        outputView.printMap(bridgeGame.getProgress().asMap());
     }
 }
