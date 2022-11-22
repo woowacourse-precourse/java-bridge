@@ -1,6 +1,8 @@
 package bridge.view;
 
 import static bridge.rule.BridgeSizeRange.isBridgeSizeOutOfRange;
+import static bridge.rule.CommandOption.isCorrectCommand;
+import static bridge.rule.MovingOption.isCorrectMoving;
 
 import bridge.exception.GameCommandNotAllowedException;
 import bridge.exception.InputNotNumberException;
@@ -11,14 +13,8 @@ import bridge.exception.NumberOutOfRangeException;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.NoSuchElementException;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         try {
             String input = Console.readLine();
@@ -30,9 +26,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         try {
             String option = Console.readLine();
@@ -43,9 +36,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         try {
             String command = Console.readLine();
@@ -66,19 +56,19 @@ public class InputView {
         }
     }
 
-    private void validateMovingOption(String option) {
-        validateOptionNotInput(option);
-        validateMovingAllowedOption(option);
+    private void validateMovingOption(String moving) {
+        validateOptionNotInput(moving);
+        validateMovingAllowedOption(moving);
     }
 
-    private void validateOptionNotInput(String option) {
-        if (option.equals("")) {
+    private void validateOptionNotInput(String moving) {
+        if (moving.equals("")) {
             throw new NotInputMovingOptionException();
         }
     }
 
-    private void validateMovingAllowedOption(String option) {
-        if (!(option.equals("U") || option.equals("D"))) {
+    private void validateMovingAllowedOption(String moving) {
+        if (!isCorrectMoving(moving)) {
             throw new MovingOptionNotAllowedException();
         }
     }
@@ -88,7 +78,7 @@ public class InputView {
     }
 
     private void validateCommandAllowedOption(String command) {
-        if (!(command.equals("Q") || command.equals("R"))) {
+        if (!isCorrectCommand(command)) {
             throw new GameCommandNotAllowedException();
         }
     }
