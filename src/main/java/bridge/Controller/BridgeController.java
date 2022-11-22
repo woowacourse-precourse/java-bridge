@@ -16,7 +16,7 @@ public class BridgeController {
 
     public Bridge createBridge() {
         InputView inputView = new InputView();
-        //TODO: 깔끔하게 정리해보기
+
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
