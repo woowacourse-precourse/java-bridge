@@ -19,8 +19,12 @@ public class OutputView {
     public void printMap(PositionType position, boolean isPass) {
         DrawType.PASS.draw(position, isPass, draw);
         DrawType.MISS.draw(position, isPass, draw);
-        System.out.printf("[ %s ]\n", String.join(" | ", draw.getUpBridges()));
-        System.out.printf("[ %s ]\n\n", String.join(" | ", draw.getDownBridges()));
+
+        String up = String.join(" | ", draw.getUpBridges());
+        String down = String.join(" | ", draw.getDownBridges());
+
+        System.out.printf("[ %s ]\n", up);
+        System.out.printf("[ %s ]\n\n", down);
     }
 
     /**
@@ -30,13 +34,22 @@ public class OutputView {
      */
     public void printResult(String gameStatus, int gameCount) {
         System.out.println("최종 게임 결과");
-        System.out.printf("[ %s ]\n", String.join(" | ", draw.getUpBridges()));
-        System.out.printf("[ %s ]\n\n", String.join(" | ", draw.getDownBridges()));
+
+        String up = String.join(" | ", draw.getUpBridges());
+        String down = String.join(" | ", draw.getDownBridges());
+
+        System.out.printf("[ %s ]\n", up);
+        System.out.printf("[ %s ]\n\n", down);
+
         System.out.printf("게임 성공 여부: %s", gameStatus);
         System.out.printf("총 시도한 횟수: %d", gameCount);
     }
 
     public void reset() {
         draw.removeAll();
+    }
+
+    public int countPassSymbol() {
+        return draw.countPassSymbol();
     }
 }
