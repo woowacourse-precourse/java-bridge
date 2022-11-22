@@ -20,7 +20,6 @@ public class ConcreteControllerMediator implements ControllerMediator, ViewMedia
             new ErrorView().printErrorMessage(e.getMessage());
             start();
         }
-
     }
 
     @Override
