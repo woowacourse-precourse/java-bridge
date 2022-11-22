@@ -16,20 +16,22 @@ public class Application {
 	}
 
 	private static void proceed(InputView inputView, OutputView outputView, BridgeGame game) {
-		while (true) {
-			final boolean result = move(inputView, outputView, game);
-			final int index = game.getCurrentIndex();
+		boolean result;
+		do {
+			result = move(inputView, outputView, game);
 			if (!result) {
 				outputView.printRestartOrExit();
-				if (!game.retry(inputView.readGameCommand())) {
-					outputView.printResult(game);
-					break;
-				}
-			} else if (index == game.getBridgeLength()) {
-				outputView.printResult(game);
-				break;
 			}
-		}
+		} while (!isFailure(inputView, game, result) && !isSuccess(game, result));
+		outputView.printResult(game);
+	}
+
+	private static boolean isSuccess(BridgeGame game, boolean result) {
+		return result && game.getCurrentIndex() == game.getBridgeLength();
+	}
+
+	private static boolean isFailure(InputView inputView, BridgeGame game, boolean result) {
+		return !result && !game.retry(inputView.readGameCommand());
 	}
 
 	private static boolean move(InputView inputView, OutputView outputView, BridgeGame game) {
