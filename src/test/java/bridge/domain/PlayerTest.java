@@ -1,8 +1,9 @@
 package bridge.domain;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +26,14 @@ class PlayerTest {
         Player player = new Player();
         player.move(bridgeGame, Direction.DOWN);
         assertThatNoException();
+    }
+
+    @Test
+    @DisplayName("[정상] 플레이어 재시도하다.")
+    void retry() {
+        Player player = new Player();
+        player.retry();
+
+        assertThat(player.getGamePlayCount()).isEqualTo(2);
     }
 }

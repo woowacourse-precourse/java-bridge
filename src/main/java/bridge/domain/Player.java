@@ -19,6 +19,16 @@ public class Player {
         this.round = round.nextRound();
     }
 
+    public void retry() {
+        this.round = Round.firstRound();
+        bridgeGameResult.reset();
+        increaseGamePlayCount();
+    }
+
+    private void increaseGamePlayCount() {
+        this.gamePlayCount++;
+    }
+
     public int getGamePlayCount() {
         return this.gamePlayCount;
     }
