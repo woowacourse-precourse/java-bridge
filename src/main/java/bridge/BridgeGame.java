@@ -30,24 +30,6 @@ public class BridgeGame {
     public static StringBuilder getSb1(){return sb1;}
     public static StringBuilder getSb2(){return sb2;}
 
-   /* public static void spliceMoveStart(int size){
-        if(size == 0){
-            sb1.append("[");
-            sb2.append("[");
-        }
-    }
-
-    public static void spliceMoverEnd(List<String> bridge, int size ){
-        if(bridge.size() - 1 == size){
-            sb1.append("]");
-            sb2.append("]");
-        }
-        if(bridge.size() - 1 != size){
-            sb1.append("|");
-            sb2.append("|");
-        }
-    } */
-
 
 
     public static void directionUp(List<String> bridge, String search, int size){
@@ -125,10 +107,7 @@ public class BridgeGame {
             sb2.delete(0, sb2.length());
             api.size = 0;   //3번째
         }
-
     }
-
-
 }
 
 

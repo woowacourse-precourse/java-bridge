@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static bridge.BridgeGame.sb1;
@@ -34,7 +33,6 @@ public class BridgeMaker {
         return bridge;
     }
 
-
     private String direction() {
         int generate = bridgeNumberGenerator.generate();
         if (generate == 0) {
@@ -42,9 +40,6 @@ public class BridgeMaker {
         }
         return "U";
     }
-
-
-
 
     public static void spliceMoveStart(int size){
         if(size == 0){
@@ -64,7 +59,7 @@ public class BridgeMaker {
             sb2.append("|");
         }
     }
-    }
+}
 
 
 
