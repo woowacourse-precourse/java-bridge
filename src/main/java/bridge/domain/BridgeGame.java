@@ -26,9 +26,9 @@ public class BridgeGame {
         mark.add(movePlace);
     }
 
-    public boolean checkPassable(){
-        int current = mark.size()-1;
-        return bridge.checkPassable(mark.get(current),current);
+    public boolean checkPassable() {
+        int current = mark.size() - 1;
+        return bridge.checkPassable(mark.get(current), current);
     }
 
     public boolean gameComplete() {
