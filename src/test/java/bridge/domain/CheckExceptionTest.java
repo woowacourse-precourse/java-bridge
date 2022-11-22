@@ -27,4 +27,11 @@ class CheckExceptionTest {
             assertThat(outputStreamCaptor.toString()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void 다리이동_예외처리(){
+        assertSimpleTest(() -> {
+            checkException.checkInputMoving("ㅇ");
+            assertThat(outputStreamCaptor.toString()).contains(ERROR_MESSAGE);
+        });
+    }
 }
