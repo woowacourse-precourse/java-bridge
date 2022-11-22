@@ -13,7 +13,7 @@ public class Application {
         run();
     }
 
-    public static void run() {
+    private static void run() {
         gameSetting();
 
         while (!gameRun()) {
@@ -25,7 +25,7 @@ public class Application {
         }
         printTotalResult(Game.getCount());
     }
-    public static void gameSetting() {
+    private static void gameSetting() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("다리 길이를 입력해주세요.");
         BridgeRandomNumberGenerator gameRandomNumber = new BridgeRandomNumberGenerator();
@@ -36,7 +36,7 @@ public class Application {
         bridgeNumberList = makeBridge.makeBridge(bridgeSize);
     }
 
-    public static boolean gameRun() {
+    private static boolean gameRun() {
         for (int i = 0; i < bridgeNumberList.size(); i++) {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String moveUpOrDown = userInput.readMoving();
@@ -49,7 +49,7 @@ public class Application {
         return true;
     }
 
-    public static void printTotalResult(int count) {
+    private static void printTotalResult(int count) {
         System.out.println("최종 게임 결과");
         display.printMap(Game.getBridgeLineOne(), Game.getBridgeLineTwo());
         display.printResult(Game.getNowState(), count);
