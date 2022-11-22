@@ -2,7 +2,6 @@ package bridge.BridgeGame;
 
 import bridge.BridgeMaker.BridgeMaker;
 import bridge.BridgeMaker.NumberGenerator.BridgeNumberGenerator;
-import bridge.BridgeMaker.NumberGenerator.BridgeRandomNumberGenerator;
 import bridge.UI.Input.InputView;
 import bridge.UI.Output.OutputView;
 import java.util.List;
