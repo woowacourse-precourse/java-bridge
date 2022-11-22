@@ -9,30 +9,26 @@ public class OutputView {
 
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
     private static final String GAME_RESULT_MESSAGE = "게임 성공 여부: ";
-    private static final String GAME_SUCCESS_MESSAGE = "게임 성공";
-    private static final String GAME_FAIL_MESSAGE = "게임 실패";
+    private static final String GAME_SUCCESS_MESSAGE = "성공";
+    private static final String GAME_FAIL_MESSAGE = "실패";
     private static final String RETRY_COUNT_MESSAGE = "총 시도한 횟수: ";
 
     private static String moveStateToUpperBridgeView(List<String> userMoveState) {
         return userMoveState.toString()
-                .replace(",", " | ")
-                .replace("D_true", " ")
-                .replace("D_false", " ")
-                .replace("U_true", "O")
-                .replace("U_false", "X")
-                .replace("[", "[ ")
-                .replace("]", " ]");
+                .replace(", ", "|")
+                .replace("D_true", "   ")
+                .replace("D_false", "   ")
+                .replace("U_true", " O ")
+                .replace("U_false", " X ");
     }
 
     private static String moveStateToLowerBridgeView(List<String> userMoveState) {
         return userMoveState.toString()
-                .replace(",", " | ")
-                .replace("U_true", " ")
-                .replace("U_false", " ")
-                .replace("D_true", "O")
-                .replace("D_false", "X")
-                .replace("[", "[ ")
-                .replace("]", " ]");
+                .replace(", ", "|")
+                .replace("U_true", "   ")
+                .replace("U_false", "   ")
+                .replace("D_true", " O ")
+                .replace("D_false", " X ");
     }
 
     private static String getGameResultToMessage(boolean isGameSuccess) {
