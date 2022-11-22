@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Vaildator.VaildatorRetryQuit;
 import bridge.Vaildator.VaildatorUpDown;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -130,8 +131,8 @@ public class BridgeGame {
         if (successFail.equals("성공")){
             return false;
         }
-        String retryUserInput = inputView.readGameCommand();
-        if (retryUserInput.equals("Q")) {
+        BridgeInputControl.setRetryQuit();
+        if (VaildatorRetryQuit.userInputRetryQuit.equals("Q")) {
             return false;
         }
         return true;
