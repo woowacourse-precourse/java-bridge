@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
 
-class InputViewTest extends NsTest {
+class ValidateInputViewTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
@@ -17,7 +17,7 @@ class InputViewTest extends NsTest {
     @ParameterizedTest
     void 다리_크기_정수_입력_테스트(String input) {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> new InputView().validateBridgeSize(input)).isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> new ValidateInputView().validateBridgeSize(input)).isInstanceOf(IllegalArgumentException.class);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -27,7 +27,7 @@ class InputViewTest extends NsTest {
     @ParameterizedTest
     void 다리_크기_자연수_범위_테스트(String input) {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> new InputView().validateBridgeSize(input)).isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> new ValidateInputView().validateBridgeSize(input)).isInstanceOf(IllegalArgumentException.class);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -37,7 +37,7 @@ class InputViewTest extends NsTest {
     @ParameterizedTest
     void 이동_문자열_테스트(String input) {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> new InputView().validateMove(input)).isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> new ValidateInputView().validateMove(input)).isInstanceOf(IllegalArgumentException.class);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -47,7 +47,7 @@ class InputViewTest extends NsTest {
     @ParameterizedTest
     void 재시작_문자열_테스트(String input) {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> new InputView().validateGameCommand(input)).isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> new ValidateInputView().validateGameCommand(input)).isInstanceOf(IllegalArgumentException.class);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
