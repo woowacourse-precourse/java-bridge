@@ -1,4 +1,4 @@
-package bridge.domain.bridgeGame.bridgeMap;
+package bridge.domain.bridgeMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,10 +58,10 @@ public class BridgeMap {
 
     @Override
     public String toString() {
-        StringJoiner resultMapGenerator = new StringJoiner("\n");
-        resultMapGenerator.add(generateMapAt(UPPER_BRIDGE));
-        resultMapGenerator.add(generateMapAt(LOWER_BRIDGE));
+        StringJoiner mapGenerator = new StringJoiner("\n");
+        mapGenerator.add(generateMapAt(UPPER_BRIDGE));
+        mapGenerator.add(generateMapAt(LOWER_BRIDGE));
 
-        return resultMapGenerator.toString();
+        return mapGenerator.toString();
     }
 }
