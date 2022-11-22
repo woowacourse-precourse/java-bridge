@@ -1,8 +1,8 @@
-package bridge.domain;
+package bridge;
 
 import static bridge.domain.BridgeInformation.convertToBridgeInfo;
 
-import bridge.BridgeNumberGenerator;
+import bridge.domain.BridgeInformation;
 import java.util.ArrayList;
 import java.util.List;
 

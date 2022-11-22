@@ -14,7 +14,7 @@ public enum BridgeInformation {
         this.bridgePosition = bridgePosition;
     }
 
-    static BridgeInformation convertToBridgeInfo(final int bridgeNumber) {
+    public static BridgeInformation convertToBridgeInfo(final int bridgeNumber) {
         return Arrays.stream(BridgeInformation.values())
                 .filter(bridgeInfo -> Objects.equals(bridgeInfo.bridgeNumber, bridgeNumber))
                 .findAny()
