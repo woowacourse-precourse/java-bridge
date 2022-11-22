@@ -1,7 +1,7 @@
-package bridge.view;
+package bridge;
 
-import bridge.resource.GameResult;
-import bridge.resource.UserCommand;
+import bridge.GameResult;
+import bridge.UserCommand;
 
 import java.util.Iterator;
 import java.util.List;

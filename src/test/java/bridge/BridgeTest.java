@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.domain.Bridge;
-import bridge.resource.UserCommand;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,4 @@
-package bridge.domain;
-
-import bridge.BridgeRandomNumberGenerator;
-import bridge.resource.ErrorResource;
-import bridge.resource.UserCommand;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

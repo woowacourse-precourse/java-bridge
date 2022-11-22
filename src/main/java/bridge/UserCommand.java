@@ -1,4 +1,4 @@
-package bridge.resource;
+package bridge;
 
 public enum UserCommand {
     MOVE_UP("U","위",1),
