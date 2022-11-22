@@ -2,7 +2,7 @@ package bridge.model;
 
 import bridge.enums.BridgeMark;
 import bridge.enums.GameStatus;
-import bridge.valid.BridgeValidUtil;
+import bridge.valid.BridgeValidator;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class Bridge {
     private final List<BridgeMark> bridge;
 
     public Bridge(List<String> bridge) {
-        BridgeValidUtil.validateSize(bridge.size());
+        BridgeValidator.validateSize(bridge.size());
         this.bridge = BridgeMark.of(bridge);
     }
 

@@ -1,12 +1,12 @@
 package bridge.valid;
 
-public class BridgeValidUtil {
+public class BridgeValidator {
 
     private static final String ERROR_OUT_RANGE_LENGTH = "[ERROR] 다리의 길이는 3이상 20이하 이어야 합니다.";
     private static final int MINIMUM_LENGTH = 3;
     private static final int MAXIMUM_LENGTH = 20;
 
-    private BridgeValidUtil() {
+    private BridgeValidator() {
     }
 
     public static void validateSize(int size) {

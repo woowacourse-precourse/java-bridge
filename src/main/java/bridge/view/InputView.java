@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.valid.BridgeValidUtil;
+import bridge.valid.BridgeValidator;
 import bridge.enums.BridgeMark;
 import bridge.enums.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
@@ -26,7 +26,7 @@ public class InputView {
 
     private static void validate(String size) {
         validateIsNumber(size);
-        BridgeValidUtil.validateSize(Integer.parseInt(size));
+        BridgeValidator.validateSize(Integer.parseInt(size));
     }
 
     public static void validateIsNumber(String size) {
