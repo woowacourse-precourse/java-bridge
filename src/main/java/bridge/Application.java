@@ -12,7 +12,7 @@ public class Application {
         System.out.println("다리 건너기 게임을 시작합니다");
         BridgeGame game = makeGame();
         playGames(game);
-        output.printResult();
+        output.printResult(game);
     }
 
     private static BridgeGame makeGame() {
