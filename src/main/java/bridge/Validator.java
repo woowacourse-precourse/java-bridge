@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.BridgeSize;
 import bridge.constant.Message;
 
 public class Validator {
@@ -8,6 +9,14 @@ public class Validator {
             Integer.valueOf(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Message.ERROR_BRIDGE_SIZE_FORMAT.getMessage());
+        }
+    }
+
+    public static void isInRangeValue(int value) {
+        final int max = BridgeSize.MAX.getValue();
+        final int min = BridgeSize.MIN.getValue();
+        if (value < min || value > max) {
+            throw new IllegalArgumentException(Message.ERROR_BRIDGE_SIZE_RANGE.getMessage());
         }
     }
 }
