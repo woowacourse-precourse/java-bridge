@@ -9,7 +9,6 @@ import java.util.Objects;
 public class BridgeGame {
 
     int playedCount = 1;
-    int nowLocation = 0;
     String isSuccess = "성공";
     StringBuilder firstData = new StringBuilder();
     StringBuilder secondData = new StringBuilder();
@@ -23,6 +22,8 @@ public class BridgeGame {
         // 정답 여부 판별
         if(!isCorrect(bridgeData, inputMoving)) {
             // 틀렸으면 처리
+            playedCount++;
+            isSuccess = "실패";
         }
         // 결과 출력 시키도록..
     }
