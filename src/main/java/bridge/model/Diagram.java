@@ -1,6 +1,5 @@
 package bridge.model;
 
-import static bridge.model.Position.returnByPosition;
 import static bridge.model.SurviveAndDie.getDisplay;
 import static bridge.util.Constants.BRIDGE_END;
 import static bridge.util.Constants.BRIDGE_SEPARATER;
@@ -8,15 +7,16 @@ import static bridge.util.Constants.BRIDGE_START;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 
 public class Diagram {
 
     private List<String> upDiagram = new ArrayList<>();
     private List<String> downDiagram = new ArrayList<>();
 
-    public void updateDiagrams(Position position, SurviveAndDie surviveAndDie) {
-        upDiagram.add(Position.returnByPosition(Position.UP, position, getDisplay(surviveAndDie)));
-        downDiagram.add(Position.returnByPosition(Position.DOWN, position, getDisplay(surviveAndDie)));
+    public void updateDiagrams(Position position, SurviveAndDie surviveOrDie) {
+        upDiagram.add(SurviveAndDie.getDisplay(Position.isNone(Position.UP, position),surviveOrDie));
+        downDiagram.add(SurviveAndDie.getDisplay(Position.isNone(Position.DOWN, position), surviveOrDie));
     }
 
     private String formatDiagram(List<String> diagram) {
