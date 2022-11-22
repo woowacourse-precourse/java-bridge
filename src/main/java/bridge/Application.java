@@ -11,6 +11,7 @@ public class Application {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
 
 
         System.out.print("다리 건너기 게임을 시작합니다.");
@@ -31,6 +32,7 @@ public class Application {
         resultBridge = bridgeGame.move(bridge,direction,0);
 
         // 이동한 후 다리 출력 -> OutputView 클래스의 printMap()
+        outputView.printMap(resultBridge);
         // 성공 시 -> OutputView 클래스의 printResult() -> 종료
         // 실패 시 재시작 여부 입력 받음-> InputView 클래스의 readGameCommand()
         // 종료 시 -> OutputView 클래스의 printResult() -> 종료

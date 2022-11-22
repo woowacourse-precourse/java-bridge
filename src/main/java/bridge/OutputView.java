@@ -12,8 +12,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge) {
-        System.out.print("[");
+    public void printMap(List<List<String>> bridge) {
+        for(int i=0; i<bridge.size(); i++){
+            if(i == 0){
+                System.out.print("[");
+            }
+            System.out.print(bridge.get(i).get(0));
+            System.out.print("|");
+            if(i == bridge.size()-1){
+                System.out.print("]");
+            }
+        }
+        System.out.print("\n");
+        for(int i=0; i<bridge.size(); i++){
+            if(i == 0){
+                System.out.print("[");
+            }
+            System.out.print(bridge.get(i).get(1));
+            if(i == bridge.size()-1){
+                System.out.print("]");
+            }
+            System.out.print("|");
+        }
     }
 
     /**
