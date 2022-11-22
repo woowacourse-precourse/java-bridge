@@ -60,7 +60,7 @@ public class BridgeGame {
         return false;
     }
 
-    public String isTransferable(String moving, int index) {
+    private String isTransferable(String moving, int index) {
         if (bridge.get(index).equals(moving)) {
             return "O";
         }

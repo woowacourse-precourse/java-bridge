@@ -44,7 +44,7 @@ public class OutputView {
         this.upSideIndex += tempstr + " ";
     }
 
-    public String separator(int position) {
+    private String separator(int position) {
         if (position > 0) {
             return " | ";
         }

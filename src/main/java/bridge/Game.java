@@ -15,7 +15,7 @@ public class Game {
         endGame();
     }
 
-    public void initGame() {
+    private void initGame() {
         int size = 0;
         while (size == 0) {
             OutputView.gameStart();
@@ -24,7 +24,7 @@ public class Game {
         }
     }
 
-    public void playGame() {
+    private void playGame() {
         while (true) {
             String move = getMove();
             String result = bridgeGame.move(move);
@@ -37,11 +37,11 @@ public class Game {
         }
     }
 
-    public void endGame() {
+    private void endGame() {
         bridgeGame.getResult();
     }
 
-    public boolean retryGame(boolean isGameOver) {
+    private boolean retryGame(boolean isGameOver) {
         if (isGameOver == true) {
             String command = inputView.readGameCommand();
             if (bridgeGame.retry(command)) {
@@ -52,7 +52,7 @@ public class Game {
         return true;
     }
 
-    public String getMove()
+    private String getMove()
     {
         String moving = "";
         while(true)
