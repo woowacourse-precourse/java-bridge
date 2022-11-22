@@ -1,14 +1,14 @@
 package bridge.view;
 
-import bridge.model.enumeration.GameMessage;
+import bridge.model.constants.GameMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 
 public class InputView {
 
     public int readBridgeSize() {
-        System.out.println(GameMessage.OUTPUT_INIT_GAME.getGameMessage() + "\n\n"
-                            + GameMessage.INPUT_BRIDGE_SIZE.getGameMessage());
+        System.out.println(GameMessage.OUTPUT_INIT_GAME + "\n\n"
+                            + GameMessage.INPUT_BRIDGE_SIZE);
 
         int inputSize = Integer.parseInt(Console.readLine());
         System.out.println(" ");
@@ -16,12 +16,12 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.println(GameMessage.INPUT_MOVING_COMMAND.getGameMessage());
+        System.out.println(GameMessage.INPUT_MOVING_COMMAND);
         return Console.readLine();
     }
 
     public String readGameCommand() {
-        System.out.println(GameMessage.INPUT_RESTARTING_COMMAND.getGameMessage());
+        System.out.println(GameMessage.INPUT_RESTARTING_COMMAND);
         return Console.readLine();
     }
 }

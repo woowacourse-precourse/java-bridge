@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.model.enumeration.Command;
+import bridge.model.constants.Command;
 
 import java.util.List;
 
@@ -18,10 +18,10 @@ public class BridgeGame {
 
     public int move(List<String> bridges, int count, String inputMoving) {
         userInput.validateInputMoving(inputMoving);
-        if (inputMoving.equals(Command.UP.getMessage()) && bridges.get(count).equals(Command.UP.getMessage())) {
+        if (inputMoving.equals(Command.UP) && bridges.get(count).equals(Command.UP)) {
             isUAndU();
         }
-        if (inputMoving.equals(Command.UP.getMessage()) && bridges.get(count).equals(Command.DOWN.getMessage())) {
+        if (inputMoving.equals(Command.UP) && bridges.get(count).equals(Command.DOWN)) {
             isUAndD();
             return MAX_LENGTH_PLUS_ONE;
         }
@@ -29,10 +29,10 @@ public class BridgeGame {
     }
 
     private int getCountNotU(List<String> bridges, int count, String inputMoving) {
-        if (inputMoving.equals(Command.DOWN.getMessage()) && bridges.get(count).equals(Command.DOWN.getMessage())) {
+        if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.DOWN)) {
             isDAndD();
         }
-        if (inputMoving.equals(Command.DOWN.getMessage()) && bridges.get(count).equals(Command.UP.getMessage())) {
+        if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.UP)) {
             isDAndU();
             count = MAX_LENGTH_PLUS_ONE;
         }
@@ -40,36 +40,36 @@ public class BridgeGame {
     }
 
     private void isDAndU() {
-        upAndDown.get(0).add(Command.BLANK.getMessage());
-        upAndDown.get(0).add(Command.BAR.getMessage());
-        upAndDown.get(1).add(Command.IMPOSSIBLE.getMessage());
-        upAndDown.get(1).add(Command.BAR.getMessage());
+        upAndDown.get(0).add(Command.BLANK);
+        upAndDown.get(0).add(Command.BAR);
+        upAndDown.get(1).add(Command.IMPOSSIBLE);
+        upAndDown.get(1).add(Command.BAR);
     }
 
     private void isDAndD() {
-        upAndDown.get(0).add(Command.BLANK.getMessage());
-        upAndDown.get(0).add(Command.BAR.getMessage());
-        upAndDown.get(1).add(Command.POSSIBLE.getMessage());
-        upAndDown.get(1).add(Command.BAR.getMessage());
+        upAndDown.get(0).add(Command.BLANK);
+        upAndDown.get(0).add(Command.BAR);
+        upAndDown.get(1).add(Command.POSSIBLE);
+        upAndDown.get(1).add(Command.BAR);
     }
 
     private void isUAndD() {
-        upAndDown.get(0).add(Command.IMPOSSIBLE.getMessage());
-        upAndDown.get(0).add(Command.BAR.getMessage());
-        upAndDown.get(1).add(Command.BLANK.getMessage());
-        upAndDown.get(1).add(Command.BAR.getMessage());
+        upAndDown.get(0).add(Command.IMPOSSIBLE);
+        upAndDown.get(0).add(Command.BAR);
+        upAndDown.get(1).add(Command.BLANK);
+        upAndDown.get(1).add(Command.BAR);
     }
 
     private void isUAndU() {
-        upAndDown.get(0).add(Command.POSSIBLE.getMessage());
-        upAndDown.get(0).add(Command.BAR.getMessage());
-        upAndDown.get(1).add(Command.BLANK.getMessage());
-        upAndDown.get(1).add(Command.BAR.getMessage());
+        upAndDown.get(0).add(Command.POSSIBLE);
+        upAndDown.get(0).add(Command.BAR);
+        upAndDown.get(1).add(Command.BLANK);
+        upAndDown.get(1).add(Command.BAR);
     }
 
     public String retry(String restartOrEnd) {
         userInput.validateRestartOrEnd(restartOrEnd);
-        if (restartOrEnd.equals(Command.QUIT.getMessage())) {
+        if (restartOrEnd.equals(Command.QUIT)) {
             return FAIL;
         }
         return "";
