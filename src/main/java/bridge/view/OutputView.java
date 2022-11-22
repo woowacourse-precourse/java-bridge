@@ -30,10 +30,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(BridgeGame bridgeGame) {
-        List<String> bridge = bridgeGame.getBridge();
-        Player player = bridgeGame.getPlayer();
-        List<String> upperLine = drawLine(bridge, player, UpDown.UP.getLetter());
-        List<String> lowerLine = drawLine(bridge, player, UpDown.DOWN.getLetter());
+        List<String> upperLine = drawLine(bridgeGame, UpDown.UP.getLetter());
+        List<String> lowerLine = drawLine(bridgeGame, UpDown.DOWN.getLetter());
         printOneLine(upperLine);
         printOneLine(lowerLine);
         System.out.println();
@@ -51,7 +49,9 @@ public class OutputView {
         printTryCount(bridgeGame);
     }
 
-    private static List<String> drawLine(List<String> bridge, Player player, String lineType) {
+    private static List<String> drawLine(BridgeGame bridgeGame, String lineType) {
+        List<String> bridge = bridgeGame.getBridge();
+        Player player = bridgeGame.getPlayer();
         List<String> Line = new ArrayList<>();
         for (int i = 0; i < player.getCurrentPosition(); i++) {
             drawCell(Line, lineType, bridge.get(i));
