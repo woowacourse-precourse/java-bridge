@@ -32,12 +32,8 @@ public class Bridge {
         currentIndex += MOVE;
     }
 
-    public boolean isGivenIndexUpside(int index) {
-        return bridge.get(index).equals(UP);
-    }
-
-    public boolean isGivenIndexDownside(int index) {
-        return bridge.get(index).equals(DOWN);
+    public boolean isGivenIndexAndGivenSideMovable(int index, String upOrDown) {
+        return bridge.get(index).equals(upOrDown);
     }
 
     public boolean whetherFollowingEndOrNot() {
@@ -112,12 +108,12 @@ public class Bridge {
 
     private String getUpperMovableResult(String successOrNot, int index) {
         if (successOrNot.equals(SUCCESS)) {
-            if (isGivenIndexUpside(index)) {
+            if (isGivenIndexAndGivenSideMovable(index, UP)) {
                 return CORRECT;
             }
             return EMPTY;
         }
-        if (isGivenIndexUpside(index)) {
+        if (isGivenIndexAndGivenSideMovable(index, UP)) {
             return EMPTY;
         }
         return WRONG;
@@ -125,12 +121,12 @@ public class Bridge {
 
     private String getLowerMovableResult(String successOrNot, int index) {
         if (successOrNot.equals(SUCCESS)) {
-            if (isGivenIndexDownside(index)) {
+            if (isGivenIndexAndGivenSideMovable(index, DOWN)) {
                 return CORRECT;
             }
             return EMPTY;
         }
-        if (isGivenIndexDownside(index)) {
+        if (isGivenIndexAndGivenSideMovable(index, DOWN)) {
             return EMPTY;
         }
         return WRONG;
