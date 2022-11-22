@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
+    /* 상수 및 클래스 변수 */
+    private final int GAME_TRY_NUMBER = 1;
+    private final int GAME_SUCCESS_OR_FAIL_NUMBER = 0;
     private ViewMessage viewMessage = null;
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
@@ -21,7 +24,8 @@ public class GameController {
     private List<String> upBridge = new ArrayList<>();
     private List<String> downBridge = new ArrayList<>();
     private List<String> resultGame = new ArrayList<>();
-    
+
+    /* 인스턴스 변수 */
     private int bridgeSize = 0;
     private int stage = 0;
     private int tryNumber = 0;
@@ -109,5 +113,11 @@ public class GameController {
     public void addFinishGameResult(){
         resultGame.add(viewMessage.RESULT_GAME_SUCCESS_MESSAGE.getMessage());
         resultGame.add((String.valueOf(tryNumber)));
+    }
+
+    public void endGame(){
+        System.out.println(viewMessage.RESULT_GAME_MESSAGE.getMessage());
+        outputView.printMap(upBridge,downBridge);
+        outputView.printResult(resultGame.get(GAME_SUCCESS_OR_FAIL_NUMBER), resultGame.get(GAME_TRY_NUMBER));
     }
 }
