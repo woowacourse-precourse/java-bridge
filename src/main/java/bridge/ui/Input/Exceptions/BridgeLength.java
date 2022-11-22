@@ -1,6 +1,8 @@
-package bridge.ui.Input;
+package bridge.ui.Input.Exceptions;
 
-public class BridgeLength extends Repetitor{
+import bridge.ui.Input.Repetitor;
+
+public class BridgeLength extends Repetitor {
     private static final String ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     @Override
