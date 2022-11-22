@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.constant.BridgeSize;
 import bridge.constant.Message;
+import bridge.constant.Token;
 
 public class Validator {
     public static void isIntegerValue(String input) {
@@ -18,5 +19,14 @@ public class Validator {
         if (value < min || value > max) {
             throw new IllegalArgumentException(Message.ERROR_BRIDGE_SIZE_RANGE.getMessage());
         }
+    }
+
+    public static void isMovingCommand(String input) {
+        for (String mark : Token.getMovingMark()) {
+            if (input.equals(mark)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(Message.ERROR_MOVING_COMMAND.getMessage());
     }
 }
