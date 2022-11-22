@@ -52,6 +52,8 @@
   - 재시도 (R)
   - 종료 (Q)
 
+- [x] 게임 종료 후 최종 결과를 출력한다.
+
 ### 예외 상황
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, `[ERROR]`로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
   - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
