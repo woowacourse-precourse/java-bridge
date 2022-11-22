@@ -26,4 +26,17 @@ class BridgeGameTest {
         String lastMovedResult = bridgeGame.getPlayer().getLastMovedResult();
         assertThat(lastMovedResult).isEqualTo("O");
     }
+
+    @Test
+    void 재시작과_관련된_연산_수행_테스트() {
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.retry();
+
+        int gameAttempts = bridgeGame.getPlayer().getGameAttempts();
+        assertThat(gameAttempts).isEqualTo(2);
+
+        String lastMovedResult = bridgeGame.getPlayer().getLastMovedResult();
+        assertThat(lastMovedResult).isEqualTo("O");
+    }
 }
