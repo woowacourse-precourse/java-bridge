@@ -17,17 +17,17 @@ public class PlayerValidation {
         return bridgeSize;
     }
 
-    public boolean moveValidation(String moving) {
+    public String moveValidation(String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException(GameMessage.ERROR_MESSAGE + GameMessage.ERROR_CHECKMOVING);
         }
-        return true;
+        return moving;
     }
 
-    public boolean endValidation(String endGame) {
+    public String endValidation(String endGame) {
         if (!endGame.equals("R") && !endGame.equals("Q")) {
             throw new IllegalArgumentException(GameMessage.ERROR_MESSAGE + GameMessage.ERROR_CHECKEND);
         }
-        return true;
+        return endGame;
     }
 }
