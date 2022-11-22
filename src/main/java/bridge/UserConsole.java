@@ -54,13 +54,16 @@ public class UserConsole {
 
     public void retry(String userInput) {
         if (bridgeGame.retry(userInput)) {
-            round = 0;
-            totalNumber++;
-            bridgeGame.resetUserList();
+            resetGame();
             startGame();
         }
         if (!bridgeGame.retry(userInput)) {
             round=bridgeGame.getBridgeSize()+1;
         }
+    }
+    public void resetGame(){
+        round = 0;
+        totalNumber++;
+        bridgeGame.resetUserList();
     }
 }
