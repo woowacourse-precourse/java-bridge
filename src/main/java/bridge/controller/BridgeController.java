@@ -71,18 +71,20 @@ public class BridgeController {
     }
 
     private void goForward() {
-        do {
-            chooseStep();
+        while (true) {
+            boolean moveSuccess = chooseStep();
             showResult();
-        } while (!bridgeGame.isOver());
+            if (!moveSuccess || bridgeGame.isOver()) {
+                break;
+            }
+        }
     }
 
-    private void chooseStep() {
+    private boolean chooseStep() {
         while (true) {
             try {
                 String step = inputView.readMoving();
-                bridgeGame.move(step);
-                break;
+                return bridgeGame.move(step);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

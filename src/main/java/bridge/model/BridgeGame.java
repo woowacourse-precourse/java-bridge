@@ -3,8 +3,6 @@ package bridge.model;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.config.BridgeComponent;
-import bridge.model.Bridge;
-import bridge.model.MoveRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +27,14 @@ public class BridgeGame {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public void move(String step) {
+    public boolean move(String step) {
         stepValidate(step);
         currentLocation += 1;
+
         boolean success = bridge.checkStep(currentLocation, step);
         records.add(MoveRecord.addRecord(step, success));
+
+        return success;
     }
 
     private void stepValidate(String step) {
@@ -43,10 +44,7 @@ public class BridgeGame {
     }
 
     public boolean isOver() {
-        if (bridge.isEnd(currentLocation)) {
-            return true;
-        }
-        return !checkFinalStep();
+        return bridge.isEnd(currentLocation);
     }
 
     public boolean checkFinalStep() {
