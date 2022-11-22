@@ -1,5 +1,10 @@
 package bridge.view;
 
+import bridge.BridgeGame;
+import bridge.constant.enumtype.BridgeGameRule;
+import bridge.constant.enumtype.UIMessage;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +15,48 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> bridge, List<String> movedBridge) {
+        System.out.print(UIMessage.INFO_BRIDGE_OPEN.getValue());
+        printMapUp(bridge, movedBridge);
+        System.out.println(UIMessage.INFO_BRIDGE_CLOSE.getValue());
+        System.out.print(UIMessage.INFO_BRIDGE_OPEN.getValue());
+        printMapDown(bridge, movedBridge);
+        System.out.println(UIMessage.INFO_BRIDGE_CLOSE.getValue());
+        System.out.println();
+    }
+
+    // @TODO: 함수 분리해서 10라인으로 맞추기
+    private void printMapUp(List<String> bridge, List<String> movedBridge) {
+        for (int i = 0; i < movedBridge.size(); i++) {
+            String bridgeCell = " ";
+            if (bridge.get(i).equals(BridgeGameRule.MOVE_UP.getValue()) && movedBridge.get(i).equals(UIMessage.INFO_BRIDGE_MOVE_SUCCESS.getValue())) {
+                bridgeCell = UIMessage.INFO_BRIDGE_MOVE_SUCCESS.getValue();
+            }
+            if (bridge.get(i).equals(BridgeGameRule.MOVE_UP.getValue()) && movedBridge.get(i).equals(UIMessage.INFO_BRIDGE_MOVE_FAILED.getValue())) {
+                bridgeCell = UIMessage.INFO_BRIDGE_MOVE_FAILED.getValue();
+            }
+            System.out.print(bridgeCell);
+            if (i + 1 != movedBridge.size()) {
+                System.out.print(UIMessage.INFO_BRIDGE_SEPARATED.getValue());
+            }
+        }
+    }
+
+    // @TODO: 함수 분리해서 10라인으로 맞추기
+    private void printMapDown(List<String> bridge, List<String> movedBridge) {
+        for (int i = 0; i < movedBridge.size(); i++) {
+            String bridgeCell = " ";
+            if (bridge.get(i).equals(BridgeGameRule.MOVE_DOWN.getValue()) && movedBridge.get(i).equals(UIMessage.INFO_BRIDGE_MOVE_SUCCESS.getValue())) {
+                bridgeCell = UIMessage.INFO_BRIDGE_MOVE_SUCCESS.getValue();
+            }
+            if (bridge.get(i).equals(BridgeGameRule.MOVE_DOWN.getValue()) && movedBridge.get(i).equals(UIMessage.INFO_BRIDGE_MOVE_FAILED.getValue())) {
+                bridgeCell = UIMessage.INFO_BRIDGE_MOVE_FAILED.getValue();
+            }
+            System.out.print(bridgeCell);
+            if (i + 1 != movedBridge.size()) {
+                System.out.print(UIMessage.INFO_BRIDGE_SEPARATED.getValue());
+            }
+        }
     }
 
     /**
@@ -18,6 +64,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> bridge, List<String> movedBridge, Boolean isPassedMoving) {
+        System.out.println(UIMessage.INFO_GAME_RESULT.getValue());
+        printMap(bridge, movedBridge);
+        String isPassed = UIMessage.INFO_GAME_FAILED.getValue();
+        if (isPassedMoving) {
+            isPassed = UIMessage.INFO_GAME_SUCCESS.getValue();
+        }
+        System.out.println(UIMessage.INFO_GAME_IS_SUCCESS.getValue() + isPassed);
+        System.out.println(UIMessage.INFO_RETRY_COUNT.getValue() + BridgeGame.getBridgeGamePlayCount());
     }
 }

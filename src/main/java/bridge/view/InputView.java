@@ -2,6 +2,7 @@ package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import bridge.constant.enumtype.BridgeGameRule;
 import bridge.constant.enumtype.BridgeLengthInclusive;
 import bridge.constant.enumtype.UIMessage;
 
@@ -45,13 +46,25 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(UIMessage.REQUEST_INPUT_MOVE_CELL.getValue());
+        String readMovingCapitalCharacter = readLine();
+        if (!(readMovingCapitalCharacter.equals(BridgeGameRule.MOVE_UP.getValue())
+                || readMovingCapitalCharacter.equals(BridgeGameRule.MOVE_DOWN.getValue()))) {
+            throw new IllegalArgumentException(UIMessage.ERROR_INPUT_MOVE_CELL.getValue());
+        }
+        return readMovingCapitalCharacter;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(UIMessage.REQUEST_INPUT_RETRY_GAME.getValue());
+        String readRetryCapitalCharacter = readLine();
+        if (!(readRetryCapitalCharacter.equals(BridgeGameRule.RETRY.getValue())
+                || readRetryCapitalCharacter.equals(BridgeGameRule.QUIT.getValue()))) {
+            throw new IllegalArgumentException(UIMessage.ERROR_INPUT_RETRY_GAME.getValue());
+        }
+        return readRetryCapitalCharacter;
     }
 }
