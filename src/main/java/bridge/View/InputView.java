@@ -1,7 +1,7 @@
 package bridge.View;
 
 import bridge.Utils.InputType;
-import bridge.Domain.InputValidator;
+import bridge.Utils.InputValidator;
 import bridge.Utils.Message;
 
 public class InputView {

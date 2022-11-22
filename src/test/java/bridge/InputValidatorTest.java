@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Domain.InputValidator;
+import bridge.Utils.InputValidator;
 import bridge.Utils.InputType;
 import bridge.Utils.Message;
 import org.junit.jupiter.api.DisplayName;

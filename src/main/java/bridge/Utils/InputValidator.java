@@ -1,7 +1,5 @@
-package bridge.Domain;
+package bridge.Utils;
 
-import bridge.Utils.InputType;
-import bridge.Utils.Message;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputValidator {
