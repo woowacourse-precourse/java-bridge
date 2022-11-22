@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.map.Map;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -12,7 +14,25 @@ public class OutputView {
      */
     public void printMap(Bridge bridge, int index, String moving) {
 
+        for (int i = 0; i < 2; i++) {
+            System.out.print(Map.BRIDGE_START.getMark());
+            for (int j = 0; j < index - 1; j++) {
+                printRow();
+                System.out.print(Map.BLOCK_SECTION.getMark());
+            }
+            printLast();
+            System.out.println(Map.BRIDGE_END.getMark());
+        }
+        System.out.println();
     }
+
+    private void printLast() {
+    }
+
+    public void printRow() {
+
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
