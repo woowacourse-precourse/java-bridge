@@ -72,4 +72,12 @@ public class BridgeGameController {
             }
         }
     }
+
+    private static void gameEnd() {
+        outputView.printMessage(Message.GAME_RESULT);
+        outputView.printMap(game.getUpperBridge());
+        outputView.printMap(game.getLowerBridge());
+        outputView.printEmptyLine();
+        outputView.printResult(game.isClear(), game.getCount());
+    }
 }
