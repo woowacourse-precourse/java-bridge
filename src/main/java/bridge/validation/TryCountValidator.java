@@ -3,6 +3,7 @@ package bridge.validation;
 import bridge.constants.ValidatorMessage;
 
 public class TryCountValidator {
+
     private static final int MAX_TRY_COUNT = 2100000000;
 
     public static void validateTryCount(int tryCount) {

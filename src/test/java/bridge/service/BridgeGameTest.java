@@ -2,7 +2,6 @@ package bridge.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 import bridge.domain.Bridge;
 import bridge.domain.GameStatus;

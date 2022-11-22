@@ -8,7 +8,6 @@ public class InputView {
         return Console.readLine();
     }
 
-
     public String readMoving() {
         return Console.readLine();
     }

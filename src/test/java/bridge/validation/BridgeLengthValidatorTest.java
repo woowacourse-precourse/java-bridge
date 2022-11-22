@@ -17,7 +17,6 @@ class BridgeLengthValidatorTest {
         assertThatThrownBy(() -> BridgeLengthValidator.validateNaturalNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ValidatorMessage.BRIDGE_LENGTH_MESSAGE.toString());
-
     }
 
     @DisplayName("3 이상 20 이하의 숫자가 아니면 예외를 발생시킨다.")
@@ -27,7 +26,6 @@ class BridgeLengthValidatorTest {
         assertThatThrownBy(() -> BridgeLengthValidator.validateRange(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ValidatorMessage.BRIDGE_LENGTH_MESSAGE.toString());
-
     }
 
     @DisplayName("3 이상 20 이하의 자연수라면 예외를 발생시키지 않는다.")

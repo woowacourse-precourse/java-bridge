@@ -34,8 +34,6 @@ class BridgeMakerTest {
         assertThat(bridge).containsOnly("D", "U");
     }
 
-
-
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;

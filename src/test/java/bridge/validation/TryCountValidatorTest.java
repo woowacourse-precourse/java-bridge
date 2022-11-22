@@ -17,7 +17,6 @@ class TryCountValidatorTest {
         assertThatThrownBy(() -> TryCountValidator.validateTryCount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ValidatorMessage.TOO_MUCH_GAME.toString());
-
     }
 
     @DisplayName("2,100,000,000번 이하의 시도라면 예외가 발생하지 않는다.")

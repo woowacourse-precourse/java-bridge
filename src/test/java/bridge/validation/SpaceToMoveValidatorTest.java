@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class SpaceToMoveValidatorTest {
+
     @DisplayName("입력이 U나 D가 아니라면 예외를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(strings = {"A", " ", "u"})
@@ -16,7 +17,6 @@ class SpaceToMoveValidatorTest {
         assertThatThrownBy(() -> SpaceToMoveValidator.validateSpaceToMove(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ValidatorMessage.NEXT_SPACE_IS_U_OR_D.toString());
-
     }
 
     @DisplayName("입력이 U나 D라면 예외를 발생시키지 않는다.")
