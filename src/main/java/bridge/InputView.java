@@ -31,4 +31,14 @@ public class InputView {
         movingInput(moving);
         return moving;
     }
+
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public String readGameCommand() {
+        System.out.println(Constants.CHOOSE_R_Q);
+        String retry = Console.readLine();
+        retryInput(retry);
+        return retry;
+    }
 }
