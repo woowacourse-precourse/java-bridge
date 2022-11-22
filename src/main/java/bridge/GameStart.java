@@ -27,29 +27,28 @@ public class GameStart {
 
     public void run() {
         inputBridge();
-        boolean isSuccess = play();
+        boolean isSuccess = false;
+        boolean isRestart = true;
+        while (!isSuccess && isRestart) {
+            countOfPlay++;
+            isSuccess = play();
+            if (!isSuccess) {
+                isRestart = inputRestart();
+            }
+        }
         outputView.printResult(bridge, countOfMove, isSuccess, countOfPlay);
     }
 
     private boolean play() {
-        boolean isSuccess = false;
-        boolean isRestart = true;
-        do {
-            countOfPlay++;
-            for (countOfMove = 0; countOfMove < bridgeSize; countOfMove++) {
-                String moveBlock = inputMove();
-                boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
-                outputView.printMap(bridge, countOfMove, isMove);
-                if (!isMove) {
-                    isRestart = inputRestart();
-                    break;
-                }
+        for (countOfMove = 0; countOfMove < bridgeSize; countOfMove++) {
+            String moveBlock = inputMove();
+            boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
+            outputView.printMap(bridge, countOfMove, isMove);
+            if (!isMove) {
+                return false;
             }
-            if (!isRestart) {
-                isSuccess = true;
-            }
-        } while (!isSuccess && isRestart);
-        return isSuccess;
+        }
+        return true;
     }
 
     private void inputBridge() {
