@@ -15,4 +15,8 @@ public class Controller {
 	public void startBridge() {
 		inputView.startBridge();
 	}
+
+	public void setBridge() {
+		bridgeProgram.useBridge();
+	}
 }
