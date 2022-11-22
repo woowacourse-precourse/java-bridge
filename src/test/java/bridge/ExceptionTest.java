@@ -1,8 +1,12 @@
 package bridge;
 
+import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import bridge.ApplicationTest.TestNumberGenerator;
+
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ExceptionTest {
@@ -13,6 +17,16 @@ public class ExceptionTest {
         assertThrows(IllegalArgumentException.class, () -> {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             bridgeMaker.makeBridge(size);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 2, 3, 5})
+    void randomBridgeNumberExceptionTest(int number) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(number, 0, 0));
+            BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+            bridgeMaker.makeBridge(3);
         });
     }
 
