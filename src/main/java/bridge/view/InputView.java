@@ -31,6 +31,7 @@ public class InputView {
         System.out.println(ASK_BRIDGE_SIZE);
         String input = readString();
         validateNumberType(input);
+        System.out.println();
         return Integer.parseInt(input);
     }
 

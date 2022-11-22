@@ -20,6 +20,7 @@ public class OutputView {
 
     public void printStart() {
         System.out.println(NOTICE_START_GAME);
+        System.out.println();
     }
 
     public void printMap(boolean isSuccess, List<Plate> playerPath) {
