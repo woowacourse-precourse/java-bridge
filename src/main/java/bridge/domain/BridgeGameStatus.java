@@ -17,4 +17,12 @@ public enum BridgeGameStatus {
     public static BridgeGameStatus gameRestart() {
         return PLAY;
     }
+
+    public boolean isRunning() {
+        return this.equals(PLAY);
+    }
+
+    public boolean isNotRunning() {
+        return this.equals(QUIT);
+    }
 }
