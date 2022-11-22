@@ -2,12 +2,16 @@ package bridge;
 
 import org.junit.jupiter.api.Test;
 
+import bridge.Constant.Constant;
+import bridge.Model.BridgeMaker;
+import bridge.Model.BridgeRandomNumberGenerator;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeMakerTest {
-    
+
     @Test
     void 다리_생성_테스트() {
         int size = 3;
