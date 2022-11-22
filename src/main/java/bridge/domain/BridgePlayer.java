@@ -1,17 +1,17 @@
 package bridge.domain;
 
-import bridge.utils.constants.BridgeMove;
+import bridge.utils.constants.PlayerPosition;
 
 public class BridgePlayer {
-    private int currentBridgePosition = BridgeMove.START_INDEX;
+    private int currentBridgePosition = PlayerPosition.START_INDEX.getValue();
     private int gameAttemptCount = 1;
 
     public void goFront(){
-        currentBridgePosition+=BridgeMove.GO_STEP;
+        currentBridgePosition+=PlayerPosition.GO_FRONT_STEP.getValue();
     }
 
     public void initializePlayerPosition(){
-        this.currentBridgePosition = BridgeMove.START_INDEX;
+        this.currentBridgePosition = PlayerPosition.START_INDEX.getValue();
     }
 
     public void increaseAttemptCount(){
