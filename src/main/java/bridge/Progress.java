@@ -19,5 +19,22 @@ public class Progress {
         }
     }
 
+    public void gameInProcess() {
+        while (loop) {
+            try {
+                movingProcess();
+            } catch (IllegalArgumentException e) {
+                System.out.println(outputView.errorMessage(e.getMessage()));
+            }
+        }
+    }
+
+    public void movingProcess() {
+        while (!bridgeGame.isMoveFinish()) {
+            loop = bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.inputHistory());
+        }
+    }
+
 
 }
