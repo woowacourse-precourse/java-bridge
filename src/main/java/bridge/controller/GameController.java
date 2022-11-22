@@ -21,43 +21,55 @@ public class GameController {
     }
 
     public void start() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
         outputView.printStart();
 
         try {
-            int size = getBridgeSize();
-            List<String> bridge = bridgeMaker.makeBridge(size);
-            game(bridge);
+            game();
         } catch (IllegalArgumentException exception) {
+            outputView.printException(exception);
+        } catch (IllegalStateException exception) {
             outputView.printException(exception);
         }
     }
 
-    public void game(List<String> bridge) {
+    private void game() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(getBridgeSize());
         Result result = new Result(bridge);
         BridgeGame bridgeGame = new BridgeGame(result);
 
+        process(result, bridgeGame);
+    }
+
+    public void process(Result result, BridgeGame bridgeGame) {
         do {
-            if (process(result, bridgeGame)) {   // 성공한 경우
+            rounds(result, bridgeGame);
+            if (!result.hasFail()) {
                 outputView.printResult(result, bridgeGame.getCount());
                 break;
             }
+
             bridgeGame.retry();
         }while (isRetry(getCommand()));
     }
 
-    private boolean process(Result result, BridgeGame bridgeGame) {
+    private void rounds(Result result, BridgeGame bridgeGame) {
         do {
-            String place = inputView.readMoving().getPlace();
-            bridgeGame.move(place);
-            outputView.printMap(result);
+            round(result, bridgeGame);
             if (result.hasFail()) {  // 입력한 칸이 이동할 수 없는 경우
-                return false;
+                return;
             }
         } while (!result.isSameLength()); // 정답과 입력한 이동칸의 수가 같은 경우
+    }
 
-        return true;
+    private void round(Result result, BridgeGame bridgeGame) {
+        String place = getPlace();
+        bridgeGame.move(place);
+        outputView.printMap(result);
+    }
+
+    private String getPlace() {
+        return inputView.readMoving().getPlace();
     }
 
     private boolean isRetry(String command) {
