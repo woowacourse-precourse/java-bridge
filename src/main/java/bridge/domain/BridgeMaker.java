@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.enumeration.GameCommand;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +29,10 @@ public class BridgeMaker {
         return blocks;
     }
 
-    // TODO: 상수 Enum으로 리팩토링 하기
     private String convert(int number) {
-        String block = "";
         if (number == 1) {
-            block += "U";
+            return GameCommand.UP.getCommand();
         }
-        if (number == 0) {
-            block += "D";
-        }
-        return block;
+        return GameCommand.DOWN.getCommand();
     }
 }
