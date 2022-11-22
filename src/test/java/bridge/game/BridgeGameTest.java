@@ -24,7 +24,7 @@ class BridgeGameTest {
         var makeBridge = new BridgeMaker(fakeGenerate);
         var bridgeSize = new BridgeSize("4");
         var bridge = new Bridge(makeBridge, bridgeSize);
-       
+
         this.bridgeGame = new BridgeGame(bridge);
     }
 
@@ -35,11 +35,7 @@ class BridgeGameTest {
 
     @Test
     void 게임이_모두_완료가_되면_클리어_상태를_출력합니다() {
-
-        bridgeGame.move(BridgePosition.UP);
-        bridgeGame.move(BridgePosition.DOWN);
-        bridgeGame.move(BridgePosition.UP);
-        bridgeGame.move(BridgePosition.DOWN);
+        this.moveAnswer();
 
         var gameStatus = bridgeGame.getGameStatus();
 
@@ -54,5 +50,27 @@ class BridgeGameTest {
 
         assertThat(gameStatus.getCode()).isEqualTo("실패");
     }
+
+    @Test
+    void 게임을_실패하면_실패상태에서_재시작한_이후_성공하면_클리어상태가_됩니다() {
+        this.bridgeGame.move(BridgePosition.DOWN);
+        var beforeStatus = bridgeGame.getGameStatus();
+
+        this.bridgeGame.retry();
+        this.moveAnswer();
+
+        var lastStatus = bridgeGame.getGameStatus();
+
+        assertThat(beforeStatus.getCode()).isEqualTo("실패");
+        assertThat(lastStatus.getCode()).isEqualTo("성공");
+    }
+
+    private void moveAnswer() {
+        bridgeGame.move(BridgePosition.UP);
+        bridgeGame.move(BridgePosition.DOWN);
+        bridgeGame.move(BridgePosition.UP);
+        bridgeGame.move(BridgePosition.DOWN);
+    }
+
 
 }
