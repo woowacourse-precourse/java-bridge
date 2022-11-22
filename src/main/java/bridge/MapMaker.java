@@ -4,20 +4,20 @@ public class MapMaker {
 
     private final StringBuilder[] map;
 
-    MapMaker(){
+    MapMaker() {
         map = new StringBuilder[]{new StringBuilder(), new StringBuilder()};
     }
 
-    public void setMap(String moving, String match,int position) {
-        if (position != 0){
+    public void setMap(String moving, String match, int position) {
+        if (position != 0) {
             map[0].append("| ");
             map[1].append("| ");
         }
-        setUpMap(moving, match,position);
-        setDownMap(moving, match,position);
+        setUpMap(moving, match, position);
+        setDownMap(moving, match, position);
     }
 
-    private void setUpMap(String moving, String match,int position) {
+    private void setUpMap(String moving, String match, int position) {
         if (moving.equals("U")) {
             map[0].append(match).append(" ");
         }
@@ -26,11 +26,11 @@ public class MapMaker {
         }
     }
 
-    private void setDownMap(String moving, String match,int position) {
+    private void setDownMap(String moving, String match, int position) {
         if (moving.equals("U")) {
             map[1].append("  ");
         }
-        if (moving.equals("D")){
+        if (moving.equals("D")) {
             map[1].append(match).append(" ");
         }
     }

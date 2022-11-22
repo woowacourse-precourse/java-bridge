@@ -49,9 +49,7 @@ class ApplicationTest extends NsTest {
     @CsvSource(value = {"0:O", "1:X"}, delimiter = ':')
     void 이동_테스트(int position, StringBuilder expected) {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0, 1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(4);
-        BridgeGame bridgeGame = new BridgeGame(bridge, position, true);
+        BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(numberGenerator).makeBridge(4), position, true);
         bridgeGame.move("U");
         assertThat(bridgeGame.mapMaker.getMap()[0]).contains(expected);
     }
@@ -61,19 +59,19 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("5", "D", "D", "U", "U", "D");
             assertThat(output()).contains("결과", "성공");
-            }, 0, 0, 1, 1, 0);
+        }, 0, 0, 1, 1, 0);
     }
 
     @Test
     void 실패_재시작_종료_여부_질문_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "D", "D","D","Q");
+            run("3", "D", "D", "D", "Q");
             assertThat(output()).contains("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         }, 0, 0, 1);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"r", "q", "-","2"})
+    @ValueSource(strings = {"r", "q", "-", "2"})
     void 재시작_종료_여부_예외_테스트(String input) {
         assertThatThrownBy(() -> ValidateInput.validateGameCommand(input))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -82,7 +80,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 재시작_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D","R","D","Q");
+            run("3", "U", "D", "D", "R", "D", "Q");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[   ]",

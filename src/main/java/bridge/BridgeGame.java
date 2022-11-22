@@ -11,7 +11,7 @@ public class BridgeGame {
     private int count = 1;
     private boolean canMove;
     private final List<String> bridge;
-    MapMaker mapMaker=new MapMaker();
+    MapMaker mapMaker = new MapMaker();
 
     BridgeGame(List<String> bridge, int position, boolean canMove) {
         this.bridge = bridge;
@@ -34,10 +34,10 @@ public class BridgeGame {
      */
     public void move(String moving) {
         if (bridge.get(position).equals(moving)) {
-            mapMaker.setMap(moving, "O",position);
+            mapMaker.setMap(moving, "O", position);
         }
         if (!bridge.get(position).equals(moving)) {
-            mapMaker.setMap(moving, "X",position);
+            mapMaker.setMap(moving, "X", position);
             canMove = false;
         }
         position++;
@@ -52,14 +52,14 @@ public class BridgeGame {
         count++;
         position = 0;
         canMove = true;
-        mapMaker=new MapMaker();
+        mapMaker = new MapMaker();
         Application.playGame(this);
     }
 
     public StringBuilder getResult() {
         StringBuilder result = new StringBuilder();
         result.append("\n최종 게임 결과\n[ ").append(mapMaker.getMap()[0]).append("]\n[ ").append(mapMaker.getMap()[1]).append("]\n");
-        if (canMove){
+        if (canMove) {
             result.append("\n게임 성공 여부: 성공").append("\n총 시도한 횟수: ").append(count);
             return result;
         }
