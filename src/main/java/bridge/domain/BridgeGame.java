@@ -27,7 +27,6 @@ public class BridgeGame {
     }
 
     public static void compareMove(String dir) {
-        System.out.println(answerBridge);
         while (true) {
             String answer = BridgeService.moveBridge();
             BridgeService.viewBridge();
