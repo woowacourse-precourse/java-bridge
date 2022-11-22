@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 public enum Errors {
     ONLY_NUMBER("[ERROR] 숫자만 입력해야합니다."),

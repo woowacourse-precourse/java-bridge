@@ -1,10 +1,7 @@
-package bridge.domain;
-
-import bridge.BridgeNumberGenerator;
+package bridge;
 
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;

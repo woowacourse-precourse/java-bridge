@@ -1,6 +1,6 @@
-package bridge.domain;
+package bridge;
 
-import org.junit.jupiter.api.Assertions;
+import bridge.Bridge;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

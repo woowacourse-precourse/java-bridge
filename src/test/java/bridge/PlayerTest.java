@@ -1,9 +1,8 @@
-package bridge.domain;
+package bridge;
 
-import org.assertj.core.api.Assertions;
+import bridge.Player;
 import org.junit.jupiter.api.Test;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

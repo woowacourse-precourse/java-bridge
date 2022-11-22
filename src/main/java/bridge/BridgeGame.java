@@ -1,6 +1,4 @@
-package bridge.domain;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
+package bridge;
 
 
 public class BridgeGame {

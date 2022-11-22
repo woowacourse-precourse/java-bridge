@@ -1,6 +1,6 @@
-package bridge.view;
+package bridge;
 
-import bridge.domain.Bridge;
+import bridge.Bridge;
 
 import static bridge.GameController.GAME_COUNT;
 

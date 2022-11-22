@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 public enum BridgeConstant {
     UP_SUCCESS("UU",true),
