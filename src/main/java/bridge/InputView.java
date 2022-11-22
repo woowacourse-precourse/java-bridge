@@ -27,7 +27,7 @@ public class InputView {
     }
     public void sizeError() {
         try {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException("[ERROR] 3~ 20사이 숫자를 입력해주세요");
         } catch (IllegalArgumentException e) {
             System.out.println(e);
         } catch (IllegalStateException e) {
