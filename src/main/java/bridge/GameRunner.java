@@ -21,14 +21,22 @@ public class GameRunner {
         this.bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
     }
 
+    // whole game process loop
     public void run(){
-
+        GAME_STATE state = GAME_STATE.INITIALIZED;
+        while(state != GAME_STATE.QUIT){
+            state = inGame();
+        }
     }
 
+    // each game loop's inner loop
     private GAME_STATE inGame(){
         GAME_STATE state = GAME_STATE.IN_GAME;
         while(state == GAME_STATE.IN_GAME){
             state = bridgeGame.move(InputView.readMoving(), this.bridge);
+        }
+        if(state == GAME_STATE.SUCCESS){ // game win
+            return GAME_STATE.QUIT;
         }
         return retry();
     }
@@ -39,6 +47,6 @@ public class GameRunner {
             bridgeGame.retry();
             return GAME_STATE.RETRY;
         }
-        return GAME_STATE.END;
+        return GAME_STATE.QUIT;
     }
 }

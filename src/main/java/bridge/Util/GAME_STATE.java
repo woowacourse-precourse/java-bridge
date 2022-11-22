@@ -1,11 +1,11 @@
 package bridge.Util;
 
 public enum GAME_STATE {
-    STATE(""),
+    INITIALIZED(""),
     IN_GAME("IN_GAME"),
     RETRY("R"),
     QUIT("Q"),
-    END("END");
+    SUCCESS("END");
 
     private String state;
 
