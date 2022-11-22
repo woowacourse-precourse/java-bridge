@@ -3,9 +3,6 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private List<String> bridge;
     private List<String> upPresentBridge;
@@ -25,16 +22,24 @@ public class BridgeGame {
     public void move(String userMove) {
         userMoveList.add(userMove);
         if(userMove.equals("U")) {
-            if (bridge.get(userMoveList.size() - 1).equals(userMove)) {
-                upPresentBridge.add("O");
-                downPresentBridge.add("X");
-                return;
-            }
-            upPresentBridge.add("X");
-            downPresentBridge.add("O");
-            gameSuccess="실패";
+            userMoveU(userMove);
             return;
         }
+        userMoveD(userMove);
+    }
+
+    private void userMoveU(String userMove){
+        if (bridge.get(userMoveList.size() - 1).equals(userMove)) {
+            upPresentBridge.add("O");
+            downPresentBridge.add("X");
+            return;
+        }
+        upPresentBridge.add("X");
+        downPresentBridge.add("O");
+        gameSuccess="실패";
+    }
+
+    private void userMoveD(String userMove){
         if (bridge.get(userMoveList.size() - 1).equals(userMove)) {
             upPresentBridge.add("X");
             downPresentBridge.add("O");
