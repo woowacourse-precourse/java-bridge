@@ -7,6 +7,7 @@ public class Application {
     static OutputView outputView = new OutputView();
     static InputView inputView = new InputView();
     static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    static BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -19,8 +20,8 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         outputView.printMoving();
+        bridgeGame.move(bridge);
 
-        inputView.readMoving();
 
     }
 }

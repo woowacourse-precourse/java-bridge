@@ -1,6 +1,8 @@
 package bridge;
 
 import bridge.Exception.ErrorType;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -12,7 +14,42 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> bridge, List<String> movingResult) {
+        List<String> upLine = new ArrayList<>();
+        List<String> downLine = new ArrayList<>();
+
+        upLine.add("[");
+        downLine.add("[");
+
+        for (int index = 0; index < movingResult.size(); index++) {
+            System.out.println(movingResult.get(index));
+            System.out.println(bridge.get(index));
+            if (movingResult.get(index).equals("U") && movingResult.get(index).equals(bridge.get(index))) {
+                upLine.add(" O ");
+                downLine.add("   ");
+            } else if (movingResult.get(index).equals("U") && !movingResult.get(index).equals(bridge.get(index))) {
+                upLine.add(" X ");
+                downLine.add("   ");
+            } else if (movingResult.get(index).equals("D") && movingResult.get(index).equals(bridge.get(index))) {
+                upLine.add("   ");
+                downLine.add(" O ");
+            } else if (movingResult.get(index).equals("D") && !movingResult.get(index).equals(bridge.get(index))) {
+                upLine.add("   ");
+                downLine.add(" X ");
+            }
+
+            if(index != 0){
+                upLine.add("|");
+                downLine.add("|");
+            }
+
+            if (index == bridge.size() - 1) {
+                upLine.add("]");
+                downLine.add("]");
+            }
+        }
+        System.out.println(upLine.toString());
+        System.out.println(downLine.toString());
     }
 
     /**
@@ -29,11 +66,11 @@ public class OutputView {
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
-    public void printException(ErrorType errorType){
+    public void printException(ErrorType errorType) {
         System.out.println(errorType.getErrorMessage());
     }
 
-    public void printMoving(){
+    public void printMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
