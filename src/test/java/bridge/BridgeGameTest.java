@@ -52,4 +52,13 @@ public class BridgeGameTest {
         Assertions.assertEquals(bridgeGame.getUp(), "[");
         Assertions.assertEquals(bridgeGame.getDown(), "[");
     }
+
+    @DisplayName("다리 끝에 도착하면 성공")
+    @Test
+    public void gameResultBySuccess() {
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        Assertions.assertEquals(bridgeGame.isSuccess(), "성공");
+    }
 }
