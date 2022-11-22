@@ -1,7 +1,6 @@
 package bridge.domainTest;
-import bridge.constant.BridgeDirection;
-import bridge.constant.CrossingState;
-import bridge.domain.GameRecordGenerator;
+import bridge.domain.constant.BridgeDirection;
+import bridge.domain.model.GameRecordGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.InstanceOfAssertFactories.stream;
 
 public class GameRecordGeneratorTest {
 

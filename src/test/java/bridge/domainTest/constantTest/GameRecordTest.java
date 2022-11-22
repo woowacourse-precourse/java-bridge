@@ -1,9 +1,8 @@
 package bridge.constantTest;
 
-import bridge.constant.BridgeDirection;
-import bridge.constant.CrossingState;
-import bridge.constant.GameRecord;
-import bridge.domain.GameRecordGenerator;
+import bridge.domain.constant.BridgeDirection;
+import bridge.domain.constant.CrossingState;
+import bridge.domain.constant.GameRecord;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
