@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class OutputView {
 
-    private List<String> buff;
     private final BridgeGame bridgeGame;
+    private final List<String> buff;
 
-    public OutputView(BridgeGame bridgeGame){
+    public OutputView(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
         buff = new ArrayList<>();
     }
@@ -39,7 +39,7 @@ public class OutputView {
             buff.add(" ");
         }
         StringBuilder sb = new StringBuilder(buff.toString().replaceAll(",", " |")).insert(1, " ");
-        return sb.insert(sb.length()-1, " ").toString();
+        return sb.insert(sb.length() - 1, " ").toString();
     }
 
     /**

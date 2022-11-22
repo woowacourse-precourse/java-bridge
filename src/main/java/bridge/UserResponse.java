@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,12 +12,11 @@ public enum UserResponse {
     RESTART(-1, "R"),
     ERROR(-1, "[ERROR]");
 
-    final int stateCode;
-    final String stateInfo;
-
     private static final Map<String, Integer> CODE_MAP = Collections.unmodifiableMap(
             Stream.of(values()).collect(Collectors.toMap(UserResponse::getStateInfo, UserResponse::getStateCode))
     );
+    final int stateCode;
+    final String stateInfo;
 
     UserResponse(int stateCode, String stateInfo) {
         this.stateCode = stateCode;

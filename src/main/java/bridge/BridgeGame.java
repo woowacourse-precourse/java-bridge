@@ -7,9 +7,9 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private int retryCount;
     private final List<String> bridge;
     private final List<String> userList;
+    private int retryCount;
 
     public BridgeGame(int bridgeSize) {
         this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
@@ -37,8 +37,7 @@ public class BridgeGame {
     public boolean move(String userInput) {
         int idx = userList.size();
         userList.add(userInput);
-        if (!bridge.get(idx).equals(userInput)) return false;
-        return true;
+        return bridge.get(idx).equals(userInput);
     }
 
     /**
