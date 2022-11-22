@@ -23,13 +23,15 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int bridgeSection = 0; bridgeSection < size; bridgeSection++) {
             int generatedNumber = bridgeNumberGenerator.generate();
-            if (generatedNumber == 1) {
-                bridge.add(GameCommand.GO_UP.getGameCommand());
-            }
-            if (generatedNumber == 0) {
-                bridge.add(GameCommand.GO_DOWN.getGameCommand());
-            }
+            bridge.add(direction(generatedNumber));
         }
         return bridge;
+    }
+
+    private static String direction(int generatedNumber) {
+        if (generatedNumber == 1) {
+            return GameCommand.GO_UP.getGameCommand();
+        }
+        return GameCommand.GO_DOWN.getGameCommand();
     }
 }
