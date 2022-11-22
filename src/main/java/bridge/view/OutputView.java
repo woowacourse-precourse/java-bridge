@@ -18,8 +18,10 @@ public class OutputView {
         upSide = "[";
         downSide = "[";
         for (int i = 0; i < mark.size(); i++) {
-            if (bridge.get(i).equals("U")) { pickUpside(i, mark);}
-            if (bridge.get(i).equals("D")) { pickDownside(i, mark);}
+            if (bridge.get(i).equals("U") && mark.get(i).equals("O")) { pickUpside(i, mark);}
+            if (bridge.get(i).equals("U") && mark.get(i).equals("X")) { pickDownside(i, mark);}
+            if (bridge.get(i).equals("D") && mark.get(i).equals("O")) { pickDownside(i, mark);}
+            if (bridge.get(i).equals("D") && mark.get(i).equals("X")) { pickUpside(i, mark);}
         }
         upSide += "]";
         downSide += "]";
@@ -40,8 +42,9 @@ public class OutputView {
             upSide += "|";
             downSide += "|";
         }
-        downSide += " " + mark.get(index) + " ";
         upSide += "   ";
+        downSide += " " + mark.get(index) + " ";
+
     }
 
     /**
