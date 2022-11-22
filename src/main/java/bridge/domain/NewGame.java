@@ -55,10 +55,10 @@ public class NewGame {
             outputView.printMap(user);
         } // 건널 수 없는 길을 선택해 movingResult가 "X"가 되거나, 모든 다리를 건너 게임을 성공한 경우 반복 중단(-> 게임 중단).
 
-        retryOrQuit(new GameEndingHandler(user, bridgeGame), movingResult);
+        gameRetryOrExit(new GameEndingHandler(user, bridgeGame), movingResult);
     }
 
-    private void retryOrQuit(GameEndingHandler gameEndingHandler, String movingResult) {
+    private void gameRetryOrExit(GameEndingHandler gameEndingHandler, String movingResult) {
         if (gameEndingHandler.getGameEndingStatus(movingResult).equals(RETRY)) {
             play();
         }
