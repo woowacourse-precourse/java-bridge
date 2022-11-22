@@ -4,6 +4,7 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.CheckException;
+import bridge.view.GameSign;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.ViewMessage;
@@ -16,6 +17,7 @@ public class GameController {
     private final int GAME_TRY_NUMBER = 1;
     private final int GAME_SUCCESS_OR_FAIL_NUMBER = 0;
     private ViewMessage viewMessage = null;
+    private GameSign gameSign = null;
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private BridgeGame bridgeGame = new BridgeGame();
@@ -54,7 +56,7 @@ public class GameController {
     }
 
     public void addBridgeMove(String direction) {
-        if (direction.equals("U")) {
+        if (direction.equals(gameSign.UP_MOVING.getMessage())) {
             addUpMove(bridgeGame.move(bridge, direction, stage));
             return;
         }
@@ -62,23 +64,23 @@ public class GameController {
     }
 
     public void addUpMove(String move) {
-        if (move.equals(" O ")) {
-            upBridge.add(" O ");
-            downBridge.add("   ");
+        if (move.equals(gameSign.MOVING_SUCCESS.getMessage())) {
+            upBridge.add(gameSign.MOVING_SUCCESS.getMessage());
+            downBridge.add(gameSign.MOVING_NOT.getMessage());
             return;
         }
-        upBridge.add(" X ");
-        downBridge.add("   ");
+        upBridge.add(gameSign.MOVING_FAIL.getMessage());
+        downBridge.add(gameSign.MOVING_NOT.getMessage());
     }
 
     public void addDownMove(String move) {
-        if (move.equals(" O ")) {
-            downBridge.add(" O ");
-            upBridge.add("   ");
+        if (move.equals(gameSign.MOVING_SUCCESS.getMessage())) {
+            downBridge.add(gameSign.MOVING_SUCCESS.getMessage());
+            upBridge.add(gameSign.MOVING_NOT.getMessage());
             return;
         }
-        downBridge.add(" X ");
-        upBridge.add("   ");
+        downBridge.add(gameSign.MOVING_FAIL.getMessage());
+        upBridge.add(gameSign.MOVING_NOT.getMessage());
     }
 
     public void runGame(){
@@ -100,7 +102,8 @@ public class GameController {
     }
 
     public boolean checkFail(int stage){
-        if(upBridge.get(stage - 1).equals(" X ") || downBridge.get(stage - 1).equals(" X ")){
+        if(upBridge.get(stage - 1).equals(gameSign.MOVING_FAIL.getMessage()) ||
+                downBridge.get(stage - 1).equals(gameSign.MOVING_FAIL.getMessage())){
             return true;
         }
         return false;

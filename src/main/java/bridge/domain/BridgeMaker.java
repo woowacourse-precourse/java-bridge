@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.view.GameSign;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private GameSign gameSign = null;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -30,8 +33,8 @@ public class BridgeMaker {
 
     public String checkBridgeDirection(int randomNumber) {
         if (randomNumber == 0) {
-            return "D";
+            return gameSign.UP_MOVING.getMessage();
         }
-        return "U";
+        return gameSign.DOWN_MOVING.getMessage();
     }
 }
