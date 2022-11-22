@@ -16,4 +16,16 @@ public class CheckException {
             return false;
         }
     }
+
+    public boolean checkInputMoving(String moving){
+        try {
+            if(!moving.equals("U") && !moving.equals("D")){
+                throw  new IllegalArgumentException();
+            }
+            return true;
+        }catch (IllegalArgumentException e){
+            System.out.println(errorMessage.ERROR_MESSAGE_INPUT_MOVING_NOT_VALID.getMessage());
+            return false;
+        }
+    }
 }
