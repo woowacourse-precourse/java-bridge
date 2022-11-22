@@ -11,15 +11,15 @@ import java.util.Map;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private final List<EnumMap<ChoiceOrResult, String>> currentState;
+    private final List<EnumMap<ChoiceOrResult, String>> currentBridgeState;
     private int curPosition;
-    private GameState gameResult;
+    private GameState gameState;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.currentState = new ArrayList<>();
+        this.currentBridgeState = new ArrayList<>();
         this.curPosition = 0;
-        this.gameResult = GameState.PLAYING;
+        this.gameState = GameState.PLAYING;
     }
 
     /**
@@ -34,11 +34,11 @@ public class BridgeGame {
         updateState();
 
         curPosition++;
-        return Collections.unmodifiableList(currentState);
+        return Collections.unmodifiableList(currentBridgeState);
     }
 
     private void validateMove(int curPosition) {
-        if (!gameResult.equals(GameState.PLAYING)) {
+        if (!gameState.equals(GameState.PLAYING)) {
             throw new IllegalStateException(ErrorMessage.MOVE_EXCEPTION.getMessage());
         }
     }
@@ -47,34 +47,34 @@ public class BridgeGame {
         EnumMap<ChoiceOrResult, String> choiceAndResult = new EnumMap<>(Map.of(ChoiceOrResult.CHOICE, moveChoice));
         if (bridge.get(curPosition).equals(moveChoice)) {
             choiceAndResult.put(ChoiceOrResult.RESULT, "O");
-            currentState.add(choiceAndResult);
+            currentBridgeState.add(choiceAndResult);
             return;
         }
         choiceAndResult.put(ChoiceOrResult.RESULT, "X");
-        currentState.add(choiceAndResult);
+        currentBridgeState.add(choiceAndResult);
     }
 
     private void updateState() {
-        if (currentState.get(curPosition).get(ChoiceOrResult.RESULT).equals("X")) {
-            gameResult = GameState.FAIL;
+        if (currentBridgeState.get(curPosition).get(ChoiceOrResult.RESULT).equals("X")) {
+            gameState = GameState.FAIL;
             return;
         }
         if (curPosition == bridge.size() - 1) {
-            gameResult = GameState.SUCCESS;
+            gameState = GameState.SUCCESS;
             return;
         }
-        gameResult = GameState.PLAYING;
+        gameState = GameState.PLAYING;
     }
 
     public boolean wasFailedToMove() {
-        if (gameResult.equals(GameState.FAIL)) {
+        if (gameState.equals(GameState.FAIL)) {
             return true;
         }
         return false;
     }
 
     public boolean isCompleted() {
-        if (!gameResult.equals(GameState.PLAYING)) {
+        if (!gameState.equals(GameState.PLAYING)) {
             return true;
         }
         return false;
@@ -86,5 +86,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        currentBridgeState .clear();
+        curPosition = 0;
+        gameState = GameState.PLAYING;
     }
 }
