@@ -20,7 +20,6 @@ public class InputView {
         try {
             String inputSize = Console.readLine();
             validateSizeInput(inputSize);
-            System.out.println();
             return Integer.parseInt(inputSize);
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());

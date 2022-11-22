@@ -5,7 +5,6 @@ import static bridge.util.Constant.*;
 public class OutputView {
     public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
-        System.out.println();
     }
 
     public static void printInputBridgeSizeMessage() {
