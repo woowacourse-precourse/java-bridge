@@ -22,7 +22,7 @@ public class BridgeController {
     public void play() {
         OutputView.printGameStart();
         attemptGameClear();
-        OutputView.printResult(bridgeMap,
+        OutputView.printResult(bridgeMap.toString(),
                 game.successOrNot(), game.getNumberOfAttempts());
     }
 
@@ -39,7 +39,7 @@ public class BridgeController {
             final String direction = service.decideDirection();
             game.move(direction);
             bridgeMap.update(direction, game.over());
-            OutputView.printMap(bridgeMap);
+            OutputView.printMap(bridgeMap.toString());
         }
     }
 }

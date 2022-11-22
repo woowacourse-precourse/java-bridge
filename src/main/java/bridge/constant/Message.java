@@ -19,6 +19,8 @@ public final class Message {
     public static final class LogicExceptionMessage {
 
         public static final String WRONG_USE_SUCCESS_OR_NOT = "[ERROR] 게임이 아직 진행 중입니다.";
+
+        private LogicExceptionMessage() {}
     }
 
     public static final class InputViewMessage {
