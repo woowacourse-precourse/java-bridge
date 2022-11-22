@@ -35,17 +35,17 @@
 - [x] 공백 라인을 출력한다. #printDivisionLine
 
 ### BridgeGameController : 다리 건너기 게임의 흐름을 관리
-- [ ]  #gameStart
-- [ ]  #getMakeBridgeSize
-- [ ]  #validateInputSetting
-- [ ]  #gameSetting
-- [ ]  #gamePlay
-- [ ]  #moveAndResult
-- [ ]  #getMoveCommand
-- [ ]  #isDisallowInputMoveCommand
-- [ ]  #getReadGameCommand
-- [ ]  #isDisallowInputGameCommand
-- [ ]  #getFinalResult
+- [ ] 게임을 시작한다. #gameStart
+- [ ] 다리 길이를 반환한다. #getMakeBridgeSize
+- [ ] 설정 값을 검증한다. #validateInputSetting
+- [ ] 게임에 대한 설정을 한다. #gameSetting
+- [ ] 게임을 진행한다. #gamePlay
+- [ ] 이동와 그 결과를 출력한다. #moveAndResult
+- [ ] 이동 입력을 반환한다. #getMoveCommand
+- [ ] 허가되지 않은 이동 입력인지 체크한다. #isDisallowInputMoveCommand
+- [ ] 게임 입력을 반환한다. #getReadGameCommand
+- [ ] 허가되지 않은 게임 입력인지 체크한다. #isDisallowInputGameCommand
+- [ ] 최종 결과를 반환한다. #getFinalResult
 
 ### BridgeGame : 다리 건너기 게임을 관리
 - [ ] 총 시도횟수를 초기화 한다. #initTryCount
