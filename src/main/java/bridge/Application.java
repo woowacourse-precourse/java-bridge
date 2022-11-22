@@ -5,8 +5,7 @@ import bridge.controller.BridgeGameController;
 public class Application {
 
     public static void main(String[] args) {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeGameController bridgeGameController = new BridgeGameController(bridgeRandomNumberGenerator);
+        BridgeGameController bridgeGameController = new BridgeGameController();
         bridgeGameController.play();
     }
 }
