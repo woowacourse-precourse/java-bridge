@@ -24,11 +24,11 @@ public enum ValidationType {
         return validationRange;
     }
 
-    public static boolean validate(ValidationType validationType, String input) {
-        return validationType.getValidationRange().contains(input);
-    }
-
     public String getErrorMessage() {
         return errorMessage;
+    }
+
+    public static boolean validate(ValidationType validationType, String input) {
+        return validationType.getValidationRange().contains(input);
     }
 }
