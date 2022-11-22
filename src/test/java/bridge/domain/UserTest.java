@@ -18,4 +18,17 @@ class UserTest {
         assertThat(user.isGameDone()).isEqualTo(false);
         assertThat(user.getTrial()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("게임 종료 메서드 테스트")
+    public void successfulDoneTest() {
+        // given
+        User user = new User();
+
+        // when
+        user.winGame();
+
+        // then
+        assertThat(user.isGameDone()).isEqualTo(true);
+    }
 }
