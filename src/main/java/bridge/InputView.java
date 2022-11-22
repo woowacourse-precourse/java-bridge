@@ -117,8 +117,9 @@ public class InputView {
         while (true) {
             String isReGame = Console.readLine();
             // 올바른 값이라면 그 값 리턴
-            return null;
+            if(isValidCommand(isReGame)) return isReGame;
             // 올바르지 않은 값이라면 에러 발생 후 메시지 출력
+            throwExceptionIfNotValidCommand(isReGame);
         }
     }
 
@@ -129,5 +130,16 @@ public class InputView {
      */
     public boolean isValidCommand(String isReGame) {
         return Objects.equals(isReGame, "R") || Objects.equals(isReGame, "Q");
+    }
+
+    /**
+     *  입력받은 재시도 여부 정보가 올바르지 않다면 예외처리 후 에러 메시지를 발생한다.
+     * @param isReGame 입력받은 이동할 칸 정보
+     * @throws IllegalArgumentException
+     */
+    private void throwExceptionIfNotValidCommand(String isReGame) throws IllegalArgumentException {
+        if (!isValidCommand(isReGame)) {
+            System.out.println("[ERROR] R 혹은 Q만 입력해주세요.");
+        }
     }
 }
