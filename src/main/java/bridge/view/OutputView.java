@@ -11,7 +11,7 @@ import static bridge.Constants.ROUND_RESULT_IS_SUCCESS;
 import static bridge.Constants.ROUND_RESULT_NUMBER_OF_ATTEMPTS;
 
 import bridge.domain.Direction;
-import bridge.GameResult;
+import bridge.domain.GameResult;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -60,7 +60,7 @@ public class OutputView {
     private String getResultMessage(final Direction direction,
         final GameResult gameResult) {
 
-        if (direction.matchShape(gameResult.getDirection())) {
+        if (gameResult.isPlayerMoved(direction)) {
             return convertResultMessage(gameResult);
         }
         return OUTPUT_NONE;

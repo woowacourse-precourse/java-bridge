@@ -5,20 +5,23 @@ import java.util.Map;
 
 public class Stage {
 
-    private final Map<String, Tile> tiles;
+    private final Map<Direction, Tile> tiles;
 
     public Stage(final String shape) {
         this.tiles = mapTiles(shape);
     }
 
-    private Map<String, Tile> mapTiles(final String shape) {
-        Map<String, Tile> tiles = new HashMap<>();
-        tiles.put(shape, Tile.PASS);
+    private Map<Direction, Tile> mapTiles(final String shape) {
+        Map<Direction, Tile> tiles = new HashMap<>();
+        for (Direction direction : Direction.values()) {
+            tiles.put(direction, Tile.NO_PASS);
+        }
+        tiles.put(Direction.of(shape), Tile.PASS);
         return tiles;
     }
 
-    public PlayResult choose(final String shape) {
-        Tile status = tiles.getOrDefault(shape, Tile.NO_PASS);
+    public PlayResult choose(final Direction direction) {
+        Tile status = tiles.getOrDefault(direction, Tile.NO_PASS);
 
         if (status.isPassable()){
             return PlayResult.PASS;

@@ -5,16 +5,16 @@ import bridge.ErrorMessage;
 
 public class DirectionValidator {
 
-    private final String direction;
+    private final Direction direction;
 
-    public DirectionValidator(final String direction) {
-        validateInput(direction);
-        this.direction = direction;
+    public DirectionValidator(final String shape) {
+        validateInput(shape);
+        this.direction = Direction.of(shape);
     }
 
-    private void validateInput(final String direction) {
+    private void validateInput(final String shape) {
         try {
-            Direction.of(direction);
+            Direction.of(shape);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(
                 ErrorMessage.INVALID_DIRECTION
@@ -22,7 +22,7 @@ public class DirectionValidator {
         }
     }
 
-    public String getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 }

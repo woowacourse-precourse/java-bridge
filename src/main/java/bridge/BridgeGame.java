@@ -1,6 +1,8 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.domain.Direction;
+import bridge.domain.GameResult;
 import bridge.domain.PlayResult;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +30,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameResult move(final int round, final String direction) {
+    public GameResult move(final int round, final Direction direction) {
         PlayResult playResult = bridge.cross(round, direction);
         roundResults.put(round, playResult);
         return new GameResult(direction, playResult);

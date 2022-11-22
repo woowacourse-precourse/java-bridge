@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Direction;
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.DirectionValidator;
 import bridge.GameCommend;
@@ -25,7 +26,7 @@ public class InputController {
         }
     }
 
-    public String setMovingDirection() {
+    public Direction setMovingDirection() {
         try {
             DirectionValidator validator
                 = new DirectionValidator(inputView.readMoving());
