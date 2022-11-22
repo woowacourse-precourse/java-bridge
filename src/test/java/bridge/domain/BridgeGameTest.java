@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
     private final BridgeGame bridgeGame = new BridgeGame();
-    Player player;
+    private Player player;
 
     @BeforeEach
     void beforeEach() {
@@ -62,6 +62,15 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
         assertThat(player.getBridgeRoute()).isEqualTo(answer);
+    }
+
+    @DisplayName("사용자의 정답 횟수가 정상적으로 반영되는지 확인")
+    @Test
+    void move_사용자의_정답_횟수_반영되는지_확인() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertThat(player.getCorrectAnswerCount()).isEqualTo(3);
     }
 
     @DisplayName("R을 입력하면 true, Q를 입력하면 false가 반환되는지 확인")
