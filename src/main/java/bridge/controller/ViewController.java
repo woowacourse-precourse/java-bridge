@@ -1,6 +1,5 @@
-package bridge.domain;
+package bridge.controller;
 
-import bridge.util.InputValidator;
 import bridge.view.InputView;
 import bridge.view.Message;
 import bridge.view.OutputView;
