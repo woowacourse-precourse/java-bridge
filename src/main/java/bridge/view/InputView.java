@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.domain.BridgeGameCommand;
-import bridge.domain.BridgeGamePosition;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Pattern;
