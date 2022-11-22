@@ -54,4 +54,8 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public void finish(boolean status) {
+        roundService.getFinalResult(status);
+    }
 }

@@ -34,4 +34,9 @@ public class RoundService {
     private boolean compareBridge(Bridge bridge) {
         return bridge.compareByIndex(round.findLastIndex(), round.findLastValue());
     }
+
+    public void getFinalResult(boolean status) {
+        OutputView.messageFinalResult();
+        OutputView.printMap(round.getMovings(), status);
+    }
 }

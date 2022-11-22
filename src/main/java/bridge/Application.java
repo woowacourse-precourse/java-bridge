@@ -14,5 +14,6 @@ public class Application {
         do {
             status = bridgeGame.move();
         } while (!status && bridgeGame.retry());
+        bridgeGame.finish(status);
     }
 }

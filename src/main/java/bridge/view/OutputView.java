@@ -23,6 +23,10 @@ public class OutputView {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
+    public static void messageFinalResult() {
+        System.out.println("최종 게임 결과");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
