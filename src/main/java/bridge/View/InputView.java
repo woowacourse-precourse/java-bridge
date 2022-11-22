@@ -24,6 +24,7 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요.");
         String position=Console.readLine();
+        if(!position.matches("[UD]")) return "EXIT";
         return position;
     }
 
@@ -37,12 +38,12 @@ public class InputView {
         return Input;
     }
     public void exception(){
-
         try {
+
         }
         catch(IllegalArgumentException exception) {
-            System.out.print(exception.getMessage());
             System.out.println("[ERROR]");
+            System.out.print(exception.getMessage());
             return;
         }
 
