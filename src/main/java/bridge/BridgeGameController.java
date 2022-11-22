@@ -42,9 +42,9 @@ public class BridgeGameController {
 
     public boolean retry() {
         outputView.askReplay();
-        Command command = inputView.readGameCommand();
-        RetryResponseDto retry = bridgeGame.retry(command);
+        RetryResponseDto retry = bridgeGame.retry(inputView.readGameCommand());
         if (retry.isRetryGame()) {
+            outputView.retry();
             return Boolean.TRUE;
         }
         outputView.printResult(Boolean.FALSE, retry.getAttemptCount());

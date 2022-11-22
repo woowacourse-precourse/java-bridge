@@ -1,8 +1,5 @@
 package bridge.domain;
 
-import java.util.Arrays;
-import java.util.Optional;
-
 public enum Command {
     UP("U"), DOWN("D"),RETRY("R"), EXIT("Q"),
     ;
