@@ -13,7 +13,7 @@ public class Bridge {
             .collect(Collectors.toList());
     }
 
-    public PlayResult choose(final int round, final String direction) {
+    public PlayResult cross(final int round, final String direction) {
         return stages.get(round).choose(direction);
     }
 

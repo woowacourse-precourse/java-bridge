@@ -100,11 +100,11 @@ public class OutputView {
     public void printResult(final boolean isClear, final int attempts) {
         System.out.println(ROUND_RESULT);
         printBridges();
-        System.out.println(ROUND_RESULT_IS_SUCCESS + formatClearStatus(isClear));
+        System.out.println(ROUND_RESULT_IS_SUCCESS + formatGameResult(isClear));
         System.out.println(ROUND_RESULT_NUMBER_OF_ATTEMPTS + attempts);
     }
 
-    private static String formatClearStatus(final boolean isClear) {
+    private static String formatGameResult(final boolean isClear) {
         if (isClear) {
             return "성공";
         }
