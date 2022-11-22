@@ -61,6 +61,13 @@ public class BridgeGame {
         return records.size();
     }
 
+    public Bridge getResultBridge() {
+        Bridge result = onPlayingBridge;
+        for (Bridge bridge : records) {
+            result = compare(result, bridge);
+        }
+        return result;
+    }
 
     public Bridge compare(Bridge bridge1, Bridge bridge2) {
         if (bridge1.getSize() > bridge2.getSize()) return bridge1;
