@@ -7,7 +7,8 @@ import bridge.View.OutputView;
 
 public class GameController {
     public static void setGame() {
-        final OutputView Output = new OutputView();    
+        final OutputView Output = new OutputView();   
+        Output.ResetAll();
         BridgeGame.makeGame(InputView.readBridgeSize());
         while (BridgeGame.play()) {
             printMove(Output);
