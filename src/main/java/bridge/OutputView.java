@@ -1,12 +1,14 @@
-package bridge;
+package bridge.ui;
 
-import static bridge.UserInterface.INSERT_SIZE;
-import static bridge.UserInterface.RE_TRY;
-import static bridge.UserInterface.SELECT_ROW;
-import static bridge.UserInterface.START;
-import static bridge.UserInterface.SUCCESSFUL;
-import static bridge.UserInterface.TRY_COUNT;
+import static bridge.ui.UserInterface.INSERT_SIZE;
+import static bridge.ui.UserInterface.RESULT;
+import static bridge.ui.UserInterface.RE_TRY;
+import static bridge.ui.UserInterface.SELECT_ROW;
+import static bridge.ui.UserInterface.START;
+import static bridge.ui.UserInterface.SUCCESSFUL;
+import static bridge.ui.UserInterface.TRY_COUNT;
 
+import bridge.FrontController;
 import java.util.List;
 
 /**
@@ -33,6 +35,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String printResult(String userInterface) {
+
+        System.out.println(RESULT.interact());
+
+        System.out.println(SUCCESSFUL.interact());
+
+        System.out.println(TRY_COUNT.interact());
 
         return userInterface;
     }

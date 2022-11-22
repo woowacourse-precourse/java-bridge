@@ -1,12 +1,16 @@
-package bridge;
+package bridge.persistence;
 
 
-import static bridge.BridgeStructure.FALSE;
-import static bridge.BridgeStructure.TRUE;
-import static bridge.BridgeStructure.UN_KNOWN;
-import static bridge.Expression.DOWN;
-import static bridge.Expression.UP;
+import static bridge.ui.BridgeStructure.FALSE;
+import static bridge.ui.BridgeStructure.TRUE;
+import static bridge.ui.BridgeStructure.UN_KNOWN;
+import static bridge.ui.Expression.DOWN;
+import static bridge.ui.Expression.UP;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeRepository;
+import bridge.ui.Expression;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +37,15 @@ public class BridgeEntity implements BridgeRepository {
         return bridgeEntity;
 
     }
+
+    public void move(Expression expression) {
+        bridgeEntity.add(expression.expressThat());
+    }
+
+    public int size() {
+        return bridgeEntity.size();
+    }
+
 
     void setUpAndDown(Expression expression, boolean predicate) {
         if ( expression.equals(UP.expressThat())) {

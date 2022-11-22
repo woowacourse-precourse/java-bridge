@@ -1,12 +1,10 @@
-package bridge;
+package bridge.persistence;
 
-import static bridge.BridgeStructure.FALSE;
-import static bridge.BridgeStructure.TRUE;
-import static bridge.BridgeStructure.UN_KNOWN;
-import static bridge.Expression.DOWN;
-import static bridge.Expression.UP;
+import bridge.BridgeGame;
+import bridge.GameRepository;
+import bridge.ui.UserInterface;
 
-public class GameEntity extends BridgeGame implements GameRepository{
+public class GameEntity extends BridgeGame implements GameRepository {
     private int tryCount;
     private UserInterface userInterface;
 
