@@ -1,16 +1,8 @@
 package view;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import utils.Validation;
 
@@ -19,9 +11,8 @@ class InputViewTest {
 
     @Nested
     class BridgeLengthInputTest extends NsTest {
-
         @ParameterizedTest
-        @ValueSource(strings = {"a,2,3", "b,1,10"})
+        @ValueSource(strings = {"3000000000,-1,a,2,3", "b,1,10"})
         void 성공적인_다리의_길이_입력값을_받을때까지_입력받는지_테스트(String input) {
             run(input.split(","));
         }
