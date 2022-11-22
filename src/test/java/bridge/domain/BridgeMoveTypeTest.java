@@ -93,8 +93,20 @@ class BridgeMoveTypeTest {
     void whenWrongMoveTypeExistsThenFailTest(String moveType) {
         // given & when
         boolean moveTypeExists = BridgeMoveType.isMoveTypeExists(moveType);
+
         // then
         assertThat(moveTypeExists).isFalse();
+    }
+
+    @ParameterizedTest(name = "[{index}] moveType = {0}")
+    @ValueSource(strings = {"U", "D"})
+    @DisplayName("입력값을 통한 이동 타입 존재 확인에 성공 한다.")
+    void whenMoveTypeExistsThenSuccessTest(String moveType) {
+        // given & when
+        boolean moveTypeExists = BridgeMoveType.isMoveTypeExists(moveType);
+
+        // then
+        assertThat(moveTypeExists).isTrue();
     }
 
     static Stream<Arguments> whenIntTypeSearchThenSuccessDummy() {
