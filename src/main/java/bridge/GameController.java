@@ -21,7 +21,7 @@ public class GameController {
     }
 
     private void ending() {
-        outputView.printResult(bridgeGame);
+        outputView.printResult(bridgeGame.bridgeMap.getBridgeMap(), bridgeGame.isOver(), bridgeGame.getCursor());
     }
 
     public void run() {

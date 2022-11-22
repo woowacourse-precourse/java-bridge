@@ -20,6 +20,10 @@ public class BridgeGame {
         bridgeMap = new BridgeMap();
     }
 
+    public int getCursor() {
+        return cursor;
+    }
+
     // Compare input direction and cursor direction
     public boolean canMove(String direction) {
         if (bridge.get(cursor) == direction) {
