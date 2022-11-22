@@ -26,9 +26,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving(String input) {
-        if (!validateInput.validateMoveAlphabet(input)) {
-            throw new IllegalArgumentException(ExceptionHandler.MOVE_ALPHABET_EXCEPTION);
-        }
+        validateInput.validateMoveAlphabet(input);
         return input;
     }
 
@@ -36,9 +34,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand(String input) {
-        if (!validateInput.validateGameCommand(input)) {
-            throw new IllegalArgumentException(ExceptionHandler.GAME_COMMAND_EXCEPTION);
-        }
+        validateInput.validateGameCommand(input);
         return input;
     }
 }

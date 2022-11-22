@@ -3,12 +3,12 @@ package bridge;
 public class ValidateInput {
 
     public void validateBridgeSize(String input) {
-        if (!validateIsNumber(input) || !validateNumberInRange(input)) {
+        if (!checkIsNumber(input) || !checkNumberInRange(input)) {
             throw new IllegalArgumentException(ExceptionHandler.BRIDGE_SIZE_EXCEPTION);
         }
     }
 
-    public boolean validateIsNumber(String input) {
+    public boolean checkIsNumber(String input) {
         for (int i = 0; i < input.length(); i++) {
             if(input.charAt(i) < '0' || input.charAt(i) > '9')
                 return false;
@@ -16,16 +16,20 @@ public class ValidateInput {
         return true;
     }
 
-    public boolean validateNumberInRange(String input) {
+    public boolean checkNumberInRange(String input) {
         int inputNumber = Integer.parseInt(input);
         return inputNumber >= 3 && 20 >= inputNumber;
     }
 
-    public boolean validateMoveAlphabet(String input) {
-        return input.equals("U") || input.equals("D");
+    public void validateMoveAlphabet(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException(ExceptionHandler.MOVE_ALPHABET_EXCEPTION);
+        }
     }
 
-    public boolean validateGameCommand(String input) {
-        return input.equals("R") || input.equals("Q");
+    public void validateGameCommand(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException(ExceptionHandler.GAME_COMMAND_EXCEPTION);
+        }
     }
 }
