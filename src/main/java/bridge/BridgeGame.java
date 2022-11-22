@@ -19,7 +19,12 @@ public class BridgeGame {
     }
 
     private void makeBridge(int bridgeSize){
-        BridgeMaker bridgeMaker = new BridgeMaker (null);
+        BridgeMaker bridgeMaker = new BridgeMaker (new BridgeNumberGenerator() {
+            @Override
+            public int generate() {
+                return 0;
+            }
+        });
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
