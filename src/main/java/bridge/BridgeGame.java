@@ -1,23 +1,46 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import bridge.model.Bridge;
+import bridge.model.Player;
+import bridge.util.BridgeViewConstructor;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+import java.util.List;
+
+public class BridgeGame{
+    private final Bridge bridge;
+    private final Player player;
+
+    public BridgeGame(int size){
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        bridge = new Bridge(bridgeMaker.makeBridge(size));
+        player = new Player();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public String constructBridge(){
+        BridgeViewConstructor bridgeViewConstructor = new BridgeViewConstructor();
+        return bridgeViewConstructor.constructBridge(player.getBridges(), bridge.getBridges());
+    }
+
+    public String move(String newBridge){
+        player.addNewBridgeInput(newBridge);
+        return constructBridge();
+    }
+
+    public void retry(){
+        player.increaseTrialCount();
+        player.clearBridge();
+    }
+
+    public boolean isPaused(){
+        return !bridge.isPlayerRightBridge(player);
+    }
+
+    public boolean isSuccess(){
+        return player.isGameFinished(bridge);
+    }
+
+    public int getTotalTrialCount(){
+        return player.getTrialCount();
     }
 }
