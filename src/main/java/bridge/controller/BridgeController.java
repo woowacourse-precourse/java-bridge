@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.model.Bridge;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
@@ -24,10 +23,6 @@ public class BridgeController {
     private static String successOrFail = "";
     private static List<String> upFloor = new ArrayList<>();
     private static List<String> downFloor = new ArrayList<>();
-
-//    public BridgeController() {
-//        this.bridgeGame = new BridgeGame(bridges);
-//    }
 
     public void init() {
 

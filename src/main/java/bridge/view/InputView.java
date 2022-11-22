@@ -1,13 +1,14 @@
 package bridge.view;
 
+import bridge.model.enumeration.GameMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 
 public class InputView {
 
     public int readBridgeSize() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(GameMessage.OUTPUT_INIT_GAME.getGameMessage() + "\n\n"
+                            + GameMessage.INPUT_BRIDGE_SIZE.getGameMessage());
 
         int inputSize = Integer.parseInt(Console.readLine());
         System.out.println(" ");
@@ -15,12 +16,12 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(GameMessage.INPUT_MOVING_COMMAND.getGameMessage());
         return Console.readLine();
     }
 
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(GameMessage.INPUT_RESTARTING_COMMAND.getGameMessage());
         return Console.readLine();
     }
 }

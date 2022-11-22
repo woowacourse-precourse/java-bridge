@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.model.enumeration.GameMessage;
+
 import java.util.List;
 
 public class OutputView {
@@ -9,9 +11,10 @@ public class OutputView {
     }
 
     public void printResult(List<String> finalMap, String successOrFail, int triedNumber) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GameMessage.OUTPUT_GAME_RESULT.getGameMessage());
         printMap(finalMap);
 
-        System.out.println("게임 성공 여부 : " + successOrFail + "\n총 시도한 횟수 : " + triedNumber);
+        System.out.println(GameMessage.OUTPUT_SUCCESS_OR_FAIL.getGameMessage() + successOrFail + "\n"
+                            + GameMessage.OUTPUT_ATTEMPT_COUNT.getGameMessage()+ triedNumber);
     }
 }
