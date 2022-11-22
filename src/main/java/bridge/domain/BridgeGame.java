@@ -18,4 +18,8 @@ public class BridgeGame {
     public void move() {
         position++;
     }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
 }
