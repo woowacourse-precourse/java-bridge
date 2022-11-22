@@ -62,7 +62,10 @@ public class BridgeGameController {
     }
 
     public void end() {
-
+        outputView.printResult(
+                bridgeGame.getPlayerPath(),
+                bridgeGame.getIsSuccess()
+        );
     }
 
     private static void retryWhenExceptionOrTryOnce(OutputView outputView, Function function) {
