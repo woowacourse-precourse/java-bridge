@@ -1,7 +1,9 @@
 package bridge;
 
-import static bridge.BridgeStructure.FALSE;
+import static bridge.BridgeStructure.FIRST_TRUE;
+import static bridge.BridgeStructure.MIDDLE_TRUE;
 import static bridge.BridgeStructure.TRUE;
+import static bridge.BridgeStructure.UN_KNOWN;
 import static bridge.Expression.DOWN;
 import static bridge.Expression.UP;
 import static bridge.GameStatus.SELECT_RE_TRY;
@@ -14,6 +16,8 @@ import java.util.List;
 
 public class GameEntity extends BridgeGame implements GameRepository {
 
+    String readMoving = new InputView().readMoving();
+    List<String> bridgeEntity = new BridgeEntity().manageBridgeStatus();
     private StringBuilder upRow;
     private StringBuilder downRow;
 
@@ -39,32 +43,56 @@ public class GameEntity extends BridgeGame implements GameRepository {
     // bridge.size() = 5+(n-1)*4, 5 9 13..
     @Override
     public String move() {
-        String readMoving = new InputView().readMoving();
-        List<String> bridgeEntity = new BridgeEntity().manageBridgeStatus();
+
+        if ( readMoving.equals(UP.expressThat())) {
+            upRow.replace(0, downRow.length(), FIRST_TRUE.buildStructure());
+
+        }
+
+        if ( readMoving.equals(DOWN.expressThat())) {
+            downRow.replace(0, downRow.length(), FIRST_TRUE.buildStructure());
+        }
+
+        return upRow + "\n" + downRow;
+    }
+
+    public String moveNTimes(){
+        String upRowNTimes = "";
+        String DownNTimes = "";
         for (String index : bridgeEntity) {
-            appendRow(readMoving, bridgeEntity, index);
-        }
-        String resultTable = upRow + "\n" + downRow;
 
-        return resultTable;
+            upRowNTimes = finishUpRow(index);
+            DownNTimes = finishDownRow(index);
+
+        }
+
+        return  upRowNTimes + "\n" + DownNTimes;
     }
 
-    private void appendRow(String readMoving, List<String> bridgeEntity, String index) {
-        if ( readMoving.equals(index) && index.equals(UP.expressThat())) {
-            for (int i = 0; i < bridgeEntity.size()-1; i++){
-                upRow.append(TRUE.buildStructure());
-                upRow.append("]");
-            }
-
+    private String finishDownRow(String index) {
+        String DownNTimes = "";
+        if ( index.equals(DOWN.expressThat()) ){
+            StringBuilder NTimeUpColumn = upRow.append(UN_KNOWN);
+            NTimeUpColumn.setCharAt(NTimeUpColumn.length()-1, ']');
+            StringBuilder NTimeDownColumn = downRow.append(MIDDLE_TRUE.buildStructure());
+            NTimeDownColumn.setCharAt(NTimeDownColumn.length()-1, ']');
+            DownNTimes = NTimeDownColumn + "\n" + NTimeUpColumn;
         }
-
-        if ( readMoving.equals(index) && index.equals(DOWN.expressThat())) {
-            for (int i = 0; i < bridgeEntity.size()-1; i++){
-                downRow.append(TRUE.buildStructure());
-                downRow.append("]");
-            }
-        }
+        return DownNTimes;
     }
+
+    private String finishUpRow(String index) {
+        String upRowNTimes = "";
+        if ( index.equals(UP.expressThat()) ){
+            StringBuilder NTimeUpColumn = upRow.append(MIDDLE_TRUE);
+            NTimeUpColumn.setCharAt(NTimeUpColumn.length()-1, ']');
+            StringBuilder NTimeDownColumn = downRow.append(UN_KNOWN.buildStructure());
+            NTimeDownColumn.setCharAt(NTimeDownColumn.length()-1, ']');
+            upRowNTimes = NTimeUpColumn + "\n" + NTimeDownColumn;
+        }
+        return upRowNTimes;
+    }
+
 
     @Override
     public int retry(String gameCommand) {
