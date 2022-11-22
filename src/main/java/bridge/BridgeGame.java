@@ -10,6 +10,7 @@ public class BridgeGame {
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final List<String> bridge = bridgeMaker.transmitBridge();
     private int attempts = 1;
 
@@ -18,21 +19,16 @@ public class BridgeGame {
         while (true) {
             boolean isSuccess = move();
             if (isSuccess) {
-                //성공
-                //O 출력
-                // 총 시도한 횟수
+                //최종게임 결과
+                outputView.printResult(isSuccess, attempts);
                 return;
             }
-            //실패
             boolean isRetry = retry();
-            //재시도 x
             if (!isRetry) {
-                //최종 게임 결과 출력
-                //게임 성공 여부 출력
-                //총 시도한 횟수 출력
+                //최종 게임 결과
+                outputView.printResult(isSuccess, attempts);
                 return;
             }
-            //재시작
         }
     }
 
