@@ -41,8 +41,8 @@ public class BridgeController {
 
     private void printProgress(BridgeGame bridgeGame, int bridgeSize) {
         boolean isRetry = true;
-        while(isRetry) {
-            if(checkProgress(bridgeGame, bridgeSize)) {
+        while (isRetry) {
+            if (checkProgress(bridgeGame, bridgeSize)) {
                 printSuccessFinalResult(bridgeGame);
                 break;
             }
@@ -53,8 +53,8 @@ public class BridgeController {
     private boolean checkProgress(BridgeGame bridgeGame, int bridgeSize) {
         int i = 0;
         while (i < bridgeSize) {
-            if (!checkMoving(bridgeGame,i)) {
-               return false;
+            if (!checkMoving(bridgeGame, i)) {
+                return false;
             }
             i++;
         }

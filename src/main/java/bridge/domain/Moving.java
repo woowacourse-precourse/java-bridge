@@ -2,7 +2,7 @@ package bridge.domain;
 
 public enum Moving {
 
-    UP("U" , 1),
+    UP("U", 1),
     DOWN("D", 0);
 
     private final String moving;
