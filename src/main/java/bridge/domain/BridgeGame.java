@@ -22,4 +22,8 @@ public class BridgeGame {
     public List<String> getBridge() {
         return this.bridge;
     }
+
+    public boolean comparePositionLength() {
+        return (this.bridge.size() == this.position);
+    }
 }
