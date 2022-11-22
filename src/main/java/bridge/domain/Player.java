@@ -21,6 +21,10 @@ public class Player {
         increaseGameAttempts();
     }
 
+    public int getMovingPosition() {
+        return this.map.size();
+    }
+
     private void increaseGameAttempts() {
         gameAttempts++;
     }
