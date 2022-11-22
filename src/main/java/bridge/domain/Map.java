@@ -49,13 +49,13 @@ public class Map {
     }
 
     public boolean hasFailMark() {
-        if (topLine.indexOf(FAIL_CODE) == NOT_EXIST) {
-            return false;
+        if (topLine.indexOf(FAIL_CODE) != NOT_EXIST) {
+            return true;
         }
-        if (bottomLine.indexOf(FAIL_CODE) == NOT_EXIST) {
-            return false;
+        if (bottomLine.indexOf(FAIL_CODE) != NOT_EXIST) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     public List<String> getMap() {
