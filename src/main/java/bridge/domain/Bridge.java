@@ -20,14 +20,6 @@ public enum Bridge {
 		this.result = result;
 	}
 
-	public int getFirst() {
-		return first;
-	}
-
-	public int getSecond() {
-		return second;
-	}
-
 	public String getOrder() {
 		return order;
 	}
@@ -36,18 +28,33 @@ public enum Bridge {
 		return result;
 	}
 
-	public static Bridge findOrder(int number) {
+	public static String findOrder(int number) {
+		return findValueByNumber(number).order;
+	}
+
+	public static int findTop(String shape) {
+		return findMovingByShape(shape).first;
+	}
+
+	public static int findBottom(String shape) {
+		return findMovingByShape(shape).second;
+	}
+
+	public static String findResult(int number) {
+		return findValueByNumber(number).result;
+	}
+
+	private static Bridge findValueByNumber(int number) {
 		return Arrays.stream(values())
 				.filter(v -> v.first == number)
 				.findFirst()
 				.orElse(UNKNOWN);
 	}
 
-	public static Bridge findTop(String shape) {
+	private static Bridge findMovingByShape(String shape) {
 		return Arrays.stream(values())
-				.filter(v -> v.getOrder().equals(shape))
+				.filter(v -> v.order.equals(shape))
 				.findFirst()
 				.orElse(UNKNOWN);
 	}
-
 }
