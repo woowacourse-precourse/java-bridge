@@ -6,16 +6,16 @@ public class Player {
     private final int bridgeSize;
     private final List<String> bridge;
 
-//    public Player(PlayerBridgeSizeDto playerBridgeSizeDto, BridgeDto bridgeDto) {
-//        this.bridgeSize = playerBridgeSizeDto.getBridgeSize();
-//        this.bridge = bridgeDto.getBridge();
-//    }
-
-
-    public Player(int bridgeSize, List<String> bridge) {
-        this.bridgeSize = bridgeSize;
-        this.bridge = bridge;
+    public Player(PlayerBridgeSizeDto playerBridgeSizeDto, BridgeDto bridgeDto) {
+        this.bridgeSize = playerBridgeSizeDto.getBridgeSize();
+        this.bridge = bridgeDto.getBridge();
     }
+
+
+//    public Player(int bridgeSize, List<String> bridge) {
+//        this.bridgeSize = bridgeSize;
+//        this.bridge = bridge;
+//    }
 
     public int getBridgeSize() {
         return bridgeSize;
