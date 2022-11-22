@@ -55,4 +55,8 @@ public class BridgeGame {
         return bridge.getBridgeLength();
     }
 
+    private int getNumberOfChoice() {
+        return player.getNumberOfChoice();
+    }
+
 }
