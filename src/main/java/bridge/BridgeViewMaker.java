@@ -13,6 +13,26 @@ public class BridgeViewMaker {
         this.bridgeType = bridgeType;
     }
 
+    private String untilBlank(List<String> answer, int blankNumber) {
+        String gather = "";
+        for (int i = 0; i < blankNumber; i++) {
+            String blanks = correctBlankCondition(answer.get(i), i);
+            gather = gatherBlank(gather, blanks);
+        }
+        return gather;
+    }
+
+    private String correctBlankCondition(String answer, int i) {
+        if (answer.equals(bridgeType)) {
+            return blankStep(correctBridge, i);
+        }
+        return blankStep(emptyBridge, i);
+    }
+
+    private String gatherBlank(String untilBlank, String blankStep) {
+        String gather = untilBlank + blankStep;
+        return gather;
+    }
 
     private String blankStep(String content, int blankNumber) {
         if (blankNumber == 0) {
