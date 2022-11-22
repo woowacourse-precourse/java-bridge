@@ -1,21 +1,13 @@
 package bridge.controller;
 
-import bridge.domain.bridge.Bridge;
-import bridge.domain.bridge.BridgeBlock;
-import bridge.domain.bridge.BridgeSize;
-import bridge.domain.bridge.Phase;
-import bridge.domain.result.BridgeResult;
-import bridge.domain.result.GameResult;
-import bridge.domain.result.MovingResult;
+import bridge.domain.bridge.*;
+import bridge.domain.result.*;
 import bridge.service.BridgeGame;
 import bridge.system.util.BridgeMaker;
 import bridge.system.util.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.*;
 
 import java.util.List;
-
-import static bridge.domain.bridge.BridgeBlock.valueOf;
 
 public class BridgeController {
 

@@ -3,17 +3,12 @@ package bridge.service;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeBlock;
 import bridge.domain.bridge.Phase;
-import bridge.domain.result.RetryCommand;
-import bridge.domain.result.BridgeResult;
-import bridge.domain.result.GameResult;
-import bridge.domain.result.MovingResult;
+import bridge.domain.result.*;
 
-import static bridge.domain.result.RetryCommand.*;
+import static bridge.domain.result.RetryCommand.Q;
+import static bridge.domain.result.RetryCommand.R;
 
 public class BridgeGame {
-
-    public static final String QUIT_COMMAND = "Q";
-    public static final String RETRY_COMMAND = "R";
 
     public MovingResult move(Bridge bridge, BridgeBlock bridgeBlock, Phase phase) {
         if (bridge.isSameBy(bridgeBlock, phase)) {
