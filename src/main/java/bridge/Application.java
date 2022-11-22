@@ -25,4 +25,13 @@ public class Application {
             return inputmoving();
         }
     }
+
+    private static String inputGameCommand() {
+        try {
+            return ConsoleUtils.inputGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputGameCommand();
+        }
+    }
 }

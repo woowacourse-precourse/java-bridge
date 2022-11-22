@@ -17,4 +17,8 @@ public class ConsoleUtils {
     public static String inputMoving() {
         return inputView.readMoving();
     }
+
+    public static String inputGameCommand() {
+        return inputView.readGameCommand();
+    }
 }
