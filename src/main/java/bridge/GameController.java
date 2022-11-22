@@ -10,6 +10,8 @@ public class GameController {
     private final OutputView outputView = new OutputView();
     private final BridgeGame bridgeGame;
     private final BridgeMaker bridgeMaker;
+    private List<Stack> stairs;
+    private int runCnt;
 
     GameController() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -24,27 +26,34 @@ public class GameController {
         return inputView.readBridgeSize();
     }
 
-    private void run() {
-        boolean isNormalTermination = play();
-        if (!isNormalTermination) {
+    private boolean run() {
+        runCnt++;
+        boolean retry = false;
+        boolean pass = play();
+        if (!pass) {
             outputView.printRetry();
             String tryCommand = inputView.readGameCommand();
-            boolean retry = bridgeGame.retry(tryCommand);
-            if(retry) {
-                run();
-            }
+            retry = bridgeGame.retry(tryCommand);
         }
-        //finish();
+        if (!retry) {
+            return finish(pass);
+        }
+        return run();
+    }
+
+    private boolean finish(boolean isSuccess) {
+        outputView.printResult(stairs, runCnt, isSuccess);
+        return true;
     }
 
     private boolean play() {
         outputView.printPlay();
         String movingValue = inputView.readMoving();
         boolean moveResult = bridgeGame.isCorrect(movingValue);
-        List<Stack> stairs = bridgeGame.move(movingValue, moveResult);
-        outputView.printStairs(stairs);
-        if (bridgeGame.isFinishWithAllCollect() && !moveResult) {
-            return false;
+        stairs = bridgeGame.move(movingValue, moveResult);
+        outputView.printMap(stairs);
+        if (bridgeGame.isFinishWithAllCollect() || !moveResult) {
+            return moveResult;
         }
         return play();
     }
