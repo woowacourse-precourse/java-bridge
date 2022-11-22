@@ -16,4 +16,8 @@ public class ValidateSet extends InputValidate {
         IsNoneInputUserBridge(input);
         IsUorDByUserBridge(input);
     }
+
+    public void reGame(String input) {
+        throw new IllegalArgumentException(input);
+    }
 }

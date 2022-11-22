@@ -3,18 +3,20 @@ package bridge.Service;
 import bridge.Entity.Bridge;
 import bridge.View.InputView;
 import bridge.View.OutputView;
+import bridge.View.ValidateSet;
 
 import java.util.List;
 
 public class BridgeResult {
     private static final OutputView outputView = new OutputView();
     private static final InputView inputView = new InputView();
+    private static final ValidateSet validateSet = new ValidateSet();
 
     public static void getresult(List<Bridge> bridgeList, List<String> userList) {
-        boolean check = false;
+        int floor;
         for (int j=0;j<2;j++) {
             outputView.openBranket();
-            cycle(bridgeList, userList, j);
+            cycle(bridgeList, userList, getFloor(j));
             outputView.closeBrank();
         }
     }
@@ -31,13 +33,23 @@ public class BridgeResult {
         }
     }
 
+    private static int getFloor(int index) {
+        if (index == 0)
+            return 1;
+        return 0;
+    }
+
     private static Bridge compare(String bridge, String user) {
         return Bridge.compareTo(bridge, user);
     }
 
-    public static boolean print(Bridge result) {
-        outputView.printMap(result);
-        return true;
+    public static void endGame(List<Bridge> bridgeList, List<String> userList) {
+        outputView.printResult();
+        getresult(bridgeList, userList);
+    }
+
+    public static void printAllResult(boolean status, int count) {
+        outputView.printCount(status, count);
     }
 
     public static boolean requestReGame() {
@@ -51,6 +63,7 @@ public class BridgeResult {
     }
 
     private static boolean IsValideRegameAnswer(String answer) {
+        validateSet.reGame(answer);
         return true;
     }
 }

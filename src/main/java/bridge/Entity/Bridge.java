@@ -3,8 +3,8 @@ package bridge.Entity;
 import java.util.Arrays;
 
 public enum Bridge {
-    UP("U", 0),
-    DOWN("D", 1),
+    UP("U", 1),
+    DOWN("D", 0),
     WRONG("X", -1),
     NOTHING(" ", -2);
 

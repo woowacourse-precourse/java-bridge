@@ -16,19 +16,30 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private List<Bridge> bridgeList = new ArrayList<>();
+    private List<String> userList = new ArrayList<>();
+    private int count=1;
+
     public void start() {
         int size = getsize();
         List<String> randomBridge = getrandomBridge(size);
-        play(size, randomBridge);
+        if ((play(size, randomBridge))==false) {
+            if (retry(bridgeList, userList, size)) {
+                play(size, randomBridge);
+                BridgeResult.endGame(bridgeList, userList);
+                BridgeResult.printAllResult(true, count);
+            }
+        }
     }
 
     public boolean play(int size, List<String> randomBridge) {
-        List<Bridge> bridgeList = new ArrayList<>();
-        List<String> userList = new ArrayList<>();
-        for (int i=0;i<size;i++) {
+        for (int i = 0; i < size; i++) {
             userList.add(move());
-            bridgeList.add(CanGo(randomBridge.get(i), userList.get(i)));
+            Bridge status = CanGo(randomBridge.get(i), userList.get(i));
+            bridgeList.add(status);
             BridgeResult.getresult(bridgeList, userList);
+            if (status == Bridge.WRONG)
+                return false;
         }
         return true;
     }
@@ -61,9 +72,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(int size, List<String> existingBridge) {
-        if (BridgeResult.requestReGame())
-            play(size, existingBridge);
-
+    public boolean retry(List<Bridge> bridgeList, List<String> userList, int size) {
+        if (BridgeResult.requestReGame()) {
+            count++;
+            userList.clear();
+            return true;
+        }
+        BridgeResult.endGame(bridgeList, userList);
+        BridgeResult.printAllResult(false, count);
+        return false;
     }
 }

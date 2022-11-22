@@ -36,10 +36,16 @@ public class InputValidate {
             throw new IllegalArgumentException();
         }
     }
-
     public void IsUorDByUserBridge(String input) {
         if (!input.equals("U") && !input.equals("D")) {
             System.out.println("[ERROR] 이동할 칸을 U 혹은 D로 입력해주셔야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void IsCorrectFormatByreGame(String input) {
+        if (!input.equals("R") || !input.equals("Q")) {
+            System.out.println("[ERROR] 재시도 여부는 R 또는 Q로 입력해주세요.");
             throw new IllegalArgumentException();
         }
 
