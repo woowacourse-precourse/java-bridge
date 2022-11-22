@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.vallidation.BridgeValidation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,8 @@ public class User {
 
     private int updateUserMove(String userMoving) {
         userMovings.add(userMoving);
-        return userMovings.size() - 1;
+        int location = userMovings.size()-1;
+        BridgeValidation.isValidUserLocation(location, bridge.getSize());
+        return location;
     }
 }

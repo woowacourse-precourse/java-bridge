@@ -17,4 +17,8 @@ public class Bridge {
     public boolean checkCanMove(int location,String userMoving) {
         return bridge.get(location).equals(userMoving);
     }
+
+    public int getSize() {
+        return bridge.size();
+    }
 }
