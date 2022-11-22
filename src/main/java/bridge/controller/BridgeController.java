@@ -60,7 +60,7 @@ public class BridgeController {
     }
 
     private void printResult() {
-        GameResultDto gameResult = bridgeGame.readGameResult();
+        GameResultDto gameResult = bridgeGame.findGameResult();
         List<String> bridgeMap = bridgeGame.findBridgeMap();
         outputView.printResult(bridgeMap, gameResult.getSuccessOrFail(), gameResult.getRetryCount());
     }

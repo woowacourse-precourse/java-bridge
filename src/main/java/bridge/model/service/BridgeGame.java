@@ -44,7 +44,7 @@ public class BridgeGame {
         return isRestartGame;
     }
 
-    public GameResultDto readGameResult() {
+    public GameResultDto findGameResult() {
         return bridgeRepository.findGameResult();
     }
 
