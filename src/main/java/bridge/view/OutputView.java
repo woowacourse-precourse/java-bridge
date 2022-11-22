@@ -1,9 +1,12 @@
 package bridge.view;
 
+import bridge.model.BridgeGame;
 import bridge.model.constant.Message;
 import java.util.List;
 
 public class OutputView {
+
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void printMap(final List<String> userChoices, final List<Boolean> compareResults) {
         StringBuilder topLine = new StringBuilder(Message.START_MAP);

@@ -81,16 +81,16 @@ public class Application {
         boolean isApproachLast = bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
         
         if (playing && isApproachLast) {
-            player.setSuccess(true);
             playing = false;
         }
     }
 
     private void finishGame() {
         System.out.println(Message.GAME_RESULT_MESSAGE);
-
         outputView.printMap(player.getChoices(), bridge.compareTo(player.getChoices()));
-        outputView.printResult(player.getIsSuccess(), player.getTryCount());
+
+        boolean isSuccess = isCorrectChoice() && bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
+        outputView.printResult(isSuccess, player.getTryCount());
     }
 
     public static void main(String[] args) {

@@ -8,12 +8,10 @@ public class Player {
     private static final int INIT_TRY_COUNT = 1;
     private List<String> choices;
     private int tryCount;
-    private boolean isSuccess;
 
     public Player() {
         this.choices = new ArrayList<>();
         tryCount = INIT_TRY_COUNT;
-        isSuccess = false;
     }
 
     public List<String> getChoices() {
@@ -42,14 +40,6 @@ public class Player {
 
     public void addTryCount() {
         tryCount++;
-    }
-
-    public boolean getIsSuccess() {
-        return isSuccess;
-    }
-
-    public void setSuccess(final boolean success) {
-        isSuccess = success;
     }
 
 }
