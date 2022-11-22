@@ -15,11 +15,11 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> newBridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
-            int Random_Num = bridgeNumberGenerator.generate();
-            if(Random_Num == 1)
-                newBridge.add(Constant.Up);
-            if(Random_Num == 0)
-                newBridge.add(Constant.Down);
+            int randomNumber = bridgeNumberGenerator.generate();
+            if(randomNumber == 1)
+                newBridge.add(Constant.UP);
+            if(randomNumber == 0)
+                newBridge.add(Constant.DOWN);
         }
         return newBridge;
     }
