@@ -43,7 +43,9 @@ public class OutputView {
         System.out.println(totalNumberOfTryMessage + result.getCount());
     }
 
-    static public void printError(String message) {
+    public void printErrorMessage(String message) {
+        System.out.println();
         System.out.println(errorPrefix + message);
+        System.out.println();
     }
 }
