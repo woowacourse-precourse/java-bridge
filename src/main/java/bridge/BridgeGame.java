@@ -12,7 +12,7 @@ public class BridgeGame {
     private Map<Integer, ArrayList<String>> playerBridgeState;
     private final Bridge bridge;
     private int playerBridgePosition = 0;
-
+    private int attempts = 1;
     private boolean isSuccess = true;
 
     public BridgeGame(int bridgeSize) {
@@ -27,6 +27,7 @@ public class BridgeGame {
      */
 
     public void move() {
+        playerBridgePosition++;
     }
 
     public void addPlayerBridge(String playerAnswer) {
@@ -53,6 +54,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        this.playerBridgeState = new HashMap<Integer, ArrayList<String>>() ;
+        playerBridgePosition = 0;
+        attempts++;
     }
 
     public Map<Integer, ArrayList<String>> getPlayerBridge() {
@@ -79,5 +83,9 @@ public class BridgeGame {
 
     public boolean getIsSuccess() {
         return this.isSuccess;
+    }
+
+    public int getCountAttempts() {
+        return this.attempts;
     }
 }
