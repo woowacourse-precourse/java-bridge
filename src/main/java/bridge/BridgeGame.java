@@ -26,4 +26,9 @@ public class BridgeGame{
         player.addNewBridgeInput(newBridge);
         return constructBridge();
     }
+
+    public void retry(){
+        player.increaseTrialCount();
+        player.clearBridge();
+    }
 }
