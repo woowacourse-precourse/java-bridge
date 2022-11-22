@@ -8,7 +8,6 @@ public class Application {
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
     static BridgeGame bridgeGame= new BridgeGame();
-    static List<String> visited;
 
     public static void main(String[] args) {
         try {
