@@ -31,7 +31,7 @@ public class BridgeGameController {
         do {
             increaseTrial();
             bridgeGame.initialize();
-            moveByBlock(0, moveAtBridgeRequest.getMoveByBlockRequest());
+            moveByBlock(moveAtBridgeRequest.getMoveByBlockRequest());
 
             if (bridgeGame.completeCrossing(moveAtBridgeRequest.getBridge().getSize())) {
                 break;
@@ -39,15 +39,15 @@ public class BridgeGameController {
         } while (bridgeGame.retry(moveAtBridgeRequest.getGameCommand()));
     }
 
-    private void moveByBlock(int blockPosition, MoveByBlockRequest moveByBlockRequest) {
-        while (blockPosition != moveByBlockRequest.getBridge().getSize()) {
-            String trial = bridgeGame.move(moveByBlockRequest.toServiceDto(), blockPosition);
+    private void moveByBlock(MoveByBlockRequest moveByBlockRequest) {
+        String trial = "";
+        int blockPosition = 0;
+
+        while (!trial.equals("X") && blockPosition != moveByBlockRequest.getBridge().getSize()) {
+            trial = bridgeGame.move(moveByBlockRequest.getBridge().getBlock(blockPosition),
+                    moveByBlockRequest.getInputHandler().getBlockToMove());
             moveByBlockRequest.getOutputView().printMap(bridgeGame.getResultBridge());
             blockPosition++;
-
-            if (trial.equals("X")) {
-                break;
-            }
         }
     }
 
