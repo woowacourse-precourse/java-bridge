@@ -36,9 +36,7 @@ public class GameStart {
 
     private boolean play() {
         for (int countOfMove = 0; countOfMove < bridge.size(); countOfMove++) {
-            String moveBlock = inputMove();
-            boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
-            outputView.printMap(countOfMove, isMove);
+            boolean isMove = move(countOfMove);
             if (!isMove) {
                 return false;
             }
@@ -53,6 +51,13 @@ public class GameStart {
         isSuccess = false;
         isRestart = true;
         countOfPlay = 0;
+    }
+
+    private boolean move(int countOfMove) {
+        String moveBlock = inputMove();
+        boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
+        outputView.printMap(countOfMove, isMove);
+        return isMove;
     }
 
     private boolean checkRestart(boolean isSuccess) {
