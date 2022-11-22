@@ -11,15 +11,15 @@ public class InputView {
 
     private static final String MENT_READ_BRIDGE_SIZE = "다리의 길이를 입력해 주세요.";
 
-    private  static  final  String MENT_READ_MOVE = String.format(
+    private static final String MENT_READ_MOVE = String.format(
             "이동할 칸을 선택해 주세요. (위: %s, 아래: %s)",
             BridgeMoveCommand.MOVE_UP.command,
             BridgeMoveCommand.MOVE_DOWN.command
     );
     private static final String MENT_READ_COMMAND = String.format(
             "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)",
-                    BridgeRetryCommand.RETRY.command,
-                    BridgeRetryCommand.QUIT.command
+            BridgeRetryCommand.RETRY.command,
+            BridgeRetryCommand.QUIT.command
     );
 
     private InputValidator validator;
