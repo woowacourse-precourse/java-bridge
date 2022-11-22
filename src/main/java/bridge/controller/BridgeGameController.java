@@ -59,6 +59,14 @@ public class BridgeGameController {
         return false;
     }
 
+    public boolean checkQuitOption(Bridge bridge, Game game, String inputGameOption) {
+        if(inputGameOption.equals(QUIT)) {
+            outputView.printResultMap();
+            return true;
+        }
+        return false;
+    }
+
 
 
 
