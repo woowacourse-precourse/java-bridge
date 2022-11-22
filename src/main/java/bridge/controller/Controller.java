@@ -36,7 +36,7 @@ public class Controller {
                 .filter(SlabDTO::isTread)
                 .mapToInt(SlabDTO::getStep)
                 .max()
-                .orElseThrow();
+                .orElse(-1);
     }
 
     protected SlabDTO findSlabBy(int step, PositionType position) {
@@ -91,24 +91,25 @@ public class Controller {
 
     protected int getRetries() {
         CounterDTO counter = this.counters.findByName(Env.NAME_OF_TRIES_NUMBER);
-        this.initRetries(counter);
+        counter = this.initRetries(counter);
 
         return counter.getValue();
     }
 
     protected boolean updateRetries() {
         CounterDTO counter = this.counters.findByName(Env.NAME_OF_TRIES_NUMBER);
-        this.initRetries(counter);
-
+        counter = this.initRetries(counter);
         counter.addValue(1);
 
         return this.counters.update(counter);
     }
 
-    private void initRetries(CounterDTO counter) {
+    private CounterDTO initRetries(CounterDTO counter) {
         if (counter == null) {
             counter = new CounterDTO(Env.NAME_OF_TRIES_NUMBER, 0);
             this.counters.insert(counter);
         }
+
+        return counter;
     }
 }

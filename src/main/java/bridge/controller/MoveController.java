@@ -28,7 +28,7 @@ public class MoveController extends Controller {
 
     public boolean getMoveResult() {
         this.updateRetries();
-        int step = this.getLastTreadStep();
+        int step = this.getLastTreadStep() + 1;
 
         return Stream.of(
                 this.findSlabBy(step, PositionType.UP),
