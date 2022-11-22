@@ -26,7 +26,7 @@ public class GameController {
         while (game.getGameStatus() == GameStatus.PLAY) {
             move();
         }
-        //결과 출력 아웃뷰 추가
+        end(game.getGameStatus());
     }
 
     public void move() {
@@ -35,7 +35,6 @@ public class GameController {
         if (!isMoveSuccess) {
             retry();
         }
-        end(game.getGameStatus());
     }
 
     public void retry() {
