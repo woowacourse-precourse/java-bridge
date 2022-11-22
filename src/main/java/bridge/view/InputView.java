@@ -18,7 +18,7 @@ public class InputView {
             String input = Console.readLine();
             validateBridgeSize(input);
             return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             return readBridgeSize();
         }
