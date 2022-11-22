@@ -10,7 +10,7 @@ import java.util.List;
 public class BridgeState {
 
     private List<String> map;
-    private Round round;
+    private final Round round;
 
     public BridgeState(Round round) {
         this.map = new ArrayList<>(List.of("[ ]", "[ ]"));

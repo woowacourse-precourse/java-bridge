@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private Round round;
-    private GameAttempt gameAttempt;
-    private BridgeState bridgeState;
+    private final Round round;
+    private final GameAttempt gameAttempt;
+    private final BridgeState bridgeState;
 
     public BridgeGame(Round round, GameAttempt gameAttempt, BridgeState bridgeState){
         this.round = round;

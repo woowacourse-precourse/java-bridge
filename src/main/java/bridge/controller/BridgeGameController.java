@@ -12,10 +12,10 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    private BridgeMaker bridgeMaker;
-    private InputView inputView;
-    private OutputView outputView;
-    private BridgeGame bridgeGame;
+    private final BridgeMaker bridgeMaker;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeGame bridgeGame;
     private String userInput;
 
     public BridgeGameController(View view, BridgeGame bridgeGame, BridgeMaker bridgeMaker) {
