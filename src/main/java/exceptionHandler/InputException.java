@@ -2,7 +2,6 @@ package exceptionHandler;
 
 import enumCollections.AvailableInput;
 import enumCollections.ExceptionMessage;
-import enumCollections.Side;
 
 public class InputException {
     protected static void validateCommonException(String input) {

@@ -1,6 +1,5 @@
 package exceptionHandler;
 
-import enumCollections.AvailableInput;
 import enumCollections.ExceptionMessage;
 import enumCollections.Side;
 

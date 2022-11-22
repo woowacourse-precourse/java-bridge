@@ -2,7 +2,6 @@ package controller;
 
 import bridge.BridgeGame;
 import enumCollections.GameStatus;
-import enumCollections.GuideMessage;
 import view.InputView;
 import view.OutputView;
 
@@ -16,40 +15,25 @@ public class Controller {
     }
 
     public void startGame(final BridgeGame bridgeGame) {
-        printWelcomeMessage();
+        outputView.printWelcomeMessage();
         generateBridge(bridgeGame);
         GameStatus gameResult = play(bridgeGame, GameStatus.CONTINUE);
-        printResult(gameResult, bridgeGame);
+        outputView.printResult(gameResult, bridgeGame);
     }
 
     public GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
         while (gameStatus == GameStatus.CONTINUE) {
             movePlayer(bridgeGame);
-            printProgress(bridgeGame);
+            outputView.printProgress(bridgeGame);
             gameStatus = getGameStatus(bridgeGame, bridgeGame.isPlayerInMovableSide());
         }
         return gameStatus;
     }
 
-    private void printWelcomeMessage() {
-        outputView.printGuideMessage(GuideMessage.START);
-        outputView.printNewline();
-    }
-
-    private void printProgress(BridgeGame bridgeGame) {
-        outputView.printMap(bridgeGame.getMap());
-        outputView.printNewline();
-    }
-
-    private void printResult(final GameStatus gameResult, final BridgeGame bridgeGame) {
-        outputView.printResult(gameResult, bridgeGame);
-    }
-
     private void generateBridge(final BridgeGame bridgeGame) {
         try {
-            outputView.printGuideMessage(GuideMessage.GET_BRIDGE_LENGTH);
+            outputView.printAskBridgeLength();
             bridgeGame.generateBridge(this.inputView.readBridgeSize());
-            outputView.printNewline();
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception);
             generateBridge(bridgeGame);
@@ -58,7 +42,7 @@ public class Controller {
 
     private void movePlayer(final BridgeGame bridgeGame) {
         try {
-            outputView.printGuideMessage(GuideMessage.GET_MOVING);
+            outputView.printAskMoving();
             bridgeGame.move(inputView.readMoving());
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception);

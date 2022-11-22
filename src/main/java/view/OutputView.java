@@ -8,13 +8,16 @@ import enumCollections.UserInterfaceSymbol;
 import java.util.List;
 
 public class OutputView {
-    public void printMap(List<List<String>> map) {
-        map.stream().forEach(line -> {
-                    printBridge(String.join(UserInterfaceSymbol.BRIDGE_DELIMITER.getSymbol(), line));
-                });
+    public void printWelcomeMessage() {
+        printGuideMessage(GuideMessage.START);
+    }
+
+    public void printProgress(BridgeGame bridgeGame) {
+        printMap(bridgeGame.getMap());
     }
 
     public void printResult(GameStatus gameResult, BridgeGame bridgeGame) {
+        printNewline();
         printGuideMessage(GuideMessage.RESULT_PRINT);
         printMap(bridgeGame.getMap());
         printNewline();
@@ -22,28 +25,45 @@ public class OutputView {
         printGuideMessage(GuideMessage.GAME_TRIAL, bridgeGame.getTrial());
     }
 
-    public void printResult(GameStatus gameStatus) {
-        printGuideMessage(GuideMessage.GAME_RESULT, gameStatus.getMessage());
+    public void printMap(List<List<String>> map) {
+        map.stream().forEach(line -> {
+                    printBridge(String.join(UserInterfaceSymbol.BRIDGE_DELIMITER.getSymbol(), line));
+                });
     }
 
     public void printAskGameCommand() {
+        printNewline();
         printGuideMessage(GuideMessage.GET_GAME_COMMAND);
     }
 
-    public void printGuideMessage(GuideMessage situation) {
-        System.out.println(situation.getMessage());
+    public void printAskBridgeLength() {
+        printNewline();
+        printGuideMessage(GuideMessage.GET_BRIDGE_LENGTH);
     }
 
-    public void printGuideMessage(GuideMessage situation, String gameStatus) {
-        System.out.printf(situation.getMessage(), gameStatus);
-    }
-
-    public void printNewline() {
-        System.out.println();
+    public void printAskMoving() {
+        printNewline();
+        printGuideMessage(GuideMessage.GET_MOVING);
     }
 
     public void printException(Exception exception) {
         System.out.println(exception.getMessage());
+    }
+
+    private void printResult(GameStatus gameStatus) {
+        printGuideMessage(GuideMessage.GAME_RESULT, gameStatus.getMessage());
+    }
+
+    private void printGuideMessage(GuideMessage situation) {
+        System.out.println(situation.getMessage());
+    }
+
+    private void printGuideMessage(GuideMessage situation, String gameStatus) {
+        System.out.printf(situation.getMessage(), gameStatus);
+    }
+
+    private void printNewline() {
+        System.out.println();
     }
 
     private void printBridge(String line) {
