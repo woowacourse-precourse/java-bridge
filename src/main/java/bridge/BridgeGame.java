@@ -11,6 +11,7 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final List<Direction> histories;
+
     private int pointer = 0;
     private int tryCount = 1;
 
@@ -42,6 +43,9 @@ public class BridgeGame {
         }
     }
 
+    public boolean isCleared() {
+        return bridge.isAllCrossed(pointer);
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -57,6 +61,7 @@ public class BridgeGame {
         }
         return false;
     }
+
 
     public void initializePointer() {
         pointer = 0;
