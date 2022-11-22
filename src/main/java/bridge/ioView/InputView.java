@@ -1,6 +1,7 @@
 package bridge.ioView;
 
 import bridge.data.Direction;
+import bridge.data.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -96,6 +97,12 @@ public class InputView {
     }
 
     private boolean isRetryOrQuit(String input) {
-        return input.equals("R") || input.equals("Q");
+        for (GameCommand gameCommand : GameCommand.values()) {
+            if (gameCommand.equals(input)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
