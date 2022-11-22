@@ -17,7 +17,7 @@ public class InputView {
         try {
             num = Integer.parseInt(str);
         } catch (NumberFormatException ex){
-            throw new IllegalArgumentException(Error.INVALID_LENGTH.getMessage());
+            throw new IllegalArgumentException(Error.INVALID_NOTANUMBER.getMessage());
         }
         return num;
     }

@@ -1,6 +1,7 @@
 package bridge.Messages;
 
 public enum Error {
+    INVALID_NOTANUMBER("Input is not a number"),
     INVALID_LENGTH("Wrong bridge length input"),
     INVALID_LETTER("Invalid letter input"),
     INVALID_RANGE("Invalid range of input number");
