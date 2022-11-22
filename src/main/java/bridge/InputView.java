@@ -33,7 +33,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String inputString = camp.nextstep.edu.missionutils.Console.readLine();
+
+        return checkMoving(inputString);
+    }
+
+    public String checkMoving(String inputString) {
+        if (inputString.equals("U") || inputString.equals("D")) {
+            return inputString;
+        }
+        throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D여야 합니다.");
     }
 
     /**
