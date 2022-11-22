@@ -45,22 +45,22 @@ public class OutputView {
     }
 
     private void createMap(GameResult gameResult) {
-        appendExceptLast(gameResult);
-        appendLast(gameResult);
+        createMapExceptLastPart(gameResult);
+        createMapLastPart(gameResult);
     }
 
-    private void appendExceptLast(GameResult gameResult) {
+    private void createMapExceptLastPart(GameResult gameResult) {
         List<String> bridge = gameResult.getResult();
         topLine.append(OPEN_BRACKET);
         bottomLine.append(OPEN_BRACKET);
         for (int index = 0; index < bridge.size() - 1; index++) {
             String currentPosition = bridge.get(index);
-            appendUp(currentPosition);
-            appendDown(currentPosition);
+            appendCorrectSignToTopLine(currentPosition);
+            appendCorrectSignToBottomLine(currentPosition);
         }
     }
 
-    private void appendUp(String position) {
+    private void appendCorrectSignToTopLine(String position) {
         if (position.equals("U")) {
             topLine.append(CORRECT).append(SEPARATOR);
             return;
@@ -68,7 +68,7 @@ public class OutputView {
         topLine.append(SPACE).append(SEPARATOR);
     }
 
-    private void appendDown(String position) {
+    private void appendCorrectSignToBottomLine(String position) {
         if (position.equals("D")) {
             bottomLine.append(CORRECT).append(SEPARATOR);
             return;
@@ -76,23 +76,23 @@ public class OutputView {
         bottomLine.append(SPACE).append(SEPARATOR);
     }
 
-    private void appendLast(GameResult result) {
+    private void createMapLastPart(GameResult result) {
         ViewStatus status = result.getNextViewStatus();
         List<String> bridge = result.getResult();
         String lastPosition = bridge.get(bridge.size() - 1);
         if (status == ViewStatus.DETERMINE_CONTINUE) {
-            appendLastWhenWrong(lastPosition);
+            appendWrongSignAsLastPartOfMap(lastPosition);
             return;
         }
-        appendLastWhenCorrect(lastPosition);
+        appendCorrectSignAsLastPartOfMap(lastPosition);
     }
 
-    private void appendLastWhenWrong(String lastPosition) {
-        appendUpLastWhenWrong(lastPosition);
-        appendDownLastWhenWrong(lastPosition);
+    private void appendWrongSignAsLastPartOfMap(String lastPosition) {
+        appendWrongSignAsLastPartOfTopLine(lastPosition);
+        appendWrongSignAsLastPartOfBottomLine(lastPosition);
     }
 
-    private void appendUpLastWhenWrong(String lastPosition) {
+    private void appendWrongSignAsLastPartOfTopLine(String lastPosition) {
         if (lastPosition.equals("D")) {
             topLine.append(WRONG).append(CLOSE_BRACKET);
             return;
@@ -100,7 +100,7 @@ public class OutputView {
         topLine.append(SPACE).append(CLOSE_BRACKET);
     }
 
-    private void appendDownLastWhenWrong(String lastPosition) {
+    private void appendWrongSignAsLastPartOfBottomLine(String lastPosition) {
         if (lastPosition.equals("U")) {
             bottomLine.append(WRONG).append(CLOSE_BRACKET);
             return;
@@ -108,12 +108,12 @@ public class OutputView {
         bottomLine.append(SPACE).append(CLOSE_BRACKET);
     }
 
-    private void appendLastWhenCorrect(String lastPosition) {
-        appendUpLastWhenCorrect(lastPosition);
-        appendDownLastWhenCorrect(lastPosition);
+    private void appendCorrectSignAsLastPartOfMap(String lastPosition) {
+        appendCorrectSignAsLastPartOfTopLine(lastPosition);
+        appendCorrectSignAsLastPartOfBottomLine(lastPosition);
     }
 
-    private void appendUpLastWhenCorrect(String lastPosition) {
+    private void appendCorrectSignAsLastPartOfTopLine(String lastPosition) {
         if (lastPosition.equals("U")) {
             topLine.append(CORRECT).append(CLOSE_BRACKET);
             return;
@@ -121,7 +121,7 @@ public class OutputView {
         topLine.append(SPACE).append(CLOSE_BRACKET);
     }
 
-    private void appendDownLastWhenCorrect(String lastPosition) {
+    private void appendCorrectSignAsLastPartOfBottomLine(String lastPosition) {
         if (lastPosition.equals("D")) {
             bottomLine.append(CORRECT).append(CLOSE_BRACKET);
             return;
