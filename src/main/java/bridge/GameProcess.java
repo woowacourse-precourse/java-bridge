@@ -13,10 +13,12 @@ public class GameProcess {
     List<String> userInput = new ArrayList<>();
     Integer gameTryCount = 0;
 
-    public void bridgeSizeProcess() {
+    public int bridgeSizeProcess() {
+        int userBridgeSize = 0;
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
-        userBridgeSizeInput(0);
+        userBridgeSizeInput(userBridgeSize);
+        return userBridgeSize;
     }
 
     public void userBridgeSizeInput(int userBridgeSize) {
@@ -31,4 +33,14 @@ public class GameProcess {
             break;
         }
     }
+
+    public List<String> bridgeGenerateProcess(int userBridgeSize) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        List<String> bridgeAnswer = bridgeMaker.makeBridge(userBridgeSize);
+        System.out.println(bridgeAnswer);
+        return bridgeAnswer;
+    }
+
+    
 }
