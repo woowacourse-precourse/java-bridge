@@ -20,19 +20,19 @@ public class GameController {
     public void playGame(List<String> bridge) {
         while (bridgeGame.getAcrossBridge() < bridge.size()) {
             System.out.println(printOutput.SELECT_BRIDGE_UP_DOWN.getGameOutput());
-            String moving = inputView.readMoving(inputView.userInput());
+            String moving = inputView.readMoving();
             String move = bridgeGame.move(bridge, bridgeGame.getAcrossBridge(), moving);
             outputView.printMap(move);
+            bridgeGame.accrosBridgePlus();
             if (gameFail(move)) {
                 break;
             }
-            bridgeGame.accrosBridgePlus();
         }
     }
 
     public Boolean gameFail(String move) {
         if (move.contains("X")) {
-            String readGameCommand = inputView.readGameCommand(inputView.userInput());
+            String readGameCommand = inputView.readGameCommand();
             if (readGameCommand.equals("R")) {
                 bridgeGame.retry();
             }
@@ -44,9 +44,9 @@ public class GameController {
     }
 
     public void result(List<String> bridge,int bridgeSize) {
-        String ResultMap = bridgeGame.InstanceMap(bridgeSize);
-        outputView.printResult(ResultMap);
-        bridgeGame.isSuccess(bridge, bridgeGame.getAcrossBridge());
+        String resultMap = bridgeGame.InstanceMap(bridgeSize);
+        outputView.printResult(resultMap);
+        bridgeGame.isSuccess(bridge, bridgeGame.getAcrossBridge(), resultMap);
         System.out.println(printOutput.ALL_TRY.getGameOutput() + bridgeGame.getCount());
     }
 }
