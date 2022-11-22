@@ -11,8 +11,6 @@ public class BridgeGame {
     public static boolean end;
     public static List<String> bridge;
 
-
-
     public static String restartGame(List<String> bridge, int index) {
         if(!end){
             return "FAIL";
@@ -42,32 +40,6 @@ public class BridgeGame {
             end = false;
             return "F";
         }
-
-//    public void falsePrint( String ans, int count) {
-//        if(ans.equals("U")) {
-//            if (count == 0) {
-//                upList.concat(NOPE);
-//                downList.concat(SPACE);
-//            }
-//            if (count > 0) {
-//                upList.concat(BLOCK + NOPE);
-//                downList.concat(BLOCK + SPACE);
-//            }
-//        }
-//        if(ans.equals("D")){
-//            if(count == 0){
-//                upList.concat(SPACE);
-//                downList.concat(NOPE);
-//            }
-//            if(count > 0){
-//                upList.concat(BLOCK+SPACE);
-//                downList.add(BLOCK+NOPE);
-//            }
-//        }
-//
-//    }
-
-
 
 
     /**

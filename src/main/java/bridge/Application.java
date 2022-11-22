@@ -6,6 +6,8 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.controller.BridgeGame.gameCount;
+
 public class Application {
     public static final InputView inputview = new InputView();
     public static final OutputView outputview = new OutputView();
@@ -23,7 +25,7 @@ public class Application {
             bridge = bridgeMaker.makeBridge(inputview.readBridgeSize());
             playGame();
             showResult();
-            outputview.printResult(result);
+            outputview.printResult(result, gameCount);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -42,8 +44,8 @@ public class Application {
            showResult();
         }
 
-        upList = outputview.rightUpList(ans,index);
-        downList = outputview.rightDownList(ans,index);
+        upList = outputview.rightUpList(index);
+        downList = outputview.rightDownList(index);
         outputview.printMap(upList,downList);
         index++;
         playGame();
