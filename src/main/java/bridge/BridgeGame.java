@@ -8,28 +8,18 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> upCells;
-    private final List<String> downCells;
+    private final MovingHistory movingHistory;
     private final List<String> bridge;
     private int count;
     private int index;
     private boolean movingStatus;
 
     public BridgeGame(List<String> bridge) {
-        this.upCells = new ArrayList<>();
-        this.downCells = new ArrayList<>();
+        this.movingHistory = new MovingHistory();
         this.bridge = bridge;
-        this.count = 0;
+        this.count = 1;
         this.index = 0;
         this.movingStatus = true;
-    }
-
-    public List<String> getUpCells() {
-        return upCells;
-    }
-
-    public List<String> getDownCells() {
-        return downCells;
     }
 
     public int getCount() {
@@ -40,15 +30,12 @@ public class BridgeGame {
         return movingStatus;
     }
 
-    public boolean isEnd() {
-        return index == bridge.size();
+    public MovingHistory getMovingHistory() {
+        return movingHistory;
     }
 
-    public static String valueOfStatus(boolean status) {
-        if (status) {
-            return "O";
-        }
-        return "X";
+    public boolean isEnd() {
+        return index == bridge.size();
     }
 
     /**
@@ -58,14 +45,7 @@ public class BridgeGame {
      */
     public void move(String moving) {
         movingStatus = moving.equals(bridge.get(index++));
-        if (moving.equals(CellType.DOWN.getCell())){
-            downCells.add(valueOfStatus(movingStatus));
-            upCells.add(" ");
-        }
-        if (moving.equals(CellType.UP.getCell())){
-            upCells.add(valueOfStatus(movingStatus));
-            downCells.add(" ");
-        }
+        movingHistory.addMoving(moving,movingStatus);
     }
 
     /**
@@ -78,8 +58,7 @@ public class BridgeGame {
             count++;
             movingStatus = true;
             index = 0;
-            upCells.clear();
-            downCells.clear();
+            movingHistory.clearHistory();
         }
     }
 }
