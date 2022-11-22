@@ -5,6 +5,7 @@ import java.util.List;
 
 import static bridge.View.Constants.InputConstants.DOWN;
 import static bridge.View.Constants.InputConstants.UP;
+import static bridge.View.Constants.OutputConstants.BLANK;
 
 public class User {
     private final List<String> pathOfUpperBridge;
@@ -28,10 +29,10 @@ public class User {
     public void addPathOfBridge(String direction, String result) {
         if (direction.equals(UP)) {
             this.pathOfUpperBridge.add(result);
-            this.pathOfLowerBridge.add(" ");
+            this.pathOfLowerBridge.add(BLANK);
         }
         if (direction.equals(DOWN)) {
-            this.pathOfUpperBridge.add(" ");
+            this.pathOfUpperBridge.add(BLANK);
             this.pathOfLowerBridge.add(result);
         }
         plusRound();

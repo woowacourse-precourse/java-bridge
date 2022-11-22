@@ -15,4 +15,5 @@ public class OutputConstants {
     public static final String BETWEEN_BRIDGES = " | ";
     public static final String RIGHT = "O";
     public static final String WRONG = "X";
+    public static final String BLANK = " ";
 }
