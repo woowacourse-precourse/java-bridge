@@ -18,12 +18,12 @@ public class BridgeController {
     private String resultOfGame;
 
     public void startGame() {
-        initBridgeGame();
+        setUpBridgeGame();
         proceedBridgeGame();
         outputView.printResult(bridgeGame.getUserMoving(), resultOfGame, bridgeGame.getAttemptCount());
     }
 
-    public void initBridgeGame() {
+    public void setUpBridgeGame() {
         List<String> bridge;
 
         outputView.printStartingPhrase();
