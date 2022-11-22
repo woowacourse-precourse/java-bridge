@@ -84,6 +84,4 @@ class PlayerTest {
             assertThat(player.hasSucceeded(bridge)).isEqualTo(false);
         }
     }
-
-
 }

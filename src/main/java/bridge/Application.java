@@ -80,15 +80,4 @@ public class Application {
             }
         }
     }
-
-//
-//    private static void errorFunction(Object object, Method method, BridgeGame bridgeGame) {
-//        while (true) {
-//            try {
-//                method(bridgeGame);
-//                break;
-//            } catch (IllegalArgumentException | IllegalStateException e) {
-//                System.out.println(e.getMessage());
-//        }
-//    }
 }
