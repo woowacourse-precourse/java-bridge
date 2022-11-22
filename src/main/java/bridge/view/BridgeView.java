@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.enums.Glass;
+import bridge.enums.State;
 import java.util.List;
 
 public class BridgeView {
@@ -40,7 +42,7 @@ public class BridgeView {
     }
 
 
-    BridgeView(){
+    public BridgeView(){
         inputView = new InputView();
         outputView = new OutputView();
     }

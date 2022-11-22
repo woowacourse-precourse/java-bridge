@@ -1,21 +1,23 @@
-package bridge;
+package bridge.view;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 
-import static bridge.Message.BRIDGE_END;
-import static bridge.Message.BRIDGE_MIDDLE;
-import static bridge.Message.BRIDGE_START;
-import static bridge.Message.COMMAND;
-import static bridge.Message.EMPTY;
-import static bridge.Message.MOVE;
-import static bridge.Message.RESULT;
-import static bridge.Message.SIZE;
-import static bridge.Message.START;
-import static bridge.Message.SUCCESS;
-import static bridge.Message.TRY;
+import static bridge.enums.Message.BRIDGE_END;
+import static bridge.enums.Message.BRIDGE_MIDDLE;
+import static bridge.enums.Message.BRIDGE_START;
+import static bridge.enums.Message.COMMAND;
+import static bridge.enums.Message.EMPTY;
+import static bridge.enums.Message.MOVE;
+import static bridge.enums.Message.RESULT;
+import static bridge.enums.Message.SIZE;
+import static bridge.enums.Message.START;
+import static bridge.enums.Message.SUCCESS;
+import static bridge.enums.Message.TRY;
 
+import bridge.enums.Glass;
+import bridge.enums.State;
 import java.util.ArrayList;
 import java.util.List;
 public class OutputView {

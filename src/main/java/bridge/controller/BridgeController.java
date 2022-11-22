@@ -1,10 +1,16 @@
-package bridge;
+package bridge.controller;
 
-import static bridge.Command.QUIT;
+import static bridge.enums.Command.QUIT;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.enums.Glass;
+import bridge.enums.State;
+import bridge.model.BridgeGame;
+import bridge.view.BridgeView;
 import java.util.List;
 
-public class BridgeController extends BridgeMaker{
+public class BridgeController extends BridgeMaker {
 
     private static BridgeGame model;
     private static BridgeView view;

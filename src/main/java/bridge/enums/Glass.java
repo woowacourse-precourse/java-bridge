@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 import java.util.Map;
 import java.util.function.Function;

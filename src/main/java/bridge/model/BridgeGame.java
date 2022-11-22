@@ -1,5 +1,7 @@
-package bridge;
+package bridge.model;
 
+import bridge.enums.Glass;
+import bridge.enums.State;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class BridgeGame {
         return newBridge;
     }
 
-    BridgeGame(List<String> bridge){
+    public BridgeGame(List<String> bridge){
         step = 0;
         playTime = 1;
         BRIDGE = buildBridge(bridge);

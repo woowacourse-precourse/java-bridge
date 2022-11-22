@@ -1,15 +1,15 @@
-package bridge;
+package bridge.controller;
 
-import static bridge.Command.QUIT;
-import static bridge.Command.RESTART;
-import static bridge.Glass.DOWN;
-import static bridge.Glass.UP;
-import static bridge.Message.ERROR_COMMAND;
-import static bridge.Message.ERROR_HEAD;
-import static bridge.Message.ERROR_MOVE;
-import static bridge.Message.ERROR_SIZE;
+import static bridge.enums.Command.QUIT;
+import static bridge.enums.Command.RESTART;
+import static bridge.enums.Glass.DOWN;
+import static bridge.enums.Glass.UP;
+import static bridge.enums.Message.ERROR_COMMAND;
+import static bridge.enums.Message.ERROR_HEAD;
+import static bridge.enums.Message.ERROR_MOVE;
+import static bridge.enums.Message.ERROR_SIZE;
 
-import java.util.Objects;
+import bridge.view.BridgeView;
 
 public class ExceptionHandler {
 

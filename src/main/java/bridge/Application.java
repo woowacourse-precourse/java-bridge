@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.controller.BridgeController;
+
 public class Application {
 
     static BridgeController bridgeController =
