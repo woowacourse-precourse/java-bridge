@@ -12,15 +12,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean printMap(List<String> bridge, String moveAnswer, int index) {
-        System.out.print("[ ");
-        for (int i = 0; i <= index; i++) {
-            if(!isCorrect(bridge, moveAnswer, index)) {
-                return false;
-            }
-        }
-        System.out.println(" ]");
-        return true;
+    public void printMap(String result, int index) {
+
     }
 
     public boolean isCorrect(List<String> bridge, String moveAnswer, int index) {

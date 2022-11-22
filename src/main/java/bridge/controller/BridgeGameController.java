@@ -1,12 +1,8 @@
 package bridge.controller;
 
-import bridge.BridgeRandomNumberGenerator;
 import bridge.model.service.BridgeGame;
-import bridge.model.service.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import java.util.List;
 
 public class BridgeGameController {
     // view 에서 입력받은 값을 model로 전달하는 컨트롤러
@@ -29,6 +25,7 @@ public class BridgeGameController {
 
         for (int i = 0; i < bridgeSize; i++) {
             String moveAnswer = inputView.readMoving();
+            outputView.printMap(bridgeGame.move(moveAnswer, i), i);
         }
     }
 

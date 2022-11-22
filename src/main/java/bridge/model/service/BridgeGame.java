@@ -11,16 +11,16 @@ public class BridgeGame {
     private int bridgeSize;
     private List<String> bridge;
 
-    private BridgeMaker bridgeMaker;
+    private final BridgeMaker BRIDGE_MAKER = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-    public BridgeGame() {
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    }
+//    public BridgeGame() {
+//        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+//    }
 
     public BridgeGame(int bridgeSize) {
-        super();
+        // super();
         this.bridgeSize = bridgeSize;
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+        bridge = BRIDGE_MAKER.makeBridge(bridgeSize);
     }
 
     /**
@@ -28,8 +28,20 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public String move(String moveAnswer, int index) {
+        if (isCorrectAnswer(moveAnswer, index)) {
+            return "O";
+        }
 
+        return "X";
+    }
+
+    public boolean isCorrectAnswer(String moveAnswer, int index) {
+        if (!bridge.get(index).equals(moveAnswer)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
