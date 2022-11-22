@@ -16,6 +16,10 @@ public class Game {
         return isGameDone;
     }
 
+    private void setGameDone(boolean gameDone) {
+        isGameDone = gameDone;
+    }
+
 
 
 }
