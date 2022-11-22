@@ -46,8 +46,8 @@ public class BridgeGame {
     public void enterResult(){
         List<String> currentResult = new ArrayList<>();
         String movingResult = compareBridge();
-        currentResult.add(movingResult);
         currentResult.add(user.getCurrentMoving());
+        currentResult.add(movingResult);
         result.setCurrentResult(currentResult);
         result.addTotalMovingResult(currentResult);
     }

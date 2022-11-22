@@ -2,10 +2,14 @@ package view;
 
 import model.Result;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private Result result;
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -21,5 +25,16 @@ public class OutputView {
      */
     public void printResult() {
 
+    }
+
+    public void printUpMap() {
+        List<Integer> upPosition = result.extractUpPosition();
+        System.out.print("[ ");
+        for (int i = 0; i < result.movingResultSize(); i++) {
+            if (upPosition.contains(i))
+                System.out.print(result.getResultAt(i));
+            System.out.print("| ");
+        }
+        System.out.print(" ]");
     }
 }
