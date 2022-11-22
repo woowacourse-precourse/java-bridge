@@ -65,4 +65,14 @@ public class GamePlay {
         outputView.printMap(playerMap, bridgeGame.getPosition());
         outputView.printResult(isWon, tryCount);
     }
+
+    public int createBridgeSize() {
+        outputView.printGameStart();
+        outputView.printInputBridge();
+
+        int bridgeSize = inputView.readBridgeSize();
+        outputView.printBridgeSize(bridgeSize);
+
+        return bridgeSize;
+    }
 }
