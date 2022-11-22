@@ -44,7 +44,7 @@
 - [ ] 이동 입력을 반환한다. #getMoveCommand()
 - [x] 허가되지 않은 이동 입력인지 체크한다. #isDisallowInputMoveCommand()
 - [ ] 게임 입력을 반환한다. #getReadGameCommand()
-- [ ] 허가되지 않은 게임 입력인지 체크한다. #isDisallowInputGameCommand()
+- [x] 허가되지 않은 게임 입력인지 체크한다. #isDisallowInputGameCommand()
 - [ ] 최종 결과를 반환한다. #getFinalResult()
 
 ### BridgeGame : 다리 건너기 게임을 관리
