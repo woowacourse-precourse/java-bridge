@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class InputViewTest {
@@ -103,6 +104,34 @@ class InputViewTest {
                 .hasMessage(ExceptionMessage.commandByNotRQ.getMessage());
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"a,5", "x,6", "w,7", "E,8", "rR,9", "qQ,10"})
+    public void getBridgeSize_Check(String fake, int size) {
+        assertThatCode(() -> {
+            setInput(fake +"\n"+size);
+            int result = inputView.getBridgeSize();
+
+            assertThat(result).isEqualTo(size);
+        }).doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"a,U", "x,u", "w,D", "E,d"})
+    public void getMoving_Check(String fake, String move) {
+        assertThatCode(() -> {
+            setInput(fake+"\n"+move);
+            inputView.getMoving();
+        }).doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"a,R", "x,r", "w,Q", "E,q"})
+    public void getCommand_Check(String fake, String command) {
+        assertThatCode(() -> {
+            setInput(fake+"\n"+command);
+            inputView.getCommand();
+        }).doesNotThrowAnyException();
+    }
     private void setInput(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);

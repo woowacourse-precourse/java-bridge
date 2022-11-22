@@ -116,16 +116,16 @@ class BridgeGameTest {
 
     @DisplayName("이동 방향이 U or D가 아닐 경우 예외 처리")
     @ParameterizedTest
-    @CsvSource(value = {"R", "r", "1", "C", "uu", "ud", "UU"})
+    @CsvSource(value = {"'R" + "\n" + "d'", "'uu" + "\n" + "d'",
+            "'ud" + "\n" + "d'", "'dd" + "\n" + "d'"})
     public void moveBridge_Not_Word(String inputMove) {
-        assertThatCode(() -> {
-            bridgeGame.setBridge(List.of("U", "U", "D"));
+        bridgeGame.setBridge(List.of("U", "U", "D"));
 
-            setInput(inputMove);
-            bridgeGame.move(new StringBuilder(), new StringBuilder());
+        setInput(inputMove);
+        bridgeGame.move(new StringBuilder(), new StringBuilder());
 
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.moveByNotUD.getMessage());
+        assertThat(outputStreamCaptor.toString())
+                .contains(ExceptionMessage.moveByNotUD.getMessage());
     }
 
     @DisplayName("재시작 성공")
@@ -156,14 +156,14 @@ class BridgeGameTest {
 
     @DisplayName("명령이 R or Q가 아닐 경우 예외처리")
     @ParameterizedTest
-    @CsvSource(value = {"a", "10", "e", "W", "rr", "Rr", "qQ", "QQ"})
+    @CsvSource(value = {"'a" + "\n" + "q'", "'10" + "\n" + "q'",
+            "'rr" + "\n" + "q'", "'`" + "\n" + "q'", "'qq" + "\n" + "q'"})
     public void retry_Not_Word(String inputCommand) {
-        assertThatCode(() -> {
-            setInput(inputCommand);
-            bridgeGame.retry();
+        setInput(inputCommand);
+        bridgeGame.retry();
 
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.commandByNotRQ.getMessage());
+        assertThat(outputStreamCaptor.toString())
+                .contains(ExceptionMessage.commandByNotRQ.getMessage());
     }
 
     private static String castCommand(List<String> commands) {
