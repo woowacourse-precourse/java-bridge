@@ -35,16 +35,12 @@ public class Status {
         up.add("X");
     }
 
-    public void reset() {
-        init();
-    }
-
     public StringJoiner getUp() {
-        return null;
+        return up;
     }
 
     public StringJoiner getDown() {
-        return null;
+        return down;
     }
 
     public String result() {
