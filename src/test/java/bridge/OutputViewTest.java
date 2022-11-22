@@ -10,7 +10,6 @@ public class OutputViewTest {
 
     @Test
     void testPreBridge(){
-
         assertRandomNumberInRangeTest(() -> {
             OutputView view = new OutputView();
             BridgeGameInfo gameInfo = new BridgeGameInfo(5);
@@ -19,7 +18,7 @@ public class OutputViewTest {
             game.move("D");
             game.move("D");
             game.move("D");
-            assertThat(view.preBridge(gameInfo)[1]).isEqualTo(" O |   | O |");
+            assertThat(view.preBridge(gameInfo)[1]).isEqualTo(" O |   |   |");
             assertThat(view.preBridge(gameInfo)[0]).isEqualTo("   | O | O |");
         }, 1, 0, 0,1,1);
     }
