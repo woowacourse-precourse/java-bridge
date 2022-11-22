@@ -5,18 +5,18 @@ public enum UpDown {
     DOWN(0, "D");
 
     private final int number;
-    private final String command;
+    private final String letter;
 
-    UpDown(int number, String command) {
+    UpDown(int number, String letter) {
         this.number = number;
-        this.command = command;
+        this.letter = letter;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public String getCommand() {
-        return command;
+    public String getLetter() {
+        return letter;
     }
 }

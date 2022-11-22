@@ -32,8 +32,8 @@ public class OutputView {
     public static void printMap(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
         Player player = bridgeGame.getPlayer();
-        List<String> upperLine = drawLine(bridge, player, UpDown.UP.getCommand());
-        List<String> lowerLine = drawLine(bridge, player, UpDown.DOWN.getCommand());
+        List<String> upperLine = drawLine(bridge, player, UpDown.UP.getLetter());
+        List<String> lowerLine = drawLine(bridge, player, UpDown.DOWN.getLetter());
         printOneLine(upperLine);
         printOneLine(lowerLine);
         System.out.println();

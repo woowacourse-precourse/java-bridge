@@ -56,7 +56,7 @@ public class BridgeGame {
     }
 
     private void validateMoveCommand(String moveCommand) {
-        if (moveCommand.equals(UpDown.UP.getCommand()) || moveCommand.equals(UpDown.DOWN.getCommand())) {
+        if (moveCommand.equals(UpDown.UP.getLetter()) || moveCommand.equals(UpDown.DOWN.getLetter())) {
             return;
         }
         throw new IllegalArgumentException(INVALID_MOVE_COMMAND_ERROR);

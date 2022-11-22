@@ -30,9 +30,9 @@ public class BridgeMaker {
 
     private String upOrDown(int randomNumber) {
         if (randomNumber == UpDown.DOWN.getNumber()) {
-            return UpDown.DOWN.getCommand();
+            return UpDown.DOWN.getLetter();
         }
-        return UpDown.UP.getCommand();
+        return UpDown.UP.getLetter();
     }
 
     private void validateSize(int size) {
