@@ -4,16 +4,33 @@ import java.util.List;
 
 public class Application {
 
+    public static class View{
+        private OutputView outputView;
+        private InputView inputView;
+
+        public View(OutputView outputView, InputView inputView){
+            this.outputView = outputView;
+            this.inputView = inputView;
+        }
+
+        public InputView getInputView(){
+            return this.inputView;
+        }
+        public OutputView getOutputView(){
+            return this.outputView;
+        }
+    }
     public static void main(String[] args) {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
         BridgeGame bridgeGame = new BridgeGame();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        View view = new View(outputView, inputView);
 
         phase1_gameInitialize(outputView, bridgeGame);
         phase2_setBridge(inputView,bridgeMaker,bridgeGame);
-        phase3_getMoving(outputView, inputView, bridgeGame);
+        phase3_getMoving(view, bridgeGame);
     }
 
     public static void phase1_gameInitialize(OutputView outputView,
@@ -31,34 +48,33 @@ public class Application {
         bridgeGame.setBridgeAnswer(bridgeAnswer);
     }
 
-    public static void phase3_getMoving(OutputView outputView, InputView inputView, BridgeGame bridgeGame){
-        Boolean canSuccess = checkIsSuccess(outputView, inputView, bridgeGame);
+    public static void phase3_getMoving(View view, BridgeGame bridgeGame){
+        Boolean canSuccess = checkIsSuccess(view.getOutputView(), view.getInputView(), bridgeGame);
         List<String> tmpBridge = bridgeGame.move(canSuccess);
         Boolean finish = bridgeGame.checkFinish();
-        outputView.printMap(tmpBridge, bridgeGame.getNowMoving());
-        if (canSuccess == false) retry(outputView, inputView, bridgeGame, tmpBridge);
+        view.getOutputView().printMap(tmpBridge, bridgeGame.getNowMoving());
+        if (canSuccess == false) retry(view, bridgeGame, tmpBridge);
         if (canSuccess == true && finish == true) {
-            end(outputView, tmpBridge, bridgeGame.getNowMoving());
-            printIsSuccessful(outputView, "성공");
-            printTryCount(bridgeGame, outputView);
-        }
-        if (canSuccess == true && finish == false) phase3_getMoving(outputView, inputView, bridgeGame);}
+            end(view.getOutputView(), tmpBridge, bridgeGame.getNowMoving());
+            printIsSuccessful(view.getOutputView(), "성공");
+            printTryCount(bridgeGame, view.getOutputView());}
+        if (canSuccess == true && finish == false) phase3_getMoving(view, bridgeGame);}
     public static Boolean checkIsSuccess(OutputView outputView, InputView inputView, BridgeGame bridgeGame){
         outputView.printGetSpaceToMove();
         String nextMove = inputView.readMoving();
         return bridgeGame.checkCanSuccess(nextMove);
     }
-    public static void retry(OutputView outputView, InputView inputView, BridgeGame bridgeGame, List<String> tmpBridge){
-        outputView.printGetTryAgain();
-        String tryAgain = inputView.readGameCommand();
+    public static void retry(View view, BridgeGame bridgeGame, List<String> tmpBridge){
+        view.getOutputView().printGetTryAgain();
+        String tryAgain = view.getInputView().readGameCommand();
         if (tryAgain.equals("Q")) {
-            end(outputView, tmpBridge, bridgeGame.getNowMoving());
-            printIsSuccessful(outputView, "실패");
-            printTryCount(bridgeGame, outputView);
+            end(view.getOutputView(), tmpBridge, bridgeGame.getNowMoving());
+            printIsSuccessful(view.getOutputView(), "실패");
+            printTryCount(bridgeGame, view.getOutputView());
         }
         if (tryAgain.equals("R")){
             bridgeGame.retry();
-            phase3_getMoving(outputView, inputView, bridgeGame);
+            phase3_getMoving(view, bridgeGame);
         }
     }
     public static void end(OutputView outputView, List<String> tmpBridge, String nowMoving){
