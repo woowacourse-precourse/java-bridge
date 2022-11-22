@@ -9,8 +9,6 @@ public class OutputView {
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_END = " ]";
     private static final String BRIDGE_SEPARATOR = " | ";
-    private static final String CORRECT_MARK = "O";
-    private static final String WRONG_MARK = "X";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -21,6 +19,7 @@ public class OutputView {
         GameMap gameMap = bridgeGame.getGameMap();
         System.out.println(BRIDGE_START + joinBySeparator(gameMap.getUpstairBridge()) + BRIDGE_END);
         System.out.println(BRIDGE_START + joinBySeparator(gameMap.getDownstairBridge()) + BRIDGE_END);
+        System.out.println();
     }
 
     private String joinBySeparator(List<String> bridgeStatus) {
@@ -32,6 +31,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        printMap(bridgeGame);
+        System.out.println("게임 성공 여부: " + bridgeGame.getGameStatus().getMessage());
+        System.out.println("총 시도한 횟수: " + bridgeGame.getPlayCount());
     }
 }
