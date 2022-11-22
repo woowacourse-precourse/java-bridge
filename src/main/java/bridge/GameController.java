@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.service.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

@@ -1,9 +1,6 @@
 package bridge;
 
 import bridge.constant.Messages;
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeNumberGenerator;
-import bridge.service.BridgeRandomNumberGenerator;
 
 public class Application {
 

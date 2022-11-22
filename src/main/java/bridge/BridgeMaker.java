@@ -1,6 +1,5 @@
-package bridge.service;
+package bridge;
 
-import bridge.constant.Constant;
 import bridge.domain.Direction;
 
 import java.util.ArrayList;
