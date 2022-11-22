@@ -13,20 +13,17 @@ public class InputView {
     private static final String INPUT_RESTART_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
     private static final String DATA_TYPE_ERR_MESSAGE = "[ERROR] 숫자가 아닙니다.";
 
-    private final Validator validator;
-
     public InputView() {
-        this.validator = new Validator();
     }
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
         int size = convertStringtoInt(Console.readLine());
         try {
-            validator.isValidBridgeSize(size);
+            Validator.isValidBridgeSize(size);
             return size;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -37,11 +34,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(INPUT_BRIDGE_LOCATION);
         String moving = Console.readLine();
         try {
-            validator.isValidMoving(moving);
+            Validator.isValidMoving(moving);
             return moving;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -52,11 +49,11 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         System.out.println(INPUT_RESTART_QUIT);
         String command = Console.readLine();
         try {
-            validator.isValidGameCommand(command);
+            Validator.isValidGameCommand(command);
             return command;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
