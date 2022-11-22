@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.exception.LogicException;
 import camp.nextstep.edu.missionutils.Console;

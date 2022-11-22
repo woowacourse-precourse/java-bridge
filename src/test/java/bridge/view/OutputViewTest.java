@@ -1,7 +1,6 @@
 package bridge.view;
 
-import bridge.BridgeGame;
-import bridge.OutputView;
+import bridge.domain.BridgeGame;
 import bridge.model.Bridge;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
