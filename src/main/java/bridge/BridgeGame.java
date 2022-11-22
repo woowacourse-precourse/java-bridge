@@ -49,10 +49,7 @@ public class BridgeGame {
 
 
     public static boolean retry(String command) {
-        if(Objects.equals(command, QUIT)) {
-            return false;
-        }
-        return true;
+        return !Objects.equals(command, QUIT);
     }
 
     public static int getTriedAnswerCount(String direction) {

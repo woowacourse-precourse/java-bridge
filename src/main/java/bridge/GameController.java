@@ -25,7 +25,7 @@ public class GameController {
         boolean gameQuit = false;
         gameCount = getAnswerProcess(gameCount, outputView, inputView, size, bridge, bridgeGame, gameQuit);
 
-        outputView.printResult(upstairsBridge, downstairsBridge, gameCount, bridgeGame);
+        outputView.printResult(upstairsBridge, downstairsBridge, gameCount);
         movementClear(upstairsBridge, downstairsBridge);
     }
     private static OutputView gameStart() {
