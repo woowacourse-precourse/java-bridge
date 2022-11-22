@@ -57,12 +57,8 @@ public class BridgeGame {
             move(bridgeinform.getDirection(), answer, result);
             copy.clear();
             copy.addAll(result);
-            if (retryornot == 0) {
-                outputview.printMap(result);
-            }
-            if (retryornot == 2) {
-                outputview.printGameResult(result);
-            }
+            checkBasicStatus(result);
+            checkQuitStatus(result);
             if (retryornot == 1) {
                 count++;
                 times = -1;
@@ -70,10 +66,25 @@ public class BridgeGame {
                 retryornot = 0;
                 status = WIN;
             }
+            checkResultClear(times, size, result);
+        }
+    }
 
-            if (times != size - 1) {
-                result.clear();
-            }
+    public void checkBasicStatus(List<String> result) {
+        if (retryornot == 0) {
+            outputview.printMap(result);
+        }
+    }
+
+    public void checkQuitStatus(List<String> result) {
+        if (retryornot == 2) {
+            outputview.printGameResult(result);
+        }
+    }
+
+    public void checkResultClear(int times, int size, List<String> result) {
+        if (times != size - 1) {
+            result.clear();
         }
     }
 

@@ -24,7 +24,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "U");
+            run("3", "U", "D", "D", "R", "U", "D", "U");
             assertThat(output()).contains(
                 "최종 게임 결과",
                 "[ O |   | O ]",
