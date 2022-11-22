@@ -19,7 +19,7 @@ class BridgeMakerTest {
         System.out.println(bridgeLength);
         List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
 
-        assertThat(bridge).size().isEqualTo(bridge.size());
+        assertThat(bridge).size().isEqualTo(bridgeLength);
     }
 
     @DisplayName("길이에 따른 다리 생성 - 예외 데이터를 입력한 경우")

@@ -27,7 +27,7 @@ class BridgeTest {
     @DisplayName("bridge 크기 가져오기")
     @Test
     void getBridgeSizeTest() {
-        assertThat(bridge.getBridgeSize()).isEqualTo(testBridge.size());
+        assertThat(bridge.getBridgeSize()).isEqualTo(4);
     }
 
     @DisplayName("현재까지의 입력 값이 다리와 동일한지 확인 - 정답인 경우")
