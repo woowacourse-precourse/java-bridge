@@ -10,17 +10,17 @@ public class Application {
     public static int totalTrial;
 
     public static void main(String[] args) {
-        int size = init();
+        int size = initSet();
         BridgeGame bridgeGame = new BridgeGame(size);
         while (StartGame.startGame(bridgeGame, size)) {
-            if (bridgeGame.finish == true) {
+            if (bridgeGame.finish) {
                 break;
             }
         }
         OutputView.printResult(bridgeGame);
     }
 
-    public static int init() {
+    public static int initSet() {
         OutputView.printStart();
         OutputView.printRequestSize();
         int size = InputView.readBridgeSize();
