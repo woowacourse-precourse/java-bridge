@@ -41,17 +41,17 @@ public class BridgeGame {
 
         String upperResult = upperBridge.substring(0, upperBridge.length() - 1) + BRIDGE_END;
         String lowerResult = lowerBridge.substring(0, lowerBridge.length() - 1) + BRIDGE_END;
-        return upperResult + System.lineSeparator() + lowerResult;
+        return upperResult + "\n" + lowerResult;
     }
 
-    public void isStart(int acrossBridge) {
+    private void isStart(int acrossBridge) {
         if (acrossBridge == 0) {
             upperBridge.append(BRIDGE_START);
             lowerBridge.append(BRIDGE_START);
         }
     }
 
-    public void isUpperCollectOrWrong(List<String> makeBridge, int acrossBridge, String moving) {
+    private void isUpperCollectOrWrong(List<String> makeBridge, int acrossBridge, String moving) {
         if (moving.equals("U")) {
             if (makeBridge.get(acrossBridge).equals(moving)) {
                 upperBridge.append(MOVE_POSSIBLE);
@@ -63,7 +63,7 @@ public class BridgeGame {
         }
     }
 
-    public void isLowerCollectOrWrong(List<String> makeBridge, int acrossBridge, String moving) {
+    private void isLowerCollectOrWrong(List<String> makeBridge, int acrossBridge, String moving) {
         if (moving.equals("D")) {
             if (makeBridge.get(acrossBridge).equals(moving)) {
                 lowerBridge.append(MOVE_POSSIBLE);
@@ -75,7 +75,7 @@ public class BridgeGame {
         }
     }
 
-    public void isEnd(List<String> makeBridge, int acrossBridge) {
+    private void isEnd(List<String> makeBridge, int acrossBridge) {
         if (makeBridge.size() - 1 == acrossBridge) {
             upperBridge.append(BRIDGE_END);
             lowerBridge.append(BRIDGE_END);
@@ -103,7 +103,7 @@ public class BridgeGame {
      */
     public void retry() {
         countPlus();
-        this.acrossBridge = 0;
+        acrossBridge = 0;
         this.upperBridge = new StringBuilder();
         this.lowerBridge = new StringBuilder();
     }
@@ -118,7 +118,6 @@ public class BridgeGame {
         if (acrossBridge != bridgeSize) {
             result = upperBridge.deleteCharAt(upperBridge.length()-1)+BRIDGE_END + "\n" + lowerBridge.deleteCharAt(lowerBridge.length()-1)+BRIDGE_END;
         }
-
         return result;
     }
 
