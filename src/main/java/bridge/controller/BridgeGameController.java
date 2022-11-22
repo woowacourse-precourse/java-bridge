@@ -28,16 +28,16 @@ public class BridgeGameController {
         moveBridge(bridgeGame, user);
     }
 
-    public void printStartGame() {
+    private void printStartGame() {
         outputView.printStartGame();
     }
 
-    public List<String> createBridge() {
+    private List<String> createBridge() {
         outputView.printChoiceBridgeSize();
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
-    public void moveBridge(BridgeGame bridgeGame, User user) {
+    private void moveBridge(BridgeGame bridgeGame, User user) {
         while (!user.isGameOver()) {
             String moveUpOrDown = choiceMove();
             boolean pass = bridgeGame.isPass(moveUpOrDown);
@@ -58,13 +58,13 @@ public class BridgeGameController {
         outputView.printMap(bridgeMapUpdater.getUpdatedBridgeMap());
     }
 
-    public void isArriveByEnd(BridgeGame bridgeGame, User user) {
+    private void isArriveByEnd(BridgeGame bridgeGame, User user) {
         if (bridgeGame.isEndOfLocation()) {
             user.finishWithWin();
         }
     }
 
-    public void runPassOrFailCase(boolean pass, BridgeGame bridgeGame, User user) {
+    private void runPassOrFailCase(boolean pass, BridgeGame bridgeGame, User user) {
         if (pass) {
             bridgeGame.move();
         }
@@ -75,7 +75,7 @@ public class BridgeGameController {
         }
     }
 
-    public void runFailCase(BridgeGame bridgeGame, User user, String gameCommand) {
+    private void runFailCase(BridgeGame bridgeGame, User user, String gameCommand) {
         if (gameCommand.equals(RETRY.getCommand())) {
             bridgeMapUpdater.clearMap();
             user.increaseTryCount();
@@ -86,7 +86,7 @@ public class BridgeGameController {
         }
     }
 
-    public void printResult(User user) {
+    private void printResult(User user) {
         outputView.printResult(user, bridgeMapUpdater.getUpdatedBridgeMap());
     }
 }
