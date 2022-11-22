@@ -67,16 +67,20 @@ public class BridgeGameController {
     }
 
     private String askToRetryIfFailed(boolean check) {
-        String retry = RETRY;
+        String userInput = RETRY;
         if (!check) {
-            retry = getWhetherToRetryUntilQualifiedInput();
-            if (retry.equals(RETRY)) {
-                bridgeGame.retry(gameStatus);
-                TryCountValidator.validateTryCount(gameStatus.getTryCount());
-                copyBridge = new Bridge(bridge.copyBridge());
-            }
+            userInput = getWhetherToRetryUntilQualifiedInput();
+            wantToRetry(userInput);
         }
-        return retry;
+        return userInput;
+    }
+
+    private void wantToRetry(String retry) {
+        if (retry.equals(RETRY)) {
+            bridgeGame.retry(gameStatus);
+            TryCountValidator.validateTryCount(gameStatus.getTryCount());
+            copyBridge = new Bridge(bridge.copyBridge());
+        }
     }
 
     private boolean crossTheBridge() {
