@@ -21,10 +21,6 @@ public class BridgeGameResult {
         return moveState.getMoveCount();
     }
 
-    public void updateMoveState(String moving, Boolean canMove) {
-        moveState.update(moving, canMove);
-    }
-
     public void updateMoveState(boolean canMove) {
         moveState.update(canMove);
     }
@@ -39,10 +35,6 @@ public class BridgeGameResult {
 
     public boolean isSuccess() {
         return result.equals(SUCCESS);
-    }
-
-    public void setSuccess() {
-        result = SUCCESS;
     }
 
     public int getTryCount() {
