@@ -15,7 +15,7 @@ class BridgeGameTest {
         //WHEN
         BirdgeMoveType moveCheck = bridgeGame.move("U");
         //THEN
-        assertEquals(moveCheck,true);
+        assertEquals(moveCheck,BirdgeMoveType.upGoMovement);
     }
     @Test
     void 움직임_테스트_실패() {
@@ -24,7 +24,7 @@ class BridgeGameTest {
         //WHEN
         BirdgeMoveType moveCheck = bridgeGame.move("D");
         //THEN
-        assertEquals(moveCheck,false);
+        assertEquals(moveCheck,BirdgeMoveType.downStopMovement);
     }
 
 }

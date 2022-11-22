@@ -33,7 +33,6 @@ public class OutputView {
                 resultList) {
             System.out.println(result);
         }
-        System.out.println("\n");
     }
     public List<ArrayList<String>> checkIndex(BirdgeMoveType whereMove){
         if(whereMove.getIndex()==0){

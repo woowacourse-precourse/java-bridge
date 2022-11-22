@@ -46,4 +46,19 @@ class InputViewTest {
             inputView.readMoving();
         }) ;
     }
+    @Test
+    @DisplayName("다시시작입력 예외 테스트")
+    void readGameCommand(){
+        //GIVEN
+        inputView = new InputView();
+
+        InputStream in = new ByteArrayInputStream("T".getBytes());
+        System.setIn(in);
+        //THEN
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+
+            //WHEN
+            inputView.readGameCommand();
+        }) ;
+    }
 }
