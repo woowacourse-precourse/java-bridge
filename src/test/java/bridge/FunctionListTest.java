@@ -38,6 +38,14 @@ public class FunctionListTest {
         assertEquals(progress.getProgress().get(BridgePattern.MOVE_DOWN), new ArrayList<>() {{ add("X");}});
     }
 
+    @DisplayName("retry 메소드 테스트 케이스")
+    @Test
+    public void doRetry() {
+        assertEquals(bridgeGame.exportGameCount(), 1);
+        bridgeGame.retry();
+        assertEquals(bridgeGame.exportGameCount(), 2);
+    }
+
     private Map<BridgePattern, List<String>> generateCompareMap() {
         List<String> up = new ArrayList<>() {{
             add("O");
