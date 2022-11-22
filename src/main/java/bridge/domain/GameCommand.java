@@ -1,6 +1,6 @@
 package bridge.domain;
 
-public enum GameCommand {
+public enum GameCommand implements Validatable {
     QUIT,
     RETRY;
 

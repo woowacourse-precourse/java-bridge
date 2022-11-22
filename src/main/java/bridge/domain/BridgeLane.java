@@ -1,6 +1,6 @@
 package bridge.domain;
 
-public enum BridgeLane {
+public enum BridgeLane implements Validatable {
     UP,
     DOWN;
 

@@ -1,6 +1,6 @@
 package bridge.domain;
 
-public class BridgeSize {
+public class BridgeSize implements Validatable {
     private final int size;
 
     private BridgeSize(int size) {
