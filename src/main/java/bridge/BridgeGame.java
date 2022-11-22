@@ -48,8 +48,8 @@ public class BridgeGame {
     }
 
     public boolean roundOver() {
-        int index = movement.size()-1;
-        if (movement.get(index).equals( bridge.get(index) )) {
+        List<String> subBridge = bridge.subList(0, movement.size());
+        if (!winTheGame() && subBridge.equals(movement) ) {
             return false;
         }
 
