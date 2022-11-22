@@ -68,4 +68,19 @@ public class BridgeGameTest {
         // Then
         assertThat(bridgeGame.isSuccess()).isEqualTo(false);
     }
+
+    @Test
+    @DisplayName("게임 재시도할 경우 재시도 횟수 확인")
+    void checkNumberOfTries() {
+        // Given
+        BridgeGame bridgeGame = new BridgeGame(3, Arrays.asList("U", "D", "D"));
+
+        // When
+        boolean firstStep = bridgeGame.move("U", 0);
+        boolean secondStep = bridgeGame.move("D", 1);
+        bridgeGame.retry();
+
+        // Then
+        assertThat(bridgeGame.getNumberOfTries()).isEqualTo(2);
+    }
 }
