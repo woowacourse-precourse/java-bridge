@@ -14,8 +14,8 @@ public class BridgeGame {
     private static final int INIT_RETRY_COUNT = 1;
     private static final int COUNT_NUM = 1;
     private static final int INDEX_PLUS = 1;
+    private static final BridgeComparator bridgeComparator = new BridgeComparator();
     private final List<String> bridge;
-    private final BridgeComparator bridgeComparator;
     private BridgeMap bridgeMap;
     private int location;
     private int retryCount;
@@ -25,7 +25,6 @@ public class BridgeGame {
         this.retryCount = INIT_RETRY_COUNT;
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
-        bridgeComparator = new BridgeComparator();
         bridgeMap = BridgeMap.createBridgeMap(size);
     }
 
@@ -41,7 +40,7 @@ public class BridgeGame {
         return location;
     }
 
-    public List<List<String>> getMap(){
+    public List<List<String>> getMap() {
         return bridgeMap.getBridgeMap();
     }
 
