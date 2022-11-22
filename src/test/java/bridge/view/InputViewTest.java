@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class InputViewTest {
     InputView inputView = new InputView();
@@ -23,4 +23,11 @@ public class InputViewTest {
                 .hasMessage("[ERROR] 다리 길이는 자연수여야 합니다.");
     }
 
+    @DisplayName("다리 길이 입력이 자연수이면 입력이 그대로 반환된다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "10", "99", "9999999999999999"})
+    void PassTestIfNaturalNumber(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        assertThat(inputView.readBridgeSize()).isEqualTo(input);
+    }
 }
