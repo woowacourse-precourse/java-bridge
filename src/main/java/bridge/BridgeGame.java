@@ -8,9 +8,9 @@ import java.util.List;
  */
 public class BridgeGame {
     private static final int TRIES_INIT = 1;
-    private static List<String> bridge;
-    private static List<String> crossedBridge;
-    private static int tries;
+    private List<String> bridge;
+    private List<String> crossedBridge;
+    private int tries;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -32,15 +32,15 @@ public class BridgeGame {
         return false;
     }
 
-    public static List<String> getCrossedBridge() {
-        return crossedBridge;
+    public List<String> getCrossedBridge() {
+        return this.crossedBridge;
     }
 
-    public static int getTries() {
-        return tries;
+    public int getTries() {
+        return this.tries;
     }
 
-    public static int mapSize() {
+    public int mapSize() {
         return bridge.size();
     }
 
