@@ -33,8 +33,10 @@ public class GameStart {
     }
 
     private void createBridge() {
-        outputView.printInputSizeMessage();
-        bridgeSize = inputView.readBridgeSize();
+        do {
+            outputView.printInputSizeMessage();
+            bridgeSize = inputView.readBridgeSize();
+        } while (bridgeSize != 0);
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
