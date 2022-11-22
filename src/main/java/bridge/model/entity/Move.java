@@ -22,7 +22,7 @@ public class Move {
         if(UP.equals(move) || DOWN.equals(move)){
             return;
         }
-        throw new IllegalArgumentException("이동하기 위한 문자가 아닙니다. 다시 입력해주세요 :" + move);
+        throw new IllegalArgumentException("[ERROR] 이동하기 위한 문자가 아닙니다. 다시 입력해주세요 :" + move);
     }
 
     public static Move of(String move){
