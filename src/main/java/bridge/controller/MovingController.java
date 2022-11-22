@@ -11,15 +11,6 @@ import bridge.view.InputView;
 
 public class RunController {
 
-	public boolean isClearGame(String result) {
-		boolean isClear = true;
-
-		if (result.contains(Bridge.WRONG.getResult())) {
-			return false;
-		}
-		return isClear;
-	}
-
 	public String checkMoving(String move) {
 		if (!(move.equals(Bridge.TOP.getOrder()) || move.equals(Bridge.BOTTOM.getOrder()))) {
 			throw new IllegalArgumentException();
