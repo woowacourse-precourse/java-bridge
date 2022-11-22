@@ -4,6 +4,7 @@ import bridge.validation.Validation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -29,6 +30,7 @@ public class ControllerTest {
     }
 
     @Test
+    @DisplayName("Q를 누르면 성공 실패 상관없이 Q 배출")
     void quit() {
         String q = "Q";
         InputStream i = new ByteArrayInputStream(q.getBytes());
@@ -38,6 +40,7 @@ public class ControllerTest {
     }
 
     @Test
+    @DisplayName("건넌 위치가 다리사이즈만큼 혹은 떨어질 때까지 잘 만들어지는지 테스트")
     void endOfTheGameTest() {
         List<List<String>> bridges = new ArrayList<>();
         List<String> bridgeUp = List.of("O"," "," ");
@@ -51,6 +54,7 @@ public class ControllerTest {
     }
 
     @Test
+    @DisplayName("다리 성공 실패 잘 판단하는지 테스트")
     void SuccessCrossingBridgeTest() {
         String input = "U" + "\n" + "D" + "\n" + "U";
         InputStream i = new ByteArrayInputStream(input.getBytes());
@@ -63,6 +67,7 @@ public class ControllerTest {
     }
 
     @Test
+    @DisplayName("통합 테스트")
     void whileQuitIsRTest() {
         String input = "U" + "\n" + "D" + "\n" + "U" + "\n" + "R" +"\n"+ "U" + "\n" + "D" + "\n" + "D";
         InputStream i = new ByteArrayInputStream(input.getBytes());
