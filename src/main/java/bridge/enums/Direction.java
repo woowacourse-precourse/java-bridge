@@ -12,28 +12,20 @@ public enum Direction {
         this.code = code;
     }
 
-    public String getAbbr() {
-        return abbr;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public static Integer getCodeByAbbr(String abbr) {
+    public static Integer getCodeByAbbr(String findAbbr) {
         for (Direction direction : Direction.values()) {
-            if (direction.getAbbr().equals(abbr)) {
-                return direction.getCode();
+            if (direction.abbr.equals(findAbbr)) {
+                return direction.code;
             }
         }
 
         return null;
     }
 
-    public static String getAbbrByCode(Integer code) {
+    public static String getAbbrByCode(Integer findCode) {
         for (Direction direction : Direction.values()) {
-            if (direction.getCode() == code) {
-                return direction.getAbbr();
+            if (direction.code == findCode) {
+                return direction.abbr;
             }
         }
 
