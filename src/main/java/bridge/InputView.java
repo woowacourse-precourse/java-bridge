@@ -44,7 +44,7 @@ public class InputView {
         return moving;
     }
 
-    public static void validateUpOrDown(String moving){
+    public static void validateUpOrDown(String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException(MOVING_OUT_OF_RANGE.toString());
         }
@@ -54,6 +54,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = printAndRead(
+                "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        validateRetryOrQuit(gameCommand);
+        return gameCommand;
+    }
+
+    public void validateRetryOrQuit(String gameCommand) {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            throw new IllegalArgumentException(GAME_COMMAND_OUT_OF_RANGE.toString());
+        }
     }
 }
