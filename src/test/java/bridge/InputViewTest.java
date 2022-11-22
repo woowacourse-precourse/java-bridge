@@ -9,7 +9,6 @@ import java.io.PrintStream;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
 
@@ -62,7 +61,7 @@ class InputViewTest {
         System.setOut(new PrintStream(byteArrayOutputStream));
 
         InputView inputView = new InputView();
-        inputView.getReadCommand();
+        inputView.getRestartCommand();
 
         String [] result = byteArrayOutputStream.toString().split("\n");
         for (String resultAll : result) {

@@ -11,7 +11,7 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
 
-        validateUserInput.checkBridgeLength(bridgeSize);
+        validateUserInput.checkBridgeSizeRange(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
     public String readMoving() {
@@ -23,7 +23,7 @@ public class InputView {
     public String readGameCommand(){
         String restartCommand = Console.readLine();
 
-        validateUserInput.checkGameCommand(restartCommand);
+        validateUserInput.checkRestartCommand(restartCommand);
         return restartCommand;
     }
     public int getBrideSize() {
@@ -42,12 +42,12 @@ public class InputView {
             return getReadMoving();
         }
     }
-    public String getReadCommand(){
+    public String getRestartCommand(){
         try {
            return readGameCommand();
         }catch(IllegalArgumentException e){
             System.out.println(ErrorCase.RESTART_ERROR.getError());
-            return getReadCommand();
+            return getRestartCommand();
         }
     }
 }

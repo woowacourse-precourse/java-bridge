@@ -15,7 +15,7 @@ public class Controller {
         return inputView.getReadMoving();
     }
     public String inputReadGameCommand(){
-        return inputView.getReadCommand();
+        return inputView.getRestartCommand();
     }
 
     //Outview Section

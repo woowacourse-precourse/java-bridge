@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ValidateUserInputTest {
     ValidateUserInput validateUserInput = new ValidateUserInput();
 
@@ -13,7 +11,7 @@ class ValidateUserInputTest {
     @Test
     void checkBridgeLength() {
         String bridgeLength = "2,1";
-        assertThatThrownBy(() -> validateUserInput.checkBridgeLength(bridgeLength))
+        assertThatThrownBy(() -> validateUserInput.checkBridgeSizeRange(bridgeLength))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +26,7 @@ class ValidateUserInputTest {
     @Test
     void checkGameCommand() {
         String commandButton = "12";
-        assertThatThrownBy(() -> validateUserInput.checkGameCommand(commandButton))
+        assertThatThrownBy(() -> validateUserInput.checkRestartCommand(commandButton))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
