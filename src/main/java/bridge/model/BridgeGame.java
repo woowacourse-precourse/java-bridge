@@ -33,14 +33,10 @@ public class BridgeGame {
     }
 
     private StringBuilder UpperString (String moving, String bridgeSpace, StringBuilder up) {
-        if (moving.equals(UP_LETTER)) {
-            if (moving.equals(bridgeSpace)) {
-                up.append(" O ");
-            } else if (!moving.equals(bridgeSpace)) {
-                up.append(" X ");
-            }
-        } else if (moving.equals(DOWN_LETTER)) {
+        if (moving.equals(DOWN_LETTER)) {
             up.append("   ");
+        } else if (moving.equals(UP_LETTER)) {
+            return moving.equals(bridgeSpace) ? up.append(" O ") : up.append(" X ");
         }
         return up;
     }
@@ -49,11 +45,7 @@ public class BridgeGame {
         if (moving.equals(UP_LETTER)) {
             down.append("   ");
         } else if (moving.equals(DOWN_LETTER)) {
-            if (moving.equals(bridgeSpace)) {
-                down.append(" O ");
-            } else if (!moving.equals(bridgeSpace)) {
-                down.append(" X ");
-            }
+            return moving.equals(bridgeSpace) ? down.append(" O ") : down.append(" X ");
         }
         return down;
     }
