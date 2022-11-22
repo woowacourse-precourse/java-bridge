@@ -112,7 +112,6 @@ public class OutputView {
             printFailure();
             return;
         }
-
         if (isSame(target, preStatus)) {
             printSuccess();
             return;

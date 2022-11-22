@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private List<String> bridgeShape;
+    private final List<String> bridgeShape;
     private int size;
 
     public Bridge() {
