@@ -1,7 +1,6 @@
 package bridge.service;
 
-import bridge.service.impl.CheckService;
-import bridge.service.impl.ResultService;
+import bridge.service.itf.CheckService;
 import bridge.type.ResultType;
 import bridge.view.OutputView;
 
@@ -11,11 +10,7 @@ import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-public class BridgeGame {
-
-    static final BridgeDrawer bridgeDrawer = new BridgeDrawer();
-    static final CheckService checkService = new CheckServiceImpl();
-    public static final List<String> userDirection = new ArrayList<>();
+public class BridgeGame extends AbstractBridgeGame{
     public static int tryCnt = 1;
 
 
