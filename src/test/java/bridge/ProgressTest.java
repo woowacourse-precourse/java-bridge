@@ -26,4 +26,16 @@ class ProgressTest{
         List<String> bridge = bridgeMaker.makeBridge(5);
         assertThat(bridge).containsExactly("U", "D", "D", "U", "U");
     }
+
+    @Test
+    @DisplayName("up down 입력 값에 따른 출력 검증")
+    void movingProcessTest() {
+        boolean up = bridgeGame.move("U");
+        boolean down = bridgeGame.move("D");
+
+        assertThat(up).isTrue();
+        assertThat(down).isTrue();
+        assertThat(bridgeGame.move("S")).isFalse();
+    }
+
 }
