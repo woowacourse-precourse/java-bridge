@@ -9,13 +9,26 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 public class Application {
 
+    static final int RIGHT_MATCH_DOWN = 0;
+    static final int RIGHT_MATCH_UP = 1;
+    static final int WRONG_MATCH_DOWN = 2;
+    static final int WRONG_MATCH_UP = 3;
+
+    static final int GAME_TRY_SUCCESS = 0;
+    static final int GAME_TRY_FAIL = 1;
+    static final int GAME_TRY_EXIT = 2;
+
+    static final int UP_BRIDGE = 0;
+    static final int DOWN_BRIDGE = 1;
+
+
     static final InputView inputCommand = new InputView();
     static final BridgeGame bridgeGame = new BridgeGame();
     static final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     static final OutputView outputView = new OutputView();
     static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-    static int gameTryInfo = 1;
+    static int gameTryInfo = GAME_TRY_FAIL;
 
     public static List<List<String>> judgeBridge(int bridgeSize,List<String> bridge) {
         List<List<String>> resultBridge = new ArrayList<>();
@@ -24,20 +37,20 @@ public class Application {
         for (int i = 0; i < bridgeSize; i++) {
             String move = inputCommand.readMoving();
             int judge = bridgeGame.move(bridge, i, move);
-            if (judge == 0) {
+            if (judge == RIGHT_MATCH_DOWN) {
                 upBridgeMap = outputView.storeAnotherMap(upBridgeMap, i);
                 downBridgeMap = outputView.storeRightMap(downBridgeMap, i);
             }
-            if (judge == 1) {
+            if (judge == RIGHT_MATCH_UP) {
                 upBridgeMap = outputView.storeRightMap(upBridgeMap, i);
                 downBridgeMap = outputView.storeAnotherMap(downBridgeMap, i);
             }
-            if (judge == 2 || judge == 3) {
-                if (judge == 2) {
+            if (judge == WRONG_MATCH_DOWN || judge == WRONG_MATCH_UP) {
+                if (judge == WRONG_MATCH_DOWN) {
                     upBridgeMap = outputView.storeAnotherWrongMap(upBridgeMap, i);
                     downBridgeMap = outputView.storeWrongMap(downBridgeMap, i);
                 }
-                if (judge == 3) {
+                if (judge == WRONG_MATCH_UP) {
                     upBridgeMap = outputView.storeWrongMap(upBridgeMap, i);
                     downBridgeMap = outputView.storeAnotherWrongMap(downBridgeMap, i);
                 }
@@ -46,7 +59,7 @@ public class Application {
                 return resultBridge;
             }
         }
-        gameTryInfo = 0;
+        gameTryInfo = GAME_TRY_SUCCESS;
         resultBridge.add(upBridgeMap);
         resultBridge.add(downBridgeMap);
         return resultBridge;
@@ -54,33 +67,30 @@ public class Application {
 
     public static int judgeRestart() {
         String restart = inputCommand.readGameCommand();
-        if(restart.equals("R")) {
-            return 1;
-        }
-        return 2;
+        return bridgeGame.retry(restart);
     }
 
     public static void judgeWin(int gameTryInfo) {
-        if(gameTryInfo == 2) {
+        if (gameTryInfo == GAME_TRY_EXIT) {
             System.out.println("게임 성공 여부: 실패");
         }
-        if(gameTryInfo == 0) {
+        if (gameTryInfo == GAME_TRY_SUCCESS) {
             System.out.println("게임 성공 여부: 성공");
         }
     }
 
     public static void finalResult(List<List<String>> bridgeResult) {
         System.out.println("최종 게임 결과");
-        if(gameTryInfo == 2) {
-            outputView.printResult(bridgeResult.get(0));
-            outputView.printResult(bridgeResult.get(1));
+        if (gameTryInfo == GAME_TRY_EXIT) {
+            outputView.printResult(bridgeResult.get(UP_BRIDGE));
+            outputView.printResult(bridgeResult.get(DOWN_BRIDGE));
         }
-        if(gameTryInfo == 0) {
-            int lastJudgeIndex = bridgeResult.get(0).size() - 2;
-            bridgeResult.get(0).set(lastJudgeIndex," O ");
-            bridgeResult.get(1).set(lastJudgeIndex," O ");
-            outputView.printResult(bridgeResult.get(0));
-            outputView.printResult(bridgeResult.get(1));
+        if (gameTryInfo == GAME_TRY_SUCCESS) {
+            int lastJudgeIndex = bridgeResult.get(UP_BRIDGE).size() - 2;
+            bridgeResult.get(UP_BRIDGE).set(lastJudgeIndex," O ");
+            bridgeResult.get(DOWN_BRIDGE).set(lastJudgeIndex," O ");
+            outputView.printResult(bridgeResult.get(UP_BRIDGE));
+            outputView.printResult(bridgeResult.get(DOWN_BRIDGE));
         }
     }
 
@@ -91,9 +101,9 @@ public class Application {
         List<List<String>> bridgeResult = new ArrayList<>();
         int gameTryCount = 0;
 
-        while (gameTryInfo != 0 && gameTryInfo != 2) {
+        while (gameTryInfo != GAME_TRY_SUCCESS && gameTryInfo != GAME_TRY_EXIT) {
             bridgeResult = judgeBridge(bridgeSize,bridge);
-            if (gameTryInfo == 1) {
+            if (gameTryInfo == GAME_TRY_FAIL) {
                 gameTryInfo = judgeRestart();
             }
             gameTryCount++;
