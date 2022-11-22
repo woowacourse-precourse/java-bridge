@@ -8,6 +8,8 @@ import bridge.service.GameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -18,6 +20,7 @@ public class BridgeGame {
     public void play() {
         set();
         move();
+        end();
     }
 
     public void set() {
@@ -44,5 +47,12 @@ public class BridgeGame {
             gameService.retry();
             move();
         }
+    }
+
+    public void end(){
+        List<List<String>> map = gameService.drawMap();
+        String gameResult = gameService.getGameResult();
+        int trialCount = gameService.getTrialCount();
+        OutputView.printResult(map,gameResult,trialCount);
     }
 }

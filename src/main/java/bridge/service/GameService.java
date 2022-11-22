@@ -48,8 +48,27 @@ public class GameService {
         return false;
     }
 
+    public boolean isLastMoveTry() {
+        if (bridge.size() == user.getCountInputMoveDirection()) {
+            return true;
+        }
+        return false;
+    }
+
     public void retry() {
         map.retry();
         user.retry();
+    }
+
+    public int getTrialCount() {
+        return user.getTrialCount();
+    }
+
+
+    public String getGameResult() {
+        if (!isNotPass() && isLastMoveTry()) {
+            return "성공";
+        }
+        return "실패";
     }
 }

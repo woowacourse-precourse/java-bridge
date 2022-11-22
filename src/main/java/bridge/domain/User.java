@@ -37,4 +37,8 @@ public class User {
         moveDirectionSelection.clear();
         trialCount++;
     }
+
+    public int getTrialCount() {
+        return trialCount;
+    }
 }
