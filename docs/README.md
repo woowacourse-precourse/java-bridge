@@ -18,11 +18,11 @@
   
 ## 예외 처리
 - 다리 생성
-  - [] 사이즈 입력 범위 3부터 20사이 (IllegalArgument)
+  - [x] 사이즈 입력 범위 3부터 20사이 (IllegalArgument)
   - [x] BridgeNumberGenerator가 0과 1이 아닌 숫자로 다리를 생성할 경우 (IllegalArgument)
 - 게임 진행
   - [x] 이동할 칸 입력 시 "U" 또는 "D" 가 아닐 경우 (IllegalArgument)
-  - [] 더 이상 이동할 곳이 없는 경우 (IllegalState)
+  - [x] 더 이상 이동할 곳이 없는 경우 (IllegalState)
   - [x] 재시도 여부 입력 시 "R" 또는 "Q" 가 아닐 경우 (IllegalArgument)
 
 ## Idea Note
