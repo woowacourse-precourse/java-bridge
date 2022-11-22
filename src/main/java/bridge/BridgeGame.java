@@ -10,6 +10,7 @@ public class BridgeGame {
     public List<String> bridge;
     public List<String> userMoving = new ArrayList<>();
     public int count;
+    public boolean result;
 
     public BridgeGame(List<String> bridge){
         this.bridge = bridge;
@@ -40,6 +41,12 @@ public class BridgeGame {
 
     public int getCount(){
         return this.count;
+    }
+    public void putResult(boolean flag){
+        this.result = flag;
+    }
+    public boolean getResult(){
+        return this.result;
     }
 
     public boolean isCorrectMove(String correctMove, String userMove){
