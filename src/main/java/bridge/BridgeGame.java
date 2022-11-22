@@ -19,6 +19,10 @@ public class BridgeGame {
         this.result = Result.CONTINUE;
     }
 
+    public void setAnswerBridge(Bridge bridge) {
+        this.answerBridge = bridge;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
