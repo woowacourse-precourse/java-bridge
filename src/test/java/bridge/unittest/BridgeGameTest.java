@@ -1,4 +1,4 @@
-package bridge;
+package bridge.unittest;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
