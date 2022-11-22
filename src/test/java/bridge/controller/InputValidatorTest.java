@@ -1,4 +1,4 @@
-package bridge;
+package bridge.controller;
 
 import bridge.controller.InputValidator;
 import org.junit.jupiter.api.BeforeEach;
