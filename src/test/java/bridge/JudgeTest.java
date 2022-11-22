@@ -43,4 +43,18 @@ public class JudgeTest {
         Position playerPosition = new Position(0, Latitude.DOWN);
         Assertions.assertThat(judge.isPlayerSafe(playerPosition)).isEqualTo(false);
     }
+
+    @Test
+    @DisplayName("플레이어가 승리했을 때 true 를 반환하는지 확인한다.")
+    void isPlayerWin() {
+        Player player = new Player(new Position(2, Latitude.DOWN));
+        Assertions.assertThat(judge.isPlayerWin(player)).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("플레이어가 승리조건을 만족하지 못했을 때 false 를 반환하는지 확인한다.")
+    void isPlayerNotWin() {
+        Player player = new Player(new Position(2, Latitude.UP));
+        Assertions.assertThat(judge.isPlayerWin(player)).isEqualTo(false);
+    }
 }
