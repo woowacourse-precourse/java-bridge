@@ -17,8 +17,10 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(Message.INPUT_BRIDGE_LENGTH);
         String length = Console.readLine();
+        inputValidate.validateInputEmpty(length);
+        inputValidate.validateCharacter(length);
+        inputValidate.validateInputRange(length);
         System.out.println();
-        inputValidate.validateBridgeSize(length);
         return Integer.parseInt(length);
     }
 

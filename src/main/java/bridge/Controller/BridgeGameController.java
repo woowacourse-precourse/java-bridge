@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.message.Error;
 import bridge.message.Message;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -28,7 +29,7 @@ public class BridgeGameController {
         isSuccess = true;
     }
 
-    public void playGame() throws IllegalArgumentException {
+    public void playGame() {
         outputView.printGameStart();
         List<String> bridge = makeAnswerBridge();
         pickMovingDirection(bridge);
@@ -52,23 +53,57 @@ public class BridgeGameController {
         }
     }
 
-    private void pickMovingDirection(List<String> bridge) {
-        while (bridgeGame.getTryCount() < bridge.size()) {
-            if (bridgeGame.move(inputView.readMoving()) == false) {
-                outputView.printMap(bridgeGame.getUpperBridge(), bridgeGame.getLowerBridge());
-                String retryFlag = inputView.readGameCommand();
-                if (isQuit(retryFlag)) break;
-                if (isRetry(retryFlag)) continue;
+    private String userCorrectDirection() {
+        do {
+            try {
+                String moving = inputView.readMoving();
+                return moving;
+            } catch (IllegalArgumentException e) {
+                System.out.println(Error.WRONG_INPUT);
             }
-            outputView.printMap(bridgeGame.getUpperBridge(), bridgeGame.getLowerBridge());
-            bridgeGame.increaseBridgeIndex();
+        } while (true);
+    }
+
+    private String userCorrectRetryInput() {
+        do {
+            try {
+                String retry = inputView.readGameCommand();
+                return retry;
+            } catch (IllegalArgumentException e) {
+                System.out.println(Error.WRONG_INPUT);
+            }
+        } while (true);
+    }
+
+    private void pickMovingDirection(List<String> bridge) {
+        while (bridgeGame.getUpperBridge().size() < bridge.size()) {
+            String direction = userCorrectDirection();
+            if (!bridgeGame.move(direction)) {
+                outputView.printMap(bridgeGame.getUpperBridge(), bridgeGame.getLowerBridge());
+                String retryInput = userCorrectRetryInput();
+                if (isRetry(retryInput)) continue;
+                if (isQuit(retryInput)) break;
+            }
+            prepareNextInput();
         }
     }
 
-    private List<String> makeAnswerBridge() throws IllegalArgumentException {
-        bridgeGame.setAnswerBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        List<String> bridge = bridgeGame.getAnswerBridge();
-        return bridge;
+    private void prepareNextInput() {
+        outputView.printMap(bridgeGame.getUpperBridge(), bridgeGame.getLowerBridge());
+        bridgeGame.increaseBridgeIndex();
+    }
+
+    private List<String> makeAnswerBridge() {
+        do {
+            try {
+                int size = inputView.readBridgeSize();
+                bridgeGame.setAnswerBridge(bridgeMaker.makeBridge(size));
+                List<String> bridge = bridgeGame.getAnswerBridge();
+                return bridge;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
     }
 
     private boolean isRetry(String retryFlag) {
