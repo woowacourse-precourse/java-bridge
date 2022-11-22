@@ -9,7 +9,14 @@ public class OutputView {
         System.out.print(bridgeMap + "\n");
     }
 
-    public void printResult() {
+    public static void printResult(final int playCount, final boolean isWinner) {
+        if (isWinner) {
+            System.out.println(Message.GAME_STATE.print() + Message.WIN.print());
+        }
+        if (!isWinner) {
+            System.out.println(Message.GAME_STATE.print() + Message.LOSE.print());
+        }
+        System.out.println(Message.COUNT.print() + playCount);
     }
 
     public static void printInit() {
