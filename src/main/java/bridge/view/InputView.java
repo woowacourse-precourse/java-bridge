@@ -28,7 +28,6 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-
         System.out.println(INPUT_LENGTH_MESSAGE);
         String inputLength = readLine();
         try{

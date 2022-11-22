@@ -31,14 +31,14 @@ public class MapShape {
     }
 
     public String upperMapToString() {
-        return getJoin(upperMap);
+        return getJoinWithSplitUnit(upperMap);
     }
 
     public String lowerMapToString() {
-        return getJoin(lowerMap);
+        return getJoinWithSplitUnit(lowerMap);
     }
 
-    private String getJoin(List<String> shapeMap) {
+    private String getJoinWithSplitUnit(List<String> shapeMap) {
         return join(SPLIT_UNIT, shapeMap);
     }
 

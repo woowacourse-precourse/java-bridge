@@ -14,7 +14,6 @@ public class BridgeMaker {
 
     private final List<String> bridgeShape = new ArrayList<>();
 
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -27,12 +26,12 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         for(int i = 0; i < size; i++){
-            bridgeShape.add(makeRandomShape());
+            bridgeShape.add(getRandomShape());
         }
         return bridgeShape;
     }
 
-    private String makeRandomShape() {
+    private String getRandomShape() {
         if(bridgeNumberGenerator.generate() == 1)
             return MOVE_TO_UPPER;
         return MOVE_TO_LOWER;
