@@ -17,8 +17,14 @@ public class OutputView {
     private final static String SPACE = " ";
     private final static String BAR = "|";
 
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    private static final String GAME_RESULT_MESSAGE = "게임 성공 여부: ";
+    private static final String TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
+    private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
+
+
     public static void printStart() {
-        out.println("다리 건너기 게임을 시작합니다.\n");
+        out.println(GAME_START_MESSAGE);
     }
 
     /**
@@ -67,12 +73,12 @@ public class OutputView {
         int tryCount = result.getTryCount();
         String scoreMessage = result.getScoreMessage();
 
-        out.println("게임 성공 여부: " + scoreMessage);
-        out.println("총 시도한 횟수: " + tryCount);
+        out.println(GAME_RESULT_MESSAGE + scoreMessage);
+        out.println(TRY_COUNT_MESSAGE + tryCount);
     }
 
     public static void printFinalResult(List<List<String>> bridges) {
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_RESULT_MESSAGE);
         printMap(bridges);
     }
 }
