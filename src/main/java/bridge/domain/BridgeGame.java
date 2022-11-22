@@ -1,37 +1,46 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.domain.map.BridgeMap;
 import java.util.List;
 
 public class BridgeGame {
 
     private static final String YES = "R";
 
-    private Bridge bridge;
+    private final Bridge bridge;
     private Player player;
     private int trialCount;
-    private int stage;
+    private BridgeMap bridgeMap;
 
     public BridgeGame(int size, BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridge = new Bridge(size, bridgeNumberGenerator);
         this.player = new Player();
         this.trialCount = 1;
-        this.stage = 0;
+        this.bridgeMap = new BridgeMap();
     }
 
-    public void move(String playerChoice) {
-        player.updateSelection(playerChoice);
+    public void move(String selection) {
+        player.updateSelection(selection);
+        makeMap(selection, isCorrect());
+        updatePlayerPosition(isCorrect());
+    }
+
+    private void makeMap(String selection, boolean result) {
+        bridgeMap.addResult(selection, result);
+    }
+
+    private boolean isCorrect() {
         String answer = bridge.getStep(player.getPosition());
-        if (!answer.equals(player.getLastSelection())) {
-            player.die();
-        }
+        return player.matches(answer);
     }
 
-    public void retry(String playerChoice) {
-        if (playerChoice.equals(YES)) {
-            this.player = new Player();
-            this.trialCount++;
-            this.stage = 0;
+    private void updatePlayerPosition(boolean correct) {
+        if (correct) {
+            player.updatePosition();
+        }
+        if (!correct) {
+            player.die();
         }
     }
 
@@ -42,19 +51,24 @@ public class BridgeGame {
         return false;
     }
 
+    public BridgeMap getMap() {
+        return bridgeMap;
+    }
+
+    public void retry(String playerChoice) {
+        if (playerChoice.equals(YES)) {
+            this.player = new Player();
+            this.trialCount++;
+            bridgeMap.init();
+        }
+    }
+
     public boolean isFinalStage() {
-        return bridge.isFinal(stage);
+        return bridge.isFinal(player.getPosition());
     }
 
     public boolean isPlayerAlive() {
         return player.isAlive();
-    }
-
-    public void nextRound() {
-        if (player.isAlive()) {
-            player.updatePosition();
-            stage++;
-        }
     }
 
     public int getTrialCount() {
@@ -69,11 +83,5 @@ public class BridgeGame {
         return this.bridge.get();
     }
 
-    public int getStageNumber() {
-        if (isFinalStage()) {
-            // 마지막 스테이지 다음 단계는 없음
-            return stage - 1;
-        }
-        return stage;
-    }
+
 }
