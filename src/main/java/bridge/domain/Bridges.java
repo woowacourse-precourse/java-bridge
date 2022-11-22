@@ -10,7 +10,7 @@ public class Bridges {
         this.bridges = bridges;
     }
 
-    public Stream<Bridge> getStream() {
-        return bridges.stream();
+    public List<Bridge> getBridges() {
+        return bridges;
     }
 }
