@@ -4,7 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.ResultFlag;
 import bridge.domain.User;
 import bridge.model.BridgeGame;
-import bridge.service.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.view.BridgeView;
 import java.util.List;
 
