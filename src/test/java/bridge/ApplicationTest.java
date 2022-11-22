@@ -7,6 +7,8 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -44,6 +46,41 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("기능 테스트 2: 게임 재시도 시 이동 현황 초기화")
+    @Test
+    void 기능_테스트_2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "R", "U");
+            assertThat(output()).contains(
+                    "[   ]",
+                    "[ X ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "[ O ]",
+                    "[   ]"
+            );
+
+            int firstTrialDownSideIndex = output().indexOf("[ X ]");
+            int retryMessageIndex = output().indexOf("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            int secondTrialUpSideIndex = output().indexOf("[ O ]");
+            assertThat(firstTrialDownSideIndex).isLessThan(retryMessageIndex);
+            assertThat(retryMessageIndex).isLessThan(secondTrialUpSideIndex);
+        }, 1, 0, 1);
+    }
+
+    @DisplayName("예외 테스트 2: 2회 이상 잘못된 값을 입력해도 재입력 진행")
+    @Test
+    void 예외_테스트_2() {
+        assertSimpleTest(() -> {
+            runException("a", "1", "03", "3");
+            assertThat(output().split("\n")).containsSequence(
+                    ERROR_MESSAGE + " 사용자 입력 오류: 주어진 값이 정수가 아닙니다.",
+                    ERROR_MESSAGE + " 사용자 입력 오류: 3부터 20 사이의 정수를 입력하세요.",
+                    ERROR_MESSAGE + " 사용자 입력 오류: 주어진 값이 정수가 아닙니다.",
+                    "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+            );
         });
     }
 
