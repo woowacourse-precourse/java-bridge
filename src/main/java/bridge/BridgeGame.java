@@ -62,7 +62,7 @@ public class BridgeGame {
     }
 
     private void validateCommand(String command) {
-        if (!isCommandIsQ(command) && !isCommandIsR(command)) throw new IllegalArgumentException("U나 D를 입력해주십시오");
+        if (!isCommandIsQ(command) && !isCommandIsR(command)) throw new IllegalArgumentException("R나 Q를 입력해주십시오");
     }
 
     private static boolean isCommandIsQ(String command) {
