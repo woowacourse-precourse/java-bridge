@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -23,13 +21,13 @@ public class OutputView {
      */
     public void printResult(Player player) {
         System.out.println("최종 게임 결과");
-        printMap(player.getPlayerBridge());
+        printMap(player.findPlayerBridge());
         if (player.success()){
             System.out.println("게임 성공 여부: 성공");
         }if (player.fail()){
             System.out.println("게임 성공 여부: 실패");
         }
-        System.out.printf("총 시도한 횟수: %d", player.getCoinUsed());
+        System.out.printf("총 시도한 횟수: %d", player.findCoinUsed());
     }
 
     public void printGameStart(){
