@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.Constant.*;
+
 import java.util.Objects;
 
 public class InputValidation {
@@ -16,13 +18,13 @@ public class InputValidation {
 
     }
     public static void validateMovement (String movement){
-        if(!Objects.equals(movement, "U") && !Objects.equals(movement, "D")){
+        if(!Objects.equals(movement, UP) && !Objects.equals(movement, DOWN)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_ANSWER_INPUT.getErrorMessage());
         }
     }
 
     public static void validateRestartCommand (String restartCommand){
-        if(!Objects.equals(restartCommand, "R") && !Objects.equals(restartCommand, "Q")){
+        if(!Objects.equals(restartCommand, RESTART) && !Objects.equals(restartCommand, QUIT)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_GAME_RESTART_INPUT.getErrorMessage());
         }
     }

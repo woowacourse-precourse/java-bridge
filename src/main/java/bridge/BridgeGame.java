@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.Constant.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,13 +11,9 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
-    public static final String UP = "U";
-    public static final String DOWN = "D";
     public static final String RIGHT = "O ";
     public static final String WRONG = "X ";
     public static final String SPACE_BRIDGE = "  ";
-    public static final String RESTART = "R";
-    public static final String QUIT = "Q";
 
     static List<String> upstairsBridge = new ArrayList<>();
     static List<String> downstairsBridge = new ArrayList<>();
@@ -28,7 +26,7 @@ public class BridgeGame {
         return downstairsBridge;
     }
 
-    public List<String> getUpstairsBridge (String direction, List<String> bridge, int numberOfTrying) {
+    public void getUpstairsBridge (String direction, List<String> bridge, int numberOfTrying) {
         int eachBridge = numberOfTrying - 1;
         if (Objects.equals(direction, DOWN)) {
             upstairsBridge.add(eachBridge, SPACE_BRIDGE);
@@ -39,10 +37,9 @@ public class BridgeGame {
         if (!Objects.equals(direction, bridge.get(eachBridge)) && Objects.equals(direction, UP)) {
             upstairsBridge.add(eachBridge, WRONG);
         }
-        return upstairsBridge;
     }
 
-    public List<String> getDownstairsBridge (String direction, List<String> bridge, int numberOfTrying) {
+    public void getDownstairsBridge (String direction, List<String> bridge, int numberOfTrying) {
         int eachBridge = numberOfTrying - 1;
 
         if (Objects.equals(direction, UP)) {
@@ -54,7 +51,6 @@ public class BridgeGame {
         if (!Objects.equals(direction, bridge.get(eachBridge))&& Objects.equals(direction, DOWN)) {
             downstairsBridge.add(eachBridge, WRONG);
         }
-        return downstairsBridge;
     }
 
     public void move(String direction, List<String> bridge, int numberOfTrying) {

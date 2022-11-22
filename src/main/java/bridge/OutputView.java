@@ -54,24 +54,24 @@ public class OutputView {
         System.out.println(ANNOUNCEMENT_GAME_RESULT);
 
         printMap(upstairsBridge, downstairsBridge);
-        getGameSuccess(upstairsBridge, downstairsBridge, bridgeGame);
-        getGameCount(gameCount, upstairsBridge, downstairsBridge, bridgeGame);
+        getGameSuccess(upstairsBridge, downstairsBridge);
+        getGameCount(gameCount, upstairsBridge, downstairsBridge);
     }
 
-    public void getGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge, BridgeGame bridgeGame) {
-        if(bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
+    public void getGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge) {
+        if(BridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
             System.out.println(GAME_RESULT + GAME_SUCCESS);
         };
-        if(!bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
+        if(!BridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
             System.out.println(GAME_RESULT + GAME_FAIL);
         }
     }
 
-    public void getGameCount(int gameCount, List<String> upstairsBridge, List<String> downstairsBridge, BridgeGame bridgeGame) {
-        if(bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
+    public void getGameCount(int gameCount, List<String> upstairsBridge, List<String> downstairsBridge) {
+        if(BridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
             System.out.println(NUMBER_OF_ATTEMPTS + gameCount);
         }
-        if(!bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
+        if(!BridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
             System.out.println(NUMBER_OF_ATTEMPTS + (gameCount-1));
         }
     }

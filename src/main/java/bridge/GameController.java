@@ -41,13 +41,13 @@ public class GameController {
 
             getPrintMapAfterMove(outputView, bridge, bridgeGame, numberOfTriedAnswers, direction);
 
-            if (!bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
-                command = getContinueCommand(outputView, inputView, bridgeGame);
+            if (!BridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
+                command = getContinueCommand(outputView, inputView);
                 gameCount++;
-                gameQuit = getGameQuit(bridgeGame, command);
+                gameQuit = getGameQuit(command);
             }
         }
-        while (!bridgeGame.getGameCompleteStatus(upstairsBridge, downstairsBridge, size) && !gameQuit);
+        while (!BridgeGame.getGameCompleteStatus(upstairsBridge, downstairsBridge, size) && !gameQuit);
         return gameCount;
     }
 
@@ -56,10 +56,10 @@ public class GameController {
         return inputView.readMoving();
     }
 
-    private static String getContinueCommand(OutputView outputView, InputView inputView, BridgeGame bridgeGame) {
+    private static String getContinueCommand(OutputView outputView, InputView inputView) {
         outputView.getRestartButton();
         String command = inputView.readGameCommand();
-        getGameRestart(bridgeGame, command);
+        getGameRestart(command);
         return command;
     }
 
@@ -68,16 +68,13 @@ public class GameController {
         outputView.printMap(upstairsBridge, downstairsBridge);
     }
 
-    private static boolean getGameQuit(BridgeGame bridgeGame, String command) {
-        if (!bridgeGame.retry(command)) {
-            return true;
-        }
-        return false;
+    private static boolean getGameQuit(String command) {
+        return !BridgeGame.retry(command);
     }
 
-    private static void getGameRestart(BridgeGame bridgeGame, String command) {
-        if (bridgeGame.retry(command)) {
-            bridgeGame.returnToPreviousStatus(upstairsBridge, downstairsBridge);
+    private static void getGameRestart(String command) {
+        if (BridgeGame.retry(command)) {
+            BridgeGame.returnToPreviousStatus(upstairsBridge, downstairsBridge);
         }
     }
 }
