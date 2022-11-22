@@ -27,10 +27,9 @@ public class BridgeController {
 
     public void run() {
         init();
-
-        while (bridgeGame.checkGameSatus(GameStatus.PROCEED)) {
+        do {
             play();
-        }
+        } while (bridgeGame.retry());
     }
 
     public void play() {

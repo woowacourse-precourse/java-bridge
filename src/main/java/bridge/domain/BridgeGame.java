@@ -19,7 +19,7 @@ public class BridgeGame {
     public BridgeGame(int size) {
         bridge = initBridge(size);
         user = new User();
-        gameStatus = GameStatus.PROCEED;
+        gameStatus = GameStatus.FIRST_TRY;
     }
 
     public Bridge initBridge(int size) {
@@ -42,11 +42,8 @@ public class BridgeGame {
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
-    public void retry() {
-    }
-
-    public boolean checkGameSatus(GameStatus status) {
-        return gameStatus.checkGameStatus(status);
+    public boolean retry() {
+        return GameStatus.checkGameStatus(gameStatus);
     }
 
     public void changeGameStatus(GameStatus status) {
