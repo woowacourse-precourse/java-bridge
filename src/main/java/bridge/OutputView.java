@@ -33,4 +33,9 @@ public class OutputView {
         println();
         println(Constants.MESSAGE_INPUT_SIZE);
     }
+
+    public void printMove() {
+        println();
+        println(Constants.MESSAGE_MOVE);
+    }
 }

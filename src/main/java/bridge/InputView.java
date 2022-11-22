@@ -5,7 +5,7 @@ package bridge;
  */
 public class InputView {
 
-    public String readLine() {
+    private String readLine() {
         return camp.nextstep.edu.missionutils.Console.readLine();
     }
 
