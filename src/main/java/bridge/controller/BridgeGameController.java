@@ -12,33 +12,34 @@ import java.util.List;
 public class BridgeGameController {
     private BridgeGame bridgeGame;
     private List<String> bridge;
-    public void startBridgeGame(){
+
+    public void startBridgeGame() {
         init();
-        boolean b=true;
+        boolean b = true;
+        bridgeGame = new BridgeGame(bridge);
         do {
-            bridgeGame = new BridgeGame(bridge);
-            do {
-                bridgeGame.move(InputView.getMoving());
-                try {
-                    OutputView.printMap(bridgeGame);
-                }catch(IllegalArgumentException e){
-                    String gameCommand=InputView.getGameCommand();
-                    if(gameCommand.equals("Q")){
-                        OutputView.printMap(bridgeGame);
-                        b=false;
-                    }
-                    if(gameCommand.equals("R")){
-                        break;
-                    }
+            bridgeGame.move(InputView.getMoving());
+            try {
+                OutputView.printMap(bridgeGame);
+            } catch (IllegalArgumentException e) {
+                String gameCommand = InputView.getGameCommand();
+                if (gameCommand.equals("Q")) {
+                    b = false;
                 }
-            } while (b==true);
-        }while(b==true);
+                if (gameCommand.equals("R")) {
+                    bridgeGame.retry();
+                    bridgeGame.totalGamePlus();
+                }
+            }
+
+        } while (b && bridgeGame.getUpPresentBridge().size() != bridge.size());
+        OutputView.printResult(bridgeGame);
     }
 
-    public void init(){
+    public void init() {
         OutputView.printGameStart();
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator=new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker=new BridgeMaker(bridgeRandomNumberGenerator);
-        bridge=bridgeMaker.makeBridge(InputView.getBridgeSize());
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        bridge = bridgeMaker.makeBridge(InputView.getBridgeSize());
     }
 }
