@@ -14,8 +14,6 @@ import static bridge.domain.MoveCommand.UP;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private final MoveCommand[] commands = MoveCommand.values();
-    private final GameCommand[] gameCommands = GameCommand.values();
     private final String START = "[";
     private final String END = "]";
     private final String BETWEEN = "|";
@@ -31,7 +29,9 @@ public class OutputView {
     public void guideInputMoving() {
         StringBuilder builder = new StringBuilder();
         builder.append("이동할 칸을 선택해주세요. (");
-        for (MoveCommand command : commands) {
+
+        final MoveCommand[] MOVE_COMMANDS = MoveCommand.values();
+        for (MoveCommand command : MOVE_COMMANDS) {
             builder.append(String.format(", %s: %s", command.getWord(), command.getCommand()));
         }
         String message = builder.append(")").toString().replaceFirst(", ", "");
@@ -69,7 +69,9 @@ public class OutputView {
     public void guideInputGameOver() {
         StringBuilder builder = new StringBuilder();
         builder.append("게임을 다시 시도할지 여부를 입력해주세요. (");
-        for (GameCommand command : gameCommands) {
+
+        final GameCommand[] GAME_COMMANDS = GameCommand.values();
+        for (GameCommand command : GAME_COMMANDS) {
             builder.append(String.format(", %s: %s", command.getWord(), command.getCommand()));
         }
         String message = builder.append(")").toString().replaceFirst(", ", "");

@@ -10,9 +10,6 @@ import static bridge.controller.BridgeSize.MAXIMUM;
 import static bridge.controller.BridgeSize.MINIMUM;
 
 public class BasicBridgeValidator implements BridgeValidator {
-    private final MoveCommand[] moveCommands = MoveCommand.values();
-    private final GameCommand[] gameCommands = GameCommand.values();
-
     @Override
     public void validateBridgeSize(final String size) throws IllegalArgumentException {
         validateInteger(size);
@@ -59,6 +56,7 @@ public class BasicBridgeValidator implements BridgeValidator {
     }
 
     private void validateStringMoveCommand(final String command) {
+        final MoveCommand[] moveCommands = MoveCommand.values();
         for (MoveCommand moveCommand : moveCommands) {
             if (command.equals(moveCommand.getCommand())) {
                 return;
@@ -70,6 +68,7 @@ public class BasicBridgeValidator implements BridgeValidator {
     }
 
     private void validateStringGameCommand(final String command) {
+        final GameCommand[] gameCommands = GameCommand.values();
         for (GameCommand gameCommand : gameCommands) {
             if (command.equals(gameCommand.getCommand())) {
                 return;
