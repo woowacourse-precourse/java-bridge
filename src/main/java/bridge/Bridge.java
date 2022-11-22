@@ -42,7 +42,7 @@ public class Bridge {
         for(int i = 0; i < idx; i++){
             if(bridge.get(i).equals(UorD))
                 result += "O | ";
-            else
+            if(!bridge.get(i).equals(UorD))
                 result += "  | ";
         }
         return result;
@@ -51,28 +51,28 @@ public class Bridge {
     private String createBridgeAtLastIndex(int idx, boolean lastIdxResult, String UorD){
         String result ="";
         if(lastIdxResult) {
-            result += createBridgeAtLastIndexAsSuccess(idx, lastIdxResult, UorD);
+            result += createBridgeAtLastIndexAsSuccess(idx, UorD);
         }
-        else {
-            result += createBridgeAtLastIndexAsFail(idx, lastIdxResult, UorD);
+        if(!lastIdxResult){
+            result += createBridgeAtLastIndexAsFail(idx, UorD);
         }
         return result;
     }
 
-    private String createBridgeAtLastIndexAsSuccess(int idx, boolean lastIdxResult, String UorD){
+    private String createBridgeAtLastIndexAsSuccess(int idx, String UorD){
         String result ="";
         if(bridge.get(idx).equals(UorD))
             result += "O";
-        else
+        if(!bridge.get(idx).equals(UorD))
             result += " ";
         return result;
     }
 
-    private String createBridgeAtLastIndexAsFail(int idx, boolean lastIdxResult, String UorD){
+    private String createBridgeAtLastIndexAsFail(int idx, String UorD){
         String result = "";
         if (bridge.get(idx).equals(UorD))
             result += " ";
-        else
+        if (!bridge.get(idx).equals(UorD))
             result += "X";
         return result;
     }

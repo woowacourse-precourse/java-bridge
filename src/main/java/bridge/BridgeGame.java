@@ -32,7 +32,6 @@ public class BridgeGame {
 
     public void play(){
         while(move()){
-
         }
     }
 

@@ -33,11 +33,11 @@ public class OutputView {
     }
 
     private void printGameResult(boolean isSuccess){
-        String isSuccessByKorean;
+        String isSuccessByKorean = "";
         if(isSuccess){
             isSuccessByKorean = "성공";
         }
-        else{
+        if(!isSuccess){
             isSuccessByKorean = "실패";
         }
         System.out.println("게임 성공 여부: " + isSuccessByKorean);

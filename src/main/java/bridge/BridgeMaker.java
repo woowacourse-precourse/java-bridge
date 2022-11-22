@@ -33,5 +33,7 @@ public class BridgeMaker {
         else{
             return "D";
         }
+        //throw new IllegalArgumentException("[ERROR] 랜덤 생성기가 제대로 작동하지 않습니다.");
+        //return "U";
     }
 }
