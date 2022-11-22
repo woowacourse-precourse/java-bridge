@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private static final int TRIES_INIT = 1;
-    private List<String> bridge;
+    private static List<String> bridge;
     private static List<String> crossedBridge;
     private static int tries;
 
@@ -38,6 +38,10 @@ public class BridgeGame {
 
     public static int getTries() {
         return tries;
+    }
+
+    public static int mapSize() {
+        return bridge.size();
     }
 
     /**
