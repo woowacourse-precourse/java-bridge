@@ -80,7 +80,7 @@ public class OutputView {
         System.out.println(buildMap(bridge, position, correct));
     }
 
-    private String buildResult(List<String> bridge, int position, boolean success) {
+    public String buildResult(List<String> bridge, int position, boolean success) {
         return FINAL_RESULT +
                 buildMap(bridge, position, success);
     }
@@ -89,7 +89,7 @@ public class OutputView {
         System.out.println(buildResult(bridge, position, success));
     }
 
-    private String buildSuccessOrFail(boolean success, int trial) {
+    public String buildSuccessOrFail(boolean success, int trial) {
         StringBuilder output = new StringBuilder();
         if (success) {
             output.append(RESULT_SUCCESS);
