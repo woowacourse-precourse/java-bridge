@@ -55,10 +55,11 @@ class BridgeComparatorTest {
         //given
         List<String> bridgeUpMap = new ArrayList<>(List.of("O","X"));
         List<String> bridgeDownMap = new ArrayList<>(List.of("",""));
+        List<List<String>> bridgeMap = new ArrayList<>(List.of(bridgeUpMap, bridgeDownMap));
         int location=1;
 
         //when
-        boolean result = bridgeComparator.isExpressionX(1, bridgeUpMap, bridgeDownMap);
+        boolean result = bridgeComparator.isExpressionX(1,bridgeMap);
 
         //then
         Assertions.assertEquals(true,result);
