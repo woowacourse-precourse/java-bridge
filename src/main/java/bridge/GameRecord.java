@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 public class GameRecord {
 
     private static final List<GameCases> GAME_CASES = Stream.of(GameCases.values()).collect(Collectors.toList());
+    private static final int INITIAL_PLAYTIME = 0;
 
     private final List<String> moveRecord;
     private final List<Boolean> resultRecord;
@@ -18,7 +19,7 @@ public class GameRecord {
     public GameRecord() {
         moveRecord = new ArrayList<>();
         resultRecord = new ArrayList<>();
-        playTime = 0;
+        playTime = INITIAL_PLAYTIME;
     }
 
     public int getPlayTime() {

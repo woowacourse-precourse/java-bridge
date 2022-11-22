@@ -34,12 +34,12 @@ public class BridgeGameController {
             if (gameRecord.isGameSuccess()) {
                  break;
             }
-        } while (canRestart(bridgeGame));
+        } while (checkRetryInput(bridgeGame));
 
         return makeResultModel(gameRecord);
     }
 
-    private boolean canRestart(BridgeGame bridgeGame) {
+    private boolean checkRetryInput(BridgeGame bridgeGame) {
         OUTPUT_VIEW.printGameRestartRequest();
         String retryInput = INPUT_VIEW.readGameCommand();
         return bridgeGame.retry(retryInput);
