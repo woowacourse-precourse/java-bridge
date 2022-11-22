@@ -9,6 +9,8 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
+    private static final int INITIAL_TRIAL_CNT = 1;
+
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private BridgeGame bridgeGame = new BridgeGame();
@@ -17,7 +19,7 @@ public class BridgeGameController {
     private int trialCnt;
 
     public void play() {
-        trialCnt = 1;
+        trialCnt = INITIAL_TRIAL_CNT;
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
