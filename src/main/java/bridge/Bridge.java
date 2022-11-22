@@ -62,17 +62,17 @@ public class Bridge {
     }
 
     public void setBridgeUnit(){
-        bridgeMap = new LinkedHashMap<>();
-        List<String> bridgeMapUnit = new ArrayList<>();
+        bridgeMap.clear();
+        List<String> bridgeMapUnitUp = new ArrayList<>();
+        List<String> bridgeMapUnitDown = new ArrayList<>();
         for(int i=0;i<bridgeSize;i++){
-            bridgeMapUnit.add(" ");
+            bridgeMapUnitUp.add(" ");
+            bridgeMapUnitDown.add(" ");
         }
-        bridgeMap.put(UserCommand.MOVE_DOWN.getCommand(),bridgeMapUnit);
-        bridgeMap.put(UserCommand.MOVE_DOWN.getCommand(),bridgeMapUnit);
+        bridgeMap.put(UserCommand.MOVE_UP.getCommand(),bridgeMapUnitUp);
+        bridgeMap.put(UserCommand.MOVE_DOWN.getCommand(),bridgeMapUnitDown);
     }
     public void changeBridgeMap(int index,String userMoveCommand,String OorX){
-        List<String> bridgeMapUnit = bridgeMap.get(userMoveCommand);
-        bridgeMapUnit.set(index,OorX);
+        bridgeMap.get(userMoveCommand).set(index,OorX);
     }
-
 }
