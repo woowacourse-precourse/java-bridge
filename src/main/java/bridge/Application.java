@@ -12,22 +12,37 @@ import bridge.view.OutputView;
 public class Application {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
+    private static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
+        initBridgeGame();
+        playBridgeGame();
+        gameOver();
+    }
+
+    private static void initBridgeGame() {
         outputView.printGameStart();
+        bridgeGame = new BridgeGame(createBridge(), new Player(), new GameMap());
+    }
 
-        BridgeGame bridgeGame = new BridgeGame(createBridge(), new Player(), new GameMap());
+    private static void playBridgeGame() {
         while (!bridgeGame.quit()) {
-            playGame(bridgeGame);
+            play(bridgeGame);
         }
+    }
 
+    private static void gameOver() {
         GameResult gameResult = bridgeGame.gameResult();
         outputView.printResult(bridgeGame.getGameMap(), gameResult.getResult(), gameResult.getRetryCount());
     }
 
-    private static void playGame(BridgeGame bridgeGame) {
+    private static void play(BridgeGame bridgeGame) {
         bridgeGame.move(inputDirection());
         outputView.printMap(bridgeGame.getGameMap());
+        retryGameWhenGameFailed(bridgeGame);
+    }
+
+    private static void retryGameWhenGameFailed(BridgeGame bridgeGame) {
         if (bridgeGame.end()) {
             bridgeGame.retry(inputGameCommand());
         }
