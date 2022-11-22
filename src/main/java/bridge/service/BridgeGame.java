@@ -5,7 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.AfterMovingStatusConstant;
 import bridge.constant.UpDownConstant;
 import bridge.domain.Bridge;
-import bridge.repository.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.validation.Validation;
 import java.util.List;
 
