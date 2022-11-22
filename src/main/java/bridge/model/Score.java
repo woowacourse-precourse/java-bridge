@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Score {
 
-    List<String> scoreBoard;
+    private List<String> scoreBoard;
 
     public Score() {
         scoreBoard = new ArrayList<>();

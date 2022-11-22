@@ -20,9 +20,6 @@ public class InputView {
         this.validationException = validationException;
     }
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         GuideOutputView.printBridgeLength();
         String bridgeLength = Console.readLine();
@@ -31,9 +28,6 @@ public class InputView {
         return Integer.parseInt(bridgeLength);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         GuideOutputView.printUpAndDown();
         String movement = Console.readLine();

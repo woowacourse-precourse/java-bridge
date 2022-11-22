@@ -1,12 +1,11 @@
 package bridge.controller;
 
 import bridge.ValidationException;
+import bridge.model.movingOorX;
 import bridge.model.Score;
 import bridge.model.User;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import java.util.List;
 
 public class GameManager {
 
@@ -25,7 +24,6 @@ public class GameManager {
     public void initGameSetting() {
         int size = inputView.readBridgeSize();
         bridgeGame.makeBridge(size);
-        System.out.println(bridgeGame.bridge.getBridge());
     }
 
     public void startGame() {
@@ -33,10 +31,10 @@ public class GameManager {
         do {
             count += 1;
             if (playGame()) {
-                successOrFail = "성공";
+                successOrFail = movingOorX.can.getMovingMessage();
                 break;
             }
-            successOrFail = "실패";
+            successOrFail = movingOorX.cant.getMovingMessage();
         } while (continueGame());
         outputView.printResult(successOrFail, count);
     }
@@ -44,7 +42,6 @@ public class GameManager {
     public boolean playGame() {
         User user = new User();
         Score score = new Score();
-
         while (checkMove(user, score)) {
             outputView.printMap(user.getUserCommand(),score.getScoreBoard());
             if (bridgeGame.checkGameFinish(user.getUserCommand())) {
@@ -60,22 +57,12 @@ public class GameManager {
         user.addUserCommand(command);
 
         if (bridgeGame.move(user.getUserCommand())) {
-            score.addGameResult("O");
+            score.addGameResult(movingOorX.can.getMovingResult());
             return true;
         }
-        score.addGameResult("X");
+        score.addGameResult(movingOorX.cant.getMovingResult());
         return false;
     }
-
-
-    public String checkGameEnd(List<String> user) {
-
-        if (bridgeGame.checkGameFinish(user)) {
-            return "성공";
-        }
-        return "실패";
-    }
-
     public boolean continueGame() {
         String command = inputView.readGameCommand();
 

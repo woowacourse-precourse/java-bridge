@@ -1,57 +1,52 @@
 package bridge.view;
 
-import bridge.constants.ResultMessage;
-import org.assertj.core.error.ShouldHaveToString;
+import bridge.constants.ConstMessage;
+import bridge.model.moving;
 
 import java.util.List;
 
+import static bridge.constants.ConstMessage.*;
 import static bridge.constants.ResultMessage.*;
+import static bridge.model.moving.*;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
 
-    StringBuilder sb1;
-    StringBuilder sb2;
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    StringBuilder upperBridge;
+    StringBuilder lowerBridge;
+
     public void printMap(List<String> user, List<String> score) {
-        sb1 = new StringBuilder();
-        sb2 = new StringBuilder();
+        upperBridge = new StringBuilder();
+        lowerBridge = new StringBuilder();
 
         makeResult(user, score);
-        System.out.println(sb1);
-        System.out.println(sb2);
+        System.out.println(upperBridge);
+        System.out.println(lowerBridge);
         System.out.println();
 
     }
 
     public void makeUpper(int idx, List<String> score){
-        sb1.append(String.format(" %s ", score.get(idx)));
-        sb2.append("   ");
+        upperBridge.append(String.format(INPUT_OK, score.get(idx)));
+        lowerBridge.append(INPUT_NO);
 
         if (idx != score.size() - 1) {
-            sb1.append("|");
-            sb2.append("|");
+            upperBridge.append(BAR);
+            lowerBridge.append(BAR);
         }
     }
 
     public void makeLower(int idx, List<String> score) {
-        sb2.append(String.format(" %s ", score.get(idx)));
-        sb1.append("   ");
+        lowerBridge.append(String.format(INPUT_OK, score.get(idx)));
+        upperBridge.append(INPUT_NO);
 
         if (idx != score.size() - 1) {
-            sb1.append("|");
-            sb2.append("|");
+            upperBridge.append(BAR);
+            lowerBridge.append(BAR);
         }
     }
 
     public void makeMap(int idx, List<String> user, List<String> score) {
-        if (user.get(idx).equals("U")) {
+        if (user.get(idx).equals(up.getUpDown())) {
             makeUpper(idx, score);
             return;
         }
@@ -67,27 +62,19 @@ public class OutputView {
     }
 
     public void setResultStart() {
-        sb1.append("[");
-        sb2.append("[");
+        upperBridge.append(OPEN_BRACKET);
+        lowerBridge.append(OPEN_BRACKET);
     }
 
     public void setResultEnd() {
-        sb1.append("]");
-        sb2.append("]");
+        upperBridge.append(CLOSE_BRACKET);
+        lowerBridge.append(CLOSE_BRACKET);
     }
 
-
-
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printResult(String gameResult, int count) {
         System.out.println(FINAL_RESULT);
-        System.out.println(sb1);
-        System.out.println(sb2);
+        System.out.println(upperBridge);
+        System.out.println(lowerBridge);
         System.out.println();
         System.out.println(GAME_RESULT+gameResult);
         System.out.print(GAME_COUNT+count);

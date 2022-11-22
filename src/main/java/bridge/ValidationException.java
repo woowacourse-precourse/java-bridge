@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static bridge.constants.ErrorMessage.*;
+import static bridge.constants.ConstMessage.*;
+import static bridge.model.moving.*;
 
 public class ValidationException {
 
@@ -24,7 +26,7 @@ public class ValidationException {
     }
 
     public boolean checkValidMovement(String movement) {
-        List<String> validMovement = new ArrayList<>(List.of("U", "D"));
+        List<String> validMovement = new ArrayList<>(List.of(up.getUpDown(), down.getUpDown()));
         if (validMovement.contains(movement)) {
             return true;
         }
@@ -32,7 +34,7 @@ public class ValidationException {
     }
 
     public boolean checkValidCommand(String command) {
-        List<String> validMovement = new ArrayList<>(List.of("Q", "R"));
+        List<String> validMovement = new ArrayList<>(List.of(QUIT, RETRY));
         if (validMovement.contains(command)) {
             return true;
         }
