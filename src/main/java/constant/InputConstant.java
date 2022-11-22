@@ -15,6 +15,4 @@ public enum InputConstant {
     public String getConstant() {
         return inputConstant;
     }
-
-
 }
