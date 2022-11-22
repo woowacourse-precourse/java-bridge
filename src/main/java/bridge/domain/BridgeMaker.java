@@ -25,7 +25,7 @@ public class BridgeMaker {
 		List<String> bridge = new ArrayList<>();
 
 		for (int i = 0; i < size; i++) {
-			int number = new BridgeRandomNumberGenerator().generate();
+			int number = bridgeNumberGenerator.generate();
 
 			bridge.add(BridgeStatus.findMate(number));
 		}
