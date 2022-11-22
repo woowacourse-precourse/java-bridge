@@ -65,4 +65,12 @@ public class BridgeGameProgram {
             }
         }
     }
+
+    public String move() {
+        outputView.printGuideMessage(GuideMessage.INPUT_MOVE_MESSAGE);
+        String moving = inputView.readMoving();
+        bridgeGame.move(moving);
+        outputView.printMap();
+        return moving;
+    }
 }
