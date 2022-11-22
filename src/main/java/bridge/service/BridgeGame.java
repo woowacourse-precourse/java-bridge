@@ -2,7 +2,6 @@ package bridge.service;
 
 import bridge.domain.GameData;
 import bridge.dto.HistoryMapDto;
-import bridge.dto.PlayerLocationDto;
 import bridge.dto.PlayerTryCountDto;
 import bridge.exception.InputException;
 
@@ -55,14 +54,17 @@ public class BridgeGame {
     }
 
     public int getPlayerLocation() {
-        return PlayerLocationDto.from(gameData).getLocation();
+//        return PlayerLocationDto.from(gameData).getLocation();
+        return gameData.getLocation();
     }
 
     public String getHistoryMap() {
-        return HistoryMapDto.from(gameData).getHistoryMap();
+//        return HistoryMapDto.from(gameData).getHistoryMap();
+        return gameData.getHistoryMap();
     }
 
     public int getTryCount() {
-        return PlayerTryCountDto.from(gameData).getTryCount();
+//        return PlayerTryCountDto.from(gameData).getTryCount();
+    return gameData.getTryCount();
     }
 }
