@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.ErrorInputMessageConst.*;
 import static bridge.InputMessageConst.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -7,11 +8,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
-    private final String ERROR_NOT_NUMBER_MESSAGE = "[ERROR] 숫자만 입력을 받습니다." ;
-    private final String ERROR_SCOPE_NUMBER_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    private final String ERROR_MOVING_COMMAND_MESSAGE = "[ERROR] U와 D 중에 하나를 입력하세요.";
-    private final String ERROR_GAME_COMMAND_MESSAGE = "[ERROR] R와 Q 중에 하나를 입력하세요.";
 
     /**
      * 다리의 길이를 입력받는다.
