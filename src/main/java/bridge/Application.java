@@ -27,7 +27,7 @@ public class Application {
     		retrycheck = inputBridgeState(bridgeGame);
     		tryCount++;
     	} while(retrycheck);
-    	outputView.printResult(tryCount, currentStateBridge, successOrFailure);
+    	outputView.printResult(tryCount, currentStateBridge, checkSuccessOrFailure(bridgeGame));
     }
     
     public static void makeBridgeFirst() {
@@ -62,6 +62,5 @@ public class Application {
     
     public static void successBridgeState(BridgeGame bridgeGame) {
     	currentStateBridge = outputView.getCurrentStateBridge(bridgeGame.getUpDownBridgeList());  // 다릐를 모두 건넜을 때 현재 다리 상태 저장
-    	checkSuccessOrFailure(bridgeGame);  // 다리를 성공적으로 건넜을 때 성공여부는 성공임.
     }
 }
