@@ -43,16 +43,18 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public  String readGameCommand() throws IllegalArgumentException{
+    public String readGameCommand() throws IllegalArgumentException{
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String userRestart = readLine();
-        char inputRestart = userRestart.charAt(0);
-        System.out.println(inputRestart);
         if(userRestart.length() != 1) {
             throw new IllegalArgumentException("[ERROR] R 나 Q를 입력해주세요.");
         }
+
+        char inputRestart = userRestart.charAt(0);
         if(inputRestart != 'R' && inputRestart != 'Q') {
             throw new IllegalArgumentException("[ERROR] R 나 Q를 입력해주세요.");
         }
+        System.out.println(inputRestart);
         return userRestart;
     }
 }
