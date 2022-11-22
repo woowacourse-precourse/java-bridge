@@ -10,6 +10,7 @@ public class BridgeController {
 		printBridgeGameStart();
 		BridgeGame bridgeGame = initializeBridgeGame();
 		playBridgeGame(bridgeGame);
+		printFinalMap();
 
 	}
 
@@ -69,5 +70,10 @@ public class BridgeController {
 		if (isUserSelectRestart) {
 			bridgeGame.retry();
 		}
+	}
+
+	private void printFinalMap() {
+		OutputView.printFinalGameResult();
+		OutputView.printMap(BridgeGameResult.getMoveCount());
 	}
 }

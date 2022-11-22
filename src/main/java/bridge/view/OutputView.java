@@ -10,6 +10,7 @@ public class OutputView {
 	private static final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력하세요.";
 	private static final String INPUT_MOVING_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요." + " 위: U, 아래: D";
 	private static final String WHETHER_RESTART_OR_NOT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+	private static final String FINAL_GAME_RESULT = "최종 게임 결과";
 
 	private static final String BLANK = "\n";
 
@@ -77,6 +78,10 @@ public class OutputView {
 
 	public static void printWhetherRestartOrNot() {
 		System.out.println(WHETHER_RESTART_OR_NOT_MESSAGE);
+	}
+
+	public static void printFinalGameResult() {
+		System.out.println(FINAL_GAME_RESULT);
 	}
 
 	/**
