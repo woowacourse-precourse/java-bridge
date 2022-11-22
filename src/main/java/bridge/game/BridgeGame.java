@@ -52,6 +52,7 @@ public class BridgeGame {
         }
 
         this.count += 1;
+        bridge.resetDistance();
         return GameState.CONTINUE;
     }
 

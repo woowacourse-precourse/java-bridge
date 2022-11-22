@@ -43,6 +43,10 @@ public class Bridge {
         return bridge.size() <= distance;
     }
 
+    public void resetDistance() {
+        this.distance = 0;
+    }
+
     public String getBridgeView(GameState state) {
         String upSideView = getSideView(state, "U");
         String downSideView = getSideView(state, "D");
