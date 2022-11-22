@@ -54,4 +54,15 @@ public class BridgeGameController {
         } while (bridgeGame.checkPlayNextRound(userInput, bridge));
     }
 
+    // 재시작 기능
+    private boolean isRetry(List<String> bridge, String userInput) {
+        if (bridgeGame.checkGameSuccess(userInput, bridge).equals(SUCCESS)) {
+            return false;
+        }
+        String replay = inputView.readGameCommand();
+        if (isRestart(replay)) {
+            return true;
+        }
+        return false;
+    }
 }
