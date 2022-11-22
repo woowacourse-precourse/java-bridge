@@ -49,7 +49,7 @@ class PlayerTest {
     }
 
     @Test
-    @DisplayName("다리의 길이만큼 입력받지못했다면 false를 리턴한다.")
+    @DisplayName("다리의 길이만큼 입력받지 못했다면 false를 리턴한다.")
     public void 사용자_입력_미완료() {
         player.addMoving("U");
         player.addMoving("D");
@@ -59,7 +59,7 @@ class PlayerTest {
     }
 
     @Test
-    @DisplayName("비교하고자 하는 방햐오가 일치하면 true를 리턴한다.")
+    @DisplayName("비교하고자 하는 방향과 일치하면 true를 리턴한다.")
     public void 방향_일치_테스트() {
         player.addMoving("U");
         player.addMoving("D");
@@ -69,7 +69,7 @@ class PlayerTest {
     }
 
     @Test
-    @DisplayName("비교하고자 하는 방햐오가 일치하지 않으면 false를 리턴한다.")
+    @DisplayName("비교하고자 하는 방향과 일치하지 않으면 false를 리턴한다.")
     public void 방향_불일치_테스트() {
         player.addMoving("U");
         player.addMoving("D");
