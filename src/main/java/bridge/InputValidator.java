@@ -5,9 +5,9 @@ package bridge;
  */
 public class InputValidator {
 
-    public static final String RETRY_COMMAND_ERROR = "[ERROR] 입력은 R과 Q 중 하나의 문자여야 합니다.";
-    public static final String MOVING_COMMAND_ERROR = "[ERROR] 이동할 칸은 U와 D 중 하나의 문자여야 합니다.";
-    public static final String BRIDGE_SIZE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String RETRY_COMMAND_ERROR = "[ERROR] 입력은 R과 Q 중 하나의 문자여야 합니다.";
+    private static final String MOVING_COMMAND_ERROR = "[ERROR] 이동할 칸은 U와 D 중 하나의 문자여야 합니다.";
+    private static final String BRIDGE_SIZE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     public boolean isNumeric(String input) {
         try {
