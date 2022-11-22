@@ -36,7 +36,7 @@ public class BridgeSize {
     }
     private void outRange(String bridgeSize){
         int size = Integer.parseInt(bridgeSize);
-        if(size > MAX || size < MIN){ // TODO: 사이즈 MagicNum
+        if(size > MAX || size < MIN){
             throw new IllegalArgumentException("[ERROR] 입력값이 범위에서 벗어났습니다 3 ~ 20 다시 입력해주세요 :" + bridgeSize);
         }
     }

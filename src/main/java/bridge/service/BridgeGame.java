@@ -16,7 +16,7 @@ import static bridge.model.value.MatchMessage.*;
 import static bridge.model.value.PlayerMessage.*;
 import static bridge.model.value.PlayerMessage.BLANK;
 
-public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한다.
+public class BridgeGame {
 
     private Player player;
     private BridgeMap bridgeMap;
@@ -73,7 +73,7 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
     }
 
     public void addMatchMap(String move){
-        if(move.equals(UP)){ // TODO: Refactoring else 없애고 간결하게 적성할것
+        if(move.equals(UP)){
             bridgeMap.add(Match, BLANK);
             return;
         }
@@ -109,7 +109,7 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
     }
 
     public void retry(String retry) {
-        if (isQuit(retry)) {
+        if (isQuit(Retry.of(retry).getAnswer())) {
             return;
         }
         isRetry(retry);

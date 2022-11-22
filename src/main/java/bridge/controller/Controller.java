@@ -36,7 +36,7 @@ public class Controller {
         if(!game.checkResult()){    // 정답 여부 맞았나 틀렸나
             retry();
         }
-        else if(game.isEnd()){  // 끝까지 도달했나 안했나 // TODO: 리펙토링 예정
+        else if(game.isEnd()){  // 끝까지 도달했나 안했나
             success();
         }
     }
@@ -69,7 +69,7 @@ public class Controller {
         }
     }
 
-    public void printState() { // TODO: Refactoring Service 계층에서 변환하여 전달해주자
+    public void printState() {
         out.printMap(BridgeMapDto.of(game.getBridgeMap()));
     }
 

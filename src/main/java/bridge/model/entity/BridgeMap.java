@@ -16,7 +16,6 @@ public class BridgeMap {
         return this.index;
     }
     public void setIndex(int index){
-        validate(index);
         this.index = index;
     }
     public void add(String upMap, String downMap){
@@ -40,9 +39,6 @@ public class BridgeMap {
         return downMap;
     }
 
-    public void validate(int index) {
-
-    }
     public static BridgeMap of() {
         return new BridgeMap();
     }

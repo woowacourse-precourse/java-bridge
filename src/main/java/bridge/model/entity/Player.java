@@ -23,7 +23,7 @@ public class Player {
         return this.answer;
     }
 
-    private void validate(String answer){ //TODO: Validator 구현할 때 조건 추가하기
+    private void validate(String answer){
         if(!QUIT.equals(answer) && !RETRY.equals(answer)){
             throw new IllegalArgumentException("[ERROR] 재시작 입력값이 조건에 맞지 않습니다 R(재시작), Q(종료)" + answer);
         }

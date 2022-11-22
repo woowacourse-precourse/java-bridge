@@ -24,9 +24,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public List<String> readBridgeSize() { // TODO: 입력값 유효성 검사를 어디서 할까???
+    public List<String> readBridgeSize() {
             return maker.makeBridge(of(input()).getBridgeSize());
-    } // TODO: 입력값 예외처리
+    }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
