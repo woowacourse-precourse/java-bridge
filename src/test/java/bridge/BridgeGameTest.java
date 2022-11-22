@@ -50,33 +50,35 @@ class BridgeGameTest extends NsTest {
         List<String> bridge = List.of("U", "D", "U");
         bridgeGame = new BridgeGame(bridge);
 
-        int move = 1;
+        int numberOfMove = 1;
+        int numberOfTry = 1_000_000;
+
         bridgeGame.move();
         bridgeGame.printMap();
-        System.out.printf("#%d isEnd 반환값: %b\n", move, bridgeGame.isEnd());
-        System.out.printf("#%d isMoveWrong 반환값: %b\n", move, bridgeGame.isMoveWrong());
+        System.out.printf("#%d isEnd 반환값: %b\n", numberOfMove, bridgeGame.isEnd());
+        System.out.printf("#%d isMoveWrong 반환값: %b\n", numberOfMove, bridgeGame.isMoveWrong());
         System.out.println();
 
-        move++;
+        numberOfMove++;
         bridgeGame.move();
         bridgeGame.printMap();
-        System.out.printf("#%d isEnd 반환값: %b\n", move, bridgeGame.isEnd());
-        System.out.printf("#%d isMoveWrong 반환값: %b\n", move, bridgeGame.isMoveWrong());
+        System.out.printf("#%d isEnd 반환값: %b\n", numberOfMove, bridgeGame.isEnd());
+        System.out.printf("#%d isMoveWrong 반환값: %b\n", numberOfMove, bridgeGame.isMoveWrong());
         System.out.println();
 
-        move++;
+        numberOfMove++;
         bridgeGame.move();
         bridgeGame.printMap();
-        System.out.printf("#%d isEnd 반환값: %b\n", move, bridgeGame.isEnd());
-        System.out.printf("#%d isMoveWrong 반환값: %b\n", move, bridgeGame.isMoveWrong());
+        System.out.printf("#%d isEnd 반환값: %b\n", numberOfMove, bridgeGame.isEnd());
+        System.out.printf("#%d isMoveWrong 반환값: %b\n", numberOfMove, bridgeGame.isMoveWrong());
         System.out.println();
 
-        move++;
+        numberOfMove++;
         bridgeGame.retry();
         bridgeGame.printMap();
-        System.out.printf("#%d isEnd 반환값: %b\n", move, bridgeGame.isEnd());
-        System.out.printf("#%d isMoveWrong 반환값: %b\n", move, bridgeGame.isMoveWrong());
+        System.out.printf("#%d isEnd 반환값: %b\n", numberOfMove, bridgeGame.isEnd());
+        System.out.printf("#%d isMoveWrong 반환값: %b\n", numberOfMove, bridgeGame.isMoveWrong());
 
-        bridgeGame.printResult(1000000);
+        bridgeGame.printResult(numberOfTry);
     }
 }
