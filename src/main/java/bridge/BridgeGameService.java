@@ -30,6 +30,16 @@ public class BridgeGameService {
         }
     }
 
+    public String askCommand() {
+        while (true) {
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     public List<String> makeBridge(Integer bridgeSize) {
         return bridgeMaker.makeBridge(bridgeSize);
     }
@@ -55,14 +65,29 @@ public class BridgeGameService {
     }
 
     private String calculateStatus(String bridge, String map, String direction) {
-        if (bridge.equals(map)) {
-            if (map.equals(direction)) {
+        if (direction.equals(map)) {
+            if (bridge.equals(map)) {
                 return "O";
             }
-            return " ";
+            return "X";
         }
-        return "X";
+        return " ";
     }
 
+    public boolean isRetry(String selectCommand) {
+        return bridgeGame.retry(selectCommand);
+    }
+
+    public boolean isSuccess(List<String> bridge, List<String> map) {
+        if (bridge.size() != map.size()) {
+            return false;
+        }
+        for (int index = 0; index < map.size(); index++) {
+            if (!bridge.get(index).equals(map.get(index))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

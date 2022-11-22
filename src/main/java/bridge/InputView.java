@@ -10,11 +10,15 @@ public class InputView {
     private static final int MAX_RANGE = 20;
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
     private static final String INPUT_BRIDGE_SIZE_MESSAGE = "\n다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVING_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String INPUT_RETRY_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String NOT_DIGITED_BRIDGE_SIZE_MESSAGE = "[ERROR] 다리 길이는 숫자여야 합니다.";
     private static final String NOT_IN_RANGED_BRIDGE_SIZE = "[ERROR] 다리 길이는 " + MIN_RANGE + "부터 " + MAX_RANGE + " 사이의 숫자여야 합니다.";
     private static final String INVALID_MOVING_MESSAGE = "[ERROR] 이동할 칸은 " + UP + " 또는 " + DOWN + " 문자여야 합니다.";
+    private static final String INVALID_COMMAND_MESSAGE = "[ERROR] 다시 시도 여부는 " + RETRY + " 또는 " + QUIT + " 문자여야 합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -61,6 +65,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(INPUT_RETRY_MESSAGE);
+        String selectCommand = Console.readLine();
+        validateCommand(selectCommand);
+        return selectCommand;
+    }
+
+    public void validateCommand(String selectMove) {
+        if (!(selectMove.equals(RETRY) || selectMove.equals(QUIT))) {
+            throw new IllegalArgumentException(INVALID_COMMAND_MESSAGE);
+        }
     }
 }

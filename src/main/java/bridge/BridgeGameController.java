@@ -14,9 +14,14 @@ public class BridgeGameController {
         bridge = bridgeGameService.makeBridge(bridgeSize);
 
         do {
-            map.add(bridgeGameService.askMoving());
-            bridgeGameService.printMapStatus(bridge, map);
-        } while (bridgeGameService.isMovable(bridge, map));
+            map.clear();
+            do {
+                map.add(bridgeGameService.askMoving());
+                bridgeGameService.printMapStatus(bridge, map);
+            } while (bridgeGameService.isMovable(bridge, map));
+
+        } while (!bridgeGameService.isSuccess(bridge, map) && bridgeGameService.isRetry(bridgeGameService.askCommand()));
+
 
     }
 }
