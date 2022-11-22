@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.PlayerMove.PlayerMove;
 import bridge.domain.gameManagement.BridgeGame;
 import bridge.view.OutputView;
 
@@ -12,5 +13,7 @@ public class BridgeGameController {
 
         BridgeGame bridgeGame = new BridgeGame();
         List<String> bridge = bridgeGame.constructBridge();
+
+        String movingPosition = PlayerMove.takeMovingPosition();
     }
 }
