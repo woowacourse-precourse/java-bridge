@@ -11,7 +11,7 @@ class CrossResultTest {
     void findCrossResult() {
         MoveResult moveResult = new MoveResult("U", false);
 
-        assertEquals(CrossResult.FAIL, CrossResult.findCrossResult(moveResult.isMatchResult()));
+        assertEquals(CrossResult.FAIL, CrossResult.SuccessFailure(moveResult.isMatchResult()));
     }
 
     @Test

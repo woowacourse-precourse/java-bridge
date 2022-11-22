@@ -23,12 +23,14 @@ public class InputView {
         System.out.println(CHOOSE_BRIDGE_SIZE);
         String bridgeSize = Console.readLine();
         blank(bridgeSize);
+        isNumber(bridgeSize);
         return new BridgeSizeParameter(convertBridge(bridgeSize));
     }
 
     public MovingCommandParameter readMoving() {
         String moving = Console.readLine();
         blank(moving);
+
         return new MovingCommandParameter(moving);
     }
 
@@ -47,7 +49,7 @@ public class InputView {
 
     private void isNumber(String input) {
         if (!INT_FILTER.matcher(input).matches()) {
-            throw new InputException("ERROR] 숫자만 입력할 수 있습니다.");
+            throw new InputException("[ERROR] 숫자만 입력할 수 있습니다.");
         }
     }
 

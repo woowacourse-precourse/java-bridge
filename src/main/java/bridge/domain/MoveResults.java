@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeKey;
 import bridge.CrossResult;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class MoveResults {
     private final List<MoveResult> moveResults = new ArrayList<>();
+
 
     private int tryNum = 1;
 
@@ -30,18 +32,8 @@ public class MoveResults {
         return moveResults.get(size() - 1).isMatchResult();
     }
 
-    public String map() {
-        return moveResults.stream()
-                .map(moveResult -> CrossResult.successFailureLetter(moveResult.isMatchResult()))
-                .collect(Collectors.joining());
-    }
-
     public void addTryNum() {
         tryNum++;
-    }
-
-    public String lastControlKey() {
-        return moveResults.get(size() - 1).getControlKey();
     }
 
     public List<MoveResult> getMoveResults() {

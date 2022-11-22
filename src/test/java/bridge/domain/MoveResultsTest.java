@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.MoveResult;
-import bridge.domain.MoveResults;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,4 +40,5 @@ public class MoveResultsTest {
 
         assertEquals(moveResults.getTryNum(), 2);
     }
+
 }

@@ -6,8 +6,10 @@ public class RetryCommand {
     public static void moveLogic(InputView inputView, BridgeGame bridgeGame) {
         while (bridgeGame.isSuccess() && bridgeGame.moveResults().size() < bridgeGame.bridgeSize()) {
             inputView.chooseSquare();
-            bridgeGame.move(inputView.readMoving().getMovingCommand());
-            OutputView.printEachMap(bridgeGame.moveResults());
+            String movingCommand = inputView.readMoving().getMovingCommand();
+            bridgeGame.move(movingCommand);
+            OutputView.printEachMap(bridgeGame.upMap(), bridgeGame.downMap());
+
             quiteLogic(inputView, bridgeGame);
         }
     }
@@ -15,7 +17,7 @@ public class RetryCommand {
     private static void retryLogic(InputView inputView, BridgeGame bridgeGame) {
         bridgeGame.retry();
         inputView.chooseSquare();
-        OutputView.printEachMap(bridgeGame.moveResults());
+        OutputView.printEachMap(bridgeGame.upMap(), bridgeGame.downMap());
         moveLogic(inputView, bridgeGame);
     }
 

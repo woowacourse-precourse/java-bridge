@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public enum CrossResult {
-    FAIL(false, "X", "실패"),
-    TRUE(true, "O", "성공");
-    private boolean result;
+    FAIL(false, " X ", "실패"),
+    Success(true, " O ", "성공"),
+
+    NONE(Boolean.FALSE, "   ", "NONE");
+    private Boolean result;
     private String successFailureLetter;
     private String successFailureWord;
 
@@ -16,18 +18,28 @@ public enum CrossResult {
         this.successFailureWord = successFailureWord;
     }
 
-    public static CrossResult findCrossResult(boolean expected) {
+    public static CrossResult SuccessFailure(boolean expected) {
         return Arrays.stream(CrossResult.values())
+                .filter(key -> !key.successFailureWord.matches(NONE.getSuccessFailureWord()))
                 .filter(key -> key.isResult() == expected)
                 .findAny()
-                .orElseThrow();
+                .orElse(NONE);
     }
 
     public static String successFailureLetter(boolean expected) {
         return Arrays.stream(CrossResult.values())
+                .filter(key -> !key.successFailureWord.matches(NONE.getSuccessFailureWord()))
                 .filter(key -> key.isResult() == expected)
                 .map(CrossResult::getSuccessFailureLetter)
-                .collect(Collectors.joining());
+                .findAny()
+                .orElse(NONE.getSuccessFailureLetter());
+    }
+
+    public static CrossResult findCrossResult(String input, boolean expected) {
+        if (NONE.getSuccessFailureWord().matches(input)) {
+            return NONE;
+        }
+        return SuccessFailure(expected);
     }
 
     public static String successFailureWord(boolean expected) {
