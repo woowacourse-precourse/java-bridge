@@ -1,5 +1,5 @@
 package bridge.model;
 
-public enum GameStatus {
+public enum GameState {
     PLAYING, COMPLETE, FAIL, FAIL_QUIT
 }

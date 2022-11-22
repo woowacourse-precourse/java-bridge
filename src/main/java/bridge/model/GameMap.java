@@ -8,10 +8,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GameMap {
-    private final Map<Direction, List<DrawType>> map;
+    private final Map<Direction, List<DrawType>> map = new EnumMap<>(Direction.class);
 
     public GameMap() {
-        map = new EnumMap<>(Direction.class);
         initialize();
     }
 
