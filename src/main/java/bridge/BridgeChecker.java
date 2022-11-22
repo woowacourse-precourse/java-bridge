@@ -18,7 +18,6 @@ public class BridgeChecker {
             }
             matchingResult.add(BlockExpression.Same.getMark());
         }
-
         return matchingResult;
     }
 
@@ -32,7 +31,6 @@ public class BridgeChecker {
                 upperBlocks.add(BlockExpression.Empty.getMark());
             }
         }
-
         return upperBlocks;
     }
 
@@ -46,7 +44,6 @@ public class BridgeChecker {
                 lowerBlocks.add(BlockExpression.Empty.getMark());
             }
         }
-
         return lowerBlocks;
     }
 }
