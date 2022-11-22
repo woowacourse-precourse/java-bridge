@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +7,7 @@ import static bridge.BridgeGame.move;
 import static bridge.enums.DorU.UP;
 
 
-public class Moving {
+public class Move {
 
     private static final List<String> upLine = new ArrayList<>();
     private static final List<String> downLine = new ArrayList<>();

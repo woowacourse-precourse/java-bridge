@@ -1,8 +1,6 @@
 package bridge;
 
-import bridge.InputView;
-
-public class ReEnter {
+public class ReInput {
 
     private static final InputView inputView = new InputView();
 

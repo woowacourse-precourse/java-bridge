@@ -1,18 +1,14 @@
 package bridge;
 
-import bridge.*;
-import bridge.Moving;
-import bridge.ReEnter;
-
 import java.util.List;
 
 import static bridge.enums.Sentence.*;
 
 
-public class GameController {
+public class BridgeGameController {
 
-    private final ReEnter reEnter = new ReEnter();
-    private final Moving moving = new Moving();
+    private final ReInput reInput = new ReInput();
+    private final Move move = new Move();
     private boolean isTrue = true;
 
     private static boolean isClear = true;
@@ -28,9 +24,9 @@ public class GameController {
     public void gamingSet(List<String> bridge) {
         TRY_COUNT++;
         for (String stage : bridge) {
-            moving.moving(stage, reEnter.reGetMoveString());
-            Moving.printMoving();
-            if (moving.checkWrong()) {
+            move.moving(stage, reInput.reGetMoveString());
+            Move.printMoving();
+            if (move.checkWrong()) {
                 return;
             }
         }
@@ -38,7 +34,7 @@ public class GameController {
     }
 
     public void playTheGaming() {
-        List<String> bridge = gameSet(reEnter.reGetBridgeLength());
+        List<String> bridge = gameSet(reInput.reGetBridgeLength());
         while (isTrue) {
             gamingSet(bridge);
             if (!isClear) {
@@ -51,7 +47,7 @@ public class GameController {
 
     public static void printMovingAndResult() {
         System.out.println(RESULT.getValue());
-        Moving.printMoving();
+        Move.printMoving();
         OutputView.printResult(returnSuccessOrFailure(!isClear), TRY_COUNT);
     }
 }
