@@ -1,5 +1,6 @@
 package bridge;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -59,6 +60,16 @@ public class InputExceptionTest extends NsTest {
             runException("3", input);
             assertThat(output()).contains(InputException.INVALID_PLAYER_MOVE.getExceptionMessage());
         });
+    }
+
+    @DisplayName("게임 재시작/종료 여부 공백 입력 테스트")
+    @ValueSource(strings = {" ", "\n"})
+    @ParameterizedTest
+    void createBlankGameCommand(String input) {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", input);
+            assertThat(output()).contains(InputException.BLANK_GAME_END_INPUT.getExceptionMessage());
+        }, 1, 1, 1);
     }
 
     @Override
