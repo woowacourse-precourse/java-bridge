@@ -25,7 +25,7 @@
 ### InputView : 입력 관련 출력
 - [x] 다리의 길이를 입력받는다. #readBridgeSize
 - [x] 사용자가 이동할 칸을 입력받는다. #readMoveCommand
-- [ ] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. #readGameCommand
+- [x] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. #readGameCommand
 
 ### OutputView : 결과 관련 출력
 - [ ] 다리 건너기 게임을 시작한다는 메시지를 출력한다. #printGameStart
