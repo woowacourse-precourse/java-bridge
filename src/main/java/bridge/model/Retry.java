@@ -2,6 +2,8 @@ package bridge.model;
 
 import static bridge.exception.GameCommandException.validate;
 
+import java.util.Objects;
+
 public class Retry {
 
     public static final String RETRY = "R";
@@ -10,6 +12,10 @@ public class Retry {
 
     public Retry() {
         this.count = 1;
+    }
+
+    public Retry(int count) {
+        this.count = count;
     }
 
     public int getCount() {
@@ -23,5 +29,22 @@ public class Retry {
     public boolean checkRetry(String gameCommand) {
         validate(gameCommand);
         return gameCommand.equals(RETRY);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Retry retry = (Retry) o;
+        return count == retry.count;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(count);
     }
 }
