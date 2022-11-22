@@ -7,6 +7,9 @@ import bridge.dto.GameResult;
 
 import java.util.List;
 
+import static bridge.constant.BridgePosition.DOWN;
+import static bridge.constant.BridgePosition.UP;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -61,7 +64,7 @@ public class OutputView {
     }
 
     private void appendCorrectSignToTopLine(String position) {
-        if (position.equals("U")) {
+        if (position.equals(UP.getPositionFormOfAlphabet())) {
             topLine.append(CORRECT).append(SEPARATOR);
             return;
         }
@@ -69,7 +72,7 @@ public class OutputView {
     }
 
     private void appendCorrectSignToBottomLine(String position) {
-        if (position.equals("D")) {
+        if (position.equals(DOWN.getPositionFormOfAlphabet())) {
             bottomLine.append(CORRECT).append(SEPARATOR);
             return;
         }
@@ -93,7 +96,7 @@ public class OutputView {
     }
 
     private void appendWrongSignAsLastPartOfTopLine(String lastPosition) {
-        if (lastPosition.equals("D")) {
+        if (lastPosition.equals(DOWN.getPositionFormOfAlphabet())) {
             topLine.append(WRONG).append(CLOSE_BRACKET);
             return;
         }
@@ -101,7 +104,7 @@ public class OutputView {
     }
 
     private void appendWrongSignAsLastPartOfBottomLine(String lastPosition) {
-        if (lastPosition.equals("U")) {
+        if (lastPosition.equals(UP.getPositionFormOfAlphabet())) {
             bottomLine.append(WRONG).append(CLOSE_BRACKET);
             return;
         }
@@ -114,7 +117,7 @@ public class OutputView {
     }
 
     private void appendCorrectSignAsLastPartOfTopLine(String lastPosition) {
-        if (lastPosition.equals("U")) {
+        if (lastPosition.equals(UP.getPositionFormOfAlphabet())) {
             topLine.append(CORRECT).append(CLOSE_BRACKET);
             return;
         }
@@ -122,7 +125,7 @@ public class OutputView {
     }
 
     private void appendCorrectSignAsLastPartOfBottomLine(String lastPosition) {
-        if (lastPosition.equals("D")) {
+        if (lastPosition.equals(DOWN.getPositionFormOfAlphabet())) {
             bottomLine.append(CORRECT).append(CLOSE_BRACKET);
             return;
         }
