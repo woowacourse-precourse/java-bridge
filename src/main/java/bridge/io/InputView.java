@@ -36,7 +36,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-
         return bridgeSize;
     }
 
@@ -62,7 +61,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-
         return moving;
     }
 
