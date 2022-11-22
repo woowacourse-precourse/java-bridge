@@ -15,6 +15,7 @@ public class OutputView {
     private static final String NUMBER_OF_ATTEMPTS_FORMAT = "총 시도한 횟수: %d\n";
     public static final String START_OF_ROW = "[ ";
     public static final String END_OF_ROW = " ]";
+    private static final String EXCEPTION_PREFIX = "[ERROR] ";
 
     public void printStart() {
         System.out.println(START_MESSAGE);
@@ -31,6 +32,7 @@ public class OutputView {
     public void printEndMessageForFailure() {
         System.out.printf(GAME_SUCCESS_MESSAGE_FORMAT, FAIL);
     }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -87,6 +89,10 @@ public class OutputView {
 
     private void printNumberOfAttempts(int attempts) {
         System.out.printf(NUMBER_OF_ATTEMPTS_FORMAT, attempts);
+    }
+
+    public static void printExceptionMessageForInvalidInput(IllegalArgumentException e) {
+        System.out.println(EXCEPTION_PREFIX + e.getMessage());
     }
 
 }

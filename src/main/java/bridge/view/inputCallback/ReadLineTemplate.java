@@ -1,6 +1,6 @@
 package bridge.view.inputCallback;
 
-import bridge.Logger;
+import bridge.view.OutputView;
 
 public interface ReadLineTemplate<T> {
     default T repeatToReadWhileValid(ReadLineCallback<T> callback) {
@@ -8,7 +8,7 @@ public interface ReadLineTemplate<T> {
             try {
                 return callback.repeatToRead();
             } catch (IllegalArgumentException e) {
-                Logger.log(e);
+                OutputView.printExceptionMessageForInvalidInput(e);
             }
         }
     }
