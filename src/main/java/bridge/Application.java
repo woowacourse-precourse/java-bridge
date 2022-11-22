@@ -28,8 +28,6 @@ public class Application {
                 return;
             }
             bridgeGame.retry();
-            UPPER_BRIDGE_RESULT = new StringBuilder();
-            LOWER_BRIDGE_RESULT = new StringBuilder();
         }
     }
 
@@ -42,13 +40,12 @@ public class Application {
 
     private static void setupGame() {
         printGetBridgeSize();
-        UPPER_BRIDGE_RESULT = new StringBuilder();
-        LOWER_BRIDGE_RESULT = new StringBuilder();
         final int bridgeSize = readBridgeSize();
         bridgeGame.setupGame(bridgeSize);
     }
 
     private static boolean crossBridge() {
+        setupProgress();
         final int bridgeSize = bridgeGame.getBridgeSize();
         for (int i = 0; i < bridgeSize; i++) {
             printGetBridgeCourse();
@@ -58,6 +55,11 @@ public class Application {
         }
         bridgeGame.success();
         return true;
+    }
+
+    private static void setupProgress() {
+        UPPER_BRIDGE_RESULT = new StringBuilder();
+        LOWER_BRIDGE_RESULT = new StringBuilder();
     }
 
     private static boolean move(final String course) {
