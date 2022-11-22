@@ -11,8 +11,12 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         try {
             bridgelength = Integer.parseInt(Console.readLine());
+            if(bridgelength < 3 || bridgelength > 20){
+                throw new IllegalArgumentException();
+            }
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR]");
+            System.out.println("[ERROR] 문자열을 제외한 3 ~ 20 사이의 다리길이를 입력해 주세요");
+            bridgelength = readBridgeSize();
         }
         System.out.println();
 
@@ -22,7 +26,16 @@ public class InputView {
     //사용자가 이동할 칸을 입력받는다.
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String moving = Console.readLine();
+        String moving = "";
+        try {
+            moving = Console.readLine();
+            if(moving.equals("U") == false && moving.equals("D") == false) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] U(위) D(아래)중에서 선택해주세요");
+            moving = readMoving();
+        }
         return moving;
     }
 

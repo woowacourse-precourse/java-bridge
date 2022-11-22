@@ -19,8 +19,8 @@ public class BridgeGame {
     public void start() {
         BridgeMaker bridgemaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> result = new ArrayList<>();
-
         outputview.printStart();
+
         int size = inputview.readBridgeSize();
         BridgeInform bridgeinform = new BridgeInform(size);
         List answer = bridgemaker.makeBridge(bridgeinform.getSize());
@@ -33,11 +33,21 @@ public class BridgeGame {
         outputview.printTimesResult(count);
     }
 
+    public BridgeInform errorHandele() {
+        BridgeInform handleinform = null;
+        try {
+            int size = inputview.readBridgeSize();
+            handleinform = new BridgeInform(size);
+        } catch (IllegalArgumentException e) {
+            errorHandele();
+        }
+        return handleinform;
+    }
+
     public void restartGame(int size, BridgeInform bridgeinform, List<String> result, List answer) {
         List<String> copy = new ArrayList<>();
         for(int times = 0; times < size; times++) {
             if(retryornot == 2) {
-                //outputview.printGameResult(copy);
                 break;
             }
             bridgeinform.setDirection(inputview.readMoving());
@@ -132,7 +142,12 @@ public class BridgeGame {
     public void retry() {
         String quit = inputview.readExitCommand();
         if(quit.equals("R") == false && quit.equals("Q") == false) {
-            throw new IllegalArgumentException("[ERROR]");
+            try {
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] R(재시작) , Q(종료)중에 선택해주세요");
+                retry();
+            }
         }
         if(quit.equals("Q")) {
             retryornot = 2;
