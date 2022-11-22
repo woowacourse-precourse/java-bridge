@@ -31,7 +31,7 @@ public class BridgeGame {
     public boolean move(String direction, int round) {
         String answer = bridge.get(round);
         player.move(direction, answer);
-        return direction.equals(answer);
+        return player.isAlive();
     }
 
     public int getTotalRounds() {
@@ -43,7 +43,7 @@ public class BridgeGame {
     }
 
     public List<String> getMap() {
-        return player.generateMap();
+        return player.checkMap();
     }
 
     public boolean hasSucceeded() {
