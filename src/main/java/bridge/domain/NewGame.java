@@ -43,7 +43,7 @@ public class NewGame {
     }
 
     private void makeUser() {
-        this.user = userMaker.makeUser(BRIDGE_SIZE);
+        user = userMaker.makeUser(BRIDGE_SIZE);
     }
 
     private void play() {
