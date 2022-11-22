@@ -7,7 +7,6 @@ public class Controller {
 
     InputView inputView;
     OutputView outputView;
-
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     List<String> correctBridge;
     BridgeGame bridge;
@@ -24,30 +23,27 @@ public class Controller {
         initGame();
         boolean flag = true;
         while (flag) {
-            flag = progress();
+            flag = progress(correctBridge.size());
         }
         outputView.printResult(bridge.getUpBridgeUserAnswerTable(), bridge.getDownBridgeUserAnswerTable(), bridge.getTryCount());
     }
 
-    private boolean progress() {
-        for (int i = 0; i < correctBridge.size(); i++) {
+    private boolean progress(int size) {
+        for (int i = 0; i < size; i++) {
             boolean isRightMove = bridge.move(inputView.readMoving());
-            outputView.printMap(bridge.getUpBridgeUserAnswerTable(), bridge.getDownBridgeUserAnswerTable(), i+1);
-            boolean isRetryGame = retryGame(isRightMove);
-            if (!isRetryGame) {
-                return false;
+            outputView.printMap(bridge.getUpBridgeUserAnswerTable(), bridge.getDownBridgeUserAnswerTable(), i + 1);
+            if (!isRightMove) {
+                return retryGame(inputView.readGameCommand());
             }
         }
         return false;
     }
 
-    private boolean retryGame(boolean rightMove) {
-        if (!rightMove) {
-            if (inputView.readGameCommand().equals("Q") || inputView.readGameCommand().equals("q")) {
-                return false;
-            }
+    private boolean retryGame(String retryGameChoice) {
+        if (retryGameChoice.equals("R") || retryGameChoice.equals("r")) {
             bridge.retry();
+            return true;
         }
-        return true;
+        return false;
     }
 }
