@@ -37,10 +37,11 @@ public class OutputView {
 
     private void setBracket(StringBuilder sb) {
         sb.insert(0, "[ ");
-        sb.replace(sb.length()-2, sb.length()-1, "]");
+        sb.replace(sb.length() - 2, sb.length() - 1, "]");
     }
+
     private StringBuilder buildByResult(List<Moving> movings, String result, Moving bridgePosition) {
-        String []splitedResult = result.split("");
+        String[] splitedResult = result.split("");
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < splitedResult.length; i++) {
             stringBuilder.append(strByPosition(bridgePosition, movings.get(i), splitedResult[i]));
@@ -59,7 +60,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < movings.size(); i++) {
             String append = CORRECT;
-            if (i == movings.size()-1 && life == Life.DEAD) {
+            if (i == movings.size() - 1 && life == Life.DEAD) {
                 append = WRONG;
             }
             sb.append(append);

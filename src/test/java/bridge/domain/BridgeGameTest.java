@@ -24,8 +24,8 @@ class BridgeGameTest {
         // given
         bridgeMaker = mock(BridgeMaker.class);
         int size = 3;
-        when(bridgeMaker.makeBridge(size)).thenReturn(List.of("U","D","U"));
-        bridgeGame = new BridgeGame(bridgeMaker,size);
+        when(bridgeMaker.makeBridge(size)).thenReturn(List.of("U", "D", "U"));
+        bridgeGame = new BridgeGame(bridgeMaker, size);
     }
 
     @DisplayName("움직이면 position 1 증가")

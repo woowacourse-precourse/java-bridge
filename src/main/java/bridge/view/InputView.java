@@ -16,6 +16,7 @@ public class InputView {
     private static final String GAME_COMMAND_ERROR = "[ERROR] 게임 재시작과 종료는 R과 Q로만 가능합니다";
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
+
     /**
      * 다리의 길이를 입력받는다.
      */

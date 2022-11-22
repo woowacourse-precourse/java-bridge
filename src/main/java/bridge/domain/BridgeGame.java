@@ -36,13 +36,12 @@ public class BridgeGame {
     }
 
     private boolean isSafe(Moving moving) {
-        return bridge.get(position-1).equals(moving.name());
+        return bridge.get(position - 1).equals(moving.name());
     }
 
     public boolean isClear() {
         return position == bridge.size();
     }
-
 
 
     /**

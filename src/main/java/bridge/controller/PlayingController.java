@@ -1,9 +1,9 @@
 package bridge.controller;
 
-import bridge.domain.BridgeGame;
+import bridge.constants.GameCommand;
 import bridge.constants.Life;
 import bridge.constants.Moving;
-import bridge.constants.GameCommand;
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

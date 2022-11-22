@@ -12,6 +12,6 @@ class BridgeRandomNumberGeneratorTest {
     void generate() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         int number = bridgeNumberGenerator.generate();
-        assertThat(number).isBetween(0,1);
+        assertThat(number).isBetween(0, 1);
     }
 }
