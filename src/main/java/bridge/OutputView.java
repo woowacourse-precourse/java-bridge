@@ -22,4 +22,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void pringMessage(String message) {
+        System.out.println(message);
+    }
 }
