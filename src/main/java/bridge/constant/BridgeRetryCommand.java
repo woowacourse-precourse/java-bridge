@@ -4,7 +4,7 @@ public enum BridgeRetryCommand {
     RETRY("R"),
     QUIT("Q");
 
-    private String command;
+    public final String command;
     BridgeRetryCommand(String command){
         this.command = command;
     }
