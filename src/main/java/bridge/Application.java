@@ -108,6 +108,7 @@ public class Application {
     private static boolean tryAgain() {
         try {
             String cmd = inputView.readGameCommand();
+            System.out.println(cmd);
             return bg.retry(cmd);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
