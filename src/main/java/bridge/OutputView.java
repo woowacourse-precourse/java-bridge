@@ -33,27 +33,43 @@ public class OutputView {
         List<List<String>> printForm = new ArrayList<>();
         List<String> up = new ArrayList<>();
         List<String> down = new ArrayList<>();
-        for (int i = 0; i < results.size(); i++) {
-            if (results.get(i) == UP_SUCCESS) {
-                up.add(UP_SUCCESS.getAcceptability());
-                down.add(" ");
-            }
-            if (results.get(i) == UP_FAIL) {
-                up.add(" ");
-                down.add(UP_FAIL.getAcceptability());
-            }
-            if (results.get(i) == DOWN_SUCCESS) {
-                up.add(" ");
-                down.add(DOWN_SUCCESS.getAcceptability());
-            }
-            if (results.get(i) == DOWN_FAIL) {
-                up.add(DOWN_FAIL.getAcceptability());
-                down.add(" ");
-            }
-        }
-        printForm.add(up);
-        printForm.add(down);
+        printForm.add(makeUpForm(up, results));
+        printForm.add(makeDownForm(down, results));
         return printForm;
+    }
+
+    private List<String> makeUpForm(List<String> up, List<Result> results) {
+        for (int i = 0; i < results.size(); i++) {
+            up.add(choseUpFormMark(results.get(i)));
+        }
+        return up;
+    }
+
+    private String choseUpFormMark(Result result) {
+        if (result == UP_SUCCESS) {
+            return UP_SUCCESS.getAcceptability();
+        }
+        if (result == DOWN_FAIL) {
+            return DOWN_FAIL.getAcceptability();
+        }
+        return " ";
+    }
+
+    private List<String> makeDownForm(List<String> down, List<Result> results) {
+        for (int i = 0; i < results.size(); i++) {
+            down.add(choseDownFormMark(results.get(i)));
+        }
+        return down;
+    }
+
+    private String choseDownFormMark(Result result) {
+        if (result == UP_FAIL) {
+            return UP_FAIL.getAcceptability();
+        }
+        if (result == DOWN_SUCCESS) {
+            return DOWN_SUCCESS.getAcceptability();
+        }
+        return " ";
     }
 
     /**
