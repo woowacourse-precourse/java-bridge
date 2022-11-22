@@ -48,27 +48,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @Test
-    public void gameInitProcessTest() {
-        //given
-        BridgeGame game = new BridgeGame();
-        int bridgeSize = 3;
-
-        //when
-        game.initBridge(3);
-
-        //then
-    }
-
-    @Test
-    public void gameInitProcessTest_ExceptionCase() {
-        //given
-
-        //when
-
-        //then
-    }
-
     @Override
     protected void runMain() {
         Application.main(new String[]{});
