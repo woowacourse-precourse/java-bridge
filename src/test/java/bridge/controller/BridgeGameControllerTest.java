@@ -25,6 +25,7 @@ class BridgeGameControllerTest {
     Bridge bridge;
     GameStatusOperator gameStatusOperator;
     BridgeGame bridgeGame;
+    BridgeGameHandler bridgeGameHandler;
     Scanner scanner;
 
     @BeforeEach
@@ -32,6 +33,7 @@ class BridgeGameControllerTest {
         bridge = new Bridge(List.of("U", "D", "U", "D"));
         gameStatusOperator = GameStatusOperator.initGameStatusOperator();
         bridgeGame = new BridgeGame(bridge, gameStatusOperator);
+        bridgeGameHandler = new BridgeGameHandler();
     }
 
     @DisplayName("플레이어의 입력에 따라 게임 종료된 후 다리 건너기를 성공했는지 확인한다.")
@@ -40,7 +42,7 @@ class BridgeGameControllerTest {
     void movePlayerUntilQuit(List<String> playerInput, FinishCondition finishCondition) {
         setInputBuffer(playerInput);
         ProcessCondition startCondition = bridgeGame.start();
-        ProcessCondition endCondition = BridgeGameHandler.executeGame(startCondition, bridgeGame);
+        ProcessCondition endCondition = bridgeGameHandler.executeGame(startCondition, bridgeGame);
         assertThat(endCondition).isEqualTo(finishCondition);
     }
 

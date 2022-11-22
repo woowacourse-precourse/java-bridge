@@ -8,9 +8,10 @@ import bridge.view.OutputView;
 public class BridgeGameController {
 
     public void playBridgeGame() {
-        BridgeGame bridgeGame = BridgeGameHandler.initGame();
+        BridgeGameHandler bridgeGameHandler = new BridgeGameHandler();
+        BridgeGame bridgeGame = bridgeGameHandler.initGame();
         ProcessCondition startCondition = bridgeGame.start();
-        ProcessCondition endCondition = BridgeGameHandler.executeGame(startCondition, bridgeGame);
+        ProcessCondition endCondition = bridgeGameHandler.executeGame(startCondition, bridgeGame);
         if (endCondition == FinishCondition.FINISHED) OutputView.printResult(FinishCondition.FINISHED, bridgeGame);
         if (endCondition == FinishCondition.NOT_FINISHED) OutputView.printResult(FinishCondition.NOT_FINISHED, bridgeGame);
     }
