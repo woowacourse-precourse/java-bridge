@@ -6,9 +6,8 @@ import static bridge.constant.Message.GAME_SUCCESS_OR_NOT;
 import static bridge.constant.Message.SUCCESS;
 import static bridge.constant.Message.TOTAL_COUNT_OF_TRY;
 
-import bridge.BridgeGame;
-import bridge.GameResult;
-import bridge.constant.Message;
+import bridge.model.BridgeGame;
+import bridge.model.GameResult;
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -20,6 +19,7 @@ public class OutputView {
     private static final String BRIDGE_BEGINNING = "[ ";
     private static final String BRIDGE_END = " ]";
     private static final String BRIDGE_BLOCK_SEPARATOR = " | ";
+    private static final String NEW_LINE = "\n";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -34,7 +34,7 @@ public class OutputView {
     private void printBridge(List<String> upperBridge, List<String> lowerBridge) {
         System.out.println(makeBridgeFormat(upperBridge));
         System.out.println(makeBridgeFormat(lowerBridge));
-        printNewLine();
+        System.out.println();
     }
 
     private String makeBridgeFormat(List<String> bridgeResult) {
@@ -61,35 +61,28 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
-        printMessage(FINAL_GAME_RESULT);
+        printMessage(FINAL_GAME_RESULT.toString());
         GameResult gameResult = bridgeGame.getGameResult();
         printBridge(gameResult.getUpperBridge(), gameResult.getLowerBridge());
-        String messageFormat = MessageFormat.format(
-                GAME_SUCCESS_OR_NOT + TOTAL_COUNT_OF_TRY.getMessage(),
-                getResultMessage(bridgeGame), Integer.toString(bridgeGame.getTryCount()));
-        System.out.print(messageFormat);
+
+        String gameResultInfo = MessageFormat.format(
+                GAME_SUCCESS_OR_NOT + NEW_LINE + TOTAL_COUNT_OF_TRY, getResultMessage(bridgeGame),
+                Integer.toString(bridgeGame.getTryCount()));
+        System.out.print(gameResultInfo);
     }
 
     private String getResultMessage(BridgeGame bridgeGame) {
         if (bridgeGame.getMoveState()) {
-            return SUCCESS.getMessage();
+            return SUCCESS.toString();
         }
-        return FAIL.getMessage();
+        return FAIL.toString();
     }
 
-    public void printMessageWithNewLine(Message message) {
-        System.out.println(message.toString());
+    public void printMessageWithNewLine(String message) {
+        System.out.println(message + NEW_LINE);
     }
 
-    public void printMessage(Message message) {
-        System.out.println(message.getMessage());
-    }
-
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
-    public void printNewLine() {
-        System.out.println();
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 }

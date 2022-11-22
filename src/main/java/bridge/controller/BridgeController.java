@@ -5,8 +5,8 @@ import static bridge.constant.Message.ENTER_MOVE_DIRECTION;
 import static bridge.constant.Message.ENTER_RETRY_OR_QUIT;
 import static bridge.constant.Message.START_MESSAGE;
 
-import bridge.Bridge;
-import bridge.BridgeGame;
+import bridge.model.Bridge;
+import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -25,21 +25,19 @@ public class BridgeController {
     }
 
     public void start() {
-        outputView.printMessageWithNewLine(START_MESSAGE);
+        outputView.printMessageWithNewLine(START_MESSAGE.toString());
         setUpBridge();
-        // TODO: 정답 출력문 지우기
-        System.out.println(bridgeGame.getAnswerBridge().getBridge());
         playGame();
         outputView.printResult(bridgeGame);
     }
 
     private void setUpBridge() {
+        outputView.printMessage(ENTER_BRIDGE_LENGTH.toString());
         try {
-            outputView.printMessage(ENTER_BRIDGE_LENGTH);
             bridgeGame = new BridgeGame(new Bridge(inputView.readBridgeSize()));
-            outputView.printNewLine();
+            outputView.printMessage("");
         } catch (IllegalArgumentException ex) {
-            outputView.printErrorMessage(ex.getMessage());
+            outputView.printMessage(ex.getMessage());
             setUpBridge();
         }
     }
@@ -52,12 +50,12 @@ public class BridgeController {
     }
 
     private void moveToDirection() {
+        outputView.printMessage(ENTER_MOVE_DIRECTION.toString());
         try {
-            outputView.printMessage(ENTER_MOVE_DIRECTION);
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame);
         } catch (IllegalArgumentException ex) {
-            outputView.printErrorMessage(ex.getMessage());
+            outputView.printMessage(ex.getMessage());
             moveToDirection();
         }
     }
@@ -73,10 +71,10 @@ public class BridgeController {
 
     private void gameRetryOrQuit() {
         try {
-            outputView.printMessage(ENTER_RETRY_OR_QUIT);
+            outputView.printMessage(ENTER_RETRY_OR_QUIT.toString());
             changeGameStatus(inputView.readGameCommand());
         } catch (IllegalArgumentException ex) {
-            outputView.printErrorMessage(ex.getMessage());
+            outputView.printMessage(ex.getMessage());
             gameRetryOrQuit();
         }
     }
