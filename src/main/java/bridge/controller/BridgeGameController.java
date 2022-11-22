@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
 
@@ -13,9 +14,9 @@ public class BridgeGameController {
     private static final String QUIT_GAME_COMMAND = "Q";
 
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     private BridgeGame bridgeGame;
     private int bridgeSize;
-    private boolean success = false;
 
     public void run() {
         init();
@@ -24,6 +25,7 @@ public class BridgeGameController {
                 break;
             }
         }
+        outputView.printResult(bridgeGame.getBridgeStatus(), isSucess(), bridgeGame.getTryCount());
     }
 
     private void init() {
@@ -33,6 +35,7 @@ public class BridgeGameController {
 
     private boolean startRound() {
         boolean isMove = bridgeGame.determineMove(setMoving());
+        outputView.printMap(bridgeGame.getBridgeStatus());
         if (isMove) {
             return !isSucess();
         }
@@ -44,7 +47,6 @@ public class BridgeGameController {
     }
 
     private boolean isSucess() {
-        success = true;
         return bridgeGame.isEndPosition(bridgeSize);
     }
 
@@ -101,7 +103,6 @@ public class BridgeGameController {
             throw new IllegalArgumentException("[ERROR] 게임 재시도 여부는 R 또는 Q 문자여야 합니다.");
         }
     }
-
 
 }
 

@@ -10,7 +10,7 @@ public class BridgeGame {
 
     private int currentPosition = 0;
     private int tryCount = 1;
-    private List<BridgePath> userPath = new ArrayList<>();
+    private List<BridgeStatus> bridgeStatus = new ArrayList<>();
     private final Bridge bridge;
 
     public BridgeGame(int bridgeSize) {
@@ -21,7 +21,7 @@ public class BridgeGame {
         if (compare(command)) {
             return move(command);
         }
-        userPath.add(new BridgePath(command, false));
+        bridgeStatus.add(new BridgeStatus(command, false));
         return false;
     }
 
@@ -42,8 +42,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String command) {
-        System.out.println("BridgeGame.move()");
-        userPath.add(new BridgePath(command, true));
+        bridgeStatus.add(new BridgeStatus(command, true));
         currentPosition++;
         return true;
     }
@@ -54,7 +53,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        userPath = new ArrayList<>();
+        bridgeStatus = new ArrayList<>();
         currentPosition = 0;
         tryCount++;
         return true;
@@ -68,7 +67,7 @@ public class BridgeGame {
         return this.tryCount;
     }
 
-    public List<BridgePath> getUserPath() {
-        return this.userPath;
+    public List<BridgeStatus> getBridgeStatus() {
+        return this.bridgeStatus;
     }
 }
