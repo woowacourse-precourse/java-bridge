@@ -31,13 +31,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(Command.UPDOWN_MESSAGE);
         String Moving = readLine();
-        if (Moving != "U" || Moving != "D"){
-            throw new IllegalArgumentException("[ERROR] 대문자 U 또는 D를 입력하세요");
-        }
-
-
+        movingInput(Moving);
         return Moving;
+    }
+
+    public void movingInput(String moving) {
+        exception.checkAlphabet(moving);
+        exception.checkMoveInput(moving);
     }
 
     /**

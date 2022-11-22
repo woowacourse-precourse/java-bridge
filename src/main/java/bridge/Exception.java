@@ -9,6 +9,12 @@ public class Exception {
         }
     }
 
+    public void checkMoveInput(String moving) throws IllegalArgumentException {
+        if (!moving.equals("U") && !moving.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] 대문자 U 또는 D를 입력하세요");
+        }
+    }
+
     public void checkRetryInput(String moving) throws IllegalArgumentException {
         if (!moving.equals("R") && !moving.equals("Q")) {
             throw new IllegalArgumentException(" R또는 Q로만 입력하세요.");

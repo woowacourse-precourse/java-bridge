@@ -17,7 +17,16 @@ public class BridgeValid {
     private int stack = 0;
 
     public void useBridge() {
-        bridge.matchBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        bridge.matchBridge(bridgeMaker.makeBridge(checkBridgeSizeInputOrMove()));
+    }
+
+    private int checkBridgeSizeInputOrMove() {
+        try {
+            return inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return checkBridgeSizeInputOrMove();
+        }
     }
 
     public void loop() {
