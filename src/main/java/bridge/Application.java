@@ -13,7 +13,7 @@ public class Application {
             controller.run();
         } catch (IllegalArgumentException ignored) {
         } finally {
-            System.out.println("test");
+//            System.out.println("test");
 //            OutputView.withContentOf(EXIT_MESSAGE, true, false).ConsoleMessage();
         }
     }
