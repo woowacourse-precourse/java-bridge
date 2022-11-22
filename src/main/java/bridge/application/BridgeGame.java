@@ -1,7 +1,7 @@
 package bridge.application;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.repository.BridgeRepository;
 import bridge.presentation.dto.BridgeSize;
 import bridge.presentation.dto.GameCommand;
