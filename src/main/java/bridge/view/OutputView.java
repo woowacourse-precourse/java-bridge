@@ -45,7 +45,7 @@ public class OutputView {
         print(ExceptionMessage.WRONG_RQ_INPUT.getMessage());
     }
 
-    private void print(String message) {
+    public void print(String message) {
         System.out.println(message);
     }
 

@@ -14,6 +14,7 @@ public class BridgeController {
 
     private static final int RETURN_TO_BEGINNING = -1;
     private static final int END_GAME = 21;
+    private static final String NEW_LINE = "";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -25,6 +26,7 @@ public class BridgeController {
 
     public void prepareGame() {
         Bridge answerBridge = buildAnswerBridge();
+        outputView.print(NEW_LINE);
         OXBridge oxBridge = buildOXBridge();
 
         runGame(answerBridge, oxBridge);
