@@ -15,15 +15,17 @@ public class Result {
     public Result(List<String> answer, UserInfo userInfo) {
         this.time = userInfo.getTime();
         this.state = userInfo.getState();
-        top = setString(userInfo.getInput(), answer, "U", "D");
-        bottom = setString(userInfo.getInput(), answer, "D", "U");
+        Word topWord = new Word("U", "D");
+        Word bottomWord = new Word("D", "U");
+        top = setString(userInfo.getInput(), answer, topWord);
+        bottom = setString(userInfo.getInput(), answer, bottomWord);
     }
 
-    private String setString(List<String> input, List<String> answer, String correct, String wrong) {
+    private String setString(List<String> input, List<String> answer, Word word) {
         map.clear();
-        map.put(correct, " O ");
-        map.put(wrong, " X ");
-        return  "["+setContent(input, answer, correct)+"]";
+        map.put(word.correct, " O ");
+        map.put(word.wrong, " X ");
+        return  "["+setContent(input, answer, word.correct)+"]";
     }
 
     private String setContent(List<String> input, List<String> answer, String correct) {
@@ -72,5 +74,15 @@ public class Result {
 
     public int getTime() {
         return time;
+    }
+
+    private class Word {
+        private final String correct;
+        private final String wrong;
+
+        public Word(String correct, String wrong) {
+            this.correct = correct;
+            this.wrong = wrong;
+        }
     }
 }
