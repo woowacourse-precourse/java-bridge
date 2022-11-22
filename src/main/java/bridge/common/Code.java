@@ -10,7 +10,7 @@ public enum Code {
         this.message = message;
     }
 
-    public static Code of(Long failCount) {
+    public static Code of(long failCount) {
         if (failCount == 0) {
             return SUCCESS;
         }
