@@ -48,15 +48,12 @@ public class BridgeGameController {
     }
 
     private void moveBridge() {
-        boolean canMove = true;
-        int moveCount = 0;
-        while (canMove && bridgeGame.hasBridgeToMove(moveCount)) {
+        boolean canMove;
+        do {
             outputView.printMovingMsg();
-            canMove = bridgeGame.move(moveCount, inputView.readMoving());
+            canMove = canMove();
             outputView.printMap(bridgeGame.getBridgeGameResult());
-            moveCount++;
-        }
-        judge(canMove);
+        } while (canMove);
     }
 
     private void judge(boolean canMove) {
