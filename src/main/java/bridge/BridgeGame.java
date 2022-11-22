@@ -39,6 +39,8 @@ public class BridgeGame {
             String checker = UpDownChecker.fromConditions(bridge.get(i), movement.get(i), lineUpOrDown).getChecker();
             sb.append(checker).append("|");
         }
+
+        if (sb.toString().length() == 1) { sb.append("["); } // bridge가 비었을 때 출력 깔끔하게
         return sb.substring(0, sb.length()-1) + "]";
     }
 
