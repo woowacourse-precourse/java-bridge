@@ -10,7 +10,7 @@ public class BridgeLengthValidator {
             throw new IllegalArgumentException(OutputView.LENGTH_ERROR_MESSAGE);
         }
         int length = Integer.parseInt(input);
-        if(length < Bridge.minBound || length > Bridge.maxBound) {
+        if(length < Bridge.MIN_BOUND || length > Bridge.MAX_BOUND) {
             throw new IllegalArgumentException(OutputView.LENGTH_ERROR_MESSAGE);
         }
     }
