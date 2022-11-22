@@ -31,5 +31,25 @@ public class BridgeGame {
         return false;
     }
 
+    public void addSuccess(String moving, List<String> upBridgeResult, List<String> downBridgeResult) {
+        if (moving.equals("U")){
+            upBridgeResult.add("O");
+            downBridgeResult.add(" ");
+        }
+        if (moving.equals("D")) {
+            downBridgeResult.add("O");
+            upBridgeResult.add(" ");
+        }
+    }
 
+    public void addFail(String moving, List<String> upBridgeResult, List<String> downBridgeResult) {
+        if (moving.equals("U")){
+            upBridgeResult.add("X");
+            downBridgeResult.add(" ");
+        }
+        if (moving.equals("D")) {
+            downBridgeResult.add("X");
+            upBridgeResult.add(" ");
+        }
+    }
 }
