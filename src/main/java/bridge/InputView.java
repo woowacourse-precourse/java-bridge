@@ -14,8 +14,8 @@ public class InputView {
             try {
                 number = tryNumInput();
                 break;
-            } catch (Exception e) {
-                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
             }
         }
         return number;
@@ -28,14 +28,14 @@ public class InputView {
             number = Integer.parseInt(input);
             validateNumber(number);
         } catch (Exception e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
         return number;
     }
 
     public static void validateNumber(int number) {
         if (number < 3 || 20 < number) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
@@ -48,8 +48,8 @@ public class InputView {
             try {
                 input = tryForwardInput();
                 break;
-            } catch (Exception e) {
-                System.out.println("[ERROR] U 또는 D만 입력해야 합니다.");
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("[ERROR] U 또는 D만 입력해야 합니다.");
             }
         }
         return input;
@@ -81,8 +81,8 @@ public class InputView {
             try {
                 input = tryRetryInput();
                 break;
-            } catch (Exception e) {
-                System.out.println("[ERROR] R 또는 Q만 입력해야 합니다.");
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력해야 합니다.");
             }
         }
         return input;
