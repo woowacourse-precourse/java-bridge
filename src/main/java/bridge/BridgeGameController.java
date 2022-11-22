@@ -15,7 +15,7 @@ public class BridgeGameController {
     private static int TRY_COUNT = 0;
 
 
-    public static List<String> gameSet(int userInput) {
+    public static List<String> bridgeSet(int userInput) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         return bridgeMaker.makeBridge(userInput);
@@ -34,7 +34,7 @@ public class BridgeGameController {
     }
 
     public void playTheGaming() {
-        List<String> bridge = gameSet(reInput.reGetBridgeLength());
+        List<String> bridge = bridgeSet(reInput.reGetBridgeLength());
         while (isTrue) {
             gamingSet(bridge);
             if (!isClear) {
