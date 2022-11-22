@@ -1,8 +1,11 @@
 package bridge;
 
+import static bridge.constant.GameCommand.RETRY;
+
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
+import java.util.Map;
 
 public class BridgeGameController {
 
@@ -22,6 +25,8 @@ public class BridgeGameController {
         outputView.printGameStartMessage();
         List<String> bridge = initialBridge();
         bridgeGame = new BridgeGame(bridge);
+        processGame();
+
     }
 
     private List<String> initialBridge() {
@@ -34,7 +39,38 @@ public class BridgeGameController {
         return inputView.readBridgeSize();
     }
 
-    private void playRound() {
+    private boolean processGame() {
+        for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
+            boolean roundResult = playRound();
+            if (!roundResult) {
+                gameCommand();
+            }
+        }
+    }
 
+    private boolean playRound() {
+        String moving = inputMoving();
+        boolean result = bridgeGame.move(moving);
+        Map<Moving, List<String>> map = bridgeGame.getMap();
+        outputView.printMap(map);
+        return result;
+    }
+
+    private String inputMoving() {
+        outputView.printMovingInputMessage();
+        return inputView.readMoving();
+    }
+
+    private void gameCommand() {
+        outputView.printGameCommandInputMessage();
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals(RETRY)) {
+            retry();
+        }
+    }
+
+    private void retry() {
+        bridgeGame.retry();
+        processGame();
     }
 }
