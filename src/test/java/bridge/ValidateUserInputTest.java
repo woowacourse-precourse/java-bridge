@@ -14,8 +14,7 @@ class ValidateUserInputTest {
     void checkBridgeLength() {
         String bridgeLength = "2,1";
         assertThatThrownBy(() -> validateUserInput.checkBridgeLength(bridgeLength))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("업 다운 버튼이 유효한지에 대한 검사")
@@ -23,15 +22,13 @@ class ValidateUserInputTest {
     void checkReadMoving() {
         String moveButton = "Uk";
         assertThatThrownBy(() -> validateUserInput.checkReadMoving(moveButton))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("재시작 종료 버튼이 유효한지에 대한 검사")
     @Test
     void checkGameCommand() {
         String commandButton = "12";
         assertThatThrownBy(() -> validateUserInput.checkGameCommand(commandButton))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
