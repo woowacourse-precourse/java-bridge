@@ -32,4 +32,9 @@ public class InputValidator {
         }
     }
 
+    public static void validateCommand(String command) {
+        if(!command.equals(RETRY) && !command.equals(QUIT)) {
+            INVALID_COMMAND.throwException();
+        }
+    }
 }
