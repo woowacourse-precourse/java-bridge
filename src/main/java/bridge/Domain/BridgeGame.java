@@ -16,7 +16,7 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public boolean move(Moving movingChoice){
+    public boolean move(Movement movingChoice){
         myMovingChoices.add(movingChoice.getMoving());
         int presentPosition = myMovingChoices.size() - 1;
         if(myMovingChoices.get(presentPosition).equals(bridge.getBridge().get(presentPosition)))
@@ -33,7 +33,7 @@ public class BridgeGame {
         return true;
     }
 
-    public boolean retry(GameCommand gameCommand) {
+    public boolean retry(Command gameCommand) {
         if(gameCommand.getCommand().equals(Validation.GAME_RETRY)){
             gameTryCount += 1;
             myMovingChoices = new ArrayList<>();

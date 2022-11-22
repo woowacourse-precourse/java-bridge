@@ -2,11 +2,10 @@ package bridge.Controller;
 
 import bridge.Domain.Bridge;
 import bridge.Domain.BridgeGame;
-import bridge.Domain.GameCommand;
-import bridge.Domain.Moving;
+import bridge.Domain.Command;
+import bridge.Domain.Movement;
 import bridge.View.InputView;
 import bridge.View.OutputView;
-import java.util.List;
 
 public class Controller {
     private  InputView inputView;
@@ -29,7 +28,7 @@ public class Controller {
         boolean movingSuccess = true;
         while(gameContinue){
             String movingChoice = inputView.readMoving();
-            Moving moving = new Moving(movingChoice);
+            Movement moving = new Movement(movingChoice);
             movingSuccess = bridgeGame.move(moving);
             printMovingStatusMap(movingSuccess);
             gameContinue = checkGameContinue(movingSuccess);
@@ -63,7 +62,7 @@ public class Controller {
     private boolean checkGameContinue(boolean movingSuccess){
         if(!movingSuccess){
             String readGameCommand = inputView.readGameCommand();
-            GameCommand gameCommand = new GameCommand(readGameCommand);
+            Command gameCommand = new Command(readGameCommand);
             return bridgeGame.retry(gameCommand);
         }
         return bridgeGame.reachEndPosition();
