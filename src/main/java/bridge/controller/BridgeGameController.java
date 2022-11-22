@@ -39,7 +39,7 @@ public class BridgeGameController {
     }
 
     private int getBridgeSize() {
-        while(true){
+        while (true) {
             System.out.println("다리 길이를 입력해주세요.");
             try {
                 return inputView.readBridgeSize();
@@ -54,22 +54,23 @@ public class BridgeGameController {
         return new Bridge(strings);
     }
 
+    private boolean doBridgeGame(int bridgeSize, BridgeGame bridgeGame) {
+        int position;
+        do {
+            boolean isMovable = bridgeGame.isMovable(getMovingInput());
+            position = moveOrNot(bridgeGame, isMovable);
+            if (retryOrQuit(bridgeGame, isMovable).equals(QUIT_GAME)) {
+                return false;
+            }
+        } while (position < bridgeSize);
+        return true;
+    }
+
     private String getMovingInput() {
         while (true) {
             try {
                 System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
                 return inputView.readMoving();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private String getGameCommandInput() {
-        while (true) {
-            try {
-                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-                return inputView.readGameCommand();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -84,29 +85,25 @@ public class BridgeGameController {
         return bridgeGame.getPosition();
     }
 
-    private boolean doBridgeGame(int bridgeSize, BridgeGame bridgeGame) {
-        int position;
-        do {
-            String movingInput = getMovingInput();
-            boolean isMovable = bridgeGame.isMovable(movingInput);
-            position = moveOrNot(bridgeGame, isMovable);
-            if (retryOrQuit(bridgeGame, isMovable).equals(QUIT_GAME)) {
-                return false;
+    private String retryOrQuit(BridgeGame bridgeGame, boolean isMove) {
+        if (!isMove) {
+            if (getGameCommandInput().equals(QUIT_GAME)) {
+                this.outputView.printResult(bridgeGame, false);
+                return QUIT_GAME;
             }
-        } while (position < bridgeSize);
-        return true;
+            bridgeGame.retry();
+        }
+        return RETRY_GAME;
     }
 
-    private String retryOrQuit(BridgeGame bridgeGame, boolean isMove) {
-        if (isMove) {
-            return RETRY_GAME;
+    private String getGameCommandInput() {
+        while (true) {
+            try {
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        String gameCommandInput = getGameCommandInput();
-        if (gameCommandInput.equals(RETRY_GAME)) {
-            bridgeGame.retry();
-            return RETRY_GAME;
-        }
-        this.outputView.printResult(bridgeGame, false);
-        return QUIT_GAME;
     }
 }
