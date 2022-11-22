@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BridgeController {
     private static InputView inputView = new InputView();
-    private static OutputView outputView = new OutputView();
+    private OutputView outputView = new OutputView();
     private BridgeGame bridgeGame;
     public BridgeGame doBridgeMake(){
 
@@ -19,21 +19,18 @@ public class BridgeController {
 
     public boolean doBridgeMove(BridgeGame bridgeGame){
         String moveWay = inputView.readMoving();
-
         BirdgeMoveType isPossibleMove = bridgeGame.move(moveWay);
-        printMove(isPossibleMove);
-
-        if(isPossibleMove.getCode().equals("X")){
-            boolean restart = restartCheck();
-            return restart;
+        boolean breakPoint = isPossibleMove.getCode().equals("X");
+        if(printMove(isPossibleMove)&&!breakPoint) return false;
+        if(breakPoint){
+            return restartCheck();
         }
         return true;
     }
 
-    public void printMove(BirdgeMoveType isPossibleMove){
+    public boolean printMove(BirdgeMoveType isPossibleMove){
 
-        System.out.println(isPossibleMove);
-        outputView.printMap(isPossibleMove);
+        return outputView.printMap(isPossibleMove,inputView,bridgeGame);
     }
     public boolean restartCheck(){
         String restartCommand=inputView.readGameCommand();
@@ -42,7 +39,8 @@ public class BridgeController {
             bridgeGame.retry();
             return true;
         } else if (restartCommand.equals("Q")) {
-            outputView.printResult();
+            System.out.println("게임 성공 여부: 실패");
+            outputView.printResult(bridgeGame);
             return false;
         }
         throw new IllegalArgumentException("[ERROR] R / Q 로 입력해주세요");
