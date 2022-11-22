@@ -3,7 +3,7 @@ package bridge.controller;
 import static bridge.util.Util.toInt;
 
 import bridge.service.BridgeGame;
-import bridge.service.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.exception.IllegalArgumentError;
 import bridge.view.InputView;
