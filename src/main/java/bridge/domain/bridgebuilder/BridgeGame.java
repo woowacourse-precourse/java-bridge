@@ -1,5 +1,6 @@
 package bridge.domain.bridgebuilder;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.oxbridgebuilder.OXBridge;
 import bridge.domain.resources.Bridge;

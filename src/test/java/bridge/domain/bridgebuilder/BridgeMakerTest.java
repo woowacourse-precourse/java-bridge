@@ -1,5 +1,6 @@
 package bridge.domain.bridgebuilder;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
