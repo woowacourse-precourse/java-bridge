@@ -3,70 +3,88 @@ package bridge.view;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static bridge.view.Message.PRINT_ACCESS_MESSAGE;
+import static bridge.view.Message.PRINT_ATTEMPT_COUNT_MESSAGE;
+import static bridge.view.Message.PRINT_FAIL_MESSAGE;
+import static bridge.view.Message.PRINT_RESULT_MESSAGE;
+
 public class OutputView {
 
     StringBuilder top;
     StringBuilder down;
 
     public void printMap(Map<Integer, ArrayList<String>> playerBridge) {
+        buildTop();
         printPlayerBridgeTop(playerBridge);
         printPlayerBridgeDown(playerBridge);
+        buildBottom();
+        System.out.println(top);
+        System.out.println(down);
         System.out.println("\n");
     }
 
-    public void printPlayerBridgeTop(Map<Integer, ArrayList<String>> playerBridge) {
+    public void buildTop() {
         top = new StringBuilder();
         top.append("[ ");
-        for(int i=0;i<playerBridge.size();i++){
-            String position = playerBridge.get(i).get(0);
-            String correct = playerBridge.get(i).get(1);
-            if(position.equals("U")){
-                top.append(correct);
-            }
-            if(position.equals("D")){
-                top.append(" ");
-            }
-            if(i!=(playerBridge.size()-1)){
+        down = new StringBuilder();
+        down.append("[ ");
+    }
+
+    public void buildBottom() {
+        top.append(" ]");
+        down.append(" ]");
+    }
+
+    public void printPlayerBridgeTop(Map<Integer, ArrayList<String>> playerBridge) {
+        for (int i = 0; i < playerBridge.size(); i++) {
+            checkUpper(playerBridge.get(i).get(0), playerBridge.get(i).get(1));
+
+            if (i != (playerBridge.size() - 1)) {
                 top.append(" | ");
             }
         }
-        top.append(" ]");
-        System.out.println(top);
+    }
+
+    void checkUpper(String target, String target2) {
+        if (target.equals("U")) {
+            top.append(target2);
+        }
+        if (target.equals("D")) {
+            top.append(" ");
+        }
     }
 
     public void printPlayerBridgeDown(Map<Integer, ArrayList<String>> playerBridge) {
-        down = new StringBuilder();
-        down.append("[ ");
-        for(int i=0;i<playerBridge.size();i++){
-            String position = playerBridge.get(i).get(0);
-            String correct = playerBridge.get(i).get(1);
-            if(position.equals("U")){
-                down.append(" ");
-            }
-            if(position.equals("D")){
-                down.append(correct);
-            }
-            if(i!=(playerBridge.size()-1)){
+        for (int i = 0; i < playerBridge.size(); i++) {
+            checkDowner(playerBridge.get(i).get(0), playerBridge.get(i).get(1));
+
+            if (i != (playerBridge.size() - 1)) {
                 down.append(" | ");
             }
         }
-        down.append(" ]");
-        System.out.println(down);
+    }
+
+    void checkDowner(String target, String target2) {
+        if (target.equals("U")) {
+            down.append(target2);
+        }
+        if (target.equals("D")) {
+            down.append(" ");
+        }
     }
 
     public void printResult(Map<Integer, ArrayList<String>> playerBridge, boolean isSuccess) {
-        System.out.println("최종 게임 결과");
+        System.out.println(PRINT_RESULT_MESSAGE);
         printMap(playerBridge);
-        if(isSuccess){
-            System.out.println("게임 성공 여부: 성공");
+        if (isSuccess) {
+            System.out.println(PRINT_ACCESS_MESSAGE);
         }
-        if(!isSuccess){
-            System.out.println("게임 성공 여부: 실패");
+        if (!isSuccess) {
+            System.out.println(PRINT_FAIL_MESSAGE);
         }
     }
 
-    public void printTotalAttempts(int attempts){
-        System.out.println("총 시도한 횟수: " + attempts);
+    public void printTotalAttempts(int attempts) {
+        System.out.println(PRINT_ATTEMPT_COUNT_MESSAGE + attempts);
     }
-
 }
