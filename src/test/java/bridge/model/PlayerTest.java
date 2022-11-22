@@ -30,6 +30,6 @@ public class PlayerTest {
                 List.of("U", "O"),
                 List.of("U", "O")
         );
-        assertThat(player.getPlayerMoved()).isEqualTo(testResult);
+        assertThat(player.getPlayerMoveMap()).isEqualTo(testResult);
     }
 }

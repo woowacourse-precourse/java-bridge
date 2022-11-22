@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class BridgeService {
-    private static final StringJoiner stringJoiner = new StringJoiner(" | ", "[ ", " ]");
     private final BridgeMaker bridgeMaker;
 
 

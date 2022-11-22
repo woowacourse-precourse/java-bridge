@@ -49,7 +49,8 @@ public class BridgeGame {
         while(!isGameOver) {
             setPlayerMove();
             boolean canMove = eachMove();
-
+            outputView.printMap(player);
+            isGameOver = !canMove;
         }
 
     }
@@ -85,8 +86,10 @@ public class BridgeGame {
         try {
             outputView.printInfo(OutputPharses.BRIDGE_LENGTH_MSG.getMsg());
             bridgeSize = inputView.readBridgeSize();
+            outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
         } catch (IllegalArgumentException exception) {
             outputView.printInfo(exception.getMessage());
+            outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
             setBridgeSize();
         }
     }
@@ -101,6 +104,7 @@ public class BridgeGame {
             player.setCurrentMove(playerMove);
         } catch (IllegalArgumentException exception) {
             outputView.printInfo(exception.getMessage());
+            outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
             setPlayerMove();
         }
     }

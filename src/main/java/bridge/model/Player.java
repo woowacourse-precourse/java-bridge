@@ -8,10 +8,10 @@ import java.util.Map;
 public class Player {
     private String currentMove;
     private int currentLocation;
-    private List<List<String>> playerMoved;
+    private List<List<String>> playerMoveMap;
 
     public Player() {
-        playerMoved = new ArrayList<>();
+        playerMoveMap = new ArrayList<>();
     }
     public String getCurrentMove() {
         return currentMove;
@@ -25,12 +25,12 @@ public class Player {
         return currentLocation;
     }
 
-    public List<List<String>> getPlayerMoved() {
-        return playerMoved;
+    public List<List<String>> getPlayerMoveMap() {
+        return playerMoveMap;
     }
 
     public void addPlayerMove(String move) {
-        playerMoved.add(List.of(currentMove, move));
+        playerMoveMap.add(List.of(currentMove, move));
         addCurrentLocation();
     }
 

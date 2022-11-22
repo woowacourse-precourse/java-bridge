@@ -3,6 +3,7 @@ package bridge.util;
 public enum BridgeGameStatus {
     CORRECT("O"),
     INCORRECT("X"),
+    SPACEBAR(" "),
     RESTART("R"),
     QUIT("Q");
 
