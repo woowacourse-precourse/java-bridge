@@ -41,5 +41,4 @@ public class GameStatusTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(String.valueOf(ExceptionMessage.COMMEND_NOT_FOUND_ERROR));
     }
-
 }

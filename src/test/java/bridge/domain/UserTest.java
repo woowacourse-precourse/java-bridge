@@ -43,11 +43,7 @@ public class UserTest {
             user.cross(bridge, moveType);
         }
 
-        String beforeResult = user.getUserPathLog();
-        Assertions.assertThat(beforeResult).isEqualTo("[ O |   |   |   ]\n[   | O | O | X ]\n\n");
-
         user.resetUserData();
-
         String afterResult = user.getUserPathLog();
         Assertions.assertThat(afterResult).isEqualTo("[  ]\n[  ]\n\n");
     }

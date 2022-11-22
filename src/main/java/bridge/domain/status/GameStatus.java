@@ -44,5 +44,4 @@ public enum GameStatus {
     public boolean compareTo(String inputStatus) {
         return inputStatus.equals(this.gameStatusMessage);
     }
-
 }
