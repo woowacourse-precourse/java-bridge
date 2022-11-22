@@ -37,7 +37,6 @@ public class MovedBridgeService {
         gameStatusService.find().addAttemptCount();
     }
 
-    // TODO: 10줄 이내, depth 3이내로 수정 필요
     public String printMap() {
         return BridgeMapService.printMap();
     }
