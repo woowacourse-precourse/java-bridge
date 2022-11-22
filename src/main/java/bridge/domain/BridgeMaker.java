@@ -22,15 +22,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(size);
-        generateBridge(bridge, size);
-        return bridge;
-    }
-
-    private void generateBridge(List<String> bridge, int size) {
         for (int i = 0; i < size; i++) {
-            int generatedNum = this.bridgeNumberGenerator.generate();
-            if (generatedNum == 1) bridge.add(MessageStorage.UP.getMessage());
-            if (generatedNum == 0) bridge.add(MessageStorage.DOWN.getMessage());
+            int generatedNum = bridgeNumberGenerator.generate();
+            bridge.add(BridgeHelp.generateBridge(generatedNum).getValue());
         }
+        return bridge;
     }
 }
