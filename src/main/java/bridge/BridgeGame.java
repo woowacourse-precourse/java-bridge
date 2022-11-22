@@ -20,7 +20,6 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int size = bridgeMaker.inputBridgeSize();
         bridgeColumns = bridgeMaker.makeBridge(size);
-        System.out.println(bridgeColumns); //TODO: 지우기
     }
 
     /**
