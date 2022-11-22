@@ -20,7 +20,7 @@ public class MapAdapter {
     private static final String BLANK = " ";
 
     public static String changeMapToString(List<String> course, RoundStatus roundStatus) {
-        return fitToFormat(getUpWardMap(course, roundStatus) + "\n" + fitToFormat(getDownWardMap(course, roundStatus)));
+        return fitToFormat(getUpWardMap(course, roundStatus)) + "\n" + fitToFormat(getDownWardMap(course, roundStatus));
     }
 
     private static String fitToFormat(String map) {
@@ -39,7 +39,7 @@ public class MapAdapter {
         if (roundStatus.equals(FAIL)) {
             return getMapsWhenFail(selected, course, roundStatus);
         }
-        return course.stream().map(s -> getMap(s, selected)).collect(Collectors.joining(" | "));
+        return course.stream().map(s -> getMap(s, selected)).collect(Collectors.joining(SPLITTER));
     }
 
     private static String getMapsWhenFail(String selected, List<String> course, RoundStatus roundStatus) {

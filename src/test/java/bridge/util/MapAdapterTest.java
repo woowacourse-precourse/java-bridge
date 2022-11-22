@@ -12,7 +12,7 @@ public class MapAdapterTest {
         //given
         List<String> course = List.of("U", "D");
         RoundStatus roundStatus = RoundStatus.FAIL;
-        String compareResult = "[[ O |   ], [   | X ]]";
+        String compareResult = "[ O |   ]\n[   | X ]";
 
         //when
         String result = MapAdapter.changeMapToString(course, roundStatus).toString();
