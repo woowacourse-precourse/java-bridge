@@ -29,4 +29,8 @@ public enum Move {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidMovingCommand()))
                 .command;
     }
+
+    public boolean isNotSameMove(Move move) {
+        return this != move;
+    }
 }

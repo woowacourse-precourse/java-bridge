@@ -2,7 +2,8 @@ package bridge.domain;
 
 public enum MoveResult {
     SUCCESS("O"),
-    FAIL("X");
+    FAIL("X"),
+    NOT_MOVE(" ");
 
     private final String message;
 
