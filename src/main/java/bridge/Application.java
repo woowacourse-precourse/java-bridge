@@ -8,7 +8,6 @@ public class Application {
     static InputView inputView = new InputView();
     static BridgeGame bridgeGame = new BridgeGame();
     static OutputView outputView = new OutputView();
-    static GameJudge gameJudge = new GameJudge();
     private static int tryNumber = 0;
     private static boolean retryJudge;
     private static String successFail;
