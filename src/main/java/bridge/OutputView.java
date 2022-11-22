@@ -30,14 +30,34 @@ public class OutputView {
     public static void printRetry(){
         System.out.println(CHOOSE_REPLAY_MESSAGE);
     }
-    public void printMap() {
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printFinalResult(Bridges bridges, Boolean successOrNot,int trialNumber) {
+        System.out.println(FINAL_RESULT_MESSAGE);
+        System.out.println(bridgeForPrint(bridges.upBridge,bridges.bridgesSize-1));
+        System.out.println(bridgeForPrint(bridges.downBridge,bridges.bridgesSize-1));
+        System.out.println(SUCCESS_OR_NOT_MESSAGE + printSuccessOrNot(successOrNot));
+        System.out.println(TRIAL_NUMBER_MESSAGE + trialNumber);
+    }
+    public static String printSuccessOrNot(boolean successOrNot){
+        if(successOrNot == true) return "성공";
+
+        return "실패";
+    }
+
+    public static String bridgeForPrint(List<String> bridge, int size){
+        String bridgeResult = "[ ";
+        for(int index=0;index<=size;index++) {
+            if(size ==0){
+                bridgeResult = bridgeResult + bridge.get(0) + " ]";
+                return bridgeResult;
+            }
+            else if( size != 0 && index != size) bridgeResult = bridgeResult + bridge.get(index) + " | ";
+            else if( size != 0 && (index == size)) bridgeResult = bridgeResult + bridge.get(index) + " ]";
+        }
+        return bridgeResult;
     }
 }
