@@ -32,7 +32,12 @@ public class BridgeGame {
 
     public void run() {
         proceedRound();
-        OutputView.printResult();
+        OutputView.printResultMap(bridgeMapMaker, roundResult);
+
+        String result = Constants.FAIL;
+        if (round == bridge.getBridgeSize()) result = Constants.SUCCESS;
+
+        OutputView.printResult(result, trial);
     }
 
     private void proceedRound() {
