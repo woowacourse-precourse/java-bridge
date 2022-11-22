@@ -1,5 +1,4 @@
-import bridge.BridgeDirection;
-import bridge.Mark;
+package bridge;
 
 import java.util.LinkedList;
 import java.util.List;
