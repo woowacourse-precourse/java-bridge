@@ -1,15 +1,11 @@
 package bridge;
 
-import bridge.constant.GameCommand;
 import bridge.constant.Message;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
-    private static String upperSide;
-    private static String lowerSide;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -48,19 +44,4 @@ public class OutputView {
         System.out.println(Message.RESTART.getMessage());
     }
 
-    public static void connectBridge(String bridgeComponent) {
-        upperSide += bridgeComponent;
-        lowerSide += bridgeComponent;
-    }
-
-    public static void recordResult(String currInput, String selectResult) {
-        if (currInput.equals(GameCommand.GO_UP.getGameCommand())) {
-            upperSide += selectResult;
-            lowerSide += " ";
-        }
-        if (currInput.equals(GameCommand.GO_DOWN.getGameCommand())) {
-            upperSide += " ";
-            lowerSide += selectResult;
-        }
-    }
 }
