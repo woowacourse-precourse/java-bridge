@@ -4,7 +4,7 @@ import bridge.position.Latitude;
 import bridge.position.Position;
 
 public class Player {
-    private final Position position;
+    private Position position;
     private boolean life;
 
     public Player() {
@@ -33,5 +33,10 @@ public class Player {
 
     public boolean isOn(Position position) {
         return this.position.equals(position);
+    }
+
+    public void retry() {
+        life = false;
+        position = new Position(-1, null);
     }
 }
