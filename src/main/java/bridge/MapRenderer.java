@@ -5,12 +5,12 @@ import java.util.List;
 import bridgeConstant.Constant;
 
 public class MapRenderer {
-	private static final String ENTRANCE = "[";
-	private static final String EXIT = "]";
-	private static final String DIVISION_LINE = "|";
-	private static final String CIRCLE = " O ";
-	private static final String CROSS = " X ";
-	private static final String SPACE = "   ";
+	private static final String ENTRANCE = "[ ";
+	private static final String EXIT = " ]";
+	private static final String DIVISION_LINE = " | ";
+	private static final String CIRCLE = "O";
+	private static final String CROSS = "X";
+	private static final String SPACE = " ";
 	private static final String LINE_BREAK_CHARACTER = "\n";
 	private static final int ONE = 1;
 	private static final int FIRST_INDEX = 0;
