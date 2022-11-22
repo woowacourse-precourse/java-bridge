@@ -4,7 +4,9 @@ package bridge.ui;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 
+import bridge.BridgeSymbol;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Objects;
 
 public class InputView {
 
@@ -13,9 +15,9 @@ public class InputView {
      */
 
     public int readBridgeSize() {
-        int bridgeSize = Integer.parseInt(Console.readLine());
+        String bridgeSize = Console.readLine();
         checkBridgeSize(bridgeSize);
-        return bridgeSize;
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
@@ -36,20 +38,38 @@ public class InputView {
         return gameCommand;
     }
 
-    private void checkBridgeSize(int bridgeSize) {
-        if(bridgeSize < 3 || bridgeSize > 20) {
+    private void checkBridgeSize(String bridgeSize) {
+
+        if(!isDigit(bridgeSize) ||
+            Integer.parseInt(bridgeSize) < 3 ||
+            Integer.parseInt(bridgeSize) > 20) {
+            ErrorView.errorMsg = ErrorMessage.BRIDGE_SIZE.getMsg();
             throw new IllegalArgumentException();
         }
     }
 
+    private boolean isDigit(String bridgeSize) {
+        if (bridgeSize.isEmpty()) return false;
+        try {
+            Double.parseDouble(bridgeSize);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
     private void checkMoving(String moving) {
-        if(moving != "U" || moving != "D") {
+        if( !Objects.equals(moving, BridgeSymbol.UP.getSymbol()) &&
+            !Objects.equals(moving, BridgeSymbol.DOWN.getSymbol())) {
+            ErrorView.errorMsg = ErrorMessage.MOVING.getMsg();
             throw new IllegalArgumentException();
         }
     }
 
     private void checkGameCommand(String gameCommand) {
-        if(gameCommand != "R" || gameCommand != "Q") {
+        if( !Objects.equals(gameCommand, BridgeSymbol.RETRY.getSymbol()) &&
+            !Objects.equals(gameCommand, BridgeSymbol.QUIT.getSymbol())) {
+            ErrorView.errorMsg = ErrorMessage.GAME_COMMAND.getMsg();
             throw new IllegalArgumentException();
         }
     }
