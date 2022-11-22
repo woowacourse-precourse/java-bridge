@@ -26,14 +26,6 @@ public class BridgeGame {
     }
 
     /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     */
-    public void retry() {
-        this.userRoute = new ArrayList<>();
-        this.gameCount += 1;
-    }
-
-    /**
      * 게임 초기화
      */
     public void initBridge(List<String> bridge) {
@@ -42,6 +34,13 @@ public class BridgeGame {
         this.gameCount = 1;
     }
 
+    /**
+     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     */
+    public void retry() {
+        this.userRoute = new ArrayList<>();
+        this.gameCount += 1;
+    }
 
     public List<String> getBridge() {
         return bridge;
