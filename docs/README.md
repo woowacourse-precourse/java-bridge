@@ -119,7 +119,6 @@
 - [ ] 클래스 분리
 
 ## 🖌️ 클래스 다이어그램
-
-![bridge-2](https://user-images.githubusercontent.com/70315475/203196537-c15a46ad-1ac8-41b4-b4fd-550e0509ad20.jpeg)
-
+ 
+![bridge](https://user-images.githubusercontent.com/70315475/203222848-c8f7cecc-3514-4a25-b54c-ab8775ef388e.jpeg)
 
