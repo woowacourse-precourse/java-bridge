@@ -1,6 +1,6 @@
 package bridge.util;
 
-public class View {
+public final class View {
 
     public static final String SPACE = " ";
     public static final String ANSWER_RESULT = "O";
