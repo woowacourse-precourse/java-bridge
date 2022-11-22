@@ -75,20 +75,19 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      *
      * @param bridgeGame
-     * @param isSuccess
      */
-    public void printResult(BridgeGame bridgeGame, boolean isSuccess) {
+    public void printResult(BridgeGame bridgeGame) {
         System.out.println("\n" + GAME_RESULT.getMessage());
         printMap(bridgeGame);
-        System.out.println("\n" + String.format(SUCCESS_OR_FAIL.getMessage(), printSuccessOrFail(isSuccess)));
+        System.out.println("\n" + String.format(SUCCESS_OR_FAIL.getMessage(), printSuccessOrFail(bridgeGame.isMovingFail())));
         System.out.println(String.format(TOTAL_ATTEMPTS.getMessage(), bridgeGame.getTotalAttempts()));
     }
 
-    private String printSuccessOrFail(boolean isSuccess) {
-        if (isSuccess) {
-            return SUCCESS;
+    private String printSuccessOrFail(boolean isMovingFail) {
+        if (isMovingFail) {
+            return FAIL;
         }
-        return FAIL;
+        return SUCCESS;
     }
 
     public void printGameStart() {
