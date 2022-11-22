@@ -17,33 +17,42 @@ public class BridgeGameService extends OutputConfig {
 
         return isNumeric;
     }
-    public void isValidBridgeRange(int bridgeSize) {
+    public Boolean isValidBridgeRange(int bridgeSize) {
+        Boolean isValid=true;
         try {
             if (bridgeSize <= 3 || bridgeSize >= 20) {
+                isValid=false;
                 throw new IllegalArgumentException();
             }
         } catch(IllegalArgumentException e) {
             System.out.println(ERROR_MEESAGE+" 다리 크기가 3~20이 아닙니다.");
         }
+        return isValid;
     }
 
-    public void isValidMovingInput(String move) {
+    public Boolean isValidMovingInput(String move) {
+        Boolean isValid=true;
         try {
             if (move.equals("U") || move.equals(("D"))) {
+                isValid=false;
                 throw new IllegalArgumentException();
             }
         } catch(IllegalArgumentException e) {
             System.out.println(ERROR_MEESAGE+" 다리 이동엔 U 또는 D만을 입력해야합니다.");
         }
+        return isValid;
     }
 
-    public void isValidCommand(String command) {
+    public Boolean isValidCommand(String command) {
+        Boolean isValid=true;
         try{
             if (command.equals("R") || command.equals("Q")) {
+                isValid=false;
                 throw new IllegalArgumentException();
             }
         } catch(IllegalArgumentException e) {
             System.out.println(ERROR_MEESAGE+" 게임 재시작 여부엔 R 또는 Q만을 입력해야합니다.");
         }
+        return isValid;
     }
 }

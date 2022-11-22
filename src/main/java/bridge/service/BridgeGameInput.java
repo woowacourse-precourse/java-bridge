@@ -18,21 +18,25 @@ public class BridgeGameInput {
         if (!bridgeGameService.isNumericInput(bridgeSize)) {
             getBridgeSize();
         }
-        bridgeGameService.isValidBridgeRange(Integer.parseInt(bridgeSize));
+        if (!bridgeGameService.isValidBridgeRange(Integer.parseInt(bridgeSize))){
+            getBridgeSize();
+        }
         return Integer.parseInt(bridgeSize);
     }
 
     public String getMoving() {
         String inputMoving = inputView.readMoving();
-        bridgeGameService.isValidMovingInput(inputMoving);
-
+        if (!bridgeGameService.isValidMovingInput(inputMoving)){
+            getMoving();
+        }
         return inputMoving;
     }
 
     public String getCommand() {
         String inputCommand = inputView.readGameCommand();
-        bridgeGameService.isValidCommand(inputCommand);
-
+        if (!bridgeGameService.isValidCommand(inputCommand)) {
+            getCommand();
+        }
         return inputCommand;
     }
 
