@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 import static bridge.exception.Exception.*;
 import static bridge.validator.InputValidator.*;
 
+@DisplayName("유효성 검사 기능 테스트")
 public class InputValidatorTest {
     @DisplayName("다리 길이를 입력받을 때 숫자가 아니라면 예외 처리")
     @ValueSource(strings = {"asd", "우테코", "11.2312", "!@#$~!@"})
@@ -35,4 +36,14 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_DIRECTION.getMessage());
     }
+
+    @DisplayName("재시도 여부를 입력받을 때 R 또는 Q가 아니면 예외 처리")
+    @ValueSource(strings = {"retry", "큰일이다", "종료", "123", "q"})
+    @ParameterizedTest
+    void inputInvalidCommand(String command) {
+        assertThatThrownBy(() -> validateCommand(command))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_COMMAND.getMessage());
+    }
+
 }
