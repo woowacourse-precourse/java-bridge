@@ -1,6 +1,6 @@
 package bridge;
 
-import domain.MoveStatus;
+import domain.MoveCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +30,9 @@ public class BridgeMaker {
 
     private String checking() {
         int answer = bridgeNumberGenerator.generate();
-        if(answer == MoveStatus.UP.getCommandNumber()){
-            return MoveStatus.UP.getCommandString();
+        if(answer == MoveCommand.UP.getCommandNumber()){
+            return MoveCommand.UP.getCommandString();
         }
-        return MoveStatus.DOWN.getCommandString();
+        return MoveCommand.DOWN.getCommandString();
     }
 }
