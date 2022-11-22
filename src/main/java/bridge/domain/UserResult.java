@@ -24,13 +24,11 @@ public class UserResult {
     }
 
     public void selectUpperResult(String inputBridge, boolean isRightBridge) {
-        if (inputBridge.equals("U")) {
-            if(isRightBridge) {
-                upperResult = upperResult + "O ";
-            }
-            if(!isRightBridge) {
-                upperResult = upperResult + "X ";
-            }
+        if(isRightBridge) {
+            upperResult = upperResult + "O ";
+        }
+        if(!isRightBridge) {
+            upperResult = upperResult + "X ";
         }
     }
 
@@ -39,13 +37,11 @@ public class UserResult {
     }
 
     public void selectLowerResult(String inputBridge, boolean isRightBridge) {
-        if (inputBridge.equals("D")) {
-            if(isRightBridge) {
-                lowerResult = lowerResult + "O ";
-            }
-            if(!isRightBridge) {
-                lowerResult = lowerResult + "X ";
-            }
+        if(isRightBridge) {
+            lowerResult = lowerResult + "O ";
+        }
+        if(!isRightBridge) {
+            lowerResult = lowerResult + "X ";
         }
     }
 

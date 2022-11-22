@@ -25,6 +25,7 @@ class BridgeMakerTest {
     void createRightSizeBridgeMaker(int size, int expected) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
         assertThat(bridgeMaker.makeBridge(size).size()).isEqualTo(expected);
     }
 
@@ -35,6 +36,7 @@ class BridgeMakerTest {
         String[] rightAlphabet = {"U","D"};
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
         makeBridgeResult = bridgeMaker.makeBridge(7);
         for (int i=0; i<makeBridgeResult.size(); i++) {
             assertThat(rightAlphabet).contains(makeBridgeResult.get(i));

@@ -5,7 +5,6 @@ import bridge.domain.UserResult;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
 
 class BridgeGameTest {
     @Test
@@ -16,6 +15,7 @@ class BridgeGameTest {
 
         UserResult userResult = new UserResult();
         BridgeGame bridgeGame = new BridgeGame();
+
         assertThat(bridgeGame.move(userResult, inputBridge, rightBridge)).isEqualTo(expect);
     }
 
@@ -27,6 +27,7 @@ class BridgeGameTest {
 
         UserResult userResult = new UserResult();
         BridgeGame bridgeGame = new BridgeGame();
+
         assertThat(bridgeGame.move(userResult, inputBridge, rightBridge)).isEqualTo(expect);
     }
 
@@ -36,6 +37,7 @@ class BridgeGameTest {
         boolean expect = true;
 
         BridgeGame bridgeGame = new BridgeGame();
+
         assertThat(bridgeGame.retry(inputRetry)).isEqualTo(expect);
     }
 
@@ -45,6 +47,7 @@ class BridgeGameTest {
         boolean expect = false;
 
         BridgeGame bridgeGame = new BridgeGame();
+
         assertThat(bridgeGame.retry(inputRetry)).isEqualTo(expect);
     }
 }

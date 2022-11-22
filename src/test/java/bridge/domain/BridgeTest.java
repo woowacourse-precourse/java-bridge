@@ -26,6 +26,7 @@ class BridgeTest {
     @CsvSource({"3,3", "10,10", "20,20"})
     void createRightBridgeLength(int bridgeLength, int expected) {
         Bridge bridge = new Bridge(bridgeLength);
+
         assertThat(bridge.getBridgeLength()).isEqualTo(expected);
     }
 }

@@ -50,6 +50,7 @@ public class BridgeController {
 
     private boolean moveBridge(UserResult userResult ,int bridgeLength) {
         boolean success = true;
+
         for (int i=0; i<bridgeLength; i++) {
             success = bridgeGame.move(userResult, inputView.readMoving(), makedBridge.get(i));
             outputView.printMap(userResult);
