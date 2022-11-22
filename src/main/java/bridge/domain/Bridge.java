@@ -12,7 +12,7 @@ public class Bridge {
     // 건널 수 있는 다리를 List<String> 으로 받고 PositionType 으로 매핑
     public Bridge(List<String> passBridges) {
         this.passBridges = passBridges.stream()
-                .map(symbol -> PositionType.matchSymbol(symbol).orElseThrow(IllegalArgumentException::new))
+                .map(symbol -> PositionType.matchSymbol(symbol).orElseThrow(() -> new IllegalArgumentException("[ERROR] Position is not match !!")))
                 .collect(Collectors.toList());
     }
 
