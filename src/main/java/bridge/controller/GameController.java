@@ -23,22 +23,14 @@ public class GameController {
         Integer size = bridgeSize.getBrideSize();
         BridgeMaker bridgeMaker = bridgeMaker();
         List<String> bridge = bridgeMaker.makeBridge(size);
-        TryNumber tryNumber = tryNumber();
-        BridgeGame bridgeGame = bridgeGame();
+        TryNumber tryNumber = new TryNumber();
+        BridgeGame bridgeGame = new BridgeGame();
         startWalk(bridgeGame, bridge, tryNumber);
     }
 
     private BridgeMaker bridgeMaker() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         return new BridgeMaker(bridgeNumberGenerator);
-    }
-
-    private BridgeGame bridgeGame() {
-        return new BridgeGame();
-    }
-
-    private TryNumber tryNumber() {
-        return new TryNumber();
     }
 
     private boolean gameCommand() {
