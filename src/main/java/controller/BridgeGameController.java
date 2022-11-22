@@ -1,5 +1,6 @@
-package bridge;
+package controller;
 
+import bridge.*;
 import view.InputView;
 import view.OutputView;
 
