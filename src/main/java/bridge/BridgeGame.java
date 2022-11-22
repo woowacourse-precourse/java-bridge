@@ -55,7 +55,7 @@ public class BridgeGame {
     public boolean midChecking(){
         if (!comparingInputBridge()) {
             wrongCase();
-            if(choose()){
+            if(inputView.readGameCommand()){
                 OutputView.printResultMap(up, down);
                 OutputView.printResult(false, tryCount);
                 return false;
@@ -95,10 +95,4 @@ public class BridgeGame {
         OutputView.printMap(this.up, this.down);
     }
 
-    public boolean choose() {
-        OutputView.chooseEndPrint();
-        String choice = Console.readLine();
-        ExceptionHandling.choiceChecking(choice);
-        return choice.equals("Q");
-    }
 }
