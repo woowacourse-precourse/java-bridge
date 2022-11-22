@@ -50,7 +50,7 @@ public class BridgeController extends BridgeMaker {
         if(!play) return;
 
         State move = getMove();
-        view.printMap(model.history(), move);
+        view.printMap(model.drawMap(move));
 
         if(!move.ALIVE()){ play = dead(State.FAIL); }
 
@@ -69,7 +69,8 @@ public class BridgeController extends BridgeMaker {
     }
 
     private boolean quitGame(State state){
-        view.printResult(model.history(), state, model.playTime());
+        String result = model.drawResult(state);
+        view.printResult(result);
         return false;
     }
 
