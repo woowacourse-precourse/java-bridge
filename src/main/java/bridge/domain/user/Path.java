@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Path {
+
     private final static String CORRECT_PATH = "O";
     private final static String WRONG_PATH = "X";
     private final static String EMPTY_PATH = " ";

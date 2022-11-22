@@ -31,9 +31,9 @@ public enum MoveType {
 
     public static MoveType convertMoveType(String inputType) {
         return java.util.Arrays.stream(MoveType.values())
-                .filter(moveType -> moveType.compareTo(inputType))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(UNSUPPORTED_TYPE_ERROR));
+            .filter(moveType -> moveType.compareTo(inputType))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(UNSUPPORTED_TYPE_ERROR));
     }
 
     public boolean compareTo(String moveType) {

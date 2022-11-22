@@ -75,7 +75,7 @@ public class BridgeController {
         outputView.printResult(userPathLog, bridgeGame.getResultStatus(), bridgeGame.getTryCount());
     }
 
-     private void checkRetry(UserStatus userStatus) {
+    private void checkRetry(UserStatus userStatus) {
         try {
             if (userStatus.checkUserStatus(UserStatus.OUT)) {
                 String inputGameStatus = inputView.readGameCommand();

@@ -4,6 +4,7 @@ import bridge.domain.user.MoveType;
 import java.util.List;
 
 public class Bridge {
+
     private final List<String> bridge;
 
     private Bridge(List<String> bridge) {

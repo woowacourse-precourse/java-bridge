@@ -4,6 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.status.UserStatus;
 
 public class User {
+
     private final UserPath userPath = new UserPath();
     private int tryCount = 1;
     private int location = 0;
