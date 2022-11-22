@@ -9,6 +9,7 @@ public class InputView {
     private static int bridgeSize;
     private static String moveDirection;
     private static String gameCommand;
+
     public int readBridgeSize() {
         bridgeSize = Integer.parseInt(Console.readLine());
         validateSizeNumber(bridgeSize);
@@ -21,9 +22,6 @@ public class InputView {
         return moveDirection;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         gameCommand = Console.readLine();
         validateGameCommand(gameCommand);

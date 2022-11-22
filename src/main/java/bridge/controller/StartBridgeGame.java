@@ -21,11 +21,14 @@ public class StartBridgeGame {
     private static String direction;
     private static String possibility;
     private static boolean reStart = true;
+    private static int tryCount = 0;
+    private static String successOrFailure;
 
     public void run(){
         printStartGame();
         makeBridge(inputView.readBridgeSize());
         while(reStart){
+            tryCount++;
             moveBridge();
             if(reStart){
                 checkReStartGame();
@@ -53,6 +56,7 @@ public class StartBridgeGame {
                 return;
             }
         }
+        successOrFailure = "성공";
         reStart = false;
     }
 
@@ -84,6 +88,7 @@ public class StartBridgeGame {
 
     private boolean checkPossibility(String possibility){
         if(possibility.equals("X")){
+            successOrFailure = "실패";
             return true;
         }
         return false;
@@ -96,6 +101,6 @@ public class StartBridgeGame {
     }
 
     private void getPrintResult(){
-
+        outputView.printResult(tryCount, successOrFailure);
     }
 }

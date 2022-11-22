@@ -11,6 +11,9 @@ public class OutputView {
     private static final String PRINT_INPUT_MOVE_DIRECTION_NOTICE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String PRINT_RESTART_GAME_NOTICE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String PRINT_RESULT_NOTICE = "최종 게임 결과";
+    private static final String PRINT_SUCCESS_OR_FAILURE_NOTICE = "게임 성공 여부: ";
+    private static final String PRINT_TRY_COUNT_NOTICE = "총 시도한 횟수: ";
+
     private static final String INIT = "";
     private static final String FIRST_BRACKET = "[";
     private static final String LAST_BRACKET = "]";
@@ -40,11 +43,6 @@ public class OutputView {
         System.out.println(PRINT_RESULT_NOTICE);
     }
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printMap(List<String> checkUpCross, List<String> checkDownCross) {
         initMap();
         addFirstBracket();
@@ -56,16 +54,25 @@ public class OutputView {
         }
         addLastBracket();
         printUpDownMap();
+        printNewLine();
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void printResult(int tryCount, String successOrFailure) {
         printResultNotice();
         printUpDownMap();
+        printNewLine();
+        printSuccessOrFailure(successOrFailure);
+        printTryCount(tryCount);
+    }
+
+    private void printSuccessOrFailure(String successOrFailure){
+        String successOrFailureNotice = PRINT_SUCCESS_OR_FAILURE_NOTICE + successOrFailure;
+        System.out.println(successOrFailureNotice);
+    }
+
+    private void printTryCount(int tryCount){
+        String tryCountNotice = PRINT_TRY_COUNT_NOTICE + tryCount;
+        System.out.println(tryCountNotice);
     }
 
     private void initMap(){
