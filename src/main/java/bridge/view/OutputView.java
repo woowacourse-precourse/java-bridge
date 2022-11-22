@@ -41,8 +41,8 @@ public class OutputView {
         System.out.printf("[ %s ]\n", up);
         System.out.printf("[ %s ]\n\n", down);
 
-        System.out.printf("게임 성공 여부: %s", gameStatus);
-        System.out.printf("총 시도한 횟수: %d", gameCount);
+        System.out.printf("게임 성공 여부: %s\n", gameStatus);
+        System.out.printf("총 시도한 횟수: %d\n", gameCount);
     }
 
     public void reset() {
