@@ -33,6 +33,10 @@ public class InputView {
      */
     public static String readGameCommand() {
         System.out.println(RESTART_GAME);
-        return Console.readLine();
+        try{
+            return Console.readLine();
+        }catch(Exception e){
+            return "Q";
+        }
     }
 }
