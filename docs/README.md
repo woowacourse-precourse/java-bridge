@@ -1,6 +1,6 @@
 # 📈 소감, 고민 사항, 알게 된 사실
 
-[소감, 고민 사항, 알게 된 사실](https://github.com/suheonjoo/Study-Document/tree/master/%EC%9A%B0%ED%85%8C%EC%BD%94/%ED%94%84%EB%A6%AC%EC%BD%94%EC%8A%A4%20%EB%AF%B8%EC%85%984)
+[소감, 고민 사항, 알게 된 사실 링크](https://github.com/suheonjoo/Study-Document/tree/master/%EC%9A%B0%ED%85%8C%EC%BD%94/%ED%94%84%EB%A6%AC%EC%BD%94%EC%8A%A4%20%EB%AF%B8%EC%85%984)
 
 # 📈 기능 목록
 
