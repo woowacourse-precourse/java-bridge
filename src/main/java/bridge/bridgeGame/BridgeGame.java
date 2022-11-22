@@ -8,9 +8,12 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> answerGameBridge;
+    private BridgeGameResult bridgeGameResult;
     private int moveCount = 0;
+    
     public BridgeGame(List<String> answerGameBridge){
         this.answerGameBridge = answerGameBridge;
+        this.bridgeGameResult = new BridgeGameResult();
     }
 
     public int getMoveCount() {
@@ -27,10 +30,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moveDirection) {
+        boolean move = true;
         if (moveDirection.equals("U")) {
+            bridgeGameResult.addResultUp(move);
             moveCount++;
         }
         if (moveDirection.equals("D")) {
+            bridgeGameResult.addResultUp(move);
             moveCount++;
         }
     }
