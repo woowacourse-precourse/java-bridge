@@ -14,14 +14,6 @@ public enum BridgeStatus {
 		this.statusInt = bridgeValue2;
 	}
 
-	public String getBridgeString() {
-		return statusString;
-	}
-
-	public int getBridgeInt() {
-		return statusInt;
-	}
-
 	public static String findMate(int number){
 		for (BridgeStatus status : BridgeStatus.values()){
 			if (status.statusInt == number)

@@ -9,7 +9,6 @@ public class BridgeSize {
 	public BridgeSize(String input) {
 		this.bridgeSize = validateInt(input);
 		validateRange();
-		// todo	예외처리
 	}
 
 	private int validateInt(String input) {
