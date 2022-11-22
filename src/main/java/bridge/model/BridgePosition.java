@@ -23,33 +23,33 @@ public enum BridgePosition {
         this.position = position;
     }
 
-    public static List<String> compare(final String nextCommand, final String command) {
-        if (isCommandUpSign(command)) {
-            return upCommandCompare(nextCommand, command);
+    public static List<String> compare(final String answer, final String command) {
+        if (isUpCommandSign(command)) {
+            return compareUpCommandAndReturnResult(answer, command);
         }
-        return downCommandCompare(nextCommand, command);
+        return compareDownCommandAndReturnResult(answer, command);
     }
 
-    private static boolean isCommandUpSign(final String command) {
+    private static boolean isUpCommandSign(final String command) {
         return Objects.equals(command, BRIDGE_POSITION_UP.getCommand());
     }
 
-    private static List<String> upCommandCompare(final String nextCommand, final String command) {
-        if (isEquals(nextCommand, command)) {
+    private static List<String> compareUpCommandAndReturnResult(final String answer, final String command) {
+        if (isEquals(answer, command)) {
             return List.of(RIGHT_SIGN, BLANK_SIGN);
         }
         return List.of(WRONG_SIGN, BLANK_SIGN);
     }
 
-    private static List<String> downCommandCompare(final String nextCommand, final String command) {
-        if (isEquals(nextCommand, command)) {
+    private static List<String> compareDownCommandAndReturnResult(final String answer, final String command) {
+        if (isEquals(answer, command)) {
             return List.of(BLANK_SIGN, RIGHT_SIGN);
         }
         return List.of(BLANK_SIGN, WRONG_SIGN);
     }
 
-    private static boolean isEquals(final String nextCommand, final String command) {
-        return Objects.equals(nextCommand, command);
+    private static boolean isEquals(final String answer, final String command) {
+        return Objects.equals(answer, command);
     }
 
     public static boolean isSuccess(final List<String> result) {
