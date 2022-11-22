@@ -28,12 +28,12 @@
   - [x] _[예외] R, Q가 아닌 값을 입력한 경우_
 
 ### 출력
-- [ ] **사용자 입력 컨트롤 메세지**
-- [ ] **라운드 결과** (`printMap`)
-- [ ] **게임 최종 결과** (`printResult`)
-  - [ ] 게임 성공 여부
-  - [ ] 게임 시도 횟수
-- [ ] **에러 메시지**
+- [x] **사용자 입력 컨트롤 메세지**
+- [x] **라운드 결과** (`printMap`)
+- [x] **게임 최종 결과** (`printResult`)
+  - [x] 게임 성공 여부 (`printSuccess`)
+  - [x] 게임 시도 횟수 (`printTryCount`)
+- [x] **에러 메시지** (`printErrorMessage`)
 
 ### 로직
 - [x] **게임 시작/재시작/종료** (`BridgeGameController`)
@@ -41,7 +41,7 @@
 - [x] 사용자가 입력한 **칸 이동 가능 여부 판단 및 이동** (`BridgeGame`)
   - [x] 이동 가능 여부 판단 (`BridgeGame-determineMove`)
   - [x] 칸 이동 (`BridgeGame-move`)
-  - [ ] 칸 기록 (`BridgePath`)
+  - [x] 사용자 칸 이동 상태 기록 (`BridgeStatus`)
 - [x] 사용자가 입력한 **재시도 여부 판단 및 재시도** (`BridgeGame`)
   - [x] 재시도 여부 판단 (`BridgeGame-determineRetry`)
   - [x] 재시도 (시도 횟수 카운트) (`BridgeGame-retry`)
