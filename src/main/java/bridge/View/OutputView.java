@@ -43,28 +43,28 @@ public class OutputView {
     private void printStair(BridgeGame bridgeGame, int passedCount, String stair) {
         final List<String> bridgeStates = bridgeGame.getBridgeStates();
         final String selectedBridgeState = bridgeStates.get(passedCount);
-        boolean isPlayerDead = bridgeGame.isPlayerDead();
+        boolean playerDead = bridgeGame.isPlayerDead();
 
         final String result = getPassedStair(bridgeStates, passedCount, stair)
-                + getSelectResult(isPlayerDead, selectedBridgeState, stair);
+                + getSelectResult(playerDead, selectedBridgeState, stair);
 
         System.out.printf(BRIDGE_MAP, result);
     }
 
-    private String getIsSuccess(boolean isPlayerDead) {
-        if (isPlayerDead) {
+    private String getIsSuccess(boolean playerDead) {
+        if (playerDead) {
             return FAIL;
         }
 
         return SUCCESS;
     }
 
-    private String getSelectResult(boolean isPlayerDead, String bridgeState, String stair) {
-        if (!isPlayerDead && bridgeState.equals(stair)) {
+    private String getSelectResult(boolean playerDead, String bridgeState, String stair) {
+        if (!playerDead && bridgeState.equals(stair)) {
             return RIGHT_SELECTION;
         }
 
-        if (isPlayerDead && !bridgeState.equals(stair)) {
+        if (playerDead && !bridgeState.equals(stair)) {
             return WRONG_SELECTION;
         }
 
