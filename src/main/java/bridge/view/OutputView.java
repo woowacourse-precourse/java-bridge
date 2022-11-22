@@ -39,7 +39,7 @@ public class OutputView {
     }
 
     public String blockMapStatus(String bridge, CrossBridgeType crossBridgeType) {
-        if (Integer.parseInt(bridge) != crossBridgeType.getBinaryKey())
+        if (!bridge.equals(crossBridgeType.getStringKey()))
             return " X ";
         return "   ";
 
@@ -47,7 +47,7 @@ public class OutputView {
 
     public String crossMapStatus(String bridge, CrossBridgeType crossBridgeType) {
 
-        if (Integer.parseInt(bridge) == crossBridgeType.getBinaryKey())
+        if (bridge.equals(crossBridgeType.getStringKey()))
             return " O ";
         return "   ";
 
