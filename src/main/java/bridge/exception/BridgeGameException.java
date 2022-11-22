@@ -1,6 +1,7 @@
 package bridge.exception;
 
 public class BridgeGameException {
+
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final String UP_BRIDGE = "U";
@@ -15,12 +16,20 @@ public class BridgeGameException {
 
     public void validateBridgeSize(String readLine) {
         validateType(readLine);
+        validateBlank(readLine);
         validateRange(readLine);
     }
 
     private void validateType(String readLine) {
         if (!readLine.matches(ONLY_CONTAINS_NUMBER_REGEX)) {
             System.out.println(NUMBER_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateBlank(String readLine) {
+        if(readLine.equals("")){
+            System.out.println(RANGE_ERROR);
             throw new IllegalArgumentException();
         }
     }
