@@ -6,7 +6,11 @@ import static bridge.util.Constant.*;
 
 public class Validation {
 
+    // 다리의 길이 입력값이 숫자인지 검증하는 기능
     public static void checkBridgeLengthConsistOfNum(String bridgeLength) {
+        if (bridgeLength.isEmpty() || bridgeLength.isBlank()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_LENGTH_BLANK_OR_EMPTY);
+        }
         if (!bridgeLength.matches(BRIDGE_LENGTH_REGEX)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_LENGTH_CONSIST_OF_NUM);
         }
