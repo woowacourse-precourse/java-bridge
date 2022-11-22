@@ -10,7 +10,7 @@ public class Application {
             BridgeGame bridgeGame = new BridgeGame(player);
             bridgeGame.start();
         }catch (IllegalArgumentException illegalArgumentException){
-
+            System.out.println(illegalArgumentException.getMessage());
         }
     }
 }

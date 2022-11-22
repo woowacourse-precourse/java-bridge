@@ -23,7 +23,26 @@ public class Player {
     }
 
     private int getSize(){
-        return inputView.readBridgeSize();
+        String size = inputView.readBridgeSize();
+        if(!isValidateSize(size)){
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+
+        return Integer.parseInt(size);
+    }
+
+    private boolean isValidateSize(String size) {
+        try{
+            Integer.parseInt(size);
+        }catch (IllegalArgumentException illegalArgumentException){
+            return false;
+        }
+
+        if(Integer.parseInt(size) < 3 || Integer.parseInt(size) > 20)
+            return false;
+
+        return true;
+
     }
 
     public int getNextIdx() {
