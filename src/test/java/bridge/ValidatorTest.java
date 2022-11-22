@@ -22,4 +22,13 @@ public class ValidatorTest {
             Validator.checkRange(number);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Q", "R", "S", "A", "M"})
+    public void 다리를_선택하는_알파벳이_맞는지_확인(String alpha){
+        assertThatThrownBy(()->{
+            Validator.isMoveAlpha(alpha);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
