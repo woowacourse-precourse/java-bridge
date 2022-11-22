@@ -72,8 +72,7 @@ public class BridgeGame {
         return playerCommands.equals(answerBridge);
     }
 
-    @Override
-    public String toString() {
+    public String getBridgeStatusString() {
         StringJoiner upperLine = new StringJoiner(" | ", "[ ", " ]");
         StringJoiner lowerLine = new StringJoiner(" | ", "[ ", " ]");
         for (int i = 0; i < playerCommands.size(); i++) {
