@@ -12,6 +12,15 @@ public class BridgeGameController {
 
     public static void run() {
         start();
+        while (!game.isClear()) {
+            if (move()) {
+                continue;
+            }
+            if (!retry()) {
+                break;
+            }
+        }
+        gameEnd();
     }
 
     private static void start() {
