@@ -46,6 +46,26 @@ class BridgeGameTest {
         assertThat(bridgeGame.getUpBridgeUserAnswerTable()).containsExactly("O", " ");
         assertThat(bridgeGame.getDownBridgeUserAnswerTable()).containsExactly(" ", "X");
     }
-    void retry() {
+
+    @Test
+    void moveTest() {
+        assertThat(bridgeGame.move("U")).isTrue();
+        assertThat(bridgeGame.move("D")).isFalse();
+    }
+
+    @Test
+    void createUserBridge() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getUpBridgeUserAnswerTable()).containsExactly("O", " ");
+        assertThat(bridgeGame.getDownBridgeUserAnswerTable()).containsExactly(" ", "X");
+    }
+
+    @Test
+    void retryTest() {
+        bridgeGame.retry();
+        assertThat(bridgeGame.getUpBridgeUserAnswerTable()).isEmpty();
+        assertThat(bridgeGame.getDownBridgeUserAnswerTable()).isEmpty();
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
     }
 }

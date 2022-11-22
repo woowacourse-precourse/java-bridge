@@ -19,9 +19,6 @@ public class BridgeGame {
         this.downBridgeUserAnswerTable = new ArrayList<>();
         this.tryCount = 1;
     }
-    public List<String> getUserAnswerTable() {
-        return upBridgeUserAnswerTable;
-    }
 
     public int getTryCount() {
         return tryCount;
