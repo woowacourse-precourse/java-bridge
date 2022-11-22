@@ -1,7 +1,4 @@
-package bridge;
-
-import bridge.Model.Bridge;
-import bridge.Model.BridgeJudge;
+package bridge.Model;
 
 import java.util.ArrayList;
 import java.util.List;
