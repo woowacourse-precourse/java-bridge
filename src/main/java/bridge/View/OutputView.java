@@ -31,10 +31,10 @@ public class OutputView {
 
     public static void printResult(final int playCount, final boolean isWinner) {
         if (isWinner) {
-            System.out.println(Message.GAME_STATE.print() + "성공");
+            System.out.println(Message.GAME_STATE.print() + Message.WIN.print());
         }
         if (!isWinner) {
-            System.out.println(Message.GAME_STATE.print() + "실패");
+            System.out.println(Message.GAME_STATE.print() + Message.LOSE.print());
         }
         System.out.println(Message.COUNT.print() + playCount);
     }

@@ -10,7 +10,7 @@ import bridge.View.OutputView;
 public class Game {
 
     private static final int ZERO = 0;
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeGame bridgeGame;
     private BridgeMap bridgeMap;
     private boolean isStart = true;
