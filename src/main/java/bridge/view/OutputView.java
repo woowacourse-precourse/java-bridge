@@ -35,5 +35,8 @@ public class OutputView {
         System.out.println(report);
     }
 
+    public void printGameResult(String gameState){
+        System.out.printf("게임 성공 여부: %s\n", gameState);
+    }
     
 }
