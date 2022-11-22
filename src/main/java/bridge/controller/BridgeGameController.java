@@ -49,37 +49,6 @@ public class BridgeGameController {
 
     }
 
-    public boolean checkRestartOption(Bridge bridge, Game game, String inputGameOption) {
-        if(inputGameOption.equals(RESTART)) {
-            outputView.initView();
-            bridgeGame.retry(bridge, game);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean checkQuitOption(Bridge bridge, Game game, String inputGameOption) {
-        if(inputGameOption.equals(QUIT)) {
-            outputView.printResultMap();
-            return true;
-        }
-        return false;
-    }
-
-    public int askBridgeLengthInput() {
-        outputView.printInputBridgeLengthMessage();
-        return inputView.readBridgeSize();
-    }
-
-    public String askHowUserMoves() {
-        outputView.printInputUserMoveMessage();
-        return inputView.readMoving();
-    }
-
-    public String askGameOptionCommand() {
-        outputView.printInputGameRestartOptionMessage();
-        return inputView.readGameCommand();
-    }
 
 
 
