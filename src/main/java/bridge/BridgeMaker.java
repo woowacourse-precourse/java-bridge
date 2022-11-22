@@ -30,8 +30,9 @@ public class BridgeMaker {
     }
 
     private String findSuccess(int number) {
-        if (number == 1)
+        if (number == 1) {
             return "U";
+        }
         return "D";
     }
 }

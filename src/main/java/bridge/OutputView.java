@@ -25,7 +25,7 @@ public class OutputView {
     public static void printMap(List<String> choice, List<String> bridge) {
         printMapByLine(choice, bridge, UP);
         printMapByLine(choice, bridge, DOWN);
-
+        System.out.println();
     }
 
     private static void printMapByLine(List<String> choice, List<String> bridge, String direction) {
@@ -35,8 +35,7 @@ public class OutputView {
         }
         System.out.print(BRIDGE_START);
         System.out.print(line.stream().collect(Collectors.joining(JOIN_OPERATOR)));
-        System.out.print(BRIDGE_END);
-        System.out.println();
+        System.out.println(BRIDGE_END);
     }
 
     private static String findFactor(String movement, String answer, String direction){

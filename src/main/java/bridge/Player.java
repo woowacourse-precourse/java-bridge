@@ -50,9 +50,6 @@ public class Player {
             choice = new ArrayList<String>();
             return gameCommand;
         }
-        if (gameCommand.equals(QUIT)) {
-            complete();
-        }
         return gameCommand;
     }
 

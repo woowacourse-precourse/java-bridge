@@ -32,6 +32,7 @@ public class BridgeGame {
         } while (!player.isCompleted() && player.isSuccess());
         if (!player.isSuccess()) {
             retry();
+            return;
         }
         if (player.isSuccess()) {
             complete();
