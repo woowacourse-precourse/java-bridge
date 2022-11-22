@@ -73,8 +73,10 @@ class BridgeDTOTest {
         assertThat(bridgeDTO.getBridge()).isEqualTo(bridge);
     }
 
+    @DisplayName("상단 다리 getter가 잘 되었는지 test")
     @Test
     void getUpCase() {
+        assertThat(bridgeDTO.getUpCase()).containsExactly(BridgeCase.NOTHING, BridgeCase.NOTHING, BridgeCase.NOTHING);
     }
 
     @Test
