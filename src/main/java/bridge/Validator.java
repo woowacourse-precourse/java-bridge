@@ -5,6 +5,8 @@ import bridge.utils.Stairs;
 public class Validator {
     public static final int MINIMUM_SIZE = 3;
     public static final int MAXIMUM_SIZE = 20;
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
 
     public static void validateSizeRange(int size) {
         if (size < MINIMUM_SIZE || size > MAXIMUM_SIZE) {
@@ -21,10 +23,18 @@ public class Validator {
         return Integer.parseInt(length);
     }
 
-    public static String validateIsCorrectValue(String value) {
+    public static String validateIsMovingValue(String value) {
         if (!value.equals(Stairs.UP_STAIRS.getAbbreviation()) && !value.equals(Stairs.DOWN_STAIRS.getAbbreviation())) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U(위 칸), D(아래 칸) 둘 중 하나를 입력하셔야 합니다.");
+            throw new IllegalArgumentException("[ERROR] U(위 칸), D(아래 칸) 둘 중 하나를 입력하셔야 합니다.");
         }
         return value;
     }
+
+    public static String validateIsRetryValue(String value) {
+        if (!value.equals(RETRY) && !value.equals(QUIT)) {
+            throw new IllegalArgumentException("[ERROR] R(재시작), Q(종료) 둘 중 하나를 입력하셔야 합니다.");
+        }
+        return value;
+    }
+
 }
