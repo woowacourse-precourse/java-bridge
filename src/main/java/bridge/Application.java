@@ -1,8 +1,15 @@
 package bridge;
 
-public class Application {
+import bridge.Constant.Constant;
+import bridge.Controller.GameController;
 
+public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        System.out.println(Constant.Start_Game);
+        try {
+            GameController.setGame();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
