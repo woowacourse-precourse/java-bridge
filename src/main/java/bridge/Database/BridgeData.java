@@ -2,23 +2,24 @@ package bridge.Database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BridgeData {
 
     private List<String> bridge;
-    private List<String> bridgeDesignByUser = new ArrayList<>();
+    private List<String> bridgeByUser = new ArrayList<>();
     private int totalAttempt;
 
     public void setBridge(List<String> bridge) {
         this.bridge = bridge;
     }
 
-    public List<String> getBridge() {
+    public List<String> copyBridge() {
         return List.copyOf(this.bridge);
     }
 
-    public List<String> getBridgeDesignByUser() {
-        return List.copyOf(this.bridgeDesignByUser);
+    public List<String> copyBridgeByUser() {
+        return List.copyOf(this.bridgeByUser);
     }
 
     public int getTotalAttempt() {
@@ -34,14 +35,26 @@ public class BridgeData {
     }
 
     public void initializeBridgeDesignByUser() {
-        this.bridgeDesignByUser = new ArrayList<>();
+        this.bridgeByUser = new ArrayList<>();
     }
 
     public void addBridgeDesignByUser(String nextStep) {
-        this.bridgeDesignByUser.add(nextStep);
+        this.bridgeByUser.add(nextStep);
     }
 
     public void markFailedPointOnBridgeDesignByUser(int indexOfFailedPoint) {
-        this.bridgeDesignByUser.set(indexOfFailedPoint, "X");
+        this.bridgeByUser.set(indexOfFailedPoint, "X");
+    }
+
+    public boolean isBridgeAtIndexImpossibleZone(int index, String nextStep) {
+        return !Objects.equals(this.bridge.get(index), nextStep);
+    }
+
+    public int returnBridgeByUserSize() {
+        return this.bridgeByUser.size();
+    }
+
+    public boolean isBridgeDesignByUserCompleted() {
+        return Objects.equals(bridge, bridgeByUser);
     }
 }

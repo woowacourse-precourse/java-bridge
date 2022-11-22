@@ -81,14 +81,17 @@ public class OutputView {
         System.out.println(FrontMan.TOTAL_NUMBER_OF_ATTEMPT + totalAttempt);
     }
 
-    public void printGameStatus(List<String> bridgeDesignByUser, List<String> bridge,
-            GameStatus gameStatus) {
-        if (gameStatus == GameStatus.PROGRESSING || gameStatus == GameStatus.SUCCEED) {
-            printMap(bridgeDesignByUser, bridge);
+    public void handleOutput(List<String> bridgeByUser, List<String> bridge, GameStatus status) {
+        if (status == GameStatus.PROGRESSING || status == GameStatus.SUCCEED) {
+            printMap(bridgeByUser, bridge);
         }
-        if (gameStatus == GameStatus.QUIT || gameStatus == GameStatus.SUCCEED) {
+        if (status == GameStatus.QUIT || status == GameStatus.SUCCEED) {
             System.out.println(FrontMan.FINAL_GAME_RESULT);
-            printMap(bridgeDesignByUser, bridge);
+            printMap(bridgeByUser, bridge);
         }
+    }
+
+    public OutputView() {
+        System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
     }
 }
