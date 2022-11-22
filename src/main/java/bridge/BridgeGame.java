@@ -4,37 +4,54 @@ import java.util.List;
 import java.util.Objects;
 
 public class BridgeGame {
-    public boolean isInProgress = true;
-    public boolean inputResult = true;
-    public String isCleared = "실패";
+    public boolean isInProgress;
+    public boolean inputResult;
+    public String isCleared;
     private List<String> bridge;
     private int size;
-    private int stage = 0;
-    private int attempts = 1;
+    public int stage;
+    private int attempts;
 
 
     public void start(int size) {
-        if (size < 3 || size > 20) throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        if (size < 3 || size > 20)
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.isInProgress = true;
         this.size = size;
-        this.bridge = bridgeMaker.makeBridge(this.size);
+        this.stage = 1;
+        this.attempts = 1;
+        this.bridge = bridgeMaker.makeBridge(size);
+        this.isCleared = "실패";
+        this.inputResult = true;
     }
 
     public void move(String input) {
+        if (!Objects.equals(input, "U") && !Objects.equals(input, "D"))
+            throw new IllegalArgumentException("[ERROR] 잘못된 값입니다.");
+        if (size == stage) {
+            this.isCleared = "성공";
+            this.isInProgress = false;
+            this.inputResult = false;
+            return;
+        }
         if (!Objects.equals(input, bridge.get(stage))) {
             inputResult = false;
-        }
-        if (size == stage) {
-            isCleared = "성공";
-            isInProgress = false;
         }
         stage++;
     }
 
-    public void retry() {
-        this.inputResult = true;
-        this.stage = 0;
-        this.attempts++;
+    public void retry(String input) {
+        if (!Objects.equals(input, "R") && !Objects.equals(input, "Q"))
+            throw new IllegalArgumentException("[ERROR] 잘못된 값입니다.");
+        if (Objects.equals(input, "R")) {
+            this.inputResult = true;
+            this.stage = 1;
+            this.attempts++;
+        }
+        if (Objects.equals(input, "Q")) {
+            this.result();
+        }
     }
 
     public void result() {

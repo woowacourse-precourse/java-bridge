@@ -3,26 +3,40 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public void readBridgeSize() {
+    public void readBridgeSize(BridgeGame bridgeGame) {
         try {
             System.out.println("다리의 길이를 입력해주세요");
             int size = Integer.parseInt(Console.readLine());
-            BridgeGame bridgeGame = new BridgeGame();
             bridgeGame.start(size);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            this.readBridgeSize();
+            this.readBridgeSize(bridgeGame);
         }
     }
 
-    public String readMoving() {
-        return null;
+    public void readMoving(BridgeGame bridgeGame) {
+        try {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String input = Console.readLine();
+            bridgeGame.move(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            this.readMoving(bridgeGame);
+        }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+    public void readGameCommand(BridgeGame bridgeGame) {
+        try {
+            if (!bridgeGame.isInProgress) {
+                bridgeGame.result();
+                return;
+            }
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            String input = Console.readLine();
+            bridgeGame.retry(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            this.readGameCommand(bridgeGame);
+        }
     }
 }

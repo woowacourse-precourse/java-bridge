@@ -2,10 +2,14 @@ package bridge;
 
 import org.junit.jupiter.api.Test;
 
+
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+
 public class InputViewTest {
     @Test
-    void readBridgeSizeTest(){
-        InputView inputView = new InputView();
-        inputView.readBridgeSize();
+    void readBridgeSizeTest() {
+        assertSimpleTest(() -> {
+            InputView inputView = new InputView();
+        });
     }
 }

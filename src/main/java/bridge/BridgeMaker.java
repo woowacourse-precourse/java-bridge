@@ -13,7 +13,7 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> Bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size ; i++) {
             int test = bridgeNumberGenerator.generate();
             if (test == 0) Bridge.add("D");
             if (test == 1) Bridge.add("U");
