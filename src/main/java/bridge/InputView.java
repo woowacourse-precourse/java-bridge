@@ -6,19 +6,19 @@ public class InputView {
 
     public static int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        int Size = 0;
+        int size = 0;
         boolean Try = true;
-        System.out.println(Constant.Input_Length);
+        System.out.println(Constant.INPUT_LENGTH);
         while(Try){
             try{
-                Size = Integer.parseInt(bridgeSize);
+                size = Integer.parseInt(bridgeSize);
                 Try = false;
             } catch(NumberFormatException e){
                 throw new IllegalArgumentException(Constant.Length_Restrict());
             }
         }
-        System.out.println(Size);
-        return Size;
+        System.out.println(size);
+        return size;
     }
 
     public static void checkLengthValidate(String input) {
@@ -36,20 +36,20 @@ public class InputView {
     }
 
     public static void checkMoveValidate(String input) {
-        if(!(input.equals(Constant.Up) || input.equals(Constant.Down)))
+        if(!(input.equals(Constant.UP) || input.equals(Constant.DOWN)))
             throw new IllegalArgumentException(Constant.Move_Restrict());
     }
 
     public static String readGameCommand() {
-        String Replay = Console.readLine();
-        checkRetryValidate(Replay);
+        String replay = Console.readLine();
+        checkRetryValidate(replay);
         System.out.println(Constant.Select_Replay());
-        System.out.printf(Replay);
-        return Replay;
+        System.out.printf(replay);
+        return replay;
     }
 
     public static void checkRetryValidate(String input) {
-        if(!(input.equals(Constant.Restart) || input.equals(Constant.Quit)))
+        if(!(input.equals(Constant.RESTART) || input.equals(Constant.QUIT)))
             throw new IllegalArgumentException(Constant.Replay_Restrict());
     }
 }
