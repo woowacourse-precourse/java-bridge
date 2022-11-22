@@ -1,9 +1,9 @@
 package bridge.controller;
 
 import bridge.domain.status.GameStatus;
-import bridge.domain.user.UserStatus;
+import bridge.domain.status.UserStatus;
 import bridge.exception.ExceptionMessage;
-import bridge.service.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -27,18 +27,25 @@ public class BridgeController {
 
     public void run() {
         init();
-        GameStatus gameStatus = GameStatus.PROCEED;
 
-        while (gameStatus == GameStatus.PROCEED) {
+        while (bridgeGame.checkGameSatus(GameStatus.PROCEED)) {
             play();
         }
-
     }
 
     public void play() {
         String moveInput = inputView.readMoving();
         UserStatus userStatus = bridgeGame.move(moveInput);
         outputView.printMap(bridgeGame.getUserPathLog());
+        checkRetry(userStatus);
+    }
+
+    private void checkRetry(UserStatus userStatus) {
+        if (userStatus.checkUserStatus(UserStatus.OUT)) {
+            String inputGameStatus = inputView.readGameCommand();
+            GameStatus gameStatus = GameStatus.convertGameStatus(inputGameStatus);
+            bridgeGame.changeGameStatus(gameStatus);
+        }
     }
 
     // 검증 메서드
