@@ -71,13 +71,18 @@ public class OutputView {
     private Map<Moving, List<String>> generateMap(BridgeGame bridgeGame) {
         int round = bridgeGame.getRound();
         List<String> bridge = bridgeGame.getBridge();
-        Map<Moving, List<String>> map = new HashMap<>();
-        map.put(UP, new ArrayList<>());
-        map.put(DOWN, new ArrayList<>());
+        Map<Moving, List<String>> map = initializeMap();
         for (int i = 0; i < round - 1; i++) {
             cross(map, Moving.of(bridge.get(i)), true);
         }
         cross(map, Moving.of(bridge.get(round - 1)), bridgeGame.isSuccess());
+        return map;
+    }
+
+    private Map<Moving, List<String>> initializeMap() {
+        Map<Moving, List<String>> map = new HashMap<>();
+        map.put(UP, new ArrayList<>());
+        map.put(DOWN, new ArrayList<>());
         return map;
     }
 
