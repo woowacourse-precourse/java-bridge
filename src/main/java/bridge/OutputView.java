@@ -18,15 +18,7 @@ public class OutputView {
     }
 
     private void printBridge(List<String> Bridge) {
-        System.out.print("[");
-        for (int i = 0; i < Bridge.size(); i++) {
-            String userSelect = Bridge.get(i);
-            if (i > 0) {
-                System.out.print("|");
-            }
-            System.out.print(" " + userSelect + " ");
-        }
-        System.out.println("]");
+        System.out.println("[ " + String.join(" | ", Bridge) + " ]");
     }
 
 
