@@ -18,8 +18,16 @@ public class GameController {
         outputView = new OutputView();
         success = FAILURE.getMessage();
     }
-    
+
     public void start() {
+        outputView.printStartOfGame();
+
+        proceed();
+
+        outputView.printFinalMessage(success, attempts);
+    }
+
+    private void proceed() {
 
     }
 }
