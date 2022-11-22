@@ -2,6 +2,7 @@ package bridge.Controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.Constants;
 import bridge.Domain.Bridge;
 import bridge.Domain.Player;
 import bridge.Domain.Result;
@@ -46,7 +47,7 @@ public class BridgeGame {
         move();
 
         if(player.isSuccess(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
-            result.setIsSuccess("성공");
+            result.setIsSuccess(Constants.SUCCESS);
             return;
         }
 

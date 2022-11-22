@@ -11,13 +11,17 @@ public class Constants {
     // 맵 표현 기호
     public static final String CORRECT = "O";
     public static final String WRONG  = "X";
-    public static final String BRIDGE_START = "[";
-    public static final String BRIDGE_END = "]";
-    public static final String BRIDGE_DIVIDING_LINE = "|";
+    public static final String BLANK = " ";
+    public static final String BRIDGE_START = "[ ";
+    public static final String BRIDGE_END = " ]";
+    public static final String BRIDGE_DIVIDING_LINE = " | ";
 
     // 재시작 여부 입력 기호
     public static final String RESTART = "R";
     public static final String QUIT = "Q";
+
+    public static final String SUCCESS = "성공";
+    public static final String FAIL = "실패";
 
     // 게임 안내 메시지
     public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
