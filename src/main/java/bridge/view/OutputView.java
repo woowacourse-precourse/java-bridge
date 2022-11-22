@@ -1,14 +1,15 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.Path;
 import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String UP_PATH = "U";
-    private static final String DOWN_PATH = "D";
+    private static final String UP_PATH = Path.U.name();
+    private static final String DOWN_PATH = Path.D.name();
 
     public void printGameMessage(String message) {
         System.out.println(message);
