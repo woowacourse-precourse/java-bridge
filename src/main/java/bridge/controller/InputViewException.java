@@ -69,4 +69,8 @@ public class InputViewException {
         error04Check(input);
     }
 
+    public void readGameCommandException(String input) {
+        error01Check(input);
+        error05Check(input);
+    }
 }
