@@ -46,7 +46,7 @@ public class BridgeRepository {
     }
 
     public List<String> findBridgeMap() {
-        return bridges.findBridgeMap(position);
+        return bridges.findBridgeMapByPosition(position);
     }
 
 }

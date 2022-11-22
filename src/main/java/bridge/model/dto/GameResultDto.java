@@ -12,7 +12,6 @@ public class GameResultDto {
         this.retryCount = retryCount;
     }
 
-
     public SuccessOrFail getSuccessOrFail() {
         return successOrFail;
     }

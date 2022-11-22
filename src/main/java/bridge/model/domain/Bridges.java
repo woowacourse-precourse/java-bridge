@@ -15,7 +15,7 @@ public class Bridges {
         return bridges.get(position);
     }
 
-    public List<String> findBridgeMap(int bridgeLastPosition) {
+    public List<String> findBridgeMapByPosition(int bridgeLastPosition) {
         return bridges.subList(Constant.INITIAL_INDEX, bridgeLastPosition + Constant.INDEX_ZEROING_NUMBER);
     }
 
