@@ -20,7 +20,6 @@ public class GamePlayer {
     public void play() {
         this.bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         gameCount++;
-        System.out.println(this.bridge);
         bridgeStatus.initBridgeStatus();
         crossingBridge();
     }
