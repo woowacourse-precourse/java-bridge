@@ -26,7 +26,7 @@ public class BridgeProgram {
 
     boolean isRunning = true;
     while (GameStatus.isRunning) {
-      Mark mark = bridge.matchRoute(getInputDirection(), movingCount++);
+      Mark mark = bridge.matchRoute(getInputDirection(), bridgeGame.countMoving());
       List<List<String>> route = bridgeGame.move(mark);
 
       output.printMap(route);
