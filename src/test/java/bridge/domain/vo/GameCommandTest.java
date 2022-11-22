@@ -14,7 +14,7 @@ class GameCommandTest {
     @ParameterizedTest(name = "[{index}] input {0} ")
     @ValueSource(strings = {"R", "Q"})
     void Normal_Test(String input) {
-        Assertions.assertThat(GameCommand.from(input).toString()).isEqualTo(input);
+        Assertions.assertThat(GameCommand.from(input).equals(input)).isTrue();
     }
 
     @DisplayName("Unvalidated GameCommand")

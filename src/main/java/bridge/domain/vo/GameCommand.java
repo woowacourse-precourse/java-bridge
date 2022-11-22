@@ -25,11 +25,6 @@ public class GameCommand {
         }
     }
 
-    @Override
-    public String toString() {
-        return input;
-    }
-
     public boolean equals(String input) {
         return this.input.equals(input);
     }
