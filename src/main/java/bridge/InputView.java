@@ -33,7 +33,7 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         try {
             String moving = Console.readLine();
-            if (moving != "U" && moving != "D") {
+            if (!moving.equals("U") && !moving.equals("D")) {
                 throw new IllegalArgumentException(MOVING_ERROR.getMessage());
             }
             return moving;
