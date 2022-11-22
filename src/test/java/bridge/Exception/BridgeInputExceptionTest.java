@@ -18,5 +18,13 @@ class BridgeInputExceptionTest {
         assertThatThrownBy(() -> bridgeInputException.validBridgeRetry(retry))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"RQ", "RR", "R ", "Q "})
+    @DisplayName("재시작/종료 여부가 두글자 이상의 문자일 때 예외 처리")
+    void validInputSizeRetry(String retry) {
+        assertThatThrownBy(() -> bridgeInputException.validBridgeRetry(retry))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
