@@ -18,17 +18,22 @@ public class BridgeGameController {
     }
 
     private MapDTO startBridgeGame(BridgeGame bridgeGame) {
-        MapDTO map;
+        MapDTO map = new MapDTO();
         while(true){
-            String selectedSpace = selectMoving();
-            boolean movable = bridgeGame.checkMovable(selectedSpace);
-            map = bridgeGame.transferProgressMap(movable, selectedSpace);
-            outputView.printMap(map);
-            if (checkEndOrContinue(bridgeGame, movable)) {
-                break;
-            }
+            if (startGameforCheck(bridgeGame, map)) break;
         }
         return map;
+    }
+
+    private boolean startGameforCheck(BridgeGame bridgeGame, MapDTO map) {
+        String selectedSpace = selectMoving();
+        boolean movable = bridgeGame.checkMovable(selectedSpace);
+        bridgeGame.transferProgressMap(map, movable, selectedSpace);
+        outputView.printMap(map);
+        if (checkEndOrContinue(bridgeGame, movable)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean checkEndOrContinue(BridgeGame bridgeGame, boolean movable) {
