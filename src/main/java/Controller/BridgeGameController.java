@@ -3,8 +3,8 @@ package Controller;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.InputView;
-import bridge.OutputView;
+import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
