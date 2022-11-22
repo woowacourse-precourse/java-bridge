@@ -10,14 +10,10 @@ import static bridge.Constant.*;
 public class InputView {
 
     public String readBridgeSize() {
-        try {
-            System.out.println(INPUT_BRIDGE_LENGTH);
-            String bridgeSize = Console.readLine();
-            validateRange(bridgeSize);
-            return bridgeSize;
-        }catch (IllegalArgumentException e){
-            throw new IllegalArgumentException(INPUT_BRIDGE_SIZE_ERROR);
-        }
+        System.out.println(INPUT_BRIDGE_LENGTH);
+        String bridgeSize = Console.readLine();
+        validateRange(bridgeSize);
+        return bridgeSize;
     }
 
     private void validateRange(String bridgeSize) {
@@ -34,7 +30,7 @@ public class InputView {
         System.out.println(CHOOSE_MOVE);
         String moving = Console.readLine();
         validateUorD(moving);
-        return Console.readLine();
+        return moving;
     }
 
     private void validateUorD(String moving){
@@ -49,7 +45,7 @@ public class InputView {
         System.out.println(RETRY_OR_QUIT);
         String command = Console.readLine();
         validateRestart(command);
-        return Console.readLine();
+        return command;
     }
     private void validateRestart(String command){
         if(!command.equals("R") && !command.equals("Q")){

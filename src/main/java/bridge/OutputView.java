@@ -11,14 +11,12 @@ import static bridge.Constant.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    public static List<String> bridgeMain = new ArrayList<>();
-
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    //@Deprecated
+    @Deprecated
     public void printAnswer(List<String> map) {
         StringBuilder AnswerUp = new StringBuilder();
         StringBuilder AnswerDown = new StringBuilder();
@@ -40,32 +38,62 @@ public class OutputView {
         List<String> printDown = new ArrayList<>();
 
         for (int i = 0; i < map.size(); i++) {
-            if((Objects.equals(bridge.get(i), map.get(i))) && (Objects.equals(map.get(i), "U"))){
+            if ((Objects.equals(bridge.get(i), map.get(i))) && (Objects.equals(map.get(i), "U"))) {
                 printUp.add("O");
                 printDown.add(" ");
             }
-            if((!Objects.equals(bridge.get(i), map.get(i))) && (Objects.equals(map.get(i), "U"))){
+            if ((!Objects.equals(bridge.get(i), map.get(i))) && (Objects.equals(map.get(i), "U"))) {
                 printUp.add("X");
                 printDown.add(" ");
             }
-            if((Objects.equals(bridge.get(i), map.get(i))) && (Objects.equals(map.get(i), "D"))){
+            if ((Objects.equals(bridge.get(i), map.get(i))) && (Objects.equals(map.get(i), "D"))) {
                 printUp.add(" ");
                 printDown.add("O");
             }
-            if((!Objects.equals(bridge.get(i), map.get(i))) && (Objects.equals(map.get(i), "D"))){
+            if ((!Objects.equals(bridge.get(i), map.get(i))) && (Objects.equals(map.get(i), "D"))) {
                 printUp.add(" ");
                 printDown.add("X");
             }
         }
-        return printAsBridge(printUp,printDown);
+        return printAsBridge(printUp, printDown);
     }
 
-    public static String[] printAsBridge(List<String> printUp, List<String> printDown){
+    public static void compareBridge(int loop, List<String> bridge, List<String> map) {
+        if ((Objects.equals(bridge.get(loop), map.get(loop))) && (Objects.equals(map.get(loop), "U"))) {
+            putUpO();
+        }
+        if ((!Objects.equals(bridge.get(loop), map.get(loop))) && (Objects.equals(map.get(loop), "U"))) {
+            putUpX();
+        }
+        if ((Objects.equals(bridge.get(loop), map.get(loop))) && (Objects.equals(map.get(loop), "D"))) {
+            putDownO();
+        }
+        if ((!Objects.equals(bridge.get(loop), map.get(loop))) && (Objects.equals(map.get(loop), "D"))) {
+            putDownX();
+        }
+    }
+    public static void putUpO(){
+
+    }
+
+    public static void putUpX(){
+
+    }
+
+    public static void putDownO(){
+
+    }
+
+    public static void putDownX(){
+
+    }
+
+    public static String[] printAsBridge(List<String> printUp, List<String> printDown) {
         String printUptoString = String.join(" | ", printUp);
         printUptoString = "[ " + printUptoString + " ]";
         String printDowntoString = String.join(" | ", printDown);
         printDowntoString = "[ " + printDowntoString + " ]";
-        return new String[] {printDowntoString,printUptoString};
+        return new String[]{printDowntoString, printUptoString};
     }
 
     /**
