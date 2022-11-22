@@ -100,6 +100,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_UD이외의_값_입력() {
+        assertSimpleTest(() -> {
+            runException("3", "R");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_RQ이외의_값_입력() {
+        assertSimpleTest(() -> {
+            runException("3", "U", "/");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
