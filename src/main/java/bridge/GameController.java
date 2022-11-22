@@ -65,9 +65,17 @@ public class GameController {
     outputView.printGameStartMessage();
     outputView.printAskBridgeSizeMessage();
     Bridge bridge = makeBridge(getBridgeSize());
-    move(bridge);
+    MoveResult moveResult = move(bridge);
+    String status = moveResult.getGameResult();
+    if (status.equals(FAIL)) {
+      isRestart(bridge, moveResult);
+    }
   }
 
 
+  public void isRestart(Bridge bridge, MoveResult moveResult) {
+    outputView.printAskRestartMessage();
+    inputView.readGameCommand();
+  }
 
 }
