@@ -5,4 +5,9 @@ public class InputValid {
 
         return true;
     }
+
+    public boolean checkChoice(String test) {
+
+        return true;
+    }
 }
