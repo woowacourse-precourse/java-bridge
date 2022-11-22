@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Model;
 
 import bridge.BridgeNumberGenerator;
 import java.util.List;
