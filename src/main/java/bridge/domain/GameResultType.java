@@ -3,10 +3,10 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum GameResultType {
-    WIN_DOWN(true,true,"   "," O ","성공"),
-    WIN_UP(true,false," O ","   ","성공"),
-    LOSE_DOWN(false,true,"   "," X ","실패"),
-    LOSE_UP(false,false," X ","   ","실패");
+    WIN_DOWN(true,true,"   "," O ","성공\n"),
+    WIN_UP(true,false," O ","   ","성공\n"),
+    LOSE_DOWN(false,true,"   "," X ","실패\n"),
+    LOSE_UP(false,false," X ","   ","실패\n");
     private final boolean winLose;
     private final boolean upDown;
     private final String upString;
