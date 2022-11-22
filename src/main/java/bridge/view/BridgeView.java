@@ -21,6 +21,24 @@ public class BridgeView {
     this.crossResult = crossResult;
   }
 
+  public void printUpper() {
+    System.out.print(START_BRIDGE);
+    for (Cross cross: crossResult) {
+      System.out.print(eachCrossUpper(cross));
+      System.out.print(needSeparator(cross));
+    }
+    System.out.println(END_BRIDGE);
+  }
+
+  public void printLower() {
+    System.out.print(START_BRIDGE);
+    for (Cross cross: crossResult) {
+      System.out.print(eachCrossLower(cross));
+      System.out.print(needSeparator(cross));
+    }
+    System.out.println(END_BRIDGE);
+  }
+
   public String eachCrossUpper(Cross cross) {
     if (cross.getDirection() == Direction.U) {
       if (cross.isCanCross()) return CORRECT;
