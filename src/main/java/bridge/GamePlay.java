@@ -88,4 +88,12 @@ public class GamePlay {
         String move = createMove();
         return canMove(move, bridge, playerMap);
     }
+
+    public boolean canMove(String move, List<String> bridge, PlayerMap playerMap) {
+        boolean canMove = bridgeGame.canMove(move, bridge);
+        bridgeGame.move(move, bridge, playerMap);
+        outputView.printMap(playerMap, bridgeGame.getPosition());
+
+        return canMove;
+    }
 }
