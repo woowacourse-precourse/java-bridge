@@ -1,6 +1,7 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.domain.Step;
+import bridge.service.BridgeGame;
 import bridge.domain.GameResult;
 import bridge.domain.GameStatus;
 import bridge.dto.GameResultDto;
@@ -21,7 +22,7 @@ public class GameController {
     }
 
     private void run() {
-        BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
+        BridgeGame bridgeGame = new BridgeGame(getBridgeSize());
         GameResult gameResult;
         do {
             bridgeGame.retry();
@@ -30,13 +31,21 @@ public class GameController {
         outputView.printResult(new GameResultDto(gameResult));
     }
 
+    private int getBridgeSize() {
+        return inputView.readBridgeSize();
+    }
+
     private GameResult play(BridgeGame bridgeGame) {
         GameResult gameResult;
         do {
-            gameResult = bridgeGame.move(inputView.readMoving());
+            gameResult = bridgeGame.move(getStep());
             outputView.printMap(new GameResultDto(gameResult));
         } while (isDoing(gameResult.getGameStatus())); // break condition : success, fail
         return gameResult;
+    }
+
+    private Step getStep() {
+        return inputView.readMoving();
     }
 
     private boolean isDoing(GameStatus gameStatus) {

@@ -16,7 +16,7 @@ public class OutputView {
     private static final String END_BRACKET = "]";
     private static final String BAR = "|";
 
-    private static final String MSG_GAME_START = "다리 건너기 게임을 시작합니다.";
+    private static final String MSG_GAME_START = "다리 건너기 게임을 시작합니다.%n%n";
     private static final String MSG_FINAL_GAME_RESULT = "최종 게임 결과";
     private static final String MSG_GAME_SUCCESS_RESULT = "게임 성공 여부: %s%n";
     private static final String MSG_TOTAL_TRY_COUNT = "총 시도한 횟수: %d%n";
@@ -27,7 +27,7 @@ public class OutputView {
     private StringBuilder downRow;
 
     public void printGameStart() {
-        System.out.println(MSG_GAME_START);
+        System.out.printf(MSG_GAME_START);
     }
 
     /**
@@ -38,7 +38,6 @@ public class OutputView {
     public void printResult(GameResultDto gameResultDto) {
         System.out.println(MSG_FINAL_GAME_RESULT);
         printMap(gameResultDto);
-        System.out.println();
         System.out.printf(MSG_GAME_SUCCESS_RESULT, gameResultDto.getGameStatus().getGameStatusMessage());
         System.out.printf(MSG_TOTAL_TRY_COUNT, gameResultDto.getGameCount());
     }
@@ -52,7 +51,7 @@ public class OutputView {
         initStringBuilder();
         printGame(gameResultDto);
         concat();
-        System.out.println(upRow.toString());
+        System.out.print(upRow.toString());
     }
 
     private void initStringBuilder() {
@@ -109,6 +108,8 @@ public class OutputView {
     private void concat() {
         upRow.append(System.lineSeparator());
         upRow.append(downRow);
+        upRow.append(System.lineSeparator());
+        upRow.append(System.lineSeparator());
     }
 
     public void printErrorMessage(Exception e) {

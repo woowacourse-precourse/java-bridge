@@ -9,7 +9,6 @@ public enum Step {
 
     private static final String ERROR_STEP = "방향은 %s와 %s 만 가능합니다.%n";
     private final String userInputDirection;
-
     private final Integer systemInputDirection;
 
     private Step(String userInputDirection, Integer systemInputDirection) {
