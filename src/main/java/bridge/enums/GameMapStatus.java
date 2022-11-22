@@ -9,7 +9,7 @@ public enum GameMapStatus {
     END_MAP(" ]"),
     NEXT_LINE("\n");
 
-    private String symbol;
+    private final String symbol;
 
     GameMapStatus(String symbol) {
         this.symbol = symbol;
