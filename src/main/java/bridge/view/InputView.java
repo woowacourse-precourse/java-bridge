@@ -9,8 +9,8 @@ import java.util.NoSuchElementException;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public static final List<String> UPPER_OR_DOWNS = List.of("U","u","D","d");
-    public static final List<String> RETRY_OR_QUITS = List.of("R","r","Q","q");
+    public static final List<String> UPPER_OR_DOWNS = List.of("U","D");
+    public static final List<String> RETRY_OR_QUITS = List.of("R","Q");
 
     /**
      * 다리의 길이를 입력받는다.
@@ -36,7 +36,7 @@ public class InputView {
 
             throwError(UPPER_OR_DOWNS, s, Constants.ErrorMessages.UPPER_OR_DOWN);
 
-            return s.toUpperCase();
+            return s;
         } catch (NoSuchElementException ne) {
             throw new IllegalArgumentException(Constants.ErrorMessages.UPPER_OR_DOWN_NO_INPUT);
         }
@@ -51,7 +51,7 @@ public class InputView {
 
             throwError(RETRY_OR_QUITS, s, Constants.ErrorMessages.RETRY_OR_NOT);
 
-            return s.toUpperCase();
+            return s;
         } catch (NoSuchElementException ne) {
             throw new IllegalArgumentException(Constants.ErrorMessages.RETRY_OR_NOT_NO_INPUT);
         }

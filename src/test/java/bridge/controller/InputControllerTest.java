@@ -70,7 +70,7 @@ class InputControllerTest {
 
     @DisplayName("setMoveChoice 옳은 경우 테스트.")
     @ParameterizedTest
-    @ValueSource(strings = {"U","u","D","d"})
+    @ValueSource(strings = {"U","D"})
     public void setMoveChoice(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         String i = inputController.setMoveChoice();
@@ -90,7 +90,7 @@ class InputControllerTest {
 
     @DisplayName("setGameCommand 옳은 경우 테스트.")
     @ParameterizedTest
-    @ValueSource(strings = {"R","r","Q","q"})
+    @ValueSource(strings = {"R","Q"})
     public void setGameCommand(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         String i = inputController.setGameCommand();
