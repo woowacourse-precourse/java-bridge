@@ -30,6 +30,7 @@ public class BridgeMaker {
 
     /**
      * 건널 수 있는 칸이 위 칸인지, 아래 칸인지 결정한다.
+     *
      * @return 랜덤으로 생성된 값이 0이면 "D"를, 1이면 "U"를 리턴한다.
      */
     private String parseBridgeNumber() {
