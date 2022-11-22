@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.constant.GameResult;
+import bridge.data.FinalResult;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +10,9 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
@@ -42,6 +47,73 @@ public class BridgeGameTest {
         String input = makeConsoleInput("DDUDUD");
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         assertThat(BridgeGame.getBridgeGame().runAttempt(getBridge(), new ArrayList<>())).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("다리 건너기 게임 최종 결과 계산 테스트: 한 번 시도하고, 다리 통과에 성공하는 경우")
+    void runGameWithBridgeTest_1() {
+        String input = makeConsoleInput("UDUDUD");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        FinalResult finalResult = BridgeGame.getBridgeGame().runGameWithBridge(getBridge(), new ArrayList<>(), 1);
+
+        assertThat(finalResult.getGameResult()).isEqualTo(GameResult.SUCCESS);
+        assertThat(finalResult.getNumAttempts()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("다리 건너기 게임 최종 결과 계산 테스트: 두 번 시도하고, 두 번째 시도에서 다리 통과에 성공하는 경우")
+    void runGameWithBridgeTest_2() {
+        String input = makeConsoleInput("DRUDUDUD");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        FinalResult finalResult = BridgeGame.getBridgeGame().runGameWithBridge(getBridge(), new ArrayList<>(), 1);
+
+        assertThat(finalResult.getGameResult()).isEqualTo(GameResult.SUCCESS);
+        assertThat(finalResult.getNumAttempts()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("다리 건너기 게임 최종 결과 계산 테스트: 다섯 번 시도하고, 다섯 번째 시도에서 다리 통과에 성공하는 경우")
+    void runGameWithBridgeTest_3() {
+        String input = makeConsoleInput("DRDRDRDRUDUDUD");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        FinalResult finalResult = BridgeGame.getBridgeGame().runGameWithBridge(getBridge(), new ArrayList<>(), 1);
+
+        assertThat(finalResult.getGameResult()).isEqualTo(GameResult.SUCCESS);
+        assertThat(finalResult.getNumAttempts()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("다리 건너기 게임 최종 결과 계산 테스트: 한 번 시도하고, 두 번째 시도를 하지 않고 포기(실패)한 경우")
+    void runGameWithBridgeTest_4() {
+        String input = makeConsoleInput("DQ");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        FinalResult finalResult = BridgeGame.getBridgeGame().runGameWithBridge(getBridge(), new ArrayList<>(), 1);
+
+        assertThat(finalResult.getGameResult()).isEqualTo(GameResult.FAILURE);
+        assertThat(finalResult.getNumAttempts()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("다리 건너기 게임 최종 결과 계산 테스트: 세 번째까지 시도하고, 네 번째 시도를 하지 않고 포기(실패)한 경우")
+    void runGameWithBridgeTest_5() {
+        String input = makeConsoleInput("UDUU" + "R" + "UDUDD" + "R" + "UDUDUU" + "Q");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        FinalResult finalResult = BridgeGame.getBridgeGame().runGameWithBridge(getBridge(), new ArrayList<>(), 1);
+
+        assertThat(finalResult.getGameResult()).isEqualTo(GameResult.FAILURE);
+        assertThat(finalResult.getNumAttempts()).isEqualTo(3);
+    }
+
+    @AfterEach
+    void clearInputStream() {
+        boolean isConsoleExhausted = false;
+        while (!isConsoleExhausted) {
+            try {
+                readLine();
+            } catch (NoSuchElementException exception) {
+                isConsoleExhausted = true;
+            }
+        }
     }
 
     private List<String> getBridge() {
