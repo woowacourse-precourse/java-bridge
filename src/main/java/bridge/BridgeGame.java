@@ -2,6 +2,8 @@ package bridge;
 
 import controller.Util;
 import model.*;
+import view.GameMessage;
+import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +18,34 @@ public class BridgeGame {
 
     private Bridge bridge;
 
-    private MovingResult movingResult;
+    private GameResult gameResult;
+    private BridgeMaker bridgeMaker;
+    private OutputView outputView;
 
-    public void run(){
+    public MovingResult movingResult;
 
+    public BridgeGame() {
+        util = new Util();
+        user = new User(new ArrayList<>());
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        movingResult = new MovingResult(new ArrayList<>());
+        outputView = new OutputView();
+        gameResult = new GameResult();
+    }
+
+    public void run() {
+        System.out.println(GameMessage.START_MESSAGE);
+        int size = util.inputSize();
+        bridge = new Bridge(bridgeMaker.makeBridge(size));
+        while(true){
+            move();
+            enterResult();
+            outputView.printMap(movingResult);
+            if(retry()){
+                outputView.printResult(gameResult,movingResult);
+                return ;
+            }
+        }
     }
 
     /**
@@ -38,12 +64,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        user.clearUser();
-        movingResult.clearResult();
+    public boolean retry() {
+        if (compareBridge().equals("X"))
+            if (checkRestart()) {
+                user.clearUser();
+                movingResult.clearResult();
+                return true;
+            }
+        return false;
     }
 
-    public void enterResult(){
+    public void enterResult() {
         List<String> currentResult = new ArrayList<>();
         String movingResult = compareBridge();
         currentResult.add(user.getCurrentMoving());
@@ -52,17 +83,17 @@ public class BridgeGame {
         this.movingResult.addTotalMovingResult(currentResult);
     }
 
-    private String compareBridge(){
+    private String compareBridge() {
         int currentLocation = user.getMovingRoute().size();
-        if(user.getCurrentMoving().equals(bridge.getAnswer(currentLocation))){
+        if (user.getCurrentMoving().equals(bridge.getAnswer(currentLocation))) {
             return "O";
         }
         return "X";
     }
 
-    private boolean checkRestart(){
+    private boolean checkRestart() {
         String restart = util.inputRestart();
-        if(restart.equals("Q"))
+        if (restart.equals("Q"))
             return false;
         return true;
     }

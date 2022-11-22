@@ -9,6 +9,9 @@ public class MovingResult {
 
     private List<String> currentResult;
 
+    public List<String> getCurrentResult() {
+        return currentResult;
+    }
     public MovingResult(List<List<String>> totalMovingResult) {
         this.totalMovingResult = totalMovingResult;
     }

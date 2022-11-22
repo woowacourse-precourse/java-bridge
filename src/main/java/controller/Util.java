@@ -13,28 +13,23 @@ public class Util {
 
     public int inputSize(){
         inputView.readBridgeSize();
-        int size = Integer.parseInt(inputValue());
+        int size = Integer.parseInt(Console.readLine());
         validateSize(size);
         return size;
     }
 
     public String inputMoving(){
         inputView.readMoving();
-        String moving = inputValue();
+        String moving = Console.readLine();
         validateMoving(moving);
         return moving;
     }
 
     public String inputRestart(){
         inputView.readGameCommand();
-        String restart = inputValue();
+        String restart = Console.readLine();
         validateRetry(restart);
         return restart;
-    }
-
-    private String inputValue(){
-        String value = Console.readLine();
-        return value;
     }
 
     private void validateSize(int size){
@@ -43,11 +38,11 @@ public class Util {
     }
 
     private void validateMoving(String moving){
-        if(!moving.equals("U") || !moving.equals("D"))
+        if(!moving.equals("U") && !moving.equals("D"))
             throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getErrorMessage());
     }
     private void validateRetry(String retry){
-        if(!retry.equals("R") || !retry.equals("Q"))
+        if(!retry.equals("R") && !retry.equals("Q"))
             throw new IllegalArgumentException(ErrorMessage.RESTART_ERROR.getErrorMessage());
     }
 }
