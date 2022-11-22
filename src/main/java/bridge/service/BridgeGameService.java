@@ -40,4 +40,24 @@ public class BridgeGameService {
         return bridgeGame.isFailedGame();
     }
 
+    public boolean retryProcess(boolean isFailed) {
+        boolean isRetry = false;
+        if (isFailed) {
+            isRetry = askRetry();
+            resetGame(isRetry);
+        }
+        return isRetry;
+    }
+
+    public void resetGame(boolean isRetry) {
+        if (isRetry) {
+            bridgeGame.prepare();
+        }
+    }
+
+    public boolean askRetry() {
+        String gameCommand = inputView.readGameCommand();
+        return GameCommand.transformToAction(gameCommand);
+    }
+
 }
