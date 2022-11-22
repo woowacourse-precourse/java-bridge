@@ -43,12 +43,9 @@ public class Application {
 
     private static int moveCount(List<String> bridgeState,List<String> currentBridgeState) {
         choicePosition = bridgeGame.move();
-        currentBridgeState = outputView.printMap(
-                bridgeMaker.addBridge(currentBridgeState, bridgeState.get(count), choicePosition));
+        currentBridgeState = outputView.printMap(bridgeMaker.addBridge(currentBridgeState, bridgeState.get(count), choicePosition));
         if (currentBridgeState.get(0).contains("X") || currentBridgeState.get(1).contains("X")) {
-            if(inputView.readGameCommand().equals("Q")) {
-                return -1;
-            }
+            if(inputView.readGameCommand().equals("Q")) return -1;
             return 0;
         }
         count++;
