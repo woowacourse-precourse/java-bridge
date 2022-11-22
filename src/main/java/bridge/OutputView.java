@@ -13,11 +13,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> upBridge, List<String> downBridge) {
-        printMap(upBridge);
-        printMap(downBridge);
+        printBridge(upBridge);
+        printBridge(downBridge);
     }
 
-    private void printMap(List<String> Bridge) {
+    private void printBridge(List<String> Bridge) {
         System.out.print("[");
         for (int i = 0; i < Bridge.size(); i++) {
             String userSelect = Bridge.get(i);
