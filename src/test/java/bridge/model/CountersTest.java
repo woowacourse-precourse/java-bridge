@@ -1,11 +1,7 @@
 package bridge.model;
 
 import bridge.Env;
-import bridge.type.GlassType;
-import bridge.type.PositionType;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
