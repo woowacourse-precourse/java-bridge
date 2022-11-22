@@ -59,7 +59,7 @@ public class BridgeGameService {
         String gameCommand = inputView.readGameCommand();
         return GameCommand.transformToAction(gameCommand);
     }
-    
+
     public void endProcess() {
         String report = bridgeGame.getFinalResult();
         outputView.printMapResult(report);
@@ -67,4 +67,15 @@ public class BridgeGameService {
         outputView.printTotalTrial(bridgeGame.getTotalTrial());
     }
 
+    public void start() {
+        boolean isFailed;
+        boolean isRetry;
+        startBridgeMakingProcess();
+        do {
+            isFailed = playGame();
+            isRetry = retryProcess(isFailed);
+        } while (isRetry && isFailed);
+        endProcess();
+    }
+    
 }
