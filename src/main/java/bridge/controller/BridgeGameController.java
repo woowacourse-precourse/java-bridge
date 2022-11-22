@@ -10,14 +10,13 @@ import bridge.combinator.BridgeCase;
 import view.output.OutputView;
 
 public class BridgeGameController {
+
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private static final BridgeCombinator bridgeCombinator = new BridgeCombinator();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    private static final BridgeCombinator bridgeCombinator = new BridgeCombinator();
-
     private static BridgeGame bridgeGame;
     private static int bridgeSize;
-
 
     public void start() {
         outputView.printStartMessage();

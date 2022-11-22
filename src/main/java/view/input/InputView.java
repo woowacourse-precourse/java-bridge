@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import bridge.validation.Validation;
 
 public class InputView {
+
     private static final Validation validation = new Validation();
 
     public String repeat(InputMessage inputMessage) {

@@ -1,6 +1,7 @@
 package view.output;
 
 public class OutputView {
+
     public void printStartMessage() {
         OutputMessage.START_MESSAGE.print();
     }

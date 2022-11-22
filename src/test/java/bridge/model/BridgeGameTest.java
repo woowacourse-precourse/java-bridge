@@ -2,6 +2,7 @@ package bridge.model;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.combinator.BridgeCase;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,17 @@ class BridgeGameTest extends NsTest {
         assertThat(bridgeGame.move("U", 2).name()).isEqualTo(BridgeCase.FALSE_POSITIVE_UP.name());
     }
 
+    @Test
+    void 재시도_테스트() {
+        BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(3), 0);
+        assertThat(bridgeGame.retry("R")).isTrue();
+    }
+
+    @Test
+    void 종료_테스트() {
+        BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(3), 0);
+        assertThat(bridgeGame.retry("T")).isFalse();
+    }
     @Override
     protected void runMain() {
 

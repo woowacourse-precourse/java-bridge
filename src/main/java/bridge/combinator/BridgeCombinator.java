@@ -1,6 +1,7 @@
 package bridge.combinator;
 
 public class BridgeCombinator {
+
     private static StringBuilder upSideBridge;
     private static StringBuilder downSideBridge;
 
