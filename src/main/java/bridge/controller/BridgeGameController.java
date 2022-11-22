@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.GameSetting;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.Print;
@@ -15,7 +14,6 @@ public class BridgeGameController {
     private BridgeGame bridgeGame = new BridgeGame();
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
-    private GameSetting gameSetting = new GameSetting();
 
     private int bridgeSize;
     private List<String> bridge;
@@ -27,7 +25,7 @@ public class BridgeGameController {
     public void setGame() {
         Print.gameStartMessage();
         setBridgeLength();
-        bridge = gameSetting.make(bridgeSize);
+        bridge = bridgeGame.make(bridgeSize);
     }
 
     public void setBridgeLength() { /*입력값 받기*/
@@ -46,12 +44,12 @@ public class BridgeGameController {
 
     public void playGame() {
         do {
-            userInput = gameSetting.validateMoveInput();
+            userInput = validateMoveInput();
             bridgeGame.move();
             crossPossible = bridgeGame.check(userInput, bridge);
             printSemiResult(crossPossible);
             if (!crossPossible) {
-                userRetryInput = gameSetting.validateRetryInput();
+                userRetryInput = validateRetryInput();
                 makeClearCondition();
             }
         }while (round != bridge.size());
@@ -78,5 +76,34 @@ public class BridgeGameController {
         bridgeGame.getResult(mark, bridge);
     }
 
+    public String validateMoveInput(){
+        int retryCheckNumber = 1;
+        while (retryCheckNumber != 0) {
+            Print.requestPickAPartOfBridgeMessage();
+            try {
+                userInput = inputView.readMoving();
+                retryCheckNumber = 0;
+            } catch (IllegalArgumentException e) {
+                Print.exceptionMessage(e);
+                retryCheckNumber = 1;
+            }
+        }
+        return userInput;
+    }
+
+    public String validateRetryInput(){
+        int retryCheckNumber = 1;
+        while (retryCheckNumber != 0) {
+            Print.askRetryMessage();
+            try {
+                userRetryInput = inputView.readGameCommand();
+                retryCheckNumber = 0;
+            } catch (IllegalArgumentException e) {
+                Print.exceptionMessage(e);
+                retryCheckNumber = 1;
+            }
+        }
+        return userRetryInput;
+    }
 
 }
