@@ -12,7 +12,7 @@ public class BridgeMakerTest {
 
     @DisplayName("랜덤한 모양을 가진 다리를 생성한다.")
     @Test
-    public void makeNewBridge() {
+    void makeNewBridge() {
         BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 

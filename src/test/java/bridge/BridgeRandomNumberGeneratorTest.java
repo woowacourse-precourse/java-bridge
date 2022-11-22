@@ -12,7 +12,7 @@ public class BridgeRandomNumberGeneratorTest {
 
     @DisplayName("0과 1중 랜덤한 숫자를 생성한다.")
     @Test
-    public void generateRandomNumber() {
+    void generateRandomNumber() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 
         int randomNumber = bridgeNumberGenerator.generate();
