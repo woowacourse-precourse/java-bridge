@@ -29,7 +29,7 @@ public class BridgeGameTest {
     }
 
     @DisplayName("다리 생성 성공 테스트")
-    @ValueSource(ints = {5, 15, 20})
+    @ValueSource(ints = {5, 15, 10})
     @ParameterizedTest()
     void 다리_생성_성공_테스트(int size) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -63,7 +63,7 @@ public class BridgeGameTest {
     }
 
     @DisplayName("시도한 횟수 확인 실패")
-    @ValueSource(ints = {0, 5, 20})
+    @ValueSource(ints = {0, 5, 10})
     @ParameterizedTest
     void 시도한_횟수확인_실패_테스트(int retry) {
         for (int i = 0; i < retry; i++) bridgeGameService.restart();
@@ -72,7 +72,7 @@ public class BridgeGameTest {
     }
 
     @DisplayName("시도한 횟수 확인 성공")
-    @ValueSource(ints = {0, 5, 20})
+    @ValueSource(ints = {0, 5, 10})
     @ParameterizedTest
     void 시도한_횟수확인_성공_테스트(int retry) {
         for (int i = 0; i < retry; i++) bridgeGameService.restart();
