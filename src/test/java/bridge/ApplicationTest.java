@@ -39,10 +39,20 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+
+
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("33");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
