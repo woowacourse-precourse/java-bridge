@@ -1,6 +1,8 @@
 package bridge.messages;
 
 public enum ErrorMessage {
+    BRIDGE_IS_EMPTY("[ERROR] 값을 찾을 수 없습니다."),
+    BRIDGE_HAS_WRONG_DATA("[ERROR] 잘못된 값이 추가되었습니다."),
     BRIDGE_SIZE_INPUT_RANGE("[ERROR] 3이상 20이하의 숫자를 입력해야합니다."),
     BRIDGE_SIZE_INPUT_TYPE("[ERROR] 다리 길이는 숫자를 입력해야합니다."),
     INPUT_NULL("[ERROR] 아무런 값을 입력하지 않았습니다."),
