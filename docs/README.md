@@ -4,14 +4,13 @@
 - [x] 다리 길이 요구 문구 출력
 - [x] 다리 길이 입력
   - [x] 입력받은 문자열을 Int형으로 전환
-    - [x] 전환 불가할 시 예외 처리
+  - [x] 전환 불가할 시 예외 처리
 - [x] 다리 생성
   - [x] 3 이상 20 이하가 아닐 경우 예외 처리
   - [x] 입력받은 값만큼 다리 생성
     - [x] `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용하여 건널 수 있는 칸 결정
     - [x] 자료구조에 맞게끔 생성된 int값을 String으로 변환
     - [x] 변환된 값을 기반으로 다리 생성
-- [x] 게임 시도 횟수 증가
 - [x] 이동할 칸(다리) 요구 출력
 - [x] 이동할 다리 선택
   - [x] `U` 또는 `D`가 아닐 경우 예외 처리
@@ -28,6 +27,8 @@
     - [x] 게임 재시작
       - [x] 다리 건넌 기록을 초기화하며 게임 시도 횟수를 증가
 - [x] 최종 게임 결과 문구 출력
+  - [x] 최종 기록, 게임 성공 여부와 시도 횟수 출력
+
 
 
 
@@ -235,6 +236,8 @@ public class BridgeMoveLog {
 
 
 
+### 수정 전
+
 ```java
 private static final Map<String, BridgeType> textBridge = new HashMap<>() {{
     for (BridgeType type : BridgeType.values()) {
@@ -253,21 +256,23 @@ public static BridgeType searchBridgeToText(String text) {
 }
 ```
 
-수정 전. `Map`을 초기에 작성하며, 이후 검색에 사용했다.
+`Map`을 초기에 작성하며, 이후 검색에 사용했다.
 
 
+
+### 수정 후
 
 ```java
-public static BridgeType searchBridgeToText(String text) {
+public static BridgeType searchBridgeByCommand(String command) {
     return Arrays.stream(BridgeType.values())
-        .filter(bt -> bt.getText().equals(text))
+        .filter(bridgeType -> bridgeType.isEqualCommand(command))
         .findFirst()
-        .orElseThrow(
-        () -> new IllegalArgumentException("허용되지 않는 글자입니다. 일치하는 다리를 찾을 수 없습니다."));
+        .orElseThrow(() ->
+                     new IllegalArgumentException("허용되지 않는 글자입니다. 일치하는 다리를 찾을 수 없습니다."));
 }
 ```
 
-수정 후. `Map`을 제거하였으며, values()를 순회하며 값을 찾은 후 반환한다. 만약 찾지 못 할 경우 예외를 발생시킨다.
+`Map`을 제거하였으며, values()를 순회하며 값을 찾은 후 반환한다. 만약 찾지 못 할 경우 예외를 발생시킨다.
 
 
 
@@ -291,9 +296,147 @@ public static BridgeType searchBridgeToText(String text) {
 
 
 
+## BridgeMaker 메서드 추가 불가?
+
+이 역시 `InputView`, `OutputView`, `BridgeGame`은 메서드 추가 가능하다는 설명이 붙어있지만,  `BridgeMaker`는 해당하는 설명 대신 오히려 변경에 대한 제한만 걸려있을 뿐이다.
+
+다리를 생성하기 전에 3 ~ 20 내의 길이인지 확인하는 메서드가 있었는데, 해당 메서드를 `BridgeSizeRule`내의 static 메서드로 생성한 후 해당 메서드를 이용하는 것으로 변경하였다.
+
+
+
+## 메서드를 나누는 기준이 생기다
+
+글로 쓸 만큼 거창한 건 아니긴 하지만.. 이번 요구 사항중 메서드의 길이가 10라인을 넘지 않도록 구현하라는 조건이 있었다. 아무래도 하나의 메서드가 하나의 기능을 더 확실히 맡을 수 있도록 제한한 듯 했다.
+
+해당하는 사항을 지키면서, 메서드를 가독성 있게 가져가려면 실제로 기능을 분리하거나 기존에 작성한 코드를 고심하며 더 나은 방식으로 변화시킬 수 밖에 없었다. (물론 줄바꿈을 없앤다던가, 한 라인에 함수나 변수를 중첩 사용한다던가 하는 방식이 있겠지만.. 맘에 들진 않았다. 클린코드를 지향하다가 오히려 가독성이 좋지 않은 코드를 작성하게 되는 듯 했다.)
+
+처음 코드를 작성할 때부터 신경썼기에 많이 변경할 부분은 없었으나, 코드를 전체적으로 둘러보다 보니 메서드를 분리하는 나만의 기준이 생겼다.
+
+해당 메서드의 로직을 요약해서 정리하되, 매끄럽게 이어지지 않으면 메서드를 나누게 된 것이다.
+
+
+
+### 수정 전
+
+```java
+public GameStatus move(BridgeType bridgeType) {
+    GameStatus gameStatus = getGameStatus(bridgeType);
+    bridgeMoveLog.writeLog(gameStatus.getState());
+
+    if (movePosition == bridge.size() && gameStatus == GameStatus.CROSSING) {
+        return GameStatus.SUCCESS;
+    }
+
+    return gameStatus;
+}
+```
+
+해당 메서드를 요약하자면
+
+- 다른 메서드나 클래스에게 요청하는 부분
+  - `getGameStatus`를 통해 값을 받음
+  - `bridgeMoveLog.writeLog()`를 통해 로그를 작성
+- 스스로 동작하는 부분
+  - `movePosition`이 `bridge.size()`와 같으며 `gameStatus`가 `CROSSING`이라면 `SUCCESS`를 반환, 아니라면 `gameStatus` 반환
+
+다른 메서드나 클래스에게 요청하는 부분은 오히려 다른 객체에게 메시지를 던지거나 메서드를 분리시킨 것이니 허용이 가능했으나, 스스로 동작하는 부분으로 분기가 갈려버려 한 단락으로 정리할 수가 없었다.
+
+따라서 동작하는 부분을 메서드로 분리하였다.
+
+
+
+### 수정 후
+
+```java
+public GameStatus move(BridgeType bridgeType) {
+    GameStatus gameStatus = checkGameStatus(bridgeType);
+    bridgeMoveLog.writeLog(bridgeType, gameStatus.getSafe());
+    return judgeGameStatus(gameStatus);
+}
+```
+
+```java
+private GameStatus judgeGameStatus(GameStatus gameStatus) {
+    if (movePosition == bridge.size() && gameStatus == GameStatus.CROSSING) {
+        return GameStatus.SUCCESS;
+    }
+
+    return gameStatus;
+}
+```
+
+해당 방식으로 `move`는 다른 메서드나 클래스에게 요청만 하고, `judgeGameStatus`가 스스로 동작하는 부분을 맡아 좀 더 가독성이 좋아진 것 같다.
+
+if문의 두 부분을 메서드로 나누는 것도 고려했으나, 단순 조건이라 오히려 복잡도가 증가되는 것 같아 해당하는 방향으로 작성했다.
+
+
+
+### 수정 전
+
+```java
+private GameStatus play(BridgeGame bridgeGame) {
+    while (true) {
+        GameStatus gameStatus = bridgeGame.move(choiceBridge());
+        outputView.printMap(bridgeGame.getBridgeMoveLog());
+
+        if ((gameStatus == GameStatus.FAIL && isGiveUp(bridgeGame)) || gameStatus == GameStatus.SUCCESS) {
+            return gameStatus;
+        }
+    }
+}
+```
+
+해당 메서드도 요약하자면
+
+- 다른 메서드나 클래스에게 요청하는 부분
+  - `bridgeGame.move()`를 통해 값을 받음
+  - `outputView.printMap()`를 통해 출력
+- 스스로 동작하는 부분
+  - `gameStatus`가 `FAIL`이면서 `isGiveUp()`이 `true` 혹은 `gameStatus`가 `SUCCESS`일 때 반환
+
+위의 예시와 비슷하지만, 이번엔 while이 있어 if문 내의 로직을 따로 분리하기가 쉽지 않아 이대로 두려 했었다. 그러나 `~일 때 반환`하는 부분이 거슬렸다. 이미 다른 메서드나 클래스에게 요청하는 부분에서 집중력을 소모했는데, 해당 조건까지 읽기엔 피곤하다 여겨졌다. 따라서 조건 자체를 분리하였다.
+
+
+
+### 수정 후
+
+```java
+private GameStatus play(BridgeGame bridgeGame) {
+
+    while (true) {
+        GameStatus gameStatus = bridgeGame.move(choiceBridge());
+        outputView.printMap(bridgeGame.getBridgeMoveLog());
+
+        if (isGameOver(bridgeGame, gameStatus)) {
+            return gameStatus;
+        }
+    }
+}
+```
+
+```java
+private boolean isGameOver(BridgeGame bridgeGame, GameStatus gameStatus) {
+    if (gameStatus == GameStatus.SUCCESS) {
+        return true;
+    }
+
+    if (gameStatus == GameStatus.FAIL) {
+        return isGiveUp(bridgeGame);
+    }
+
+    return false;
+}
+```
+
+`play` 메서드에서는 `게임 오버 조건을 충족하면 반환`하는 식으로 요약이 가능했고, `isGameOver`부분에서도 조건을 나눠 작성하여 `SUCCESS`일 때 `true`, `FAIL`일 때 `isGiveUp()` 반환값에 따라, 아닐 경우 `false`로 더 명확한 로직을 알아볼 수 있게 했다. 물론 이전처럼 한 줄로도 가능하긴 하겠지만, `코드의 짧음`보다 `더 잘 이해되는 코드`를 작성해보려 했다.
+
+물론 아직 부족하다. 약간은 감을 잡았다 정도..? 그래도 하나의 내 기준이 생겨서 좋다.
+
+
+
 # 느낀 점
 
-## MVC 패턴
+## 객체지향, MVC 패턴
 
 지난주까지만 해도 `MVC패턴을 왜 지켜야 하는가`라는 의문이 있었다. 클래스를 잘 분리해두면 알아서 MVC 구조가 만들어지는데, 어떤 의의가 있을까 상당히 고민했다.
 
@@ -302,3 +445,26 @@ public static BridgeType searchBridgeToText(String text) {
 클래스의 역할과 기능을 잘 나누다 보면 (꼭 MVC가 아니더라도)특정 패턴의 모습과 비슷한 양상을 보일 수는 있다. 하지만 패턴을 알고, 해당 패턴을 지키며 코드를 작성하는것은 프로그래머에게 `내가 지금 객체지향을 잘 지키고 있나`라는 물음을 계속 던지고, 결과적으로 `객체를 객체답게` 작성할 수 있도록 돕는다.
 
 즉 `패턴은 방법론일 뿐, 본질은 객체지향`이라는 결론을 얻을 수 있었다.
+
+해당하는 결론을 얻고 나니, 자연스럽게 객체를 지향하며 MVC 패턴으로 코드를 작성할 수 있었다. 이전에 생겼던 많은 고민들(무엇을 기준으로 로직의 구조를 지닐 것인가, 어떠한 방식으로 코드를 작성할 것인가, 역할과 책임을 어떻게 나눠야 하는가  등)이 보다 자연스러운 흐름으로 해결이 됐고, 비교적 빠르게 코드를 완성할 수 있었으며 리팩터링 과정도 담백했다.
+
+물론 내가 완벽하게 짰다고는 못 하겠다만 ㅎㅎ.. 그래도 이해한 후 도입하며 방향성이 어느 정도 잡힌 것 같아 기쁘다.
+
+
+
+## 코드 작성 스타일
+
+이전에는 코드를 알고리즘 풀듯 작성해왔었다. 생각대로 마구 작성하다 보니 메서드의 재활용성은 찾아볼 수 없었고, 웹페이지를 구축하며 Spring MVC의 구조를 이용할 때도 `이렇게 짜야 한다니까`라는 안일한 생각으로 임했었다. 코드의 방향성을 누군가에게 설명할 수도 없었고, 내 자신도 혼란스러워지는 경험을 몇 번 해보았다.
+
+그러나 이번 과제를 진행하며, 코드를 어떠한 방향으로 이끌어 나갈 것인지 충분히 고민하고 진행했다. 초안을 작성할 때는 시간이 어느 정도 걸리긴 했지만, 오히려 처음부터 탄탄하게 만드려 노력하니 코드 로직 변경이나 리팩터링에 소요될 시간이 많이 줄어들었고, 전체적인 흐름을 쉽게 살펴볼 수 있었다.
+
+지난 번 회고록에 `코드가 무거워졌다`라는 표현을 작성했었는데, `코드가 진중해졌다`는 표현이 더 잘 어울릴 것 같다. 해당 코드가 어떠한 생각으로 작성되었는지 설명할 수 있게 되었고, 앞으로 프로젝트를 진행할 때 이번 프리코스에서 배운 것들을 잘 적용해보려 한다.
+
+
+
+## 뿌듯한 감정
+
+앞선 4주동안 과제를 진행하며, 정말 많이 배웠던 것 같다. 고민하지 못 했던 점들을 고민하고, 그 고민들에 대해 깊게 생각해보았다. 비록 그 과정이 힘들고 어려웠을 지라도 피어리뷰와 아고라, 회고와 피드백을 통해 내 자신의 `생각하는 범위`를 늘릴 수 있었다.
+
+또한 앞으로 공부해 나아갈 방향성을 깨닫게 된 것 같다. `결과보다 과정을` 중시하게 되었고, 어제의 나보다 한발짝 더 나아간 내가 되려 한다. 비록 시작은 늦었을 지 몰라도, 꾸준히 전진할 것이다.
+
