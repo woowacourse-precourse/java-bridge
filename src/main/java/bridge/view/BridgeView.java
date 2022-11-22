@@ -37,4 +37,11 @@ public class BridgeView {
     return BLANK;
   }
 
+  public String needSeparator(Cross cross) {
+    if(cross != crossResult.get(crossResult.size() - 1)) {
+      return SEPARATOR;
+    }
+    return NONE;
+  }
+
 }
