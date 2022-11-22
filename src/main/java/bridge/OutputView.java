@@ -13,7 +13,7 @@ public class OutputView {
     private static final String BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String USER_MOVE = "이동할 칸을 선택해주세요. ";
     private static final String RETRY = "게임을 다시 시도할지 여부를 입력해주세요.";
-    private static final String RESULT = "게임 성공 여부";
+    private static final String RESULT = "게임 성공 여부: ";
     private static final String RESULT_COUNT = "총 시도한 횟수: ";
     private static final String END = "최종 게임 결과";
     private static final String ERROR = "[ERROR]";
@@ -45,17 +45,15 @@ public class OutputView {
     }
 
     public void printMap(GameSimulation game) {
-        for (int i=0; i <2 ; i++) {
-            System.out.println(START_MAP);
+        for (int i = 0; i < 2; i++) {
             List<String> map = game.getbridge().get(i);
-            printShape(map);
-            System.out.println(END_MAP);
+            System.out.println(START_MAP + printShape(map) + END_MAP);
         }
     }
 
-    private void printShape(List<String> map) {
-        String s = String.join("|",map);
-        System.out.println(s);
+    private String printShape(List<String> map) {
+        String s = String.join(" | ", map);
+        return s;
     }
 
     /**
@@ -66,7 +64,7 @@ public class OutputView {
     public void printResult(GameSimulation game, int count) {
         System.out.println(END);
         printMap(game);
-        System.out.println(RESULT+game.getSuccess());
-        System.out.println(RESULT_COUNT+count);
+        System.out.println(RESULT + game.getSuccess());
+        System.out.println(RESULT_COUNT + count);
     }
 }

@@ -46,7 +46,6 @@ public class BridgeGameController {
         } catch (IllegalArgumentException e) {
             outputView.printError();
             start();
-
         }
     }
 

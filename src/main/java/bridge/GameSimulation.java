@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameSimulation {
-    private final List<List<String>> bridge;
-    public String answer;
+    private List<List<String>> bridge;
+
     private int location;
     private List<String> step;
-    private boolean success;
+    private String success;
 
     public GameSimulation() {
         this.bridge = new ArrayList<>();
@@ -18,8 +18,7 @@ public class GameSimulation {
         step = new ArrayList<>();
         bridge.add(up);
         bridge.add(down);
-        this.success = true;
-        this.answer = "O";
+        this.success = "실패";
     }
 
     public void print(String direction, String answer) {
@@ -44,11 +43,11 @@ public class GameSimulation {
         this.location = location;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(String success) {
         this.success = success;
     }
 
-    public boolean getSuccess() {
+    public String getSuccess() {
         return success;
     }
 

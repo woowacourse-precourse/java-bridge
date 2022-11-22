@@ -36,21 +36,15 @@ public class BridgeGame {
         return match;
     }
 
-    private boolean isCross(int location, String moving) {
-        if (bridge.get(location).equals(moving)) {
-            return true;
-        }
-        return false;
-    }
 
     private void checkMove() {
         if (game.getLocation() == bridge.size()) {
-            game.setSuccess(true);
+            game.setSuccess("성공");
         }
     }
 
     public boolean success() {
-        if (game.getSuccess() == true) {
+        if (game.getSuccess().equals("성공")) {
             return true;
         }
         return false;
@@ -79,7 +73,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String command) {
-        if (!game.getSuccess() && command.equals("R")) {
+        if (!game.getSuccess().equals("실패") && command.equals("R")) {
             return true;
         }
         return false;
