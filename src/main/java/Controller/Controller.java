@@ -21,9 +21,13 @@ public class Controller {
     Map map;
 
     public Controller() {
+        outputView.printGameStart();
+
         this.limitSize = util.determineBridgeSize();
         this.crossable =bridgeMaker.makeBridge(limitSize);
+
         map = new Map(crossable);
+        map.startMap();
     }
 
     public boolean play(int index) {
@@ -50,7 +54,6 @@ public class Controller {
     public void controller(boolean isContinue) {
         boolean isWin = false;
 
-        util.start(map);
         while (isContinue) {
             isWin = play(0);
             isContinue = isContinue(isWin);

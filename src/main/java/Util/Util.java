@@ -24,9 +24,4 @@ public class Util {
         return inputView.readGameCommand();
     }
 
-    public void start(Map map) {
-        outputView.printGameStart();
-        map.startMap();
-    }
-
 }
