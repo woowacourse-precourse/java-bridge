@@ -33,5 +33,15 @@ public class BridgeGameController {
         }
         return true;
     }
+    public boolean tryMoves(int moveValue, List<String> bridge) {
+        tryCount++;
+        while (moveValue < bridge.size()) {
+            if(!bridgeGame.move(moveValue++)) {
+                return false;
+            }
+        }
+        outputView.printResult(this,bridgeGame,true);
+        return true;
+    }
 
 }
