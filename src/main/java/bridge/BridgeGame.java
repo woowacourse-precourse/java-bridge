@@ -12,36 +12,28 @@ public class BridgeGame {
     private final static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void run() {
-
-        CurrentBridgeState currentBridgeState = new CurrentBridgeState();
         int tryNumber = 1;
         boolean isRetry = true;
 
         List<String> bridge = makeBridge();
-
         while (isRetry) {
-            isRetry = tryCrossBridge(bridge, currentBridgeState, tryNumber);
+            CurrentBridgeState currentBridgeState = new CurrentBridgeState();
+            boolean isSuccess = tryCrossBridge(bridge, currentBridgeState);
+            isRetry = retry(currentBridgeState, isSuccess, tryNumber);
             tryNumber++;
         }
     }
 
-    private boolean tryCrossBridge(List<String> bridge, CurrentBridgeState currentBridgeState, int tryNumber) {
+    private boolean tryCrossBridge(List<String> bridge, CurrentBridgeState currentBridgeState) {
 
-        boolean isRetry = false;
-
+        boolean isPossibleMove = true;
         for (int turn = 0; turn < bridge.size(); turn++) {
-            boolean isPossibleMove = move(bridge, currentBridgeState, turn);
+            isPossibleMove = move(bridge, currentBridgeState, turn);
             if (isPossibleMove == false) {
-                isRetry = retry();
                 break;
             }
         }
-
-        if (isRetry == false) {
-            outputView.printResult(currentBridgeState, true, tryNumber);
-        }
-
-        return isRetry;
+        return isPossibleMove;
     }
 
     private List<String> makeBridge() {
@@ -82,16 +74,19 @@ public class BridgeGame {
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param currentBridgeState
+     * @param isSuccess
+     * @param tryNumber
      */
-    public boolean retry() {
+    public boolean retry(CurrentBridgeState currentBridgeState, boolean isSuccess, int tryNumber) {
 
-        String gameCommand = inputView.readGameCommand();
-
-        if (gameCommand.equals("Q")) {
-            return false;
-        } else if (gameCommand.equals("R")) {
-            return true;
+        if (isSuccess == false) {
+            String gameCommand = inputView.readGameCommand();
+            if (gameCommand.equals("R")) {
+                return true;
+            }
         }
+        outputView.printResult(currentBridgeState, isSuccess, tryNumber);
         return false;
     }
 }
