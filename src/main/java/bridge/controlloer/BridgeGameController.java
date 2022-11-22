@@ -63,6 +63,7 @@ public class BridgeGameController {
             outputView.printMap(bridgeGame.getBridgeResult(), result);
             if (result.equals(Result.FAIL) && chooseRetryOrEnd().equals(Result.SUCCESS)) {
                 bridgeGame.retry();
+                attempts++;
                 result = Result.SUCCESS;
             }
         }
