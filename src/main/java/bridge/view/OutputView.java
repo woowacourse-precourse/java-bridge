@@ -77,6 +77,16 @@ public class OutputView {
         downView.append(SPACE);
     }
 
+    private void appendDownView(boolean isSameValueComputerAndUser) {
+        if(checkDownAnswer(isSameValueComputerAndUser)) {
+            downView.append(RIGHT);
+            upView.append(SPACE);
+            return;
+        }
+        downView.append(WRONG);
+        upView.append(SPACE);
+
+    }
 
 
 }
