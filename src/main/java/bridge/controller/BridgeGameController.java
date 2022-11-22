@@ -38,13 +38,13 @@ public class BridgeGameController {
     }
 
     private Bridge generateBridge() {
-        int bridgeSize = getBridgeSize();
+        int bridgeSize = getValidBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> movableSpaces = bridgeMaker.makeBridge(bridgeSize);
         return new Bridge(movableSpaces);
     }
 
-    private int getBridgeSize() {
+    private int getValidBridgeSize() {
         while (true) {
             try {
                 outputView.printBridgeSizeInputRequest();
@@ -64,11 +64,11 @@ public class BridgeGameController {
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
-        String spaceToMove = getSpaceToMove();
+        String spaceToMove = getValidSpaceToMove();
         bridgeGame.move(spaceToMove);
     }
 
-    private String getSpaceToMove() {
+    private String getValidSpaceToMove() {
         while (true) {
             try {
                 outputView.printMovingSpaceInputRequest();
@@ -86,12 +86,12 @@ public class BridgeGameController {
     }
 
     private void retryOrFinish(BridgeGame bridgeGame) {
-        if (getGameCommandInput().equals(RETRY.command())) {
+        if (getValidGameCommandInput().equals(RETRY.command())) {
             bridgeGame.retry();
         }
     }
 
-    private String getGameCommandInput() {
+    private String getValidGameCommandInput() {
         while (true) {
             try {
                 outputView.printGameCommandInputRequest();
