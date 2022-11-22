@@ -43,6 +43,7 @@ public class InputView {
         String input = "";
         try {
             input = Console.readLine();
+            System.out.println("input: " + input);
             Validate.checkLetter(input, "U", "D");
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());

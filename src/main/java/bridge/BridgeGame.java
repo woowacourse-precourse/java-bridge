@@ -17,9 +17,11 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int bridgeSize = InputView.readBridgeSize();
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println("At run, bridge = " + bridge);
         String repeat = "";
         boolean result = move(bridgeSize);
-        result = retry(bridgeSize);
+        if (!result)
+            result = retry(bridgeSize);
         OutputView.printResult(trace, result, rerun);
     }
 
@@ -33,7 +35,7 @@ public class BridgeGame {
         String updown;
         for (int step = 0; step < bridgeSize; step++) {
             trace.add((updown = InputView.readMoving()));
-            if(moveCheck(updown, step)){
+            if(!moveCheck(updown, step)){
                 OutputView.printMap(trace, false);
                 return false;
             }
