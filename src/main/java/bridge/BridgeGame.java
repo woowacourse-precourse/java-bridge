@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.Move;
+import bridge.data.MoveResult;
 import bridge.exception.GameExceptionHandler;
 import bridge.input.getter.BridgeSizeGetter;
 import bridge.input.getter.GameCommandGetter;
@@ -77,4 +79,11 @@ public class BridgeGame {
         return correctMove.equals(userMove);
     }
 
+    public void updateMoveResults(List<MoveResult> moveResults, String correctMove, boolean isCorrect) {
+        if (correctMove.equals(Move.UP.getValue())) {
+            moveResults.add(new MoveResult(Move.UP, isCorrect));
+            return;
+        }
+        moveResults.add(new MoveResult(Move.DOWN, isCorrect));
+    }
 }
