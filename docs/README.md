@@ -33,7 +33,7 @@
    - bridge length 입력이 noninteger (문자)
    - bridge length 입력이 noninteger (소수)
 9. BridgeMakerTest: bridge maker 클래스와 관련된 test
-   - 0,1 외의 값으로 bridge를 빌드하려는 경우
+   - 잘 작동하는지 
 10. MoveTest
    - 기본적으로 u와 d가 정상적으로 작동하는지 (분리)
    - 숫자를 넣을 경우
