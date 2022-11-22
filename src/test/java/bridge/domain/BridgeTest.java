@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class BridgeTest {
 
-
     @DisplayName("생성자를 통해 만든 Bridge가 잘 반환되는지 테스트")
     @Test
     public void getBridgeTest() {
