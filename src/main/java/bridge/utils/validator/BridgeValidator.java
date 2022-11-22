@@ -28,7 +28,8 @@ public class BridgeValidator {
     }
 
     private void isValidRange() {
-        if (Util.getInt(BridgeSize) > MAX_BRIDGE_LENGTH || Util.getInt(BridgeSize) < MIN_BRIDGE_LENGTH) {
+        if (Util.getInt(BridgeSize) > MAX_BRIDGE_LENGTH
+                || Util.getInt(BridgeSize) < MIN_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NOT_RANGE_STATE);
         }
     }

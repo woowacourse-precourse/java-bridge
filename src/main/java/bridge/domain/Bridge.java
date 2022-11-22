@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static bridge.utils.Util.getInt;
 
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.utils.validator.BridgeValidator;

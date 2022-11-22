@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import static bridge.utils.Constant.*;
 
