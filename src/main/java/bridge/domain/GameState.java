@@ -29,7 +29,7 @@ public class GameState {
         return bridgeState.equals(BridgeState.FALL);
     }
 
-    public boolean isCrossed(){
+    public boolean isCrossed() {
         return bridgeState.equals(BridgeState.CROSSED);
     }
 

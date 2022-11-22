@@ -5,7 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final InputView instance = new InputView();
 
-    private InputView(){}
+    private InputView() {
+    }
 
     public String readBridgeSize() {
         System.out.println(InputMessage.BRIDGE_SIZE.message());
@@ -22,7 +23,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static InputView getInstance(){
+    public static InputView getInstance() {
         return instance;
     }
 }

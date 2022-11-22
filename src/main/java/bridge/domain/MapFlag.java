@@ -10,11 +10,11 @@ public enum MapFlag {
 
     private final String code;
 
-    MapFlag(String code){
+    MapFlag(String code) {
         this.code = code;
     }
 
-    public String code(){
+    public String code() {
         return code;
     }
 }
