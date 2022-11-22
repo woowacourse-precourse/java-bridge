@@ -1,7 +1,6 @@
 package bridge.verifier;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -47,7 +46,7 @@ class InputVerifierTest {
     }
 
     @DisplayName("이동할 칸에 잘못된 값이 입력되면 예외 처리")
-    @ValueSource(strings = {"UU", "d", "R", "123", "43C", "CV", "", " "})
+    @ValueSource(strings = {"UU", "d", "R", "123", "43C", "CV", "", " ", "앞"})
     @ParameterizedTest
     void moving_잘못된_값(String input) {
         assertThatThrownBy(() -> InputVerifier.moving(input))

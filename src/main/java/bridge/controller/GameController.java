@@ -1,9 +1,13 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.view.OutputView;
 import bridge.constant.MoveState;
+
+import java.util.List;
 
 public class GameController {
     private final InputController inputController = new InputController();
@@ -13,7 +17,9 @@ public class GameController {
 
     public GameController() {
         outputView.printStart();
-        bridgeGame.initBridgeGame(inputController.readBridgeSize(), player);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(inputController.readBridgeSize());
+        bridgeGame.initBridgeGame(player, bridge);
     }
 
     public void run() {

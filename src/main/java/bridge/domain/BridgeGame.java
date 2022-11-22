@@ -21,11 +21,9 @@ public class BridgeGame {
     private List<String> bridge = new ArrayList<>();
     private Player player;
 
-    public void initBridgeGame(int size, Player player) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = bridgeMaker.makeBridge(size);
+    public void initBridgeGame(Player player, List<String> bridge) {
+        this.bridge = bridge;
         this.player = player;
-        System.out.println(bridge);
     }
 
     /**
