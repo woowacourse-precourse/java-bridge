@@ -1,5 +1,5 @@
 # 미션 - 다리 건너기
-
+## Class 구성 및 기능 목록: [README.md](docs/README.md)
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
@@ -266,7 +266,7 @@ public class BridgeMaker {
 
 ### BridgeRandomNumberGenerator 클래스
 
-- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- Random 값 추출은 제공된 `bridge.domain.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 #### 사용 예시
