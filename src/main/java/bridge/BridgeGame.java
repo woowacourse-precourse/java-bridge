@@ -28,7 +28,6 @@ public class BridgeGame {
         if (bridge.get(crossedBridge.size() - 1).equals(direction)) {
             return true;
         }
-        tries = tries + 1;
         return false;
     }
 
@@ -51,5 +50,6 @@ public class BridgeGame {
      */
     public void retry() {
         crossedBridge = new ArrayList<>();
+        tries = tries + 1;
     }
 }
