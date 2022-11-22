@@ -28,6 +28,10 @@ public class BridgeGame {
         return player.makeGameResult();
     }
 
+    public int getRetryCount(){
+        return player.getRetry();
+    }
+
     public boolean isSuccess(){
         return player.lastResultIsSuccess();
     }

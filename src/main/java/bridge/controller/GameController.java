@@ -16,8 +16,10 @@ public class GameController {
     }
 
     public void cycle(int gameSize, boolean isTry) {
-        while (gameSize >= 0 && isTry) {
-            gameSize -= move();
+        int correctStep = 0;
+
+        while (gameSize != correctStep && isTry) {
+            correctStep = move();
             if (!bridgeGame.isSuccess()) {
                 isTry = askRetry();
             }
@@ -34,6 +36,7 @@ public class GameController {
         String direction = inputView.readMoving();
         int correctStep = bridgeGame.move(direction);
         outputView.printMap(bridgeGame.getGameResult());
+        System.out.println(correctStep);
         return correctStep;
     }
 
@@ -44,7 +47,6 @@ public class GameController {
     }
 
     private void end() {
-        System.out.println("최종 게임 결과");
-        outputView.printMap(bridgeGame.getGameResult());
+        outputView.printResult(bridgeGame.getGameResult(), bridgeGame.isSuccess(), bridgeGame.getRetryCount());
     }
 }

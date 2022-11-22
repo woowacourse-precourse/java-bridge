@@ -11,7 +11,7 @@ public class User {
     public User() {
         this.results = new ArrayList<>();
         correctStepNumber = 0;
-        retry = 0;
+        retry = 1;
     }
 
     public int move(List<String> bridge, String direction) {
@@ -45,8 +45,11 @@ public class User {
         }
     }
 
-    public int upRetry(){
+    public void upRetry(){
         this.retry += 1;
-        return this.retry;
+    }
+
+    public int getRetry() {
+        return retry;
     }
 }
