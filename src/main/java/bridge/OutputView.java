@@ -5,13 +5,35 @@ package bridge;
  */
 public class OutputView {
 
+    public void printMapLine(String userMovement, String bridge, int bridgeSize, char target) {
+        System.out.print("[ ");
+        printOX(userMovement.charAt(0), bridge.charAt(0), target);
+        for (int i = 1; i < bridgeSize; i++) {
+            System.out.print(" | ");
+            printOX(userMovement.charAt(i), bridge.charAt(i), target);
+        }
+        System.out.println(" ]");
+    }
+    public void printOX(char userChoice, char bridgeStatus, char target) {
+        if(userChoice == target && bridgeStatus == target) {
+            System.out.print("O");
+        }
+        if(userChoice == target && bridgeStatus != target) {
+            System.out.print("X");
+        }
+        if(userChoice != target) {
+            System.out.print(" ");
+        }
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String userMovement, String bridge) {
-        
+    public void printMap(String userMovement, String bridge, int bridgeSize) {
+        printMapLine(userMovement, bridge, bridgeSize, 'U');
+        printMapLine(userMovement, bridge, bridgeSize, 'D');
     }
 
     /**
