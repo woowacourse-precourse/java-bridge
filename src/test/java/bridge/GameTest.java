@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.message.ErrorMessage;
+import bridge.message.PrintMessage;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -23,9 +24,22 @@ class GameTest extends NsTest {
     @DisplayName("다리 사이즈가 범위 안에 있지 않으면 예외 처리")
     @ValueSource(strings = {"2", "21"})
     @ParameterizedTest
-    void testMakeGame(String input) {
+    void testBridgeSizeNotInRange(String input) {
         assertThatThrownBy(() ->runException(input))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시작 시 Q를 입력하면 -1 return")
+    @Test
+    void testRetryGameQ() throws Exception {
+        Method retryMethod = Game.class.getDeclaredMethod("retryGame");
+        retryMethod.setAccessible(true);
+        String input = "Q";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        int value = (int)retryMethod.invoke(1);
+
+        assertTrue(value == -1);
     }
 
     @Override
