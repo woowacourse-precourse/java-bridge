@@ -85,6 +85,7 @@ public class BridgeGameController {
     public void end() {
         outputView.printResult(
                 bridgeGame.getPlayerPath(),
+                bridgeGame.getCountAttempt(),
                 bridgeGame.getIsSuccess()
         );
     }

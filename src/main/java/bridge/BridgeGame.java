@@ -13,6 +13,7 @@ public class BridgeGame {
     private PlayerPath playerPath;
 
     private boolean isAlive;
+    private int countAttempt;
 
     public BridgeGame() {}
 
@@ -21,6 +22,7 @@ public class BridgeGame {
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
         playerPath = new PlayerPath();
         isAlive = true;
+        countAttempt = 1;
     }
 
     /**
@@ -41,6 +43,7 @@ public class BridgeGame {
      */
     public void retry() {
         playerPath = new PlayerPath();
+        ++countAttempt;
     }
 
     public PlayerPath getPlayerPath(){
@@ -63,5 +66,9 @@ public class BridgeGame {
 
     public boolean isAlive(){
         return isAlive;
+    }
+
+    public int getCountAttempt(){
+        return countAttempt;
     }
 }

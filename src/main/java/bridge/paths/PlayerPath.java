@@ -8,12 +8,10 @@ import java.util.List;
 
 public class PlayerPath {
 
-    private static int ordinalNumber = 0;
     private final List<Direction> currentPath = new ArrayList<>();
     private boolean isAlive = true;
 
     public PlayerPath(){
-        ++ordinalNumber;
     }
 
     public void saveDirection(Direction direction){
@@ -22,9 +20,6 @@ public class PlayerPath {
 
     public List<Direction> getPath(){
         return Collections.unmodifiableList(currentPath);
-    }
-    public int getOrdinalNumber(){
-        return ordinalNumber;
     }
 
     public boolean getIsAlive(){

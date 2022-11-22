@@ -98,11 +98,11 @@ public class OutputView extends DefaultView{
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(PlayerPath playerPath, boolean isSuccess) {
+    public void printResult(PlayerPath playerPath, int countAttempt, boolean isSuccess) {
         output(MSG_FINAL_RESULT);
         printMap(playerPath);
         output(makeWhetherSuccessMessage(isSuccess));
-        output(makeAttemptCountMessage(playerPath.getOrdinalNumber()));
+        output(makeAttemptCountMessage(countAttempt));
     }
 
     private String makeWhetherSuccessMessage(boolean isSuccess){
