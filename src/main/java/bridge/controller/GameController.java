@@ -4,6 +4,7 @@ import bridge.service.BridgeGame;
 import bridge.service.constant.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.view.constant.RetryOptions;
 
 import java.util.function.Supplier;
 
@@ -33,6 +34,16 @@ public class GameController {
             game.move(requestStringInput(inputView::readMoving));
             outputView.printMap(game.obtainGameLog());
             outputView.insertLineBreak();
+            operateRetryOption(game);
+        }
+    }
+
+    private void operateRetryOption (BridgeGame game) {
+        if (game.getStatus() == GameStatus.FAIL) {
+            String retryOption = requestStringInput(inputView::readRetryOption);
+            if (retryOption.equals(RetryOptions.RETRY.get())) {
+                game.retry();
+            }
         }
     }
 
