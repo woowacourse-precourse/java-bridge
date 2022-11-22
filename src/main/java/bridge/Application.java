@@ -1,8 +1,13 @@
 package bridge;
 
-public class Application {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Application {
+    static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    static BridgeMaker bridgeMaker= new BridgeMaker(bridgeRandomNumberGenerator);
+    public static List<String> main_Bridge = new ArrayList<>();
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+       StartGame.gameStart();
     }
 }
