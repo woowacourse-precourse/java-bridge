@@ -61,8 +61,26 @@
 - [ ] "최종 게임 결과" 출력
 - [ ] "게임 성공 여부: ", "총 시도한 횟수: " 출력
 
+<br>
+
+## Test
 
 ---
+
+## ApplicationTest
+- [ ] 다리 생성 테스트
+- [ ] 기능 테스트
+- [ ] 재시도 후 성공 테스트
+- [ ] 실패 테스트
+- [ ] 예외 테스트
+
+## BridgeGameTest
+- [ ] 정답인 경우 move 테스트
+- [ ] 오답인 경우 move 테스트
+- [ ] true -> O로 변경하는 경우 테스트
+- [ ] false -> X로 변경하는 경우 테스트
+- [ ] retry 시, BridgeGame 내 User 변수 객체 재할당 되는지 테스트
+
 ```
 (OutputView, InputView -> BridgeMaker)
 다리 건너기 게임을 시작합니다.
