@@ -9,6 +9,7 @@ import static bridge.constant.BridgeSymbol.MOVING_EMPTY;
 import static bridge.constant.BridgeSymbol.MOVING_O;
 import static bridge.constant.BridgeSymbol.MOVING_X;
 import static bridge.constant.Message.GAME_START;
+import static bridge.constant.Message.INPUT_BRIDGE_SIZE;
 
 import bridge.Moving;
 import java.util.ArrayList;
@@ -68,5 +69,9 @@ public class OutputView {
 
     public void printGameStartMessage() {
         System.out.println(GAME_START);
+    }
+
+    public void printBridgeSizeInputMessage() {
+        System.out.println(INPUT_BRIDGE_SIZE);
     }
 }
