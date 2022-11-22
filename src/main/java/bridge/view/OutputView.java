@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.Constants;
 import bridge.domain.Bridge;
-
 import java.util.List;
 
 /**
