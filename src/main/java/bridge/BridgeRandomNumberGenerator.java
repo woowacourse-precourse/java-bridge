@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -12,3 +12,4 @@ public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
         return Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
     }
 }
+

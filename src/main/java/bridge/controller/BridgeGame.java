@@ -1,11 +1,11 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.GameStatus;
 import bridge.domain.User;
 import bridge.service.BridgeGameService;
 import bridge.service.BridgeMaker;
-import bridge.service.BridgeRandomNumberGenerator;
 
 public class BridgeGame {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
