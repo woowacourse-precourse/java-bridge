@@ -2,7 +2,6 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.controller.BridgeController;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -21,12 +20,8 @@ public class BridgeService {
 
     private static int tryCount = 1;
 
-    public static int getTryCount(){
+    public static int getTryCount() {
         return tryCount;
-    }
-
-    public static List<String>[] getPresentMoveBridge(){
-        return presentMoveBridge;
     }
 
     public static int getInputSize() {
@@ -97,46 +92,45 @@ public class BridgeService {
         }
     }
 
-    public static void getInitRetryQuit(){
+    public static void getInitRetryQuit() {
         String input = InputView.readGameCommand();
         try {
             checkRetryQuit(input);
             retryQuit(input);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             getInitRetryQuit();
         }
     }
 
-    public static void retryQuit(String input){
-        if(input.equals("R")){
+    public static void retryQuit(String input) {
+        if (input.equals("R")) {
             tryCount++;
             BridgeGame.retry();
-        }
-        else if(input.equals("Q")){
+        } else if (input.equals("Q")) {
             viewFinalResult(false);
         }
     }
 
-    public static void viewResult(){
+    public static void viewResult() {
         OutputView.printResult(presentMoveBridge);
     }
 
-    public static void gameSuccess(boolean result){
+    public static void gameSuccess(boolean result) {
         OutputView.printGameSuccess(result);
     }
 
-    public static void tryCount(){
+    public static void tryCount() {
         OutputView.printTryCount();
     }
 
-    public static void viewFinalResult(boolean result){
+    public static void viewFinalResult(boolean result) {
         viewResult();
         gameSuccess(result);
         tryCount();
     }
 
-    public static String checkRetryQuit(String input){
+    public static String checkRetryQuit(String input) {
         if (input.equals("R") || input.equals("Q")) {
             return input;
         }
