@@ -4,7 +4,6 @@ import bridge.domain.GameResult;
 import bridge.domain.MovingResult;
 import bridge.logic.BridgeGame;
 import bridge.util.BridgeMaker;
-import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.View;
 import java.util.List;
 
