@@ -22,9 +22,13 @@ public class OutputView {
         System.out.println("\n이동할 칸을 선택해주세요");
     }
 
-    public void printMap() {
+    public void printMap(List<String> result) {
         List<String> first_Line_Bridge = new ArrayList<>();
         List<String> second_Line_Bridge = new ArrayList<>();
+        first_Line_Bridge.add(result.get(0));
+        second_Line_Bridge.add(result.get(1));
+        System.out.println(first_Line_Bridge);
+        System.out.println(second_Line_Bridge);
     }
 
     /**

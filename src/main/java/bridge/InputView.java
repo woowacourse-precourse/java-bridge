@@ -28,9 +28,10 @@ public class InputView {
     }
 
     public void exceptionCheck_Bridge(String input) {
-        if (input.length() >= 1 && input.length() <= 2) {
-            exceptionStatusCheck_Bridge(input);
+        if (input.length() < 1 || input.length() > 2) {
+            exceptionOccured_Bridge();
         }
+        exceptionStatusCheck_Bridge(input);
     }
 
     public void exceptionStatusCheck_Bridge(String input){

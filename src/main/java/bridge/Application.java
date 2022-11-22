@@ -6,7 +6,7 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        List<String> bridge = new ArrayList<>();
+        List<String> bridge;
         int num = 0;
         OutputView OV = new OutputView();
         OV.startGuidance();
@@ -17,6 +17,8 @@ public class Application {
         OV.moveGuidance();
         String currentMoving = IV.readMoving();
         BridgeGame BG = new BridgeGame();
-        BG.move(bridge.get(num), currentMoving);
+        List<String> movement = BG.move(bridge.get(num), currentMoving);
+        OV.printMap(movement);
+//        OV.printMap(BG.move(bridge.get(num), currentMoving));
     }
 }
