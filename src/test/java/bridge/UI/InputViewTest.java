@@ -207,60 +207,70 @@ class InputViewTest {
             assertThat(inputView.readGameCommand()).isEqualTo(input);
         }
 
+        @DisplayName("readGameCommand 에서 R를 입력받았을 때, 다시 정상적으로 R를 return")
         @Test
         void readGameCommand_case1(){
             String input = "R";
             getGameCommandTest(input);
         }
 
+        @DisplayName("readGameCommand 에서 Q를 입력받았을 때, 다시 정상적으로 Q를 return")
         @Test
         void readGameCommand_case2(){
             String input = "Q";
             getGameCommandTest(input);
         }
 
+        @DisplayName("readGameCommand 에서 RQ를 입력받았을 때, R이나 Q가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readGameCommand_exceptionCase1(){
             String input = "RQ";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readGameCommand 에서 A를 입력받았을 때, R이나 Q가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readGameCommand_exceptionCase2(){
             String input = "A";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readGameCommand 에서 X를 입력받았을 때, R이나 Q가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readGameCommand_exceptionCase3(){
             String input = "X";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readGameCommand 에서 Hi를 입력받았을 때, R이나 Q가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readGameCommand_exceptionCase4(){
             String input = "Hi";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readGameCommand 에서 공란을을 입력받았을 때, R이나 Q 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readGameCommand_exceptionCase5(){
             String input = " ";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readGameCommand 에서 !@#를 입력받았을 때, R이나 Q가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readGameCommand_exceptionCase6(){
             String input = "!@#";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readGameCommand 에서 5를 입력받았을 때, R이나 Q가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readGameCommand_exceptionCase7(){
             String input = "5";
             getExceptionTest(input,functionSupply);
         }
 
+        @DisplayName("readGameCommand 에서 -1234를 입력받았을 때, R이나 Q가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생")
         @Test
         void readGameCommand_exceptionCase8(){
             String input = "-1234";
