@@ -20,3 +20,6 @@
   - 랜덤으로 넘버 생성
 - BridgeController
   - 전체적인 게임 진행
+- BridgeState
+  - 진행 중인 다리의 상태값 저장
+  - 재시작시에는 초기화
