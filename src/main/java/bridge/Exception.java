@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class Exception {
     private static final String MOVE_BRIDGE_EXCEPTION_MESSAGE = "[ERROR] 위는 U, 아래는 D로 입력해야 합니다.";
-    public static final String RESTART_GAME_PHRASE = "R";
-    public static final String END_GAME_PHRASE = "Q";
+    public static final String RETRY_COMMAND = "R";
+    public static final String END_COMMAND = "Q";
     private static final String RESTART_EXCEPTION_MESSAGE = "[ERROR] 재시작은 R, 종료는 Q로 입력해야 합니다.";
 
     public static void moveBridgeException(String moveBridgePhrase) {
@@ -16,8 +16,8 @@ public class Exception {
     }
 
     public static void retryException(String command) {
-        if ((!Objects.equals(command, RESTART_GAME_PHRASE))
-                && (!Objects.equals(command, END_GAME_PHRASE))) {
+        if ((!Objects.equals(command, RETRY_COMMAND))
+                && (!Objects.equals(command, END_COMMAND))) {
             throw new NoSuchElementException(RESTART_EXCEPTION_MESSAGE);
         }
     }
