@@ -19,15 +19,15 @@
 
 - [ ] Application
   - [x] 필요 인스턴스들을 초기화한다.
-  - [ ] OutputView와 협력하여 게임 시작 메시지를 출력한다.
-  - [ ] OutputView와 협력하여 다리의 길이를 입력받는 메시지를 출력한다.
-  - [ ] InputView와 협력하여 다리의 길이를 입력받는다.
-  - [ ] BridgeMaker
-    - [ ] 다리의 길이 만큼 BridgeNumberGenerator 와 협력하여 정답배열을 생성한다.
-  - [ ] Bridge
-    - [ ] 생성된 문자열로 생성한다.
-  - [ ] BridgeGame
-    - [ ] Bridge를 입력받아 생성된다.
+  - [x] OutputView와 협력하여 게임 시작 메시지를 출력한다.
+  - [x] OutputView와 협력하여 다리의 길이를 입력받는 메시지를 출력한다.
+  - [x] InputView와 협력하여 다리의 길이를 입력받는다.
+  - [x] BridgeMaker
+    - [x] 다리의 길이 만큼 BridgeNumberGenerator 와 협력하여 정답배열을 생성한다.
+  - [x] Bridge
+    - [x] 생성된 문자열로 생성한다.
+  - [x] BridgeGame
+    - [x] Bridge를 입력받아 생성된다.
   - [ ] OutputView와 협력하여 다음 칸을 입력받는 메시지를 출력한다.
   - [ ] InputView와 협력하여 다음 칸을 입력받는다.
     - [ ] Player
