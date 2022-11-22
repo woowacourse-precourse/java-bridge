@@ -40,7 +40,7 @@ public class Controller {
 
     public void stepForward(boolean isRetry) {
         bridgeGame.move(getMoving());
-        outputView.drawMap(bridgeGame, isRetry);
+        outputView.makeBridgeMap(bridgeGame);
         outputView.printMap();
     }
 
@@ -64,11 +64,7 @@ public class Controller {
 
     public void start() {
         makeBridgeGame();
-
-        // 테스트용
         System.out.println(bridgeGame.bridge);
-        // @@@@@@
-
         boolean onGoing = true;
         boolean isRetry = false;
         String command = "";
@@ -85,6 +81,7 @@ public class Controller {
             if (command.equals("R")) {
                 isRetry = true;
                 bridgeGame.retry();
+                outputView.removeRecentBridge();
             }
         } while(onGoing);
         end();

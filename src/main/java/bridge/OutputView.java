@@ -60,15 +60,6 @@ public class OutputView {
         lowerBridge = lowerBridge.substring(0, lowerBridge.length() - 4);
     }
 
-    public void drawMap(BridgeGame bridgeGame, Boolean isRetry) {
-        if (isRetry) {
-            removeRecentBridge();
-        }
-        if (!isRetry) {
-            makeBridgeMap(bridgeGame);
-        }
-    }
-
     public void printMap() {
         System.out.println(START_LINE.getMessage() + upperBridge + END_LINE.getMessage());
         System.out.println(START_LINE.getMessage() + lowerBridge + END_LINE.getMessage());
