@@ -31,5 +31,15 @@ public class ExceptionHandler {
         }
         return moving;
     }
+    public static String gameCommandValidTest(String gameCommand){
+        while(true){
+            try{
+                gameCommand = readLine();
+                if(gameCommand.equals("R") || gameCommand.equals("Q")) break;
+                throw new IllegalArgumentException();
+            } catch(IllegalArgumentException e){System.out.println(GAME_COMMAND_CHARACTER_EXCEPTION_ERROR_MESSAGE); }
+        }
+        return gameCommand;
+    }
 }
 
