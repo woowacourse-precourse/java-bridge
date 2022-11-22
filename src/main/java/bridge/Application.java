@@ -15,11 +15,11 @@ public class Application {
             int bridgeSize = inputView.readBridgeSize();
 
             List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+
+            outputView.printChooseSpaceToMoveMessage();
+            inputView.readMoving();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
-
-        outputView.printChooseSpaceToMoveMessage();
-        inputView.readMoving();
     }
 }
