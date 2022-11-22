@@ -7,10 +7,19 @@ import bridge.data.MoveResult;
 import java.util.List;
 
 public class ResultDemonstrator {
+    private static ResultDemonstrator instance;
+
     private final OutputView outputView;
 
-    public ResultDemonstrator() {
+    private ResultDemonstrator() {
         this.outputView = new OutputView();
+    }
+
+    public static ResultDemonstrator getResultDemonstrator() {
+        if (instance == null) {
+            instance = new ResultDemonstrator();
+        }
+        return instance;
     }
 
     public void printCurrentResult(List<MoveResult> moveResults) {
