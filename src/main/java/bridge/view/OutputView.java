@@ -64,11 +64,11 @@ public class OutputView {
         }
     }
 
-    public void printWithDivision(StringBuilder up, StringBuilder down) {
-        insertDivision(up);
-        insertDivision(down);
-        System.out.println(up);
-        System.out.println(down);
+    public void printWithDivision(StringBuilder upSide, StringBuilder downSide) {
+        insertDivision(upSide);
+        insertDivision(downSide);
+        System.out.println(upSide);
+        System.out.println(downSide);
     }
 
     /**
