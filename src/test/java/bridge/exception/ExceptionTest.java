@@ -1,4 +1,4 @@
-package bridge;
+package bridge.exception;
 
 import bridge.constant.Error;
 import bridge.exception.Exception;
