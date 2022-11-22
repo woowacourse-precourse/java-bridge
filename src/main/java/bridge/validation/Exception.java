@@ -23,7 +23,7 @@ public class Exception {
     public static void checkRangeException(String input) {
         int size = Integer.parseInt(input);
         if (size < MIN_BRIDGE_SIZE || MAX_BRIDGE_SIZE < size) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.RANGE.message);
         }
     }
 
