@@ -28,4 +28,14 @@ class InputValidatorTest {
                     InputValidator.validateBridgeSize(input);
                 });
     }
+
+    @DisplayName("U 또는 D가 아닐 경우 예외를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", "A"})
+    void validateMovingCommand(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    InputValidator.validateMovingCommand(input);
+                });
+    }
 }

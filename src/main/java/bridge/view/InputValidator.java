@@ -5,6 +5,8 @@ public class InputValidator {
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final String NUMBER_PATTERN = "\\d+";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     private InputValidator() {
     }
@@ -23,5 +25,15 @@ public class InputValidator {
 
     private static boolean isValidSize(int number) {
         return number >= MIN_BRIDGE_SIZE && number <= MAX_BRIDGE_SIZE;
+    }
+
+    public static void validateMovingCommand(String command) {
+        if(!isValidMovingCommand(command)){
+            throw new IllegalArgumentException("U 또는 D를 입력해주세요.");
+        }
+    }
+
+    private static boolean isValidMovingCommand(String command) {
+        return command.equals(UP) || command.equals(DOWN);
     }
 }
