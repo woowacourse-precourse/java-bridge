@@ -6,11 +6,12 @@ import java.util.List;
 import static bridge.util.Constant.*;
 
 public class Application {
+    static int count = 1;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         gameStart();
-        moveUser(makeBridge());
+        System.out.println("총 시도한 횟수: " + moveUser(makeBridge()));
     }
 
     public static void gameStart() {
@@ -22,37 +23,49 @@ public class Application {
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
-    public static void moveUser(List<String> bridge) {
-        int count = 1;
+    public static int moveUser(List<String> bridge) {
         List<String> result = new ArrayList<>();
+        moveDetail(result, bridge);
+        outputView.printClearResult(result);
+        return count;
+    }
+
+    public static void moveDetail(List<String> result, List<String> bridge) {
         for (int i = 0; i < bridge.size(); i++) {
-            outputView.printMovingBlockInputPhrase();
-            String moving = inputView.readMoving();
-            boolean moveResult = bridgeGame.move(moving, bridge.get(i));
-            if (moveResult) {
-                outputView.printMap(addTrueResult(i, moving, result));
-            }
-            if (!moveResult) {
+            String moving = inputUpDown();
+            if (!bridgeGame.move(moving, bridge.get(i))) {
                 outputView.printMap(addFalseResult(i, moving, result));
-                outputView.printRestartMessage();
-                if (inputView.readGameCommand().equals("Q")) {
-                    endGame(result);
-                    break;
-                }
+                i = restartGame(i, result, bridge);
                 result = new ArrayList<>();
-                count++;
-                i = -1;
+                continue;
             }
+            outputView.printMap(addTrueResult(i, moving, result));
         }
-        System.out.println("총 시도한 횟수: " + count);
+    }
+
+    public static String inputUpDown() {
+        outputView.printMovingBlockInputPhrase();
+        return inputView.readMoving();
+    }
+
+    public static int restartGame(int i, List<String> result, List<String> bridge) {
+        outputView.printRestartMessage();
+        return restartGameDetail(inputView.readGameCommand(), result, bridge);
+    }
+
+    public static int restartGameDetail(String readGameCommand, List<String> result, List<String> bridge) {
+        if (readGameCommand.equals("R")) {
+            count++;
+            return -1;
+        }
+        if (readGameCommand.equals("Q")) {
+            endGame(result);
+        }
+        return bridge.size();
     }
 
     public static void endGame(List<String> result) {
-        outputView.printResult(result);
-    }
-
-    public static void mR(boolean rst) {
-
+        outputView.printFailResult(result);
     }
 
     public static List<String> addTrueResult(int count, String moving, List<String> result) {
