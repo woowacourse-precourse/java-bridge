@@ -39,7 +39,7 @@ public class InputValidation {
         }
 
         int size = Integer.parseInt(readLine);
-        if (size >= 3 && size <= 20) {
+        if (!(size >= 3 && size <= 20)) {
             throw new IllegalArgumentException("[ERROR] Bridge size is Exception !!");
         }
 
