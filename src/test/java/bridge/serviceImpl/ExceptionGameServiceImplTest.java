@@ -36,7 +36,7 @@ public class ExceptionGameServiceImplTest {
         // given
         String expect = EXCEPTION_CATCH;
         GameService gameService = new ExceptionGameServiceImpl(() -> {
-            throw new IllegalArgumentException(EXCEPTION_CATCH);
+            throw new StackOverflowError(EXCEPTION_CATCH);
         });
 
         // when

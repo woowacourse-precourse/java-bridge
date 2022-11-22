@@ -1,6 +1,7 @@
 package bridge.serviceImpl;
 
 import bridge.service.GameService;
+import bridge.util.message.SystemMessage;
 
 public class ExceptionGameServiceImpl implements GameService {
 
@@ -14,8 +15,8 @@ public class ExceptionGameServiceImpl implements GameService {
     public void startGame() {
         try {
             gameService.startGame();
-        } catch (IllegalArgumentException e) {
-            System.out.print(e.getMessage());
+        } catch (StackOverflowError e) {
+            System.out.print(SystemMessage.TOO_MUCH_RTY);
         }
     }
 }

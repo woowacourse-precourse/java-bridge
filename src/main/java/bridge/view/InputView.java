@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.util.message.SystemMessage;
 import bridge.validation.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -31,19 +32,35 @@ public class InputView {
     }
 
     public int readBridgeSize() {
-        String bridgeSize = validatedUserInput(bridgeValidation);
+        String bridgeSize = validUserInput();
         return Integer.parseInt(bridgeSize);
     }
 
+    private String validUserInput() {
+        return validated(bridgeValidation);
+    }
+
     public String readMoving() {
-        return validatedUserInput(movingValidation);
+        return validated(movingValidation);
     }
 
     public String readGameCommand() {
-        return validatedUserInput(restartQuickValidation);
+        return validated(restartQuickValidation);
     }
 
-    private String validatedUserInput(Validation validation) {
+    public String validated(Validation validation) {
+        String valid = null;
+        try {
+            valid = validateUserInput(validation);
+        } catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage() + System.lineSeparator());
+            System.out.print(SystemMessage.OCCUR_EXCEPTION.getMessage() + System.lineSeparator());
+            valid = validated(validation);
+        }
+        return valid;
+    }
+
+    private String validateUserInput(Validation validation) {
         String input = userInput();
         validate(input, validation);
         return input;

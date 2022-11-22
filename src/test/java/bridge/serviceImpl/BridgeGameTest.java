@@ -2,6 +2,7 @@ package bridge.serviceImpl;
 
 import bridge.Application;
 import bridge.util.message.ErrorMessage;
+import bridge.util.message.SystemMessage;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
@@ -86,11 +87,10 @@ class BridgeGameTest extends NsTest {
     @Test
     void 재시작_숫자_입력_예외_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "D", "2");
+            run("3", "D", "2", "R", "U", "U", "U");
             assertThat(output()).contains(
-                    "[   ]",
-                    "[ X ]",
-                    ErrorMessage.NOT_RESTART_QUICK_VALID_STRING.getMessage()
+                    ErrorMessage.NOT_RESTART_QUICK_VALID_STRING.getMessage(),
+                    SystemMessage.OCCUR_EXCEPTION.getMessage()
             );
         }, 1, 1, 1);
     }
@@ -98,11 +98,10 @@ class BridgeGameTest extends NsTest {
     @Test
     void 재시작_다른문자_입력_예외_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "D", "E");
+            run("3", "D", "2", "R", "U", "U", "U");
             assertThat(output()).contains(
-                    "[   ]",
-                    "[ X ]",
-                    ErrorMessage.NOT_RESTART_QUICK_VALID_STRING.getMessage());
+                    ErrorMessage.NOT_RESTART_QUICK_VALID_STRING.getMessage(),
+                    SystemMessage.OCCUR_EXCEPTION.getMessage());
         }, 1, 1, 1);
     }
 
