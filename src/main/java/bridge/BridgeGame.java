@@ -17,23 +17,23 @@ public class BridgeGame {
         this.player = player;
     }
 
-    public void start(){
+    public void start() {
         makeBridge();
         do {
             player.increaseGameCount();
             player.currentPositionReset();
             play();
-        }while(!player.isSuccess() && retry());
+        } while (!player.isSuccess() && retry());
 
         player.printTotalScore(lastBridgeMap(player.getCurrentPosition(), player.success));
     }
 
-    public void makeBridge(){
+    public void makeBridge() {
         this.bridge = new Bridge(player.makeBridge());
     }
 
-    public void play(){
-        while(move()){
+    public void play() {
+        while (move()) {
         }
     }
 
@@ -45,9 +45,10 @@ public class BridgeGame {
      */
     public boolean move() {
         boolean isCorrectSpot = bridge.isCorrectSpot(player.getNextIdx(), player.getNextSpot());
-        if(!isCorrectSpot)
+        if (!isCorrectSpot) {
             return false;
-        if(bridge.isLastSpot(player.getCurrentPosition())){
+        }
+        if (bridge.isLastSpot(player.getCurrentPosition())) {
             player.success = true;
             return false;
         }
@@ -63,7 +64,7 @@ public class BridgeGame {
         return player.retry();
     }
 
-    public Map<String, String> lastBridgeMap(int currentPosition, boolean result){
+    public Map<String, String> lastBridgeMap(int currentPosition, boolean result) {
         Map<String, String> ret = new HashMap<>();
         ret.put(UP, bridge.getUpLineResult(currentPosition, result));
         ret.put(DOWN, bridge.getDownLineResult(currentPosition, result));

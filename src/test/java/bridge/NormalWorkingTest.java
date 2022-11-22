@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test;
 public class NormalWorkingTest extends NsTest {
     @Test
     void 길이가_10인_다리_생성_테스트() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0, 1, 0, 1, 1, 1, 0, 0));
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(
+                newArrayList(1, 0, 0, 1, 0, 1, 1, 1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(10);
         assertThat(bridge).containsExactly("U", "D", "D", "U", "D", "U", "U", "U", "D", "D");
@@ -21,10 +22,12 @@ public class NormalWorkingTest extends NsTest {
 
     @Test
     void 길이가_20인_다리_생성_테스트() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0));
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(
+                newArrayList(1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(20);
-        assertThat(bridge).containsExactly("U", "D", "D", "U", "D", "U", "U", "U", "D", "D", "U", "D", "U", "U", "U", "U", "D", "D", "U", "D");
+        assertThat(bridge).containsExactly("U", "D", "D", "U", "D", "U", "U", "U", "D", "D", "U", "D", "U", "U", "U",
+                "U", "D", "D", "U", "D");
     }
 
     @Test

@@ -22,7 +22,7 @@ public class Player {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
-    public List<String> makeBridge(){
+    public List<String> makeBridge() {
         int bridgeSize = getSize();
 
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -31,9 +31,9 @@ public class Player {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private int getSize(){
+    private int getSize() {
         String size = inputView.readBridgeSize();
-        if(!isValidateSize(size)){
+        if (!isValidateSize(size)) {
             throw new IllegalArgumentException(BRIDGE_LENGTH_ERROR_MESSAGE);
         }
 
@@ -41,9 +41,9 @@ public class Player {
     }
 
     private boolean isValidateSize(String size) {
-        try{
+        try {
             Integer.parseInt(size);
-        }catch (IllegalArgumentException illegalArgumentException){
+        } catch (IllegalArgumentException illegalArgumentException) {
             return false;
         }
         return Integer.parseInt(size) >= MIN_BRIDGE_LENGTH && Integer.parseInt(size) <= MAX_BRIDGE_LENGTH;
@@ -54,9 +54,9 @@ public class Player {
         return currentPosition;
     }
 
-    public String getNextSpot(){
+    public String getNextSpot() {
         String nextSpot = inputView.readMoving();
-        if(!isValidSpot(nextSpot)){
+        if (!isValidSpot(nextSpot)) {
             throw new IllegalArgumentException(DIRECTION_ERROR_MESSAGE);
         }
 
@@ -73,7 +73,7 @@ public class Player {
 
     public boolean retry() {
         String command = inputView.readGameCommand();
-        if(!isValidCommand(command)){
+        if (!isValidCommand(command)) {
             throw new IllegalArgumentException(COMMAND_ERROR_MESSAGE);
         }
         return command.equals(RETRY);
@@ -83,7 +83,7 @@ public class Player {
         return command.equals(RETRY) || command.equals(QUIT);
     }
 
-    public void currentPositionReset(){
+    public void currentPositionReset() {
         currentPosition = -1;
     }
 
@@ -91,7 +91,7 @@ public class Player {
         return success;
     }
 
-    public void increaseGameCount(){
+    public void increaseGameCount() {
         gameCount++;
     }
 

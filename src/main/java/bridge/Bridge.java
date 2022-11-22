@@ -12,7 +12,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isCorrectSpot(int checkIdx, String spot){
+    public boolean isCorrectSpot(int checkIdx, String spot) {
         boolean isCorrectSpot = bridge.get(checkIdx).equals(spot);
 
         outputView.printMap(getUpLineResult(checkIdx, isCorrectSpot), getDownLineResult(checkIdx, isCorrectSpot));
@@ -20,7 +20,7 @@ public class Bridge {
         return isCorrectSpot;
     }
 
-    public String getUpLineResult(int idx, boolean lastIdxResult){
+    public String getUpLineResult(int idx, boolean lastIdxResult) {
         String result = "";
         result += createBridgeBeforeLastIndex(idx, UP);
         result += createBridgeAtLastIndex(idx, lastIdxResult, UP);
@@ -28,7 +28,7 @@ public class Bridge {
         return result;
     }
 
-    public String getDownLineResult(int idx, boolean lastIdxResult){
+    public String getDownLineResult(int idx, boolean lastIdxResult) {
         String result = "";
         result += createBridgeBeforeLastIndex(idx, DOWN);
         result += createBridgeAtLastIndex(idx, lastIdxResult, DOWN);
@@ -36,43 +36,49 @@ public class Bridge {
         return result;
     }
 
-    private String createBridgeBeforeLastIndex(int idx, String UorD){
+    private String createBridgeBeforeLastIndex(int idx, String UorD) {
         StringBuilder result = new StringBuilder();
-        for(int i = 0; i < idx; i++){
-            if(bridge.get(i).equals(UorD))
+        for (int i = 0; i < idx; i++) {
+            if (bridge.get(i).equals(UorD)) {
                 result.append("O | ");
-            if(!bridge.get(i).equals(UorD))
+            }
+            if (!bridge.get(i).equals(UorD)) {
                 result.append("  | ");
+            }
         }
         return result.toString();
     }
 
-    private String createBridgeAtLastIndex(int idx, boolean lastIdxResult, String UorD){
-        String result ="";
-        if(lastIdxResult) {
+    private String createBridgeAtLastIndex(int idx, boolean lastIdxResult, String UorD) {
+        String result = "";
+        if (lastIdxResult) {
             result += createBridgeAtLastIndexAsSuccess(idx, UorD);
         }
-        if(!lastIdxResult){
+        if (!lastIdxResult) {
             result += createBridgeAtLastIndexAsFail(idx, UorD);
         }
         return result;
     }
 
-    private String createBridgeAtLastIndexAsSuccess(int idx, String UorD){
-        String result ="";
-        if(bridge.get(idx).equals(UorD))
+    private String createBridgeAtLastIndexAsSuccess(int idx, String UorD) {
+        String result = "";
+        if (bridge.get(idx).equals(UorD)) {
             result += "O";
-        if(!bridge.get(idx).equals(UorD))
+        }
+        if (!bridge.get(idx).equals(UorD)) {
             result += " ";
+        }
         return result;
     }
 
-    private String createBridgeAtLastIndexAsFail(int idx, String UorD){
+    private String createBridgeAtLastIndexAsFail(int idx, String UorD) {
         String result = "";
-        if (bridge.get(idx).equals(UorD))
+        if (bridge.get(idx).equals(UorD)) {
             result += " ";
-        if (!bridge.get(idx).equals(UorD))
+        }
+        if (!bridge.get(idx).equals(UorD)) {
             result += "X";
+        }
         return result;
     }
 

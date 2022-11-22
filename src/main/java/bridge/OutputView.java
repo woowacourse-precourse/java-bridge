@@ -39,12 +39,12 @@ public class OutputView {
         System.out.print(TOTAL_TRY_COUNT + gameCount);
     }
 
-    private void printGameResult(boolean isSuccess){
+    private void printGameResult(boolean isSuccess) {
         String isSuccessByKorean = "";
-        if(isSuccess){
+        if (isSuccess) {
             isSuccessByKorean = SUCCESS;
         }
-        if(!isSuccess){
+        if (!isSuccess) {
             isSuccessByKorean = FAIL;
         }
         System.out.println(IS_GAME_SUCCESS + isSuccessByKorean);

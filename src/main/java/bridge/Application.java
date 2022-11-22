@@ -5,11 +5,11 @@ public class Application {
 
     public static void main(String[] args) {
         Player player = new Player();
-        try{
+        try {
             System.out.println(GAME_START);
             BridgeGame bridgeGame = new BridgeGame(player);
             bridgeGame.start();
-        }catch (IllegalArgumentException illegalArgumentException){
+        } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
         }
     }

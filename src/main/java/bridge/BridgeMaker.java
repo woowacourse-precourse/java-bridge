@@ -23,18 +23,18 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             bridge.add(createRandomNumber());
         }
         return bridge;
     }
 
-    public String createRandomNumber(){
+    public String createRandomNumber() {
         int randomNumber = bridgeNumberGenerator.generate();
-        if(randomNumber == 1){
+        if (randomNumber == 1) {
             return UP;
         }
-        if(randomNumber == 0){
+        if (randomNumber == 0) {
             return DOWN;
         }
         throw new IllegalArgumentException(GENERATOR_ERROR);
