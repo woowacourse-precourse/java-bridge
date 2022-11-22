@@ -40,7 +40,8 @@ public class BridgeGameManager {
     }
 
     public void endGame() {
-        OutputView.printResult(gamePlayCount, result, bridgeConnector.toString());
+        OutputView.printFinalBridge(bridgeConnector.toString());
+        OutputView.printResult(gamePlayCount, result);
     }
 
     public void restartGame() {
