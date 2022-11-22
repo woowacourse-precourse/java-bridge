@@ -25,7 +25,7 @@ public class ExceptionCaseTest {
     }
 
     @Test
-    void isInputTry_IllegalArgumentException_InputIsNotQW() {
+    void isInputTry_IllegalArgumentException_InputIsNotQR() {
         assertThatThrownBy(() -> ExceptionCase.isInputTry("W"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
