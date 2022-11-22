@@ -97,4 +97,18 @@ class BridgeGameTest {
         assertThat(moveResults.upLineResults()).hasSize(1);
         assertThat(moveResults.downLineResults()).hasSize(1);
     }
+
+    @DisplayName("RETRY가 입력되면 gameResult가 변경되지 않는다.")
+    @Test
+    void gameResultNoChange() {
+        bridgeGame.retryOrQuit(GameCommands.RETRY);
+        assertThat(bridgeGame).extracting("gameResult").isEqualTo("성공");
+    }
+
+    @DisplayName("QUIT이 입력되면 gameResult가 '실패'로 변경된다.")
+    @Test
+    void gameResultToFail() {
+        bridgeGame.retryOrQuit(GameCommands.QUIT);
+        assertThat(bridgeGame).extracting("gameResult").isEqualTo("실패");
+    }
 }
