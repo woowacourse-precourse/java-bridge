@@ -9,15 +9,18 @@ import java.util.List;
 public class BridgeGame {
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private InputView inputView;
-    private BridgeMaker bridgeMaker;
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private OutputView outputView;
 
     private List<String> playerCommands;
     private int plyerMoveCount = 0;
 
+    private GameMap gameMap = new GameMap();
+
     private List<String> bridge; // 직접 접근을 막고 bridge to map 으로 반환하여 출력하게끔
-    public BridgeGame(InputView inputView, BridgeMaker bridgeMakerw) {
+    public BridgeGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
-        this.bridgeMaker = bridgeMaker;
+        this.outputView = outputView;
     }
     public void play() {
         System.out.println(START_MESSAGE);
@@ -26,6 +29,7 @@ public class BridgeGame {
         playerCommands = new ArrayList<>();
         String playerCommand = inputView.readMoving();
         move(playerCommand);
+        outputView.printMap(gameMap);
     }
 
     /**
@@ -36,6 +40,7 @@ public class BridgeGame {
     public void move(String moveCommand) {
         playerCommands.add(moveCommand);
         plyerMoveCount++;
+        gameMap.add(moveCommand, checkMoveResult(moveCommand));
     }
 
     private String checkMoveResult(String moveCommand) {
