@@ -53,5 +53,36 @@ class BridgeGameTest {
             assertTrue(bridgeGame.isCleared());
         }
     }
-    
+
+    @Nested
+    @DisplayName("게임을 재시도한다.")
+    class RetryTest {
+        @Test
+        @DisplayName("게임의 이동된 칸의 위치를 처음 칸으로 업데이트한다.")
+        void update_stage_zero() {
+            bridgeGame.move(Direction.UP);
+            bridgeGame.move(Direction.DOWN);
+            bridgeGame.move(Direction.UP);
+
+            bridgeGame.retry();
+
+            assertEquals(0, bridgeGame.getStage());
+        }
+        @Test
+        @DisplayName("게임 시도 횟수를 1 증가시킨다.")
+        void increase_tryCount() {
+            int beforeTryCount = bridgeGame.getTotalTryCount();
+            bridgeGame.retry();
+            int afterTryCount = bridgeGame.getTotalTryCount();
+
+            assertEquals(1, afterTryCount - beforeTryCount);
+        }
+        @Test
+        @DisplayName("게임의 진행 상태를 running 상태로 업데이트한다.")
+        void update_gameState_running() {
+            bridgeGame.retry();
+            assertTrue(bridgeGame.isRunning());
+        }
+    }
+
 }
