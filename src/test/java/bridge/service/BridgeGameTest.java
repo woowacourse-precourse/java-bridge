@@ -91,4 +91,14 @@ class BridgeGameTest {
         assertThat(bridgeGame.getGameMap())
                 .isEqualTo("[ O |   | O ]\n[   | O |   ]");
     }
+
+    @Test
+    void 잘못된_다리를_건너면_해당_방향에_X가_그려져야한다() {
+        bridgeGame.move(Moving.UP);
+        assertThat(bridgeGame.getGameMap()).isEqualTo("[ O ]\n[   ]");
+
+        bridgeGame.move(Moving.UP);
+        assertThat(bridgeGame.getGameMap())
+                .isEqualTo("[ O | X ]\n[   |   ]");
+    }
 }
