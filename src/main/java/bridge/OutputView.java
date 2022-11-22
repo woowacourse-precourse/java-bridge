@@ -1,23 +1,46 @@
 package bridge;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
-public class OutputView {
+import java.util.ArrayList;
+import java.util.List;
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+public class OutputView {
+    public void printMap(BridgeGame bridgeGame) {
+        List<String> currentBridge = bridgeGame.getCurrentBridge();
+        List<String> upperRow = convertUpperRow(currentBridge);
+        List<String> lowerRow = convertLowerRow(currentBridge);
+        System.out.println(addDelimiter(upperRow));
+        System.out.println(addDelimiter(lowerRow));
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public List<String> convertUpperRow(List<String> currentBridge) {
+        List<String> upperRow = new ArrayList<>();
+        for (String bridge : currentBridge) {
+            if (bridge.equals(Constant.UP)) {
+                upperRow.add(Constant.BRIDGE_RIGHT);
+                continue;
+            }
+            upperRow.add(Constant.BRIDGE_WRONG);
+        }
+        return upperRow;
+    }
+
+    public List<String> convertLowerRow(List<String> currentBridge) {
+        List<String> lowerRow = new ArrayList<>();
+        for (String bridge : currentBridge) {
+            if (bridge.equals(Constant.UP)) {
+                lowerRow.add(Constant.BRIDGE_WRONG);
+                continue;
+            }
+            lowerRow.add(Constant.BRIDGE_RIGHT);
+        }
+        return lowerRow;
+    }
+
+    public String addDelimiter(List<String> row) {
+        return Constant.BRIDGE_START + String.join(Constant.BRIDGE_DELIMITER, row) + Constant.BRIDGE_END;
+    }
+
+
     public void printResult() {
     }
 }

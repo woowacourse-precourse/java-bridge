@@ -6,22 +6,30 @@ public class Application {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
 
         BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
-
-        // make controller with these chunk?
 
         Integer bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        while (bridgeGame.step < bridgeSize) {
+        while (!bridgeGame.isEnd()) {
             String moving = inputView.readMoving();
-            bridgeGame.move(moving);
+            Boolean moved = bridgeGame.move(moving);
+            outputView.printMap(bridgeGame);
+            if (moved) {
+                continue;
+            }
+
+            String again = inputView.readGameCommand();
+            if (again.equals(Constant.QUIT)) {
+                break;
+            }
+            bridgeGame.retry();
         }
-//        OutputView.printMap(something, bool or int);
+        outputView.printResult();
 
     }
 }

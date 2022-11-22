@@ -5,8 +5,20 @@ public class Constant {
 
     public static final Integer MIN_BRIDGE_SIZE = 3;
     public static final Integer MAX_BRIDGE_SIZE = 20;
+
     public static final String UP = "U";
     public static final String DOWN = "D";
+
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
+
+    public static final String BRIDGE_START = "[";
+    public static final String BRIDGE_END = "]";
+    public static final String BRIDGE_DELIMITER = " | ";
+
+    public static final String BRIDGE_RIGHT = "O";
+    public static final String BRIDGE_WRONG = "X";
+    public static final String BRIDGE_BLANK = " ";
 
     public static final String READ_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     public static final String READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
