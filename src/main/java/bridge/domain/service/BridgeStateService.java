@@ -1,25 +1,56 @@
 package bridge.domain.service;
 
-import bridge.domain.resources.bridge.Bridge;
 import bridge.domain.resources.Move;
+
+import bridge.domain.resources.bridge.Bridge;
+
 import bridge.domain.resources.converter.ConvertBridgeMap;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class BridgeStateService {
 
-    public void compare(final Move move, final Bridge bridge, final BridgeMap bridgeMap) {
+    private final List<String> bridgeMap;
+    private int inputCount;
+    private boolean flag;
+
+    public BridgeStateService() {
+        this.bridgeMap = new ArrayList<>();
+        this.inputCount = 0;
+        flag = true;
+    }
+
+    public void clearBridgeMap() {
+        bridgeMap.clear();
+        inputCount = 0;
+        flag = true;
+    }
+
+    public void compare(final Move move, final Bridge bridge) {
         String upOrDown = move.getMove();
         bridgeMap.add(upOrDown);
-        if (bridge.isStepOk(upOrDown, bridgeMap.getInputCount() - 1)) {
-            bridgeMap.setFlagUp();
-        }
-        if (!bridge.isStepOk(upOrDown, bridgeMap.getInputCount() - 1)){
-            bridgeMap.setFlagDown();
+        if (bridge.isStepOk(upOrDown, inputCount - 1)) {
+            flag = true;
+        } else if (!bridge.isStepOk(upOrDown, inputCount - 1)) {
+            flag = false;
         }
     }
 
-    public String mapService(final BridgeMap bridgeMap) {
-        ConvertBridgeMap convertBridgeMap = new ConvertBridgeMap(bridgeMap);
-        return convertBridgeMap.makePrinted(bridgeMap);
+    @Override
+    public String toString() {
+        return new ConvertBridgeMap(bridgeMap, inputCount, flag).toString();
+    }
+
+    public int getInputCount() {
+        return inputCount;
+    }
+
+    public boolean getFlag() {
+        return flag;
+    }
+
+    public void setCountUp() {
+        ++inputCount;
     }
 }

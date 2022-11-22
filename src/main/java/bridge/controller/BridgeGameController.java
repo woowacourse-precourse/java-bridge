@@ -116,7 +116,7 @@ public class BridgeGameController {
     }
 
     private void printTotalAttempts() {
-        outputView.print(BridgePhrase.GAME_TRY_COUNT, bridgeGame.totalAttempts());
+        outputView.print(BridgePhrase.GAME_TRY_COUNT, bridgeGame.getTotalAttempts());
     }
 
 }

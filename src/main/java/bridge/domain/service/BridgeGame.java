@@ -12,18 +12,16 @@ public class BridgeGame {
     private static final boolean QUIT = false;
 
     private final BridgeStateService bridgeStateService;
-    private final BridgeMap bridgeMap;
     private int totalAttempts;
 
     public BridgeGame() {
         this.bridgeStateService = new BridgeStateService();
-        this.bridgeMap = new BridgeMap();
         this.totalAttempts = 0;
     }
 
     public void move(final Bridge bridge, final Move move) {
-        bridgeMap.setCountUp();
-        bridgeStateService.compare(move, bridge, bridgeMap);
+        bridgeStateService.setCountUp();
+        bridgeStateService.compare(move, bridge);
     }
 
     public boolean retry(final GameCommand gameCommand) {
@@ -42,31 +40,27 @@ public class BridgeGame {
     }
 
     public int getStepDistance(){
-        return bridgeMap.getInputCount();
+        return bridgeStateService.getInputCount();
     }
 
     public boolean isSuccess() {
-        return bridgeMap.getFlag();
+        return bridgeStateService.getFlag();
     }
 
     public boolean isRetry(final boolean button) {
         if (button == RETRY) {
-            bridgeMap.clearBridgeMap();
+            bridgeStateService.clearBridgeMap();
             return true;
         }
         return false;
     }
 
-    public int totalAttempts() {
+    public int getTotalAttempts() {
         return totalAttempts;
-    }
-
-    public String mapService(){
-        return bridgeStateService.mapService(bridgeMap);
     }
 
     @Override
     public String toString() {
-        return mapService();
+        return bridgeStateService.toString();
     }
 }
