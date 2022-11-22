@@ -57,7 +57,7 @@ public class GameController {
 
     private void playEachRound() {
         String moveDirection = inputView.readMoving();
-        List<List<String>> bridgeRecord = bridgeGame.getRecordByMove(moveDirection);
+        List<List<String>> bridgeRecord = bridgeGame.judgeResultByMove(moveDirection);
         outputView.printMap(bridgeRecord);
     }
 

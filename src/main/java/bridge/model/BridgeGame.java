@@ -40,7 +40,7 @@ public class BridgeGame {
         result.updateBridgeRecord(score, moveDirection);
     }
 
-    public List<List<String>> getRecordByMove(String moveDirection) {
+    public List<List<String>> judgeResultByMove(String moveDirection) {
         move(moveDirection);
         judgeMove(moveDirection);
         return result.getBridgeRecord();

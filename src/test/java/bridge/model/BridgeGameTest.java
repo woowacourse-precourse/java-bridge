@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.model.GameResult.Record;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +27,7 @@ class BridgeGameTest {
     @DisplayName("이동 결과 기록을 반환한다.")
     @Test
     void getRecordByMoveTest() {
-        List<List<String>> bridgeRecord = bridgeGame.getRecordByMove("U");
+        List<List<String>> bridgeRecord = bridgeGame.judgeResultByMove("U");
         List<String> upBridge = bridgeRecord.get(0);
         List<String> downBridge = bridgeRecord.get(1);
 
@@ -39,7 +38,7 @@ class BridgeGameTest {
     @DisplayName("이동 성공 여부를 판단한다.")
     @Test
     void isFailTest() {
-        bridgeGame.getRecordByMove("U");
+        bridgeGame.judgeResultByMove("U");
 
         Boolean isFail = bridgeGame.isFail();
 
@@ -49,9 +48,9 @@ class BridgeGameTest {
     @DisplayName("남은 라운드가 있는 지 판단한다.")
     @Test
     void isRoundLeftTest() {
-        bridgeGame.getRecordByMove("U");
-        bridgeGame.getRecordByMove("D");
-        bridgeGame.getRecordByMove("U");
+        bridgeGame.judgeResultByMove("U");
+        bridgeGame.judgeResultByMove("D");
+        bridgeGame.judgeResultByMove("U");
 
         Boolean isRoundLeft = bridgeGame.isRoundLeft();
 
@@ -61,8 +60,8 @@ class BridgeGameTest {
     @DisplayName("재시작 시, 시도 횟수/라운드 넘버/이동 기록이 업데이트된다.")
     @Test
     void retryTest() {
-        bridgeGame.getRecordByMove("U");
-        bridgeGame.getRecordByMove("D");
+        bridgeGame.judgeResultByMove("U");
+        bridgeGame.judgeResultByMove("D");
         bridgeGame.retry();
 
         List<List<String>> bridgeRecord = bridgeGame.getBridgeRecord();
