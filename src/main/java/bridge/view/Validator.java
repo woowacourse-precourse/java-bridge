@@ -6,6 +6,9 @@ import bridge.messages.Message;
 public class Validator {
     private static final int MIN_NUM = 3;
     private static final int MAX_NUM = 20;
+    private static final int ZERO = 0;
+    private static final char CHAR_ZERO = '0';
+    private static final char CHAR_NINE = '9';
 
     /**
      * private의 입력 값 별 유효성 검사 메서드들을 예외 발생 순서대로 한번에 실행시키는 메서드.
@@ -47,7 +50,7 @@ public class Validator {
     }
 
     private static void validateInputSizeNull(String inputSize) {
-        if (inputSize.length() == 0) {
+        if (inputSize.length() == ZERO) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.getErrorMessage());
         }
     }
@@ -62,14 +65,14 @@ public class Validator {
     }
 
     private static void validateInputDirectionLowerCase(String inputDirection) {
-        char check = inputDirection.charAt(0);
+        char check = inputDirection.charAt(ZERO);
         if (!Character.isUpperCase(check)) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
         }
     }
 
     private static void validateInputDirectionNull(String inputDirection) {
-        if (inputDirection.length() == 0) {
+        if (inputDirection.length() == ZERO) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.getErrorMessage());
         }
     }
@@ -84,14 +87,14 @@ public class Validator {
     }
 
     private static void validateInputGameRestartLowerCase(String inputRestart) {
-        char check = inputRestart.charAt(0);
+        char check = inputRestart.charAt(ZERO);
         if (!Character.isUpperCase(check)) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_RESTART_INPUT_LOWERCASE.getErrorMessage());
         }
     }
 
     private static void validateInputGameRestartNull(String inputRestart) {
-        if (inputRestart.length() == 0) {
+        if (inputRestart.length() == ZERO) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.getErrorMessage());
         }
     }
@@ -100,8 +103,8 @@ public class Validator {
      * 이동할 칸 입력과 게임을 재시작 여부 입렵에 숫자 입력 여부 유효성 검사
      */
     private static void validateInputNumber(String input) {
-        char check = input.charAt(0);
-        if (check >= '0' && check <= '9') {
+        char check = input.charAt(ZERO);
+        if (check >= CHAR_ZERO && check <= CHAR_NINE) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_INPUT_NUMBER.getErrorMessage());
         }
     }
