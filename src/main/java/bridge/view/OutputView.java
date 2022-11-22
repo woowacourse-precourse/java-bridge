@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.Bridge;
-import bridge.domain.Player;
+import bridge.GameStatus;
 import bridge.map.Map;
 import bridge.message.GuideMessage;
 
@@ -37,17 +37,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Player player) {
+    public void printResult(GameStatus gameStatus) {
         // TODO: Enum으로 리팩토링, 함수 리팩토링
         String gameClearResult = "";
-        if (player.isGameClear()) {
+        if (gameStatus.isGameClear()) {
             gameClearResult = "성공";
         }
-        if (!player.isGameClear()) {
+        if (!gameStatus.isGameClear()) {
             gameClearResult = "실패";
         }
         System.out.println(GuideMessage.SUCCESS_OR_FAIL.getMessage() + gameClearResult);
-        System.out.println(GuideMessage.WHOLE_TRY.getMessage() + player.getGameCount());
+        System.out.println(GuideMessage.WHOLE_TRY.getMessage() + gameStatus.getGameCount());
     }
 
     public void printStart() {

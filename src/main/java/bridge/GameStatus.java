@@ -1,10 +1,12 @@
-package bridge.domain;
+package bridge;
 
-public class Player {
+public class GameStatus {
+    private boolean isEnd;
     private int gameCount;
     private boolean gameClear;
 
-    public Player() {
+    public GameStatus() {
+        this.isEnd = false;
         this.gameCount = 1;
         this.gameClear = false;
     }
@@ -22,5 +24,12 @@ public class Player {
     }
     public void setGameClear(boolean isClear) {
         this.gameClear = isClear;
+    }
+
+    public void setEnd(boolean isEnd) {
+        this.isEnd = isEnd;
+    }
+    public boolean getEnd() {
+        return this.isEnd;
     }
 }
