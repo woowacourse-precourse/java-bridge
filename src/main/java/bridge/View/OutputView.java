@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println(start);
     }
 
-    public static int BridgeLengthCheck(String val) throws IllegalArgumentException {
+    public static int BridgeLengthCheck(String val) {
         return PrintLenError(toInt(val));
     }
 
@@ -51,7 +51,6 @@ public class OutputView {
         if (len >= 3 && len <= 20) {
             return len;
         }
-        System.out.println(error + LenError);
         throw new IllegalArgumentException(error + LenError);
     }
 
