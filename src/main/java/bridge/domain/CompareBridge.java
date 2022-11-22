@@ -5,9 +5,11 @@ import java.util.List;
 
 public class CompareBridge {
     private final List<String> bridge;
+    private final List<Boolean> moveResults;
 
     public CompareBridge(List<String> bridge) {
         this.bridge = bridge;
+        this.moveResults = new ArrayList<>();
     }
 
     public boolean isSame(String moving, String panel) {
@@ -15,9 +17,7 @@ public class CompareBridge {
     }
 
     public List<Boolean> canStepping(Player player) {
-        List<String> movingChoices = player.getMovingChoices();
-        List<Boolean> moveResults = new ArrayList<>();
-        checkSameOrNot(movingChoices, moveResults);
+        checkSameOrNot(player.getMovingChoices(), moveResults);
         return moveResults;
     }
 
