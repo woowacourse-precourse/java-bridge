@@ -16,13 +16,14 @@ public class BridgeGame {
     private final List<String> bridge;
     private List<List<String>> bridgeMap;
     private int numberOfTries;
-    private boolean isSuccess = true;
+    private boolean isSuccess;
 
     public BridgeGame(int size, List<String> bridge) {
         this.size = size;
         this.bridge = bridge;
         this.bridgeMap = makeBridgeMap(size);
         this.numberOfTries = 1;
+        this.isSuccess = true;
     }
 
     /**
