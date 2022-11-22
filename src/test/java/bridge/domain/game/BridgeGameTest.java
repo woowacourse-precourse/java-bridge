@@ -46,7 +46,7 @@ class BridgeGameTest {
 
         @Test
         @DisplayName("GameResult의 upperBridge는 [O]")
-        void 상위_결과(){
+        void 상위_결과() {
             // given
             // when
             List<String> result = bridgeGame.getGameResult().getUpperBridge();
@@ -56,7 +56,7 @@ class BridgeGameTest {
 
         @Test
         @DisplayName("GameResult의 downBridge는 [ ]")
-        void 하위_결과(){
+        void 하위_결과() {
             // given
             // when
             List<String> result = bridgeGame.getGameResult().getDownBridge();
@@ -100,7 +100,7 @@ class BridgeGameTest {
 
         @Test
         @DisplayName("user 움직임 가능 여부는 true")
-        void 움직임_가능_여부(){
+        void 움직임_가능_여부() {
             //given
             // when
             boolean result = bridgeGame.isUserCanMove();
@@ -110,22 +110,22 @@ class BridgeGameTest {
 
         @Test
         @DisplayName("GameResult의 upperBridge는 [O, ]")
-        void 상위_결과(){
+        void 상위_결과() {
             // given
             // when
             List<String> result = bridgeGame.getGameResult().getUpperBridge();
             // then
-            assertThat(result).isEqualTo(List.of("O"," "));
+            assertThat(result).isEqualTo(List.of("O", " "));
         }
 
         @Test
         @DisplayName("GameResult의 downBridge는 [ ,X]")
-        void 하위_결과(){
+        void 하위_결과() {
             // given
             // when
             List<String> result = bridgeGame.getGameResult().getDownBridge();
             // then
-            assertThat(result).isEqualTo(List.of(" ","X"));
+            assertThat(result).isEqualTo(List.of(" ", "X"));
         }
 
     }
@@ -145,7 +145,7 @@ class BridgeGameTest {
 
         @Test
         @DisplayName("user 움직임 가능 여부는 false")
-        void 움직임_가능_여부(){
+        void 움직임_가능_여부() {
             //given
             // when
             boolean result = bridgeGame.isUserCanMove();
@@ -155,22 +155,22 @@ class BridgeGameTest {
 
         @Test
         @DisplayName("GameResult의 upperBridge는 [O,O, ]")
-        void 상위_결과(){
+        void 상위_결과() {
             // given
             // when
             List<String> result = bridgeGame.getGameResult().getUpperBridge();
             // then
-            assertThat(result).isEqualTo(List.of("O","O"," "));
+            assertThat(result).isEqualTo(List.of("O", "O", " "));
         }
 
         @Test
         @DisplayName("GameResult의 downBridge는 [ , , O]")
-        void 하위_결과(){
+        void 하위_결과() {
             // given
             // when
             List<String> result = bridgeGame.getGameResult().getDownBridge();
             // then
-            assertThat(result).isEqualTo(List.of(" "," ", "O"));
+            assertThat(result).isEqualTo(List.of(" ", " ", "O"));
         }
 
     }
@@ -187,7 +187,7 @@ class BridgeGameTest {
 
         @Test
         @DisplayName("움직였는데 정답인 경우 true 반환")
-        void 한_번_움직임_정답(){
+        void 한_번_움직임_정답() {
             // given
             // when
             boolean result = bridgeGame.move("U");
@@ -197,7 +197,7 @@ class BridgeGameTest {
 
         @Test
         @DisplayName("움직였는데 오답인 경우 false 반환")
-        void 한_번_움직임_오답(){
+        void 한_번_움직임_오답() {
             // given
             // when
             boolean result = bridgeGame.move("D");
@@ -206,11 +206,10 @@ class BridgeGameTest {
         }
     }
 
-    void initBridge(){
+    void initBridge() {
         bridge = new Bridge(List.of("U", "U", "D"));
         bridgeGame = new BridgeGame(bridge);
     }
-
 
 
 }

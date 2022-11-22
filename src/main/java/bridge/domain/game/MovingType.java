@@ -1,6 +1,9 @@
 package bridge.domain.game;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,7 +15,7 @@ public enum MovingType {
     private final int numNotation;
     private final String engNotation;
 
-    MovingType(int numNotation, String engNotation){
+    MovingType(int numNotation, String engNotation) {
         this.numNotation = numNotation;
         this.engNotation = engNotation;
     }
@@ -26,21 +29,21 @@ public enum MovingType {
                     .map(MovingType::getEngNotation)
                     .collect(Collectors.toList()));
 
-    public int getNumNotation(){
+    public int getNumNotation() {
         return this.numNotation;
     }
 
-    public String getEngNotation(){
+    public String getEngNotation() {
         return engNotation;
     }
 
-    public static MovingType getMovingTypeByNumNotation(int numNotation){
+    public static MovingType getMovingTypeByNumNotation(int numNotation) {
         return Optional
                 .ofNullable(movingTypeByNumNotation.get(numNotation))
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 찾을 수 없음"));
     }
 
-    public static boolean isContains(String engNotation){
+    public static boolean isContains(String engNotation) {
         return movingTypeEngNotations.contains(engNotation);
     }
 }

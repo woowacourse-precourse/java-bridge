@@ -8,25 +8,25 @@ public class BridgeGame {
     private int userLocation;
     private int gameRoundCount;
 
-    public BridgeGame(Bridge bridge){
+    public BridgeGame(Bridge bridge) {
         this.initSettings();
         this.gameRoundCount = 1;
         this.realBridge = bridge;
     }
 
-    public boolean isUserCanMove(){
+    public boolean isUserCanMove() {
         return realBridge.canMove(userLocation);
     }
 
-    public int getGameRoundCount(){
+    public int getGameRoundCount() {
         return gameRoundCount;
     }
 
-    public BridgeGameResult getGameResult(){
+    public BridgeGameResult getGameResult() {
         return bridgeGameResult;
     }
 
-    private void initSettings(){
+    private void initSettings() {
         this.userLocation = -1;
         this.bridgeGameResult = new BridgeGameResult();
     }
@@ -41,6 +41,6 @@ public class BridgeGame {
 
     public void retry() {
         initSettings();
-        gameRoundCount ++;
+        gameRoundCount++;
     }
 }

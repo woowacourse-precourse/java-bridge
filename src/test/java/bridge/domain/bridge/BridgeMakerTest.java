@@ -1,7 +1,5 @@
 package bridge.domain.bridge;
 
-import bridge.domain.bridge.BridgeMaker;
-import bridge.domain.bridge.BridgeNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -18,11 +16,11 @@ class BridgeMakerTest {
 
     @Nested
     @DisplayName("다리 생성 테스트")
-    class makeBridgeTest{
+    class makeBridgeTest {
 
         @Test
         @DisplayName("0, 0 입력 -> D D 출력")
-        void 케이스1(){
+        void 케이스1() {
             // given
             ArrayList<Integer> input = newArrayList(0, 0);
             // when
@@ -34,7 +32,7 @@ class BridgeMakerTest {
 
         @Test
         @DisplayName("0, 1 입력 -> D U 출력")
-        void 케이스2(){
+        void 케이스2() {
             // given
             ArrayList<Integer> input = newArrayList(0, 1);
             // when
@@ -46,9 +44,9 @@ class BridgeMakerTest {
 
         @Test
         @DisplayName("1, 0 입력 -> U D 출력")
-        void 케이스3(){
+        void 케이스3() {
             // given
-            ArrayList<Integer> input = newArrayList(1,0 );
+            ArrayList<Integer> input = newArrayList(1, 0);
             // when
             updateBridgeMaker(input);
             List<String> result = bridgeMaker.makeBridge(2);
@@ -58,7 +56,7 @@ class BridgeMakerTest {
 
         @Test
         @DisplayName("1, 1 입력 -> U U 출력")
-        void 케이스4(){
+        void 케이스4() {
             // given
             ArrayList<Integer> input = newArrayList(1, 1);
             // when
@@ -72,7 +70,7 @@ class BridgeMakerTest {
 
     @Test
     @DisplayName("지정된 사이즈만큼의 리스트를 만들어내는지 검증")
-    void 사이즈_검증(){
+    void 사이즈_검증() {
         // given
         ArrayList<Integer> input = newArrayList(1, 1);
         int lstSize = 2;
