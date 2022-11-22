@@ -23,7 +23,6 @@ class GameResultTest {
         @DisplayName("GameResult에서 건넌 다리 개수가 주어진 다리의 개수보다 짧으면 완주하지 못한 것이다.")
         void givenGameResultShorterThanBridge_whenRunningIsFinished_thenReturnsFalse() {
             //given
-            Bridge bridge = new Bridge(Step.from(List.of(UP, DOWN, UP, DOWN)));
             GameResult gameResult = new GameResult(List.of(
                     new StepResult(Step.U, true),
                     new StepResult(Step.D, true),
@@ -31,13 +30,12 @@ class GameResultTest {
             ), new TryCountDto());
 
             //when && then
-            assertFalse(gameResult.isFinishedFrom(bridge));
+            assertFalse(gameResult.isFinishedFrom(getBridge()));
         }
 
         @Test
         @DisplayName("건넌 다리 개수와 주어진 다리의 개수와 같지만, 마지막으로 건넌 다리의 결과가 실패일 경우 완주하지 못한 것이다.")
         void givenGameResultEqualsBridgeButFailedLast_whenRunningIsFinished_thenReturnsFalse() {
-            Bridge bridge = new Bridge(Step.from(List.of(UP, DOWN, UP, DOWN)));
             GameResult gameResult = new GameResult(List.of(
                     new StepResult(Step.U, true),
                     new StepResult(Step.D, true),
@@ -46,13 +44,12 @@ class GameResultTest {
             ), new TryCountDto());
 
             //when && then
-            assertFalse(gameResult.isFinishedFrom(bridge));
+            assertFalse(gameResult.isFinishedFrom(getBridge()));
         }
 
         @Test
         @DisplayName("건넌 다리 개수와 주어진 다리의 개수가 같고, 마지막까지 성공했다면 완주한 것이다.")
         void givenGameResultEqualsBridgeAndSucceedLast_whenRunningIsFinished_thenReturnsTrue() {
-            Bridge bridge = new Bridge(Step.from(List.of(UP, DOWN, UP, DOWN)));
             GameResult gameResult = new GameResult(List.of(
                     new StepResult(Step.U, true),
                     new StepResult(Step.D, true),
@@ -61,7 +58,11 @@ class GameResultTest {
             ), new TryCountDto());
 
             //when && then
-            assertTrue(gameResult.isFinishedFrom(bridge));
+            assertTrue(gameResult.isFinishedFrom(getBridge()));
+        }
+
+        private Bridge getBridge() {
+            return new Bridge(Step.from(List.of(UP, DOWN, UP, DOWN)));
         }
     }
 }
