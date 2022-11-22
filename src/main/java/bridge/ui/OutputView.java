@@ -65,4 +65,8 @@ public class OutputView {
 
         return String.valueOf(builder);
     }
+
+    public void printStart() {
+        System.out.println(START);
+    }
 }

@@ -6,7 +6,6 @@ import bridge.ui.OutputView;
 import java.util.List;
 
 import static bridge.Constants.QUIT;
-import static bridge.message.Message.START;
 
 public class Application {
 
@@ -17,7 +16,7 @@ public class Application {
     private static final OutputView output = new OutputView();
 
     public static void main(String[] args) {
-        System.out.println(START);
+        output.printStart();
 
         Player player = createPlayer();
 
