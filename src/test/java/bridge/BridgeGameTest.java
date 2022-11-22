@@ -29,7 +29,7 @@ public class BridgeGameTest {
     @DisplayName("플레이어 이동 실패")
     @Test
     void 플레이어_이동_실패() {
-        Bridge bridge =  new Bridge(List.of("U","D","U"));
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
         String position = "D";
 
         MoveResult moveResult = bridgeGame.move(playerId, bridge, position);
@@ -40,7 +40,7 @@ public class BridgeGameTest {
     @DisplayName("플레이어 이동 성공")
     @Test
     void 플레이어_이동_성공() {
-        Bridge bridge =  new Bridge(List.of("U","D","U"));
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
         String position = "U";
 
         MoveResult moveResult = bridgeGame.move(playerId, bridge, position);
@@ -51,7 +51,7 @@ public class BridgeGameTest {
     @DisplayName("플레이어 위쪽 다리 이동 성공 후 경로가 올바른지 테스트")
     @Test
     void 플레이어_위쪽_다리_이동_성공_경로() {
-        Bridge bridge =  new Bridge(List.of("U","D","U"));
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
         String position = "U";
         bridgeGame.move(playerId, bridge, position);
 
@@ -64,7 +64,7 @@ public class BridgeGameTest {
     @DisplayName("플레이어 위쪽 다리 이동 실패 후 경로가 올바른지 테스트")
     @Test
     void 플레이어_위쪽_다리_이동_실패_경로() {
-        Bridge bridge =  new Bridge(List.of("D","D","U"));
+        Bridge bridge = new Bridge(List.of("D", "D", "U"));
         String position = "U";
         bridgeGame.move(playerId, bridge, position);
 
@@ -77,7 +77,7 @@ public class BridgeGameTest {
     @DisplayName("플레이어 아래쪽 다리 이동 성공 후 경로가 올바른지 테스트")
     @Test
     void 플레이어_아래쪽_다리_이동_성공_경로() {
-        Bridge bridge =  new Bridge(List.of("D","D","U"));
+        Bridge bridge = new Bridge(List.of("D", "D", "U"));
         String position = "D";
         bridgeGame.move(playerId, bridge, position);
 
@@ -90,7 +90,7 @@ public class BridgeGameTest {
     @DisplayName("플레이어 아래쪽 다리 이동 실패 후 경로가 올바른지 테스트")
     @Test
     void 플레이어_아래쪽_다리_이동_실패_경로() {
-        Bridge bridge =  new Bridge(List.of("U","D","U"));
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
         String position = "D";
         bridgeGame.move(playerId, bridge, position);
 
@@ -115,10 +115,10 @@ public class BridgeGameTest {
     @DisplayName("모든 다리를 건너는 것이 성공했는지 테스트")
     @Test
     void 모든_다리_이동_성공() {
-        Bridge bridge =  new Bridge(List.of("D","D","U"));
-        List<String> positions = List.of("D","D","U");
+        Bridge bridge = new Bridge(List.of("D", "D", "U"));
+        List<String> positions = List.of("D", "D", "U");
         positions.stream()
-                        .forEach(position -> bridgeGame.move(playerId, bridge, position));
+                .forEach(position -> bridgeGame.move(playerId, bridge, position));
         PlayerRepository playerRepository = PlayerRepository.getInstance();
         Player player = playerRepository.findById(playerId);
 
@@ -129,8 +129,8 @@ public class BridgeGameTest {
     @DisplayName("모든 다리를 건너는 것이 실패했는지 테스트")
     @Test
     void 모든_다리_이동_실패() {
-        Bridge bridge =  new Bridge(List.of("D","D","U"));
-        List<String> positions = List.of("D","D","D");
+        Bridge bridge = new Bridge(List.of("D", "D", "U"));
+        List<String> positions = List.of("D", "D", "D");
         positions.stream()
                 .forEach(position -> bridgeGame.move(playerId, bridge, position));
         PlayerRepository playerRepository = PlayerRepository.getInstance();
