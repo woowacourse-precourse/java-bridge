@@ -43,7 +43,7 @@ public class InputView {
      * 다리의 길이가 올바르게 입력되었는지 검사한다.
      */
     private void validateBridgeSize(String bridgeSize) {
-        if (Pattern.matches("^[0-9]+$", bridgeSize)) {
+        if (!Pattern.matches("^[0-9]+$", bridgeSize)) {
             throw new IllegalArgumentException("[ERROR] 숫자만을 입력하십시오.");
         }
         int number = Integer.parseInt(bridgeSize);
