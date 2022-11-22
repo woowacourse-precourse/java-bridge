@@ -40,13 +40,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(List<String> bridge, OutputView OV, InputView IV, BridgeNumberGenerator BNG, BridgeMaker BM, BridgeGame BG) {
+    public void retry(List<String> bridge) {
 
         move_Status = true;
         int num = 0;
         trial_Number++;
 
-        repeatMoving(num, bridge, IV, BG);
-        restart(OV, IV, BG, bridge, BNG, BM);
+        repeatMoving(num, bridge);
+        restart(bridge);
     }
 }

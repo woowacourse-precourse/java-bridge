@@ -12,17 +12,17 @@ public class Application {
     static int bridge_Length = 0;
     static int trial_Number = 0;
     static OutputView OV = new OutputView();
+    static InputView IV = new InputView();
+    static BridgeNumberGenerator BNG = new BridgeRandomNumberGenerator();
+    static BridgeMaker BM = new BridgeMaker(BNG);
+    static BridgeGame BG = new BridgeGame();
 
     public static void gameStart(){
         OV.startGuidance();
-        InputView IV = new InputView();
-        BridgeNumberGenerator BNG = new BridgeRandomNumberGenerator();
-        BridgeMaker BM = new BridgeMaker(BNG);
         List<String> bridge = BM.makeBridge(IV.readBridgeSize());
-        BridgeGame BG = new BridgeGame();
         bridge_Length = bridge.size();
 
-        BG.retry(bridge, OV, IV, BNG, BM, BG);
+        BG.retry(bridge);
         result(OV);
     }
 
@@ -31,31 +31,31 @@ public class Application {
         OV.resultGuidance();
     }
 
-    public static void repeatMoving(int num, List<String> bridge, InputView IV, BridgeGame BG){
+    public static void repeatMoving(int num, List<String> bridge) {
         OV = new OutputView();
         List<String> result = new ArrayList<>();
 
         while(move_Status && num < bridge.size()) {
             OV.moveGuidance();
             String currentMoving = IV.readMoving();
-            moving(result, BG, num, bridge, currentMoving);
+            moving(result, num, bridge, currentMoving);
             OV.printMap(result, num);
             num++;
         }
         final_Map_Number = --num;
     }
 
-    public static void moving(List<String> result, BridgeGame BG, int num, List<String> bridge, String currentMoving){
+    public static void moving(List<String> result, int num, List<String> bridge, String currentMoving){
         List<String> movement;
         movement = BG.move(bridge.get(num), currentMoving);
         addElement(movement.get(0), movement.get(1), result);
     }
 
-    public static void restart(OutputView OV, InputView IV, BridgeGame BG, List<String> bridge, BridgeNumberGenerator BNG, BridgeMaker BM){
+    public static void restart(List<String> bridge){
         if(!move_Status){
             OV.restartGuidance();
             String gameCommand = IV.readGameCommand();
-            if(gameCommand.equals("R")) BG.retry(bridge, OV, IV, BNG, BM, BG);
+            if(gameCommand.equals("R")) BG.retry(bridge);
         }
     }
 
