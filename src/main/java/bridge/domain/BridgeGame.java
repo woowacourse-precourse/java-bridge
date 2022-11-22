@@ -10,7 +10,6 @@ import java.util.List;
 public class BridgeGame {
 
     private static List<String> answerBridge = BridgeService.getAnswerBridge();
-    ;
     private static int answerCount = 0;
 
     /**
@@ -28,22 +27,28 @@ public class BridgeGame {
 
     public static void compareMove(String dir) {
         System.out.println(answerBridge);
+        boolean check = false;
         while (true) {
             String answer = BridgeService.moveBridge();
             BridgeService.viewBridge();
-
-            if (answer.equals("X")) {
-                BridgeService.getInitRetryQuit();
-                break;
-            }
-            if (answerCount == BridgeService.getInputSize()) {
-                BridgeService.viewResult();
-                BridgeService.gameSuccess();
-                BridgeService.tryCount();
+            check = breakCompare(answer);
+            if(check){
                 break;
             }
             dir = BridgeService.getInitMoveRow();
         }
+    }
+
+    public static boolean breakCompare(String answer){
+        if (answer.equals("X")) {
+            BridgeService.getInitRetryQuit();
+            return true;
+        }
+        if (answerCount == BridgeService.getInputSize()) {
+            BridgeService.viewFinalResult();
+            return true;
+        }
+        return false;
     }
 
     /**

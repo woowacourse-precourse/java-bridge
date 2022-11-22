@@ -133,6 +133,12 @@ public class BridgeService {
         OutputView.printTryCount();
     }
 
+    public static void viewFinalResult(){
+        viewResult();
+        gameSuccess();
+        tryCount();
+    }
+
     public static String checkRetryQuit(String input){
         if (input.equals("R") || input.equals("Q")) {
             return input;
