@@ -22,4 +22,10 @@ public class BridgeRule {
 			throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
 		}
 	}
+	public void isRetryCommand(String input){
+		boolean isRetry = input.equals(RETRY) || input.equals(QUIT);
+		if(!isRetry){
+			throw new IllegalArgumentException("[ERROR] 재시도 R, 종료 Q를 입력해야 합니다.");
+		}
+	}
 }
