@@ -10,7 +10,7 @@ public class GameController {
     private int trial = 0;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    public void setUpGame() {
+    public void setUpGame() throws IllegalArgumentException {
         bridgeGame = new BridgeGame();
         bridgeSelection = new BridgeSelection();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -19,50 +19,39 @@ public class GameController {
     }
 
     public void startGame() {
-        inputView.printStartGame();
-        setUpGame();
-        progressMoving();
-        quitGame(trial);
-    }
-
-    public int setBridgeSize() {
         try {
-            String input = inputView.readBridgeSize();
-            int size = Validator.convertNumeric(input);
-            Validator.validateBridgeSize(size);
-            return size;
+            inputView.printStartGame();
+            setUpGame();
+            progressMoving();
+            quitGame(trial);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
-        return 0;
     }
 
-    public String setMoving() {
-        try {
-            System.out.println();
-            String input = inputView.readMoving();
-            Validator.checkUpOrDown(input);
-            return input;
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return null;
+    public int setBridgeSize() throws IllegalArgumentException {
+        String input = inputView.readBridgeSize();
+        int size = Validator.convertNumeric(input);
+        Validator.validateBridgeSize(size);
+        return size;
     }
 
-    public String setRetryOrQuit() {
-        try {
-            System.out.println();
-            String input = inputView.readGameCommand();
-            Validator.checkRetryOrQuit(input);
-            return input;
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return null;
+    public String setMoving() throws IllegalArgumentException {
+        System.out.println();
+        String input = inputView.readMoving();
+        Validator.checkUpOrDown(input);
+        return input;
+    }
+
+    public String setRetryOrQuit() throws IllegalArgumentException {
+        System.out.println();
+        String input = inputView.readGameCommand();
+        Validator.checkRetryOrQuit(input);
+        return input;
     }
 
 
-    public void progressMoving() {
+    public void progressMoving() throws IllegalArgumentException {
         for (int index=0; index < bridge.getSize(); index++) {
             String selection = setMoving();
             boolean matchMark = bridge.compare(index, selection);
@@ -80,7 +69,7 @@ public class GameController {
         outputView.printMap(bridgeSelection.getSelections());
     }
 
-    public void selectRetryOrQuit() {
+    public void selectRetryOrQuit() throws IllegalArgumentException {
         String decision = setRetryOrQuit();
         if (decision.equals("R")) {
             trial++;
@@ -91,12 +80,7 @@ public class GameController {
 
     public String checkFinishLine() {
         List<List<String>> selections = bridgeSelection.getSelections();
-        for (List<String> selection : selections) {
-            if (selection.contains("X")) {
-                return "실패";
-            }
-        }
-        return "성공";
+        return bridgeGame.retry(selections);
     }
 
     public void quitGame(int trial) {
