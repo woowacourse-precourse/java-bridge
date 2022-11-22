@@ -14,12 +14,14 @@ public class Application {
         List<String> bridgeState = bridgeMaker.makeBridge(inputView.readBridgeSize());
         System.out.println(bridgeState);
         List<String> currentBridgeState=bridgeMaker.initialBridge();
+        String choicePosition;
         int count=0;
         while(true){
             if(count>=bridgeState.size()){
                 break;
             }
-            currentBridgeState = outputView.printMap(bridgeMaker.addBridge(currentBridgeState,bridgeGame.replacePositonNumber(bridgeState.get(count)),bridgeGame.move()));
+            choicePosition = bridgeGame.move();
+            currentBridgeState = outputView.printMap(bridgeMaker.addBridge(currentBridgeState,bridgeState.get(count),choicePosition));
             count++;
         }
 
