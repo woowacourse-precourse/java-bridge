@@ -32,15 +32,6 @@ class MovementResultTest {
     }
 
     @Test
-    @DisplayName("다리 하나만 결과값 관리한 경우 실패 값 미입력")
-    void failBridgeOnlyOne(){
-        MovementResult upperMovementResult = new MovementResult();
-        upperMovementResult.setResults(true);
-
-        assertThat(upperMovementResult.toString()).contains("[  ]");
-    }
-
-    @Test
     @DisplayName("다리 리셋")
     void resetBridge(){
         MovementResult upperMovementResult = new MovementResult();

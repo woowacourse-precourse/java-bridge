@@ -6,7 +6,7 @@ import java.util.List;
 import static bridge.resources.GameConfig.*;
 
 public class MovementResult {
-    private static int processIndex = 0;
+    private int processIndex = 0;
     protected List<String> results;
 
     public MovementResult() {
@@ -14,7 +14,7 @@ public class MovementResult {
     }
 
     public void setResults(boolean canMove) {
-        results.add(processIndex, convertToString(canMove));
+        results.add(processIndex++, convertToString(canMove));
     }
 
     public void addBlank() {
