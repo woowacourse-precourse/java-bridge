@@ -1,7 +1,6 @@
 package bridge;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -11,14 +10,27 @@ import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
+        assertThat(bridge).size().isEqualTo(3);
+    }
+
+    @Test
+    void 다리_이동_성공_테스트(){
+        BridgeGame bridgeGame = new BridgeGame();
+        boolean success = bridgeGame.move(List.of("U","D","D"),"D",1);
+        assertThat(success).isEqualTo(true);
+    }
+
+    @Test
+    void 다리_이동_실패_테스트(){
+        BridgeGame bridgeGame = new BridgeGame();
+        boolean success = bridgeGame.move(List.of("U","U","D","U"),"D",3);
+        assertThat(success).isEqualTo(false);
     }
 
     @Test
@@ -37,14 +49,6 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
-    }
-
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
     }
 
     @Override
