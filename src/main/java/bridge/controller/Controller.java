@@ -34,4 +34,13 @@ public class Controller {
         int size = Integer.parseInt(bridgeSize);
         return new BridgeGame(bridgeMaker.makeBridge(size));
     }
+
+    public void Go(BridgeGame bridgeGame, User user) {
+        while (!user.getQuit() && !bridgeGame.comparePositionLength()) {
+            outputView.printMoveUpOrDown();
+            String moveInput = inputView.readMoving();
+            checkCorrect(moveInput, bridgeGame, user);
+        }
+        printResult(bridgeGame, user);
+    }
 }
