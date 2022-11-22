@@ -1,4 +1,4 @@
-package types;
+package bridge.types;
 
 import java.util.Arrays;
 
@@ -15,8 +15,6 @@ public enum RetryCommand {
         return Arrays.stream(values())
                 .filter((v) -> retryCommand.equals(v.label))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(
-                        "[ERROR] 해당하는 RetryCommand가 존재하지 않습니다. 재시작 명령어는 재시작(R) / 종료(Q) 뿐입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당하는 RetryCommand가 존재하지 않습니다. 재시작 명령어는 재시작(R) / 종료(Q) 뿐입니다."));
     }
-
 }

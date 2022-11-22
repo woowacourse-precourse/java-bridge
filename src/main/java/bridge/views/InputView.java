@@ -1,4 +1,4 @@
-package views;
+package bridge.views;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -14,12 +14,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         int bridgeSize = parseInt(read());
-
+        validateBridgeSize(bridgeSize);
         return bridgeSize;
-    }
-
-    private String read() {
-        return Console.readLine();
     }
 
     private void validateBridgeSize(int bridgeSize) {
@@ -42,15 +38,15 @@ public class InputView {
         return read();
     }
 
+    private String read() {
+        return Console.readLine();
+    }
+
     private int parseInt(String input) {
         try {
-            return parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 입력 가능합니다.");
         }
     }
-
-
 }
-
-

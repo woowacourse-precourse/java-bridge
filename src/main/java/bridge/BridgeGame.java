@@ -1,8 +1,9 @@
 package bridge;
 
+import bridge.types.BridgeType;
+import bridge.types.MoveResult;
+
 import java.util.List;
-import types.BridgeType;
-import types.MoveResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -22,6 +23,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public MoveResult move(BridgeType playerBridgeType) {
+
         if (playerBridgeType == bridge.get(progress++)) {
             return MoveResult.PASS;
         }
