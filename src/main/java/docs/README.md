@@ -16,3 +16,10 @@
     - [ ] 최종 게임 결과를 출력한다.
     - [ ] 게임 성공 여부를 출력한다.
     - [ ] 총 시도한 횟수를 출력한다.
+  
+## 추가 요구사항 반영
+- [ ] InputView 클래스 추가 요구사항 반영
+- [ ] OutputView 클래스 추가 요구사항 반영
+- [ ] BridgeGame 클래스 추가 요구사항 반영
+- [ ] BridgeMaker 클래스 추가 요구사항 반영
+- [ ] BridgeRandomNumberGenerator 클래스 추가 요구사항 반영
