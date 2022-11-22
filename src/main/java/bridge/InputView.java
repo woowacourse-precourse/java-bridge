@@ -11,7 +11,6 @@ public class InputView {
 
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String EMPTY_LINE = "";
-    private static final String BRIDGE_SIZE_ERROR = "[ERROR] 다리 길이는 숫자만 입력 가능합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -31,7 +30,7 @@ public class InputView {
         try {
             Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
+            throw new IllegalArgumentException(ExceptionConstant.NOT_NATURAL_NUMBER.getMessage());
         }
     }
 
