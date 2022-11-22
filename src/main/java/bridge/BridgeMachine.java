@@ -6,6 +6,15 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+    private boolean checkLastIndex(Bridge bridge) {
+        if (index == bridge.getBridgeSize()) {
+            success = true;
+            index--;
+            return true;
+        }
+        return false;
+    }
+
     private Bridge getBridge() {
         while (true) {
             try {
