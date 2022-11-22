@@ -10,11 +10,12 @@ import java.util.List;
 public class BridgeMap {
     private final List<String> upperAnswerLine = new ArrayList<>();
     private final List<String> lowerAnswerLine = new ArrayList<>();
-    private List<String> currentUpperLine =  new ArrayList<>();
-    private List<String> currentLowerLine = new ArrayList<>();
+    private List<String> currentUpperLine;
+    private List<String> currentLowerLine;
 
     public BridgeMap(Bridge bridge){
         makeBridgeMap(bridge);
+        initializeCurrentMap();
     }
 
     private void makeBridgeMap(Bridge bridge){
@@ -66,5 +67,10 @@ public class BridgeMap {
         currentMap.put(BridgeRoute.UP.getRoute(), currentUpperLine);
         currentMap.put(BridgeRoute.DOWN.getRoute(), currentLowerLine);
         return currentMap;
+    }
+
+    public void initializeCurrentMap(){
+        this.currentUpperLine = new ArrayList<>();
+        this.currentLowerLine = new ArrayList<>();
     }
 }
