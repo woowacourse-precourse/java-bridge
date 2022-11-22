@@ -4,13 +4,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        InputView SizeInputView = new InputView();
-        int size = SizeInputView.readBridgeSize();
-        ManageGameSettings(size);
+    private static String output;
+    private static GameStart gameStart;
+    public static int ManageGame(List<String> Bridge,OutputView outputView) {
+        boolean reGame = true;
+        do {
+            BridgeGame bridgeGame = new BridgeGame(Bridge);
+            gameStart = new GameStart(bridgeGame);
+            reGame = gameStart.getReGame();
+        } while (reGame);
     }
-
     public static void ManageGameSettings(int size) {
         OutputView outputView = new OutputView();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -19,6 +22,10 @@ public class Application {
         int tryNum = ManageGame(Bridge,outputView);
         outputView.printResult(tryNum, output);
     }
-
-}
+    public static void main(String[] args) {
+        // TODO: 프로그램 구현
+        InputView SizeInputView = new InputView();
+        int size = SizeInputView.readBridgeSize();
+        ManageGameSettings(size);
+    }
 
