@@ -9,15 +9,12 @@ public class InputView {
 
     //다리의 길이를 입렵 받는다. 오류 날시 다시 받는다
     public int readValidBridgeSize() {
-        boolean flag = true;
-        while (flag == true) {
+        while (true) {
             try {
                 int bridgeLength = readBridgeSize();
-                flag = true;
                 return bridgeLength;
             } catch (IllegalArgumentException e) {continue;}
         }
-        return -1;
     }
 
     //다리의 길이를 입력받는다.
@@ -32,15 +29,12 @@ public class InputView {
     }
 
     public String readValidMoving() {
-        boolean flag = true;
-        while (flag == true) {
+        while (true) {
             try {
                 String  command = readMoving();
-                flag = true;
                 return command;
             } catch (IllegalArgumentException e) {continue;}
         }
-        return "invalid command";
 
     }
 
@@ -54,15 +48,12 @@ public class InputView {
 
 
     public String readValidGameCommand() {
-        boolean flag = true;
-        while (flag == true) {
+        while (true) {
             try {
                 String  command = readGameCommand();
-                flag = true;
                 return command;
             } catch (IllegalArgumentException e) {continue;}
         }
-        return "invalid command";
     }
 
      //사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.

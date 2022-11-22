@@ -18,7 +18,6 @@ public class ValidationService {
     }
 
     public static void bridgeLengthLimit(String input) {
-        integerParsing(input);
         int length = Integer.parseInt(input);
         if (length < 3 || length > 20) {
             System.out.println("[ERROR] bridge length should be either between 3 and 20");
@@ -38,6 +37,5 @@ public class ValidationService {
             System.out.println("[ERROR] input should be either R or Q. You typed "+input);
             throw new IllegalArgumentException();
         }
-
     }
 }

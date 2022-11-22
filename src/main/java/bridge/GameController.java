@@ -12,14 +12,17 @@ public class GameController {
         List<String> bridge = bridgeGame.getBridge();
         List<String> moves = bridgeGame.move();
         boolean hit = bridgeGame.checkAnswer(moves);
+        hit = retryGame(hit);
+        outputView.printResult(bridge, moves);
+        outputView.gameResult(hit);
+        outputView.tryNumber(bridgeGame.tryCount);
+    }
+
+    private boolean retryGame(boolean hit) {
         if (!hit) {
             List<String> retryMoves = bridgeGame.retry();
             hit = bridgeGame.checkAnswer(retryMoves);
         }
-        outputView.printResult(bridge, moves);
-        outputView.gameResult(hit);
-        outputView.tryNumber(bridgeGame.tryCount);
-
-
+        return hit;
     }
 }
