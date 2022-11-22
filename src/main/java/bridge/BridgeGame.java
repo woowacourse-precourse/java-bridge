@@ -1,23 +1,48 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+
+import java.util.List;
+
 public class BridgeGame {
+    private static int totalGameTrials;
+    private static int bridgeMovingTrials;
+    private static int endOfBridges;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    public BridgeGame(List<String> crossableBridges){
+        this.totalGameTrials=0;
+        this.bridgeMovingTrials=0;
+        this.endOfBridges = crossableBridges.size();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public String checkWinOrFail(String crossableBridge, String uOrD){
+        if(crossableBridge==uOrD){
+            move();
+            checkGameFinished();
+            return "going";
+        }
+        retry();
+        return "fail";
     }
+
+    public static int getTotalGameTrials(){
+        return totalGameTrials;
+    }
+    private void move() {
+        bridgeMovingTrials+=bridgeMovingTrials;
+    }
+
+    private void retry() {
+        bridgeMovingTrials=0;
+        totalGameTrials+=totalGameTrials;
+    }
+
+    private void checkGameFinished(){
+        if(endOfBridges==bridgeMovingTrials){
+            finish();
+        }
+    }
+    private void finish() {
+
+    }
+
 }
