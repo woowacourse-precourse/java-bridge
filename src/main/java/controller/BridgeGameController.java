@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
