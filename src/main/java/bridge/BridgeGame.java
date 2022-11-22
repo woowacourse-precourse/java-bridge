@@ -33,6 +33,7 @@ public class BridgeGame {
         return false;
     }
     public boolean downBridgeMove(){
+        
         if (downBridgeMoveCheck()) {
             GameControl.resultBridge.add("O_down");
             position++;
