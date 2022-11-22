@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Application.move_Status;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -16,16 +18,21 @@ public class BridgeGame {
     public List<String> move(String bridge, String currentMoving) {
         List<String> movement = new ArrayList<>();
         if(currentMoving.equals("U")){
-            if(!bridge.equals(currentMoving)) movement.add("X");
-            if(bridge.equals(currentMoving)) movement.add("O");
+            movement.add(setMove(bridge, currentMoving));
             movement.add(" ");
+            return movement;
         }
-        if(currentMoving.equals("D")){
-            movement.add(" ");
-            if(!bridge.equals(currentMoving)) movement.add("X");
-            if(bridge.equals(currentMoving)) movement.add("O");
-        }
+        movement.add(" ");
+        movement.add(setMove(bridge, currentMoving));
         return movement;
+    }
+
+    public String setMove(String bridge, String currentMoving){
+        if(!bridge.equals(currentMoving)) {
+            move_Status = false;
+            return "X";
+        }
+        return "O";
     }
 
     /**
