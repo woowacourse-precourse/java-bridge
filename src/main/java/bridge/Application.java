@@ -5,21 +5,14 @@ import java.util.List;
 
 public class Application {
 
-    private static BridgeGame bridgeGame;
-    private static BridgeMaker bridgeMaker;
-    private static InputView inputView;
-    private static OutputView outputView;
+    private static BridgeGame bridgeGame = new BridgeGame();
+    private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private static InputView inputView = new InputView();
+    private static OutputView outputView = new OutputView();
 
     private static String GAME_STATE = "R";
     private static int gameCount = 1;
     private static int index = 0;
-
-    Application() {
-        bridgeGame = new BridgeGame();
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        inputView = new InputView();
-        outputView = new OutputView();
-    }
 
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");

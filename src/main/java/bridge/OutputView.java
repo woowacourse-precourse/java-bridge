@@ -12,8 +12,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> userPick) {
-
+    public void printMap(List<String> bridge, List<String> userPick) { // todo : 리팩토링
+        int SIZE = userPick.size();
+        System.out.print("[");
+        for(int i=0; i<SIZE; i++) {
+            if(bridge.get(i).equals("U") && userPick.get(i).equals("U"))
+                System.out.print(" O ");
+            if(!bridge.get(i).equals("U") && userPick.get(i).equals("D"))
+                System.out.print("   ");
+            if(i <= SIZE - 2) System.out.print("|");
+        }
+        System.out.println("]");
+        System.out.print("[");
+        for(int i=0; i<SIZE; i++) {
+            if(bridge.get(i).equals("D") && userPick.get(i).equals("D"))
+                System.out.print(" O ");
+            if(!bridge.get(i).equals("D") && userPick.get(i).equals("U"))
+                System.out.print("   ");
+            if(i <= SIZE - 2) System.out.print("|");
+        }
+        System.out.println("]");
     }
 
     /**
