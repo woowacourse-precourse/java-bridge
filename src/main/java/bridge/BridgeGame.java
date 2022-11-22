@@ -25,19 +25,19 @@ public class BridgeGame {
         }
         totalViewController.gameSuccessMessage(bridgeDTO).gameTriedMessage(bridgeDTO.getCount());
     }
-    public boolean moveJudge(String moveCommand, int i) {
-        if(bridge.get(i).equals(moveCommand)){
-            move(i);
+    public boolean moveJudge(String moveCommand, int currentPosition) {
+        if(bridge.get(currentPosition).equals(moveCommand)){
+            move(currentPosition);
             return true;
         }
-        moveFailed(moveCommand, i);
+        moveFailed(moveCommand, currentPosition);
         return false;
     }
-    public void move(int i) {
-        bridgeDTO.move(i);
+    public void move(int currentPosition) {
+        bridgeDTO.move(currentPosition);
     }
-    public void moveFailed(String moveCommand, int i){
-        bridgeDTO.moveFailed(moveCommand, i);
+    public void moveFailed(String moveCommand, int currentPosition){
+        bridgeDTO.moveFailed(moveCommand, currentPosition);
     }
 
     public void retry() {
@@ -45,8 +45,7 @@ public class BridgeGame {
         bridgeDTO.initBridge();
         play();
     }
-    private void askRestart(BridgeDTO bridgeDTO)
-    {
+    public void askRestart(BridgeDTO bridgeDTO) {
         totalViewController.mapMessage(bridgeDTO);
         totalViewController.gameRetriedMessage();
         if(InputCase.QUIT.getInput().equals(totalViewController.inputReadGameCommand())) {
