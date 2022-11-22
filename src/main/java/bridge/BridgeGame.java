@@ -1,9 +1,11 @@
 package bridge;
 
+import bridge.controller.BridgeGameController;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.GameEndChecker;
 import bridge.domain.Player;
+import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -11,16 +13,14 @@ public class BridgeGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
-    private final BridgeMaker bridgeMaker;
+    private final BridgeGameController bridgeGameController;
     private final GameEndChecker gameEndChecker;
     private final Player player;
 
     public BridgeGame() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        this.bridgeMaker = new BridgeMaker(this.bridgeRandomNumberGenerator);
+        this.bridgeGameController = new BridgeGameController(new BridgeGameService());
         this.gameEndChecker = new GameEndChecker();
         this.player = new Player();
     }
@@ -29,7 +29,7 @@ public class BridgeGame {
         outputView.printStart();
         outputView.printBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        Bridge bridge = bridgeGameController.createBridge(bridgeSize);
         while (!gameEndChecker.getEnd()) {
             System.out.println(bridge.getBridge());
             crossBridge(bridge);
