@@ -29,4 +29,8 @@ public class Bridge {
         List<Direction> subSecurePath = securePath.subList(0, path.size());
         return subSecurePath.equals(path);
     }
+
+    public boolean isCompletedWith(PlayerPath playerPath) {
+        return securePath.equals(playerPath.getPath());
+    }
 }
