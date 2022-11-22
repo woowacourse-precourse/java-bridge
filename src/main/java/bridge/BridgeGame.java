@@ -68,7 +68,7 @@ public class BridgeGame {
             return;
         }
         if (moveInput.equals("D")) {
-            bridgeUpMemory.add("O");
+            bridgeDownMemory.add("O");
             return;
         }
         bridgeDownMemory.add(" ");
