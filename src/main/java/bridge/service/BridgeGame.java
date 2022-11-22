@@ -1,7 +1,10 @@
-package bridge.domain;
+package bridge.service;
 
 import static bridge.domain.GameCommand.RETRY;
 
+import bridge.domain.BridgeCellType;
+import bridge.domain.GameCommand;
+import bridge.domain.MoveResult;
 import java.util.List;
 import java.util.Objects;
 

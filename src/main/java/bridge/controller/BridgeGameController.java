@@ -2,7 +2,7 @@ package bridge.controller;
 
 import static bridge.domain.GameCommand.QUIT;
 
-import bridge.domain.BridgeGame;
+import bridge.service.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.GameCommand;
 import bridge.domain.MoveResult;
