@@ -36,6 +36,17 @@ public class Controller {
             return (true);
         }
     }
+    
+    public void play() {
+        GameStatus status = GAME_CONTINUE;
+        while (status.isContinue() || (status.isFail() && askRetrySafeLoop())) {
+            outputView.printChoiceRequest();
+            moveSafeLoop();
+            outputView.printMap(bridgeGame.generateMap());
+            status = checkGameStatus();
+        }
+        outputView.printResult(bridgeGame.generateMap(), status.toString(), bridgeGame.getTryCount());
+    }
 
     private void moveSafeLoop() {
         boolean flag = true;
@@ -52,6 +63,16 @@ public class Controller {
             outputView.printExceptionMessage(ex.getMessage());
             return (true);
         }
+    }
+
+    private GameStatus checkGameStatus() {
+        if (!bridgeGame.checkCurrentStatus()) {
+            return (GAME_FAIL);
+        }
+        if (!bridgeGame.checkIfWin()) {
+            return (GAME_CONTINUE);
+        }
+        return (GAME_SUCCESS);
     }
 
     private boolean askRetrySafeLoop() {
