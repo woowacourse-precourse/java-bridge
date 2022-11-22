@@ -64,8 +64,4 @@ public class BridgeGame {
             attempts++;
         }
     }
-
-    public void update(String direction) {
-        bridge.update(direction);
-    }
 }

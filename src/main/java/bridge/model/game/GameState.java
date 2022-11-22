@@ -6,11 +6,9 @@ public enum GameState {
     NOT_FINISH(2, false, false);
 
     private final boolean success;
-    private final boolean finish;
 
     GameState(int state, boolean finish, boolean success) {
         this.success = success;
-        this.finish = finish;
     }
 
     public String stateMsg() {
