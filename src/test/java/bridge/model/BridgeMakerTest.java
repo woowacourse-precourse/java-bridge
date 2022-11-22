@@ -2,6 +2,8 @@ package bridge.model;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
