@@ -17,7 +17,6 @@ public class GameRoundTest extends NsTest {
 
     GameRound gameRound = new GameRound(new InputView(), new OutputView(), new Bridge(Arrays.asList("U", "D", "U", "D")));
 
-
     @DisplayName("첫번째 값이 U랑 동일한지 테스트")
     @Test
     void isWinTest() {
@@ -50,7 +49,7 @@ public class GameRoundTest extends NsTest {
                 }
         );
     }
-    
+
     @DisplayName("마지막이 아닌 N번째 라운드면 true 반환")
     @Test
     void isContinueRoundTrue() {
