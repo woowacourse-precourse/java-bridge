@@ -17,7 +17,7 @@ public class GameController {
     private static final BridgeGame game = BridgeGame.getInstance();
     private static final BridgeService bridgeService = BridgeService.getInstance();
 
-    public static GameController instance = new GameController();
+    private static GameController instance = new GameController();
 
     public static GameController getInstance() {
         return instance;
