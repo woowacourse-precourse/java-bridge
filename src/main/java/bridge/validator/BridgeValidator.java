@@ -7,7 +7,7 @@ import bridge.exception.WrongBridgeSizeException;
 
 public class BridgeValidator {
 
-    public static int validateBridgeSize(String size) {
+    public static void validateBridgeSize(String size) {
         if (!verifyPositiveInteger(size)) {
             throw new WrongBridgeSizeException();
         }
@@ -15,7 +15,6 @@ public class BridgeValidator {
         if (!verifyRange(sizeValue)) {
             throw new WrongBridgeSizeException();
         }
-        return sizeValue;
     }
 
     private static boolean verifyPositiveInteger(String size) {

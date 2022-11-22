@@ -15,7 +15,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = readLine().trim();
-        return validateBridgeSize(bridgeSize);
+        validateBridgeSize(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
     /**

@@ -16,7 +16,8 @@ class BridgeValidatorTest {
     @CsvSource(value = {"3:3", "5:5", "20:20"}, delimiter = ':')
     @ParameterizedTest
     void bridgeSizeIsBetween3And20(String input, int value) {
-        assertThat(validateBridgeSize(input)).isEqualTo(value);
+        validateBridgeSize(input);
+        assertThat(Integer.parseInt(input)).isEqualTo(value);
     }
 
     @DisplayName("다리의 길이가 3미만 20초과인 경우 예외처리 한다.")
