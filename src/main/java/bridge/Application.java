@@ -1,8 +1,14 @@
 package bridge;
 
-public class Application {
+import bridge.controller.BridgeGameMachine;
+import bridge.domain.ValidateInput;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
+public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGameMachine bridgeGameMachine = new BridgeGameMachine(
+                new InputView(new ValidateInput()), new OutputView());
+        bridgeGameMachine.run();
     }
 }

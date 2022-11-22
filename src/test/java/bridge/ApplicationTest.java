@@ -65,4 +65,40 @@ class ApplicationTest extends NsTest {
             return numbers.remove(0);
         }
     }
+
+    @Test
+    void 기능_테스트_동작중_실패_후_재시도_할시_성공_확인() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 기능_테스트_동작중_실패_후_재시도_실패_확인() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "R", "U", "D", "D", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   |   ]");
+            int downSideIndex = output().indexOf("[   | O | X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
 }
