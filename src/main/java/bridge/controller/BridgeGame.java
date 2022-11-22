@@ -56,6 +56,6 @@ public class BridgeGame {
     }
 
     public void finish(boolean status) {
-        roundService.getFinalResult(status);
+        roundService.getFinalResult(status, gameService.getCount());
     }
 }

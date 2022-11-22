@@ -10,4 +10,8 @@ public class Game {
     public void increaseTryCount() {
         this.tryCount++;
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }

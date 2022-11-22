@@ -26,4 +26,8 @@ public class GameService {
     public void increaseCount() {
         game.increaseTryCount();
     }
+
+    public int getCount() {
+        return game.getTryCount();
+    }
 }

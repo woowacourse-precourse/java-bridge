@@ -92,10 +92,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> movings, boolean status) {
+    public static void printResult(List<String> movings, boolean status, int tryCount) {
         messageFinalResult();
         printMap(movings, status);
         printIsSuccess(status);
+        printTryCount(tryCount);
     }
 
     private static void messageFinalResult() {
@@ -109,5 +110,9 @@ public class OutputView {
         if (!status) {
             System.out.println("게임 성공 여부: 실패");
         }
+    }
+
+    private static void printTryCount(int tryCount) {
+        System.out.println("총 시도한 횟수: " + tryCount);
     }
 }
