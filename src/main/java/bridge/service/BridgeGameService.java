@@ -1,10 +1,13 @@
 package bridge.service;
 
 import static bridge.exception.Error.*;
+import static bridge.exception.Validator.validGameCommand;
 import static bridge.view.OutputView.*;
 
+import bridge.domain.GameCommand;
 import bridge.domain.Round;
 import bridge.domain.RoundResult;
+import bridge.exception.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -30,6 +33,12 @@ public class BridgeGameService {
             bridgeGame.move(inputView.readMoving());
 
             outputView.printMap(bridgeGame.getRounds());
+
+            if (bridgeGame.isCurrentRoundResultFailure()) {
+                if (isGameRetry(inputView.readGameCommand())) {
+
+                }
+            }
         }
 
     }
@@ -38,5 +47,12 @@ public class BridgeGameService {
         bridgeGame = new BridgeGame(size);
     }
 
+    private boolean isGameRetry(String gameCommand) {
+        validGameCommand(gameCommand);
+        if (gameCommand.equals(GameCommand.RETRY.getExpression())) {
+            return true;
+        }
+        return false;
+    }
 
 }
