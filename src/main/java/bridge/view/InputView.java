@@ -10,22 +10,15 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() throws IllegalArgumentException {
         try {
-            int size = Integer.parseUnsignedInt(Console.readLine());
-            validateSize(size);
-            return size;
-        } catch (IllegalArgumentException iae) {
-            throw new IllegalArgumentException(InputError.INVALID_SIZE.getMessage());
-        }
-    }
-
-    private void validateSize(int size) {
-        if(size < 3 || size > 20){
-            throw new IllegalArgumentException();
+            return Integer.parseUnsignedInt(Console.readLine());
+        } catch (NumberFormatException iae) {
+            throw new IllegalArgumentException(InputError.NOT_UNSIGNED_INT.getMessage());
         }
     }
 

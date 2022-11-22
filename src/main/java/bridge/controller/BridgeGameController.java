@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.error.InputError;
 import bridge.model.BridgeGame;
 import bridge.model.Command;
 import bridge.model.Direction;
@@ -11,6 +12,8 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
+    public final int MIN_SIZE = 3;
+    public final int MAX_SIZE = 20;
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
@@ -39,11 +42,18 @@ public class BridgeGameController {
         try {
             outputView.askSize();
             int size = inputView.readBridgeSize();
+            validateSize(size);
             List<String> bridge = bridgeMaker.makeBridge(size);
             bridgeGame.setBridge(bridge);
         } catch (IllegalArgumentException iae) {
             outputView.printError(iae);
             initGame();
+        }
+    }
+
+    private void validateSize(int size) {
+        if (size < MIN_SIZE || size > MAX_SIZE) {
+            throw new IllegalArgumentException(InputError.INVALID_SIZE.getMessage());
         }
     }
 
