@@ -1,8 +1,10 @@
 package model.command;
 
+import model.TypeCheck;
+
 import java.util.Arrays;
 
-public enum CommandType {
+public enum CommandType implements TypeCheck {
 
     R(true),
     Q(false);
@@ -20,13 +22,14 @@ public enum CommandType {
 
     public static Boolean isRetry(String command) {
         return Arrays.stream(values())
-                .filter(type -> type.equals(valueOf(command)))
+                .filter(type -> type.isEqualsMark(command))
                 .findAny()
                 .map(CommandType::isRun)
                 .orElseThrow(() -> new IllegalArgumentException(VALUE_ERROR));
     }
 
+    @Override
     public boolean isEqualsMark(String mark) {
-        return this.equals(valueOf(mark));
+        return this.toString().equals(mark);
     }
 }

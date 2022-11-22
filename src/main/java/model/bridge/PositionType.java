@@ -1,10 +1,12 @@
 package model.bridge;
 
+import model.TypeCheck;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PositionType {
+public enum PositionType implements TypeCheck {
 
     U(1),
     D(0);
@@ -42,7 +44,8 @@ public enum PositionType {
                 .orElseThrow(() -> new IllegalArgumentException(OTHER_TYPE_ERROR));
     }
 
+    @Override
     public boolean isEqualsMark(String mark) {
-        return this.equals(valueOf(mark));
+        return this.toString().equals(mark);
     }
 }
