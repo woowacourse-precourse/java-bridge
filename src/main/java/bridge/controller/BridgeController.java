@@ -10,11 +10,16 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
-    OutputView outputView = new OutputView();
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     DataTypeChanger dataTypeChanger = new DataTypeChanger();
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private final StringBuilder upBridge = new StringBuilder("[");
+    private final StringBuilder downBridge = new StringBuilder("[");
+    private static final String correctBridge = " O ]";
+    private static final String wrongBridge = " X ]";
+    private static final String emptyBridge = "   ]";
 
     public void game() {
         BridgeGame bridgeGame = create();
