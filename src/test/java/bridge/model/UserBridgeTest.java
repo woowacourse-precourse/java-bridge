@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.model;
 
 import bridge.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
