@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeGameController {
 
@@ -41,16 +40,12 @@ public class BridgeGameController {
         outputView.printBridgeSizeMsg();
         while (true) {
             try {
-                int size = inputView.readBridgeSize();
-                return bridgeMaker.makeBridge(makeShape(size));
+                bridgeGame.make(inputView.readBridgeSize());
+                return;
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
             }
         }
-    }
-
-    private List<String> makeShape(int size) {
-        return bridgeMaker.makeBridge(size);
     }
 
     private void moveBridge() {
