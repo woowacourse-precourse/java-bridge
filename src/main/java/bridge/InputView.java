@@ -2,10 +2,11 @@ package bridge;
 
 import static bridge.Expression.DOWN;
 import static bridge.Expression.UP;
+import static bridge.GameStatus.QUIT;
+import static bridge.GameStatus.SELECT_RE_TRY;
 import static bridge.UserInterface.INSERT_SIZE;
 import static bridge.UserInterface.RANGE_OUT_OF_EXCEPTION;
 import static bridge.UserInterface.RE_TRY;
-import static bridge.UserInterface.SELECT_RE_TRY;
 import static bridge.UserInterface.SELECT_ROW;
 import static java.lang.Integer.parseInt;
 
@@ -43,7 +44,8 @@ public class InputView {
 
         System.out.println(SELECT_ROW.interact());
         String readLine = Console.readLine();
-        exception.validate(readLine);
+        Expression.validate(readLine);
+
         if (readLine.equals("U")) {
             readLine = UP.expressThat();
         }
@@ -62,12 +64,12 @@ public class InputView {
         System.out.println(RE_TRY.interact());
         String readLine = Console.readLine();
 
-        exception.validate(readLine);
-        if (readLine.equals(SELECT_RE_TRY.interact())) {
-            readLine = SELECT_RE_TRY.interact();
+        GameStatus.validate(readLine);
+        if (readLine.equals(SELECT_RE_TRY.tellCommand())) {
+            readLine = SELECT_RE_TRY.tellCommand();
         }
-        if (readLine.equals(UserInterface.QUIT.interact())){
-            readLine = UserInterface.QUIT.interact();
+        if (readLine.equals(QUIT.tellCommand())){
+            readLine = QUIT.tellCommand();
         }
 
         return readLine;
