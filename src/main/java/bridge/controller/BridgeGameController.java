@@ -15,14 +15,11 @@ public class BridgeGameController {
     public void execute() {
         printBridgeGameStartMessage();
 
-        try {
-            initializeBridgeGameByBridgeSize(readBridgeSize());
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException(NOT_INT.getMessage());
-        }
+        int bridgeSize = inputBridgeSize();
+        initializeBridgeGameByBridgeSize(bridgeSize);
 
         int totalNumberOfAttempts = 1;
-        for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
+        for (int i = 0; i < bridgeSize; i++) {
             bridgeGame.move(readMoving());
 
             printMap(bridgeGame.getRounds());
@@ -37,6 +34,14 @@ public class BridgeGameController {
             }
         }
         printResult(bridgeGame.getRounds(), totalNumberOfAttempts);
+    }
+
+    public int inputBridgeSize() {
+        try {
+            return readBridgeSize();
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(NOT_INT.getMessage());
+        }
     }
 
     public void initializeBridgeGameByBridgeSize(int size) {
