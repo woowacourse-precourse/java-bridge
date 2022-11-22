@@ -30,7 +30,7 @@ public class InputExceptionHandler {
     }
 
     public static String checkMovingCommand(String input) {
-        if(!input.equals("U")&&!input.equals("D")){
+        if(!input.equals(GameConstant.RETRY)&&!input.equals(GameConstant.QUIT)){
             throw new IllegalStateException(NOT_MOVING_COMMAND);
         }
         return input;
