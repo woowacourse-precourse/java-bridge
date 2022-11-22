@@ -11,10 +11,12 @@ public class GameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     public void setUpGame() throws IllegalArgumentException {
+        int size = setBridgeSize();
         bridgeGame = new BridgeGame();
         bridgeSelection = new BridgeSelection();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = bridgeMaker.makeBridge(setBridgeSize());
+        List<String> makingBridge = bridgeMaker.makeBridge(size);
+        bridge = new Bridge(size, makingBridge);
         trial++;
     }
 
