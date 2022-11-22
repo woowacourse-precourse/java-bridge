@@ -1,55 +1,107 @@
-미션 - 다리 건너기
--------
-
-# ✔ ️기능 목록
+🌉미션 - 다리 건너기
+-------  
+# 목차
+1. [🔖  미션 개요](#미션개요)
+2. [🛎️  용어 소개](#용어소개)
+3. [✔️  기능목록](#기능목록)
+4. [💾 프로젝트 구조](#프로젝트구조)
+5. [✍️ 배운점](#배운점)
+# 🔖 미션 개요
+이 프로젝트는 2022년 우아한 테크코스-프리코스의 4주차 미션인 '다리 건너기'를 수행한 것으로, 넷플릭스 시리즈 <오징어 게임>의  '징검다리 건너기' 게임처럼 위, 아래 중 한 곳만 지날 수 있는 다리를 한 칸씩 전진하며 끝까지 건너는 게임을 구현한 것이다. 이 미션의 학습 목표는 1) 클래스(객체)를 분리하고 2) 리팩터링하는 법을 익히는  것이다.
+# 🛎️ 용어 소개
++ 이 문서와, 프로젝트 소스 코드 이해를 돕고자 프로젝트에서 사용한 용어를 소개한다.
++ 한 **게임**은 **한 개의 다리를 사용**한다.  게임은 다리를 다 건너거나, 사용자가 종료하기를 원하면 종료된다.
++ 다리를 다 건너기 위해 여러번 **시도**할 수 있다. 즉, 다리 중간에 잘못된 칸을 선택하여 실패하면, 새로운 시도를 할 수 있다.
++ 각 시도는 여러 개의 **라운드**로 이루어진다. 다리는 여러 개의 칸으로 나누어져 있으며, 각 칸은 위, 아래로 나누어져 있다. 위, 아래 둘 중 한 칸만 건널 수 있다. 각 라운드 마다 위, 아래 둘 중 한 칸을 선택한다. 성공할 수도 실패할 수도 있다.
++ **게임-game** 은 여러 개의 **시도-trial**로 이루어져 있으며, 매 시도마다 여러 번의 **라운드-round**를 실행한다.
++ 게임의 결과도 같은 관계성을 가진다.
+    + 하나의 BridgeGame은 하나의 BridgeGameResult를 가진다.
+    + BridgeGameResult는 각 시도에 대한 결과를 담은 BridgeGameTrial의 리스트를 멤버 변수로 가진다.
+    + BridgeGameTrial은 각 라운드별 결과의 집합인 BridgeGameRoundResult 리스트를 멤버 변수로 가진다.
+# ✔️ 기능 목록
+-   기능 목록은 크게 다리 건너기 게임의 핵심 로직을 담당하는 **도메인 기능 목록**과, 콘솔에서의  **입출력 기능 목록**으로 나누어서 작성하였다.
+-   형식 : 기능 설명
+-   들여쓰기의 의미: 함수의 부분 기능을 담당하지만 따로 분리해서 구현되는 기능은 한 단계 들여쓰기 하여 작성하였다. 들여쓰기된 기능은 상위 기능에 의해 호출된다.
 
 ## 도메인 기능 목록
-
-+ 다리를 생성한다. - BridgeMaker #makeBridge
-    + 3이상 20사이의 숫자인지 확인한다 - BridgeMaker #validateSize()
-    + U와 D중 무작위 값을 선택한다. - BridgeRandomNumberGenerator #generate()
-    + 다리 길이만큼 U와 D의 무작위 값의 배열을 만든다. - BridgeMaker #makeBridgeWithRandomSteps
-+ 다리 건너기 게임을 시작한다. BridgeGame #start()
-+ 각 시도마다 다리 끝에 도달할때까지 플레이어가 이동한다. - BridgeGame #try()
-    + 플레이어가 이동하고자 하는 방향으로 이동이 가능한지 확인한다. - BridgeGame #canMove
-    + 이동이 불가능하면 실패한다.
-    + 이동이 가능하면 이동한다. -BridgeGame #move
-    + 실패하지 않았다면 위 과정을 반복한다.
-    + 이번 시도 결과(각 라운드별 움직인 방향, 성공여부)를 저장한다. - BridgeGame #setTryResult()
-+ 사용자에게 입력받은 재시작/종료 여부에 따라 다시 실행한다 - BridgeGame #retry()
++ 다리를 생성한다.   
+  (1) 입력 받은 숫자가 3이상 20사이의 숫자인지 확인한다.
+  (2) 1과 0 중 무작위 값을 다리 길이만큼 생성한다.
+  (3) (2)의 각 값을 U와 D로 변환한다.
++ 다리 건너기 게임을 한다.
+  (1) 새로운 시도를 시작한다.
+  (2) 새로운 라운드를 실행한다.
+  (3) 칸을 건너는데 실패하거나, 다리를 다 건널때까지 라운드를 반복한다.
+  (4) 만약 칸을 건너는데 실패했다면, 사용자에게 재시작/종료 여부를 물어본다.
+  (5) 만약 다리를 다 건넜다면 게임을 종료한다.
++ 다리 건너기 게임의 라운드를 실행한다.
+  (1) 사용자에게 입력받은 문자열이 U나 D인지 확인한다. 아니라면, 오류 메세지를 출력하고 새로운 문자열을 입력 받는다.
+  (2) 입력 받은 문자열과 다리를 비교하여 해당 칸을 지날 수 있는지 판단한다.
+  (3) 결과를 저장후, 반환한다.
++ 사용자에게 입력받은 재시작/종료 여부에 따라 다시 실행한다.
+  (1) 사용자에게 입력받은 문자열이 R이나 Q가 아니라면 에러 메세지를 출력하고 새로운 문자열을 입력받는다.
+  (2) 문자열이 R이라면, 새로운 시도를 시작한다.
+  (3) Q라면, 종료한다.
 
 ## 입출력 기능 목록
 
 ### 입력
-
-+ 자동으로 생성할 다리 길이를 입력받는다. - InputView #readBridgeSize
-+ 라운드마다 플레이어가 이동할 칸을 입력받는다. - InputView #readMoving
-+ 게임 재시작/종료 여부를 입력 받는다. - InputView #readGameCommand
++ 자동으로 생성할 다리 길이를 입력받는다.
+    + 다리 길이 입력 메세지를 출력한다.
+    + 숫자가 아니거나, 정수가 아니라면 IllegalArgumentException을 발생시킨다.
++ 라운드마다 플레이어가 이동할 칸을 입력받는다.
+    + 이동할 칸 선택 메세지를 출력한다.
+    + 문자열이 비어있다면 IllegalArgumentException을 발생시킨다.
++ 게임 재시작/종료 여부를 입력 받는다.
+    +  재시작/종료 여부 선택 메시지를 출력한다.
+    + 문자열이 비어있다면 IllegalArgumentException을 발생시킨다.
 
 ### 출력
 
 + 게임 시작 문구를 출력한다.
-+ 라운드 결과를 출력한다. -OutputView #printMap
-+ 최종 게임 결과를 출력한다. (각 라운드 결과, 게임 성공 여부, 총 시도한 횟수) - OutputView #printFinalResult
-    + 각 라운드 결과 - OutputView #printMap
-    + 게임 성공 여부 - OutputView #printResult
++ 라운드 결과를 출력한다.
++ 최종 게임 결과를 출력한다.
 + 에러 문구를 출력한다.
 
-# 프로젝트 구조
-
-- bridge
-    - domain
-        - 다리의 생성과 관련된
-            - Bridge
-            - BridgeSize
-            - BridgeMaker
-            - BridgeNumberGenerator, BridgeRandomNumberGenerator
-            - BridgeStep - Enum클래스
-        - 게임과 관련된
-            - BridgeGames
-            - BridgeGame - caculator의 역할
-            - BridgeGameResult - 각 시도, 여러 라운드(move)로 이루어짐.
-            - BridgeGameResults - 여러 시도로 이루어짐
-    - view
-        - inputView
-        - outputView
+# 💾 프로젝트 구조
+-   **bridge**패키지는 크게  **domain**와  **view**으로 나뉜다. domain 패키지는 다리 건너기 게임의 핵심 로직과 관련된 모든 클래스를 포함하고, view 패키지는 화면 입출력과 관련된 클래스를 포함한다.
+- 핵심 로직과 UI로직의 분리를 통해, 핵심 로직와 UI로직의 결합도를 낮추고, 향후 변경사항으로 서로에게 미치는 영향을 최소화하였다.
+- ```BridgeGameController```가 UI로직과 도메인 로직을 호출하고 데이터를 전달하는 '조정자'의 역할을 한다.
+- ```BridgeMaker```, ```BridgeNumberGenerator```, ```BridgeRandomNumberGenerator``` 는 다리를 생성하는 기능과 관련하여 미리 제공된 클래스로, 요구사항에 의해 클래스 수정이 불가능하므로, 패키지도 제공된 위치(/src/main/java/)에서 변경하지 않는다.
+-   domain 패키지의 각 클래스는 1:1로 매칭되는 테스트 클래스를 가진다. 각 테스트 클래스는 매칭되는 클래스의 단위 테스트를 담당한다. 다만, 1) Enum 클래스 2) 상수만 가지는 클래스 3) 데이터를 제공하는 기능을 제외한 특별한 기능이 없는 경우에는 테스트할 필요가 없어 테스트 클래스가 존재하지 않는다.
+-   view 패키지의 클래스는 테스트 클래스가 존재하지 않는다. 요구사항에 의해 UI 로직은 테스트 대상이 아니다.
+-   프로젝트 구조와 각 파일이 담당하는 역할을 기술하였다.
+```bash
+└── src
+    ├── main
+    │   └── java
+    │       └── bridge
+    │           ├── Application.java
+    │           ├── BridgeMaker.java				: 다리를 구성할 문자열 리스트를 생성하는 클래스.
+    │           ├── BridgeNumberGenerator.java		: 다리를 생성하는 방법 인터페이스 클래스.
+    │           ├── BridgeRandomNumberGenerator.java: 랜덤한 숫자로 다리를 구성하는 BridgeNumberGenerator의 구현 클래스.
+    │           ├── domain
+    │           │   ├── Bridge.java					: 다리에 대한 정보를 관리.
+    │           │   ├── BridgeFactory.java			: 다리를 생성하는 클래스.
+    │           │   ├── BridgeGame.java				: 게임에 대한 정보(다리, 게임 결과)를 관리.									
+    │           │   ├── BridgeGameController.java	: view 패키지와 domain 패키지 사이의 협력을 담당.
+    │           │   ├── BridgeGameResult.java 		: 게임의 전체 결과를 저장하는 클래스.
+    │           │   ├── BridgeGameRoundResult.java  : 각 라운드의 결과를 저장하는 클래스.
+    │           │   ├── BridgeGameTrialResult.java 	: 각 시도의 결과를 저장하는 클래스.
+    │           │   ├── BridgeMove.java 			: 플레이어의 움직임 Up, Down을 나타내는 Enum 클래스.
+    │           │   └── GameCommand.java			: 게임 재시작/종료를 나타내는 Enum 클래스.
+    │           └── view
+    │               ├── InputView.java	 			: 화면 입력을 담당.
+    │               └── OutputView.java 		    : 화면 출력을 담당.
+    └── test
+        └── java
+            └── bridge
+                ├── ApplicationTest.java
+                ├── BridgeMakerTest.java
+                └── domain
+                    ├── BridgeFactoryTest.java
+                    ├── BridgeGameControllerTest.java
+                    ├── BridgeGameTest.java
+                    └── BridgeMoveTest.java
+```
+# ✍️ 배운점 
