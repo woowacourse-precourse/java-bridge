@@ -45,10 +45,7 @@ public class BridgeGameService {
     }
 
     public boolean isMovable(List<String> bridge, List<String> map) {
-        if (bridgeGame.move(bridge, map) && bridge.size() != map.size()) {
-            return true;
-        }
-        return false;
+        return bridgeGame.move(bridge, map) && bridge.size() != map.size();
     }
 
     public void printMapStatus(List<String> bridge, List<String> map) {
