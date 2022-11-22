@@ -9,11 +9,13 @@ public class BridgeGame {
     public UpSide upSide;
     public DownSide downSide;
     public int movingTurn;
+    public boolean success;
 
     public BridgeGame() {
         this.upSide = new UpSide();
         this.downSide = new DownSide();
         this.movingTurn = 0;
+        this.success = false;
     }
 
     public void move() {

@@ -9,16 +9,15 @@ import java.util.List;
 
 public class Application {
 
-    public static int size;
     public static List<String> bridge;
-    public static boolean success;
     public static int totalTrial;
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame = Initialization.init();
+        int size = Initialization.init();
+        BridgeGame bridgeGame = new BridgeGame();
         while (StartGame.startGame(bridgeGame)) {
             if (bridgeGame.movingTurn == size) {
-                success = true;
+                bridgeGame.success = true;
                 break;
             }
         }

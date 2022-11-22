@@ -9,19 +9,19 @@ import bridge.view.OutputView;
 
 public class Initialization {
 
-    public static BridgeGame init() {
+    public static int init() {
         OutputView.printStart();
         OutputView.printRequestSize();
-        Application.size = InputView.readBridgeSize();
-        createBridge();
+        int size = InputView.readBridgeSize();
+        createBridge(size);
         Application.totalTrial = 1;
-        return new BridgeGame();
+        return size;
     }
 
-    public static void createBridge() {
+    public static void createBridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        Application.bridge = bridgeMaker.makeBridge(Application.size);
+        Application.bridge = bridgeMaker.makeBridge(size);
     }
 
 }

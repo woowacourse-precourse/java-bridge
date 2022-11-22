@@ -17,12 +17,12 @@ public class OutputView {
     public static void printResult(BridgeGame bridgeGame) {
         System.out.println(OutputConstants.RESULT);
         printMap(bridgeGame);
-        printSuccess();
+        printSuccess(bridgeGame);
         System.out.println(OutputConstants.TOTAL_TRY + Application.totalTrial);
     }
 
-    public static void printSuccess() {
-        if (Application.success) {
+    public static void printSuccess(BridgeGame bridgeGame) {
+        if (bridgeGame.success) {
             System.out.println(OutputConstants.SUCCESS);
             return;
         }
@@ -45,7 +45,8 @@ public class OutputView {
     public static void printRetry() {
         System.out.println(OutputConstants.RETRY_REQUEST);
     }
-    public static void printError(IllegalArgumentException e){
+
+    public static void printError(IllegalArgumentException e) {
         System.out.println(e);
     }
 }

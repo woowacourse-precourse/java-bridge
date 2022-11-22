@@ -29,7 +29,7 @@ public class StartGame {
             bridgeGame.retry();
             return true;
         }
-        Application.success = false;
+        bridgeGame.success = false;
         return false;
     }
 
