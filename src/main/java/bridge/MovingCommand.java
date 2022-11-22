@@ -5,12 +5,18 @@ public enum MovingCommand {
     UP("U", 1),
     DOWN("D", 0);
 
+    private static final String INVALID_NUMBER = "해당하는 명령을 찾을 수 없습니다.";
+
     private String command;
     private int number;
 
     MovingCommand(String command, int number) {
         this.command = command;
         this.number = number;
+    }
+
+    public String getCommand() {
+        return this.command;
     }
 
     public static String commandOf(int number) {
