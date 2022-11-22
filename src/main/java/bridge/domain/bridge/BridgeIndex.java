@@ -12,13 +12,7 @@ public class BridgeIndex {
     }
 
     public Integer getAndIncrement() {
-        var lastIndex = this.index;
-        this.incrementIndexPlusOne();
-        return lastIndex;
-    }
-
-    private void incrementIndexPlusOne() {
-        this.index += 1;
+        return this.index++;
     }
 
     public boolean isLessThan(Integer size) {
