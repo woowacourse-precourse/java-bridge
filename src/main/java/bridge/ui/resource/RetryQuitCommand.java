@@ -1,4 +1,4 @@
-package bridge.UI.Resource;
+package bridge.ui.resource;
 
 public enum RetryQuitCommand {
     RETRY("R"),

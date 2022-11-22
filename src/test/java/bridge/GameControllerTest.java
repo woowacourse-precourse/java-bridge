@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.Domain.BridgeGame;
-import bridge.Domain.GameController;
+import bridge.domain.BridgeGame;
+import bridge.domain.GameController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

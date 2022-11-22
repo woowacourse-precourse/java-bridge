@@ -1,10 +1,10 @@
-package bridge.Domain;
+package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.UI.InputView;
-import bridge.UI.OutputView;
-import bridge.UI.Resource.GameResource;
-import bridge.UI.Resource.RetryQuitCommand;
+import bridge.ui.InputView;
+import bridge.ui.OutputView;
+import bridge.ui.resource.GameResource;
+import bridge.ui.resource.RetryQuitCommand;
 
 import java.util.List;
 

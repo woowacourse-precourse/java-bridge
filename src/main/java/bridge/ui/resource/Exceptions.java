@@ -1,4 +1,4 @@
-package bridge.UI.Resource;
+package bridge.ui.resource;
 
 /**
  * 예외 상황 발생시 출력할 메시지를 저장하는 역할을 한다.

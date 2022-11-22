@@ -1,6 +1,6 @@
-package bridge.UI;
+package bridge.ui;
 
-import bridge.UI.Resource.GameResource;
+import bridge.ui.resource.GameResource;
 
 import java.util.List;
 

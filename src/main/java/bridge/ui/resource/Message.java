@@ -1,4 +1,4 @@
-package bridge.UI.Resource;
+package bridge.ui.resource;
 /**
  * 게임 진행을 위해 필요한 메시지를 저장하는 역할을 한다.
  */

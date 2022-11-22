@@ -1,4 +1,4 @@
-package bridge.Domain;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,7 +1,7 @@
-package bridge.Domain;
+package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
-import bridge.UI.Resource.UpDownCommand;
+import bridge.ui.resource.UpDownCommand;
 
 import java.util.ArrayList;
 import java.util.List;

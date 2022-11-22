@@ -1,7 +1,7 @@
-package bridge.UI;
+package bridge.ui;
 
-import bridge.Domain.ValidCheck;
-import bridge.UI.Resource.Exceptions;
+import bridge.domain.ValidCheck;
+import bridge.ui.resource.Exceptions;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 

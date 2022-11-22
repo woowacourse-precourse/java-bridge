@@ -1,13 +1,10 @@
-package bridge.UI;
+package bridge.ui;
 
-import bridge.Domain.BridgeGame;
-import bridge.UI.Resource.GameResource;
-import bridge.UI.Resource.Message;
-import bridge.UI.Resource.UpDownCommand;
+import bridge.domain.BridgeGame;
+import bridge.ui.resource.Message;
+import bridge.ui.resource.UpDownCommand;
 
-import java.util.List;
-
-import static bridge.UI.PrintBridge.createRow;
+import static bridge.ui.PrintBridge.createRow;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

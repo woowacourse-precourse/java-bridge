@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.Domain.ValidCheck;
-import bridge.UI.OutputView;
+import bridge.domain.ValidCheck;
+import bridge.ui.OutputView;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

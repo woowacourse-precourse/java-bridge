@@ -1,4 +1,4 @@
-package bridge.Domain;
+package bridge.domain;
 
 public class ValidCheck {
     public static boolean isString_in_0to9(String str) {
