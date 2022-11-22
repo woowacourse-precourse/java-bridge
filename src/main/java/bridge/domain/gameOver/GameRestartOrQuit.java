@@ -7,6 +7,12 @@ public class GameRestartOrQuit {
         InputView inputView = new InputView();
         String gameRestartOrQuitCommand = inputView.readGameCommand();
 
-        return gameRestartOrQuitCommand;
+        try {
+            GameRestartOrQuitValidator.validate(gameRestartOrQuitCommand);
+            return gameRestartOrQuitCommand;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return takeGameRestartOrQuitCommand();
+        }
     }
 }
