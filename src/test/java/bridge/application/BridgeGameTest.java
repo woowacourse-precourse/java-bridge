@@ -80,6 +80,29 @@ class BridgeGameTest {
         initializeTest(bridgeGame);
     }
 
+    @DisplayName("GameCommand가 RETRY일 때, BridgeGame을 초기화 시키고 GameStatus.RETRY를 반환합니다.")
+    @Test
+    void 게임_커맨드_RETRY_테스트() {
+        Bridge bridge = new Bridge(Arrays.asList("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        GameStatus gameStatus = bridgeGame.getGameStatusByGameCommand(GameCommand.RETRY);
+
+        initializeTest(bridgeGame);
+        assertThat(gameStatus).isEqualTo(GameStatus.RETRY);
+    }
+
+    @DisplayName("GameCommand가 QUIT일 때, GameStatus.QUIT를 반환합니다.")
+    @Test
+    void 게임_커맨드_QUIT_테스트() {
+        Bridge bridge = new Bridge(Arrays.asList("U","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        GameStatus gameStatus = bridgeGame.getGameStatusByGameCommand(GameCommand.QUIT);
+
+        assertThat(gameStatus).isEqualTo(GameStatus.QUIT);
+    }
+
     private void initializeTest(BridgeGame bridgeGame) {
         assertThat(bridgeGame.getCount().getCount()).isEqualTo(2);
         assertThat(bridgeGame.getMoving().getMovingResult(Move.UP).size()).isEqualTo(0);
