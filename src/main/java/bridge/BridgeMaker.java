@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.enums.UpDown;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +21,19 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> answerBridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            answerBridge.add(makeRandomUpDown());
+        }
+
+        return answerBridge;
     }
+
+    /**
+     * @return 위아래 값. 랜덤으로 추출된 0, 1을 각각 "D","U"으로 바꿔 표현한다.
+     */
+    private String makeRandomUpDown() {
+        return UpDown.valueOfNumber(bridgeNumberGenerator.generate()).label();
+    }
+
 }
