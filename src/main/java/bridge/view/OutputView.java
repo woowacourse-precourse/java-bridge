@@ -60,7 +60,7 @@ public class OutputView {
         System.out.println(bridgeGame.getGameResult().getMessage());
     }
 
-    private static void printTrialCount(BridgeGame bridgeGame) {
+    private void printTrialCount(BridgeGame bridgeGame) {
         System.out.print(GuidanceMessage.INFORM_TRIAL_COUNT);
         System.out.println(bridgeGame.getTrialCount());
     }

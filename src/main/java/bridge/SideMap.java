@@ -17,10 +17,6 @@ public abstract class SideMap {
         return sideMap.size();
     }
 
-    public String get(int position) {
-        return sideMap.get(position);
-    }
-
     @Override
     public String toString() {
         return String.join(MAP_SEPARATOR, sideMap);
