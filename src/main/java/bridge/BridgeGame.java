@@ -29,6 +29,14 @@ public class BridgeGame {
         if (moving.equals("D")) {
             judgeDownOX(moving);
         }
+    } public void judgeDownOX(String moving) {
+        if (moving.equals(Bridge.get(Progress2.size()))) {
+            Progress1.add("   ");
+            Progress2.add(" O ");
+            return;
+        }
+        Progress1.add("   ");
+        Progress2.add(" X ");
     }
     public void judgeUpOX(String moving) {
         if (moving.equals(Bridge.get(Progress1.size()))){
@@ -39,6 +47,7 @@ public class BridgeGame {
         Progress1.add(" X ");
         Progress2.add("   ");
     }
+
     public void retry() {
     }
 }
