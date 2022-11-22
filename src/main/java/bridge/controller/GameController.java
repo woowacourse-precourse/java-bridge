@@ -56,8 +56,8 @@ public class GameController {
 
     private Bridge generateBridge() {
         try {
-            int bridgeSize = this.readBridgeSize();
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+            int bridgeSize = this.readBridgeSize();
 
             return new Bridge(bridgeMaker.makeBridge(bridgeSize));
         } catch (IllegalArgumentException e) {
