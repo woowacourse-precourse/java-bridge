@@ -19,7 +19,6 @@ public class BridgeController {
 		this.outputView = new OutputView();
 		this.inputView = new InputView();
 		this.bridgeGame = new BridgeGame();
-		this.bridgeResult = new BridgeResult();
 	}
 
 
@@ -34,6 +33,7 @@ public class BridgeController {
 	public List<String> makeBridge() {
 		int size = askBridgeSize();
 		List<String> bridges = bridgeGame.makeBridge(size);
+		bridgeResult = new BridgeResult(bridges);
 		return bridges;
 
 	}
@@ -52,8 +52,10 @@ public class BridgeController {
 		String map = "";
 		int index;
 		for (index = 0; index < bridges.size(); index++) {
-			boolean isRightMove = bridgeGame.move(bridges, askMove(), index);
-			map = outputView.printMap(bridges, moves);
+			String moveCommand = askMove();
+			bridgeResult.addMaps(moveCommand,index);
+			boolean isRightMove = bridgeGame.move(bridges, moveCommand, index);
+			outputView.printMap(bridgeResult);
 			index = retry(isRightMove, index);
 		}
 		updateResult(bridges,index, map);
@@ -62,6 +64,7 @@ public class BridgeController {
 		if (!isRightmove) {
 			index = askRetry();
 			bridgeResult.addCountOfAttemps(index);
+			bridgeResult.init();
 		}
 		return index;
 	}
@@ -70,7 +73,6 @@ public class BridgeController {
 		if (moveIndex == bridges.size()) {
 			bridgeResult.gameSuccess();
 		}
-		bridgeResult.updateMap(map);
 	}
 
 

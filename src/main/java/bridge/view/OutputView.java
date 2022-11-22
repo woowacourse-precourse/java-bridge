@@ -32,37 +32,21 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public String printMap(List<String> bridges, List<String> moves) {
+	public void printMap(BridgeResult bridgeResult) {
+		System.out.println(getMaps(bridgeResult.getLists()));
+	}
+	public String getMaps(List<List<String>> lists){ //repository에서하는게 맞을까 아니면 여기서 하는게 맞을까? 출력관련은 outview에서 해야된다?
 		StringBuilder log = new StringBuilder();
-		BridgeMoveCommand[] values = BridgeMoveCommand.values();
-		for(BridgeMoveCommand bridgeMoveCommand : values){
+		int size = BridgeMoveCommand.getSize()-1;
+		for (int i = size; i >= 0; i--) {
 			log.append(BRIDGE_RESULT_OPEN);
-			appendMap(log,moves,bridges,bridgeMoveCommand.getCommand());
+			log.append(getBody(lists.get(i)));
 			log.append(BRIDGE_RESULT_CLOSE).append(ENTER);
 		}
-		System.out.print(log);
 		return log.toString();
 	}
-
-	public void appendMap(StringBuilder log ,List<String> moves,List<String> bridges,String command){
-		for (int i = 0; i < moves.size() ; i++) {
-			if (i > 0){
-				log.append(BRIDGE_RESULT_MIDDLE);
-			}
-			if(!command.equals(moves.get(i))){
-				log.append(BLANK);
-				continue;
-			}
-			log.append(isEquals(bridges,moves,i));
-		}
-	}
-	public String isEquals(List<String> bridges,List<String> moves,int index){
-		String a = bridges.get(index);
-		String b = moves.get(index);
-		if(a.equals(b)){
-			return SUCCESS;
-		}
-		return FAIL;
+	public String getBody(List<String> list){
+		return String.join(BRIDGE_RESULT_MIDDLE, list);
 	}
 
 	/**
@@ -72,7 +56,7 @@ public class OutputView {
 	 */
 	public void printResult(BridgeResult bridgeResult) {
 		System.out.println("최종 게임 결과");
-		System.out.println(bridgeResult.getMap() + ENTER);
+		printMap(bridgeResult);
 		System.out.println("게임 성공 여부: " + bridgeResult.isSuccess());
 		System.out.println("총 시도한 횟수: " + bridgeResult.getCountOfAttemps());
 	}
