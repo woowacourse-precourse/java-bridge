@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.boundary.Console;
 import bridge.command.BridgeSize;
+import bridge.command.Movement;
 import bridge.inputprocessor.InputProcessor;
 import bridge.logger.Logger;
 
@@ -20,8 +21,11 @@ public class InputView {
         }).process();
     }
 
-    public String readMoving() {
-        return null;
+    public Movement readMoving() {
+        return new InputProcessor<>(() -> {
+            final String userInput = Console.readLine();
+            return Movement.commandOf(userInput);
+        }).process();
     }
 
     public String readGameCommand() {
