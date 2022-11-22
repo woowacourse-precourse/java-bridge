@@ -3,7 +3,7 @@ package bridge.service;
 import bridge.domain.Command;
 import bridge.domain.game.GameStatus;
 import bridge.domain.bridge.Bridge;
-import bridge.domain.bridge.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GameProgress;
 import bridge.dto.MapDto;

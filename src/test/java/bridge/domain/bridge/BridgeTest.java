@@ -1,8 +1,7 @@
 package bridge.domain.bridge;
 
 import bridge.domain.Move;
-import bridge.domain.bridge.Bridge;
-import bridge.domain.bridge.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.support.FakeBridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;

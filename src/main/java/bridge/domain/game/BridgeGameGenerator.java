@@ -1,8 +1,8 @@
 package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
-import bridge.domain.bridge.BridgeMaker;
-import bridge.domain.bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package bridge.support;
 
-import bridge.domain.bridge.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 import java.util.List;
 
