@@ -14,12 +14,8 @@ public class BridgeGame {
      *
      * @return
      */
-    public int move(List<String> bridge, int point, String movement) {
-        if (bridge.get(point).equals(movement)) {
-            return ++point;
-        }
-
-        return point;
+    public boolean move(String bridgePart, String movement) {
+        return bridgePart.equals(movement);
     }
 
     /**
