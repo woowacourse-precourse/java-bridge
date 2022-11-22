@@ -11,7 +11,6 @@ import java.util.List;
 public class InputView {
     int bridge_size;
     List<String> user_input_list = new ArrayList<String>();
-    int try_count = 0;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -29,7 +28,6 @@ public class InputView {
      */
     public List<String> readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        try_count += 1;
         this.user_input_list.add(Console.readLine());
         return this.user_input_list;
     }

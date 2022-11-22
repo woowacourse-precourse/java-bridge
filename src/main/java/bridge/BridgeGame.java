@@ -13,8 +13,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    int try_count = 0;
     public void move(InputView inputView, List<String> answer_list) {
-
+        try_count += 1;
         OutputView outputView = new OutputView();
         for (int i = 0; i<answer_list.size(); i++){
             outputView.printMap(answer_list,inputView.readMoving());
