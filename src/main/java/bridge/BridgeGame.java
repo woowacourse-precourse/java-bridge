@@ -47,17 +47,21 @@ public class BridgeGame {
     }
 
     public boolean isClear() {
-        return isAllPass();
+        return roundResults.size() != 0 && isAllPass();
     }
 
     private boolean isAllPass() {
-        return roundResults.size() != 0 && roundResults.values()
+        return roundResults.values()
             .stream()
             .allMatch(PlayResult::isPass);
     }
 
     public boolean isOver() {
-        return roundResults.size() != 0 && roundResults.values()
+        return roundResults.size() != 0 && containsFail();
+    }
+
+    private boolean containsFail() {
+        return roundResults.values()
             .stream()
             .anyMatch(PlayResult::isFail);
     }
