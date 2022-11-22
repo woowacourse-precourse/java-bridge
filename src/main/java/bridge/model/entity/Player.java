@@ -1,6 +1,11 @@
 package bridge.model.entity;
 
+import bridge.model.value.PlayerMessage;
+
 import java.util.List;
+
+import static bridge.model.value.PlayerMessage.QUIT;
+import static bridge.model.value.PlayerMessage.RETRY;
 
 public class Player {
 
@@ -11,6 +16,7 @@ public class Player {
     }
 
     public void setAnswer(String answer) {
+        validate(answer);
         this.answer = answer;
     }
     public String getAnswer(){
@@ -18,9 +24,8 @@ public class Player {
     }
 
     private void validate(String answer){ //TODO: Validator 구현할 때 조건 추가하기
-        List<String> validString = List.of("U", "D");
-        if(!validString.contains(answer)){
-            throw new IllegalArgumentException("[ERROR] 테스트입니다.");
+        if(!QUIT.equals(answer) && !RETRY.equals(answer)){
+            throw new IllegalArgumentException("[ERROR] 재시작 입력값이 조건에 맞지 않습니다 R(재시작), Q(종료)" + answer);
         }
     }
 
