@@ -13,7 +13,7 @@ public class InputView {
         String input = Console.readLine();
         System.out.println("");
         int size = Exception.input_error(input);
-        Exception.valid_number(size);
+        size = Exception.valid_number(size);
         return size;
     }
 
@@ -22,7 +22,7 @@ public class InputView {
      */
     public static String readMoving() {
         String move_location = Console.readLine();
-        Exception.valid_bridge(move_location);
+        move_location = Exception.valid_bridge(move_location);
         return move_location;
     }
 
@@ -31,7 +31,7 @@ public class InputView {
      */
     public static String readGameCommand() {
         String re_game = Console.readLine();
-        Exception.valid_restart(re_game);
+        re_game = Exception.valid_restart(re_game);
         return re_game;
     }
 }
