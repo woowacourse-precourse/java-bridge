@@ -16,14 +16,21 @@ public class BridgeController {
     private BridgeGame bridgeGame;
 
     public void run() {
+
+        OutputView.printStartMessage();
+        inputBridge();
+        startGame();
+        showResult();
+
+    }
+
+    private void inputBridge() {
         try {
-            OutputView.printStartMessage();
             BridgeSizeRequest bridgeSizeRequest = InputView.readBridgeSize();
             bridgeGame = new BridgeGame(bridgeSizeRequest);
-            startGame();
-            showResult();
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
+            inputBridge();
         }
     }
 
@@ -37,9 +44,13 @@ public class BridgeController {
     }
 
     private void showProcess() {
-        MoveRequest moveRequest = InputView.readMoving();
-        ScoreMap scoreMap = bridgeGame.move(moveRequest);
-        OutputView.printMap(scoreMap);
+        try {
+            MoveRequest moveRequest = InputView.readMoving();
+            ScoreMap scoreMap = bridgeGame.move(moveRequest);
+            OutputView.printMap(scoreMap);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+        }
     }
 
     private void showResult() {
@@ -48,11 +59,17 @@ public class BridgeController {
     }
 
     private void askRetry() {
-        GameRequest gameRequest = InputView.readGameCommand();
-        if (gameRequest.wantRetry()) {
-            bridgeGame.retry();
-            startGame();
+        try {
+            GameRequest gameRequest = InputView.readGameCommand();
+            if (gameRequest.wantRetry()) {
+                bridgeGame.retry();
+                startGame();
+            }
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            askRetry();
         }
+
     }
 
 }
