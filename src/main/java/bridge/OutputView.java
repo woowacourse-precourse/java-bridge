@@ -20,7 +20,8 @@ public class OutputView {
     private String lowerBridgeView;
 
     public OutputView() {
-
+        upperBridge = new ArrayList<>();
+        lowerBridge = new ArrayList<>();
     }
 
     public void printStart() {
