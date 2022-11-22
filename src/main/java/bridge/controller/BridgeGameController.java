@@ -35,7 +35,9 @@ public class BridgeGameController {
 
     private static void executeBridgeGame(BridgeGame bridgeGame) {
 //        while (true) {
-//            bridgeGame.move(getMoving().getMovingStatus());
+            //이동 정보 입력 받기
+            bridgeGame.move(getMoving().getMovingStatus());
+
 //        }
     }
 

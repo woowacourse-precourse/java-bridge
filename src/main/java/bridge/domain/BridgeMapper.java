@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum BridgeMapper {
-    UP(1, "U"), DOWN(0, "D");
+    UP(1, "U"), DOWN(0, "D"), FAIL(-1, "-");
 
     private int number;
     private String upDownInformation;
