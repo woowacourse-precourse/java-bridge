@@ -64,5 +64,9 @@ public class InputViewException {
         error03Check(input);
     }
 
+    public void readMovingException(String input) {
+        error01Check(input);
+        error04Check(input);
+    }
 
 }
