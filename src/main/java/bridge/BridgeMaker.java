@@ -26,4 +26,12 @@ public class BridgeMaker {
 		return bridge;
 	}
 
+
+	public String conversion(int input) {
+		if (input == 1) {
+			return "U";
+		}
+		return "D";
+	}
+
 }
