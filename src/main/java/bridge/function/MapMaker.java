@@ -33,13 +33,13 @@ public class MapMaker {
         return " ";
     }
 
-    private Boolean CompareUp(String Move) {
-        return Move.equals(Up);
-    }
-
     private String MakeDown(String Move, Boolean compare) {
         if(CompareDown(Move)) return OX.get(compare);
         return " ";
+    }
+
+    private Boolean CompareUp(String Move) {
+        return Move.equals(Up);
     }
 
     private Boolean CompareDown(String Move) {

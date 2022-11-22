@@ -1,6 +1,7 @@
 package bridge.function;
 
 import camp.nextstep.edu.missionutils.Console;
+import static bridge.ui.ErrorMessage.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -14,7 +15,7 @@ public class InputView {
         try {
             return Integer.valueOf(Console.readLine());
         } catch (Exception err) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BridgeFormERROR.getMessage());
         }
     }
 
@@ -25,7 +26,7 @@ public class InputView {
         try {
             return Console.readLine();
         } catch (Exception err) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MoveFormERROR.getMessage());
         }
     }
 
@@ -36,7 +37,7 @@ public class InputView {
         try {
             return Console.readLine();
         } catch (Exception err) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(RestartFormERROR.getMessage());
         }
     }
 }
