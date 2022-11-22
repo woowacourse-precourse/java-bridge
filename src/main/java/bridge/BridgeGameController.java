@@ -18,12 +18,12 @@ public class BridgeGameController {
         outputView.printStartTitle();
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        while (bridgeGame.isMovingStatus() && !bridgeGame.isEnd()){
+        while (bridgeGame.isMatch() && !bridgeGame.isEnd()){
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame);
-            if (!bridgeGame.isMovingStatus()){
+            if (!bridgeGame.isMatch()){
                 bridgeGame.retry(inputView.readGameCommand());
-                System.out.println(bridgeGame.isMovingStatus());
+                System.out.println(bridgeGame.isMatch());
             }
         }
         outputView.printResult(bridgeGame);

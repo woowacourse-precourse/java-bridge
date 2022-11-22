@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,30 +11,30 @@ public class BridgeGame {
     private final List<String> bridge;
     private int count;
     private int index;
-    private boolean movingStatus;
+    private boolean isMatch;
 
     public BridgeGame(List<String> bridge) {
         this.movingHistory = new MovingHistory();
         this.bridge = bridge;
         this.count = 1;
         this.index = 0;
-        this.movingStatus = true;
+        this.isMatch = true;
     }
 
     public int getCount() {
         return count;
     }
 
-    public boolean isMovingStatus() {
-        return movingStatus;
-    }
-
-    public MovingHistory getMovingHistory() {
-        return movingHistory;
+    public boolean isMatch() {
+        return isMatch;
     }
 
     public boolean isEnd() {
         return index == bridge.size();
+    }
+
+    public MovingHistory getMovingHistory() {
+        return movingHistory;
     }
 
     /**
@@ -44,8 +43,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moving) {
-        movingStatus = moving.equals(bridge.get(index++));
-        movingHistory.addMoving(moving,movingStatus);
+        isMatch = moving.equals(bridge.get(index++));
+        movingHistory.addMoving(moving, isMatch);
     }
 
     /**
@@ -56,7 +55,7 @@ public class BridgeGame {
     public void retry(String input) {
         if (input.equals("R")){
             count++;
-            movingStatus = true;
+            isMatch = true;
             index = 0;
             movingHistory.clearHistory();
         }
