@@ -1,4 +1,4 @@
-package bridge;
+package bridge.controller;
 
 import static bridge.utils.GameMessageConstants.BRIDGE_SIZE_REQUEST_MESSAGE;
 import static bridge.utils.GameMessageConstants.GAME_START_MESSAGE;
