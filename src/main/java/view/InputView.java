@@ -63,14 +63,23 @@ public class InputView {
 	 */
 	public String readGameCommand() {
 		System.out.println(MESSAGE_READ_GAME_COMMAND);
-		String gameCommand = readLine();
-		validateGameCommand(gameCommand);
+		String gameCommand = readGameCommandUntilNoError();
 		return gameCommand;
 	}
+	
+	private String readGameCommandUntilNoError() {
+		while (true) {
+			try {
+				return validateGameCommand(readLine());
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
 
-	private void validateGameCommand(String gameCommand) {
+	private String validateGameCommand(String gameCommand) {
 		if (gameCommand.equals(GAME_COMMAND_RESTART) || gameCommand.equals(GAME_COMMAND_QUIT)) {
-			return;
+			return gameCommand;
 		}
 		throw new IllegalArgumentException(ERROR_MESSAGE_WRONG_GAME_COMMAND_INPUT);
 	}
