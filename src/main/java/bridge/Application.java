@@ -11,7 +11,6 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            outputView.printGameStart();
             init();
             gameStart();
             printGameResult();
@@ -21,6 +20,7 @@ public class Application {
     }
 
     private static void init() {
+        outputView.printGameStart();
         String input = inputView.readBridgeSize();
         bridgeGame.init(input);
     }
