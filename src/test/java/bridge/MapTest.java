@@ -1,126 +1,48 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import controller.Controller;
 import enumCollections.Side;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.Arguments;
-import view.InputView;
-import view.OutputView;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class MapTest extends NsTest {
+class MapTest {
     private static final List<String> upperSide = List.of("O", "O", " ");
     private static final List<String> bellowSide = List.of(" ", " ", "X");
+    private final Map map = new Map();
 
     @DisplayName("맵 생성 테스트")
-    @Test
-    void 윗칸_이동_성공_테스트() {
-        Map map = new Map();
-        map.add(Side.UP, true);
-        map.add(Side.UP, true);
-        map.add(Side.DOWN, false);
-
-        assertThat(map.get().toString())
-                .contains(upperSide);
+    @ParameterizedTest
+    @CsvSource(value = {"UP:true:O", "DOWN:true:O", "UP:false:X", "DOWN:false:X"}, delimiter = ':')
+    void 맵_생성_테스트_(String side, String movable, String expected) {
+        Side movingSide = Side.get(side);
+        boolean isMovable = Boolean.valueOf(movable);
+        map.add(movingSide, isMovable);
+        assertThat(map.get()).toString().contains(expected);
     }
 
-    @DisplayName("맵 생성 테스트")
-    @Test
-    void 맵_생성_테스트() {
-        Map map = new Map();
-        map.add(Side.DOWN, true);
-        map.add(Side.UP, true);
-        map.add(Side.DOWN, false);
-
-        assertThat(map.get().toString())
-                .contains("/");
+    @DisplayName("맵 초기화 테스트")
+    @ParameterizedTest
+    @EnumSource(Side.class)
+    void 윗칸_이동_성공_테스트(Side side) {
+        map.add(side, true);
+        map.add(side, true);
+        map.add(side, true);
+        map.initialize();
+        assertThat(map.get())
+                .toString().isEmpty();
     }
 
-    @DisplayName("맵 생성 테스트")
-    @Test
-    void 맵_생성_테스트2() {
-        Map map = new Map();
-        map.add(Side.UP, true);
-        map.add(Side.DOWN, true);
-        map.add(Side.DOWN, true);
-
-        assertThat(map.get().toString())
-                .contains("/");
-    }
-
-    @DisplayName("맵 생성 테스트")
-    @Test
-    void 맵_생성_테스트3() {
-        Map map = new Map();
-        map.add(Side.UP, true);
-        map.add(Side.DOWN, true);
-        map.add(Side.UP, true);
-
-        assertThat(map.get().toString())
-                .contains("/");
-    }
-
-    @DisplayName("맵 반환 테스트")
-    @Test
-    void 맵_반환_테스트() {
-        Map map = new Map();
-        map.add(Side.UP, true);
-        map.add(Side.DOWN, true);
-        map.add(Side.UP, true);
-
-        map.get().stream()
-                .forEach(line -> {
-                    System.out.print("[ ");
-                    System.out.print(String.join(" | ", line));
-                    System.out.print(" ]\n");
-                });
-    }
-
-    @Test
-    void 아래칸_이동_실패_테스트() {
-        runMain();
-        assertThat(output()).contains("?");
-    }
-
-    @Test
-    void 윗칸_이동_실패_테스트() {
-        Map map = new Map();
-        map.add(Side.UP, true);
-        map.add(Side.UP, true);
-        map.add(Side.UP, true);
-        map.add(Side.DOWN, false);
-//        new OutputView().printMap(map.get());
-        assertThat(map.get().toString()).contains("?");
-    }
-
-    @Test
-    void 윗칸_이동_실패_테스트_2() {
-        Map map = new Map();
-        map.add(Side.DOWN, true);
-        map.add(Side.DOWN, true);
-        map.add(Side.UP, true);
-        map.add(Side.DOWN, false);
-//        new OutputView().printMap(map.get());
-    }
-
-    @Override
-    protected void runMain() {
-        Controller controller = new Controller(new OutputView(), new InputView());
-        controller.startGame(new BridgeGame());
-    }
-
-    static Stream<Arguments> generateWrongBridgeValue() {
+    static Stream<Arguments> generateMap() {
         return Stream.of(
-                Arguments.of(List.of("O", "O", " ")),
-                Arguments.of(List.of(" ", " ", "X"))
+                Arguments.of("U", "U", "D", "D"),
+                Arguments.of("U", "D", "U", "D"),
+                Arguments.of("U", "U", "D", "D", "U", "U", "D", "D", "U", "U", "D", "D"),
+                Arguments.of("U", "D", "U", "D", "U", "U", "D", "D")
         );
     }
-
 }
