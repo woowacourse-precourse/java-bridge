@@ -10,7 +10,6 @@ import java.util.NoSuchElementException;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -32,9 +31,9 @@ public class InputView {
     public String readMoving() throws IllegalArgumentException{
         try {
             String s = camp.nextstep.edu.missionutils.Console.readLine();
-
-            throwError(List.of("U","D"), s, Constants.ErrorMessages.UPPER_OR_DOWN);
-
+            if (!List.of("U","D").contains(s)) {
+                throw new IllegalArgumentException(Constants.ErrorMessages.UPPER_OR_DOWN);
+            }
             return s;
         } catch (NoSuchElementException ne) {
             throw new IllegalArgumentException(Constants.ErrorMessages.UPPER_OR_DOWN_NO_INPUT);
@@ -47,18 +46,12 @@ public class InputView {
     public String readGameCommand() throws IllegalArgumentException{
         try {
             String s = Console.readLine();
-
-            throwError(List.of("R","Q"), s, Constants.ErrorMessages.RETRY_OR_NOT);
-
+            if (!List.of("R","Q").contains(s)) {
+                throw new IllegalArgumentException(Constants.ErrorMessages.RETRY_OR_NOT);
+            }
             return s;
         } catch (NoSuchElementException ne) {
             throw new IllegalArgumentException(Constants.ErrorMessages.RETRY_OR_NOT_NO_INPUT);
-        }
-    }
-
-    public void throwError(List<String> properElements, String input, String errorMessage) throws IllegalArgumentException {
-        if (!properElements.contains(input)) {
-            throw new IllegalArgumentException(errorMessage);
         }
     }
 }

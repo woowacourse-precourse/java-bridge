@@ -22,11 +22,11 @@ public class Controller {
     private int tryNumbers;
     private boolean pass;
 
-    public Controller(InputView view) {
+    public Controller() {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridgeGame = new BridgeGame();
-        inputController = new InputController(view);
+        inputController = new InputController();
     }
 
     public void game() throws IllegalArgumentException{
