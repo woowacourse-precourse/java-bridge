@@ -18,6 +18,7 @@ public class OutputView {
         List<String> lowerBridgeResult = getLowerBridgeResult(bridge, currentUserPosition, isFail);
         printBridgeResult(upperBridgeResult);
         printBridgeResult(lowerBridgeResult);
+        System.out.println();
     }
 
     /**
