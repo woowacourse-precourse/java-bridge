@@ -16,7 +16,7 @@ public class BridgeGame {
     public void run() {
         outputView.printInitMessage();
         assertAvailableBridge();
-        runUntilGameEnds(true);
+        runUntilGameEnds();
     }
 
     private void assertAvailableBridge() {
@@ -27,16 +27,23 @@ public class BridgeGame {
             assertAvailableBridge();
         }
     }
-    private void runUntilGameEnds(boolean keepRunning) {
-        while (keepRunning) {
-            if (!assertAvailableMove()) {
-                keepRunning = assertRetry();
-            }
-            if (bridge.gameWon()) {
-                outputView.printResult(bridge);
+
+    private void runUntilGameEnds() {
+        while (!bridge.gameWon()) {
+            if (isGameFailed()) {
                 return;
             }
         }
+        outputView.printResult(bridge);
+    }
+
+    private boolean isGameFailed() {
+        if (!assertAvailableMove()) {
+            if (!assertRetry()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean assertAvailableMove() {
