@@ -13,8 +13,6 @@ public class BridgeGame {
     private final String DOWN = "D";
     private final String RESTART = "R";
     private final String QUIT = "Q";
-    InputView inputview = new InputView();
-    OutputView outputView = new OutputView();
     private List<String> visited = new ArrayList<>();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private Validate validate = new Validate();
