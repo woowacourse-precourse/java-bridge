@@ -30,7 +30,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private List<String> checkRandom(List<String> bridge, int random) {
+    public List<String> checkRandom(List<String> bridge, int random) {
         if (random == 0) {
             bridge.add(MOVE_D.getCommand());
         }
