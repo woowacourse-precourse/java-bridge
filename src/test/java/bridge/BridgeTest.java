@@ -17,27 +17,27 @@ public class BridgeTest {
     @Test
     void bridgeSizeIsEmpty() {
         String bridgeSize = " ";
-        assertThatThrownBy(() -> inputView.checkException(bridgeSize)).isInstanceOf(NullPointerException.class);
+        assertThatThrownBy(() -> inputView.checkBridgeSize(bridgeSize)).isInstanceOf(NullPointerException.class);
     }
 
     @DisplayName("생성할 다리의 길이의 값이 정수형이 아닌 경우 예외처리 테스트")
     @ParameterizedTest
     @ValueSource(strings={"1r2","5#7","9 7"})
     void bridgeSizeIsNumber(String bridgeSize) {
-        assertThatThrownBy(() -> inputView.checkException(bridgeSize)).isInstanceOf(NumberFormatException.class);
+        assertThatThrownBy(() -> inputView.checkBridgeSize(bridgeSize)).isInstanceOf(NumberFormatException.class);
     }
 
     @DisplayName("생성할 다리의 길이의 값이 3미만, 20 초과일 경우 예외처리 테스트")
     @Test
     void bridgeSizeOutOfRange() {
         String bridgeSize = "25";
-        assertThatThrownBy(() -> inputView.checkException(bridgeSize)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputView.checkBridgeSize(bridgeSize)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("생성할 다리의 길이의 값이 올바를 경우 테스트")
     @Test
     void bridgeSizeCorrect() {
         String bridgeSize = "15";
-        assertThat(inputView.checkException(bridgeSize)).isEqualTo(15);
+        assertThat(inputView.checkBridgeSize(bridgeSize)).isEqualTo(15);
     }
 }
