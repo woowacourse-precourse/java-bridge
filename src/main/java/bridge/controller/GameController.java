@@ -82,7 +82,7 @@ public class GameController {
     private void controlMove() {
         if (size == GAME_STATUS.getIdx() && bridgeGame.getCanMove()) {
             GAME_STATUS.turnoffGamePower();
-            GAME_STATUS.sucessGame();
+            GAME_STATUS.successGame();
             printGameResult();
         }
         if (!(bridgeGame.getCanMove())) {
@@ -126,7 +126,7 @@ public class GameController {
     private void printGameResult() {
         outputView.printFinalGame();
         showNowBridgeShape();
-        outputView.printResult(GAME_STATUS.getGameSucess(), GAME_STATUS.getCnt());
+        outputView.printResult(GAME_STATUS.getGameSuccess(), GAME_STATUS.getCnt());
     }
 
 

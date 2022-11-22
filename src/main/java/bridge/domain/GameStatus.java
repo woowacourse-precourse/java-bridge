@@ -8,7 +8,7 @@ public class GameStatus {
     private int idx;
     private int cnt = 0;
     private boolean gamePowerWhether;
-    private boolean gameSucessWheter = false;
+    private boolean gameSuccessWhether = false;
 
     public void plusIdx() {
         idx += 1;
@@ -22,8 +22,8 @@ public class GameStatus {
         gamePowerWhether = false;
     }
 
-    public void sucessGame() {
-        gameSucessWheter = true;
+    public void successGame() {
+        gameSuccessWhether = true;
     }
 
     public void initialize() {
@@ -43,8 +43,8 @@ public class GameStatus {
         return gamePowerWhether;
     }
 
-    public boolean getGameSucess() {
-        return gameSucessWheter;
+    public boolean getGameSuccess() {
+        return gameSuccessWhether;
     }
 
 }

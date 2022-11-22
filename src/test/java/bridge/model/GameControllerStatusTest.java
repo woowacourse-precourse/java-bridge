@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameControllerStatusTest {
 
-    private GameStatus gameStatus = new GameStatus();
+    private final GameStatus gameStatus = new GameStatus();
 
     @Nested
     class IdxTest {
 
-        @DisplayName("다리의 칸을 나타내는 idx값을 두번 더했을때")
+        @DisplayName("다리의 칸을 나타내는 idx 값을 두번 더했을때")
         @Test
         void case1() {
             int answer = 2;
@@ -38,9 +38,9 @@ class GameControllerStatusTest {
     }
 
     @Nested
-    class GameControllerPowerWheterTest {
+    class GameControllerPowerWhetherTest {
 
-        @DisplayName("게임의 전원 버튼 역할을 하는 gamePower를 전원을 껐을때")
+        @DisplayName("게임의 전원 버튼 역할을 하는 gamePower 를 전원을 껐을때")
         @Test
         void case1() {
             boolean answer = false;
@@ -57,25 +57,25 @@ class GameControllerStatusTest {
         @Test
         void case1() {
             boolean answer = true;
-            gameStatus.sucessGame();
-            assertEquals(answer, gameStatus.getGameSucess());
+            gameStatus.successGame();
+            assertEquals(answer, gameStatus.getGameSuccess());
         }
     }
 
     @Nested
     class InitializeTest {
 
-        @DisplayName("idx와 gamePower를 초기화 시켜주는 메서드 테스트")
+        @DisplayName("idx 와 gamePower 를 초기화 시켜주는 메서드 테스트")
         @Test
         void case1() {
             gameStatus.plusIdx();
             gameStatus.turnoffGamePower();
             int answerIdx = 0;
-            boolean answerGamePowerWheter = true;
+            boolean answerGamePowerWhether = true;
             gameStatus.initialize();
 
             assertEquals(answerIdx, gameStatus.getIdx());
-            assertEquals(answerGamePowerWheter, gameStatus.getGamePower());
+            assertEquals(answerGamePowerWhether, gameStatus.getGamePower());
         }
     }
 }
