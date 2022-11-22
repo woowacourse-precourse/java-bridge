@@ -7,20 +7,20 @@ public class GameController {
         BridgeGame.makeGame(InputView.readBridgeSize());
         while (BridgeGame.play()) {
             printMove(Output);
-            if (BridgeGame.stop()) 
+            if (BridgeGame.getstop()) 
                 resetGame(Output);
         }
-        Output.printResult(BridgeGame.stop(), BridgeGame.getGameCount());
+        Output.printResult(BridgeGame.getstop(), BridgeGame.getGameCount());
     }
 
     public static void printMove(OutputView Output) {
         BridgeGame.move(InputView.readMoving());
-        Output.printMap(BridgeGame.getLocation(), BridgeGame.stop());
+        Output.printMap(BridgeGame.getLocation(), BridgeGame.getstop());
     }
 
     public static void resetGame(OutputView Output) {
         String cmd = InputView.readGameCommand();
-        if(cmd.equals(Constant.Restart)){
+        if(cmd.equals(Constant.RESTART)){
             BridgeGame.replay();
             Output.ResetAll();
         }
