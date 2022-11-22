@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import static bridge.command.util.MoveTestUtils.insertMovesInService;
+import static bridge.utils.MoveTestUtils.insertMovesInService;
 import static bridge.result.GameResult.FAIL;
 import static bridge.result.GameResult.PROGRESS;
 import static bridge.result.GameResult.SUCCESS;
@@ -9,7 +9,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeMaker;
-import bridge.Testbridgemaker.TestBridgeNumberGenerator;
+import bridge.utils.TestBridgeNumberGenerator;
 import bridge.command.Size;
 import bridge.result.Result;
 import java.util.List;

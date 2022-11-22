@@ -1,4 +1,4 @@
-package bridge.command.util;
+package bridge.utils;
 
 import bridge.command.Move;
 import bridge.domain.BridgeService;

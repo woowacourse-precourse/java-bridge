@@ -1,6 +1,6 @@
 package bridge.gamebridge;
 
-import static bridge.command.util.MoveTestUtils.insertMovesInContainer;
+import static bridge.utils.MoveTestUtils.insertMovesInContainer;
 import static bridge.config.ExceptionMessage.ERROR;
 import static bridge.result.GameResult.FAIL;
 import static bridge.result.GameResult.PROGRESS;
