@@ -1,23 +1,77 @@
 package bridge;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+import bridge.EnumClass.EnumCommand;
+import bridge.EnumClass.EnumMassage;
+import bridge.EnumClass.EnumStates;
+
+import java.util.List;
+import java.util.Objects;
+
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    public static void printInitialize() {
+        System.out.println(EnumMassage.Start.getMessage());
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public static void printSelectMessage() {
+        System.out.println(EnumMassage.Select_Moving.getMessage());
+    }
+
+    public static void printRetryMessage() {
+        System.out.println(EnumMassage.Select_Retry.getMessage());
+    }
+
+    public static void printMap(List<String> bridge, EnumStates state) {
+        int printingIndex = EnumStates.Index.getWorth();
+        String upperString, lowerString;
+        upperString = bridgeBuilder(bridge, printingIndex, EnumCommand.Up.getCommand());
+        lowerString = bridgeBuilder(bridge, printingIndex, EnumCommand.Down.getCommand());
+        if (state == EnumStates.Exit || state == EnumStates.Retry) {
+            upperString = fixWrong(new StringBuilder(upperString)).toString();
+            lowerString = fixWrong(new StringBuilder(lowerString)).toString();
+        }
+        System.out.println(upperString);
+        System.out.println(lowerString + "\n");
+    }
+
+    private static String bridgeBuilder(List<String> bridge, int index, String floor) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder = startOfLine(stringBuilder, Objects.equals(bridge.get(0), floor));
+        for (int i = 1; i < index; i++) {
+            stringBuilder = append(stringBuilder, Objects.equals(bridge.get(i), floor));
+        }
+        stringBuilder.append(" ]");
+        return stringBuilder.toString();
+    }
+
+    private static StringBuilder startOfLine(StringBuilder stringBuilder, boolean isCorrect) {
+        if (isCorrect) {
+            return stringBuilder.append("[ O");
+        }
+        return stringBuilder.append("[  ");
+    }
+
+    private static StringBuilder append(StringBuilder stringBuilder, boolean isCorrect) {
+        if (isCorrect) {
+            return stringBuilder.append(" | O");
+        }
+        return stringBuilder.append(" |  ");
+    }
+
+    private static StringBuilder fixWrong(StringBuilder stringBuilder) {
+        if (stringBuilder.charAt(stringBuilder.length() - 3) == 'O') {
+            stringBuilder.deleteCharAt(stringBuilder.length() - 3);
+            return stringBuilder.insert(stringBuilder.length() - 2, ' ');
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 3);
+        return stringBuilder.insert(stringBuilder.length() - 2, 'X');
+    }
+
+    public static void printResult(List<String> bridge, EnumStates gameState, int count) {
+        System.out.println(EnumMassage.Finish.getMessage());
+        printMap(bridge, gameState);
+
+        System.out.printf(EnumMassage.Result.getMessage(), gameState.getState(), count);
+
     }
 }
