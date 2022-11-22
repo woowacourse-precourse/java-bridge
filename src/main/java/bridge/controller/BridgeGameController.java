@@ -8,11 +8,11 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-    private InputView inputView;
-    private OutputView outputView;
-    private BridgeGame bridgeGame;
-    private BridgeMaker bridgeMaker;
-    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeGame bridgeGame;
+    private final BridgeMaker bridgeMaker;
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
 
     public BridgeGameController() {
         inputView = new InputView();
@@ -32,7 +32,10 @@ public class BridgeGameController {
             if (!crossingBridge(sign)) {
                 break;
             }
-            if (bridgeGame.getBridge().compareLength(bridgeGame.getUser())) {
+//            if (bridgeGame.getBridge().compareLength(bridgeGame.getUser())) {
+//                break;
+//            }
+            if (compareBridgeLength()) {
                 break;
             }
         }
@@ -49,6 +52,10 @@ public class BridgeGameController {
             return false;
         }
         return true;
+    }
+
+    public boolean compareBridgeLength() {
+        return bridgeGame.getBridge().compareLength(bridgeGame.getUser());
     }
 
     public boolean isRestart(String sign) {
