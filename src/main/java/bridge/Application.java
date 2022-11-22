@@ -14,21 +14,24 @@ public class Application {
         int bridgeSize = InputView.readBridgeSize();
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridgeshape =  bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridgeshape = bridgeMaker.makeBridge(bridgeSize);
 
         int i = 0;
         while (i < bridgeSize) {
             String selectMove = InputView.readMoving();
             String aliveOrDie = BridgeGame.move(selectMove, bridgeshape);
             System.out.println(aliveOrDie);
-            if (Objects.equals(aliveOrDie, "END")){
+            if (Objects.equals(aliveOrDie, "END")) {
                 UpDown.BridgeGameState(selectMove, "FAIL");
+                OutputView.printMap();
                 break;
             }
             UpDown.BridgeGameState(selectMove, "PASS");
+            if (i < bridgeSize - 1) {
+                OutputView.printMap();
+            }
             i++;
         }
-        System.out.println(UpDown.upBridges);
-        System.out.println(UpDown.downBridges);
+
     }
 }

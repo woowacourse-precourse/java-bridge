@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum UpDown {
-    UP_PASS(1, "U", "PASS", "O", "-"),
-    UP_FAIL(1, "U", "FAIL", "X", "-"),
-    DOWN_PASS(0, "D", "PASS", "-", "O"),
-    DOWN_FAIL(0, "D", "FAIL", "-", "X");
+    UP_PASS(1, "U", "PASS", " O ", "   "),
+    UP_FAIL(1, "U", "FAIL", " X ", "   "),
+    DOWN_PASS(0, "D", "PASS", "   ", " O "),
+    DOWN_FAIL(0, "D", "FAIL", "   ", " X ");
 
     private final Integer bridgeNumber;
     private final String bridgeShape;
