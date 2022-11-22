@@ -41,7 +41,7 @@ public class OutputView {
 
     public String getBridgeStatus(BridgeGameResult bridgeGameResult) {
         sb.setLength(0);
-        sb.append(getSingleBridgeStatus(upperBridge))
+        sb.append(getSingleBridgeStatus(bridgeGameResult.getUpperBridge()))
                 .append("\n")
                 .append(getSingleBridgeStatus(bridgeGameResult.getDownBridge()))
                 .append("\n");
