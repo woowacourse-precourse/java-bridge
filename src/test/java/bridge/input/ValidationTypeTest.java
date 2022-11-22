@@ -1,6 +1,6 @@
 package bridge.input;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
+import bridge.type.ValidationType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

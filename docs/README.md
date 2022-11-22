@@ -7,10 +7,14 @@
 ##### Bridge를 생성하는 클래스로 BridgeGame 클래스와 OutputView 클래스의 생성자의 인자로 들어간다.
 - 입력받은 다리 사이즈에 따라 랜덤하게 Bridge를 생성하는 함수: makeBridge
 
+#### 2-1 BlockType enum 클래스
+##### 입력에 대해 블럭과 매핑해주는 클래스
+- 블럭을 리턴하는 함수: getBlock
+- 주어진 숫자와 매핑된 블럭을 리턴하는 static 함수: getBlockByInputNumber
+
 #### 3. BridgeRandomNumberGenerator 클래스
 ##### BridgeNumberGenerator 인터페이스의 구현 클래스
 - 랜덤하게 0과 1을 생성하는 함수: generate
-
 
 #### 4. InputView 클래스
 ##### 사용자로부터 입력을 받는 클래스로 예외에 대해 재귀적으로 함수를 작성
@@ -20,7 +24,7 @@
 - 사용자로부터 입력받은 값이 올바른지 판단하는 함수(사용자 입력은 모두 String으로 전달): validate
 ```java
 class InputView {
-    private void validate(String input, ValidationType validationRange) {
+    private void validate(ValidationType validationType, String input) {
         // input이 validationRange에 포함되지 않으면 IllegalArgumentException 발생
     }
 }
@@ -35,6 +39,7 @@ class InputView {
 #### 5. OutputView
 - 이동한 칸 수와 이동 성공 여부를 전달받아 다리의 상태를 출력하는 함수: printMap
 - 게임 성공 여부와 시도 횟수를 전달받아 게임의 최종 결과를 출력하는 함수: printResult
+- bridge를 set하는 함수: setBridge
 - 게임 시작 문구를 출력하는 함수: printStartMessage
 - 다리 길이 입력 문구를 출력하는 함수: printInputSizeMessage
 - 칸 이동 시 입력 문구를 출력하는 함수: printInputMoveMessage
@@ -47,6 +52,7 @@ class InputView {
 - 게임을 진행하는 run 함수: run
 - 한 라운드의 게임을 진헁하는 함수:play 
 - 게임 시작 시 출력과, 사용자로부터 입력을 받는 함수: start
+- 사용자로부터 움직일 칸을 입력받아 이를 움직이고 출력하는 함수: move
 - 재시작 여부를 체크하는 함수: checkRestart
 - 다리의 크기를 사용자에게 입력받아 다리를 생성하는 함수: inputBridge
 - 움직일 칸을 사용자에게 입력받아 한 칸을 움직이는 함수: inputMove
