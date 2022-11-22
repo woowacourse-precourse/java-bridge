@@ -3,12 +3,18 @@ package bridge.domain.status;
 public enum GameStatus {
     RETRY("R"),
     QUIT("Q"),
-    PROCEED("P");
+    PROCEED("P"),
+    SUCCESS("성공"),
+    FAIL("실패");
 
     private String gameStatusMessage;
 
     GameStatus(String gameStatusMessage) {
         this.gameStatusMessage = gameStatusMessage;
+    }
+
+    public String getGameStatusMessage() {
+        return gameStatusMessage;
     }
 
     public static boolean checkIsRetryStatus(GameStatus currentStatus) {
