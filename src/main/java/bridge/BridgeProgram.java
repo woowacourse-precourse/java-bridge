@@ -99,4 +99,10 @@ public class BridgeProgram {
 		upBridge.clear();
 		downBridge.clear();
 	}
+
+	public void upPattern() {
+		upBridge.add(" O ");
+		downBridge.add("   ");
+		stack++;
+	}
 }
