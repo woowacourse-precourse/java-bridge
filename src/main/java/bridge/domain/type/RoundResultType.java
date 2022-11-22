@@ -1,21 +1,21 @@
-package bridge.domain;
+package bridge.domain.type;
 
-public enum RoundResult {
+public enum RoundResultType {
     PLAYING("진행중"),
     FAIL("실패"),
     CLEAR("성공");
 
     final String description;
 
-    RoundResult(String description) {
+    RoundResultType(String description) {
         this.description = description;
     }
 
-    public static RoundResult of(MoveResult moveResult, boolean isClear) {
+    public static RoundResultType of(MoveResultType moveResultType, boolean isClear) {
         if (isClear) {
             return CLEAR;
         }
-        if (moveResult.equals(MoveResult.FAIL)) {
+        if (moveResultType.equals(MoveResultType.FAIL)) {
             return FAIL;
         }
         return PLAYING;

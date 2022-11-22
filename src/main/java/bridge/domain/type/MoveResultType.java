@@ -1,12 +1,12 @@
-package bridge.domain;
+package bridge.domain.type;
 
-public enum MoveResult {
+public enum MoveResultType {
     SUCCESS("O"),
     FAIL("X");
 
     final String symbol;
 
-    MoveResult(String symbol) {
+    MoveResultType(String symbol) {
         this.symbol = symbol;
     }
 
