@@ -14,6 +14,8 @@ public class OutputView {
     public static final String EXIT_MESSAGE = "최종 게임 결과";
     public static final String RESULT_MESSAGE = "게임 성공 여부: ";
     public static final String TOTAL_TRY_MESSAGE = "총 시도한 횟수: ";
+    public static final String SUCCESS = "성공";
+    public static final String FAIL = "실패";
 
     public static final String LENGTH_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     public static final String MOVING_ERROR_MESSAGE = "[ERROR] 위는 U, 아래는 D를 입력해야 합니다.";
@@ -48,7 +50,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-
+    public void printResult(String currentMap, boolean isSuccess, int totalTryNumber) {
+        printMap(currentMap);
+        if (isSuccess) {
+            System.out.println(RESULT_MESSAGE + SUCCESS);
+        }
+        if (!isSuccess) {
+            System.out.println(RESULT_MESSAGE + FAIL);
+        }
+        System.out.println(TOTAL_TRY_MESSAGE + totalTryNumber);
     }
 }
