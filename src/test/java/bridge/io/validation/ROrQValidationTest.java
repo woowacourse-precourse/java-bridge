@@ -19,4 +19,12 @@ class ROrQValidationTest {
       .hasMessageContaining(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.NOT_R_OR_Q.getMessage());
   }
 
+  @ParameterizedTest
+  @ValueSource(strings = {"R", "Q"})
+  void 입력값이_R혹은_Q라면_정상적으로_작동하는가(String input) {
+    ROrQValidation rOrQValidation = new ROrQValidation(new NullValidation());
+    assertThatCode(() -> rOrQValidation.validate(input))
+      .doesNotThrowAnyException();
+  }
+
 }
