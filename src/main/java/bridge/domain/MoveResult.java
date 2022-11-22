@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 public class MoveResult {
 
-    private static final String CAN_MOVE_MARK = "O";
-    private static final String CAN_NOT_MOVE_MARK = "X";
-    private static final String EMPTY_MARK = " ";
+    static final String CAN_MOVE_MARK = "O";
+    static final String CAN_NOT_MOVE_MARK = "X";
+    static final String EMPTY_MARK = " ";
 
     private boolean isSuccess;
     private int tryCount;
