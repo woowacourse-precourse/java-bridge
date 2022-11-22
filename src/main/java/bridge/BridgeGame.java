@@ -13,10 +13,13 @@ public class BridgeGame {
     private final Bridge bridge;
     private int playerBridgePosition = 0;
 
+    private boolean isSuccess = true;
+
     public BridgeGame(int bridgeSize) {
         this.playerBridgeState = new HashMap<Integer, ArrayList<String>>() ;
         this.bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize));
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -56,14 +59,25 @@ public class BridgeGame {
         return this.playerBridgeState;
     }
 
-    public String getCurrentIsCorrect() {
-        return playerBridgeState.get(playerBridgeState.size()-1).get(1);
-    }
-
     public boolean checkCanMove(){
         if(playerBridgeState.get(playerBridgeState.size()-1).get(1).equals("O") && playerBridgePosition < (bridge.getPositions().size())){
             return true;
         }
         return false;
+    }
+
+    public void changeToLoose() {
+        this.isSuccess = false;
+    }
+
+    public String getCurrentIsCorrect() {
+        return playerBridgeState.get(playerBridgeState.size()-1).get(1);
+    }
+    public int getPlayerBridgePosition() {
+        return this.playerBridgePosition;
+    }
+
+    public boolean getIsSuccess() {
+        return this.isSuccess;
     }
 }
