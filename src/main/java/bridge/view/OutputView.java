@@ -2,21 +2,20 @@ package bridge.view;
 
 import bridge.controller.BridgeGame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private String START = "[";
-    private String END = "]";
     private String SPACE = " ";
     private String BLOCK = "|";
     private String RIGHT = "O";
     private String NOPE = "X";
 
-    private static List<String> upList;
-    private static List<String> downList;
+    public static List<String> upList = new ArrayList<>();
+    public static List<String> downList = new ArrayList<>();
 
 
     /**
@@ -25,8 +24,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> upBridge, List<String> downBridge) {
-        System.out.println(START + String.join("", upBridge) + END);
-        System.out.println(START + String.join("", downBridge) +END);
+
+        System.out.println(upBridge.toString().replaceAll(",","|"));
+        System.out.println(downBridge.toString().replaceAll(",","|"));
     }
 
 
@@ -38,15 +38,15 @@ public class OutputView {
             if (count > 0) {
                 upList.add(SPACE + BLOCK + SPACE+ NOPE);
             }
+            return upList;
         }
-        if(ans.equals("D")){
+
             if(count == 0){
                 upList.add(SPACE);
             }
             if(count > 0){
                 upList.add(SPACE + BLOCK + SPACE +SPACE);
             }
-        }
         return upList;
     }
 
@@ -56,7 +56,7 @@ public class OutputView {
                 downList.add(SPACE);
             }
             if (count > 0) {
-                downList.add(SPACE + BLOCK + SPACE +SPACE);
+                downList.add(BLOCK + SPACE +SPACE);
             }
         }
         if(ans.equals("D")){
@@ -64,33 +64,10 @@ public class OutputView {
                 downList.add(NOPE);
             }
             if(count > 0){
-                downList.add(SPACE + BLOCK + SPACE +NOPE);
+                downList.add(BLOCK + SPACE +NOPE);
             }
         }
         return downList;
-    }
-
-    private void rightPrint(String ans ,int count) {
-        if(ans.equals("U")){
-            if(count == 0){
-                upList.add(RIGHT);
-                downList.add(SPACE);
-            }
-            if(count > 0){
-                upList.add(SPACE + BLOCK + SPACE+RIGHT);
-                downList.add(SPACE + BLOCK + SPACE+SPACE);
-            }
-        }
-        if(ans.equals("D")){
-            if(count == 0){
-                upList.add(SPACE);
-                downList.add(RIGHT);
-            }
-            if(count > 0){
-                upList.add(SPACE + BLOCK + SPACE+SPACE);
-                downList.add(SPACE + BLOCK + SPACE+RIGHT);
-            }
-        }
     }
 
 
@@ -99,35 +76,43 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String result, int gameCount) {
+    public void printResult(String result) {
         System.out.println("\n최종 게임 결과");
-        System.out.println(START + upList + END);
-        System.out.println(START + downList + END);
+        System.out.println(upList.toString().replaceAll(",",""));
+        System.out.println(downList.toString().replaceAll(",",""));
         System.out.println("\n게임 성공 여부: " + result);
-        System.out.println("총 시도한 횟수: " + 0);
+        System.out.println("총 시도한 횟수: " + BridgeGame.gameCount);
 
     }
 
-    public void restart() {
-    }
 
-    public List<String> rightDownList(int count) {
-        if(count == 0){
-            downList.add(RIGHT);
+    public List<String> rightDownList(int count, String next) {
+        if(next.equals("D")) {
+            if (count == 0) {
+                downList.add(SPACE + RIGHT);
+                upList.add(SPACE+SPACE);
+            }
+            if (count > 0) {
+                downList.add(RIGHT+SPACE);
+                upList.add(SPACE+SPACE);
+
+            }
         }
-        if(count > 0){
-            downList.add(SPACE + BLOCK + SPACE+RIGHT);
-        }
+
         return downList;
     }
 
-    public List<String> rightUpList(int count) {
-        if(count == 0){
-            upList.add(RIGHT);
-        }
-        if(count > 0){
-            upList.add(SPACE + BLOCK + SPACE+RIGHT);
+    public List<String> rightUpList(int count,String next) {
+        if(next.equals("U")){
+            if(count == 0){
+                upList.add(" O ");
+                downList.add("   ") ;
+            }
+            if(count > 0){
 
+                upList.add(RIGHT+SPACE);
+                downList.add(SPACE+SPACE);
+            }
         }
         return upList;
     }
