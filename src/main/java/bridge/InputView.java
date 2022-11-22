@@ -9,6 +9,7 @@ public class InputView {
     private static final int MIN_NUM = 3;
     private static final int MAX_NUM = 20;
 
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -17,10 +18,10 @@ public class InputView {
         String bridgeLength = Console.readLine();
         int bridgeLengthNo = Integer.valueOf(bridgeLength);
         if(bridgeLengthNo < MIN_NUM) {
-            throw new IllegalArgumentException("3미만의 값은 사용할수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 3미만의 값은 사용할수 없습니다.");
         }
         if(bridgeLengthNo > MAX_NUM){
-            throw new IllegalArgumentException("20이상의 값은 사용할수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 20이상의 값은 사용할수 없습니다.");
         }
         return bridgeLengthNo;
     }
