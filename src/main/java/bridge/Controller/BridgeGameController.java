@@ -16,6 +16,7 @@ public class BridgeGameController {
     BridgeGame bridgeGame = new BridgeGame();
     List<String> bridge = new ArrayList<>();
     List<String> isCorrectList = new ArrayList<>();
+    int turn = 0;
     public void start() {
         int lengthOfBridge = gameStart();
         boolean isCorrect = selectMoving(lengthOfBridge);
@@ -34,17 +35,15 @@ public class BridgeGameController {
     }
 
     public boolean selectMoving(int lengthOfBridge) {
-        for (int i = 0; i < lengthOfBridge; i++) {
+        while (true) {
             String userMove = InputView.readMoving();
-            outputView.setUpAndDownSide(userMove, bridge.get(i));
+            outputView.setUpAndDownSide(userMove, bridge.get(turn));
             boolean isCorrect = bridgeGame.move(bridge, userMove);
             outputView.printMap();
-            if (!isCorrect) {
-                if (!selectQuitOrRestart(lengthOfBridge)) break;
-            }
+            turn ++;
+            if (!isCorrect) return selectQuitOrRestart(lengthOfBridge);
             if (isSuccess(isCorrect, lengthOfBridge)) return true;
         }
-        return false;
     }
 
     public boolean selectQuitOrRestart(int lengthOfBridge) {
@@ -56,6 +55,7 @@ public class BridgeGameController {
 
     public void restartGame(int lengthOfBridge) {
         bridgeGame.retry();
+        turn = 0;
         OutputView.upSide.clear();
         OutputView.downSide.clear();
         isCorrectList.clear();
