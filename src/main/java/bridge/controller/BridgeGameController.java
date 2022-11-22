@@ -58,8 +58,7 @@ public class BridgeGameController {
 
     private void play() {
         outputView.printMessage(ASK_IN_GAME_COMMAND_MESSAGE);
-        InGameCommandRequestDto requestDto = new InGameCommandRequestDto(inputView.readMoving());
-        requestDto.setSessionId(sessionId);
+        InGameCommandRequestDto requestDto = new InGameCommandRequestDto(inputView.readMoving(), sessionId);
         InGameCommandResponseDto responseDto = gameService.playGame(requestDto);
         changePlayState(responseDto);
         outputView.printMap(responseDto);
@@ -77,8 +76,7 @@ public class BridgeGameController {
 
     private void fail() {
         outputView.printMessage(ASK_FAIL_MENU_COMMAND_MESSAGE);
-        FailMenuRequestDto requestDto = new FailMenuRequestDto(inputView.readGameCommand());
-        requestDto.setSessionId(sessionId);
+        FailMenuRequestDto requestDto = new FailMenuRequestDto(inputView.readGameCommand(), sessionId);
         FailMenuResponseDto responseDto = gameService.askRetry(requestDto);
         changeFailState(responseDto);
     }

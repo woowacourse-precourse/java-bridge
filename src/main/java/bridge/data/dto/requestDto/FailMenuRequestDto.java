@@ -5,10 +5,11 @@ import bridge.type.FailMenuCommandType;
 public class FailMenuRequestDto {
 
     private final FailMenuCommandType command;
-    private String sessionId;
+    private final String sessionId;
 
-    public FailMenuRequestDto(FailMenuCommandType command) {
+    public FailMenuRequestDto(FailMenuCommandType command, String sessionId) {
         this.command = command;
+        this.sessionId = sessionId;
     }
 
     public FailMenuCommandType getCommand() {
@@ -17,9 +18,5 @@ public class FailMenuRequestDto {
 
     public String getSessionId() {
         return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
     }
 }

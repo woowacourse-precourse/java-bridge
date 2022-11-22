@@ -5,10 +5,11 @@ import bridge.type.InGameCommandType;
 public class InGameCommandRequestDto {
 
     private final InGameCommandType command;
-    private String sessionId;
+    private final String sessionId;
 
-    public InGameCommandRequestDto(InGameCommandType command) {
+    public InGameCommandRequestDto(InGameCommandType command, String sessionId) {
         this.command = command;
+        this.sessionId = sessionId;
     }
 
     public InGameCommandType getCommand() {
@@ -17,9 +18,5 @@ public class InGameCommandRequestDto {
 
     public String getSessionId() {
         return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
     }
 }
