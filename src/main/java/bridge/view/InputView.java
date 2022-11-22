@@ -10,6 +10,10 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private static final String BRIDGE_SIZE_MESSAGE= "다리의 길이를 입력해주세요.";
+    private static final String MOVING_SIDE_SELECT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String RETRY_OR_QUIT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
     private InputView(){
     }
 
@@ -23,7 +27,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
         try{
-            String input = readInput("다리의 길이를 입력해주세요.");
+            String input = readInput(BRIDGE_SIZE_MESSAGE);
             BridgeSizeValidator.validate(input);
 
             return Integer.parseInt(input);
@@ -38,9 +42,9 @@ public class InputView {
      */
     public static String readMoving() {
         try {
-            String input = readInput("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String input = readInput(MOVING_SIDE_SELECT_MESSAGE);
             MovingValidator.validate(input);
-            
+
             return input;
         } catch (IllegalArgumentException e) {
             return readMoving();
@@ -52,7 +56,7 @@ public class InputView {
      */
     public static String readGameCommand() {
         try{
-            String input = readInput("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            String input = readInput(RETRY_OR_QUIT_MESSAGE);
             GameCommandValidator.validate(input);
 
             return input;
