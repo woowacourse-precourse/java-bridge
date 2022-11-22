@@ -23,15 +23,17 @@ public class InputView {
     private void bridgeSizeException(String size){
 
         //예외 범위 입력시
-        if(size.length()<3||size.length()>20){
+        if(3>Integer.parseInt(size)||Integer.parseInt(size)>20){
             throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
         }
 
+
         //숫자 이외에 문자 입력시
         for(int i=0;i<size.length();i++){
-            if('1'>size.charAt(i)||size.charAt(i)>'9'){
-                throw new IllegalArgumentException(ONLY_NUMERIC.getMessage());
+            if('1'<=size.charAt(i)&&size.charAt(i)<='9'){
+                return;
             }
+            throw new IllegalArgumentException(ONLY_NUMERIC.getMessage());
         }
 
     }
@@ -51,7 +53,7 @@ public class InputView {
             throw new IllegalArgumentException(UP_OR_DOWN.getMessage());
         }
 
-        if(!move.equals("U")|| !move.equals("D")){
+        if(!move.equals("U")&& !move.equals("D")){
             throw new IllegalArgumentException(ONE_CHARACTER.getMessage());
         }
     }
