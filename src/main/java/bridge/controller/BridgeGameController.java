@@ -30,16 +30,17 @@ public class BridgeGameController {
             playtime++;
 
             playGame(bridgeGame, gameRecord);
+            if (gameRecord.isGameSuccess()) {
+                GameResultModel gameResultModel = new GameResultModel(gameRecord.makeBridgeRecord(),
+                        gameRecord.isGameSuccess(), playtime);
+                OutputView.printResult(gameResultModel);
+                break;
+            }
 
             OutputView.printGameRestartRequest();
             String s = InputView.readGameCommand();
             retryflag = bridgeGame.retry(s);
 
-            if (!retryflag) {
-                GameResultModel gameResultModel = new GameResultModel(gameRecord.makeBridgeRecord(),
-                        gameRecord.isGameSuccess(), playtime);
-                OutputView.printResult(gameResultModel);
-            }
         } while (retryflag);
 
     }
