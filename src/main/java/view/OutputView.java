@@ -19,7 +19,7 @@ public class OutputView {
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_CONNECT = " | ";
     private static final String BRIDGE_END = " ]";
-    private static final String RESULT_MESSAGE = "최종 게임 결과";
+    private static final String RESULT_MESSAGE = NEW_LINE + "최종 게임 결과";
     private static final String GAME_STATUS_MESSAGE = NEW_LINE + "게임 성공 여부: ";
     private static final String TOTAL_COUNT_MESSAGE = "총 시도한 횟수: ";
     private static final String ERROR = "[ERROR] ";
