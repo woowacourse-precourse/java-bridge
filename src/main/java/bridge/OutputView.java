@@ -54,9 +54,10 @@ public class OutputView {
     }
 
     private String getResult(BridgeGame bridgeGame) {
-        if (bridgeGame.getUserInputBridge().get(0).size() == Application.bridgeSize) {
-            return "성공";
+        if (bridgeGame.getUserInputBridge().get(BridgeGame.UPWARD).contains("X") ||
+                bridgeGame.getUserInputBridge().get(BridgeGame.DOWNWARD).contains("X")) {
+            return "실패";
         }
-        return "실패";
+        return "성공";
     }
 }
