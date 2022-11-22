@@ -10,7 +10,7 @@ class OutputViewTest {
 
     @Test
     void TsetPrintMap() {
-        OutputView outputView=new OutputView();
+        OutputView outputView = new OutputView();
         outputView.printMap(List.of("U", "D", "D"), "OOO");
     }
 }
