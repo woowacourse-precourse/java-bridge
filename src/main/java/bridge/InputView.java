@@ -31,7 +31,8 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = Console.readLine();
-        return null;
+        checkGameCommandAppropriate(gameCommand);
+        return gameCommand;
     }
 
     private void checkBridgeSizeInRange(int bridgeSize) {
@@ -50,7 +51,7 @@ public class InputView {
         throw new IllegalArgumentException("[ERROR] : 이동할 칸은 U 또는 D로 선택해 주세요.");
     }
 
-    private void checkGameCommandApproriate(String gameCommand){
+    private void checkGameCommandAppropriate(String gameCommand){
         if(gameCommand.equals("R")){
             return;
         }
