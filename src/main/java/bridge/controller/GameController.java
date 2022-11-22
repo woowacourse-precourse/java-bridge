@@ -28,7 +28,7 @@ public class GameController {
     private CheckException checkException = new CheckException();
 
     /* 인스턴스 변수 */
-    private int bridgeSize = 0;
+    private String bridgeSize = "";
     private int stage = 0;
     private int tryNumber = 1;
     private String moving = "";
@@ -48,7 +48,7 @@ public class GameController {
                 continue;
             }
             System.out.println();
-            bridge = bridgeMaker.makeBridge(bridgeSize);
+            bridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
             break;
         }
     }
@@ -107,7 +107,7 @@ public class GameController {
     }
 
     public void startGame(){
-        while(stage < bridgeSize){
+        while(stage < Integer.parseInt(bridgeSize)){
             runGame();
             if(checkFail(stage)){
                 if(!retryChoice()){
