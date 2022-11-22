@@ -19,8 +19,52 @@ public class Result {
         tryCount = 1;
     }
 
-    public void makeMap(List<String> spaces, List<String> moves){
+    public void makeMap(String move, String space){
+        successGoUp(move, space);
 
+        successGoDown(move, space);
+
+        failGoUp(move, space);
+
+        failGoDown(move, space);
+    }
+
+    public void successGoUp(String move, String space){
+        if(move.equals("U") && space.equals("U")){
+            map.get(0).add("O");
+            map.get(1).add(" ");
+        }
+    }
+
+    public void successGoDown(String move, String space){
+        if(move.equals("D") && space.equals("D")){
+            map.get(0).add(" ");
+            map.get(1).add("O");
+        }
+    }
+
+    public void failGoUp(String move, String space){
+        if(move.equals("U") && space.equals("D")){
+            map.get(0).add("X");
+            map.get(1).add(" ");
+        }
+    }
+
+    public void failGoDown(String move, String space){
+        if(move.equals("D") && space.equals("U")){
+            map.get(0).add(" ");
+            map.get(1).add("X");
+        }
+    }
+
+    public void retry(){
+        map.clear();
+
+        for(int i = 0;i<2;i++){
+            map.add(new ArrayList<>());
+        }
+
+        tryCount++;
     }
 
     public void addTryCount(){
