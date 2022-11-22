@@ -107,13 +107,10 @@ public class OutputView {
     public void printResult(int tryAmount, boolean isSuccess) {
         System.out.println(GAME_RESULT);
         printMap();
-        printEmptyLine();
-        if (isSuccess) {
+        if (isSuccess)
             System.out.println(iS_SUCCESS_OR_NOT + SUCCESS_PHRASE);
-        }
-        if (!isSuccess) {
+        if (!isSuccess)
             System.out.println(iS_SUCCESS_OR_NOT + FAILURE_PHRASE);
-        }
         System.out.println(TRY_AMOUNT_PHARASE + tryAmount);
     }
 }
