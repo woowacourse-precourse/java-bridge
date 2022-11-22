@@ -70,6 +70,7 @@ public class BridgeController {
     private void reachAnswerCase(BridgeAnswer bridgeAnswer, int compareResult) {
         if (compareResult == REACHED_END) {
             latestOutput = getRecentResult(bridgeAnswer, REACHED_END);
+            outputView.printMap(latestOutput);
             getFinalResult(Sentence.SUCCESS.getValue());
         }
     }
