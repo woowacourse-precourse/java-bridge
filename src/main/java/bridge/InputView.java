@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    Checker checker = new Checker();
+    private Checker checker = new Checker();
 
     /**
      * 다리의 길이를 입력받는다.
