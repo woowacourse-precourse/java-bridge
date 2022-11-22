@@ -2,18 +2,22 @@ package bridge.utils;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.utils.ErrorEnum.*;
+
 public class BridgeSizeValidator {
+    private final static int minNum=3;
+    private final static int maxNUm=3;
 
     public static void checkBridgeSize(String strBridgeSize) {
         checkBridgeSizeNumber(strBridgeSize);
         checkBridgeSizeRange(Integer.parseInt(strBridgeSize));
     }
     private static void checkBridgeSizeRange(int bridgeSize){
-        if (bridgeSize < 3) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3이상의 숫자여야만 합니다.");
+        if (bridgeSize < minNum) {
+            throw new IllegalArgumentException(BRIDGE_SIZE_SMALLER_THAN_THREE.getMessage());
         }
-        if(bridgeSize>20){
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 20이하의 숫자여야만 합니다.");
+        if(bridgeSize>maxNUm){
+            throw new IllegalArgumentException(BRIDGE_SIZE_BIGGER_THAN_TWENTY.getMessage());
         }
     }
 
@@ -21,7 +25,7 @@ public class BridgeSizeValidator {
         try {
             int bridgeSize = Integer.parseInt(strBridgeSize);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 입력해야 합니다.");
+            throw new IllegalArgumentException(BRIDGE_SIZE_NOT_INT.getMessage());
         }
     }
 }

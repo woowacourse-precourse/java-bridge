@@ -1,9 +1,14 @@
 package bridge.utils;
 
+import static bridge.utils.ErrorEnum.GAME_COMMAND_NOT_Q_OR_R;
+
 public class GameCommandValidator {
+    private final static String reGame="R";
+    private final static String quiteGame="Q";
+
     public static void checkGameCommand(String s){
-        if(!s.equals("R")&&!s.equals("Q")){
-            throw new IllegalArgumentException("[ERROR] R이나 Q를 입력해야합니다.");
+        if(!s.equals(reGame)&&!s.equals(quiteGame)){
+            throw new IllegalArgumentException(GAME_COMMAND_NOT_Q_OR_R.getMessage());
         }
     }
 }

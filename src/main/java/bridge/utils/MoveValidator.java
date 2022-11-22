@@ -1,9 +1,14 @@
 package bridge.utils;
 
+import static bridge.utils.ErrorEnum.MOVE_NOT_U_OR_D;
+
 public class MoveValidator {
+    private final static String upMove="U";
+    private final static String downMove="D";
+
     public static void checkMove(String strMove) {
-        if(!strMove.equals("U")&&!strMove.equals("D")){
-            throw new IllegalArgumentException("[ERROR] U나 D를 입력해야 합니다.");
+        if(!strMove.equals(upMove)&&!strMove.equals(downMove)){
+            throw new IllegalArgumentException(MOVE_NOT_U_OR_D.getMessage());
         }
     }
 }
