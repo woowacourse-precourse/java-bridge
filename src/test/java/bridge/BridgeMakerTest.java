@@ -7,8 +7,6 @@ import testBridgeGenerator.TestBridgeGenerator;
 
 import java.util.List;
 
-import static bridge.ApplicationTest.*;
-
 class BridgeMakerTest {
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -30,6 +28,6 @@ class BridgeMakerTest {
     void 알맞게_다리가_생성되는지_확인(){
         BridgeMaker bridgeMakerTest = new BridgeMaker(new TestBridgeGenerator(List.of(1,0,1)));
         List<String> bridge = bridgeMakerTest.makeBridge(3);
-        Assertions.assertThat(bridge).isEqualTo(List.of("U","D","U"));
+        Assertions.assertThat(bridge).containsExactly("U","D","U");
     }
 }
