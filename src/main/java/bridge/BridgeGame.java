@@ -36,8 +36,6 @@ public class BridgeGame {
 
     /**
      * 한 번 이동할 때마다 실행되는 전체 메서드
-     *
-     * @param playerInput
      */
     private void trial(List<String> playerInput) {
         int score = 0;
@@ -70,9 +68,6 @@ public class BridgeGame {
 
     /**
      * 사용자가 한 칸 이동한 경우 기록을 업데이트 해주는 메서드
-     * @param playerInput
-     * @param move
-     * @return
      */
     public List<String> updatePlayerInput(List<String> playerInput, String move) {
         playerInput.add(move);
@@ -98,9 +93,6 @@ public class BridgeGame {
 
     /**
      * 다리 길이를 입력받아 다리를 생성하는 메서드
-     *
-     * @param bridgeSize
-     * @return
      */
     public List<String> createBridge(int bridgeSize) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -110,9 +102,6 @@ public class BridgeGame {
 
     /**
      * 사용자가 입력할 때마다 점수를 계산해주는 메서드
-     *
-     * @param playerInput
-     * @return
      */
     public int calculateScore(List<String> playerInput) {
         int score = 0;
@@ -126,7 +115,6 @@ public class BridgeGame {
 
     /**
      * 테스트용으로 사용하는 메서드
-     * @param bridge
      */
     public void setNewBridge(List<String> bridge) {
         newBridge = bridge;
