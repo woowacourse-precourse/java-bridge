@@ -10,4 +10,10 @@ public class ViewController {
 		int size = in.readBridgeSize();
 		return size;
 	}
+
+	public String retryView() {
+		out.printGameMessage("COMMAND");
+		String command = in.readGameCommand();
+		return command;
+	}
 }
