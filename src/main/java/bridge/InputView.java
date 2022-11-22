@@ -40,9 +40,14 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 다리의 길이가 숫자 형식이 아닙니다.");
         }
         int result = Integer.parseInt(number);
-        if(result < 3 || result > 20){
+        rangeValidate(result);
+
+        return result;
+    }
+
+    public void rangeValidate(int number){
+        if(number < 3 || number > 20){
             throw new IllegalArgumentException("[ERROR] 다리의 길이가 범위를 벗어납니다. (3 ~ 20)");
         }
-        return result;
     }
 }
