@@ -53,13 +53,8 @@ public class Application {
     }
 
     static private void printUpBridge() {
-        List<String> upString = new ArrayList<>();
-        for(int i=0; i<visited.size(); i++){
-            boolean rightDirection = bridgeGame.isRightDirection(i, visited.get(i));
-            String result = bridgeGame.getResult(i,"U", rightDirection);
-            upString.add(result);
-        }
-        outputView.printMap(upString);
+        List<String> upBridge = bridgeGame.getUpBridge();
+        outputView.printMap(upBridge);
     }
 
     static private boolean retry(){
