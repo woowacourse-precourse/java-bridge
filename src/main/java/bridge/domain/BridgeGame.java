@@ -30,7 +30,7 @@ public class BridgeGame {
     }
     public void move() {
         MoveSpace moveSpace = InputController.getMoving();
-        this.moveResults.add(bridge.createMoveResult(moveSpace));
+        this.moveResults.add(this.bridge.createMoveResult(moveSpace));
 
 //        this.moveResults.add(moveSpace.createMoveResult(this.bridge.checkIfItCanBeMoved(moveSpace)));
         for (int i = 0; i < this.moveResults.size(); i++) {
@@ -48,7 +48,6 @@ public class BridgeGame {
      */
     public void retry() {
         this.moveResults = new ArrayList<>();
-        BridgeGameController.runGame(this.bridge);
     }
 
     public boolean isFailedGame() {

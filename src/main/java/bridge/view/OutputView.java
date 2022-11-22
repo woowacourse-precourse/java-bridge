@@ -19,22 +19,22 @@ public class OutputView {
         printDownMap(moveResult);
     }
 
-    public static void printUpMap(List<MoveResult> moveResult){
+    public static void printUpMap(List<MoveResult> moveResults){
         StringJoiner upResult = new StringJoiner(" | ", "[ ", " ]");
-        for(int i = 0; i<moveResult.size(); i++){
-            moveResult.get(i).pringMoveResult(moveResult.get(i));
-            upResult.add(createUpMap(moveResult.get(i)));
+        for(int i = 0; i<moveResults.size(); i++){
+            moveResults.get(i).pringMoveResult(moveResults.get(i));
+            upResult.add(createUpMap(moveResults.get(i)));
         }
 
         String upMap = upResult.toString();
         System.out.println(upMap);
     }
 
-    public static void printDownMap(List<MoveResult> moveResult){
+    public static void printDownMap(List<MoveResult> moveResults){
         StringJoiner downResult = new StringJoiner(" | ", "[ ", " ]");
-        for(int i = 0; i<moveResult.size(); i++){
-            moveResult.get(i).pringMoveResult(moveResult.get(i));
-            downResult.add(createDownMap(moveResult.get(i)));
+        for(int i = 0; i<moveResults.size(); i++){
+            moveResults.get(i).pringMoveResult(moveResults.get(i));
+            downResult.add(createDownMap(moveResults.get(i)));
         }
 
         String downMap = downResult.toString();
