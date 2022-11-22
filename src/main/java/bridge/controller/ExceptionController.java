@@ -31,7 +31,7 @@ public class ExceptionController {
     }
 
     private boolean isValidMoving(final String input) {
-        if (input.equals(Message.GO_UP) || input.equals(Message.GO_DOWN)) {
+        if (input.equals(Message.GO_UP.getMessage()) || input.equals(Message.GO_DOWN.getMessage())) {
             return true;
         }
         return false;
