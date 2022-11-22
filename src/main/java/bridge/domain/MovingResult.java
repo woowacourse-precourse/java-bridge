@@ -1,12 +1,15 @@
 package bridge.domain;
 
-public class MovingResult {
+import bridge.utils.validator.MovingValidator;
+
+public class MovingResult extends MovingValidator {
 	private final String UP_DIRECTION = "U";
 	private final String DOWN_DIRECTION = "D";
 	private String direction;
 	private boolean result;
 
 	public MovingResult(String direction, boolean result) {
+		validateMoving(direction);
 		this.direction = direction;
 		this.result = result;
 	}

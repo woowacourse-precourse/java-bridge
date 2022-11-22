@@ -1,9 +1,9 @@
 package bridge.domain.dto;
 
 public class BridgeSize {
-	private final String INVALID_LETTER = "[ERROR] 숫자만 입력 가능합니다.";
-	private final String INVALID_FIRST_DIGIT = "[ERROR] 두자리 숫자의 첫번째 자리에는 1이상이어야 합니다.";
-	protected final String INVALID_NUMBER_BOUNDARY = "[ERROR] 3~20사이의 숫자만 입력 가능합니다.";
+	private final String INVALID_LETTER = "[ERROR] 숫자만 입력해야 합니다.\n";
+	private final String INVALID_FIRST_DIGIT = "[ERROR] 두자리 숫자의 첫번째 자리에는 1이상이어야 합니다.\n";
+	protected final String INVALID_NUMBER_BOUNDARY = "[ERROR] 다리의 길이는 3부터 20 사이의 숫자여야 합니다.\n";
 	private final String NUMBER_FORMAT = "^\\d{1,2}$";
 	private final char FIRST_DIGIT_ZERO = '0';
 	private final int DOUBLE_DIGIT = 2;

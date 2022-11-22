@@ -23,7 +23,7 @@ class UserTest {
 		class Context_parameter_is_not_U_or_D {
 
 			@DisplayName("예외를 발생시킨다.")
-			@ValueSource(strings = {"A", "a", "31", "U3", " U"})
+			@ValueSource(strings = {"A", "a", "31", "U3", " U", "U ", " "})
 			@ParameterizedTest
 			void it_returns_illegal_argument_exception(String input) {
 				assertThatThrownBy(() -> new User(input))
@@ -33,43 +33,45 @@ class UserTest {
 	}
 
 	@Nested
-	@DisplayName("selectMoving 메소드는")
-	class Describe_selectMoving {
-		private final String MOVING_DIRECTION_UP = "U";
-		private final String MOVING_DIRECTION_DOWN = "D";
+	@DisplayName("checkMoving 메소드는")
+	class Describe_checkMoving {
 		private List<String> inputBridge = new ArrayList<>(Arrays.asList("U", "U", "D"));
 
 		@Nested
 		@DisplayName("만약 해당 칸에 맞는 이동 방향을 선택하면")
 		class Context_select_right_moving_direction {
-			private String moving = MOVING_DIRECTION_UP;
+			private List<String> movings = new ArrayList<>(Arrays.asList("U", "U", "D"));
 
 			@Test
 			@DisplayName("이동 결과가 true인 이동 결과 객체를 반환한다.")
-			void it_returns_moving_result() {
+			void it_returns_moving_result_includes_true() {
 				Bridge bridge = new Bridge(inputBridge);
-				User user = new User(moving);
-				MovingResult movingResult = user.selectMoving(bridge);
-				MovingResult expected = new MovingResult(moving, true);
-
-				assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
+				movings.stream()
+					.forEach(moving -> {
+						User user = new User(moving);
+						MovingResult movingResult = user.checkMoving(bridge);
+						MovingResult expected = new MovingResult(moving, true);
+						assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
+					});
 			}
 		}
 
 		@Nested
 		@DisplayName("만약 해당 칸에 맞지 않는 이동 방향을 선택하면")
 		class Context_select_wrong_moving_direction {
-			private String moving = MOVING_DIRECTION_DOWN;
+			private List<String> movings = new ArrayList<>(Arrays.asList("D", "D", "U"));
 
 			@Test
 			@DisplayName("이동 결과가 false인 이동 결과 객체를 반환한다.")
-			void it_returns_moving_result() {
+			void it_returns_moving_result_includes_false() {
 				Bridge bridge = new Bridge(inputBridge);
-				User user = new User(moving);
-				MovingResult movingResult = user.selectMoving(bridge);
-				MovingResult expected = new MovingResult(moving, false);
-
-				assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
+				movings.stream()
+					.forEach(moving -> {
+						User user = new User(moving);
+						MovingResult movingResult = user.checkMoving(bridge);
+						MovingResult expected = new MovingResult(moving, false);
+						assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
+					});
 			}
 		}
 	}

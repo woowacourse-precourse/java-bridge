@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("BridgeMap 클래스")
 class BridgeMapTest {
-
+	
 	@Nested
 	@DisplayName("getSplitMap 메소드는")
 	class Describe_getSplitMap {
@@ -30,20 +30,19 @@ class BridgeMapTest {
 			);
 
 			@Test
-			@DisplayName("이동 결과 사이에 |로 나누어 분할한다.")
-			void it_returns_converted_moving_results() {
+			@DisplayName("다리 이동결과를 |로 나누어 결과를 표시하며 위,아래 다리로 나누어 결과를 표시한다.")
+			void it_returns_split_bridge_map() {
 				BridgeMap bridgeMap = new BridgeMap();
 				inputMovingResult.stream()
 					.forEach(movingResult -> bridgeMap.addMovingResult((MovingResult) movingResult));
 				List<String> splitBridgeMap = bridgeMap.getSplitMap();
-
 				assertThat(splitBridgeMap).isEqualTo((List<String>) expected);
 			}
 		}
 
 		@Nested
 		@DisplayName("만약 이동결과를 1개 저장했다면")
-		class Context_save_one_of_moving_result {
+		class Context_save_moving_result_one {
 			private List inputMovingResult = List.of(
 				new MovingResult("U", true)
 			);
@@ -54,13 +53,12 @@ class BridgeMapTest {
 			);
 
 			@Test
-			@DisplayName("이동 결과 사이에 나누는거 없이 분할한다.")
-			void it_returns_converted_moving_results() {
+			@DisplayName("위,아래 다리로 나누어 결과를 표시한다.")
+			void it_returns_split_bridge_map() {
 				BridgeMap bridgeMap = new BridgeMap();
 				inputMovingResult.stream()
 					.forEach(movingResult -> bridgeMap.addMovingResult((MovingResult) movingResult));
 				List<String> splitBridgeMap = bridgeMap.getSplitMap();
-
 				assertThat(splitBridgeMap).isEqualTo((List<String>) expected);
 			}
 		}

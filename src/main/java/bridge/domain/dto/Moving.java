@@ -1,6 +1,6 @@
 package bridge.domain.dto;
 
-import bridge.utils.MovingValidator;
+import bridge.utils.validator.MovingValidator;
 
 public class Moving extends MovingValidator {
 	private String moving;

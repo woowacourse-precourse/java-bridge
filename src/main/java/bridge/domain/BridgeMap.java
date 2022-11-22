@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMap {
-	private final String NEVER_MOVE = "[ERROR] 다리에서 이동한 적이 없으므로 게임결과를 출력형식에 맞게 변경할 수 없습니다.";
+	private final String NEVER_MOVE = "[ERROR] 이동결과가 없으므로 출력형식에 맞게 이동결과를 변환할 수 없습니다.\n";
 	private final int MIN_MOVE_NUMBER = 1;
 
 	List<MovingResult> map = new ArrayList<>();

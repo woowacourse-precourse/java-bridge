@@ -37,7 +37,7 @@ class BridgeTest {
 		}
 
 		@Nested
-		@DisplayName("만약 다리의 길이가 3-20사이가 아니라면")
+		@DisplayName("만약 다리의 길이가 3에서 20사이가 아니라면")
 		class Context_bridge_size_boundary_not_three_to_twenty {
 			List inputBridgeList = List.of(
 				List.of("U", "D"),
@@ -68,8 +68,8 @@ class BridgeTest {
 			List<String> userMoving = new ArrayList<>(Arrays.asList("D", "U", "D"));
 
 			@Test
-			@DisplayName("이동실패를 반환한다.")
-			void it_returns_moving_result_include_result_false() {
+			@DisplayName("false를 포함한 이동결과 객체를 반환한다.")
+			void it_returns_moving_result_include_false() {
 				Bridge bridge = new Bridge(InputBridge);
 				userMoving.stream()
 					.forEach(direction -> {
@@ -85,8 +85,8 @@ class BridgeTest {
 			List<String> userMoving = new ArrayList<>(Arrays.asList("U", "D", "U"));
 
 			@Test
-			@DisplayName("이동성공을 반환한다.")
-			void it_returns_moving_result_include_result_true() {
+			@DisplayName("true를 포함한 이동결과 객체를 반환한다.")
+			void it_returns_moving_result_include_true() {
 				Bridge bridge = new Bridge(InputBridge);
 				userMoving.stream()
 					.forEach(direction -> {
@@ -98,13 +98,13 @@ class BridgeTest {
 	}
 
 	@Nested
-	@DisplayName("isMovingEnd 메소드는")
-	class Describe_isMovingEnd {
+	@DisplayName("isCrossBridge 메소드는")
+	class Describe_isCrossBridge {
 		private List<String> InputBridge = new ArrayList<>(Arrays.asList("U", "D", "U"));
 
 		@Nested
-		@DisplayName("만약 다리의 모든칸의 검사가 완료되면")
-		class Context_all_bridge_part_inspect_complete {
+		@DisplayName("만약 다리의 모든 칸을 건너면")
+		class Context_cross_bridge {
 			List<String> userMoving = new ArrayList<>(Arrays.asList("U", "D", "U"));
 
 			@Test
@@ -116,13 +116,13 @@ class BridgeTest {
 						bridge.checkUserMoving(direction);
 					});
 
-				assertThat(bridge.isMovingEnd()).isTrue();
+				assertThat(bridge.isCrossBridge()).isTrue();
 			}
 		}
 
 		@Nested
-		@DisplayName("만약 다리의 모든칸의 검사가 완료되지 않으면")
-		class Context_all_bridge_part_inspect_not_complete {
+		@DisplayName("만약 다리의 모든 칸을 건너지 못하면")
+		class Context_not_cross_bridge {
 			List<String> userMoving = new ArrayList<>(Arrays.asList("U", "U"));
 
 			@Test
@@ -134,7 +134,7 @@ class BridgeTest {
 						bridge.checkUserMoving(direction);
 					});
 
-				assertThat(bridge.isMovingEnd()).isFalse();
+				assertThat(bridge.isCrossBridge()).isFalse();
 			}
 		}
 	}

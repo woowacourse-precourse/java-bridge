@@ -10,10 +10,9 @@ import java.util.List;
 public class BridgeMaker {
 	private final int RANDOM_LOWER_INCLUSIVE = 0;
 	private final int RANDOM_UPPER_INCLUSIVE = 1;
-	private final int CURRENT_SIZE_RESET = 0;
 	private final String DOWN_DIRECTION = "D";
 	private final String UP_DIRECTION = "U";
-	private final String INVALID_RANDOM_NUMBER = "[ERROR] 랜덤 숫자의 범위(0-1)가 아닙니다.";
+	private final String INVALID_RANDOM_NUMBER = "[ERROR] 랜덤 숫자의 범위는 0부터 1 사이의 숫자여야 합니다.";
 	private final BridgeNumberGenerator bridgeNumberGenerator;
 
 	public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -28,8 +27,7 @@ public class BridgeMaker {
 	 */
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
-		int currentSize = CURRENT_SIZE_RESET;
-		while (currentSize++ < size) {
+		while (bridge.size() < size) {
 			addBridgeDirection(bridge);
 		}
 		return bridge;

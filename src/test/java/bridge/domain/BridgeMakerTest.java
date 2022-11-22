@@ -36,7 +36,6 @@ class BridgeMakerTest {
 				BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 				List<String> bridge = bridgeMaker.makeBridge(size);
 				List<String> expected = new ArrayList<>(Arrays.asList("D"));
-
 				assertThat(bridge).isEqualTo(expected);
 			}
 		}
@@ -57,7 +56,6 @@ class BridgeMakerTest {
 				BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 				List<String> bridge = bridgeMaker.makeBridge(size);
 				List<String> expected = new ArrayList<>(Arrays.asList("U"));
-
 				assertThat(bridge).isEqualTo(expected);
 			}
 		}
@@ -65,12 +63,11 @@ class BridgeMakerTest {
 		@Nested
 		@DisplayName("랜덤 숫자 생성기가 생성한 임의의 숫자가 0,1이 아니라면")
 		class Context_BridgeRandomNumberGenerator_create_number_is_not_zero_or_one {
-			private final int RANDOM_LOWER_INCLUSIVE = 2;
-			private final int RANDOM_UPPER_INCLUSIVE = 100;
+
 			bridge.BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new bridge.BridgeRandomNumberGenerator() {
 				@Override
 				public int generate() {
-					return Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
+					return Randoms.pickNumberInRange(2, 100);
 				}
 			};
 

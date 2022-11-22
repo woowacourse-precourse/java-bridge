@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.utils.MovingValidator;
+import bridge.utils.validator.MovingValidator;
 
 public class User extends MovingValidator {
 	private String moving;
@@ -10,7 +10,7 @@ public class User extends MovingValidator {
 		this.moving = moving;
 	}
 
-	public MovingResult selectMoving(Bridge bridge) {
+	public MovingResult checkMoving(Bridge bridge) {
 		MovingResult movingResult = bridge.checkUserMoving(moving);
 		return movingResult;
 	}

@@ -1,7 +1,7 @@
 package bridge.domain.dto;
 
 public class GameCommand {
-	private final String INVALID_INPUT_GAME_COMMAND = "[ERROR] R과 Q 중에서만 입력해 주시기 바랍니다.";
+	private final String INVALID_INPUT_GAME_COMMAND = "[ERROR] R과 Q 중에서만 입력해야 합니다.\n";
 	private final String RETRY_COMMAND = "R";
 	private final String END_COMMAND = "Q";
 	private String command;
