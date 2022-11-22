@@ -3,7 +3,7 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.ApplicationTest.TestNumberGenerator;
+import bridge.RunMainTest.TestNumberGenerator;
 import bridge.controller.BridgeGameController;
 import bridge.model.BridgeMaker;
 import java.io.ByteArrayInputStream;
