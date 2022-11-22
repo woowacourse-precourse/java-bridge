@@ -7,8 +7,8 @@ public class Bridge {
 
   private final List<BridgeArea> bridgeAreas;
 
-  public Bridge(List<String> areas) {
-    this.bridgeAreas = areas.stream().map(BridgeArea::of).collect(Collectors.toList());
+  public Bridge(List<BridgeArea> areas) {
+    this.bridgeAreas = areas;
   }
 
   public boolean canMove(int location, BridgeArea area) {

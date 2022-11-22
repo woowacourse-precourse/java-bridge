@@ -11,23 +11,22 @@ class BridgeTest {
 
   private Bridge bridge;
 
-  String firstSection = "U";
-  String secondSection = "D";
-  String thirdSection = "U";
+  BridgeArea firstSection = BridgeArea.U;
+  BridgeArea secondSection = BridgeArea.D;
+  BridgeArea thirdSection = BridgeArea.U;
 
   @BeforeEach
   void setUp() {
-    List<String> bridgeAreasByString = new ArrayList<>(
+    List<BridgeArea> bridgeAreasByString = new ArrayList<>(
         List.of(firstSection, secondSection, thirdSection));
     bridge = new Bridge(bridgeAreasByString);
   }
 
   @Test
   void 이동할_다리위치와_영역_입력시_이동가능여부를_알려준다() {
-    int wantMoveLocation = 1;
-    BridgeArea moveArea = BridgeArea.of(firstSection);
+    int wantMoveLocation = 0;
 
-    boolean canMoveResult = bridge.canMove(wantMoveLocation, moveArea);
+    boolean canMoveResult = bridge.canMove(wantMoveLocation, firstSection);
     assertThat(canMoveResult).isTrue();
   }
 
