@@ -46,6 +46,7 @@ public class OutputView {
     public String removeLastLine(String result) {
         return result.substring(0, result.length() - 3);
     }
+
     public String successOrFailure(BridgeGame bridgeGame) {
         GameResult result = bridgeGame.isClear();
         return result.getValue();
