@@ -55,7 +55,7 @@ public class InputView {
         return selectMove;
     }
 
-    public void validateMove(String selectMove) {
+    private void validateMove(String selectMove) {
         if (!(selectMove.equals(UP) || selectMove.equals(DOWN))) {
             throw new IllegalArgumentException(INVALID_MOVING_MESSAGE);
         }
@@ -71,7 +71,7 @@ public class InputView {
         return selectCommand;
     }
 
-    public void validateCommand(String selectMove) {
+    private void validateCommand(String selectMove) {
         if (!(selectMove.equals(RETRY) || selectMove.equals(QUIT))) {
             throw new IllegalArgumentException(INVALID_COMMAND_MESSAGE);
         }
