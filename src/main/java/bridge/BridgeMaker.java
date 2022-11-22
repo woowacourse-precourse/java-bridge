@@ -1,9 +1,7 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.domain.MoveCommand;
 import bridge.input.validate.BasicBridgeValidator;
-import bridge.input.validate.BridgeValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +10,10 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final BridgeValidator bridgeValidator;
+
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-        this.bridgeValidator = new BasicBridgeValidator();
     }
 
     /**
@@ -31,7 +27,12 @@ public class BridgeMaker {
             String command = MoveCommand.parseValueToCommand(value);
             bridge.add(command);
         }
-        bridgeValidator.validateBridge(bridge);
+        validate(bridge);
         return bridge;
+    }
+
+    private void validate(List<String> bridge) {
+        BasicBridgeValidator validator = BasicBridgeValidator.getInstance();
+        validator.validateBridge(bridge);
     }
 }

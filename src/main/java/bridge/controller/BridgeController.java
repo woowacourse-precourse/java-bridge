@@ -24,7 +24,7 @@ public class BridgeController {
     private BridgeGame game;
 
     public BridgeController() {
-        BridgeValidator bridgeValidator = new BasicBridgeValidator();
+        BridgeValidator bridgeValidator = BasicBridgeValidator.getInstance();
         BridgeInput bridgeInput = new ConsoleBridgeInput();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 

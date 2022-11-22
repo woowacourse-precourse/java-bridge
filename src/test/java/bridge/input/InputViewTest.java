@@ -27,12 +27,12 @@ class InputViewTest {
 
     @BeforeAll
     static void setInputView() {
-        inputView = new InputView(new ConsoleBridgeInput(), new BasicBridgeValidator());
+        inputView = new InputView(new ConsoleBridgeInput(), BasicBridgeValidator.getInstance());
     }
 
     @BeforeAll
     static void setBridgeValidator() {
-        bridgeValidator = new BasicBridgeValidator();
+        bridgeValidator = BasicBridgeValidator.getInstance();
     }
 
     @DisplayName("다리 길이 입력 테스트")

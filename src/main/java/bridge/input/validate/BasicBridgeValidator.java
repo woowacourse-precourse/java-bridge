@@ -10,6 +10,17 @@ import static bridge.controller.BridgeSize.MAXIMUM;
 import static bridge.controller.BridgeSize.MINIMUM;
 
 public class BasicBridgeValidator implements BridgeValidator {
+    private static BasicBridgeValidator instance;
+    private BasicBridgeValidator() {
+    }
+
+    public static BasicBridgeValidator getInstance() {
+        if (instance == null) {
+            instance = new BasicBridgeValidator();
+        }
+        return instance;
+    }
+
     @Override
     public void validateBridgeSize(final String size) throws IllegalArgumentException {
         validateInteger(size);
