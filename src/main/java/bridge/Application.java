@@ -7,11 +7,6 @@ public class Application {
     public static void main(String[] args) {
         outputView.printStart();
         GamePlayer gamePlayer = new GamePlayer();
-        try {
-            gamePlayer.play();
-        }
-        catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        gamePlayer.play();
     }
 }
