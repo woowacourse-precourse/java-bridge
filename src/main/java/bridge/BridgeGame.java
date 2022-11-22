@@ -1,18 +1,25 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final static  String UP = "U";
-    private final static  String DOWN = "D";
+    private final int START_PLAYER_LOCATION = 0;
+    private final int START_PLAYER_TRY = 1;
+    private final boolean START_PLAYER_WINNING = false;
 
     private Bridge bridge;
-    private int step;
+    private int playerLocation;
+    private int playerTry;
+    private boolean winning;
 
-    public BridgeGame(Bridge bridge) {
-        this.bridge = bridge;
-        this.step = 0;
+    public BridgeGame(List<String> movableSpace) {
+        this.bridge = new Bridge(movableSpace);
+        playerLocation = START_PLAYER_LOCATION;
+        playerTry = START_PLAYER_TRY;
+        winning = START_PLAYER_WINNING;
     }
 
     /**
@@ -20,26 +27,23 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean checkMovable(String selectedSpace){
-        validate(selectedSpace);
-        return bridge.checkMovable(step, selectedSpace);
-    }
-
     public void move() {
-        step += 1;
+        playerLocation += 1;
     }
 
-    public void validate(String selectedSpace) {
-        if (!selectedSpace.equals(UP) && !selectedSpace.equals(DOWN)) {
-            throw new IllegalArgumentException("U 또는 D를 입력해주세요.");
-        }
+    public boolean checkMovable(String selectedSpace){
+        return bridge.checkMovable(playerLocation, selectedSpace);
     }
 
     public boolean checkEnd(){
-        if (step == bridge.getBridgeSize()) {
-            return true;
-        }
-        return false;
+        return playerLocation == bridge.getSize();
+    }
+    //
+    public MapDTO transferProgressMap(boolean flag, String selectedSpace) {
+        // playerLocation는 현재입력 전까지 나오고 현재입력은 true or false로 나타내어 MapDTO로 전달한다.
+        List<String> currentBridge = bridge.getCurrentBridge(playerLocation);
+        currentBridge.add(selectedSpace);
+        return new MapDTO(currentBridge, flag);
     }
 
     /**
@@ -48,8 +52,17 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        playerLocation = START_PLAYER_LOCATION;
+        playerTry++;
+    }
 
-
-
+    public int getPlayerTry() {
+        return playerTry;
+    }
+    public boolean getWinning() {
+        return winning;
+    }
+    public void winning(){
+        winning = true;
     }
 }
