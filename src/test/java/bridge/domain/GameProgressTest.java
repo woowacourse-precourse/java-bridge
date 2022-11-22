@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BridgeGameHostTest {
+public class GameProgressTest {
 
     private Bridge bridge;
     private Player player;
