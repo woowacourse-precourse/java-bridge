@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +13,46 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public String changeFailToX(String playerStep) {
+        String output = "O";
+        if (playerStep.length() > 1) {
+            output = "X";
+        }
+        return output;
+    }
+
+    public void SplitBridgeToUpBridge(List<String> upBridgeMap, List<String> downBridgeMap, String playerStep) {
+        if (playerStep.charAt(playerStep.length() - 1) == 'U') {
+            upBridgeMap.add(changeFailToX(playerStep));
+            downBridgeMap.add(" ");
+        }
+    }
+
+    public void SplitBridgeToDownBridge(List<String> upBridgeMap, List<String> downBridgeMap, String playerStep) {
+        if (playerStep.charAt(playerStep.length() - 1) == 'D') {
+            upBridgeMap.add(" ");
+            downBridgeMap.add(changeFailToX(playerStep));
+        }
+    }
+
+
+    public void splitMap(List<String> upBridgeMap, List<String> downBridgeMap, String playerStep) {
+        SplitBridgeToUpBridge(upBridgeMap, downBridgeMap, playerStep);
+        SplitBridgeToDownBridge(upBridgeMap, downBridgeMap, playerStep);
+    }
+
+    private void printMap(List<String> upBridgeMap, List<String> downBridgeMap) {
+        System.out.println("[ " + String.join(" | ", upBridgeMap) + " ]");
+        System.out.println("[ " + String.join(" | ", downBridgeMap) + " ]");
+    }
+
+    public void constructMap(List<String> playerMap) {
+        List<String> upBridgeMap = new ArrayList<>();
+        List<String> downBridgeMap = new ArrayList<>();
+        for (String playerStep : playerMap) {
+            splitMap(upBridgeMap, downBridgeMap, playerStep);
+        }
+        printMap(upBridgeMap, downBridgeMap);
     }
 
     /**
@@ -18,6 +60,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    private void showSuccessOrNot(boolean isSuccess) {
+        if (isSuccess) {
+            System.out.println("\n게임 성공 여부: 성공");
+            return;
+        }
+        System.out.println("\n게임 성공 여부: 실패");
+    }
+
+    public void printResult(List<String> playerMap, boolean isSuccess, int numberOfAttempts) {
+        System.out.println("\n최종 게임 결과");
+        constructMap(playerMap);
+        showSuccessOrNot(isSuccess);
+        System.out.println("총 시도한 횟수: " + numberOfAttempts);
     }
 }
