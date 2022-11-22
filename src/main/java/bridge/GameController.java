@@ -15,7 +15,7 @@ public class GameController {
             BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
             while(bridgeGame.keepGoing()) {
                 bridgeGame.move(inputView.readMoving());
-                outputView.printMap(bridgeGame.getBridge(), bridgeGame.getPlayerCommand());
+                outputView.printMap(bridgeGame);
                 bridgeGame.setStatus(bridgeGame.calculateStatus());
                 if(bridgeGame.getStatus().equals("실패")||bridgeGame.getStatus().equals("성공")){
                     bridgeGame.setNumberOfTry(bridgeGame.getNumberOfTry()+1);
