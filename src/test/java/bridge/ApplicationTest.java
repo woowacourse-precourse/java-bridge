@@ -3,11 +3,17 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import bridge.exception.Exception;
+import bridge.utils.Validator;
 
 class ApplicationTest extends NsTest {
 
@@ -46,6 +52,31 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @DisplayName("입력 값에 문자가 포함되어 있을 시 예외를 발생시킨다.")
+    @Test
+    void 문자_테스트(){
+        assertThatThrownBy(() -> Exception.checkString("1004j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @DisplayName("입력 받은 문자열이 U혹은 D가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void 문자_테스트_UD예외(){
+        String input = "Q";
+        assertThatThrownBy(() -> Exception.checkMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 문자열이 R혹은 Q가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void 문자_테스트_RQ예외(){
+        String input = "D";
+        assertThatThrownBy(() -> Exception.checkRestartOrQuit(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
     @Override
     protected void runMain() {
