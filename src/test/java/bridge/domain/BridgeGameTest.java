@@ -69,7 +69,7 @@ class BridgeGameTest {
     @MethodSource
     void move(int round, BridgeMove move, boolean moved) {
         assertThat(game.move(round, move)).isEqualTo(moved);
-        assertThat(game.getBridgeGameTrialResult(1).getTotalRound()).isEqualTo(round);
+        assertThat(game.getResult().getTrialResult(1).getTotalRound()).isEqualTo(round);
     }
 
     private static Stream<Arguments> move() {
@@ -84,9 +84,9 @@ class BridgeGameTest {
     void crossTheBridge() {
         List<BridgeMove> moves = List.of(BridgeMove.DOWN, BridgeMove.UP, BridgeMove.UP, BridgeMove.UP, BridgeMove.DOWN);
         for (int round = 1; round <= moves.size(); round++) {
-            assertThat(game.move(round, moves.get(round-1))).isTrue();
+            assertThat(game.move(round, moves.get(round - 1))).isTrue();
         }
-        assertThat(game.getBridgeGameTrialResult(1).didCrossedBridge(game.getLength())).isTrue();
+        assertThat(game.getResult().getTrialResult(1).didCrossedBridge(game.getLength())).isTrue();
     }
 
     private static Stream<Arguments> corssTheBridge() {
@@ -102,9 +102,9 @@ class BridgeGameTest {
     @Test
     @DisplayName("새로운 시도를 시작한다")
     void retry() {
-        int totalTrialbeforeRetry = game.getBridgeGameResult().getTotalTrial();
+        int totalTrialbeforeRetry = game.getResult().getTotalTrial();
         game.retry();
-        int totalTrialAfterRetry = game.getBridgeGameResult().getTotalTrial();
+        int totalTrialAfterRetry = game.getResult().getTotalTrial();
         assertThat(totalTrialAfterRetry).isEqualTo(totalTrialbeforeRetry + 1);
     }
 }
