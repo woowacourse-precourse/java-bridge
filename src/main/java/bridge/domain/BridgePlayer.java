@@ -10,8 +10,8 @@ public class BridgePlayer {
         currentBridgePosition+=BridgeMove.GO_STEP;
     }
 
-    public void goBack(){
-        currentBridgePosition-=BridgeMove.BACK_STEP;
+    public void initializePlayerPosition(){
+        this.currentBridgePosition = BridgeMove.START_INDEX;
     }
 
     public void increaseAttemptCount(){
