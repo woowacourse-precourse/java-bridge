@@ -92,7 +92,10 @@ public class BridgeGameStarter {
 
     public void run() {
         initialize();
-        if (proceed()) return;
+        if (proceed()) {
+            closeGame();
+            return;
+        }
         askToRetry();
         while (gameStatusFlag.get("retryFlag")) {
             reInitialize();
