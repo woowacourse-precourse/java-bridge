@@ -22,13 +22,17 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
-            int n = bridgeNumberGenerator.generate();
-            bridge.add(getDirection(n));
+            int n = createRandomNumber();
+            bridge.add(getBridgeSide(n));
         }
         return bridge;
     }
 
-    public String getDirection(int number) {
+    public int createRandomNumber() {
+        return bridgeNumberGenerator.generate();
+    }
+
+    public String getBridgeSide(int number) {
         return BridgeChoice.fromNumber(number)
                 .getSide();
     }
