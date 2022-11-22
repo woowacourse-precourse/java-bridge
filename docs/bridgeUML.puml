@@ -1,0 +1,126 @@
+@startuml
+
+class ExceptionHandler
+class BridgeGame
+class BridgeController
+class BridgeMaker
+class BridgeNumberGenerator
+class BridgeRandomNumberGenerator
+class InputView
+class OutputView
+class Application
+
+
+BridgeController -up-> BridgeGame
+
+BridgeController -up-> BridgeView
+BridgeController -right-|> BridgeMaker
+
+
+BridgeView -up-> OutputView
+BridgeView -up-> InputView
+
+BridgeRandomNumberGenerator .up.|> BridgeNumberGenerator
+BridgeMaker -up-> BridgeRandomNumberGenerator
+
+Application -right-> BridgeController
+ExceptionHandler .right.> BridgeView
+BridgeController .up.> ExceptionHandler
+BridgeView .right.> BridgeGame
+
+
+class Application{
+    - ExceptionHandler
+    - bridgeController
+    + init()
+    + play()
+    + main()
+}
+
+class BridgeGame{
+    - bridge
+    - step
+    - playTime
+    + history()
+    + playTime()
+    + move()
+    + retry()
+    + buildBridge()
+    + isLastState()
+    + isLastGlass()
+    + updateMap()
+    + drawMap()
+    + drawResult()
+    + BridgeGame()
+}
+
+class BridgeController{
+    - bridgeGame
+    - bridgeView
+
+    - getSize()
+    - getMove()
+    - getCommand()
+    - quitGame()
+    - retryGame()
+    - dead()
+    # makeBridge()
+    + initGame()
+    + playGame()
+    + BridgeController()
+}
+
+class BridgeMaker{
+    - bridgeNumberGenerator
+    # makeBridge()
+    # BridgeMaker()
+}
+
+interface BridgeNumberGenerator <<interface>>{
+    + generate()
+}
+
+class BridgeRandomNumberGenerator{
+    - RANDOM_LOWER_INCLUSIVE
+    - RANDOM_UPPER_INCLUSIVE
+    + generate()
+}
+
+class BridgeView{
+    - inputView
+    - outputView
+    + sizeIO()
+    + moveIO()
+    + commandIO()
+    + printMap()
+    + printStartMessage()
+    + printResult()
+    + printErrorMessage()
+}
+
+class InputView{
+    + readBridgeSize()
+    + readMoving()
+    + readGameCommand()
+}
+
+class OutputView{
+    + printMap()
+    + printResult()
+    + printStartMessage()
+    + printSizeMessage()
+    + printMoveMessage()
+    + printCommandMessage()
+    + printErrorMessage()
+}
+
+class ExceptionHandler{
+    + validBridgeSize()
+    + validMoving()
+    + validGameCommand()
+    + excParseInt()
+}
+
+
+
+@enduml
