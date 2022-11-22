@@ -1,11 +1,8 @@
 package bridge.UI;
 
-import static bridge.Constants.StandardTools.FAILED;
-import static bridge.Constants.StandardTools.SUCCEED;
-
 import bridge.Constants.FrontMan;
 import bridge.Constants.StandardTools;
-import bridge.Database.BridgeData;
+import bridge.Constants.StandardTools.GameStatus;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,19 +11,15 @@ import java.util.Objects;
  */
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap(BridgeData bridgeData) {
-        printUpperBridge(bridgeData.getBridgeDesignByUser(), bridgeData.getBridge());
-        printLowerBridge(bridgeData.getBridgeDesignByUser(), bridgeData.getBridge());
+    public void printMap(List<String> bridgeDesignByUser, List<String> bridge) {
+        System.out.print(StandardTools.BRIDGE_HEAD);
+        printUpperBridge(bridgeDesignByUser, bridge);
+        System.out.print(StandardTools.BRIDGE_HEAD);
+        printLowerBridge(bridgeDesignByUser, bridge);
         System.out.println();
     }
 
     private void printUpperBridge(List<String> bridgeDesignByUser, List<String> bridgeDesign) {
-        System.out.print(StandardTools.BRIDGE_HEAD);
         for (int i = 0; i < bridgeDesignByUser.size() - 1; i++) {
             if (Objects.equals(bridgeDesignByUser.get(i), "U")) {
                 System.out.print(" O |");
@@ -53,7 +46,6 @@ public class OutputView {
     }
 
     private void printLowerBridge(List<String> bridgeDesignByUser, List<String> bridgeDesign) {
-        System.out.print(StandardTools.BRIDGE_HEAD);
         for (int i = 0; i < bridgeDesignByUser.size() - 1; i++) {
             if (Objects.equals(bridgeDesignByUser.get(i), "D")) {
                 System.out.print(" O |");
@@ -79,15 +71,24 @@ public class OutputView {
         }
     }
 
-    public void printResult(BridgeData bridgeData, boolean isSucceedOrFail) {
-        System.out.println("\n" + FrontMan.FINAL_GAME_RESULT);
-        printMap(bridgeData);
-        if (isSucceedOrFail == SUCCEED) {
+    public void printResult(GameStatus gameStatus, int totalAttempt) {
+        if (gameStatus == GameStatus.SUCCEED) {
             System.out.println(FrontMan.SUCCEED_OR_FAIL + "성공");
         }
-        if (isSucceedOrFail == FAILED) {
+        if (gameStatus == GameStatus.QUIT) {
             System.out.println(FrontMan.SUCCEED_OR_FAIL + "실패");
         }
-        System.out.println(FrontMan.TOTAL_NUMBER_OF_ATTEMPT + bridgeData.getTotalAttempt());
+        System.out.println(FrontMan.TOTAL_NUMBER_OF_ATTEMPT + totalAttempt);
+    }
+
+    public void printGameStatus(List<String> bridgeDesignByUser, List<String> bridge,
+            GameStatus gameStatus) {
+        if (gameStatus == GameStatus.PROGRESSING || gameStatus == GameStatus.SUCCEED) {
+            printMap(bridgeDesignByUser, bridge);
+        }
+        if (gameStatus == GameStatus.QUIT || gameStatus == GameStatus.SUCCEED) {
+            System.out.println(FrontMan.FINAL_GAME_RESULT);
+            printMap(bridgeDesignByUser, bridge);
+        }
     }
 }

@@ -1,11 +1,12 @@
 package bridge.Database;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeData {
 
     private List<String> bridge;
-    private List<String> bridgeDesignByUser;
+    private List<String> bridgeDesignByUser = new ArrayList<>();
     private int totalAttempt;
 
     public void setBridge(List<String> bridge) {
@@ -13,11 +14,11 @@ public class BridgeData {
     }
 
     public List<String> getBridge() {
-        return this.bridge;
+        return List.copyOf(this.bridge);
     }
 
     public List<String> getBridgeDesignByUser() {
-        return this.bridgeDesignByUser;
+        return List.copyOf(this.bridgeDesignByUser);
     }
 
     public int getTotalAttempt() {
@@ -32,7 +33,15 @@ public class BridgeData {
         this.totalAttempt = 1;
     }
 
-    public void updateBridgeDesignByUser(List<String> bridgeDesignByUser) {
-        this.bridgeDesignByUser = bridgeDesignByUser;
+    public void initializeBridgeDesignByUser() {
+        this.bridgeDesignByUser = new ArrayList<>();
+    }
+
+    public void addBridgeDesignByUser(String nextStep) {
+        this.bridgeDesignByUser.add(nextStep);
+    }
+
+    public void markFailedPointOnBridgeDesignByUser(int indexOfFailedPoint) {
+        this.bridgeDesignByUser.set(indexOfFailedPoint, "X");
     }
 }

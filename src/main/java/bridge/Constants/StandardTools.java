@@ -6,10 +6,8 @@ public class StandardTools {
     public static final String ONLY_NUMBER = "^[0-9]*$";
     public static final int UP_SIDE = 1;
     public static final String BRIDGE_HEAD = "[";
-    public static final boolean FAILED = false;
-    public static final boolean SUCCEED = true;
 
-    public enum retry {
-        RETRY, QUIT
+    public enum GameStatus {
+        PROGRESSING, SUCCEED, FAILED, RETRY, QUIT
     }
 }

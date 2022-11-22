@@ -1,19 +1,21 @@
 package bridge;
 
-import static bridge.Constants.StandardTools.SUCCEED;
-
-import bridge.Constants.StandardTools.retry;
+import bridge.Constants.StandardTools.GameStatus;
 import bridge.Domain.BridgeGame;
+import bridge.UI.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
         BridgeGame game = new BridgeGame();
-        game.gameStart();
-        while (game.getRetryOrQuit() == retry.RETRY || (game.getIsGameSucceed() != SUCCEED
-                && !game.getIsGameFinished())) {
+        OutputView outputView = new OutputView();
+        while (game.getGameStatus() == GameStatus.PROGRESSING
+                || game.getGameStatus() == GameStatus.RETRY) {
             game.move();
+            outputView.printGameStatus(game.bridgeData.getBridgeDesignByUser(),
+                    game.bridgeData.getBridge(), game.getGameStatus());
         }
+        outputView.printResult(game.getGameStatus(), game.bridgeData.getTotalAttempt());
     }
 
 }
