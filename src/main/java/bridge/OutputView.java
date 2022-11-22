@@ -18,37 +18,37 @@ public class OutputView {
 
         for(int i = 0; i < currentStep - 1; i++) {
             if(bridge.get(i).equals("U")) {
-                firstLayer += "   |";
-                secondLayer += " O |";
+                firstLayer += " O |";
+                secondLayer += "   |";
                 continue;
             }
-            firstLayer += " O |";
-            secondLayer += "   |";
+            firstLayer += "   |";
+            secondLayer += " O |";
         }
 
         if(die) {
             if(bridge.get(currentStep - 1).equals("U")) {
-                firstLayer += " X ]";
-                secondLayer += "   ]";
+                firstLayer += "   ]";
+                secondLayer += " X ]";
 
                 return firstLayer + "\n" + secondLayer +"\n";
             }
 
-            firstLayer += "   ]";
-            secondLayer += " X ]";
+            firstLayer += " X ]";
+            secondLayer += "   ]";
 
             return firstLayer + "\n" + secondLayer +"\n";
         }
 
         if(bridge.get(currentStep - 1).equals("U")) {
-            firstLayer += "   ]";
-            secondLayer += " O ]";
+            firstLayer += " O ]";
+            secondLayer += "   ]";
 
             return firstLayer + "\n" + secondLayer +"\n";
         }
 
-        firstLayer += " O ]";
-        secondLayer += "   ]";
+        firstLayer += "   ]";
+        secondLayer += " O ]";
 
         return firstLayer + "\n" + secondLayer +"\n";
     }

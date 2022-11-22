@@ -30,5 +30,4 @@ public class BridgeView {
         return inputView.readGameCommand();
     }
 
-
 }

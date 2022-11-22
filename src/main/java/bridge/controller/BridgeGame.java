@@ -57,10 +57,10 @@ public class BridgeGame {
         user.moveNextBridge();
 
         if(user.getNextStep().equals(bridgeNumber.get(user.getCurrentBridge() - 1))) {
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**

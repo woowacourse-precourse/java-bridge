@@ -44,6 +44,7 @@ public class Application {
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            //bridgeGame.printResult(false, epoch);
         }
     }
 }
