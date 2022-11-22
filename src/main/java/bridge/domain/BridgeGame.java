@@ -1,5 +1,7 @@
-package bridge;
+package bridge.domain;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.enums.MoveResult;
 
 import java.util.ArrayList;
