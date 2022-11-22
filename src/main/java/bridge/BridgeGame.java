@@ -5,6 +5,15 @@ package bridge;
  */
 public class BridgeGame {
 
+    private final List<String> Bridge ;
+    private static List<String>Progress1 = new ArrayList<>();
+    private static List<String>Progress2 = new ArrayList<>();
+
+
+    BridgeGame(List<String> Bridge) {
+        this.Bridge = Bridge;
+
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
