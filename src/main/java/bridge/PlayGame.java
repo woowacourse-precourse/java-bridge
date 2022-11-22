@@ -18,7 +18,6 @@ public class PlayGame {
     int roundCnt = 0;
     String success;
 
-
     public void play() {
         start();
         while (startGame) {

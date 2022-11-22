@@ -16,7 +16,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Map<Integer,String> printMap(List<String> bridgeU, List<String> bridgeD) {
+    public Map<Integer, String> printMap(List<String> bridgeU, List<String> bridgeD) {
         Map<Integer, String> map = new HashMap<>();
         String str_BridgeU = str_BridgeUD(bridgeU);
         String str_BridgeD = str_BridgeUD(bridgeD);
@@ -24,8 +24,8 @@ public class OutputView {
         String replace_BridgeD = bridgeReplace(str_BridgeD);
         System.out.println(replace_BridgeU);
         System.out.println(replace_BridgeD);
-        map.put(0,replace_BridgeU);
-        map.put(1,replace_BridgeD);
+        map.put(0, replace_BridgeU);
+        map.put(1, replace_BridgeD);
         return map;
     }
 
@@ -41,13 +41,12 @@ public class OutputView {
         return bridgeRe;
     }
 
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String success ,int cnt) {
+    public void printResult(String success, int cnt) {
         OutputForm.FINISH_MESSAGE.printMessage();
         printMap(BridgeGame.bridgeU, BridgeGame.bridgeD);
         OutputForm.END_MESSAGE.finishMessage(success);
