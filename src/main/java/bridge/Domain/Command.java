@@ -3,7 +3,7 @@ package bridge.Domain;
 import bridge.Controller.Validation;
 
 public class Command {
-    String command;
+    private String command;
 
     public Command(String command){
         Validation.validateGameCommand(command);
