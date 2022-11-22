@@ -8,6 +8,10 @@
 - [X] 결과 bridge 저장
 - [X] `isEquals()`: Position과 bridge의 index value가 일치하는지 검증
 
+### BridgeIndex
+- [X] bridge index 저장
+- [X] `increment()`: bridge index 증가
+
 ### BridgeGame
 - [ ] `move()`: 사용자가 칸을 이동
 - [ ] `retry()`: 사용자가 게임을 다시 시도
