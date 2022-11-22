@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public void Downbridge(List<String> bridge, List<Integer> position_map, String moving) {
-        for(int i = 0; i <= position_map.indexOf(1); i++) {
+        for(int i = 0; i < position_map.indexOf(1); i++) {
             if(bridge.get(i).equals("D")) {
                 System.out.print(" O |");
             }
