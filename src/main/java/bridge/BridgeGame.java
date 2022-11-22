@@ -12,6 +12,7 @@ public class BridgeGame {
     private int position;
     private InputView inputView;
     private OutputView outputView;
+    private int tryCnt;
 
 
     public BridgeGame(List<String> bridge) {
@@ -19,6 +20,8 @@ public class BridgeGame {
         this.position = 0;
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.tryCnt = 1;
+
     }
 
     public void start() {
@@ -27,10 +30,14 @@ public class BridgeGame {
         while (!isSuccessGame()) {
             move();
         }
+        exit();
+
     }
 
     private boolean isSuccessGame() {
+
         return position == bridge.size();
+
     }
 
     /**
@@ -43,12 +50,32 @@ public class BridgeGame {
         boolean isPass = isPassBridge(moving);
         outputView.printMap(bridge, position, isPass);
         if (!isPassBridge(moving)) {
+            notPassGame();
             return;
         }
+        passGame();
+
     }
 
     private boolean isPassBridge(String moving) {
         return bridge.get(position).equals(moving);
+    }
+
+    private void passGame() {
+        position++;
+    }
+
+    private void notPassGame() {
+
+        String input = inputView.readGameCommand();
+        if (input.equals("R")) {
+            retry();
+            return;
+        }
+        if (input.equals("Q")) {
+            exit();
+            return;
+        }
     }
 
 
@@ -58,5 +85,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        tryCnt++;
+        this.start();
+    }
+
+    public void exit() {
+
     }
 }
