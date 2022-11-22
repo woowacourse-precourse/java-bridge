@@ -32,4 +32,11 @@ public class InputTest {
         assertThatThrownBy(() -> InputException.validateInputLength(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("다리생성입력_숫자범위_성공")
+    @ValueSource(strings = {"5", "12", "19"})
+    @ParameterizedTest()
+    void 다리생성_입력_숫자범위_성공_테스트(String size) {
+        assertThatNoException().isThrownBy(() -> InputException.validateInputLength(size));
+    }
 }
