@@ -33,20 +33,26 @@ public class GameController {
     return inputView.readMoving();
   }
 
-  public boolean canCross(Direction bridgeDirection, Direction userDirection) {
-    return bridgeDirection.equals(userDirection);
-  }
 
   public List<Cross> move(Bridge bridge) {
     List<Cross> crossResult = new ArrayList<>();
     for (Direction bridgeDirection : bridge.getDirections()) {
       Direction userDirection = getMove();
-      crossResult.add(new Cross(userDirection, canCross(bridgeDirection, userDirection)));
+      addCrossResult(crossResult, bridgeDirection, userDirection);
+      outputView.printMap(crossResult);
       if (!canCross(bridgeDirection, userDirection)) {
         return crossResult;
       }
     }
     return crossResult;
+  }
+
+  public boolean canCross(Direction bridgeDirection, Direction userDirection) {
+    return bridgeDirection.equals(userDirection);
+  }
+
+  public void addCrossResult(List<Cross> crossResult, Direction bridgeDirection, Direction userDirection) {
+    crossResult.add(new Cross(userDirection, canCross(bridgeDirection, userDirection)));
   }
 
 }
