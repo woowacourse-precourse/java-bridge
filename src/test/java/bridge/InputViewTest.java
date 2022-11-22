@@ -34,6 +34,12 @@ class InputViewTest {
     void checkMoveInputNotUOrD(){
         assertThatThrownBy(() -> InputView.errorInputNotUOrD("a"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @DisplayName("재시작 또는 종료시 Q,R이 아닌 것을 입력시 예외처리")
+    @Test
+    void checkRetryInputNotROrQ(){
+        assertThatThrownBy(() -> InputView.errorInputNotUOrD("a"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
