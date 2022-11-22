@@ -31,12 +31,10 @@ public class Result {
         String ret = "";
         for (int i = 0; i < size; i++) {
             if (notCorrectPosition(correct, input.get(i))) {
-                ret += printBlank(size, i);
+                ret += printBlank() + printBar(size, i);
+                continue;
             }
-            else {
-                ret += printOX(answer.get(i), map);
-                ret += printBar(size, i);
-            }
+            ret += printOX(answer.get(i), map) + printBar(size, i);
         }
         return ret;
     }
@@ -45,10 +43,8 @@ public class Result {
         return !a.equals(b);
     }
 
-    private String printBlank(int size, int i) {
-        String s = "   ";
-        s += printBar(size, i);
-        return s;
+    private String printBlank() {
+        return  "   ";
     }
 
     private String printOX(String s, Map<String, String> map) {
