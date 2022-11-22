@@ -238,7 +238,7 @@ class InputViewTest {
                 setSetIn(input);
                 // then
                 assertThatThrownBy(() ->
-                        inputView.readGameCommand());
+                        inputView.readRestartOption());
             }
 
             @Test
@@ -250,7 +250,7 @@ class InputViewTest {
                 setSetIn(input);
                 // then
                 assertThatThrownBy(() ->
-                        inputView.readGameCommand());
+                        inputView.readRestartOption());
             }
 
             @Test
@@ -262,7 +262,7 @@ class InputViewTest {
                 setSetIn(input);
                 // then
                 assertThatThrownBy(() ->
-                        inputView.readGameCommand());
+                        inputView.readRestartOption());
             }
         }
 
@@ -279,7 +279,7 @@ class InputViewTest {
                 setSetIn(input);
                 // then
                 assertThatThrownBy(() ->
-                        inputView.readGameCommand());
+                        inputView.readRestartOption());
             }
         }
 
@@ -294,7 +294,7 @@ class InputViewTest {
                 String input = "Q";
                 // when
                 setSetIn(input);
-                String result = inputView.readGameCommand();
+                String result = inputView.readRestartOption();
                 // then
                 assertThat(result).isEqualTo("Q");
             }
@@ -306,7 +306,7 @@ class InputViewTest {
                 String input = "q";
                 // when
                 setSetIn(input);
-                String result = inputView.readGameCommand();
+                String result = inputView.readRestartOption();
                 // then
                 assertThat(result).isEqualTo("Q");
             }
@@ -318,7 +318,7 @@ class InputViewTest {
                 String input = "R";
                 // when
                 setSetIn(input);
-                String result = inputView.readGameCommand();
+                String result = inputView.readRestartOption();
                 // then
                 assertThat(result).isEqualTo("R");
             }
@@ -330,7 +330,7 @@ class InputViewTest {
                 String input = "r";
                 // when
                 setSetIn(input);
-                String result = inputView.readGameCommand();
+                String result = inputView.readRestartOption();
                 // then
                 assertThat(result).isEqualTo("R");
             }
