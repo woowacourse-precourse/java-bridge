@@ -2,10 +2,10 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
+import bridge.domain.status.GameStatus;
 import bridge.domain.user.MoveType;
 import bridge.domain.user.User;
-import bridge.domain.user.UserStatus;
+import bridge.domain.status.UserStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,10 +14,12 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final User user;
+    private GameStatus gameStatus;
 
     public BridgeGame(int size) {
         bridge = initBridge(size);
         user = new User();
+        gameStatus = GameStatus.PROCEED;
     }
 
     public Bridge initBridge(int size) {
@@ -41,5 +43,13 @@ public class BridgeGame {
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
     public void retry() {
+    }
+
+    public boolean checkGameSatus(GameStatus status) {
+        return gameStatus.checkGameStatus(status);
+    }
+
+    public void changeGameStatus(GameStatus status) {
+        gameStatus = status;
     }
 }
