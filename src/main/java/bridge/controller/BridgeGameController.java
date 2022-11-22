@@ -14,6 +14,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class BridgeGameController {
 
+    private static final String SUCCESS = "성공";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+
     private InputView inputView;
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
@@ -46,7 +50,7 @@ public class BridgeGameController {
 
     private void ifGoThroughTheBridge() {
         if (copyBridge.getBridge().size() == 0) {
-            gameStatus.gameResult = "성공";
+            gameStatus.gameResult = SUCCESS;
             isFinish = false;
         }
     }
@@ -57,17 +61,17 @@ public class BridgeGameController {
     }
 
     private void ifWantToQuitTheGame(String retry) {
-        if (retry.equals("Q")) {
+        if (retry.equals(QUIT)) {
             isFinish = false;
         }
     }
 
     private String askToRetryIfFailed(boolean check) {
-        String retry = "R";
+        String retry = RETRY;
         if (!check) {
             retry = getWhetherToRetry();
 
-            if (retry.equals("R")) {
+            if (retry.equals(RETRY)) {
                 bridgeGame.retry(gameStatus);
                 copyBridge = new Bridge(bridge.copyBridge()); // Call by value, Call by reference
             }

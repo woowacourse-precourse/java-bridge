@@ -1,33 +1,32 @@
 package bridge.view;
 
+import bridge.constant.InGameMessage;
 import bridge.domain.GameStatus;
 import java.util.List;
 
 public class OutputView {
 
-    private static final String BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String START = "다리 건너기 게임을 시작합니다.";
-    private static final String SPACE_TO_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String WHETHER_TO_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String BRIDGE_DIVISION = " | ";
+    private static final String OUTPUT_FORM = "[ %s ]\n";
 
     public void printMap(GameStatus gameStatus) {
-        System.out.printf("[ %s ]\n", bridgeToMap(gameStatus.topBridge));
-        System.out.printf("[ %s ]\n", bridgeToMap(gameStatus.bottomBridge));
+        System.out.printf(OUTPUT_FORM, bridgeToMap(gameStatus.topBridge));
+        System.out.printf(OUTPUT_FORM, bridgeToMap(gameStatus.bottomBridge));
     }
 
     public void printResult(GameStatus gameStatus) {
-        System.out.println("최종 게임 결과");
+        System.out.println(InGameMessage.FINAL_GAME_RESULT);
         printMap(gameStatus);
-        System.out.printf("게임 성공 여부: %s\n", gameStatus.gameResult);
-        System.out.printf("총 시도한 횟수: %d", gameStatus.tryCount);
+        System.out.println(InGameMessage.WHETHER_GAME_IS_SUCCESSFUL + gameStatus.gameResult);
+        System.out.println(InGameMessage.TOTAL_TRY_COUNT + Integer.toString(gameStatus.tryCount));
     }
 
     public String bridgeToMap(List<String> bridge) {
         String str = "";
 
-        for (int i = 0; i < bridge.size()-1; i++) {
+        for (int i = 0; i < bridge.size() - 1; i++) {
             str += bridge.get(i);
-            str += " | ";
+            str += BRIDGE_DIVISION;
         }
 
         str += bridge.get(bridge.size() - 1);
@@ -35,18 +34,18 @@ public class OutputView {
     }
 
     public void askBridgeSize() {
-        System.out.println(BRIDGE_SIZE);
+        System.out.println(InGameMessage.BRIDGE_SIZE);
     }
 
     public void printStart() {
-        System.out.println(START);
+        System.out.println(InGameMessage.START);
     }
 
     public void askSpaceToMove() {
-        System.out.println(SPACE_TO_MOVE);
+        System.out.println(InGameMessage.SPACE_TO_MOVE);
     }
 
     public void askWhetherToRetry() {
-        System.out.println(WHETHER_TO_RETRY);
+        System.out.println(InGameMessage.WHETHER_TO_RETRY);
     }
 }

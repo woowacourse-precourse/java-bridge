@@ -5,6 +5,8 @@ import java.util.List;
 
 public class GameStatus {
 
+    private static final String FAILURE = "실패";
+
     public int tryCount;
     public String gameResult;
     public List<String> topBridge;
@@ -12,7 +14,7 @@ public class GameStatus {
 
     public GameStatus() {
         this.tryCount = 1;
-        this.gameResult = "실패";
+        this.gameResult = FAILURE;
         this.topBridge = new ArrayList<>();
         this.bottomBridge = new ArrayList<>();
     }

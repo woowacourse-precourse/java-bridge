@@ -3,10 +3,11 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
+
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final int RANDOM_UPPER_INCLUSIVE = 1;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -23,9 +24,9 @@ public class BridgeMaker {
     }
 
     public String changeNumToAlphabet(int number) {
-        if (number == 1) {
-            return "U";
+        if (number == RANDOM_UPPER_INCLUSIVE) {
+            return UP;
         }
-        return "D";
+        return DOWN;
     }
 }
