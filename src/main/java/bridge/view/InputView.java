@@ -18,7 +18,8 @@ public class InputView {
         String readLine = "";
         while (true) {
             System.out.println("다리의 길이를 입력해주세요.");
-            isDigit = validation.test(Console.readLine(), isDigit);
+            readLine = Console.readLine();
+            isDigit = validation.test(readLine, isDigit);
 
             if (isDigit) break;
         }
@@ -29,7 +30,6 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         return Console.readLine();
     }
 

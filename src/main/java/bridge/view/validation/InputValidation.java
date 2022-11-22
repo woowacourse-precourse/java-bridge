@@ -12,6 +12,15 @@ public class InputValidation {
         return isDigit;
     }
 
+    public boolean test1(String readLine, boolean isPositionType) {
+        try {
+            isPositionType = isDigits(readLine);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return isPositionType;
+    }
+
     public boolean isDigits(String readLine) {
         if (!readLine.chars().allMatch(Character::isDigit) || readLine.chars().anyMatch(value -> value == ' ')) {
             throw new IllegalArgumentException("[ERROR] Bridge size is Exception !!");
