@@ -1,5 +1,9 @@
 package bridge.view;
 
+import static bridge.view.Delimiter.closeBracket;
+import static bridge.view.Delimiter.joinWithVerticalLine;
+import static bridge.view.Delimiter.openBracket;
+
 import bridge.dto.BridgeResponseDto;
 import java.util.List;
 
@@ -12,24 +16,24 @@ public class OutputView {
     public static final String INPUT_SIZE = "다리의 길이를 입력해주세요.";
     public static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String INPUT_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-
     public static final String GAME_RESULT = "최종 게임 결과";
+    public static final String SUCCESS_RESULT = "게임 성공 여부: ";
+    public static final String TRY_COUNT = "총 시도한 횟수: ";
 
     public void printMap(BridgeResponseDto bridgeResponseDto) {
-        List<String> upsideBridge = bridgeResponseDto.getUpsideBridge();
-        List<String> downsideBridge = bridgeResponseDto.getDownsideBridge();
-
-        System.out.println(upsideBridge);
-        System.out.println(downsideBridge);
+        printWithLine(convert(bridgeResponseDto.getUpsideBridge()));
+        printWithLine(convert(bridgeResponseDto.getDownsideBridge()));
     }
 
-    public void printResult(int round, boolean isSuccess) {
-        System.out.println("게임 성공 여부 :" + isSuccess); // 게임 성공여부에 대한 String
-        System.out.println("총 시도한 횟수 :" + round);
+    public void printResult(int tryCount, String result) {
+        printWithLine(SUCCESS_RESULT + result);
+        printWithLine(TRY_COUNT + tryCount);
     }
 
-    public void print(String message){
-        System.out.print(message);
+    private String convert(List<String> bridge){
+        String sentence = "";
+        sentence += openBracket(sentence) + joinWithVerticalLine(bridge) + closeBracket(sentence);
+        return sentence;
     }
 
     public void printWithLine(String message){
