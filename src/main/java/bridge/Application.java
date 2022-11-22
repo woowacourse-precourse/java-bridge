@@ -10,8 +10,13 @@ public class Application {
     public static void main(String[] args) {
         BridgeGame bridgeGame = new BridgeGame(new GameService(), new BridgeService(), new RoundService());
         bridgeGame.start();
-        if (!bridgeGame.move()) {
-            bridgeGame.retry();
+        boolean status = true;
+        while (status) {
+            if (!bridgeGame.move()) {
+                status = bridgeGame.retry();
+                continue;
+            }
+            status = false;
         }
     }
 }

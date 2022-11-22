@@ -9,6 +9,10 @@ import java.util.ArrayList;
 public class RoundService {
     private Round round = new Round(new ArrayList<>());
 
+    public void initializeRound() {
+        round = new Round(new ArrayList<>());
+    }
+
     public void getMoving() {
         while (true) {
             try {

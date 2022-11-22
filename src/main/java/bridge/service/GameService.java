@@ -12,12 +12,11 @@ public class GameService {
         game = new Game(1);
     }
 
-    public void pauseGame() {
+    public String pauseGame() {
         while (true) {
             try {
                 OutputView.messageRetryInput();
-                InputView.readGameCommand();
-                break;
+                return InputView.readGameCommand();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
