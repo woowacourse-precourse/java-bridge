@@ -38,4 +38,12 @@ public class BridgeGame {
         return bridgeGameState.currentSize().equals(bridgeGameState.bridgeSize())
                 && bridgeGameState.getMatched(bridgeGameState.currentSize() - 1);
     }
+
+    public boolean isEnded() {
+        if (bridgeGameState.currentSize() == 0) {
+            return false;
+        }
+        return !bridgeGameState.getMatched(bridgeGameState.currentSize() - 1) || bridgeGameState.currentSize()
+                .equals(bridgeGameState.bridgeSize());
+    }
 }
