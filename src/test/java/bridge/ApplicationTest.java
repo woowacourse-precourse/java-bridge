@@ -103,6 +103,12 @@ class ApplicationTest extends NsTest {
 		assertThat(true).isEqualTo(bridgeGame.retry("R"));
 	}
 
+	@Test
+	void retry_Q_기능_테스트() {
+		BridgeGame bridgeGame = new BridgeGame();
+		assertThat(false).isEqualTo(bridgeGame.retry("Q"));
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
