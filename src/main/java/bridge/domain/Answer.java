@@ -18,8 +18,7 @@ public enum Answer {
         return Arrays.stream(Answer.values())
                 .filter(answer -> answer.isCorrect == isCorrect)
                 .findAny()
-                //TODO : 예외 처리 수정
-                .orElseThrow();
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public boolean isCorrect() {
