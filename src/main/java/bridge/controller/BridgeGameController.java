@@ -8,6 +8,7 @@ import bridge.domain.GameStatus;
 import bridge.validator.BridgeLengthValidator;
 import bridge.validator.RetryInputValidator;
 import bridge.validator.SpaceToMoveValidator;
+import bridge.validator.TryCountValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -71,6 +72,7 @@ public class BridgeGameController {
             retry = getWhetherToRetryUntilQualifiedInput();
             if (retry.equals(RETRY)) {
                 bridgeGame.retry(gameStatus);
+                TryCountValidator.validateTryCount(gameStatus.getTryCount());
                 copyBridge = new Bridge(bridge.copyBridge());
             }
         }
