@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.domain.bridge.BridgeBlock;
-import bridge.resource.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -32,19 +30,5 @@ public class InputView {
 
     private String getInput() {
         return Console.readLine();
-    }
-
-    private void validateNumeric(String size) {
-        try {
-            Integer.parseInt(size);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_OR_NUMBER_OUT_OF_RANGE_MESSAGE.getValue());
-        }
-    }
-
-    private void validateSize(int size) {
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_BETWEEN_3_AND_20_MESSAGE.getValue());
-        }
     }
 }

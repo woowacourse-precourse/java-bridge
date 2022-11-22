@@ -13,10 +13,12 @@ import java.util.List;
 public class BridgeGame {
 
     private int location;
+    private int attempt;
     CrossingResult crossingResult;
     Bridge bridge;
 
     public BridgeGame(Bridge bridge) {
+        this.attempt = 1;
         this.location = 0;
         this.crossingResult = new CrossingResult();
         this.bridge = bridge;
@@ -31,11 +33,11 @@ public class BridgeGame {
         validateBlock(input);
 
         if (bridge.isSameBlock(location, input)) {
-            crossingResult.add(CrossOver.SUCCESS, input);
+            crossingResult.add(Crossing.SUCCESS, input);
             location++;
             return true;
         }
-        crossingResult.add(CrossOver.FAIL, input);
+        crossingResult.add(Crossing.FAIL, input);
         return false;
     }
 
@@ -47,10 +49,14 @@ public class BridgeGame {
     public boolean retry(String input) {
         validateRetry(input);
 
-        location = 0;
-        this.crossingResult = new CrossingResult();
+        boolean isRetry = input.equals(Retry.RETRY.value);
+        if (isRetry) {
+            location = 0;
+            this.crossingResult = new CrossingResult();
+        }
+        attempt++;
 
-        return input.equals(Retry.RETRY.value);
+        return isRetry;
     }
 
     private void validateRetry(String input) {
@@ -71,7 +77,20 @@ public class BridgeGame {
         return crossingResult.toString();
     }
 
+    public int getAttempt() {
+        return attempt;
+    }
+
+    public String isFail() {
+        if (crossingResult.isFail()) {
+            return Crossing.FAIL.success;
+        }
+        return Crossing.SUCCESS.success;
+    }
+
     static class CrossingResult {
+
+        private static final String BLANK = " ";
 
         private final List<String> upside;
         private final List<String> downside;
@@ -81,19 +100,22 @@ public class BridgeGame {
             downside = new ArrayList<>();
         }
 
-        private void add(CrossOver crossOver, String block) {
+        private void add(Crossing crossing, String block) {
             if (block.equals(BridgeBlock.UP.getDirection())) {
-                upside.add(crossOver.value);
-                downside.add(" ");
+                addCrossOverAndBlank(crossing, upside, downside);
                 return;
             }
-            upside.add(" ");
-            downside.add(crossOver.value);
+            addCrossOverAndBlank(crossing, downside, upside);
+        }
+
+        private void addCrossOverAndBlank(Crossing crossing, List<String> crossingSide, List<String> blankSide) {
+            crossingSide.add(crossing.value);
+            blankSide.add(BLANK);
         }
 
         private boolean isFail() {
-            return upside.get(upside.size() - 1).equals(CrossOver.FAIL.value) &&
-                    downside.get(downside.size() - 1).equals(CrossOver.FAIL.value);
+            return upside.get(upside.size() - 1).equals(Crossing.FAIL.value) ||
+                    downside.get(downside.size() - 1).equals(Crossing.FAIL.value);
         }
 
         @Override

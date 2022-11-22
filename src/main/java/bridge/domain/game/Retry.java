@@ -4,7 +4,7 @@ public enum Retry {
     RETRY("R"),
     QUIT("Q");
 
-    String value;
+    final String value;
 
     Retry(String value) {
         this.value = value;

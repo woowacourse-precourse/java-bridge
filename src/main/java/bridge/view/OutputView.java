@@ -32,7 +32,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String result, String success, int attempt) {
+        System.out.println();
+        System.out.println(PrintMessage.FINAL_GAME_RESULT_MESSAGE.getValue());
+        System.out.println(result);
+
+        System.out.println();
+        System.out.printf(PrintMessage.SUCCESS_OR_NOT_MESSAGE.getValue() + "\n", success);
+        System.out.printf(PrintMessage.NUMBER_OF_ATTEMPTS.getValue() + "\n", attempt);
     }
 
     public static void printError(String errorMessage) {
