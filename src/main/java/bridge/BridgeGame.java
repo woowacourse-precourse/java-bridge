@@ -40,12 +40,12 @@ public class BridgeGame {
         return true;
     }
 
-    public boolean move(String playerInput) {
+    private boolean move(String playerInput) {
         player.add(playerInput);
         return bridge.get(player.size() - 1).equals(playerInput);
     }
 
-    public void resultToString(String playerInput, String result) {
+    private void resultToString(String playerInput, String result) {
         if (playerInput.equals("U")) {
             upResult += result;
             downResult += " ";
@@ -56,7 +56,7 @@ public class BridgeGame {
         }
     }
 
-    public boolean retry(String userInput) {
+    private boolean retry(String userInput) {
         return userInput.equals("R");
     }
 

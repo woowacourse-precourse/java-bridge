@@ -3,10 +3,10 @@ package bridge;
 import java.util.List;
 
 public class GameLauncher {
-    public InputView playerInput = new InputView();
-    public OutputView printer = new OutputView();
+    private InputView playerInput = new InputView();
+    private OutputView printer = new OutputView();
 
-    public List<String> bridgeManager() {
+    private List<String> bridgeManager() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(playerInput.readBridgeSize());
     }
