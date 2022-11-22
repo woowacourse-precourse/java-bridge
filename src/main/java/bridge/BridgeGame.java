@@ -48,7 +48,7 @@ public class BridgeGame {
     }
 
     public boolean isCorrectPath() {
-        return this.userPath.equals(this.bridge.get(userPosition));
+        return this.userPath.equals(this.bridge.get(this.userPosition));
     }
 
     public String getUserPath() {
