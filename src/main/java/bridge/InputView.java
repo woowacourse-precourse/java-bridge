@@ -52,4 +52,10 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
+
+    private void validateMoving(String moving) throws IllegalArgumentException {
+        if (!(moving.equals("U") || moving.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U와 D로 나타냅니다.");
+        }
+    }
 }
