@@ -17,6 +17,17 @@ public class BridgeGameManager {
         this.bridgeGame = bridgeGame;
     }
 
+    public void playGame() {
+        bridgeGame.startGameWithBridgeSizeAs(getBridgeSize());
+        BridgeGameState bridgeGameState = START;
+        while (bridgeGameState.isBridgeGameContinue()) {
+            bridgeGameState = handlePlayerMove();
+            outputView.printMap(bridgeGame.getGameHistory());
+            bridgeGameState = checkBridgeGameState(bridgeGameState);
+        }
+        outputView.printResult(bridgeGame.getGameHistory());
+    }
+
     private int getBridgeSize() {
         while (true) {
             try {
