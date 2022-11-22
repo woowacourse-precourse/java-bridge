@@ -9,11 +9,11 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static InputView instance = new InputView();
 
-    private InputView() {}
-
     public static InputView getInstance() {
         return instance;
     }
+
+    private InputView() {}
     /**
      * 다리의 길이를 입력받는다.
      */
