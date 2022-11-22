@@ -6,6 +6,10 @@ import java.util.List;
 
 public class OutputView {
 
+    public void printInit() {
+        System.out.println(GameMessage.OUTPUT_INIT_GAME);
+    }
+
     public void printMap(List<String> toStringBridges) {
         System.out.println(toStringBridges.get(0) + "\n" + toStringBridges.get(1) + "\n");
     }

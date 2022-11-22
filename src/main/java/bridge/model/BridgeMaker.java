@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.BridgeNumberGenerator;
 import bridge.model.constants.Command;
 import bridge.model.enumeration.ExceptionMessage;
 

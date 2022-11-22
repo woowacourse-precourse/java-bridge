@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.model.BridgeRandomNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.model.enumeration.ExceptionMessage;
@@ -14,7 +14,7 @@ public class BridgeController {
 
     public static List<List<String>> upAndDown = new ArrayList<>();
     private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
+    public static final OutputView outputView = new OutputView();
     private static BridgeGame bridgeGame = new BridgeGame();
     public int inputSize;
     private List<String> bridges;
@@ -35,10 +35,12 @@ public class BridgeController {
     }
 
     private int getBridgeSize() {
-        try {
-            return inputView.readBridgeSize();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_ONLY_NUMBER.getExceptionMessage());
+        while (true) {
+            try {
+                return inputView.readBridgeSize();
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_ONLY_NUMBER.getExceptionMessage());
+            }
         }
     }
 
