@@ -3,17 +3,20 @@ package view;
 import static camp.nextstep.edu.missionutils.Console.*;
 import static view.InputViewConstants.*;
 
-import validator.BridgeSizeValidator;
+import validator.BridgeSizeInputValidator;
+import validator.MovingInputValidator;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
-	private final BridgeSizeValidator bridgeSizeValidator;
+	private final BridgeSizeInputValidator bridgeSizeValidator;
+	private final MovingInputValidator movingInputValidator;
 
 	public InputView() {
-		this.bridgeSizeValidator = new BridgeSizeValidator();
+		this.bridgeSizeValidator = new BridgeSizeInputValidator();
+		this.movingInputValidator = new MovingInputValidator();
 	}
 
 	public int readBridgeSize() {
@@ -29,7 +32,7 @@ public class InputView {
 	public int readBridgeSizeUntilNoError() {
 		while (true) {
 			try {
-				return Integer.parseInt(bridgeSizeValidator.validateBridgeSize((readLine())));
+				return Integer.parseInt(bridgeSizeValidator.validateBridgeSize(readLine()));
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
@@ -48,18 +51,11 @@ public class InputView {
 	private String readMovingUntilNoError() {
 		while (true) {
 			try {
-				return validateMoving(readLine());
+				return movingInputValidator.validateMoving(readLine());
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
-	}
-
-	private String validateMoving(String moving) {
-		if (moving.equals(MOVING_UP) || moving.equals(MOVING_DOWN)) {
-			return moving;
-		}
-		throw new IllegalArgumentException(ERROR_MESSAGE_WRONG_MOVING_INPUT);
 	}
 
 	/**
