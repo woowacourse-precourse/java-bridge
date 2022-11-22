@@ -5,27 +5,25 @@ import bridge.User;
 
 import java.util.List;
 
+import static bridge.View.Constants.OutputConstants.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
     public void outputInitialAnnouncement() {
-        String startAnnouncement = "다리 건너기 게임을 시작합니다.";
-        System.out.println(startAnnouncement);
+        System.out.println(GAME_START);
         System.out.println();
-        String enterLengthOfBridge = "다리의 길이를 입력해주세요.";
-        System.out.println(enterLengthOfBridge);
+        System.out.println(ENTER_LENGTH_OF_BRIDGE);
     }
 
     public void outputChoiceMove() {
-        String choiceMove = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-        System.out.println(choiceMove);
+        System.out.println(ENTER_MOVE);
     }
 
     public void outputRetryOrNot() {
-        String retryOrNot = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-        System.out.println(retryOrNot);
+        System.out.println(ENTER_RETRY_OR_NOT);
     }
 
     /**
@@ -34,19 +32,16 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> map) {
-        String startOfBridge = "[";
-        String endOfBridge = "]";
-        String between = " | ";
-        String output = startOfBridge + " " + String.join(between, map) + " " + endOfBridge;
+        String output = START_OF_BRIDGE + " " + String.join(BETWEEN_BRIDGES, map) + " " + END_OF_BRIDGE;
         System.out.println(output);
     }
 
     private String checkSuccess(boolean isSuccess) {
-        String success = "게임 성공 여부: ";
+        String success = SUCCESS_OR_NOT;
         if (isSuccess) {
-            return success + "성공";
+            return success + SUCCESS;
         }
-        return success + "실패";
+        return success + FAIL;
     }
 
     /**
@@ -56,13 +51,11 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame) {
         User user = bridgeGame.getUser();
-        String resultOfGame = "최종 게임 결과";
-        System.out.println(resultOfGame);
+        System.out.println(GAME_RESULT);
         printMap(user.getPathOfUpperBridge());
         printMap(user.getPathOfLowerBridge());
         System.out.println();
         System.out.println(checkSuccess(bridgeGame.isSuccess()));
-        String totalOfAttempt = "총 시도한 횟수: ";
-        System.out.println(totalOfAttempt + bridgeGame.getAttempt());
+        System.out.println(TOTAL_OF_ATTEMPT + bridgeGame.getAttempt());
     }
 }
