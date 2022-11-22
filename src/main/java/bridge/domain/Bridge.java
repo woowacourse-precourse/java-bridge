@@ -57,4 +57,8 @@ public class Bridge {
     public int hashCode() {
         return Objects.hash(bridge);
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
 }
