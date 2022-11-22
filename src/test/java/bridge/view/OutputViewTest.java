@@ -5,53 +5,50 @@ import bridge.model.BridgeGame;
 import bridge.utill.TestBridgeGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputViewTest extends NsTest {
+    OutputView outputView = new OutputView();
 
-    private static List<String> directions = new ArrayList<>();
+    private static Stream<Arguments> testCases() {
+        return Stream.of(
+                Arguments.of(List.of(0, 1, 0, 1, 0), List.of("D", "U", "D", "D"),
+                        List.of("[   | O |   |   ]", "[ O |   | O | X ]")),
+                Arguments.of(List.of(0, 1, 0, 1, 0), List.of("D", "D"),
+                        List.of("[   |   ]", "[ O | X ]"))
+        );
+    }
 
-    public static void main(String[] args) {
-        TestBridgeGenerator testBridgeGenerator = new TestBridgeGenerator(List.of(0, 1, 0, 1, 0, 1));
-        OutputView outputView = new OutputView();
+    public BridgeGame makeBridge(List<Integer> bridgeInfo) {
+        TestBridgeGenerator testBridgeGenerator = new TestBridgeGenerator(bridgeInfo);
         BridgeMaker bridgeMaker = new BridgeMaker(testBridgeGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(6);
-        BridgeGame game = new BridgeGame(bridge);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeInfo.size());
 
-        for (String direction : directions) {
-            game.move(direction);
-            outputView.printMap(game, direction);
-        }
+        return new BridgeGame(bridge);
     }
 
-    @Test
     @DisplayName("이동 결과 테스트")
-    public void printMove() {
-        directions = List.of("D", "U", "D", "D");
+    @MethodSource("testCases")
+    @ParameterizedTest()
+    public void printMove(List<Integer> bridgeInfo, List<String> directions, List<String> output) {
         assertSimpleTest(() -> {
-            run();
-            assertThat(output()).contains("[   | O |   |   ]", "[ O |   | O | X ]");
-        });
-    }
-
-    @Test
-    @DisplayName("이동 결과 테스트")
-    public void printMove2() {
-        directions = List.of("D", "D");
-        assertSimpleTest(() -> {
-            run();
-            assertThat(output()).contains("[   |   ]", "[ O | X ]");
+            BridgeGame game = makeBridge(bridgeInfo);
+            for (String direction : directions)
+                game.move(direction);
+            outputView.printMap(game);
+            assertThat(output()).contains(output);
         });
     }
 
     @Override
     protected void runMain() {
-        main(new String[]{});
     }
 }

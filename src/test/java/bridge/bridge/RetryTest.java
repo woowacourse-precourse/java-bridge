@@ -8,13 +8,27 @@ import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 
 public class RetryTest extends NsTest {
+    private static Stream<Arguments> testCases() {
+        return Stream.of(
+                Arguments.of(List.of("3", "U", "D", "R", "U", "U", "U"),
+                        List.of("[ O | O | O ]", "[   |   |   ]",
+                                "최종 게임 결과", "게임 성공 여부: 성공", "총 시도한 횟수: 2")),
+                Arguments.of(List.of("3", "U", "D", "Q"), List.of("[ O |   ]", "[   | X ]",
+                        "최종 게임 결과", "게임 성공 여부: 실패", "총 시도한 횟수: 1")),
+                Arguments.of(List.of("3", "U", "U", "U"), List.of("[ O | O | O ]", "[   |   |   ]",
+                        "최종 게임 결과", "게임 성공 여부: 성공", "총 시도한 횟수: 1"))
+        );
+    }
 
     public static void main(String[] args) {
         TestBridgeGenerator testBridgeGenerator = new TestBridgeGenerator(List.of(1, 1, 1));
@@ -24,41 +38,13 @@ public class RetryTest extends NsTest {
         gameController.start();
     }
 
-    @Test
     @DisplayName("재시작 테스트")
-    public void retryTest() {
+    @ParameterizedTest
+    @MethodSource("testCases")
+    public void retryTest(List<String> command, List<String> output) {
         assertSimpleTest(() -> {
-            run("3", "U", "D", "R", "U", "U", "U");
-            Assertions.assertThat(output()).contains("[ O | O | O ]", "[   |   |   ]");
-        });
-    }
-
-    @Test
-    @DisplayName("종료 테스트")
-    public void quitTest() {
-        assertSimpleTest(() -> {
-            run("3", "U", "D", "Q");
-            Assertions.assertThat(output()).contains("[ O |   ]", "[   | X ]");
-        });
-    }
-
-    @Test
-    @DisplayName("재시작 시 최종 결과 테스트")
-    public void retryResultTest() {
-        assertSimpleTest(() -> {
-            run("3", "U", "D", "R", "U", "U", "U");
-            Assertions.assertThat(output()).contains("최종 게임 결과",
-                    "게임 성공 여부: 성공", "총 시도한 횟수: 2");
-        });
-    }
-
-    @Test
-    @DisplayName("실패 후 종료 테스트")
-    public void quitResultTest() {
-        assertSimpleTest(() -> {
-            run("3", "U", "D", "R", "U", "U", "D", "Q");
-            Assertions.assertThat(output()).contains("최종 게임 결과",
-                    "게임 성공 여부: 실패", "총 시도한 횟수: 2");
+            run(command.toArray(new String[0]));
+            Assertions.assertThat(output()).contains(output);
         });
     }
 

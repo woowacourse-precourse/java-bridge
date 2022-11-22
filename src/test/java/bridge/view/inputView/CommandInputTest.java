@@ -3,46 +3,61 @@ package bridge.view.inputView;
 import bridge.exception.ErrorMsg;
 import bridge.utill.ConsoleTestUtil;
 import bridge.view.InputView;
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.Stream;
+
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class CommandInputTest {
+public class CommandInputTest extends NsTest {
     InputView inputView = new InputView();
     ConsoleTestUtil consoleTestUtil = new ConsoleTestUtil();
 
-    @Test
-    @DisplayName("올바른 입력 테스트")
-    public void movementInputTest() {
-        consoleTestUtil.setInput("R");
-        String move = inputView.readGameCommand();
-        assertThat(move).isEqualTo("R");
+    private static Stream<Arguments> testCases() {
+        return Stream.of(
+                Arguments.of("RR\nQ", "Q"),
+                Arguments.of("19\nA\nR","R")
+        );
     }
 
+    @DisplayName("올바른 입력 테스트")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    public void movementInputTest(String input) {
+        consoleTestUtil.setInput(input);
+        String command = inputView.readGameCommand();
+        assertThat(command).isEqualTo(input);
+    }
 
-    @Test
     @DisplayName("command 예외 테스트")
-    public void movementException() {
-        consoleTestUtil.setInput("19");
+    @ValueSource(strings = {"19"})
+    @ParameterizedTest
+    public void movementException(String input) {
+        consoleTestUtil.setInput(input);
         assertThatThrownBy(() -> inputView.readGameCommand())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
-    @Test
-    @DisplayName("반복 입력 테스트 - 잘못된 입력 예외 출력")
-    public void movementLoopInputException() {
-        consoleTestUtil.testOutput("RR\nQ", ErrorMsg.NOT_ALLOWED_COMMAND.toString(),
-                () -> inputView.loopInput(() -> inputView.readGameCommand()));
+    @DisplayName("반복 입력 테스트")
+    @MethodSource("testCases")
+    @ParameterizedTest
+    public void movementLoopInputException(String input, String expected) {
+        consoleTestUtil.setInput(input);
+        assertSimpleTest(() -> {
+            String move = inputView.loopInput(() -> inputView.readGameCommand());
+            assertThat(move).isEqualTo(expected);
+            assertThat(output()).contains(ErrorMsg.NOT_ALLOWED_COMMAND.toString());
+        });
     }
 
-    @Test
-    @DisplayName("반복 입력 테스트 - 값 테스트")
-    public void movementLoopInput() {
-        consoleTestUtil.setInput("A\nQ");
-        String move = inputView.loopInput(() -> inputView.readGameCommand());
-        assertThat(move).isEqualTo("Q");
+    @Override
+    protected void runMain() {
     }
 }

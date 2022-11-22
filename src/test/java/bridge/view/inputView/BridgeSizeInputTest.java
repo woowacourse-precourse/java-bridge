@@ -3,61 +3,56 @@ package bridge.view.inputView;
 import bridge.exception.ErrorMsg;
 import bridge.utill.ConsoleTestUtil;
 import bridge.view.InputView;
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+import java.util.stream.Stream;
+
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-class BridgeSizeInputTest {
+class BridgeSizeInputTest extends NsTest {
     InputView inputView = new InputView();
     ConsoleTestUtil consoleTestUtil = new ConsoleTestUtil();
 
-    @Test
-    @DisplayName("숫자가 아님")
-    public void inputException() {
-        consoleTestUtil.setInput("dddd");
+    private static Stream<Arguments> testCases() {
+        return Stream.of(
+                Arguments.of("1\n20", 20),
+                Arguments.of("aaa\n3",3),
+                Arguments.of("21\n10",10)
+        );
+    }
+
+    @DisplayName("입력 예외 테스트")
+    @ValueSource(strings = {"dddd", "1", "21"})
+    @ParameterizedTest
+    public void inputException(String input) {
+        consoleTestUtil.setInput(input);
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
-    @Test
-    @DisplayName("최소 길이보다 작음")
-    public void inputLowerBoundTest() {
-        consoleTestUtil.setInput("1");
-        assertThatThrownBy(() -> inputView.readBridgeSize())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("최대 길이보다 긺")
-    public void inputUpperBoundTest() {
-        consoleTestUtil.setInput("21");
-        assertThatThrownBy(() -> inputView.readBridgeSize())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("입력 예외 발생 시 다시 입력")
-    public void loopInputTest() {
-        consoleTestUtil.setInput("22\n20");
-        Integer size = inputView.loopInput(() -> inputView.readBridgeSize());
-        assertThat(size).isEqualTo(20);
+    @MethodSource("testCases")
+    @ParameterizedTest
+    public void loopInputTest(String input, int expected) {
+        consoleTestUtil.setInput(input);
+        assertSimpleTest(
+                () -> {
+                    Integer size = inputView.loopInput(() -> inputView.readBridgeSize());
+                    assertThat(size).isEqualTo(expected);
+                    assertThat(output()).contains(List.of(ErrorMsg.WRONG_BRIDGE_SIZE.toString()));
+                });
     }
 
-    @Test
-    @DisplayName("숫자가 아닌 입력시 에러 문구 확인")
-    public void notNumberErrorMsgTest() {
-        consoleTestUtil.testOutput("aaa\n20", ErrorMsg.WRONG_BRIDGE_SIZE.toString(),
-                () -> inputView.loopInput(() -> inputView.readBridgeSize()));
-    }
-
-    @Test
-    @DisplayName("입력범위를 넘어가는 경우 에러 문구 확인")
-    public void outOfBoundErrorMsgTest() {
-        consoleTestUtil.testOutput("21\n20", ErrorMsg.WRONG_BRIDGE_SIZE.toString(),
-                () -> inputView.loopInput(() -> inputView.readBridgeSize()));
+    @Override
+    protected void runMain() {
     }
 }
