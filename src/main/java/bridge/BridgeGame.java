@@ -39,25 +39,28 @@ public class BridgeGame {
         outputView.printMoveCommand();
         String command = inputView.readMoving();
         String now = bridge.get(current);
-        if (command.equals("U") && now.equals("D")) {// 못감
-            outputView.printMap(bridge, current, false);
+        showCurrent(command, now);
+        if (command.equals("U") && now.equals("D"))
             gameEnd = true;
-        }
-        if (command.equals("U") && now.equals("U")) { // 감
-            // 갈 수 있음
-            outputView.printMap(bridge, current, true);
+        if (command.equals("U") && now.equals("U"))
             current++;
-        }
-        if (command.equals("D") && now.equals("D")) {     // 감
-            outputView.printMap(bridge, current, true);
+        if (command.equals("D") && now.equals("D"))
             current++;
-        }
-        if (command.equals("D") && now.equals("U")) { // 못감
-            outputView.printMap(bridge, current, false);
+        if (command.equals("D") && now.equals("U"))
             gameEnd = true;
-        }
         return gameEnd;
     }
+    private void showCurrent(String command, String now){
+        if (command.equals("U") && now.equals("D"))
+            outputView.printMap(bridge, current, false);
+        if (command.equals("U") && now.equals("U"))
+            outputView.printMap(bridge, current, true);
+        if (command.equals("D") && now.equals("D"))
+            outputView.printMap(bridge, current, true);
+        if (command.equals("D") && now.equals("U"))
+            outputView.printMap(bridge, current, false);
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
