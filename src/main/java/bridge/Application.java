@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.command.BridgeSize;
 import bridge.command.Movement;
+import bridge.path.Path;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,7 +18,12 @@ public class Application {
         printTitle();
         final BridgeSize bridgeSize = askBridgeSize();
         final BridgeGame bridgeGame = createBridgeGame(bridgeSize);
+        run(bridgeGame);
+    }
+
+    private static void run(final BridgeGame bridgeGame) {
         final Movement movement = askMoving();
+        final Path path = bridgeGame.onMove(movement);
     }
 
     private static Movement askMoving() {
