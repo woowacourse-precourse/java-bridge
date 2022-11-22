@@ -7,7 +7,7 @@ public class Mover {
     private final Bridge bridge;
     private int columnPosition;
 
-    public Mover(Bridge bridge) {
+    private Mover(Bridge bridge) {
         this.bridge = bridge;
         columnPosition = 0;
     }

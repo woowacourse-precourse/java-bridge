@@ -18,7 +18,7 @@ public class BridgeGame {
     private int gameCount = 1;
 
     private BridgeGame(Bridge bridge) {
-        this.mover = new Mover(bridge);
+        this.mover = Mover.from(bridge);
     }
 
     /**
