@@ -34,4 +34,11 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + output);
         System.out.println("총 시도한 횟수: " + tryNum);
     }
+
+    public void printResultMap(BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        List<String>P1 = bridgeGame.getProgress1();
+        List<String>P2 = bridgeGame.getProgress2();
+        printMap(P1, P2);
+    }
 }
