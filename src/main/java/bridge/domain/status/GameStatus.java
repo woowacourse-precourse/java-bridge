@@ -1,5 +1,7 @@
 package bridge.domain.status;
 
+import bridge.exception.ExceptionMessage;
+
 public enum GameStatus {
     RETRY("R"),
     QUIT("Q"),
@@ -35,7 +37,8 @@ public enum GameStatus {
         return java.util.Arrays.stream(GameStatus.values())
             .filter(gameStatus -> gameStatus.compareTo(inputStatus))
             .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException());
+            .orElseThrow(() -> new IllegalArgumentException(
+                String.valueOf(ExceptionMessage.COMMEND_NOT_FOUND_ERROR)));
     }
 
     public boolean compareTo(String inputStatus) {
