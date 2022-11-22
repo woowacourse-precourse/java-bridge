@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge;
 
 import bridge.Controller.BridgeGameController;
 
