@@ -25,8 +25,4 @@ public enum BridgeGameEndType {
     public boolean isEnd() {
         return this == END;
     }
-
-    public boolean isRestart() {
-        return this == RESTART;
-    }
 }

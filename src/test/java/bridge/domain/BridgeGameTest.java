@@ -13,7 +13,8 @@ import java.util.stream.Stream;
 import static bridge.domain.BridgeGameState.*;
 import static bridge.domain.BridgeMoveType.DOWN;
 import static bridge.domain.BridgeMoveType.UP;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BridgeGameTest {
 
@@ -21,7 +22,7 @@ class BridgeGameTest {
 
     @BeforeEach
     void setUp() {
-        this.bridgeGame = new BridgeGame(new BridgeGameRound(), new BridgePlayer(), new BridgeAnswer());
+        this.bridgeGame = new BridgeGame(new BridgePlayer(), new BridgeAnswer());
     }
 
     @ParameterizedTest

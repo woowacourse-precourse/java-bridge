@@ -9,7 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-import static bridge.domain.BridgeMoveType.*;
+import static bridge.domain.BridgeMoveType.DOWN;
+import static bridge.domain.BridgeMoveType.UP;
 import static bridge.exception.BridgeTypeExceptionMessage.READ_WRONG_TYPE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;

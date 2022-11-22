@@ -28,23 +28,23 @@ public class BridgePlayer {
         validateBridgeSize(playerBridge);
         validateBridgeSize(bridgeMoveTypes);
         validateOverRange(bridgeMoveTypes);
-        if (isSameBridgeSizeWith(bridgeMoveTypes)) {
+        if (isNotSameBridgeSizeWith(bridgeMoveTypes)) {
             return false;
         }
         return compareAllMoveTypesSame(bridgeMoveTypes);
     }
 
-    private boolean isSameBridgeSizeWith(List<BridgeMoveType> bridgeMoveTypes) {
+    public boolean isNotSameBridgeSizeWith(List<BridgeMoveType> bridgeMoveTypes) {
         return playerBridge.size() != bridgeMoveTypes.size();
     }
 
     private boolean compareAllMoveTypesSame(List<BridgeMoveType> bridgeMoveTypes) {
         return IntStream.range(0, playerBridge.size())
-                .allMatch(currentLocation -> {
+                .filter(currentLocation -> {
                     BridgeMoveType playerMoveType = playerBridge.get(currentLocation);
                     BridgeMoveType answerMoveType = bridgeMoveTypes.get(currentLocation);
                     return playerMoveType.isSame(answerMoveType);
-                });
+                }).count() == playerBridge.size();
     }
 
     public void moveTo(BridgeMoveType moveType) {
