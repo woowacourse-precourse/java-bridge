@@ -18,9 +18,8 @@ public class InputView {
             return Integer.parseInt(singleInput);
         } catch (IllegalArgumentException e){
             System.out.println(NO_INTEGER.getMessage());
-            readBridgeSize();
+            return readBridgeSize();
         }
-        return 0;
     }
 
     /**
@@ -35,5 +34,15 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+
+
+    public int validateBridgeLength(int length){
+        if (length<3 || length>20) {
+            System.out.println(BRIDGE_LENGTH_LIMIT.getMessage());
+            return readBridgeSize();
+        }
+        return length;
     }
 }
