@@ -1,5 +1,13 @@
 package bridge;
 
+import bridge.model.BridgeGame;
+import bridge.model.BridgeMaker;
+import bridge.model.ErrorMsg;
+import bridge.model.Player;
+import bridge.view.GameMsg;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class BridgeGameController {
 
     private BridgeGame bridgeGame;

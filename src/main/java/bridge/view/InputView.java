@@ -1,9 +1,11 @@
-package bridge;
+package bridge.view;
 
-import static bridge.GameMsg.GET_LENGTH_MSG;
-import static bridge.GameMsg.GET_WAY_MSG;
-import static bridge.GameMsg.RETRY_MSG;
+import static bridge.view.GameMsg.GET_LENGTH_MSG;
+import static bridge.view.GameMsg.GET_WAY_MSG;
+import static bridge.view.GameMsg.RETRY_MSG;
 import static camp.nextstep.edu.missionutils.Console.readLine;
+
+import bridge.model.Validator;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

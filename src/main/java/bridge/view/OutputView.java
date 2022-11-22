@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.model.Direction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

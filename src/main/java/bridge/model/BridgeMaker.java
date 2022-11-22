@@ -1,8 +1,9 @@
-package bridge;
+package bridge.model;
 
-import static bridge.Direction.D;
-import static bridge.Direction.U;
+import static bridge.model.Direction.D;
+import static bridge.model.Direction.U;
 
+import bridge.BridgeNumberGenerator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

@@ -3,6 +3,8 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.model.BridgeMaker;
+import bridge.model.Direction;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +40,7 @@ class BridgeMakerTest {
         // then
         lengths.forEach(i -> {
             assertThatThrownBy(() -> bridgeMaker.makeBridge(i))
-                    .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class);
         });
     }
 }
