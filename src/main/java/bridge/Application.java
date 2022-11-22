@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.logic.BridgeGame;
+import bridge.util.BridgeMaker;
+import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.View;
