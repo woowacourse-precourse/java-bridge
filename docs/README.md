@@ -1,5 +1,16 @@
 # < 클래스 별 기능 구현 목록 >
 
+## [ Constant ]
+
+### InputViewConstants
+- [ ] InputView에서 사용되는 상수들을 모아놓는다.
+
+### OutputViewConstants
+- [ ] OutputView에서 사용되는 상수들을 모아놓는다.
+
+### ExceptionConstants
+- [ ] 예외 처리를 할 때 사용되는 상수들을 모아놓는다.
+
 ## [ Controller ]
 
 ### BridgeGameController
