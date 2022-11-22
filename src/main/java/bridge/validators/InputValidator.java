@@ -13,10 +13,10 @@ public class InputValidator {
 
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
-    private static final String[] RETRY = { "R", "r" };
-    private static final String[] QUIT = { "Q", "q" };
-    private static final String[] UP = { "U", "u" };
-    private static final String[] DOWN = { "D", "d" };
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     /**
      * 다리 길이에 대한 입력을 받은 후, 입력이 유효한 값인지 검사한다.
@@ -70,8 +70,7 @@ public class InputValidator {
      * @param moveDirectionInput
      */
     public static void validateMoveDirection(String moveDirectionInput) {
-        if (!(Arrays.asList(UP).contains(moveDirectionInput)
-                || Arrays.asList(DOWN).contains(moveDirectionInput))) {
+        if (!(moveDirectionInput.equals(UP) || moveDirectionInput.equals(DOWN))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MOVE_DIRECTION.getMessage());
         }
     }
@@ -83,8 +82,7 @@ public class InputValidator {
      * @param retryInput
      */
     public static void validateRetryInput(String retryInput) {
-        if (!(Arrays.asList(RETRY).contains(retryInput)
-                || Arrays.asList(QUIT).contains(retryInput))) {
+        if (!(retryInput.equals(RETRY) || retryInput.equals(QUIT))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RETRY_INPUT.getMessage());
         }
     }
