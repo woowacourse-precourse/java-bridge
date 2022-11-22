@@ -18,6 +18,17 @@ public class GamePlay {
     private final boolean WON = true;
     private final boolean FAILURE = false;
 
+    public void play() {
+        try {
+            GamePlay gamePlay = new GamePlay();
+            gamePlay.initGame();
+            gamePlay.gameStart();
+        } catch (IllegalArgumentException e) {
+            OutputView outputView = new OutputView();
+            outputView.printErrorMessage(e.getMessage());
+        }
+    }
+
     public void initGame() {
         inputView = new InputView();
         outputView = new OutputView();
