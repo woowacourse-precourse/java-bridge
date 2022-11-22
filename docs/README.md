@@ -109,22 +109,11 @@ getSymbol을 통해 문자열을 출력받아 BridgeViewConstructor에서 출력
 
 ## Controller
 ### BridgeGameController
-1. 생성자 : InputView.readBridgeSize를 입력받아 Bridge를 생성하고 Player을 생성해준다. 전역변수 trialCount를 1로 초기화해준다. 
-2. moveAStep : Input.readMoving을 입력받아 Player.addNewBridgeInput해준다. constructBridge를 반환해 OutputView.printMap해준다. 
-3. resetGame : player.clearBridge 해주고 trialCount++해준다.
-4. concludeGame : OutputView.printResult에 player.getTrialCOunt와 constructBridge를 입력받아 출력해준다. 
-5. isPaused : Bridge.isPlayerRightInput의 역을 반환한다.
-6. isSuccess : Player.isGameFinished를 출력해준다. 
-7. readFinalCommand : InputView.readGameCommand를 받아 반환한다. 
-8. constructBridge : 플레이어와 컴퓨터 리스트를 BridgeViewConstructor.constructBridge해 반환한다. 
-9. moveUntilStop : isPaused나 isSuccess일 때 까지 moveAStep해준다. 
-10. isQuit : 입력이 Q이면 참을 반환
-11. runGame : moveUntilStop을 반복한다. isSuccess이거나 isQuit면 반복을 멈추고 결과를 반환한다. 반복이 다시될 때 resetGame해준다. 
-
-## Application
-### BridgeGame
-1. 생성자 : BridgeGameController를 생성해준다. 
-2. move : bridgeGameController.isPaused일 때 까지 bridgeGameController.chooseAStep와 makeAResultMap를 해준다. 
-3. retry : resetGame을 실행해준다. 
-4. stop : concludeGame을 실행해준다. 
-5. isRunning : 컨트롤러의 isFinished의 역을 반환한다.
+1. 생성자 : InputView.readBridgeSize를 입력받아 Bridge를 생성하고 Player을 생성해준다. 전역변수 trialCount를 1로 초기화해준다.
+2. runGame : moveUntilStop을 반복한다. bridgeGame.isSuccess이거나 isQuit면 반복을 멈추고 결과를 반환한다. 반복이 다시될 때 resetGame해준다.
+   1. moveUntilStop : isPaused나 isSuccess일 때 까지 moveAStep해준다
+      1. moveAStep : Input.readMoving을 입력받아 bridgeGame.move의 입력변수로 연산하고 결과를 outputView.printMap한다. 
+   2. resetGame : bridgeGame.retry해준다.
+   3. isQuit : 출력이 Q이면 참을 반환한다. 
+      1. readFinalCommand : 출력을 반환한다. 
+   4. concludeGame : OutputView.printResult에 bridgeGame.constructBridge와 bridgeGame.getTotalTrialCount를 넣어 결과를 출력한다.
