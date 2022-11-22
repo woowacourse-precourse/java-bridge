@@ -18,7 +18,7 @@ public class BridgeValidatorTest {
     }
 
     @DisplayName("입력받은 다리길이가 3~20사이 숫자가 아니면 예외를 발생시킨다.")
-    @ValueSource(strings = {"-2", "100"})
+    @ValueSource(strings = {"-2", "3", "20", "100"})
     @ParameterizedTest
     void createSizeByNotRange(String input) {
         assertThatThrownBy(() -> new BridgeValidator(input))
