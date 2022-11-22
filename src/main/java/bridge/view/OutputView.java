@@ -10,8 +10,8 @@ public class OutputView {
     private static final String OUTPUT_FORM = "[ %s ]\n";
 
     public void printMap(GameStatus gameStatus) {
-        System.out.printf(OUTPUT_FORM, bridgeToMap(gameStatus.topBridge));
-        System.out.printf(OUTPUT_FORM, bridgeToMap(gameStatus.bottomBridge));
+        System.out.printf(OUTPUT_FORM, bridgeToMap(gameStatus.getTopBridge()));
+        System.out.printf(OUTPUT_FORM, bridgeToMap(gameStatus.getBottomBridge()));
         printNewLine();
     }
 

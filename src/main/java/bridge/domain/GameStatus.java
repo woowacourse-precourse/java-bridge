@@ -6,9 +6,8 @@ public class GameStatus {
 
     private int tryCount;
     private String gameResult;
-
-    public Bridge topBridge;
-    public Bridge bottomBridge;
+    private Bridge topBridge;
+    private Bridge bottomBridge;
 
     public GameStatus() {
         this.tryCount = 1;
