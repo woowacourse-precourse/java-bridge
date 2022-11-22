@@ -37,5 +37,10 @@ public class MoveStatus {
         moveUpper.add(successResult(checkIfAvailableToMove));
         moveDowner.add("   ");
     }
-
+    private String successResult(boolean checkIfAvailableToMove) {
+        if (checkIfAvailableToMove){
+            return " O ";
+        }
+        return " X ";
+    }
 }
