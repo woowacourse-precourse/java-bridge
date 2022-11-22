@@ -10,6 +10,7 @@ import java.util.List;
 public class OutputView {
     final static int MAX_BRIDGE_SIZE = 20;
     private int count = 0;
+
     private String bridge = "";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -17,24 +18,36 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String printMap(List<String> yesOrNo, List<String> upAndDown, int size) {
-        String[][] bridges = new String[2][];
+        StringBuilder upBridge = new StringBuilder();
+        StringBuilder downBridge = new StringBuilder();
 
 
-        for(int i = 0; i < size; i++) {
-            if(yesOrNo.get(i) == "O" && upAndDown.get(i) == "U") {
-                bridges[0][i] = "O";
-            }
-            if(yesOrNo.get(i) == "O" && upAndDown.get(i) == "D") {
-                bridges[1][i] = "O";
-            }
-            if(yesOrNo.get(i) == "X") {
-                break;
-            }
-            this.count++;
-            this.bridge = Arrays.deepToString(bridges);
-            this.bridge.replaceAll(",", "|");
-            System.out.println(this.bridge);
+        if(yesOrNo.get(0).equals("O") && upAndDown.get(0).equals("U")) {
+            upBridge.append("[ O ]");
+            downBridge.append("[   ]");
         }
+        if(yesOrNo.get(0).equals("O") && upAndDown.get(0).equals("D")) {
+            upBridge.append("[   ]");
+            downBridge.append("[ O ]" );
+        }
+        for(int i = 1; i < yesOrNo.size(); i++) {
+            if(yesOrNo.get(i).equals("O") && upAndDown.get(i).equals("U")) {
+                upBridge.setCharAt(3, '|');
+                upBridge.insert(4, " O ]");
+                downBridge.setCharAt(3, '|');
+                downBridge.insert(4, "  ]");
+            }
+            if(yesOrNo.get(i).equals("O") && upAndDown.get(i).equals("D")) {
+                upBridge.setCharAt(3, '|');
+                upBridge.insert(4, "  ]");
+                downBridge.setCharAt(3, '|');
+                downBridge.insert(4, " O ]");
+            }
+        }
+
+        upBridge.append(System.lineSeparator());
+        upBridge.append(downBridge);
+        this.bridge = upBridge.toString();
         return this.bridge;
     }
 
