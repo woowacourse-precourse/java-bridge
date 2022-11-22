@@ -50,11 +50,17 @@ public class BridgeGame {
         return false;
     }
 
-    public String convertObstacle(String obstacle) {
-        if(obstacle.equals("U"))
-            return "1";
+    /**
+     * 사용자가 다음 칸으로 이동할 수 있을지 확인하는 기능
+     */
+    private boolean jumpNextStep() {
+        user.moveNextBridge();
 
-        return "0";
+        if(user.getNextStep().equals(bridgeNumber.get(user.getCurrentBridge() - 1))) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -63,6 +69,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        user.setNextStep(null);
+        user.goBackToFirstBridge();
     }
 
     /**
@@ -89,16 +97,17 @@ public class BridgeGame {
         this.user.setNextStep(bridgeView.readNextStep());
     }
 
-    public boolean jumpNextStep() {
-        user.moveNextBridge();
+    /**
+     * 사용자의 게임 진행 여부를 입력받는 기능
+     */
+    public boolean enterRetry() {
+        String command = bridgeView.readRetry();
 
-        System.out.println(user.getNextStep() + " " + bridgeNumber.get(user.getCurrentBridge() - 1));
-
-        if(user.getNextStep().equals(bridgeNumber.get(user.getCurrentBridge() - 1))) {
-            return false;
+        if(command.equals("R")) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
 }

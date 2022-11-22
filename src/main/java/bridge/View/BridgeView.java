@@ -25,4 +25,10 @@ public class BridgeView {
         System.out.println(outputView.printMap(bridge, currentStep, die));
     }
 
+    public String readRetry() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        return inputView.readGameCommand();
+    }
+
+
 }

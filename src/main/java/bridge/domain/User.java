@@ -17,6 +17,10 @@ public class User {
         return currentBridge;
     }
 
+    public void goBackToFirstBridge() {
+        this.currentBridge = 0;
+    }
+
     public void moveNextBridge() {
         this.currentBridge += 1;
     }

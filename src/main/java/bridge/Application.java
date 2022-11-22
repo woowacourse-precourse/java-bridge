@@ -15,13 +15,22 @@ public class Application {
         gameCount = bridgeGame.enterNumberOfBridge();
 
         try {
-            for(; gameCount > 0 ; gameCount--) {
+            for(int tempCount = gameCount; tempCount > 0 ; tempCount--) {
                 //3. 사용자가 다음에 이동할 칸을 입력
                 bridgeGame.enterNextStep();
 
                 //4. 사용자가 입력한 칸과 컴퓨터가 생성한 칸이 겹치는지 확인
                 if (!bridgeGame.move()) {
-                    break;
+
+                    //5. 재시작 여부를 입력받음
+                    if(bridgeGame.enterRetry()) {
+                        bridgeGame.retry();
+                        tempCount = gameCount + 1;
+
+                        continue;
+                    }
+
+                    return;
                 }
             }
 
