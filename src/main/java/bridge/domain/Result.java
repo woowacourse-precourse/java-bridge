@@ -5,19 +5,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Result {
-    private final List<Status> crossResult = new ArrayList<>();
+    private final List<State> crossResult = new ArrayList<>();
 
     public Result() {
     }
 
-    public void addResult(Status status) {
+    public void addResult(State status) {
         crossResult.add(status);
     }
 
     @Override
     public String toString() {
         return crossResult.stream()
-                .map(Status::getStatus)
+                .map(State::getStatus)
                 .collect(Collectors.joining(" | "));
     }
 }

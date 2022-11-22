@@ -1,10 +1,10 @@
 package bridge.domain;
 
-public enum Status {
+public enum State {
     ALIVE("O"), NOT_MOVED(" "), DEAD("X");
     private final String status;
 
-    Status(String status) {
+    State(String status) {
         this.status = status;
     }
 
@@ -12,7 +12,7 @@ public enum Status {
         return status;
     }
 
-    public static Status getStatusByCrossed(boolean crossed) {
+    public static State getStatusByCrossed(boolean crossed) {
         if (crossed) {
             return ALIVE;
         }

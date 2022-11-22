@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.Result;
-import bridge.domain.Status;
+import bridge.domain.State;
 import bridge.validation.InputValidation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -60,8 +60,8 @@ public class BridgeMaker {
     public List<Result> getCrossResults(List<String> bridges, List<Result> crossResults, int position) {
         boolean crossed = crossBridge(bridges, position);
         List<Integer> movedDirection = getMovedDirection(bridges, position);
-        crossResults.get(movedDirection.get(0)).addResult(Status.getStatusByCrossed(crossed));
-        crossResults.get(movedDirection.get(1)).addResult(Status.NOT_MOVED);
+        crossResults.get(movedDirection.get(0)).addResult(State.getStatusByCrossed(crossed));
+        crossResults.get(movedDirection.get(1)).addResult(State.NOT_MOVED);
         return crossResults;
     }
 
