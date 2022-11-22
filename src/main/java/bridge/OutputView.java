@@ -13,10 +13,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> userBridge, List<String> answerBridge) {
-        String topLine="";
-        String downLine="";
-        topLine+=printLine(userBridge, answerBridge, "U");
-        downLine+=printLine(userBridge, answerBridge, "D");
+        String topLine=printLine(userBridge, answerBridge, "U");
+        String downLine=printLine(userBridge, answerBridge, "D");
         System.out.println(topLine);
         System.out.println(downLine);
     }
