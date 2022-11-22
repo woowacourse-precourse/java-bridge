@@ -14,19 +14,20 @@ import java.util.List;
 
 public class BridgeController {
 
-    private final BridgeMaker bridgeMaker;
+    private final BridgeNumberGenerator bridgeNumberGenerator;
     private final BridgeGame bridgeGame;
     private final InputHandler inputHandler;
     private final OutputView outputView;
 
     public BridgeController(BridgeNumberGenerator bridgeNumberGenerator) {
-        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridgeNumberGenerator = bridgeNumberGenerator;
         bridgeGame = new BridgeGame();
         inputHandler = new InputHandler();
         outputView = new OutputView();
     }
 
     public void startGame() {
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView.printStartGame();
         Length length = inputHandler.getLength();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
