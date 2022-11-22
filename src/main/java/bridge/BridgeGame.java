@@ -76,5 +76,13 @@ public class BridgeGame {
         return bridge2;
     }
 
+    public String getResultStringOf(String side) {
+        return getResultBridge().getLaneString(side, answerBridge.getBridge());
+    }
+
+    public String getBridgeStringOf(String side) {
+        return onPlayingBridge.getLaneString(side, answerBridge.getBridge());
+    }
+
     }
 }
