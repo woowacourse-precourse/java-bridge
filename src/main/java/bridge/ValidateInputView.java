@@ -1,6 +1,12 @@
 package bridge;
 
 public class ValidateInputView {
+    final OutputView outputView;
+
+    public ValidateInputView() {
+        outputView = new OutputView();
+    }
+
     /**
      * 다리의 길이가 적절한 값인지 판단한다.
      * 예외 발생시 IllegalArgumentException을 발생시킨다.
@@ -13,9 +19,9 @@ public class ValidateInputView {
         try {
             int number = Integer.parseInt(userInput);
             if (3 <= number && number <= 20) return number;
-            System.out.println("[ERROR] 다리 크기는 3이상 20이하의 자연수여야 합니다.");
+            outputView.printErrorMessage("다리 크기는 3이상 20이하의 자연수여야 합니다.");
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 다리 크기는 정수여야 합니다.");
+            outputView.printErrorMessage("다리 크기는 정수여야 합니다.");
         }
         throw new IllegalArgumentException();
     }
@@ -31,7 +37,7 @@ public class ValidateInputView {
      */
     public void validateMove(String userInput) {
         if (userInput.equals("U") || userInput.equals("D")) return;
-        System.out.println("[ERROR] 입력 값은 \"U\" 또는 \"D\"여야 합니다.");
+        outputView.printErrorMessage("입력 값은 \"U\" 또는 \"D\"여야 합니다.");
         throw new IllegalArgumentException();
     }
 
@@ -44,7 +50,7 @@ public class ValidateInputView {
      */
     public void validateGameCommand(String userInput) {
         if (userInput.equals("R") || userInput.equals("Q")) return;
-        System.out.println("[ERROR] 입력 값은 \"R\" 또는 \"Q\"여야 합니다.");
+        outputView.printErrorMessage("입력 값은 \"R\" 또는 \"Q\"여야 합니다.");
         throw new IllegalArgumentException();
     }
 }

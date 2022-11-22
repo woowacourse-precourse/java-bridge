@@ -6,7 +6,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
+    final String ERROR = "[ERROR]";
 
     /**
      * 게임 시작 메시지를 출력한다.
@@ -38,12 +38,21 @@ public class OutputView {
 
 
     /**
+     * 에러 메시지를 출력한다.
+     *
+     * @param message 출력할 메시지
+     */
+    public void printErrorMessage(String message) {
+        System.out.printf("%s %s\n", ERROR, message);
+    }
+
+    /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> playerBridge) {
-        for (int i = playerBridge.size()-1; i >= 0; i--) {
+        for (int i = playerBridge.size() - 1; i >= 0; i--) {
             System.out.print("[ ");
             System.out.print(String.join(" | ", playerBridge.get(i)));
             System.out.println(" ]");
