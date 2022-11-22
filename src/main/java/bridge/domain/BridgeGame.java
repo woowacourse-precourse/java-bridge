@@ -9,6 +9,7 @@ import bridge.type.RetryType;
 public class BridgeGame {
 
     private final PositionUtils positionUtils;
+    private int gameCount = 1;
 
     public BridgeGame(PositionUtils positionUtils) {
         this.positionUtils = positionUtils;
@@ -42,8 +43,16 @@ public class BridgeGame {
      * 다리를 건넌 결과로 RetryType 을 반환한다.
      */
     public RetryType retry(boolean isPass) {
-        return positionUtils.toRetryType(isPass);
+        RetryType retryType = positionUtils.toRetryType(isPass);
+
+        if (RetryType.RETRY.equals(retryType)) {
+            gameCount++;
+        }
+
+        return retryType;
     }
 
-
+    public int totalGameCount() {
+        return this.gameCount;
+    }
 }
