@@ -32,9 +32,23 @@ class InputViewTest {
         }
     }
 
-    @
+    @DisplayName("올바른 moving 커맨드가 입력 될 때 까지 입력값 요구")
     @Test
     void getReadMoving() {
+        List<String> inputs = List.of("0", "aa", "100", "28", "pp", "K", "U");
+        String inputWithDivision = String.join("\n", inputs);
+        System.setIn(new ByteArrayInputStream(inputWithDivision.getBytes()));
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(byteArrayOutputStream));
+
+        InputView inputView = new InputView();
+        inputView.getReadMoving();
+
+        String [] result = byteArrayOutputStream.toString().split("\n");
+        for (String resultAll : result) {
+            assertThat(resultAll).contains("ERROR");
+        }
     }
 
     @Test
