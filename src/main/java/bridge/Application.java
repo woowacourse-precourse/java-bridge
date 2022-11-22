@@ -13,19 +13,13 @@ public class Application {
     private static final BridgeGameProcessor bridgeGameProcessor = new BridgeGameProcessor(bridgeGame, inputView, outputView);
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        // 다리 생성
         outputView.printIntro();
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
 
-        // 다리 건너기
         List<String> route = new ArrayList<>();
         List<Integer> gameRestartCount = new ArrayList<>(List.of(1));
         bridgeGameProcessor.start(bridge, route, gameRestartCount);
 
-        // 게임 종료
         outputView.printResult(bridge, route, gameRestartCount);
-
-
     }
 }

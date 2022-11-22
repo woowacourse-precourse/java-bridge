@@ -30,7 +30,6 @@ public class OutputView {
     }
 
     private String decidePartialMap(List<String> bridge, List<String> route, String location) {
-        // 양쪽 공백 + 처음이면 | 안더한다.
         String partialMap = " " + rightOrWrongStep(bridge.get(0), route.get(0), location) + " ";
         for (int step = 1; step < route.size(); step++) {
             partialMap += "| " + rightOrWrongStep(bridge.get(step), route.get(step), location) + " ";
