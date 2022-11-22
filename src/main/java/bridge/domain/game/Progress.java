@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Progress {
-    private Map<String, List<String>> bridgeShape = new HashMap<>();
+    private Map<String, List<String>> bridgeShape = new LinkedHashMap<>();
 
     public Map<String, List<String>> getBridgeShape() {
         return bridgeShape;
