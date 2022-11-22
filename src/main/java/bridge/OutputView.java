@@ -1,23 +1,38 @@
 package bridge;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+import java.util.List;
+import java.util.Objects;
+
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    public void printMap(List<List<String>> userPlaying) {
+        System.out.println(printLoop(userPlaying, "U"));
+        System.out.println(printLoop(userPlaying, "D"));
+
+
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public String printLoop(List<List<String>> userPlaying, String bridgeLocate) {
+        StringBuilder upPrint = new StringBuilder("[");
+        for (int i = 0; i< userPlaying.size(); i++) {
+            if (i != 0)
+                upPrint.append("|");
+            upPrint.append(printContent(userPlaying.get(i), bridgeLocate));
+        }
+        upPrint.append("]");
+        return upPrint.toString();
+    }
+
+    public String printContent(List<String> currentPlaying, String bridgeLocate) {
+        if (Objects.equals(currentPlaying.get(0), bridgeLocate))
+            return " " + currentPlaying.get(1) + " ";
+        return "   ";
+    }
+
+    public void printResult(String isSuccess, int tryCount, List<List<String>> userPlaying) {
+        System.out.println("최종 게임 결과");
+        printMap(userPlaying);
+        System.out.println("게임 성공 여부: " + isSuccess);
+        System.out.println("총 시도한 횟수: " + tryCount);
     }
 }
