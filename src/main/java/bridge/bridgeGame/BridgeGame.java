@@ -1,6 +1,6 @@
 package bridge.bridgeGame;
 
-import bridge.bridgeGenerator.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import bridge.bridgeMaker.BridgeMaker;
 import bridge.inputView.InputView;
 import bridge.outputView.OutputView;

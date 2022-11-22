@@ -3,7 +3,7 @@ package bridge.bridgeMaker;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.bridgeGenerator.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import bridge.bridgeMaker.exception.NotFoundBridgeException;
 import bridge.common.ErrorMessage;
 import java.util.ArrayList;
