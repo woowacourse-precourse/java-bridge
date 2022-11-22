@@ -22,12 +22,33 @@ public class InputView {
         return size;
     }
     public String readMoving() {
+        try {
+            return tryreadingMove();
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + '\n');
+            return readMoving();
+        }
+    }
+    private String tryreadingMove() {
         System.out.println(IOMessage.UP_OR_DOWN);
-
-        return Console.readLine();
+        String move = Console.readLine();
+        inputValidator.isMovementValid(move);
+        return move;
     }
     public String readGameCommand() {
+        try {
+            return tryReadingCommand();
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + '\n');
+            return readGameCommand();
+        }
+    }
+    private String tryReadingCommand() {
         System.out.println(IOMessage.RETRY_OR_EXIT);
-        return Console.readLine();
+        String command = Console.readLine();
+        inputValidator.isRetryValid(command);
+        return command;
     }
 }
