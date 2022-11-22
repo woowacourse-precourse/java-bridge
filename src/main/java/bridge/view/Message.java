@@ -8,7 +8,7 @@ public enum Message {
 
     GAME_RESULT("최종 게임 결과"),
     OUTPUT_SUCCESS_OR_NOT("게임 성공 여부: "),
-    OUTPUT_NUMBER_OF_ATTEMPTS ("총 시도한 횟수: "),
+    OUTPUT_NUMBER_OF_ATTEMPTS("총 시도한 횟수: "),
     OUTPUT_SUCCESS("성공"),
     OUTPUT_NOT("실패");
 
