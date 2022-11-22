@@ -14,7 +14,31 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<Round> rounds) {
+        StringBuilder upMap = new StringBuilder("[");
+        StringBuilder downMap = new StringBuilder("[");
+        for (Round round : rounds) {
+            upMap.append(" ");
+            downMap.append(" ");
+            if (Objects.equals(round.getPlayerMoving(), Moving.UP.getExpression())) {
+                upMap.append(round.getResult().getExpression());
+                downMap.append(" ");
+            } else if (Objects.equals(round.getPlayerMoving(), Moving.DOWN.getExpression())) {
+                upMap.append(" ");
+                downMap.append(round.getResult().getExpression());
+            }
+            upMap.append(" ");
+            downMap.append(" ");
+            if (round != rounds.get(rounds.size() - 1)) {
+                upMap.append("|");
+                downMap.append("|");
+            }
+        }
+        upMap.append("]").append("\n");
+        downMap.append("]");
+
+        System.out.println(upMap.toString() + downMap.toString());
+
     }
 
     /**
