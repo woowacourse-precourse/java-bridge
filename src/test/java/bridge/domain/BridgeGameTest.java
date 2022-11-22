@@ -26,4 +26,12 @@ class BridgeGameTest {
         assertThat(isSuccess).isEqualTo(false);
     }
 
+    @Test
+    void 재시도_여부가_R이면_count_증가() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("D"));
+        String retry = "R";
+        bridgeGame.retry(retry);
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
+    }
+
 }

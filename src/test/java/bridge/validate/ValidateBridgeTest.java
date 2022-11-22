@@ -32,4 +32,11 @@ class ValidateBridgeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void retry_command가_R이나_Q가_아니면_예외() {
+        String retry = "C";
+        assertThatThrownBy(() -> validateMovement(retry))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
