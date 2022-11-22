@@ -17,48 +17,21 @@ public class GameController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private List<String> bridge = new ArrayList<>();
-    private mainView mainView = new mainView(outputView,bridge);
+    private mainView mainView;
 
     public void set_bridge(int input) {
         bridge = bridgeMaker.makeBridge(input);
     }
 
-    public List<String> Bridge() {
-        return bridge;
-    }
-
-    public BridgeGame BridgeGame() {
-        return bridgeGame;
-    }
-
     public InputView inputView() {
         return inputView;
     }
-
-    public OutputView outputView() {
-        return outputView;
+    public void set_mainView(){
+        mainView= new mainView(outputView,bridge);
     }
-
-
-    public void total_print() {
-        if (BridgeGame.game_status.equals("End")) {
-            outputView().printResult(round_count, "실패");
-        }
-        if (bridge.size() == count) {
-            outputView().printResult(round_count, "성공");
-        }
-    }
-
-    public void all_print() {
-        outputView().printMap();
-        count++;
-        total_print();
-    }
-
-
 
     public String retrycheck() {
-        String get = BridgeGame().retry(inputView().readGameCommand());
+        String get = bridgeGame.retry(inputView.readGameCommand());
         if (get.equals("playing")) {
             count = 0;
             round_count++;
@@ -68,7 +41,7 @@ public class GameController {
     }
 
     public boolean moveCheck(String position) {
-        if (BridgeGame().move(position, bridge, count).equals("call")) {
+        if (bridgeGame.move(position, bridge, count).equals("call")) {
             if (retrycheck().equals("continue")) {
                 return false;
             }
@@ -78,10 +51,10 @@ public class GameController {
 
     public String start() {
         while (BridgeGame.game_status.equals("playing") && bridge.size() != count) {
-            String position = inputView().readMoving();
+            String position = inputView.readMoving();
             if(position.equals("EXIT")) return "EXIT";
             if (!moveCheck(position)) continue;
-            all_print();
+            mainView.all_print();
         }
         return "";
     }

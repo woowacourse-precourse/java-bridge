@@ -19,6 +19,7 @@ public class Application {
             return;
         }
         gameController.set_bridge(input);
+        gameController.set_mainView();
         if(gameController.start().equals("EXIT")){
             System.out.print("[ERROR] U,D 둘중 하나만 입력해주세요." );
             return;
