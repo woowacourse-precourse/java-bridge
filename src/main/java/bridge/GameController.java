@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
-    public static int count=0;
-    public  int round_count=1;
+    public static int count = 0;
+    public int round_count = 1;
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -34,17 +34,7 @@ public class GameController {
         return outputView;
     }
 
-    public void start() {
-            String get=RetryorExit();
-            if (get.equals("playing")) {
-                count = 0;
-                round_count++;
-                return;
-            }
-            outputView().printMap();
-            count++;
 
-    }
     public String RetryorExit() {
         String position = inputView().readMoving();
         if (BridgeGame().move(position, Bridge(), count).equals("call")) {
@@ -53,7 +43,7 @@ public class GameController {
         return "End";
     }
 
-    public void total_print(){
+    public void total_print() {
         if (BridgeGame.game_status.equals("End")) {
             outputView().printResult(round_count, "실패");
         }
@@ -62,4 +52,30 @@ public class GameController {
         }
     }
 
+    public String movecheck() {
+        String get = BridgeGame().retry(inputView().readGameCommand());
+        if (get.equals("playing")) {
+            count = 0;
+            round_count++;
+            return "continue";
+        }
+        return "";
+    }
+    public void all_print(){
+        outputView().printMap();
+        count++;
+        total_print();
+    }
+
+    public void start(){
+        while (BridgeGame.game_status.equals("playing") && Bridge().size() != count) {
+            String position = inputView().readMoving();
+            if (BridgeGame().move(position, Bridge(), count).equals("call")) {
+                if (movecheck().equals("continue")) {
+                    continue;
+                }
+            }
+            all_print();
+        }
+    }
 }
