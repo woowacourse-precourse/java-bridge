@@ -49,6 +49,7 @@ public class BridgeGameController {
         outputView.printMap(bridgeGame.getUps(), bridgeGame.getDowns());
         status = bridgeGame.getStatus();
     }
+
     public void checkContinue() {
         if (status == STATUS.END_WITH_SUCCESS) {
             return;
