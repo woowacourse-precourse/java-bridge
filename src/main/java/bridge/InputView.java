@@ -48,7 +48,7 @@ public class InputView {
         String nextStepInput;
         nextStepInput = Console.readLine();
         if (!nextStepInput.equals("U") && !nextStepInput.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] 반드시 U 혹은 D 중 (최소)한글자를 입력 해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 한글자의 U 또는 D를 입력해주세요.");
         }
         return nextStepInput;
     }
@@ -70,12 +70,26 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("재시도 하시겠습니까?");
+        System.out.println("재시도 하시겠습니까? 재시도는 R, 그만 두기는 Q를 눌러주세요");
         String askRetry;
         askRetry = Console.readLine();
+        if (!askRetry.equals("R") && !askRetry.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 한글자의 R 또는 Q를 입력해주세요");
+        }
 
         return askRetry;
     }
-
+    public String readGameCommandWithValidityCheck() {
+        String askRetry;
+        while (true) {
+            try {
+                askRetry=readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return askRetry;
+    }
 
 }
