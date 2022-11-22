@@ -8,6 +8,9 @@ public class Player {
     private PlayerBridge playerBridge;
     private List<String> rightBridge;
 
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
     public void makeNewPlayerBridge(){
         this.playerBridge = new PlayerBridge();
     }
@@ -20,7 +23,7 @@ public class Player {
         coinUsed+=1;
     }
 
-    public void moving(InputView inputView, OutputView outputView) {
+    public void moving() {
         for (String rightRoot : rightBridge) {
             String moving = inputView.readMoving();
             if(compareRightRoot(rightRoot, moving)){
@@ -79,4 +82,9 @@ public class Player {
     public PlayerBridge getPlayerBridge(){return playerBridge;}
 
     public int getCoinUsed(){return coinUsed;}
+
+    public String readGameCommand(){
+        return inputView.readGameCommand();
+    }
+
 }
