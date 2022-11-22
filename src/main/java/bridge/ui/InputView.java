@@ -1,5 +1,6 @@
 package bridge.ui;
 
+import bridge.vo.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -42,12 +43,12 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public GameCommand readGameCommand() {
         try {
             System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             String gameCommand = Console.readLine();
-            if ("R".equals(gameCommand) || "Q".equals(gameCommand))
-                return gameCommand;
+            if ("R".equals(gameCommand)) return GameCommand.RETRY;
+            if ("Q".equals(gameCommand)) return GameCommand.QUIT;
             throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] : R, Q 입력 요구");

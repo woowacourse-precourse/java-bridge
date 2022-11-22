@@ -5,6 +5,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
+import bridge.vo.GameCommand;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class BridgeGameController {
     }
 
     public boolean retry() {
-        String gameCommand = inputView.readGameCommand();
+        GameCommand gameCommand = inputView.readGameCommand();
         if (wantRetry(gameCommand)) {
             bridgeGame.retry();
             return true;
@@ -49,8 +50,8 @@ public class BridgeGameController {
         return false;
     }
 
-    private static boolean wantRetry(String command) {
-        if ("R".equals(command)) {
+    private static boolean wantRetry(GameCommand command) {
+        if (GameCommand.RETRY.equals(command)) {
             return true;
         }
         return false;
