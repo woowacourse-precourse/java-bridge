@@ -43,7 +43,7 @@ public class OutputView {
             addFailResult("D", board.get(step), resultDown);
         }
         System.out.println("[ "+String.join(" | ", resultUp)+" ]");
-        System.out.println("[ "+String.join(" | ", resultDown)+" ]\n");
+        System.out.println("[ "+String.join(" | ", resultDown)+" ]");
     }
 
     /**
