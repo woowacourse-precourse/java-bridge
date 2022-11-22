@@ -9,10 +9,12 @@ import bridge.View.OutputView;
 public class GameController {
 
     private static final String RETRY = GameResult.RETRY.getResult();
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private int progress;
     private int totalTries = 1;
     private boolean isCleared;
-    private BridgeGame bridgeGame = new BridgeGame();
 
     public void run(Bridge bridge) {
         String lastCommand;
@@ -41,7 +43,7 @@ public class GameController {
         boolean isCrossable = true;
         progress = 0;
 
-        while (isCrossable && bridgeSize > progress) { //TODO: 라인 줄이기
+        while (isCrossable && bridgeSize > progress) {
             isCrossable = proceed(bridge);
         }
 
@@ -60,30 +62,22 @@ public class GameController {
     }
 
     private String handleInput() {
-        InputView inputView = new InputView();
-
         String input = inputView.readMoving();
 
         return input;
     }
 
     private String handleRetryCommand() {
-        InputView inputView = new InputView(); //인스턴스 중복 생성?
-
         String input = inputView.readGameCommand();
 
         return input;
     }
 
     private void printResult(String currentResult, String input) {
-        OutputView outputView = new OutputView();
-
         outputView.printMap(currentResult, input, progress);
     }
 
     private void printFinalResult() {
-        OutputView outputView = new OutputView();
-
         outputView.printResult(isCleared, totalTries);
     }
 }
