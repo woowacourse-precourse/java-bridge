@@ -17,6 +17,15 @@ public class BridgeTest extends NsTest {
         });
     }
 
+    @Test
+    void 이동_칸_입력_예외_테스트() {
+        BridgeException bridgeException = new BridgeException();
+        boolean exceptionA = bridgeException.moveException("u");
+        assertThat(exceptionA).isFalse();
+        boolean exceptionB = bridgeException.moveException("d");
+        assertThat(exceptionB).isFalse();
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

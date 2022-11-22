@@ -41,7 +41,7 @@ public class BridgeException {
         try {
             isCommandUOrD(sideToMove);
         } catch (IllegalArgumentException e) {
-            System.out.println();
+            System.out.println(MOVE_SIDE_INPUT_ERROR);
             new BridgeController().moveController();
             return false;
         }
