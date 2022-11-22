@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.controller.GameController;
-import bridge.service.BridgeGame;
 
 public class Application {
 
