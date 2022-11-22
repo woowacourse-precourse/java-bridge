@@ -1,10 +1,11 @@
-package view;
+package bridge.view;
 
 import java.util.List;
 
 public class OutputView {
 
-    static List<String> bridge;
+    private static final String START_MESSAGE = "\n다리 건너기 게임을 시작합니다.\n";
+
     static StringBuilder up;
     static StringBuilder down;
     static final String START_POINT = "[ ";
@@ -12,24 +13,30 @@ public class OutputView {
     static final String SPLIT = " | ";
     static final String[] PASS_FAIL = {"O", "X"};
     static final String EMPTY = " ";
-    static boolean failFlag = true;
 
-    public OutputView(List<String> bridge) {
-        this.bridge = bridge;
+    // report
+    private static final String REPORT_TITLE = "\n최종 게임 결과";
+    private static final String REPORT_RESULT = "\n게임 성공 여부: ";
+    private static final String REPORT_RETRY = "총 시도한 횟수: ";
+
+    public OutputView() {
         up = new StringBuilder();
         down = new StringBuilder();
     }
 
-    public static StringBuilder getUp() {
-        return up;
+    public OutputView(List<String> asList) {
     }
 
-    public static StringBuilder getDown() {
-        return down;
+    public static String getUpDown() {
+        return up.toString() + "\n" + down.toString();
     }
 
-    public static boolean isFailFlag() {
-        return failFlag;
+    public void printStart(){
+        System.out.println(START_MESSAGE);
+    }
+
+    public void print(String string){
+        System.out.println(string);
     }
 
     /**
@@ -37,21 +44,25 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> steps) {
+    public static void printMap(List<String> steps, List<String> bridge) {
+        resetMap();
         appendToBoth(START_POINT);
-
-        for (int i=0; i<steps.size(); i++) {
-            drowBlocks(i, steps.get(i));
+        for (int i = 0; i < steps.size(); i++) {
+            drowBlocks(bridge.get(i), steps.get(i));
             appendToBoth(SPLIT);
         }
-
         endMap();
-        System.out.println(up.toString()+"\n"+down.toString());
+        System.out.println(up.toString() + "\n" + down.toString());
+    }
+
+    private static void resetMap() {
+        up.setLength(0);
+        down.setLength(0);
     }
 
     private static void endMap() {
-        up.delete(up.length()-SPLIT.length(),up.length());
-        down.delete(down.length()-SPLIT.length(),down.length());
+        up.delete(up.length() - SPLIT.length(), up.length());
+        down.delete(down.length() - SPLIT.length(), down.length());
         appendToBoth(END_POINT);
     }
 
@@ -65,8 +76,9 @@ public class OutputView {
         down.append(print2);
     }
 
-    private static void drowBlocks(int i, String upDown) {
-        int passFail = getPassFail(i, upDown);
+    private static void drowBlocks(String answer, String upDown) {
+        int passFail = 1;
+        if (answer.equals(upDown)) passFail = 0;
 
         if (upDown.equals("U")) {
             appendToBoth(PASS_FAIL[passFail], EMPTY);
@@ -76,20 +88,19 @@ public class OutputView {
         }
     }
 
-    private static int getPassFail(int i, String s) {
-        int passFail = 1;
-
-        if (bridge.get(i).equals(s)) passFail = 0;
-
-        return passFail;
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-        // TODO document why this method is empty
+    public void printResult(boolean failFlag, int tryCount) {
+        String result = "";
+        if (failFlag) result = "성공";
+        if (!failFlag) result = "실패";
+
+        System.out.println(REPORT_TITLE);
+        System.out.println(up.toString() + "\n" + down.toString());
+        System.out.println(REPORT_RESULT + result);
+        System.out.println(REPORT_RETRY + tryCount);
     }
 }
