@@ -51,7 +51,7 @@ public class GameController {
 
     private void moveNextStep(String choice) {
         bridgeGame.move(choice);
-        outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
+        outputView.printTotalMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
     }
 
     private void updateGameStatus(boolean success) {
@@ -69,7 +69,7 @@ public class GameController {
 
     private void printFinalResult() {
         outputView.printResultOpening();
-        outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
+        outputView.printTotalMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
         outputView.printResult(bridgeGame.getContextInfo());
     }
 }

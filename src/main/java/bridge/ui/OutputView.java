@@ -34,59 +34,38 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Boolean> moveResult, List<String> playersMove) {
-        printMapUpper(moveResult, playersMove);
-        printMapLower(moveResult, playersMove);
+    public void printTotalMap(List<Boolean> moveResult, List<String> playersMove) {
+        printMap(moveResult, playersMove, UP);
+        printMap(moveResult, playersMove, DOWN);
         System.out.println();
     }
 
-    private void printMapUpper(List<Boolean> moveResult, List<String> playersMove) {
+    private void printMap(List<Boolean> moveResult, List<String> playersMove, String move) {
         System.out.print(START_BRACKET);
-        for (int idx = 0; idx < playersMove.size(); idx++) {
-            if (playersMove.get(idx).equals(UP)) {
-                printSingleResult(moveResult, idx);
-            }
-            if (playersMove.get(idx).equals(DOWN)) {
-                printEmptySpaces();
-            }
-            if (printWallIfNotEnd(playersMove, idx)) {
-                break;
-            }
+        for (int idx = 0; idx < playersMove.size(); idx++){
+            printSingleResult(moveResult.get(idx), playersMove.get(idx), move);
+            printWallIfNotEnd(playersMove, idx);
         }
         System.out.println(END_BRACKET);
     }
 
-    private void printMapLower(List<Boolean> moveResult, List<String> playersMove) {
-        System.out.print(START_BRACKET);
-        for (int idx = 0; idx < playersMove.size(); idx++) {
-            if (playersMove.get(idx).equals(DOWN)) {
-                printSingleResult(moveResult, idx);
-            }
-            if (playersMove.get(idx).equals(UP)) {
-                printEmptySpaces();
-            }
-            if (printWallIfNotEnd(playersMove, idx)) {
-                break;
-            }
+    private void printSingleResult(Boolean match, String player, String move) {
+        if (player.equals(move)){
+            System.out.printf(" %s ", resultMapper(match));
+            return;
         }
-        System.out.println(END_BRACKET);
-    }
-
-    private void printSingleResult(List<Boolean> moveResult, int idx) {
-        String resultToPrint = resultMapper(moveResult.get(idx));
-        System.out.printf(" %s ", resultToPrint);
+        printEmptySpaces();
     }
 
     private void printEmptySpaces(){
         System.out.print("   ");
     }
 
-    private boolean printWallIfNotEnd(List<String> playersMove, int i) {
-        if (i == playersMove.size() - 1) {
-            return true;
+    private void printWallIfNotEnd(List<String> playersMove, int idx) {
+        int end = playersMove.size() - 1;
+        if (idx < end) {
+            System.out.print(WALL);
         }
-        System.out.print(WALL);
-        return false;
     }
 
     private String resultMapper(boolean result) {
@@ -95,7 +74,6 @@ public class OutputView {
         }
         return MISS;
     }
-
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
