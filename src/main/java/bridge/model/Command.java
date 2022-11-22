@@ -5,23 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum Direction {
-    D(0, "아래"), U(1, "위");
+public enum Command {
+    R("재시도"), Q("종료");
 
     private final String info;
-    private final int value;
 
-    Direction(int value, String info) {
-        this.value = value;
+    Command(String info) {
         this.info = info;
-    }
-
-    public static String getName(int value) {
-        for (Direction direction : values()) {
-            if (direction.value == value)
-                return direction.name();
-        }
-        return null;
     }
 
     public static List<String> names() {
@@ -31,7 +21,7 @@ public enum Direction {
     public static String info() {
         StringBuilder msg = new StringBuilder("(");
         List<String> infos = new ArrayList<>();
-        for (Direction direction : values()) {
+        for (Command direction : values()) {
             infos.add(direction.info + ": " + direction.name());
         }
         msg.append(String.join(", ", infos));

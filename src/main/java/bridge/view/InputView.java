@@ -1,9 +1,10 @@
 package bridge.view;
 
 import bridge.exception.ErrorMsg;
+import bridge.model.BridgeInfo;
+import bridge.model.Command;
+import bridge.model.Direction;
 import camp.nextstep.edu.missionutils.Console;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -17,15 +18,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(Message.GET_BRIDGE_LENGTH);
-        return validated(Console.readLine(), 3, 20);
-    }
-
-    private int validated(String input, int min, int max) {
-        List<String> allowed = new ArrayList<>();
-        for (int i = min; i <= max; i++)
-            allowed.add(Integer.toString(i));
-
-        return Integer.parseInt(validated(input, allowed, ErrorMsg.WRONG_BRIDGE_SIZE));
+        return Integer.parseInt(
+                validated(Console.readLine(), BridgeInfo.getRange(),
+                        ErrorMsg.WRONG_BRIDGE_SIZE));
     }
 
     public <T> T loopInput(Supplier<T> function) {
@@ -43,7 +38,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(Message.CHOOSE_UP_OR_DOWN);
-        return validated(Console.readLine(), List.of("U", "D"), ErrorMsg.NOT_ALLOWED_MOVEMENT);
+        return validated(Console.readLine(), Direction.names(), ErrorMsg.NOT_ALLOWED_MOVEMENT);
     }
 
     /**
@@ -51,7 +46,7 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(Message.CHOOSE_RETRY);
-        return validated(Console.readLine(), List.of("R", "Q"), ErrorMsg.NOT_ALLOWED_COMMAND);
+        return validated(Console.readLine(), Command.names(), ErrorMsg.NOT_ALLOWED_COMMAND);
     }
 
     private String validated(String move, List<String> allowed, ErrorMsg msg) {
