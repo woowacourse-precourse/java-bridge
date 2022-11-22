@@ -11,7 +11,6 @@ public class Application {
     private static final InputView INPUT_VIEW = new InputView();
     private static final OutputView OUTPUT_VIEW = new OutputView();
     private static BridgeGame bridgeGame;
-    private static final String RETRY = "R";
 
     public static void main(String[] args) {
         Player player = new Player();
@@ -46,7 +45,7 @@ public class Application {
     }
 
     private static boolean askRetry(Player player) {
-        if (INPUT_VIEW.readGameCommand().equals(RETRY)) {
+        if (INPUT_VIEW.readGameCommand().equals(Commands.RETRY.getCommand())) {
             bridgeGame.retry(player);
             gameCount++;
             return true;

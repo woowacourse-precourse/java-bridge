@@ -1,5 +1,6 @@
 package bridge.ui.output;
 
+import bridge.Commands;
 import bridge.domain.Player;
 
 import java.util.ArrayList;
@@ -10,24 +11,23 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Player player) {
-        String upperLine = completeOutput(String.join(Components.SEPERATOR.getValue(), printSingleLine(player, UP )));
-        String lowerLine = completeOutput(String.join(Components.SEPERATOR.getValue(), printSingleLine(player,DOWN)));
+        String up = Commands.UP.getCommand();
+        String down = Commands.DOWN.getCommand();
+        String upperLine = completeOutput(String.join(Components.SEPERATOR.getValue(), printSingleLine(player, up)));
+        String lowerLine = completeOutput(String.join(Components.SEPERATOR.getValue(), printSingleLine(player, down)));
         System.out.println(upperLine);
         System.out.println(lowerLine);
         System.out.println();
     }
 
     private String completeOutput(String inner) {
-        return Components.FRONT_WRAPPER + inner + Components.LAST_WRAPPER;
+        return Components.FRONT_WRAPPER.getValue() + inner + Components.LAST_WRAPPER.getValue();
     }
 
     private List<String> printSingleLine(Player player, String line) {
@@ -71,9 +71,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(Player player, long gameCount) {
-        System.out.println(Components.GAME_NOTIFICATION);
+        System.out.println(Components.GAME_NOTIFICATION.getValue());
         printMap(player);
-        System.out.println(Components.SUCCESS_NOTIFICATION + successOrFail(player.getResult()));
+        System.out.println(Components.SUCCESS_NOTIFICATION.getValue() + successOrFail(player.getResult()));
         System.out.println(Components.COUNT_NOTIFICATION.getValue() + gameCount);
     }
 

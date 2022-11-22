@@ -1,5 +1,6 @@
 package bridge.ui.Input;
 
+import bridge.Commands;
 import bridge.ui.Input.Exceptions.BridgeLength;
 import bridge.ui.Input.Exceptions.GameCommand;
 import bridge.ui.Input.Exceptions.Moving;
@@ -10,8 +11,10 @@ import bridge.ui.Input.Exceptions.Moving;
 public class InputView {
 
     private static final String INITIATION_NOTIFICATION = "다리 건너기 게임을 시작합니다.\n\n다리의 길이를 입력해주세요.";
-    private static final String MOVING_NOTIFICATION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String GAME_COMMAND_NOTIFICATION = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String MOVING_NOTIFICATION = "이동할 칸을 선택해주세요. (위: "
+            + Commands.UP.getCommand() + ", 아래: " + Commands.DOWN.getCommand() +")";
+    private static final String GAME_COMMAND_NOTIFICATION = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: "
+            + Commands.RETRY + ", 종료: " + Commands.QUIT.getCommand() + ")";
 
     /**
      * 다리의 길이를 입력받는다.
