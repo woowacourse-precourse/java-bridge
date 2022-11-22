@@ -87,4 +87,8 @@ public class OutputView {
     public void printExceptionMessage(IllegalArgumentException e){
         System.out.println(e.getMessage());
     }
+
+    public void printSpace(){
+        System.out.println();
+    }
 }
