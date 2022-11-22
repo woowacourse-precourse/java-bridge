@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.view.InputView;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,18 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
+    private InputView inputView;
+
+    @BeforeEach
+    protected final void init() {
+        inputView = new InputView();
+    }
 
     @DisplayName("다리 길이는 숫자로 입력 되지 않으면 예외가 발생한다.")
     @Test
     void readBridgeSizeByNotNumeric() {
         assertThatThrownBy(() -> {
             command("a", "", " ");
-            InputView inputView = new InputView();
             inputView.readBridgeSize();
         }).isInstanceOf(NoSuchElementException.class);
     }
@@ -26,7 +32,6 @@ public class InputViewTest {
     void readBridgeSizeByInCorrectRange() {
         assertThatThrownBy(() -> {
             command("1", "-1", "21");
-            InputView inputView = new InputView();
             inputView.readBridgeSize();
         }).isInstanceOf(NoSuchElementException.class);
     }
@@ -36,7 +41,6 @@ public class InputViewTest {
     void readMovingByInCorrectPos() {
         assertThatThrownBy(() -> {
             command("1", "F", "UU");
-            InputView inputView = new InputView();
             inputView.readMoving();
         }).isInstanceOf(NoSuchElementException.class);
     }
@@ -46,7 +50,6 @@ public class InputViewTest {
     void readGameCommandByInCorrectCommand() {
         assertThatThrownBy(() -> {
             command("1", "F", "RR");
-            InputView inputView = new InputView();
             inputView.readGameCommand();
         }).isInstanceOf(NoSuchElementException.class);
     }
