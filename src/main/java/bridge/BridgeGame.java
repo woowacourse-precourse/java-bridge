@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.controller.BridgeGameController;
 import bridge.domain.Bridge;
-import bridge.domain.BridgePassed;
 import bridge.enumeration.GameCommand;
 import bridge.service.BridgeGameService;
 

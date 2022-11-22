@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgePassed;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

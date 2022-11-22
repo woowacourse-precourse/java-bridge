@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgePassed;
+import bridge.BridgePassed;
 import bridge.service.BridgeGameService;
 
 public class BridgeGameController {

@@ -2,8 +2,8 @@ package bridge.service;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgePassed;
+import bridge.BridgeMaker;
+import bridge.BridgePassed;
 
 public class BridgeGameService {
 
