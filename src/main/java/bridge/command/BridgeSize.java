@@ -23,4 +23,8 @@ public class BridgeSize {
         Logger.error("invalid size of bridge", value);
         throw new IllegalArgumentException();
     }
+
+    public int getValue() {
+        return value;
+    }
 }
