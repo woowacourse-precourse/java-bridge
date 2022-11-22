@@ -1,5 +1,8 @@
 package bridge;
 
+import constants.Command;
+import constants.ErrorMessage;
+import constants.Text;
 import repository.BridgeRepository;
 
 import java.util.List;
@@ -10,8 +13,7 @@ import java.util.stream.IntStream;
 public class BridgeGame {
     private static final String BRIDGE_SIZE_REGEX = "([3-9]|1[0-9]|20)";
     private static final String MOVE_DIRECTION_REGEX = "[UD]";
-    private static final String SUCCESS = "O";
-    private static final String FAIL = "X";
+    private static final String COMMAND_REGEX = "[RQ]";
 
     private final BridgeRepository bridgeRepository;
 
@@ -64,10 +66,10 @@ public class BridgeGame {
     private void drawResult(List<String> progress) {
         int lastMove = progress.size();
         IntStream.range(0, lastMove)
-                .forEach(i -> bridgeRepository.saveResult(progress.get(i), i, SUCCESS));
+                .forEach(i -> bridgeRepository.saveResult(progress.get(i), i, Text.SUCCESS));
 
         if (!canMove()) {
-            bridgeRepository.saveResult(progress.get(lastMove - 1), lastMove - 1, FAIL);
+            bridgeRepository.saveResult(progress.get(lastMove - 1), lastMove - 1, Text.FAIL);
         }
     }
 
@@ -80,7 +82,15 @@ public class BridgeGame {
     }
 
     public boolean retryOrEnd(String command) {
-        return false;
+        validateCommand(command);
+
+        return Command.choiceToValue(command);
+    }
+
+    private void validateCommand(String command) {
+        if (!Pattern.matches(COMMAND_REGEX, command)) {
+            throw new IllegalArgumentException(ErrorMessage.COMMAND);
+        }
     }
 
     /**
