@@ -1,11 +1,8 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -18,18 +15,23 @@ public class BridgeGame {
      */
     public List<String> tryAnswer = new ArrayList<>();
     static int count = 1;
+    static int finish = 0;
     public void move(List<String> makeBridge) {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
         for(int i = 0;i< makeBridge.size();i++) {
-            String pInput = inputView.readMoving();
+            if(finish == 0) {
+                String pInput = inputView.readMoving();
 
-            tryAnswer.add(i,pInput);
-            outputView.printMap(tryAnswer,makeBridge);
-
+                tryAnswer.add(i, pInput);
+                outputView.printMap(tryAnswer, makeBridge);
+            }
         }
-        outputView.printResult(count,0,tryAnswer,makeBridge);
+        if (makeBridge.size() == tryAnswer.size()&& finish == 0) {
+            outputView.printResult(count, 0, tryAnswer, makeBridge);
+            finish++;
+        }
     }
 
     /**
@@ -43,11 +45,12 @@ public class BridgeGame {
 
         String retry = inputView.readGameCommand();
 
-        if(retry == "R") {
+        if(Objects.equals(retry, "R")) {
             count++;
             tryAnswer.clear();
             move(makeBridge);
         }
-        if(retry == "Q") outputView.printResult(count,1,tryAnswer,makeBridge);
+
+        if(Objects.equals(retry, "Q")) outputView.printResult(count,1,tryAnswer,makeBridge);
     }
 }

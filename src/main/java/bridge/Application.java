@@ -15,6 +15,8 @@ public class Application {
             System.out.println("다리의 길이를 입력해주세요.");
 
             int size = inputView.readBridgeSize();
+            if(size == 0)
+                return;
             List<String> answerBridge = bridgeMaker.makeBridge(size);
             bridgeGame.move(answerBridge);
 

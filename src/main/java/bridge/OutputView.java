@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,30 +13,44 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> tryAnswer,List<String> makeBridge) {
-        printOneBridge(1, tryAnswer,makeBridge);
-        printOneBridge(2, tryAnswer,makeBridge);
+        int temp1, temp2;
+
+        temp1 = printOneBridge(1, tryAnswer,makeBridge);
+        temp2 = printOneBridge(2, tryAnswer,makeBridge);
+
+        if(temp1 != 0 || temp2 != 0){
+            BridgeGame bridgeGame = new BridgeGame();
+            bridgeGame.retry(makeBridge);
+        }
     }
 
-    public void printOneBridge(int order,List<String> tryAnswer,List<String> makeBridge){
+    public int printOneBridge(int order,List<String> tryAnswer,List<String> makeBridge){
+        int flag = 0;
+
         for(int j=0;j<= tryAnswer.size();j++){
             if(j == 0) System.out.print("[");
             if(j>0&&j< tryAnswer.size()) System.out.print("|");
-            if(j != tryAnswer.size())   printNullOrO(tryAnswer.get(j),order,makeBridge.get(j));
+            if(j != tryAnswer.size()) flag = printNullOrO(tryAnswer.get(j),order,makeBridge.get(j));
             if(j == tryAnswer.size()) System.out.println("]");
         }
+
+        return flag;
     }
 
-    public void printNullOrO(String UorD,int order,String makeBridge){
+    public int printNullOrO(String UorD,int order,String makeBridge){
+        int flag = 0;
+
         if(order==1){
             if (Objects.equals(UorD, "U") && Objects.equals(makeBridge, UorD)) System.out.print(" O ");
-            if (Objects.equals(UorD, "U") && !Objects.equals(makeBridge, UorD)) System.out.print(" X ");
-            if(Objects.equals(UorD, "D"))  System.out.print("   ");
-        }
+            if (Objects.equals(UorD, "U") && !Objects.equals(makeBridge, UorD)) {
+                System.out.print(" X "); flag = 1; }
+            if(Objects.equals(UorD, "D"))  System.out.print("   "); }
         if(order==2){
             if (Objects.equals(UorD, "D") && Objects.equals(makeBridge, UorD)) System.out.print(" O ");
-            if (Objects.equals(UorD, "D") && !Objects.equals(makeBridge, UorD)) System.out.print(" X ");
-            if(Objects.equals(UorD, "U"))  System.out.print("   ");
-        }
+            if (Objects.equals(UorD, "D") && !Objects.equals(makeBridge, UorD)) {
+                System.out.print(" X "); flag = 1; }
+            if(Objects.equals(UorD, "U"))  System.out.print("   "); }
+        return flag;
     }
 
     /**
