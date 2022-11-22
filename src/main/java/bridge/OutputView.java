@@ -45,7 +45,7 @@ public class OutputView {
     public static void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getBridge(), bridgeGame.getNowIdx(), bridgeGame.getRecentInput());
-        System.out.print("게임 성공 여부 : ");
+        System.out.print("게임 성공 여부: ");
         printWin(bridgeGame);
         System.out.print("총 시도한 횟수: ");
         System.out.println(bridgeGame.getTryTimes());
