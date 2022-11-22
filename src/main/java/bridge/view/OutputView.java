@@ -18,8 +18,6 @@ import static bridge.view.Message.ENTRANCE_OF_BRIDGE;
 import static bridge.view.Message.EXIT_OF_BRIDGE;
 import static bridge.view.Message.GAME_COMMAND_INPUT_REQUEST_MESSAGE;
 import static bridge.view.Message.FINAL_GAME_RESULT_MESSAGE;
-import static bridge.view.Message.SUCCESS;
-import static bridge.view.Message.FAIL;
 import static bridge.view.Message.GAME_SUCCESS_OR_NOT_MESSAGE;
 import static bridge.view.Message.TOTAL_TRY_COUNT_MESSAGE;
 
@@ -87,8 +85,8 @@ public class OutputView {
     }
 
     private void printSuccessOrFail(boolean isFailed) {
-        String result = Message.getResultMessage(isFailed);
-        System.out.println(GAME_SUCCESS_OR_NOT_MESSAGE.getMessage() + result);
+        String successResult = Message.getSuccessResultMessage(isFailed);
+        System.out.println(GAME_SUCCESS_OR_NOT_MESSAGE.getMessage() + successResult);
     }
 
     private void printTryCount(BridgeGame bridgeGame) {

@@ -26,7 +26,7 @@ public enum Message {
         return message;
     }
 
-    public static String getResultMessage(boolean isFailed) {
+    public static String getSuccessResultMessage(boolean isFailed) {
         if (isFailed) {
             return FAIL.getMessage();
         }
