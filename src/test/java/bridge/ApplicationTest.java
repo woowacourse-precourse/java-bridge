@@ -26,11 +26,11 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
@@ -40,9 +40,41 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트_20라운드() {
+        assertRandomNumberInRangeTest(() -> {
+            run("20", "D", "R", "U", "U", "R",
+                    "U", "D", "U", "D", "D",
+                    "D", "U", "U", "U", "D",
+                    "D", "D", "U", "U", "U",
+                    "D", "D", "D", "D", "D");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O |   |   |   | O | O | O |   |   |   | O | O | O |   |   |   |   |   ]",
+                    "[   | O |   | O | O | O |   |   |   | O | O | O |   |   |   | O | O | O | O | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf(
+                    "[ O |   | O |   |   |   | O | O | O |   |   |   | O | O | O |   |   |   |   |   ]");
+            int downSideIndex = output().indexOf(
+                    "[   | O |   | O | O | O |   |   |   | O | O | O |   |   |   | O | O | O | O | O ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0);
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_라운드_범위를_벗어남() {
+        assertSimpleTest(() -> {
+            runException("21");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
