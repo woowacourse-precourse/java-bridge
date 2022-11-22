@@ -17,9 +17,21 @@ public class Bridge {
         tryCount = 1;
     }
 
-    public void makeBridge(int bridgeSize) {
-        bridge = new BridgeMaker(new BridgeRandomNumberGenerator())
-                .makeBridge(bridgeSize);
+    //new BridgeMaker(new BridgeRandomNumberGenerator())
+    public void makeBridge(int bridgeSize, BridgeMaker bridgeMaker) {
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    public MoveResult move(String movePath) { // userPath에 movePath 추가 / 실패했는지, 성공했는지, 다리를 건넜는지 반환
+        userPath.add(movePath);
+
+        if (isLastMoveSuccess() && isGameSuccess()) {
+            return MoveResult.PASSED_BRIDGE;
+        }
+        if (isLastMoveSuccess()) {
+            return MoveResult.MOVE_SUCCESS;
+        }
+        return MoveResult.MOVE_FAIL;
     }
 
     public void initBridge() {
@@ -34,6 +46,14 @@ public class Bridge {
         return map;
     }
 
+    public boolean isGameSuccess() {
+        return bridge.size() == userPath.size();
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
     private List<String> makeUpperMap() {
         List<String> upperPathMap = new ArrayList<>();
         for (int i = 0; i < userPath.size(); i++) {
@@ -41,6 +61,7 @@ public class Bridge {
         }
         return upperPathMap;
     }
+
     private List<String> makeLowerMap() {
         List<String> lowerPathMap = new ArrayList<>();
         for (int i = 0; i < userPath.size(); i++) {
@@ -48,6 +69,7 @@ public class Bridge {
         }
         return lowerPathMap;
     }
+
     private String makeUpperMoveResult(String bridgePath, String userPath) {
         if (!bridgePath.equals(userPath) && bridgePath.equals("D")) {
             return "X";
@@ -66,26 +88,6 @@ public class Bridge {
             return "O";
         }
         return " ";
-    }
-
-    public boolean isGameSuccess() {
-        return bridge.size() == userPath.size();
-    }
-
-    public int getTryCount() {
-        return tryCount;
-    }
-
-    public MoveResult move(String movePath) { // userPath에 movePath 추가 / 실패했는지, 성공했는지, 다리를 건넜는지 반환
-        userPath.add(movePath);
-
-        if (isLastMoveSuccess() && isGameSuccess()) {
-            return MoveResult.PASSED_BRIDGE;
-        }
-        if (isLastMoveSuccess()) {
-            return MoveResult.MOVE_SUCCESS;
-        }
-        return MoveResult.MOVE_FAIL;
     }
 
     private boolean isLastMoveSuccess() {
