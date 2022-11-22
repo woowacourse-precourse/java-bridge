@@ -1,6 +1,6 @@
 package bridge;
 
 @FunctionalInterface
-public interface Loopable {
+public interface Input {
     boolean check(String s);
 }

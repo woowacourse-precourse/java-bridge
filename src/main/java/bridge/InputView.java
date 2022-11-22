@@ -11,17 +11,32 @@ public class InputView {
      * 인자로 받은 람다식에 대입하여 true 값이 나올 때까지
      * 재입력을 반복시켜주는 메소드
      *
-     * @param lambda 원하는 조건을 가진 람다식(Loopable 인터페이스를 받는)
+     * @param lambda 원하는 조건을 가진 람다식
      * @return true 값이 나온 입력
      */
-    private String loopUntilValid(Loopable lambda) {
+    private String loopUntilValid(Input lambda) {
         String rawInput;
         boolean isRawInputValid;
         do {
             rawInput = readInput();
-            isRawInputValid = lambda.check(rawInput);
+            isRawInputValid = catchIfFail(lambda, rawInput);
         } while (!isRawInputValid);
         return rawInput;
+    }
+
+    /**
+     * 입력값을 Input 인터페이스의 람다식에 대입 후, 에러가 발생하면 에러 메세지와 false 를 반환 <br>
+     * 람다식에서 에러가 발생하지 않으면 true 반환
+     *
+     * @param input 사용자의 입력값
+     */
+    private boolean catchIfFail(Input lambda, String input) {
+        try {
+            return lambda.check(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -37,54 +52,23 @@ public class InputView {
      * 사용자의 입력을 받아 다리 길이를 반환
      */
     public int readBridgeSize() {
-        String size = loopUntilValid(bridgeSizeCondition());
+        String size = loopUntilValid(
+                (input) -> ValidateInput.isAllDigit(input) && ValidateInput.isInRange(input));
         return Integer.parseInt(size);
     }
 
-    private Loopable bridgeSizeCondition(){
-        return (input) -> {
-            try {
-                return ValidateInput.isAllDigit(input) && ValidateInput.isInRange(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return false;
-            }
-        };
-    }
 
     /**
      * 사용자의 입력을 받아 이동할 방향 반환
      */
     public String readMoving() {
-        return loopUntilValid(movingCondition());
-    }
-
-    private Loopable movingCondition(){
-        return (input) -> {
-            try {
-                return ValidateInput.isUorD(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return false;
-            }
-        };
+        return loopUntilValid(ValidateInput::isUorD);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return loopUntilValid(gameCommendCondition());
-    }
-
-    private Loopable gameCommendCondition(){
-        return (input) -> {
-            try {
-                return ValidateInput.isRorQ(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return false;
-            }
-        };
+        return loopUntilValid(ValidateInput::isRorQ);
     }
 }
