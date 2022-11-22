@@ -94,33 +94,36 @@ Q
 ```
 
 
-## 디렉토리, 클래스 목록
+## **디렉토리, 클래스 목록**
 
 - controller
     - BridgeController
 - view
     - InputView
     - OutputView
-    - OutputMessage(Enum)
+    - AnnounceMessage(Enum)
     - BridgeDesign(Enum)
 - utils
     - EmptyChecker
-    - InputParser
+    - FirstInstanceBuilder
+    - UDRQInstanceBuilder
 - domain
-    - exception
-        - SizeIllegalArgumentException
-        - UDIllegalArgumentException
-        - RQIllegalArgumentException
+    - bridgebuilder
+        - BridgeConverter
+        - BridgeGame
+        - BridgeMaker
+    - oxbridgebuilder
+        - BridgeDesign(Enum)
+        - OXBridge
+        - OXBridgeUtils
+        - UDBridge
     - resources
+        - Bridge
         - UpOrDown
         - ReOrQuit
-        - Bridge
-        - UserBridge
-          BridgeGame
-          Application
-          BridgeMaker
-          BridgeNumberGenerator
-          BridgeRandomNumberGenerator
+  Application
+  BridgeNumberGenerator
+  BridgeRandomNumberGenerator
 
 ## 기능 목록
 
