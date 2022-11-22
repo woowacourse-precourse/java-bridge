@@ -17,7 +17,7 @@ class OutputViewTest {
     @Test
     void printMap() {
         String answer = "[ O |   | X ]" + System.lineSeparator() +
-                "[   | O |   ]" + System.lineSeparator();
+                "[   | O |   ]" + System.lineSeparator() + System.lineSeparator();
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
