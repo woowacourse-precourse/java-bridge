@@ -1,5 +1,6 @@
 package bridge.utils;
 
+import bridge.utils.constants.BridgeGameCommand;
 import bridge.utils.constants.BridgeMove;
 import bridge.utils.constants.BridgeSize;
 
@@ -16,6 +17,12 @@ public class ValidateUtils {
     public static void isCorrectMoveValue(String input){
         if(!Pattern.matches(BridgeMove.BRIDGE_MOVE_REGEX, input)){
             throwIllegalArgumentException(BridgeMove.ERROR_BRIDGE_MOVE_MESSAGE);
+        }
+    }
+
+    public static void isCorrectGameCommand(String input){
+        if(!Pattern.matches(BridgeGameCommand.GAME_COMMAND_REGEX, input)){
+            throwIllegalArgumentException(BridgeGameCommand.ERROR_GAME_COMMAND);
         }
     }
 
