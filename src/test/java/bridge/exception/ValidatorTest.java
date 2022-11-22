@@ -9,6 +9,7 @@ class ValidatorTest {
 
     private final int INPUT_WRONG_BRIDGE_LENGTH = 5000;
     private final String INPUT_WRONG_MOVING = "E";
+    private final String INPUT_WRONG_GAME_COMMAND = "E";
 
     @DisplayName("다리 길이는 3이상 20이하여야 합니다.")
     @Test
@@ -27,5 +28,15 @@ class ValidatorTest {
         });
         assertEquals(exception.getMessage(), Error.WRONG_MOVING.getMessage());
         System.out.println(Error.WRONG_MOVING.getMessage());
+    }
+
+    @DisplayName("게임 재시작/종료 여부는 R(재시작)과 Q(종료)여야 합니다.")
+    @Test
+    void validGameCommand() {
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+            Validator.validGameCommand(INPUT_WRONG_GAME_COMMAND);
+        });
+        assertEquals(exception.getMessage(), Error.WRONG_GAME_COMMAND.getMessage());
+        System.out.println(Error.WRONG_GAME_COMMAND.getMessage());
     }
 }
