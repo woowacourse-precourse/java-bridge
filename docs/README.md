@@ -87,3 +87,7 @@
         - 재시도 명령이 R이나 Q가 아니라면 IllegalArgumentException
         - 그 외에는 pass
 
+- [ ] BridgeMoveCommand 테스트
+    - [ ] getByOrder 테스트
+    - [ ] getByCommand 테스트
+
