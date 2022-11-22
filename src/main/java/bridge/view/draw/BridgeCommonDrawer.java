@@ -14,8 +14,8 @@ public class BridgeCommonDrawer extends BridgeDrawer {
     @Override
     protected void makeBridgeFormat() {
         for (String command : userBridge) {
-            addWordIfMatches(command, MovingCommand.UP, "O", " ");
-            addWordIfMatches(command, MovingCommand.DOWN, " ", "O");
+            addWordIfMatches(command, MovingCommand.UP, Marker.CORRECT, Marker.EMPTY);
+            addWordIfMatches(command, MovingCommand.DOWN, Marker.EMPTY, Marker.CORRECT);
         }
     }
 
