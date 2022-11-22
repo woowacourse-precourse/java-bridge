@@ -6,7 +6,9 @@ public enum BridgeValue {
     DOWN("D"),
     TRUE(" O "),
     FALSE(" X "),
-    EMPTY("   ");
+    EMPTY("   "),
+    OLD(", "),
+    NEW("|");
 
     private final String value;
 

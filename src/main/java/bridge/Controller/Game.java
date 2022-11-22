@@ -42,6 +42,7 @@ public class Game {
         boolean gameState;
         OutputView.printMove();
         gameState = bridgeGame.move(InputView.readMoving(), bridgeMap, position);
+        OutputView.printMap(bridgeMap);
         return gameState;
     }
 
