@@ -29,9 +29,9 @@ public class BridgeMaker {
 
 	public String conversion(int input) {
 		if (input == 1) {
-			return "U";
+			return Constants.ALPHABET_U;
 		}
-		return "D";
+		return Constants.ALPHABET_D;
 	}
 
 }
