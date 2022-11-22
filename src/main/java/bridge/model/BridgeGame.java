@@ -1,6 +1,6 @@
 package bridge.model;
 
-import java.util.List;
+import bridge.BridgeMaker;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
