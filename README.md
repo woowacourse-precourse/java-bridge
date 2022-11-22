@@ -284,10 +284,12 @@ int number = bridgeNumberGenerator.generate();
 
 ---
 
-## ✏️ 과제 진행 요구 사항
-
-- 미션은 [java-bridge](https://github.com/woowacourse-precourse/java-bridge) 저장소를 Fork & Clone해 시작한다.
-- **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
-- **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
-    - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
-- 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+* 다리 길이 입력
+ * 3 - 20 사이의 숫자가 아닐시 예외
+ * 다리 길이에 맞춰 랜덤 생성
+*플레이어 U, D 입력
+ * 둘 중 하나의 문자가 아닐경우 예외
+ * U, D에 맞춰서 다리 O, X로 출력
+* 실패시 R, Q 입력
+ * R 재시작시 사용하던 다리로 재시작
+ * 게임 종료시 총 시도 횟수 출력
