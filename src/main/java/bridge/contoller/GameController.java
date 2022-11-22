@@ -23,8 +23,8 @@ public class GameController {
 
     private List<String> inputLength() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> list = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        return list;
+
+        return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
     private void crossBridge() {
