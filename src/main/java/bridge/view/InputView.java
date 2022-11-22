@@ -14,10 +14,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         String length = Console.readLine();
-        try{
+        try {
             int size = validateIsDigit(length);
             validateSizeRange(size);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             e.getMessage();
             readBridgeSize();
         }
@@ -29,6 +29,12 @@ public class InputView {
      */
     public String readMoving() {
         String movingValue = Console.readLine();
+        try {
+            movingValue = validateIsCorrectValue(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+            readMoving();
+        }
         return movingValue;
     }
 
