@@ -10,6 +10,9 @@ public class OutputView {
     public static final String START_SQUARE_BRACKET = "[ ";
     public static final String END_SQUARE_BRACKET = " ]";
     public static final String POLICE_LINE = " | ";
+    public static final String END_GAME_MESSAGE = "최종 게임 결과";
+    public static final String SUCCESS_OR_FAILURE_MESSAGE = "게임 성공 여부: ";
+    public static final String TOTAL_PLAY_COUNT_MESSAGE = "총 시도한 횟수: ";
 
 
     public void startGameMessage(){
@@ -44,6 +47,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<BridgeResult> resultTopBridge, List<BridgeResult> resultBottomBridge, GameResult isSuccess, int totalPlayCnt) {
+        System.out.println(END_GAME_MESSAGE);
+        printMap(resultTopBridge, resultBottomBridge);
+        System.out.println(SUCCESS_OR_FAILURE_MESSAGE + isSuccess.getValue());
+        System.out.println(TOTAL_PLAY_COUNT_MESSAGE + totalPlayCnt);
     }
 }
