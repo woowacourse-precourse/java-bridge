@@ -53,6 +53,7 @@ public class CurrentBridgeMap {
     }
 
     public String getBridgeMap() {
-        return String.format(BRIDGE_STRUCTURE, String.join(SEPARATE_BRIDGE, upperBridgeMap), String.join(SEPARATE_BRIDGE, lowerBridgeMap));
+        return String.format(BRIDGE_STRUCTURE,String.join(SEPARATE_BRIDGE, upperBridgeMap),
+                String.join(SEPARATE_BRIDGE, lowerBridgeMap));
     }
 }

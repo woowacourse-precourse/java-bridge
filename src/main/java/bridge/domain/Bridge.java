@@ -15,7 +15,8 @@ public class Bridge {
     }
 
     public boolean isAllEqualSoFar(List<String> movement) {
-        return IntStream.range(0, movement.size()).allMatch(index -> bridge.get(index).equals(movement.get(index)));
+        return IntStream.range(0, movement.size())
+                .allMatch(index -> bridge.get(index).equals(movement.get(index)));
     }
 
     public boolean isEqual(List<String> playerChoices) {
