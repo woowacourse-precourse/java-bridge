@@ -8,8 +8,13 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String GAME_START_MSG = "다리 건너기 게임을 시작합니다.";
+    private static final String FINAL_GAME_RESULT_PRINT_MSG = "최종 게임 결과";
+    private static final String GAME_RESULT_PRINT_MSG = "게임 성공 여부: ";
+    private static final String TOTAL_ATTEMPT_COUNT_PRINT_MSG = "총 시도한 횟수: ";
+
     public static void printStartMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(GAME_START_MSG);
     }
 
     public void printMap(Bridge bridge) {
@@ -38,10 +43,10 @@ public class OutputView {
     }
 
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_GAME_RESULT_PRINT_MSG);
         printMap(bridgeGame.bridge);
         GameStatus gameResult = bridgeGame.currentStatus;
-        System.out.println("게임 성공 여부: " + gameResult.getTitle());
-        System.out.println("총 시도한 횟수: " + bridgeGame.attemptCount);
+        System.out.println(GAME_RESULT_PRINT_MSG + gameResult.getTitle());
+        System.out.println(TOTAL_ATTEMPT_COUNT_PRINT_MSG+ bridgeGame.attemptCount);
     }
 }
