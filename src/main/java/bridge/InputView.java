@@ -1,6 +1,10 @@
 package bridge;
 
+import bridge.position.Latitude;
 import camp.nextstep.edu.missionutils.Console;
+
+import static bridge.position.Latitude.UP;
+import static bridge.position.Latitude.DOWN;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -8,8 +12,6 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final int BRIDGE_LOWER_BOUND = 3;
     private static final int BRIDGE_UPPER_BOUND = 20;
-    private static final String MOVE_UP = "U";
-    private static final String MOVE_DOWN = "D";
     private static final String REGAME_YES = "R";
     private static final String REGAME_NO = "Q";
 
@@ -33,11 +35,11 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        if (input != null && (input.equals(MOVE_UP) || input.equals(MOVE_DOWN))) {
+        if (Latitude.contains(input)) {
             return input;
         }
-        throw new IllegalArgumentException("다리를 건너기 위한 입력값은 " + MOVE_UP + "또는 " +
-                MOVE_DOWN + " 문자여야 합니다.");
+        throw new IllegalArgumentException("다리를 건너기 위한 입력값은 " + UP + "또는 " +
+                DOWN + " 문자여야 합니다.");
     }
 
     /**
