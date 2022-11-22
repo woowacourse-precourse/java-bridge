@@ -14,10 +14,15 @@ public class Application {
             bridgeGame.StartGame(inputView.readBridgeSize());
             while(bridgeGame.playing()) {
                 bridgeGame.move(inputView.readMoving());
-                if(bridgeGame.isDead()) bridgeGame.retry(inputView.readGameCommand());
+                outputView.printMap(bridgeGame.getCurStep(), bridgeGame.isDead());
+                if(bridgeGame.isDead()) {
+                    String command = inputView.readGameCommand();
+                    bridgeGame.retry(command);
+                    outputView.outputReset(command);
+                }
             }
 
-            outputView.printResult(bridgeGame.isDead());
+            outputView.printResult(bridgeGame.isDead(), bridgeGame.getTotalTry());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

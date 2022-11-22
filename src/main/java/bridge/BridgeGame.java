@@ -9,11 +9,14 @@ public class BridgeGame {
     List<String> bridge;
     int position;
     boolean dead;
+    int totalTry;
+
     public void StartGame(int bridgeSize){
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = bridgeMaker.makeBridge(bridgeSize);
         position = -1;
+        totalTry = 1;
     }
 
     public void move(String direction) {
@@ -31,6 +34,7 @@ public class BridgeGame {
         if(command.equals("R")) {
             dead = false;
             position = -1;
+            totalTry++;
         }
     }
 
@@ -42,4 +46,16 @@ public class BridgeGame {
     public boolean isDead() {
         return dead;
     }
+
+    public List<String> getBridge(){
+        return bridge;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getCurStep() { return bridge.get(position); }
+
+    public int getTotalTry() { return totalTry; }
 }
