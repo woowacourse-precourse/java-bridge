@@ -7,6 +7,9 @@ import camp.nextstep.edu.missionutils.Console;
 // 사용자로부터 입력을 받는 역할을 한다.
 public class InputView {
 
+    private static final int SIZE_MIN = 3;
+    private static final int SIZE_MAX = 20;
+
     // 다리 길이를 입력 받는 메소드
     public int readBridgeSize() {
         PrintCommon.INPUT_SIZE.print();
@@ -105,7 +108,7 @@ public class InputView {
     // 입력된 다리 길이가 주어진 범위를 충족하는지 확인하는 메소드
     private void checkBridgeSizeNumberRange (String bridgeSize) {
         int bridgeSizeNumber = Integer.parseInt(bridgeSize);
-        if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
+        if (bridgeSizeNumber < SIZE_MIN|| bridgeSizeNumber > SIZE_MAX) {
             PrintError.SIZE_RANGE.print();
             throw new IllegalArgumentException();
         }
