@@ -18,6 +18,7 @@ public class OutputView {
      */
     public void printMap(final String movingResultMap) {
         System.out.println(movingResultMap);
+        System.out.println();
     }
 
     /**
@@ -28,15 +29,18 @@ public class OutputView {
     public void printResult(final String movingResultMap, final int gameCount) {
         System.out.println(FINISH_GAME_RESULT);
         System.out.println(movingResultMap);
+        System.out.println();
         System.out.println(GAME_SUCCESS_OR_FAIL + SUCCESS);
         System.out.println(ATTEMPTS_NUMBER + gameCount);
     }
 
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
+        System.out.println();
     }
 
     public void printErrorMessage(final String errorMessage) {
         System.out.println(errorMessage);
+        System.out.println();
     }
 }
