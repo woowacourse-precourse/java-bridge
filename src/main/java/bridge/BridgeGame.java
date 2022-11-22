@@ -1,23 +1,76 @@
 package bridge;
 
+import bridge.controller.BridgeController;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
-    }
+	private BridgeController bridgeStage;
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
-    }
+	public BridgeGame() {
+		bridgeStage = new BridgeController();
+	}
+
+	public void run() {
+		try {
+			init();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			run();
+		}
+		loop();
+	}
+
+	public void init() {
+		bridgeStage.makeBridge();
+	}
+
+	public void loop() {
+		try {
+			while (process()) {
+			}
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			loop();
+		}
+	}
+
+	public boolean process() {
+		while (move()) {
+		}
+		if (finish()) {
+			return false;
+		}
+		if (retry()) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 가 사용자가 칸을 이동할 때 사용하는 메서드
+	 * <p>
+	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+	 */
+	public boolean move() {
+		return bridgeStage.move();
+	}
+
+	private boolean finish() {
+		if (bridgeStage.finish()) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+	 * <p>
+	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+	 */
+	public boolean retry() {
+		return bridgeStage.retry();
+	}
 }
