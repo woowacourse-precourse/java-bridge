@@ -13,7 +13,6 @@ public class BridgeGame {
     private final OutputView outputView = new OutputView();
     private List<String> bridge;
     private List<String> movingList = new ArrayList<>();
-
     private int tryCount = 1;
 
 
@@ -29,7 +28,6 @@ public class BridgeGame {
             }
         }
     }
-
 
     public boolean gamePlay() {
         if (!runGame()) {
@@ -48,6 +46,7 @@ public class BridgeGame {
         System.out.println("게임 성공 여부: 성공");
         System.out.println("총 시도한 횟수: "+tryCount);
     }
+
     public void loseMessage(){
         endGameMassage();
         System.out.println("게임 성공 여부: 실패");
@@ -64,7 +63,6 @@ public class BridgeGame {
         System.out.println();
     }
 
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -75,7 +73,6 @@ public class BridgeGame {
             try {
                 movingList.add(inputView.readMoving());
                 List<String> movingResult = getMovingResult(movingList, bridge);
-                System.out.println("다리 : " + bridge);
                 return isMoveSuccess(outputView.printMap(movingResult));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -95,7 +92,6 @@ public class BridgeGame {
         return true;
     }
 
-
     public boolean finishCount() {
         int movingCount = movingList.size();
         int bridgeSize = bridge.size();
@@ -105,14 +101,13 @@ public class BridgeGame {
 
     public boolean isMoveSuccess(List<String> resultMap) {
         for (int i = 0; i < resultMap.size(); i++) {
-            String s = resultMap.get(i);
-            if (s.contains("X")) {
+            String movingResult = resultMap.get(i);
+            if (movingResult.contains("X")) {
                 return false;
             }
         }
         return true;
     }
-
 
     public List<String> getMovingResult(List<String> movingList, List<String> bridge) {
         List<String> movingResult = new ArrayList<>();
@@ -131,7 +126,6 @@ public class BridgeGame {
         }
         return userAnswer + ",X";
     }
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

@@ -56,7 +56,6 @@ public class OutputView {
         System.out.println("]");
     }
 
-
     private void makeMap(String[] result, List<String> up, List<String> down) {
         if (result[0].equals("U")) {
             up.add(" " + result[1] + " |");
@@ -67,7 +66,6 @@ public class OutputView {
             up.add(BLANK + "|");
         }
     }
-
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
