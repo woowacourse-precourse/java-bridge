@@ -9,7 +9,6 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 
 import java.util.List;
 
-import bridge.model.BridgeSize;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {

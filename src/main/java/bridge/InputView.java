@@ -1,9 +1,6 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-import bridge.model.BridgeSize;
-import bridge.model.Moving;
-import bridge.model.Restart;
 
 public class InputView {
 

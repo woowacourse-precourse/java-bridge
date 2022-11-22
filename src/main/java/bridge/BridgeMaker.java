@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.model.BridgeSize;
 import bridge.type.BridgeType;
 
 import java.util.ArrayList;

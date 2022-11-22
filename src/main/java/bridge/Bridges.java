@@ -1,5 +1,6 @@
-package bridge.model;
+package bridge;
 
+import bridge.Bridge;
 import bridge.type.MovingType;
 
 import java.util.ArrayList;

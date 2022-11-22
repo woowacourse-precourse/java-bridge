@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.model.Bridge;
-
 import java.util.Map;
 
 public class OutputView {

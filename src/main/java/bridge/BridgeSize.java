@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge;
 
 import bridge.validation.Validation;
 

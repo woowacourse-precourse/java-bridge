@@ -1,8 +1,5 @@
 package bridge;
 
-import bridge.model.Bridge;
-import bridge.model.Moving;
-
 public class Application {
     private static OutputView outputView = new OutputView();
     private static InputView inputView = new InputView();

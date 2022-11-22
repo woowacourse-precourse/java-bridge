@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.model.BridgeSize;
 import bridge.validation.Validation;
 import org.assertj.core.api.Assertions;
 import static org.assertj.core.api.Assertions.assertThat;
