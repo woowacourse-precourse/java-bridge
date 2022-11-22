@@ -34,4 +34,8 @@ public class OutputView {
     public static void printMovingRequestMessage() {
         System.out.println(INPUT_MOVE.getMessage());
     }
+
+    public static void printGameCommandRequestMessage() {
+        System.out.println(INPUT_RETRY_COMMAND.getMessage());
+    }
 }
