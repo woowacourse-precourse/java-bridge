@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.BridgeShape;
+import bridge.Command;
 import bridge.Error;
 
 public class InputValidator {
@@ -24,6 +25,12 @@ public class InputValidator {
         }
     }
 
+    public void validateGameCommand(String gameCommand) throws IllegalArgumentException {
+        if (!isCommand(gameCommand)) {
+            throw new IllegalArgumentException(Error.IS_WRONG_COMMAND.getMessage());
+        }
+    }
+
     private boolean isNumeric(String string) {
         return string.chars()
             .allMatch(Character::isDigit);
@@ -35,5 +42,9 @@ public class InputValidator {
 
     private boolean isPossibleMoving(String moving) {
         return BridgeShape.contains(moving);
+    }
+
+    private boolean isCommand(String command) {
+        return Command.contains(command);
     }
 }
