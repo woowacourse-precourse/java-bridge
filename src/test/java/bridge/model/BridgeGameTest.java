@@ -45,4 +45,20 @@ public class BridgeGameTest {
 
         );
     }
+
+    @ParameterizedTest
+    @DisplayName("플레이어 이동 횟수와 다리 길이를 비교한다.")
+    @MethodSource("provideParametersForEnd")
+    void movesAndBridgeSameSize(List<String> moves, List<String> bridge, boolean result) {
+        assertThat(new BridgeGame().areSameSize(moves, bridge)).isEqualTo(result);
+    }
+    private static Stream<Arguments> provideParametersForEnd() {
+        return Stream.of(
+                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "D"), true),
+                Arguments.of(List.of("U"), List.of("U", "U", "D"), false),
+                Arguments.of(List.of("U", "U"), List.of("U", "D", "D"), false),
+                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "U"), true)
+
+        );
+    }
 }

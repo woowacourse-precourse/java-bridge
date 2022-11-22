@@ -19,16 +19,16 @@ public class BridgeGame {
         numberOfAttempts = 0;
     }
 
+    public int getNumberOfAttempts() {
+        return numberOfAttempts;
+    }
+
     private void increaseNumberOfAttempts() {
         numberOfAttempts++;
     }
 
     private void resetPlayerMoves() {
         playerMoves.clear();
-    }
-
-    public int getNumberOfAttempts() {
-        return numberOfAttempts;
     }
 
     public void initializeGame(List<String> bridge) {
@@ -84,11 +84,11 @@ public class BridgeGame {
     }
 
     public boolean canTakeNextMove() {
-        return hasMadeCorrectMove(playerMoves, bridge) && playerMoves.size() < bridge.size();
+        return hasMadeCorrectMove(playerMoves, bridge) && !areSameSize(playerMoves, bridge);
     }
 
     public boolean hasReachedEnd() {
-        return hasMadeCorrectMove(playerMoves, bridge) && playerMoves.size() == bridge.size();
+        return hasMadeCorrectMove(playerMoves, bridge) && areSameSize(playerMoves, bridge);
     }
 
     public boolean hasMadeCorrectMove(List<String> moves, List<String> bridge) {
@@ -96,5 +96,9 @@ public class BridgeGame {
         String lastMove = moves.get(lastMoveIndex);
         String bridgeDirection = bridge.get(lastMoveIndex);
         return lastMove.equals(bridgeDirection);
+    }
+
+    public boolean areSameSize(List<String> moves, List<String> bridge) {
+        return moves.size() == bridge.size();
     }
 }
