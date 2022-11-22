@@ -77,6 +77,40 @@ class BridgeTest {
         }
     }
 
+    @Nested
+    class IsBridgeAllCrossedTest{
+
+        @DisplayName("하나도 건너지 않았을 경우, false return")
+        @Test
+        void isBridgeAllCrossed_case1(){
+            assertThat(testBridge.isBridgeAllCrossed()).isFalse();
+        }
+
+        @DisplayName("하나 건넜을 경우, 덜 건넜으니 false return")
+        @Test
+        void isBridgeAllCrossed_case2(){
+            testBridge.crossBridge("U");
+            assertThat(testBridge.isBridgeAllCrossed()).isFalse();
+        }
+
+        @DisplayName("두개 건넜을 경우, 덜 건넜으니 false return")
+        @Test
+        void isBridgeAllCrossed_case3(){
+            testBridge.crossBridge("U");
+            testBridge.crossBridge("D");
+            assertThat(testBridge.isBridgeAllCrossed()).isFalse();
+        }
+
+        @DisplayName("세개 건넜을 경우, 다 건넜으니 true return")
+        @Test
+        void isBridgeAllCrossed_case4(){
+            testBridge.crossBridge("U");
+            testBridge.crossBridge("D");
+            testBridge.crossBridge("D");
+            assertThat(testBridge.isBridgeAllCrossed()).isTrue();
+        }
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
