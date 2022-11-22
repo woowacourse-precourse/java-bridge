@@ -1,32 +1,25 @@
 package domain;
 
-import service.InputView;
-import service.OutputView;
+import service.ViewController;
 
 public class MapMaker {
-	private InputView in = new InputView();
-	private OutputView out = new OutputView();
-
+	private ViewController view = new ViewController();
 	private StringBuilder upperMap, lowerMap;
 	private int index;
 
 	public MapMaker() {
 		upperMap = new StringBuilder();
 		lowerMap = new StringBuilder();
-
 		index = 0;
 	}
 
 	public boolean conditionCheck(String rightCondition) {
-		out.printGameMessage("MOVING");
-		String move = in.readMoving();
-
+		String move = view.movingView();
 		if (matchBridge(rightCondition, move)) {
-			out.printMap(toString());
+			view.mapView(toString());
 			return true;
 		}
-
-		out.printMap(toString());
+		view.mapView(toString());
 		return false;
 	}
 
@@ -35,20 +28,17 @@ public class MapMaker {
 			upOrDownCheck(move, true);
 			return true;
 		}
-
 		upOrDownCheck(move, false);
 		return false;
 	}
 
 	private void upOrDownCheck(String move, boolean condition) {
 		setPartition();
-
 		if (move.equals("U")) {
 			upperMap.append(setCondition(condition));
 			lowerMap.append(BridgeCondition.EMPTY.getCondition());
 			return;
 		}
-
 		upperMap.append(BridgeCondition.EMPTY.getCondition());
 		lowerMap.append(setCondition(condition));
 	}
@@ -57,7 +47,6 @@ public class MapMaker {
 		if (condition) {
 			return BridgeCondition.RIGHT.getCondition();
 		}
-
 		return BridgeCondition.WRONG.getCondition();
 	}
 
@@ -66,7 +55,6 @@ public class MapMaker {
 			upperMap.append("|");
 			lowerMap.append("|");
 		}
-
 		index++;
 	}
 
