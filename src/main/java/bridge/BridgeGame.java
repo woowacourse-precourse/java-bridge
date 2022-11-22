@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class BridgeGame {
-    private final List<String> bridge = new ArrayList<>();
+    private List<String> bridge = new ArrayList<>();
     private final List<String> upBridge  = new ArrayList<>(); //
     private final List<String> downBridge = new ArrayList<>();
     private final List<String> moveUser = new ArrayList<>();
@@ -16,9 +16,14 @@ public class BridgeGame {
     private int cnt = 1; // 게임 횟수
     private int bridge_create = 0;
 
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
+        this.cnt = 1;
+    }
 
-    private final int bridge_len;
-    public BridgeGame(int bridge_len) {
+
+    private int bridge_len;
+    public BridgeGame (int bridge_len) {
         this.bridge_len = bridge_len;
 
     }
@@ -30,18 +35,36 @@ public class BridgeGame {
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @return
      */
 
-    public void move(String userInput) {
+    public boolean move(String userInput) {
         if (userInput.equals(Choose.UP.getValue())) {
             moveUser.add(Choose.UP.getValue());
+            return check();
         }
+
         if (userInput.equals(Choose.DOWN.getValue())) {
             moveUser.add(Choose.DOWN.getValue());
+            return check();
         }
         cnt++;
         makeBridge();
-//        return false;
+        return false;
+    }
+
+    private boolean check() {
+        if(bridge_create == bridge_len) {
+            new OutputView().printResult(moveUser, cnt,"성공");
+            return false;
+        }
+        int last = moveUser.size() -1;
+        if (moveUser.get(last).equals("U_X") || moveUser.get(last).equals("D_X")) {
+            return retry();
+        }
+        return false;
+
     }
 
     public boolean rightAnswer() {
