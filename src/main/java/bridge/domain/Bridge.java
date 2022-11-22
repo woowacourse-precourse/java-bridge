@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Bridge {
     List<String> bridge;
