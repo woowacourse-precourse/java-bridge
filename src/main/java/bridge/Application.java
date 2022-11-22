@@ -8,33 +8,38 @@ public class Application {
     static BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
-    static final boolean START = true;
     static GameState state;
+    static String direction;
+    static int bridgeSize;
+    static BridgeGame bridgeGame;
+    static List<String> bridge;
+    static boolean playing;
     public static void main(String[] args) {
-        List<String> bridge;
-        int bridgeSize;
-        String direction;
-        bridgeSize = inputView.readBridgeSize();
+        gameSetting();
+        play(playing);
+        outputView.printResult(state,bridgeGame.retryStack);
+    }
+
+    private static void gameSetting(){
+        inputView.readBridgeSize();
+        bridgeSize = inputView.getSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean playing = true;
+        bridgeGame = new BridgeGame(bridge);
         outputView.gameStart();
+        playing  = true;
+    }
+    private static void play(boolean playing){
         while(playing){
             direction = inputView.readMoving();
             state = bridgeGame.play(direction);
             outputView.printMap(direction, bridge,state);
-            if(state == GameState.WIN){
-                break;
-            }
-            //함수처리
+            if(state == GameState.WIN){break;}
             if(state == GameState.FALL){
-                String retry = inputView.readRetry();
+                String retry = inputView.readGameCommand();
                 playing = bridgeGame.isRetry(retry);
-                if(playing == true){
-                    outputView.init();
-                }
+                if(playing == true){outputView.init();}
             }
         }
-        outputView.printResult(state,bridgeGame.retryStack);
     }
+
 }
