@@ -38,5 +38,9 @@ public class BridgeGame {
         this.movingResult = new MovingResult(bridge);
     }
 
+    public void createMap(String moving) {
+        bridgeMap.createMap(movingResult.movedResult(moving, distance), moving);
+    }
+
 
 }

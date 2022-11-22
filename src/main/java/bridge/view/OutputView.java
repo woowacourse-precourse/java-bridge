@@ -21,6 +21,12 @@ public class OutputView {
         System.out.println(length);
     }
 
+    public void printMap(LinkedHashMap<String, List<String>> bridgeMap) {
+        for (List<String> map : bridgeMap.values()) {
+            System.out.printf(BRIDGE_CONTENT, String.join(BRIDGE_PLACE_CONTOUR, map));
+        }
+    }
+
 
     public void printMoving(String moving) {
         System.out.println(moving);

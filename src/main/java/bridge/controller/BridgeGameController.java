@@ -21,11 +21,11 @@ public class BridgeGameController {
     public void movingControl(BridgeGame bridgeGame) {
         String moving = inputView.inputMoving();
         outputView.printMoving(moving);
-
+        bridgeGame.createMap(moving);
+        outputView.printMap(bridgeGame.getBridgeMap());
     }
 
     public void start() {
         movingControl(bridgeGame);
-
     }
 }
