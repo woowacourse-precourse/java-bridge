@@ -21,13 +21,16 @@ public class OutputView {
     public static void printResult(String finalResult, boolean matchResult, int matchNumb) {
         System.out.println("최종 게임 결과");
         System.out.println(finalResult+'\n');
+        printMatchResult(matchResult);
+        System.out.println("총 시도한 횟수: "+matchNumb);
+    }
 
+    private static void printMatchResult(boolean matchResult) {
         if (matchResult) {
             System.out.println("게임 성공 여부: 성공");
         }
         if (!matchResult) {
             System.out.println("게임 성공 여부: 실패");
         }
-        System.out.println("총 시도한 횟수: "+matchNumb);
     }
 }
