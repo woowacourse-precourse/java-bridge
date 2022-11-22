@@ -27,8 +27,8 @@ public class Bridge {
     }
 
     private void bridgeInit(){
-        crossAble = bridgeMaker.makeBridge(bridgeSize);
-        setBridgeMap();
+        bridgeCanCross = bridgeMaker.makeBridge(bridgeSize);
+        setBridgeUnit();
     }
     private int validate(String bridgeSize){
         int bridgeSizeNumber = stringToNumber(bridgeSize);
