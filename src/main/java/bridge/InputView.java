@@ -27,8 +27,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public  String readMoving() throws IllegalArgumentException{
+    public String readMoving() throws IllegalArgumentException{
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String userInputMove = readLine();
+        if(userInputMove.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] U 나 D를 입력해주세요.");
+        }
+
         char inputMove = userInputMove.charAt(0);
         System.out.println(inputMove);
         if(userInputMove.length() != 1) {
@@ -37,6 +42,7 @@ public class InputView {
         if(inputMove != 'U' && inputMove != 'D') {
             throw new IllegalArgumentException("[ERROR] U 나 D를 입력해주세요.");
         }
+        System.out.println(inputMove);
         return userInputMove;
     }
 
