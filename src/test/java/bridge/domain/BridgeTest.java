@@ -8,7 +8,7 @@ import java.util.List;
 
 class BridgeTest {
 
-    @DisplayName("compareWithPosition 메서드가 일치하는 문자를 넣었을 때 true를 반환하는지 검증한다.")
+    @DisplayName("compareWithPosition 메서드에 해당 위치와 일치하는 문자를 인자로 주었을 때 true를 반환하는지 검증한다.")
     @Test
     void compareWithPositionAndRightString() {
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
@@ -22,7 +22,7 @@ class BridgeTest {
         assertThat(thirdPosition).isTrue();
     }
 
-    @DisplayName("compareWithPosition 메서드가 일치하지 않는 문자를 넣었을 때 false를 반환하는지 검증한다.")
+    @DisplayName("compareWithPosition 메서드에 해당 위치와 일치하지 않는 문자를 인자로 주었을 때 false를 반환하는지 검증한다.")
     @Test
     void compareWithPositionAndWrongString() {
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
