@@ -78,4 +78,19 @@ class BridgeGameStateTest {
         assertThat(currentAt0).isEqualTo("U");
         assertThat(currentAt1).isEqualTo("D");
     }
+
+    @Test
+    public void getMatchedTest() throws Exception {
+        // given
+
+        // when
+        boolean matchedAt0 = bridgeGameState.getMatched(0);
+        boolean matchedAt1 = bridgeGameState.getMatched(1);
+        boolean matchedAt2 = bridgeGameState.getMatched(2);
+
+        // then
+        assertThat(matchedAt0).isEqualTo(true);
+        assertThat(matchedAt1).isEqualTo(true);
+        assertThat(matchedAt2).isEqualTo(false);
+    }
 }
