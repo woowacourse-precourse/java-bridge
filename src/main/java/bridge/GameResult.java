@@ -6,6 +6,9 @@ import bridge.constant.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 다리 건너기 게임 결과를 관리하는 클래스
+ */
 public class GameResult {
 
     private static final String EMPTY_ELEMENT = " ";

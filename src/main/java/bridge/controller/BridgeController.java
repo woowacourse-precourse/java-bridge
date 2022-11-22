@@ -18,13 +18,10 @@ public class BridgeController {
     private BridgeGame bridgeGame;
     private boolean playing;
 
-    private int countTry;
-
     public BridgeController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         playing = true;
-        countTry = 1;
     }
 
     public void start() {
@@ -33,7 +30,7 @@ public class BridgeController {
         // TODO: 정답 출력문 지우기
         System.out.println(bridgeGame.getAnswerBridge().getBridge());
         playGame();
-        outputView.printResult(bridgeGame, countTry);
+        outputView.printResult(bridgeGame);
     }
 
     private void setUpBridge() {
@@ -50,12 +47,7 @@ public class BridgeController {
     private void playGame() {
         while (playing) {
             moveToDirection();
-            if (!bridgeGame.getMoveState()) {
-                gameRetryOrQuit();
-            }
-            if (playing) {
-                playing = bridgeGame.isClearGame();
-            }
+            keepPlaying();
         }
     }
 
@@ -70,20 +62,28 @@ public class BridgeController {
         }
     }
 
+    private void keepPlaying() {
+        if (!bridgeGame.getMoveState()) {
+            gameRetryOrQuit();
+        }
+        if (playing) {
+            playing = bridgeGame.isClearGame();
+        }
+    }
+
     private void gameRetryOrQuit() {
         try {
             outputView.printMessage(ENTER_RETRY_OR_QUIT);
-            changeGameState(inputView.readGameCommand());
+            changeGameStatus(inputView.readGameCommand());
         } catch (IllegalArgumentException ex) {
             outputView.printErrorMessage(ex.getMessage());
             gameRetryOrQuit();
         }
     }
 
-    private void changeGameState(boolean retry) {
+    private void changeGameStatus(boolean retry) {
         if (retry) {
             bridgeGame.retry();
-            countTry += 1;
             return;
         }
         playing = false;

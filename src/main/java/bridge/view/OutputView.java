@@ -60,13 +60,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGame bridgeGame, int countTry) {
+    public void printResult(BridgeGame bridgeGame) {
         printMessage(FINAL_GAME_RESULT);
         GameResult gameResult = bridgeGame.getGameResult();
         printBridge(gameResult.getUpperBridge(), gameResult.getLowerBridge());
         String messageFormat = MessageFormat.format(
                 GAME_SUCCESS_OR_NOT + TOTAL_COUNT_OF_TRY.getMessage(),
-                getResultMessage(bridgeGame), Integer.toString(countTry));
+                getResultMessage(bridgeGame), Integer.toString(bridgeGame.getTryCount()));
         System.out.print(messageFormat);
     }
 

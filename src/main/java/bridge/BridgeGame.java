@@ -9,10 +9,13 @@ public class BridgeGame {
     private final GameResult gameResult;
     private boolean moveState;
 
+    private int tryCount;
+
     public BridgeGame(Bridge answerBridge) {
         this.answerBridge = answerBridge;
         gameResult = new GameResult();
         moveState = false;
+        tryCount = 1;
     }
 
     /**
@@ -25,6 +28,9 @@ public class BridgeGame {
         gameResult.add(playerDirection, moveState);
     }
 
+    /**
+     * 사용자가 다리를 건너갈 수 있는지 확인하는 메서드
+     * */
     public boolean checkCrossBridge(String playerDirection) {
         int moveCount = gameResult.getGameCount();
         String answer = answerBridge.getAnswerDirection(moveCount);
@@ -39,8 +45,13 @@ public class BridgeGame {
     public void retry() {
         gameResult.reset();
         moveState = false;
+        tryCount += 1;
     }
 
+
+    /**
+     * 사용자가 다리를 끝까지 건넜는지 확인하는 메서드
+     * */
     public boolean isClearGame() {
         if (answerBridge.getSize() == gameResult.getGameCount()) {
             return false;
@@ -58,5 +69,9 @@ public class BridgeGame {
 
     public boolean getMoveState() {
         return moveState;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }
