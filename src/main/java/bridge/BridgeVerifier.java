@@ -6,7 +6,7 @@ public class BridgeVerifier {
             throw new IllegalArgumentException(BridgeError.INVALID_BRIDGE_SIZE.getMessage());
         }
         int bridgeSize = Integer.parseInt(input);
-        if (bridgeSize < 3 || bridgeSize > 20) {
+        if (bridgeSize < BridgeGame.BRIDGE_LENGTH_MIN || bridgeSize > BridgeGame.BRIDGE_LENGTH_MAX) {
             throw new IllegalArgumentException(BridgeError.INVALID_BRIDGE_SIZE.getMessage());
         }
         return bridgeSize;
