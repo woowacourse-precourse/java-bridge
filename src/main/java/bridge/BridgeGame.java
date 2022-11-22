@@ -7,8 +7,8 @@ public class BridgeGame {
 
     private int attemptCount;
 
-    public BridgeGame(BridgeMaker bridgeMaker, int bridgeSize) {
-        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    public BridgeGame(List<String> blocks) {
+        this.bridge = new Bridge(blocks);
         this.attemptCount = 1;
     }
 
