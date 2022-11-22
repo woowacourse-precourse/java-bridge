@@ -1,11 +1,16 @@
 package bridge;
 
+import static bridge.Utility.MOVE_NAME;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -176,6 +181,28 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("4", "U", "D", "U", "U", "E");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void testCreateMapByLine() {
+        OutputView outputView = new OutputView();
+        List <String> totalMove = Arrays.asList("U", "D", "D");
+        List <String> bridge = Arrays.asList("U", "D", "U", "D");
+        String type = "D";
+        String result = "[   | O | X ]";
+        assertSimpleTest(() -> {
+            assertThat(outputView.createMapByLine(totalMove, bridge, type)).isEqualTo(result);
+        });
+    }
+
+    @Test
+    void testMakeBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        int size = 4;
+        List <String> bridge = Arrays.asList("U", "D", "U", "D");
+        assertSimpleTest(() -> {
+            assertThat(bridgeMaker.makeBridge(size)).isEqualTo(bridge);
         });
     }
 
