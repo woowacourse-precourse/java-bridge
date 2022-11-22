@@ -23,12 +23,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            bridge.add(bridgeNumber());
+            bridge.add(Move.getMoving(bridgeNumberGenerator.generate()));
         }
         return bridge;
-    }
-
-    private String bridgeNumber() {
-        return Move.getMoving(bridgeNumberGenerator.generate());
     }
 }
