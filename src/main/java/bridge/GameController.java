@@ -67,15 +67,25 @@ public class GameController {
     Bridge bridge = makeBridge(getBridgeSize());
     MoveResult moveResult = move(bridge);
     String status = moveResult.getGameResult();
+    List<Cross> crossResult = moveResult.getCrossResult();
     if (status.equals(FAIL)) {
       isRestart(bridge, moveResult);
     }
+    else if (status.equals(SUCCESS)) {
+      outputView.printResult(true, gameNum, crossResult);
+    }
   }
-
 
   public void isRestart(Bridge bridge, MoveResult moveResult) {
     outputView.printAskRestartMessage();
-    inputView.readGameCommand();
+    String restart = inputView.readGameCommand();
+    if (restart.equals(RESTART)) {
+      move(bridge);
+    } else if (restart.equals(STOP)) {
+      outputView.printResult(false, gameNum,  moveResult.getCrossResult());
+    } else {
+      throw new IllegalArgumentException("[ERROR] (재시도: R, 종료: Q) 잘못된 입력입니다.");
+    }
   }
 
 }
