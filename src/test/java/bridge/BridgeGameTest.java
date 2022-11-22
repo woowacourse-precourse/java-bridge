@@ -25,6 +25,7 @@ public class BridgeGameTest extends NsTest {
     BridgeNumberGenerator numberGenerator;
     BridgeMaker bridgeMaker;
     BridgeGame bridgeGame;
+    OutputStream outputStream;
 
     @BeforeEach
     void initialize() {
@@ -33,6 +34,8 @@ public class BridgeGameTest extends NsTest {
         numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         bridgeGame = new BridgeGame(inputView, outputView, numberGenerator);
         bridgeMaker = new BridgeMaker(numberGenerator);
+        outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
     }
 
     @Test
@@ -40,24 +43,30 @@ public class BridgeGameTest extends NsTest {
     void clearAtOnce() {
         String[] inputs = { "3", "U", "D", "D" };
         setInputs(inputs);
-        OutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
         bridgeGame.start();
         assertThat(outputStream.toString()).contains("성공");
         assertThat(bridgeGame.getTryCount()).isEqualTo(1);
     }
 
-//    @Test
-//    @DisplayName("fail")
-//    void fail() {
-//        String[] inputs = { "U", "D", "U", "Q" };
-//        setInputs(inputs);
-//        assertThat(bridgeGame.play(3, bridge, new ArrayList<>())).isFalse();
-//        OutputStream out = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(out));
-//        assertThat(bridgeGame.getTryCount()).isEqualTo(1);
-//        assertThat(out.toString()).contains("실패");
-//    }
+    @Test
+    @DisplayName("fail and not retry")
+    void failAndNotRetry() {
+        String[] inputs = { "3", "U", "D", "U", "Q" };
+        setInputs(inputs);
+        bridgeGame.start();
+        assertThat(outputStream.toString()).contains("실패");
+        assertThat(bridgeGame.getTryCount()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("clear at the second chance")
+    void clearAtRetry() {
+        String[] inputs = { "3", "U", "D", "U", "R", "U", "D", "D" };
+        setInputs(inputs);
+        bridgeGame.start();
+        assertThat(outputStream.toString()).contains("성공");
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
+    }
 
     private void setInputs(String[] inputs) {
         final byte[] buffers = String.join("\n", inputs).getBytes();
