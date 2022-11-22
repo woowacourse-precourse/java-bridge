@@ -30,4 +30,14 @@ public class InputErrorCheckTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
+
+    @DisplayName("게임 재시작/종료 커맨드 입력 시 형식에 맞지 않는 값 예외 처리 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"r","q","R1","Q2","RQ","QR","123"," ","\n"})
+    void GameCommandIsOutOfFormat(String input){
+        assertThatThrownBy(()->
+                readGameCommandErrorCheck(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
 }
