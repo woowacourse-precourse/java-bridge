@@ -27,7 +27,7 @@ public class BridgeGame {
         this.bridgeGenerateService = new BridgeGenerateService();
     }
 
-    private void Run() {
+    public void Run() {
         outputView.printGameStartNotice();
         bridge = generateBridge();
         while (isTryingToClearGame) {
