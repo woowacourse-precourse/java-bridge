@@ -1,4 +1,4 @@
-package bridge.validation;
+package bridge.view.validation;
 
 public class BridgeValidation {
 

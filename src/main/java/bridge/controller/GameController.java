@@ -1,8 +1,12 @@
-package bridge;
+package bridge.controller;
 
-import static bridge.validation.BridgeValidation.bridgeValidation;
-import static bridge.validation.RetryValidation.retryValidation;
-import static bridge.validation.StateValidation.stateValidation;
+import bridge.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
+import static bridge.view.validation.BridgeValidation.bridgeValidation;
+import static bridge.view.validation.RetryValidation.retryValidation;
+import static bridge.view.validation.StateValidation.stateValidation;
 
 public class GameController {
 

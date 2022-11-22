@@ -1,8 +1,8 @@
-package bridge.validation;
+package bridge.view.validation;
 
-public class RetryValidation {
+public class StateValidation {
 
-    public static boolean retryValidation(String input){
+    public static boolean stateValidation(String input){
         try {
             inNotValidation(input);
             return true;
@@ -13,8 +13,8 @@ public class RetryValidation {
     }
 
     private static void inNotValidation(String input){
-        if(!(input.equals("R") || input.equals("Q"))){
-            System.out.println("[ERROR] R 또는 Q만 입력 가능합니다.");
+        if(!(input.equals("D") || input.equals("U"))){
+            System.out.println("[ERROR] D 또는 U만 입력 가능합니다.");
             throw new IllegalArgumentException();
         }
     }
