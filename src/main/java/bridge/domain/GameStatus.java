@@ -12,7 +12,11 @@ public enum GameStatus {
         this.status = status;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public String getResult() {
-        return RESULT_PREFIX + status;
+        return RESULT_PREFIX.getStatus() + status;
     }
 }
