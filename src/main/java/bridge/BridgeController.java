@@ -7,6 +7,7 @@ public class BridgeController {
 
     public void run() {
         outputView.printStart();
+        outputView.printAskLength();
         while (true) {
             try {
                 bridgeGame = new BridgeGame(inputView.readBridgeSize());

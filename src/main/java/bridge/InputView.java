@@ -9,16 +9,10 @@ import static java.lang.Integer.parseInt;
  */
 public class InputView {
 
-    private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String EMPTY_LINE = "";
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(INPUT_BRIDGE_SIZE);
-        System.out.println(EMPTY_LINE);
-
         String size = Console.readLine();
         validateSize(size);
         int bridgeSize = parseInt(size);
