@@ -21,6 +21,8 @@ public class OutputView {
     private static final String GAME_SUCCESS = "게임 성공 여부: ";
     private static final String GAME_TRY_COUNT = "총 시도한 횟수: ";
 
+    private StringBuilder upMap;
+    private StringBuilder downMap;
 
     public void printGameStartMsg() {
         System.out.println(GAME_START + separateLine());
@@ -50,8 +52,18 @@ public class OutputView {
     }
 
     public void printMap(List<String> bridge, List<Boolean> state) {
-        StringBuilder upMap = new StringBuilder();
-        StringBuilder downMap = new StringBuilder();
+        initMap();
+        makeMap(bridge, state);
+        System.out.println(BRIDGE_START + upMap + BRIDGE_END);
+        System.out.println(BRIDGE_START + downMap + BRIDGE_END);
+    }
+
+    private void initMap() {
+        upMap = new StringBuilder();
+        downMap = new StringBuilder();
+    }
+
+    private void makeMap(List<String> bridge, List<Boolean> state) {
         for (int index = 0; index < state.size(); index++) {
             if (index != 0) {
                 upMap.append(BRIDGE_DIVIDE);
@@ -60,8 +72,6 @@ public class OutputView {
             upMap.append(makeUp(bridge.get(index), state.get(index)));
             downMap.append(makeDown(bridge.get(index), state.get(index)));
         }
-        System.out.println(BRIDGE_START + upMap + BRIDGE_END);
-        System.out.println(BRIDGE_START + downMap + BRIDGE_END);
     }
 
     private String makeUp(String bridge, boolean state) {
