@@ -16,14 +16,10 @@ public class Controller {
     }
 
     public void startGame(final BridgeGame bridgeGame) {
-        try {
-            printWelcomeMessage();
-            generateBridge(bridgeGame);
-            GameStatus gameResult = play(bridgeGame, GameStatus.CONTINUE);
-            printResult(gameResult, bridgeGame);
-        } catch (IllegalArgumentException exception) {
-            outputView.printException(exception);
-        }
+        printWelcomeMessage();
+        generateBridge(bridgeGame);
+        GameStatus gameResult = play(bridgeGame, GameStatus.CONTINUE);
+        printResult(gameResult, bridgeGame);
     }
 
     public GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
@@ -50,28 +46,43 @@ public class Controller {
     }
 
     private void generateBridge(final BridgeGame bridgeGame) {
-        outputView.printGuideMessage(GuideMessage.GET_BRIDGE_LENGTH);
-        bridgeGame.generateBridge(this.inputView.readBridgeSize());
-        outputView.printNewline();
+        try {
+            outputView.printGuideMessage(GuideMessage.GET_BRIDGE_LENGTH);
+            bridgeGame.generateBridge(this.inputView.readBridgeSize());
+            outputView.printNewline();
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception);
+            generateBridge(bridgeGame);
+        }
     }
 
     private void movePlayer(final BridgeGame bridgeGame) {
-        outputView.printGuideMessage(GuideMessage.GET_MOVING);
-        bridgeGame.move(inputView.readMoving());
+        try {
+            outputView.printGuideMessage(GuideMessage.GET_MOVING);
+            bridgeGame.move(inputView.readMoving());
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception);
+            movePlayer(bridgeGame);
+        }
     }
 
     private GameStatus getGameStatus(final BridgeGame bridgeGame, boolean playerOnMovableSide) {
         if (!playerOnMovableSide) {
-            return askForRetry(bridgeGame);
+            return askForRetry(bridgeGame, GameStatus.FAILURE);
         }
         return bridgeGame.getGameStatus();
     }
 
-    private GameStatus askForRetry(final BridgeGame bridgeGame) {
+    private GameStatus askForRetry(final BridgeGame bridgeGame, GameStatus gameStatus) {
         outputView.printAskGameCommand();
-        if (bridgeGame.retry(inputView.readGameCommand())) {
-            return GameStatus.CONTINUE;
+        try {
+            if (bridgeGame.retry(inputView.readGameCommand())) {
+                gameStatus = GameStatus.CONTINUE;
+            }
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception);
+            askForRetry(bridgeGame, gameStatus);
         }
-        return GameStatus.FAILURE;
+        return gameStatus;
     }
 }
