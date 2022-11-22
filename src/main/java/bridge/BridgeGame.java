@@ -1,7 +1,11 @@
 package bridge;
 
 import static bridge.Cross.canNotCross;
+import static bridge.GameCommand.isRetry;
+import static bridge.controller.GameController.addAttempt;
 import static bridge.controller.InputController.getMoving;
+
+import bridge.controller.GameController;
 
 public class BridgeGame {
 
@@ -45,5 +49,15 @@ public class BridgeGame {
 
     private void printMap() {
         map.print();
+    }
+
+    public void retry(GameCommand userCommand) {
+        if (isRetry(userCommand)) {
+            addAttempt();
+
+            GameController.setRetry();
+            return;
+        }
+        GameController.setQuit();
     }
 }

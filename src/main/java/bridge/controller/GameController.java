@@ -30,4 +30,16 @@ public class GameController {
     private void proceed() {
 
     }
+
+    public static void addAttempt() {
+        attempts++;
+    }
+
+    public static void setRetry() {
+        gameCommand = GameCommand.RETRY;
+    }
+
+    public static void setQuit() {
+        gameCommand = GameCommand.QUIT;
+    }
 }
