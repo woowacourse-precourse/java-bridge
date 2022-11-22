@@ -11,7 +11,7 @@ public class Application {
     static GameJudge gameJudge = new GameJudge();
     private static int tryNumber = 0;
     private static boolean retryJudge;
-    private static boolean successFail;
+    private static String successFail;
 
 
 
@@ -19,7 +19,7 @@ public class Application {
         List<String> bridgeList = initalBridgeListGenerate();
         do{
             bridgeGame.resetMap();
-            successFail = gameJudge.successFailMethod(bridgeList);
+            successFail = gameJudge.successFailMethod(bridgeList); //true면 성공, false면 실패
             retryJudge = gameJudge.retryJudgeMethod(successFail);
             tryNumber++;
         }while(retryJudge);

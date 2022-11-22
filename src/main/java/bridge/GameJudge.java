@@ -9,20 +9,20 @@ public class GameJudge {
 
 
     private static List<String> mapAndOX;
-    public static boolean successFailMethod(List<String> bridgeList){
+    public static String successFailMethod(List<String> bridgeList){
         for (int order = 0; order < bridgeList.size(); order++){
             mapAndOX = bridgeGame.move(bridgeList.get(order), order);
             String map = mapAndOX.get(0);
             outputView.printMap(map);
             if (mapAndOX.get(1) == "X"){
-                return false;
+                return "실패";
             }
         }
-        return true;
+        return "성공";
     }
 
-    public static boolean retryJudgeMethod(boolean successFail) {
-        if (successFail == true){
+    public static boolean retryJudgeMethod(String successFail) {
+        if (successFail == "성공"){
             return false;
         }
         String retryOrNotInput = inputView.readGameCommand();
