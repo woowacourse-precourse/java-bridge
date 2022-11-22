@@ -28,6 +28,10 @@ public enum BridgeRow {
         return this.rowPosition;
     }
 
+    public String getRowExplain(){
+        return this.rowExplain;
+    }
+
     private static final List<String> rowPositions =
             Stream.of(BridgeRow.values()).map(BridgeRow::getRowPosition).collect(Collectors.toList());
 
@@ -40,6 +44,13 @@ public enum BridgeRow {
 
     public static final String getRowUsingNumber(int number){
         return map.get(number);
+    }
+
+    private static final Map<Integer, String> map2 =
+            Stream.of(values()).collect(Collectors.toMap(BridgeRow::getNumber, BridgeRow::getRowExplain));
+
+    public static final String getExplainUsingNumber(int number){
+        return map2.get(number);
     }
 
     public static final int getBridgeRowNumber(){
