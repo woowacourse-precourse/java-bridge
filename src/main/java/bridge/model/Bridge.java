@@ -1,5 +1,7 @@
-package bridge;
+package bridge.model;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.ErrorMessage;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
     private void isValidate(int size) {
-        if (!(size >= MIN_BRIDGE_SIZE && size <= MAX_BRIDGE_SIZE)) {
+        if (size < MIN_BRIDGE_SIZE || size > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR.toString());
         }
     }

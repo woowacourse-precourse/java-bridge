@@ -3,6 +3,7 @@ package bridge;
 import static bridge.constant.ErrorMessage.BRIDGE_SIZE_ERROR;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.model.Bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
