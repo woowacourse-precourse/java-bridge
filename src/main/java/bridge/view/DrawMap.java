@@ -39,4 +39,5 @@ public class DrawMap {
             bottomList.add(user);
         }
     }
+
 }
