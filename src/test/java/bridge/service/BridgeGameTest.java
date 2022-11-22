@@ -1,7 +1,8 @@
-package bridge;
+package bridge.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.GameResult;
 import bridge.model.Bridge;
 import bridge.model.GameCommand;
 import bridge.model.GameMap;

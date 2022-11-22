@@ -6,6 +6,7 @@ import bridge.model.GameCommand;
 import bridge.model.GameMap;
 import bridge.model.Moving;
 import bridge.model.Player;
+import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

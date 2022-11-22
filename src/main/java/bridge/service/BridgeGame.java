@@ -1,5 +1,6 @@
-package bridge;
+package bridge.service;
 
+import bridge.GameResult;
 import bridge.model.Bridge;
 import bridge.model.DrawType;
 import bridge.model.GameCommand;
