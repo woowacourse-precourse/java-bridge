@@ -21,12 +21,18 @@ public class BridgeMaker {
      * 각 칸이 무작위 방향을 가지는 다리 정보를 생성
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸은 "U", 아래 칸은 "D"로 표현된다.
-     * @throws IllegalArgumentException 크기가 1 미만인 다리 생성 시 예외 처리
      */
-    public List<String> makeBridge(int size) {
+    public List<String> makeBridge(int size) throws IllegalArgumentException {
+        validationNotNegative(size);
         return Stream.generate(() -> convertBridge(bridgeNumberGenerator.generate()))
                 .limit(size)
                 .collect(Collectors.toList());
+    }
+
+    private void validationNotNegative(int size) throws IllegalArgumentException {
+        if (size < 0) {
+            throw new IllegalArgumentException(ErrorMessageConstant.NUMBER_MUST_NOT_NEGATIVE);
+        }
     }
 
     /**
