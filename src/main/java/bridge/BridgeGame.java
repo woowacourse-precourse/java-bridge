@@ -5,19 +5,48 @@ package bridge;
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private String gameCommand; //U or D
+    private String retryCommand; //R or Q
+    private int size; // 다리 길이
+
+    public BridgeGame(String gameCommand, String retryCommand) {
+        this.gameCommand = gameCommand;
+        this.retryCommand = retryCommand;
+        move(gameCommand);
+        retry(retryCommand);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public BridgeGame(int size) {
+        this.size = size;
+        checkBridgeSize(size);
     }
+
+    public void move(String gameCommand) {
+        if (!(gameCommand.equals("U") || gameCommand.equals("D"))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void retry(String retryCommand) {
+        if (!(retryCommand.equals("Q") || retryCommand.equals("R"))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkBridgeSize(int size) {
+        if (!(size >= 3 && size <= 20)) throw new IllegalArgumentException();
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public String getReadMoving() {
+        return gameCommand;
+    }
+
+    public String getGameCommand() {
+        return retryCommand;
+    }
+
 }
