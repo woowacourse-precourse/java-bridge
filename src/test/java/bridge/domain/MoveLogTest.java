@@ -2,7 +2,6 @@ package bridge.domain;
 
 import bridge.type.BridgeType;
 import bridge.type.ResultType;
-import java.util.HashMap;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -31,8 +30,6 @@ class MoveLogTest {
         Assertions.assertThat(upLog.size()).isEqualTo(2);
         Assertions.assertThat(downLog.size()).isEqualTo(2);
         moveLog.clearMoveLog();
-        List<String> deletedUpLog = moveLog.getBridgeMoveLog().get(BridgeType.UP);
-        List<String> deletedDownLog = moveLog.getBridgeMoveLog().get(BridgeType.DOWN);
         Assertions.assertThat(upLog.size()).isEqualTo(0);
         Assertions.assertThat(downLog.size()).isEqualTo(0);
     }
