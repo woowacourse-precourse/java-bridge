@@ -100,11 +100,11 @@
   - BridgeRandomNumberGenerator
 
 ### test
-- Models
+- domain
   - BridgeMaker : 다리 반복 생성 시 "U"와 "D"만 포함 되는지 확인. 인터페이스 구현한 numberGenerator를 통해 올바른 값 반환되는지 확인
     - BridgeRandomNumberGenerator : 50번 RepeatedTest를 통해 0과 1값만 나오는지 확인
   - BridgeDirectionTest : 0, 1이 "U", "D" 문자열로 잘 매핑되는지 확인. 올바르지 않은 정수값에 "E"가 매핑되는지 확인
   - BridgeGame : BridgeGame 객체가 메소드에 의해 올바르게 작동하는지 확인
-- Utils
+- utils
   - Validator : 각각의 validate 메소드들이 올바르게 작동하는지 확인
 - Application (추가 테스트 구현) : 여러 프로그램 실행 상황 확인, 여러가지 입력 예외 가능성 확인
