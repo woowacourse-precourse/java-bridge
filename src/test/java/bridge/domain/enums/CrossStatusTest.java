@@ -15,8 +15,10 @@ class CrossStatusTest {
     void createInitializationStatuses_length_check_success() {
         // given
         List<CrossStatus> expected = List.of(YET, YET, YET, YET, YET);
+
         // when
         List<CrossStatus> actual = createInitializationStatuses(5);
+
         // then
         assertThat(actual).containsSequence(expected);
     }

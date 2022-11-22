@@ -15,8 +15,10 @@ class BridgeMakerTest {
     @CsvSource({"3,3", "4,4", "5,5", "6,6", "7,7"})
     void makeBridge_success(int size, int expectedSize) {
         // given
+
         // when
         List<String> symbolBlocks = bridgeMaker.makeBridge(size);
+
         // then
         assertThat(symbolBlocks.size()).isEqualTo(expectedSize);
     }

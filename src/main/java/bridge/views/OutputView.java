@@ -17,7 +17,6 @@ public class OutputView {
     }
 
     public void printResult(final String movingResultMap, final int gameCount, final CrossStatus movingResultStatus) {
-
         System.out.println(FINISH_GAME_RESULT);
         System.out.println(movingResultMap);
         System.out.println();
