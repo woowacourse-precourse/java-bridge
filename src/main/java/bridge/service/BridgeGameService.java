@@ -29,6 +29,7 @@ public class BridgeGameService {
             throw new NumberFormatException(NOT_INT.getMessage());
         }
 
+        int totalNumberOfAttempts = 1;
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             bridgeGame.move(inputView.readMoving());
 
@@ -37,12 +38,13 @@ public class BridgeGameService {
             if (bridgeGame.isCurrentRoundResultFailure()) {
                 if (isGameRetry(inputView.readGameCommand())) {
                     bridgeGame.retry();
+                    totalNumberOfAttempts += 1;
                 } else {
                     break;
                 }
             }
         }
-
+        outputView.printResult(bridgeGame.getRounds(), totalNumberOfAttempts);
     }
 
     private void initializeBridgeGameByBridgeSize(int size) {
