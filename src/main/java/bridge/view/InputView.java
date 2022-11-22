@@ -5,8 +5,6 @@ import bridge.util.validator.GameCommandValidator;
 import bridge.util.validator.MovingValidator;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.util.constants.ErrorMessage.NUMERIC_ERROR_MESSAGE;
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  * 패키지 및 메서드 시그니처와 리턴타입 변경 가능, 메서드 추가 가능
