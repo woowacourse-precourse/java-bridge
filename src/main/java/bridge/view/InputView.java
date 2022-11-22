@@ -1,10 +1,13 @@
 package bridge.view;
 
+import bridge.model.entity.BridgeSize;
 import bridge.util.BridgeMaker;
 import bridge.util.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
+
+import static bridge.model.entity.BridgeSize.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -21,8 +24,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public List<String> readBridgeSize() { // TODO: 입력값 유효성 검사를 어디서 할까???
-        String input = input();
-        return maker.makeBridge(Integer.parseInt(input));
+        try {
+            return maker.makeBridge(of(input()).getBridgeSize());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     } // TODO: 입력값 예외처리
 
     /**

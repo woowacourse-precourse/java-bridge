@@ -43,7 +43,6 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-    @Disabled("예외 처리 전에 잠시 감춰놓는다.")
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
