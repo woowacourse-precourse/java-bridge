@@ -32,15 +32,25 @@ public class OutputView {
      * <p>
      * 다리 길이, 현재 step, 게임 상태 정보를 받아 사용자에게 출력
      */
-    public void printMap(List<String> bridge, int step, BridgeGameStstus status) {
+    public void printMap(BridgeGame bridgeGame) {
         initBridgeMap();
-        for (int i = 0; i < step - 1; i++) {
-            parseDirection(bridge.get(i));
-        }
-        parseLastDirection(bridge.get(step - 1), status);
+
+        parseBridge(bridgeGame);
+
         completeBridgeMap();
         System.out.println(upperBridgeView);
         System.out.println(lowerBridgeView);
+    }
+
+    private void parseBridge(BridgeGame bridgeGame) {
+        List<String> bridge = bridgeGame.getBridge();
+        int step = bridgeGame.getStep();
+        BridgeGameStstus status = bridgeGame.getStatus();
+
+        for (int i = 0; i < bridgeGame.getStep() - 1; i++) {
+            parseDirection(bridge.get(i));
+        }
+        parseLastDirection(bridge.get(step - 1), status);
     }
 
     private void initBridgeMap() {
