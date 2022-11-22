@@ -28,21 +28,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> bridgeMap,int index){
-        for(int position=bridgeMap.size()-1;position>=0;position--){
-            String bridgePosition = bridgeMap.get(position);
+    public static void printMap(Map<String,List<String>> bridgeMap,int index){
+        for(int i=0;i<bridgeMap.size();i++){
             System.out.print(BRIDGE_LEFT);
-            printInsideMap(index, bridgePosition);
+            for(int j=0;j<index+1;j++){
+                System.out.print(bridgeMap.get(i).get(j));
+                if(j!=index){
+                    System.out.print(BRIDGE_MIDDLE);
+                }
+            }
             System.out.println(BRIDGE_RIGHT);
         }
     }
     private static void printInsideMap(int index, String bridgePosition) {
-        for(int i = 0; i< index +1; i++){
-            System.out.print(bridgePosition.charAt(i));
-            if(i!= index){
-                System.out.print(BRIDGE_MIDDLE);
-            }
-        }
+
     }
 
     /**
