@@ -12,7 +12,6 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     private static void printGameStartMessage() {
