@@ -23,7 +23,6 @@ public class BridgeGameController {
         output.printStartMessage();
         while (true) {
             try {
-                System.out.println("다리의 길이를 입력해주세요.");
                 int size = input.readBridgeSize();
                 this.bridge = new Bridge(size);
                 this.game = new BridgeGame(bridge);
@@ -49,7 +48,6 @@ public class BridgeGameController {
     public void movePosition() {
         while (true) {
             try {
-                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
                 String direction = input.readMoving();
                 game.move(direction);
                 output.printMap(bridge);
@@ -63,7 +61,6 @@ public class BridgeGameController {
     public void retryOrEndGame() {
         while (true) {
             try {
-                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
                 String gameCommand = input.readGameCommand();
                 if (gameCommand.equals("R")) {
                     game.retry();
