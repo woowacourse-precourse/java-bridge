@@ -30,11 +30,6 @@ public class BridgeGameResult {
                 .forEach(entry -> entry.getValue().add(NOT_MOVING_SHAPE));
     }
 
-    public boolean isSuccess() {
-        return result.values().stream()
-                .noneMatch(value -> value.contains(BRIDGE_NOT_MOVING));
-    }
-
     public void clearResult() {
         result.get(BRIDGE_UP_SIDE_SHAPE).clear();
         result.get(BRIDGE_DOWN_SIDE_SHAPE).clear();

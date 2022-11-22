@@ -1,6 +1,9 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.value.BridgeSize;
+import bridge.domain.value.GameCommand;
+import bridge.domain.value.MovingShape;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -15,40 +18,35 @@ public class BridgeGameController {
 
     public void GameRun() {
         outputView.printGameStart();
-        int bridgeSize = inputView.readBridgeSize();
+        BridgeGame bridgeGame = play(inputView.readBridgeSize());
+        outputView.printResult(bridgeGame.getBridgeGameResult(), bridgeGame.getGameStatus(), bridgeGame.getBridgeGameCount());
+    }
+
+    private BridgeGame play(BridgeSize bridgeSize) {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
-        bridgeGame.increaseGameCount();
-        int movingIndex = 0;
-
-        while (movingIndex < bridgeSize) {
-            movingIndex = play(bridgeGame, movingIndex);
+        while (bridgeGame.isRunning()) {
+            move(bridgeGame);
+            retryOrQuit(bridgeGame);
         }
-        outputView.printResult(bridgeGame.getBridgeGameResult(), bridgeGame.getBridgeGameCount());
+        return bridgeGame;
     }
 
-    private int play(BridgeGame bridgeGame, int movingIndex) {
-        boolean moving = move(bridgeGame, movingIndex);
+    private void move(BridgeGame bridgeGame) {
+        MovingShape movingShape = inputView.readMovingShape();
+        bridgeGame.move(movingShape);
         outputView.printMap(bridgeGame.getBridgeGameResult());
-        return updateMovingIndex(bridgeGame, moving, movingIndex);
     }
 
-    private int updateMovingIndex(BridgeGame bridgeGame, boolean moving, int movingIndex){
-        if (moving) {
-            return movingIndex + 1;
+    private void retryOrQuit(BridgeGame bridgeGame) {
+        if (bridgeGame.isRetryOrQuit()) {
+            GameCommand gameCommand = inputView.readGameCommand();
+            isRetry(bridgeGame, gameCommand);
         }
-        if (retry(bridgeGame)) {
-            return 0;
+    }
+
+    private void isRetry(BridgeGame bridgeGame, GameCommand gameCommand) {
+        if (gameCommand.isRetry()) {
+            bridgeGame.retry();
         }
-        return Integer.MAX_VALUE;
-    }
-
-    private boolean move(BridgeGame bridgeGame, int movingIndex) {
-        String moving = inputView.readMoving();
-        return bridgeGame.move(moving, movingIndex);
-    }
-
-    private boolean retry(BridgeGame bridgeGame) {
-        String gameCommand = inputView.readGameCommand();
-        return bridgeGame.retry(gameCommand);
     }
 }

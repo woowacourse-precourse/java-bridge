@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.value.MovingShape;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,13 +16,15 @@ public class BridgeMovingTest {
     @BeforeEach
     void setUp() {
         Bridge bridge = new Bridge(List.of("U", "D", "D", "U", "D"));
-        bridgeMoving = new BridgeMoving(bridge);
+        BridgeIndex bridgeIndex = new BridgeIndex();
+        bridgeMoving = new BridgeMoving(bridge, bridgeIndex);
     }
 
     @DisplayName("이동할 칸 입력값을 받아 다리의 칸을 이동한다.")
     @ParameterizedTest
-    @CsvSource({"U,0,O", "U,1,X", "D,2,O", "U,3,O", "U,4,X"})
-    void moveBridge(String moving, int movingIndex, String expected) {
-        assertThat(bridgeMoving.move(moving, movingIndex)).isEqualTo(expected);
+    @CsvSource({"U,O", "U,X", "D,O", "U,O", "U,X"})
+    void moveBridge(String shape, String expected) {
+        MovingShape movingShape = new MovingShape(shape);
+        assertThat(bridgeMoving.move(movingShape)).isEqualTo(expected);
     }
 }

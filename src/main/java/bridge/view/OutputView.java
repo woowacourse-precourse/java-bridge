@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeGameCount;
 import bridge.domain.BridgeGameResult;
+import bridge.domain.value.GameStatus;
 
 import java.util.List;
 
@@ -42,21 +43,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGameResult bridgeGameResult, BridgeGameCount bridgeGameCount) {
+    public void printResult(
+            BridgeGameResult bridgeGameResult,
+            GameStatus gameStatus,
+            BridgeGameCount bridgeGameCount
+    ) {
         System.out.println(GAME_RESULT);
         printMap(bridgeGameResult);
-        System.out.println(GAME_SUCCESS_OR_FAIL + isSuccess(bridgeGameResult));
+        System.out.println(GAME_SUCCESS_OR_FAIL + gameStatus.getStatus());
         System.out.println(GAME_COUNT + bridgeGameCount.getCount());
     }
 
-    private String isSuccess(BridgeGameResult bridgeGameResult) {
-        if (bridgeGameResult.isSuccess()) {
-            return "성공";
-        }
-        return "실패";
-    }
-
-    public void printNewLine() {
+    public static void printNewLine() {
         System.out.println();
     }
 }

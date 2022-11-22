@@ -3,8 +3,12 @@ package bridge.domain;
 public class BridgeGameCount {
     private int count;
 
-    public BridgeGameCount() {
-        this.count = 0;
+    public BridgeGameCount(int count) {
+        this.count = count;
+    }
+
+    public static BridgeGameCount initBridgeGameCount() {
+        return new BridgeGameCount(1);
     }
 
     public void increaseCount() {

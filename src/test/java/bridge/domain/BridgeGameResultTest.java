@@ -65,14 +65,6 @@ public class BridgeGameResultTest {
         assertThat(gameResult.getBridgeByShape(DOWN_SIDE_SHAPE)).isEmpty();
     }
 
-    @DisplayName("다리 건너기 게임 성공 여부를 반환한다.")
-    @ParameterizedTest
-    @CsvSource({"D,O,true", "U,O,true", "D,X,false", "U,X,false"})
-    void isSuccessBridgeGame(String shape, String movingResult, boolean expected) {
-        gameResult.putMovingResult(shape, movingResult);
-        assertThat(gameResult.isSuccess()).isEqualTo(expected);
-    }
-
     static class GameResult extends BridgeGameResult {
         public void putMovingResult() {
             super.getBridgeByShape(UP_SIDE_SHAPE).addAll(List.of("O", "O", " ", " ", " "));

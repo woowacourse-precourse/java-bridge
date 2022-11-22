@@ -1,79 +1,30 @@
 package bridge.view;
 
-import bridge.utils.validator.BridgeSizeValidator;
-import bridge.utils.validator.GameCommandValidator;
-import bridge.utils.validator.MovingValidator;
-import camp.nextstep.edu.missionutils.Console;
-
-import static bridge.utils.ViewMessages.*;
+import bridge.domain.value.BridgeSize;
+import bridge.domain.value.GameCommand;
+import bridge.domain.value.MovingShape;
+import bridge.view.input.BridgeSizeInput;
+import bridge.view.input.GameCommandInput;
+import bridge.view.input.MovingShapeInput;
+import bridge.view.input.RepeatInput;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        while (true) {
-            try {
-                return inputBridgeSize();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public BridgeSize readBridgeSize() {
+        RepeatInput<BridgeSize> repeatInput = new RepeatInput<>();
+        return repeatInput.read(new BridgeSizeInput());
     }
 
-    private int inputBridgeSize() {
-        System.out.println(BRIDGE_SIZE);
-        String bridgeSize = Console.readLine();
-        printNewLine();
-        BridgeSizeValidator.validate(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+    public MovingShape readMovingShape() {
+        RepeatInput<MovingShape> repeatInput = new RepeatInput<>();
+        return repeatInput.read(new MovingShapeInput());
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        while (true) {
-            try {
-                return inputMoving();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private String inputMoving() {
-        System.out.println(MOVING);
-        String moving = Console.readLine();
-        MovingValidator.validate(moving);
-        return moving;
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        while (true) {
-            try {
-                return inputGameCommand();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private String inputGameCommand() {
-        System.out.println(GAME_COMMAND);
-        String gameCommand = Console.readLine();
-        GameCommandValidator.validate(gameCommand);
-        return gameCommand;
-    }
-
-    public void printNewLine() {
-        System.out.println();
+    public GameCommand readGameCommand() {
+        RepeatInput<GameCommand> repeatInput = new RepeatInput<>();
+        return repeatInput.read(new GameCommandInput());
     }
 }

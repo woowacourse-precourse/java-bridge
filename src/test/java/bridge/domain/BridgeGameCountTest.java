@@ -10,7 +10,7 @@ public class BridgeGameCountTest {
     @BeforeEach
     void setUp(RepetitionInfo repetitionInfo) {
         if (repetitionInfo.getCurrentRepetition() == 1) {
-            bridgeGameCount = new BridgeGameCount();
+            bridgeGameCount = new BridgeGameCount(0);
         }
     }
 

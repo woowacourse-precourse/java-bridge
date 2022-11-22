@@ -9,7 +9,11 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public String getShape(int index) {
-        return bridge.get(index);
+    public String getShape(BridgeIndex bridgeIndex) {
+        return bridge.get(bridgeIndex.getIndex());
+    }
+
+    public int getSize() {
+        return bridge.size();
     }
 }
