@@ -7,7 +7,6 @@ import bridge.domain.User;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.utils.enums.GameState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,10 +54,35 @@ public class BridgeGameTest {
     @DisplayName("playResult WIN 테스트")
     @Test
     void checkGetPlayResultIsWin() {
-        List<String> moveInputs = List.of("U","D","U");
+        List<String> moveInputs = List.of("U", "D", "U");
         for (String moveInput : moveInputs) {
             game.move(moveInput);
         }
         assertThat(game.getPlayResult()).isEqualTo("WIN");
+    }
+
+    @DisplayName("getFinalResult 테스트")
+    @Test
+    void checkGetFinalResult() {
+        game.move("D");
+        assertThat(game.getFinalResult()).containsExactly("실패", "1");
+    }
+
+    @DisplayName("getFinalResult 성공 테스트")
+    @Test
+    void checkGetFinalResultIsSuccess() {
+        List<String> moveInputs = List.of("U", "D", "U");
+        for (String moveInput : moveInputs) {
+            game.move(moveInput);
+        }
+        assertThat(game.getFinalResult()).containsExactly("성공", "1");
+    }
+
+    @DisplayName("getFinalResult 시도횟수 테스트")
+    @Test
+    void checkGetFinalResultTrialTest() {
+        game.retry();
+        game.move("D");
+        assertThat(game.getFinalResult()).containsExactly("실패", "2");
     }
 }
