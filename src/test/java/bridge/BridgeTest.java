@@ -1,8 +1,7 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeGameState;
+import bridge.state.BridgeGameState;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

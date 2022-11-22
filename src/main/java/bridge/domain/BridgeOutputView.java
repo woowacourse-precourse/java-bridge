@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.state.BridgeGameState;
+
 public class BridgeOutputView {
 
     private static String PASS = " O ", FAIL = " X ", NONE = "   ", divider = "|", START = "[", END = "]";
@@ -10,12 +12,8 @@ public class BridgeOutputView {
         init();
         for (int i = 0; i < bridge.getPositionOnBridge(); ++i) {
             String bridgeElement = bridge.getBridge().get(i);
-            if (bridgeElement.equals("U")) {
-                upperCase(bridge, i);
-            }
-            if (bridgeElement.equals("D")) {
-                lowerCase(bridge, i);
-            }
+            if (bridgeElement.equals("U")) { upperCase(bridge, i); }
+            if (bridgeElement.equals("D")) { lowerCase(bridge, i); }
             afterTreat(bridge, i);
         }
         return upperStringBuilder.append("\n").append(lowerStringBuilder).toString();

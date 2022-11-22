@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.domain.*;
-import camp.nextstep.edu.missionutils.Console;
+import bridge.state.ErrorState;
 
 public class Application {
 
@@ -12,7 +12,7 @@ public class Application {
         Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         OutputView outputView = new OutputView(bridgeGame);
-        bridgeGame.proceed(inputView, outputView);
+        if (bridgeGame.proceed(inputView, outputView) == ErrorState.ERROR) { return; }
         outputView.printResult();
     }
 }

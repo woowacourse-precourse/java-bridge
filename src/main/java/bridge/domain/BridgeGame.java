@@ -1,7 +1,8 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import bridge.state.BridgeGameState;
+import bridge.state.ErrorState;
+import bridge.state.RetryState;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -28,27 +29,28 @@ public class BridgeGame {
         return numOfGamePlayed;
     }
 
-    public void proceed(InputView inputView, OutputView outputView) {
+    public ErrorState proceed(InputView inputView, OutputView outputView) {
         while (retryState == RetryState.RETRY || retryState == RetryState.START) {
             numOfGamePlayed++;
-            if (subProceed(inputView, outputView)) { return; }
-            if (bridgeGameState == BridgeGameState.SUCCESS_AND_END) { return; }
+            if (subProceed(inputView, outputView) == ErrorState.ERROR) { return ErrorState.ERROR; }
+            if (bridgeGameState == BridgeGameState.SUCCESS_AND_END) { return ErrorState.NONE; }
             String gameCommand = inputView.readGameCommand();
-            if (gameCommand == null) { return; }
+            if (gameCommand == null) { return ErrorState.ERROR; }
             retryState = this.retry(gameCommand);
         }
+        return ErrorState.NONE;
     }
 
-    private boolean subProceed(InputView inputView, OutputView outputView) {
+    private ErrorState subProceed(InputView inputView, OutputView outputView) {
         while (bridgeGameState == BridgeGameState.NORMAL) {
             String moving = inputView.readMoving();
             if (moving == null) {
-                return true;
+                return ErrorState.ERROR;
             }
             bridgeGameState = this.move(moving);
             outputView.printMap();
         }
-        return false;
+        return ErrorState.NONE;
     }
 
     /**
@@ -67,7 +69,8 @@ public class BridgeGame {
      */
     public RetryState retry(String readGameCommand) {
         if (readGameCommand.equals("R")) {
-            bridge.init();
+            this.bridge.init();
+            this.bridgeGameState = BridgeGameState.NORMAL;
             return RetryState.RETRY;
         }
         return RetryState.QUIT;
