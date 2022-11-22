@@ -4,7 +4,7 @@ import bridge.state.BridgeGameState;
 
 public class BridgeOutputView {
 
-    private static String PASS = " O ", FAIL = " X ", NONE = "   ", divider = "|", START = "[", END = "]";
+    private static final String PASS = " O ", FAIL = " X ", NONE = "   ", divider = "|", START = "[", END = "]";
     private static StringBuilder upperStringBuilder;
     private static StringBuilder lowerStringBuilder;
 
