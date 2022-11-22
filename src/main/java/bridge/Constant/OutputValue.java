@@ -1,5 +1,7 @@
 package bridge.Constant;
 
+
+
 public class OutputValue {
     public static final String SEPARATOR = "|";
     public static final String NOT_SELECTION = "   ";

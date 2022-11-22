@@ -7,7 +7,6 @@ import static bridge.Constant.OutputValue.*;
 
 import bridge.Model.BridgeGame;
 
-import bridge.Model.Player;
 import java.util.List;
 
 

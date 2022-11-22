@@ -1,5 +1,7 @@
 package bridge.Constant;
 
+
+
 public class InputValue {
     public static final String SELECTION_UP = "U";
     public static final String SELECTION_DOWN = "D";
