@@ -19,4 +19,17 @@ public class ExceptionTest {
                 .hasMessageContaining("[ERROR]");
 
     }
+
+    @DisplayName("이동시 U나 D 이외의 값을 입력한 경우 예외 처리 테스트")
+    @Test
+    void validateIsUOrDTest() {
+        // given
+        String inputNotUOrD = "K";
+        InputView inputView = new InputView();
+
+        // when, then
+        assertThatThrownBy(() -> inputView.validateIsUOrD(inputNotUOrD))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
