@@ -11,7 +11,13 @@ import static org.assertj.core.api.Assertions.*;
 public class RetryTest {
 
 
-
+    @DisplayName("재시작 입력 기능을 테스트한다")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void 재시작_입력_테스트(String retry) {
+        assertThat(new UserException().checkRetry(retry))
+                .isEqualTo(false);
+    }
 
     @DisplayName("재시작 입력 크기의 예외처리 기능을 테스트한다")
     @ValueSource(strings = {"RR", "RQ", "QR", "Q ", " R", "Q ", "R ","ㄱ ","!2"})
