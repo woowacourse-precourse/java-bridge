@@ -28,17 +28,21 @@ public class GameController {
 
     private boolean run() {
         runCnt++;
-        boolean retry = false;
+        boolean isRerun = false;
         boolean pass = play();
         if (!pass) {
-            outputView.printRetry();
-            String tryCommand = inputView.readGameCommand();
-            retry = bridgeGame.retry(tryCommand);
+            isRerun = Rerun();
         }
-        if (!retry) {
+        if (!isRerun) {
             return finish(pass);
         }
         return run();
+    }
+
+    private boolean Rerun() {
+        outputView.printRetry();
+        String tryCommand = inputView.readGameCommand();
+        return bridgeGame.retry(tryCommand);
     }
 
     private boolean finish(boolean isSuccess) {
