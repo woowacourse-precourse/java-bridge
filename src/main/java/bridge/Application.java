@@ -16,7 +16,6 @@ public class Application {
     }
 
     public static void GAMESTART() {
-        gameController.printGameStart();
         gameController.GAMESTART();
     }
 

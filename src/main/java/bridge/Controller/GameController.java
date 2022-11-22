@@ -17,21 +17,9 @@ public class GameController {
     }
 
     public void GAMESTART() {
-        try {
-            MAKEBRIDGE();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            GAMESTART();
-        }
-    }
-
-    public void MAKEBRIDGE() {
+        outputView.printGameStart();
         int input = inputView.readBridgeSize();
         bridgeGame.setBridge(bridgeMaker.makeBridge(input));
-    }
-
-    public void printGameStart() {
-        outputView.printGameStart();
     }
 
     public void RUNPROCESS() {
