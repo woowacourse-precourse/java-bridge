@@ -1,8 +1,8 @@
 package bridge.domain;
 
-import bridge.domain.bridgeTool.BridgeMaker;
-import bridge.domain.bridgeTool.BridgeNumberGenerator;
-import bridge.domain.bridgeTool.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

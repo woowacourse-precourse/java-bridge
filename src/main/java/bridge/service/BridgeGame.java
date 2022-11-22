@@ -2,9 +2,9 @@ package bridge.service;
 
 import bridge.domain.Bridge;
 import bridge.domain.Player;
-import bridge.domain.bridgeTool.BridgeMaker;
-import bridge.domain.bridgeTool.BridgeNumberGenerator;
-import bridge.domain.bridgeTool.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
