@@ -13,8 +13,12 @@ public class Application {
         List<String> gameBridgeMoving = new ArrayList<>();
         // 사용자에게 게임 진행 상황, 결과 출력
         OutputView gameOutputView = new OutputView();
+        // 다리 검사 리스트
+        List<String> gameBridgeCheck = new ArrayList<>();
         // 게임 진행 여부
         String gameProceed = "";
+        // 게임 횟수
+        int count = 0;
 
         // 1.게임 생성
         BridgeGame game = new BridgeGame();
@@ -37,14 +41,23 @@ public class Application {
             BridgeGame.move(gameBridgeMoving,gameBridgeMoveKey);
 
             // 6.다리 검사
-            List<String> gameBridgeCheck = BridgeGame.check(gameBridgeMoving,gameBridge);
+            gameBridgeCheck = BridgeGame.check(gameBridgeMoving,gameBridge);
 
             // 7.다리 상황
             gameOutputView.printMap(gameBridgeCheck);
 
             // 8.게임 재시도 여부 입력
             if(gameBridgeCheck.contains("X")) { gameProceed = gameInputView.readGameCommand(); }
+
+            // 10.게임 재시작 셋팅
+            if(gameProceed.equals("R")) {
+                game.retry(gameBridgeMoving,gameBridgeCheck);
+                gameProceed = "";
+                count += 1; }
         }
+
+        // 9.최종 게임 결과
+        gameOutputView.printResult(gameBridgeCheck,gameProceed,count);
     }
 }
 
