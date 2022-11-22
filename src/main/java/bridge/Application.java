@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.Controller.GameController;
 import bridge.Domain.BridgeGame;
-import bridge.Domain.BridgeMaker;
 
 public class Application {
     static BridgeGame bridgeGame = new BridgeGame();

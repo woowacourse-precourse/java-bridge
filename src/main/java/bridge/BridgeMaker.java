@@ -1,4 +1,4 @@
-package bridge.Domain;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 import bridge.Enum.BridgeGameInfo;
