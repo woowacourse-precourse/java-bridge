@@ -18,4 +18,5 @@ public class PathTravel {
     public List<String> getLowerBridge() {
         return lowerBridge;
     }
+
 }

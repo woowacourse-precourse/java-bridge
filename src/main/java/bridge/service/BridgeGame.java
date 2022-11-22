@@ -67,4 +67,5 @@ public class BridgeGame {
         Player player = playerRepository.findById(playerId);
         return new GameResult(player.isGameClear(bridgeSize), player.getNumberOfTry(), player.getUpperBridge(), player.getLowerBridge());
     }
+
 }

@@ -78,4 +78,5 @@ public class InputView {
             throw new IllegalArgumentException(NOT_BRIDGE_SIZE);
         }
     }
+
 }
