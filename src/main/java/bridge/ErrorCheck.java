@@ -7,6 +7,7 @@ public class ErrorCheck {
     private final String RETRY = "R";
     private final String UP_BRIDGE_BTN = "U";
     private final String DOWN_BRIDGE_BTN = "D";
+
     public boolean isValidRetryOrQuit(String retry) {
         if(retry.equals(QUIT) || retry.equals(RETRY)) return true;
         System.out.println("[ERROR] Q 또는 R로 입력해주세요.");
