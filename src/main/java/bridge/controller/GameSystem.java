@@ -32,11 +32,8 @@ public class GameSystem {
         outputView.printTryLengthInput();
         input = inputView.readBridgeSize();
         if (inputvalid.checkLengthValid(input) == false) {
-            System.out.println("check");
             inputBridgeLength();
-            System.out.println("end");
         }
-        System.out.println("input: " + input);
         saveSize = Integer.parseInt(input);
         game.saveBridge(make.makeBridge(saveSize));
     }
@@ -84,7 +81,7 @@ public class GameSystem {
     private String inputState() {
         outputView.printContinue();
         repeat = inputView.readGameCommand();
-        if(inputvalid.checkCommand() == false){
+        if(inputvalid.checkCommand(repeat) == false){
             inputState();
         }
         return repeat;
