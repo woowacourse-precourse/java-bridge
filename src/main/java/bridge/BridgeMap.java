@@ -38,7 +38,11 @@ public class BridgeMap {
         bridgeMap.get(0).add(bridgeMap.size() - 2, BLANK);
         bridgeMap.get(1).add(bridgeMap.size() - 2, MISS);
     }
-    public void updateMap(List<String> bridge, boolean correct) {
-
+    public void updateMap(String choose, boolean correct) {
+        if (choose == "U") {
+            updateChooseUpper(correct);
+            return;
+        }
+        updateChooseLower(correct);
     }
 }
