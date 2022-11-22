@@ -28,7 +28,7 @@ public class InputValidator {
         }
     }
 
-    public static void validateRetry(String input) {
+    public static void validateRetryOrQuit(String input) {
         if (!(input.equals(RETRY) || input.equals(QUIT))) {
             throw new IllegalArgumentException(ERROR_FOR_RETRY_OR_QUIT);
         }

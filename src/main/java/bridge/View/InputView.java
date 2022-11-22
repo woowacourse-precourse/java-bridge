@@ -44,7 +44,7 @@ public class InputView {
     public String readGameCommand() {
         try {
             String candidate = readLine();
-            validateRetry(candidate);
+            validateRetryOrQuit(candidate);
             return candidate;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
