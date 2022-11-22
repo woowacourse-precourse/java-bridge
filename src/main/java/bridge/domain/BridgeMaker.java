@@ -25,17 +25,9 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            bridge.add(toString(number));
+            BridgeType bridgeType = BridgeType.valueOfNumber(number);
+            bridge.add(bridgeType.getInitial());
         }
         return bridge;
-    }
-
-    /**
-     * @param number 다리 위인지 아래인지를 나타내는 숫자
-     * @return 1이면 "U", 0이면 "D"로 표현해야 한다.
-     */
-    public String toString(int number) {
-        BridgeType bridge = BridgeType.valueOfNumber(number);
-        return bridge.getInitial();
     }
 }
