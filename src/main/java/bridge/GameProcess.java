@@ -32,6 +32,7 @@ public class GameProcess {
     private static void gameProceeding() {
         size = getSize();
         bridge = bridgeMaker.makeBridge(size);
+        gameCnt = 0;
         while (true) {
             gameCnt++;
             if (!gameRunning(bridge, size)) break;
