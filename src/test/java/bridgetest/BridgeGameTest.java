@@ -1,5 +1,6 @@
-package bridge;
+package bridgetest;
 
+import bridge.BridgeNumberGenerator;
 import bridge.controller.BridgeGameController;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
