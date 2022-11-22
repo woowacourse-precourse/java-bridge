@@ -14,6 +14,7 @@ public class BridgeController {
             playGame();
             gameOver();
         } while (bridgeGame.isOngoing());
+        outputView.printResult(bridgeGame);
     }
 
     private void makeBridge() {
