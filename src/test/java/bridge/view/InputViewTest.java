@@ -19,7 +19,7 @@ class InputViewTest {
         inputView = new InputView();
     }
 
-    @DisplayName("다리길이 사용자 입력값 예외 테스트")
+    @DisplayName("다리 길이 사용자 입력값 예외 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"2", "-1", "21", "hihi", "안녕"})
     void readBridgeSizeExceptionTest(String input) {
