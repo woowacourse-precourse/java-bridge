@@ -25,7 +25,7 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String input = readLine();
+        String input = checkCharacter();
         if (!(input.equals("U") || input.equals("D"))) {
             throw new IllegalArgumentException(ErrorMessage.DIRECTION_NOT_U_D.getMessage());
         }
@@ -37,9 +37,20 @@ public class InputView {
      */
     public static String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String input = readLine();
+        String input = checkCharacter();
         if (!(input.equals("R") || input.equals("Q"))) {
             throw new IllegalArgumentException(ErrorMessage.RETRY_NOT_U_D.getMessage());
+        }
+        return input;
+    }
+
+    /**
+     * 사용자가 입력한 값이 두 글자 이상인지 확인한다.
+     */
+    private static String checkCharacter() {
+        String input = readLine();
+        if (input.length() != 1) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_ONE.getMessage());
         }
         return input;
     }
