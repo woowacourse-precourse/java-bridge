@@ -1,8 +1,7 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.constant.ErrorCode;
-import bridge.constant.MatchConst;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeShapeMatcher;
 import bridge.domain.Player;
@@ -11,7 +10,6 @@ import bridge.ui.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class BridgeGameService {
     private final InputView inputView = new InputView();
