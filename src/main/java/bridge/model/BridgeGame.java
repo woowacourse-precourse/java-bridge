@@ -15,12 +15,12 @@ import static bridge.view.OutputView.printResult;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static int bridgeSize;
     static ArrayList<String> equalsCheck = new ArrayList<>();
     public static ArrayList<String> resultFinal = new ArrayList<>();
+    static ArrayList<String> firstAndSecond = new ArrayList<>();
     static int successCount = 0;
-    private List<String> bridges;
-
+    static String first = "";
+    static String second = "";
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -33,26 +33,19 @@ public class BridgeGame {
         if(upAndDown.equals(bridge)){
             equalsCheck.add("O");
         }
-
         if(!upAndDown.equals(bridge)){
             equalsCheck.add("X");
         }
-
         return equalsCheck;
     }
 
     public static ArrayList<String> moveResult(int bridgeLen, int index, String upAndDown, List<String> bridges, List<String> move, int startCount){
-        String first = "";
-        String second = "";
         equalsCheck = move(index, upAndDown, bridges);
         if(equalsCheck.get(index).equals("O")){
             successCount++;
         }
-
         moveResultFirst(index, move);
 
-
-        // 2
         if(index != 0){
             if(move.get(0).equals("U")){
                 first += "[ " + equalsCheck.get(0) + " |";
@@ -62,7 +55,6 @@ public class BridgeGame {
                 first += "[   |";
                 second += "[ " + equalsCheck.get(0) + " |";
             }
-
             for(int cur = 1; cur < index; cur++){
                 if(move.get(cur).equals("U")){
                     first += " " + equalsCheck.get(cur) + " |";
@@ -73,6 +65,7 @@ public class BridgeGame {
                     second += " " + equalsCheck.get(cur) + " |";
                 }
             }
+
             if(move.get(index).equals("U")){
                 first += " " + equalsCheck.get(index) + " ]";
                 second += "   ]";
@@ -83,6 +76,7 @@ public class BridgeGame {
             }
 
         }
+
         printMap(first, second);
         inputResultFinal(index, bridgeLen, first, second);
         resultFinal = optionRandQ(index, startCount, bridgeLen, bridges);
@@ -102,8 +96,8 @@ public class BridgeGame {
         }
 
     }
-
-    public static void moveResultSecond1(String first, String second, List<String> move){
+/*
+    public static ArrayList<String> moveResultSecond1(String first, String second, List<String> move){
         if(move.get(0).equals("U")){
             first += "[ " + equalsCheck.get(0) + " |";
             second += "[   |";
@@ -112,9 +106,11 @@ public class BridgeGame {
             first += "[   |";
             second += "[ " + equalsCheck.get(0) + " |";
         }
-
+        firstAndSecond.set(0, first);
+        firstAndSecond.set(1, second);
+        return firstAndSecond;
     }
-    public static void moveResultSecond2(int index, String first, String second, List<String> move){
+    public static ArrayList<String> moveResultSecond2(int index, String first, String second, List<String> move){
         for(int cur = 1; cur < index; cur++){
             if(move.get(cur).equals("U")){
                 first += " " + equalsCheck.get(cur) + " |";
@@ -125,9 +121,12 @@ public class BridgeGame {
                 second += " " + equalsCheck.get(cur) + " |";
             }
         }
+        firstAndSecond.set(0, first);
+        firstAndSecond.set(1, second);
+        return firstAndSecond;
     }
 
-    public static void moveResultSecond3(int index, String first, String second, List<String> move){
+    public static ArrayList<String> moveResultSecond3(int index, String first, String second, List<String> move){
         if(move.get(index).equals("U")){
             first += " " + equalsCheck.get(index) + " ]";
             second += "   ]";
@@ -136,7 +135,12 @@ public class BridgeGame {
             first += "   ]";
             second += " " + equalsCheck.get(index) + " ]";
         }
+        firstAndSecond.set(0, first);
+        firstAndSecond.set(1, second);
+        return firstAndSecond;
     }
+
+ */
     public static void inputResultFinal(int index, int bridgeLen, String first, String second){
         if(index != (bridgeLen-1)){
             resultFinal.clear();
@@ -195,25 +199,19 @@ public class BridgeGame {
         ArrayList<String> inputMove = new ArrayList<>();
 
         for (int count = 0; count < bridgeLen; count++) {
-
-            System.out.println("count" + count);
             String move = readMoving();
             moveCheck(move);
             inputMove.add(move);
             resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
-            //System.out.println("result: " + resultFinal.toString());
 
             if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen){
                 check++;
                 break;
             }
-
         }
-
         if(check != 0){
             gameResult(resultFinal, bridgeLen, bridges, startCount);
         }
-
     }
 
 

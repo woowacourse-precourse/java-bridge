@@ -11,11 +11,9 @@ import static bridge.model.BridgeGame.*;
 import static bridge.view.InputView.*;
 
 public class BridgeGameController {
-    private BridgeGame bridgeGame;
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     static List<String> bridges = new ArrayList<>();
     static ArrayList<String> inputMove = new ArrayList<>();
-    static ArrayList<Integer> input = new ArrayList<>();
 
     static int startCount = 1;
     static int check = 0;
@@ -23,9 +21,7 @@ public class BridgeGameController {
 
     public void bridgeGame(){
         int bridgeLen = readBridgeSize();
-        System.out.println("len:" + bridgeLen);
 
-        //bridges = setBridgeBySize(bridgeLen);
         System.out.println(bridgeMaker);
         bridges = bridgeMaker.makeBridge(bridgeLen);
 
@@ -33,21 +29,13 @@ public class BridgeGameController {
             String move = readMoving();
             moveCheck(move);
             inputMove.add(move);
-            try {
-                resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
-
-            }catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
+            resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
 
             if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen+1){
                 check++;
                 break;
             }
         }
-        //System.out.println("check" + check);
-        //System.out.println("result: " + resultFinal.toString());
-
         if(check == 0){
             gameResult(resultFinal, bridgeLen, bridges, startCount);
         }
