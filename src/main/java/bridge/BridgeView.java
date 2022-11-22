@@ -18,6 +18,24 @@ public class BridgeView {
         return inputView.readGameCommand();
     }
 
+    public void printStartMessage(){
+        outputView.printStartMessage();
+    }
+    public void printSizeMessage(){
+        outputView.printSizeMessage();
+    }
+    public void printMoveMessage(){
+        outputView.printMoveMessage();
+    }
+    public void printCommandMessage(){
+        outputView.printCommandMessage();
+    }
+
+    public void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
+    }
+
+
     public void printMap(List<Glass> history, State lastState) {
 
         outputView.printMap(history, lastState);
@@ -27,9 +45,6 @@ public class BridgeView {
         outputView.printResult(history, lastState, play);
     }
 
-    public void printErrorMessage(String errorMessage){
-        System.out.println(errorMessage);
-    }
 
     BridgeView(){
         inputView = new InputView();
