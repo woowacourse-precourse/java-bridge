@@ -71,5 +71,6 @@ class UserTest {
 
         //then
         assertThat(user.isGameOver()).isEqualTo(true);
+        assertThat(user.isSuccessComplete()).isEqualTo(false);
     }
 }
