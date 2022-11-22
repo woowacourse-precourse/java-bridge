@@ -101,3 +101,9 @@
   - [X] DOWN_O: 아래 방향 선택 + 건널 수 있음
   - [X] DOWN_X: 아래 방향 선택 + 건널 수 없음
 - [X] 방향 키 + 다리 건널 수 있는지 여부 값으로 BridgeStatus 상수 참조 불가능 시 예외처리 - validateReferabilityBridgeStatus()
+***
+- [X] 게임 라운드 카운트 - BridgeGameStateTest#countGameRound()
+- [X] 게임 라운드 초기화 - BridgeGameStateTest#initGameRound()
+- [X] 게임 총 도전 횟수 카운트 - BridgeGameStateTest#countTotalGameAttempts()
+- [X] 게임 성공 처리 - BridgeGameStateTest#win()
+- [X] 게임 실패 처리 - BridgeGameStateTest#lose()
