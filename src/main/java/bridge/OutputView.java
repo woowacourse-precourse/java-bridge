@@ -17,4 +17,15 @@ public class OutputView {
         }
         return str;
     }
+    public String separate(int i,int turn){
+        String str="";
+        if(i!=turn-1){
+            str = "|";
+        }
+        if(i==turn-1){
+            str="]";
+        }
+        return str;
+    }
+
 }
