@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
+import bridge.model.BridgeMap;
 import bridge.model.Constants;
 
 import java.util.List;
@@ -35,29 +36,29 @@ public class OutputView {
     }
 
     private static String drawMap(List<String> way, List<String> realWay, String position) {
-        StringBuilder sb = new StringBuilder(Bridge.BEGIN);
+        StringBuilder sb = new StringBuilder(BridgeMap.BEGIN.getSign());
         for (int i = 0; i < way.size(); i++) {
             appendDelimiter(sb, i);
             if (!way.get(i).equals(position)) {
-                sb.append(Bridge.NONE);
+                sb.append(BridgeMap.NONE.getSign());
                 continue;
             }
             sb.append(determineOX(way, realWay, i));
         }
-        return sb.append(Bridge.END).toString();
+        return sb.append(BridgeMap.END.getSign()).toString();
     }
 
     private static void appendDelimiter(StringBuilder sb, int i) {
         if (i != 0) {
-            sb.append(Bridge.DELIMITER);
+            sb.append(BridgeMap.DELIMITER.getSign());
         }
     }
 
     private static String determineOX(List<String> way, List<String> realWay, int i) {
         if (way.get(i).equals(realWay.get(i))) {
-            return Bridge.ABLE;
+            return BridgeMap.ABLE.getSign();
         }
-        return Bridge.DISABLE;
+        return BridgeMap.DISABLE.getSign();
     }
 
     public static void printResult(BridgeGame bridgeGame) {
