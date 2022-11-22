@@ -23,6 +23,12 @@ public class Application {
                     continue;
                 }
                 outputView.printMap(game.userMoving, false);
+
+                if(!inputView.readGameCommand()){
+                    break;
+                }
+                game.retry();
+                i = -1;
             }
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
