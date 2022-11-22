@@ -18,9 +18,10 @@ public class GameController {
         while(bridgeGame.getStatus() == STATUS_PLAY){
             playOneStage();
             if(bridgeGame.getStatus() == STATUS_FAIL){
-
+                askRetry();
             }
         }
+        System.out.println("Game end");
     }
 
     private void playOneStage(){
@@ -35,6 +36,9 @@ public class GameController {
     private void askRetry(){
         System.out.println(MSG_GET_RETRY);
         String isRetry = inputView.readGameCommand();
+        if(isRetry.equals("R")){
+            bridgeGame.retry();
+        }
     }
 
 }
