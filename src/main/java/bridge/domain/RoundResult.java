@@ -1,7 +1,7 @@
 package bridge.domain;
 
 public enum RoundResult {
-    SUCCESS("0", "성공"),
+    SUCCESS("O", "성공"),
     FAILURE("X", "실패");
 
     private final String expression;
