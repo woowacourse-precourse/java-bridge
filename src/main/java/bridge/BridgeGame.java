@@ -21,10 +21,10 @@ import static bridge.constant.Moving.*;
  */
 public class BridgeGame {
 
-    public final List<String> bridge;
-    public List<String> player = new ArrayList<>();
-    public List<String> upBridge = new ArrayList<>();
-    public List<String> downBridge = new ArrayList<>();
+    private final List<String> bridge;
+    private List<String> player = new ArrayList<>();
+    private List<String> upBridge = new ArrayList<>();
+    private List<String> downBridge = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -65,31 +65,6 @@ public class BridgeGame {
         downBridge.add(DIE);
     }
 
-    public SuccessFail isSuccess() {
-        if (bridge.equals(player))
-            return SUCCESS;
-        return FAIL;
-    }
-    public boolean isFinish() {
-        if (isAlive() && (player.size() < bridge.size()))
-            return false;
-
-        if (!isAlive() || player.size() == bridge.size())
-            return true;
-
-        return false;
-    }
-
-    private boolean isAlive() {
-        int nowIdx = player.size() - 1;
-        String nowBridge = bridge.get(nowIdx);
-        String nowPlayer = player.get(nowIdx);
-        if (nowPlayer.equals(nowBridge)) {
-            return true;
-        }
-        return false;
-    }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -99,5 +74,20 @@ public class BridgeGame {
         player = new ArrayList<>();
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
+    }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
+    public List<String> getPlayer() {
+        return this.player;
+    }
+    public List<String> getUpBridge() {
+        return this.upBridge;
+    }
+
+    public List<String> getDownBridge() {
+        return this.downBridge;
     }
 }

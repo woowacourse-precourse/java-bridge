@@ -24,7 +24,8 @@ public class Run {
 
     private void play(BridgeGame bridgeGame) {
         playOneSet(bridgeGame);
-        SuccessFail isSuccess = bridgeGame.isSuccess();
+        Judge judge = new Judge(bridgeGame.getBridge(), bridgeGame.getPlayer());
+        SuccessFail isSuccess = judge.isSuccess();
 
         if (isSuccess == FAIL) {
             askWhatToDo(bridgeGame);
@@ -36,8 +37,9 @@ public class Run {
         do {
             String moving = getMoving();
             bridgeGame.move(moving);
-            new OutputView().printMap(bridgeGame.upBridge, bridgeGame.downBridge);
-            isFinish = bridgeGame.isFinish();
+            new OutputView().printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+            Judge judge = new Judge(bridgeGame.getBridge(), bridgeGame.getPlayer());
+            isFinish = judge.isFinish();
         } while(!isFinish);
     }
 

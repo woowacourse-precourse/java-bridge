@@ -6,6 +6,7 @@ package bridge.view;
 // 값 출력을 위해 필요한 메서드 추가 가능
 
 import bridge.BridgeGame;
+import bridge.Judge;
 
 import java.util.List;
 
@@ -45,8 +46,10 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame, int attempts) {
 
         System.out.println(GAME_RESULT);
-        printMap(bridgeGame.upBridge, bridgeGame.downBridge);
-        System.out.println(SUCCESS_FAIL + bridgeGame.isSuccess().getKorean());
+        printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+
+        Judge judge = new Judge(bridgeGame.getBridge(), bridgeGame.getPlayer());
+        System.out.println(SUCCESS_FAIL + judge.isSuccess().getKorean());
         System.out.println(ATTEMPTS_CNT + attempts);
     }
 }
