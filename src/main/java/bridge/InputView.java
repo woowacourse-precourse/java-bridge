@@ -12,9 +12,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        int bridgesize = Integer.parseInt(Console.readLine());
+        String bridgesize = Console.readLine();
+        if(!bridgesize.matches("^[0-9]*$")) return 1;
 
-        return bridgesize;
+        return Integer.parseInt(bridgesize);
     }
 
     /**
@@ -34,5 +35,17 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String Input= Console.readLine();
         return Input;
+    }
+    public void exception(){
+
+        try {
+        }
+        catch(IllegalArgumentException exception) {
+            System.out.print(exception.getMessage());
+            System.out.println("[ERROR]");
+            return;
+        }
+
+
     }
 }
