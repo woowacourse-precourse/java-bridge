@@ -37,7 +37,7 @@ public class BridgeGame {
         return gameCount;
     }
 
-    public static void makeMap(String moving, String str, List<List<String>> bridgeMap) {
+    public void makeMap(String moving, String str, List<List<String>> bridgeMap) {
         if (moving.equals(UP_MOVING_CHARACTER)) {
             bridgeMap.add(List.of(BLANK, str));
         } else if (moving.equals(DOWN_MOVING_CHARACTER)) {
