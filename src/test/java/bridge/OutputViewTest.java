@@ -39,6 +39,21 @@ public class OutputViewTest extends NsTest {
         }, 1, 1, 0);
     }
 
+    @DisplayName("다리 건너기 실패 후 재시작 후 성공")
+    @Test
+    void cross_Bridge_Fail_Retry_Success() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U","U","R","U","U","D");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O | O |   ]",
+                    "[   |   | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+        }, 1, 1, 0);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
