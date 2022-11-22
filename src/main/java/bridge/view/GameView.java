@@ -49,13 +49,13 @@ public class GameView {
     }
 
     public void doGame() {
-        System.out.println(Directive.GAME_START);
+        System.out.println(Directive.GAME_START.getMessage());
+
         while (status != ViewStatus.WIN && status != ViewStatus.LOSE) {
             makeBridge();
             move();
             retry();
         }
-
         printResult();
     }
 
