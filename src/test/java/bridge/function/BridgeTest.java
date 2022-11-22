@@ -93,7 +93,7 @@ class BridgeTest {
 	@DisplayName("다리 움직임 값과 다리 리스트 비교 테스트")
 	void crossingTheBridgeResult1(){
 		//given
-		String bridge_move ="D";
+		String bridge_move ="U";
 		String list_index ="U";
 
 		//when
