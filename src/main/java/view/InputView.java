@@ -22,63 +22,59 @@ public class InputView {
     public int readBridgeSize() {
         while (true) {
             try {
-                return inputBridgeSize();
+                String bridgeSize = Console.readLine();
+                validateInputBridgeSize(bridgeSize);
+                return Integer.parseInt(bridgeSize);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
         while (true) {
             try {
-                return inputMoving();
+                String moving = Console.readLine();
+                validateInputMoving(moving);
+                return moving;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
         while (true) {
             try {
-                return inputGameCommand();
+                String doRestart = Console.readLine();
+                validateInputGameCommand(doRestart);
+                return doRestart;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public int inputBridgeSize() {
-        String bridgeSize = Console.readLine();
-
-        validateisDigit(bridgeSize);
+    public void validateInputBridgeSize(String bridgeSize) {
+        validateIsDigit(bridgeSize);
         validateOverSize(Integer.parseInt(bridgeSize));
-        validateisEmpty(bridgeSize);
-
-        return Integer.parseInt(bridgeSize);
+        validateIsEmpty(bridgeSize);
     }
 
-    public String inputMoving() {
-        String moving = Console.readLine();
-
+    public void validateInputMoving(String moving) {
         validateUpOrDown(moving);
-        validateisEmpty(moving);
-
-        return moving;
+        validateIsEmpty(moving);
     }
 
-    public String inputGameCommand(){
-        String doRestart = Console.readLine();
-
+    public void validateInputGameCommand(String doRestart) {
         validateRestartOrQuit(doRestart);
-        validateisEmpty(doRestart);
-
-        return doRestart;
+        validateIsEmpty(doRestart);
     }
 
     public void validateOverSize(int bridgeSize) {
@@ -87,7 +83,7 @@ public class InputView {
         }
     }
 
-    public void validateisDigit(String bridgeSize) {
+    public void validateIsDigit(String bridgeSize) {
         for (int i = 0; i < bridgeSize.length(); i++) {
             if (!Character.isDigit(bridgeSize.charAt(i))) {
                 throw new IllegalArgumentException(IS_DIGIT_ERROR_MESSAGE);
@@ -95,7 +91,7 @@ public class InputView {
         }
     }
 
-    public void validateisEmpty(String input) {
+    public void validateIsEmpty(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(EMPTY_ERROR_MESSAGE);
         }
