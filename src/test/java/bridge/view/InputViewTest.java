@@ -54,4 +54,13 @@ public class InputViewTest {
             InputException.notMoveCommandException(userInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("사용자의 재시작 여부 입력 예외처리 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "123"})
+    void notGameCommandException(String userInput) {
+        assertThatThrownBy(()-> {
+            InputException.notGameCommandException(userInput);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

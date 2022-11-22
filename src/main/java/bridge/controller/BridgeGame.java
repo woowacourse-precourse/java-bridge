@@ -21,7 +21,9 @@ public class BridgeGame {
 
     private int bridgeSize;
     private String playerMove;
+    private String gameCommand;
     private int totalGameCount;
+
     private boolean isRoundOver;
     private boolean isGameOver;
 
@@ -85,6 +87,7 @@ public class BridgeGame {
         while (!isGameOver) {
             retry();
             move();
+            setGameStatus();
         }
 
     }
@@ -116,6 +119,17 @@ public class BridgeGame {
             outputView.printInfo(exception.getMessage());
             outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
             setPlayerMove();
+        }
+    }
+
+    public void setGameStatus() {
+        try {
+            outputView.printInfo(OutputPharses.RESTART_MSG.getMsg());
+            gameCommand = inputView.readGameCommand();
+        } catch (IllegalArgumentException exception) {
+            outputView.printInfo(exception.getMessage());
+            outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
+            setGameStatus();
         }
     }
 }

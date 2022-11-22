@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.util.BridgeGameStatus;
 import bridge.util.BridgeShapeInfo;
 import bridge.util.BridgeSize;
 import bridge.util.ExceptionPhrases;
@@ -35,7 +36,18 @@ public class InputException {
         }
     }
 
+    public static void notGameCommandException(String userInput) {
+        if (!(getGameStatus(BridgeGameStatus.RESTART).equals(userInput) || getGameStatus(BridgeGameStatus.QUIT).equals(userInput))) {
+            throw new IllegalArgumentException(ExceptionPhrases.IS_NOT_STATUS_COMMAND.getPharases());
+        }
+    }
+
     private static String getBridgeShape(BridgeShapeInfo bridgeShape) {
         return bridgeShape.getBridgeShape();
     }
+
+    private static String getGameStatus(BridgeGameStatus gameStatus) {
+        return gameStatus.getGameStatus();
+    }
+
 }
