@@ -38,7 +38,7 @@ class PedestrianTest {
     void findLocation_test(List<Judgement> judgements, List<Direction> directions) {
         Pedestrian pedestrian = moveSeveralTimes(judgements, directions);
         int expectedLocation = judgements.size();
-        
+
         int actualLocation = pedestrian.findLocation();
 
         assertThat(actualLocation).isEqualTo(expectedLocation);

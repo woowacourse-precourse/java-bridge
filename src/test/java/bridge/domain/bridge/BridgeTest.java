@@ -30,10 +30,10 @@ class BridgeTest {
     @DisplayName("hasElementOf 메소드에 방향과 위치가 입력되었을 때 해당 위치에 방향이 맞는지 여부를 반환하는지 확인")
     @ParameterizedTest
     @MethodSource("provideArgumentsForHasElementTest")
-    void hasElementOf_test(Direction direction, int location, boolean expected) {
-        boolean actual = bridge.hasElementOf(direction, location);
+    void hasElementOf_test(Direction direction, int location, boolean expectedValue) {
+        boolean actualValue = bridge.hasElementOf(direction, location);
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
     @DisplayName("hasElementOf 메소드에 다리의 길이를 벗어난 위치가 입력되었을 때 오류를 발생시키는지 확인")
@@ -48,10 +48,10 @@ class BridgeTest {
     @DisplayName("isEnd 메소드에 위치를 입력하였을 때 bridge의 사이즈와 같은지 비교해서 반환하는지 확인")
     @ParameterizedTest
     @CsvSource({"3, false", "4, false", "5, true", "6, false"})
-    void isEnd_test(int location, boolean expected) {
-        boolean actual = bridge.isEnd(location);
+    void isEnd_test(int location, boolean expectedValue) {
+        boolean actualValue = bridge.isEnd(location);
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actualValue).isEqualTo(expectedValue);
     }
 
     static Stream<Arguments> provideArgumentsForHasElementTest() {

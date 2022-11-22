@@ -1,6 +1,5 @@
 package bridge.domain.game;
 
-import bridge.domain.direction.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
