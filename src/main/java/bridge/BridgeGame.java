@@ -15,9 +15,21 @@ public class BridgeGame {
         bridgeController.showWelcome();
         Player player = setPlayer(buildBridge());
         move(player);
+        controllEndPoint(player);
+    }
+
+    private void controllEndPoint(Player player) {
+        if (isFinished(player)) {
+            bridgeController.showResult(player);
+        }
 
         if (!isFinished(player)) {
-            if (bridgeController.getWantToRetry().equals("Q")) {
+            String retryCommand = bridgeController.getWantToRetry();
+            if (retryCommand.equals("R")) {
+                retry(player);
+            }
+
+            if (retryCommand.equals("Q")) {
                 bridgeController.showResult(player);
             }
         }
@@ -55,6 +67,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(Player player) {
-
+        move(player);
+        controllEndPoint(player);
     }
 }
