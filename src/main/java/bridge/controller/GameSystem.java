@@ -54,7 +54,11 @@ public class GameSystem {
 
     private String choiceMove() {
         outputView.printChoice();
-        return inputView.readMoving();
+        String userChoice = inputView.readMoving();
+        if (inputvalid.checkChoice(userChoice) == false) {
+            choiceMove();
+        }
+        return userChoice;
     }
 
     private void printBridgeState(UserBridge userBridge) {
