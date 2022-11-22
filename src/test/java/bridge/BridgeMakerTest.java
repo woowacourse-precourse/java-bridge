@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.mock.MockBridgeNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -27,18 +28,5 @@ public class BridgeMakerTest {
         }
 
         assertTrue(bridge.containsAll(expected));
-    }
-
-    class MockBridgeNumberGenerator implements BridgeNumberGenerator {
-        private final int mark;
-
-        public MockBridgeNumberGenerator(int mark) {
-            this.mark = mark;
-        }
-
-        @Override
-        public int generate() {
-            return mark;
-        }
     }
 }
