@@ -17,5 +17,7 @@ public class Application {
         List<String> bridgeYongJong = bridgeMaker.makeBridge(bridgelength);
 
 
+
+
     }
 }
