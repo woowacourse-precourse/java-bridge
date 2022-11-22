@@ -1,6 +1,6 @@
 package bridge;
 
-import java.util.List;
+import bridge.controller.BridgeGameController;
 
 public class Application {
     public static void main(String[] args) {

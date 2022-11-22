@@ -1,6 +1,10 @@
-package bridge;
+package bridge.controller;
 
-import java.util.ArrayList;
+import bridge.*;
+import bridge.domain.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
 public class BridgeGameController {

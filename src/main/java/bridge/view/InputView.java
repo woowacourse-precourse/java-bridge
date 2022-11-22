@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.exception.InputException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

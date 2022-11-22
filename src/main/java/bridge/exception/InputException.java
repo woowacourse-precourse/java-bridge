@@ -1,4 +1,4 @@
-package bridge;
+package bridge.exception;
 
 public class InputException {
     static final String NOT_INTEGER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해주세요.";
