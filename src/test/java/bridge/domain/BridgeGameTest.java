@@ -22,14 +22,6 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("U와 D이외의 입력으론 움직이지 않는다.")
-    void moveWithDigitInput() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
-
-        assertThatThrownBy(() -> bridgeGame.move("1"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    @Test
     @DisplayName("브릿지와 플레이어가 같다면, 다리를 다 건넌 것이다.")
     void checkCrossBridgeWithSame() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));

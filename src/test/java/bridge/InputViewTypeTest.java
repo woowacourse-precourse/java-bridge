@@ -1,18 +1,10 @@
 package bridge;
 
-import bridge.view.InputView;
 import bridge.view.InputViewType;
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.assertj.core.error.AssertionErrorMessagesAggregator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.List;
-
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 

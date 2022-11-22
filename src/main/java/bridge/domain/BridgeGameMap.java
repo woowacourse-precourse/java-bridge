@@ -10,10 +10,6 @@ public class BridgeGameMap {
     private final List<String> upSide;
     private final List<String> downSide;
 
-    // UDD BRIDGE
-    // UDU PLAYER
-    // "O" / " " / "X"
-
     public BridgeGameMap() {
         upSide = new ArrayList<>();
         downSide = new ArrayList<>();
