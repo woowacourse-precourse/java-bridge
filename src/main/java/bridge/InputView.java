@@ -23,7 +23,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String move = Console.readLine();
+        move = move.toUpperCase();
+        isUpDown(move);
+
+        return move;
     }
 
     /**
@@ -32,4 +36,11 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private void isUpDown(String move) {
+        if (!move.equals("U") && !move.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] U,D 둘 중 하나 입력");
+        }
+    }
+
 }
