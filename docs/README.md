@@ -60,11 +60,46 @@
   - String formattingBridge(StringBuilder bridgeSide) : top과 bottom을 양식에 맞춰 출력하기 위해 매개 인자로 받은 StringBuilder에 중괄호와 공백, 바(|)를 넣고 String으로 반환하는 메서드이다. <br> 
 
 
-### 3. 이동, 재도전 처리
+### 3. (다리 생성을 위한) 난수 생성
+### 목표
+1) 다리 생성을 위한 0 혹은 1의 난수를 생성한다.
+
+
+### 구현 내용
+< Interface - BridgeNumberGenerator >
+- Method
+  - int generate() : 구현되지 않은 메서드이며, 임의의 난수 값 하나를 생성할 것으로 기대하고 정의한 메서드이다. <br>
+
+< Concrete Class - BridgeRandomNumberGenerator >
+- Attribute
+  - final int RANDOM_LOWER_INCLUSIVE : 상수 값으로 0을 갖는다. <br>
+  - final int RANDOM_UPPER_INCLUSIVE : 상수 값으로 1을 갖는다. <br>
+
+- Method
+  - int generate() : 멤버 변수 둘 사이의 값 중에 임의의 값 하나를 생성하여 반환한다. <br>
+
+
+### 4. 다리 생성
+### 목표
+1) 플레이어가 입력한 크기에 따라, 게임에서 사용할 다리를 생성한다.
+
+
+### 구현 내용
+< Class - BridgeMaker >
+- Attribute
+  - BridgeNumberGenerator bridgeNumberGenerator : BridgeNumberGenerator를 상속받아 구현한 클래스의 인스턴스를 갖는다. 
+
+
+- Method
+  - BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) : BridgeNumberGenerator를 상속받아 구현한 클래스의 인스턴스를 멤버 변수로 저장한다. <br>
+  - List<String> makeBridge(int size) : 매개 인자로 받은 size만큼 난수 생성을 반복하여 String형 List를 생성하여 반환한다. <br>
+  - String allocateBlock : 멤버 변수 bridgeNumberGenerator의 generate 메서드를 통해 난수를 하나 생성하고, 그 값이 0이면 'U', 1이면 'D'를 생성하여 반환한다. <br>
+
+  
+### 5. 이동, 재도전 처리
 ### 목표
 1) 플레이어에 입력에 따라, 다리 내에서의 이동을 진행한다.
 2) 플레이어의 입력에 따라, 게임을 재시작할 지 혹은 종료할 지를 결정한다.
-
 
 ### 구현 내용
 < Class - BridgeGame >
@@ -83,39 +118,5 @@
   - int getBridgeSize() : <br>
   - void clear() : <br>
 
-
-### 4. 다리 생성
-### 목표
-1) 플레이어가 입력한 크기에 따라, 게임에서 사용할 다리를 생성한다.
-
-
-### 구현 내용
-< Class - BridgeMaker >
-- Attribute
-  - BridgeNumberGenerator bridgeNumberGenerator : <br>
-
-- Method
-  - BridgeMaker() :
-  - List<String> makeBridge() : <br>
-  - String allocateBlock : <br>
-
-
-### 5. (다리 생성을 위한) 난수 생성
-### 목표
-1) 다리 생성을 위한 0 혹은 1의 난수를 생성한다.
-
-
-### 구현 내용
-< Interface - BridgeNumberGenerator >
-- Method
-  - int generate() : <br>
-
-< Concrete Class - BridgeRandomNumberGenerator >
-- Attribute 
-  - final int RANDOM_LOWER_INCLUSIVE : <br> 
-  - final int RANDOM_UPPER_INCLUSIVE : <br>
-
-- Method
-  - int generate() : <br>
 
 ## [ 테스트 코드 ]
