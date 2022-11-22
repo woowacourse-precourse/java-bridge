@@ -28,7 +28,6 @@ public class BridgeController {
             String oneBridge = bridgeGame.move(bridge, move, bridgeGame.getSize());
             outputView.printMap(oneBridge);
             bridgeGame.nextStep();
-
             if(isWrong(oneBridge)){
                 bridgeGame.retry();
             }
