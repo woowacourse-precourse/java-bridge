@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private GameService gameService;
+    private static GameService gameService;
 
     public void play() {
         set();
