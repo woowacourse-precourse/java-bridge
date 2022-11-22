@@ -16,7 +16,21 @@ public class BridgeController {
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
     private static final String success = "성공";
+    private static final String fail = "실패";
     public int count = 0;
+    public void gameStart() {
+        List<String> bridge = start();
+        while (true) {
+            if (repeat(bridge)) {
+                break;
+            }
+            String answer = inputView.readGameCommand();
+            if (!bridgeGame.retry(answer)) {
+                outputView.printResult(fail, count);
+                break;
+            }
+        }
+    }
     public List<String> start(){
         int BridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(BridgeSize);
