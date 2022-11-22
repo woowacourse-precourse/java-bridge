@@ -29,6 +29,25 @@ public class InputValidatorTest {
         validator.validateBridgeSize(size);
     }
 
+    @DisplayName("다리 길이 정수 변환 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"13I","4D"})
+    void validateBridgeSizeParsableTestIllegal(String cmd) {
+        InputValidator validator = new InputValidator();
+        assertThatThrownBy(() -> validator.validateBridgeSizeParsable(cmd)).isEqualTo(
+                InputValidationError.ERROR_BRIDGE_SIZE.exception
+        );
+    }
+
+    @DisplayName("다리 길이 정수 변환 정상 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"13","4"})
+    void validateBridgeSizeParsableTestPass(String cmd) {
+        InputValidator validator = new InputValidator();
+        assertThat(validator.validateBridgeSizeParsable(cmd)).isEqualTo(Integer.parseInt(cmd));
+    }
+
+
     @DisplayName("움직임 입력 예외 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"Q","E"})
@@ -64,4 +83,5 @@ public class InputValidatorTest {
         InputValidator validator = new InputValidator();
         validator.validateGameCommand(cmd);
     }
+
 }
