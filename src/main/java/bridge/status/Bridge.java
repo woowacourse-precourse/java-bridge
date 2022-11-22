@@ -9,8 +9,14 @@ public class Bridge {
 
     }
 
-    public static boolean isInRange(int bridgeSize) {
-        if (bridgeSize < BRIDGE_LOWER_INCLUSIVE || bridgeSize > BRIDGE_UPPER_INCLUSIVE) {
+    public static boolean isInRange(String bridgeSize) {
+        int size = bridgeSize.replaceFirst("^0*", "").length();
+        if (size > Integer.toString(BRIDGE_UPPER_INCLUSIVE).length()) {
+            return false;
+        }
+
+        int bridge = Integer.parseInt(bridgeSize);
+        if (bridge < BRIDGE_LOWER_INCLUSIVE || bridge > BRIDGE_UPPER_INCLUSIVE) {
             return false;
         }
 

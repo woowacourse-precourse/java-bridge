@@ -11,7 +11,7 @@ public class InputValidator {
     }
 
     public static void checkBridgeSizeOrElseThrowException(String bridgeSize) {
-        if (!isNumber(bridgeSize) || !Bridge.isInRange(Integer.parseInt(bridgeSize))) {
+        if (!isNumber(bridgeSize) || !Bridge.isInRange(bridgeSize)) {
             throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }

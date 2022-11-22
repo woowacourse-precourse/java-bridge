@@ -9,16 +9,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 class BridgeTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {3, 4, 5, 6, 7, 8, 9, 10, 20})
-    void 입력값이_다리_범위_안이라면_true_리턴(int size) {
+    @ValueSource(strings = {"3", "4", "5", "6", "7", "8", "9", "10", "20"})
+    void 입력값이_다리_범위_안이라면_true_리턴(String size) {
         boolean result = Bridge.isInRange(size);
 
         assertThat(result).isTrue();
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 21, 22, 23})
-    void 입력값이_다리_범위_밖이라면_false_리턴(int size) {
+    @ValueSource(strings = {"1", "2", "21", "22", "23"})
+    void 입력값이_다리_범위_밖이라면_false_리턴(String size) {
         boolean result = Bridge.isInRange(size);
 
         assertThat(result).isFalse();
