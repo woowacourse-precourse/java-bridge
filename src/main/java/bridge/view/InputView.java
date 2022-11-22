@@ -3,7 +3,8 @@ package bridge.view;
 import static bridge.constants.ErrorConstant.RETRY_ERROR;
 import static bridge.constants.ErrorConstant.SIZE_EXCEPTION;
 import static bridge.constants.ErrorConstant.UPDOWN_ERROR;
-import static bridge.validator.Validate.validateBridgeSizeNumber;
+import static bridge.validator.Validate.validateBridgeCheck;
+import static bridge.validator.Validate.validateBridgeNumber;
 import static bridge.validator.Validate.validateCheckMove;
 import static bridge.validator.Validate.validateCheckRetry;
 
@@ -14,15 +15,14 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-//    private OutputView outputView = new OutputView();
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String bridgeSizeInput = Console.readLine();
         try {
-            validateBridgeSizeNumber(bridgeSizeInput);
+            validateBridgeCheck(bridgeSizeInput);
+            validateBridgeNumber(bridgeSizeInput);
         } catch (IllegalArgumentException e) {
             SIZE_EXCEPTION.printException();
             return readBridgeSize();
