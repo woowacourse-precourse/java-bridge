@@ -79,7 +79,7 @@ class InputViewTest {
         @Test
         @DisplayName("valid moving direction(U or D)")
         void validMovingDirection() {
-            String[] inputs = { "U", "D" };
+            String[] inputs = { "U", "D", "u", "d" };
             for (String input : inputs) {
                 setInput(input);
                 assertDoesNotThrow(() -> {
