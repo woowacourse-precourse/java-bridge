@@ -15,7 +15,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해 주세요");
         String bridgeSize = Console.readLine();
 
-        int result = validateBridgeSize(bridgeSize);
+        int result =validateBridgeSize(bridgeSize);
         return result;
     }
 
@@ -26,12 +26,14 @@ public class InputView {
                 System.out.println("[ERROR] 다리의 길이는 3부터 20까지입니다.");
                 BridgeGame.setIsLive(false);
             }
+            BridgeGame.setIsLive(true);
             return size;
+
         }catch (NumberFormatException e){
             System.out.print("[ERROR] 다리의 길이는 정수로 입력해 주십시오");
             BridgeGame.setIsLive(false);
         }
-        return 0;
+        return -1;
     }
 
     /**
