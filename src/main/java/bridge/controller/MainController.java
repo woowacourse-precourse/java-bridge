@@ -22,10 +22,18 @@ public class MainController {
 
 	private void initGame() {
 		outputView.printStart();
-		int bridgeSize = inputView.readBridgeSize();
-		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-		bridgeGame = new BridgeGame(bridge);
+		bridgeGame = createBridgeGame();
+	}
+
+	private BridgeGame createBridgeGame() {
+		try {
+			BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+			List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+			return new BridgeGame(bridge);
+		} catch (IllegalArgumentException exception) {
+			outputView.printErrorMessage(exception.getMessage());
+			return createBridgeGame();
+		}
 	}
 
 	public void run() {
@@ -39,13 +47,28 @@ public class MainController {
 	}
 
 	private void move() {
-		String moving = inputView.readMoving();
-		bridgeGame.move(moving);
-		outputView.printMap(bridgeGame.getGameRecord());
+		try {
+			String moving = inputView.readMoving();
+			bridgeGame.move(moving);
+			outputView.printMap(bridgeGame.getGameRecord());
+		} catch (IllegalArgumentException exception) {
+			outputView.printErrorMessage(exception.getMessage());
+			move();
+		}
 	}
 
 	private boolean doRetry() {
-		String gameCommand = inputView.readGameCommand();
+		String gameCommand;
+		try {
+			gameCommand = inputView.readGameCommand();
+		} catch (IllegalArgumentException exception) {
+			outputView.printErrorMessage(exception.getMessage());
+			return doRetry();
+		}
+		return doRetry(gameCommand);
+	}
+
+	private boolean doRetry(String gameCommand) {
 		if (gameCommand.equals(Constants.RETRY)) {
 			bridgeGame.retry();
 			return true;
