@@ -30,4 +30,7 @@ public class OutputView {
         System.out.println("게임 성공 여부: " +bridgeGame.gameResult());
         System.out.println("총 시도한 횟수: "+bridgeGame.gameCnt());
     }
+
+    public void printResult(List<String> moveUser, int cnt, String 성공) {
+    }
 }
