@@ -6,12 +6,14 @@ package bridge;
 public class OutputView {
 
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String RESTART_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-    /**
-     * 게임 시작을 알리는 메시지를 출력한다.
-     */
     public void printStart() {
         System.out.println(START_MESSAGE);
+    }
+
+    public void printRestart() {
+        System.out.println(RESTART_MESSAGE);
     }
 
     /**
