@@ -15,7 +15,7 @@ public class BridgeGame {
     public BridgeGame() {}
 
     public void initComponents(BridgeNumberGenerator bridgeNumberGenerator, int bridgeLength) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
         playerPath = new PlayerPath();
     }
