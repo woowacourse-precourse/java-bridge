@@ -1,5 +1,6 @@
 package bridge.model.domain;
 
+import bridge.constant.Constant;
 import java.util.Arrays;
 
 public enum Bridge {
@@ -22,14 +23,9 @@ public enum Bridge {
                 .orElse(null);
     }
 
-    public static Bridge findBySign(String sign) {
+    public static boolean contains(String sign) {
         return Arrays.stream(Bridge.values())
                 .filter(bridge -> bridge.sign.equals(sign))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public int getBridgeType() {
-        return bridgeType;
+                .count() != Constant.NOTHING;
     }
 }

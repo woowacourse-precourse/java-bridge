@@ -2,32 +2,21 @@ package bridge.model.domain;
 
 import bridge.constant.Constant;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Bridges {
 
-    private final List<Bridge> bridges;
+    private final List<String> bridges;
 
-    public Bridges(List<String> bridgesSign) {
-        this.bridges = bridgesSign.stream()
-                .map(Bridge::findBySign)
-                .collect(Collectors.toList());
+    public Bridges(List<String> bridges) {
+        this.bridges = bridges;
     }
 
-    Bridge findBridgeByPosition(int position) {
+    String findBridgeByPosition(int position) {
         return bridges.get(position);
     }
 
-    List<Integer> readBridgeMap(int bridgeLastPosition) {
-        return IntStream.rangeClosed(Constant.INITIAL_INDEX, bridgeLastPosition)
-                .mapToObj(this::findBridgeTypeByPosition)
-                .collect(Collectors.toList());
-    }
-
-    private int findBridgeTypeByPosition(int position) {
-        return bridges.get(position)
-                .getBridgeType();
+    List<String> readBridgeMap(int bridgeLastPosition) {
+        return bridges.subList(Constant.INITIAL_INDEX, bridgeLastPosition + Constant.INDEX_ZEROING_NUMBER);
     }
 
     int size() {

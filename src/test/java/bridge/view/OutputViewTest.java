@@ -21,7 +21,7 @@ class OutputViewTest {
 
     @Test
     void 크기3_성공_다리의_상태_출력결과() {
-        List<Integer> bridgeMap = List.of(1, 0, 0);
+        List<String> bridgeMap = List.of("U", "D", "D");
         boolean isRightLastBridgePick = true;
 
         outputView.printMap(bridgeMap, isRightLastBridgePick);
@@ -32,7 +32,7 @@ class OutputViewTest {
 
     @Test
     void 크기4_성공_다리의_상태_출력결과() {
-        List<Integer> bridgeMap = List.of(1, 0, 0, 1);
+        List<String> bridgeMap = List.of("U", "D", "D", "U");
         boolean isRightLastBridgePick = true;
 
         outputView.printMap(bridgeMap, isRightLastBridgePick);
@@ -43,7 +43,7 @@ class OutputViewTest {
 
     @Test
     void 크기5_실패_다리의_상태_출력결과() {
-        List<Integer> bridgeMap = List.of(1, 0, 0, 1, 0);
+        List<String> bridgeMap = List.of("U", "D", "D", "U", "D");
         boolean isRightLastBridgePick = false;
 
         outputView.printMap(bridgeMap, isRightLastBridgePick);
@@ -54,7 +54,7 @@ class OutputViewTest {
 
     @Test
     void 크기6_실패_다리의_상태_출력결과() {
-        List<Integer> bridgeMap = List.of(1, 0, 0, 1, 0, 0);
+        List<String> bridgeMap = List.of("U", "D", "D", "U", "D", "D");
         boolean isRightLastBridgePick = false;
 
         outputView.printMap(bridgeMap, isRightLastBridgePick);
@@ -65,7 +65,8 @@ class OutputViewTest {
 
     @Test
     void 게임결과_크기3_재시도1회_성공_출력결과() {
-        List<Integer> bridgeMap = List.of(1, 0, 0);
+        List<String> bridgeMap = List.of("U", "D", "D");
+
         SuccessOrFail success = SuccessOrFail.SUCCESS;
         int retryCount = 1;
 
@@ -77,7 +78,7 @@ class OutputViewTest {
 
     @Test
     void 게임결과_크기4_재시도2회_성공_출력결과() {
-        List<Integer> bridgeMap = List.of(1, 0, 0, 1);
+        List<String> bridgeMap = List.of("U", "D", "D", "U");
         SuccessOrFail success = SuccessOrFail.SUCCESS;
         int retryCount = 2;
 
@@ -89,7 +90,7 @@ class OutputViewTest {
 
     @Test
     void 게임결과_크기5_재시도3회_실패_출력결과() {
-        List<Integer> bridgeMap = List.of(1, 0, 0, 1, 0);
+        List<String> bridgeMap = List.of("U", "D", "D", "U", "D");
         SuccessOrFail success = SuccessOrFail.FAIL;
         int retryCount = 3;
 
@@ -101,7 +102,7 @@ class OutputViewTest {
 
     @Test
     void 게임결과_크기6_재시도4회_실패_출력결과() {
-        List<Integer> bridgeMap = List.of(1, 0, 0, 1, 0, 0);
+        List<String> bridgeMap = List.of("U", "D", "D", "U", "D", "D");
         SuccessOrFail success = SuccessOrFail.FAIL;
         int retryCount = 4;
 

@@ -54,7 +54,7 @@ public class InputView {
     }
 
     private void validateMoveToBridge(String moveToBridge) {
-        if (Bridge.findBySign(moveToBridge) == null) {
+        if (!Bridge.contains(moveToBridge)) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_MOVE_TO_PLACE_FORM);
         }
     }

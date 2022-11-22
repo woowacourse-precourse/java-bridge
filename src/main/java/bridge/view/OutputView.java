@@ -17,24 +17,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Integer> bridgeMap, boolean isRightLastBridgePick) {
+    public void printMap(List<String> bridgeMap, boolean isRightLastBridgePick) {
         printOneSideBridge(bridgeMap, isRightLastBridgePick, Constant.UPPER_BRIDGE);
         printOneSideBridge(bridgeMap, isRightLastBridgePick, Constant.LOWER_BRIDGE);
         System.out.println();
     }
 
-    private void printOneSideBridge(List<Integer> bridgeMap, boolean isRightLastBridgePick, int bridgeTypeToPrint) {
+    private void printOneSideBridge(List<String> bridgeMap, boolean isRightLastBridgePick, String bridgeTypeToPrint) {
         List<String> bridgesSign = collectSign(bridgeMap, isRightLastBridgePick, bridgeTypeToPrint);
         String oneSideBridgeToPrint = String.join(Message.BRIDGE_JOINING_DELIMITER, bridgesSign);
         System.out.printf(Message.BRIDGE_MAP_FORM, oneSideBridgeToPrint);
     }
 
-    private List<String> collectSign(List<Integer> bridgeMap, boolean isRightLastBridgePick, int bridgeTypeToPrint) {
+    private List<String> collectSign(List<String> bridgeMap, boolean isRightLastBridgePick, String bridgeTypeToPrint) {
         List<String> bridgesSign = new ArrayList<>();
         for (int position = Constant.INITIAL_INDEX; position < bridgeMap.size(); position++) {
-            int currentBridgeType = bridgeMap.get(position);
+            String currentBridgeType = bridgeMap.get(position);
             boolean isEdge = position == (bridgeMap.size() - Constant.INDEX_ZEROING_NUMBER);
-            boolean isRightCurrentBridgePick = currentBridgeType == bridgeTypeToPrint;
+            boolean isRightCurrentBridgePick = currentBridgeType.equals(bridgeTypeToPrint);
             BridgeSign bridgeSign = BridgeSign.create(isEdge, isRightCurrentBridgePick, isRightLastBridgePick);
             bridgesSign.add(bridgeSign.getSign());
         }
@@ -46,7 +46,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<Integer> bridgeMap, SuccessOrFail successOrFail, int retryCount) {
+    public void printResult(List<String> bridgeMap, SuccessOrFail successOrFail, int retryCount) {
         System.out.println(Message.GAME_RESULT);
         printMap(bridgeMap, successOrFail.isSuccess());
         System.out.printf(Message.SUCCESS_OR_NOT_FORM, successOrFail.getKorean());

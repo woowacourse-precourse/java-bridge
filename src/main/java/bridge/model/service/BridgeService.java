@@ -3,7 +3,6 @@ package bridge.model.service;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Constant;
-import bridge.model.domain.Bridge;
 import bridge.model.domain.BridgeGame;
 import bridge.model.dto.GameResultDto;
 import bridge.model.dto.MoveResultDto;
@@ -29,8 +28,7 @@ public class BridgeService {
     }
 
     public MoveResultDto move(String bridgeType) {
-        Bridge bridgeToMove = Bridge.findBySign(bridgeType);
-        return bridgeGame.move(bridgeToMove);
+        return bridgeGame.move(bridgeType);
     }
 
     public boolean retry(String gameCommand) {
@@ -43,7 +41,7 @@ public class BridgeService {
         return bridgeGame.readGameResult();
     }
 
-    public List<Integer> readBridgeMap() {
+    public List<String> readBridgeMap() {
         return bridgeGame.readBridgeMap();
     }
 
