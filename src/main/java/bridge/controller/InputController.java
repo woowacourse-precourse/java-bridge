@@ -57,7 +57,7 @@ public class InputController {
         return false;
     }
 
-    public static void Init() {
+    public static void init() {
         recursions = Arrays.asList(1, 1, 1);
     }
 }

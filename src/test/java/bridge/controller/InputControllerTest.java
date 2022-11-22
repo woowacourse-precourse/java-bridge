@@ -26,7 +26,7 @@ class InputControllerTest {
     @BeforeEach
     void setUp() {
         inputController = new InputController();
-        inputController.Init();
+        inputController.init();
         standardOut = System.out;
         captor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(captor));
