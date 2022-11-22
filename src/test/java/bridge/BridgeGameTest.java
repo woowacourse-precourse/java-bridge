@@ -1,5 +1,9 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.MoveType;
 import bridge.domain.result.Map;
@@ -7,7 +11,6 @@ import bridge.domain.result.Result;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.util.Lists;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,17 +33,17 @@ class BridgeGameTest {
     void move_succeed_and_finished() {
         Result actual1 = bridgeGame.move(MoveType.UP);
 
-        Assertions.assertTrue(actual1.isSucceeded());
-        Assertions.assertFalse(actual1.isFinished());
+        assertTrue(actual1.isSucceeded());
+        assertFalse(actual1.isFinished());
 
         Result actual2 = bridgeGame.move(MoveType.DOWN);
 
-        Assertions.assertTrue(actual2.isSucceeded());
-        Assertions.assertFalse(actual2.isFinished());
+        assertTrue(actual2.isSucceeded());
+        assertFalse(actual2.isFinished());
 
         Result actual3 = bridgeGame.move(MoveType.DOWN);
-        Assertions.assertTrue(actual3.isFinished());
-        Assertions.assertFalse(actual3.isSucceeded());
+        assertTrue(actual3.isFinished());
+        assertFalse(actual3.isSucceeded());
     }
 
     @Test
@@ -50,8 +53,8 @@ class BridgeGameTest {
         //when
         Result actual = bridgeGame.move(MoveType.DOWN);
         //then
-        Assertions.assertFalse(actual.isSucceeded());
-        Assertions.assertFalse(actual.isFinished());
+        assertFalse(actual.isSucceeded());
+        assertFalse(actual.isFinished());
     }
 
 
