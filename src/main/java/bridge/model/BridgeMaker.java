@@ -25,6 +25,7 @@ public class BridgeMaker {
     }
 
     private void addBridge(List<String> bridges, int randomNumber) {
+        
         if (randomNumber == 1) {
             bridges.add(Command.UP);
             return;
