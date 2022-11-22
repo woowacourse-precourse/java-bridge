@@ -13,13 +13,12 @@ public class MovingHistory {
         this.downCells = new ArrayList<>();
     }
 
-
     public void addMoving(String moving, boolean movingStatus) {
-        if (moving.equals(CellType.DOWN.getCell())){
+        if (moving.equals(CommandType.DOWN.getCell())){
             downCells.add(GameResult.getMovingSign(movingStatus));
             upCells.add(" ");
         }
-        if (moving.equals(CellType.UP.getCell())){
+        if (moving.equals(CommandType.UP.getCell())){
             upCells.add(GameResult.getMovingSign(movingStatus));
             downCells.add(" ");
         }
