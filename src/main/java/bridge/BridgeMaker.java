@@ -6,10 +6,10 @@ import static bridge.constant.mark.InputMark.UP;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
+
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -17,23 +17,31 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
 
-            if (number == 1) {
-                bridge.add(UP.getMark());
-            }
-
-            if (number == 0) {
-                bridge.add(DOWN.getMark());
-            }
+            addMarkToBridge(bridge, number);
         }
         return bridge;
+    }
+
+    private void addMarkToBridge(List<String> bridge, int number) {
+        if (isUp(number)) {
+            bridge.add(UP.getMark());
+        }
+
+        if (isDown(number)) {
+            bridge.add(DOWN.getMark());
+        }
+    }
+
+    private boolean isUp(int number) {
+        return number == ONE;
+    }
+
+    private boolean isDown(int number) {
+        return number == ZERO;
     }
 }
