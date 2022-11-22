@@ -7,6 +7,7 @@ public enum GameStatus {
     CLEAR("성공"),
     FAIL("실패");
 
+    private static final String RESULT_MESSAGE = "게임 성공 여부: %s";
     private final String code;
 
     GameStatus(final String code) {
@@ -27,8 +28,8 @@ public enum GameStatus {
         return this.equals(RUNNING);
     }
 
-    public String getCode() {
-        return code;
+    public String resultMessage() {
+        return String.format(RESULT_MESSAGE, code);
     }
 
     public boolean isClear() {

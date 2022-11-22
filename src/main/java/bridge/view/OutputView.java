@@ -25,7 +25,7 @@ public class OutputView extends IOPrinter {
     public void printResult(String recordedHistory, GameStatus status, RepeatCount repeatCount) {
         this.printlnBeforeNextLine("최종 게임 결과");
         this.printMap(recordedHistory);
-        this.printlnBeforeNextLine("게임 성공 여부: " + status.getCode());
+        this.printlnBeforeNextLine(status.resultMessage());
         this.println(repeatCount.result());
     }
 
