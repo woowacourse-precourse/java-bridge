@@ -16,7 +16,7 @@ public class Moving {
     }
 
     private void validateMoving(String moving) {
-        if (!(moving == "U" || moving == "D"))
+        if (!(moving.equals("D") || moving.equals("U")))
             throw new IllegalArgumentException(WRONG_MOVING);
     }
 }

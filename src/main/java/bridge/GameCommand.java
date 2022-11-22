@@ -16,7 +16,7 @@ public class GameCommand {
     }
 
     private void validateCommand(String command) {
-        if (!(command == "R" || command == "Q"))
+        if (!(command.equals("R") || command.equals("Q")))
             throw new IllegalArgumentException(WRONG_COMMAND);
     }
 }
