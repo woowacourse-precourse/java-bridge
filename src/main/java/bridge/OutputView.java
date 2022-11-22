@@ -16,13 +16,16 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void movePrint(){
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Integer> up, List<Integer> down) {
+    public static void printMap(List<String> up, List<String> down) {
         System.out.print("[");
         for(int i = 0; i < up.size() -1; i++){
             System.out.print(up.get(i) + "|");
