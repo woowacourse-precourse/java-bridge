@@ -27,4 +27,8 @@ public class OutputView {
     public static void printStartOrEnd() {
         System.out.println(Message.START_OR_END.print());
     }
+
+    public static void printEndGame() {
+        System.out.println(Message.RESULT.print());
+    }
 }

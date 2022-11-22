@@ -26,6 +26,7 @@ public class Game {
             }
             isStart = isStartOrEnd();
         }
+        endGame();
     }
 
     private void makeBridge() {
@@ -57,5 +58,9 @@ public class Game {
     private boolean isStartOrEnd() {
         OutputView.printStartOrEnd();
         return bridgeGame.retry(InputView.readGameCommand());
+    }
+
+    private void endGame() {
+        OutputView.printEndGame();
     }
 }
