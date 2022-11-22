@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.result.PassingDirectionType;
+import bridge.domain.result.ResultType;
 import bridge.domain.result.Result;
 import java.util.List;
 
@@ -28,9 +28,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Result result) {
-        List<List<PassingDirectionType>> directionTypesGroup = result.getDirectionTypesGroup();
-        for (List<PassingDirectionType> type : directionTypesGroup) {
-            System.out.println(PassingDirectionType.reformatTypes(type));
+        List<List<ResultType>> directionTypesGroup = result.getResultsGroup();
+        for (List<ResultType> type : directionTypesGroup) {
+            System.out.println(ResultType.reformatTypes(type));
         }
         System.out.println();
     }

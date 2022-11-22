@@ -23,13 +23,13 @@ public class PassingPositions {
     }
 
     public Result makeResult(int distance) {
-        List<PassingDirectionType> upDirections = new ArrayList<>();
-        List<PassingDirectionType> downDirections = new ArrayList<>();
+        List<ResultType> upDirections = new ArrayList<>();
+        List<ResultType> downDirections = new ArrayList<>();
         moveLoop(upDirections, downDirections);
         return new Result(upDirections, downDirections, distance);
     }
 
-    private void moveLoop(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections) {
+    private void moveLoop(List<ResultType> upDirections, List<ResultType> downDirections) {
         passingPositions
                 .forEach(position -> {
                     if (position.isDirectionUp()) {
@@ -41,13 +41,13 @@ public class PassingPositions {
                 });
     }
 
-    private void moveToUp(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections, Position position) {
-        upDirections.add(PassingDirectionType.getSelectedDirection(position, bridge));
-        downDirections.add(PassingDirectionType.getNotSelectedDirection(position));
+    private void moveToUp(List<ResultType> upDirections, List<ResultType> downDirections, Position position) {
+        upDirections.add(ResultType.getSelectedDirection(position, bridge));
+        downDirections.add(ResultType.getNotSelectedDirection(position));
     }
 
-    private void moveToDown(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections, Position position) {
-        upDirections.add(PassingDirectionType.getNotSelectedDirection(position));
-        downDirections.add(PassingDirectionType.getSelectedDirection(position, bridge));
+    private void moveToDown(List<ResultType> upDirections, List<ResultType> downDirections, Position position) {
+        upDirections.add(ResultType.getNotSelectedDirection(position));
+        downDirections.add(ResultType.getSelectedDirection(position, bridge));
     }
 }

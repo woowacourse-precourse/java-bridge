@@ -8,13 +8,13 @@ import java.util.List;
 public class Result {
 
     private static final int PREVIOUS = -1;
-    private final List<List<PassingDirectionType>> directionTypesGroup = new ArrayList<>();
+    private final List<List<ResultType>> resultsGroup = new ArrayList<>();
     private int distance;
 
-    public Result(List<PassingDirectionType> upDirections, List<PassingDirectionType> downDirections, int distance) {
+    public Result(List<ResultType> upDirections, List<ResultType> downDirections, int distance) {
         this.distance = distance + 1;
-        directionTypesGroup.add(upDirections);
-        directionTypesGroup.add(downDirections);
+        resultsGroup.add(upDirections);
+        resultsGroup.add(downDirections);
     }
 
     public boolean isSameDistanceAndLength(Length length) {
@@ -25,13 +25,13 @@ public class Result {
         distance += PREVIOUS;
     }
 
-    public List<List<PassingDirectionType>> getDirectionTypesGroup() {
-        return Collections.unmodifiableList(directionTypesGroup);
+    public List<List<ResultType>> getResultsGroup() {
+        return Collections.unmodifiableList(resultsGroup);
     }
 
     public boolean isContainWrongAnswer() {
-        for (List<PassingDirectionType> results : directionTypesGroup) {
-            if (PassingDirectionType.isContainNotMovable(results)) {
+        for (List<ResultType> results : resultsGroup) {
+            if (ResultType.isContainNotMovable(results)) {
                 return true;
             }
         }
