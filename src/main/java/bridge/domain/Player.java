@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.type.PositionType;
 
@@ -16,7 +16,7 @@ public class Player {
     public void selectPosition(String readMove) {
         PositionType matchPosition = PositionType
                 .matchSymbol(readMove)
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR]"));
 
         this.positions.add(matchPosition);
     }
@@ -25,7 +25,7 @@ public class Player {
         return positions.get(start);
     }
 
-    public List<PositionType> getPositions() {
-        return positions;
+    public void removePositions() {
+        this.positions.clear();
     }
 }
