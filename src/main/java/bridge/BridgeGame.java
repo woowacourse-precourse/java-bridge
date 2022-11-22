@@ -18,6 +18,10 @@ public class BridgeGame {
 		}
 	}
 
+	public void init() {
+		bridge.makeBridge();
+	}
+
 	/**
 	 * 가 사용자가 칸을 이동할 때 사용하는 메서드
 	 * <p>
@@ -34,10 +38,6 @@ public class BridgeGame {
 	 */
 	public boolean retry() {
 		return true;
-	}
-
-	public void init() {
-
 	}
 
 	public boolean loop() {
