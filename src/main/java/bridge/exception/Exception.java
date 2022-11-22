@@ -7,4 +7,11 @@ public class Exception {
             throw new IllegalArgumentException();
         }
     }
+
+    public void checkCorrectUpOrDownException(String string) {
+        String REGEX = "^[UD]{1}$";
+        if (!string.matches(REGEX)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
