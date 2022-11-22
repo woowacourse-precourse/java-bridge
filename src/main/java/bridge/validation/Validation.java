@@ -36,4 +36,12 @@ public class Validation {
             throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_LENGTH_RANGE_3_TO_20);
         }
     }
+
+    // 다리를 이동할 때 입력값이 U 혹은 D인지 검증하는 기능
+    public static void checkMoveCommand(String moveInput) {
+        if (!(moveInput.equals(Up.getDirection()) ||
+                moveInput.equals(Down.getDirection()))) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_MOVE_COMMAND_INPUT_ERROR);
+        }
+    }
 }
