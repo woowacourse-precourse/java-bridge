@@ -2,8 +2,8 @@ package domain;
 
 import domain.bridge.AnswerBridge;
 import domain.bridge.BridgeGame;
+import domain.bridge.view.OutputView;
 import domain.player.Player;
-import org.mockito.stubbing.Answer;
 
 public class Game {
   private int number_of_pick;
@@ -15,12 +15,23 @@ public class Game {
     number_of_pick = 0;
     bridgeGame = new BridgeGame();
     answerBridge = new AnswerBridge();
-    Player player = new Player();
   }
 
   public void play() {
     answerBridge.setBridge();
-
+    while (true) {
+      player = new Player();
+      while (bridgeGame.move(player, answerBridge))
+        ;
+      number_of_pick += player.getPick();
+      if (!bridgeGame.retry(player)) {
+        break;
+      }
+    }
   }
 
+  public void result() {
+    OutputView outputView = new OutputView();
+    outputView.printResult(player, number_of_pick);
+  }
 }
