@@ -1,8 +1,16 @@
 package bridge;
 
+import bridge.game.BridgeGame;
+import bridge.game.Game;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        try {
+            Game game = new BridgeGame();
+            game.play();
+            game.showResult();
+        } catch (IllegalArgumentException ignored) {
+        }
     }
 }
