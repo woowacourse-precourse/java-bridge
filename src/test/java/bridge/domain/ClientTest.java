@@ -6,7 +6,6 @@ import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import bridge.BridgeMaker;
 import bridge.util.Client;
 import bridge.view.ViewMaker;
 import java.io.Console;
@@ -18,12 +17,10 @@ import org.mockito.MockedStatic;
 class ClientTest {
 
     private ViewMaker viewMaker;
-    private BridgeMaker bridgeMaker;
 
     @BeforeEach
     void init() {
         viewMaker = mock(ViewMaker.class);
-        bridgeMaker = mock(BridgeMaker.class);
     }
 
     @DisplayName("정상 시나리오 | 다리 건축을 뷰 메이커에게 요청한다.")

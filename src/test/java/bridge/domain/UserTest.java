@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import static bridge.constant.InputKeyConstant.UP;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
@@ -24,7 +25,7 @@ class UserTest {
     @DisplayName("정상 시나리오 | 방향 입력을 건설된 다리 위치와 함께 요청한다.")
     @Test
     void requestDirectionByBridgeLocation() {
-        CompareResult compareResult = new CompareResult("U", true, true);
+        CompareResult compareResult = new CompareResult(UP.getFirstLetter(), true, true);
         when(viewMaker.receiveUserDirection(anyInt())).thenReturn(compareResult);
 
         assertThat(user.requestDirection(0)).isInstanceOf(CompareResult.class);
