@@ -1,54 +1,62 @@
 package bridge.controller;
 
-import bridge.domain.Bridge;
 import bridge.domain.User;
-import bridge.service.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.service.BridgeService;
 import bridge.service.ViewService;
 
 public class BridgeController {
+    private static final String RESTART_GAME = "R";
+    private static final String QUIT_GAME = "Q";
     private final BridgeService bridgeService = new BridgeService();
     private final ViewService viewService = new ViewService();
-    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void start() {
         gameStartMessage();
-        Bridge bridge = bridgeService.bridgeMaker();
+        BridgeGame bridgeGame = bridgeService.bridgeGameMaker();
         User user = new User();
-        playGame(user, bridge);
+        playGame(user, bridgeGame);
     }
 
     public void gameStartMessage() {
         viewService.printGameStart();
     }
 
-    public void playGame(User user, Bridge bridge) {
+    public void playGame(User user, BridgeGame bridgeGame) {
         while (!user.isGameDoneStatus()) {
             String moveDirection = viewService.requestMove();
-            boolean isUserAnswerCorrect = bridgeGame.isUserAnswerCorrect(moveDirection, bridge);
-            viewService.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect);
-            processGame(bridge, user, isUserAnswerCorrect);
+            boolean isUserAnswerCorrect = bridgeGame.isCorrectMoveDirection(moveDirection);
+            viewService.printMap(bridgeGame.getNowIndex(), moveDirection, isUserAnswerCorrect);
+            processGame(bridgeGame, user, isUserAnswerCorrect);
         }
         viewService.printResult(user);
     }
 
-    public void processGame(Bridge bridge, User user, boolean isUserAnswerCorrect) {
+    public void processGame(BridgeGame bridgeGame, User user, boolean isUserAnswerCorrect) {
         if (!isUserAnswerCorrect) {
             String gameStatus = viewService.requestStatusOfGame();
-            doFailCase(bridge, user, gameStatus);
+            doFailCase(bridgeGame, user, gameStatus);
             return;
         }
-        doSuccessCase(bridge, user);
+        doSuccessCase(bridgeGame, user);
     }
 
-    public void doFailCase(Bridge bridge, User user, String gameStatus) {
-        bridgeGame.handleFailCaseCommand(bridge, user, gameStatus);
-        if (bridgeGame.isResetCase(gameStatus)) {
+    public void doFailCase(BridgeGame bridgeGame, User user, String gameStatus) {
+        if (gameStatus.equals(RESTART_GAME)) {
             viewService.initMapView();
+            user.gameRetry();
+            bridgeGame.retry();
+        }
+        if (gameStatus.equals(QUIT_GAME)) {
+            user.gameDoneWithLose();
         }
     }
 
-    public void doSuccessCase(Bridge bridge, User user) {
-        bridgeGame.move(bridge, user);
+    public void doSuccessCase(BridgeGame bridgeGame, User user) {
+        if (bridgeGame.isEndOfIndex()) {
+            user.gameDoneWithWin();
+            return;
+        }
+        bridgeGame.move();
     }
 }
