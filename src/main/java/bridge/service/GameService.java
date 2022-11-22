@@ -10,4 +10,8 @@ public class GameService {
         OutputView.messageGameStart();
         game = new Game(1);
     }
+
+    public void pauseGame() {
+        OutputView.messageRetryInput();
+    }
 }
