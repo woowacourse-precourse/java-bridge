@@ -8,7 +8,7 @@ public class Moving {
     private final String moving;
     private final int MOVING_MAX_LENGTH = 1;
 
-    public static Moving createMoving(String moving) {
+    public static Moving recordUserMoving(String moving) {
         return new Moving(moving);
     }
 

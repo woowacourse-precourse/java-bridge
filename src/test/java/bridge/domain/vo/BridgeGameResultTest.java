@@ -4,7 +4,7 @@ import bridge.domain.vo.enumeration.MovingType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static bridge.domain.vo.BridgeGameResult.createBridgeGameResult;
+import static bridge.domain.vo.BridgeGameResult.confirmGameResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameResultTest {
@@ -17,13 +17,13 @@ class BridgeGameResultTest {
     @DisplayName("BridgeGameResult를 생성한다.")
     @Test
     void createBridgeGameResultTest() {
-        assertThat(createBridgeGameResult(isMatched, userMoving))
+        assertThat(confirmGameResult(isMatched, userMoving))
                 .isInstanceOf(BridgeGameResult.class);
 
-        assertThat(createBridgeGameResult(isMatched, userMoving).getIsMatched())
+        assertThat(confirmGameResult(isMatched, userMoving).getIsMatched())
                 .isTrue();
 
-        assertThat(createBridgeGameResult(isMatched, userMoving).getUserMoving())
+        assertThat(confirmGameResult(isMatched, userMoving).getUserMoving())
                 .isEqualTo(upMoving);
     }
 

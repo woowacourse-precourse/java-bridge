@@ -7,7 +7,7 @@ public class BridgeSize {
 
     private final int bridgeSize;
 
-    public static BridgeSize createBridgeSize(String bridgeSize) {
+    public static BridgeSize recordBridgeSize(String bridgeSize) {
         return new BridgeSize(bridgeSize);
     }
 

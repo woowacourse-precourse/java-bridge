@@ -5,9 +5,9 @@ import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.domain.vo.BridgeSize.createBridgeSize;
-import static bridge.domain.vo.GameCommand.createGameCommand;
-import static bridge.domain.vo.Moving.createMoving;
+import static bridge.domain.vo.BridgeSize.recordBridgeSize;
+import static bridge.domain.vo.GameCommand.determineRetry;
+import static bridge.domain.vo.Moving.recordUserMoving;
 import static bridge.view.OutputView.*;
 
 /**
@@ -20,7 +20,7 @@ public class InputView {
     public static BridgeSize readBridgeSize() {
         printBridgeSizeRequestMessage();
         String bridgeSizeInput = Console.readLine();
-        BridgeSize bridgeSize = createBridgeSize(bridgeSizeInput);
+        BridgeSize bridgeSize = recordBridgeSize(bridgeSizeInput);
         printEnter();
         return bridgeSize;
     }
@@ -31,7 +31,7 @@ public class InputView {
     public static Moving readMoving() {
         printMovingRequestMessage();
         String movingInput = Console.readLine();
-        return createMoving(movingInput);
+        return recordUserMoving(movingInput);
     }
 
     /**
@@ -40,6 +40,6 @@ public class InputView {
     public static GameCommand readGameCommand() {
         printGameCommandRequestMessage();
         String gameCommandInput = Console.readLine();
-        return createGameCommand(gameCommandInput);
+        return determineRetry(gameCommandInput);
     }
 }

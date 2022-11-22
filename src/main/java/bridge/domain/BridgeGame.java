@@ -6,7 +6,7 @@ import bridge.domain.vo.Moving;
 import java.util.List;
 import java.util.Objects;
 
-import static bridge.domain.vo.BridgeGameResult.createBridgeGameResult;
+import static bridge.domain.vo.BridgeGameResult.confirmGameResult;
 import static bridge.view.InputView.readGameCommand;
 import static bridge.view.InputView.readMoving;
 
@@ -60,7 +60,7 @@ public class BridgeGame {
 
     public BridgeGameResult computeGameResult(Moving moving, String bridgeRoom) {
         boolean isMatched = compare(moving.getMoving(), bridgeRoom);
-        return createBridgeGameResult(isMatched, moving.getMoving());
+        return confirmGameResult(isMatched, moving.getMoving());
     }
 
     private boolean compare(String moving, String bridgeRoom) {

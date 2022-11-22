@@ -8,7 +8,7 @@ public class GameCommand {
     private final String gameCommand;
     private final int GAME_COMMAND_MAX_LENGTH = 1;
 
-    public static GameCommand createGameCommand(String gameCommand) {
+    public static GameCommand determineRetry(String gameCommand) {
         return new GameCommand(gameCommand);
     }
 

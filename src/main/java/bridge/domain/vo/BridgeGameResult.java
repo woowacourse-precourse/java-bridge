@@ -11,7 +11,7 @@ public class BridgeGameResult {
     private final boolean isMatched;
     private final String userMoving;
 
-    public static BridgeGameResult createBridgeGameResult(boolean isMatched, String userMoving) {
+    public static BridgeGameResult confirmGameResult(boolean isMatched, String userMoving) {
         return new BridgeGameResult(isMatched, userMoving);
     }
 

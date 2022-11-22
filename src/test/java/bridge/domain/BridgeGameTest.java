@@ -4,7 +4,6 @@ import bridge.domain.vo.BridgeGameResult;
 import bridge.domain.vo.Moving;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,8 +11,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static bridge.domain.vo.BridgeGameResult.createBridgeGameResult;
-import static bridge.domain.vo.Moving.createMoving;
+import static bridge.domain.vo.BridgeGameResult.confirmGameResult;
+import static bridge.domain.vo.Moving.recordUserMoving;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest {
@@ -28,7 +27,7 @@ class BridgeGameTest {
     @ParameterizedTest
     @MethodSource("moveTestData")
     void moveTest(String movingInput, String bridgeRoom, boolean answer) {
-        Moving moving = createMoving(movingInput);
+        Moving moving = recordUserMoving(movingInput);
 
         assertThat(bridgeGame.computeGameResult(moving, bridgeRoom).getIsMatched())
                 .isEqualTo(answer);
@@ -65,9 +64,9 @@ class BridgeGameTest {
     }
 
     static Stream<Arguments> isSuccessTestData() {
-        List<BridgeGameResult> successCase = List.of(createBridgeGameResult(true, "U"), createBridgeGameResult(true, "U"), createBridgeGameResult(true, "D"));
-        List<BridgeGameResult> failCaseOne = List.of(createBridgeGameResult(true, "D"), createBridgeGameResult(false, "U"));
-        List<BridgeGameResult> failCaseTwo = List.of(createBridgeGameResult(true, "D"), createBridgeGameResult(true, "U"), createBridgeGameResult(false, "U"));
+        List<BridgeGameResult> successCase = List.of(confirmGameResult(true, "U"), confirmGameResult(true, "U"), confirmGameResult(true, "D"));
+        List<BridgeGameResult> failCaseOne = List.of(confirmGameResult(true, "D"), confirmGameResult(false, "U"));
+        List<BridgeGameResult> failCaseTwo = List.of(confirmGameResult(true, "D"), confirmGameResult(true, "U"), confirmGameResult(false, "U"));
         return Stream.of(
                 Arguments.of(successCase, 3, true),
                 Arguments.of(failCaseOne, 3, false),
@@ -77,9 +76,9 @@ class BridgeGameTest {
 
     static Stream<Arguments> isContinueTestData() {
         return Stream.of(
-                Arguments.of(createBridgeGameResult(true, "U"), List.of(3,4), true),
-                Arguments.of(createBridgeGameResult(true, "U"), List.of(3,3), false),
-                Arguments.of(createBridgeGameResult(false, "U"), List.of(3,3), false)
+                Arguments.of(confirmGameResult(true, "U"), List.of(3,4), true),
+                Arguments.of(confirmGameResult(true, "U"), List.of(3,3), false),
+                Arguments.of(confirmGameResult(false, "U"), List.of(3,3), false)
         );
     }
 }
