@@ -20,13 +20,13 @@ public class BridgeGame {
      */
     public int move(List<String> bridge, int bridgeIndex, String input) {
         if(bridge.get(bridgeIndex).equals(input)) {
-            if(input == "U") {
+            if(input.equals("U")) {
                 return RIGHT_MATCH_UP;
             }
             return RIGHT_MATCH_DOWN;
         }
 
-        if (input == "U") {
+        if (input.equals("U")) {
             return WRONG_MATCH_UP;
         }
         return WRONG_MATCH_DOWN;
