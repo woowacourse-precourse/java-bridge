@@ -34,4 +34,13 @@ public class BridgeState {
             convertWrongResultFirstRound(userInput);
         }
     }
+
+    // 첫 라운드 이후의 결과
+    private void convertResultAfterFirstRound(String userInput, List<String> bridge) {
+        if (compareBridgeRootToUserInput(userInput, bridge)) {
+            convertCorrectResultAfterFirstRound(userInput);
+        } else if (!compareBridgeRootToUserInput(userInput, bridge)) {
+            convertWrongResultAfterFirstRound(userInput);
+        }
+    }
 }
