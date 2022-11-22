@@ -52,7 +52,7 @@ public class Application {
         if (retryCommand.equals("R")) {
             outputView.clearBridge();
             bridgeGame.retry();
-            tryCount ++;
+            tryCount++;
         }
         if (retryCommand.equals("Q")) {
             gameResult = "실패";
