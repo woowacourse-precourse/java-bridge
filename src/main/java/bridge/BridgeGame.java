@@ -13,6 +13,11 @@ public class BridgeGame {
 
     private final String UP_BRIDGN_SIGN = "U";
     private final String EMPTY_SIGN = " ";
+    private final String DELIMITER_VERTICAL_BAR = " | ";
+    private final String PREFIX_BACKET = "[ ";
+    private final String SUFFIX_BACKET = " ]";
+    private final String GAME_STAATUS_MESSAGE = "게임 성공 여부: ";
+    private final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
     private final List<String> upBridge;
     private final List<String> downBridge;
     private int moveCount;
@@ -73,22 +78,22 @@ public class BridgeGame {
     public String getBridgeToString(){
         StringBuilder bridgeToString = new StringBuilder();
         String printUpBridge = upBridge.stream()
-                .collect(Collectors.joining(" | ","[ "," ]"));
+                .collect(Collectors.joining(DELIMITER_VERTICAL_BAR,PREFIX_BACKET,SUFFIX_BACKET));
         String printDownBridge = downBridge.stream()
-                .collect(Collectors.joining(" | ","[ "," ]"));
+                .collect(Collectors.joining(DELIMITER_VERTICAL_BAR,PREFIX_BACKET,SUFFIX_BACKET));
         bridgeToString.append(printUpBridge).append("\n").append(printDownBridge).append("\n");
         return bridgeToString.toString();
     }
 
     public String getGameStatus(){
         StringBuilder gameStatusToString = new StringBuilder();
-        gameStatusToString.append("게임 성공 여부: ").append(InputBridgeElement.inputResultChecked(gameStatus));
+        gameStatusToString.append(GAME_STAATUS_MESSAGE).append(InputBridgeElement.inputResultChecked(gameStatus));
         return gameStatusToString.toString();
     }
 
     public String getGameCount(){
         StringBuilder gameCountToString = new StringBuilder();
-        gameCountToString.append("총 시도한 횟수: ").append(gameCount);
+        gameCountToString.append(GAME_COUNT_MESSAGE).append(gameCount);
         return gameCountToString.toString();
     }
 }
