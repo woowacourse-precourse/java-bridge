@@ -1,7 +1,6 @@
 package bridge;
 
-import static bridge.ErrorMessage.BRIDGE_SIZE_NUMBER_ERROR_MESSAGE;
-import static bridge.ErrorMessage.ERROR_MESSAGE;
+import static bridge.ErrorMessage.*;
 
 public class ValidateInput {
     public static Integer isNumber(String number) {
@@ -11,5 +10,12 @@ public class ValidateInput {
             }
         }
         return Integer.parseInt(number);
+    }
+
+    public static Integer checkBridgeSizeRange(int number) {
+        if (number >= 3 && number <= 20) {
+            return number;
+        }
+        throw new IllegalArgumentException(ERROR_MESSAGE + BRIDGE_SIZE_RANGE_ERROR_MESSAGE);
     }
 }
