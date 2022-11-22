@@ -79,6 +79,37 @@ public class BridgeGame {
         return List.of(firstData, secondData);
     }
 
+    public void makeResultWhenFirstTime(String inputMoving) {
+        if (Objects.equals(inputMoving, "U")) {
+            firstData.append("X");
+            secondData.append(" ");
+        }
+        if (Objects.equals(inputMoving, "D")) {
+            firstData.append(" ");
+            secondData.append("X");
+        }
+    }
+
+    public void makeResultWhenNormalState(String inputMoving) {
+        if (Objects.equals(inputMoving, "U")) {
+            firstData.append(" | X");
+            secondData.append(" |  ");
+        }
+        if (Objects.equals(inputMoving, "D")) {
+            firstData.append(" |  ");
+            secondData.append(" | X");
+        }
+    }
+
+    public List<StringBuilder> getResult(String inputMoving) {
+        if (firstData.length() > 0) {
+            makeResultWhenNormalState(inputMoving);
+            return List.of(firstData, secondData);
+        }
+        makeResultWhenFirstTime(inputMoving);
+        return List.of(firstData, secondData);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
