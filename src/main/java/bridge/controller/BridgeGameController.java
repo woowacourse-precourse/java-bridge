@@ -20,18 +20,14 @@ public class BridgeGameController {
         this.count = 0;
     }
 
-    public void startGame(boolean isReGame) {
-        if (isReGame) {
-            endGame(doGame(bridgeGame.getBridge().getBridge().size()));
-            return;
-        }
+    public void startGame() {
         int bridgeSize = INPUT_VIEW.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
 
-        endGame(doGame(bridgeSize));
+        doGame(bridgeSize);
     }
 
-    private boolean doGame(int bridgeSize) {
+    private void doGame(int bridgeSize) {
         List<String> inputResults = new ArrayList<>();
 
         for (int i = 0; i < bridgeSize; i++) {
@@ -41,20 +37,23 @@ public class BridgeGameController {
 
             if (inputResults.get(i).equals("X")) {  // 모델에서 처리
                 count++;
-                return false;
+                String retryAnswer = INPUT_VIEW.readGameCommand();
+
+                if (retryAnswer.equals("R")) {
+                    doGame(bridgeSize);
+                } else {
+                    endGame(false);
+                }
+
+                return;
             }
         }
 
         count++;
-        return true;
+        endGame(true);
     }
 
     private void endGame(boolean isWinning) {
-        OUTPUT_VIEW.printResult(isWinning);
-        String retryAnswer = INPUT_VIEW.readGameCommand();
-        if (bridgeGame.retry(retryAnswer)) {
-            startGame(true);   // 하드코딩 수정하기
-        }
-        OUTPUT_VIEW.printCountResult(count);
+        OUTPUT_VIEW.printResult(isWinning, count);
     }
 }

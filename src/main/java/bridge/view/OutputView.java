@@ -47,17 +47,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean isWinning) {
-        System.out.print("게임 성공 여부: ");  //프린트
+    public void printResult(boolean isWinning, int count) {
+        String message = "게임 성공 여부: ";
         if (isWinning) {
-            System.out.println("성공");
-            return;
+            message += "성공\n";
+        } else {
+            message += "실패\n";
         }
 
-        System.out.println("실패");
-    }
+        message += "총 시도한 횟수: " + count;
 
-    public void printCountResult(int count) {
-        System.out.println("총 시도한 횟수: " + count);
+        System.out.print(message);
     }
 }
