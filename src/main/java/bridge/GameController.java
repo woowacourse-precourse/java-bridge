@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static bridge.GameStatus.STATUS_PLAY;
 import static bridge.Message.*;
 
@@ -18,9 +21,11 @@ public class GameController {
     }
 
     private void playOneStage(){
+        List<List<String>> curBridge = new ArrayList<>();
         while(bridgeGame.getStatus() == STATUS_PLAY){
             System.out.println(MSG_GET_MOVING);
-            bridgeGame.move(inputView.readMoving());
+            curBridge = bridgeGame.move(inputView.readMoving());
+            outputView.printMap(curBridge);
         }
     }
 
