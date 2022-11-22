@@ -2,44 +2,26 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.Bridge;
-import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
 
-    private BridgeGame bridgeGame;
+    private final BridgeGame bridgeGame = new BridgeGame();
 
-    @BeforeEach
-    void setUp() {
-        Bridge bridge = new Bridge(List.of("D", "D", "D"));
-        bridgeGame = new BridgeGame(bridge);
+    @DisplayName("게임을 시작하면 시도 횟수가 1증가 함을 확인")
+    @Test
+    void checkIncreaseTryCount() {
+        bridgeGame.start();
+        int tryCount = bridgeGame.getBridgeGameResult().getTryCount();
+        assertThat(tryCount).isEqualTo(1);
     }
 
-    @DisplayName("이동이 가능하면 ture, 이동이 불가능하면 false 확인")
-    @CsvSource(value = {"D, true", "U, false"})
-    @ParameterizedTest
-    void move(String moving, boolean expected) {
-        Boolean actual = bridgeGame.move(0, moving);
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @DisplayName("이동할 다리가 남았다면 true, 없으면 false 확인")
-    @CsvSource(value = {"0, true", "1, true", "2, true", "3, false"})
-    @ParameterizedTest
-    void hasBridgeToMove(int moveCount, boolean expected) {
-        boolean actual = bridgeGame.hasBridgeToMove(moveCount);
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @DisplayName("게임 명령이 재시작이면 true, 종료면 false 확인")
-    @CsvSource(value = {"R, true", "Q, false"})
-    @ParameterizedTest
-    void checkRetry(String command, boolean expected) {
-        boolean actual = bridgeGame.doesRetry(command);
-        assertThat(actual).isEqualTo(expected);
+    @DisplayName("입력 길이만큼 다리 생성 확인")
+    @Test
+    void makeBridge() {
+        bridgeGame.make(3);
+        int bridgeSize = bridgeGame.getBridge().size();
+        assertThat(bridgeSize).isEqualTo(3);
     }
 }
