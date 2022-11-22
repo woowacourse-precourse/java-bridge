@@ -16,13 +16,25 @@ public class BridgeConnector {
     public void connect(List<Status> statuses) {
         upperSide = "";
         lowerSide = "";
+        connectBridge(BridgeConstant.LEFT_WRAPPER.getBridgeConstant());
+        connectStatus(statuses);
+        connectBridge(BridgeConstant.RIGHT_WRAPPER.getBridgeConstant());
+
+    }
+
+    private void connectStatus(List<Status> statuses) {
         for (int section = 0; section < statuses.size(); section++) {
             if (section > 0) {
                 connectBridge(BridgeConstant.JOINT.getBridgeConstant());
             }
-            addStatus(statuses.get(section));
+            Status status = statuses.get(section);
+            if (status.getIsRight()) {
+                recordResult(status.getCurrSelected(), BridgeConstant.CAN_GO.getBridgeConstant());
+            }
+            if (!status.getIsRight()) {
+                recordResult(status.getCurrSelected(), BridgeConstant.CAN_NOT_GO.getBridgeConstant());
+            }
         }
-
     }
 
     private void connectBridge(String bridgeComponent) {
@@ -38,15 +50,6 @@ public class BridgeConnector {
         if (currInput.equals(GameCommand.GO_DOWN.getGameCommand())) {
             upperSide += BridgeConstant.BLANK.getBridgeConstant();
             lowerSide += selectResult;
-        }
-    }
-
-    private void addStatus(Status status) {
-        if (status.getIsRight()) {
-            recordResult(status.getCurrSelected(), BridgeConstant.CAN_GO.getBridgeConstant());
-        }
-        if (!status.getIsRight()) {
-            recordResult(status.getCurrSelected(), BridgeConstant.CAN_NOT_GO.getBridgeConstant());
         }
     }
 
