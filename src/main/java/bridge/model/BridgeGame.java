@@ -30,4 +30,8 @@ public class BridgeGame {
         String choice = choices.get(index);
         return answer.equals(choice);
     }
+
+    public boolean isApproachLast(final int bridgeSize, final int choicesSize) {
+        return bridgeSize == choicesSize;
+    }
 }

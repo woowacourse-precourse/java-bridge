@@ -32,7 +32,8 @@ public class Controller {
     public void run() {
         while (playing) {
             move();
-
+            checkCorrectChoice();
+            checkApproachLast();
         }
     }
 
@@ -69,5 +70,13 @@ public class Controller {
             return true;
         }
         return false;
+    }
+
+    private void checkApproachLast() {
+        boolean isApproachLast = bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
+
+        if (playing && isApproachLast) {
+            playing = false;
+        }
     }
 }
