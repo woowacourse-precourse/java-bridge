@@ -15,9 +15,6 @@ public class BridgeGame {
     this.gameState = gameState;
   }
 
-  public static BridgeGame createGame(List<String> areas) {
-    return new BridgeGame(new Bridge(areas), new GameState());
-  }
 
   public boolean move(BridgeArea nextArea) {
     int currentLocation = gameState.getCurrentLocation();
