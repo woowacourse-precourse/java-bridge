@@ -38,6 +38,13 @@
 - [x] 구현
 - [x] 테스트
 
+## BridgeResult
+
+- 최종 게임 결과를 담고 있다.
+- 최종 게임 결과 출력 부분이다.
+- [x] 구현
+- [ ] 테스트
+- 
 ## BridgeMaker
 
 - 설계도를 받아 다리 생성한다.
@@ -52,9 +59,8 @@
 - [x] 구현
 - [ ] 테스트
 
-## BridgeResult
+## BridgeController
 
-- 최종 게임 결과를 담고 있다.
-- 최종 게임 결과 출력 부분이다.
-- [x] 구현
+- view(InputView, OutputView)와 BridgeGame을 연결시켜준다.
+- [ ] 구현
 - [ ] 테스트
