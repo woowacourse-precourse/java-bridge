@@ -7,4 +7,8 @@ public class User {
         this.playingCount = 1;
         quit = false;
     }
+
+    public void addPlayingCount() {
+        this.playingCount += 1;
+    }
 }
