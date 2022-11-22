@@ -24,15 +24,13 @@ public class BridgeGame {
 
     public void move(String command, boolean isCorrect) {
         if (isCorrect) {
-            if (command.equals(UP)) {
-                firstRoad.append(O);
-                secondRoad.append(SPACE);
-                return;
-            }
-            firstRoad.append(SPACE);
-            secondRoad.append(O);
+            correctMove(command);
             return;
         }
+        wrongMove(command);
+    }
+
+    private void wrongMove(String command) {
         if (command.equals(UP)) {
             firstRoad.append(X);
             secondRoad.append(SPACE);
@@ -40,6 +38,16 @@ public class BridgeGame {
         }
         firstRoad.append(SPACE);
         secondRoad.append(X);
+    }
+
+    private void correctMove(String command) {
+        if (command.equals(UP)) {
+            firstRoad.append(O);
+            secondRoad.append(SPACE);
+            return;
+        }
+        firstRoad.append(SPACE);
+        secondRoad.append(O);
     }
 
     public void retry() {
