@@ -31,4 +31,8 @@ public class BridgeGame{
         player.increaseTrialCount();
         player.clearBridge();
     }
+
+    public boolean isPaused(){
+        return !bridge.isPlayerRightBridge(player);
+    }
 }
