@@ -52,7 +52,6 @@ public class InputView {
      */
     public static String readMoving() {
         OutputView.printGuide(PUT_MOVING);
-        //TODO: 예외 처리 고려 - 파라미터를 잘정의하면 readGameCommand랑 에러 처리 동일하게 나타낼 수 있을 듯
         return Console.readLine();
     }
 
@@ -62,7 +61,6 @@ public class InputView {
     public static String readGameCommand() {
         OutputView.printGuide(PUT_GAME_COMMAND);
         String gameCommand = Console.readLine();
-        //TODO: 예외 처리 고려
         return gameCommand;
     }
 }
