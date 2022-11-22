@@ -20,28 +20,39 @@ public class BridgeGameController {
     }
 
     public void run() {
-        try{
+        try {
             makeBride();
             gamePlay();
             printResult();
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
     private void makeBride() {
         bridgeGame.makeBridge(iv.readBridgeSize());
     }
+
     private void gamePlay() {
         do {
             bridgeGame.move(iv.readMoving());
             bridgeGame.setMap(ov.printMap(bridgeGame.getBridge(), bridgeGame.getMarks()));
-            if(bridgeGame.isDiscord()) {
-                if(!bridgeGame.retry(iv.readGameCommand())) break;
-                bridgeGame.backToFirstSection();
+            if (quit()) {
+                break;
             }
-        } while(bridgeGame.isEndOfBridge());
+        } while (bridgeGame.isEndOfBridge());
     }
+
+    private boolean quit() {
+        if (bridgeGame.isDiscord()) {
+            if (!bridgeGame.retry(iv.readGameCommand())) {
+                return true;
+            }
+            bridgeGame.backToFirstSection();
+        }
+        return false;
+    }
+
     private void printResult() {
         ov.printResult(bridgeGame.getMap(), bridgeGame.getResultOfGame(), bridgeGame.getGameCount());
     }
