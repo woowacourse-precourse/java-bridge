@@ -40,13 +40,13 @@ public final class Validator {
     }
 
     public static void validateMovingCommand(String input) {
-        if (!input.equals("U") || !input.equals("D")) {
+        if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException(INVALID_MOVING_COMMAND);
         }
     }
 
     public static void validateGameCommand(String input) {
-        if (!input.equals("R") || !input.equals("Q")) {
+        if (!input.equals("R") && !input.equals("Q")) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND);
         }
     }
