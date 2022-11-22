@@ -1,7 +1,5 @@
 package bridge;
 
-import org.mockito.internal.matchers.Not;
-
 import java.util.ArrayList;
 import java.util.List;
 
