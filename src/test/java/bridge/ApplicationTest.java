@@ -96,6 +96,25 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트_실패_재시작2_잘못된값입력() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "W", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
@@ -106,8 +125,8 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트_잘못된값_입력_다리길이_Under() {
         assertSimpleTest(() -> {
-            runException("2");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            runException("2","3","U");
+            assertThat(output()).contains(ERROR_MESSAGE,"[ O ]","[   ]");
         });
     }
 
@@ -116,6 +135,18 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("21");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트잘못된값_입력_이동할칸() {
+        assertSimpleTest(() -> {
+            runException("3","K","U");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    "[ X ]",
+                    "[   ]"
+            );
         });
     }
 
