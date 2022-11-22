@@ -27,15 +27,21 @@ public class OutputView {
     }
     /** 최종 게임 결과를 출력하는 기능 */
     public void printResult(boolean result, String upBridgeMap, String DownBridgeMap, int gameTryCount) {
-        System.out.println("최종 게임 결과");
+        changLineOnSuccessOrFailure(result);
         System.out.println("[" + upBridgeMap + "]");
         System.out.println("[" + DownBridgeMap + "]\n");
         printSuccessOrFailure(result);
         System.out.println("총 시도한 횟수: " + gameTryCount);
+    }
+    /** 사용자의 게임 성공 or 실패 여부에 따라 줄바꿈 여부를 달리 출력하는 기능 */
+    private boolean changLineOnSuccessOrFailure(boolean result){
+        if (result){System.out.println("\n최종 게임 결과");return true;}
+        System.out.println("최종 게임 결과");return true;
     }
     /** 사용자의 게임 성공 or 실패 여부에 따라 다른 메시지를 출력하는 기능 */
     private boolean printSuccessOrFailure(boolean result){
         if (result){System.out.println("게임 성공 여부: 성공");return true;}
         System.out.println("게임 성공 여부: 실패");return true;
     }
+
 }
