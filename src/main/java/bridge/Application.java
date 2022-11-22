@@ -13,7 +13,7 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         int bridgeSize = inputView.readBridgeSize();
-        if (bridgeSize==0) {
+        if (bridgeSize == 0) {
             return;
         }
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
