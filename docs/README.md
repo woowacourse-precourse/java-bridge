@@ -27,6 +27,19 @@ START('R'), QUIT('Q')로 저장되며 getCommand 메서드를 통해 R, Q를 반
 RIGHT_BRIDGE(" O"), BLANK_BRIDGE("  "), WRONG_BRIDGE(" X"), BRIDGE_CONNECTOR(" |"), BRACKET_STARTED("["), BRACKET_FINISHER(" ]"), LINE_DIVIDER("\n")를 가진다.
 getSymbol을 통해 문자열을 출력받아 BridgeViewConstructor에서 출력문을 생성할 때 사용한다. 
 
+## Model
+### BridgeGame 
+생성자 : 입력변수로 사이즈를 받아 BridgeMaker를 생성해 전역변수 Bridge를 사이즈로 생성해준다. 플레이어를 생성해준다.
+1. constructBridge : 플레이어와 Bridge를 입력변수로 다리 결과를 반환한다. 
+2. move : 입력 문자열을 플레이어에 넘겨 결과를 반환받는다. 
+   1. player.addNewBridgeInput : 플레이어에게 입력 문자열을 주어 다리에 추가한다 .
+   2. constructBridge : 플레이어와 Bridge의 리스트를 넘겨 결과를 반환한다. 
+3. retry
+   1. player.clearBridge : 플레이어의 다리 기록을 초기화한다.
+   2. player.increaseTrialCount : 시도 횟수를 증가시킨다. 
+4. isPaused : bridge.isPlayerRightBridge(player)의 역을 반환한다. 
+5. isSuccess : player.isGameFinished(bridge)를 반환한다.
+
 ## util
 ### BridgeMaker
 1. makeBridge : 입력된 size 만큼 'U' 또는 'D' 로 이루어진 문자열 리스트를 반환한다.
