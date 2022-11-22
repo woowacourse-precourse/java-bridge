@@ -15,10 +15,10 @@ public class BridgeGame {
     private final String QUIT = "Q";
     InputView inputview = new InputView();
     OutputView outputView = new OutputView();
-    List<String> visited = new ArrayList<>();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    Validate validate = new Validate();
-    Bridge bridge;
+    private List<String> visited = new ArrayList<>();
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private Validate validate = new Validate();
+    private Bridge bridge;
     private int tryNum = 1;
     private boolean isSuccess = true;
 
