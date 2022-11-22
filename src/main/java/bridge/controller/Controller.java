@@ -26,7 +26,7 @@ public class Controller {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridgeGame = new BridgeGame();
-        inputView = new InputView();
+        inputView   = new InputView();
         inputController = new InputController(inputView);
     }
 
@@ -63,7 +63,8 @@ public class Controller {
             String choice = makeChoice(i);
             if (!(bridgeGame.move(bridge, choice, i))) {
                 choices.clear();
-                return bridgeGame.retry(inputController.setGameCommand());
+                String s = inputController.setGameCommand();
+                return bridgeGame.retry(s);
             }
             retry = gamePass(i, size);
         }
