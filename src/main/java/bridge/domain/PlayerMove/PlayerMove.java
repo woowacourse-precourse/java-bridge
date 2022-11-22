@@ -21,14 +21,17 @@ public class PlayerMove {
         }
     }
 
-    public static int moveOneStep(int currentLocation, List<String> bridge, List<String> currentBridge) {
-        String movingPosition = takeMovingPosition();
+    public static int crossBridgeUntilFailOrEnd (int currentLocation, List<String> bridge, List<String> currentBridge) {
+        while (currentLocation < bridge.size()) {
+            String movingPosition = takeMovingPosition();
 
-        if (!movingPosition.equals(bridge.get(currentLocation))) {
-            return moveFail(currentBridge, bridge, currentLocation);
+            if (!movingPosition.equals(bridge.get(currentLocation))) {
+                currentLocation = moveFail(currentBridge, bridge, currentLocation);
+                break;
+            }
+            currentLocation = moveSuccess(currentBridge, movingPosition, currentLocation);
         }
-
-        return moveSuccess(currentBridge, movingPosition, currentLocation);
+        return currentLocation;
     }
 
     public static int moveFail(List<String> currentBridge, List<String> bridge, int currentLocation) {
