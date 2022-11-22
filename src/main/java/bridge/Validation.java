@@ -12,7 +12,7 @@ public enum Validation {
         this.value = value;
     }
 
-    public boolean isValid(String target){
+    public boolean isValid(String target) {
         return target.matches(this.value);
     }
 }

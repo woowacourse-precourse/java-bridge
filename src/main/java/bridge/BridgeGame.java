@@ -34,15 +34,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String gameCommand) {
-        if (gameCommand.equals("R")){
+        if (gameCommand.equals("R")) {
             playerCommand.clear();
             status = "진행중";
         }
     }
 
-    public String calculateStatus(){
-        if(bridge.get(playerCommand.size()-1).equals(playerCommand.get(playerCommand.size()-1))){
-            if(bridge.size() == playerCommand.size()){
+    public String calculateStatus() {
+        if (bridge.get(playerCommand.size() - 1).equals(playerCommand.get(playerCommand.size() - 1))) {
+            if (bridge.size() == playerCommand.size()) {
                 return "성공";
             }
             return "진행중";
@@ -50,8 +50,8 @@ public class BridgeGame {
         return "실패";
     }
 
-    public boolean keepGoing(){
-        if(status.equals("진행중")){
+    public boolean keepGoing() {
+        if (status.equals("진행중")) {
             return true;
         }
         return false;
