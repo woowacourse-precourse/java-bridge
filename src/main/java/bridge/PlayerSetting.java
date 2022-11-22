@@ -1,8 +1,4 @@
-package bridge.service;
-
-import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Player;
-import bridge.exception.InputException;
+package bridge;
 
 import java.util.List;
 

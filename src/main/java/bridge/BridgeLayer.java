@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 public enum BridgeLayer {
     LOWER_LAYER(0),

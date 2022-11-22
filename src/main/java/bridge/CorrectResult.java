@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 public enum CorrectResult {
     CORRECT("O"),

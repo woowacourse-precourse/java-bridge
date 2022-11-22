@@ -1,6 +1,4 @@
-package bridge.dto;
-
-import bridge.domain.Player;
+package bridge;
 
 public class BridgeCorrectLocationDto {
     private final String bridgeCorrectLocation;

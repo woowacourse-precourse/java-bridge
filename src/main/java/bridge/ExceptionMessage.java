@@ -1,4 +1,4 @@
-package bridge.exception;
+package bridge;
 
 public enum ExceptionMessage {
     NOT_NUMBER("[ERROR] 숫자가 아님"),
