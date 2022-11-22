@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.BridgeShape;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -12,5 +14,15 @@ public class Bridge {
 
     public int getBridgeSize() {
         return bridge.size();
+    }
+
+    public Bridge getUpBridge() {
+        return createErasedShapeBridge(BridgeShape.DOWN.getShape());
+    }
+
+    private Bridge createErasedShapeBridge(String shapeToErase) {
+        List<String> removedBridge = new ArrayList<>(bridge);
+        removedBridge.replaceAll(bridgeShape -> bridgeShape.replace(shapeToErase, " "));
+        return new Bridge(removedBridge);
     }
 }
