@@ -41,8 +41,8 @@ public class OutputView {
     }
 
     private String setBridgeStep(String map, String user, String counterPosition) {
-        if (user == counterPosition) return " ";
-        if (user != map) return "X";
+        if (user.equals(counterPosition)) return " ";
+        if (!user.equals(map)) return "X";
 
         return "O";
     }
