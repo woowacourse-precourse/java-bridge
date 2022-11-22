@@ -97,6 +97,9 @@ public class BridgeGame {
         if (correctMoveCount == bridge.size()) {
             return GameResult.SUCCESS;
         }
+        if (!retry().equals(GameCommand.RETRY.getValue())) {
+            return GameResult.FAILURE;
+        }
         return null;
     }
 
