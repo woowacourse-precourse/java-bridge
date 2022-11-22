@@ -80,7 +80,19 @@ public class Application {
             cnt+=1;
 
             for (int i = 0; i < bridgeSize; i++) {
-                String inputMove = inputView.readMoving();
+                String inputMove="";
+                boolean inputMoveFlag=true;
+                while(inputMoveFlag){
+                    try{
+                        inputMove = inputView.readMoving();
+                        if(!inputMove.equals("U") && !inputMove.equals("D")){
+                            throw new IllegalArgumentException();
+                        }
+                        inputMoveFlag = false;
+                    }catch (IllegalArgumentException illegalArgumentException){
+                        System.out.println("[ERROR] 입동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력해야 합니다.");
+                    }
+                }
 
                 possibleMove = bridgeGame.move(inputMove, bridges, i);
 
