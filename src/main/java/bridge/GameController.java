@@ -7,7 +7,7 @@ public class GameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     int size;
-    int attempts = 1;
+    int attempts = 0;
     public void play() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -16,25 +16,27 @@ public class GameController {
         running(answer);
     }
 
-    private boolean runGame(int hitCount) {
+    boolean succces = false;
+
+    private boolean runGame() {
         for(int i = 0; i < size; i++) {
-            if (!playerMoving(hitCount)) return false;
+            if (!playerMoving(i)) return false;
         }
+        succces = true;
         return true;
     }
     private void running(List<String> answer) {
-        int hitCount = 0;
-        attempts++;
-        game = new BridgeGame(answer); // 게임 세팅
-//        while (!runGame(hitCount)) {
-//            if (!isRetry()) break;
-//        }
-        outputView.printResult(isCompleted(hitCount), attempts, game.upBridge, game.downBridge);
+        do {
+            attempts++;
+            game = new BridgeGame(answer); // 게임 세팅
+            if (runGame()) break;
+        } while (isRetry());
+
+        outputView.printResult(succces, attempts, game.upBridge, game.downBridge);
     }
 
-    private boolean playerMoving(int hitCount) {
-        if (game.move(inputView.readMoving(), hitCount)) {
-            hitCount++;
+    private boolean playerMoving(int index) {
+        if (game.move(inputView.readMoving(), index)) {
             outputView.printMap(game.upBridge, game.downBridge);
             return true;
         }
@@ -48,9 +50,5 @@ public class GameController {
 
     private boolean isRetry() {
         return game.retry(inputView.readGameCommand());
-    }
-
-    private boolean isCompleted(int  hitCount) {
-        return hitCount == size;
     }
 }

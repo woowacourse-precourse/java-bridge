@@ -7,7 +7,7 @@ public class Application {
             GameController controller = new GameController();
             controller.play();
         } catch (IllegalArgumentException e) {
-//            System.out.println("[ERROR] " + e);
+            System.out.println("[ERROR] " + e);
         }
     }
 }

@@ -15,6 +15,7 @@ public class OutputView {
     public void printMap(List<String> upBridge, List<String> downBridge) {
         printBridge(upBridge);
         printBridge(downBridge);
+        System.out.println();
     }
 
     private void printBridge(List<String> bridge) {
@@ -29,7 +30,7 @@ public class OutputView {
     public void printResult(boolean isSuccess, int attempts, List<String> upBridge, List<String> downBridge) {
         System.out.println("최종 게임 결과");
         printMap(upBridge, downBridge);
-        System.out.println("\n게임 성공 여부: "+ printResultString(isSuccess));
+        System.out.println("게임 성공 여부: "+ printResultString(isSuccess));
         System.out.println("총 시도한 횟수: " + attempts);
     }
 
