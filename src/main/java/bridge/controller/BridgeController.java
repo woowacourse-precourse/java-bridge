@@ -27,9 +27,14 @@ public class BridgeController {
 
     public void run() {
         init();
-        do {
+        while (bridgeGame.isProceed()) {
             play();
-        } while (bridgeGame.retry());
+
+            if (bridgeGame.retry()) {
+                bridgeGame.resetUserData();
+                bridgeGame.changeGameStatus(GameStatus.PROCEED);
+            }
+        }
     }
 
     public void play() {
