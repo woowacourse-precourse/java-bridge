@@ -56,13 +56,13 @@ public class BridgeGame {
         connector.setGameClear(false);
         connector.setAttempt(1);
 
-        addFailTrace();
+        addFailedRecord();
 
         return connector.selectRetry(passHistory);
     }
 
     // 잘못된 칸을 선택했을 때 선택한 칸이 틀린 칸인 걸 표시해주는 메소드
-    private void addFailTrace () {
+    private void addFailedRecord () {
 
         if(passHistory.get(passHistory.size()-1).equals("U")) {
             passHistory.set(passHistory.size()-1, "UX");
