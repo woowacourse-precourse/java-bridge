@@ -13,59 +13,32 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
+    ValidateInput validateInput = new ValidateInput();
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize(String input) {
-        validateBridgeSize(input);
+        validateInput.validateBridgeSize(input);
         return Integer.parseInt(input);
-    }
-
-    private void validateBridgeSize(String input) {
-        if (!validateIsNumber(input) || !validateNumberInRange(input)) {
-            throw new IllegalArgumentException(ExceptionHandler.BRIDGE_SIZE_EXCEPTION);
-        }
-    }
-
-    private boolean validateIsNumber(String input) {
-        for (int i = 0; i < input.length(); i++) {
-            if(input.charAt(i) < '0' || input.charAt(i) > '9')
-                return false;
-        }
-        return true;
-    }
-
-    private boolean validateNumberInRange(String input) {
-        int inputNumber = Integer.parseInt(input);
-        return inputNumber >= 3 && 20 >= inputNumber;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving(String input) {
-        if (!validateMoveAlphabet(input)) {
+        if (!validateInput.validateMoveAlphabet(input)) {
             throw new IllegalArgumentException(ExceptionHandler.MOVE_ALPHABET_EXCEPTION);
         }
         return input;
-    }
-
-    public boolean validateMoveAlphabet(String input) {
-        return input.equals("U") || input.equals("D");
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand(String input) {
-        if (!validateGameCommand(input)) {
+        if (!validateInput.validateGameCommand(input)) {
             throw new IllegalArgumentException(ExceptionHandler.GAME_COMMAND_EXCEPTION);
         }
         return input;
     }
-
-    public boolean validateGameCommand(String input) {
-        return input.equals("R") || input.equals("Q");
-    }
-
 }
