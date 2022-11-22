@@ -15,14 +15,13 @@ class BridgeFactoryTest {
 
     @ParameterizedTest(name = "다리 생성시 잘못된 값이 입력되면 오류가 발생한다")
     @MethodSource
-    void fromThrowsError(BridgeLength brideLength, List<BridgeMove> moves, Exception e) {
-        assertThatThrownBy(() -> BridgeFactory.from(brideLength, moves))
+    void fromThrowsError(int size, List<String> moves, Exception e) {
+        assertThatThrownBy(() -> BridgeFactory.from(size, moves))
                 .isInstanceOf(e.getClass())
                 .hasMessageContaining(e.getMessage());
     }
 
     private static Stream<Arguments> fromThrowsError() {
-        NullPointerException nullPointerException = new NullPointerException("다리의 길이는 null이 될 수 없습니다.");
         NullPointerException containsNullException = new NullPointerException("다리의 각 칸은 U,D 중 하나의 값을 가져야 합니다");
         IllegalArgumentException illegalArgumentException = new IllegalArgumentException("다리의 길이와 칸의 개수는 같아야 합니다.");
 
@@ -31,28 +30,27 @@ class BridgeFactoryTest {
             movesSizeOutOfRange.add(BridgeMove.UP);
         }
 
-        List<BridgeMove> stepsContainingNull = new ArrayList<>();
-        stepsContainingNull.add(BridgeMove.UP);
-        stepsContainingNull.add(BridgeMove.UP);
+        List<String> stepsContainingNull = new ArrayList<>();
+        stepsContainingNull.add(BridgeMove.UP.getMoveCommand());
+        stepsContainingNull.add(BridgeMove.UP.getMoveCommand());
         stepsContainingNull.add(null);
 
         return Stream.of(
-                Arguments.of(new BridgeLength(20), movesSizeOutOfRange, illegalArgumentException),
-                Arguments.of(null, List.of(BridgeMove.UP, BridgeMove.DOWN), nullPointerException),
-                Arguments.of(new BridgeLength(stepsContainingNull.size()), stepsContainingNull, containsNullException),
-                Arguments.of(new BridgeLength(3), List.of(), illegalArgumentException));
+                Arguments.of(20, movesSizeOutOfRange, illegalArgumentException),
+                Arguments.of(stepsContainingNull.size(), stepsContainingNull, containsNullException),
+                Arguments.of(3, List.of(), illegalArgumentException));
     }
 
     @ParameterizedTest(name = "주어진 리스트를 활용해 다리를 생성한다")
     @MethodSource
-    void fromReturnBridge(List<BridgeMove> steps, int expectedSize) {
-        int actualSize = BridgeFactory.from(new BridgeLength(steps.size()), steps).getBridgeLength().getLength();
+    void fromReturnBridge(List<String> steps, int expectedSize) {
+        int actualSize = BridgeFactory.from(steps.size(), steps).size();
         assertThat(actualSize).isEqualTo(expectedSize);
     }
 
     private static Stream<Arguments> fromReturnBridge() {
         return Stream.of(
-                Arguments.of(Arrays.asList(BridgeMove.UP, BridgeMove.DOWN, BridgeMove.DOWN), 3),
-                Arguments.of(Arrays.asList(BridgeMove.UP, BridgeMove.DOWN, BridgeMove.DOWN, BridgeMove.DOWN), 4));
+                Arguments.of(Arrays.asList("U", "D", "U"), 3),
+                Arguments.of(Arrays.asList("U", "D", "D", "D"), 4));
     }
 }

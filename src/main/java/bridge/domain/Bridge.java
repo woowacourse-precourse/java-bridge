@@ -5,16 +5,19 @@ import java.util.List;
 
 public class Bridge implements Iterable<BridgeMove> {
 
-    private final BridgeLength bridgeLength;
+    private final int size;
     private final List<BridgeMove> passable;
 
-    public Bridge(BridgeLength bridgeLength, List<BridgeMove> passable) {
-        this.bridgeLength = bridgeLength;
+    public Bridge(int size, List<BridgeMove> passable) {
+        if (size != passable.size()) {
+            throw new IllegalArgumentException("잘못된 다리 정보 입니다.");
+        }
+        this.size = size;
         this.passable = passable;
     }
 
-    public BridgeLength getBridgeLength() {
-        return bridgeLength;
+    public int size() {
+        return size;
     }
 
 

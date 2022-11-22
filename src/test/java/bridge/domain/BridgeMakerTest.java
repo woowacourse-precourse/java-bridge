@@ -3,6 +3,7 @@ package bridge.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,20 +30,17 @@ class BridgeMakerTest {
 
     @ParameterizedTest(name = "입력한 다리의 길이만큼 다리를 생성한다")
     @MethodSource
-    void makeBridge(BridgeLength bridgeLength) {
-        Bridge bridge = bridgeMaker.makeBridge(bridgeLength);
-        assertThat(bridge.getBridgeLength()).isEqualTo(bridgeLength);
-        for (int round = 1; round <= bridge.getBridgeLength().getLength(); round++) {
-            assertThat(bridge.getMove(round)).isInstanceOf(BridgeMove.class);
-        }
+    void makeBridge(int size) {
+        List<String> moves = bridgeMaker.makeBridge(size);
+        assertThat(moves.size()).isEqualTo(size);
     }
 
     private static Stream<Arguments> makeBridge() {
         return Stream.of(
-                Arguments.of(new BridgeLength(3)),
-                Arguments.of(new BridgeLength(4)),
-                Arguments.of(new BridgeLength(5)),
-                Arguments.of(new BridgeLength(20))
+                Arguments.of(3),
+                Arguments.of(4),
+                Arguments.of(5),
+                Arguments.of(2)
         );
     }
 

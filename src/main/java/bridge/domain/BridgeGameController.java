@@ -4,6 +4,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
+    private static int MIN_BRIDGE_LENGTH = 3;
+    private static int MAX_BRIDGE_LENGTH = 20;
     private BridgeGame game;
 
     public void start() {
@@ -34,7 +36,7 @@ public class BridgeGameController {
     private boolean trial(int trial) {
         reTryIfNotFirstTrial(trial);
         int round = 1;
-        while (round <= game.getLength()) {
+        while (round <= game.getBridgeSize()) {
             boolean roundResult = playRound(trial, round);
             if (!roundResult) {
                 return false;
@@ -70,16 +72,28 @@ public class BridgeGameController {
     }
 
     private void setBridgeGame() {
-        BridgeLength bridgeLength = null;
-        while (bridgeLength == null) {
+        int size = readBridgeSize();
+        game = new BridgeGame(size, new BridgeRandomNumberGenerator());
+    }
+
+    private int readBridgeSize() {
+        int size = -1;
+        while (size == -1) {
             try {
-                bridgeLength = new BridgeLength(InputView.readBridgeSize());
+                size = InputView.readBridgeSize();
+                checkLengthIsInRange(size);
             } catch (IllegalArgumentException exception) {
                 OutputView.printErrorMessage(exception);
             }
         }
-        game = new BridgeGame(bridgeLength, new BridgeRandomNumberGenerator());
+        return size;
     }
 
+
+    private void checkLengthIsInRange(int size) {
+        if (size < MIN_BRIDGE_LENGTH || size > MAX_BRIDGE_LENGTH) {
+            throw new IllegalArgumentException("다리의 길이는 3부터 20 사이의 자연수여야 합니다.");
+        }
+    }
 
 }

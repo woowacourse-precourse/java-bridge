@@ -19,11 +19,10 @@ class BridgeGameTest {
 
     @BeforeEach
     void setUp() {
-        BridgeLength bridgeLength = new BridgeLength(5);
         List<Integer> testNumbers = new ArrayList<>(Arrays.asList(0, 1, 1, 1, 0));
         TestNumberGenerator numberGenerator = new TestNumberGenerator(testNumbers);
 
-        game = new BridgeGame(bridgeLength, numberGenerator);
+        game = new BridgeGame(5, numberGenerator);
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
@@ -86,7 +85,7 @@ class BridgeGameTest {
         for (int round = 1; round <= moves.size(); round++) {
             assertThat(game.move(round, moves.get(round - 1))).isTrue();
         }
-        assertThat(game.getResult().getTrialResult(1).didCrossedBridge(game.getLength())).isTrue();
+        assertThat(game.getResult().getTrialResult(1).didCrossedBridge(game.getBridgeSize())).isTrue();
     }
 
     private static Stream<Arguments> corssTheBridge() {

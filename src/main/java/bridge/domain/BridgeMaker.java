@@ -17,13 +17,13 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public Bridge makeBridge(BridgeLength bridgeLength) {
-        List<BridgeMove> moves = new ArrayList<>();
-        for (int count = 1; count <= bridgeLength.getLength(); count++) {
+    public List<String> makeBridge(int size) {
+        List<String> moves = new ArrayList<>();
+        for (int count = 1; count <= size; count++) {
             int number = bridgeNumberGenerator.generate();
-            BridgeMove move = BridgeMove.getBridgeMoveByMoveCode(number);
+            String move = BridgeMove.getBridgeMoveByMoveCode(number).getMoveCommand();
             moves.add(move);
         }
-        return BridgeFactory.from(bridgeLength, moves);
+        return moves;
     }
 }

@@ -1,11 +1,14 @@
 package bridge.domain;
 
+import java.util.List;
+
 public class BridgeGame {
     private final Bridge bridge;
-    private BridgeGameResult result;
+    private final BridgeGameResult result;
 
-    public BridgeGame(BridgeLength bridgeLength, BridgeNumberGenerator generator) {
-        this.bridge = new BridgeMaker(generator).makeBridge(bridgeLength);
+    public BridgeGame(int size, BridgeNumberGenerator generator) {
+        List<String > moves = new BridgeMaker(generator).makeBridge(size);
+        this.bridge = BridgeFactory.from(size, moves);
         this.result = new BridgeGameResult();
         this.result.addTrial();
     }
@@ -49,8 +52,8 @@ public class BridgeGame {
         result.addTrial();
     }
 
-    public int getLength() {
-        return bridge.getBridgeLength().getLength();
+    public int getBridgeSize() {
+        return bridge.size();
     }
 
     public BridgeGameResult getResult() {
