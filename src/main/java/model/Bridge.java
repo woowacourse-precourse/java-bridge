@@ -11,7 +11,7 @@ public class Bridge {
     }
 
     public String getAnswer(int currentLocation) {
-        return bridge.get(currentLocation);
+        return bridge.get(currentLocation - 1);
     }
 
 }

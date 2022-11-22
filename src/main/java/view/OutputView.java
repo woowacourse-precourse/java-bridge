@@ -38,7 +38,7 @@ public class OutputView {
         System.out.print("[ ");
         for (int i = 0; i < movingResult.sizeUpResult(); i++) {
             System.out.print(movingResult.upResultAt(i));
-            if (movingResult.sizeUpResult() > 1 && i >= 1)
+            if (movingResult.sizeUpResult() > 1 && i < movingResult.sizeUpResult() - 1)
                 System.out.print(" | ");
         }
         System.out.print(" ]");
@@ -48,7 +48,7 @@ public class OutputView {
         System.out.print("[ ");
         for (int i = 0; i < movingResult.sizeDownResult(); i++) {
             System.out.print(movingResult.downResultAt(i));
-            if (movingResult.sizeDownResult() > 1 && i >= 1)
+            if (movingResult.sizeDownResult() > 1 && i < movingResult.sizeDownResult() - 1)
                 System.out.print(" | ");
         }
         System.out.print(" ]");

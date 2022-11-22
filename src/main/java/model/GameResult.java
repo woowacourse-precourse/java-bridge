@@ -6,6 +6,11 @@ public class GameResult {
 
     private boolean success;
 
+    public GameResult() {
+        retry = 1;
+        success = false;
+    }
+
     public int getRetry() {
         return retry;
     }
@@ -16,8 +21,8 @@ public class GameResult {
         return "실패";
     }
 
-    public void setRetry(int retry) {
-        this.retry = retry;
+    public void addRetry() {
+        retry+=1;
     }
 
     public void setSuccess(boolean success) {
