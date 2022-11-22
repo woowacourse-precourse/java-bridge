@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ public class BridgeGame {
      */
     public void move(String bridge, String user) {
         if (user.equals("U")) {uplist(bridge, user);}
-        downlist(bridge, user);
+        if (user.equals("D")) {downlist(bridge, user);}
     }
 
     /**
@@ -63,16 +62,6 @@ public class BridgeGame {
         upBridge.add(upBridge.size()-1, " | ");
         downBridge.add(downBridge.size()-1, " | ");
 
-    }
-
-    public void gameStart(List<String> bridge){
-        for(int i=0 ; i<bridge.size() ; i++){
-            move(bridge.get(i), InputView.readMoving());
-            OutputView.printMap(upBridge, downBridge);
-            if (i != bridge.size() - 1 ){ midStick();}
-            if (upBridge.contains("X") || downBridge.contains("X")) {i = retry(bridge.size(), i, InputView.readGameCommand());}
-        }
-        OutputView.printResult(upBridge, downBridge);
     }
 
     public int gameCount() {return count;}
