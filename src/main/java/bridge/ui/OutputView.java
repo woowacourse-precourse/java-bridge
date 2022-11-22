@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public String printEachBridgeMap(Bridge bridge, String direction) {
-        List<String> mapInfo = bridge.getEachBridgeRouteInfo(direction);
+        List<String> mapInfo = bridge.getUserRouteInTargetBridge(direction);
         String eachBridgeMap = "[ ";
         for (int round=0; round<mapInfo.size(); round++) {
             eachBridgeMap += mapInfo.get(round);

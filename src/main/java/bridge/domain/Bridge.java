@@ -41,23 +41,39 @@ public class Bridge {
     }
 
     /**
-     * @param direction 이동 경로를 출력할 다리. U 또는 D의 값을 가진다.
+     * @param targetBridge 이동 경로를 얻고자 하는 다리. (U or D의 값을 가짐)
+     *
+     * @return userRouteInBridge 해당 다리 내 유저의 이동 결과 (O, X, 공백으로 구성된 문자열 리스트)
      */
-    // TODO: indent, 메서드 길이 개선 필요
-    public List<String> getEachBridgeRouteInfo (String direction) {
-        List<String> eachBridgeRouteInfo = new ArrayList<>();
+    public List<String> getUserRouteInTargetBridge (String targetBridge) {
+        List<String> userRouteInBridge = new ArrayList<>();
+
         for (int round=0; round<userRoute.size(); round++) {
-            if (direction.equals(userRoute.get(round)) == false) { // 해당 다리를 선택하지 않았으면
-                eachBridgeRouteInfo.add(" ");
-            } if (direction.equals(userRoute.get(round)) == true) { // 해당 다리를 선택했다면
-                if (bridge.get(round).equals(userRoute.get(round)) == true) { // 해당 방향이 갈 수 있는 방향일 경우
-                    eachBridgeRouteInfo.add("O");
-                } if (bridge.get(round).equals(userRoute.get(round)) == false) { // 해당 방향으로 갈 수 없는 경우
-                    eachBridgeRouteInfo.add("X");
-                }
+            String currentUserPosition = userRoute.get(round);
+            String availableDirection = bridge.get(round);
+            String currentMovingResult = getMovingResultInTargetBridge(currentUserPosition, availableDirection, targetBridge);
+            userRouteInBridge.add(currentMovingResult);
+        }
+
+        return userRouteInBridge;
+    }
+
+    /**
+     * @param currentUserPosition 현재 라운드에서 유저의 위치 (U or D)
+     * @param availableDirection 현재 라운드에서 이용 가능한 다리의 종류 (U or D)
+     * @param targetBridge 이동 결과를 얻고자 하는 다리
+     *
+     * @return 각 다리에 해당하는 유저의 이동 결과를 'O', 'X', ' '로 구분하여 반환합니다.
+     */
+    public String getMovingResultInTargetBridge (String currentUserPosition, String availableDirection, String targetBridge) {
+        if (currentUserPosition.equals(targetBridge) == true) { // 이동 결과를 얻고자 하는 다리에 있는 경우
+            if (availableDirection.equals(currentUserPosition) == true) {
+                return "O"; // 이동한 다리가 이용 가능한 다리였을 경우 'O' 반환
+            } if (availableDirection.equals(currentUserPosition) == false) {
+                return "X"; // 이동한 다리가 이용 가능한 다리가 아니었을 경우 'X' 반환
             }
         }
-        return eachBridgeRouteInfo;
+        return " ";  // 이동 결과를 얻고자 하는 다리에 있지 않은 경우 공백 반환
     }
 
     public void initializeUserRoute() {
