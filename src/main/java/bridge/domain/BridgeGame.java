@@ -16,63 +16,95 @@ public class BridgeGame {
     private GameStatus status = GameStatus.RUNNING;
     private int trialCount = 1;
 
+    /**
+     * 게임을 생성
+     * @param bridge 다리 정보 (이후 변경할 수 없음)
+     */
     public BridgeGame(final Bridge bridge) {
         this.bridge = bridge;
     }
 
     /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 다리의 다음 칸에서 원하는 방향으로 이동
+     * @param direction 이동할 방향
+     * @throws IllegalStateException 더 이상 이동할 수 없는 상황일 때 예외 발생
      */
     public void move(Direction direction) throws IllegalStateException {
-        checkMoveValidation();
+        checkStatusValidation();
         boolean allowed = bridge.isAllow(moveTrace.size(), direction);
         moveTrace.add(new PieceMove(direction, allowed));
         updateStatus();
     }
 
-
+    /**
+     * 게임의 상태를 반환
+     * @return 상태 정보
+     * @see GameStatus
+     */
     public GameStatus getStatus() {
         return this.status;
     }
 
+    /**
+     * 누적된 이동 결과를 이용해 다리를 출력 가능하도록 반환
+     * <p>
+     * 다리 출력 방법에 대한 구현체 필요
+     * @param printer 다리 출력 구현체
+     * @return 출력 가능한 형태의 다리 모습
+     * @see BridgePrinter
+     */
     public String getPrintable(BridgePrinter printer) {
         return printer.getPrintable(this.moveTrace);
     }
 
+    /**
+     * 총 시도 횟수 반환
+     * @return 총 시도 횟수
+     */
     public int getTrialCount() {
         return this.trialCount;
     }
 
-    private void checkMoveValidation() {
+    /**
+     * 이동할 수 있는 상태인지 검증
+     * @throws IllegalStateException 승리나 실패한 후 이동 시 예외 발생
+     */
+    private void checkStatusValidation() throws IllegalStateException {
         if (this.status != GameStatus.RUNNING) {
             throw new IllegalStateException();
         }
     }
 
+    /**
+     * 현재 게임 상태를 갱신
+     * @see #getCurrentStatus()
+     */
     private void updateStatus() {
         if (moveTrace.isEmpty()) {
             return;
         }
-        checkWinOrLose();
+        this.status = getCurrentStatus();
     }
 
-    private void checkWinOrLose() {
+    /**
+     * 승리 또는 실패를 파악하고 현재 상태 반환
+     * @return 현재 상태
+     */
+    private GameStatus getCurrentStatus() {
         if (!moveTrace.peek().getSuccess()) {
-            this.status = GameStatus.LOSE;
-            return;
+            return GameStatus.LOSE;
         }
         if (moveTrace.size() == bridge.getNumOfCells()) {
-            this.status = GameStatus.WIN;
+            return GameStatus.WIN;
         }
+        return GameStatus.RUNNING;
     }
 
 
     /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     * 게임을 재시작할 때 사용
      * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 맵은 초기화되지 않으며, 시도 횟수를 증가시킨다.
      */
     public void retry() {
         status = GameStatus.RUNNING;
