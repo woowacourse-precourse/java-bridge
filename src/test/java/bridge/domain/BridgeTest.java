@@ -14,36 +14,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class BridgeTest {
     @Test
     void testBridge() {
-        List<String> list = new ArrayList<String>();
-        list.add("U");
-        list.add("U");
-        list.add("D");
-        list.add("U");
-        List.of("U", "U", "D", "U");
-        Bridge bridge = new Bridge(list);
+        Bridge bridge = new Bridge(List.of("U", "U", "D", "U"));
         assertThat(bridge.toString()).isEqualTo("UUDU");
     }
 
     @Test
-    void addBlock() {
-        List<String> list = new ArrayList<String>();
-        list.add("U");
-        list.add("U");
-        list.add("D");
-        list.add("U");
-        Bridge bridge = new Bridge(list);
+    void addBlock_아래() {
+        Bridge bridge = new Bridge(new ArrayList<>(List.of("U", "U", "D", "U")));
         bridge.addBlock("D");
         assertThat(bridge.toString()).isEqualTo("UUDUD");
     }
 
     @Test
-    void addBlock2() {
-        List<String> list = new ArrayList<String>();
-        list.add("U");
-        list.add("U");
-        list.add("D");
-        list.add("U");
-        Bridge bridge = new Bridge(list);
+    void addBlock_위() {
+        Bridge bridge = new Bridge(new ArrayList<>(List.of("U", "U", "D", "U")));
+        bridge.addBlock("U");
+        assertThat(bridge.toString()).isEqualTo("UUDUU");
+    }
+
+    @Test
+    void addBlock_잘못된입력예외처리() {
+        Bridge bridge = new Bridge(new ArrayList<>(List.of("U", "U", "D", "U")));
         assertThrows(IllegalArgumentException.class, () -> {
             bridge.addBlock("A");
         });
