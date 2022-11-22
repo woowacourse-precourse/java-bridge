@@ -7,12 +7,10 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    final private InputView inputView;
-    final private OutputView outputView;
     final private BridgeMaker bridgeMaker;
 
     private List<String> bridge;
-    private List<String> playerBridge;
+    private List<List<String>> playerBridge;
 
     private int tryCount;
 
@@ -20,11 +18,11 @@ public class BridgeGame {
      * BridgeGame 필드 초기화 생성자
      */
     public BridgeGame() {
-        inputView = new InputView();
-        outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = new ArrayList<>();
         playerBridge = new ArrayList<>();
+        playerBridge.add(new ArrayList<>());
+        playerBridge.add(new ArrayList<>());
         tryCount = 1;
     }
 
@@ -33,10 +31,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        outputView.printInputMove();
-        playerBridge.add(inputView.readMoving());
-        outputView.printMap(playerBridge, bridge);
+    public void move(String input) {
+        int select = 0;
+        if (input.equals("U")) select = 1;
+        if (input.equals("D")) select = 0;
+        playerBridge.get(Math.abs(1 - select)).add(" ");
+        if (input.equals(bridge.get(playerBridge.get(select).size()))) {
+            playerBridge.get(select).add("O");
+            return;
+        }
+        playerBridge.get(select).add("X");
     }
 
     /**
@@ -44,7 +48,7 @@ public class BridgeGame {
      *
      * @return 0 - 게임이 끝나지 않음
      * 1 - 게임이 성공적으로 끝남
-     * 2- 게임이 실패로 끝남
+     * 2 - 게임이 실패로 끝남
      */
     public int checkGameOver() {
         if (playerBridge.size() == bridge.size()) {
@@ -56,6 +60,25 @@ public class BridgeGame {
     }
 
     /**
+     * 지금까지 사용자 입력을 통해 만들어진 다리 형태 만들기
+     *
+     * @return result.get(UP)
+     * result.get(DOWN)
+     */
+    public List<List<String>> makeResult() {
+        List<List<String>> result = new ArrayList<>();
+        result.add(new ArrayList<>());
+        result.add(new ArrayList<>());
+        for (int i = 0; i < playerBridge.size(); i++) {
+            if (playerBridge.get(i).equals(bridge.get(i)) && playerBridge.get(i).equals("U")) result.get(0).add("O");
+            if (playerBridge.get(i).equals(bridge.get(i)) && playerBridge.get(i).equals("D")) result.get(0).add("O");
+            if (!playerBridge.get(i).equals(bridge.get(i)) && playerBridge.get(i).equals("D")) result.get(0).add("O");
+        }
+
+        return result;
+    }
+
+    /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
@@ -63,9 +86,7 @@ public class BridgeGame {
      * @return true - 재시작
      * false-  게임 종료
      */
-    public boolean retry() {
-        outputView.printInputRetry();
-        String input = inputView.readGameCommand();
+    public boolean retry(String input) {
         if (input.equals("R")) {
             playerBridge.clear();
             tryCount++;
@@ -79,35 +100,11 @@ public class BridgeGame {
     /**
      * 다리를 생성하는 메서드
      */
-    public void buildBridge() {
-        outputView.printInputBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
+    public void buildBridge(int bridgeSize) {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-
-    /**
-     * 게임 오버 처리 메서드
-     *
-     * @param gameOverResult 1: 게임이 성공적으로 끝남 <p>2: 게임이 실패로 끝남
-     */
-    public void gameOver(int gameOverResult) {
-        outputView.printResult(playerBridge, bridge, tryCount, gameOverResult);
-    }
-
-    /**
-     * 전체 게임 동작 관리를 위해 사용하는 메서드
-     */
     public void start() {
-        outputView.printStartGame();
-        int gameOverResult = -1;
-        buildBridge();
-        while (bridge.size() != playerBridge.size()) {
-            move();
-            gameOverResult = checkGameOver();
-            if (gameOverResult == 0 || gameOverResult == 1) continue;
-            if (!retry()) break;
-        }
-        gameOver(gameOverResult);
+
     }
 }
