@@ -26,20 +26,6 @@ class BridgeMakerTest {
         assertThat(bridge.size()).isEqualTo(size);
     }
 
-    @DisplayName("생성된 bridge가 U와 D로만 이루어져 있는지 테스트")
-    @Test
-    public void convertUpOrDownTest() {
-        //given
-        int size = 10;
-        List<String> list = List.of("U", "D");
-
-        //when
-        List<String> bridge = bridgeMaker.makeBridge(size);
-
-        //then
-        bridge.stream().map(i -> assertThat(list.contains(i)).isEqualTo(true));
-    }
-
     @DisplayName("생성된 bridge가 랜덤값이 1이면 U로 변환되는지 테스트")
     @Test
     public void convertUpTest() {
