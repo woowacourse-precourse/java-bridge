@@ -84,7 +84,7 @@ public class BridgeGame {
     }
 
     public void countRetry() {
-        retryCount += bridgeCalculator.countNum(retryCount);
+        retryCount = bridgeCalculator.countNum(retryCount);
     }
 
 }

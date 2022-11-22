@@ -40,9 +40,10 @@ class BridgeGameTest {
     @Test
     void generateEndPoint() {
         //given
-        bridgeGame = BridgeGame.createBridgeGame(1);
+        bridgeGame = BridgeGame.createBridgeGame(2);
         bridgeGame.move("U");
-        bridgeGame.countRetry();
+        bridgeGame.move("U");
+        bridgeGame.move("U");
 
         //when
         boolean found = bridgeGame.checkEndPoint();
