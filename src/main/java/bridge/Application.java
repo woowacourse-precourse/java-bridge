@@ -13,7 +13,7 @@ public class Application {
         play(inputView.readBridgeSize());
     }
 
-    public static void play(int size) {
+    public static void play(BridgeSize size) {
         Bridge bridge = bridgeGame.setBridge(size);
         while (!bridgeGame.isFinish(bridge)) {
             if (bridgeGame.isMoving(bridge, move(bridge))) {

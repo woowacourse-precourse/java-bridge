@@ -3,11 +3,11 @@ package validation;
 public class Validation {
     private static final String ERROR_MESSAGE = "[ERROR] ";
 
-    public static void ofBridgeSize(String input) {
-        validateBridgeSizeRange(toInt(input));
+    public static void ofBridgeSize(int size) {
+        validateBridgeSizeRange(size);
     }
 
-    private static int toInt(String input) {
+    public static int toInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {

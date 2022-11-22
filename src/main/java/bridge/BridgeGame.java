@@ -2,7 +2,6 @@ package bridge;
 
 import type.MovingType;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -35,7 +34,7 @@ public class BridgeGame {
         bridges.delete();
     }
 
-    public Bridge setBridge(int size) {
+    public Bridge setBridge(BridgeSize size) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         return new Bridge(bridgeMaker.makeBridge(size));
