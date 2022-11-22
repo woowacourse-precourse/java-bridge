@@ -3,7 +3,7 @@ package bridge.domain.status;
 public enum GameStatus {
     RETRY("R"),
     QUIT("Q"),
-    FIRST_TRY("P");
+    PROCEED("P");
 
     private String gameStatusMessage;
 
@@ -11,8 +11,15 @@ public enum GameStatus {
         this.gameStatusMessage = gameStatusMessage;
     }
 
-    public static boolean checkGameStatus(GameStatus currentStatus) {
-        if (GameStatus.FIRST_TRY.equals(currentStatus) || GameStatus.RETRY.equals(currentStatus)) {
+    public static boolean checkIsRetryStatus(GameStatus currentStatus) {
+        if (GameStatus.RETRY.equals(currentStatus)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkIsProceedStatus(GameStatus currentStatus) {
+        if (GameStatus.PROCEED.equals(currentStatus)) {
             return true;
         }
         return false;
