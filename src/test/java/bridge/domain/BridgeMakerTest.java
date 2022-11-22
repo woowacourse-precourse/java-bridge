@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.BridgeMaker;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +22,6 @@ class BridgeMakerTest {
         Queue<Integer> numbers = new LinkedList<>(Arrays.asList(1, 0, 1, 1, 0));
         initMockBridgeNumberGenerator(numbers);
         List<String> bridge = bridgeMaker.makeBridge(5);
-        assertThat(bridge).containsExactly("1", "0", "1", "1", "0");
+        assertThat(bridge).containsExactly("U", "D", "U", "U", "D");
     }
 }
