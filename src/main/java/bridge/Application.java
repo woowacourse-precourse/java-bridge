@@ -70,8 +70,6 @@ public class Application {
 
         int bridgeSize = input.readBridgeSize();
         bridge = maker.makeBridge(bridgeSize);
-
-        System.out.println(bridge.toString()); // 삭제해야 함
     }
 
     private static void chooseGameContinue() {
