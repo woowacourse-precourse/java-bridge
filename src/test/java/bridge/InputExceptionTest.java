@@ -21,6 +21,16 @@ public class InputExceptionTest extends NsTest {
         });
     }
 
+    @DisplayName("숫자가 아닌 다리 길이 입력 테스트")
+    @ValueSource(strings = {"k", "5291j", "akefjlw", "2j5j21", "@"})
+    @ParameterizedTest
+    void createNotNumberBridgeSize(String input) {
+        assertSimpleTest(() -> {
+            runException(input);
+            assertThat(output()).contains(InputException.NOT_NUMBER_BRIDGE_LENGTH.getExceptionMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
