@@ -21,8 +21,6 @@ public class InputValidator {
         }
     }
 
-
-
     public void validateMoving(String moving) {
         if((moving.equals(MovingDirection.Lower.getDirection()) ||
                 moving.equals(MovingDirection.Upper.getDirection()))==false) {
