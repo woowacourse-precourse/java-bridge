@@ -13,7 +13,14 @@ public class GameService {
     }
 
     public void pauseGame() {
-        OutputView.messageRetryInput();
-        InputView.readGameCommand();
+        while (true) {
+            try {
+                OutputView.messageRetryInput();
+                InputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -12,4 +12,10 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 이동할 칸 입력은 U 또는 D여야 합니다.");
         }
     }
+
+    public static void checkRetryInput(String command) {
+        if (!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] 재시도 여부 입력은 R 또는 Q여야 합니다.");
+        }
+    }
 }
