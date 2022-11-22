@@ -2,7 +2,7 @@ package bridge.controller;
 
 import static bridge.domain.UpDownBridge.initBridge;
 
-import bridge.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
@@ -53,21 +53,25 @@ public class BridgeGameController {
             String moveResult = bridgeGame.move(bridges.get(bridgeLocation), inputDirection);
             bridgeGame.retry(moveResult);
             outputView.printMap(inputDirection, moveResult);
-            restartGame(moveResult);
+            askRestartGame(moveResult);
             bridgeLocation++;
         }
     }
 
-    private static void restartGame(String moveResult) {
+    private static void askRestartGame(String moveResult) {
         if (moveResult.equals(Message.MOVE_FAIL.getMessage())) {
             System.out.println(Message.ASK_RESTART.getMessage());
             String inputRestart = inputView.inputGameRestart();
-            if (inputRestart.equals(Message.RESTART.getMessage())) {
-                new BridgeGameController();
-                count++;
-            } else if (inputRestart.equals(Message.QUIT.getMessage())) {
-                status = false;
-            }
+            selectRestartAndQuit(inputRestart);
+        }
+    }
+
+    private static void selectRestartAndQuit(String inputRestart) {
+        if (inputRestart.equals(Message.RESTART.getMessage())) {
+            new BridgeGameController();
+            count++;
+        } else if (inputRestart.equals(Message.QUIT.getMessage())) {
+            status = false;
         }
     }
 }
