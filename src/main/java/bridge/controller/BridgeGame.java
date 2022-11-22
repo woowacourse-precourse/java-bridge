@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.model.Bridge;
-import bridge.model.BridgeMaker;
 import bridge.model.Player;
 import bridge.service.BridgeService;
 import bridge.util.BridgeGameStatus;

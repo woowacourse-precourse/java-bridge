@@ -1,12 +1,11 @@
 package bridge.service;
 
 import bridge.model.Bridge;
-import bridge.model.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.model.Player;
 import bridge.util.BridgeGameStatus;
 
 import java.util.List;
-import java.util.StringJoiner;
 
 public class BridgeService {
     private final BridgeMaker bridgeMaker;
