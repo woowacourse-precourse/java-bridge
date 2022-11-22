@@ -1,13 +1,14 @@
 package bridge.Service;
 
 import bridge.Model.BridgeShape;
+import bridge.Model.BridgeSize;
 import bridge.Model.ErrorMessage;
 import bridge.Model.GameResult;
 
 public class InputValidator {
 
-    private static int MIN_SIZE = 3;
-    private static int MAX_SIZE = 20;
+    private static int MIN_SIZE = BridgeSize.MIN_SIZE.getSize();
+    private static int MAX_SIZE = BridgeSize.MAX_SIZE.getSize();
     public static final String UP = BridgeShape.UP.getShape();
     public static final String DOWN = BridgeShape.DOWN.getShape();
     public static final String RETRY = GameResult.RETRY.getResult();
