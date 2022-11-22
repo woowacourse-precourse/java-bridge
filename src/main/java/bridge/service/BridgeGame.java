@@ -2,6 +2,8 @@ package bridge.service;
 
 import bridge.domain.BridgeGameService;
 import bridge.domain.CommandConstant;
+import bridge.util.BridgeNumberGenerator;
+import bridge.util.BridgeRandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,25 +17,32 @@ public class BridgeGame implements BridgeGameService {
     public static final String SYMBOL_OF_SUCCESS = "O";
     public static final String SYMBOL_OF_FAILURE = "X";
     private final List<String> bridge;
-    private List<String> upStep;
-    private List<String> downStep;
-    private int attemptCount = 0;
+    private final List<String> upStep;
+    private final List<String> downStep;
+    private int attemptCount = 1;
+    private boolean successStatus;
 
-    public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
+    public BridgeGame(int size) {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        this.bridge = bridgeMaker.makeBridge(size);
         this.upStep = new ArrayList<>();
         this.downStep = new ArrayList<>();
+        this.successStatus = false;
     }
+
+
 
     @Override
     public void move(String step) {
-        this.attemptCount = getAttemptCount() + 1;
         updateMaps(step);
+        isGameSuccess(step);
     }
 
 
     @Override
     public void retry() {
+        this.attemptCount = getAttemptCount() + 1;
         this.upStep.clear();
         this.downStep.clear();
     }
@@ -48,10 +57,10 @@ public class BridgeGame implements BridgeGameService {
 
     // break 조건 1
     @Override
-    public Boolean isGameSuccess(String step) {
+    public void isGameSuccess(String step) {
         boolean checkSize = getUpStep().size() == bridge.size();
         boolean checkLastStep = isValidLastStep(step);
-        return checkSize && checkLastStep;
+        this.successStatus = checkSize && checkLastStep;
     }
 
     // break 조건 2
@@ -63,6 +72,7 @@ public class BridgeGame implements BridgeGameService {
     }
 
 
+    @Override
     public int getAttemptCount() {
         return attemptCount;
     }
@@ -77,6 +87,10 @@ public class BridgeGame implements BridgeGameService {
         }
     }
 
+    @Override
+    public boolean getSuccessStatus() {
+        return successStatus;
+    }
 
     private boolean isMovable(String step) {
         int index = countStepBeforeMoving();

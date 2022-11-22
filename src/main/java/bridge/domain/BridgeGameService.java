@@ -6,6 +6,10 @@ public interface BridgeGameService {
     void move(String step);
     void retry();
     List<List<String>> getMaps();
-    Boolean isGameSuccess(String step);
+    void isGameSuccess(String step);
     Boolean isValidLastStep(String step);
+
+    int getAttemptCount();
+
+    boolean getSuccessStatus();
 }
