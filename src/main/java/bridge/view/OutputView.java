@@ -5,6 +5,18 @@ package bridge.view;
  */
 public class OutputView {
 
+    public static final String ENTER = System.lineSeparator();
+    private static final String PRINT_GAME_START = "다리 건너기 게임을 시작합니다.";
+    private static final String PRINT_SIZE_SELECT = ENTER + "다리의 길이를 입력해주세요.";
+
+    public void printStartGame() {
+        System.out.println(PRINT_GAME_START);
+    }
+    public void printSizeSelect() {
+        System.out.println(PRINT_SIZE_SELECT);
+    }
+
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
