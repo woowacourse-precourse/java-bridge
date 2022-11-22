@@ -42,5 +42,16 @@ public class ExceptionTest {
         });
     }
 
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"s", "r", "s", "q", "w", ";", ""})
+    void retryExceptionTest(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            BridgeMaker bridgeMaker = new BridgeMaker(new TestNumberGenerator(newArrayList(0, 0, 0)));
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3));
+            bridgeGame.retry(Command.toCommand(input));
+        });
+    }
+
 
 }
