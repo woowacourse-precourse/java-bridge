@@ -1,17 +1,18 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
-    private final String errorMsg = "[ERROR]";
+
+    private static final String errorMsg = "[ERROR]";
     private OutputView outputView = new OutputView();
     private BridgeGame bridgeGame = new BridgeGame();
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private String changeToNum = "";
 
     /**
@@ -24,9 +25,13 @@ public class InputView {
         int result;
         try {
             result = Integer.parseInt(bridgeSize);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(errorMsg + " 숫자만 입력 가능");
+
+        } catch (Exception e) {
+            System.out.println(errorMsg + " 숫자만 입력 가능");
+            throw new NoSuchElementException(errorMsg + " 숫자만 입력 가능");
+
         }
+
         return result;
     }
 
@@ -46,7 +51,7 @@ public class InputView {
         for (int i = 0; i < bridgeSize; ++i) {
 
             if (!successOrFail) {
-                System.out.println("x 포함 실패 처리하기");
+                // system.out.println("x 포함 실패 처리하기");
                 break;
             }
 
@@ -79,14 +84,10 @@ public class InputView {
                 outputView.printMap(generatedBridgeStr, changeToNum);
                 successOrFail = false;
                 continue;
-
             }
 
             if (position.charAt(0) == 'U' && position.length() == 1) {
                 changeToNum += "1";
-                /**
-                 * 여기서 둘다   move 메서드를 호출하고
-                 */
                 successOrFail = outputView.printMap(generatedBridgeStr, changeToNum);
                 continue;
 
@@ -120,22 +121,23 @@ public class InputView {
 
 
     /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. 게임 실패한 경우에 호출한다.
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. 게임 실패한 경우에만 호출한다.
      */
     public boolean readGameCommand() {  // 재시작 여부
 
+        // 실패한 경우
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String restartOrExit = Console.readLine();
 
         if (restartOrExit.length() == 1 && restartOrExit.charAt(0) == 'R') {
 
-            System.out.println("Restart 재시작 선택");               // 근데 왜  ??????????????
+//            System.out.println("Restart 재시작 선택");               //
             bridgeGame.retry();      // BridgeGame 클래스의 retry()로 넘어간다.
             return true;
 
         } else if (restartOrExit.length() == 1 && restartOrExit.charAt(0) == 'Q') {
 
-            System.out.println("Exit 게임 종료");
+//            System.out.println("Exit 게임 종료");
             return false;
 
 
