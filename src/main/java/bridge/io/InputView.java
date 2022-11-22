@@ -1,6 +1,7 @@
 package bridge.io;
 
 import bridge.validation.InputValidator;
+import bridge.validation.InputValidatorImpl;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
