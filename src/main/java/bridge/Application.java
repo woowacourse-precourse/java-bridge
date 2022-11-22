@@ -1,8 +1,16 @@
 package bridge;
 
-public class Application {
+import bridge.game.BridgeGameMachine;
 
+public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGameMachine bridgeGameMachine = new BridgeGameMachine();
+        bridgeGameMachine.turnOn();
+        bridgeGameMachine.setGame();
+        bridgeGameMachine.playGame();
+        while (!bridgeGameMachine.isGameSuccess() && bridgeGameMachine.wantRetry()) {
+            bridgeGameMachine.retryGame();
+        }
+        bridgeGameMachine.printResult();
     }
 }
