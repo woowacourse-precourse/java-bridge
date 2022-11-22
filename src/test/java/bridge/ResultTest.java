@@ -29,5 +29,4 @@ public class ResultTest {
         result.judgeResult(input);
         assertThat(result.getResultType().getName()).isEqualTo(expected);
     }
-    
 }
