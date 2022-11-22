@@ -11,7 +11,7 @@ public class BridgeTest {
     @Test
     void 정상인경우() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "D"));
+        Bridge bridge = new BridgeImpl(List.of("U", "D"));
         String upDown = "U";
         int index = 0;
         //when
@@ -29,7 +29,7 @@ public class BridgeTest {
         String space3 = "D";
         //when
         Throwable throwable = catchThrowable(() -> {
-            Bridge bridge = new Bridge(List.of(space1, space2, space3));
+            Bridge bridge = new BridgeImpl(List.of(space1, space2, space3));
         });
         //then
         assertThat(throwable)
@@ -41,7 +41,7 @@ public class BridgeTest {
         //given
         //when
         Throwable throwable = catchThrowable(() -> {
-            Bridge bridge = new Bridge(List.of());
+            Bridge bridge = new BridgeImpl(List.of());
         });
         //then
         assertThat(throwable)
@@ -55,7 +55,7 @@ public class BridgeTest {
         String space2 = "D";
         String space3 = "D";
         //when
-        Bridge bridge = new Bridge(List.of(space1, space2, space3));
+        Bridge bridge = new BridgeImpl(List.of(space1, space2, space3));
 
         //then
         assertThat(bridge.getBridge())

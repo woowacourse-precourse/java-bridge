@@ -3,11 +3,8 @@ package bridge.gameManager;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.gameComponent.Bridge;
-import bridge.gameComponent.BridgeGame;
-import bridge.gameComponent.InputValidator;
+import bridge.gameComponent.*;
 import bridge.util.MoveResult;
-import bridge.gameComponent.InputValidatorImpl;
 import bridge.viewer.InputView;
 import bridge.viewer.OutputView;
 
@@ -50,7 +47,7 @@ public class GameManager {
     // 다리 생성
     private void setBridge() {
         int bridgeSize = inputView.readBridgeSize();
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        Bridge bridge = new BridgeImpl(bridgeMaker.makeBridge(bridgeSize));
         bridgeGame = new BridgeGame(bridge);
     }
 

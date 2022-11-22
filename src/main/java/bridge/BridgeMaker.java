@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.exception.ExceptionMessage;
-import bridge.gameComponent.Bridge;
 import bridge.util.UserInput;
 
 import java.util.ArrayList;

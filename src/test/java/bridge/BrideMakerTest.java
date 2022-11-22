@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.gameComponent.Bridge;
+import bridge.gameComponent.BridgeImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class BrideMakerTest {
         int bridgeSize = 3;
         //when
         Throwable throwable = catchThrowable(() -> {
-            Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+            Bridge bridge = new BridgeImpl(bridgeMaker.makeBridge(bridgeSize));
         });
         assertThat(throwable)
                 .isInstanceOf(IllegalArgumentException.class);
@@ -30,7 +31,7 @@ public class BrideMakerTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         int bridgeSize = 3;
         //when
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        Bridge bridge = new BridgeImpl(bridgeMaker.makeBridge(bridgeSize));
         //then
         assertThat(bridge.getBridge()).containsExactly("U", "D", "D");
     }
