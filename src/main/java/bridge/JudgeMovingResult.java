@@ -7,7 +7,7 @@ public class JudgeMovingResult {
 
     private final String POSSIBLE = "O";
     private final String IMPOSSIBLE = "X";
-
+    private final String BLANK = " ";
     public String isMovingPossible(String moving, String bridgeDirection) {
         if (moving.equals(bridgeDirection)) {
             return POSSIBLE;
@@ -19,7 +19,7 @@ public class JudgeMovingResult {
         Map<String, String> movingRecord = new LinkedHashMap<>();
 
         for (BridgeDirection direction : BridgeDirection.values()) {
-            movingRecord.put(direction.getDirection(), " ");
+            movingRecord.put(direction.getDirection(), BLANK);
         }
         movingRecord.replace(moving, result);
         return movingRecord;
