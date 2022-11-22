@@ -23,7 +23,7 @@ class BridgeGameTest {
     }
 
     @Test
-    void 경로_정상입력() {
+    void move_경로_정상입력() {
         movePathInput();
 
         assertThat(bridgeGame.getMovePath()).containsExactly(
@@ -32,7 +32,7 @@ class BridgeGameTest {
     }
 
     @Test
-    void 경로_와_다리경로_같음() {
+    void checkPossibleMove_지정된_위치_에서_경로_와_다리경로_같음() {
         movePathInput();
 
         boolean isPossible = bridgeGame.checkPossibleMove(0);
@@ -40,7 +40,7 @@ class BridgeGameTest {
     }
 
     @Test
-    void 경로_와_다리경로_다름() {
+    void checkPossibleMove_지정된_위치_에서_경로_와_다리경로_다름() {
         movePathInput();
 
         boolean isPossible = bridgeGame.checkPossibleMove(2);
@@ -48,7 +48,7 @@ class BridgeGameTest {
     }
 
     @Test
-    void 재시작_할때_이동경로_초기화() {
+    void retry_재시작_할때_이동경로_초기화() {
         movePathInput();
 
         bridgeGame.retry();
