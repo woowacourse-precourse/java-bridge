@@ -51,6 +51,49 @@ class BridgeControllerTest extends NsTest {
         }, 1, 1, 1);
     }
 
+    @Test
+    @DisplayName("이동 입력 실패 후 성공")
+    void SuccessAfterInputMovingFail() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "a", "U", "U");
+            assertThat(output()).contains(
+                    "U 혹은 D를 입력하여야 합니다.(U - 위, D - 아래)",
+                    "최종 게임 결과",
+                    "[ O | O | O ]",
+                    "[   |   |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O | O | O ]");
+            int downSideIndex = output().indexOf("[   |   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 1, 1);
+    }
+
+    @Test
+    @DisplayName("재입력 실패 후 성공")
+    void SuccessAfterInputGameCommandFail() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "RR", "R", "U", "U", "U");
+            assertThat(output()).contains(
+                    "[ O |   ]",
+                    "[   | X ]",
+                    "R 혹은 Q를 입력하여야 합니다.(R - 재시도, Q - 종료)",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "최종 게임 결과",
+                    "[ O | O | O ]",
+                    "[   |   |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[ O | O | O ]");
+            int downSideIndex = output().indexOf("[   |   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 1, 1);
+    }
+
     @Override
     protected void runMain() {
         BridgeController bridgeController = new BridgeController();
