@@ -1,20 +1,21 @@
 package bridge;
 
+import bridge.Constant.GameStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.GameStatus.*;
+import static bridge.Constant.Command.*;
+import static bridge.Constant.GameStatus.*;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final String RIGHT = "O";
     private final String WRONG = "X";
     private final String NOTHING = " ";
+    private final int UP_LINE = 0;
+    private final int DOWN_LINE = 1;
 
     private final List<String> answerBridge;
-    //private List<String> curBridge;;
     private List<List<String>> curBridge;
     private int stageNum;
     private GameStatus status;
@@ -51,17 +52,17 @@ public class BridgeGame {
 
     private void addCurBridge(String moving){
         String isRight = compareCurMoving(moving);
-        if(moving.equals("U")){
-            curBridge.get(0).add(isRight);
-            curBridge.get(1).add(NOTHING);
+        if(moving.equals(UP)){
+            curBridge.get(UP_LINE).add(isRight);
+            curBridge.get(DOWN_LINE).add(NOTHING);
         }
-        if(moving.equals("D")){
-            curBridge.get(0).add(NOTHING);
-            curBridge.get(1).add(isRight);
+        if(moving.equals(DOWN)){
+            curBridge.get(UP_LINE).add(NOTHING);
+            curBridge.get(DOWN_LINE).add(isRight);
         }
     }
     private String compareCurMoving(String moving){
-        String answer = answerBridge.get(curBridge.get(0).size());
+        String answer = answerBridge.get(curBridge.get(UP_LINE).size());
         if(answer.equals(moving)){
             return RIGHT;
         }
@@ -70,7 +71,7 @@ public class BridgeGame {
     }
 
     private void checkSuccess(){
-        if(this.answerBridge.size() == this.curBridge.get(0).size()) {
+        if(this.answerBridge.size() == this.curBridge.get(UP_LINE).size()) {
             this.status = STATUS_SUCCESS;
         }
     }
@@ -78,7 +79,7 @@ public class BridgeGame {
     public void retry() {
         this.status = STATUS_PLAY;;
         this.stageNum += 1;
-        this.curBridge.get(0).clear();
-        this.curBridge.get(1).clear();
+        this.curBridge.get(UP_LINE).clear();
+        this.curBridge.get(DOWN_LINE).clear();
     }
 }

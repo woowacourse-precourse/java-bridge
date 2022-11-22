@@ -1,9 +1,10 @@
-package bridge;
+package bridge.View;
 
-import java.util.ArrayList;
+import bridge.BridgeGame;
+
 import java.util.List;
 
-import static bridge.Message.*;
+import static bridge.Constant.Message.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

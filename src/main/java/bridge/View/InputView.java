@@ -1,6 +1,7 @@
-package bridge;
+package bridge.View;
 
-import static bridge.Message.*;
+import static bridge.Constant.Command.*;
+import static bridge.Constant.Message.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -39,10 +40,10 @@ public class InputView {
     }
 
     private void validateRange(int size){
-        if (size < 3){
+        if (size < SIZE_MIN){
             throw new IllegalArgumentException(ERROR_LENGTH);
         }
-        if (size > 20){
+        if (size > SIZE_MAX){
             throw new IllegalArgumentException(ERROR_LENGTH);
         }
     }
@@ -64,7 +65,7 @@ public class InputView {
     }
 
     public boolean validateMoving(String input){
-        if(input.equals("U") || input.equals("D")){
+        if(input.equals(UP) || input.equals(DOWN)){
             return true;
         }
         throw new IllegalArgumentException(ERROR_MOVE);
@@ -88,7 +89,7 @@ public class InputView {
 
 
     public boolean validateCommand(String input){
-        if(input.equals("R") || input.equals("Q")){
+        if(input.equals(RETRY) || input.equals(QUIT)){
             return true;
         }
         throw new IllegalArgumentException(ERROR_RETRY);

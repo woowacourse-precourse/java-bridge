@@ -1,11 +1,12 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import static bridge.GameStatus.STATUS_FAIL;
-import static bridge.GameStatus.STATUS_PLAY;
-import static bridge.Message.*;
+import bridge.View.InputView;
+import bridge.View.OutputView;
+
+import static bridge.Constant.Command.RETRY;
+import static bridge.Constant.GameStatus.*;
+import static bridge.Constant.Message.*;
 
 public class GameController {
     private final InputView inputView = new InputView();
@@ -25,7 +26,6 @@ public class GameController {
     }
 
     private void playOneStage(){
-        List<List<String>> curBridge;
         while(bridgeGame.getStatus() == STATUS_PLAY){
             System.out.println(MSG_GET_MOVING);
             bridgeGame.move(inputView.readMoving());
@@ -36,7 +36,7 @@ public class GameController {
     private void askRetry(){
         System.out.println(MSG_GET_RETRY);
         String isRetry = inputView.readGameCommand();
-        if(isRetry.equals("R")){
+        if(isRetry.equals(RETRY)){
             bridgeGame.retry();
         }
     }
