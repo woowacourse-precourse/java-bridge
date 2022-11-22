@@ -38,8 +38,8 @@ class BridgeGameTest extends NsTest {
         //given
         BridgeGame game = new BridgeGame(Arrays.asList("D", "D", "U", "D"));
         //when
-        game.move("D");
-        game.move("D");
+        game.move(BridgeMove.getEnum("D"));
+        game.move(BridgeMove.getEnum("D"));
         //then
         Bridges bridges = game.getGameBridges();
         assertThat(bridges.getPlayerMoves()).isEqualTo(Arrays.asList(BridgeMove.getEnum("D"), BridgeMove.getEnum("D")));

@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.enums.BridgeMove;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,8 @@ class BridgesTest {
         //given
         Bridges bridges = new Bridges(Arrays.asList("U", "D", "U", "D"));
         //when
-        boolean isPass1 = bridges.tryPass("U");
-        boolean isPass2 = bridges.tryPass("U");
+        boolean isPass1 = bridges.tryPass(BridgeMove.getEnum("U"));
+        boolean isPass2 = bridges.tryPass(BridgeMove.getEnum("U"));
         //then
         assertThat(isPass1).isEqualTo(true);
         assertThat(isPass2).isEqualTo(false);
@@ -27,10 +28,10 @@ class BridgesTest {
     void isAllPassed() {
         //given
         Bridges bridges = new Bridges(Arrays.asList("U", "D", "U", "D"));
-        bridges.tryPass("U");
-        bridges.tryPass("D");
-        bridges.tryPass("U");
-        bridges.tryPass("D");
+        bridges.tryPass(BridgeMove.getEnum("U"));
+        bridges.tryPass(BridgeMove.getEnum("D"));
+        bridges.tryPass(BridgeMove.getEnum("U"));
+        bridges.tryPass(BridgeMove.getEnum("D"));
 
         //then
         assertThat(bridges.isAllPassed()).isEqualTo(true);

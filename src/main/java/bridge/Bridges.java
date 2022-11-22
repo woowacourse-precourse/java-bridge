@@ -20,13 +20,12 @@ public class Bridges {
                 .collect(Collectors.toList());
     }
 
-    public boolean tryPass(String moving) {
+    public boolean tryPass(BridgeMove moving) {
         if (isAllPassed()) {
             return false;
         }
-        BridgeMove playerMove = BridgeMove.getEnum(moving);
-        playerMoves.add(playerMove);
-        return BridgeMove.isMoveEqual(bridges.get(playerMoves.size() - 1), moving);
+        playerMoves.add(moving);
+        return BridgeMove.isMoveEqual(bridges.get(playerMoves.size() - 1), moving.getMove());
     }
 
     public boolean isAllPassed() {
