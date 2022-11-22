@@ -14,11 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserPathTest {
 
-    @DisplayName("")
+    @DisplayName("유저 경로 테스트")
     @Nested
     static class userPathTest {
 
-        private static Stream<Arguments> generateSuccessData() {
+        private static Stream<Arguments> generateData() {
             return Stream.of(
                     Arguments.of(
                             new UserMovement(Arrays.asList("U", "U", "D", "D")),
@@ -45,7 +45,7 @@ public class UserPathTest {
 
         @DisplayName("성공 케이스")
         @ParameterizedTest
-        @MethodSource("generateSuccessData")
+        @MethodSource("generateData")
         void success(UserMovement userMovement, Bridge bridge, List<List<String>> result) {
             assertThat(new UserPath(userMovement, bridge).getUpperPath()).isEqualTo(result.get(0));
             assertThat(new UserPath(userMovement, bridge).getLowerPath()).isEqualTo(result.get(1));

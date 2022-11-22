@@ -18,7 +18,7 @@ public class BridgeTest {
     @Nested
     static class compareWithUserMovementTest {
 
-        private static Stream<Arguments> generateDataForSuccess() {
+        private static Stream<Arguments> generateData() {
             return Stream.of(
                     Arguments.of(
                             new Bridge(Arrays.asList("U", "D", "D", "D", "U", "D")),
@@ -40,7 +40,7 @@ public class BridgeTest {
 
         @DisplayName("성공 케이스")
         @ParameterizedTest
-        @MethodSource("generateDataForSuccess")
+        @MethodSource("generateData")
         void successCase(Bridge bridge, List<String> userMovement, List<Boolean> compareResult) {
             assertThat(bridge.compareWithUserMovement(userMovement)).isEqualTo(compareResult);
         }
@@ -51,7 +51,7 @@ public class BridgeTest {
     @Nested
     static class whetherAtTheEndOfBridgeTest {
 
-        private static Stream<Arguments> generateDataForSuccess() {
+        private static Stream<Arguments> generateData() {
             return Stream.of(
                     Arguments.of(
                             new Bridge(Arrays.asList("U", "U", "D", "D", "U")),
@@ -73,18 +73,18 @@ public class BridgeTest {
 
         @DisplayName("성공 케이스")
         @ParameterizedTest
-        @MethodSource("generateDataForSuccess")
+        @MethodSource("generateData")
         void successCase(Bridge bridge, List<String> userMovement, Boolean result) {
             assertThat(bridge.whetherAtTheEndOfBridge(userMovement)).isEqualTo(result);
         }
     }
 
 
-    @DisplayName("")
+    @DisplayName("직전에 이동한 칸이 존재하는지 테스트")
     @Nested
     static class whetherMoveToExitingCellTest {
 
-        private static Stream<Arguments> generateDataForSuccess() {
+        private static Stream<Arguments> generateData() {
             return Stream.of(
                     Arguments.of(
                             new Bridge(Arrays.asList("U", "U", "U", "D")),
@@ -101,7 +101,7 @@ public class BridgeTest {
 
         @DisplayName("성공 케이스")
         @ParameterizedTest
-        @MethodSource("generateDataForSuccess")
+        @MethodSource("generateData")
         void successCase(Bridge bridge, List<String> userMovement, Boolean result) {
             assertThat(bridge.whetherMoveToExitingCell(userMovement)).isEqualTo(result);
         }
