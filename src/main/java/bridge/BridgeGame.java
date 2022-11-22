@@ -24,5 +24,12 @@ public class BridgeGame {
      */
     public void retry() {}
 
+    public boolean compare(List<String> bridge, String moving, int location){
+        if (moving.equals(bridge.get(location))) {
+            return true;
+        }
+        return false;
+    }
+
 
 }
