@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.String.*;
-import static bridge.util.Constant.*;
+import static bridge.Constant.*;
 
 public class MapShape {
 

@@ -2,7 +2,7 @@ package bridge.model;
 
 import bridge.controller.GameController;
 
-import static bridge.util.Constant.*;
+import static bridge.Constant.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

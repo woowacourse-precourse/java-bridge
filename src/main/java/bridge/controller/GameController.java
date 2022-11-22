@@ -9,7 +9,7 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.util.Constant.*;
+import static bridge.Constant.*;
 
 public class GameController {
 
