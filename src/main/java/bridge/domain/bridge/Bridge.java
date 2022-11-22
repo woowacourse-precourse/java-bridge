@@ -1,7 +1,7 @@
 package bridge.domain.bridge;
 
 import bridge.BridgeMaker;
-import bridge.BridgeSizeConstant;
+import bridge.constant.BridgeSizeConstant;
 import bridge.domain.result.ResultType;
 import java.util.List;
 

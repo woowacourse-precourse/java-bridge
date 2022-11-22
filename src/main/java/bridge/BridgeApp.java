@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.domain.CommandType;
 import bridge.domain.result.Result;
+import bridge.service.BridgeGame;
 import bridge.view.ViewController;
 
 public class BridgeApp {

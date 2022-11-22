@@ -1,4 +1,4 @@
-package bridge;
+package bridge.constant;
 
 public class BridgeSizeConstant {
     public static final int MAX_BRIDGE_SIZE = 20;

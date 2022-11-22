@@ -3,6 +3,7 @@ package bridge;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.result.Map;
 import bridge.domain.result.Result;
+import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.ViewController;

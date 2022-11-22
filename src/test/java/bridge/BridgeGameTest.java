@@ -8,6 +8,7 @@ import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.MoveType;
 import bridge.domain.result.Map;
 import bridge.domain.result.Result;
+import bridge.service.BridgeGame;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.util.Lists;
