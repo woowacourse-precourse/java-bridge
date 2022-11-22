@@ -1,8 +1,76 @@
 package bridge;
 
-public class Application {
+import java.util.List;
 
+public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = makeBridgeException(bridgeMaker);
+        BridgeGame bridgeGame = new BridgeGame(bridge, new Player(new Map()));
+        OutputView.printStart();
+        playGame(bridgeGame);
+        OutputView.printResult(bridgeGame);
+    }
+
+    private static List<String> makeBridgeException(BridgeMaker bridgeMaker) {
+        List<String> bridge;
+        while (true) {
+            try {
+                bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bridge;
+    }
+
+    private static void playGame(BridgeGame bridgeGame) {
+        while (true) {
+            playGameOnce(bridgeGame);
+            if (bridgeGame.hasSucceeded()) {
+                break;
+            }
+
+            if (!retryException(bridgeGame)) {
+                break;
+            }
+            bridgeGame.setPlayer(new Player(new Map()));
+        }
+    }
+
+    private static boolean retryException(BridgeGame bridgeGame) {
+        boolean willRetry;
+        while (true) {
+            try {
+                willRetry = bridgeGame.retry(InputView.readGameCommand());
+                return willRetry;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void playGameOnce(BridgeGame bridgeGame) {
+        int totalRounds = bridgeGame.getTotalRounds();
+        boolean isAnswer;
+        for (int round = 0; round < totalRounds; round++) {
+            isAnswer = playGameOnceException(bridgeGame, round);
+            if (!isAnswer) {
+                return;
+            }
+        }
+    }
+
+    private static boolean playGameOnceException(BridgeGame bridgeGame, int round) {
+        while (true) {
+            try {
+                boolean isAnswer = bridgeGame.move(InputView.readMoving(), round);
+                OutputView.printMap(bridgeGame.getMap());
+                return isAnswer;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
