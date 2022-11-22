@@ -7,6 +7,7 @@ import java.io.PrintStream;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
@@ -24,6 +25,7 @@ class InputViewTest {
 		System.setIn(in);
 	}
 
+	@DisplayName("readBridgeSize 메서드 출력및 입력 테스트")
 	@Test
 	void readBridgeSize() {
 		//given
@@ -36,6 +38,7 @@ class InputViewTest {
 		Assertions.assertThat(outContent.toString()).contains(bridgeSizePhrase);
 	}
 
+	@DisplayName("readMoving 메서드 출력및 입력 테스트")
 	@Test
 	void readMoving() {
 		//given
@@ -48,6 +51,7 @@ class InputViewTest {
 		Assertions.assertThat(outContent.toString()).contains(chooseMoveSpacePhrase);
 	}
 
+	@DisplayName("readGameCommand 메서드 출력및 입력 테스트")
 	@Test
 	void readGameCommand() {
 		//given

@@ -5,6 +5,7 @@ import java.io.PrintStream;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OutputViewTest {
@@ -17,6 +18,7 @@ class OutputViewTest {
 		System.setOut(new PrintStream(outContent));
 	}
 
+	@DisplayName("printGameStart 메서드 출력 테스트")
 	@Test
 	void printGameStart() {
 		//when
@@ -29,6 +31,7 @@ class OutputViewTest {
 		Assertions.assertThat(outContent.toString()).contains(result);
 	}
 
+	@DisplayName("printFinalResultPhrase 메서드 출력 테스트")
 	@Test
 	void printFinalResultPhrase() {
 		//when
@@ -41,34 +44,31 @@ class OutputViewTest {
 		Assertions.assertThat(outContent.toString()).contains(result);
 	}
 
+	@DisplayName("printMap 메서드 출력 테스트")
 	@Test
 	void printMap() {
-		//when
 		String result1 = "[ O |   | O ]";
 		String result2 = "[   | O |   ]";
 
-		//given
 		outputView.printMap(result1 + "\n" + result2);
 
-		//then
 		Assertions.assertThat(outContent.toString()).contains(result1, result2);
 	}
 
+	@DisplayName("printResult 메서드 출력 테스트")
 	@Test
 	void printResult() {
-		//when
 		String userFinalResult = OutputView.USER_FINAL_RESULT;
 		String userTryCountPhrase = OutputView.USER_TRY_COUNT_PHRASE;
 		String result = "성공";
 		Integer count = 1000;
 
-		//given
 		outputView.printResult(result, count);
 
-		//then
 		Assertions.assertThat(outContent.toString()).contains(userFinalResult, userTryCountPhrase);
 	}
 
+	@DisplayName("printError 메서드 출력 테스트")
 	@Test
 	void printError() {
 		//when
