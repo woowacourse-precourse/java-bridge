@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final String GAME_CLEAR = "성공";
+    private static final String GAME_OVER = "실패";
+
     private final List<String> bridge;
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -17,24 +20,24 @@ public class BridgeGame {
     }
 
     public void playGame() {
+        int countGame = 0;
         List<List<String>> side = new ArrayList<>();
         while (true) {
             initBridgeStatus(side);
-            List<List<String>> sideState = move(side);
-            if (!checkFinalState(sideState)) break;
+            if (!checkFinalState(move(side), ++countGame)) break;
             clearMap(side);
         }
     }
 
-    public boolean checkFinalState(List<List<String>> sideState) {
+    public boolean checkFinalState(List<List<String>> sideState, int countGame) {
         if (sideState.get(0).contains("X") || sideState.get(1).contains("X")) {
             if (!retry(inputView.readGameCommand())) {
-                outputView.printResult(sideState);
+                outputView.printResult(sideState, countGame, GAME_OVER);
                 return false;
             }
             return true;
         }
-        outputView.printResult(sideState);
+        outputView.printResult(sideState, countGame, GAME_CLEAR);
         return false;
     }
 
