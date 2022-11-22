@@ -36,6 +36,13 @@
 - [x] 게임 상황을 출력함
 - [x] 게임 결과를 출력함
 
+## util
+
+### bridgeMapUpdater
+
+- [x] 게임 상황을 업데이트함
+- [x] 업데이트된 게임 상황을 반환함
+
 ## controller
 
 ### bridgeGameController
