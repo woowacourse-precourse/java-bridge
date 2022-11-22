@@ -22,8 +22,8 @@ public enum Glass {
     public String MOVE()      { return this.MOVE;}
     public Integer DIRECTION(){ return this.DIRECTION;}
 
-    public Glass glassOf(String move)      { return BY_MOVE.get(move);          }
-    public Glass glassOf(Integer direction){ return BY_DIRECTION.get(direction);}
+    public static Glass glassOf(String move)      { return BY_MOVE.get(move);          }
+    public static Glass glassOf(Integer direction){ return BY_DIRECTION.get(direction);}
 
 
 
