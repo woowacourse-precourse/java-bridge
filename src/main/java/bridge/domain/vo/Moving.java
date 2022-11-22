@@ -1,7 +1,9 @@
 package bridge.domain.vo;
 
-import static bridge.enumeration.ErrorMessage.*;
-import static bridge.enumeration.Command.*;
+import static bridge.enumeration.Command.DOWN;
+import static bridge.enumeration.Command.UP;
+import static bridge.enumeration.ErrorMessage.INVALID_MOVE;
+import static bridge.enumeration.ErrorMessage.OUT_OF_RANGE;
 
 public class Moving {
 

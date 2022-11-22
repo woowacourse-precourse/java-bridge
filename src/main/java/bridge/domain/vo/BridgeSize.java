@@ -1,6 +1,7 @@
 package bridge.domain.vo;
 
-import static bridge.enumeration.ErrorMessage.*;
+import static bridge.enumeration.ErrorMessage.NOT_NUMBER;
+import static bridge.enumeration.ErrorMessage.OUT_OF_RANGE;
 import static java.lang.Integer.parseInt;
 
 public class BridgeSize {

@@ -42,7 +42,6 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
