@@ -39,12 +39,12 @@ public class OutputView {
      */
     public void printMap(List<String> aboveOfBridgeResult, List<String> belowOfBridgeResult) {
 
-        for (int i = 0; i < aboveOfBridgeResult.size(); i++) {
-            System.out.print(aboveOfBridgeResult.get(i));
+        for (int bridgeIndex = 0; bridgeIndex < aboveOfBridgeResult.size(); bridgeIndex++) {
+            System.out.print(aboveOfBridgeResult.get(bridgeIndex));
         }
         System.out.println();
-        for (int i = 0; i < belowOfBridgeResult.size(); i++) {
-            System.out.print(belowOfBridgeResult.get(i));
+        for (int bridgeIndex = 0; bridgeIndex < belowOfBridgeResult.size(); bridgeIndex++) {
+            System.out.print(belowOfBridgeResult.get(bridgeIndex));
         }
         System.out.println();
     }
