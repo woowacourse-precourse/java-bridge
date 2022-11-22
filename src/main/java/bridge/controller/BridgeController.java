@@ -10,11 +10,11 @@ public class BridgeController {
     private final BridgeGame bridgeGame;
 
     public BridgeController() {
+        InputView.printStartMessage();
         bridgeGame = makeSizedBridge();
     }
 
     public void run() {
-        InputView.printStartMessage();
         playBridgeGame();
         OutputView.printResult(bridgeGame);
     }
