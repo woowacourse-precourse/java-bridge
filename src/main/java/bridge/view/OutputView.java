@@ -35,13 +35,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Boolean userResult,int userCount,String input) {
+    public void printResult(Boolean userResult,Integer[] userData,String input) {
         System.out.println("최종 게임 결과");
-        printMap(userResult,this.bridgeSize-1,input);
+        printMap(userResult,userData[1],input);
         changeLine();
         System.out.printf("게임 성공 여부: %s",isSuccess(userResult));
         changeLine();
-        System.out.printf("총 시도한 횟수: %d",userCount);
+        System.out.printf("총 시도한 횟수: %d",userData[0]);
     }
     private String isSuccess(Boolean userResult){
         if(userResult) return SUCCESS;

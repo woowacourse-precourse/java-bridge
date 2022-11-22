@@ -10,6 +10,7 @@ public class GameLogic {
     private BridgeGame bridgeGame;
     private String inputMove;
     private String inputRetry;
+    private Integer[] userData = new Integer[2];
     GameLogic(){
         bridgeGame = new BridgeGame();
         inputView =new InputView(new InputConsole());
@@ -74,7 +75,9 @@ public class GameLogic {
         }
     }
     private void showResult(){
-        outputView.printResult(bridgeGame.getUser().getResult(),bridgeGame.getUser().getCount(),this.inputMove);
+        userData[0] = bridgeGame.getUser().getCount();
+        userData[1] = bridgeGame.getUser().getPosition();
+        outputView.printResult(bridgeGame.getUser().getResult(),userData,this.inputMove);
     }
     private void changeLine(){
         System.out.println();

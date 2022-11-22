@@ -57,7 +57,10 @@ public class ViewTest extends ApplicationTest {
     void printResultTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printResult(true,3,"U");
+        Integer[] userData = new Integer[2];
+        userData[0] = 3;
+        userData[1] = 3;
+        outputView.printResult(true,userData,"U");
         assertThat(output()).contains(
                 "[ O |   | O | O ]",
                 "[   | O |   |   ]",
