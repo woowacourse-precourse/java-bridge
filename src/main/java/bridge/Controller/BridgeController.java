@@ -6,6 +6,7 @@ import bridge.View.OutputView;
 
 public class BridgeController {
     static int count_try;
+    static int result_print;
     static String continue_game = "Start";
     private static final String Retry = "Retry";
     private static final String Quit = "Quit";
@@ -17,13 +18,19 @@ public class BridgeController {
     }
 
     public void run() {
-        BridgeGame game = new_BridgeGame();
-        while (!continue_game.contains(Quit)) {
-            String moving = MovingCheck(InputView.readMoving());
-            continue_game = OutputView.printMap(game.move(moving), moving);
-            Gaming(game);
+        try {
+            BridgeGame game = new_BridgeGame();
+
+            while (!continue_game.contains(Quit)) {
+                String moving = MovingCheck(InputView.readMoving());
+                continue_game = OutputView.printMap(game.move(moving), moving);
+                Gaming(game);
+            }
+            OutputView.printCount(continue_game, count_try);
         }
-        OutputView.printCount(continue_game, count_try);
+        catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 
     private BridgeGame new_BridgeGame() {

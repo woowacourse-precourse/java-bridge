@@ -42,18 +42,19 @@ public class OutputView {
         System.out.println(start);
     }
 
-    public static int BridgeLengthCheck(String val) {
+    public static int BridgeLengthCheck(String val) throws IllegalArgumentException {
         return PrintLenError(toInt(val));
     }
 
-    private static int PrintLenError(int len) {
+    private static int PrintLenError(int len) throws IllegalArgumentException {
         if (len >= 3 && len <= 20) {
             return len;
         }
+        System.out.println(error + LenError);
         throw new IllegalArgumentException(error + LenError);
     }
 
-    private static int toInt(String val) {
+    private static int toInt(String val) throws IllegalArgumentException {
         try {
             return Integer.parseInt(val);
         } catch (NumberFormatException e) {
@@ -61,14 +62,14 @@ public class OutputView {
         }
     }
 
-    public static String MovingCheck(String moving) {
+    public static String MovingCheck(String moving) throws IllegalArgumentException {
         if (!MovingCheck.contains(moving)) {
             throw new IllegalArgumentException(error + MovingError);
         }
         return moving;
     }
 
-    public static String RetryCheck(String retry) {
+    public static String RetryCheck(String retry) throws IllegalArgumentException {
         if (!ReQuCheck.contains(retry)) {
             throw new IllegalArgumentException(error + RetryQuitError);
         }
