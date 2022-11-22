@@ -35,14 +35,7 @@ public class BridgeGame {
         while (round != bridge.size()) {
             OutputView.movePrint();
             input = inputView.readMoving();
-            if (!comparingInputBridge()) {
-                wrongCase();
-                if(choose()) return;
-                retry();
-            }
-            if (comparingInputBridge()) {
-                correctCase();
-            }
+            if (!midChecking()) return;
         }
         OutputView.printResult(up, down, true, tryCount);
     }
@@ -58,6 +51,19 @@ public class BridgeGame {
         tryCount++;
     }
 
+    public boolean midChecking(){
+        if (!comparingInputBridge()) {
+            wrongCase();
+            if(choose()){
+                OutputView.printResult(up, down, false, tryCount);
+                return false;
+            }
+            retry();
+        }
+        if (comparingInputBridge()) correctCase();
+        return true;
+    }
+
     public boolean comparingInputBridge() {
         return this.input.equals(bridge.get(round));
     }
@@ -67,6 +73,7 @@ public class BridgeGame {
         if (input.equals("U")) {
             up.add(" O ");
             down.add("   ");
+            OutputView.printMap(this.up, this.down);
             return;
         }
         up.add("   ");
@@ -78,6 +85,7 @@ public class BridgeGame {
         if (input.equals("U")) {
             up.add(" X ");
             down.add("   ");
+            OutputView.printMap(this.up, this.down);
             return;
         }
         up.add("   ");
