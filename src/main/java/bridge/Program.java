@@ -3,6 +3,7 @@ package bridge;
 import java.util.List;
 
 public class Program {
+
     private static OutputView outputView = new OutputView();
     private static InputView inputView = new InputView();
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
