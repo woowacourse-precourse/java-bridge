@@ -1,4 +1,4 @@
-package bridge;
+package bridge.cache;
 
 import bridge.domain.BridgeStatus;
 

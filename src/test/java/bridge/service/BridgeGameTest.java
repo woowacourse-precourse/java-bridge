@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import bridge.BridgeMaker;
-import bridge.BridgeStatusSaver;
+import bridge.cache.BridgeStatusSaver;
 import bridge.domain.BridgeLength;
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
