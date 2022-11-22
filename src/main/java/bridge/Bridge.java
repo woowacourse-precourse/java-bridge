@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -15,5 +16,22 @@ public class Bridge {
             return Result.SUCCESS;
         }
         return Result.FAIL;
+    }
+
+    private static Command handleRandomStringToCommand(String command) {
+        if (command.equals("0")) {
+            return Command.DOWN;
+        } else if (command.equals("1")) {
+            return Command.UP;
+        }
+        throw new IllegalArgumentException("Internal Server Error - 다리 생성 (0,1)");
+    }
+
+    public static Bridge mapToBridge(List<String> random) {
+        List<Command> commands = new ArrayList<>();
+        for (String command : random) {
+            commands.add(handleRandomStringToCommand(command));
+        }
+        return new Bridge(commands);
     }
 }
