@@ -12,7 +12,7 @@ public class OutputView {
     private static final String UP_BRIDGE = "U";
     private static final String DOWN_BRIDGE = "D";
     private static final String SUCCESS = "성공";
-    private static final String FAIL = "D";
+    private static final String FAIL = "실패";
     private static final String START = "[";
     private static final String NOT_PASS = "   |";
 

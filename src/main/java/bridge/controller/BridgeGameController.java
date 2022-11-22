@@ -58,7 +58,10 @@ public class BridgeGameController {
         String userInput = inputView.readGameCommand();
         boolean restartResult = bridgeGame.retry(userInput);
 
-        if (restartResult) count++;
+        if (restartResult) {
+            bridgeGame.init();
+            count++;
+        }
 
         return restartResult;
     }

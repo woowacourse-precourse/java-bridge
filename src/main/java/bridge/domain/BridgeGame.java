@@ -48,8 +48,6 @@ public class BridgeGame {
     public boolean retry(String userInput) {
         boolean result = checkRestart(userInput);
 
-        init();
-
         return result;
     }
 
