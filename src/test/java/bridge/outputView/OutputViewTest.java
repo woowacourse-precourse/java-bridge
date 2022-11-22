@@ -37,11 +37,7 @@ public class OutputViewTest extends NsTest {
         if (!isSuccess) {
             successMessage = "실패";
         }
-        assertThat(output()).contains(
-                printedMap.get(0),
-                printedMap.get(1),
-                successMessage,
-                countOfPlay.toString());
+        assertThat(output()).contains(printedMap.get(0), printedMap.get(1), successMessage, countOfPlay.toString());
     }
 
     private static Stream<Arguments> provideParametersForPrintMap() {

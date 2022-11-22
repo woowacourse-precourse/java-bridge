@@ -12,6 +12,9 @@ public class GameStart {
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
     private List<String> bridge;
+    boolean isSuccess;
+    boolean isRestart;
+    int countOfPlay;
 
 
     public GameStart() {
@@ -23,9 +26,6 @@ public class GameStart {
 
     public void run() {
         start();
-        boolean isSuccess = false;
-        boolean isRestart = true;
-        int countOfPlay = 0;
         while (!isSuccess && isRestart) {
             countOfPlay++;
             isSuccess = play();
@@ -50,6 +50,9 @@ public class GameStart {
         outputView.printStartMessage();
         inputBridge();
         outputView.setBridge(bridge);
+        isSuccess = false;
+        isRestart = true;
+        countOfPlay = 0;
     }
 
     private boolean checkRestart(boolean isSuccess) {
