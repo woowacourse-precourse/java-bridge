@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.View.ExceptionMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 
