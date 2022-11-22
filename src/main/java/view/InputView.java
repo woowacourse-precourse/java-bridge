@@ -9,8 +9,7 @@ import util.validator.MovingValidator;
 public class InputView {
     private static final InputView inputView = new InputView();
 
-    private InputView() {
-    }
+    private InputView() {}
 
     public static InputView getInstance() {
         return inputView;
