@@ -16,13 +16,17 @@ public class BridgeGame {
     private boolean gameFailed;
 
     public BridgeGame(int size) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        bridge = new Bridge(bridgeMaker.makeBridge(size));
+        bridge = makeBridge(size);
         user = new User();
         matchingStatus = new ArrayList<>();
         totalAttempts = 1;
         gameFailed = false;
+    }
+
+    private Bridge makeBridge(int size) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return new Bridge(bridgeMaker.makeBridge(size));
     }
 
     /**
