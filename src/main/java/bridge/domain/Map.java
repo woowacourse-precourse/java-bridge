@@ -6,6 +6,7 @@ import java.util.List;
 import static bridge.Constants.X;
 
 public class Map {
+
 	private final List<List<String>> map;
 
 	public Map() {
@@ -13,7 +14,7 @@ public class Map {
 		init();
 	}
 
-	void init() {
+	public void init() {
 		map.clear();
 		map.add(new ArrayList<>());
 		map.add(new ArrayList<>());
@@ -33,8 +34,9 @@ public class Map {
 
 	public boolean containX() {
 		for (List<String> map : this.map) {
-			if (map.contains(X))
-				return true;
+			if (map.contains(X)) {
+					return true;
+			}
 		}
 		return false;
 	}

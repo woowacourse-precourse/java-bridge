@@ -15,12 +15,10 @@ class BridgeGameTest {
 		List<List<String>> answer = new ArrayList<>();
 		answer.add(new ArrayList<>(Arrays.asList("O")));
 		answer.add(new ArrayList<>(Arrays.asList(" ")));
-
 		Map map = new Map();
 		Bridge bridge = new Bridge(Arrays.asList("U", "U", "D"));
 		PlayerBridge playerBridge = new PlayerBridge();
 		playerBridge.add("U");
-
 		BridgeGame.move(map, bridge, playerBridge);
 
 		assertEquals(map.getMap(), answer);
@@ -31,7 +29,6 @@ class BridgeGameTest {
 		List<List<String>> mapAnswer = new ArrayList<>();
 		mapAnswer.add(new ArrayList<>());
 		mapAnswer.add(new ArrayList<>());
-
 		Map map = new Map();
 		map.addUp("O");
 		map.addDown(" ");
@@ -61,6 +58,7 @@ class BridgeGameTest {
 	@Test
 	void success_성공_테스트() {
 		Map map = new Map();
+
 		for (int i = 0; i < 3; i++) {
 			map.addUp("O");
 			map.addDown(" ");
@@ -71,6 +69,7 @@ class BridgeGameTest {
 	@Test
 	void success_실패_테스트() {
 		Map map = new Map();
+
 		for (int i = 0; i < 2; i++) {
 			map.addUp("O");
 			map.addDown(" ");

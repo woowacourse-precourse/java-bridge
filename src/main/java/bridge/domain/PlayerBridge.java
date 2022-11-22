@@ -6,15 +6,15 @@ import java.util.List;
 import static bridge.Constants.DOWN;
 import static bridge.Constants.UP;
 
-
 public class PlayerBridge {
+
 	private final List<String> playerBridge;
 
 	public PlayerBridge() {
 		this.playerBridge = new ArrayList<>();
 	}
 
-	void init() {
+	public void init() {
 		playerBridge.clear();
 	}
 
@@ -29,11 +29,11 @@ public class PlayerBridge {
 		}
 	}
 
-	int getLastIndex() {
+	public int getLastIndex() {
 		return playerBridge.size() - 1;
 	}
 
-	String getLastValue() {
+	public String getLastValue() {
 		return playerBridge.get(getLastIndex());
 	}
 }

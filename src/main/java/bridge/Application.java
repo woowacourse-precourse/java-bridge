@@ -7,14 +7,15 @@ import bridge.domain.view.OutputView;
 import static bridge.Constants.*;
 
 public class Application {
-	static Bridge bridge;
-	static PlayerBridge playerBridge = new PlayerBridge();
-	static Map map = new Map();
+
+	private static Bridge bridge;
+	private static final PlayerBridge playerBridge = new PlayerBridge();
+	private static final Map map = new Map();
 	private static int count = 1;
 
 	public static void main(String[] args) {
-
 		int size = makeBridge();
+
 		runGame(size);
 	}
 
@@ -38,7 +39,7 @@ public class Application {
 			BridgeGame.move(map, bridge, playerBridge);
 			OutputView.printMap(map);
 			if (whenFail()) {
-				return;
+					return;
 			}
 		}
 		OutputView.printResult(map, SUCCESS, count);

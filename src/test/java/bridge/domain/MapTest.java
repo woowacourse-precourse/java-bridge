@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MapTest {
+
 	Map map;
 	List<List<String>> mapAnswer;
 
@@ -57,15 +57,16 @@ class MapTest {
 	}
 
 	@Test
-	void containX_true_테스트(){
+	void containX_true_테스트() {
 		map.addUp("O");
 		map.addUp("X");
 		map.addDown(" ");
 		map.addDown(" ");
 		assertTrue(map.containX());
 	}
+
 	@Test
-	void containX_false_테스트(){
+	void containX_false_테스트() {
 		map.addUp("O");
 		map.addUp(" ");
 		map.addDown(" ");

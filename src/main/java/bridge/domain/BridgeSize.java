@@ -4,6 +4,7 @@ import static bridge.Constants.SIZE_MAX;
 import static bridge.Constants.SIZE_MIN;
 
 public class BridgeSize {
+
 	private final int bridgeSize;
 
 	public BridgeSize(String input) {

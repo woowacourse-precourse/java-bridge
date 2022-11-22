@@ -6,6 +6,7 @@ import static bridge.Constants.DOWN;
 import static bridge.Constants.UP;
 
 public class Bridge {
+
 	private final List<String> bridge;
 
 	public Bridge(List<String> bridge) {
@@ -15,12 +16,13 @@ public class Bridge {
 
 	private void validate(List<String> bridge) {
 		for (String status : bridge) {
-			if (!status.equals(UP) && !status.equals(DOWN))
-				throw new IllegalArgumentException();
+			if (!status.equals(UP) && !status.equals(DOWN)) {
+					throw new IllegalArgumentException();
+			}
 		}
 	}
 
-	String getValueOfIndex(int index){
+	public String getValueOfIndex(int index) {
 		return bridge.get(index);
 	}
 }

@@ -12,7 +12,7 @@ class BridgeRandomNumberGeneratorTest {
 			int number = new BridgeRandomNumberGenerator().generate();
 
 			if (number != 0 && number != 1) {
-				fail();
+					fail();
 			}
 		}
 	}

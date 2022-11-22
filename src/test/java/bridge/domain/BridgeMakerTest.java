@@ -13,10 +13,9 @@ class BridgeMakerTest {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		int size = 3;
 		List<String> bridge = bridgeMaker.makeBridge(size);
-
 		int count = 0;
-		for (String status : bridge){
-			if (status.equals("U") || status.equals("D")){
+		for (String status : bridge) {
+			if (status.equals("U") || status.equals("D")) {
 				count++;
 			}
 		}

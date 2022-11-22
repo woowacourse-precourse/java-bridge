@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerBridgeTest {
 
-
 	@ValueSource(strings = {" U", "d", "3", " "})
 	@ParameterizedTest
 	void 예외처리(String input) {
