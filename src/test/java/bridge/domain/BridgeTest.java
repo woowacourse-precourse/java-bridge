@@ -1,13 +1,12 @@
 package bridge.domain;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import bridge.exception.InvalidDirectionException;
 import bridge.exception.LengthOutOfRangeException;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class BridgeTest {
   private static final List<String> sixLengthBridgeShape = List.of("U", "U", "D", "U", "U", "D");
