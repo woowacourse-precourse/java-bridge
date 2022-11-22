@@ -9,23 +9,30 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> bridge;
-    private List<String> userAnswerTable;
+    private final List<String> upBridgeUserAnswerTable;
+    private final List<String> downBridgeUserAnswerTable;
     private int tryCount;
 
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
+        this.upBridgeUserAnswerTable = new ArrayList<>();
+        this.downBridgeUserAnswerTable = new ArrayList<>();
+        this.tryCount = 1;
+    }
     public List<String> getUserAnswerTable() {
-        return userAnswerTable;
+        return upBridgeUserAnswerTable;
     }
 
     public int getTryCount() {
         return tryCount;
     }
 
+    public List<String> getUpBridgeUserAnswerTable() {
+        return upBridgeUserAnswerTable;
+    }
 
-
-    public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
-        userAnswerTable = new ArrayList<>();
-        this.tryCount = 0;
+    public List<String> getDownBridgeUserAnswerTable() {
+        return downBridgeUserAnswerTable;
     }
 
     /**
@@ -33,13 +40,39 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String userChoice) {
-        String correctAnswer = bridge.get(userAnswerTable.size());
-        userAnswerTable.add("O");
-        if (!correctAnswer.equals(userChoice)) {
-            int curLocation = userAnswerTable.size() - 1;
-            userAnswerTable.set(curLocation, "X");
+    public boolean move(String userChoice) {
+        boolean correct = true;
+        if (userChoice.equals("U")) {
+            correct = upBridgeSetting(userChoice);
         }
+        if (userChoice.equals("D")) {
+            correct = downBridgeSetting(userChoice);
+        }
+        return correct;
+    }
+
+    private boolean upBridgeSetting(String userChoice) {
+        String correctAnswer = bridge.get(upBridgeUserAnswerTable.size());
+        downBridgeUserAnswerTable.add(" ");
+        upBridgeUserAnswerTable.add("X");
+        if (correctAnswer.equals(userChoice)) {
+            int curLocation = upBridgeUserAnswerTable.size() - 1;
+            upBridgeUserAnswerTable.set(curLocation, "O");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean downBridgeSetting(String userChoice) {
+        String correctAnswer = bridge.get(downBridgeUserAnswerTable.size());
+        upBridgeUserAnswerTable.add(" ");
+        downBridgeUserAnswerTable.add("X");
+        if (correctAnswer.equals(userChoice)) {
+            int curLocation = downBridgeUserAnswerTable.size() - 1;
+            downBridgeUserAnswerTable.set(curLocation, "O");
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -48,7 +81,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        userAnswerTable.clear();
+        upBridgeUserAnswerTable.clear();
+        downBridgeUserAnswerTable.clear();
         tryCount++;
     }
 }
