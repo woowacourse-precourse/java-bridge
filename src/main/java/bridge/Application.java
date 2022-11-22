@@ -14,10 +14,10 @@ public class Application {
 }
 
 class Bridge {
-    private GameUI gameUI;
-    private InputView inputView;
+    private final GameUI gameUI = new GameUI();
+    private final InputView inputView = new InputView();
     private BridgeMaker bridgeMaker;
-    private OutputView outputView;
+    private final OutputView outputView = new OutputView();
     public List<String> gameStart() {
         gameUI.gameStart();
         gameUI.getBridgeSize();

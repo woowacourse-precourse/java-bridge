@@ -28,8 +28,6 @@ public class BridgeGame {
         if (gameCommand.equals("R")) {
             return 1;
         }
-        if (gameCommand.equals("Q")) {
-            return 0;
-        }
+        return 0;
     }
 }
