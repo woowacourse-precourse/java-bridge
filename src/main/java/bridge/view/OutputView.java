@@ -58,5 +58,14 @@ public class OutputView {
         System.out.println(START + downView + END);
     }
 
+    private void appendDirection(String moveDirection, boolean isSameValueComputerAndUser) {
+        if (moveDirection.equals(UP)) {
+            appendUpView(isSameValueComputerAndUser);
+        }
+        if (moveDirection.equals(DOWN)) {
+            appendDownView(isSameValueComputerAndUser);
+        }
+    }
+
 
 }
