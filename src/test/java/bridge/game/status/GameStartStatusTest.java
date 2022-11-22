@@ -13,7 +13,11 @@ class GameStartStatusTest {
 
     @Test
     void 게임시작상태_다음은_게임_다리_생성_상태입니다() {
-        var actual = TestUtils.statusNext(new GameStartStatus(), new FakeContext());
+
+        var actual = TestUtils.statusNext(
+                new GameStartStatus(),
+                new FakeContext()
+        );
 
         assertThat(actual).isInstanceOf(GenerateBridgeStatus.class);
     }

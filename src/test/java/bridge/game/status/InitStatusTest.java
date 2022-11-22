@@ -1,9 +1,9 @@
 package bridge.game.status;
 
-import bridge.game.context.BridgeGameContextImpl;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import bridge.game.context.FakeContext;
+import bridge.utils.TestUtils;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -13,8 +13,13 @@ class InitStatusTest {
 
     @Test
     void 초기상태_다음상태는_게임시작상태입니다() {
-        var actual = new InitStatus().next(new BridgeGameContextImpl(), new InputView(), new OutputView());
-        Assertions.assertThat(actual).isInstanceOf(GameStartStatus.class);
+
+        var actual = TestUtils.statusNext(
+                new InitStatus(),
+                new FakeContext()
+        );
+
+        assertThat(actual).isInstanceOf(GameStartStatus.class);
     }
 
 }
