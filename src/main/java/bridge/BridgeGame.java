@@ -69,7 +69,7 @@ public class BridgeGame {
         return true;
     }
 
-    public static int getAnswerCount(String direction) {
+    public static int getTriedAnswerCount(String direction) {
         triedAnswers.add(direction);
         return triedAnswers.size();
     }

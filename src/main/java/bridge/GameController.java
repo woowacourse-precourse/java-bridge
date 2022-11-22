@@ -37,7 +37,7 @@ public class GameController {
         String command;
         do {
             String direction = getMoveCommand(outputView, inputView);
-            numberOfTriedAnswers = BridgeGame.getAnswerCount(direction);
+            numberOfTriedAnswers = BridgeGame.getTriedAnswerCount(direction);
 
             getPrintMapAfterMove(outputView, bridge, bridgeGame, numberOfTriedAnswers, direction);
 
