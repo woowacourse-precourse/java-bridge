@@ -58,4 +58,20 @@ public class OutputView {
         }
         System.out.println(GAME_FINISH_TOTAL_TRY_MSG + bridgeGame.getTryCount());
     }
+
+    public void printWelcomeMessage() {
+        System.out.println(GAME_START_HEADER_MSG);
+    }
+
+    public void printAskDirectionMessage() {
+        System.out.println(GAME_ASK_DIRECTION_MSG);
+    }
+
+    public void printAskRetryMessage() {
+        System.out.println(GAME_ASK_RETRY_MSG);
+    }
+
+    public void printAskBridgeSize() {
+        System.out.println(GAME_ASK_BRIDGE_SIZE_MSG);
+    }
 }
