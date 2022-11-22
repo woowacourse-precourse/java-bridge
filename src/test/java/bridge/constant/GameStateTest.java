@@ -2,6 +2,7 @@ package bridge.constant;
 
 import static bridge.constant.GameState.END_FAIL;
 import static bridge.constant.GameState.END_SUCCESS;
+import static bridge.constant.GameState.PROCEEDING_FAIL;
 import static bridge.constant.GameState.PROCEEDING_SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,8 +26,14 @@ class GameStateTest {
     }
 
     @Test
-    void 게임을_종료상태로_반환() throws Exception {
+    void 진행성공상태인_게임을_종료성공상태로_반환() throws Exception {
         GameState gameState = GameState.toEnd(PROCEEDING_SUCCESS);
         assertThat(gameState).isEqualTo(END_SUCCESS);
+    }
+
+    @Test
+    void 진행실패상태인_게임을_종료실패상태로_반환() throws Exception {
+        GameState gameState = GameState.toEnd(PROCEEDING_FAIL);
+        assertThat(gameState).isEqualTo(END_FAIL);
     }
 }
