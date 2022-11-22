@@ -12,10 +12,10 @@ public class BridgeGame {
     private int currentPosition;
 
     public BridgeGame(Bridge bridge) {
-        initBridgeGame(bridge);
+        makeBridgeGame(bridge);
     }
 
-    private void initBridgeGame(Bridge bridge) {
+    private void makeBridgeGame(Bridge bridge) {
         this.bridge = bridge;
         bridgeGameResult = new BridgeGameResult();
         currentPosition = -1;
@@ -58,7 +58,7 @@ public class BridgeGame {
      */
     public void retry(Bridge bridge) {
         numberOfTry.increaseCount();
-        initBridgeGame(bridge);
+        makeBridgeGame(bridge);
     }
 
     public String getSuccessOrFailure() {
