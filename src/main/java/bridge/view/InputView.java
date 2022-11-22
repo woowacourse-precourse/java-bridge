@@ -14,26 +14,41 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize = Console.readLine();
-        bridgeGameInputException.validateBridgeSize(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        try {
+            String bridgeSize = Console.readLine();
+            bridgeGameInputException.validateBridgeSize(bridgeSize);
+            return Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return readBridgeSize();
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String move = Console.readLine();
-        bridgeGameInputException.validateMovingChoice(move);
-        return move;
+        try {
+            String move = Console.readLine();
+            bridgeGameInputException.validateMovingChoice(move);
+            return move;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return readMoving();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String gameCommand = Console.readLine();
-        bridgeGameInputException.validateGameCommand(gameCommand);
-        return gameCommand;
+        try {
+            String gameCommand = Console.readLine();
+            bridgeGameInputException.validateGameCommand(gameCommand);
+            return gameCommand;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return readGameCommand();
     }
 }
