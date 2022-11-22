@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.Bridge;
 import bridge.state.BridgeGameState;
 import bridge.state.ErrorState;
 import bridge.state.RetryState;
