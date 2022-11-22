@@ -4,7 +4,10 @@ import bridge.model.Bridge;
 import bridge.model.BridgeMap;
 import bridge.model.Player;
 
-import static bridge.util.BridgeConstant.*;
+import static bridge.util.BridgeConstant.CONTINUE_GAME;
+import static bridge.util.BridgeConstant.QUIT_GAME;
+import static bridge.util.BridgeConstant.GAME_RETRY_KEY;
+import static bridge.util.BridgeConstant.FALL_BLOCK;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
