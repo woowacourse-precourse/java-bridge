@@ -1,4 +1,4 @@
-package bridge.view.util;
+package bridge.util;
 
 import bridge.domain.Bridge;
 import bridge.domain.Result;
@@ -11,7 +11,6 @@ import java.io.PrintStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeMapDrawerTest {
     private static OutputStream consoleOut;

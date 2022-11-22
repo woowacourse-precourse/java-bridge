@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.domain.GameStatus;
 import bridge.domain.Result;
-import bridge.view.util.BridgeMapDrawer;
+import bridge.util.BridgeMapDrawer;
 
 
 /**

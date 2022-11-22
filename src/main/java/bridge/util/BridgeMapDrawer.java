@@ -1,4 +1,4 @@
-package bridge.view.util;
+package bridge.util;
 
 import bridge.domain.MovementType;
 import bridge.domain.Bridge;
