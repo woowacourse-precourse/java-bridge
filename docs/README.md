@@ -2,25 +2,25 @@
 ## 기능 구현 목록
 
 ### BridgeRandomNumberGenerator : 다리를 만들기 위한 이진수를 반환한다.
-- [x] 지정된 범위 내의 숫자를 반환한다. #generate
+- [x] 지정된 범위 내의 숫자를 반환한다. #generate()
 
 ### BridgeMaker : 다리를 일급 컬렉션으로 만들수 있게 도와준다.
-- [x] 지정된 숫자만큼 다리를 만든다. #makeBridge
-- [x] 다리의 일부를 만든다. #makePartOfBridge
+- [x] 지정된 숫자만큼 다리를 만든다. #makeBridge()
+- [x] 다리의 일부를 만든다. #makePartOfBridge()
 
 ### Bridge : 초기 지정하는 다리 사이즈로 생성되고, 사용자 선택을 채점하기 위한 정답으로 여겨지는 클래스
-- [x] 다리 길이를 반환한다. #getBridgeLength
-- [x] 다리의 특정 인덱스번째 정답을 반환한다. #getBridgeByIndex
+- [x] 다리 길이를 반환한다. #getBridgeLength()
+- [x] 다리의 특정 인덱스번째 정답을 반환한다. #getBridgeByIndex()
 
 ### Player: 사용자의 이동 선택
-- [x] 사용자의 답을 추가한다. #addChoice
-- [x] 사용자의 특정 인덱스번째 답을 반환한다. #getChoiceIndex
-- [x] 사용자의 선택 수를 반환한다. #getNumberOfChoice
-- [x] 사용자의 마지막 선택을 반환한다. #getLastChoice
+- [x] 사용자의 답을 추가한다. #addChoice()
+- [x] 사용자의 특정 인덱스번째 답을 반환한다. #getChoiceIndex()
+- [x] 사용자의 선택 수를 반환한다. #getNumberOfChoice()
+- [x] 사용자의 마지막 선택을 반환한다. #getLastChoice()
 
 ### ClearStatus: 최종 결과 출력시 성공, 실패를 반환하기 위한 논리 기반의 열거형 클래스
-- [x] 성공 참거짓 유무에 따른 열거형 자료의 집합을 반환한다. #getMessageByClear
-- [x] 성공 참거짓 유무의 문자열을 반환한다. #getMessage
+- [x] 성공 참거짓 유무에 따른 열거형 자료의 집합을 반환한다. #getMessageByClear()
+- [x] 성공 참거짓 유무의 문자열을 반환한다. #getMessage()
 
 ### InputView : 입력 관련 출력
 - [x] 다리의 길이를 입력받는다. #readBridgeSize()
