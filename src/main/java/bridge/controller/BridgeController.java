@@ -7,7 +7,8 @@ import bridge.view.OutputView;
 
 public class BridgeController {
 
-    BridgeGame bridgeGame;
+    private BridgeGame bridgeGame;
+    private Player player;
 
     public void run() {
         InputView.printStartMessage();
