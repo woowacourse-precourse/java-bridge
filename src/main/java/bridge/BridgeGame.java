@@ -29,7 +29,6 @@ public class BridgeGame {
         Boolean moveSuccess;
         do{
             moveSuccess = move();
-            System.out.println(trialNumber);
         } while((moveSuccess == false) && retry(gameSystem.retryOrNot()));
     }
 

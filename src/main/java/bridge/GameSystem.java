@@ -7,6 +7,12 @@ public class GameSystem {
     Player player;
     AnswerBridge answerBridge;
     int bridgeSize;
+    private static final String UP_CHARACTER = "U";
+    private static final String DOWN_CHARACTER = "D";
+    private static final String SUCCESS_CHARACTER = "O";
+    private static final String FAIL_CHARACTER = "X";
+    private static final String BLANK_CHARACTER = " ";
+    private static final String RETRY_CHARACTER = "R";
     public GameSystem(Player player,AnswerBridge answerBridge){
         this.player = player;
         this.answerBridge = answerBridge;
@@ -16,40 +22,38 @@ public class GameSystem {
     public Boolean move(int index){
         String choice = InputView.readMoving();
         if(Objects.equals(choice, answerBridge.answer.get(index))){
-            System.out.println("SUCCESS");
             moveSuccess(index,choice);
             OutputView.printMap(player,index);
             return true;
         }
-        System.out.println("FAIL");
         moveFail(index,choice);
         OutputView.printMap(player,index);
         return false;
     }
 
     public void moveSuccess(int index, String choice){
-        if(Objects.equals(choice,"U")) {
-            player.bridges.upBridge.add(index,"O");
-            player.bridges.downBridge.add(index," ");
+        if(Objects.equals(choice,UP_CHARACTER)) {
+            player.bridges.upBridge.add(index,SUCCESS_CHARACTER);
+            player.bridges.downBridge.add(index,BLANK_CHARACTER);
         }
-        if(Objects.equals(choice, "D")){
-            player.bridges.upBridge.add(index," ");
-            player.bridges.downBridge.add(index,"O");
+        if(Objects.equals(choice, DOWN_CHARACTER)){
+            player.bridges.upBridge.add(index,BLANK_CHARACTER);
+            player.bridges.downBridge.add(index,SUCCESS_CHARACTER);
         }
     }
     public void moveFail(int index,String choice){
-        if(Objects.equals(choice,"U")) {
-            player.bridges.upBridge.add(index,"X");
-            player.bridges.downBridge.add(index," ");
+        if(Objects.equals(choice,UP_CHARACTER)) {
+            player.bridges.upBridge.add(index,FAIL_CHARACTER);
+            player.bridges.downBridge.add(index,BLANK_CHARACTER);
         }
-        if(Objects.equals(choice,"D")){
-            player.bridges.upBridge.add(index," ");
-            player.bridges.downBridge.add(index,"X");
+        if(Objects.equals(choice,DOWN_CHARACTER)){
+            player.bridges.upBridge.add(index,BLANK_CHARACTER);
+            player.bridges.downBridge.add(index,FAIL_CHARACTER);
         }
     }
     public Boolean retryOrNot(){
         String retry = InputView.readGameCommand();
-        if(Objects.equals(retry,"R")) return true;
+        if(Objects.equals(retry,RETRY_CHARACTER)) return true;
 
         return false;
     }
