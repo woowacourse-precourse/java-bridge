@@ -57,19 +57,23 @@ public class OutputView {
 
     private List<String> getUpperBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail) {
         List<String> upperBridgeResult = new ArrayList<>();
-        for (int bridgeIndex = 0; bridgeIndex < currentUserPosition; bridgeIndex++) {
+        for (int bridgeIndex = 0; bridgeIndex <= currentUserPosition; bridgeIndex++) {
             upperBridgeResult.add(compareBridgeBlock(bridge.get(bridgeIndex), "U"));
         }
-        upperBridgeResult.add(compareFailBridgeBlock(bridge.get(currentUserPosition), "U", isFail));
+        if (isFail) {
+            upperBridgeResult.set(currentUserPosition, compareFailBridgeBlock(upperBridgeResult.get(currentUserPosition), isFail));
+        }
         return upperBridgeResult;
     }
 
     private List<String> getLowerBridgeResult(List<String> bridge, int currentUserPosition, boolean isFail) {
         List<String> lowerBridgeResult = new ArrayList<>();
-        for (int bridgeIndex = 0; bridgeIndex < currentUserPosition; bridgeIndex++) {
+        for (int bridgeIndex = 0; bridgeIndex <= currentUserPosition; bridgeIndex++) {
             lowerBridgeResult.add(compareBridgeBlock(bridge.get(bridgeIndex), "D"));
         }
-        lowerBridgeResult.add(compareFailBridgeBlock(bridge.get(currentUserPosition), "D", isFail));
+        if (isFail) {
+            lowerBridgeResult.set(currentUserPosition, compareFailBridgeBlock(lowerBridgeResult.get(currentUserPosition), isFail));
+        }
         return lowerBridgeResult;
     }
 
@@ -80,11 +84,9 @@ public class OutputView {
         return "   ";
     }
 
-    private String compareFailBridgeBlock(String bridgeBlock, String comparatorBridgeBlock, boolean isFail) {
-        if (bridgeBlock.equals(comparatorBridgeBlock) && isFail) {
+    private String compareFailBridgeBlock(String lastBridgeBlock, boolean isFail) {
+        if (lastBridgeBlock.equals("   ") && isFail) {
             return " X ";
-        } else if (bridgeBlock.equals(comparatorBridgeBlock)) {
-            return " O ";
         }
         return "   ";
     }
