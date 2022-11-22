@@ -5,8 +5,14 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.controller.BridgeController;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
+import bridge.views.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.assertj.core.api.AbstractBooleanArrayAssert;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -64,5 +70,16 @@ class ApplicationTest extends NsTest {
         public int generate() {
             return numbers.remove(0);
         }
+    }
+
+    @Test
+    void 다리OX_테스트() {
+        BridgeController bridgeController = new BridgeController();
+        boolean playerStatus = bridgeController.playerStatus();
+        AbstractBooleanAssert(playerStatus).containsExactly(true);
+
+    }
+
+    private <SELF extends AbstractBooleanArrayAssert<SELF>> AbstractBooleanArrayAssert AbstractBooleanAssert(boolean playerStatus) {
     }
 }
