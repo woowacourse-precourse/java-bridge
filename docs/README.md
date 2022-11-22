@@ -77,7 +77,7 @@
 <summary>Class Diagram</summary>
 <div markdown="1">       
 
-![클래스다이어그램](./4주차-클래스다이어그램.png)
+![클래스다이어그램](./4주차-classdiagram-v2.png)
 
 </div>
 </details>
