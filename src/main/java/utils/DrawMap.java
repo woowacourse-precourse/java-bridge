@@ -22,6 +22,17 @@ public class DrawMap {
     }
 
     /**
+     * 다리 전체를 String 값으로 반환하는 메서드
+     */
+    public String returnMapToPrint() {
+        setUpperLog();
+        setLowerLog();
+        setUpperSideOfMap();
+        setLowerLog();
+        return upperSideOfMap.toString() + "\n" + lowerSideOfMap.toString();
+    }
+
+    /**
      * 다리의 위쪽 부분 결과를 저장하는 메서드
      */
     public void setUpperLog() {
