@@ -39,3 +39,6 @@
 > - [x] 결과 출력 : OutputView.printResult()
 
 5. 리팩터링
+> - [x] 함수 분리
+> - [x] 클래스명 변경
+> - [x] Test 및 Bug fix

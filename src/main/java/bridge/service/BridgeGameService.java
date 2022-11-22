@@ -11,7 +11,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
 
-public class BridgeGameInputService {
+public class BridgeGameService {
     private InputView bridgeGameInputView;
     private OutputView bridgeGameOutputView;
     private Bridge bridge;
@@ -20,7 +20,7 @@ public class BridgeGameInputService {
     private List<String> movedBridge;
     private static String readRetryGameCommand = "";
 
-    public BridgeGameInputService() {
+    public BridgeGameService() {
         this.bridgeGameInputView = new InputView();
         this.bridgeGameOutputView = new OutputView();
         this.bridgeGame = new BridgeGame();
@@ -64,21 +64,18 @@ public class BridgeGameInputService {
         }
     }
 
-    public void moveBridge() {
+    public Boolean moveBridge() {
         this.movedBridge = bridgeGame.move(bridge.getBridge(), readMoving());
         bridgeGameOutputView.printMap(bridge.getBridge(), movedBridge);
         isPassedMoving = !(movedBridge.contains(UIMessage.INFO_BRIDGE_MOVE_FAILED.getValue()));
         if (isPassedMoving && bridge.getBridge().size() != movedBridge.size()) {
             moveBridge();
         }
-        bridgeGameRetry(isPassedMoving);
+        return isPassedMoving;
     }
 
-    private void bridgeGameRetry(Boolean isPassedMoving) {
-        if (readRetryGameCommand.equals(BridgeGameRule.QUIT.getValue())) {
-            return;
-        }
-        if ((!isPassedMoving) && bridgeGame.retry(readGameCommand())) {
+    public void bridgeGameRetry() {
+        if (bridgeGame.retry(readGameCommand())) {
             moveBridge();
         }
     }
