@@ -3,17 +3,15 @@ package bridge.infra;
 import bridge.constant.Message;
 import bridge.domain.BridgeArea;
 import bridge.domain.GameState;
-import bridge.domain.Output;
 import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
-public class OutputView implements Output {
+public class OutputView {
 
   private final StringBuilder sb = new StringBuilder();
 
-  @Override
   public void printMap(GameState gameState) {
     List<BridgeArea> movementHistory = gameState.getMovementHistory();
     List<Boolean> stateHistory = gameState.getStateHistory();
@@ -50,7 +48,6 @@ public class OutputView implements Output {
     return "X";
   }
 
-  @Override
   public void printResult(GameState gameState, boolean isSuccess) {
     System.out.println(Message.OUTPUT_RESULT_MESSAGE.getText());
     List<BridgeArea> movementHistory = gameState.getMovementHistory();

@@ -20,6 +20,14 @@ public enum BridgeArea {
         .findAny().orElseThrow(() -> new IllegalArgumentException("잘못된 입력입니다."));
   }
 
+  public static boolean isMatch(String input) {
+    for (BridgeArea area : BridgeArea.values()) {
+      if (input.equals(area.name())) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   public static BridgeArea of(int number) {
     return Arrays.stream(BridgeArea.values()).filter(area -> area.getBridgeNumber() == number)
