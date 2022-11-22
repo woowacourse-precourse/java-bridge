@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge;
 
 public enum InputCase {
     UP("U"),

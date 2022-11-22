@@ -1,7 +1,5 @@
-package bridge.View;
+package bridge;
 
-import bridge.Controller.BridgeCase;
-import bridge.Controller.BridgeDTO;
 
 public class OutputView {
 

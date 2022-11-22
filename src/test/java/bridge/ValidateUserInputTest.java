@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge;
 
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;

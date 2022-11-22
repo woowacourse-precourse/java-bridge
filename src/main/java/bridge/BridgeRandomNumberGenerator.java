@@ -1,4 +1,4 @@
-package bridge.Controller;
+package bridge;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

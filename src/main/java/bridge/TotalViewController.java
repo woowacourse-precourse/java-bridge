@@ -1,7 +1,4 @@
-package bridge.Controller;
-
-import bridge.Model.InputView;
-import bridge.View.OutputView;
+package bridge;
 
 public class TotalViewController {
     private final OutputView outputView;
