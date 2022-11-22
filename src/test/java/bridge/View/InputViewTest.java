@@ -10,9 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputViewTest {
     InputView inputView;
+
     @BeforeEach
-    void init(){
-        inputView=new InputView();
+    void init() {
+        inputView = new InputView();
     }
 
     @DisplayName("정수로 표현할 수 있는 입력이 아닐경우 예외발생")
@@ -24,11 +25,11 @@ class InputViewTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"100","201","-1"})
+    @CsvSource(value = {"100", "201", "-1"})
     @DisplayName("입력범위를 초과할경우 예외발생")
     void isInputInRange(String input) throws IllegalArgumentException {
         assertThrows(IllegalArgumentException.class,
-                ()-> inputView.isSizeOutOfRange(inputView.isDigit(input)));
+                () -> inputView.isSizeOutOfRange(inputView.isDigit(input)));
     }
 
 
