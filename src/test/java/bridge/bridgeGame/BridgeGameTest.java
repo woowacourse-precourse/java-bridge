@@ -51,7 +51,14 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("움직일 수 있는 방향과 일치하면 이동횟수를 1 증가시킨다.")
     void move() {
+        //given
+        List<String> userDirection = Arrays.asList("U","D","D");
+        //when
+        userDirection.forEach(direction -> bridgeGame.move(direction));
+        //then
+        assertEquals(bridgeGame.getMoveCount(),3);
     }
 
     @Test
