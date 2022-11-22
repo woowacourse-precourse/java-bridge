@@ -2,9 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
     private static final String ASK_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String ASK_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
@@ -14,9 +11,6 @@ public class InputView {
     private static final String WRONG_MOVING_ERROR_MESSAGE = "잘못된 이동 명령어 입니다.";
     private static final String WRONG_COMMAND_ERROR_MESSAGE = "잘못된 게임 명령어 입니다.";
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         while (true) {
             System.out.println(ASK_BRIDGE_SIZE_MESSAGE);
@@ -44,9 +38,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         while (true) {
             System.out.println(ASK_MOVING_MESSAGE);
@@ -67,9 +58,6 @@ public class InputView {
         throw new IllegalArgumentException(ErrorMessageGenerator.generate(WRONG_MOVING_ERROR_MESSAGE));
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         while (true) {
             System.out.println(ASK_RETRY_MESSAGE);
