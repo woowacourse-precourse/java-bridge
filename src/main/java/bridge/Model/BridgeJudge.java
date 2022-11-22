@@ -56,21 +56,27 @@ public class BridgeJudge {
         int resultIndex = 0;
         count = count * 2 + 1;
         for (int index = 0; index < count; index++) {
-            if (index == 0) {
-                bridgeMap.add("[ ");
-                continue;
-            }
-            if (index % 2 != 0) {
+            String judge = judgeSet(index, count);
+            if (judge == null) {
                 bridgeMap.add(result.get(resultIndex++));
                 continue;
             }
-            if (index != count - 1) {
-                bridgeMap.add(" | ");
-                continue;
-            }
-            bridgeMap.add(" ]");
+            bridgeMap.add(judge);
         }
         return bridgeMap;
+    }
+
+    private static String judgeSet(int index, int count) {
+        if (index == 0) {
+            return "[ ";
+        }
+        if (index % 2 != 0) {
+            return null;
+        }
+        if (index % 2 == 0 && index != count - 1) {
+            return " | ";
+        }
+        return " ]";
     }
 
     public void init() {
