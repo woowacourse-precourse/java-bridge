@@ -15,14 +15,16 @@ public class BridgeGame {
     public void start() {
         orderWelcome();
         List<String> bridge;
-        List<String> player = new ArrayList<>();
         bridge = makeBridge(); // 다리 생성
         System.out.println();
 
-        playGame(bridge, player); // 게임 시작
+        playGame(bridge); // 게임 시작
     }
 
-    private void orderWelcome(){ outputManager.welcomePlayer();}
+    private void orderWelcome() {
+        outputManager.welcomePlayer();
+    }
+
     /**
      * 다리 생성할때 쓰이는 메서드
      */
@@ -39,8 +41,9 @@ public class BridgeGame {
     }
 
 
-    private void playGame(List<String> bridge, List<String> player) {
+    private void playGame(List<String> bridge) {
         int attempt = 0;
+        List<String> player;
         do {
             attempt++;
             player = new ArrayList<>(); // 플레이어 초기화
@@ -51,11 +54,6 @@ public class BridgeGame {
         result(bridge, player, attempt);
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public boolean move(List<String> bridge, List<String> player) {
         boolean isAlive = true;
         while (bridge.size() != player.size() && isAlive) {
@@ -65,11 +63,6 @@ public class BridgeGame {
         return isAlive;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public boolean retry() {
         String gameCommand;
         gameCommand = inputManager.getGameCommand();
