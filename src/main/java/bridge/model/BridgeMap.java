@@ -1,4 +1,4 @@
-package bridge.model.domain;
+package bridge.model;
 
 public class BridgeMap {
     private static final String OPEN_BRACKET = "[ ";

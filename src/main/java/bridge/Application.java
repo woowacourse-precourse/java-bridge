@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.model.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

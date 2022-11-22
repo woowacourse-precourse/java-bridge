@@ -1,7 +1,7 @@
-package bridge.model.service;
+package bridge;
 
-import bridge.model.domain.BridgeMap;
-import bridge.model.domain.RandomBridge;
+import bridge.model.BridgeMap;
+import bridge.model.RandomBridge;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
