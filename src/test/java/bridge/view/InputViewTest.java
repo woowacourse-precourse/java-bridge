@@ -75,7 +75,7 @@ public class InputViewTest {
         @DisplayName("성공 케이스")
         @CsvSource(value = {"R:R", "Q:Q"}, delimiter = ':')
         @ParameterizedTest
-        void success(String inputRetry, String outputRetry) {
+        void successCase(String inputRetry, String outputRetry) {
             assertThat(inputView.readGameCommand(inputRetry))
                     .isEqualTo(outputRetry);
         }
