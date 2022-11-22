@@ -19,8 +19,7 @@ public class Validator {
     }
 
     public static void validateMovingType(String input) {
-        String upperInput = input.toUpperCase();
-        if (!MovingType.isContains(upperInput)) {
+        if (!MovingType.isContains(input)) {
             throw new IllegalArgumentException(INVALID_MOVING_TYPE);
         }
     }
@@ -32,8 +31,7 @@ public class Validator {
     }
 
     public static void validateRestartOption(String input) {
-        String upperInput = input.toUpperCase();
-        if (!upperInput.equals(RESTART_OPTION) && !upperInput.equals(QUIT_OPTION)) {
+        if (!input.equals(RESTART_OPTION) && !input.equals(QUIT_OPTION)) {
             throw new IllegalArgumentException(INVALID_RESTART_OPTION);
         }
     }

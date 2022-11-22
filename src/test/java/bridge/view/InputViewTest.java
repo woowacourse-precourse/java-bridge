@@ -101,7 +101,7 @@ class InputViewTest {
         }
 
         @ParameterizedTest(name = "{0} 입력시 {1} 반환")
-        @CsvSource({"U,U", "u,U", "D,D", "d,D"})
+        @CsvSource({"U,U", "D,D"})
         @DisplayName("유효한 입력")
         void 유효한_입력(String input, String output) {
             // given
@@ -144,7 +144,7 @@ class InputViewTest {
         }
 
         @ParameterizedTest(name = "{0} 입력시 {1} 반환")
-        @CsvSource({"q,Q", "Q,Q", "R,R", "r,R"})
+        @CsvSource({ "Q,Q", "R,R"})
         @DisplayName("유효한 입력")
         void 유효한_입력(String input, String output) {
             // given
