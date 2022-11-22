@@ -35,14 +35,21 @@ public class BridgeGame {
     private GameCondition inspectCondition(BridgePattern bridgePattern) {
         String move = bridge.get(pointer++);
 
+        return isConditionProgress(bridgePattern, move);
+    }
+
+    private GameCondition isConditionProgress(BridgePattern bridgePattern, String move) {
         if (bridgePattern.isInputEqual(move)) {
             return GameCondition.IN_PROGRESS;
         }
-
         return GameCondition.FAILURE;
     }
 
     private GameCondition isGoalSuccess(GameCondition gameCondition) {
+        return isConditionGoal(gameCondition);
+    }
+
+    private GameCondition isConditionGoal(GameCondition gameCondition) {
         if (pointer == bridge.size() && gameCondition == GameCondition.IN_PROGRESS) {
             return GameCondition.GOAL;
         }

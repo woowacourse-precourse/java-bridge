@@ -1,10 +1,10 @@
 package bridge.view;
 
+import bridge.model.BridgeGame;
 import bridge.model.Progress;
 import bridge.model.constant.BridgePattern;
 import bridge.model.constant.Command;
 import bridge.model.constant.GameCondition;
-import bridge.model.BridgeGame;
 import java.util.List;
 
 /**
@@ -31,15 +31,15 @@ public class OutputView {
 
     public void printSelectMsg() {
         //printEmptyLine();
-        printMsg("이동할 칸을 선택해주세요. (" + BridgePattern.MOVE_UP.getDetail() + ": " + BridgePattern.MOVE_UP.getMove() + ", " +
-                BridgePattern.MOVE_DOWN.getDetail() + ": " + BridgePattern.MOVE_DOWN.getMove() + ")");
+        printMsg("이동할 칸을 선택해주세요. (" + BridgePattern.MOVE_UP.getDetail() + ": " + BridgePattern.MOVE_UP.getMove()
+                + ", " + BridgePattern.MOVE_DOWN.getDetail() + ": " + BridgePattern.MOVE_DOWN.getMove() + ")");
     }
 
     public void printRetryMsg() {
         printEmptyLine();
-        printMsg("게임을 다시 시도할지 여부를 입력해주세요. (" + Command.DO_RETRY.getDetail() + ": " +
-                Command.DO_RETRY.getCommand() + ", " + Command.DO_QUIT.getDetail() + ": " +
-                Command.DO_QUIT.getCommand() + ")");
+        printMsg(
+                "게임을 다시 시도할지 여부를 입력해주세요. (" + Command.DO_RETRY.getDetail() + ": " + Command.DO_RETRY.getCommand()
+                        + ", " + Command.DO_QUIT.getDetail() + ": " + Command.DO_QUIT.getCommand() + ")");
     }
 
     /**

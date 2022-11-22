@@ -17,11 +17,16 @@ public class Progress {
     }
 
     private Map<BridgePattern, List<String>> initProgress(int length) {
-        return new EnumMap<>(BridgePattern.class) {{
-            for (BridgePattern bridgePattern : BridgePattern.values()) {
-                put(bridgePattern, new ArrayList<>(length));
-            }
-        }};
+        Map<BridgePattern, List<String>> output = new EnumMap<>(BridgePattern.class);
+        inputEmptyListToMap(output, length);
+
+        return output;
+    }
+
+    private void inputEmptyListToMap(Map<BridgePattern, List<String>> input, int length) {
+        for (BridgePattern bridgePattern : BridgePattern.values()) {
+            input.put(bridgePattern, new ArrayList<>(length));
+        }
     }
 
     public void updateProgress(BridgePattern inputPattern, String symbol) {
@@ -45,5 +50,7 @@ public class Progress {
         return EMPTY_VALUE;
     }
 
-    public Map<BridgePattern, List<String>> getProgress() { return progress; }
+    public Map<BridgePattern, List<String>> getProgress() {
+        return progress;
+    }
 }

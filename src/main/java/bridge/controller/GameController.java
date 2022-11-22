@@ -1,10 +1,10 @@
 package bridge.controller;
 
+import bridge.model.BridgeGame;
 import bridge.model.Progress;
 import bridge.model.constant.BridgePattern;
 import bridge.model.constant.Command;
 import bridge.model.constant.GameCondition;
-import bridge.model.BridgeGame;
 import bridge.utils.BridgeMaker;
 import bridge.utils.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
@@ -34,12 +34,13 @@ public class GameController {
     }
 
     private GameCondition startGame(BridgeGame bridgeGame) {
-        while (true) {
-            GameCondition gameCondition = bridgeGame.move(selectMove());
+        GameCondition gameCondition;
+        do {
+            gameCondition = bridgeGame.move(selectMove());
             outputView.printMap(bridgeGame.exportProgress());
+        } while (!checkCrossFail(bridgeGame, gameCondition));
 
-            if (checkCrossFail(bridgeGame, gameCondition)) { return gameCondition; }
-        }
+        return gameCondition;
     }
 
     private BridgePattern selectMove() {
@@ -48,8 +49,12 @@ public class GameController {
     }
 
     private boolean checkCrossFail(BridgeGame bridgeGame, GameCondition gameCondition) {
-        if (gameCondition == GameCondition.GOAL) { return true; }
-        if (gameCondition == GameCondition.FAILURE) { return checkRetry(bridgeGame); }
+        if (gameCondition == GameCondition.GOAL) {
+            return true;
+        }
+        if (gameCondition == GameCondition.FAILURE) {
+            return checkRetry(bridgeGame);
+        }
 
         return false;
     }
