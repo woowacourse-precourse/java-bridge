@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.Error;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ public class ExceptionTest {
     @Test
     void checkValidateInputtype() {
         assertThatThrownBy(() -> Exception.validateBridgeSize("a"))
-                .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+                .hasMessageContaining(Error.ERROR_RANGE.getError())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -20,7 +21,7 @@ public class ExceptionTest {
     @Test
     void checkRangefalse() {
         assertThatThrownBy(() -> Exception.validateBridgeSize("2"))
-                .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+                .hasMessageContaining(Error.ERROR_RANGE.getError())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +36,7 @@ public class ExceptionTest {
     @Test
     void checkUandD() {
         assertThatThrownBy(() -> Exception.validateMoving("A"))
-                .hasMessageContaining("[ERROR] 잘못된 입력입니다. U와 D중 하나를 입력해주세요.")
+                .hasMessageContaining(Error.ERROR_MOVING.getError())
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("U 혹은 D가 입력된다면 예외가 발생하지 않음")
@@ -49,7 +50,7 @@ public class ExceptionTest {
     @Test
     void occurException() {
         assertThatThrownBy(() -> Exception.validateGameCommand("U"))
-                .hasMessageContaining("[ERROR] 잘못된 입력입니다. R과 Q중 하나를 입력해주세요.")
+                .hasMessageContaining(Error.ERROR_RESTART.getError())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
