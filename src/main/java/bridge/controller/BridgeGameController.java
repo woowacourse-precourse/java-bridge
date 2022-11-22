@@ -22,6 +22,8 @@ public class BridgeGameController {
         OutputView.printgameStart();
         bridges = InputController.getBridgeMaker();
         bridgeGame = new BridgeGame();
+        OutputView.printbr();
+
     }
 
     private void gameStart() {
