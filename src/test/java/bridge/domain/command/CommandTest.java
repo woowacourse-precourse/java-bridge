@@ -39,13 +39,13 @@ class CommandTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    @DisplayName("isToEndGame 메소드를 호출하였을 때 Command 객체의 멤버변수가 Q와 같은지 비교하여 반환하는지 확인")
+    @DisplayName("isToRetryGame 메소드를 호출하였을 때 Command 객체의 멤버변수가 R과 같은지 비교하여 반환하는지 확인")
     @ParameterizedTest
-    @CsvSource({"R, false", "Q, true"})
-    void isToEndGame_test(String userInput, boolean expected) {
+    @CsvSource({"R, true", "Q, false"})
+    void isToRetryGame_test(String userInput, boolean expected) {
         Command command = new Command(userInput);
 
-        boolean actual = command.isToEndGame();
+        boolean actual = command.isToRetryGame();
 
         assertThat(actual).isEqualTo(expected);
     }

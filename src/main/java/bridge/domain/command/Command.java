@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Command {
 
-    private final static String GAME_END = "Q";
+    private final static String GAME_RETRY = "R";
     private final String command;
 
     public Command(String input) {
@@ -13,13 +13,13 @@ public class Command {
     }
 
     private void validateForm(String command) {
-        if(!command.matches("[RQ]")) {
+        if (!command.matches("[RQ]")) {
             throw new IllegalArgumentException("[ERROR] R 혹은 Q만 입력할 수 있습니다.");
         }
     }
 
-    public boolean isToEndGame() {
-        return this.command.equals(GAME_END);
+    public boolean isToRetryGame() {
+        return this.command.equals(GAME_RETRY);
     }
 
     @Override
