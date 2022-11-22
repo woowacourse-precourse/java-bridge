@@ -2,26 +2,33 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.view.ViewMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
-    private BridgeMaker bridgeMaker;
-    private BridgeGame bridgeGame;
-    private InputView inputView;
-    private OutputView outputView;
+    private ViewMessage viewMessage = null;
+    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private BridgeGame bridgeGame = new BridgeGame();
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
     private List<String> bridge;
-    private List<String> upBridge;
-    private List<String> downBridge;
+    private List<String> upBridge = new ArrayList<>();
+    private List<String> downBridge = new ArrayList<>();
 
-    private int stage;
+    private int bridgeSize = 0;
+    private int stage = 0;
+    private int tryNumber = 0;
 
     public void init() {
-        stage = inputView.readBridgeSize();
+        bridgeSize = inputView.readBridgeSize();
         outputView.printGameStart();
-        bridge = bridgeMaker.makeBridge(stage);
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     public void addBridgeMove(String direction) {
@@ -50,5 +57,42 @@ public class GameController {
         }
         downBridge.add(" X ");
         upBridge.add("   ");
+    }
+
+    public void runGame(){
+        increaseTryNumberAndStage();
+        addBridgeMove(inputView.readMoving());
+        outputView.printMap(upBridge,downBridge);
+    }
+
+    public boolean checkFail(int stage){
+        if(upBridge.get(stage - 1).equals(" X ") || downBridge.get(stage - 1).equals(" X ")){
+            return true;
+        }
+        return false;
+    }
+
+    public int startGame(){
+        while(stage < bridgeSize){
+            runGame();
+            if(checkFail(stage)){
+                if(!bridgeGame.retry(inputView.readGameCommand())){
+                    break;
+                }
+                clearGame();
+            }
+        }
+        return tryNumber;
+    }
+
+    public void clearGame(){
+        stage = 0;
+        upBridge.clear();
+        downBridge.clear();
+    }
+
+    public void increaseTryNumberAndStage(){
+        stage++;
+        tryNumber++;
     }
 }
