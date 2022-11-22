@@ -13,7 +13,9 @@ public class UpAndDown {
     }
 
     private static void validate(Integer move){
-        //TODO: 예외 작성
+        if(move != 0 && move != 1) {
+            throw new IllegalArgumentException("[ERROR] 0, 1 이외의 값이 들어왔습니다");
+        }
     }
 
 }

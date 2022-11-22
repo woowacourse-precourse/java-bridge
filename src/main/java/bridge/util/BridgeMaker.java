@@ -33,6 +33,11 @@ public class BridgeMaker {
         return answer;
     }
     private String createDirection(){
-        return getDirection(bridgeNumberGenerator.generate());
+        try {
+            return getDirection(bridgeNumberGenerator.generate());
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return createDirection();
+        }
     }
 }
