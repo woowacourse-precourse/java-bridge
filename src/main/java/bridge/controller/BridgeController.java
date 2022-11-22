@@ -16,7 +16,6 @@ public class BridgeController {
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private BridgeGame bridgeGame;
     private String resultOfGame;
-    private int bridgeSize;
 
     public void startGame() {
         setUpBridgeGame();
@@ -26,21 +25,26 @@ public class BridgeController {
 
     public void setUpBridgeGame() {
         List<String> bridge;
+        int bridgeSize;
 
-        inputBridgeSize();
-        bridge = bridgeMaker.makeBridge(this.bridgeSize);
+        bridgeSize = inputBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
         //실행 예시와 맞추기 위해 한 칸 띄워준다.
-        System.out.println();
+        outputView.printSpace();
         bridgeGame = new BridgeGame(bridge);
     }
 
-    public void inputBridgeSize(){
-        try{
-            this.bridgeSize = inputView.readBridgeSize();
-        } catch (IllegalArgumentException e){
-            outputView.printExceptionMessage(e);
-            inputBridgeSize();
+    public int inputBridgeSize(){
+        int bridgeSize;
+        while(true){
+            try{
+                bridgeSize = inputView.readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
+            }
         }
+        return bridgeSize;
     }
 
     public void proceedBridgeGame() {
@@ -79,11 +83,14 @@ public class BridgeController {
 
     public boolean move() {
         String moving;
-        boolean resultOfMove;
-
-        moving = inputView.readMoving();
-        resultOfMove = bridgeGame.move(moving);
-
-        return resultOfMove;
+        while(true){
+            try{
+                moving = inputView.readMoving();
+                break;
+            } catch (IllegalArgumentException e){
+                outputView.printExceptionMessage(e);
+            }
+        }
+        return bridgeGame.move(moving);
     }
 }
