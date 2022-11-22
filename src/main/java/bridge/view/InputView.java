@@ -26,7 +26,9 @@ public class InputView {
      */
     public Command readMoving() {
         System.out.println(INPUT_SELECT_TO_GO_MSG);
-        return InputExceptionHandler.movingExceptionHandler(InputExceptionHandler.nullInputExceptionHandler());
+        final String moving = InputExceptionHandler.movingExceptionHandler(
+                InputExceptionHandler.nullInputExceptionHandler());
+        return Command.getCommand(moving);
     }
 
     /**
@@ -34,6 +36,8 @@ public class InputView {
      */
     public Command readGameCommand() {
         System.out.println(INPUT_SELECT_TO_RETRY_MSG);
-        return InputExceptionHandler.gameCommandExceptionHandler(InputExceptionHandler.nullInputExceptionHandler());
+        final String gameCommand = InputExceptionHandler.gameCommandExceptionHandler(
+                InputExceptionHandler.nullInputExceptionHandler());
+        return Command.getCommand(gameCommand);
     }
 }

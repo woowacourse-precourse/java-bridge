@@ -31,17 +31,17 @@ public class InputExceptionHandler {
         throw new IllegalArgumentException(BRIDGE_SIZE_ERROR_MSG);
     }
 
-    public static Command movingExceptionHandler(String moving) {
+    public static String movingExceptionHandler(String moving) {
         if (!moving.matches("^[UD]$")) {
             throw new IllegalArgumentException(MOVING_ERROR_MSG);
         }
-        return Command.getCommand(moving);
+        return moving;
     }
 
-    public static Command gameCommandExceptionHandler(String gameCommand) {
+    public static String gameCommandExceptionHandler(String gameCommand) {
         if (!gameCommand.matches("^[RQ]$")) {
             throw new IllegalArgumentException(GAME_COMMAND_ERROR_MSG);
         }
-        return Command.getCommand(gameCommand);
+        return gameCommand;
     }
 }

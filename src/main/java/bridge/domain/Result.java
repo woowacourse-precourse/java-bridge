@@ -14,11 +14,4 @@ public enum Result {
     public String getString() {
         return string;
     }
-
-    public static Result getCommand(final String string) {
-        return Arrays.stream(values())
-                .filter(value -> value.string.equals(string))
-                .findAny()
-                .orElse(null);
-    }
 }
