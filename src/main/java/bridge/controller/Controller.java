@@ -1,13 +1,8 @@
 package bridge.controller;
 
-import bridge.domain.BridgeGame;
-import bridge.BridgeMaker;
+import bridge.*;
 import bridge.model.Bridge;
 import bridge.model.User;
-import bridge.util.BridgeNumberGenerator;
-import bridge.util.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 import java.util.List;
 
