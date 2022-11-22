@@ -3,22 +3,20 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum BridgeEnum {
-    UP_TRUE("U", 1, true, "O"),
-    UP_FALSE("U", 1, false, "X"),
-    DOWN_TRUE("D", 0, true, "O"),
-    DOWN_FALSE("D", 0, false, "X");
+    UP_TRUE("U", 1, true),
+    UP_FALSE("U", 1, false),
+    DOWN_TRUE("D", 0, true),
+    DOWN_FALSE("D", 0, false);
 
     private final String bridgeStringType;
     private final int bridgeNumberType;
     private final boolean correctLocation;
-    private final String checkLocation;
 
 
-    BridgeEnum(String stringType, int numberType, boolean correctLocation, String checkLocation) {
+    BridgeEnum(String stringType, int numberType, boolean correctLocation) {
         this.bridgeStringType = stringType;
         this.bridgeNumberType = numberType;
         this.correctLocation = correctLocation;
-        this.checkLocation = checkLocation;
     }
 
     public static BridgeEnum createBridgeStringType(String location, boolean correctLocation) {
@@ -53,15 +51,13 @@ public enum BridgeEnum {
         return bridgeStringType;
     }
 
-    public boolean getCorrectLocation() {
-        return correctLocation;
-    }
-
     public String getStateLocation(String location) {
         if (this.bridgeStringType.equals(location)) {
-            return checkLocation;
+            if(this.correctLocation){
+                return "O";
+            }
+            return "X";
         }
         return " ";
     }
-
 }
