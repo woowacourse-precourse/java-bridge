@@ -55,7 +55,7 @@ public class Bridge {
     }
 
     public void resetCurrentRoundNumber() {
-        currentRoundNumber = 1;
+        currentRoundNumber = 0;
     }
 
     public int getCurrentRoundNumber() {
