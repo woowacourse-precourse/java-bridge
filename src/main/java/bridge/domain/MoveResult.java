@@ -5,8 +5,8 @@ import java.util.List;
 
 public class MoveResult {
 
-    private boolean currentMovingResult;
-    private static String currentStep;
+    private final boolean currentMovingResult;
+    private final String currentStep;
 
     public void pringMoveResult(MoveResult moveResult){
         System.out.println(moveResult.currentMovingResult+moveResult.currentStep);

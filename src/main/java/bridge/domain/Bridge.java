@@ -6,16 +6,23 @@ import java.util.List;
 
 public class Bridge {
 
-    private final List<String> bridge;
+    private List<String> bridge;
     private static int stepCount;
+    private final int size;
 
     public Bridge(int size) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        this.bridge = bridgeMaker.makeBridge(size);
-        System.out.println(bridge);
+        this.size = size;
+        makeBridgeBySize(this.size);
+
         this.stepCount = 0;
 ;    }
+
+    private void makeBridgeBySize(int size) {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        this.bridge = bridgeMaker.makeBridge(size);
+        System.out.println(bridge);
+    }
 
     public MoveResult createMoveResult(MoveSpace moveSpace){
         String currentStep = this.bridge.get(this.stepCount);
@@ -43,5 +50,9 @@ public class Bridge {
             return true;
         }
         return false;
+    }
+
+    public void resetStep() {
+        this.stepCount = 0;
     }
 }

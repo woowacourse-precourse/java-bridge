@@ -32,7 +32,6 @@ public class BridgeGame {
         MoveSpace moveSpace = InputController.getMoving();
         this.moveResults.add(this.bridge.createMoveResult(moveSpace));
 
-//        this.moveResults.add(moveSpace.createMoveResult(this.bridge.checkIfItCanBeMoved(moveSpace)));
         for (int i = 0; i < this.moveResults.size(); i++) {
             System.out.print(i);
             this.moveResults.get(i).pringMoveResult(this.moveResults.get(i));
@@ -48,6 +47,7 @@ public class BridgeGame {
      */
     public void retry() {
         this.moveResults = new ArrayList<>();
+        this.bridge.resetStep();
     }
 
     public boolean isFailedGame() {
