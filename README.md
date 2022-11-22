@@ -1,37 +1,67 @@
-# 미션 - 다리 건너기
+# 미션 - 다리 건너기 (이충안)
 
-## 🔍 진행 방식
+- [과제 내용(우테코 Github Repository)](https://github.com/woowacourse-precourse/java-bridge)
+- [공부한 내용(Notion)](https://brass-thrush-37b.notion.site/4-c14f059f25bf4e9c81e8a07a3a778b80)
+- [회고록(velog)](https://velog.io/@gwichanlee/%EC%9A%B0%ED%85%8C%EC%BD%94-4%EA%B8%B0-%ED%94%84%EB%A6%AC%EC%BD%94%EC%8A%A4-4%EC%A3%BC%EC%B0%A8-%ED%9A%8C%EA%B3%A0)
 
-- 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
-- 세 개의 요구 사항을 만족하기 위해 노력한다. 특히 기능을 구현하기 전에 기능 목록을 만들고, 기능 단위로 커밋 하는 방식으로 진행한다.
-- 기능 요구 사항에 기재되지 않은 내용은 스스로 판단하여 구현한다.
+## 개요 및 기능
+- 이 프로젝트는 우아한테크코스 4기 프리코스 3주차 과제를 구현하기 위해 만들어졌다.
+  - 과제 내용은 README 하단의 각종 요구 사항 또는 [과제 내용(우테코 Github Repository)](https://github.com/woowacourse-precourse/java-bridge)를 참고하길 바란다.
+- 기능
+  - 다리의 길이를 입력하고 다리 건너기 게임을 진행함
+  - 위(U) 또는 아래(D)를 골라 다리를 건너고 다리를 전부 건너거나 중간에 떨어지면 게임이 끝난다.
+  - 다리를 건너다가 떨어지면 같은 다리로 재시도 하거나 종료할 수 있다.
+  - 자세한 내용은 README 하단의 "기능 요구 사항"을 참고하길 바란다.
 
-## 📮 미션 제출 방법
+## 설계 및 구현에서 신경쓴 점
 
-- 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-    - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
-      제출한다.
-- GitHub에 미션을 제출한 후 [우아한테크코스 지원](https://apply.techcourse.co.kr) 사이트에 접속하여 프리코스 과제를 제출한다.
-    - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
-    - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
+### 클래스(객체)를 분리
+- 각 클래스 별로 요구사항에 따라 적절한 책임을 부여하기 위해 노력함
+  - 자세한 내용은 [설계 및 구현 과정](./docs/PROCESS.md) 참고
+- 제공되는 Class들을 "디미터 법칙"(객체의 내부 구조에 강하게 연결되지 않도록 협력 경로를 제한)을 지키기 위해 노력함
+<p align="center">
+  <img width="300" src="./docs/structure.png">
+</p>
 
-## 🚨 과제 제출 전 체크 리스트 - 0점 방지
+### 리팩터링
+- 공통 Constants 값 구현
+  - 추후 변경에 용이하게 하기 위해 공통으로 사용하는 값들은 Constants class에서 선언하여 사용
+    - 위("U"), 아래("D"), 재시작("R"), 종료("Q"), 다리 길이 최대값(15), 다리 길이 최소값(3)
+- 책 "오브젝트"에서 명령-쿼리 분리 법칙을 보고 BridgeGame에 반영함
+  - move()와 getBridgeGameDto() 메서드를 분리
+- 관련 내용들을 찾아보면서 유용한 방법으로 변경
+  - 직접 만든 함수형 인터페이스 대신 JDK에서 제공하는 함수형 인터페이스 사용
+  - [참고 자료](https://url.kr/lmcf8j)
+- 자세한 내용은 [정리 문서(Notion)](https://www.notion.so/1c11784c8f6d4917a11305f81b4fc02e) 참고
 
-- 기능 구현을 모두 정상적으로 했더라도 **요구 사항에 명시된 출력값 형식을 지키지 않을 경우 0점으로 처리**한다.
-- 기능 구현을 완료한 뒤 아래 가이드에 따라 테스트를 실행했을 때 모든 테스트가 성공하는지 확인한다.
-- **테스트가 실패할 경우 0점으로 처리**되므로, 반드시 확인 후 제출한다.
+### 유닛 테스트
+- 각 Class마다 public method에 대해 Unit Test를 진행함
+- 다른 객체의 결과 값에 영향을 받지 않기 위해 Mockito를 사용
+    - 각 테스트마다 이용하는 다른 객체가 어떤 값을 제공할 지 설정해줌
+- 매 티팩토링 후에는 해당 기능에 맞추어 유닛 테스트를 변경하고 통과를 확인함
+- Test를 진행하는 파일에는 최대한 테스트 관련 메서드만 놔두고, 나머지는 파일을 분리하여 사용함
+  - 제공된 ApplicationTest를 보고 적용해 봄
 
-### 테스트 실행 가이드
+### Convention
+- 아래에서 제공한 컨벤션을 지키려 노력하였음
+- Convention 정리 자료
+    - [Coding Convention](https://brass-thrush-37b.notion.site/Coding-Convention-0624c3f9271b45499c2c49c83eaa5b2c)
+    - [Git Convention](https://brass-thrush-37b.notion.site/Git-Convention-47b4645da6954eb1ad15a7a8c64e6724)
 
-- 터미널에서 `java -version`을 실행하여 Java 버전이 11인지 확인한다. 또는 Eclipse 또는 IntelliJ IDEA와 같은 IDE에서 Java 11로 실행되는지 확인한다.
-- 터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean test` 명령을 실행하고,   
-  Windows 사용자의 경우  `gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.
+## 아쉬운 점
 
-```
-BUILD SUCCESSFUL in 0s
-```
+### bridge, route 형식
+- BridgeGame에서 bridge와 route의 타입이 List<String>으로 되어있어 다른 문자들이 들어갈 수 있다.
+  - Bridge 같은 class를 만들 수도 있었으나, 제공해준 BridgeMaker에서 makeBridge() 가 반환 형식을 지정하고 있어 그대로 사용함
+  - 추후 조금더 생각해 봐서 개선해 보아야 겠다.
+  - 현재는 InputView에서만 유효성 검사를 하고 있는데 이것을 비즈니스 로직에서도 할 필요성이 느껴짐
+## 기능 구현하며 작성한 문서
+
+- [설계 및 구현 과정](./docs/PROCESS.md)
+- [Class 별 구현 기능 목록](./docs/README.md)
 
 ---
+- 아래의 요구사항을 지키기 위해 최대한 노력함
 
 ## 🚀 기능 요구 사항
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
