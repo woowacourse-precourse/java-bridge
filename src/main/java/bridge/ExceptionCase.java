@@ -2,8 +2,10 @@ package bridge;
 
 public class ExceptionCase {
 
-    static OutputView display = new OutputView();
+    private static final int LOW_NUMBER = 3;
+    private static final int HIGH_NUMBER = 20;
 
+    static OutputView display = new OutputView();
     static public void isInputUpOrDown(String input) {
         if (!(input.equals("U") || input.equals("D"))) {
             throw new IllegalArgumentException(OutputView.getErrorMessageUpOrDown());
@@ -19,7 +21,7 @@ public class ExceptionCase {
     static public int isInputAllNumber(String input) {
         try {
             int inputNumber = Integer.parseInt(input);
-            if (!(inputNumber >= 3 && inputNumber <= 20)) {
+            if (!(inputNumber >= LOW_NUMBER && inputNumber <= HIGH_NUMBER)) {
                 throw new IllegalArgumentException();
             }
             return Integer.parseInt(input);
