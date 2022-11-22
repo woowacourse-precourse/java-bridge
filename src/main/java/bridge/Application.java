@@ -1,8 +1,10 @@
 package bridge;
 
+import bridge.domain.BridgeGameMachine;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGameMachine.playGame();
     }
 }
