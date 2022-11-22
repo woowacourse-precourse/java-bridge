@@ -3,10 +3,12 @@ package bridge.domain;
 import bridge.view.ErrorMessage;
 
 public class CheckException {
+    private final int MAX_BRIDGE_SIZE = 20;
+    private final int MIN_BRIDGE_SIZE = 3;
 
     public boolean checkBridgeSize(String bridgeSize) {
         try {
-            if (Integer.parseInt(bridgeSize) > 20 || Integer.parseInt(bridgeSize) < 3) {
+            if (Integer.parseInt(bridgeSize) > MAX_BRIDGE_SIZE || Integer.parseInt(bridgeSize) < MIN_BRIDGE_SIZE) {
                 throw new IllegalArgumentException();
             }
             return true;
