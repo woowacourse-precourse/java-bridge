@@ -16,19 +16,21 @@ public class InputView {
     }
 
     public static int isNumber(String str){
-        try{
-            return Integer.parseInt(str);
-        } catch (IllegalArgumentException e){
-            throw new IllegalArgumentException("[ERROR]");
-        }
+            try{
+                return Integer.parseInt(str);
+            } catch (IllegalArgumentException e){
+                throw new IllegalArgumentException("[ERROR]");
+            }
     }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+
         String str = Console.readLine();
         validInput(str);
         return str;
+
     }
 
     public static void validInput(String str) {
@@ -44,9 +46,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String str = Console.readLine();
-        validReInput(str);
-        return str;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        while (true){
+            try {
+                String str = Console.readLine();
+                validReInput(str);
+                return str;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void validReInput(String str){

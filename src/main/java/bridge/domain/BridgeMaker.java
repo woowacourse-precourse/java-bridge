@@ -32,5 +32,4 @@ public class BridgeMaker {
         }
         return randomNumberBridge;
     }
-
 }
