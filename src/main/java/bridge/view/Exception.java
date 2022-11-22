@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.util.ErrorMessage;
+
 public class Exception {
     private static final int MIX_SIZE = 3;
     private static final int MAX_SIZE = 20;
@@ -8,19 +10,27 @@ public class Exception {
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
 
-    public static boolean isNumeric(String input) {
-        return input != null && input.matches("[-+]?\\d*\\.?\\d+");
+    public static void isNumeric(String input) {
+        if (input == null || !input.matches("[-+]?\\d*\\.?\\d+")) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR.getMessage());
+        }
     }
 
-    public static boolean checkBridgeSize(int size) {
-        return size >= MIX_SIZE && size <= MAX_SIZE;
+    public static void checkBridgeSize(int size) {
+        if (size < MIX_SIZE || size > MAX_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR.getMessage());
+        }
     }
 
-    public static boolean checkMoving(String input) {
-        return input.equals(UP) || input.equals(DOWN);
+    public static void checkMoving(String input) {
+        if (!(input.equals(UP) || input.equals(DOWN))) {
+            throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getMessage());
+        }
     }
 
-    public static boolean checkRetry(String input) {
-        return input.equals(RETRY) || input.equals(QUIT);
+    public static void checkRetry(String input) {
+        if (!(input.equals(RETRY) || input.equals(QUIT))) {
+            throw new IllegalArgumentException(ErrorMessage.RETRY_ERROR.getMessage());
+        }
     }
 }

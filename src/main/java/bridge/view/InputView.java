@@ -18,9 +18,8 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = inputValue();
 
-        if (!Exception.isNumeric(input) || !Exception.checkBridgeSize(Integer.parseInt(input))) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR.getMessage());
-        }
+        Exception.isNumeric(input);
+        Exception.checkBridgeSize(Integer.parseInt(input));
         return Integer.parseInt(input);
     }
 
@@ -31,9 +30,7 @@ public class InputView {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = inputValue();
 
-        if (!Exception.checkMoving(input)) {
-            throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getMessage());
-        }
+        Exception.checkMoving(input);
         return input;
     }
 
@@ -44,9 +41,7 @@ public class InputView {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = inputValue();
 
-        if (!Exception.checkRetry(input)) {
-            throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getMessage());
-        }
+        Exception.checkRetry(input);
         return input;
     }
 
