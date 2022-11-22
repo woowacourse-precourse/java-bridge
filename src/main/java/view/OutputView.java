@@ -27,9 +27,8 @@ public class OutputView {
         StringBuilder downStringBuilder = new StringBuilder().append(start);
         List<String> up = bridge.getUp();
         List<String> down = bridge.getDown();
-        for(int i=0; i <= position ; i++){ //0,1,2,3
-            System.out.println(position+ " -");
-            if(i == position) {
+        for(int i=0; i < position ; i++){
+            if(i == position-1) {
                 upStringBuilder.append(up.get(i)).append(end);
                 downStringBuilder.append(down.get(i)).append(end);
                 continue;
@@ -40,7 +39,6 @@ public class OutputView {
         }
         System.out.println(upStringBuilder.toString());
         System.out.println(downStringBuilder.toString());
-
     }
 
     /**

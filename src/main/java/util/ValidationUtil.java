@@ -1,6 +1,5 @@
 package util;
 
-import enums.BridgeEnum;
 import enums.ErrorMessage;
 
 import java.util.regex.Pattern;

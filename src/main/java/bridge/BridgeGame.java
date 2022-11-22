@@ -55,6 +55,7 @@ public class BridgeGame {
         if ( bridgeAnswer.get(position).equals(moving) ) {
             outputView.printMap(bridge, position);
             position++;
+            System.out.println("++됨: "+ position );
             return true;
         } return false;
     }
