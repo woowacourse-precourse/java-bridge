@@ -3,11 +3,16 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -50,6 +55,20 @@ class ApplicationTest extends NsTest {
     @Override
     protected void runMain() {
         Application.main(new String[]{});
+    }
+
+    @DisplayName("Q, R 이외의 재시작 입력에 대한 예외 처리")
+    @ValueSource(strings = {"", "QR", "q", "r", "!"})
+    @ParameterizedTest
+    void 재시도_예외_테스트(String input) {
+        assertThatThrownBy(() -> new BridgeGame().checkGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 재시도_정상_테스트() {
+        assertThat(new BridgeGame().checkGameCommand("R")).isTrue();
+        assertThat(new BridgeGame().checkGameCommand("Q")).isFalse();
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {

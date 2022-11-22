@@ -73,6 +73,15 @@ public class BridgeGame {
      */
     public boolean retry() {
         String input = gameInput.readGameCommand();
+        return checkGameCommand(input);
+    }
+
+    /**
+     * check whether_next_game input
+     * @param input : String - 무조건 "Q"(종료) 혹은 "R"(재시도)만 들어와야 한다
+     * @return true : 재시도, false: 종료
+     */
+    public boolean checkGameCommand(String input) {
         return true;
     }
 
