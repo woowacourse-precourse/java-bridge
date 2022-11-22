@@ -1,4 +1,4 @@
-package bridge.io;
+package bridge.io.validation;
 
 import bridge.io.validation.*;
 

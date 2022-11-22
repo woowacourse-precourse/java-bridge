@@ -1,6 +1,7 @@
 package bridge.io;
 
 import bridge.enums.InGameMessage;
+import bridge.io.validation.InputValidation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
