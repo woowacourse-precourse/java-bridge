@@ -34,7 +34,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        printMessage(Constants.INPUT_MOVING);
+        String input = Console.readLine();
+        validateMoving(input);
+        return input;
+    }
+
+    private void validateMoving(String input) {
+        if (!(input.equals(Constants.UP) || input.equals(Constants.DOWN))) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
