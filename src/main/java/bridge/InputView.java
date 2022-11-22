@@ -17,21 +17,25 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize() throws IllegalArgumentException {
         Message.GAME_START.print();
         Message.SIZE_INPUT.print();
-        int size = Integer.parseInt(Console.readLine());
-        if (size < MIN_SIZE_NUM || size > MAX_SIZE_NUM) {
-            Message.ERROR_SIZE.print();
-            throw new IllegalStateException(Message.ERROR_SIZE.getMessage());
+        try {
+            int size = Integer.parseInt(Console.readLine());
+            if (size < MIN_SIZE_NUM || size > MAX_SIZE_NUM) {
+                Message.ERROR_SIZE.print();
+                throw new IllegalStateException(Message.ERROR_SIZE.getMessage());
+            }
+            return size;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Message.ERROR_SIZE.getMessage());
         }
-        return size;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public String readMoving() throws IllegalArgumentException {
         Message.MOVE_INPUT.print();
         String command = Console.readLine();
         if (!command.equals(MOVE_UP) && !command.equals(MOVE_DOWN)) {
@@ -44,7 +48,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public String readGameCommand() throws IllegalArgumentException {
         Message.RETRY_INPUT.print();
         String command = Console.readLine();
         if (!command.equals(GAME_RETRY) && !command.equals(GAME_QUIT)) {

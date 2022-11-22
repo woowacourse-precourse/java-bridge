@@ -9,17 +9,19 @@ public class BridgeGameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final List<String> movement = new ArrayList<>();
-    private static int cnt = 0;
+    private static int size = 0;
 
-    public int start() {
-        int size = inputView.readBridgeSize();
+    public void start() {
+        try {
+            size = inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         bridgeGame.start(size);
-        return size;
     }
 
-    public boolean play(int size) {
+    public boolean play() {
         movement.clear();
-        cnt++;
         for (int i = 0; i < size; i++) {
             if (!this.move(i)) {
                 return false;
@@ -29,7 +31,12 @@ public class BridgeGameController {
     }
 
     private boolean move(int idx) {
-        String command = inputView.readMoving();
+        String command = "";
+        try {
+            command = inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         boolean moved = bridgeGame.move(command, idx);
         movement.add(command);
         outputView.printMap(movement, idx, moved);
@@ -37,11 +44,16 @@ public class BridgeGameController {
     }
 
     public boolean retry() {
-        String command = inputView.readGameCommand();
+        String command = "";
+        try {
+            command = inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         return bridgeGame.retry(command);
     }
 
-    public void printResult(boolean succeed) {
+    public void printResult(boolean succeed, int cnt) {
         outputView.printResult(movement, movement.size() - 1, succeed);
         if (succeed) {
             Message.GAME_SUCCESS.print();
