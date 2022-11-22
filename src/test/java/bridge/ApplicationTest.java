@@ -62,6 +62,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 도중에_잘못된_입력() {
+        assertSimpleTest(() -> {
+            runException("3", "U", "U", "X", "U", "Q");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
