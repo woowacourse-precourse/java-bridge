@@ -16,6 +16,18 @@ public class BridgeGameController {
 
     BridgeGame bridgeGame;
 
+
+    public void run(){
+        start();
+        setDifficulty();
+        do {
+            playGame();
+            if(isSuccess())
+                break;
+        } while (askRetry());
+        end();
+    }
+
     public void start() {
         initComponents();
         outputView.printWelcome();
