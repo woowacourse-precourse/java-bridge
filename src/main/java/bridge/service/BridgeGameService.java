@@ -19,5 +19,25 @@ public class BridgeGameService {
         bridgeGame.prepare();
         bridgeGame.constructBridge(bridgeSize);
     }
-    
+
+    public void bridgeCrossProcess() {
+        String moving = inputView.readMoving();
+        bridgeGame.move(moving);
+        String report = bridgeGame.makeReport();
+        outputView.printMap(report);
+
+    }
+
+    public boolean playGame() {
+
+        while (bridgeGame.isGameEnd()) {
+            bridgeCrossProcess();
+            if (bridgeGame.isFailedGame()) {
+                break;
+            }
+        }
+        bridgeGame.updateTotalCount();
+        return bridgeGame.isFailedGame();
+    }
+
 }
