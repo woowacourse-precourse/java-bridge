@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.Messages.Error;
+import bridge.Validate;
 import camp.nextstep.edu.missionutils.Console;
 import net.bytebuddy.pool.TypePool;
 
@@ -26,8 +27,7 @@ public class InputView {
         int bridgeLength = 0;
         try {
             bridgeLength = castInt(Console.readLine());
-            if (bridgeLength > 20 || bridgeLength < 3)
-                throw new IllegalArgumentException(Error.INVALID_RANGE.getMessage());
+            Validate.checkRange(bridgeLength);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             bridgeLength = readBridgeSize();
@@ -43,7 +43,7 @@ public class InputView {
         String input = "";
         try {
             input = Console.readLine();
-            checkLetter(input, "U", "D");
+            Validate.checkLetter(input, "U", "D");
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             input = readMoving(); //Recursively execute to scan new input
@@ -59,16 +59,11 @@ public class InputView {
         String input = "";
         try {
             input = Console.readLine();
-            checkLetter(input, "R", "Q");
+            Validate.checkLetter(input, "R", "Q");
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             input = readGameCommand(); //Recursively execute to scan new input
         }
         return input;
-    }
-
-    static private void checkLetter(String check, String opt1, String opt2){
-        if (!check.equals(opt1) && !check.equals(opt2))
-            throw new IllegalArgumentException(Error.INVALID_LETTER.getMessage());
     }
 }
