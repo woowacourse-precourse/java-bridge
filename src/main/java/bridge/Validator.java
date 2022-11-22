@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.NoSuchElementException;
+
 public class Validator {
     public static final int MINIMUM_BRIDGE_LENGTH = 3;
     public static final int MAXIMUM_BRIDGE_LENGTH = 20;
@@ -15,9 +17,9 @@ public class Validator {
             if (inInRange(bridgeSize)) {
                 return true;
             }
-            throw new IllegalArgumentException("[ERROR] 3-20사이의 숫자를 입력해주세요!");
-        } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요!");
+            throw new NoSuchElementException("[ERROR] 3-20사이의 숫자를 입력해주세요!");
+        } catch (Exception ex) {
+            throw new NoSuchElementException("[ERROR] 정수를 입력해주세요!");
         }
     }
 

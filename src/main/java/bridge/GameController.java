@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class GameController {
     private final InputView inputView = new InputView();
@@ -15,15 +16,16 @@ public class GameController {
     public void getSizeAndMakeBridge() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         int bridgeSize = 0;
-        while (true) {
-            try {
-                bridgeSize = inputView.readBridgeSize();
-                break;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            bridgeSize = inputView.readBridgeSize();
+            this.bridge = bridgeMaker.makeBridge(bridgeSize);
         }
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        catch (NoSuchElementException e) {
+            //System.out.println("[ERROR] 여기서 에러 발생");
+            //System.out.println(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
+        }
+
     }
 
 

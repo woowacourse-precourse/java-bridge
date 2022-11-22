@@ -1,6 +1,7 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -14,10 +15,14 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String inputBridgeSize = Console.readLine();
-        if (validator.bridgeSizeValidator(inputBridgeSize)) {
-            return Integer.parseInt(inputBridgeSize);
+        try{
+            if (validator.bridgeSizeValidator(inputBridgeSize)) {
+                return Integer.parseInt(inputBridgeSize);
+            }
+        }catch (Exception e){
+            throw new NoSuchElementException(e.getMessage());
         }
-        throw new IllegalArgumentException("[ERROR] 다리 길이 입력에서 오류가 발생했습니다.");
+        throw new NoSuchElementException("[ERROR] 다리 길이 입력에서 오류가 발생했습니다.");
     }
 
     /**
