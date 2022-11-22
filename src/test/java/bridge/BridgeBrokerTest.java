@@ -18,7 +18,7 @@ class BridgeBrokerTest {
     }
 
     @DisplayName("정상 다리 길이 입력")
-    @ValueSource(ints = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20})
+    @ValueSource(ints = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20})
     @ParameterizedTest
     void goodCommand(int n) {
         Bridge bridge = broker.makeBridge(n);
@@ -26,7 +26,7 @@ class BridgeBrokerTest {
     }
 
     @DisplayName("비정상 다리 길이 입력")
-    @ValueSource(ints = {-1,0,1,2,21,22,210000000})
+    @ValueSource(ints = {-1, 0, 1, 2, 21, 22, 210000000})
     @ParameterizedTest
     void badCommand(int n) {
         assertThrows(IllegalArgumentException.class, () -> {

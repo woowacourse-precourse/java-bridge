@@ -2,8 +2,7 @@ package bridge.domain;
 
 public enum Move {
     UP("U", 1),
-    DOWN("D", 0)
-    ;
+    DOWN("D", 0);
     private String direction;
     private int number;
 
@@ -13,10 +12,10 @@ public enum Move {
     }
 
     public static Move from(String direction) {
-        if("U".equals(direction) || "1".equals(direction)) {
+        if ("U".equals(direction) || "1".equals(direction)) {
             return Move.UP;
         }
-        if("D".equals(direction) || "0".equals(direction)) {
+        if ("D".equals(direction) || "0".equals(direction)) {
             return Move.DOWN;
         }
         throw new IllegalArgumentException("[ERROR]");

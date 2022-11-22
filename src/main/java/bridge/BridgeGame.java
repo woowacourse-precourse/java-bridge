@@ -69,6 +69,7 @@ public class BridgeGame {
             }
         }
     }
+
     private boolean isSameBridge(List<String> answer, List<String> myAnswer) {
         if (!isSameSize(answer, myAnswer)) {
             return false;
@@ -80,6 +81,7 @@ public class BridgeGame {
         }
         return true;
     }
+
     private boolean isSameSize(List<String> answer, List<String> myAnswer) {
         return answer.size() == myAnswer.size();
     }

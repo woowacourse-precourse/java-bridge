@@ -13,8 +13,7 @@ public class Application {
 
         try {
             controller.playGame();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.toString());
         }
     }
