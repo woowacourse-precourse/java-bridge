@@ -71,7 +71,7 @@ public class InputView {
     }
 
     private void checkMoving(String moveBridgePosition) {
-        if (moveBridgePosition != "U" && moveBridgePosition != "D") {
+        if (!(moveBridgePosition.equals("U") || moveBridgePosition.equals("D"))) {
             throw new IllegalArgumentException();
         }
     }
@@ -97,7 +97,7 @@ public class InputView {
     }
 
     private void checkGameCommand(String retryQuit) {
-        if (retryQuit != "R" && retryQuit != "Q") {
+        if (!(retryQuit.equals("R") || retryQuit.equals("Q"))) {
             throw new IllegalArgumentException();
         }
     }
