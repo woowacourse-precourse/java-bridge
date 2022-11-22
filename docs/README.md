@@ -76,8 +76,8 @@ D
 
 ### BridgeGame
 1. move
-    - [ ] `"U"`, `"D"` 문자 정답과 비교 `Boolean` 반환
-    - [ ] 일치, 불일치 맵 추가 `[` `O` `X` `|` `]`
+    - [x] `"U"`, `"D"` 문자 정답과 비교 `Boolean` 반환
+    - [x] 일치, 불일치 맵 추가 `X`, `O`
 
 2. retry
 
@@ -119,6 +119,7 @@ D
 ### BridgeMap
 1. `UpMap`
 2. `DownMap` 
+3. `index`
 
 ### Valid
 1. Bridge의  "U", "D"로 이뤄진 List<String>
@@ -127,7 +128,8 @@ D
 4. Player의 입력값 "R", "Q" 문자열 검증
 5. 
 ### Bridge
-
+1. List<String> 정답을 가질 필드
+2. validate
 
 
 ### BridgeIngredient enum
@@ -141,7 +143,6 @@ D
 <br>
 다리를 만들기 위한 재료
 
-### ChageType class
 
 ---
 
@@ -151,21 +152,22 @@ D
   - Controller
 - model
   - value
-    - OutMessage enum
+    - OutMessage 
     - BridgeIngredient
     - MatchMessage
     - OutMessage
     - PlayerMessage
+    - UpAndDown
+    - ErrorMessage
+    - BridgeRange
   - entity
-    - Play
     - Bridge
     - BridgeMap
-    - UpAndDown
-- util
-  - BridgeMaker
-  - BridgeNumberGenerator
-  - BridgeRandomNumberGenerator
-  - Validator
+    - BridgeSize
+    - Move
+    - Player
+    - Retry
+    - RetryCount
 - service
   - BridgeGame.java
 - view
@@ -176,6 +178,9 @@ D
   - PlayerDto
   - printResultDto
   - RetryCountDto
+- BridgeMaker
+- BridgeNumberGenerator
+- BridgeRandomNumberGenerator
 <hr>
 
 - controller
@@ -184,5 +189,6 @@ D
   - service
     - entity
     - value
+  - dto
     
-대략적으로 이런 계층 구조를 가지고 있다. ex)util은 종속되지 않아서 계층구조에 표시 안함
+대략적으로 이런 계층 구조를 가지고 있다.
