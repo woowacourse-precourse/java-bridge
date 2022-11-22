@@ -9,4 +9,13 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3 이상이거나 20 이하여야 합니다.");
         }
     }
+
+    public static int validateIsDigit(String length) {
+        for (int i = 0; i < length.length(); i++) {
+            if (!Character.isDigit(length.charAt(i))) {
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자로 입력 해야 합니다.");
+            }
+        }
+        return Integer.parseInt(length);
+    }
 }
