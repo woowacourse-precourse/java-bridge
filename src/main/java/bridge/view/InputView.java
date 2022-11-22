@@ -20,6 +20,7 @@ public class InputView {
         System.out.println(BRIDGE_LENGTH_QUESTION);
         bridgeCount = Console.readLine();
         validateNumber(bridgeCount);
+        System.out.println();
 
         return Integer.parseInt(bridgeCount);
     }

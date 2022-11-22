@@ -16,6 +16,7 @@ public class OutputView {
 
     public void printStart() {
         System.out.println(GAME_START_MESSAGE);
+        System.out.println();
     }
 
     /**
@@ -39,8 +40,8 @@ public class OutputView {
         System.out.println(userResult.getFinalUpperResult());
         System.out.println(userResult.getFinalLowerResult());
         System.out.println();
-        System.out.println(GAME_SUCCESS_MESSAGE + ": " + gameSuccessOrFail(isGameSuccess));
-        System.out.println(GAME_TOTAL_TRY_COUNT_MESSAGE + ": " + playCount);
+        System.out.println(GAME_SUCCESS_MESSAGE + gameSuccessOrFail(isGameSuccess));
+        System.out.println(GAME_TOTAL_TRY_COUNT_MESSAGE + playCount);
     }
 
     public String gameSuccessOrFail(boolean gameSuccess) {
