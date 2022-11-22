@@ -26,14 +26,14 @@ public class InputView {
         try {
             return validatedInputBridgeLength(clientConsole.readLine());
         } catch (NumberFormatException exception) {
-            throw INVALID_BRIDGE_INPUT_TYPE.getValue();
+            throw INVALID_BRIDGE_INPUT_TYPE.getException();
         }
     }
 
     private int validatedInputBridgeLength(String bridgeLength) {
         int length = Integer.parseInt(bridgeLength);
         if (length < MIN_BRIDGE_LENGTH.getLength() || MAX_BRIDGE_LENGTH.getLength() < length) {
-            throw INVALID_BRIDGE_LENGTH.getValue();
+            throw INVALID_BRIDGE_LENGTH.getException();
         }
         return length;
     }

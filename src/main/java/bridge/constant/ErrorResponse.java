@@ -8,14 +8,13 @@ public enum ErrorResponse {
     INVALID_INPUT_GAME_COMMAND(new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q로 제한됩니다.")),
     NOT_FOUND_DIRECTION(new IllegalStateException("[ERROR] 위, 아래 방향 외의 방향은 찾을 수 없습니다."));
 
-
     private final RuntimeException exception;
 
     ErrorResponse(RuntimeException exception) {
         this.exception = exception;
     }
 
-    public RuntimeException getValue() {
+    public RuntimeException getException() {
         return this.exception;
     }
 }
