@@ -6,7 +6,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import constant.Values.MoveCase;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CheckerTest extends NsTest {
 
@@ -20,31 +23,36 @@ public class CheckerTest extends NsTest {
         });
     }
 
-    @Test
-    void 기능_테스트_이동_입력() {
+    @DisplayName("올바른 이동 커맨드 입력 시 정상 동작")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void 기능_테스트_이동_입력(String input) {
         assertSimpleTest(() -> {
-            assertThat(new Checker().checkMoveValidate("U")).isEqualTo("U");
-            assertThat(new Checker().checkMoveValidate("D")).isEqualTo("D");
+            assertThat(new Checker().checkMoveValidate(input)).isEqualTo(input);
         });
     }
 
     @Test
     void 기능_테스트_이동_결과() {
         assertSimpleTest(() -> {
-            assertThat(new Checker().checkMoveSuccess("U","U")).isEqualTo(MoveCase.UP_UP);
-            assertThat(new Checker().checkMoveSuccess("U","D")).isEqualTo(MoveCase.UP_DOWN);
-            assertThat(new Checker().checkMoveSuccess("D","D")).isEqualTo(MoveCase.DOWN_DOWN);
-            assertThat(new Checker().checkMoveSuccess("D","U")).isEqualTo(MoveCase.DOWN_UP);
+            assertThat(new Checker().checkMoveSuccess("U", "U")).isEqualTo(MoveCase.UP_UP);
+            assertThat(new Checker().checkMoveSuccess("U", "D")).isEqualTo(MoveCase.UP_DOWN);
+            assertThat(new Checker().checkMoveSuccess("D", "D")).isEqualTo(MoveCase.DOWN_DOWN);
+            assertThat(new Checker().checkMoveSuccess("D", "U")).isEqualTo(MoveCase.DOWN_UP);
         });
     }
 
-    @Test
-    void 기능_테스트_재시도_입력() {
+
+    @DisplayName("올바른 재시도 커맨드 입력 시 정상 동작")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void 기능_테스트_재시도_입력(String input) {
         assertSimpleTest(() -> {
-            assertThat(new Checker().checkGameOption("R")).isEqualTo("R");
-            assertThat(new Checker().checkGameOption("Q")).isEqualTo("Q");
+            assertThat(new Checker().checkGameOption(input)).isEqualTo(input);
+            assertThat(new Checker().checkGameOption(input)).isEqualTo(input);
         });
     }
+
 
     @Test
     void 기능_테스트_재시도() {
@@ -53,91 +61,38 @@ public class CheckerTest extends NsTest {
         });
     }
 
-    @Test
-    void 예외_테스트_다리길이_문자() {
+
+    @DisplayName("잘못된 다리 길이 입력 시 예외 처리")
+    @ValueSource(strings = {"A", "-5", "22", " ", "qerqw", " 5 ", " 7", "7 "})
+    @ParameterizedTest
+    void 예외_테스트_다리길이(String input) {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> {
-                new Checker().checkValidate("A");
+                new Checker().checkValidate(input);
             }).isInstanceOf(IllegalArgumentException.class);
             output().contains(ERROR_MESSAGE);
         });
     }
 
-    @Test
-    void 예외_테스트_다리길이_음수() {
+    @DisplayName("잘못된 이동 커맨드 입력 시 예외 처리")
+    @ValueSource(strings = {"A", "-5", "22", " ", "qerqw", " 5 ", " 7", "7 "})
+    @ParameterizedTest
+    void 예외_테스트_이동(String input) {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> {
-                new Checker().checkValidate("-5");
+                new Checker().checkMoveValidate(input);
             }).isInstanceOf(IllegalArgumentException.class);
             output().contains(ERROR_MESSAGE);
         });
     }
 
-    @Test
-    void 예외_테스트_다리길이_범위초과() {
+    @DisplayName("잘못된 재시작 커맨드 입력 시 예외 처리")
+    @ValueSource(strings = {"A", "-5", "22", " ", "qerqw", " 5 ", " 7", "7 "})
+    @ParameterizedTest
+    void 예외_테스트_재시작(String input) {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> {
-                new Checker().checkValidate("22");
-            }).isInstanceOf(IllegalArgumentException.class);
-            output().contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_이동_다른문자() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> {
-                new Checker().checkMoveValidate("A");
-            }).isInstanceOf(IllegalArgumentException.class);
-            output().contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_이동_숫자() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> {
-                new Checker().checkMoveValidate("5");
-            }).isInstanceOf(IllegalArgumentException.class);
-            output().contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_이동_공백() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> {
-                new Checker().checkMoveValidate(" ");
-            }).isInstanceOf(IllegalArgumentException.class);
-            output().contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_재시작_다른문자() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> {
-                new Checker().checkGameOption("A");
-            }).isInstanceOf(IllegalArgumentException.class);
-            output().contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_재시작_숫자() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> {
-                new Checker().checkGameOption("5");
-            }).isInstanceOf(IllegalArgumentException.class);
-            output().contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_재시작_공백() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> {
-                new Checker().checkGameOption(" ");
+                new Checker().checkGameOption(input);
             }).isInstanceOf(IllegalArgumentException.class);
             output().contains(ERROR_MESSAGE);
         });
