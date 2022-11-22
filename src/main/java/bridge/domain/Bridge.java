@@ -14,7 +14,7 @@ public class Bridge {
 
     public boolean isMatched(Player player, MoveCommand moveCommand) {
         String command = bridge.get(player.position());
-        return moveCommand.equals(command);
+        return moveCommand.is(command);
     }
 
     public boolean isLongerThan(Position position) {
