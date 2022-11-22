@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Arrays;
+
 public enum InputMatcher {
 
     UPSIDE_OF_BRIDGE("U"),
@@ -14,6 +16,5 @@ public enum InputMatcher {
     public boolean isCorrect(String s) {
         return sideOfBridge.equals(s);
     }
-
 
 }

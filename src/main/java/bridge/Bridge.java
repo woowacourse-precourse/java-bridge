@@ -18,17 +18,17 @@ public class Bridge {
     public boolean judgeAnswer(String userInput, int idx) {
         validateInputIsUOrD(userInput);
         boolean isUserGetTheRightAnswer = true;
-        if (userInput.equals(InputMatcher.UPSIDE_OF_BRIDGE.sideOfBridge)) {
+        if (InputMatcher.UPSIDE_OF_BRIDGE.isCorrect(userInput)) {
             isUserGetTheRightAnswer = bridgeShape.caseWhenUserInputIsUpSide(bridge, idx);
         }
-        if (userInput.equals(InputMatcher.DOWNSIDE_OF_BRIDGE.sideOfBridge)) {
+        if (InputMatcher.DOWNSIDE_OF_BRIDGE.isCorrect(userInput)) {
             isUserGetTheRightAnswer = bridgeShape.caseWhenUserInputIsDownSide(bridge, idx);
         }
         return isUserGetTheRightAnswer;
     }
 
     private void validateInputIsUOrD(String userInput) throws IllegalArgumentException {
-        if (!userInput.equals(InputMatcher.UPSIDE_OF_BRIDGE.sideOfBridge) && !userInput.equals(InputMatcher.DOWNSIDE_OF_BRIDGE.sideOfBridge)) {
+        if (!InputMatcher.UPSIDE_OF_BRIDGE.isCorrect(userInput) && !InputMatcher.DOWNSIDE_OF_BRIDGE.isCorrect(userInput)) {
             throw new IllegalArgumentException("[ERROR] U와 D만 입력할 수 있습니다.");
         }
     }
