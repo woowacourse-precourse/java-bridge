@@ -6,16 +6,12 @@ import bridge.view.MessageView;
 public class BridgeException {
 
     public boolean invalidLengthInputValue(String bridgeLength) {
-        try {
-            if (invalidFormat(bridgeLength)) {
+        if (invalidFormat(bridgeLength)) {
                 throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_BRIDGE_LENGTH.getMessage());
             } else if (outOfRange(Integer.parseInt(bridgeLength))) {
                 throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_BRIDGE_LENGTH.getMessage());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        } return false;
+        return false;
     }
 
     private boolean invalidFormat(String bridgeLength) {
@@ -31,24 +27,16 @@ public class BridgeException {
     }
 
     public boolean invalidMovingInputValue(String moveDirection) {
-        try {
-            if (!moveDirection.equals(MessageView.UP.getMessage()) && !moveDirection.equals(MessageView.DOWN.getMessage())) {
+        if (!moveDirection.equals(MessageView.UP.getMessage()) && !moveDirection.equals(MessageView.DOWN.getMessage())) {
                 throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_MOVING_DIRECTION.getMessage());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        } return false;
+        return false;
     }
 
     public boolean invalidRetryGame(String retryGame) {
-        try {
-            if (!retryGame.equals(MessageView.RETURN_RETRY.getMessage()) && !retryGame.equals(MessageView.RETURN_QUIT.getMessage())) {
+        if (!retryGame.equals(MessageView.RETURN_RETRY.getMessage()) && !retryGame.equals(MessageView.RETURN_QUIT.getMessage())) {
                 throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_RETRY_GAME.getMessage());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        } return false;
+        return false;
     }
 }
