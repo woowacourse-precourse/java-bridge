@@ -50,14 +50,12 @@ public class OutputView {
     }
 
     private static List<String> drawLine(BridgeGame bridgeGame, String lineType) {
-        List<String> bridge = bridgeGame.getBridge();
-        Player player = bridgeGame.getPlayer();
         List<String> Line = new ArrayList<>();
-        for (int i = 0; i < player.getCurrentPosition(); i++) {
-            drawCell(Line, lineType, bridge.get(i));
+        for (int i = 0; i < getCurrentPosition(bridgeGame); i++) {
+            drawCell(Line, lineType, bridgeGame.getBridge().get(i));
         }
-        if (!player.getMoving()) {
-            drawFailedCell(Line, lineType, bridge.get(player.getCurrentPosition()));
+        if (!bridgeGame.getPlayer().getMoving()) {
+            drawFailedCell(Line, lineType, bridgeGame.getCorrectDirection(getCurrentPosition(bridgeGame)));
         }
         return Line;
     }
@@ -99,5 +97,9 @@ public class OutputView {
     private static void printTryCount(BridgeGame bridgeGame) {
         System.out.print(TRY_COUNT);
         System.out.println(bridgeGame.getPlayer().getTryCount());
+    }
+
+    private static int getCurrentPosition(BridgeGame bridgeGame) {
+        return bridgeGame.getPlayer().getCurrentPosition();
     }
 }

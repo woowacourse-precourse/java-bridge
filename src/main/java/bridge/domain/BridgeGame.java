@@ -78,4 +78,8 @@ public class BridgeGame {
     private boolean isMovable(String moveCommand) {
         return moveCommand.equals(bridge.get(player.getCurrentPosition()));
     }
+
+    public String getCorrectDirection(int currentPosition) {
+        return bridge.get(currentPosition);
+    }
 }
