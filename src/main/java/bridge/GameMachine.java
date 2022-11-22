@@ -13,34 +13,42 @@ public class GameMachine {
     private OutputView view = new OutputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
+    private int counter;
     public void run() {
-        int counter = 0;
+        view.printBridgeSizeRequest();
+        List<BridgeType> bridge = makeBridge();
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        int counter = 1;
         view.printStart();
         RetryCommand retry = RetryCommand.RETRY;
         while (retry == RetryCommand.RETRY) {
-            play();
-            view.printRestartRequest();
-            retry = RetryCommand.of(ui.readGameCommand());
-            counter++;
+            bridgeGame.retry();
+            MoveResult gameResult = play(bridge, bridgeGame);
+
+            if (gameResult == MoveResult.FAIL) {
+                view.printRestartRequest();
+                retry = RetryCommand.of(ui.readGameCommand());
+                counter++;
+                continue;
+            }
+            retry = RetryCommand.QUIT;
         }
         view.printResult();
         view.printGameCount(counter);
     }
 
-    private void play() {
-        view.printBridgeSizeRequest();
-        List<BridgeType> bridge = makeBridge();
-        bridge.stream().forEach(a -> System.out.println(a));
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+    private MoveResult play(List<BridgeType> bridge, BridgeGame bridgeGame) {
         for (int location = 0; location < bridge.size(); location++) {
             view.printMoveTypeRequest();
             BridgeType userInput = BridgeType.of(ui.readMoving());
             if (MoveResult.FAIL == bridgeGame.move(userInput)) {
                 view.printMap(bridge, location, MoveResult.FAIL);
-                return;
+                return MoveResult.FAIL;
             }
             view.printMap(bridge, location, MoveResult.PASS);
         }
+        return MoveResult.PASS;
 
     }
 
