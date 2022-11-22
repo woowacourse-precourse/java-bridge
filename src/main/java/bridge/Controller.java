@@ -43,4 +43,14 @@ public class Controller {
             OutputView.printResult(bridgeGame.bridge,bridgeGame.userInput,gameCount);
         }
     }
+    public void setBridgeSize(){
+        OutputView.printBridgeSize();
+        bridgeGame.setBridgeSize(InputView.readBridgeSize());
+        checkBridgeSize(bridgeGame.bridgeSize);
+    }
+    public void checkBridgeSize(int bridgeSize){
+        if(bridgeSize==BridgeStatus.FALSE.getValueInteger()){
+            setBridgeSize();
+        }
+    }
 }
