@@ -77,9 +77,9 @@ class InputViewTest {
     class ReadMovingTest {
 
         @Test
-        @DisplayName("valid moving direction(Up : U or u, Down : D or d)")
+        @DisplayName("valid moving direction(Up : U, Down : D)")
         void validMovingDirection() {
-            String[] inputs = { "U", "D", "u", "d" };
+            String[] inputs = { "U", "D" };
             for (String input : inputs) {
                 setInput(input);
                 assertDoesNotThrow(() -> {
@@ -108,9 +108,9 @@ class InputViewTest {
     class readRetryTest {
 
         @Test
-        @DisplayName("valid retry inputs(Retry : R or r, Quit : Q or q)")
+        @DisplayName("valid retry inputs(Retry : R, Quit : Q)")
         void validRetryInput() {
-            String[] inputs = { "R", "r", "Q", "q" };
+            String[] inputs = { "R", "Q", };
             for (String input : inputs) {
                 setInput(input);
                 assertDoesNotThrow(() -> {
