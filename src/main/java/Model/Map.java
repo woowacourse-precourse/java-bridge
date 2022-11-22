@@ -74,14 +74,12 @@ public class Map {
     }
 
     public boolean runMap(String moving, String answer) {
-        boolean isWin = false;
-
         if (moving.equals(Moving.Down.getMoving())) {
-            isWin = checkWhenInputIsD(answer);
+            boolean isWin = checkWhenInputIsD(answer);
             return isWin;
         }
 
-        isWin = checkWhenInputIsU(answer);
+        boolean isWin = checkWhenInputIsU(answer);
         return isWin;
     }
 
