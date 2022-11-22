@@ -53,3 +53,7 @@ input regex를 모은 enum
 ### printMap
 
     현재까지 건넌 다리 상태를 출력
+
+### printResult
+
+    게임 결과 출력
