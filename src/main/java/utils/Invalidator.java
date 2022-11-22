@@ -6,24 +6,24 @@ public class Invalidator {
 
     public static int isValidBridgeLength(String inputValue) throws UserInputException {
         if (!isNumeric(inputValue)) {
-            throw new UserInputException("[ERROR]");
+            throw new UserInputException(ErrorMessage.ERROR_DATAFORMAT.getMessage());
         }
         if (!(Integer.parseInt(inputValue) >= 3 && Integer.parseInt(inputValue) <= 20)) {
-            throw new UserInputException("[ERROR]");
+            throw new UserInputException(ErrorMessage.ERROR_RANGE.getMessage());
         }
         return Integer.parseInt(inputValue);
     }
 
     public static String isValidRestartValue(String inputValue) throws UserInputException {
         if (!inputValue.equals(Restart.RESTART.getRestartMessage()) && !inputValue.equals(Restart.END.getRestartMessage())) {
-            throw new UserInputException("[ERROR]");
+            throw new UserInputException(ErrorMessage.ERROR_WRONG_VALUE.getMessage());
         }
         return inputValue;
     }
 
     public static String isValidMoveValue(String inputValue) throws UserInputException {
         if (!inputValue.equals(Direction.UP.getFloor()) && !inputValue.equals(Direction.DOWN.getFloor())) {
-            throw new UserInputException("[ERROR]");
+            throw new UserInputException(ErrorMessage.ERROR_WRONG_VALUE.getMessage());
         }
         return inputValue;
     }
