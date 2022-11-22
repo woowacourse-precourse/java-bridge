@@ -18,8 +18,10 @@ public class Constant {
 
     static final String MESSAGE_VALID_BLOCK = " O ";
     static final String MESSAGE_INVALID_BLOCK = " X ";
+    static final String MESSAGE_BLANK_BLOCK = "   ";
+    static final String MESSAGE_SEPARATOR = "|";
     static final String MESSAGE_LEFT_BRACKET = "[";
-    static final String MESSAGE_BRACKET = "]";
+    static final String MESSAGE_RIGHT_BRACKET = "]";
 
     static final String MOVE_UP = "U";
     static final String MOVE_DOWN = "D";
