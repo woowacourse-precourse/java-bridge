@@ -2,9 +2,6 @@ package bridge.view;
 
 public class BridgeMapConstant {
 
-    private BridgeMapConstant() {
-    }
-
     public static final String START_PREFIX = "[";
     public static final String ROUND_SUFFIX = "|";
     public static final String END_SUFFIX = "]";
@@ -15,4 +12,7 @@ public class BridgeMapConstant {
 
     public static final int PREFIX_IDX_VALUE = 1;
     public static final int SUFFIX_IDX_VALUE = 2;
+
+    private BridgeMapConstant() {
+    }
 }
