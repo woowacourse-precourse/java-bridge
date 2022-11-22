@@ -1,4 +1,4 @@
-package bridge;
+package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
