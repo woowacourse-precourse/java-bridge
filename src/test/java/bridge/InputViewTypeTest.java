@@ -18,9 +18,13 @@ class InputViewTypeTest {
     @ValueSource(strings = {"일", "one", "i"})
     void sizeMustBeDigit(String input) {
         inputViewType = InputViewType.BRIDGE_SIZE;
+        String nullStr = null;
 
         assertThrows(IllegalArgumentException.class, () -> {
             inputViewType.validate(input);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            inputViewType.validate(nullStr);
         });
         assertThatNoException().isThrownBy(() -> inputViewType.validate("9"));
         assertThatNoException().isThrownBy(() -> inputViewType.validate("6"));
@@ -31,9 +35,10 @@ class InputViewTypeTest {
     @ValueSource(strings = {"u", "", "1"})
     void movingMustBeUorD(String input) {
         inputViewType = InputViewType.MOVING;
+        String nullStr = null;
 
         assertThrows(IllegalArgumentException.class, () -> {
-            inputViewType.validate("u");
+            inputViewType.validate(nullStr);
         });
         assertThatNoException().isThrownBy(() -> inputViewType.validate("U"));
         assertThatNoException().isThrownBy(() -> inputViewType.validate("D"));
@@ -44,9 +49,10 @@ class InputViewTypeTest {
     @ValueSource(strings = {"일", "one", "i"})
     void commandMustBeRorQ(String input) {
         inputViewType = InputViewType.GAME_COMMAND;
+        String nullStr = null;
 
         assertThrows(IllegalArgumentException.class, () -> {
-            inputViewType.validate(input);
+            inputViewType.validate(nullStr);
         });
         assertThatNoException().isThrownBy(() -> inputViewType.validate("R"));
         assertThatNoException().isThrownBy(() -> inputViewType.validate("Q"));
