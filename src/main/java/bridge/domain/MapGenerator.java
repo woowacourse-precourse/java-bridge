@@ -3,26 +3,14 @@ package bridge.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum MapGenerator {
+public class MapGenerator {
 
-    SUCCESS("O"),
-    FAIL("X"),
-    BRIDGE_START("[ "),
-    BRIDGE_END(" ]"),
-    DELIMITER(" | "),
-    BLANK(" "),
-    NEWLINE("\n"),
-    ;
+    private MapGenerator(){}
 
-    private final String sign;
-
-    MapGenerator(String sign) {
-        this.sign = sign;
-    }
-
-    public String getSign() {
-        return sign;
-    }
+    private static final String BRIDGE_START = "[ ";
+    private static final String BRIDGE_END = " ]";
+    private static final String DELIMITER = " | ";
+    private static final String NEWLINE = "\n";
 
     public static String generateMap(List<Record> history) {
         String upperRow = generateRow(BridgeCell.UP, history);
@@ -32,25 +20,12 @@ public enum MapGenerator {
 
     private static String generateRow(BridgeCell direction, List<Record> history) {
         return history.stream()
-                .map(record -> recordToSignature(record, direction))
-                .map(MapGenerator::getSign)
-                .collect(Collectors.joining(DELIMITER.sign, BRIDGE_START.sign, BRIDGE_END.sign));
+                .map(record -> MapSignature.getSignatureFromRecord(record, direction))
+                .collect(Collectors.joining(DELIMITER, BRIDGE_START, BRIDGE_END));
     }
 
     private static String concatRow(String upperRow, String lowerRow) {
-        return upperRow + NEWLINE.sign + lowerRow;
-    }
-
-    private static MapGenerator recordToSignature(Record record, BridgeCell direction) {
-        if (!record.sameDirection(direction)) {
-            return BLANK;
-        }
-
-        if (record.isSuccess()) {
-            return SUCCESS;
-        }
-
-        return FAIL;
+        return upperRow + NEWLINE + lowerRow;
     }
 
 }
