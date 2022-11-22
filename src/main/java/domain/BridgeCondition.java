@@ -1,9 +1,9 @@
 package domain;
 
 public enum BridgeCondition {
-	RIGHT(" O "),
-	WRONG(" X "),
-	EMPTY("   ");
+	RIGHT("O"),
+	WRONG("X"),
+	EMPTY(" ");
 
 	private final String condition;
 

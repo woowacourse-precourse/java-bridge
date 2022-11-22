@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import domain.Validate;
 
 public class InputView {
-	Validate validate = new Validate();
+	private Validate validate = new Validate();
 
 	public int readBridgeSize() {
 		String bridgeSize = Console.readLine();

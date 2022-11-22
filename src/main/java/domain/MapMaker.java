@@ -52,13 +52,13 @@ public class MapMaker {
 
 	private void setPartition() {
 		if (index != 0) {
-			upperMap.append("|");
-			lowerMap.append("|");
+			upperMap.append(" | ");
+			lowerMap.append(" | ");
 		}
 		index++;
 	}
 
 	public String toString() {
-		return "[" + upperMap + "]\n" + "[" + lowerMap + "]";
+		return "[ " + upperMap + " ]\n" + "[ " + lowerMap + " ]";
 	}
 }

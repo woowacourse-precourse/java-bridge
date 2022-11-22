@@ -13,7 +13,7 @@ import domain.Validate;
 
 public class ValidateTest {
 	private Validate validate = new Validate();
-	List<String> testList = new ArrayList<>();
+	private List<String> testList = new ArrayList<>();
 	private IllegalArgumentException exception = null;
 	private String errorMessage = null;
 
