@@ -30,17 +30,23 @@ public class BridgeGame {
         this.status = STATUS_PLAY;
     }
 
+    public List<List<String>> getCurBridge(){
+        return this.curBridge;
+    }
+
+    public int getStageNum(){
+        return this.stageNum;
+    }
     public GameStatus getStatus(){
         return this.status;
     }
 
-    public List<List<String>> move(String moving) {
+    public void move(String moving) {
         addCurBridge(moving);
 
         if(this.status != STATUS_FAIL){
             checkSuccess();
         }
-        return this.curBridge;
     }
 
     private void addCurBridge(String moving){

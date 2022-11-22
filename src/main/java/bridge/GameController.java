@@ -21,15 +21,15 @@ public class GameController {
                 askRetry();
             }
         }
-        System.out.println("Game end");
+        outputView.printResult(bridgeGame);
     }
 
     private void playOneStage(){
         List<List<String>> curBridge;
         while(bridgeGame.getStatus() == STATUS_PLAY){
             System.out.println(MSG_GET_MOVING);
-            curBridge = bridgeGame.move(inputView.readMoving());
-            outputView.printMap(curBridge);
+            bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.getCurBridge());
         }
     }
 
