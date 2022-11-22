@@ -26,10 +26,10 @@ public class BridgeProgram {
 
     boolean isRunning = true;
     while (isRunning) {
-      String inputDirection = getInputDirection();
+      Mark mark = bridge.matchRoute(getInputDirection(), movingCount++);
+      List<List<String>> route = bridgeGame.move(mark);
 
-      Mark mark = bridge.matchRoute(inputDirection, movingCount++);
-      List<List<String>> route =  bridgeGame.move(mark);
+      output.printMap(route);
     }
   }
   private int getBridgeSize() {
