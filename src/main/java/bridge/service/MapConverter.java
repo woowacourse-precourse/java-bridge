@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.ShownMap;
 
 import java.util.List;
