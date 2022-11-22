@@ -13,20 +13,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(String location,  List<String>upBridge ,List<String> downBridge) {
-        BridgeRandomNumberGenerator randomLocation = new BridgeRandomNumberGenerator();
-        int locationChk = 0 , number = randomLocation.generate();
-        if(location.matches("U")){locationChk = 1;}
-        if(locationChk == 1){ // up
-            if(number == locationChk){BridgeAdd(upBridge, 1); BridgeAddElse(downBridge);}
-            else{BridgeAdd(upBridge, 0);BridgeAddElse(downBridge);}
-        }
-        else{ //down
-            if(number == locationChk){BridgeAdd(downBridge, 1);BridgeAddElse(upBridge);}
-            else{BridgeAdd(downBridge, 0);BridgeAddElse(upBridge);}
-        }
+        location.charAt(0);
+        location.charAt(1);
+
         printResult(upBridge);
         printResult(downBridge);
     }
+
     public List<String> BridgeAdd(List<String> Bridge, int chk) {
         if(chk == 1){
             Bridge.add(" ");
