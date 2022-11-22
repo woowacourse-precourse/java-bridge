@@ -3,6 +3,7 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -46,6 +47,46 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 다리_길이_입력_예외상황() {
+        assertSimpleTest(() -> {
+            runException("13.");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("hello");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("25");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 이동방향_입력_예외상황() {
+        InputView inputView = new InputView();
+        assertThatThrownBy(() -> inputView.validateReadMoving("1"))
+            .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputView.validateReadMoving("K"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 재시도_입력_예외상황() {
+        InputView inputView = new InputView();
+        assertThatThrownBy(() -> inputView.validateReadGameCommand("1"))
+            .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputView.validateReadGameCommand("K"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 
     @Override
     protected void runMain() {
