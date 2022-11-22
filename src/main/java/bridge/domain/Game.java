@@ -36,6 +36,10 @@ public class Game {
         setGameDone(true);
     }
 
+    public int getGameCount() {
+        return gameCount;
+    }
+
 
 
 }
