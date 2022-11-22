@@ -17,7 +17,7 @@ public class BridgeGameTest {
 
     @BeforeAll
     static void setBridgeGame() {
-        bridgeGame = new BridgeGame(new BridgeService(new BridgeMaker(new BridgeRandomNumberGenerator())), new Player());
+        bridgeGame = new BridgeGame(new BridgeService(new BridgeMaker(new BridgeRandomNumberGenerator())));
     }
 
     @ParameterizedTest

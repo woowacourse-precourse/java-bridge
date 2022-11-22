@@ -10,8 +10,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         BridgeService bridgeService = getBridgeService();
-        Player player = new Player();
-        BridgeGame bridgeGame = new BridgeGame(bridgeService, player);
+        BridgeGame bridgeGame = new BridgeGame(bridgeService);
 
         bridgeGame.startGame();
     }
