@@ -63,4 +63,8 @@ public class BridgeGame {
             position++;
         }
     }
+
+    public void gameSet(boolean isCleared) {
+        new BridgeCommand().printGameSetMessages(crossResults, isCleared, gamePlayCount);
+    }
 }
