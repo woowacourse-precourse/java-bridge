@@ -22,6 +22,17 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 다리_이동_테스트() {
+        BridgeGame bridgeGame = new BridgeGame(5);
+        bridgeGame.move("U");
+
+        List<String> result = newArrayList();
+        result.add("U");
+
+        assertThat(result).isEqualTo(bridgeGame.getMoveProgress());
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
