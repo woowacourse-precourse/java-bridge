@@ -1,8 +1,8 @@
 package bridge.Setting;
 
 public enum BridgeSideIndex {
-    DOWN("D", "아래"),
-    UP("U", "위");
+    UP("U", "위"),
+    DOWN("D", "아래");
 
     private final String label;
     private final String position;
