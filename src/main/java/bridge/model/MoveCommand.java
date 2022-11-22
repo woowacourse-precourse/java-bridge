@@ -15,14 +15,6 @@ public enum MoveCommand {
 		this.number = number;
 	}
 
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public int getNumber() {
-		return number;
-	}
-
 	public static String getSymbolFromNumber(int movable) {
 		return Arrays.stream(values()).filter(symbol -> symbol.number == movable)
 			.findAny().orElseThrow(NoSuchElementException::new).symbol;

@@ -123,7 +123,7 @@ public class OutputView {
 	}
 
 	private boolean isMoveToUp(String moveCommand, boolean moveFlag) {
-		return moveCommand.equals("U") && moveFlag;
+		return MoveChecker.isEqualToUp(moveCommand) && moveFlag;
 	}
 
 	private String selectDownMove(String moveCommand, boolean moveFlag) {
