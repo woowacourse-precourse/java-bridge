@@ -15,7 +15,7 @@ public class OutputView {
 
     private static String[] map = new String[Moving.values().length];
 
-    public static void printMap(int position, String moving, boolean isAnswer) {
+    public void printMap(int position, String moving, boolean isAnswer) {
         String movingResult = Converter.convertToOX(isAnswer);
         int selectedIndex = Converter.convertToIndex(moving);
 
