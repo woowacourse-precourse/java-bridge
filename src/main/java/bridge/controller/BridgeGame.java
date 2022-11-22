@@ -1,5 +1,8 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.service.BridgeGameInput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +13,7 @@ import java.util.List;
 public class BridgeGame {
 
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    BridgeGameInput bridgeGameInput = new BridgeGameInput();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     public List<String> bridgeUsable;
 
@@ -20,8 +22,7 @@ public class BridgeGame {
 
     public void startGame() {
         bridgeUsable = new ArrayList<>();
-        int bridgeSize = inputView.readBridgeSize();
-        bridgeUsable = bridgeMaker.makeBridge(bridgeSize);
+        bridgeUsable = bridgeMaker.makeBridge(bridgeGameInput.getBridgeSize());
         restartGame();
     }
 
@@ -30,11 +31,9 @@ public class BridgeGame {
         retrycount+=1;
         HashMap<Integer, List<String>> resultMap = new HashMap<Integer, List<String>>();
         for (int i=0; i<bridgeUsable.size(); i++) {
-            String inputMove = inputView.readMoving();
-            move(bridgeUsable.get(i), inputMove, resultMap);
+            move(bridgeUsable.get(i), bridgeGameInput.getMoving(), resultMap);
         }
-        outputView.printResult("성공", retrycount, resultMap);
-
+        bridgeGameInput.getResultPrint("성공", retrycount, resultMap);
     }
 
     /**
@@ -53,7 +52,7 @@ public class BridgeGame {
                 results.add(resultUp);
                 results.add(resultDown);
                 resultMap.put(currentIndex, results);
-                outputView.printMap(resultMap);
+                bridgeGameInput.getBridgePrint(resultMap);
                 currentIndex += 1;
             }
             if (!move.equals(inputMove)){
@@ -62,7 +61,7 @@ public class BridgeGame {
                 results.add(resultUp);
                 results.add(resultDown);
                 resultMap.put(currentIndex, results);
-                outputView.printMap(resultMap);
+                bridgeGameInput.getBridgePrint(resultMap);
                 retry("실패", resultMap);
             }
         }
@@ -73,7 +72,7 @@ public class BridgeGame {
                 results.add(resultUp);
                 results.add(resultDown);
                 resultMap.put(currentIndex, results);
-                outputView.printMap(resultMap);
+                bridgeGameInput.getBridgePrint(resultMap);
                 currentIndex += 1;
             }
             if (!move.equals(inputMove)){
@@ -82,7 +81,7 @@ public class BridgeGame {
                 results.add(resultUp);
                 results.add(resultDown);
                 resultMap.put(currentIndex, results);
-                outputView.printMap(resultMap);
+                bridgeGameInput.getBridgePrint(resultMap);
                 retry("실패", resultMap);
             }
         }
@@ -96,12 +95,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String result, HashMap<Integer, List<String>> resultMap) {
-        String gameCommand = inputView.readGameCommand();
+        String gameCommand = bridgeGameInput.getCommand();
         if (gameCommand.equals("R")) {
             restartGame();
         }
         if (gameCommand.equals("Q")) {
-            outputView.printResult(result, retrycount, resultMap);
+            bridgeGameInput.getResultPrint(result, retrycount, resultMap);
             currentIndex=0;
             System.exit(0);
         }
