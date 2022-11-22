@@ -8,8 +8,20 @@ import java.util.List;
 public class BridgeGame {
 
     private final InputView inputView;
-    public BridgeGame(InputView inputView){
+    private final OutputView outputView;
+
+
+    public BridgeGame(InputView inputView ,OutputView outputView){
         this.inputView = inputView;
+        this.outputView = outputView;
+    }
+    public void start(){
+        outputView.printGameStart();
+        Player player = new Player();
+        int bridgeSize = inputView.readBridgeSize();
+        player.makeRightBridge(bridgeSize);
+        play(player);
+        outputView.printResult(player);
     }
 
     private void play(Player player) {
