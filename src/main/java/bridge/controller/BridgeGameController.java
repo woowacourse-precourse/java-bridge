@@ -22,7 +22,6 @@ public class BridgeGameController {
         bridgeGame = new BridgeGame(inputView.readBridgeSize(), bridgeMaker);
     }
 
-
     public void start() {
         while (true) {
             String movingCommand = inputView.readMoving();
@@ -52,8 +51,8 @@ public class BridgeGameController {
         return bridgeGame.getBridge().compareLength(bridgeGame.getUserInput());
     }
 
-    public boolean isRestart(String sign) {
-        return GameCommand.fromCommand(sign)
+    public boolean isRestart(String gameCommand) {
+        return GameCommand.fromCommand(gameCommand)
                 .isRestart();
     }
 }
