@@ -18,7 +18,7 @@ public class BridgeMakerTest {
     @DisplayName("getUpOrDownWithNum 메서드가 0이면 D를 1이면 U를 반환하는지 확인한다.")
     @Test
     void getUpOrDownWithNum_테스트() {
-        assertThat(bridgeMaker.getUpOrDownWithNum(0)).isEqualTo("U");
-        assertThat(bridgeMaker.getUpOrDownWithNum(1)).isEqualTo("D");
+        assertThat(bridgeMaker.getUpOrDownWithNum(0)).isEqualTo("D");
+        assertThat(bridgeMaker.getUpOrDownWithNum(1)).isEqualTo("U");
     }
 }

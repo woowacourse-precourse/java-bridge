@@ -30,8 +30,8 @@ public class BridgeMaker {
 
     public String getUpOrDownWithNum(int number) {
         if (number == 0) {
-            return "U";
+            return "D";
         }
-        return "D";
+        return "U";
     }
 }

@@ -30,12 +30,12 @@ public class ViewTest {
     void 움직임_입력_테스트() {
         InputStream in = new ByteArrayInputStream("A".getBytes());
         System.setIn(in);
-        assertThatThrownBy(() -> inputView.readBridgeSize())
+        assertThatThrownBy(() -> inputView.readMoving())
                 .isExactlyInstanceOf(IllegalArgumentException.class);
 
         in = new ByteArrayInputStream("123".getBytes());
         System.setIn(in);
-        assertThatThrownBy(() -> inputView.readBridgeSize())
+        assertThatThrownBy(() -> inputView.readMoving())
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,12 +44,12 @@ public class ViewTest {
     void 옵션_입력_테스트() {
         InputStream in = new ByteArrayInputStream("U".getBytes());
         System.setIn(in);
-        assertThatThrownBy(() -> inputView.readBridgeSize())
+        assertThatThrownBy(() -> inputView.readRetryCommand())
                 .isExactlyInstanceOf(IllegalArgumentException.class);
 
         in = new ByteArrayInputStream("123".getBytes());
         System.setIn(in);
-        assertThatThrownBy(() -> inputView.readBridgeSize())
+        assertThatThrownBy(() -> inputView.readRetryCommand())
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }
