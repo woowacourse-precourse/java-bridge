@@ -5,8 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -28,7 +28,7 @@ public class BridgeMakerTest {
     @DisplayName("사이즈의 입력만큼 U, D로 이루어진 문자열 리스트 반환")
     @Test
     void makeBridgeComponentTest(){
-        assertThat(bridgeMaker.makeBridge(3).stream().collect(Collectors.toSet()))
+        assertThat(new HashSet<>(bridgeMaker.makeBridge(3)))
                 .isEqualTo(Set.of("U", "D"));
     }
 }
