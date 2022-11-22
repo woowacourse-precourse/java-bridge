@@ -1,4 +1,4 @@
-package bridge.validator;
+package bridge.validation;
 
 import bridge.constants.ValidatorMessage;
 
