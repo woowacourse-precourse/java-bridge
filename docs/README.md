@@ -59,7 +59,7 @@
 - [x] 위치에 따른 사용자의 칸 정보를 가져온다. #getChoiceByPosition()
 - [x] 다리의 해당 위치 정보를 가져온다 #getBridgeByPosition()
 - [ ] 사용자의 위치현황을 모두 가져온다. #getBridgeMap()
-- [ ] 사용자가 게임을 다시 시도한다. #retry()
+- [x] 사용자가 게임을 다시 시도한다. #retry()
 - [x] 다리의 길이를 가져온다. #getBridgeLength()
 - [x] 사용자의 위치 정보의 갯수를 가져온다. #getNumberOfChoice()
 - [ ] 사용자가 다시 움직일수 있는지 판별한다. #moveAgain()
