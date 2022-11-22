@@ -18,10 +18,11 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public static BridgeGame of(BridgeMaker bridgeMaker,
+    public static BridgeGame of(BridgeGameRepository bridgeGameRepository,
+                                BridgeMaker bridgeMaker,
                                 BridgeSize bridgeSize) {
         List<String> blocks = bridgeMaker.makeBridge(bridgeSize.getSize());
-        return new BridgeGame(new BridgeGameRepository(), new Bridge(blocks));
+        return new BridgeGame(bridgeGameRepository, new Bridge(blocks));
     }
 
     public MoveResult move(MoveCommand command) {
