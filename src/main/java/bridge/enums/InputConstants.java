@@ -7,7 +7,7 @@ public enum InputConstants {
     QUIT_GAME("Q"),
     ;
 
-    private String value;
+    private final String value;
 
     InputConstants(String value) {
         this.value = value;

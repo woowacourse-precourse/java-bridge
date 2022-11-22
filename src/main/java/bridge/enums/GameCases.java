@@ -7,10 +7,10 @@ public enum GameCases {
     DOWN_FALSE_SITUATION("D", false, "   ", " X "),
     ;
 
-    private String direction;
-    private boolean result;
-    private String upperRowString;
-    private String lowerRowString;
+    private final String direction;
+    private final boolean result;
+    private final String upperRowString;
+    private final String lowerRowString;
 
     private GameCases(String direction, boolean result, String upperRowString, String lowerRowString) {
         this.direction = direction;

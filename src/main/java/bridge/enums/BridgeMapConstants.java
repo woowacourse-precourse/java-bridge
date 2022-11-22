@@ -7,7 +7,7 @@ public enum BridgeMapConstants {
     LINE_JUMPER("\n"),
     ;
 
-    private String value;
+    private final String value;
 
     private BridgeMapConstants(String value) {
         this.value = value;

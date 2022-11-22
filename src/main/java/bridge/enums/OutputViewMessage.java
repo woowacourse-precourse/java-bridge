@@ -12,7 +12,7 @@ public enum OutputViewMessage {
     FAILURE("실패");
 
 
-    private String message;
+    private final String message;
 
     private OutputViewMessage(String message) {
         this.message = message;
