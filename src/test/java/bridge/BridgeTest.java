@@ -4,7 +4,6 @@ import controller.BridgeController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +14,8 @@ public class BridgeTest {
     @DisplayName("입력 값과 다리 이동 정답이 일치하는지 여부를 판단한다")
     @Test
     void 정답_일치여부_테스트(){
-        List<String> bridge = new ArrayList<>(List.of("U","U","U"));
+
+        Bridge bridge = new Bridge(List.of("U","U","U"));
         BridgeController bridgeController = new BridgeController();
 
         bridgeController.moveOneStep(0,"D",bridge);
