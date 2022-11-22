@@ -51,5 +51,13 @@ public class BridgeGameTest {
         Assertions.assertTrue(bridgeGame.isCleared());
     }
 
+    @Test
+    void restartTest() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new TestNumberGenerator(newArrayList(0, 0, 0)));
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3));
+        bridgeGame.move(Direction.UP);
+        bridgeGame.retry(Command.Retry);
+        Assertions.assertEquals(2, bridgeGame.getTryCount());
+    }
 
 }
