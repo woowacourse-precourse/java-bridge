@@ -13,7 +13,13 @@ public class Application {
             gameStart = new GameStart(bridgeGame);
             reGame = gameStart.getReGame();
         } while (reGame);
+        output = (gameStart.Success(Bridge.size()));
+        int tryNum = gameStart.getTryNum();
+        outputView.printResultMap(gameStart.getBridgeGame());
+        return tryNum;
     }
+
+
     public static void ManageGameSettings(int size) {
         OutputView outputView = new OutputView();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
