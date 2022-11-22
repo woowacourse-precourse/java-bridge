@@ -54,6 +54,10 @@ public class OutputView {
         System.out.println(TextType.MOVE_MESSAGE.getText());
     }
 
+    public void printSize() {
+        System.out.println(TextType.SIZE_MESSAGE.getText());
+    }
+
     public void initMap(Bridge firstBridge, List<String> upBridgeMap, List<String> downBridgeMap) {
         upBridgeMap.add(TextType.BRIDGE_START.getText());
         downBridgeMap.add(TextType.BRIDGE_START.getText());
