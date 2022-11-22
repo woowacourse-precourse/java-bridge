@@ -63,7 +63,6 @@ public class BridgeGame {
     public BridgeGame(int bridgeLength) {
         gameStatus = GameStatus.PROGRESSING;
         bridgeData.setBridge(bridgeMaker.makeBridge(bridgeLength));
-        System.out.println(bridgeData.copyBridge());
         bridgeData.initializeTotalAttempt();
     }
 }
