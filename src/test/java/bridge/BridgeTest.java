@@ -48,8 +48,8 @@ class BridgeTest {
     @DisplayName("restart시, results배열이 잘 비워지는지 확인")
     @Test
     void restartBridge() {
-//        setResults1();
-        Assertions.assertThat(bridge.getResults().size()).isEqualTo(5);
+        setResults();
+        Assertions.assertThat(bridge.getResults().size()).isEqualTo(4);
         bridge.restartBridge();
         Assertions.assertThat(bridge.getResults().size()).isEqualTo(0);
     }
