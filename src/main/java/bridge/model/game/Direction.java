@@ -2,6 +2,7 @@ package bridge.model.game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,8 +35,8 @@ public enum Direction {
         for (Direction direction : values()) {
             infos.add(direction.info + ": " + direction.name());
         }
+        Collections.reverse(infos);
         msg.append(String.join(", ", infos));
-        msg.append(")");
-        return msg.toString();
+        return msg.append(")").toString();
     }
 }
