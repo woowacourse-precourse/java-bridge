@@ -44,7 +44,7 @@ public class GameController {
             if (!bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
                 command = getContinueCommand(outputView, inputView, bridgeGame);
                 gameCount++;
-                gameQuit = getGameQuit(gameCount, bridgeGame, command);
+                gameQuit = getGameQuit(bridgeGame, command);
             }
         }
         while (!bridgeGame.getGameCompleteStatus(upstairsBridge, downstairsBridge, size) && !gameQuit);
@@ -68,18 +68,11 @@ public class GameController {
         outputView.printMap(upstairsBridge, downstairsBridge);
     }
 
-    private static boolean getGameQuit(int gameCount, BridgeGame bridgeGame, String command) {
+    private static boolean getGameQuit(BridgeGame bridgeGame, String command) {
         if (!bridgeGame.retry(command)) {
             return true;
         }
         return false;
-    }
-
-    private static int gameCountWhenQuit(int gameCount, BridgeGame bridgeGame, String command ) {
-        if (!bridgeGame.retry(command)) {
-            return gameCount - 1;
-        }
-        return gameCount;
     }
 
     private static void getGameRestart(BridgeGame bridgeGame, String command) {

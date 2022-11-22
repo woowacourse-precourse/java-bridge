@@ -15,7 +15,7 @@ public class Application {
             GameController gameController = new GameController();
             gameController.bridgeGameProcess();
         } catch (IllegalArgumentException e ) {
-            System.out.println("[ERROR]");
+            System.out.println(e);
         }
     }
 }
