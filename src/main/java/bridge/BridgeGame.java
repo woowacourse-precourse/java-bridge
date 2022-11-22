@@ -9,6 +9,8 @@ public class BridgeGame {
 
     private static StringJoiner upBridge = new StringJoiner("|", "[", "]");
     private static StringJoiner downBridge = new StringJoiner("|", "[", "]");
+    private static int gameCount = 0;
+    private static boolean gameResult = false;
 
     public static StringJoiner getUpBridge() {
         return upBridge;
@@ -16,6 +18,22 @@ public class BridgeGame {
 
     public static StringJoiner getDownBridge() {
         return downBridge;
+    }
+
+    public static boolean getResult(){
+        return gameResult;
+    }
+
+    public static int getGameCount(){
+        return gameCount;
+    }
+
+    public void addGameCount(){
+        gameCount += 1;
+    }
+
+    public void success(){
+        gameResult = true;
     }
 
     /**
