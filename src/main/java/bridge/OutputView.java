@@ -10,6 +10,7 @@ public class OutputView {
     private final String lastGameResultMessage = "최종 게임 결과";
     private final String resultTypeMessage = "게임 성공 여부: ";
     private final String totalNumberOfTryMessage = "총 시도한 횟수: ";
+    static private final String errorPrefix = "[ERROR] ";
 
     public void printGameStart() {
         System.out.println(startGameMessage);
@@ -40,5 +41,9 @@ public class OutputView {
         printMap(result);
         System.out.println(resultTypeMessage + result.getLastResultType().toKoreanString());
         System.out.println(totalNumberOfTryMessage + result.getCount());
+    }
+
+    static public void printError(String message) {
+        System.out.println(errorPrefix + message);
     }
 }
