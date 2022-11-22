@@ -29,5 +29,10 @@ public class OutputView {
 		printMap(bridgeU, bridgeD);
 	}
 
+	public void win(int count) {
+		System.out.println(Constants.GAME_SUCCESS);
+		System.out.println(Constants.TOTAL_COUNT + count);
+	}
+
 }
 
