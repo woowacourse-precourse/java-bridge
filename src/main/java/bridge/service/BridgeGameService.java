@@ -27,7 +27,15 @@ public class BridgeGameService {
     public void start() {
         printStart();
         attempt = Attempt.begin();
-        bridge = Bridge.of(maker.makeBridge(readBridgeSize()));
+        while (true) {
+            try {
+                printBridgeSizeInput();
+                bridge = Bridge.of(maker.makeBridge(readBridgeSize()));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public Result move() {

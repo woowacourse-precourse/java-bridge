@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.domain.Command;
 
-import static bridge.view.OutputView.*;
 import static camp.nextstep.edu.missionutils.Console.*;
 
 /**
@@ -15,7 +14,6 @@ public class InputView {
      */
     public static int readBridgeSize() {
         try {
-            printBridgeSizeInput();
             String size = readLine();
             return Integer.parseInt(size);
         } catch (IllegalArgumentException e) {
