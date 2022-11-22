@@ -22,9 +22,13 @@ public class Application {
             String aliveOrDie = BridgeGame.move(selectMove, bridgeshape);
             System.out.println(aliveOrDie);
             if (Objects.equals(aliveOrDie, "END")){
+                UpDown.BridgeGameState(selectMove, "FAIL");
                 break;
             }
+            UpDown.BridgeGameState(selectMove, "PASS");
             i++;
         }
+        System.out.println(UpDown.upBridges);
+        System.out.println(UpDown.downBridges);
     }
 }
