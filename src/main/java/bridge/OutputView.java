@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     private static List<String> getMiddle(List<String> crossedBridge, String position) {
-        List<String> middle = new ArrayList();
+        List<String> middle = new ArrayList<>();
         for (String upDown : crossedBridge) {
             middle.add(getAvailableOrEmpty(position, upDown));
         }
@@ -37,14 +37,14 @@ public class OutputView {
 
 
     private static String arrToString(List<String> availableCalced) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         if (availableCalced.size() == 0) {
-            return result;
+            return result.toString();
         }
         for (String availableOrEmpty : availableCalced) {
-            result = result + availableOrEmpty + BRIDGE_SEP;
+            result.append(availableOrEmpty).append(BRIDGE_SEP);
         }
-        return result;
+        return result.toString();
     }
 
     /**
