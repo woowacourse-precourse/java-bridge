@@ -16,8 +16,8 @@ public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAILURE = "실패";
     private static final String TRY_COUNT = "총 시도한 횟수: ";
-    private static final String CROSSABLE_SIGN = "O";
-    private static final String UNABLE_TO_CROSS_SIGN = "X";
+    private static final String O_SIGN = "O";
+    private static final String X_SIGN = "X";
     private static final String BLANK = " ";
     private static final String DELIMITER = " | ";
     private static final String BRIDGE_PREFIX = "[ ";
@@ -64,7 +64,7 @@ public class OutputView {
 
     private static void drawCell(List<String> line, String lineType, String correctDirection) {
         if (correctDirection.equals(lineType)) {
-            line.add(CROSSABLE_SIGN);
+            line.add(O_SIGN);
             return;
         }
         line.add(BLANK);
@@ -72,7 +72,7 @@ public class OutputView {
 
     private static void drawFailedCell(List<String> line, String lineType, String correctDirection) {
         if (!correctDirection.equals(lineType)) {
-            line.add(UNABLE_TO_CROSS_SIGN);
+            line.add(X_SIGN);
             return;
         }
         line.add(BLANK);
