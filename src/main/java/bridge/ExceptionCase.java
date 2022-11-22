@@ -27,5 +27,11 @@ public class ExceptionCase {
         return moves;
     }
 
-
+    public String validateRetryCommand(String retryCommand) {
+        if (!retryCommand.equals("R") && !retryCommand.equals("Q")) {
+            System.out.println("[ERROR] 재도전은 \"R\" 와 \"Q\" 한 글자만 입력이 가능합니다.\n");
+            return new InputView().readGameCommand();
+        }
+        return retryCommand;
+    }
 }
