@@ -50,4 +50,9 @@ public class BridgeGame {
     private String getBridgeByPosition(int position) {
         return bridge.getBridgeByIndex(position);
     }
+
+    private int getBridgeLength() {
+        return bridge.getBridgeLength();
+    }
+
 }
