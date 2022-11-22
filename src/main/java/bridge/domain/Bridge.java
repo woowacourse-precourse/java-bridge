@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.utils.BridgeRandomNumberGenerator;
+import bridge.utils.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +10,8 @@ public class Bridge {
     private static List<String> upperBridge;
     private static List<String> lowerBridge;
 
-    public Bridge(BridgeRandomNumberGenerator bridgeRandomNumberGenerator) {
-        bridge = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(User.getBridgeSize());
+    public Bridge(BridgeNumberGenerator bridgeNumberGenerator) {
+        bridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(User.getBridgeSize());
     }
 
     private static void resetUpperBridge() {
