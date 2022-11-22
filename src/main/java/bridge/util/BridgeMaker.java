@@ -22,12 +22,12 @@ public class BridgeMaker {
         Bridge bridge = new Bridge();
         for (int i = 0; i < size; i++) {
             int stageStatus = bridgeNumberGenerator.generate();
-            bridge.addBridge(converStage(stageStatus));
+            bridge.addBridge(convertStatusToCommand(stageStatus));
         }
         return bridge;
     }
 
-    private static String converStage(int stageStatus) {
+    private static String convertStatusToCommand(int stageStatus) {
         if (stageStatus == Move.DOWN.getStatus()) {
             return Move.DOWN.getCommand();
         }
