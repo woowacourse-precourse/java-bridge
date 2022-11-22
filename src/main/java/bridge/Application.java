@@ -12,5 +12,8 @@ public class Application {
         BridgeNumberGenerator num = new BridgeRandomNumberGenerator();
         BridgeMaker makeBridge = new BridgeMaker(num);
         List<String> bridge = makeBridge.makeBridge(bSize);
+        BridgeGameManage manage = new BridgeGameManage();
+        String [] result = manage.manage(bridge,bSize);
+        manage.out.printResult(result[0],result[1]);
     }
 }
