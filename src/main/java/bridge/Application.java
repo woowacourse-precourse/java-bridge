@@ -1,8 +1,23 @@
 package bridge;
 
-public class Application {
+import bridge.controller.BridgeGameController;
+import bridge.domain.GameProgress;
+import bridge.domain.GameResult;
+import bridge.domain.GameTurn;
+import bridge.view.OutputView;
 
+import java.util.regex.Pattern;
+
+public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGameController controller = new BridgeGameController();
+        GameTurn gameTurn = GameTurn.MOVE;
+        while(gameTurn != GameTurn.QUIT) {
+            try {
+                gameTurn = controller.playGame(gameTurn);
+            } catch (Exception e) {
+                OutputView.printErrorMessage(e.toString());
+            }
+        }
     }
 }
