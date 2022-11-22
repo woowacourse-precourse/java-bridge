@@ -55,12 +55,12 @@ public class BridgeGameController {
     }
 
     private boolean canMove() {
-        return bridgeGame.canMove(userIOView.inputMovingCharacterProcess());
+        return bridgeGame.canMove(userIOView.inputMovingCharacterProcedure());
     }
 
     private void failProcess() {
         GameStatusView gameStatusView = makeGameResultStatusView(bridgeGame.status());
-        proceedFor(userIOView.inputGameCommandProcess(gameStatusView));
+        proceedFor(userIOView.inputGameCommandProcedure(gameStatusView));
     }
 
     private void proceedFor(GameCommand gameCommand) {
@@ -72,12 +72,12 @@ public class BridgeGameController {
     }
 
     private void init() {
-        userIOView.initProcess();
+        userIOView.initProcedure();
 
-        this.bridgeGame = createGame(userIOView.inputBridgeSizeProcess());
+        this.bridgeGame = createGame(userIOView.inputBridgeSizeProcedure());
     }
 
     private void release() {
-        userIOView.releaseProcess(makeGameResultView(bridgeGame.result()));
+        userIOView.releaseProcedure(makeGameResultView(bridgeGame.result()));
     }
 }

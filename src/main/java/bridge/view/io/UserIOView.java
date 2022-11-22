@@ -21,24 +21,24 @@ public class UserIOView {
         this.outputView = outputView;
     }
 
-    public BridgeCharacter inputMovingCharacterProcess() {
+    public BridgeCharacter inputMovingCharacterProcedure() {
         outputView.printMessage(INPUT_MOVING);
         return inputValidReadMoving();
     }
 
-    public GameCommand inputGameCommandProcess(GameStatusView gameStatusView) {
+    public GameCommand inputGameCommandProcedure(GameStatusView gameStatusView) {
         outputView.printMap(gameStatusView);
 
         outputView.printMessage(RETRY);
         return inputValidGameCommand();
     }
 
-    public void initProcess() {
+    public void initProcedure() {
         outputView.printMessage(GAME_START);
         outputView.lineSeparate();
     }
 
-    public BridgeSize inputBridgeSizeProcess() {
+    public BridgeSize inputBridgeSizeProcedure() {
         outputView.printMessage(INPUT_BRIDGE_SIZE);
 
         BridgeSize readBridgeSize = inputValidBridgeSize();
@@ -51,7 +51,7 @@ public class UserIOView {
         outputView.printMap(gameStatusView);
     }
 
-    public void releaseProcess(GameResultView gameResultView) {
+    public void releaseProcedure(GameResultView gameResultView) {
         outputView.printMessage(GAME_RESULT);
         outputView.printResult(gameResultView);
     }
