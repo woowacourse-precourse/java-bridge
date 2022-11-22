@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge;
 
 import static bridge.utils.Constant.*;
 

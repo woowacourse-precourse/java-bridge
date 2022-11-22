@@ -4,7 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeResult;
 import bridge.domain.GameCommand;
-import bridge.view.OutputView;
+import bridge.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.domain.Bridge;
 import bridge.domain.GameCommand;
 import bridge.domain.Move;
-import bridge.view.InputView;
+import bridge.InputView;
 
 public class InputController {
 
