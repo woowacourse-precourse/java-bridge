@@ -51,4 +51,36 @@ public class BridgeGameTest {
 
         assertThat(game.move("U")).isEqualTo(GameState.CLEAR);
     }
+
+    @DisplayName("다리를 건너다 잘못 선택한 경우 실패로 상태를 전환한다.")
+    @Test
+    void failGame() {
+        assertThat(game.move("D")).isEqualTo(GameState.FAIL);
+    }
+
+    @DisplayName("재시작 여부 입력 시 R 또는 Q 이외의 값은 예외를 발생한다.")
+    @Test
+    void retryGameWithWrongInput() {
+        assertThatThrownBy(() -> game.move("W"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시작 여부 입력 시 1개 길이가 아닌 문자 입력은 예외를 발생한다.")
+    @Test
+    void retryGameWithLongInput() {
+        assertThatThrownBy(() -> game.move("QQ"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시작을 입력한 경우 게임을 재시작한다.")
+    @Test
+    void retryGame() {
+        assertThat(game.retry("R")).isEqualTo(GameState.CONTINUE);
+    }
+
+    @DisplayName("종료를 입력한 경우 게임을 종료한다.")
+    @Test
+    void closeGame() {
+        assertThat(game.retry("Q")).isEqualTo(GameState.EXIT);
+    }
 }
