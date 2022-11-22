@@ -56,3 +56,6 @@
 ### BridgeMonitor
 - [ ] 한턴의 이동 후 현황 기록
 - [ ] 이동 현황 반환
+
+### BridgeMaker
+- [x] 다리 생성
