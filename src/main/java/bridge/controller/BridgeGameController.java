@@ -1,10 +1,6 @@
 package bridge.controller;
 
-import bridge.model.Bridge;
-import bridge.model.Player;
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.util.BridgeViewConstructor;
+import bridge.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -14,38 +10,29 @@ public class BridgeGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final Bridge bridge;
-    private final Player player = new Player();
+    private final BridgeGame bridgeGame;
 
     public BridgeGameController(){
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        bridgeGame = new BridgeGame(inputView.readBridgeSize());
     }
 
     private void moveAStep(){
-        player.addNewBridgeInput(inputView.readMoving());
-        outputView.printMap(constructBridge());
+        outputView.printMap(bridgeGame.move(inputView.readMoving()));
     }
 
     private void resetGame(){
-        player.clearBridge();
-        player.increaseTrialCount();
+        bridgeGame.retry();
     }
 
     private void concludeGame(){
-        outputView.printResult(constructBridge(), player.getTrialCount());
-    }
-
-    private String constructBridge(){
-        BridgeViewConstructor bridgeViewConstructor = new BridgeViewConstructor();
-        return bridgeViewConstructor
-                .constructBridge(player.getBridges(), bridge.getBridges());
+        outputView.printResult(bridgeGame.constructBridge(),
+                bridgeGame.getTotalTrialCount());
     }
 
     public void runGame(){
         while(true){
             moveUntilStop();
-            if(isSuccess()) break;
+            if(bridgeGame.isSuccess()) break;
             if(isQuit())break;
             resetGame();
         }
@@ -57,17 +44,9 @@ public class BridgeGameController {
     }
 
     private void moveUntilStop(){
-        while(!(isSuccess() || isPaused())){
+        while(!(bridgeGame.isSuccess()) || bridgeGame.isPaused()){
             moveAStep();
         }
-    }
-
-    private boolean isPaused(){
-        return !bridge.isPlayerRightBridge(player);
-    }
-
-    private boolean isSuccess(){
-        return player.isGameFinished(bridge);
     }
 
     private String readFinalCommand(){
