@@ -15,11 +15,29 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(BRIDGE_SIZE_MENT);
-        String s = Console.readLine();
-        // validateBridgeSize(s)
-        int bridgeSize = Integer.parseInt(s);
-        return bridgeSize;
+        while (true) {
+            try {
+                System.out.println(BRIDGE_SIZE_MENT);
+                String s = Console.readLine();
+                validateBridgeSize(s);
+                return Integer.parseInt(s);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBridgeSize(String s) throws IllegalArgumentException {
+        char[] arrCh = s.toCharArray();
+        for (char ch : arrCh) {
+            if (!Character.isDigit(ch)) {
+                throw new IllegalArgumentException("[ERROR] 다리의 길이는 숫자여야 합니다");
+            }
+        }
+        int winningNum = Integer.parseInt(s);
+        if (winningNum < 3 || 20 < winningNum) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이의 범위는 3~20입니다.");
+        }
     }
 
     /**

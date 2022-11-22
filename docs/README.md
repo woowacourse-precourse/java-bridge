@@ -1,9 +1,9 @@
 ## ⭐️ 기능 목록
 - [x] 게임 시작 문구 출력 기능 - BridgeGame
 
-- [ ] 다리의 길이를 입력받는 기능 (3 이상 20이하의 숫자) - InputView
+- [x] 다리의 길이를 입력받는 기능 (3 이상 20이하의 숫자) - InputView
   - [x] 다리 길이 입력받기 - InputView#readBridgeSize
-  - [ ] 예외처리 (숫자가 아닐 때 / 범위 벗어났을 때) - InputView#validateBridgeSize
+  - [x] 예외처리 (숫자가 아닐 때 / 범위 벗어났을 때) - InputView#validateBridgeSize
 - [x] 입력받은 길이에 해당하는 다리를 생성하는 기능 - BridgeMaker
   - [x] 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타내기 - BridgeMaker#makeBridge
   - [x] 건널 수 있는 칸은 0(아래 칸)과 1(위 칸)중 무작위 값 이용해서 정하기 - BridgeRandomNumberGenerator#generate
