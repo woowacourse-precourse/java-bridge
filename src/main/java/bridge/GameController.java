@@ -27,6 +27,13 @@ public class GameController {
         return result;
     }
 
+    public void end(boolean result) {
+        outputView.printEnd();
+        outputView.printMap(toString(bridgeGame.getUpBridge()));
+        outputView.printMap(toString(bridgeGame.getDownBridge()));
+        outputView.printResult(result, numberOfTimes);
+    }
+
     public int oneTime() {
         boolean isMove;
         for (int i = 0; i < bridgeSize; i++) {
