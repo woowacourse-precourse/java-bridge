@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.Status;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,30 +9,28 @@ import java.util.List;
  */
 public class BridgeGameManager {
 
-    private static List<String> bridge;
+    private final BridgeConnector bridgeConnector;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
     private static int gamePlayCount = 1;
+    private static List<String> bridge;
     private boolean isClear;
 
+
     public BridgeGameManager() {
+        this.bridgeConnector = new BridgeConnector();
         this.bridgeGame = new BridgeGame();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void crossBridge() {
-        List<String> playerInput = new ArrayList<>();
-        for (int count = 0; count < bridge.size(); count++) {
-            String currPlayerInput = InputView.readMoving();
-            playerInput.add(currPlayerInput);
-            OutputView.printMap(bridge, playerInput);
-            isClear = bridgeGame.move(bridge, currPlayerInput);
-            if (!isClear) {
-                restartGame();
-                return;
-            }
+        if (crossSuccess()) {
+            isClear = true;
+            endGame();
+            return;
         }
-        endGame();
+        isClear = false;
+        restartGame();
     }
 
     public void makeBridge() {
@@ -39,7 +38,7 @@ public class BridgeGameManager {
     }
 
     public void endGame() {
-        OutputView.printResult(gamePlayCount, isClear);
+        OutputView.printResult(gamePlayCount, isClear, bridgeConnector.toString());
     }
 
     public void restartGame() {
@@ -48,6 +47,25 @@ public class BridgeGameManager {
             crossBridge();
         }
         endGame();
+    }
+
+    public boolean crossSuccess() {
+        List<Status> statuses = new ArrayList<>();
+        for (String currSection : bridge) {
+            if (currSectionWrong(statuses, currSection)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean currSectionWrong(List<Status> statuses, String currSection) {
+        String playerInput = InputView.readMoving();
+        boolean canGo = bridgeGame.move(currSection, playerInput);
+        statuses.add(Status.getStatus(playerInput, canGo));
+        bridgeConnector.connect(statuses);
+        OutputView.printMap(bridgeConnector.toString());
+        return canGo;
     }
 
 }
