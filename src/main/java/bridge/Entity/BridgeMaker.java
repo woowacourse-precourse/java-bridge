@@ -1,9 +1,9 @@
 package bridge.Entity;
 
 import bridge.BridgeNumberGenerator;
-import bridge.View.InputValidate;
 import bridge.View.InputView;
 import bridge.View.OutputView;
+import bridge.View.ValidateSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,8 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    InputView inputView = new InputView();
+    private final ValidateSet validateSet = new ValidateSet();
+    private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -26,10 +27,11 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        for(int i=0;i<size;i++) {
-            System.out.println(bridgeNumberGenerator.generate());
+        List<String> bridge = new ArrayList<>();
+        for (int i=0;i<size;i++) {
+            int move = bridgeNumberGenerator.generate();
+            bridge.add(Bridge.find(move).getLetter());
         }
-        return null;
+        return bridge;
     }
-
 }

@@ -25,8 +25,23 @@ public class InputValidate {
     }
 
     public void IsZeroOrOneComputerBridge(int input) {
-        if (input != 1 || input != 0) {
+        if (input != 1 && input != 0) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public void IsNoneInputUserBridge(String input) {
+        if (input.isBlank()) {
+            System.out.println("[ERROR] 이동할 칸을 입력해주셔야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void IsUorDByUserBridge(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            System.out.println("[ERROR] 이동할 칸을 U 혹은 D로 입력해주셔야 합니다.");
+            throw new IllegalArgumentException();
+        }
+
     }
 }

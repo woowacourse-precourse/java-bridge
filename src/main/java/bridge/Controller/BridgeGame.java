@@ -1,7 +1,9 @@
 package bridge.Controller;
 
+import bridge.BridgeRandomNumberGenerator;
+import bridge.Entity.BridgeMaker;
 import bridge.Service.GenerateBridgeSize;
-import bridge.Service.GenerateComBridge;
+import bridge.Service.GenerateUserBridge;
 
 import java.util.List;
 
@@ -11,18 +13,20 @@ import java.util.List;
  */
 public class BridgeGame {
 
-
     public void start() {
-        GenerateBridgeSize generateBridgeSize = new GenerateBridgeSize();
-        int size = generateBridgeSize.getBridgeSize();
-        GenerateComBridge generateComBridge = new GenerateComBridge();
-        List<Integer> comBridge = generateComBridge.generate(size);
+        int size = getsize();
+        getrandomBridge(size);
+        move(size);
     }
 
-    public void cycle(int size) {
-        for (int i=0;i<size;i++) {
+    private int getsize() {
+        return new GenerateBridgeSize().getBridgeSize();
+    }
 
-        }
+    private List<String> getrandomBridge(int size) {
+        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+        System.out.println(bridge);
+        return bridge;
     }
 
     /**
@@ -30,7 +34,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public List<String> move(int size) {
+        return new GenerateUserBridge().getUserBridge(size);
     }
 
     /**

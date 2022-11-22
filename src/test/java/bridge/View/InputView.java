@@ -31,4 +31,18 @@ public class InputView {
         assertThatThrownBy(() -> new BridgeSize("23"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+//    @DisplayName("이동할 칸의 입력 값이 U, D가 아닌 경우 예외 발생")
+//    @Test
+//    void createMovementByNotRange() {
+//        assertThatThrownBy(() -> new B(List.of("U", "D", "O")))
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
+//
+//    @DisplayName("이동할 칸의 입력 값이 비어있을 경우")
+//    @Test
+//    void createMovementByNumber() {
+//        assertThatThrownBy(() -> new UserBridge(List.of("U", "", "D")))
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
 }

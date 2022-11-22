@@ -11,4 +11,9 @@ public class ValidateSet extends InputValidate {
     public void Computer(int input) {
         IsZeroOrOneComputerBridge(input);
     }
+
+    public void User(String input) {
+        IsNoneInputUserBridge(input);
+        IsUorDByUserBridge(input);
+    }
 }
