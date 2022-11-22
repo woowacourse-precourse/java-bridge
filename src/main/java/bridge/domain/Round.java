@@ -14,4 +14,10 @@ public class Round {
     public boolean checkRoundFirst() {
         return round == FIRST_ROUND;
     }
+
+    // 라운드를 증가시키는 기능
+    public void plusRound() {
+        round++;
+    }
+
 }
