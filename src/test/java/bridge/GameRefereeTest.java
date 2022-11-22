@@ -15,21 +15,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameRefereeTest {
 
-    Bridge bridge = new Bridge(List.of("D"));
+    Bridge bridge = new Bridge(List.of("D", "U", "D"));
     GameReferee gameReferee = new GameReferee(bridge);
 
     @ParameterizedTest
     @DisplayName("이동할 수 있는 칸인지 검증한다.")
     @MethodSource("provideObjectsForIsCorrectMoving")
-    void test(PlayerMoving playerMoving, boolean expected) {
-        assertThat(gameReferee.isCorrectMoving(playerMoving))
+    void test(PlayerMoving playerMoving, int index, boolean expected) {
+        assertThat(gameReferee.isCorrectMoving(playerMoving, index))
                 .isEqualTo(expected);
     }
 
     private static Stream<Arguments> provideObjectsForIsCorrectMoving() {
         return Stream.of(
-                Arguments.of(new PlayerMoving("U"), false),
-                Arguments.of(new PlayerMoving("D"), true)
+                Arguments.of(new PlayerMoving("U"), 0, false),
+                Arguments.of(new PlayerMoving("D"), 1, false),
+                Arguments.of(new PlayerMoving("D"), 2, true)
         );
     }
 }
