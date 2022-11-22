@@ -34,7 +34,6 @@ public class InputView {
                 break;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
 
@@ -48,6 +47,21 @@ public class InputView {
         String moving = Console.readLine();
 
         inputValidator.validateMoving(moving);
+
+        return moving;
+    }
+
+    public String readMovingSizeUntilSuccess() {
+        String moving;
+
+        while(true) {
+            try {
+                moving = readMoving();
+                break;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         return moving;
     }
