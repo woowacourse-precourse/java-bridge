@@ -2,7 +2,6 @@ package bridge.model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import bridge.model.Bridgelocation;
 import org.junit.jupiter.api.Test;
 
 class BridgelocationTest {
