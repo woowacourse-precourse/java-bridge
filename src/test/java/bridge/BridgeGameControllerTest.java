@@ -5,7 +5,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.controller.BridgeGameController;
-import bridge.model.BridgeMaker;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import org.assertj.core.api.SoftAssertions;

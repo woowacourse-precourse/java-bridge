@@ -1,6 +1,5 @@
-package bridge.model;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,19 +20,16 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<String>();
-        int randomNumber;
         for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
-            randomNumber = bridgeNumberGenerator.generate();
-            bridge.add(createShape(randomNumber));
+            int randomNumber = bridgeNumberGenerator.generate();
+            if (randomNumber == 1) {
+                bridge.add("U");
+            }
+            if (randomNumber == 0) {
+                bridge.add("D");
+            }
         }
         return bridge;
-    }
-
-    public String createShape(int randomNumber) {
-        if (randomNumber == 1) {
-            return "U";
-        }
-        return "D";
     }
 
 }
