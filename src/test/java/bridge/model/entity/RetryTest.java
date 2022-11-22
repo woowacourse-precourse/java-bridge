@@ -1,9 +1,11 @@
 package bridge.model.entity;
 
+import bridge.model.value.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperties;
 
+import static bridge.model.value.ErrorMessage.RETRY_ERROR;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,7 +25,7 @@ class RetryTest {
         }
     }
 
-    @DisplayName("[ERROR] Move 예외 테스트")
+    @DisplayName("[ERROR] Retry 예외 테스트")
     @Test
     void of() {
         //Given
@@ -34,7 +36,8 @@ class RetryTest {
             for(int i = 0; i < retry.length; i++){
                 Retry.of(retry[i]);
             }
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(RETRY_ERROR);
 
         //Then
     }
