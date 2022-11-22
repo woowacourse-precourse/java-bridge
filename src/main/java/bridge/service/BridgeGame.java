@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.message.ValidateMessage.INVALID_INPUT;
+import static bridge.message.ValidateMessage.OUT_OF_RANGE;
 import static bridge.util.BridgeUtil.BINARY_UP;
+import static bridge.util.BridgeUtil.MIN_BRIDGE_SIZE;
+import static bridge.util.BridgeUtil.MAX_BRIDGE_SIZE;
 
 public class BridgeGame {
 
@@ -88,6 +91,12 @@ public class BridgeGame {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INPUT);
+        }
+    }
+
+    private void validateBridgeSizeRange(int number) {
+        if (MIN_BRIDGE_SIZE > number || MAX_BRIDGE_SIZE < number) {
+            throw new IllegalArgumentException(OUT_OF_RANGE);
         }
     }
 
