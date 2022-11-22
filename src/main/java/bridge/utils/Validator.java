@@ -3,7 +3,6 @@ package bridge.utils;
 public class Validator {
 
     public static final String NUM_ERROR = "[ERROR] 입력이 숫자가 아닙니다.";
-    public static final String ZERO_ERROR = "[ERROR] 크기가 0일 수 없습니다.";
     public static final String RANGE_ERROR = "[ERROR] 정수의 범위를 넘어갔습니다.";
     public static final String MOVE_ERROR = "[ERROR] 이동할 칸은 U, D의 입력만 가능합니다.";
     public static final String RESTART_ERROR = "[ERROR] 재시작은 R, Q의 입력만 가능합니다.";
