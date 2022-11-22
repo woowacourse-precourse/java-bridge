@@ -41,4 +41,14 @@ public class BridgeGameController {
         bridgeGame.initBridge(bridgeSize);
     }
 
+    private boolean isDisallowInputMoveCommand(String input) {
+        try {
+            bridgeGame.validateInputMoveCommand(input);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
 }
