@@ -50,3 +50,4 @@
 4. [x] Validator Processor 기능과 테스트
 5. [x] InputView 기능
 6. [x] OutputView 기능
+7. [x] BridgeGame 기능
