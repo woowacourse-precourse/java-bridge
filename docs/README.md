@@ -71,30 +71,33 @@
 
 ### 4. 게임 결과 출력
 #### 출력값
-- 다리를 끝까지 건넜거나 / 게임 종료를 선택하면 다음을 출력한다
+- [x] 다리를 끝까지 건넜거나 / 게임 종료를 선택하면 다음을 출력한다
 - [x] 게임 종료 문구
   - [x] 게임 결과
   - [x] 게임 성공 여부
   - [x] 총 시도한 횟수
 
 
-## 🏗️ 프로젝트 구조
+## 🏗️ 최종 프로젝트 구조
 
 ### main
-- Models (도메인 로직)
+- domain (도메인 로직)
   - BridgeMaker : 사용자가 입력한 다리 길이만큼, 무작위로 문자 "U" 또는 문자 "D"의 원소가 담긴 List<Interge>를 생성하는 클래스
-    - BridgeNumberGenerator`(Interface)`
-    - BridgeRandomNumberGenerator
   - BridgeDirection`(Enum)` : 임의로 생성된 0, 1의 값을 "U", "D" 문자열로 매핑시켜주는 클래스
   - BridgeGame : 생성된 다리를 사용자 입력값과 비교해 한 칸 움직이거나, 재도전을 하도록 하거나, 게임 성공 여부를 알려주는 클래스
-- Views (UI 로직)
+  - BridgeMap : Controller에서 BrideGame 객체로 부터 게임 상황 메세지를 받아 다리 map(StringBuilder) 생성하는 클래스
+- view (UI 로직)
   - InputView : 사용자로 부터 받은 입력값을 검증하고 올바른 데이터를 Controller에 넘김
-  - OutputView : Controller에서 BridgeGame 객체로부터 메세지를 받아 게임 상황과 게임 결과를 출력
-- Controller : View로부터 입력 받은 값을 Model에 전달하거나, Model의 결과 값을 View에 출력하도록 연결해주는 클래스
-- Utils
+  - OutputView : Controller로 부터 전달 받은 데이터로 게임 상황과 게임 결과를 출력
+- controller
+  - InputController : View로부터 입력 받은 값을 domain 모델 들에 전달하는 클래스
+  - BridgeController : UI 로직과 도메인 로직을 전체 연결하여, 입력 값을 Domain에서 연산하고 연산의 결과 값을 View에 출력하도록 연결해주는 클래스
+- utils
   - ErrorMessage : Exception 메세지에 [ERROR] 전치사 붙여주는 기능
   - Setting : 게임 전반에 걸친 상수를 관리하는 기능
   - Validator : InputView에서 사용자 입력값을 검증하는 기능
+  - BridgeNumberGenerator`(Interface)`
+  - BridgeRandomNumberGenerator
 
 ### test
 - Models
@@ -105,6 +108,3 @@
 - Utils
   - Validator : 각각의 validate 메소드들이 올바르게 작동하는지 확인
 - Application (추가 테스트 구현) : 여러 프로그램 실행 상황 확인, 여러가지 입력 예외 가능성 확인
-
-
-## 📌 프로젝트 중점 사항
