@@ -9,15 +9,22 @@ import java.util.Map;
  */
 public class BridgeGame {
 
-    private Map<Integer, ArrayList<String>> playerBridgeState;
+    private final BridgeMaker bridgeMaker;
     private final Bridge bridge;
+    private Map<Integer, ArrayList<String>> playerBridgeState;
+
     private int playerBridgePosition = 0;
     private int attempts = 1;
     private boolean isSuccess = true;
 
     public BridgeGame(int bridgeSize) {
-        this.playerBridgeState = new HashMap<Integer, ArrayList<String>>() ;
-        this.bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize));
+        this.playerBridgeState = new HashMap<Integer, ArrayList<String>>();
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    public void changeToLoose() {
+        this.isSuccess = false;
     }
 
     /**
@@ -25,7 +32,6 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-
     public void move() {
         playerBridgePosition++;
     }
@@ -38,54 +44,52 @@ public class BridgeGame {
         list.add(playerAnswer);
         list.add(Correct);
 
-        playerBridgeState.put(playerBridgePosition,list);
+        playerBridgeState.put(playerBridgePosition, list);
     }
 
-    private String isCorrectInput(String playerMovingInRandomBridge, String playerAnswer) {
+    public String isCorrectInput(String playerMovingInRandomBridge, String playerAnswer) {
 
         if (playerMovingInRandomBridge.equals(playerAnswer)) {
             return "O";
         }
         return "X";
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        this.playerBridgeState = new HashMap<Integer, ArrayList<String>>() ;
+        this.playerBridgeState = new HashMap<Integer, ArrayList<String>>();
         playerBridgePosition = 0;
         attempts++;
     }
 
-    public Map<Integer, ArrayList<String>> getPlayerBridge() {
-        return this.playerBridgeState;
-    }
-
-    public boolean checkCanMove(){
-        if(playerBridgeState.get(playerBridgeState.size()-1).get(1).equals("O") && playerBridgePosition < (bridge.getPositions().size())){
+    public boolean checkCanMove() {
+        if (playerBridgeState.get(playerBridgeState.size() - 1).get(1).equals("O") && playerBridgePosition < (bridge.getPositions().size())) {
             return true;
         }
         return false;
     }
 
-    public void changeToLoose() {
-        this.isSuccess = false;
+    public Map<Integer, ArrayList<String>> getPlayerBridge() {
+        return this.playerBridgeState; //무조건 필요함
     }
 
     public String getCurrentIsCorrect() {
-        return playerBridgeState.get(playerBridgeState.size()-1).get(1);
+        return playerBridgeState.get(playerBridgeState.size() - 1).get(1);
     }
+
+    public int getCountAttempts() {
+        return this.attempts;
+    }
+
     public int getPlayerBridgePosition() {
         return this.playerBridgePosition;
     }
 
     public boolean getIsSuccess() {
         return this.isSuccess;
-    }
-
-    public int getCountAttempts() {
-        return this.attempts;
     }
 }

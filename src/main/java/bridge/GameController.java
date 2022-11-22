@@ -1,18 +1,20 @@
 package bridge;
 
 public class GameController {
+
     private final InputView inputView;
     private final OutputView outputView;
     private int bridgeSize;
 
     public GameController() {
         this.inputView = new InputView();
-        this.outputView= new OutputView();
+        this.outputView = new OutputView();
     }
 
     public void startGame() {
-        bridgeSize = inputView.readBridgeSize();
+        bridgeSize = Integer.parseInt(inputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+
         runGame(bridgeGame);
         endGame(bridgeGame);
     }
@@ -41,14 +43,14 @@ public class GameController {
     }
 
     public boolean isPlayerArrive(BridgeGame bridgeGame) {
-        return bridgeGame.getPlayerBridgePosition()==(bridgeSize) &&(bridgeGame.getCurrentIsCorrect().equals("O"));
+        return bridgeGame.getPlayerBridgePosition() == (bridgeSize) && (bridgeGame.getCurrentIsCorrect().equals("O"));
     }
 
     public String getGameCommand(BridgeGame bridgeGame) {
         String gameCommand;
         gameCommand = inputView.readGameCommand();
 
-        if(gameCommand.equals("Q")){
+        if (gameCommand.equals("Q")) {
             bridgeGame.changeToLoose();
         }
         return gameCommand;
