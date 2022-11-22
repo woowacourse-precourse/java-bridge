@@ -8,9 +8,8 @@ public class GameResult {
     private static final int ONE_INDEX = 1;
     private static final String MOVE_FAIL = "X";
 
-    public static void takeResult(List<String> currentBridge, List<String> originalBridge) {
+    public static void takeResult(List<String> currentBridge, List<String> originalBridge, int gameAttemptsCount) {
         OutputView outputView = new OutputView();
-
         outputView.printResult(currentBridge);
 
         boolean successOrFail = checkSuccessOrFailOfGameResult(currentBridge, originalBridge);

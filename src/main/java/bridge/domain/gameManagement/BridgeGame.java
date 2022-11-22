@@ -1,10 +1,10 @@
 package bridge.domain.gameManagement;
 
+import static bridge.domain.PlayerMove.PlayerMove.attemptCrossBridge;
 import static bridge.domain.PlayerMove.PlayerMove.checkGameRestartOrQuitCommand;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.PlayerMove.PlayerMove;
 
 import java.util.List;
 
@@ -23,9 +23,9 @@ public class BridgeGame {
     public int move(List<String> bridge, List<String> currentBridge) {
         int currentLocation = INITIAL_LOCATION;
 
-        PlayerMove.attemptCrossBridge(bridge, currentBridge, currentLocation);
+        int gameAttemptsCount = attemptCrossBridge(bridge, currentBridge, currentLocation);
 
-        return currentLocation;
+        return gameAttemptsCount;
     }
 
     /**

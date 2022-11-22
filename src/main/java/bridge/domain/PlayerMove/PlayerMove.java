@@ -14,6 +14,7 @@ public class PlayerMove {
     private static final String GAME_COMMAND_QUIT = "Q";
     private static final String MOVE_FAIL = "X";
     private static final int END_OF_MOVE = -1;
+    private static final int ZERO_COUNT = 0;
     private static final int ONE_INDEX = 1;
 
     public static String takeMovingPosition() {
@@ -29,16 +30,17 @@ public class PlayerMove {
         }
     }
 
-    public static void attemptCrossBridge(List<String> bridge, List<String> currentBridge, int currentLocation) {
+    public static int attemptCrossBridge(List<String> bridge, List<String> currentBridge, int currentLocation) {
+        int gameAttemptsCount = ZERO_COUNT;
         while (true) {
+            gameAttemptsCount++;
             int updatedCurrentLocation = handlePlayerMove(currentLocation, bridge, currentBridge);
-
             if (updatedCurrentLocation == END_OF_MOVE) {
                 break;
             }
-
             currentLocation = updatedCurrentLocation;
         }
+        return gameAttemptsCount;
     }
 
     public static int handlePlayerMove(int currentLocation, List<String> bridge, List<String> currentBridge) {

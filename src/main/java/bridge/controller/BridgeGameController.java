@@ -16,7 +16,7 @@ public class BridgeGameController {
         List<String> bridge = bridgeGame.constructBridge();
 
         List<String> currentBridge = new ArrayList<>();
-        bridgeGame.move(bridge, currentBridge);
-        GameResult.takeResult(currentBridge, bridge);
+        int gameAttemptsCount = bridgeGame.move(bridge, currentBridge);
+        GameResult.takeResult(currentBridge, bridge, gameAttemptsCount);
     }
 }
