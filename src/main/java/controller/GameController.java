@@ -3,6 +3,7 @@ package controller;
 import dto.BridgeResponseDto;
 import dto.BridgeSizeRequestDto;
 import dto.GameCommandRequestDto;
+import dto.MapResponseDto;
 import dto.MoveResultResponseDto;
 import dto.MovingRequestDto;
 import service.BridgeGame;
@@ -17,7 +18,7 @@ public class GameController {
 	public void control() {
 		BridgeResponseDto bridgeResponseDto = init();
 		MoveResultResponseDto moveResultResponseDto = run(bridgeResponseDto);
-		finish(moveResultResponseDto);
+		finish(bridgeGame.renderMap(bridgeResponseDto), moveResultResponseDto);
 	}
 
 	private BridgeResponseDto init() {
@@ -71,8 +72,13 @@ public class GameController {
 		MovingRequestDto movingRequestDto = inputView.readMoving();
 		bridgeGame.move(movingRequestDto);
 		MoveResultResponseDto moveResultResponseDto = bridgeGame.produceResult(bridgeResponseDto);
-		outputView.printMap(moveResultResponseDto);
+		renderAndPrintMap(bridgeResponseDto);
 		return moveResultResponseDto;
+	}
+
+	private void renderAndPrintMap(BridgeResponseDto bridgeResponseDto) {
+		MapResponseDto mapResponseDto = bridgeGame.renderMap(bridgeResponseDto);
+		outputView.printMap(mapResponseDto);
 	}
 
 	private boolean isRetry(MoveResultResponseDto finalResultResponseDto) {
@@ -93,7 +99,7 @@ public class GameController {
 		return bridgeGame.retry(gameCommandRequestDto);
 	}
 
-	private void finish(MoveResultResponseDto moveResultResponseDto) {
-		outputView.printResult(moveResultResponseDto, bridgeGame.makePlayCountDto());
+	private void finish(MapResponseDto mapResponseDto, MoveResultResponseDto moveResultResponseDto) {
+		outputView.printResult(mapResponseDto, moveResultResponseDto, bridgeGame.makePlayCountDto());
 	}
 }

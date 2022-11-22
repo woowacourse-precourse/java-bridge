@@ -3,22 +3,16 @@ package dto;
 import bridge.MoveResult;
 
 public class MoveResultResponseDto {
-	private final String map;
-	private final int numberOfCorrect;
+	private final boolean isCorrect;
 	private final boolean isSuccess;
 
 	public MoveResultResponseDto(MoveResult moveResult) {
-		this.map = moveResult.getMap();
-		this.numberOfCorrect = moveResult.getNumberOfCorrect();
+		this.isCorrect = moveResult.isCorrect();
 		this.isSuccess = moveResult.isSuccess();
 	}
 
-	public String getMap() {
-		return map;
-	}
-
-	public int getNumberOfCorrect() {
-		return numberOfCorrect;
+	public boolean isCorrect() {
+		return isCorrect;
 	}
 
 	public boolean isSuccess() {

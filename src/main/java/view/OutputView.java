@@ -1,5 +1,6 @@
 package view;
 
+import dto.MapResponseDto;
 import dto.MoveResultResponseDto;
 import dto.PlayCountResponseDto;
 
@@ -11,23 +12,24 @@ public class OutputView {
 	/**
 	 * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
 	 */
-	public void printMap(MoveResultResponseDto moveResultResponseDto) {
-		System.out.println(moveResultResponseDto.getMap());
+	public void printMap(MapResponseDto mapResponseDto) {
+		System.out.println(mapResponseDto.getMap());
 		printEmptyLine();
 	}
 
 	/**
 	 * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
 	 */
-	public void printResult(MoveResultResponseDto moveResultResponseDto, PlayCountResponseDto playCountResponseDto) {
-		printFinalResultMap(moveResultResponseDto);
+	public void printResult(MapResponseDto mapResponseDto, MoveResultResponseDto moveResultResponseDto,
+		PlayCountResponseDto playCountResponseDto) {
+		printFinalResultMap(mapResponseDto);
 		printSuccessOrFail(moveResultResponseDto);
 		printTotalPlayCount(playCountResponseDto);
 	}
 
-	private void printFinalResultMap(MoveResultResponseDto moveResultResponseDto) {
+	private void printFinalResultMap(MapResponseDto mapResponseDto) {
 		System.out.println(ViewConstant.FINAL_RESULT_MESSAGE);
-		System.out.println(moveResultResponseDto.getMap());
+		System.out.println(mapResponseDto.getMap());
 		printEmptyLine();
 	}
 

@@ -7,6 +7,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeSize;
 import bridge.GameCommand;
+import bridge.MapRenderer;
 import bridge.MoveResult;
 import bridge.Moving;
 import bridge.MovingStack;
@@ -14,6 +15,7 @@ import bridge.PlayCount;
 import dto.BridgeResponseDto;
 import dto.BridgeSizeRequestDto;
 import dto.GameCommandRequestDto;
+import dto.MapResponseDto;
 import dto.MoveResultResponseDto;
 import dto.MovingRequestDto;
 import dto.PlayCountResponseDto;
@@ -58,17 +60,19 @@ public class BridgeGame {
 		return new MoveResultResponseDto(new MoveResult(bridge, movingStack.getMovingStack()));
 	}
 
+	public MapResponseDto renderMap(BridgeResponseDto bridgeResponseDto) {
+		return new MapResponseDto(new MapRenderer(bridgeResponseDto.getBridge(), movingStack.getMovingStack()));
+	}
+
 	public MoveResultResponseDto checkGameIsEnd(MoveResultResponseDto moveResultResponseDto) {
-		if (isEnd(moveResultResponseDto)) {
+		if (!moveResultResponseDto.isCorrect()) {
 			initMovingStack();
 			return moveResultResponseDto;
 		}
+		if (moveResultResponseDto.isSuccess()) {
+			return moveResultResponseDto;
+		}
 		return null;
-	}
-
-	private boolean isEnd(MoveResultResponseDto moveResultResponseDto) {
-		return moveResultResponseDto.getNumberOfCorrect() != movingStack.getMovingCount()
-			|| moveResultResponseDto.isSuccess();
 	}
 
 	public PlayCountResponseDto makePlayCountDto() {

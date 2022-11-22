@@ -186,17 +186,16 @@
 [] 정리한 기능 목록마다 정상 동작함을 테스트 코드로 확인하였는가?</br>
 [] PR 이름 제대로 했는가?</br>
 [] 출력 형식 제대로 했는가?</br>
-[] 불필요한 멤버 변수는 없는가?</br>
-[] 테스트코드의 리팩터링을 했는가?</br>
-[] 파라미터의 값만 바뀌는 테스트코드에서 @valueSource를 사용했는가?</br>
-[] final 값을 적절히 사용했는가?</br>
-[] 인스턴스 변수의 접근 제한을 private으로 했는가?</br>
-[] 단위테스트하기 어려운 코드를 적절히 리팩터링 했는가?</br>
-[] view가 domain을 모르는가?</br>
-[] domain이 view를 모르는가?</br>
-[] controller가 domain을 모르는가?</br>
-[] view와 domain 사이에 dto만 주고 받는가?</br>
-[] controller와 service가 dto를 통해 값을 주고 받는가?</br>
-[] service가 view를 모르는가?</br>
-[] service에서 호출되는 domain의 public 메소드 파라미터들이 dto뿐인가?</br>
-[] dto가 service에서 변환되고 있는가? (controllers는 dto를 주고 받는 역할만 하고 있는가?, 즉 서비스 로직이 컨트롤러에 포함되어있지는 않은가?)</br>
+[x] 불필요한 멤버 변수는 없는가?</br>
+[x] 테스트코드의 리팩터링을 했는가?</br>
+[x] 파라미터의 값만 바뀌는 테스트코드에서 @valueSource를 사용했는가?</br>
+[x] final 값을 적절히 사용했는가?</br>
+[x] 인스턴스 변수의 접근 제한을 private으로 했는가?</br>
+[x] 단위테스트하기 어려운 코드를 적절히 리팩터링 했는가?</br>
+[x] view가 domain을 모르는가?</br>
+[x] domain이 view를 모르는가?</br>
+[x] controller가 domain을 모르는가?</br>
+[x] view와 domain 사이에 dto만 주고 받는가?</br>
+[x] controller와 service가 dto를 통해 값을 주고 받는가?</br>
+[x] service가 view를 모르는가?</br>
+[x] dto가 service에서 변환되고 있는가? (controllers는 dto를 주고 받는 역할만 하고 있는가?, 즉 서비스 로직이 컨트롤러에 포함되어있지는 않은가?)</br>
