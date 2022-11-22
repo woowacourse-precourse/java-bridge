@@ -7,17 +7,15 @@ import java.util.List;
 
 public class Application {
     static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    static InputView inputView = new InputView();
     static BridgeGame bridgeGame = new BridgeGame();
     static OutputView outputView = new OutputView();
-    static BridgeInputControl bridgeInputControl = new BridgeInputControl();
+
     static UserInput userInput;
     private static int tryNumber = 0;
     private static boolean retryJudge;
     private static String successFail;
 
     private static List<String> bridgeList;
-
 
 
     public static void main(String[] args) {
@@ -28,6 +26,7 @@ public class Application {
 
 
     private static void initalBridgeListGenerate(){
+        BridgeInputControl bridgeInputControl = new BridgeInputControl();
         bridgeInputControl.setBridgeSize();
         int inputNumber = userInput.userInputBridgeSize;
         bridgeList = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(inputNumber);
@@ -37,10 +36,28 @@ public class Application {
     private static void mainBridgeGame(){
         do{
             bridgeGame.resetMap();
-            successFail = bridgeGame.mainGame(bridgeList);
+            successFail = mainGame(bridgeList);
             retryJudge = bridgeGame.retry(successFail);
             tryNumber++;
         }while(retryJudge);
+    }
+
+    private static String mainGame(List<String> bridgeList) {
+        for (int order = 0; order < bridgeList.size(); order++) {
+            StringBuilder map = bridgeGame.move(bridgeList.get(order), order);
+            outputView.printMap(map.toString()); // 이거 수정해야함
+            if (judgementFail()) {
+                return "실패";
+            }
+        }
+        return "성공";
+    }
+
+    private static boolean judgementFail() {
+        if (bridgeGame.getOX().equals("X")) {
+            return true;
+        }
+        return false;
     }
 
 }
