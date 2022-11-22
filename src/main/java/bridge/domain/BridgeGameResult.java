@@ -16,7 +16,7 @@ public class BridgeGameResult {
 
 
     public BridgeGameTrialResult getTrialResult(int trial) {
-        return gameResult.get(trial);
+        return gameResult.get(trial - 1);
     }
 
     public int getTotalTrial() {
