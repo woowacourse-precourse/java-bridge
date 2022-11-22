@@ -76,11 +76,16 @@ class BridgeDTOTest {
     @DisplayName("상단 다리 getter가 잘 되었는지 test")
     @Test
     void getUpCase() {
-        assertThat(bridgeDTO.getUpCase()).containsExactly(BridgeCase.NOTHING, BridgeCase.NOTHING, BridgeCase.NOTHING);
+        bridgeDTO.move(0);
+        bridgeDTO.move(2);
+        assertThat(bridgeDTO.getUpCase()).containsExactly(BridgeCase.ANSWER, BridgeCase.NOTHING, BridgeCase.ANSWER);
     }
 
+    @DisplayName("하단 다리 getter가 잘 되었는지 test")
     @Test
     void getDownCase() {
+        bridgeDTO.move(1);
+        assertThat(bridgeDTO.getDownCase()).containsExactly(BridgeCase.NOTHING, BridgeCase.ANSWER, BridgeCase.NOTHING);
     }
 
     @Test
