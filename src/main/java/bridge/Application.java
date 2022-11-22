@@ -8,12 +8,12 @@ public class Application {
     }
 
     private static void play() {
-        try {
-            new InputView().readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-//        int size = InputController.checkSize(new InputView());
+//        try {
+//            new InputView().readBridgeSize();
+//        } catch (IllegalArgumentException e) {
+//            System.out.println(e.getMessage());
+//        }
+        int size = InputController.checkSize(new InputView());
 //        BridgeGame game = new BridgeGame(size);
 //        game.play();
     }
