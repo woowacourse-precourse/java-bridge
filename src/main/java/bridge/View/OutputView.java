@@ -2,6 +2,8 @@ package bridge.View;
 
 import java.util.List;
 
+import static bridge.Enum.Result.changeSignToPrint;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -24,7 +26,7 @@ public class OutputView {
     public void printResult(List<String> finalResult) {
         System.out.println("최종 게임 결과");
         finalResult.subList(1,3).forEach(System.out::println);
-        System.out.println("게임 성공 여부: " + finalResult.get(0));
+        System.out.println("게임 성공 여부: " + changeSignToPrint(finalResult.get(0)));
         System.out.println("총 시도한 횟수: " + finalResult.get(3));
     }
 
