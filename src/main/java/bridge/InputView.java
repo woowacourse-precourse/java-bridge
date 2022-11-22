@@ -38,7 +38,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String RestartQuit = Console.readLine();
-        if (RestartQuit != "R" || RestartQuit != "U") {
+        if (RestartQuit != "R" || RestartQuit != "Q") {
             throw new IllegalArgumentException("[ERROR] 재시도와 종료 중에서 선택해주세요!");
         }
         return RestartQuit;

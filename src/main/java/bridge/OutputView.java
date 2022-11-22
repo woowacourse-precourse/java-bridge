@@ -28,6 +28,7 @@ public class OutputView {
         }
         System.out.printf("게임 성공 여부: ", printSuccessOrNot(success));
         System.out.printf("총 시도한 횟수:", tryCount);;
+        return;
     }
 
     public String printSuccessOrNot(boolean success){
