@@ -11,13 +11,18 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        int inputValue = 0;
         try {
-            return Integer.parseInt(Console.readLine());
+            inputValue = Integer.parseInt(Console.readLine());
+            if (inputValue <= 0) {
+                System.out.println("[ERROR] 양의 숫자를 입력해 주세요.");
+                inputValue = 0;
+            }
         }catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자를 입력해 주세요");
-            return 0;
-            // throw new IllegalArgumentException();
+            System.out.println("[ERROR] 숫자를 입력해 주세요.");
         }
+
+        return inputValue;
     }
 
     /**
