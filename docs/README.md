@@ -39,6 +39,7 @@ getSymbol을 통해 문자열을 출력받아 BridgeViewConstructor에서 출력
    2. player.increaseTrialCount : 시도 횟수를 증가시킨다. 
 4. isPaused : bridge.isPlayerRightBridge(player)의 역을 반환한다. 
 5. isSuccess : player.isGameFinished(bridge)를 반환한다.
+6. getTotalTrialCount : player.getTrialCount를 반환한다. 
 
 ## util
 ### BridgeMaker

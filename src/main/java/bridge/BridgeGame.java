@@ -39,4 +39,8 @@ public class BridgeGame{
     public boolean isSuccess(){
         return player.isGameFinished(bridge);
     }
+
+    public int getTotalTrialCount(){
+        return player.getTrialCount();
+    }
 }
