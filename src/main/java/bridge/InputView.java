@@ -37,11 +37,11 @@ public class InputView {
 	public String readMoving() {
 		Print.selectBlock();
 		String upDown = "";
-		while (!upDown.equals("U") && !upDown.equals("D")){
-			try{
+		while (!upDown.equals("U") && !upDown.equals("D")) {
+			try {
 				upDown = Console.readLine();
 				Validation.validationUpOrDown(upDown);
-			}catch (IllegalArgumentException e){
+			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
@@ -54,11 +54,11 @@ public class InputView {
 	public String readGameCommand() {
 		Print.restartOrQuit();
 		String restartOrQuit = "";
-		while (!restartOrQuit.equals("Q") && !restartOrQuit.equals("R")){
-			try{
+		while (!restartOrQuit.equals("Q") && !restartOrQuit.equals("R")) {
+			try {
 				restartOrQuit = Console.readLine();
 				Validation.validationRestartOrQuit(restartOrQuit);
-			} catch (IllegalArgumentException e){
+			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
