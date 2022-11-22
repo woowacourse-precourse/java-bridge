@@ -12,14 +12,11 @@ public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
-    private static StringBuilder mapU = new StringBuilder("[  ]");
-    private static StringBuilder mapD = new StringBuilder("[  ]");
-    private static List<String> mapUp = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
-    private static List<String> mapDown = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
+    private static StringBuilder mapUp = new StringBuilder("[  ]");
+    private static StringBuilder mapDown = new StringBuilder("[  ]");
     private static final String CONTOUR = " | ";
     private static String str;
     private static String ox;
-
 
     String addOxContour;
     String emptyContour;
@@ -107,18 +104,18 @@ public class BridgeGame {
 
     private void makeMap(String upDownUserInput) {
         if (upDownUserInput.equals("U")) {
-            mapU.insert(mapU.length()-2, addOxContour);
-            mapD.insert(mapD.length()-2, emptyContour);
+            mapUp.insert(mapUp.length()-2, addOxContour);
+            mapDown.insert(mapDown.length()-2, emptyContour);
         } else if (upDownUserInput.equals("D")) {
-            mapU.insert(mapU.length()-2, emptyContour);
-            mapD.insert(mapD.length()-2, addOxContour);
+            mapUp.insert(mapUp.length()-2, emptyContour);
+            mapDown.insert(mapDown.length()-2, addOxContour);
         }
-        str = mapU.toString() + "\n" + mapD.toString() +"\n";
+        str = mapUp.toString() + "\n" + mapDown.toString() +"\n";
     }
 
     public void resetMap() {
-        this.mapUp = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
-        this.mapDown = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
+        this.mapUp = new StringBuilder("[  ]");
+        this.mapDown = new StringBuilder("[  ]");
     }
 
 
