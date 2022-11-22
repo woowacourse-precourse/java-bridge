@@ -16,7 +16,6 @@ public class GameController {
     /* 상수 및 클래스 변수 */
     private final int GAME_TRY_NUMBER = 1;
     private final int GAME_SUCCESS_OR_FAIL_NUMBER = 0;
-    private final GameSign gameSign = null;
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private final BridgeGame bridgeGame = new BridgeGame();

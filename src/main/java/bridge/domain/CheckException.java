@@ -3,7 +3,6 @@ package bridge.domain;
 import bridge.view.ErrorMessage;
 
 public class CheckException {
-    ErrorMessage errorMessage;
 
     public boolean checkBridgeSize(String bridgeSize) {
         try {
