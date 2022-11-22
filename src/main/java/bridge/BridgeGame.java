@@ -49,7 +49,7 @@ public class BridgeGame {
     }
 
     public boolean isOver(){
-        if(!playerPath.getIsAlive() || getIsSuccess())
+        if(!playerPath.getIsAlive())
             return true;
         return false;
     }
