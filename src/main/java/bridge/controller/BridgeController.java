@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.constant.GameMessage;
 import bridge.model.BridgeBuffer;
 import bridge.model.BridgeGame;
 import bridge.model.Column;
@@ -11,18 +12,16 @@ public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
-    private final ValidateInput validate;
     private BridgeBuffer buffer;
 
     public BridgeController(){
         inputView = new InputView();
         outputView = new OutputView();
         bridgeGame = new BridgeGame();
-        validate = new ValidateInput();
     }
 
     public void startGame(){
-        int size = handleStartGame();
+        int size = inputSize();
         handleStartingGame(size);
         playing(size);
     }
@@ -37,11 +36,10 @@ public class BridgeController {
         }
         return succeedGame();
     }
-    private int handleStartGame(){
+    private int inputSize(){
         try {
             outputView.printIntro();
-            int size = validate.numeric(inputView.readBridgeSize());
-            return size;
+            return inputView.readBridgeSize();
         }catch (IllegalArgumentException e){
             outputView.printException(e.getMessage());
             return handleStartGame();
