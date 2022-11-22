@@ -6,6 +6,7 @@ import bridge.domain.BridgeMaker;
 import bridge.service.BridgeGameService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -51,6 +52,7 @@ public class BridgeGameTest {
     }
 
     @DisplayName("다리 끝까지 성공 후 도달했다면 종료 성공")
+    @Test
     void 다리끝_도달후_종료성공_테스트() {
         List<String> bridge = bridgeGameService.getBridge();
 
@@ -77,5 +79,13 @@ public class BridgeGameTest {
         for (int i = 0; i < retry; i++) bridgeGameService.restart();
 
         assertThat(bridgeGameService.getTryCnt()).isEqualTo(retry + 1);
+    }
+
+    @DisplayName("재시작 후 초기화 성공")
+    @Test
+    void 재시작후_초기화_성공_테스트() {
+        List<String> bridge = bridgeGameService.getBridge();
+        bridgeGameService.restart();
+        assertThat(bridgeGameService.getBridge()).isEqualTo(bridge);
     }
 }
