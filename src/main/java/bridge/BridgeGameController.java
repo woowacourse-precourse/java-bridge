@@ -18,10 +18,10 @@ public class BridgeGameController {
 
     public void start() {
         try {
-            System.out.println(GameMsg.INIT_MSG.getMsg());
+            System.out.println(GameMsg.INIT_MSG.getMsg() + "\n");
             bridgeInit();
             boolean isFail = goThroughBridge();
-            outputView.printResult(isFail, bridgeGame.getTimes());
+            finishGame(isFail);
         } catch (IllegalArgumentException e) {
             System.out.println(ErrorMsg.PREFIX.getMsg() + e.getMessage());
         }
@@ -71,5 +71,10 @@ public class BridgeGameController {
         return true;
     }
 
+    private void finishGame(boolean isFail) {
+        System.out.println(GameMsg.RESULT_MSG.getMsg());
+        outputView.printMap(player.getSelectedBridge(), isFail);
+        outputView.printResult(isFail, bridgeGame.getTimes());
+    }
 
 }

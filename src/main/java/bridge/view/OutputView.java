@@ -27,6 +27,7 @@ public class OutputView {
         for (String s : key) {
             System.out.println(prefix + String.join(" | ", map.get(s)) + suffix);
         }
+        System.out.println();
     }
 
     private Map<String, List<String>> setWay(Map<String, List<String>> map,
@@ -73,7 +74,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean isFail, int times) {
-        System.out.println(GameMsg.RESULT_MSG.getMsg() + "\n");
         System.out.println(GameMsg.SUCCESS_MSG.getMsg() + getGameResult(isFail));
         System.out.println(GameMsg.TRY_COUNT_MSG.getMsg() + times);
     }

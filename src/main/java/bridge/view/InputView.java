@@ -19,6 +19,7 @@ public class InputView {
         System.out.println(GET_LENGTH_MSG.getMsg());
         String size = input();
         Validator.validateNumeric(size);
+        System.out.println();
         return Integer.parseInt(size);
     }
 
