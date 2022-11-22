@@ -17,7 +17,6 @@ public class MovingResultStates {
     }
     
     public void move(final MovingDTO movingDTO, final Bridge bridge) {
-        System.out.println(bridge);
         readyState(bridge);
         convertToNextState(movingDTO);
     }
