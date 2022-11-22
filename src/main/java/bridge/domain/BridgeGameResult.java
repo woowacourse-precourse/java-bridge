@@ -25,6 +25,18 @@ public class BridgeGameResult {
         moveState.update(moving, canMove);
     }
 
+    public void updateMoveState(boolean canMove) {
+        moveState.update(canMove);
+    }
+
+    public void updateResult(int size) {
+        if (moveState.getMoveCount() == size && moveState.getLastState()) {
+            result = SUCCESS;
+            return;
+        }
+        result = FAIL;
+    }
+
     public void setSuccess() {
         result = SUCCESS;
     }
