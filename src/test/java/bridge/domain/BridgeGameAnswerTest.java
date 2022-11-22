@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +41,7 @@ class BridgeGameAnswerTest {
         answer.add(List.of("   ", " O "));
         List<String> history = List.of("U", "D", "U", "D");
         List<List<String>> return_answer = bridgeGameAnswer.getMapByHistory(history);
-        assertEquals(answer,return_answer);
+        assertEquals(answer, return_answer);
     }
 
     @DisplayName("정답을 틀렸을때 테스트")
@@ -55,6 +54,6 @@ class BridgeGameAnswerTest {
         answer.add(List.of(" X ", "   "));
         List<String> history = List.of("U", "D", "U", "U");
         List<List<String>> return_answer = bridgeGameAnswer.getMapByHistory(history);
-        assertEquals(answer,return_answer);
+        assertEquals(answer, return_answer);
     }
 }
