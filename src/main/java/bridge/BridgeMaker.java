@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.MoveType;
+import bridge.domain.user.MoveType;
 
 import java.util.ArrayList;
 import java.util.List;

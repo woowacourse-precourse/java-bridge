@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.MoveType;
+import bridge.domain.user.MoveType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
