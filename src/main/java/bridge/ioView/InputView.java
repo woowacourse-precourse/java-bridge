@@ -87,7 +87,7 @@ public class InputView {
 
         validateGameCommand(input);
 
-        return input.equals("R");
+        return GameCommand.Retry.equals(input);
     }
 
     private void validateGameCommand(String input) {
