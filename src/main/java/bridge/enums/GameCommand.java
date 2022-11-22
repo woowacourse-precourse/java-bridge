@@ -4,13 +4,13 @@ public enum GameCommand {
     RETRY("R"),
     QUIT("Q");
 
-    private String gameCommand;
+    private final String gameCommand;
 
-    GameCommand(String gameCommand){
+    GameCommand(String gameCommand) {
         this.gameCommand = gameCommand;
     }
 
-    public String getCommand(){
+    public String getCommand() {
         return gameCommand;
     }
 }
