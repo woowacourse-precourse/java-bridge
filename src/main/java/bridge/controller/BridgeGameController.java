@@ -31,21 +31,18 @@ public class BridgeGameController {
     }
 
     private boolean isOneMoreGame() throws IllegalAccessException {
-        if (isSuccess()) {
+        if (bridgeGame.isSuccess()) {
             return false;
         }
         return askRetry();
     }
 
     public void start() {
-        initComponents();
-        outputView.printWelcome();
-    }
-
-    private void initComponents() {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeGame = new BridgeGame();
+
+        outputView.printWelcome();
     }
 
     public void setDifficulty() throws IllegalAccessException {
@@ -78,10 +75,6 @@ public class BridgeGameController {
             bridgeGame.retry();
         }
         return bridgeGame.isAlive();
-    }
-
-    public boolean isSuccess() {
-        return bridgeGame.isSuccess();
     }
 
     public void end() {
