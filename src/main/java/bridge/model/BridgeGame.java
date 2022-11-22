@@ -12,7 +12,7 @@ public class BridgeGame {
     private static final String SPACE = " ";
     private final List<String> highBridge = new ArrayList<>();
     private final List<String> lowBridge = new ArrayList<>();
-    private boolean SUCCESS = false;
+    private boolean success = false;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -44,11 +44,11 @@ public class BridgeGame {
     }
 
     public void gameSuccess() {
-        SUCCESS = true;
+        success = true;
     }
 
     public boolean isSuccess() {
-        return SUCCESS;
+        return success;
     }
 
     private void makeMoveBridge(String moving, boolean success) {
