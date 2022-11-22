@@ -1,7 +1,7 @@
 package bridge;
 
-import model.Bridge;
-import model.Moving;
+import bridge.model.Bridge;
+import bridge.model.Moving;
 
 public class Application {
     private static OutputView outputView = new OutputView();

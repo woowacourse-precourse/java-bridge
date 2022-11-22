@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 
 import java.util.List;
 
-import model.BridgeSize;
+import bridge.model.BridgeSize;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -40,6 +40,62 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+    }
+
+    @Test
+    void 재시도_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "R","U","D","U");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+
+    @Test
+    void 종료_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   ]",
+                    "[   | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   ]");
+            int downSideIndex = output().indexOf("[   | X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 1);
+    }
+
+    @Test
+    void 잘못된_값_입력시_에러_처리_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "F", "U", "Q");
+            assertThat(output()).contains(
+                    "[ERROR] 이동할 칸은 위는 U, 아래는 D로 입력해야 합니다.",
+                    "최종 게임 결과",
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O | X ]");
+            int downSideIndex = output().indexOf("[   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0);
     }
 
     @Test

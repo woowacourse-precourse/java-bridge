@@ -1,6 +1,6 @@
 package bridge;
 
-import model.Bridge;
+import bridge.model.Bridge;
 
 import java.util.Map;
 

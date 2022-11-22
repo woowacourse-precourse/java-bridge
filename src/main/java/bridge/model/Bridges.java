@@ -1,6 +1,6 @@
-package model;
+package bridge.model;
 
-import type.MovingType;
+import bridge.type.MovingType;
 
 import java.util.ArrayList;
 import java.util.HashMap;

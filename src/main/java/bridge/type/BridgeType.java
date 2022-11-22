@@ -1,4 +1,4 @@
-package type;
+package bridge.type;
 
 import java.util.Arrays;
 

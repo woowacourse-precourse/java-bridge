@@ -1,7 +1,7 @@
 package bridge;
 
-import model.BridgeSize;
-import type.BridgeType;
+import bridge.model.BridgeSize;
+import bridge.type.BridgeType;
 
 import java.util.ArrayList;
 import java.util.List;

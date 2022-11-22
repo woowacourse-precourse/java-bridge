@@ -1,4 +1,4 @@
-package model;
+package bridge.model;
 
 public class Retry {
     private int count;

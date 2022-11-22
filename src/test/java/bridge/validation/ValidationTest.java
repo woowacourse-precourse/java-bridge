@@ -1,6 +1,6 @@
-package validation;
+package bridge.validation;
 
-import model.BridgeSize;
+import bridge.model.BridgeSize;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

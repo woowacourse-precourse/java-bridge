@@ -1,7 +1,7 @@
-package model;
+package bridge.model;
 
-import type.MovingType;
-import validation.Validation;
+import bridge.type.MovingType;
+import bridge.validation.Validation;
 
 public class Moving {
     private final String result;
