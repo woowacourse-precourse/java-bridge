@@ -8,14 +8,12 @@ import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class BridgeGameTest extends NsTest {
+public class BridgeGameTest {
     private final BridgeGame bridgeGame = new BridgeGame();
     private final BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -31,10 +29,5 @@ public class BridgeGameTest extends NsTest {
         assertEquals("O", firstMove);
         assertEquals("O", secondMove);
         assertNotEquals("O", thirdMove);
-    }
-
-    @Override
-    protected void runMain() {
-        Application.main(new String[]{});
     }
 }
