@@ -26,4 +26,12 @@ public class Controller {
         User user = new User();
         Go(bridgeGame, user);
     }
+
+    public BridgeGame create() {
+        outputView.printStartBridgeGame();
+        outputView.printBridgeLengthQuestion();
+        String bridgeSize = inputView.readBridgeSize();
+        int size = Integer.parseInt(bridgeSize);
+        return new BridgeGame(bridgeMaker.makeBridge(size));
+    }
 }
