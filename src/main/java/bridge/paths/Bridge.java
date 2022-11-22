@@ -13,7 +13,7 @@ public class Bridge {
     public Bridge(List<String> securePath){
         validate(securePath);
         this.securePath = securePath.stream()
-                .map(Direction::valueOf)
+                .map(Direction::parseDirection)
                 .collect(Collectors.toList());
     }
 
