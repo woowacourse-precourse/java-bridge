@@ -6,7 +6,10 @@ build/
 !**/src/test/**
 
 ### macOS ###
+# General
 .DS_Store
+.AppleDouble
+.LSOverride
 
 ### STS ###
 .apt_generated
@@ -33,3 +36,17 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Eclipse ###
+.metadata
+
+### Java ###
+# Compiled class file
+.class
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db

@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.constant.enumtype.UIMessage;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,15 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 다리_길이_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2");
+            assertThat(output()).contains(UIMessage.ERROR_BRIDGE_LENGTH_INCLUSIVE.getValue());
+        });
+    }
+
 
     @Override
     protected void runMain() {
