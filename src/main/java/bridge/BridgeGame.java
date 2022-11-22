@@ -8,11 +8,13 @@ import java.util.List;
  */
 public class BridgeGame {
     List<String> answerBridge;
-    List<String> upBridge = new ArrayList<>();
-    List<String> downBridge = new ArrayList<>();
+    List<String> upBridge;
+    List<String> downBridge;
 
     public BridgeGame(List<String> answerBridge) {
         this.answerBridge = answerBridge;
+        this.upBridge = new ArrayList<>();
+        this.downBridge = new ArrayList<>();
     }
 
     /**
@@ -20,12 +22,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String input, int index) {
+    public boolean move(String input, int index) {
         if(input.equals("U")) {
             if(isCorrect(answerBridge.get(index), input)) {
                 upBridge.add("O");
                 downBridge.add(" ");
-                return;
+                return true;
             }
             upBridge.add("X");
         }
@@ -33,10 +35,11 @@ public class BridgeGame {
             if(isCorrect(answerBridge.get(index), input)) {
                 upBridge.add(" ");
                 downBridge.add("O");
-                return;
+                return true;
             }
             downBridge.add("X");
         }
+        return false;
     }
 
     /**
