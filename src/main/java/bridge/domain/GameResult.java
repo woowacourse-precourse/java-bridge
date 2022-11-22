@@ -4,19 +4,19 @@ public class GameResult {
 
     private final Direction direction;
 
-    private final PlayResult playResult;
+    private final CompareResult compareResult;
 
-    public GameResult(final Direction direction, final PlayResult playResult) {
+    public GameResult(final Direction direction, final CompareResult compareResult) {
         this.direction = direction;
-        this.playResult = playResult;
+        this.compareResult = compareResult;
     }
 
     public boolean isPass() {
-        return playResult.isPass();
+        return compareResult.isPass();
     }
 
     public boolean isFail() {
-        return playResult.isFail();
+        return compareResult.isFail();
     }
 
     public boolean isPlayerMoved(final Direction direction) {

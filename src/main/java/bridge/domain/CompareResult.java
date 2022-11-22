@@ -1,6 +1,6 @@
 package bridge.domain;
 
-public enum PlayResult {
+public enum CompareResult {
     PASS, FAIL;
 
     public boolean isPass() {

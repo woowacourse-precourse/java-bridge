@@ -3,7 +3,7 @@ package bridge;
 import bridge.domain.Bridge;
 import bridge.domain.Direction;
 import bridge.domain.GameResult;
-import bridge.domain.PlayResult;
+import bridge.domain.CompareResult;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class BridgeGame {
 
     private final Bridge bridge;
 
-    private final Map<Integer, PlayResult> roundResults;
+    private final Map<Integer, CompareResult> roundResults;
 
     private int attempts;
 
@@ -31,9 +31,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public GameResult move(final int round, final Direction direction) {
-        PlayResult playResult = bridge.cross(round, direction);
-        roundResults.put(round, playResult);
-        return new GameResult(direction, playResult);
+        CompareResult compareResult = bridge.cross(round, direction);
+        roundResults.put(round, compareResult);
+        return new GameResult(direction, compareResult);
     }
 
     /**
@@ -53,7 +53,7 @@ public class BridgeGame {
     private boolean isAllPass() {
         return roundResults.values()
             .stream()
-            .allMatch(PlayResult::isPass);
+            .allMatch(CompareResult::isPass);
     }
 
     public boolean isOver() {
@@ -63,7 +63,7 @@ public class BridgeGame {
     private boolean containsFail() {
         return roundResults.values()
             .stream()
-            .anyMatch(PlayResult::isFail);
+            .anyMatch(CompareResult::isFail);
     }
 
     public int getAttempts() {
