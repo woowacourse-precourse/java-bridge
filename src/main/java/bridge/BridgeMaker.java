@@ -1,4 +1,4 @@
-package domain;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 

@@ -1,8 +1,6 @@
-package control;
+package bridge;
 
-import bridge.*;
 import domain.BridgeGame;
-import domain.BridgeMaker;
 import view.InputView;
 import view.OutputView;
 
