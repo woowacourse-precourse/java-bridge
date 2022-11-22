@@ -15,7 +15,7 @@ public class Controller {
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
     private final InputController inputController;
-
+    private final InputView inputView;
     private Bridge bridge;
     private OutputView outputView;
     private List<String> choices;
@@ -26,7 +26,8 @@ public class Controller {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridgeGame = new BridgeGame();
-        inputController = new InputController(new InputView());
+        inputView = new InputView();
+        inputController = new InputController(inputView);
     }
 
     public void game() throws IllegalArgumentException{
