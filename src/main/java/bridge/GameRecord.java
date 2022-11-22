@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.BridgeMapConstants;
+import bridge.enums.GameCases;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +32,10 @@ public class GameRecord {
 
         return upperRow + BridgeMapConstants.LINE_JUMPER.getValue() + lowerRow
                 + BridgeMapConstants.LINE_JUMPER.getValue();
+    }
+
+    public boolean isGameSuccess() {
+        return resultRecord.get(resultRecord.size() - 1);
     }
 
     private void makeSingleBridge(StringBuilder upperRow, StringBuilder lowerRow) {
