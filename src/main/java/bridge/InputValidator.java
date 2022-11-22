@@ -46,7 +46,7 @@ public class InputValidator {
         if (input.length() != 1) {
             throw new IllegalArgumentException("[ERROR] 입력은 R과 Q 중 하나의 문자여야 합니다.");
         }
-        if (!input.equals("U") && !input.equals("D")){
+        if (!input.equals("R") && !input.equals("Q")){
             throw new IllegalArgumentException("[ERROR] 입력은 R과 Q 중 하나의 문자여야 합니다.");
         }
     }
