@@ -21,3 +21,10 @@ public class BridgeGame {
     public void retry() {
     }
 }
+
+// 추가된 요구 사항
+// 1.제공된 BridgeGame 클래스를 활용해 구현
+// 2.BridgeGame에 필드(인스턴스 변수)를 추가 가능
+// 3.BridgeGame의 패키지는 변경 가능
+// 4.BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경 가능
+// 5.게임 진행을 위해 필요한 메서드 추가 하거나 변경 가능

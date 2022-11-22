@@ -21,3 +21,8 @@ public class BridgeMaker {
         return null;
     }
 }
+
+// 추가된 요구 사항
+// 1.제공된 BridgeMaker 클래스를 활용해 구현
+// 2.BridgeMaker의 필드(인스턴스 변수)를 변경 불가능
+// 3.BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입 변경 불가능

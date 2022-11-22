@@ -26,3 +26,9 @@ public class InputView {
         return null;
     }
 }
+
+// 추가된 요구 사항
+// 1.제공된 InputView 클래스를 활용해 구현
+// 2.InputView의 패키지는 변경 가능
+// 3.InputView의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경 가능
+// 4.사용자 값 입력을 위해 필요한 메서드 추가 가능
