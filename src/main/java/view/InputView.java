@@ -14,62 +14,86 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input = Console.readLine();
-        int size = validateSize(input);
+        int size = 0;
+        String input = "";
 
+        while (size == 0) {
+            input = Console.readLine();
+            size = validateSize(input);
+            size = validateRange(3,20,size);
+        }
         return size;
     }
 
     private int validateSize(String input) {
-        try{
+        try {
             int size = Integer.parseInt(input);
-            validateRange(3,20,size);
-
             return size;
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] Only numbers allowed");
+        } catch (NumberFormatException e) {
+            System.err.println(new IllegalArgumentException("[ERROR] Only numbers allowed"));
+            return 0;
         }
     }
 
-    private void validateRange(int start, int end, int value){
-        if (value < start || value > end){
-            System.err.println(new IllegalArgumentException("[ERROR] Numbers should be in the range of"+start+"~"+end));
+    private int validateRange(int start, int end, int value) {
+        if (value < start || value > end) {
+            System.err.println(new IllegalArgumentException("[ERROR] Numbers should be in the range of "
+                    + start + "~" + end));
+            return 0;
         }
+        return value;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String input = Console.readLine();
-        validateReadMoving(input);
+        boolean isValid = false;
+        String input = "";
+
+        while (!isValid) {
+            input = Console.readLine();
+            isValid = validateReadMoving(input);
+        }
         return input;
     }
 
-    private void validateReadMoving(String input){
-        if (input.length() != 1){
+    private boolean validateReadMoving(String input) {
+        if (input.length() != 1) {
             System.err.println(new IllegalArgumentException("[ERROR] Input should either be U or D"));
+            return false;
         }
-        if (!input.equals("U") && !input.equals("D")){
+        if (!input.equals("U") && !input.equals("D")) {
             System.err.println(new IllegalArgumentException("[ERROR] Input should either be U or D"));
+            return false;
         }
+        return true;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String input = Console.readLine();
-        validateGameCommand(input);
+        boolean isValid = false;
+        String input = "";
+
+        while (!isValid) {
+            input = Console.readLine();
+            isValid = validateGameCommand(input);
+        }
+
         return input;
     }
 
-    private void validateGameCommand(String input){
-        if (input.length() != 1){
+    private boolean validateGameCommand(String input) {
+        if (input.length() != 1) {
             System.err.println(new IllegalArgumentException("[ERROR] Input should either be R or Q"));
+            return false;
         }
-        if (!input.equals("R") && !input.equals("Q")){
-            System.err.println(new IllegalArgumentException("[ERROR] Input should either be U or D"));
+        if (!input.equals("R") && !input.equals("Q")) {
+            System.err.println(new IllegalArgumentException("[ERROR] Input should either be R or Q"));
+            return false;
         }
+        return true;
     }
 }
