@@ -10,9 +10,8 @@ public class OutputView {
         System.out.println(bridge);
     }
 
-    public void printResult(String bridge) {
+    public void printResult() {
         OutputMessage.END_MESSAGE.print();
-        printMap(bridge);
     }
 
     public void printStatistic(int recursiveCount, String result) {
