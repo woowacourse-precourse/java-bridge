@@ -21,6 +21,7 @@ public class OutputView {
     private static final String ERROR_MESSAGE_RETRY = " 재시작은 R과 Q로만 입력 가능합니다.";
     private static final String ERROR_MESSAGE_NUMBER = " 3과 20 사이의 자연수를 입력해주세요.";
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String INPUT_SIZE_MESSAGE = "다리 길이를 입력해주세요.";
 
 
     /**
@@ -64,6 +65,10 @@ public class OutputView {
 
     public static String getStartMessage() {
         return START_MESSAGE;
+    }
+
+    public static String getInputSizeMessage() {
+        return INPUT_SIZE_MESSAGE;
     }
 
 }
