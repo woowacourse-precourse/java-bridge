@@ -5,6 +5,7 @@ import static bridge.validation.CommonValidator.checkMoving;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGameResult;
+import java.util.List;
 
 public class BridgeGame {
 
@@ -44,7 +45,15 @@ public class BridgeGame {
         return bridgeGameResult.isSuccess();
     }
 
+    public List<String> getBridge() {
+        return bridge.getBridge();
+    }
+
     public BridgeGameResult getBridgeGameResult() {
         return bridgeGameResult;
+    }
+
+    public List<Boolean> getMoveState() {
+        return bridgeGameResult.getMoveState();
     }
 }
