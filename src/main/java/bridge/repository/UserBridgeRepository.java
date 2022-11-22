@@ -21,7 +21,7 @@ public class UserBridgeRepository {
 		saveUserSpace(location, GameConst.USER_WRONG_SPACE);
 	}
 
-	public void saveUserSpace(String location, String userCurrentTrace) {
+	private void saveUserSpace(String location, String userCurrentTrace) {
 		userCurrentLocation++;
 		userBridgeGroup.updateStatus(location, userCurrentTrace);
 	}

@@ -72,23 +72,15 @@ class UserBridgeRepositoryTest {
 			.isEqualTo("[ O |   |   ]" + "\n" + "[   | X | O ]");
 	}
 
-	// @DisplayName("userBridgeRepository 의 clear 테스트")
-	// @Test
-	// void clear() {
-	// 	//given
-	// 	userBridgeRepository.saveUserSpace("U", "X");
-	// 	userBridgeRepository.saveUserSpace("D", "X");
-	//
-	// 	//when
-	// 	userBridgeRepository.clear();
-	// 	UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
-	// 	List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
-	// 	List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
-	// 	Integer userCurrentLocation = userBridgeStatusDto.getUserCurrentLocation();
-	//
-	// 	//then
-	// 	Assertions.assertThat(userUpperBridge).isEmpty();
-	// 	Assertions.assertThat(userLowerBridge).isEmpty();
-	// 	Assertions.assertThat(userCurrentLocation).isEqualTo(0);
-	// }
+	@DisplayName("userBridgeRepository 의 clear 테스트")
+	@Test
+	void clear() {
+		userBridgeRepository.saveUserWrongSpace("U");
+		userBridgeRepository.saveUserWrongSpace("D");
+
+		userBridgeRepository.clear();
+		String userBridgeStatus = userBridgeRepository.findUserBridgeStatus();
+
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[  ]\n[  ]");
+	}
 }
