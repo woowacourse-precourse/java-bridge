@@ -24,4 +24,8 @@ public class Validator {
     public boolean readMovingValidator(String input) {
         return input.equals("U") || input.equals("D");
     }
+
+    public boolean readRetryValidator(String input) {
+        return input.equals("R") || input.equals("Q");
+    }
 }
