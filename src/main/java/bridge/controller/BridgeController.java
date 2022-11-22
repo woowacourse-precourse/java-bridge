@@ -76,4 +76,14 @@ public class BridgeController {
         downBridge.append(correctBridge);
         upBridge.append(emptyBridge);
     }
+
+    private void wrongPrintMap(String userInputValue) {
+        if (userInputValue.equals("U")) {
+            upBridge.append(wrongBridge);
+            downBridge.append(emptyBridge);
+            return;
+        }
+        downBridge.append(wrongBridge);
+        upBridge.append(emptyBridge);
+    }
 }
