@@ -22,7 +22,6 @@ import bridge.domain.enums.Status;
  */
 public class BridgeGame {
 
-
     private final Bridge bridge;
     private final ScoreMap scoreMap;
 
@@ -54,7 +53,6 @@ public class BridgeGame {
         }
         return scoreMap;
     }
-
 
     private Result judge(Move direction) {
         if (bridge.isCorrectWay(direction, step)) {
