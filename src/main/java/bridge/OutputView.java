@@ -26,6 +26,7 @@ public class OutputView {
         System.out.println(GET_TRY_AGAIN.getMessage());
     }
     public void printFinalResult(){
+        System.out.println();
         System.out.println(RETURN_FINAL_RESULT.getMessage());
     }
     public void printIsSuccessful(String result){
@@ -41,29 +42,31 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> tmpBridge) {
-        System.out.println("[" + setFillUpMap(tmpBridge) + "]");
-        System.out.println("[" + setFillDownMap(tmpBridge) + "]");
+    public void printMap(List<String> tmpBridge, String nowMoving) {
+        System.out.println("[" + setFillUpMap(tmpBridge, nowMoving) + "]");
+        System.out.println("[" + setFillDownMap(tmpBridge, nowMoving) + "]");
     }
-    public String setFillUpMap(List<String> tmpBridge){
+    public String setFillUpMap(List<String> tmpBridge, String nowMoving){
         String upMap = " ";
         for (int index=0; index<tmpBridge.size(); index++) {
-            if (tmpBridge.get(index).equals('U')) upMap += "O ";
-            if (tmpBridge.get(index).equals('D')) upMap += "  ";
-            if (tmpBridge.get(index).equals('F')) upMap += "X ";
+            if (tmpBridge.get(index).equals("U")) upMap += "O ";
+            if (tmpBridge.get(index).equals("D")) upMap += "  ";
+            if (tmpBridge.get(index).equals("F") && nowMoving.equals("U")) upMap += "X ";
+            if (tmpBridge.get(index).equals("F") && !nowMoving.equals("U")) upMap += "  ";
             if (index + 1 < tmpBridge.size()) upMap += "| ";
         }
         return upMap;
     }
-    public String setFillDownMap(List<String> tmpBridge){
-        String upMap = " ";
+    public String setFillDownMap(List<String> tmpBridge, String nowMoving){
+        String downMap = " ";
         for (int index=0; index<tmpBridge.size(); index++) {
-            if (tmpBridge.get(index).equals('U')) upMap += "  ";
-            if (tmpBridge.get(index).equals('D')) upMap += "O ";
-            if (tmpBridge.get(index).equals('F')) upMap += "X ";
-            if (index + 1 < tmpBridge.size()) upMap += "| ";
+            if (tmpBridge.get(index).equals("U")) downMap += "  ";
+            if (tmpBridge.get(index).equals("D")) downMap += "O ";
+            if (tmpBridge.get(index).equals("F") && nowMoving.equals("D")) downMap += "X ";
+            if (tmpBridge.get(index).equals("F") && !nowMoving.equals("D")) downMap += "  ";
+            if (index + 1 < tmpBridge.size()) downMap += "| ";
         }
-        return upMap;
+        return downMap;
     }
 
     /**

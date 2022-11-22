@@ -35,10 +35,11 @@ public class Application {
         Boolean canSuccess = checkIsSuccess(outputView, inputView, bridgeGame);
         List<String> tmpBridge = bridgeGame.move(canSuccess);
         Boolean finish = bridgeGame.checkFinish();
-        outputView.printMap(tmpBridge);
+        outputView.printMap(tmpBridge, bridgeGame.getNowMoving());
         if (canSuccess == false) retry(outputView, inputView, bridgeGame, tmpBridge);
         if (canSuccess == true && finish == true) {
-            end(outputView, tmpBridge, "성공");
+            end(outputView, tmpBridge, bridgeGame.getNowMoving());
+            printIsSuccessful(outputView, "성공");
             printTryCount(bridgeGame, outputView);
         }
         if (canSuccess == true && finish == false) phase3_getMoving(outputView, inputView, bridgeGame);}
@@ -50,18 +51,21 @@ public class Application {
     public static void retry(OutputView outputView, InputView inputView, BridgeGame bridgeGame, List<String> tmpBridge){
         outputView.printGetTryAgain();
         String tryAgain = inputView.readGameCommand();
-        if (tryAgain=="Q") {
-            end(outputView, tmpBridge, "실패");
+        if (tryAgain.equals("Q")) {
+            end(outputView, tmpBridge, bridgeGame.getNowMoving());
+            printIsSuccessful(outputView, "실패");
             printTryCount(bridgeGame, outputView);
         }
-        if (tryAgain=="R"){
+        if (tryAgain.equals("R")){
             bridgeGame.retry();
             phase3_getMoving(outputView, inputView, bridgeGame);
         }
     }
-    public static void end(OutputView outputView, List<String> tmpBridge, String result){
+    public static void end(OutputView outputView, List<String> tmpBridge, String nowMoving){
         outputView.printFinalResult();
-        outputView.printMap(tmpBridge);
+        outputView.printMap(tmpBridge, nowMoving);
+    }
+    public static void printIsSuccessful(OutputView outputView, String result){
         outputView.printIsSuccessful(result);
     }
     public static void printTryCount(BridgeGame bridgeGame, OutputView outputView){

@@ -49,15 +49,15 @@ public class InputView {
         return length;
     }
     public String validateMoving(String moving){
-        if (!moving.equals('U') && !moving.equals('D')) {
+        if (!moving.equals("U") && !moving.equals("D")) {
             System.out.println(MOVING_LIMIT.getMessage());
             return readMoving();
         }
         return moving;
     }
     public String validateTryAgain(String tryAgain){
-        if (!tryAgain.equals('R') && !tryAgain.equals('Q')) {
-            System.out.println(MOVING_LIMIT.getMessage());
+        if (!tryAgain.equals("R") && !tryAgain.equals("Q")) {
+            System.out.println(TRY_AGAIN_LIMIT.getMessage());
             return readMoving();
         }
         return tryAgain;
