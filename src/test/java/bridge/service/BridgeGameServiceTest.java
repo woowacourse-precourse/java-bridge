@@ -6,7 +6,7 @@ import bridge.SuccessFail;
 import bridge.domain.UserCharacters;
 import bridge.dto.CurrentStatusDto;
 import bridge.dto.RetrySatutsDto;
-import bridge.generator.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
