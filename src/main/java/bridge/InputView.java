@@ -42,6 +42,17 @@ public class InputView {
         return input;
     }
 
+    public String receiveGameCommand() {
+        String gameCommand = "";
+        try {
+            gameCommand = readGameCommand(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            gameCommand = receiveGameCommand();
+        }
+        return gameCommand;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
