@@ -3,11 +3,14 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.constant.BridgeGameStstus;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeGameTest {
     @ParameterizedTest
@@ -51,5 +54,15 @@ public class BridgeGameTest {
                         3
                 )
         );
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3,5,10})
+    void retryTest(int cnt){
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>());
+        for(int i=0;i<cnt;i++){
+            bridgeGame.retry();
+        }
+        assertThat(bridgeGame.getTryCnt()).isEqualTo(cnt + 1);
     }
 }
