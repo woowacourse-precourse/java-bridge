@@ -6,6 +6,7 @@ import bridge.domain.bridgeTool.BridgeMaker;
 import bridge.domain.bridgeTool.BridgeNumberGenerator;
 import bridge.domain.bridgeTool.BridgeRandomNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.util.BridgeUtil.BINARY_UP;
@@ -16,8 +17,8 @@ public class BridgeGame {
     private BridgeMaker bridgeMaker;
     private Bridge bridge;
     private Player player;
-    private List<String> upperBridge;
-    private List<String> lowerBridge;
+    private List<String> upperBridge = new ArrayList<>();
+    private List<String> lowerBridge = new ArrayList<>();
     private int tryCount = initTryCount();
     private boolean crossAllBridge;
 
@@ -35,5 +36,10 @@ public class BridgeGame {
 
     public void initPlayer() {
         this.player = new Player();
+    }
+
+    private void initBridgeMap() {
+        upperBridge = new ArrayList<>();
+        lowerBridge = new ArrayList<>();
     }
 }

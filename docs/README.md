@@ -52,7 +52,7 @@
 - [x] 다리를 초기화 한다. #initBridge()
 - [x] 사용자 위치를 초기화 한다. #initPlayer()
 - [ ] 사용자가 칸을 이동한다. #move()
-- [ ] 사용자의 칸 이동 현황을 초기화 한다. #initBridgeMap()
+- [x] 사용자의 칸 이동 현황을 초기화 한다. #initBridgeMap()
 - [ ] 사용자 위치 현황을 만든다. #makeBridgeMap()
 - [ ] 사용자 위치현황 중 윗줄을 만든다. #makeUpperBridgeOfPart()
 - [ ] 사용자 위치현황 중 아랫줄을 만든다. #makeLowerBridgeOfPart()
