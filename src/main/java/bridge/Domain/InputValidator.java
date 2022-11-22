@@ -1,5 +1,7 @@
-package bridge;
+package bridge.Domain;
 
+import bridge.Utils.InputType;
+import bridge.Utils.Message;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputValidator {
@@ -14,14 +16,14 @@ public class InputValidator {
         return null;
     }
 
-    public static String checkValidateBridge(String input){
+    public static String checkValidateBridge(String input) {
         int num = checkIsDigit(input);
         checkIsValidBridgeRange(num);
         return input;
     }
 
     public static void checkIsValidBridgeRange(int num) {
-        if(num < BRIDGE_MIN_LENGTH || num > BRIDGE_MAX_LENGTH){
+        if (num < BRIDGE_MIN_LENGTH || num > BRIDGE_MAX_LENGTH) {
             throw new IllegalArgumentException(Message.BRIDGE_LENGTH_RANGE_ERROR);
         }
     }
@@ -34,7 +36,7 @@ public class InputValidator {
         }
     }
 
-    public static String checkValidateMove(String input){
+    public static String checkValidateMove(String input) {
         if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException(Message.BRIDGE_MOVE_INPUT_ERROR);
         }

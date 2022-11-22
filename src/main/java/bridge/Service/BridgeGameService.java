@@ -1,4 +1,9 @@
-package bridge;
+package bridge.Service;
+
+import bridge.Domain.BridgeGame;
+import bridge.Utils.GameStatus;
+import bridge.View.InputView;
+import bridge.View.OutputView;
 
 public class BridgeGameService {
 
@@ -14,7 +19,7 @@ public class BridgeGameService {
 
     public void intialSetting() {
         outputView.printGameStart();
-        bridgeGame.setRound(bridgeGame.getRound()+1);
+        bridgeGame.setRound(bridgeGame.getRound() + 1);
     }
 
     public void makeBridge() {
@@ -50,11 +55,12 @@ public class BridgeGameService {
     }
 
     public void askReplay() {
-        if(!checkIfQuit(inputView.readGameCommand())){
+        if (!checkIfQuit(inputView.readGameCommand())) {
             bridgeGame.retry();
         }
     }
-    public boolean checkIfQuit(String input){
+
+    public boolean checkIfQuit(String input) {
         if (input.equals("R")) {
             return false;
         }

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Utils;
 
 public enum GameStatus {
 
@@ -8,10 +8,12 @@ public enum GameStatus {
     PROGRESS("진행중");
 
     private final String status;
+
     GameStatus(String status) {
         this.status = status;
     }
-    public String getStatus(){
+
+    public String getStatus() {
         return status;
     }
 }

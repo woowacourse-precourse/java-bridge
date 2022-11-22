@@ -1,4 +1,7 @@
-package bridge;
+package bridge.Controller;
+
+import bridge.Service.BridgeGameService;
+import bridge.Utils.GameStatus;
 
 public class BridgeGameController {
 

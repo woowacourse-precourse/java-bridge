@@ -1,19 +1,17 @@
-package bridge;
+package bridge.View;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import bridge.Utils.InputType;
+import bridge.Domain.InputValidator;
+import bridge.Utils.Message;
+
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         System.out.println(Message.BRIDGE_LENTH_INPUT_MESSAGE);
-        while(true){
-            try{
+        while (true) {
+            try {
                 return Integer.parseInt(InputValidator.getValidateInput(InputType.BRIDGE));
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -21,10 +19,10 @@ public class InputView {
 
     public String readMoving() {
         System.out.println(Message.BRIDGE_MOVE_INPUT_MESSAGE);
-        while(true){
-            try{
+        while (true) {
+            try {
                 return InputValidator.getValidateInput(InputType.MOVE);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -32,10 +30,10 @@ public class InputView {
 
     public String readGameCommand() {
         System.out.println(Message.GAME_REPLAY_INPUT_MESSAGE);
-        while(true){
-            try{
+        while (true) {
+            try {
                 return InputValidator.getValidateInput(InputType.REPLAY);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

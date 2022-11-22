@@ -1,4 +1,9 @@
-package bridge;
+package bridge.Domain;
+
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.Utils.GameStatus;
+import bridge.Utils.MoveType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +53,10 @@ public class BridgeGame {
 
     public void retry() {
         clearGameInfo();
-        setRound(getRound()+1);
+        setRound(getRound() + 1);
     }
-    public void clearGameInfo(){
+
+    public void clearGameInfo() {
         this.userBridge = new ArrayList<>();
         this.gameResult = new GameResult();
         this.gameResult.setGameStatus(GameStatus.PROGRESS);
@@ -77,8 +83,11 @@ public class BridgeGame {
         return gameResult.getGameStatus();
     }
 
-    public int getRound(){return round;}
-    public void setRound(int round){
+    public int getRound() {
+        return round;
+    }
+
+    public void setRound(int round) {
         this.round = round;
     }
 

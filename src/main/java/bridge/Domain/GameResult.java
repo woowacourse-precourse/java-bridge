@@ -1,4 +1,8 @@
-package bridge;
+package bridge.Domain;
+
+import bridge.Utils.GameStatus;
+import bridge.Utils.Message;
+import bridge.Utils.MoveType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +20,11 @@ public class GameResult {
     }
 
 
-    public List<String> getUpBridge(){
+    public List<String> getUpBridge() {
         return upBridge;
     }
-    public List<String> getDownBridge(){
+
+    public List<String> getDownBridge() {
         return downBridge;
     }
 
@@ -32,7 +37,7 @@ public class GameResult {
     }
 
     public void setUpBridge(String userChoice, boolean checkIsWrong) {
-        if(userChoice.equals(MoveType.UP.getStrValue())){
+        if (userChoice.equals(MoveType.UP.getStrValue())) {
             upBridge.add(getResultMessage(checkIsWrong));
             return;
         }
@@ -40,14 +45,15 @@ public class GameResult {
     }
 
     public void setDownBridge(String userChoice, boolean checkIsWrong) {
-        if(userChoice.equals(MoveType.DOWN.getStrValue())){
+        if (userChoice.equals(MoveType.DOWN.getStrValue())) {
             downBridge.add(getResultMessage(checkIsWrong));
             return;
         }
         downBridge.add(Message.PASS);
     }
-    public String getResultMessage(boolean checkIsWrong){
-        if(checkIsWrong){
+
+    public String getResultMessage(boolean checkIsWrong) {
+        if (checkIsWrong) {
             return Message.WRONG;
         }
         return Message.CORRECT;
