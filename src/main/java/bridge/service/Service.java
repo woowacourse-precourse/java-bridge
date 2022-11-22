@@ -40,6 +40,5 @@ public class Service {
     public void resetForRetry() {
         game.retry();
         record.initialize();
-        record.plusTryCount();
     }
 }

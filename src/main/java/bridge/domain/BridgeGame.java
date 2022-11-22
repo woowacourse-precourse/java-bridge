@@ -34,7 +34,7 @@ public class BridgeGame {
     }
 
     public void retry() {
-        user.move();
+        user.retry();
     }
 
     private void validateMoveInput(String moveInput) {
