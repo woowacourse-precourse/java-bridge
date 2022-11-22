@@ -37,6 +37,12 @@ public class InputValidation {
         if (!readLine.chars().allMatch(Character::isDigit) || readLine.chars().anyMatch(value -> value == ' ')) {
             throw new IllegalArgumentException("[ERROR] Bridge size is Exception !!");
         }
+
+        int size = Integer.parseInt(readLine);
+        if (size >= 3 && size <= 20) {
+            throw new IllegalArgumentException("[ERROR] Bridge size is Exception !!");
+        }
+
         return true;
     }
 
