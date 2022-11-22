@@ -146,6 +146,99 @@ Q
 
          </details>
 5. 클래스별 제한사항을 지키며 프로그래밍한다.
+   <details>
+      <summary> 클래스별 제한사항</summary>
+
+    ### InputView 클래스
+   - 제공된 `InputView` 클래스를 활용해 구현해야 한다.
+     - `InputView`의 패키지는 변경할 수 있다.
+     - `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
+     - 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
+   ```java
+   public class InputView {
+
+         public int readBridgeSize() {
+         return 0;
+         }
+
+         public String readMoving() {
+         return null;
+         }
+
+         public String readGameCommand() {
+         return null;
+         }
+         }
+    ```
+    ### OutputView 클래스
+     - 제공된 `OutputView` 클래스를 활용해 구현해야 한다.
+     - `OutputView`의 패키지는 변경할 수 있다.
+     - `OutputView`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+     - 값 출력을 위해 필요한 메서드를 추가할 수 있다.
+    
+    ```java
+    public class OutputView {
+    
+        public void printMap() {
+        }
+
+        public void printResult() {
+        }
+    }
+    ```
+
+    ### BridgeGame 클래스
+   - 제공된 `BridgeGame` 클래스를 활용해 구현해야 한다.
+     - `BridgeGame`에 필드(인스턴스 변수)를 추가할 수 있다.
+     - `BridgeGame`의 패키지는 변경할 수 있다.
+     - `BridgeGame`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+     - 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
+
+    ```java
+    public class BridgeGame {
+
+    public void move() {
+        }
+
+    public void retry() {
+        }
+    }
+    ```
+
+    ### BridgeMaker 클래스
+   - 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다.
+     - `BridgeMaker`의 필드(인스턴스 변수)를 변경할 수 없다.
+     - `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+    ```java
+    public class BridgeMaker {
+    
+        public List<String> makeBridge(int size) {
+            return null;
+        }
+    }
+    ```
+
+    ### BridgeRandomNumberGenerator 클래스
+
+   - Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+     - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
+
+    #### 사용 예시
+
+   - 다리 칸을 생성하기 위한 Random 값은 아래와 같이 추출한다.
+
+    ```java
+        int number = bridgeNumberGenerator.generate();
+    ``` 
+
+    ### 라이브러리
+
+   - [`camp.nextstep.edu.missionutils`](https://github.com/woowacourse-projects/mission-utils)에서 제공하는 `Console` API를 사용하여 구현해야 한다.
+     - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+
+</details>
+
+
 ---
 ### 🔅 기능 구현 목록
 
@@ -154,9 +247,9 @@ Q
 <summary>1️⃣  다리 길이 입력 예외</summary>
 <div markdown="1">
 
-- [ ] 숫자가 아닌 문자인지 확인한다.
-- [ ] 3에서 20 사이의 숫자인지 확인한다.
-- [ ] 여러 문자를 입력했는지 확인한다.
+- [X] 숫자가 아닌 문자인지 확인한다.
+- [X] 3에서 20 사이의 숫자인지 확인한다.
+- [X] 여러 문자를 입력했는지 확인한다.
 
 </div>
 </details>
@@ -175,8 +268,8 @@ Q
 <summary>3️⃣ 이동 방향 입력 예외 </summary>
 <div markdown="1">
 
-- [ ] U 또는 D가 아닌 문자를 입력했는지 확인한다.
-- [ ] 한 개 이상의 문자를 입력했는지 확인한다.
+- [X] U 또는 D가 아닌 문자를 입력했는지 확인한다.
+- [X] 한 개 이상의 문자를 입력했는지 확인한다.
 
 </div>
 </details>
@@ -185,8 +278,8 @@ Q
 <summary>4️⃣ 게임 상태 입력 예외 </summary>
 <div markdown="1">
 
-- [ ] R 또는 Q가 아닌 문자를 입력했는지 확인한다.
-- [ ] 한 개 이상의 문자를 입력했는지 확인한다.
+- [X] R 또는 Q가 아닌 문자를 입력했는지 확인한다.
+- [X] 한 개 이상의 문자를 입력했는지 확인한다.
 
 </div>
 </details>
@@ -264,9 +357,12 @@ Q
 <summary>1️⃣ 게임 입력</summary>
 <div markdown="1">
  
-- [ ] 다리 길이를 입력받는다.
-- [ ] 이동할 칸을 입력받는다.
-- [ ] 게임 진행 여부를 입력받는다.
+- [X] 다리 길이를 입력받는다.
+  - [X] 적절한 다리 길이 입력이 아닌 경우 제대로 입력할 때까지 입력을 요구한다.
+- [X] 이동할 칸을 입력받는다.
+  - [X] 적절한 방향 입력이 아닌 경우 제대로 입력할 때까지 입력을 요구한다.
+- [X] 게임 진행 여부를 입력받는다.
+  - [X] 적절한 입력이 아닌 경우 제대로 입력할 때까지 입력을 요구한다.
 </div>
 </details>
 
@@ -274,15 +370,15 @@ Q
 <summary>2️⃣ 게임 출력</summary>
 <div markdown="1">
 
-- [ ] 플레이어가 횡단한 현재 다리 상태를 출력한다.
-- [ ] 게임 시도 횟수를 출력한다.
-- [ ] 최종 게임 결과를 출력한다.
-- [ ] 게임 성공 여부를 출력한다.
-- [ ] 게임 시작 문구를 출력한다.
-- [ ] 다리 길이 입력 문구를 출력한다.
-- [ ] 게임 재시작 및 종료 입력 문구를 출력한다.
-- [ ] 이동할 칸 선택 문구를 출력한다.
-- [ ] 예외 상황 메세지를 출력한다.
+- [X] 플레이어가 횡단한 현재 다리 상태를 출력한다.
+- [X] 게임 시도 횟수를 출력한다.
+- [X] 최종 게임 결과를 출력한다.
+- [X] 게임 성공 여부를 출력한다.
+- [X] 게임 시작 문구를 출력한다.
+- [X] 다리 길이 입력 문구를 출력한다.
+- [X] 게임 재시작 및 종료 입력 문구를 출력한다.
+- [X] 이동할 칸 선택 문구를 출력한다.
+- [X] 예외 상황 메세지를 출력한다.
 </div>
 </details>
 
@@ -298,44 +394,30 @@ Q
 
 <div markdown="1">
 
-- [X] 다리 길이를 입력받으면 다리를 생성한다.
-- [X] 플레이어가 입력한 이동 위치로 이동한다.
-- [X] 게임 성공 및 실패 여부를 확인한다.
-- [X] 재시도 시 게임 상태를 리셋한다.
-- [X] 현재 다리 횡단 결과를 반환한다.
-- [X] 최종 다리 횡단 결과를 반환한다.
-- [X] 다리 길이 이상 입력했는지 확인한다.
-- [X] 최종 도전 횟수를 갱신한다.
-- [X] 최종 도전 횟수를 반환한다.
-
+- [X] 다리 생성 프로세스
+- [X] 다리 횡단 프로세스
+- [X] 재시작 또는 종료 프로세스
+  - [X] 재시작 여부를 게임 커맨드로 정의
+    - [X] 게임 커맨드에 따른 재시작 여부 반환 기능
+- [X] 최종 결과 출력 프로세스
+- [X] 게임 실행 프로세스
 </div>
 
 </details>
 
----
-
-
-### 🌈 서비스 로직
-
-
 <details>
-
-<summary>1️⃣ 게임 진행</summary>
+<summary>2️⃣ 입력 관리</summary>
 
 <div markdown="1">
 
-- [ ] 다리 길이를 입력받는다.
-- [ ] 다리를 생성한다.
-- [ ] 다리를 횡단에 실패할 때까지 횡단을 진행한다.
-- [ ] 횡단 시마다 현재 횡단 상태를 출력한다.
-- [ ] 실패시 재시작 또는 종료 명령을 입력받는다.
-- [ ] 재시작을 원한다면 게임을 초기화하고 재시작한다.
-- [ ] 종료를 원하거나 횡단에 성공하면 최종 결과, 총 시도 횟수, 성공 여부를 출력한다.
+- [X] 다리 길이를 알맞게 입력할 때까지 계속 입력을 요구한다.
+- [X] 이동 방향을 알맞게 입력할 때까지 계속 입력을 요구한다.
+- [X] 게임 커맨드를 알맞게 입력할 때까지 계속 입력을 요구한다.
 
 </div>
 
 </details>
 
-
 ---
+
 <br>
