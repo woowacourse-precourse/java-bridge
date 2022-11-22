@@ -9,7 +9,7 @@ public class OutputView {
 
     static final String BRIDGE_STATE = "[%s]\n";
     static final String END_GAME = "최종 게임 결과";
-    static final String GAME_STATE = "게임 성공 여부: %s";
+    static final String GAME_STATE = "게임 성공 여부: %s\n";
     static final String TRY_COUNT = "총 시도한 횟수: %d";
     static final String DELIMITER = "|";
     static String upState = "";
