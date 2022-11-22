@@ -46,14 +46,13 @@ public class BridgeGame {
      */
     public MovingResultDto move(String commend) {
         String correctPosition = bridge.get(position);
+        result.add(commend);
 
         if (correctPosition.equals(commend)) {
             position += 1;
-            result.add("O");
             return new MovingResultDto(result, position, false);
         }
 
-        result.add("X");
         return new MovingResultDto(result, position, true);
     }
 

@@ -15,21 +15,7 @@ public class OutputMaker {
         StringBuilder upperLayerBuilder = new StringBuilder();
 
         upperLayerBuilder.append(BRIDGE_START);
-
-        for (int i = 0; i < result.size(); i++) {
-            if (bridge.get(i).equals("U")) {
-                appendState(upperLayerBuilder, result.get(i));
-            }
-
-            if (bridge.get(i).equals("D")) {
-                upperLayerBuilder.append(EMPTY);
-            }
-
-            if (i != result.size() - 1) {
-                upperLayerBuilder.append(BRIDGE_PARTITION);
-            }
-        }
-
+        fillUpperLayerContents(bridge, result, upperLayerBuilder);
         upperLayerBuilder.append(BRIDGE_END);
 
         return upperLayerBuilder.toString();
@@ -39,32 +25,45 @@ public class OutputMaker {
         StringBuilder lowerLayerBuilder = new StringBuilder();
 
         lowerLayerBuilder.append(BRIDGE_START);
-
-        for (int i = 0; i < result.size(); i++) {
-            if (bridge.get(i).equals("D")) {
-                appendState(lowerLayerBuilder, result.get(i));
-            }
-
-            if (bridge.get(i).equals("U")) {
-                lowerLayerBuilder.append(EMPTY);
-            }
-
-            if (i != result.size() - 1) {
-                lowerLayerBuilder.append(BRIDGE_PARTITION);
-            }
-        }
-
+        fillLowerLayerContents(bridge, result, lowerLayerBuilder);
         lowerLayerBuilder.append(BRIDGE_END);
 
         return lowerLayerBuilder.toString();
     }
 
-    private void appendState(StringBuilder builder, String result) {
-        if (result.equals("O")) {
+    private void fillUpperLayerContents(List<String> bridge, List<String> result, StringBuilder upperLayerBuilder) {
+        for (int i = 0; i < result.size(); i++) {
+            if (result.get(i).equals("U")) {
+                appendState(upperLayerBuilder, bridge.get(i), result.get(i));
+            }
+            if (result.get(i).equals("D")) {
+                upperLayerBuilder.append(EMPTY);
+            }
+            if (i != result.size() - 1) {
+                upperLayerBuilder.append(BRIDGE_PARTITION);
+            }
+        }
+    }
+
+    private void fillLowerLayerContents(List<String> bridge, List<String> result, StringBuilder lowerLayerBuilder) {
+        for (int i = 0; i < result.size(); i++) {
+            if (result.get(i).equals("D")) {
+                appendState(lowerLayerBuilder, bridge.get(i), result.get(i));
+            }
+            if (result.get(i).equals("U")) {
+                lowerLayerBuilder.append(EMPTY);
+            }
+            if (i != result.size() - 1) {
+                lowerLayerBuilder.append(BRIDGE_PARTITION);
+            }
+        }
+    }
+
+    private void appendState(StringBuilder builder, String answer, String result) {
+        if (result.equals(answer)) {
             builder.append(CORRECT);
             return;
         }
-        
         builder.append(WRONG);
     }
 }
