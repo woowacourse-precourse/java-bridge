@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMap;
 import bridge.type.BridgeGameCommandType;
 import bridge.type.BridgeSideType;
 import java.util.List;
@@ -15,13 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
     private BridgeGame bridgeGame;
-    private BridgeMap bridgeMap;
     private Bridge bridge;
 
     @BeforeEach
     void setUp() {
         bridgeGame = new BridgeGame();
-        bridgeMap = new BridgeMap();
         bridge = new Bridge();
 
         bridge.registerBridge(List.of(BridgeSideType.UPPER_SIDE.getSide(), BridgeSideType.LOWER_SIDE.getSide(), BridgeSideType.LOWER_SIDE.getSide()));
@@ -61,7 +58,7 @@ public class BridgeGameTest {
     @ParameterizedTest
     @CsvSource(value = {"D:성공", "U:실패"}, delimiter = ':')
     void isFinishSuccessTest(String bridgeSide, String result) {
-        for(int loopCount = 0; loopCount < bridge.getBridge().size(); loopCount++) {
+        for (int loopCount = 0; loopCount < bridge.getBridge().size(); loopCount++) {
             bridgeGame.move(bridge.getBridge().get(loopCount));
         }
         bridgeGame.isFinish(bridgeSide);

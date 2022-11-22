@@ -37,13 +37,6 @@ public class BridgeMap {
         return getSelectBridgeToString(lowerBridge);
     }
 
-    private boolean isFinish(int bridgeSize) {
-        if (upperBridge.size() == bridgeSize) {
-            return true;
-        }
-        return false;
-    }
-
     private String getSelectBridgeToString(List<String> selectBridge) {
         StringBuffer bridge = new StringBuffer(selectBridge.toString().replace(COMMA, SEPARATOR));
 
