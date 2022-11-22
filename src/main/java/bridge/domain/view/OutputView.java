@@ -8,6 +8,9 @@ import bridge.domain.model.CrossBridge;
  */
 public class OutputView {
 
+    private final static String UP = "U";
+    private final static String DOWN = "D";
+
     CrossBridge crossBridge = new CrossBridge();
 
     public void printGuideMessage(GuideMessage guideMessage) {
@@ -15,21 +18,21 @@ public class OutputView {
     }
 
     public void printMap() {
-        String upMap = printMapByLine(1);
-        String downMap = printMapByLine(0);
+        String upMap = printMapByLine(UP);
+        String downMap = printMapByLine(DOWN);
         System.out.println(upMap);
         System.out.println(downMap);
     }
 
     // line: 1==up / 0==down
-    public String printMapByLine(int line) {
+    public String printMapByLine(String where) {
         StringBuilder result = new StringBuilder("[ ");
         int index = 0;
         for (; index < crossBridge.getCrossBridgeSize() - 1; index++) {
-            result.append(crossBridge.getCrossBridgeIndex(index).getWay(line));
+            result.append(crossBridge.getCrossBridgeIndex(where, index));
             result.append(" | ");
         }
-        result.append(crossBridge.getCrossBridgeIndex(index).getWay(line));
+        result.append(crossBridge.getCrossBridgeIndex(where, index));
         result.append(" ]");
         return result.toString();
     }
