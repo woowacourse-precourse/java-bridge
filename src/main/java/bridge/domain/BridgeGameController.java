@@ -67,7 +67,6 @@ public final class BridgeGameController {
 
     private int receiveBridgeSize() {
         final BridgeSizeCommand sizeCommand = inputView.readBridgeSize();
-        BridgeValidator.validateBridgeSize(sizeCommand.getBridgeSize());
         return sizeCommand.getBridgeSize();
     }
 
