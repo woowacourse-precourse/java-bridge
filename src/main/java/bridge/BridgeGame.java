@@ -4,9 +4,9 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    boolean survival;
-    char[][] log;
-    checkTheEnd survivalStatus;
+    public boolean survival;
+    public char[][] log;
+    public checkTheEnd survivalStatus;
 
     public void move(String answer, String submit) {
         survival = answer.equals(submit);
@@ -62,11 +62,7 @@ public class BridgeGame {
 
     }
 }
-enum checkTheEnd{
-    RUNNING(),
-    SUCCESS(),
-    FAILED(),
-}
+
 enum Restart {
     RESTART("R", true),
     END("Q", false);

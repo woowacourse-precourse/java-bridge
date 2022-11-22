@@ -1,15 +1,12 @@
-package bridge;
+package bridge.controller;
+
+import bridge.BridgeGame;
+import bridge.checkTheEnd;
 
 import java.util.List;
 
-public class GameController {
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private BridgeMaker bridgeMaker= new BridgeMaker(new BridgeRandomNumberGenerator());
-    private BridgeGame bridgeGame;
-    private List<String> bridge;
-    private int count = 1;
-
+public class GameController extends ControllerConfig {
+    static int count = 1;
     public void run() {
         startGame();
     }

@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.view.OutputView;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -7,7 +8,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OutputViewTest {
     OutputView outputView = new OutputView();
