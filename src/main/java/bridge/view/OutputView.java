@@ -10,7 +10,7 @@ import java.util.StringJoiner;
  */
 public class OutputView {
 
-    public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     public static final String DELIMITER = " | ";
     public static final String JOIN_LIST_FORMAT = "[ %s ]";
     public static final String LOCATION_UP_SELECT = "U";
