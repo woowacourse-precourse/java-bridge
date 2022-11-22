@@ -2,21 +2,20 @@ package bridge.domain;
 
 import static java.util.stream.Collectors.toList;
 
+import bridge.common.Code;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class BridgeGameResult {
-    private final Map<Round, MoveResult> result = new HashMap<>();
-    private final Map<Round, Move> move = new HashMap<>();
+    private final Map<Round, PlayerMove> result = new HashMap<>();
 
     public BridgeGameResult() {
     }
 
-    public void addResult(Round round, MoveResult moveResult, Move move) {
-        result.put(round, moveResult);
-        this.move.put(round, move);
+    public void addResult(Round round, PlayerMove playerMove) {
+        result.put(round, playerMove);
     }
 
     public void reset() {
@@ -33,15 +32,24 @@ public class BridgeGameResult {
     private List<MoveResult> getMovingResults(Move move) {
         return Round.getRoundsWithSizeOrderByAsc(result.size())
                 .stream()
-                .map(round -> getMovingResult(round, move))
+                .map(round -> getMoveResult(round, move))
                 .collect(toList());
     }
 
-    private MoveResult getMovingResult(Round round, Move move) {
-        Move moveMove = this.move.get(round);
-        if (moveMove != move) {
-            return MoveResult.FAIL;
+    private MoveResult getMoveResult(Round round, Move move) {
+        PlayerMove playerMove = result.get(round);
+        if (playerMove.isNotSameMove(move)) {
+            return MoveResult.NOT_MOVE;
         }
-        return result.get(round);
+        return playerMove.getMoveResult();
+    }
+
+    public Code checkGameSuccess() {
+        long failCount = Round.getRoundsWithSizeOrderByAsc(result.size())
+                .stream()
+                .map(result::get)
+                .filter(PlayerMove::isFail)
+                .count();
+        return Code.of(failCount);
     }
 }
