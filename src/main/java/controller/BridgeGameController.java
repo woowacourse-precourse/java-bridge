@@ -2,6 +2,7 @@ package controller;
 
 import bridge.BridgeGame;
 import constants.Message;
+import constants.Result;
 import view.InputView;
 import view.OutputView;
 
@@ -10,6 +11,7 @@ public class BridgeGameController {
     private final InputView inputView = new InputView();
     private final BridgeGame bridgeGame;
     private boolean choice = true;
+    private int totalTry = 1;
 
     public BridgeGameController(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
@@ -19,6 +21,7 @@ public class BridgeGameController {
         outputView.printMessage(Message.START_GAME);
         generateBridge();
         start();
+        outputView.printResult(bridgeGame.getResult(), Result.valueToStatus(bridgeGame.isWin()), totalTry);
     }
 
     private void start() {
@@ -29,14 +32,6 @@ public class BridgeGameController {
                 break;
             }
             retryOrEnd();
-        }
-    }
-
-    private void crossBridge() {
-        while (bridgeGame.canMove() && !bridgeGame.isWin()) {
-            move();
-            bridgeGame.saveResult();
-            outputView.printMap(bridgeGame.getResult());
         }
     }
 
@@ -60,6 +55,14 @@ public class BridgeGameController {
         }
     }
 
+    private void crossBridge() {
+        while (bridgeGame.canMove() && !bridgeGame.isWin()) {
+            move();
+            bridgeGame.saveResult();
+            outputView.printMap(bridgeGame.getResult());
+        }
+    }
+
     private void getCommand() {
         try {
             outputView.printMessage(Message.REQUEST_RETRY_OR_END);
@@ -75,6 +78,7 @@ public class BridgeGameController {
 
         if (choice) {
             bridgeGame.retry();
+            totalTry++;
         }
     }
 }
