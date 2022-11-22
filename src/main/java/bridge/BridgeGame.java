@@ -1,23 +1,64 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import bridge.identifiers.Direction;
+import bridge.paths.Bridge;
+import bridge.paths.PlayerPath;
+
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private Bridge bridge;
+    private PlayerPath playerPath;
+
+    private boolean isAlive;
+    private int countAttempt;
+
+    public BridgeGame() {
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void initComponents(BridgeNumberGenerator bridgeNumberGenerator, int bridgeLength) {
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
+        playerPath = new PlayerPath();
+        isAlive = true;
+        countAttempt = 1;
+    }
+
+    public void move(Direction direction) {
+        playerPath.saveDirection(direction);
+        if (!bridge.canBeSteppedBy(playerPath)) {
+            playerPath.die();
+        }
+    }
+
     public void retry() {
+        playerPath = new PlayerPath();
+        ++countAttempt;
+    }
+
+    public PlayerPath getPlayerPath() {
+        return playerPath;
+    }
+
+    public boolean isSuccess() {
+        return bridge.isCompletedWith(playerPath);
+    }
+
+    public boolean isGameOver() {
+        if (!playerPath.getIsAlive()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setDead() {
+        isAlive = false;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public int getCountAttempt() {
+        return countAttempt;
     }
 }
