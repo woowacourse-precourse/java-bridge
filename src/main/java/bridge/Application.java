@@ -19,7 +19,6 @@ public class Application {
             BridgeGame Game =  new BridgeGame(bridgeSize,Bridge.getBridge());
             retry=Game.move(Input,Output);
         }
-        if (retry.equals("STOP")){Output.printResult(gameCount,false);}
-        if (retry.equals("COMPLETE")){Output.printResult(gameCount,true);}
+        Output.printResult(gameCount,retry);
     }
 }

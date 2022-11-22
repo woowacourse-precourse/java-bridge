@@ -21,20 +21,22 @@ public class OutputView {
         String mark=checkMap(command,count,Bridge);
         if (mark.equals(Constants.CROSS_MARK)){
             printOX(mark,command);
-            printMartix(upBridgeMap,downBridgeMap);
+            printMatrix(upBridgeMap,downBridgeMap);
             return false;
         };
         printOX(mark,command);
-        printMartix(upBridgeMap,downBridgeMap);
+        printMatrix(upBridgeMap,downBridgeMap);
         return true;
     }
 
-    public void printResult(int number,boolean gameStatus) {
-        String whether = "실패";
+    public void printResult(int number,String gameStatus) {
+        boolean whether = false;
+        String successOrFail = "실패";
+        if (gameStatus.equals("COMPLETE")){whether = true;}
         System.out.println("최종 게임 결과");
-        printMartix(upBridgeMap,downBridgeMap);
-        if (gameStatus){whether = "성공";}
-        System.out.println("게임 성공 여부: " + whether);
+        printMatrix(upBridgeMap,downBridgeMap);
+        if (whether){successOrFail = "성공";}
+        System.out.println("게임 성공 여부: " + successOrFail);
         System.out.println("총 시도한 횟수: " +number);
     }
 
@@ -67,7 +69,7 @@ public class OutputView {
         }
     }
 
-    public void printMartix(List<String> upBridgeMap,List<String> downBridgeMap){
+    public void printMatrix(List<String> upBridgeMap, List<String> downBridgeMap){
         System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
         System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
         System.out.println();
