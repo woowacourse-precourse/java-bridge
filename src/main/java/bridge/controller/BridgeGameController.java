@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.domain.Player;
-import bridge.domain.Victory;
 import bridge.dto.GameMoveDto;
 import bridge.dto.GameResultDto;
 import bridge.service.BridgeGameService;
@@ -46,16 +45,11 @@ public class BridgeGameController {
     }
 
     private void checkRetry(Player player) {
-        if (isGameOver(player) || bridgeGameService.isPlayable()) {
+        if (bridgeGameService.isGameOver(player) || bridgeGameService.isPlayable()) {
             return;
         }
         String command = repeat(inputView::readGameCommand);
         bridgeGameService.retry(player, command);
-    }
-
-    private boolean isGameOver(Player player) {
-        Victory result = player.checkGamePassed();
-        return !bridgeGameService.isPlayable() && result.isVictory();
     }
 
     private void printGameResult(Player player) {

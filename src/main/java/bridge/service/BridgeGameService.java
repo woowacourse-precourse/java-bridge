@@ -6,6 +6,7 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameStatus;
 import bridge.domain.Direction;
 import bridge.domain.Player;
+import bridge.domain.Victory;
 import bridge.dto.GameMoveDto;
 import bridge.dto.GameResultDto;
 import java.util.List;
@@ -58,6 +59,11 @@ public class BridgeGameService {
     private boolean isNotContinuous(String command) {
         BridgeGameStatus bridgeGameStatus = BridgeGameStatus.getEnum(command);
         return bridgeGameStatus.isNotPlayable();
+    }
+
+    public boolean isGameOver(Player player) {
+        Victory result = player.checkGamePassed();
+        return !isPlayable() && result.isVictory();
     }
 
     public GameResultDto gameOver(Player player) {

@@ -87,6 +87,17 @@ class BridgeGameServiceTest {
     }
 
     @Test
+    void isGameOver_메서드는_사용자가_다리건너기에_성공하면_true를_반환한다() {
+        bridgeGameService.initializeBridgeGame(3);
+        Player player = new Player();
+        bridgeGameService.play(player, "D");
+        bridgeGameService.play(player, "D");
+        bridgeGameService.play(player, "U");
+
+        assertThat(bridgeGameService.isGameOver(player)).isTrue();
+    }
+
+    @Test
     void gameOver_메서드는_사용자를_입력받아_GameResultDto를_반환한다() {
         bridgeGameService.initializeBridgeGame(3);
         Player player = new Player();
