@@ -11,6 +11,7 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     MoveCheck moveCheck;
     MoveStatus moveStatus = new MoveStatus();
+    private boolean availableToMove;
     public List<List<String>> statusMap = null;
 
     public BridgeGame (List<String> bridge){
@@ -21,12 +22,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int moveValue) {
+    public List<List<String>> move(int moveValue, String moves){
         moveCheck = new MoveCheck(bridge);
-        String moves = inputView.readMoving();
-        boolean availableToMove = moveCheck.checkIfAvailableToMove(moveValue,moves);
+        availableToMove = moveCheck.checkIfAvailableToMove(moveValue,moves);
         statusMap = moveStatus.printMoves(moves,availableToMove);
-        outputView.printMap(statusMap);
+        return statusMap;
+    }
+    public boolean getAvailableToMove(){
         return availableToMove;
     }
 
@@ -35,8 +37,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(){
-        if (inputView.readGameCommand().equals("R")) {
+    public boolean retry(String readCommand){
+        if (readCommand.equals("R")) {
             return true;
         }
         return false;

@@ -27,7 +27,7 @@ public class BridgeGameController {
         return false;
     }
     private boolean gameEndSelect() {
-        if (!bridgeGame.retry()) {
+        if (!bridgeGame.retry(inputView.readGameCommand())) {
             outputView.printResult(this, bridgeGame,false);
             return false;
         }
@@ -35,14 +35,21 @@ public class BridgeGameController {
     }
     public boolean tryMoves(int moveValue, List<String> bridge) {
         tryCount++;
+        return moveProcess(moveValue, bridge);
+    }
+
+    private boolean moveProcess(int moveValue, List<String> bridge) {
         while (moveValue < bridge.size()) {
-            if(!bridgeGame.move(moveValue++)) {
+            String moves = inputView.readMoving();
+            outputView.printMap(bridgeGame.move(moveValue++,moves));
+            if(!bridgeGame.getAvailableToMove()) {
                 return false;
             }
         }
         outputView.printResult(this,bridgeGame,true);
         return true;
     }
+
     public int getTryCount() {
         return tryCount;
     }
