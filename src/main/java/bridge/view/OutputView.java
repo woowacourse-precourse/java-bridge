@@ -8,6 +8,9 @@ import java.util.List;
 public class OutputView {
     private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final String GAME_RESULT_MESSAGE = "최종 게임 결과";
+    private final String GAME_SUCCESS_OR_FAIL_MESSAGE = "게임 성공 여부: ";
+    private final String SUCCESS_MESSAGE = "성공";
+    private final String FAIL_MESSAGE = "실패";
 
     private final String LINE_BREAK = "\n";
     private final String PREFIX_SQUARE_BRACKET = "[";
@@ -57,6 +60,18 @@ public class OutputView {
             }
 
             System.out.print(currentBridge.get(lineCount).charAt(currentLine));
+        }
+    }
+
+    public void printGameSuccessOrFail(boolean successOrFail) {
+        System.out.print(GAME_SUCCESS_OR_FAIL_MESSAGE);
+
+        if (successOrFail) {
+            System.out.println(SUCCESS_MESSAGE);
+        }
+
+        if (!successOrFail) {
+            System.out.println(FAIL_MESSAGE);
         }
     }
 }
