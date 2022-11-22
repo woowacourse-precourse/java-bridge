@@ -19,5 +19,4 @@ class BridgeMakerTest {
 
         assertThat(result.contains("U") || result.contains("D")).isTrue();
     }
-    }
 }
