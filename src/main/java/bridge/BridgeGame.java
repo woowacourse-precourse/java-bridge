@@ -11,20 +11,9 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
-    public static final String RIGHT = "O ";
-    public static final String WRONG = "X ";
-    public static final String SPACE_BRIDGE = "  ";
-
     static List<String> upstairsBridge = new ArrayList<>();
     static List<String> downstairsBridge = new ArrayList<>();
     static List<String> triedAnswers = new ArrayList<>();
-
-    public List<String> upstairsBridge () {
-        return upstairsBridge;
-    }
-    public List<String> downstairsBridge () {
-        return downstairsBridge;
-    }
 
     public void getUpstairsBridge (String direction, List<String> bridge, int numberOfTrying) {
         int eachBridge = numberOfTrying - 1;
