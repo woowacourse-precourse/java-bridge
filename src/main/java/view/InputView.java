@@ -16,8 +16,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        BridgeException bridgeException;
         System.out.println(Bridge_Size.getMessage());
-        BridgeException bridgeException = new BridgeException(readLine());
+        try{
+            bridgeException = new BridgeException(readLine());
+        } catch (Exception e) {
+            bridgeException = new BridgeException(readLine());
+        }
         return bridgeException.getBridgeSize();
     }
 
