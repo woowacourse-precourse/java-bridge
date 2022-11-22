@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.enumeration.ErrorMessage;
 import bridge.enumeration.GameCommand;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,8 @@ public class BridgeMaker {
 
     private void checkRange(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalStateException();
+            System.out.println(ErrorMessage.BRIDGE_OUT_OF_RANGE.getErrorMessage());
+            throw new IllegalStateException(ErrorMessage.BRIDGE_OUT_OF_RANGE.getErrorMessage());
         }
     }
 
