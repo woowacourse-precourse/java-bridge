@@ -11,7 +11,8 @@ public class Bridge {
         this.size = size;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         StringBuilder result = new StringBuilder();
 
         for (String space : spaces) {

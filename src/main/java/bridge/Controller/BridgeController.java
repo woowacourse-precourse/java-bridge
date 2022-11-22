@@ -16,6 +16,5 @@ public class BridgeController {
         Bridge bridge = bridgeService.makeBridge();
         UserBridges userBridges = bridgeService.makeUserBridges();
         gameService.gameStart(bridge, userBridges);
-
     }
 }

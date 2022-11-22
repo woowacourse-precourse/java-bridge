@@ -11,12 +11,12 @@ import bridge.View.OutputView;
 import java.util.List;
 
 public class BridgeService {
+    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     public Bridge makeBridge() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
         OutputView.printEnterBridgeSize();
+
         int bridgeSize = InputView.readBridgeSize();
         List<String> spaces = bridgeMaker.makeBridge(bridgeSize);
 

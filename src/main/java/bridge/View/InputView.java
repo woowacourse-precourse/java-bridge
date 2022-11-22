@@ -15,6 +15,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
         int bridgeSize;
+
         try {
             bridgeSize = VerificationUtil.verifyNumeric(Console.readLine());
             VerificationUtil.verifyBridgeSize(bridgeSize);
@@ -30,6 +31,7 @@ public class InputView {
      */
     public static String readMoving() {
         String moving;
+
         try {
             moving = Console.readLine();
             VerificationUtil.verifyMoving(moving);
@@ -45,6 +47,7 @@ public class InputView {
      */
     public static String readGameCommand() {
         String command;
+
         try {
             command = Console.readLine();
             VerificationUtil.verifyGameCommand(command);

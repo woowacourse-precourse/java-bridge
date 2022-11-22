@@ -9,6 +9,8 @@ import bridge.Domain.State;
  */
 public class BridgeGame {
 
+    private BridgeGame() {}
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -26,15 +28,19 @@ public class BridgeGame {
     }
 
     public static void saveRightMove(String moveTo, UserBridges userBridges) {
+
         if (moveTo.equals(Key.UP))
             userBridges.saveMove("O", " ");
+
         if (moveTo.equals(Key.DOWN))
             userBridges.saveMove(" ", "O");
     }
 
     public static void saveWrongMove(String moveTo, UserBridges userBridges) {
+
         if (moveTo.equals(Key.UP))
             userBridges.saveMove("X", " ");
+
         if (moveTo.equals(Key.DOWN))
             userBridges.saveMove(" ", "X");
     }

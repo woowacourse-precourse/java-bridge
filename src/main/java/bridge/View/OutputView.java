@@ -39,10 +39,10 @@ public class OutputView {
 
     public static void printEachBridge(List<String> spaces) {
         System.out.print(BRACKET_START);
-        for(int i=0; i<spaces.size(); i++) {
+        for (int i = 0; i < spaces.size(); i++) {
             System.out.print(spaces.get(i));
 
-            if (i != spaces.size()-1)
+            if (i != spaces.size() - 1)
                 System.out.print(SEPARATOR);
         }
         System.out.println(BRACKET_END);

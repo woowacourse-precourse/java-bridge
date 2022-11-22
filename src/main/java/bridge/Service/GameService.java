@@ -23,8 +23,8 @@ public class GameService {
     }
 
     public State run(Bridge bridge, UserBridges userBridges) {
-        for (int location = 0; location < bridge.getSize(); location++) {
 
+        for (int location = 0; location < bridge.getSize(); location++) {
             State result = moveMap(bridge, userBridges, location);
             OutputView.printMap(userBridges);
 
@@ -47,7 +47,6 @@ public class GameService {
         OutputView.printRetryOrQuit();
 
         String retry = InputView.readGameCommand();
-
         if (retry.equals("Q"))
             return State.QUIT;
 
