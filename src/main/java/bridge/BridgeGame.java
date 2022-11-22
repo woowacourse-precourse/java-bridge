@@ -28,9 +28,7 @@ public class BridgeGame {
 	public BridgeGame(int bridgeLength) {
 		this.bridgeLength = bridgeLength;
 		this.bridges = this.bridgeMaker.makeBridge(bridgeLength);
-		for (SideTypes types : SideTypes.values()) {
-			result.put(types, new ArrayList<>());
-		}
+		initResult();
 	}
 
 	public int getCurrentIndex() {
@@ -73,14 +71,18 @@ public class BridgeGame {
 	public boolean retry(CommandTypes command) {
 		if (command.equals(CommandTypes.R)) {
 			this.bridges = this.bridgeMaker.makeBridge(this.bridgeLength);
-			result.clear();
-			for (SideTypes types : SideTypes.values()) {
-				result.put(types, new ArrayList<>());
-			}
+			initResult();
 			numberOfAttempt++;
 			return true;
 		}
 		return false;
+	}
+
+	private void initResult() {
+		result.clear();
+		for (SideTypes types : SideTypes.values()) {
+			result.put(types, new ArrayList<>());
+		}
 	}
 
 	private boolean moveSuccess(SideTypes type) {
