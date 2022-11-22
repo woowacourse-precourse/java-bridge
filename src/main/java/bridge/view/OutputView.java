@@ -6,6 +6,8 @@ import bridge.domain.Bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.domain.Result.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -74,12 +76,7 @@ public class OutputView {
         System.out.println("\n최종 게임 결과");
         printMap(bridge, user);
         System.out.print("\n게임 성공 여부: ");
-        if (bridge.isSuccess(user)) {
-            System.out.println("성공");
-        }
-        if (!bridge.isSuccess(user)) {
-            System.out.println("실패");
-        }
+        System.out.println(getSignal(bridge.isSuccess(user)));
         System.out.printf("총 시도한 횟수: %d\n", attempt.getCount());
     }
 }
