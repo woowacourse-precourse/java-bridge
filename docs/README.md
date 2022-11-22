@@ -126,3 +126,8 @@
 
 
 ## [ 테스트 코드 ]
+- ApplicationTest : 프로그램의 전체적인 실행이 정상적인 지를 테스트한다.
+- BridgeMakerTest : 다리 생성이 정상적인 지를 테스트한다.
+- InputViewTest : 플레이어가 잘못된 입력을 하는 경우에 예외가 제대로 발생하는 지에 대해 테스트한다.
+- OutputViewTest : 플레이어 입력에 따라 다리를 이동하는 것과 게임의 최종 결과를 정상적으로 출력하는 지에 대해 테스트한다.
+- TestNumberGenerator : BridgeNumberGenerator를 상속받아 구현한 클래스이다. 미리 정해진 값을 난수로 반환하는 기능이 존재한다.
