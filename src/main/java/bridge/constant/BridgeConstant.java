@@ -5,7 +5,8 @@ public enum BridgeConstant {
     RIGHT_WRAPPER(" ]"),
     JOINT(" | "),
     CAN_GO("O"),
-    CAN_NOT_GO("X");
+    CAN_NOT_GO("X"),
+    BLANK(" ");
 
     private final String bridgeConstant;
 
