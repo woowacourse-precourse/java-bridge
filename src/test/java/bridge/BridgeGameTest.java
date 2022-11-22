@@ -46,3 +46,31 @@ class BridgeGameTest {
         assertThat(bridgeGame.returnResultValue(3)).isEqualTo("DF");
         assertThat(bridgeGame.returnResultValue(4)).isEqualTo("DF");
     }
+
+    @Test
+    @DisplayName("이동 종료 여부")
+    void isMoveFinishTest_success() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        assertThat(bridgeGame.isMoveFinish()).isFalse();
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isMoveFinish()).isFalse();
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isMoveFinish()).isTrue();
+    }
+
+    @Test
+    @DisplayName("이동 종료 여부")
+    void isMoveFinishTest_fail() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        assertThat(bridgeGame.isMoveFinish()).isFalse();
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isMoveFinish()).isTrue();
+
+    }
