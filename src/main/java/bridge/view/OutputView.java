@@ -63,7 +63,8 @@ public class OutputView {
         printEmptyLine();
         printMsg("최종 게임 결과");
         printMap(bridgeGame.exportProgress());
-        printMsg("게임 성공 여부");
+        printMsg("게임 성공 여부: " + gameCondition.getDetail());
+        printMsg("총 시도한 횟수: " + bridgeGame.exportGameCount());
     }
 }
 
