@@ -46,7 +46,13 @@ class InputViewTest {
     }
 
     static Stream<Arguments> readMovingParam() {
-
+        return Stream.of(
+                Arguments.of("", error01),
+                Arguments.of("R", error04),
+                Arguments.of("Q", error04),
+                Arguments.of("DU", error04),
+                Arguments.of("u", error04)
+        );
     }
 
     void readGameCommand(String playerCommand, String exception) {
