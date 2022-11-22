@@ -1,8 +1,8 @@
 package bridge;
 
 public enum Control {
-	UP(0, "U"),
-	DOWN(1, "D"),
+	UP(1, "U"),
+	DOWN(0, "D"),
 	RESTART(2, "R"),
 	QUIT(3, "Q");
 
