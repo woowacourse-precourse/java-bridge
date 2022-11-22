@@ -1,14 +1,8 @@
 package bridge.view;
 
-import static bridge.type.CommonConstantType.MAX_BRIDGE_SIZE;
-import static bridge.type.CommonConstantType.MIN_BRIDGE_SIZE;
-import static bridge.type.ErrorMessageUserType.INVALID_BRIDGE_SIZE;
-import static bridge.type.ErrorMessageUserType.INVALID_FAIL_MENU_COMMAND;
-import static bridge.type.ErrorMessageUserType.INVALID_IN_GAME_COMMAND;
-import static bridge.type.ErrorMessageUserType.INVALID_NUMBER_FORMAT;
-import static bridge.type.InputMessageType.ASK_BRINDGE_SIZE_MESSAGE;
-import static bridge.type.InputMessageType.ASK_FAIL_MENU_COMMAND_MESSAGE;
-import static bridge.type.InputMessageType.ASK_IN_GAME_COMMAND_MESSAGE;
+import static bridge.type.CommonConstantType.*;
+import static bridge.type.ErrorMessageUserType.*;
+import static bridge.type.InputMessageType.*;
 
 import bridge.type.FailMenuCommandType;
 import bridge.type.InGameCommandType;
@@ -21,10 +15,8 @@ public class InputViewImpl implements InputView {
         System.out.println(ASK_BRINDGE_SIZE_MESSAGE);
         String input = InputReader.readLine();
         checkNumberFormat(input);
-
         int bridgeSize = Integer.parseInt(input);
         checkBridgeSizeRange(bridgeSize);
-
         return bridgeSize;
     }
 
