@@ -50,4 +50,13 @@ class ValidatorTest {
         Validator.validateMoving("u");
         Validator.validateMoving("D");
     }
+
+    @Test
+    public void validateGameCommand() {
+        assertThatThrownBy(() -> Validator.validateGameCommand("D"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        Validator.validateGameCommand("q");
+        Validator.validateGameCommand("R");
+    }
 }
