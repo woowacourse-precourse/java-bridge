@@ -18,22 +18,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean printMap(String generatedBridgeStr, String currStr) {        // 현재 상황을 프린트한다.
-
-        // 생성된 브릿지와 다르면 X를 넣고 재시작할 것인지 종료할 것인지 선택햐야한다.
-        List<String> bridges = bridgeMaker.changeStrToBridge(currStr); // [ O | O |  ].. 이런형태
+        List<String> bridges = bridgeMaker.changeStrToBridge(currStr); // [ O | O |  ].. 같은 형태
+        printBridge(bridges);
+        boolean successOrFail = true;
         for (String bridge : bridges) {
-            System.out.println(bridge);
-        }
-
-        boolean successOrFail = true;   // X가 있으면 실패니까 false 반환
-
-        for (String bridge : bridges) {         // 한 개의 다리라도 X가 포함되어 있으면 실패 케이스
             if (bridge.contains("X")) {
                 successOrFail = false;
                 break;
             }
         }
-
         return successOrFail;
     }
 
@@ -44,22 +37,18 @@ public class OutputView {
      */
     public void printResult(List<String> bridge, boolean successYn, int gameCnt) {       // 게임 시도 횟수 추가
         System.out.println("최종 게임 결과");
-
-        for (String b : bridge) {
-            System.out.println(b);
-
-        }
-
+        printBridge(bridge);
         System.out.print("게임 성공 여부: ");
-
         if(successYn){
-            System.out.println("성공");
-            System.out.println("총 시도한 횟수: " + gameCnt );
+            System.out.println("성공\n총 시도한 횟수: " + gameCnt );
             return;
         }
-        System.out.println("실패");
-        System.out.println("총 시도한 횟수: "  + gameCnt );
+        System.out.println("실패\n총 시도한 횟수: "  + gameCnt );
+    }
 
-
+    public static void printBridge(List<String> bridge){
+        for (String b : bridge) {
+            System.out.println(b);
+        }
     }
 }
