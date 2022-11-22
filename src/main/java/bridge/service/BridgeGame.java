@@ -15,6 +15,9 @@ import static bridge.util.BridgeUtil.*;
 import static bridge.util.BridgeUtil.DOWN;
 import static bridge.util.GameCommand.QUIT;
 import static bridge.util.GameCommand.RESTART;
+import static bridge.util.View.SPACE;
+import static bridge.util.View.ANSWER_RESULT;
+import static bridge.util.View.WRONG_ANSWER_RESULT;
 
 public class BridgeGame {
 
@@ -46,6 +49,19 @@ public class BridgeGame {
     private void initBridgeMap() {
         upperBridge = new ArrayList<>();
         lowerBridge = new ArrayList<>();
+    }
+
+    private void makeUpperBridgeOfPart(int position, String choice) {
+        if (!choice.equals(UP)) {
+            upperBridge.add(SPACE);
+            return;
+        }
+
+        if (choice.equals(getBridgeByPosition(position))) {
+            upperBridge.add(ANSWER_RESULT);
+            return;
+        }
+        upperBridge.add(WRONG_ANSWER_RESULT);
     }
 
     private String getChoiceByPosition(int position) {
