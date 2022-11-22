@@ -15,19 +15,19 @@ class OutputViewTest {
     @DisplayName("paint_map_test")
     void print_map_test(){
 
-        outputView.printMap(Arrays.asList("U","U","D"), Arrays.asList("U", "D", "D"));
+        outputView.printMap(new Bridge(Arrays.asList("U","U","D")), new Bridge(Arrays.asList("U", "D", "D")));
     }
 
     @Test
     @DisplayName("print_result_fail_test")
     void print_result_fail_test(){
-        outputView.printResult(3,Arrays.asList("U","U","D"), Arrays.asList("U", "D", "D"));
+        outputView.printResult(3,new Bridge(Arrays.asList("U","U","D")), new Bridge(Arrays.asList("U", "D", "D")));
     }
 
     @Test
     @DisplayName("print_result_success_test")
     void print_result_success_test(){
-        outputView.printResult(3,Arrays.asList("U","U","D"), Arrays.asList("U", "U", "D"));
+        outputView.printResult(3,new Bridge(Arrays.asList("U","U","D")), new Bridge(Arrays.asList("U", "U", "D")));
     }
 
 

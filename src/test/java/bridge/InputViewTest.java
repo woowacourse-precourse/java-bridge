@@ -30,22 +30,5 @@ class InputViewTest {
         view.validateGameInput("R");
     }
 
-    @Test
-    @DisplayName("read_bridge_size_fail_test")
-    void read_bridge_size_fail_test() {
-        Assertions.assertThrows(InputException.class,() -> view.validateNumber("a"));
-    }
 
-    @Test
-    @DisplayName("read_moving_fail_test")
-    void read_moving_fail_test() {
-        Assertions.assertThrows(InputException.class,() -> view.validateMovingInput("a"));
-
-    }
-
-    @Test
-    @DisplayName("read_game_fail_command")
-    void read_game_fail_test() {
-        Assertions.assertThrows(InputException.class,() -> view.validateGameInput("a"));
-    }
 }

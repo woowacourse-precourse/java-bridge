@@ -23,12 +23,14 @@ public class Bridge {
         this.bridge.add(s);
     }
     public boolean equals(Bridge other) {
+        boolean isEqual = true;
         for (int i = 0; i < bridge.size(); i++) {
-            if (other.getBridge().get(i).equals(this.bridge.get(i)))
-                continue;
-            return false;
+            isEqual = checkIdxValue(i, other);
         }
-        return true;
+        return isEqual;
+    }
+    private boolean checkIdxValue(int idx, Bridge other){
+        return other.bridge.get(idx).equals(bridge.get(idx));
     }
 
 
