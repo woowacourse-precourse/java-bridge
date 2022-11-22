@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    static final int MIN_BRIDGE_SIZE = 3;
+    static final int MAX_BRIDGE_SIZE = 20;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -19,5 +22,14 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+        List<String> bridge = new ArrayList<>();
+        for (int count = 0; count < size; count++) {
+            bridge.add(choiceUpDown());
+        }
+        return bridge;
+    }
+    private String choiceUpDown() {
+        String[] bridgeTable = {"D", "U"};
+        return bridgeTable[bridgeNumberGenerator.generate()];
     }
 }
