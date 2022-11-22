@@ -26,18 +26,14 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int blockIndex = 0; blockIndex < size; blockIndex++) {
-            makeBridgeBlock(bridge);
-        }
 
+            if (bridgeNumberGenerator.generate() == UP_MOVE_NUMBER) {
+                bridge.add(InputConstants.UP_MOVE.getValue());
+                continue;
+            }
+            bridge.add(InputConstants.DOWN_MOVE.getValue());
+        }
         return bridge;
     }
 
-    private void makeBridgeBlock(List<String> bridge) {
-        int blockNumber = bridgeNumberGenerator.generate();
-        if (blockNumber == UP_MOVE_NUMBER) {
-            bridge.add(InputConstants.UP_MOVE.getValue());
-            return;
-        }
-        bridge.add(InputConstants.DOWN_MOVE.getValue());
-    }
 }
