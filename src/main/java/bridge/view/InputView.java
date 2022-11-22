@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.boundary.Console;
 import bridge.command.BridgeSize;
 import bridge.command.Movement;
+import bridge.command.Retry;
 import bridge.inputprocessor.InputProcessor;
 import bridge.logger.Logger;
 
@@ -28,7 +29,10 @@ public class InputView {
         }).process();
     }
 
-    public String readGameCommand() {
-        return null;
+    public Retry readRetrying() {
+        return new InputProcessor<>(() -> {
+            final String userInput = Console.readLine();
+            return Retry.commandOf(userInput);
+        }).process();
     }
 }
