@@ -51,7 +51,7 @@
 - [x] 총 시도횟수를 초기화 한다. #initTryCount()
 - [x] 다리를 초기화 한다. #initBridge()
 - [x] 사용자 위치를 초기화 한다. #initPlayer()
-- [ ] 사용자가 칸을 이동한다. #move()
+- [x] 사용자가 칸을 이동한다. #move()
 - [x] 사용자의 칸 이동 현황을 초기화 한다. #initBridgeMap()
 - [x] 사용자 위치 현황을 만든다. #makeBridgeMap()
 - [x] 사용자 위치현황 중 윗줄을 만든다. #makeUpperBridgeOfPart()
