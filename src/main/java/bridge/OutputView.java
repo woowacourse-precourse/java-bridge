@@ -1,4 +1,5 @@
 package bridge;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -11,8 +12,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> ongoing) {
-        String forPrint = ongoing.toString();
+    public void printMap(HashMap<String, List<String>> result) {
+
+        printBridge(result.get("U"));
+        printBridge(result.get("D"));
+
+    }
+
+    private void printBridge(List<String> bridge) {
+        String forPrint = bridge.toString();
         System.out.println(forPrint.replace(", ","|"));
     }
 
@@ -21,7 +29,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> result, boolean isSucceed, int tryCount) {
+    public void printResult(HashMap<String, List<String>> result, boolean isSucceed, int tryCount) {
 
         System.out.println(OutputDocuments.GAME_END);
         printMap(result);
@@ -29,6 +37,7 @@ public class OutputView {
         System.out.println(OutputDocuments.makeResultDocument(isSucceed));
         System.out.println(OutputDocuments.makeTryCount(tryCount));
     }
+
     public void printStartDocs() {
         System.out.println(OutputDocuments.GAME_START);
     }

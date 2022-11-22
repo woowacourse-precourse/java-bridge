@@ -11,6 +11,7 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private int onGoingCount;
+    private int retryCount;
     private final HashMap<String, List<String>> result;
 
     BridgeGame(List<String> bridge) {
@@ -21,6 +22,7 @@ public class BridgeGame {
         result.put("U", uResult);
         List<String> dResult = new ArrayList<>();
         result.put("D", dResult);
+        retryCount = 1;
     }
 
 
@@ -29,12 +31,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String bridgeWord) {
+    public GameStatus move(String bridgeWord) {
         if (recordResult(bridgeWord, bridge.canCross(onGoingCount,bridgeWord))) {
             onGoingCount++;
-            return true;
+            return checkGameStatus();
         }
-        return false;
+        return GameStatus.GAME_OVER;
     }
 
     /**
@@ -42,33 +44,48 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        onGoingCount = 0;
-        result.get("U").clear();
-        result.get("D").clear();
+    public GameStatus retry(String ruleWord) {
+        if (ruleWord.equals("R")) {
+            onGoingCount = 0;
+            result.get("U").clear();
+            result.get("D").clear();
+            retryCount++;
+            return GameStatus.GAME_ONGOING;
+        }
+        return GameStatus.GAME_GIVEUP;
+
     }
 
-    public boolean checkGameOver() {
-        return (bridge.getBridgeSize() == onGoingCount);
+    public HashMap<String, List<String>> getResult() {
+        return result;
+    }
+
+    private GameStatus checkGameStatus() {
+        if (bridge.getBridgeSize() == onGoingCount) {
+            return GameStatus.GAME_CLEAR;
+        }
+        return GameStatus.GAME_ONGOING;
+    }
+
+    public int getTryCount() {
+        return retryCount;
     }
 
     private boolean recordResult(String bridgeWord, boolean isCross){
         String crossPlate = "D";
         String otherPlate = "U";
-        String isSuccess = "X";
+        String isSuccess = " X ";
 
         if (bridgeWord.equals("U")) {
             crossPlate = "U";
             otherPlate = "D";
         }
         if (isCross) {
-            isSuccess = "O";
+            isSuccess = " O ";
         }
         result.get(crossPlate).add(isSuccess);
-        result.get(otherPlate).add(" ");
+        result.get(otherPlate).add("   ");
 
-        System.out.println(result.get(crossPlate));
-        System.out.println(result.get(otherPlate));
         return  isCross;
     }
 
@@ -92,4 +109,11 @@ class Bridge {
     public int getBridgeSize() {
         return bridge.size();
     }
+}
+
+enum GameStatus {
+    GAME_OVER,
+    GAME_ONGOING,
+    GAME_GIVEUP,
+    GAME_CLEAR
 }
