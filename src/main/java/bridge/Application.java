@@ -9,14 +9,19 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            InputView inputView = new InputView();
-            OutputView outputView = new OutputView();
-            BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-            BridgeGameController bridgeGameController = new BridgeGameController(inputView, outputView, bridgeMaker);
+            BridgeGameController bridgeGameController = initBridgeGameController();
             bridgeGameController.run();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static BridgeGameController initBridgeGameController() {
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
+        return new BridgeGameController(inputView, outputView, bridgeMaker);
     }
 }
