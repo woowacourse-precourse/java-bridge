@@ -1,88 +1,32 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
-    private final List<String> gameBridge;
-    List<Integer> userCorrectUp;
-    List<Integer> userCorrectDown;
+    private final Bridge gameBridge;
+    private User user;
     private Integer userTry = 1;
-    Boolean gameCorrect = false;
-    Boolean gameOver = false;
+
+    BridgeGame(Integer size) {
+        BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
+        gameBridge = new Bridge(bm.makeBridge(size));
+        user = new User();
+    }
 
     public void move(String input) {
-        if (correct(input) == false) {
-            gameOver = true;
-            drawFalseMap(input);
-            return;
-        }
-        drawTrueMap(input);
-        checkEnd();
+        user.crossingBlock(input);
+        user.drawMap(gameBridge);
+    }
+
+    public String lastMoveToString() {
+        return user.mapToString();
     }
 
     public void retry(String input) {
         if (isQuit(input)) {
-            gameOver = true;
+            return;
         } else if (isRetry(input)) {
-            gameOver = false;
-            cleanUserInput();
+            user = new User();
             userTry++;
         }
-    }
-
-    public List<List<Integer>> map() {
-        return List.of(userCorrectUp, userCorrectDown);
-    }
-
-    private void checkEnd() {
-        if (gameBridge.size() == userCorrectUp.size()) {
-            gameOver = true;
-            gameCorrect = true;
-        }
-    }
-
-    BridgeGame(Integer size) {
-        BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
-        gameBridge = bm.makeBridge(size);
-        cleanUserInput();
-    }
-
-    private void drawTrueMap(String input) {
-        if (isUp(input)) {
-            userCorrectUp.add(1);
-            userCorrectDown.add(0);
-            return;
-        }
-        userCorrectUp.add(0);
-        userCorrectDown.add(1);
-
-    }
-
-    private void drawFalseMap(String input) {
-        if (isUp(input)) {
-            userCorrectUp.add(-1);
-            userCorrectDown.add(0);
-            return;
-        }
-        userCorrectUp.add(0);
-        userCorrectDown.add(-1);
-    }
-
-    private void cleanUserInput() {
-        userCorrectUp = new ArrayList<>();
-        userCorrectDown = new ArrayList<>();
-    }
-
-    private boolean correct(String input) {
-        return input.equals(gameBridge.get(userCorrectUp.size()));
-    }
-
-    private boolean isUp(String input) {
-        return input.equals("U");
     }
 
     private boolean isQuit(String input) {
@@ -98,10 +42,10 @@ public class BridgeGame {
     }
 
     public boolean isCorrect() {
-        return gameCorrect;
+        return user.isMoveSucceed() && user.isMoveFinished();
     }
 
     public boolean isGameOver() {
-        return gameOver;
+        return !user.isMoveSucceed();
     }
 }
