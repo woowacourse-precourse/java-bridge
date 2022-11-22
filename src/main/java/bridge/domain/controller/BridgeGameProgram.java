@@ -30,6 +30,7 @@ public class BridgeGameProgram {
 
     public void game() {
         try {
+            go = true;
             outputView.printGuideMessage(GuideMessage.START_MESSAGE);
             getBridgeLength();
             goGame();
