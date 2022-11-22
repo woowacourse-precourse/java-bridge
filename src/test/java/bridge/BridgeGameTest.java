@@ -1,12 +1,9 @@
 package bridge;
 
-import bridge.constant.SuccessFail;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static bridge.constant.SuccessFail.FAIL;
-import static bridge.constant.SuccessFail.SUCCESS;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class BridgeGameTest {
