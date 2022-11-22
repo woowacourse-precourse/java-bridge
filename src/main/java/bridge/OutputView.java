@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -29,11 +27,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getBridgeToString());
-        if(bridgeGame.gameStatus){
-            System.out.println("게임 성공 여부: 성공");
-        }else{
-            System.out.println("게임 성공 여부: 실패");
-        }
-        System.out.println("총 시도한 횟수: "+bridgeGame.gameCount);
+        System.out.println(bridgeGame.getGameStatus());
+        System.out.println(bridgeGame.getGameCount());
     }
 }

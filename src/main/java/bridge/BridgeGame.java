@@ -11,11 +11,11 @@ public class BridgeGame {
 
     private final String UP_BRIDGN_SIGN = "U";
     private final String EMPTY_SIGN = " ";
-    private List<String> upBridge;
-    private List<String> downBridge;
+    private final List<String> upBridge;
+    private final List<String> downBridge;
     private int moveCount;
-    public int gameCount;
-    public boolean gameStatus;
+    private int gameCount;
+    private boolean gameStatus;
 
     BridgeGame(){
         upBridge = new ArrayList<>();
@@ -76,5 +76,17 @@ public class BridgeGame {
                 .collect(Collectors.joining(" | ","[ "," ]"));
         bridgeToString.append(printUpBridge).append("\n").append(printDownBridge).append("\n");
         return bridgeToString.toString();
+    }
+
+    public String getGameStatus(){
+        StringBuilder gameStatusToString = new StringBuilder();
+        gameStatusToString.append("게임 성공 여부: ").append(InputBridgeElement.inputResultChecked(gameStatus));
+        return gameStatusToString.toString();
+    }
+
+    public String getGameCount(){
+        StringBuilder gameCountToString = new StringBuilder();
+        gameCountToString.append("총 시도한 횟수: ").append(gameCount);
+        return gameCountToString.toString();
     }
 }
