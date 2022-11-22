@@ -5,28 +5,50 @@ import java.util.List;
 public class GameController {
     BridgeGame bridgeGame;
     OutputView outputView = new OutputView();
-    boolean doesPlayerWantRetrial = true;
+    private boolean doesPlayerWantRetrial = true;
+    private boolean isMovingAvailable;
     public GameController(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
     }
 
-    public void executeMoving() {
-        InputView inputView = new InputView();
-        String playerMoving = inputView.readMoving();
-        boolean doesPlayerSucceedMoving = bridgeGame.checkSuccessOfMoving(playerMoving);
-
-        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getPlayerLocation(), doesPlayerSucceedMoving);
-        bridgeGame.move(playerMoving);
-        executeRetrial(doesPlayerSucceedMoving);
+    public void runGame() {
+        do {
+            executeMoving();
+            executeRetrial(isMovingAvailable);
+        } while (decideToKeepPlaying());
     }
 
-    public void executeRetrial(boolean doesPlayerSucceedMoving) {
-        if (!doesPlayerSucceedMoving) {
+    private void executeMoving() {
+        InputView inputView = new InputView();
+        String playerMoving = inputView.readMoving();
+        this.isMovingAvailable = bridgeGame.checkMoveIsAvailable(playerMoving);
+
+        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getPlayerLocation(), isMovingAvailable);
+        bridgeGame.move(isMovingAvailable);
+    }
+
+    private void executeRetrial(boolean isMovingAvailable) {
+        if (!isMovingAvailable) {
             InputView inputView = new InputView();
             String gameCommand = inputView.readGameCommand();
+            GameCommandJudge gameCommandJudge = new GameCommandJudge();
 
-            bridgeGame.retry(gameCommand);
-            this.doesPlayerWantRetrial = bridgeGame.checkPlayerWantsRetrial(gameCommand);
+            doesPlayerWantRetrial = gameCommandJudge.checkPlayerWantsRetrial(gameCommand);
+            bridgeGame.retry(doesPlayerWantRetrial);
         }
+    }
+
+    private boolean decideToKeepPlaying() {
+        if (doesPlayerWantRetrial) {
+            return true;
+        }
+        if (bridgeGame.getPlayerLocation() < bridgeGame.getBridge().size() - 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean getIsMovingAvailable() {
+        return this.isMovingAvailable;
     }
 }
