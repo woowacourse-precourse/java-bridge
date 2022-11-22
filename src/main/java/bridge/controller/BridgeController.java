@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.Bridge;
 import bridge.service.BridgeService;
 import bridge.domain.Player;
+import bridge.validation.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -46,10 +47,19 @@ public class BridgeController {
     }
 
     private int getBridgeSize() {
-        outputView.printAskForBridgeSize();
+        Integer bridgeSize = null;
+        return getValidBridgeSize(bridgeSize);
+    }
 
-        int bridgeSize = 0;
-        bridgeSize = inputView.readBridgeSize();
+    private Integer getValidBridgeSize(Integer bridgeSize) {
+        while (bridgeSize == null) {
+            outputView.printAskForBridgeSize();
+            try {
+                bridgeSize = inputView.readBridgeSize();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
 
         return bridgeSize;
     }
