@@ -20,6 +20,15 @@ class ValidationTest {
             .hasMessageContaining(ERROR_MESSAGE);
     }
 
+    @DisplayName("다리의 길이 입력값이 0으로 시작하면 에러가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"01, 001, 000, 0000, 000017"})
+    void createBridgeLengthStartZero(String bridgeLength) {
+        assertThatThrownBy(() -> Validation.checkBridgeLengthStartZero(bridgeLength))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_MESSAGE);
+    }
+
     @DisplayName("다리의 길이가 3이상 20이하가 아니면 에러가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"21", "2", "0", "-1"})
