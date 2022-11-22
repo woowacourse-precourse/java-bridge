@@ -13,6 +13,7 @@ import bridge.domain.result.ResultType;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,7 +64,18 @@ class BridgeTest {
 
     }
 
-
+    @Test
+    @DisplayName("정수가 아닌값이 인자로 들어왔을때 예외발생")
+    public void 예외테스트_1(){
+        //given
+        bridge = new Bridge(getTestBridgeMaker(Lists.newArrayList(1,0,1,0,1)));
+        String input = "3d";
+        //when
+        //then
+        Assertions.assertThatThrownBy(() -> bridge.create(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 정수만 입력해야 합니다.");
+    }
     private static Stream<Arguments> providerMoveTypeForResultType() {
         return Stream.of(
                 Arguments.arguments(Lists.newArrayList(1, 1, 0, 0), List.of(UP, UP, DOWN, DOWN),
