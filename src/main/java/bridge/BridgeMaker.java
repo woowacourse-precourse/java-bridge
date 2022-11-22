@@ -37,10 +37,10 @@ public class BridgeMaker {
      */
     private static String convertBridge(int num) throws IllegalArgumentException {
         if (num == 0) {
-            return "U";
+            return "D";
         }
         if (num == 1) {
-            return "D";
+            return "U";
         }
         throw new IllegalArgumentException(ErrorMessageConstant.INVALID_BRIDGE_NUMBER);
     }
