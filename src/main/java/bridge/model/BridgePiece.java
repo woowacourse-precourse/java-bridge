@@ -4,11 +4,11 @@ public class BridgePiece {
 
     private static int currentPlace = 0;
     private final String userInputMove;
+
     private static final int REACHED_END = 1;
     private static final int COMPARE_SAME = 2;
     private static final int COMPARE_DIFFERENT = 3;
     private static final int ZERO = 0;
-
 
     BridgePiece(String userInput) {
         this.userInputMove = userInput;

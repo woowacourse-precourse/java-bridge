@@ -25,7 +25,7 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             generatedAnswerNumeric.add(bridgeNumberGenerator.generate());
         }
-        return changeToUD(generatedAnswerNumeric);
+        return changeToUAndD(generatedAnswerNumeric);
     }
 
     private void checkInputSize(int size) {
@@ -34,7 +34,7 @@ public class BridgeMaker {
         }
     }
 
-    private List<String> changeToUD(List<Integer> generatedValue) {
+    private List<String> changeToUAndD(List<Integer> generatedValue) {
         List<String> convertedValue = new ArrayList<>();
         for (Integer integer : generatedValue) {
             addChunkToConverted(convertedValue, integer);

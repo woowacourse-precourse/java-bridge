@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeAnswer;
 import bridge.model.BridgeGame;
@@ -8,37 +9,36 @@ import bridge.utils.BasicBridgeInputAlphabetParser;
 import bridge.utils.BasicBridgeInputNumericParser;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.view.Sentence;
 
 public class BridgeControl {
 
     private static InputView inputView;
     private static OutputView outputView;
     private static String latestOutput;
+
     private static int tryCount = 1;
 
     private static final int UP_DOWN_MODE = 1;
     private static final int RETRY_MODE = 2;
-    private static final int END_MODE = 3;
-    private static final String SUCCESS = "성공";
-    private static final String FAILURE = "실패";
+    private static final int REACHED_END = 1;
+    private static final int COMPARE_SAME = 2;
+    private static final int COMPARE_DIFFERENT = 3;
 
     public BridgeControl() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+        inputView = new InputView();
+        outputView = new OutputView();
     }
 
     public void execute() {
-
-        BridgeLength bridgeLength = generateLength();
-        BridgeAnswer bridgeAnswer = generateAnswer(bridgeLength);
-        bridgeAnswer.printAnswerInBeginForTest();
+        outputView.printResult(Sentence.BEGIN_GAME.getValue());
+        BridgeAnswer bridgeAnswer = generateAnswer(generateLength());
         userInputCircle(bridgeAnswer);
     }
 
     public static BridgeLength generateLength() {
         try {
-            String userInput = inputView.readBridgeSize();
-            return BasicBridgeInputNumericParser.parseBridgeLengthAmount(userInput);
+            return BasicBridgeInputNumericParser.parseBridgeLengthAmount(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return BridgeControl.generateLength();
@@ -46,38 +46,50 @@ public class BridgeControl {
     }
 
     private BridgeAnswer generateAnswer(BridgeLength bridgeLength) {
-        return BridgeAnswer.using(new BridgeRandomNumberGenerator(), bridgeLength);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return BridgeAnswer.using(bridgeMaker, bridgeLength);
     }
 
     private void userInputCircle(BridgeAnswer bridgeAnswer) {
         BridgeGame userGenerateGame = generateGameActionUpDown(UP_DOWN_MODE);
         int compareResult = userGenerateGame.move(bridgeAnswer);
+        checkCompareResult(bridgeAnswer, compareResult);
+    }
+
+    private void checkCompareResult(BridgeAnswer bridgeAnswer, int compareResult) {
         reachAnswerCase(bridgeAnswer, compareResult);
         upDownInputCase(bridgeAnswer, compareResult);
         wrongInputCase(bridgeAnswer, compareResult);
     }
 
-    private void wrongInputCase(BridgeAnswer bridgeAnswer, int compareResult) {
-        if (compareResult == 3) {
-            outputView.printMap(bridgeAnswer.printAnswer(3));
-            latestOutput = bridgeAnswer.printAnswer(3);
-            retryCircle(bridgeAnswer);
+    private void reachAnswerCase(BridgeAnswer bridgeAnswer, int compareResult) {
+        if (compareResult == REACHED_END) {
+            latestOutput = extracted(bridgeAnswer, REACHED_END);
+            getFinalResult(Sentence.SUCCESS.getValue());
         }
     }
 
     private void upDownInputCase(BridgeAnswer bridgeAnswer, int compareResult) {
-        if (compareResult == 2) {
-            outputView.printMap(bridgeAnswer.printAnswer(2));
-            latestOutput = bridgeAnswer.printAnswer(2);
+        if (compareResult == COMPARE_SAME) {
+            renewLatestOutput(bridgeAnswer, COMPARE_SAME);
             userInputCircle(bridgeAnswer);
         }
     }
 
-    private static void reachAnswerCase(BridgeAnswer bridgeAnswer, int compareResult) {
-        if (compareResult == 1) {
-            latestOutput = bridgeAnswer.printAnswer(1);
-            outputView.printResult(bridgeAnswer.printFinalResult(latestOutput, tryCount, SUCCESS));
+    private void wrongInputCase(BridgeAnswer bridgeAnswer, int compareResult) {
+        if (compareResult == COMPARE_DIFFERENT) {
+            renewLatestOutput(bridgeAnswer, COMPARE_DIFFERENT);
+            retryCircle(bridgeAnswer);
         }
+    }
+
+    private void renewLatestOutput(BridgeAnswer bridgeAnswer, int compareSame) {
+        latestOutput = extracted(bridgeAnswer, compareSame);
+        outputView.printMap(latestOutput);
+    }
+
+    private String extracted(BridgeAnswer bridgeAnswer, int message) {
+        return bridgeAnswer.printCurrentBridgeStatus(message).toString();
     }
 
     private void retryCircle(BridgeAnswer bridgeAnswer) {
@@ -88,7 +100,7 @@ public class BridgeControl {
 
     private static void wantToEndCase(BridgeAnswer bridgeAnswer, BridgeGame userGenerate) {
         if (!userGenerate.retry(bridgeAnswer)) {
-            outputView.printResult(bridgeAnswer.printFinalResult(latestOutput, tryCount, FAILURE));
+            getFinalResult(Sentence.FAILURE.getValue());
         }
     }
 
@@ -99,25 +111,35 @@ public class BridgeControl {
         }
     }
 
-    public static BridgeGame generateGameActionUpDown(int mode) {
-        BridgeGame bridgeGame;
+    private static BridgeGame generateGameActionUpDown(int mode) {
         try {
-            bridgeGame = BasicBridgeInputAlphabetParser.parseBridgeGameInput(inputView.readMoving(), mode);
+            return BasicBridgeInputAlphabetParser.parseBridgeGameInput(inputView.readMoving(), mode);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return BridgeControl.generateGameActionUpDown(mode);
         }
-        return bridgeGame;
     }
 
-    public static BridgeGame generateGameActionReplay(int mode) {
-        BridgeGame bridgeGame;
+    private static BridgeGame generateGameActionReplay(int mode) {
         try {
-            bridgeGame = BasicBridgeInputAlphabetParser.parseBridgeGameInput(inputView.readRetry(), mode);
+            return BasicBridgeInputAlphabetParser.parseBridgeGameInput(inputView.readRetry(), mode);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return BridgeControl.generateGameActionReplay(mode);
         }
-        return bridgeGame;
+    }
+
+    private static void getFinalResult(String successOrFail) {
+        outputView.printResultMessage(latestOutput);
+        getGameSuccessORFail(successOrFail);
+    }
+
+    private static void getGameSuccessORFail(String successOrFail) {
+        outputView.printSuccessOrFailMessage(successOrFail);
+        getTotalTrial();
+    }
+
+    private static void getTotalTrial() {
+        outputView.printTotalTrial(tryCount + "");
     }
 }
