@@ -33,7 +33,7 @@ public class BridgeGame {
     public void runGame() {
         this.bridgeGameStarter.atGameStart();
         System.out.println();
-        List<String> bridge = this.bridgeMaker.makeBridge(getBridgeSize());
+        List<String> bridge = this.bridgeMaker.makeBridge(bridgeSize());
         System.out.println();
     }
 
@@ -51,16 +51,14 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public int getBridgeSize() {
+    public int bridgeSize() {
         int bridgeSize;
-
         try {
             bridgeSize = this.bridgeSizeGetter.getBridgeSizeFromConsole();
         } catch (IllegalArgumentException exception) {
             this.exceptionHandler.handleIllegalArgumentException(exception);
-            bridgeSize = getBridgeSize();
+            bridgeSize = bridgeSize();
         }
-
         return bridgeSize;
     }
 }
