@@ -12,7 +12,9 @@ import java.util.List;
 public class BridgeGame {
     private static int bridgeSize;
     private static int position;
+    private static int trialCount = 0;
     private static boolean onMovableCompartment = true;
+    private static boolean isTryingToClearGame = true;
     private static List<String> bridge;
 
     private final OutputView outputView;
@@ -74,6 +76,11 @@ public class BridgeGame {
     private String askGameCommand() {
         outputView.printGameCommandInputNotice();
         return inputView.readGameCommand();
+    }
+
+    private void quit() {
+        outputView.printResult(onMovableCompartment, trialCount);
+        isTryingToClearGame = false;
     }
 
     private boolean retry(String gameCommand) {
