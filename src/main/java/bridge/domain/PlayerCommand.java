@@ -5,9 +5,10 @@ import bridge.enums.CommandType;
 public class PlayerCommand {
     private String command;
 
-    public PlayerCommand(String command) {
-        validateCommandType(command);
-        this.command = command;
+    public PlayerCommand(String input) {
+        input = input.strip();
+        validateCommandType(input);
+        this.command = input;
     }
 
     private void validateCommandType(String command) throws IllegalArgumentException{
