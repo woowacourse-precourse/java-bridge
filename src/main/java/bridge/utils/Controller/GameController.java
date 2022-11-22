@@ -30,7 +30,7 @@ public class GameController {
 
 	private Bridge createBridge() {
 		viewController.startBridgeGame();
-		BridgeSize bridgeSize = inputController.bridgeSize();
+		BridgeSize bridgeSize = inputController.getBridgeSize();
 		BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 		BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 		List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());

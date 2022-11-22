@@ -1,14 +1,14 @@
-package bridge.utils;
+package bridge.utils.Controller;
 
 import bridge.domain.dto.BridgeSize;
 import bridge.domain.dto.GameCommand;
 import bridge.domain.dto.Moving;
 import bridge.view.InputView;
 
-public class Input {
+public class InputController {
 	private final InputView inputView = new InputView();
 
-	public BridgeSize bridgeSize() {
+	public BridgeSize getBridgeSize() {
 		while (true) {
 			try {
 				String inputSize = inputView.readBridgeSize();
@@ -20,7 +20,7 @@ public class Input {
 		}
 	}
 
-	public Moving moving() {
+	public Moving getMoving() {
 		while (true) {
 			try {
 				String inputMoving = inputView.readMoving();
@@ -31,7 +31,7 @@ public class Input {
 		}
 	}
 
-	public GameCommand gameCommand() {
+	public GameCommand getGameCommand() {
 		while (true) {
 			try {
 				String inputGameCommand = inputView.readGameCommand();

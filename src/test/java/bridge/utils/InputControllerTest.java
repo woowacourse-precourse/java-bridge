@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import bridge.domain.dto.BridgeSize;
 import bridge.domain.dto.GameCommand;
 import bridge.domain.dto.Moving;
+import bridge.utils.Controller.InputController;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -19,13 +20,13 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Input 클래스")
-class InputTest {
+class InputControllerTest {
 	private final String ERROR_MESSAGE = "[ERROR]";
-	private Input input = new Input();
+	private InputController inputController = new InputController();
 
 	@Nested
-	@DisplayName("bridgeSize 메소드는")
-	class Describe_bridgeSize {
+	@DisplayName("getBridgeSize 메소드는")
+	class Describe_getBridgeSize {
 
 		@Nested
 		@DisplayName("만약 입력한 다리 길이가 3에서 20 사이의 숫자가 아니라면")
@@ -44,7 +45,7 @@ class InputTest {
 						try {
 							InputStream in = new ByteArrayInputStream(inputSize.getBytes());
 							System.setIn(in);
-							BridgeSize bridgeSize = input.bridgeSize();
+							BridgeSize bridgeSize = inputController.getBridgeSize();
 							assertThat(bridgeSize.getSize()).isEqualTo(expected);
 						} catch (NoSuchElementException error) {
 							assertThat(out.toString()).contains(ERROR_MESSAGE);
@@ -55,8 +56,8 @@ class InputTest {
 	}
 
 	@Nested
-	@DisplayName("moving 메소드는")
-	class Describe_moving {
+	@DisplayName("getMoving 메소드는")
+	class Describe_getMoving {
 
 		@Nested
 		@DisplayName("만약 입력한 이동할 칸의 방향이 U나 D가 아니라면")
@@ -75,7 +76,7 @@ class InputTest {
 						try {
 							InputStream in = new ByteArrayInputStream(inputSize.getBytes());
 							System.setIn(in);
-							Moving moving = input.moving();
+							Moving moving = inputController.getMoving();
 							assertThat(moving.getMoving()).isEqualTo(expected);
 						} catch (NoSuchElementException error) {
 							assertThat(out.toString()).contains(ERROR_MESSAGE);
@@ -86,8 +87,8 @@ class InputTest {
 	}
 
 	@Nested
-	@DisplayName("gameCommand 메소드는")
-	class Describe_gameCommand {
+	@DisplayName("getGameCommand 메소드는")
+	class Describe_getGameCommand {
 
 		@Nested
 		@DisplayName("만약 입력한 재시작 명령이 R이나 Q가 아니라면")
@@ -106,7 +107,7 @@ class InputTest {
 						try {
 							InputStream in = new ByteArrayInputStream(inputSize.getBytes());
 							System.setIn(in);
-							GameCommand gameCommand = input.gameCommand();
+							GameCommand gameCommand = inputController.getGameCommand();
 							assertThat(gameCommand.getCommand()).isEqualTo(expected);
 						} catch (NoSuchElementException error) {
 							assertThat(out.toString()).contains(ERROR_MESSAGE);
