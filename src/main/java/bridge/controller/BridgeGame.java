@@ -3,6 +3,8 @@ package bridge.controller;
 import bridge.domain.Command;
 import bridge.domain.Status;
 import bridge.service.BridgeGameService;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,10 +12,12 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridge;
+    private int attempt;
     private final BridgeGameService bridgeGameService;
-    private int attempt = 0;
 
     public BridgeGame() {
+        bridge = new ArrayList<>();
+        attempt = 0;
         bridgeGameService = new BridgeGameService();
     }
 
