@@ -2,6 +2,11 @@ package bridge.input;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.domain.MoveSign.DOWN;
+import static bridge.domain.MoveSign.UP;
+import static bridge.domain.RestartSign.QUIT;
+import static bridge.domain.RestartSign.RESTART;
+import static bridge.domain.ValidString.*;
 import static bridge.input.InputString.*;
 
 public class InputView {
@@ -33,13 +38,13 @@ public class InputView {
     }
 
     public static String readMoving() {
-        String input = getCommandInput(MOVE_INPUT, UP, DOWN, ERROR_MOVE_INPUT);
+        String input = getCommandInput(MOVE_INPUT, UP.getMoveContent(), DOWN.getMoveContent(), ERROR_MOVE_INPUT);
         if (input != null) return input;
         return readMoving();
     }
 
     public static String readGameCommand() {
-        String input = getCommandInput(RETRY_INPUT, RESTART, QUIT, ERROR_RESTART_INPUT);
+        String input = getCommandInput(RETRY_INPUT, RESTART.getSign(), QUIT.getSign(), ERROR_RESTART_INPUT);
         if (input != null) return input;
         return readGameCommand();
     }

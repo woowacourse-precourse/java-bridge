@@ -1,14 +1,12 @@
-package bridge;
+package bridge.domain;
 
-import static bridge.input.InputString.UP;
+import static bridge.domain.BridgeSign.*;
+import static bridge.domain.MoveSign.UP;
 
 public class BridgeGame {
     private StringBuilder firstRoad = new StringBuilder();
     private StringBuilder secondRoad = new StringBuilder();
     private int roundCount = 1;
-    private final String O = "O";
-    private final String X = "X";
-    private final String SPACE = " ";
 
     public StringBuilder getFirstRoad() {
         return firstRoad;
@@ -31,23 +29,23 @@ public class BridgeGame {
     }
 
     private void wrongMove(String command) {
-        if (command.equals(UP)) {
-            firstRoad.append(X);
-            secondRoad.append(SPACE);
+        if (command.equals(UP.getMoveContent())) {
+            firstRoad.append(MOVE_FAIL.getSign());
+            secondRoad.append(SPACE.getSign());
             return;
         }
-        firstRoad.append(SPACE);
-        secondRoad.append(X);
+        firstRoad.append(SPACE.getSign());
+        secondRoad.append(MOVE_FAIL.getSign());
     }
 
     private void correctMove(String command) {
-        if (command.equals(UP)) {
-            firstRoad.append(O);
-            secondRoad.append(SPACE);
+        if (command.equals(UP.getMoveContent())) {
+            firstRoad.append(MOVE_SUCCESS.getSign());
+            secondRoad.append(SPACE.getSign());
             return;
         }
-        firstRoad.append(SPACE);
-        secondRoad.append(O);
+        firstRoad.append(SPACE.getSign());
+        secondRoad.append(MOVE_SUCCESS.getSign());
     }
 
     public void retry() {

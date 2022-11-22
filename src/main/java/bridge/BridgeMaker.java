@@ -1,9 +1,10 @@
 package bridge;
 
-import bridge.input.InputString;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.domain.MoveSign.DOWN;
+import static bridge.domain.MoveSign.UP;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -20,11 +21,11 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generate = bridgeNumberGenerator.generate();
-            if (generate == 0) {
-                bridge.add(InputString.DOWN);
+            if (generate == DOWN.getMoveNumber()) {
+                bridge.add(DOWN.getMoveContent());
                 continue;
             }
-            bridge.add(InputString.UP);
+            bridge.add(UP.getMoveContent());
         }
         return bridge;
     }

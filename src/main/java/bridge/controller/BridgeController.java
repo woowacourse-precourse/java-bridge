@@ -1,13 +1,14 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.input.InputString;
+import bridge.domain.BridgeGame;
 import bridge.input.InputView;
 import bridge.output.OutputView;
 
 import java.util.List;
+
+import static bridge.domain.RestartSign.QUIT;
 
 public class BridgeController {
     private final BridgeGame bridgeGame = new BridgeGame();
@@ -44,7 +45,7 @@ public class BridgeController {
     }
 
     private static boolean isQuit(String retryCommand) {
-        return retryCommand.equals(InputString.QUIT);
+        return retryCommand.equals(QUIT.getSign());
     }
 
     private List<String> createBridge() {
