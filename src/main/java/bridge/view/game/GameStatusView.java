@@ -20,18 +20,16 @@ public class GameStatusView {
     }
 
     public static GameStatusView makeGameStatusView(BridgeAndPasser bridgeAndPasser) {
-        return makeGameStatusView(makeLine(bridgeAndPasser));
+        return new GameStatusView(fillLines(makeLine(bridgeAndPasser)));
     }
 
     public static GameStatusView makeGameResultStatusView(BridgeAndPasser bridgeAndPasser) {
-        return makeGameStatusView(makeResultLine(bridgeAndPasser));
+        return new GameStatusView(fillLines(makeResultLine(bridgeAndPasser)));
     }
 
-    private static GameStatusView makeGameStatusView(Function<BridgeCharacter, BridgeLineView> mapper) {
-        List<BridgeLineView> lineViews = Arrays.stream(BridgeCharacter.values()).map(mapper)
+    private static List<BridgeLineView> fillLines(Function<BridgeCharacter, BridgeLineView> makeLineFunction) {
+        return Arrays.stream(BridgeCharacter.values()).map(makeLineFunction)
                 .collect(Collectors.toList());
-
-        return new GameStatusView(lineViews);
     }
 
     private static Function<BridgeCharacter, BridgeLineView> makeLine(BridgeAndPasser bridgeAndPasser) {
