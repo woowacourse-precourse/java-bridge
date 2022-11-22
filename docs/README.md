@@ -40,4 +40,6 @@
 * [o] 이동할 칸이 U 또는 D 둘 중 한문자가 아닐 시
 * [o] 게임 재시작/종료 여부가 R 또는 Q 중 한 문자가 아닐 시
 * [o] 예외 발생시 그 부분에서 다시 입력 받기
-* [] `IllegalArgumentException`, `IllegalStateException` 등 명확한 유형 처리
+* [o] `IllegalArgumentException`, `IllegalStateException` 등 명확한 유형 처리
+* `IllegalArgumentException`은 유형은 허용되지만 값이 허용되지 않는 경우
+* `IllegalStateException`은 개체가 잘못된 상태에서 메서드를 호출하는 경우
