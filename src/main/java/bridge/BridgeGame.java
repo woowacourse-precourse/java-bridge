@@ -44,7 +44,7 @@ public class BridgeGame {
         return sb.substring(0, sb.length()-1) + "]";
     }
 
-    public boolean roundOver() {
+    public boolean roundOver() { // 각 라운드는 이동에 실패하거나 성공하면 종료된다.
         List<String> subBridge = bridge.subList(0, movement.size());
         return winTheGame() || !subBridge.equals(movement);
     }
