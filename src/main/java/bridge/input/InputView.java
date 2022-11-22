@@ -17,7 +17,6 @@ public class InputView {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage() + " 다시 입력해주세요.");
-//           wrapper 메서드 내에서 재귀함수로 구성
         }
         return 0;
     }
@@ -32,7 +31,6 @@ public class InputView {
             return input;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage() + " 다시 입력해주세요.");
-//           wrapper 메서드 내에서 재귀함수로 구성
         }
         return "";
     }
@@ -47,7 +45,6 @@ public class InputView {
             return input;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage() + " 다시 입력해주세요.");
-//           wrapper 메서드 내에서 재귀함수로 구성
         }
         return "";
     }

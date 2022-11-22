@@ -1,5 +1,6 @@
 package bridge.bridgeMaker;
 
+import bridge.input.ValidationType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,20 +19,8 @@ public class BridgeMakerTest {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> madeBridge = bridgeMaker.makeBridge(size);
-        List<String> caseOfBridges = new ArrayList<>();
-        createBridgeCase(caseOfBridges, new ArrayList<>(), size);
-        assertThat(caseOfBridges.contains(madeBridge.toString())).isTrue();
-    }
-
-    void createBridgeCase(List<String> caseOfBridges, List<String> bridge, int size) {
-        if (bridge.size() == size) {
-            caseOfBridges.add(bridge.toString());
-            return;
-        }
-        bridge.add("U");
-        createBridgeCase(caseOfBridges, bridge, size);
-        bridge.set(bridge.size() - 1, "D");
-        createBridgeCase(caseOfBridges, bridge, size);
-        bridge.remove(bridge.size()-1);
+        assertThat(madeBridge.stream()
+                .filter(input -> ValidationType.CHECK_MOVING.getValidationRange().contains(input))
+                .count()).isEqualTo(madeBridge.size());
     }
 }
