@@ -32,6 +32,7 @@ BridgeView .right.> BridgeGame
 class Application{
     - ExceptionHandler
     - bridgeController
+    + init()
     + play()
     + main()
 }
@@ -46,6 +47,11 @@ class BridgeGame{
     + retry()
     + buildBridge()
     + BridgeGame()
+    + isLastState()
+    + isLastGlass()
+    + updateMap()
+    + drawMap()
+    + drawResult()
 }
 
 class BridgeController{
@@ -101,12 +107,11 @@ class InputView{
 class OutputView{
     + printMap()
     + printResult()
+    + printStartMessage()
+    + printSizeMessage()
+    + printMoveMessage()
+    + printCommandMessage()
     + printErrorMessage()
-    + isLastState()
-    + isLastGlass()
-    + updateMap()
-    + drawMap()
-    + drawResult()
 }
 
 class ExceptionHandler{

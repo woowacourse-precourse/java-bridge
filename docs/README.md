@@ -6,9 +6,9 @@
 > 
 > 아래와 같은 MVC 패턴으로 설계
 >
-> | Model    |                   View                    |              Controller                |
-> ----------|:-----------------------------------------:|:-------------------------------------:|
->  BridgeGame | BridgeView <br/> InputView<br/>OutPutView | BridgeController<br/>ExceptionHandler| 
+> | Model    |                   View                    |              Controller                |                     Enum                     |
+> ----------|:-----------------------------------------:|:-------------------------------------:|:--------------------------------------------:|
+>  BridgeGame | BridgeView <br/> InputView<br/>OutPutView | BridgeController<br/>ExceptionHandler| Command<br/>Glass<br/>Message<br/>State<br/> | 
 
 >### 🏗 BridgeGame
 > * Bridge 관련 정보를 저장하는 모델
@@ -17,12 +17,18 @@
 > ### Method List
 > 
 >| No. | 함수명           | 기능                                        | 
->-----|:--------------|:------------------------------------------|
-> 1   | history()     | 현재까지 user가 지나온 bridge 리턴                  |
->| 2   | playTime()    | playTime(플레이 횟수) 리턴                       |
->| 3   | move()        | Controller로부터 전달받은 칸으로 이동                 |
->| 4   | retry()       | 게임 재시작                                    |
->| 5   | buildBridge() | 전달받은 String List를 Glass List로 변환 후 필드에 저장 |
+>---|:--------------|:------------------------------------------|
+>1 | history()     | 현재까지 user가 지나온 bridge 리턴                  |
+>2 | playTime()    | playTime(플레이 횟수) 리턴                       |
+>3 | move()        | Controller로부터 전달받은 칸으로 이동                 |
+>4 | retry()       | 게임 재시작                                    |
+>5 | buildBridge() | 전달받은 String List를 Glass List로 변환 후 필드에 저장 |
+>6| isLastGlass()       | Bridge와 최종 State로 유저의 이동 방향을 도출             | 
+>7| isLastState()       | 유저의 State를 도출, 전달받은 최종 State 외에 모두 SAFE로 처리 | 
+>8| updateMap()         | 지나온 Bridge UI를 UP, DOWN 별로 생성               | 
+>9| combineMap()        | UP/DOWN Bridge UI를 연결해 최종 UI 생성             | 
+>10| drawMap()           | 현재까지 진행한 Bridge 현황 UI 생성                    | 
+>11| drawResult()        | 최종 결과 UI 생성                                 | 
 
 
 
@@ -39,8 +45,8 @@
 >3| commandIO()         | 유저로부터 게임 진행 여부를 입력 받음   |  I/O   |
 >4| printMap()          | 현재까지 진행한 Bridge 현황 출력   | OUTPUT |
 >5| printStartMessage() | 시작 메시지 출력               | OUTPUT |
->5| printResult()       | 최종 결과 출력                | OUTPUT |
->6| printErrorMessage() | 에러 메시지 출력               | OUTPUT |
+>6| printResult()       | 최종 결과 출력                | OUTPUT |
+>7| printErrorMessage() | 에러 메시지 출력               | OUTPUT |
 
 >### 👁 InputView
 >
@@ -58,17 +64,16 @@
 > * 출력을 수행하는 UI
 > ### Method List
 > 
->| No.          | 함수명                 | 기능                                          |  
->------------|:--------------------|:--------------------------------------------|
->1| printMap()          | 현재까지 진행한 Bridge 현황 출력                       | 
->2| printResult()       | 최종 결과 출력                                    | 
->3| printErrorMessage() | 에러 메시지 출력                                   | 
->4| isLastGlass()       | Bridge와 최종 State로 유저의 이동 방향을 도출             | 
->5| isLastState()       | 유저의 State를 도출, 전달받은 최종 State 외에 모두 SAFE로 처리 | 
->6| updateMap()         | 지나온 Bridge UI를 UP, DOWN 별로 생성               | 
->7| combineMap()        | UP/DOWN Bridge UI를 연결해 최종 UI 생성             | 
->8| drawMap()           | 현재까지 진행한 Bridge 현황 UI 생성                    | 
->9| drawResult()        | 최종 결과 UI 생성                                 | 
+>| No.          | 함수명                   | 기능                      |  
+>------------|:----------------------|:------------------------|
+>1| printMap()            | 현재까지 진행한 Bridge 현황 출력   | 
+>2| printResult()         | 최종 결과 출력                | 
+>3| printStartMessage()   | 시작 메시지 출력               |
+>3| printSizeMessage()    | Bridge 사이즈 입력 안내 메시지 출력 |
+>3| printMoveMessage()    | 이동 방향 입력 안내 메시지 출력      |
+>3| printCommandMessage() | 게임 진행 여부 입력 안내 메시지 출력   |
+>3| printErrorMessage()   | 에러 메시지 출력               |
+
 
 
 >### 🕹 BridgeController
