@@ -35,4 +35,9 @@ public class BridgeGame {
     public void retry() {
         bridgeState.init();
     }
+
+    // 라운드의 횟수를 추가하는 기능
+    public void increaseRoundCount() {
+        round.plusRound();
+    }
 }
