@@ -48,7 +48,7 @@ public class InputView {
     public String readGameCommand() {
         while(true) {
             try {
-                System.out.println(DIRECTION_INPUT_MESSAGE);
+                System.out.println(GAME_COMMAND_MESSAGE);
                 String input = Console.readLine();
                 validateCommand(input);
                 return input;
