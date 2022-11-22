@@ -3,6 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -25,23 +26,23 @@ public class BridgeGame {
 
     private void user_Select_U(List<String> bridge, int index) {
         if (bridge.get(index) == "U") {
-            bridgeU.add("O");
-            bridgeD.add("");
+            bridgeU.add("O ");
+            bridgeD.add(" ");
         }
         if (bridge.get(index) == "D") {
-            bridgeU.add("X");
-            bridgeD.add("");
+            bridgeU.add("X ");
+            bridgeD.add(" ");
         }
     }
 
     private void user_Select_D(List<String> bridge, int index) {
         if (bridge.get(index) == "U") {
-            bridgeU.add("");
-            bridgeD.add("X");
+            bridgeU.add(" ");
+            bridgeD.add("X ");
         }
         if (bridge.get(index) == "D") {
-            bridgeU.add("");
-            bridgeD.add("O");
+            bridgeU.add(" ");
+            bridgeD.add("O ");
         }
     }
 
