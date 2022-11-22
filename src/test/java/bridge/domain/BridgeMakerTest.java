@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import java.util.Arrays;
 import java.util.List;

@@ -3,7 +3,7 @@ package bridge.controller;
 import static bridge.domain.GameCommand.QUIT;
 
 import bridge.service.BridgeGame;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.GameCommand;
 import bridge.domain.MoveResult;
 import bridge.view.InputView;

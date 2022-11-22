@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import static bridge.domain.BridgeCellType.DOWN;
 import static bridge.domain.BridgeCellType.UP;
