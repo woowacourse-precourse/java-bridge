@@ -15,4 +15,11 @@ public class BridgeRule {
 			throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 		}
 	}
+	public int isNumber(String input) {
+		try {
+			return Integer.parseInt(input);
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
+		}
+	}
 }
