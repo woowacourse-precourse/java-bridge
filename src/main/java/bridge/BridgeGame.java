@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.exception.GameExceptionHandler;
 import bridge.input.getter.BridgeSizeGetter;
+import bridge.input.getter.GameCommandGetter;
 import bridge.input.getter.MoveGetter;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class BridgeGame {
     private final BridgeSizeGetter bridgeSizeGetter;
     private final BridgeMaker bridgeMaker;
     private final MoveGetter moveGetter;
+    private final GameCommandGetter gameCommandGetter;
     private final GameExceptionHandler exceptionHandler;
 
     private BridgeGame() {
@@ -20,6 +22,7 @@ public class BridgeGame {
         this.bridgeSizeGetter = BridgeSizeGetter.getBridgeSizeGetter();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.moveGetter = MoveGetter.getMoveGetter();
+        this.gameCommandGetter = GameCommandGetter.getGameCommandGetter();
         this.exceptionHandler = GameExceptionHandler.getGameExceptionHandler();
     }
 
@@ -49,7 +52,14 @@ public class BridgeGame {
     }
 
     public String retry() {
-        return null;
+        String gameCommand;
+        try {
+            gameCommand = this.gameCommandGetter.getGameCommandFromConsole();
+        } catch (IllegalArgumentException exception) {
+            this.exceptionHandler.handleIllegalArgumentException(exception);
+            gameCommand = retry();
+        }
+        return gameCommand;
     }
 
     public int bridgeSize() {
