@@ -14,7 +14,8 @@
         - readGameCommand : 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
             - gameCommandValidation : R/Q가 아닌 문자 검증
 
-    - BridgeMaker : 게임 다리 만드는 객체
+    - BridgeMaker : 게임 다리 만드는 객체 (해당 클래스는 TestCase 오류로 인해 bridge Package 아래로
+      옮겼습니다.)
         - makeBridge : 사이즈를 입력받아 0, 1 난수를 통해 다리 생성
             - isZeroAppendCapitalD : 난수 0 발생 시 "D"를 다리에 붙이는 메서드
             - isOneAppendCapitalU : 난수 1 발생 시 "U"를 다리에 붙이는 메서드
@@ -74,10 +75,10 @@
 - Application layer
     - BridgeGameProcess : Application 에서 호출해 게임을 총괄하는 역할을 담당하는 클래스
         - run() : 게임 실행 메서드
-          - gameStartLoop : 게임 진행
-          - isRetry : 게임 재시작을 묻는 메서드
-          - isWinningGame : 이긴 게임일 시 처리하는 메서드
-          - moveOrNot : 게임 참여자가 앞으로 갈지 말지를 판단하는 메서드
+            - gameStartLoop : 게임 진행
+            - isRetry : 게임 재시작을 묻는 메서드
+            - isWinningGame : 이긴 게임일 시 처리하는 메서드
+            - moveOrNot : 게임 참여자가 앞으로 갈지 말지를 판단하는 메서드
 
 - Common
     - message : Bridge Game Process를 위한 메세지를 모아둔 Package
