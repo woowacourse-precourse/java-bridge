@@ -2,6 +2,7 @@ package bridge.constant;
 
 public enum OutputMessage {
 
+    BRIDGE_GAME_START("다리 건너기 게임을 시작합니다.\n"),
     GAME_FINAL_RESULT("최종 게임 결과"),
     FINAL_SUCCESS_STATUS("게임 성공 여부: "),
     NUMBER_OF_GAME_TRY("총 시도한 횟수: "),

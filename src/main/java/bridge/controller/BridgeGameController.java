@@ -21,7 +21,7 @@ public class BridgeGameController {
     }
 
     private BridgeGame initBridgeGame() {
-        inputView.printGameStart();
+        outputView.printGameStart();
         Bridge bridge = makeBridge();
         return new BridgeGame(bridge, new User());
     }
