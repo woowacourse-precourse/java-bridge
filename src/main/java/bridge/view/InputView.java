@@ -1,5 +1,10 @@
 package bridge.view;
 
+import static bridge.util.Constant.*;
+
+import bridge.validation.Validation;
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
