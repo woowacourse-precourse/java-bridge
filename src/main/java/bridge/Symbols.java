@@ -12,7 +12,7 @@ public enum Symbols {
         this.symbol = symbol;
     }
 
-    public String getSymbol(){
+    public String getSymbol() {
         return symbol;
     }
 }

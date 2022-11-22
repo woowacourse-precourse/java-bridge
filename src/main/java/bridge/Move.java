@@ -15,24 +15,24 @@ public enum Move {
         this.result = result;
     }
 
-    public String getResult(){
+    public String getResult() {
         return result;
     }
 
-    public int getNumber(){
+    public int getNumber() {
         return number;
     }
 
-    public static Move findMove(boolean canMove){
-        if(canMove){
+    public static Move findMove(boolean canMove) {
+        if (canMove) {
             return POSSIBLE;
         }
         return IMPOSSIBLE;
     }
 
-    public static String convertToString(int number){
+    public static String convertToString(int number) {
         return Arrays.stream(Move.values())
-                .filter(x->x.number==number)
+                .filter(x -> x.number == number)
                 .findAny()
                 .orElse(NONE).getResult();
     }
