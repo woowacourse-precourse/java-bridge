@@ -21,7 +21,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridgeState = new ArrayList<>();
         for (int index=0; index<size;index++) {
-            bridgeState.add(replacePositionState(bridgeNumberGenerator.generate()));
+            int number = bridgeNumberGenerator.generate();
+            bridgeState.add(replacePositionState(number));
         }
 
         return bridgeState;
