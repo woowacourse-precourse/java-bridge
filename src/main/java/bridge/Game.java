@@ -26,7 +26,7 @@ public class Game {
 
     public void playGame() {
         while (true) {
-            String move = inputView.readMoving();
+            String move = getMove();
             String result = bridgeGame.move(move);
             if (retryGame(bridgeGame.isGameOver(result)) == false) {
                 break;
@@ -50,6 +50,19 @@ public class Game {
             return false;
         }
         return true;
+    }
+
+    public String getMove()
+    {
+        String moving = "";
+        while(true)
+        {
+            moving = inputView.readMoving();
+            if(moving != "")
+            {
+                return moving;
+            }
+        }
     }
 
 }

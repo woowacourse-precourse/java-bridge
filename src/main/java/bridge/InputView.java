@@ -33,6 +33,7 @@ public class InputView {
         System.out.println(Message.GET_MOVE);
         String input = Console.readLine();
         if (checkInputisUpDown(input) == false) {
+            return "";
             // throw new IllegalArgumentException();
         }
         return input;
