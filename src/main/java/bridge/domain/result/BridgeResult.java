@@ -6,6 +6,13 @@ import java.util.List;
 
 public class BridgeResult {
 
+    private static final String CORRECT = "O";
+    private static final String BLOCK_OF_UPSIDE = "U";
+    private static final String BLOCK_OF_DOWNSIDE = "D";
+    private static final String BLANK = " ";
+    private static final int STARTING_INDEX_OF_BRIDGE = 0;
+    private static final int LENGTH_OF_SEPARATOR = 3;
+
     private final List<String> upBlocks;
     private final List<String> downBlocks;
 
@@ -16,20 +23,20 @@ public class BridgeResult {
 
     public int countCorrectCrossing() {
         int count = 0;
-        count += Collections.frequency(upBlocks, "O");
-        count += Collections.frequency(downBlocks, "O");
+        count += Collections.frequency(upBlocks, CORRECT);
+        count += Collections.frequency(downBlocks, CORRECT);
 
         return count;
     }
 
     public void addBlock(String blockToMove, String correct) {
-        if (blockToMove.equals("U")) {
+        if (blockToMove.equals(BLOCK_OF_UPSIDE)) {
             upBlocks.add(correct);
-            downBlocks.add(" ");
+            downBlocks.add(BLANK);
         }
-        if (blockToMove.equals("D")) {
+        if (blockToMove.equals(BLOCK_OF_DOWNSIDE)) {
             downBlocks.add(correct);
-            upBlocks.add(" ");
+            upBlocks.add(BLANK);
         }
     }
 
@@ -48,6 +55,6 @@ public class BridgeResult {
         for (String block : blocks) {
             bridge += block + " | ";
         }
-        return bridge.substring(0, bridge.length() - 3) + " ]\n";
+        return bridge.substring(STARTING_INDEX_OF_BRIDGE, bridge.length() - LENGTH_OF_SEPARATOR) + " ]\n";
     }
 }

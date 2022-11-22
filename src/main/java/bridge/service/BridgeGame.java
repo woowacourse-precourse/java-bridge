@@ -6,6 +6,8 @@ public class BridgeGame {
 
     private final static String CORRECT = "O";
     private final static String WRONG = "X";
+    private final static String RESTART_COMMAND = "R";
+
     private final BridgeResult resultBridge;
 
     public BridgeGame(BridgeResult resultBridge) {
@@ -22,7 +24,7 @@ public class BridgeGame {
     }
 
     public boolean retry(String command) {
-        if (command.equals("R")) {
+        if (command.equals(RESTART_COMMAND)) {
             return true;
         }
         return false;

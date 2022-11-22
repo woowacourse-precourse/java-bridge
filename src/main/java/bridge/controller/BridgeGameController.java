@@ -7,12 +7,16 @@ import bridge.service.BridgeGame;
 
 public class BridgeGameController {
 
+    private static final String EMPTY_STRING = "";
+    private static final String WRONG = "X";
+    private static final int ZERO = 0;
+
     private final BridgeGame bridgeGame;
     private int trial;
 
     public BridgeGameController() {
         this.bridgeGame = new BridgeGame(new BridgeResult());
-        this.trial = 0;
+        this.trial = ZERO;
     }
 
     public int getTrial() {
@@ -40,10 +44,10 @@ public class BridgeGameController {
     }
 
     private void moveByBlock(MoveByBlockRequest moveByBlockRequest) {
-        String correctOrWrong = "";
-        int blockPosition = 0;
+        String correctOrWrong = EMPTY_STRING;
+        int blockPosition = ZERO;
 
-        while (!correctOrWrong.equals("X") && blockPosition != moveByBlockRequest.getBridge().getSize()) {
+        while (!correctOrWrong.equals(WRONG) && blockPosition != moveByBlockRequest.getBridge().getSize()) {
             correctOrWrong = bridgeGame.move(moveByBlockRequest.getBridge().getBlock(blockPosition),
                     moveByBlockRequest.getInputHandler().getBlockToMove());
             moveByBlockRequest.getOutputView().printMap(bridgeGame.getResultBridge());

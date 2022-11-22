@@ -5,6 +5,12 @@ import java.util.List;
 
 public class BridgeMaker {
 
+    private static final String BLOCK_OF_UPSIDE = "U";
+    private static final String BLOCK_OF_DOWNSIDE = "D";
+    private static final int NUMBER_OF_UPSIDE = 1;
+    private static final int NUMBER_OF_DOWNSIDE = 0;
+    private static final int STARTING_INDEX = 0;
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -14,7 +20,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = STARTING_INDEX; i < size; i++) {
             generateRandomUpDown(bridge);
         }
         return bridge;
@@ -23,11 +29,11 @@ public class BridgeMaker {
     public void generateRandomUpDown(List<String> bridge) {
         int upDownNumber = bridgeNumberGenerator.generate();
 
-        if (upDownNumber == 0) {
-            bridge.add("D");
+        if (upDownNumber == NUMBER_OF_DOWNSIDE) {
+            bridge.add(BLOCK_OF_DOWNSIDE);
         }
-        if (upDownNumber == 1) {
-            bridge.add("U");
+        if (upDownNumber == NUMBER_OF_UPSIDE) {
+            bridge.add(BLOCK_OF_UPSIDE);
         }
     }
 }
