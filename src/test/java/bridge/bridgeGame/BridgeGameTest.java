@@ -62,7 +62,14 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("움직일 수 있는 방향과 같지 않다면 움직이지 않는다.")
     void notMove() {
+        //given
+        List<String> userDirection = Arrays.asList("D","U","U");
+        //when
+        userDirection.forEach(direction -> bridgeGame.notMove(direction));
+        //then
+        assertEquals(bridgeGame.getMoveCount(),0);
     }
 
     @Test
