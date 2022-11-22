@@ -5,6 +5,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.CheckCrossBridge;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import bridge.view.View;
 
 import java.util.List;
@@ -18,7 +19,9 @@ public class BridgeGame {
     static String userInput;
     static List<String> bridge;
     static int round;
+    static String mark;
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
 
     public void setGame() {
         View.gameStartMessage();
@@ -82,10 +85,11 @@ public class BridgeGame {
         CheckCrossBridge checkCrossBridge = new CheckCrossBridge();
         boolean crossPossible = checkCrossBridge.check(userInput, bridge, round);
         if (!crossPossible) {
-            System.out.println("못건너");
+            mark = "X";
         }
         if (crossPossible) {
-            System.out.println("건널 수 있어");
+            mark = "O";
         }
+        outputView.printMap(userInput, mark, round);
     }
 }
