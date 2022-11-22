@@ -21,4 +21,13 @@ public enum Step {
     }
 
 
+    public static Step findByNum(int n){
+        for (Step step: Step.values()){
+            if(step.stepNumber == n){
+                return step;
+            }
+        }
+        throw new IllegalArgumentException();
+        //TODO: 0 또는 1로만 가능하게 오류 메세지 출력
+    }
 }

@@ -1,5 +1,6 @@
 package bridge.domain.generator;
 
+import bridge.domain.Step;
 import bridge.domain.generator.BridgeNumberGenerator;
 
 import java.util.ArrayList;
@@ -31,12 +32,7 @@ public class BridgeMaker {
         List<String> randomBridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int cell = bridgeNumberGenerator.generate();
-            if (cell==0){
-                randomBridge.add("U");
-            }
-            if (cell==1){
-                randomBridge.add("D");
-            }
+            randomBridge.add(Step.findByNum(cell).getStepTxt());
         }
         return randomBridge;
     }
