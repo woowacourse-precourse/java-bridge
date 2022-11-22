@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String REGEX = "^[0-9]*$";
 
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String bridgeSize = Console.readLine();
         int Size;
         try{
@@ -17,13 +17,13 @@ public class InputView {
         return Size;
     }
 
-    public void checkLengthValidate(String input) {
+    public static void checkLengthValidate(String input) {
         int length = Integer.parseInt(input);
         if(length < 3 || length > 20 || !input.matches(REGEX))
             throw new IllegalArgumentException(Constant.Length_Restrict());
     }
 
-    public String readMoving() {
+    public static String readMoving() {
         String move = Console.readLine();
         checkMoveValidate(move);        
         System.out.println(Constant.Select_Move());
@@ -31,12 +31,12 @@ public class InputView {
         return move;
     }
 
-    public void checkMoveValidate(String input) {
+    public static void checkMoveValidate(String input) {
         if(!(input.equals(Constant.Up) || input.equals(Constant.Down)))
             throw new IllegalArgumentException(Constant.Move_Restrict());
     }
 
-    public String readGameCommand() {
+    public static String readGameCommand() {
         String Replay = Console.readLine();
         checkRetryValidate(Replay);
         System.out.println(Constant.Select_Replay());
@@ -44,7 +44,7 @@ public class InputView {
         return Replay;
     }
 
-    public void checkRetryValidate(String input) {
+    public static void checkRetryValidate(String input) {
         if(!(input.equals(Constant.Restart) || input.equals(Constant.Quit)))
             throw new IllegalArgumentException(Constant.Replay_Restrict());
     }
