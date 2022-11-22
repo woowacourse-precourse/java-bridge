@@ -47,8 +47,7 @@ public class BridgeGame {
      */
     public boolean retry(String retryCommand) {
         if (retryCommand.equals(RETRY)) {
-            player.resetCurrentPosition();
-            player.addOneRetryCount();
+            player.reset();
             return true;
         }
         if (retryCommand.equals(QUIT)) {

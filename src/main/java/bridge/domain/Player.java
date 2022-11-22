@@ -27,16 +27,13 @@ public class Player {
         return currentPosition;
     }
 
-    public void resetCurrentPosition() {
+    public void reset() {
         currentPosition = ZERO;
+        tryCount++;
     }
 
     public int getTryCount() {
         return tryCount;
-    }
-
-    public void addOneRetryCount() {
-        tryCount++;
     }
 
     public boolean getMoving() {
