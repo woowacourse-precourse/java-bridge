@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.controller.BridgeController;
+import bridge.view.OutputView;
 
 public class Application {
 
@@ -9,7 +10,7 @@ public class Application {
 		try {
 			bridgeController.run();
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			OutputView.printExceptionMessage(e.getMessage());
 		}
 	}
 }

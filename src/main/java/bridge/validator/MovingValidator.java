@@ -1,6 +1,7 @@
 package bridge.validator;
 
-import bridge.common.exception.NotUpOrDownCommandException;
+import static bridge.common.exception.ErrorMessage.*;
+
 import bridge.common.utils.StringUtils;
 
 public class MovingValidator {
@@ -15,7 +16,7 @@ public class MovingValidator {
 
 	private static void validateRightMoving(final String input) {
 		if (!StringUtils.isUpOrDown(input)) {
-			throw new NotUpOrDownCommandException();
+			throw new IllegalArgumentException(NOT_UP_OR_DOWN_EXCEPTION_MESSAGE);
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.common.exception.ErrorMessage.*;
+
 import bridge.domain.BridgeGameResult;
 
 public class OutputView {
@@ -92,7 +94,7 @@ public class OutputView {
 	}
 
 	public static void printExceptionMessage(final String message) {
-		System.out.println(message);
+		System.out.println(HEADER + message);
 	}
 
 	private static void printTotalTryCount(int totalTryCount) {

@@ -1,6 +1,6 @@
 package bridge.validator;
 
-import bridge.common.exception.InvalidBridgeSizeException;
+import static bridge.common.exception.ErrorMessage.*;
 
 public class BridgeSizeValidator {
 	public static void validate(final String input) {
@@ -19,7 +19,7 @@ public class BridgeSizeValidator {
 
 	private static void validateRange(final int bridgeSize) {
 		if (bridgeSize < 3 || bridgeSize > 20) {
-			throw new InvalidBridgeSizeException();
+			throw new IllegalArgumentException(INVALID_BRIDGE_LENGTH_EXCEPTION_MESSAGE);
 		}
 	}
 }

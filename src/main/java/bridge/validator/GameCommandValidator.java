@@ -1,6 +1,6 @@
 package bridge.validator;
 
-import bridge.common.exception.RestartOrQuitCommandException;
+import static bridge.common.exception.ErrorMessage.*;
 
 public class GameCommandValidator {
 	private static final String RESTART_COMMAND = "R";
@@ -17,7 +17,7 @@ public class GameCommandValidator {
 
 	private static void validateRightGameCommand(final String input) {
 		if (!isRightCommand(input)) {
-			throw new RestartOrQuitCommandException();
+			throw new IllegalArgumentException(NOT_RESTART_OR_QUIT_EXCEPTION_MESSAGE);
 		}
 	}
 
