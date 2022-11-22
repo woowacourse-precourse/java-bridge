@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.message.OutputMessage;
-import bridge.service.BridgeGame;
+import bridge.model.BridgeGame;
 
 import java.util.List;
 

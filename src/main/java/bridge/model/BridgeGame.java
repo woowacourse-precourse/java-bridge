@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.model;
 
 import bridge.controller.BridgeController;
 import bridge.message.InputMessage;
