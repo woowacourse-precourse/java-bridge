@@ -26,4 +26,17 @@ class PlayerTest {
         String lastMovedResult = player.getLastMovedResult();
         assertThat(lastMovedResult).isEqualTo(movingResult);
     }
+
+    @Test
+    void 재시작_연산_테스트() {
+        player.move("O");
+        player.move("X");
+
+        player.retry();
+
+        int gameAttempts = player.getGameAttempts();
+        String lastMovedResult = player.getLastMovedResult();
+        assertThat(gameAttempts).isEqualTo(2);
+        assertThat(lastMovedResult).isEqualTo("O");
+    }
 }
