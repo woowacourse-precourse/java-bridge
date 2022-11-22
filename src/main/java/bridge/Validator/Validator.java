@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Validator;
 
 public class Validator {
     private static final int MIN_BRIDGE_SIZE = 3;
