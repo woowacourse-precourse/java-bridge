@@ -2,31 +2,17 @@ package bridge.ui;
 
 import bridge.domain.GameProgress;
 
-import static bridge.constant.Const.*;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    public void printOpeningPhrase() {
-        System.out.println(OPENING_PHRASE);
+    public void printPhrase(String phrase) {
+        System.out.println(phrase);
     }
 
-    public void printRequestBridgeSize() {
-        System.out.println(REQUEST_BRIDGE_SIZE);
-    }
-
-    public void printRequestMoving() {
-        System.out.println(REQUEST_MOVING);
-    }
-
-    public void printRequestRestart() {
-        System.out.println(REQUEST_RESTART);
-    }
-
-    public void printError(IllegalArgumentException exception) {
-        System.out.println(exception.getMessage());
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
     /**
@@ -34,8 +20,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
-        System.out.println(GameProgress.map());
+    public void printMap(GameProgress gameProgress) {
+        System.out.println(gameProgress.getMapState());
     }
 
     /**
@@ -43,7 +29,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-        System.out.print(GameProgress.result());
+    public void printResult(GameProgress gameProgress) {
+        System.out.print(gameProgress.getResult());
     }
 }

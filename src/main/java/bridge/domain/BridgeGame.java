@@ -5,9 +5,6 @@ package bridge.domain;
  */
 public class BridgeGame {
 
-    public BridgeGame() {
-    }
-
     public void start() {
         new BridgeGameHost().progress();
     }
@@ -17,11 +14,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String direction) {
-        Player.moving();
+    public void move(Player player, Bridge bridge, String direction) {
+        player.moving();
 
-        if (!Player.playerCanGo(Player.getIndex(), direction)) {
-            Player.dead();
+        if (!bridge.canPlayerCross(player.getIndex(), direction)) {
+            player.dead();
         }
     }
 
@@ -30,7 +27,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        Player.revive();
+    public void retry(Player player) {
+        player.revive();
     }
 }

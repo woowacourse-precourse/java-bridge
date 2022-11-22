@@ -12,14 +12,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameHostTest {
 
-    private BridgeGameHost bridgeGameHost;
+    private Bridge bridge;
+    private Player player;
+    private GameProgress gameProgress;
     private final List<String> testBridge = List.of("U", "D", "D", "U");
 
     @BeforeEach
     void beforeEach() {
-        bridgeGameHost = new BridgeGameHost();
-        Bridge.setBridge(testBridge);
-        Player.set();
+        bridge = new Bridge(testBridge);
+        player = new Player();
+        gameProgress = new GameProgress(player, bridge);
     }
 
     @DisplayName("Index 가 주어지면 해당 다리의 부분을 반환하는 기능")
@@ -27,34 +29,37 @@ public class BridgeGameHostTest {
     @ValueSource(ints = {0, 1, 2})
     void stepOfIndexInBridge(int index) {
         // then
-        assertThat(Bridge.getStepInBridge(index)).isEqualTo(testBridge.get(index));
+        assertThat(bridge.getStepInBridge(index)).isEqualTo(testBridge.get(index));
     }
 
     @Test
     @DisplayName("플레이어가 살아있는지 반환하는 기능")
     void isPlayerAlive() {
         // then
-        assertThat(Player.getAlive()).isTrue();
+        assertThat(player.getAlive()).isTrue();
     }
 
     @Test
     @DisplayName("플레이어의 Index 를 반환하는 기능")
     void getInitialPlayerIndex() {
         // then
-        assertThat(Player.getIndex()).isEqualTo(-1);
+        assertThat(player.getIndex()).isEqualTo(-1);
     }
 
     @Test
     @DisplayName("플레이어의 총 시도 횟수를 반환하는 기능")
     void getRetry() {
         // then
-        assertThat(Player.getNumberOfRetry()).isEqualTo(1);
+        assertThat(player.getNumberOfRetry()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("플레이어가 게임에서 성공하는 경우")
+    @DisplayName("플레이어가 게임에서 실패하는 경우")
     void getResult() {
+        // given
+        gameProgress.decideFailOrSuccess();
+
         // then
-        assertThat(BridgeGameHost.getResult()).isEqualTo("실패");
+        assertThat(gameProgress.getFailOrSuccess()).isEqualTo("실패");
     }
 }

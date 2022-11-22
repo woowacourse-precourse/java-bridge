@@ -2,19 +2,23 @@ package bridge.domain;
 
 import java.util.List;
 
-public class Bridge {
+public class Bridge { // static -> non static
 
-    private static List<String> bridge;
+    private List<String> bridge;
 
-    public static void setBridge(List<String> bridge) {
-        Bridge.bridge = bridge;
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
-    public static String getStepInBridge(int index) {
+    public String getStepInBridge(int index) {
         return bridge.get(index);
     }
 
-    public static int size() {
+    public int size() {
         return bridge.size();
+    }
+
+    public boolean canPlayerCross(int inputPlayerIndex, String position) {
+        return bridge.get(inputPlayerIndex).equals(position);
     }
 }

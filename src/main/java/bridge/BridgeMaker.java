@@ -31,14 +31,10 @@ public class BridgeMaker {
     }
 
     private String randomNumberToStep(int randomNumber) {
-        String step = "";
-        if (randomNumber == 0) {
-            step = DOWN;
-        }
         if (randomNumber == 1) {
-            step = UP;
+            return UP;
         }
 
-        return step;
+        return DOWN;
     }
 }

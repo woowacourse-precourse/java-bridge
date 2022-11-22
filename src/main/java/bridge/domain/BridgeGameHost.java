@@ -10,45 +10,51 @@ import static bridge.constant.Const.*;
 public class BridgeGameHost {
 
     private boolean gameInProgress;
+    private Player player;
+    private Bridge bridge;
+    private GameProgress gameProgress;
     private final OutputView outputView;
     private final InputView inputView;
     private final BridgeGame bridgeGame;
 
     public BridgeGameHost() {
         gameInProgress = true;
+        player = new Player();
         outputView = new OutputView();
         inputView = new InputView();
         bridgeGame = new BridgeGame();
     }
 
     public void progress() {
-        outputView.printOpeningPhrase();
+        outputView.printPhrase(OPENING_PHRASE);
         prepare();
         mainPartOfGame();
-        outputView.printResult();
+        outputView.printResult(gameProgress);
     }
 
     private void mainPartOfGame() {
         while (gameInProgress) {
             moving();
             isPlayerDead();
-            gameSuccess();
+            isGameSuccess();
         }
     }
 
     private void prepare() {
-        Player.set();
-        Bridge.setBridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(decideBridgeSize()));
+        bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(decideBridgeSize()));
+        gameProgress = new GameProgress(player, bridge);
     }
 
-    private void gameSuccess() {
-        if (getResult().equals(SUCCESS)) {
+    private void isGameSuccess() {
+        gameProgress.decideFailOrSuccess();
+
+        if (gameProgress.getFailOrSuccess().equals(SUCCESS)) {
             gameInProgress = false;
         }
     }
 
     private void isPlayerDead() {
-        if (!Player.getAlive()) {
+        if (!player.getAlive()) {
             decideRetryOrQuit();
         }
     }
@@ -59,19 +65,19 @@ public class BridgeGameHost {
                 parsingGameCommand(getGameCommand());
                 break;
             } catch (IllegalArgumentException exception) {
-                outputView.printError(exception);
+                outputView.printError(exception.getMessage());
             }
         }
     }
 
     private String getGameCommand() {
-        outputView.printRequestRestart();
+        outputView.printPhrase(REQUEST_RESTART);
         return inputView.readGameCommand();
     }
 
     private void parsingGameCommand(String gameCommand) {
         if (gameCommand.equals(RETRY)) {
-            bridgeGame.retry();
+            bridgeGame.retry(player);
         }
 
         if (gameCommand.equals(QUIT)) {
@@ -84,13 +90,13 @@ public class BridgeGameHost {
             try {
                 return getBridgeSize();
             } catch (IllegalArgumentException exception) {
-                outputView.printError(exception);
+                outputView.printError(exception.getMessage());
             }
         }
     }
 
     private int getBridgeSize() {
-        outputView.printRequestBridgeSize();
+        outputView.printPhrase(REQUEST_BRIDGE_SIZE);
         return inputView.readBridgeSize();
     }
 
@@ -98,27 +104,17 @@ public class BridgeGameHost {
         while (true) {
             try {
                 decideMoving();
-                break;
+                return;
             } catch (IllegalArgumentException exception) {
-                outputView.printError(exception);
+                outputView.printError(exception.getMessage());
             }
         }
     }
 
     private void decideMoving() {
-        outputView.printRequestMoving();
+        outputView.printPhrase(REQUEST_MOVING);
         String moving = inputView.readMoving();
-        bridgeGame.move(moving);
-        outputView.printMap();
-    }
-
-    public static String getResult() {
-        String answer = FAIL;
-
-        if ((Player.getIndex() + 1) == Bridge.size() && Player.getAlive()) {
-            answer = SUCCESS;
-        }
-
-        return answer;
+        bridgeGame.move(player, bridge, moving);
+        outputView.printMap(gameProgress);
     }
 }

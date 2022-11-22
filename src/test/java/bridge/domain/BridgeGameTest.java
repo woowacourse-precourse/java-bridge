@@ -12,50 +12,52 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BridgeGameTest {
 
     private BridgeGame bridgeGame;
+    private Player player;
+    private Bridge bridge;
     private final List<String> testBridge = List.of("U", "D", "D", "U");
 
     @BeforeEach
     void beforeEach() {
         bridgeGame = new BridgeGame();
-        Bridge.setBridge(testBridge);
-        Player.set();
+        player = new Player();
+        bridge = new Bridge(testBridge);
     }
 
     @Test
     @DisplayName("사용자를 움직여서 사는 경우")
     void movePlayerAndPlayerAlive() {
         // when
-        bridgeGame.move(UP);
+        bridgeGame.move(player, bridge, UP);
 
         // then
-        assertThat(Player.getIndex()).isEqualTo(0);
-        assertThat(Player.getAlive()).isTrue();
+        assertThat(player.getIndex()).isEqualTo(0);
+        assertThat(player.getAlive()).isTrue();
     }
 
     @Test
     @DisplayName("사용자가 움직여서 죽는 경우")
     void movePlayerAndPlayerDie() {
         // when
-        bridgeGame.move(DOWN);
+        bridgeGame.move(player, bridge, DOWN);
 
         // then
-        assertThat(Player.getIndex()).isEqualTo(0);
-        assertThat(Player.getAlive()).isFalse();
+        assertThat(player.getIndex()).isEqualTo(0);
+        assertThat(player.getAlive()).isFalse();
     }
 
     @Test
     @DisplayName("재시작을 하는 경우")
     void playerRetry() {
         // given
-        Player.moving();
-        Player.dead();
+        player.moving();
+        player.dead();
 
         // when
-        bridgeGame.retry();
+        bridgeGame.retry(player);
 
         // then
-        assertThat(Player.getIndex()).isEqualTo(-1);
-        assertThat(Player.getAlive()).isTrue();
-        assertThat(Player.getNumberOfRetry()).isEqualTo(2);
+        assertThat(player.getIndex()).isEqualTo(-1);
+        assertThat(player.getAlive()).isTrue();
+        assertThat(player.getNumberOfRetry()).isEqualTo(2);
     }
 }
