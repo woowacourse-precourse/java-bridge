@@ -1,15 +1,10 @@
 package bridge;
 
-import static bridge.BridgeGame.DOWN;
 import static bridge.BridgeGame.QUIT;
 import static bridge.BridgeGame.RETRY;
-import static bridge.BridgeGame.UP;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
     private static final String WRONG_INPUT_MESSAGE = "[ERROR] Please input only number.\n";
     private static final String WRONG_SIZE_MESSAGE = "[ERROR] Bridge size must be a number between 3 and 20.\n";
@@ -20,8 +15,12 @@ public class InputView {
     private static final String INPUT_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
     private static final String INPUT_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
 
+    protected static final String UP = "U";
+    protected static final String DOWN = "D";
     private static final int MIN_NUMBER = 3;
     private static final int MAX_NUMBER = 20;
+
+    private String currStep;
 
     public void printGameStart() {
         System.out.printf(GAME_START_MESSAGE);
@@ -69,7 +68,8 @@ public class InputView {
         printInputDirection();
         while (true) {
             try {
-                return validateMove(Console.readLine());
+                currStep = validateMove(Console.readLine());
+                return currStep;
             } catch (IllegalArgumentException e) {
                 System.out.printf(e.getMessage());
             }
@@ -99,5 +99,9 @@ public class InputView {
             return input;
         }
         throw new IllegalArgumentException(WRONG_COMMAND_MESSAGE);
+    }
+
+    public boolean isUP() {
+        return currStep.equals(UP);
     }
 }
