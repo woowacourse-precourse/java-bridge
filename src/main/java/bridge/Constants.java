@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge;
 
 
 public final class Constants {
@@ -14,10 +14,17 @@ public final class Constants {
     public static final String BRIDGE_TAIL = " ]";
 
     public static final String BRIDGE_DELIMITER = " | ";
-    
+
     public static final String OUTPUT_PASS = "O";
 
     public static final String OUTPUT_FAIL = "X";
 
     public static final String OUTPUT_NONE = " ";
+
+    public static final String INPUT_BRIDGE_SIZE = "\n다리의 길이를 입력해주세요.";
+
+    public static final String INPUT_MOVING_SQUARE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
+    public static final String INPUT_RESTART_OR_TERMINATE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
 }

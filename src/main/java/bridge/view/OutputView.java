@@ -1,14 +1,14 @@
 package bridge.view;
 
-import static bridge.view.Constants.BRIDGE_DELIMITER;
-import static bridge.view.Constants.BRIDGE_HEAD;
-import static bridge.view.Constants.BRIDGE_TAIL;
-import static bridge.view.Constants.OUTPUT_FAIL;
-import static bridge.view.Constants.OUTPUT_NONE;
-import static bridge.view.Constants.OUTPUT_PASS;
-import static bridge.view.Constants.ROUND_RESULT;
-import static bridge.view.Constants.ROUND_RESULT_IS_SUCCESS;
-import static bridge.view.Constants.ROUND_RESULT_NUMBER_OF_ATTEMPTS;
+import static bridge.Constants.BRIDGE_DELIMITER;
+import static bridge.Constants.BRIDGE_HEAD;
+import static bridge.Constants.BRIDGE_TAIL;
+import static bridge.Constants.OUTPUT_FAIL;
+import static bridge.Constants.OUTPUT_NONE;
+import static bridge.Constants.OUTPUT_PASS;
+import static bridge.Constants.ROUND_RESULT;
+import static bridge.Constants.ROUND_RESULT_IS_SUCCESS;
+import static bridge.Constants.ROUND_RESULT_NUMBER_OF_ATTEMPTS;
 
 import bridge.Direction;
 import bridge.domain.PlayResult;
