@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.BridgeMaker;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import org.assertj.core.api.Assertions;
