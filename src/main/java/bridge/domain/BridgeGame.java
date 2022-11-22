@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.constants.Command;
+import bridge.domain.constants.ErrorMessage;
 import bridge.domain.constants.GameState;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class BridgeGame {
 
     private void validateMoveCommand(String command){
         if (!command.equals(Command.MOVE_UP.getCommand()) && !command.equals(Command.MOVE_DOWN.getCommand())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MOVE_COMMAND.getMessage());
         }
     }
 
@@ -61,9 +62,8 @@ public class BridgeGame {
 
     private void validateRetrialCommand(String command){
         if (!command.equals(Command.RETRY.getCommand()) && !command.equals(Command.QUIT.getCommand())){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RETRY_COMMAND.getMessage());
         }
-
     }
 
     public GameState getGameState() {

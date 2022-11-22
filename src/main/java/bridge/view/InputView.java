@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.constants.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -21,7 +22,7 @@ public class InputView {
             int toInteger = Integer.parseInt(userInput);
         }
         catch (NumberFormatException exception){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_INTEGER.getMessage());
         }
     }
 
@@ -36,7 +37,7 @@ public class InputView {
 
     private void validateLength(String userInput){
         if (userInput.length() != 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.COMMAND_LENGTH_OUT_OF_RANGE.getMessage());
         }
     }
 
