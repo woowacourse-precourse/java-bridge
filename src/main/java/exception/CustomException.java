@@ -1,10 +1,14 @@
 package exception;
 
+import bridge.OutputView;
+
 public class CustomException {
 
-    public boolean checkBridgeSize(String input) {
-        int bridgeSize = Integer.parseInt(input);
+    private OutputView outputView = new OutputView();
+
+    public boolean checkBridgeSize(int bridgeSize) {
         if (bridgeSize >= 3 && bridgeSize <= 20) return true;
+        outputView.printExceptionMessage(ExceptionMessage.INVALID_BRIDGE_SIZE);
         return false;
     }
 
