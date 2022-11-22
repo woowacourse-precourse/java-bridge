@@ -31,12 +31,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeResult bridgeResult) {
+    public void printResult(BridgeResult bridgeResult, boolean gameResult, int tryCount) {
         System.out.println(MESSAGE_OUTPUT_RESULT);
         System.out.printf(MESSAGE_OUTPUT_BRACKET, String.join(MESSAGE_OUTPUT_WALL, bridgeResult.getUpperBridge()));
         printBlank();
         System.out.printf(MESSAGE_OUTPUT_BRACKET, String.join(MESSAGE_OUTPUT_WALL, bridgeResult.getLowerBridge()));
         printBlank();
+        printSuccessOrNot(gameResult, tryCount);
+    }
+
+    private void printSuccessOrNot(boolean gameResult, int tryCount) {
+        if (gameResult) {
+            System.out.printf(MESSAGE_OUTPUT_SUCCESS_OR_NOT,MESSAGE_OUTPUT_SUCCESS);
+        }
+        if (!gameResult) {
+            System.out.printf(MESSAGE_OUTPUT_SUCCESS_OR_NOT,MESSAGE_OUTPUT_FAIL);
+        }
     }
     public void printBlank() {
         System.out.println();

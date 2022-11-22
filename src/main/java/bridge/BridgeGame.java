@@ -20,6 +20,7 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private Bridge bridge;
     private User user;
+    private int tryCount;
     public void runGame() {
         outputView.printStart();
         int bridgeSize = inputView.readBridgeSize();
@@ -35,7 +36,7 @@ public class BridgeGame {
     public void move() {
         bridgeResult = new BridgeResult();
         user = new User(bridge, bridgeResult);
-
+        this.tryCount ++;
         while (checkUserMove()) {
             user.move(inputView.readMoving());
             outputView.printMap(bridgeResult);
@@ -52,7 +53,7 @@ public class BridgeGame {
 
     private void judge() {
         if (user.isFinishedMove()) {
-            outputView.printResult(bridgeResult);
+            endGame(true, tryCount);
         }
         if (!user.getMoveStatus()) {
             retry();
@@ -70,8 +71,11 @@ public class BridgeGame {
             move();
         }
         if (gameCommand.equals(BRIDGE_QUIT_COMMAND)) {
-            outputView.printBlank();
-            outputView.printResult(bridgeResult);
+            endGame(false, tryCount);
         }
+    }
+
+    public void endGame(boolean gameResult, int tryCount) {
+        outputView.printResult(bridgeResult,gameResult,tryCount);
     }
 }
