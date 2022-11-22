@@ -22,6 +22,7 @@ public class OutputView {
     }
 
     public void clearMessage(boolean clear) {
+        System.out.println();
         System.out.print(IS_GOAL_MESSAGE);
         if (clear == true) {
             System.out.println("성공");

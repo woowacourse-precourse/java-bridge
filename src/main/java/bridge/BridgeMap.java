@@ -23,6 +23,14 @@ public class BridgeMap {
             bridgeMap.add(new ArrayList<>(List.of(START,END)));
         }
     }
+
+    public void updateMID() {
+        if (bridgeMap.get(0).size() != 3) {
+            bridgeMap.get(0).add(bridgeMap.get(0).size() - 2, MID);
+            bridgeMap.get(1).add(bridgeMap.get(1).size() - 2, MID);
+        }
+    }
+
     public void updateChooseUpper(boolean correct) {
         if (correct == true) {
             bridgeMap.get(0).add(bridgeMap.get(0).size() - 1, CORRECT);
@@ -44,9 +52,11 @@ public class BridgeMap {
     public void updateMap(String choose, boolean correct) {
         if (choose.equals("U")) {
             updateChooseUpper(correct);
+            updateMID();
             return;
         }
         updateChooseLower(correct);
+        updateMID();
     }
 
     public void refreshMap() {
