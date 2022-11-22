@@ -39,4 +39,16 @@ class PlayerTest {
         assertThat(gameAttempts).isEqualTo(2);
         assertThat(lastMovedResult).isEqualTo("O");
     }
+
+    @Test
+    void 이동할_다리의_위치_반환() {
+        int movingPosition;
+
+        movingPosition = player.getMovingPosition();
+        assertThat(movingPosition).isEqualTo(0);
+
+        player.move("O");
+        movingPosition = player.getMovingPosition();
+        assertThat(movingPosition).isEqualTo(1);
+    }
 }
