@@ -15,12 +15,12 @@ public class BridgeGameController {
     public void startBridgeGame() {
         init();
         boolean b = true;
+
         bridgeGame = new BridgeGame(bridge);
         do {
             bridgeGame.move(InputView.getMoving());
-            try {
-                OutputView.printMap(bridgeGame);
-            } catch (IllegalArgumentException e) {
+            OutputView.printMap(bridgeGame);
+            if(bridgeGame.getGameSuccess()!="성공") {
                 String gameCommand = InputView.getGameCommand();
                 if (gameCommand.equals("Q")) {
                     b = false;
@@ -30,7 +30,6 @@ public class BridgeGameController {
                     bridgeGame.totalGamePlus();
                 }
             }
-
         } while (b && bridgeGame.getUpPresentBridge().size() != bridge.size());
         OutputView.printResult(bridgeGame);
     }
