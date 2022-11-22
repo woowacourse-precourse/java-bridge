@@ -2,6 +2,8 @@ package bridge.domain;
 
 import java.util.NoSuchElementException;
 
+import static bridge.exception.ExceptionMessage.*;
+
 public class BridgeSize {
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
@@ -22,14 +24,14 @@ public class BridgeSize {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] ");
-            throw new NoSuchElementException("");
+            System.out.println(NUMBER_FORMAT_EXCEPTION.getMessage());
+            throw new NoSuchElementException(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 
     private void validateRangeOfSize(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(OUT_OF_BRIDGE_RANGE_EXCEPTION.getMessage());
         }
     }
 }
