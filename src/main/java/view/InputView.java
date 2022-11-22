@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.*;
 import static view.InputViewConstants.*;
 
 import validator.BridgeSizeInputValidator;
+import validator.GameCommandInputValidator;
 import validator.MovingInputValidator;
 
 /**
@@ -13,10 +14,12 @@ public class InputView {
 
 	private final BridgeSizeInputValidator bridgeSizeValidator;
 	private final MovingInputValidator movingInputValidator;
+	private final GameCommandInputValidator gameCommandInputValidator;
 
 	public InputView() {
 		this.bridgeSizeValidator = new BridgeSizeInputValidator();
 		this.movingInputValidator = new MovingInputValidator();
+		this.gameCommandInputValidator = new GameCommandInputValidator();
 	}
 
 	public int readBridgeSize() {
@@ -66,21 +69,14 @@ public class InputView {
 		String gameCommand = readGameCommandUntilNoError();
 		return gameCommand;
 	}
-	
+
 	private String readGameCommandUntilNoError() {
 		while (true) {
 			try {
-				return validateGameCommand(readLine());
+				return gameCommandInputValidator.validateGameCommand(readLine());
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
-	}
-
-	private String validateGameCommand(String gameCommand) {
-		if (gameCommand.equals(GAME_COMMAND_RESTART) || gameCommand.equals(GAME_COMMAND_QUIT)) {
-			return gameCommand;
-		}
-		throw new IllegalArgumentException(ERROR_MESSAGE_WRONG_GAME_COMMAND_INPUT);
 	}
 }
