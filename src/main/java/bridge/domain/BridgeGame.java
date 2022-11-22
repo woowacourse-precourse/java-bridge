@@ -6,9 +6,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGame {
-    private static final StringBuilder SUCCESS_MOVE_MARK = new StringBuilder(" O ");
-    private static final StringBuilder FAIL_MOVE_MARK = new StringBuilder(" X ");
-    private final List<String> bridgeGame;
+    private List<String> bridgeGame;
     private int tryCount;
 
     public BridgeGame(List<String> bridgeGame, int tryCount) {
@@ -16,23 +14,16 @@ public class BridgeGame {
         this.tryCount = tryCount;
     }
 
-    public boolean move(String moveSide, int index) {
-        return bridgeGame.get(index).equals(moveSide);
-    }
-
-    public StringBuilder createMoveMark(String moveWord, int index) {
-        if (move(moveWord, index)) {
-            return SUCCESS_MOVE_MARK;
-        }
-        return FAIL_MOVE_MARK;
-    }
-
     public int getTryCount() {
         return tryCount;
     }
 
-    public void retryCount() {
+    public void addTryCount() {
         tryCount ++;
+    }
+
+    public boolean move(String moveSide, int index) {
+        return bridgeGame.get(index).equals(moveSide);
     }
 
     public boolean retry() {
