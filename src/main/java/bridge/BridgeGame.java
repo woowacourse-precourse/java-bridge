@@ -8,16 +8,15 @@ import java.util.List;
 public class BridgeGame {
     public static int numberOfTry = 1;
     public static int round = 1;
-    InputView input = new InputView();
-    OutputView output = new OutputView();
-    BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator(); //
-    BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator); // 인자로 인터페이스 넣음
+
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        InputView input = new InputView();
         String direction = input.readMoving();
     }
 
@@ -30,13 +29,19 @@ public class BridgeGame {
         numberOfTry += 1;
     }
 
-    public List<String> gameStart() {
+    public void gameStart() {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        OutputView output = new OutputView();
+        InputView input = new InputView();
         output.printGameStart();
         int sizeOfBridge = input.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(sizeOfBridge);
-        return bridge;
+        playGame(bridge);
     }
     public void playGame(List<String> bridge){
+        OutputView output = new OutputView();
+        InputView input = new InputView();
         while(true){
             String move = input.readMoving();
             boolean match = judgeMatch(bridge.get(round-1),move);
@@ -70,6 +75,7 @@ public class BridgeGame {
     }
 
     public void playGameWhenMatch(List<String> bridge, boolean match, String move){
+        OutputView output = new OutputView();
         if (match) {
             output.printSuccessMap(bridge, match);
             if (judgeSuccess(bridge)) {
@@ -79,6 +85,8 @@ public class BridgeGame {
         }
     }
     public String playGameWhenNotMatch(List<String> bridge, String move){
+        OutputView output = new OutputView();
+        InputView input = new InputView();
         output.printFailMap(bridge,move);
         if (input.readGameCommand() == "Q"){
             output.printResult(bridge,move);
