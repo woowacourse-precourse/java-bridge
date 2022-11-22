@@ -69,7 +69,31 @@
 ### Class BridgeService
 
 - [x] 세 가지 입력 예외가 발생하면 예외문구를 출력하고 다시 입력을 받는 기능 
-> 입력값을 받는 로직이 포함되어 있으므로 Application의 기능_테스트()를 응용해서 테스트코드 작성
+> 입력값을 받는 로직이 포함되어 있으므로 Application의 '기능_테스트()'를 응용해서 테스트코드 작성
+
+---
+
+## 발생할 수 있는 예외
+
+> IllegalStateException.class
+- Class BridgeGame.successOrNot()
+
+  해당 함수는 게임이 <b>종료됐을 때</b> 게임 성공 여부에 따른 문자열을 반환. 
+게임이 종료되지 않았다면 잘못된 사용으로 예외 발생
+> IllegalArgumentException.class
+- Class BridgeChecker.validateBridgeSize(String bridgeSize)
+
+  다리 길이에 대한 유효성 검사 함수. 검사 실패 시 예외 발생
+
+
+- Class BridgeChecker.validateMoving(final String moving)
+
+  이동 방향에 대한 유효성 검사 함수. 검사 실패 시 예외 발생
+
+
+- Class BridgeChecker.validateGameCommand(final String gameCommand)
+
+  재시도 여부에 대한 유효성 검사 함수. 검사 실패 시 예외 발생
 
 ---
 
@@ -79,3 +103,4 @@
 - 예외 처리할 필요없은 예외는 처리하지 않는다.
 - 테스트코드 리팩토링
 - 예외 문서화
+- 예외가 발생하지 않는지 예외처리 단위를 테스트하는 방법은?
