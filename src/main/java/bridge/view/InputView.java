@@ -25,15 +25,9 @@ public class InputView {
     public static String readMoving() {
         System.out.println(SystemMessage.MOVING_SPACE_INPUT_MESSAGE);
         String moving_space = Console.readLine();
-        validateMoving(moving_space);
         return moving_space;
     }
 
-    private static void validateMoving(String moving_space) {
-        if (!moving_space.equals("U") && !moving_space.equals("D")) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + MOVING_CAMMAND_ERROR_MESSAGE);
-        }
-    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -42,14 +36,8 @@ public class InputView {
 
         System.out.println(SystemMessage.RETRY_GAME_INPUT_MESSAGE);
         String command = Console.readLine();
-        validateCommand(command);
         return command;
     }
 
-    private static void validateCommand(String command) {
-        if (!command.equals("R") && !command.equals("Q")) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + RETRY_OR_GAME_OVER_CAMMAND_ERROR_MESSAGE);
-        }
-    }
 
 }

@@ -36,7 +36,6 @@ public class Bridge {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
-        System.out.println(bridge);
     }
 
     public MoveResult createMoveResult(MoveSpace moveSpace) {

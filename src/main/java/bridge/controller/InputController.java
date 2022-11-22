@@ -13,27 +13,20 @@ public class InputController {
     }
 
     public static MoveSpace getMoving() {
-        String move = null;
-        while (move == null) {
-            move = validateGetMoving();
+        MoveSpace moveSpace = null;
+        while (moveSpace == null) {
+            try {
+                moveSpace = new MoveSpace(InputView.readMoving());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return new MoveSpace(move);
+        return moveSpace;
     }
 
-    private static String validateGetMoving(){
-        String move = null;
-        try {
-            move = InputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return move;
-    }
 
-    public static String retryOrGameOver() {
-        if (InputView.readGameCommand().equals("R")) {
-            return "R";
-        }
-        return "Q";
+    public static String getRetryOrGameOver() {
+        return InputView.readGameCommand();
+
     }
 }

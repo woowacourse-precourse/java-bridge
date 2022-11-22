@@ -4,6 +4,7 @@ import static bridge.view.SystemMessage.*;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.Command;
 import bridge.domain.MoveResult;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class BridgeGameController {
         return bridge;
     }
 
-    public static void runGame(Bridge bridge) {
+    public void runGame(Bridge bridge) {
         List<MoveResult> moveResults = new ArrayList<>();
         BridgeGame bridgeGame = new BridgeGame(moveResults, bridge);
         while (bridge.crossingBridgeSuccess() && bridgeGame.notExit()) {
@@ -49,42 +50,39 @@ public class BridgeGameController {
         gameOver(bridgeGame, moveResults);
     }
 
-    private static void abilityToMove(BridgeGame bridgeGame) {
+    private void abilityToMove(BridgeGame bridgeGame) {
         bridgeGame.move();
         OutputView.printMap(bridgeGame.getMoveResults());
     }
 
-    private static boolean retryOrOver(BridgeGame bridgeGame) {
+    public boolean retryOrOver(BridgeGame bridgeGame) {
         if (bridgeGame.isFailedGame()) {
-            if (doRetryOrOver(bridgeGame,getRetryOrOverCommand())){
+            Command command = getCommandWithValidation();
+
+            if (command.doRetryOrOver(bridgeGame)) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean doRetryOrOver(BridgeGame bridgeGame, String command){
-        if (command.equals("R")) {
-            bridgeGame.retry();
-            return true;
-        }
-        bridgeGame.exit();
-        return false;
+    private static String getRetryOrOverCommand() {
+        return InputController.getRetryOrGameOver();
     }
-    private static String getRetryOrOverCommand(){
-        String command = null;
-        while(command == null){
-            try{
-                command = InputController.retryOrGameOver();
-            } catch(IllegalArgumentException e){
+
+    private static Command getCommandWithValidation() {
+        Command command = null;
+        while (command == null) {
+            try {
+                command = new Command(getRetryOrOverCommand());
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return command;
     }
 
-    private static void gameOver(BridgeGame bridgeGame, List<MoveResult> moveResults) {
+    public static void gameOver(BridgeGame bridgeGame, List<MoveResult> moveResults) {
         OutputView.printResult(bridgeGame, moveResults);
     }
-
 }
