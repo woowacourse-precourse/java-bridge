@@ -83,7 +83,7 @@ public class Application {
         do{
             outputView.printMoving();
             String moving = inputView.readMoving();
-            gameStatus = bridgeGame.crossResult(moving, location, bridge, upBridgeResult, downBridgeResult);
+            gameStatus = crossResult(moving);
             if (gameStatus.equals("성공")){
                 location = bridgeGame.move(location);
             }
@@ -97,4 +97,15 @@ public class Application {
         outputView.printGameResult(gameStatus, cnt);
     }
 
+    public static String crossResult(String moving){
+        boolean compareResult = bridgeGame.compare(bridge, moving, location);
+        if (compareResult) {
+            bridgeGame.addSuccess(moving, upBridgeResult, downBridgeResult);
+        }
+        if (!compareResult) {
+            bridgeGame.addFail(moving, upBridgeResult, downBridgeResult);
+            return "실패";
+        }
+        return "성공";
+    }
 }
