@@ -67,6 +67,11 @@ public class BridgeGameController {
         return false;
     }
 
+    public int askBridgeLengthInput() {
+        outputView.printInputBridgeLengthMessage();
+        return inputView.readBridgeSize();
+    }
+
 
 
 
