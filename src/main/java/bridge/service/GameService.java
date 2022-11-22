@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.constant.GameConstant;
 import bridge.domain.User;
 import bridge.domain.Map;
 
@@ -71,8 +72,8 @@ public class GameService {
 
     public String getGameResult() {
         if (!isNotPass() && isLastMoveTry()) {
-            return "성공";
+            return GameConstant.CLEAR;
         }
-        return "실패";
+        return GameConstant.FAIL;
     }
 }
