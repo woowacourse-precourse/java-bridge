@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.model.BridgeGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,5 +41,5 @@ public class BridgeMakerTest {
         public int generate() {
             return numbers.remove(0);
         }
-}
+    }
 }

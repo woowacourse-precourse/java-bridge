@@ -1,7 +1,7 @@
 package bridge.domainTest.constantTest;
 
 import bridge.domain.constant.BridgeDirection;
-import bridge.domain.constant.CrossingState;
+import bridge.domain.constant.CrossedState;
 import bridge.domain.constant.GameRecord;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ public class GameRecordTest {
     public void transformByDirectionInstance(){
         boolean crossedState=false;
         BridgeDirection bridgeDirection = BridgeDirection.DOWN;
-        String result = CrossingState.transform(crossedState);
+        String result = CrossedState.transform(crossedState);
         GameRecord gameRecord = GameRecord.findLocation(bridgeDirection);
         assertThat(gameRecord.generate(result)).containsExactlyElementsOf(List.of(" ", "X"));
     }

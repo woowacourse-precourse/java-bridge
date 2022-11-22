@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeNumberGenerator;
 import bridge.controller.cosntant.GameCommand;
 import bridge.domain.model.BridgeGame;
 import bridge.domain.model.Player;
@@ -8,20 +9,31 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     InputController inputController = new InputController();
     OutputView outputView = new OutputView();
-    BridgeGame bridgeGame = new BridgeGame();
+    BridgeGame bridgeGame;
     Player player = new Player();
+
+    public BridgeGameController(BridgeNumberGenerator bridgeNumberGenerator){
+        this.bridgeGame = new BridgeGame(bridgeNumberGenerator);
+    }
+
 
     public void startBridgeMakingProcess() {
         int bridgeSize = inputController.checkBridgeSize();
+
         bridgeGame.prepare();
+
         bridgeGame.constructBridge(bridgeSize);
     }
 
     public void bridgeCrossProcess() {
         String moving = inputController.checkMoving();
+
         player.saveDirection(moving);
+
         bridgeGame.move(player.notifyDirection());
+
         String report = bridgeGame.makeReport(player.getCurrentDirection());
+
         outputView.printMap(report);
     }
 
@@ -30,7 +42,9 @@ public class BridgeGameController {
     }
 
     public void playSingleGame() {
+
         bridgeGame.prepare();
+
         while (isSingleGameEnd()) {
             bridgeCrossProcess();
         }

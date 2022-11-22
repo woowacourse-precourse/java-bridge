@@ -21,5 +21,5 @@ public class GameAgent {
         String bridgeDirection = bridge.get(currentBridgeLocation);
         return bridgeDirection.equals(playerWantedToGo);
     }
-    
+
 }

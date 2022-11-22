@@ -71,5 +71,5 @@ public class BridgeGameTest {
                 Arguments.of("D", true, "[ O |   ]\n[   | O ]\n")
         );
     }
-    
+
 }

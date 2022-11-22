@@ -16,7 +16,8 @@ public class BridgeGame {
     private static final int COUNT = 1;
     private final GameAgent gameAgent;
     private final GameRecordGenerator gameRecordGenerator;
-    private GameRecordMaker gameRecordMaker;
+    private final GameRecordMaker gameRecordMaker;
+    private final BridgeMaker bridgeMaker;
     private int numberOfTrial;
     private int trial;
     private boolean gameState;
@@ -24,12 +25,13 @@ public class BridgeGame {
 
     private boolean restartState;
 
-    public BridgeGame() {
+    public BridgeGame(BridgeNumberGenerator numberGenerator) {
         this.bridgeLength = ZERO;
         gameAgent = new GameAgent();
         gameRecordGenerator = new GameRecordGenerator();
         this.numberOfTrial = ZERO;
         this.gameRecordMaker = new GameRecordMaker();
+        bridgeMaker = new BridgeMaker(numberGenerator);
     }
 
     public void prepare() {
@@ -40,8 +42,6 @@ public class BridgeGame {
 
     public void constructBridge(int bridgeLength) {
         this.bridgeLength = bridgeLength;
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         List<String> bridgeMade = bridgeMaker.makeBridge(bridgeLength);
 
@@ -50,6 +50,7 @@ public class BridgeGame {
 
     public void move(String playerWantToGo) {
         gameState &= gameAgent.checkPossibleToCross(playerWantToGo, trial);
+        System.out.println(gameState);
         ++trial;
     }
 
