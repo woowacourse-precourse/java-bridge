@@ -6,6 +6,8 @@ import constants.Result;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class BridgeGameController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
@@ -38,7 +40,8 @@ public class BridgeGameController {
     private void generateBridge() {
         try {
             outputView.printMessage(Message.REQUEST_BRIDGE_SIZE);
-            bridgeGame.generateBridge(inputView.readBridgeSize());
+            List<String> bridge = bridgeGame.generateBridge(inputView.readBridgeSize());
+            bridgeGame.setBridge(bridge);
         } catch (IllegalArgumentException exception) {
             outputView.printError(exception.getMessage());
             generateBridge();

@@ -3,6 +3,7 @@ package bridge;
 import constants.Command;
 import constants.ErrorMessage;
 import constants.Text;
+import domain.Bridge;
 import repository.BridgeRepository;
 
 import java.util.List;
@@ -16,17 +17,22 @@ public class BridgeGame {
     private static final String COMMAND_REGEX = "[RQ]";
 
     private final BridgeRepository bridgeRepository;
+    private Bridge bridge;
 
     public BridgeGame(BridgeRepository bridgeRepository) {
         this.bridgeRepository = bridgeRepository;
     }
 
-    public void generateBridge(String bridgeSize) {
+    public List<String> generateBridge(String bridgeSize) {
         validateBridgeSize(bridgeSize);
 
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = maker.makeBridge(Integer.parseInt(bridgeSize));
-        bridgeRepository.saveBridge(bridge);
+
+        return maker.makeBridge(Integer.parseInt(bridgeSize));
+    }
+
+    public void setBridge(List<String> generatedBridge) {
+        this.bridge = new Bridge(generatedBridge);
     }
 
     private void validateBridgeSize(String bridgeSize) {
@@ -47,14 +53,14 @@ public class BridgeGame {
     }
 
     public boolean canMove() {
-        List<String> bridge = bridgeRepository.getBridge();
         List<String> progress = bridgeRepository.getProgress();
-        int lastMove = progress.size() - 1;
+        int position = progress.size() - 1;
 
         if (progress.isEmpty()) {
             return true;
         }
-        return progress.get(lastMove).equals(bridge.get(lastMove));
+
+        return bridge.canMove(progress.get(position), position);
     }
 
     public void saveResult() {
@@ -75,7 +81,7 @@ public class BridgeGame {
     }
 
     public boolean isWin() {
-        return bridgeRepository.getBridge().equals(bridgeRepository.getProgress());
+        return bridge.completeCross(bridgeRepository.getProgress());
     }
 
     public Map<String, List<String>> getResult() {

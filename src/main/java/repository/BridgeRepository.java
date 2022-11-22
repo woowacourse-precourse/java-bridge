@@ -9,20 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 public class BridgeRepository {
-    private List<String> bridge;
     private final List<String> progress = new ArrayList<>();
     private final Map<String, List<String>> result = new HashMap<>();
 
-    public void saveBridge(List<String> bridge) {
-        this.bridge = bridge;
-    }
-
     public void saveProgress(String direction) {
         progress.add(direction);
-    }
-
-    public List<String> getBridge() {
-        return this.bridge;
     }
 
     public List<String> getProgress() {
