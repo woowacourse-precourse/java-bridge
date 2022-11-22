@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Player {
-    private Map<Move, List<MoveResult>> moveResults = new EnumMap<>(Move.class);
+    private final Map<Move, List<MoveResult>> moveResults = new EnumMap<>(Move.class);
     private int moveDistance;
     private int lifeCount;
 
