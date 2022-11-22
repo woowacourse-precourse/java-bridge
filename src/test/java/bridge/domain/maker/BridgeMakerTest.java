@@ -27,21 +27,17 @@ class BridgeMakerTest {
 
     @Test
     void 다리_문자열은_U_D로만_이루어진다() {
-        List<Integer> bridgeNumbers = List.of(0, 1, 0);
-        Iterator<Integer> iterator = bridgeNumbers.listIterator();
-        BridgeMaker bridgeMaker = new BridgeMaker(iterator::next);
+        List<String> bridgeStrings = makeBridgeWithNumbers(List.of(0, 1, 0));
 
-        List<String> bridgeStrings = bridgeMaker.makeBridge(bridgeNumbers.size());
         assertThat(bridgeStrings).containsOnly(UPPER.capitalLetter(), LOWER.capitalLetter());
     }
 
     @Test
     void 다리_문자열이_U_D가_아니면_예외를_던진다() {
-        List<Direction> bridgeDirections = List.of(UPPER, LOWER, UPPER, LOWER, UPPER);
-        Iterator<Integer> bridgeNumberIterator = getBridgeNumbersFrom(bridgeDirections).iterator();
-        List<String> bridge = new BridgeMaker(bridgeNumberIterator::next).makeBridge(bridgeDirections.size());
+        List<Direction> directions = List.of(UPPER, LOWER, UPPER, LOWER, UPPER);
+        List<String> bridgeStrings = makeBridgeWithDirections(directions);
 
-        assertThat(bridge).containsExactlyElementsOf(getCapitalLettersFrom(bridgeDirections));
+        assertThat(bridgeStrings).containsExactlyElementsOf(getCapitalLettersFrom(directions));
     }
 
     @ParameterizedTest
@@ -60,14 +56,25 @@ class BridgeMakerTest {
         assertThatIllegalArgumentException().isThrownBy(() -> bridgeMaker.makeBridge(size));
     }
 
-    private List<Integer> getBridgeNumbersFrom(List<Direction> bridgeDirections) {
-        return bridgeDirections.stream()
+    private List<String> makeBridgeWithNumbers(List<Integer> numbers) {
+        Iterator<Integer> iterator = numbers.listIterator();
+        BridgeMaker bridgeMaker = new BridgeMaker(iterator::next);
+        return bridgeMaker.makeBridge(numbers.size());
+    }
+
+    private List<String> makeBridgeWithDirections(List<Direction> directions) {
+        List<Integer> numbers = getBridgeNumbersFrom(directions);
+        return makeBridgeWithNumbers(numbers);
+    }
+
+    private List<Integer> getBridgeNumbersFrom(List<Direction> directions) {
+        return directions.stream()
                 .map(Direction::bridgeNumber)
                 .collect(Collectors.toList());
     }
 
-    private List<String> getCapitalLettersFrom(List<Direction> bridgeDirections) {
-        return bridgeDirections.stream()
+    private List<String> getCapitalLettersFrom(List<Direction> directions) {
+        return directions.stream()
                 .map(Direction::capitalLetter)
                 .collect(Collectors.toList());
     }
