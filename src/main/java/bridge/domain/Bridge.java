@@ -17,7 +17,7 @@ public class Bridge {
     }
 
     public static Bridge from(List<String> tileDirectionSigns) {
-        validateBridgeDirections(tileDirectionSigns);
+        validateBridgeSize(tileDirectionSigns);
 
         List<Tile> tiles = new ArrayList<>();
         for (String directionSign : tileDirectionSigns) {
@@ -27,7 +27,7 @@ public class Bridge {
         return new Bridge(tiles);
     }
 
-    private static void validateBridgeDirections(List<String> bridgeDirections) {
+    private static void validateBridgeSize(List<String> bridgeDirections) {
         if (bridgeDirections.size() < MIN_SIZE || bridgeDirections.size() > MAX_SIZE) {
             throw new IllegalArgumentException(String.format(BRIDGE_SIZE_EXCEPTION_MESSAGE_FORMAT, MIN_SIZE, MAX_SIZE));
         }
