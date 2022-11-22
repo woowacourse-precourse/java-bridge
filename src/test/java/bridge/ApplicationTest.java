@@ -7,7 +7,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +15,8 @@ class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
     private List<String> moveResult;
+    private BridgeGame bridgeGame;
+
 
 
     @Test
@@ -61,6 +62,14 @@ class ApplicationTest extends NsTest {
         String sideToMoveA = "U";
         moveResult = bridgeGame.moveResult(bridge, tryCountA, sideToMoveA);
         assertThat(moveResult).isEqualTo(expectedResultA);
+    }
+
+    @Test
+    void 게임_실패_테스트() {
+        bridgeGame = new BridgeGame();
+        moveResult = List.of("[ X ]", "[   ]");
+        boolean result = bridgeGame.isFailed(moveResult);
+        assertThat(result).isTrue();
     }
 
     @Override
