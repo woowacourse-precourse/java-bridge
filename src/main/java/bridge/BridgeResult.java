@@ -13,6 +13,10 @@ public class BridgeResult {
         this.bridgeResult = new ArrayList<>();
     }
 
+    public List<String> getBridgeResult() {
+        return bridgeResult;
+    }
+
     public void none() {
         bridgeResult.add(SPACE);
     }
