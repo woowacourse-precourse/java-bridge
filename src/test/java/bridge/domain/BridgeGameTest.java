@@ -41,4 +41,12 @@ class BridgeGameTest {
         Assertions.assertThat(bridgeGame.getTrial()).isEqualTo(3);
     }
 
+    @DisplayName("이동 후 사용자의 현재 위치가 올바르게 변하는지 확인")
+    @Test
+    void checkIndexAfterMove() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        Assertions.assertThat(bridgeGame.getIndex()).isEqualTo(2);
+    }
+
 }
