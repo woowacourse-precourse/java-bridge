@@ -4,13 +4,25 @@ package bridge.domain;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private Bridge bridge;
+    private final Bridge bridge;
     private BridgeGameResult result;
 
-    public void setBridge(BridgeSize size) {
+    public BridgeGame(BridgeSize size) {
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = maker.makeBridge(size);
         this.result = new BridgeGameResult();
+    }
+
+    public int getBridgeSize(){
+        return bridge.size();
+    }
+
+    public BridgeGameResult getBridgeGameResult(){
+        return result;
+    }
+
+    public BridgeGameTrialResult getBridgeGameTrialResult(int trial){
+        return result.getTrialResult(trial);
     }
 
 
@@ -19,7 +31,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(int round, BridgeMove move) {
+        return true;
     }
 
     /**
