@@ -1,5 +1,6 @@
-package bridge.domain;
+package bridge;
 
+import bridge.domain.Bridge;
 import bridge.type.PositionType;
 import org.junit.jupiter.api.Test;
 
