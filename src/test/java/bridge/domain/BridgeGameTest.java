@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -42,12 +43,7 @@ class BridgeGameTest {
     void testErrorMessage() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player(new Map()));
         assertThat(bridgeGame.getTrial()).isEqualTo(1);
-        try {
-            bridgeGame.retry("q");
-            throw new RuntimeException();
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage()).isEqualTo("[ERROR] R(재시작) 또는 Q(종료)만 입력할 수 있습니다.");
-        }
-
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> bridgeGame.retry("q"));
+        assertThat(e.getMessage()).isEqualTo("[ERROR] R(재시작) 또는 Q(종료)만 입력할 수 있습니다.");
     }
 }
