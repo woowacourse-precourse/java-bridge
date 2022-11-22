@@ -8,29 +8,32 @@ public class Application {
     private static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private static final BridgeGame bridgeGame = new BridgeGame();
     private static final OutputView output = new OutputView();
-    public static void main(String[] args) {
-        int size;
-        try{
-            size = input.readBridgeSize();
-            List<String> bridge = bridgeMaker.makeBridge(size);
-            int trial = 1;
-            String success = "실패";
+    private static void playBridgeGame(List<String> bridge){
+        int trial = 1;
+        String success = "실패";
 
-            while (true) {
-                if(bridgeGame.move(bridge)){
-                    success = "성공";
-                    break;
-                }
-
-                if(bridgeGame.retry()){
-                    trial++;
-                    continue;
-                }
+        while (true) {
+            if(bridgeGame.move(bridge)){
+                success = "성공";
                 break;
             }
 
-            output.printResult(success, trial);
+            if(bridgeGame.retry()){
+                trial++;
+                continue;
+            }
+            break;
+        }
 
+        output.printResult(success, trial);
+    }
+    public static void main(String[] args) {
+        try{
+            int size;
+            size = input.readBridgeSize();
+            List<String> bridge = bridgeMaker.makeBridge(size);
+
+            playBridgeGame(bridge);
         } catch (RuntimeException error){
             System.out.println(error);
         }
