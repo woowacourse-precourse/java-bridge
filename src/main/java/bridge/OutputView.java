@@ -31,5 +31,11 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + bridgeGameController.getTryCount());
     }
 
+    private String checkIfSucceed(boolean availableToMove) {
+        if (availableToMove) {
+            return "성공";
+        }
+        return "실패";
+    }
 
 }
