@@ -21,9 +21,10 @@ public class RoundService {
         }
     }
 
-    public void getResult(Bridge bridge) {
+    public boolean getResult(Bridge bridge) {
         boolean status = compareBridge(bridge);
         OutputView.printMap(round.getMovings(), status);
+        return status;
     }
 
     private boolean compareBridge(Bridge bridge) {
