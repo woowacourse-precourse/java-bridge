@@ -1,3 +1,5 @@
+package bridge;
+
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
