@@ -70,8 +70,21 @@ public class BridgeController {
     }
 
     private String getStep() {
-        outputView.printAskForStep();
-        return inputView.readMoving();
+        String step = null;
+        return getValidStep(step);
+    }
+
+    private String getValidStep(String step) {
+        while (step == null) {
+            outputView.printAskForStep();
+            try {
+                step = inputView.readMoving();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+
+        return step;
     }
 
     public void showProgress(Player player) {
