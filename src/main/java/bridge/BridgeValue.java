@@ -2,12 +2,9 @@ package bridge;
 
 public class BridgeValue {
 
-    public static int tryCounts = 1;
-
-    public static int getTryCounts() {
-        return tryCounts;
-    }
-
+    public static final int TRY_COUNT_START = 1;
+    public static final int ZERO = 0;
+    public static final int UNIT_OF_CASE = 2;
 
     public static String getDivisionOrBracket(int size, int index) {
         if (size == index) {

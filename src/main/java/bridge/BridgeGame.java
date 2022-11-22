@@ -14,7 +14,7 @@ public class BridgeGame {
     }
 
     public void playStart() {
-        int tryCounts = BridgeValue.getTryCounts();
+        int tryCounts = BridgeValue.TRY_COUNT_START;
         Bridge userBridge = move(new Bridge(new ArrayList<>()));
 
         if (!checkMoveAble(userBridge)) {
