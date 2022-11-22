@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.BridgeMaker;
-import bridge.command.BridgeSizeCommand;
 import bridge.command.MovingCommand;
 import bridge.command.RetryCommand;
 import bridge.dto.BridgeGameResultDto;
@@ -52,7 +51,7 @@ public final class BridgeGameController {
     private Bridge setUpBridge(final BridgeMaker bridgeMaker) {
         try {
             printStartingMessages();
-            return Bridge.from(bridgeMaker, receiveBridgeSize());
+            return Bridge.from(bridgeMaker, inputView.readBridgeSize());
         } catch (final IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return setUpBridge(bridgeMaker);
@@ -62,10 +61,6 @@ public final class BridgeGameController {
     private void printStartingMessages() {
         outputView.printInitialMessage();
         outputView.printAskBridgeLength();
-    }
-
-    private BridgeSizeCommand receiveBridgeSize() {
-        return inputView.readBridgeSize();
     }
 
     public void play() {
