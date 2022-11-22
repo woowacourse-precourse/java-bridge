@@ -32,6 +32,26 @@ public class GameTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @DisplayName("유효하지 않은 값 입력 후 종료 테스트")
+    @Test
+    void invalidInputAndQuit() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "U", "P", "Q");
+            assertThat(output()).contains(
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "최종 게임 결과",
+                    "[ O |   | X ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   |  X ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 0);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
