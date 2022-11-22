@@ -5,6 +5,7 @@ import bridge.domain.model.Bridge;
 import bridge.domain.model.CrossBridge;
 import bridge.domain.view.InputView;
 import bridge.domain.view.OutputView;
+import bridge.exception.ControllerException;
 
 public class BridgeGameProgram {
 
@@ -20,6 +21,8 @@ public class BridgeGameProgram {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     BridgeGame bridgeGame = new BridgeGame();
     CrossBridge crossBridge = new CrossBridge();
+    //exception
+    ControllerException controllerException = new ControllerException();
 
     public BridgeGameProgram() {
 
@@ -39,6 +42,7 @@ public class BridgeGameProgram {
         outputView.printGuideMessage(GuideMessage.INPUT_LENGTH_MESSAGE);
         int bridgeLength = inputView.readBridgeLength();
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
+        controllerException.sameBridgeLength(bridgeLength);
 
         if (bridge.getSize() != bridgeLength) {
             throw new IllegalArgumentException("service error");
