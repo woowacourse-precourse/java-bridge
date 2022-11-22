@@ -7,42 +7,71 @@ public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
 
-
-    public static void main(String[] args) {
-        BridgeController bridgeController = new BridgeController(new InputView(), new OutputView());
-        bridgeController.startBridgeGame();
-    }
-
     BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-
-    public void startBridgeGame() {
-        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+    public void start() {
         outputView.printStartMessage();
         int bridgeSize = inputView.readBridgeSize();
+        BridgeGame bridgeGame = initialize(bridgeSize);
+        printProgress(bridgeGame, bridgeSize);
+    }
+
+    private BridgeGame initialize(int bridgeSize) {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        return bridgeGame;
+    }
 
+    private void printProgress(BridgeGame bridgeGame, int bridgeSize) {
+        boolean isRetry = true;
+        while(isRetry) {
+            if(checkProgress(bridgeGame, bridgeSize)) {
+                printSuccessFinalResult(bridgeGame);
+                break;
+            }
+            isRetry = checkRetry(bridgeGame);
+        }
+    }
+
+    private boolean checkProgress(BridgeGame bridgeGame, int bridgeSize) {
         int i = 0;
         while (i < bridgeSize) {
-            String moving = inputView.readMoving();
-            boolean isSuccess = bridgeGame.move(i, moving);
-            outputView.printMap(bridgeGame.getResults());
-            if (!isSuccess) {
-                String gameCommand = inputView.readGameCommand();
-                if (gameCommand.equals("Q")) {
-                    System.out.println("종료");
-                    break;
-                }
-                bridgeGame.retry();
-                i = 0;
+            if (!checkMoving(bridgeGame,i)) {
+               return false;
             }
             i++;
         }
+        return true;
+    }
+
+    private boolean checkMoving(BridgeGame bridgeGame, int i) {
+        String moving = inputView.readMoving();
+        boolean isSuccess = bridgeGame.move(i, moving);
+        outputView.printMap(bridgeGame.getResults());
+        return isSuccess;
+    }
+
+    private boolean checkRetry(BridgeGame bridgeGame) {
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("Q")) {
+            printFailFinalResult(bridgeGame);
+            return false;
+        }
+        bridgeGame.retry();
+        return true;
+    }
+
+    private void printSuccessFinalResult(BridgeGame bridgeGame) {
+        outputView.printTotalTryCount(bridgeGame.getTryCount());
+        outputView.printResult(bridgeGame.getResults());
+    }
+
+    private void printFailFinalResult(BridgeGame bridgeGame) {
         outputView.printTotalTryCount(bridgeGame.getTryCount());
         outputView.printResult(bridgeGame.getResults());
     }
