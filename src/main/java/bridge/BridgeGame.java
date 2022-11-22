@@ -9,7 +9,8 @@ import java.util.List;
 public class BridgeGame {
 
     private List<String> bridge;
-    private List<String> userDirection = new ArrayList<>();
+    private List<String> Us = new ArrayList<>();
+    private List<String> Ds = new ArrayList<>();
     private int index;
     private OutputView outputView = new OutputView();
 
@@ -24,8 +25,34 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String direction) {
-        userDirection.add(direction);
+        USetting(direction);
+        DSetting(direction);
+        outputView.printMap(Us,Ds, index);
         return bridge.get(index++).equals(direction);
+    }
+
+    public void USetting(String direction) {
+        Us.add(" ");
+        if (direction.equals("U")) {
+            if (direction.equals(bridge.get(index))) {
+                Us.set(index, "O");
+            }
+            if (!direction.equals(bridge.get(index))) {
+                Us.set(index, "X");
+            }
+        }
+    }
+
+    public void DSetting(String direction) {
+        Ds.add(" ");
+        if (direction.equals("D")) {
+            if (direction.equals(bridge.get(index))) {
+                Ds.set(index, "O");
+            }
+            if (!direction.equals(bridge.get(index))) {
+                Ds.set(index, "X");
+            }
+        }
     }
 
     /**
