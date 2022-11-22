@@ -20,7 +20,6 @@ public class InputView {
 
         String userInput = Console.readLine();
         InputException.checkIsBridgeSizeInteger(userInput);
-
         int bridgeSize = Integer.parseInt(userInput);
         InputException.checkBridgeSizeRange(bridgeSize);
 

@@ -13,16 +13,15 @@ public class BridgeGame {
     static final String DID_NOT_CROSS = " ";
     private int totalGamePlay;
     private int userMoveCount;
-    private boolean isClear;
+    private boolean isGameClear;
     private boolean quitGame;
-
     private List<String> upBridge;
     private List<String> downBridge;
 
     public BridgeGame() {
         this.totalGamePlay = 1;
         this.userMoveCount = 0;
-        this.isClear = false;
+        this.isGameClear = false;
         this.quitGame = false;
         this.upBridge = new ArrayList<>();
         this.downBridge = new ArrayList<>();
@@ -37,7 +36,7 @@ public class BridgeGame {
         if (bridge.get(index).equals(moving)) {
             canCross(moving);
             userMoveCount += 1;
-            checkGameSuccess(bridge);
+            checkGameClear(bridge);
             return true;
         }
         canNotCross(moving);
@@ -80,9 +79,9 @@ public class BridgeGame {
         downBridge.add(CAN_NOT_CROSS);
     }
 
-    public void checkGameSuccess(List<String> bridge) {
+    public void checkGameClear(List<String> bridge) {
         if (bridge.size() == userMoveCount) {
-            isClear = true;
+            isGameClear = true;
         }
     }
 
@@ -98,8 +97,8 @@ public class BridgeGame {
         return downBridge;
     }
 
-    public boolean isClear() {
-        return isClear;
+    public boolean isGameClear() {
+        return isGameClear;
     }
 
     public boolean isQuitGame() {
