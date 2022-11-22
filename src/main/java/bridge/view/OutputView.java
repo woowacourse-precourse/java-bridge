@@ -11,7 +11,7 @@ public class OutputView {
     private final String BRIDGE_CONTAINER = "[ %s ]%n";
     private final String BRIDGE_CELL_CONTOUR = " | ";
     private final String FINAL_GAME_RESULT = "최종 게임 결과";
-    private final String WHETHER_GAME_IS_SUCCESSFUL = "게임 성공 여부: %s";
+    private final String WHETHER_GAME_IS_SUCCESSFUL = "게임 성공 여부: %s%n";
     private final String GAME_SUCCESS = "성공";
     private final String GAME_LOSE = "실패";
     private final String RETRY_COUNT = "총 시도한 횟수: %d";
