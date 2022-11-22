@@ -33,18 +33,21 @@ public class BridgeController {
         run();
     }
     void run(){
-        tryNumber++;
         Result result = null;
         for (int i = 0 ;i<size;i++) {
-            makePlayer();
-            result = bridgeGame.move(i);
-            printResult(result,i);
-            if(printRetry(result.getResultType().getWinLose())){
-                run();
-                return;
-            }
+            result = runGame(i);
         }
         endGame(result);
+    }
+    Result runGame(int index){
+        tryNumber++;
+        makePlayer();
+        Result result = bridgeGame.move(index);
+        printResult(result, index);
+        if (printRetry(result.getResultType().getWinLose())) {
+            return runGame(index);
+        }
+        return result;
     }
     public void endGame(Result result){
         outputView.printResult(result.getResultType());
