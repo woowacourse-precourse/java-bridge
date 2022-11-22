@@ -10,6 +10,7 @@ public class BridgeMaker {
 
     static final String CAN_CROSS_UP = "U";
     static final String CAN_CROSS_DOWN = "D";
+    static final int RANDOM_NUMBER_CAN_CROSS_DOWN = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -23,8 +24,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int index = 0; index < size; index++) {
-            int crossNumber = bridgeNumberGenerator.generate();
-            if(crossNumber == 0) {
+            if (bridgeNumberGenerator.generate() == RANDOM_NUMBER_CAN_CROSS_DOWN) {
                 bridge.add(CAN_CROSS_DOWN);
                 continue;
             }
