@@ -1,11 +1,11 @@
 package bridge.domain.result;
 
-public class GameState {
+public class GameResult {
 
     private int tryCnt;
     private boolean keepGoing;
 
-    public GameState(int tryCnt, boolean keepGoing) {
+    public GameResult(int tryCnt, boolean keepGoing) {
         this.tryCnt = tryCnt;
         this.keepGoing = keepGoing;
     }

@@ -5,8 +5,10 @@ import bridge.domain.bridge.BridgeBlock;
 import bridge.domain.bridge.Phase;
 import bridge.domain.result.RetryCommand;
 import bridge.domain.result.BridgeResult;
-import bridge.domain.result.GameState;
+import bridge.domain.result.GameResult;
 import bridge.domain.result.MovingResult;
+
+import static bridge.domain.result.RetryCommand.*;
 
 public class BridgeGame {
 
@@ -22,12 +24,12 @@ public class BridgeGame {
         return new MovingResult(bridgeBlock, "X");
     }
 
-    public void retry(BridgeResult bridgeResult, GameState gameState, RetryCommand retryCommand) {
-        if (retryCommand.name().equals(QUIT_COMMAND)) {
-            gameState.gameOver();
+    public void retry(BridgeResult bridgeResult, GameResult gameResult, RetryCommand retryCommand) {
+        if (retryCommand.equals(Q)) {
+            gameResult.gameOver();
         }
-        if (retryCommand.name().equals(RETRY_COMMAND)) {
-            gameState.plusTryCnt();
+        if (retryCommand.equals(R)) {
+            gameResult.plusTryCnt();
             bridgeResult.clearMap();
         }
     }

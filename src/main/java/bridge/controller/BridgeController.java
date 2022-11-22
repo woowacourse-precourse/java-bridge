@@ -2,9 +2,10 @@ package bridge.controller;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeBlock;
+import bridge.domain.bridge.BridgeSize;
 import bridge.domain.bridge.Phase;
 import bridge.domain.result.BridgeResult;
-import bridge.domain.result.GameState;
+import bridge.domain.result.GameResult;
 import bridge.domain.result.MovingResult;
 import bridge.service.BridgeGame;
 import bridge.system.util.BridgeMaker;
@@ -31,26 +32,26 @@ public class BridgeController {
         outputView.printGameStartMessage();
     }
 
-    public void playBridgeGame(Phase phase, BridgeResult bridgeResult, GameState gameState) {
+    public void playBridgeGame(Phase phase, BridgeResult bridgeResult, GameResult gameResult) {
         Bridge bridge = new Bridge(BridgeBlock.convertTypeList(makeBridgeByInputSize()));
 
-        while (gameState.isKeepGoing() && bridge.size() > phase.getCurrentPhase()) {
+        while (gameResult.isKeepGoing() && bridge.size() > phase.getCurrentPhase()) {
             MovingResult moveResult = bridgeGame.move(bridge, getInputBlock(), phase);
             bridgeResult.addResult(moveResult);
             outputView.printMap(bridgeResult);
-            checkRetry(bridgeResult, gameState, moveResult);
+            checkRetry(bridgeResult, gameResult, moveResult);
         }
-        outputView.printResult(bridgeResult, gameState);
+        outputView.printResult(bridgeResult, gameResult);
     }
 
     private List<String> makeBridgeByInputSize() {
-        int bridgeSize = inputView.readBridgeSize();
-        return bridgeMaker.makeBridge(bridgeSize);
+        BridgeSize bridgeSize = inputView.readBridgeSize();
+        return bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
     }
 
-    private void checkRetry(BridgeResult bridgeResult, GameState gameState, MovingResult moveResult) {
+    private void checkRetry(BridgeResult bridgeResult, GameResult gameResult, MovingResult moveResult) {
         if (moveResult.getState().equals("X")) {
-            bridgeGame.retry(bridgeResult, gameState, inputView.readGameCommand());
+            bridgeGame.retry(bridgeResult, gameResult, inputView.readGameCommand());
         }
     }
 

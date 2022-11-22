@@ -1,11 +1,10 @@
 package bridge.view;
 
 import bridge.domain.bridge.BridgeBlock;
+import bridge.domain.bridge.BridgeSize;
 import bridge.domain.result.RetryCommand;
-import bridge.system.Validation;
 
-import static camp.nextstep.edu.missionutils.Console.*;
-import static java.lang.Integer.*;
+import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
@@ -13,18 +12,10 @@ public class InputView {
     private final String SELECT_BLOCK_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-    private final Validation validation;
-
-    public InputView() {
-        validation = new Validation();
-    }
-
-    public int readBridgeSize() {
+    public BridgeSize readBridgeSize() {
         System.out.println(INIT_BRIDGE_SIZE_MESSAGE);
         try {
-            String bridgeSize = readLine();
-            validation.validateBridgeSize(bridgeSize);
-            return parseInt(bridgeSize);
+            return new BridgeSize(readLine());
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }

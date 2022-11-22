@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.result.BridgeResult;
-import bridge.domain.result.GameState;
+import bridge.domain.result.GameResult;
 
 public class OutputView {
 
@@ -27,11 +27,11 @@ public class OutputView {
         System.out.println("[ "+ bridgeResult.lowerMapToString() + " ]");
     }
 
-    public void printResult(BridgeResult bridgeResult, GameState gameState) {
+    public void printResult(BridgeResult bridgeResult, GameResult gameResult) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printMapOfCase(bridgeResult);
-        System.out.println(PASS_OR_FAIL_MESSAGE + checkPassOrFail(gameState.isKeepGoing()));
-        System.out.println(TOTAL_TRY_COUNT_MESSAGE + gameState.getTryCnt());
+        System.out.println(PASS_OR_FAIL_MESSAGE + checkPassOrFail(gameResult.isKeepGoing()));
+        System.out.println(TOTAL_TRY_COUNT_MESSAGE + gameResult.getTryCnt());
     }
 
     private String checkPassOrFail(boolean keepGoing) {
