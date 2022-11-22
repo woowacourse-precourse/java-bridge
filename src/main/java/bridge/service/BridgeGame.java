@@ -9,6 +9,7 @@ import bridge.domain.bridgeTool.BridgeRandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.message.ValidateMessage.INVALID_INPUT;
 import static bridge.util.BridgeUtil.BINARY_UP;
 
 public class BridgeGame {
@@ -80,6 +81,14 @@ public class BridgeGame {
 
     private void crossAllBridge() {
         crossAllBridge = true;
+    }
+
+    private void validateConvert(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
     }
 
 }

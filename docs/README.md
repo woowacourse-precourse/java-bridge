@@ -68,7 +68,7 @@
 - [x] 사용자가 모두 건넜는지 확인한다. #isClearGame()
 - [x] 사용자가 모두 건넌것을 체크한다. #crossAllBridge()
 - [ ] 다리 길이를 검증한다. #validateBridgeSize()
-- [ ] 변환이 되는지 검증한다. #validateConvert()
+- [x] 변환이 되는지 검증한다. #validateConvert()
 - [ ] 다리 길이의 범위를 검증한다. #validateBridgeSizeRange()
 - [ ] 이동 가능한 입력이 아니면 예외를 발생시킨다. #validateInputMoveCommand()
 - [ ] 이동 가능한 입력인지 확인한다. #isMoveCommand()
