@@ -1,5 +1,6 @@
 package bridge.validator;
 
+import bridge.service.dto.request.BridgeSizeRequestDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,7 +13,7 @@ public class InputValidatorTest {
     @ParameterizedTest
     void should_onlyNumberBridgeSizeException_When_inputBridgeSize(String bridgeSize) {
         final String NOT_ONLY_NUMBER = "숫자만 입력이 가능합니다.";
-        assertThatThrownBy(() -> InputValidator.checkBridgeSize(bridgeSize))
+        assertThatThrownBy(() -> new BridgeSizeRequestDto(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_ONLY_NUMBER);
     }
@@ -23,7 +24,7 @@ public class InputValidatorTest {
     void should_minBridgeSizeException_When_inputBridgeSize(Integer size) {
         final String NOT_MIN_SIZE = "다리의 길이는 최소 3이상이어야 합니다.";
         String bridgeSize = String.valueOf(size);
-        assertThatThrownBy(() -> InputValidator.checkBridgeSize(bridgeSize))
+        assertThatThrownBy(() -> new BridgeSizeRequestDto(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_MIN_SIZE);
     }
@@ -33,7 +34,7 @@ public class InputValidatorTest {
     @ParameterizedTest
     void should_maxBridgeSizeException_When_inputBridgeSize(String bridgeSize) {
         final String NOT_MAX_SIZE = "다리의 길이는 최대 20미만이어야 합니다.";
-        assertThatThrownBy(() -> InputValidator.checkBridgeSize(bridgeSize))
+        assertThatThrownBy(() -> new BridgeSizeRequestDto(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_MAX_SIZE);
     }
@@ -42,8 +43,8 @@ public class InputValidatorTest {
     @ValueSource(strings = {"14", "3", "7", "19"})
     @ParameterizedTest
     void should_returnBridgeSizeException_When_inputBridgeSize(String bridgeSize) {
-        int size = InputValidator.checkBridgeSize(bridgeSize);
-        assertThat(size).isEqualTo(Integer.parseInt(bridgeSize));
+        BridgeSizeRequestDto dto = new BridgeSizeRequestDto(bridgeSize);
+        assertThat(dto.getBridgeSize()).isEqualTo(Integer.parseInt(bridgeSize));
     }
 
     @DisplayName("칸을 선택할 때 형식(U 또는 D)에 맞지 않다면 예외 처리")

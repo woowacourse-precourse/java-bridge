@@ -21,7 +21,7 @@ public class InputView {
         while (true) {
             try {
                 System.out.println(INPUT_BRIDGE_SIZE);
-                int bridgeSize = InputValidator.checkBridgeSize(Console.readLine());
+                String bridgeSize = Console.readLine();
                 System.out.println();
                 return new BridgeSizeRequestDto(bridgeSize);
             } catch (IllegalArgumentException e) {
