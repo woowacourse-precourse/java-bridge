@@ -16,20 +16,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Bridge bridge, int index, String moving) {
-
         for (int i = 0; i < 2; i++) {
             System.out.print(Map.BRIDGE_START.getMark());
-            for (int j = 0; j < index - 1; j++) {
+            for (int j = 0; j < index; j++) {
                 printRow();
                 System.out.print(Map.BLOCK_SECTION.getMark());
             }
-            printLast();
             System.out.println(Map.BRIDGE_END.getMark());
         }
         System.out.println();
-    }
-
-    private void printLast() {
     }
 
     public void printRow() {
