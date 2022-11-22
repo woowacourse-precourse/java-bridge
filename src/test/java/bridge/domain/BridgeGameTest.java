@@ -21,7 +21,7 @@ class BridgeGameTest {
     @DisplayName("움직임 명령 성공케이스 테스트")
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
-    void move_ValidMoveCommand_Boolean(String input) {
+    void moveByValidCommand(String input) {
         assertThat(bridgeGame.move(input))
                 .isIn(true, false);
     }
@@ -29,7 +29,7 @@ class BridgeGameTest {
     @DisplayName("움직임 명령 예외케이스 테스트")
     @ValueSource(strings = {"1", "A", "b", "u", "d", "R", "Q", "", " "})
     @ParameterizedTest
-    void move_InvalidMoveCommand_ExceptionThrown(String input) {
+    void moveByInvalidCommand(String input) {
         assertThatThrownBy(() -> bridgeGame.move(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -37,7 +37,7 @@ class BridgeGameTest {
     @DisplayName("재시작 기능 성공케이스 테스트")
     @ValueSource(strings = {"R", "Q"})
     @ParameterizedTest
-    void move_ValidGameCommand_Boolean(String input) {
+    void retryByValidCommand(String input) {
         assertThat(bridgeGame.retry(input))
                 .isIn(true, false);
     }
@@ -45,7 +45,7 @@ class BridgeGameTest {
     @DisplayName("재시작 기능 예외케이스 테스트")
     @ValueSource(strings = {"1", "A", "r", "q", "d", "U", "D", "", " "})
     @ParameterizedTest
-    void move_InvalidGameCommand_ExceptionThrown(String input) {
+    void retryByInvalidCommand(String input) {
         assertThatThrownBy(() -> bridgeGame.retry(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
