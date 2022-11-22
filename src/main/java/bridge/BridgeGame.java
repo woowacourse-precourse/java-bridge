@@ -73,6 +73,7 @@ public class BridgeGame {
      */
     private void retry() throws IllegalArgumentException{
         try {
+            retryOrQuit = input.readGameCommand();
             if (isRetry()) {
                 tryCount++;
                 current.clear();
@@ -87,7 +88,6 @@ public class BridgeGame {
         if (isClear()) {
             return false;
         }
-        retryOrQuit = input.readGameCommand();
         if (!retryOrQuit.equals(ConstString.RETRY) && !retryOrQuit.equals(ConstString.QUIT)) {
             throw new IllegalArgumentException(ConstString.INPUT_RETRY_OR_QUIT_ERROR);
         }
