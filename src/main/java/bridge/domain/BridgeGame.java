@@ -15,10 +15,10 @@ public class BridgeGame {
         return Objects.equals(gameCommand.getGameCommand(), Constants.RESTART);
     }
 
-    public static Bridge generateBridge(SizeOfBridge sizeOfBridge) {
+    public static Bridge generateBridge(BridgeSize bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-        return new Bridge(bridgeMaker.makeBridge(sizeOfBridge.getSize()));
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
     }
 
     private static BridgeMatchResult matchStep(String bridgeStep, MovingCommand movingCommand) {

@@ -2,7 +2,7 @@ package bridge.service;
 
 import bridge.domain.GameCommand;
 import bridge.domain.MovingCommand;
-import bridge.domain.SizeOfBridge;
+import bridge.domain.BridgeSize;
 import bridge.utils.CommandInputParser;
 import bridge.view.InputView;
 
@@ -13,11 +13,11 @@ public class InputViewService {
         inputView = new InputView();
     }
 
-    public SizeOfBridge getReadBridgeSize() {
+    public BridgeSize getReadBridgeSize() {
         try {
             int size = inputView.readBridgeSize();
 
-            return SizeOfBridge.from(size);
+            return BridgeSize.from(size);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getReadBridgeSize();

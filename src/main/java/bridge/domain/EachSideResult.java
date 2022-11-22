@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EachSideResult {
-    private final List<String> sideResults;
+    private List<String> sideResults;
 
     public EachSideResult() {
         this.sideResults = new ArrayList<>();

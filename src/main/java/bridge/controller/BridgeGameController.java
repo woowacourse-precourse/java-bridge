@@ -7,7 +7,7 @@ import static bridge.domain.BridgeGame.retry;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGameResult;
 import bridge.domain.GameCommand;
-import bridge.domain.SizeOfBridge;
+import bridge.domain.BridgeSize;
 import bridge.service.InputViewService;
 import bridge.utils.Constants;
 import bridge.view.OutputView;
@@ -27,13 +27,13 @@ public class BridgeGameController {
         printStartGame();
         Bridge bridge = set();
         printLineBreak();
-        restartGame(bridge, new BridgeGameResult());
+        playGame(bridge, new BridgeGameResult());
     }
 
     private Bridge set() {
-        SizeOfBridge sizeOfBridge = inputViewService.getReadBridgeSize();
+        BridgeSize bridgeSize = inputViewService.getReadBridgeSize();
 
-        return generateBridge(sizeOfBridge);
+        return generateBridge(bridgeSize);
     }
 
     private void playGame(Bridge bridge, BridgeGameResult bridgeGameResult) {
