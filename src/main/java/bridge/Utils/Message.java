@@ -25,7 +25,7 @@ public class Message {
 
     //EROOR
     public static final String BRIDGE_LENTH_NUM_ERROR = "[ERROR] 다리의 길이가 숫자가 아닙니다.";
-    public static final String BRIDGE_LENGTH_RANGE_ERROR = "[ERROR] 다리 길이는 3~20이어야 합니다.";
+    public static final String BRIDGE_LENGTH_RANGE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     public static final String BRIDGE_MOVE_INPUT_ERROR = "[ERROR] 이동칸 선택(U/D) 입력이 잘못되었습니다.";
     public static final String GAME_REPLAY_INPUT_ERROR = "[ERROR] 재시작 여부에 대한 입력이 잘못되었습니다.";
 
