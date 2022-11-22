@@ -55,7 +55,6 @@ public class OutputView {
      */
     static void printResult(Boolean success, Integer tryCount) {
         String result = SuccessConvert(success);
-        String("최종 게임 결과");
         String("게임 성공 여부: "+result);
         String("총 시도한 횟수: "+tryCount);
     }

@@ -22,8 +22,9 @@ public class BridgeGame {
 
     public void Start() {
         Repeat();
-        printResult(success, tryCount);
+        String("최종 게임 결과");
         printMap(playerList, BRIDGE_ANSWER);
+        printResult(success, tryCount);
     }
 
     public Boolean Repeat() {

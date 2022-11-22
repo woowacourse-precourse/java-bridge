@@ -8,8 +8,8 @@ public class Application {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(RepeatReadBridgeSize()));
         OutputView.String("다리 건너기 게임을 시작합니다.");
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(RepeatReadBridgeSize()));
         bridgeGame.Start();
     }
 
