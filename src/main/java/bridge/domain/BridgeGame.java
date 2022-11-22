@@ -24,19 +24,12 @@ public class BridgeGame {
 
     public boolean compare(List<String> bridge,String userInput){
         System.out.println(userInput);
-        if(bridge.get(current).equals(convertUserInput(userInput))){
+        if(bridge.get(current).equals(userInput)){
            move(userInput,"O");
            return true;
         }
-        System.out.println(bridge.get(current));
-        System.out.println(convertUserInput(userInput));
         move(userInput,"X");
         return false;
-    }
-
-    private String convertUserInput(String userInput){
-        if(userInput.equals("U"))return "1";
-        return "0";
     }
 
     /**

@@ -24,9 +24,16 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for(int i=0;i<size;i++){
-            bridge.add(Integer.toString(bridgeNumberGenerator.generate()));
+            int number =bridgeNumberGenerator.generate();
+            bridge.add(upAndDown(number));
+
         }
         return bridge;
+    }
+
+    public String upAndDown(int number){
+        if(number==1)return "U";
+        return "D";
     }
 
 
