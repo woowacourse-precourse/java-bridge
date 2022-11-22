@@ -8,6 +8,7 @@ public class BridgeValidation {
             isInRange(Integer.parseInt(size));
             return true;
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -20,11 +21,10 @@ public class BridgeValidation {
     }
 
     private static void isNumber(String size){
-        try {
-            Double.parseDouble(size);
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            e.printStackTrace();
+        if(!(size.chars().allMatch(Character::isDigit))){
+            System.out.println("[ERROR] 다리 길이는 숫자여야 합니다.");
+            throw new NumberFormatException();
         }
     }
+
 }

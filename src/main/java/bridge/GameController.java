@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.validation.BridgeValidation.bridgeValidation;
+import static bridge.validation.StateValidation.stateValidation;
 
 public class GameController {
 
@@ -24,7 +25,7 @@ public class GameController {
     public void runGame(BridgeGame bridgeGame) {
         do {
             do {
-                bridgeGame.addPlayerBridge(inputView.readMoving());
+                bridgeGame.addPlayerBridge(inputCommand());
                 outputView.printMap(bridgeGame.getPlayerBridge());
                 bridgeGame.move();
             } while (bridgeGame.checkCanMove());
@@ -64,5 +65,13 @@ public class GameController {
             input = inputView.readBridgeSize();
         } while (!bridgeValidation(input));
         return Integer.parseInt(input);
+    }
+
+    private String inputCommand() {
+        String input;
+        do {
+            input = inputView.readMoving();
+        } while (!stateValidation(input));
+        return input;
     }
 }
