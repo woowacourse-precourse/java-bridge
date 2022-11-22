@@ -40,11 +40,53 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 종료_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "Q");
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[   ]",
+                "[ X ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[   ]");
+            int downSideIndex = output().indexOf("[ X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 다리의_길이_예외_테스트1() {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 다리의_길이_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("99");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 칸_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "A");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 재시작_입력_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "D", "A");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
     }
 
     @Override
