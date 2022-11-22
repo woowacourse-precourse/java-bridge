@@ -113,4 +113,8 @@ public class OutputView {
     public void readGameCommandMessage() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
+
+    public String numberInputError() {
+        return "[ERROR] 3이상 20이하의 숫자를 입력해주세요";
+    }
 }
