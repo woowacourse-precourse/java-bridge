@@ -31,27 +31,18 @@ public class OutputView {
         row.put(UP, new ArrayList<>());
         row.put(DOWN, new ArrayList<>());
         for (int i = 0; i < round - 1; i++) {
-            cross(row, Row.of(bridge.get(i)));
+            cross(row, Row.of(bridge.get(i)), true);
         }
-        recentCross(row, Row.of(bridge.get(round - 1)), result);
+        cross(row, Row.of(bridge.get(round - 1)), result);
         printRow(row.get(UP));
         printRow(row.get(DOWN));
     }
 
     private void printRow(List<String> row) {
-        StringBuilder result = new StringBuilder(BRIDGE_START);
-        result.append(String.join(BRIDGE_DELIMITER, row));
-        result.append(BRIDGE_END);
-        System.out.println(result.toString());
+        System.out.println(BRIDGE_START + String.join(BRIDGE_DELIMITER, row) + BRIDGE_END);
     }
 
-    private void cross(Map<Row, List<String>> row, Row moving) {
-        Row otherSide = getOtherSide(moving);
-        row.get(moving).add(MOVING_O);
-        row.get(otherSide).add(MOVING_EMPTY);
-    }
-
-    private void recentCross(Map<Row, List<String>> row, Row moving, boolean isCorrectMoving) {
+    private void cross(Map<Row, List<String>> row, Row moving, boolean isCorrectMoving) {
         Row otherSide = getOtherSide(moving);
         if (isCorrectMoving) {
             row.get(otherSide).add(MOVING_EMPTY);
