@@ -62,11 +62,4 @@ public class InputTest {
         assertThatThrownBy(() -> InputException.validateInputRetryCommand(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("게임재시작_입력_성공")
-    @ValueSource(strings = {"R", "Q"})
-    @ParameterizedTest()
-    void 게임재시작_입력_성공_테스트(String size) {
-        assertThatNoException().isThrownBy(() -> InputException.validateInputRetryCommand(size));
-    }
 }
