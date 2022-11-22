@@ -24,7 +24,7 @@ public class BridgeGameController {
     }
 
     public void isSuccessGame() {
-        while(!bridgeGame.isSuccessGame() && !retry.equals("Q")){
+        while (!bridgeGame.isSuccessGame() && !retry.equals("Q")) {
             String moveDirection = inputView.readMoving();
             moveBridge(moveDirection);
         }
@@ -46,10 +46,21 @@ public class BridgeGameController {
         if (!isSameDirection) {
             bridgeGame.notMove(moveDirection);
             printGameMap();
-            
+            retryOrQuitGame();
         }
     }
 
+    public void retryOrQuitGame() {
+        retry = inputView.readGameCommand();
+        if (retry.equals("Q")) {
+            printGameMessage();
+            printGameMap();
+            printGameResult(false);
+        }
+        if (retry.equals("R")) {
+            bridgeGame.retry();
+        }
+    }
 
     public void printGameMessage() {
         outputView.printMapMessage();
