@@ -8,7 +8,7 @@ enum OutputGameMessage {
 
     private final String outputMessage;
 
-    OutputGameMessage(String outputMessage) {
+    OutputGameMessage(final String outputMessage) {
         this.outputMessage = outputMessage;
     }
 

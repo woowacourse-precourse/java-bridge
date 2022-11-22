@@ -41,7 +41,7 @@ public class MovingProcessing {
     /**
      * 랜덤으로 입력된 브릿지를 매개변수로 사용자의 입력과 매치한다.
      */
-    public boolean compareBridgeToInput(String input, List<String> bridge) {
+    public boolean compareBridgeToInput(final String input, final List<String> bridge) {
         boolean isSuccess = true;
         int index = upSide.size();
         isSuccess = jumpToBridge(input, bridge.get(index));
@@ -52,7 +52,7 @@ public class MovingProcessing {
         return isSuccess;
     }
 
-    private boolean jumpToBridge(String input, String bridge) {
+    private boolean jumpToBridge(final String input, final String bridge) {
         boolean isEquals = input.equals(bridge);
         if (!isEquals) {
             selectedBridgeIsFail(input);
@@ -62,7 +62,7 @@ public class MovingProcessing {
         return true;
     }
 
-    private void selectedBridgeIsSucceed(String input) {
+    private void selectedBridgeIsSucceed(final String input) {
         if (input.equals("U")) {
             upSide.add("O");
             downSide.add(" ");
@@ -73,7 +73,7 @@ public class MovingProcessing {
         }
     }
 
-    private void selectedBridgeIsFail(String input) {
+    private void selectedBridgeIsFail(final String input) {
         if (input.equals("U")) {
             upSide.add("X");
             downSide.add(" ");

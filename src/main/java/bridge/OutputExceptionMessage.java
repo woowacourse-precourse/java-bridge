@@ -12,7 +12,7 @@ public enum OutputExceptionMessage {
     /**
      * [ERROR] + "메시지"
      */
-    OutputExceptionMessage(String message) {
+    OutputExceptionMessage(final String message) {
         this.outputMessage =
                 ERROR_MESSAGE
                         + " "

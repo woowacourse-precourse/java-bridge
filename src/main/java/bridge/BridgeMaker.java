@@ -17,7 +17,7 @@ public class BridgeMaker {
     /**
      * @param size 다리의 길이
      */
-    public List<String> makeBridge(int size) {
+    public List<String> makeBridge(final int size) {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {

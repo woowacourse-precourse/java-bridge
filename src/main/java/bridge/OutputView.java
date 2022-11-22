@@ -13,7 +13,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> upSide, List<String> downSide) {
+    public void printMap(final List<String> upSide,final List<String> downSide) {
         String upSideBridge = upSide.stream().collect(Collectors.joining(" | ", "[ ", " ]"));
         String downBridge = downSide.stream().collect(Collectors.joining(" | ", "[ ", " ]"));
         System.out.println(upSideBridge);
@@ -25,7 +25,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String upSideBridge, String downSideBridge, int count) {
+    public void printResult(final String upSideBridge,final String downSideBridge,final int count) {
         System.out.println("최종 게임 결과");
         System.out.println(upSideBridge);
         System.out.println(downSideBridge);

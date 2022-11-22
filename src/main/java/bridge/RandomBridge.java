@@ -34,7 +34,7 @@ public class RandomBridge {
     /**
      * 사이즈를 받아서 그 크기만큼 랜덤 할당
      */
-    private void makeBridge(int bridgeSize) {
+    private void makeBridge(final int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
         bridge = bridgeMaker.makeBridge(bridgeSize);
