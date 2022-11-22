@@ -7,12 +7,21 @@ import bridge.input.validator.BridgeSizeValidator;
 public class BridgeSizeGetter {
     private static final String PROMPT_FOR_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 
+    private static BridgeSizeGetter instance;
+
     private final InputView inputView;
     private final BridgeSizeValidator validator;
 
-    public BridgeSizeGetter() {
+    private BridgeSizeGetter() {
         this.inputView = new InputView();
         this.validator = new BridgeSizeValidator();
+    }
+
+    public static BridgeSizeGetter getBridgeSizeGetter() {
+        if (instance == null) {
+            instance = new BridgeSizeGetter();
+        }
+        return instance;
     }
 
     public int getBridgeSizeFromConsole() throws IllegalArgumentException {
