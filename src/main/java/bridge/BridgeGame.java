@@ -9,6 +9,14 @@ public class BridgeGame {
     private List<String> bridge;
     private Game game;
 
+    public Game getGame() {
+        return game;
+    }
+
+    public void newGame() {
+        game = new Game();
+    }
+
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
