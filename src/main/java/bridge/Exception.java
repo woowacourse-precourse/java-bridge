@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.bridge.BridgeMaker;
+
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
