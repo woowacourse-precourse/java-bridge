@@ -41,4 +41,11 @@ public class Round {
                 .mapToObj(CACHE::get)
                 .collect(Collectors.toList());
     }
+
+    public static List<Round> getRoundsWithSizeOrderByAsc(int number) {
+        validate(number);
+        return IntStream.rangeClosed(ROUND_LOWER_BOUND, number)
+                .mapToObj(CACHE::get)
+                .collect(Collectors.toList());
+    }
 }
