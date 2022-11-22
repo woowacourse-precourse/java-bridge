@@ -30,18 +30,9 @@ public class Controller {
         while(gameContinue){
             String position = inputView.readMoving();
             gameStatus = bridgeGame.gamePlayOnce(position);
-            if(!gameStatus){
-                //실패한 맵 표시
-                outputView.printMap(bridgeGame.mySelectBridge, false, bridgeGame.mySelectBridge.size()-1);
-                String gameCommand = inputView.readGameCommand();
-                gameContinue = bridgeGame.retry(gameCommand);
-                continue;
-            }
-            //성공한 맵 표시
-            outputView.printMap(bridgeGame.mySelectBridge, true, bridgeGame.mySelectBridge.size()-1);
-            gameContinue = bridgeGame.move();
+            printGameStatusMap(gameStatus);
+            gameContinue = askGame(gameStatus);
         }
-
         finishBridgeGame(gameStatus);
     }
 
@@ -58,6 +49,24 @@ public class Controller {
         System.out.println("최종 게임 결과");
         outputView.printMap(bridgeGame.mySelectBridge, gameStatus, bridgeGame.mySelectBridge.size()-1);
         outputView.printResult(bridgeGame.gameSuccess, bridgeGame.gameTryCount);
+    }
+
+    public void printGameStatusMap(boolean gameStatus){
+        if(!gameStatus){
+            //실패한 맵 표시
+            outputView.printMap(bridgeGame.mySelectBridge, false, bridgeGame.mySelectBridge.size()-1);
+            return;
+        }
+        //성공한 맵 표시
+        outputView.printMap(bridgeGame.mySelectBridge, true, bridgeGame.mySelectBridge.size()-1);
+    }
+
+    public boolean askGame(boolean gameStatus){
+        if(!gameStatus){
+            String gameCommand = inputView.readGameCommand();
+            return bridgeGame.retry(gameCommand);
+        }
+        return bridgeGame.move();
     }
 
 }
