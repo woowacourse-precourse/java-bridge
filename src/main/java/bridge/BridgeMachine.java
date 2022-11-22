@@ -6,6 +6,11 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+    private BridgeGame bridgeGameStart() {
+        BridgeGame bridgeGame = new BridgeGame();
+        OutputView.gameStart();
+        return bridgeGame;
+    }
     private boolean userMove(BridgeGame bridgeGame, Bridge bridge, String userMoveCommand) {
         if (!bridgeGame.move(userMoveCommand, bridge, index)) {
             bridge.changeBridgeMap(index, userMoveCommand, "X");
