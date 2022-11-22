@@ -1,19 +1,15 @@
 package bridge;
 
 import bridge.domain.player.Player;
-import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
 
-    Player player;
-    @Before
-    public void setUp(){
-        player=new Player();
-    }
+    Player player=new Player();
 
     @DisplayName("moveCommand 예외 테스트")
     @Test

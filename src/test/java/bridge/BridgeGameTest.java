@@ -2,19 +2,16 @@ package bridge;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeGame;
-import org.junit.Before;
+
 import org.junit.jupiter.api.DisplayName;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class BridgeGameTest{
-    BridgeGame bridgeGame;
-    @Before
-    public void setUp(){
-        bridgeGame = new BridgeGame();
-    }
+    BridgeGame bridgeGame = new BridgeGame();
 
     @DisplayName("makeBridge Test")
     @Test

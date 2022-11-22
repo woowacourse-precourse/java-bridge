@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.domain.bridge.Bridge;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
