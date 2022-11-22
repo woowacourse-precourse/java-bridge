@@ -17,14 +17,10 @@ public enum GameCommand {
                 return gameCommand;
             }
         }
-        throw INVALID_INPUT_GAME_COMMAND.getValue();
+        throw INVALID_INPUT_GAME_COMMAND.getException();
     }
 
     private static boolean isSameCommand(String inputGameCommand, GameCommand gameCommand) {
         return gameCommand.name().equals(inputGameCommand);
-    }
-
-    public String getValue() {
-        return this.command;
     }
 }
