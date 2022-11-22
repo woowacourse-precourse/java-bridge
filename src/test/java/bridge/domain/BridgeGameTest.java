@@ -3,7 +3,6 @@ package bridge.domain;
 import bridge.Application;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -70,8 +69,8 @@ class BridgeGameTest {
         bridgeGame.bridge = Arrays.asList("U", "D", "U");
         bridgeGame.movingInput = "D";
         bridgeGame.wrongWayMove();
-        assertEquals(bridgeGame.upSide.upSideArr, Arrays.asList(" "));
-        assertEquals(bridgeGame.downSide.downSideArr, Arrays.asList("X"));
+        assertEquals(bridgeGame.upSide.upSideArr, List.of(" "));
+        assertEquals(bridgeGame.downSide.downSideArr, List.of("X"));
     }
 
     @DisplayName("정답 시 True 를 반환한다.")
