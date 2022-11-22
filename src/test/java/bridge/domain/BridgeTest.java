@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeTest {
@@ -14,6 +17,8 @@ class BridgeTest {
     private static InputStream generateUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
 
     @DisplayName("다리의 길이가 숫자가 아니면 예외가 발생한다.")
     @Test
@@ -46,5 +51,14 @@ class BridgeTest {
         assertThatThrownBy(InputView::readBridgeSize)
                 .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력한 길이 만큼의 다리를 생성한다.")
+    @Test
+    void createBridgeBySize() {
+        int size = 20;
+        Bridge bridge = Bridge.of(bridgeMaker.makeBridge(size));
+
+        assertThat(bridge.getBridgeLength()).isEqualTo(size);
     }
 }
