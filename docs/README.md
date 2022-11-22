@@ -40,8 +40,8 @@
     - BridgeResult - getLastResult() 구현 [X]
 
 
-8. **다리를 모두 건너거나 게임을 종료했을 경우 최종결과를 출력한다** [ ]
-    - OutputView - printResult() 구현 [ ]
+8. **다리를 모두 건너거나 게임을 종료했을 경우 최종결과를 출력한다** [X]
+    - OutputView - printResult() 구현 [X]
 
 
 9. **구현한 기능들을 통합한다** [ ]
