@@ -36,8 +36,8 @@ public class BridgeGame {
         drawGameMapBySurvival(player.die(bridge, moving), moving);
     }
 
-    private void changeStateByPlayerLife(boolean playerDie) {
-        if (playerDie) {
+    private void changeStateByPlayerLife(boolean isPlayerDied) {
+        if (isPlayerDied) {
             setState(GameState.FAIL);
             return;
         }
@@ -46,8 +46,8 @@ public class BridgeGame {
         }
     }
 
-    private void drawGameMapBySurvival(boolean playerDie, Moving moving) {
-        if (playerDie) {
+    private void drawGameMapBySurvival(boolean isPlayerDied, Moving moving) {
+        if (isPlayerDied) {
             gameMap.draw(moving, DrawType.FAIL);
             return;
         }
