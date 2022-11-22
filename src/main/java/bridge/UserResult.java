@@ -11,24 +11,24 @@ public class UserResult {
         this.lowerResult = null;
     }
 
-    public void plusResult(String inputBridge, boolean rightBridge) {
+    public void plusResult(String inputBridge, boolean isRightBridge) {
         plusBar();
         if (inputBridge.equals("U")) {
-            selectUpperResult(inputBridge, rightBridge);
+            selectUpperResult(inputBridge, isRightBridge);
             unselectLowerResult();
         }
         if (inputBridge.equals("D")) {
-            selectLowerResult(inputBridge, rightBridge);
+            selectLowerResult(inputBridge, isRightBridge);
             unselectUpperResult();
         }
     }
 
-    public void selectUpperResult(String inputBridge, boolean rightBridge) {
+    public void selectUpperResult(String inputBridge, boolean isRightBridge) {
         if (inputBridge.equals("U")) {
-            if(rightBridge) {
+            if(isRightBridge) {
                 upperResult = upperResult + "O ";
             }
-            if(!rightBridge) {
+            if(!isRightBridge) {
                 upperResult = upperResult + "X ";
             }
         }
@@ -38,12 +38,12 @@ public class UserResult {
         upperResult = upperResult + "  ";
     }
 
-    public void selectLowerResult(String inputBridge, boolean rightBridge) {
+    public void selectLowerResult(String inputBridge, boolean isRightBridge) {
         if (inputBridge.equals("D")) {
-            if(rightBridge) {
+            if(isRightBridge) {
                 lowerResult = lowerResult + "O ";
             }
-            if(!rightBridge) {
+            if(!isRightBridge) {
                 lowerResult = lowerResult + "X ";
             }
         }
