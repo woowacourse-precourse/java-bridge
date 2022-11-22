@@ -9,17 +9,16 @@ import static bridge.Constant.Constant.*;
  */
 public class InputView {
 
-    public String readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
-        String bridgeSize = Console.readLine();
-        validateRange(bridgeSize);
-        return bridgeSize;
+        int bridgeLength = Integer.parseInt(Console.readLine());
+        validateRange(bridgeLength);
+        return bridgeLength;
     }
 
-    private void validateRange(String bridgeSize) {
-        int bridgeLength = Integer.parseInt(bridgeSize);
+    private void validateRange(int bridgeLength) {
         if(bridgeLength < 3 || bridgeLength > 20){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_BRIDGE_SIZE_ERROR);
         }
     }
 
