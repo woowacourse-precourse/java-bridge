@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 public enum MapComponentType {
 
-    UP("U"),
-    DOWN("D");
+    DOWN("D"),
+    UP("U");
 
     private final String mapComponent;
 
