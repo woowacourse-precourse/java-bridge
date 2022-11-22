@@ -41,14 +41,30 @@ public class InputView {
 	}
 
 	private void validateBridgeSize(String input) {
-
+		if(!input.matches("^[0-9]*$")) {
+			throw new IllegalArgumentException(ERROR_MESSAGE + BRIDGESIZE_ERROR_MESSAGE);
+		}
+		int size = Integer.parseInt(input);
+		if (size < 3 || size > 20) {
+			throw new IllegalArgumentException(ERROR_MESSAGE + BRIDGESIZE_ERROR_MESSAGE);
+		}
 	}
 
 	private void validateMoving(String input) {
-
+		if(!input.matches("^[A-Z]*$")) {
+			throw new IllegalArgumentException(ERROR_MESSAGE + MOVING_ERROR_MESSAGE);
+		}
+		if (!input.equals("U") && !input.equals("D")) {
+			throw new IllegalArgumentException(ERROR_MESSAGE + MOVING_ERROR_MESSAGE);
+		}
 	}
 
 	private void validateGameCommand(String input) {
-
+		if(!input.matches("^[A-Z]*$")) {
+			throw new IllegalArgumentException(ERROR_MESSAGE + MOVING_ERROR_MESSAGE);
+		}
+		if (!input.equals("R") && !input.equals("Q")) {
+			throw new IllegalArgumentException(ERROR_MESSAGE + GAME_COMMAND_ERROR_MESSAGE);
+		}
 	}
 }
