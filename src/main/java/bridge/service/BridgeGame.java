@@ -14,6 +14,7 @@ import static bridge.message.ValidateMessage.OUT_OF_RANGE;
 import static bridge.util.BridgeUtil.*;
 import static bridge.util.BridgeUtil.DOWN;
 import static bridge.util.GameCommand.QUIT;
+import static bridge.util.GameCommand.RESTART;
 
 public class BridgeGame {
 
@@ -115,6 +116,13 @@ public class BridgeGame {
 
     private boolean isEndCommand(String command) {
         if (QUIT.equals(command)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isRestartCommand(String command) {
+        if (RESTART.equals(command)) {
             return true;
         }
         return false;
