@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class MoveResultTest {
 
@@ -19,9 +17,9 @@ class MoveResultTest {
 		List<String> expect2 = new ArrayList<>(List.of("X", " "));
 		List<String> expect3 = new ArrayList<>(List.of(" ", "O"));
 
-		List<String> result = MoveResult.createMoveResult("U",true);
-		List<String> result2 = MoveResult.createMoveResult("U",false);
-		List<String> result3 = MoveResult.createMoveResult("D",true);
+		List<String> result = MoveResult.createMoveResult("U", true);
+		List<String> result2 = MoveResult.createMoveResult("U", false);
+		List<String> result3 = MoveResult.createMoveResult("D", true);
 
 		assertEquals(expect, result);
 		assertEquals(expect2, result2);

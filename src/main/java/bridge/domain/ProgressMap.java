@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import static bridge.domain.command.MoveCommand.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
