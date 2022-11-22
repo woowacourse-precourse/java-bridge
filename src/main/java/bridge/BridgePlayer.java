@@ -6,7 +6,7 @@ import static bridge.constant.BridgeControl.RESTART;
 import static bridge.constant.BridgeMove.UP;
 
 public class BridgePlayer {
-    private Integer moveBridgeSpace = 0, tryCount = 0;
+    private Integer moveBridgeSpace = 0, tryCount = 1;
 
     private Boolean isSuccess;
 
@@ -22,12 +22,10 @@ public class BridgePlayer {
 
     public void moveCorrectBridge() {
         this.moveBridgeSpace++;
-        this.tryCount++;
         this.isSuccess = true;
     }
 
     public void moveWrongBridge() {
-        this.tryCount++;
         this.isSuccess = false;
     }
 
@@ -43,8 +41,8 @@ public class BridgePlayer {
         return tryCount;
     }
 
-    public void saveInputCommand(String moveNumber) {
-        this.lastInputCommand = moveNumber;
+    public void saveInputCommand(String inputCommand) {
+        this.lastInputCommand = inputCommand;
     }
 
     public boolean isMoveUp() {
@@ -53,5 +51,9 @@ public class BridgePlayer {
 
     public boolean isRestart() {
         return lastInputCommand.equals(RESTART.getIdentifier());
+    }
+
+    public void addTryCount() {
+        this.tryCount += 1;
     }
 }
