@@ -21,4 +21,12 @@ class BridgeTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("다리 길이가 20보다 크면 예외가 발생한다.")
+    @Test
+    void inputLengthByOverRange() {
+        assertThatThrownBy(() -> new Bridge(21, new BridgeMaker(new BridgeRandomNumberGenerator())))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
 }

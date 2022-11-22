@@ -62,3 +62,4 @@
 
 ### BridgeTest
 - `inputLengthByUnderRange()` : 다리 길이가 3보다 작으면 예외가 발생한다.
+- `inputLengthByOverRange()` : 다리 길이가 20보다 크면 예외가 발생한다.
