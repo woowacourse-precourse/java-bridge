@@ -9,7 +9,8 @@ import java.util.Map;
  */
 public class BridgeGame {
 
-    public void run() {
+    public void startBridgeGame() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
         List<String> bridge = createBridge();
         runGameSystem(bridge, 1);
     }
