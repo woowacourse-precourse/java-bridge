@@ -5,11 +5,10 @@ public class InputValidator {
     static String UPPER_CASE = "(?=.*[A-Z])";
     static String ONLY_NUMBER = "[0-9]+";
 
-    public static int validateInputBridgeLength(String inputLength) {
+    public static void validateInputBridgeLength(String inputLength) {
         checkOnlyNumber(inputLength);
         int bridgeLength = toInt(inputLength);
         validateBridgeLength(bridgeLength);
-        return bridgeLength;
     }
 
     public static void validateInputMoveCommande(String inputMoveCommande) {
