@@ -1,6 +1,6 @@
-package controller;
+package bridge.controller;
 
-import view.InputView;
+import bridge.view.InputView;
 
 public class InputController {
 

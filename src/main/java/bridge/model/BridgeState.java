@@ -1,7 +1,7 @@
-package model;
+package bridge.model;
 
-import view.Constants;
-import view.OutputMessage;
+import bridge.view.Constants;
+import bridge.view.OutputMessage;
 
 public class BridgeState {
 

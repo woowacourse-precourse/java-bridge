@@ -1,7 +1,7 @@
-package model;
+package bridge.model;
 
 import bridge.BridgeNumberGenerator;
-import view.Constants;
+import bridge.view.Constants;
 
 import java.util.ArrayList;
 import java.util.List;

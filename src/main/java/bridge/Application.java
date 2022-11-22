@@ -1,6 +1,6 @@
 package bridge;
 
-import controller.GameController;
+import bridge.controller.GameController;
 
 public class Application {
 

@@ -1,8 +1,8 @@
-package controller;
+package bridge.controller;
 
-import model.BridgeState;
-import view.Constants;
-import view.OutputMessage;
+import bridge.model.BridgeState;
+import bridge.view.Constants;
+import bridge.view.OutputMessage;
 
 public class OutputController {
 

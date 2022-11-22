@@ -1,9 +1,9 @@
-package controller;
+package bridge.controller;
 
-import model.BridgeGame;
-import model.AllBridge;
-import view.InputMessage;
-import view.OutputView;
+import bridge.model.BridgeGame;
+import bridge.model.AllBridge;
+import bridge.view.InputMessage;
+import bridge.view.OutputView;
 
 public class GameController {
 

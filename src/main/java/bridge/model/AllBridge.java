@@ -1,9 +1,8 @@
-package model;
+package bridge.model;
 
 
 import bridge.BridgeRandomNumberGenerator;
-import controller.InputController;
-import view.InputView;
+import bridge.controller.InputController;
 
 import java.util.ArrayList;
 import java.util.List;

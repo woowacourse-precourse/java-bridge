@@ -1,4 +1,4 @@
-package view;
+package bridge.view;
 
 public enum OutputMessage {
 

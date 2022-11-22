@@ -1,4 +1,4 @@
-package view;
+package bridge.view;
 
 public enum ErrorMessage {
     DIGIT("[ERROR] 다리 길이는 정수만 입력해주세요."),

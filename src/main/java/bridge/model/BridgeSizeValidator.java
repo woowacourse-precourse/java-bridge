@@ -1,7 +1,7 @@
-package model;
+package bridge.model;
 
-import view.Constants;
-import view.ErrorMessage;
+import bridge.view.Constants;
+import bridge.view.ErrorMessage;
 
 public class BridgeSizeValidator {
 
