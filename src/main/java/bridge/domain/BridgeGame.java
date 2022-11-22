@@ -1,8 +1,5 @@
 package bridge.domain;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final Bridge bridge;
     private BridgeGameResult result;
@@ -22,7 +19,7 @@ public class BridgeGame {
 
         BridgeGameTrialResult currentTrial = result.getCurrentTrialResult();
         boolean roundResult = canMove(round, move);
-        currentTrial.addRoundResult(roundResult);
+        currentTrial.addRoundResult(round, move, roundResult);
         return roundResult;
     }
 
@@ -56,12 +53,9 @@ public class BridgeGame {
         return bridge.getBridgeLength().getLength();
     }
 
-    public BridgeGameResult getBridgeGameResult() {
+    public BridgeGameResult getResult() {
         return result;
     }
 
-    public BridgeGameTrialResult getBridgeGameTrialResult(int trial) {
-        return result.getTrialResult(trial - 1);
-    }
 
 }
