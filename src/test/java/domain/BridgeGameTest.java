@@ -87,4 +87,14 @@ public class BridgeGameTest {
         bridgeGameService.restart();
         assertThat(bridgeGameService.getBridge()).isEqualTo(bridge);
     }
+
+    @DisplayName("다음 칸 이동 가능하면 성공")
+    @ValueSource(ints = {0, 10, 19})
+    @ParameterizedTest
+    void 다음칸_이동_가능_성공(int index) {
+        List<String> bridge = bridgeGameService.getBridge();
+        String target = bridge.get(index);
+        bridgeGameService.moveNext(target);
+        assertThat(bridgeGameService.success());
+    }
 }
