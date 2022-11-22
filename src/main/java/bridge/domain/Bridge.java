@@ -20,10 +20,6 @@ public class Bridge {
         return blocks;
     }
 
-    public String getBlock(int index) {
-        return blocks.get(index);
-    }
-
     public int getBridgeSize() {
         return blocks.size();
     }

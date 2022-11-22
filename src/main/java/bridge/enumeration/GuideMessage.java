@@ -1,4 +1,4 @@
-package bridge.message;
+package bridge.enumeration;
 
 public enum GuideMessage {
     START("다리 건너기 게임을 시작합니다."),
