@@ -4,7 +4,6 @@ import bridge.util.InputValidator;
 import bridge.view.InputView;
 
 public class InputController {
-
     public int getBridgeSize(String bridgeSize) throws RuntimeException {
         return checkBridgeSize(bridgeSize);
     }
