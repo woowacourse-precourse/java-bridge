@@ -31,6 +31,7 @@ public class BridgeGameSystem {
             moving = move();
             gameStatus = getGameStatus(moving);
         } while (gameStatus.equals(GameStatus.NEXT) || gameStatus.equals(GameStatus.RETRY));
+        outputView.printResult(bridgeGame);
     }
 
     private Moving move() {

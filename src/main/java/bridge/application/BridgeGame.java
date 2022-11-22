@@ -4,14 +4,14 @@ import bridge.domain.Bridge;
 import bridge.domain.Count;
 import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
-import bridge.domain.Move;
 import bridge.domain.Moving;
+import bridge.domain.Move;
 import bridge.domain.Result;
 import bridge.domain.UserBridge;
 
 public class BridgeGame {
 
-    private final Bridge bridge;
+    private Bridge bridge;
     private Count count;
     private UserBridge userBridge;
     private Moving moving;
@@ -48,6 +48,14 @@ public class BridgeGame {
             return Result.SUCCESS;
         }
         return Result.FAIL;
+    }
+
+    public Moving getMoving() {
+        return this.moving;
+    }
+
+    public Count getCount() {
+        return this.count;
     }
 
 }
