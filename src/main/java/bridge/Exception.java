@@ -29,4 +29,10 @@ public class Exception {
 		}
 	}
 
+	public void checkRetryInput(String moving) throws IllegalArgumentException {
+		if (!moving.equals(Constants.ALPHABET_R) && !moving.equals(Constants.ALPHABET_Q)) {
+			throw new IllegalArgumentException(Constants.ERROR_R_Q_INPUT);
+		}
+	}
+
 }
