@@ -13,17 +13,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String command, List<String> result, List<String> upresult, List<String> downresult) {
+    public void printMap(String command, List<String> result, List<String> upResult, List<String> downResult) {
         System.out.print("[ ");
 
         if(command.equals("U")) {
-            printUp(result, upresult);
+            printUp(result, upResult);
         }
-        printDown(result, downresult);
+        //printDown(result, downResult);
     }
 
-    public void printUp(List<String> result, List<String> upresult) {
-        for (int i = 0; i < upresult.size() && result.get(i).equals("U"); i++) {
+    public void printUp(List<String> result, List<String> upResult) {
+        for (int i = 0; i < upResult.size() && result.get(i).equals("U"); i++) {
             System.out.print(getResult(result.get(i), i, result.size() - 1));
         }
 
