@@ -27,8 +27,7 @@ public class Controller {
     private boolean gamePlay(boolean gameContinue){
         boolean movingSuccess = true;
         while(gameContinue){
-            String movingChoice = inputView.readMoving();
-            Movement moving = new Movement(movingChoice);
+            Movement moving = new Movement(inputView.readMoving());
             movingSuccess = bridgeGame.move(moving);
             printMovingStatusMap(movingSuccess);
             gameContinue = checkGameContinue(movingSuccess);
