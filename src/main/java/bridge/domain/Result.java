@@ -7,13 +7,13 @@ public class Result {
 
     private ResultType resultType;
     private boolean keeping;
-    private List<List<String>> allResult;
+    private List<List<String>> allResults;
     private int tryCount;
 
     public Result(){
         this.resultType = ResultType.FAIL;
         this.keeping = true;
-        this.allResult = new ArrayList<>();
+        this.allResults = new ArrayList<>();
         this.tryCount = 0;
     }
 
@@ -25,8 +25,8 @@ public class Result {
         return keeping;
     }
 
-    public List<List<String>> getAllResult() {
-        return allResult;
+    public List<List<String>> getAllResults() {
+        return allResults;
     }
 
     public int getTryCount() {
@@ -35,10 +35,7 @@ public class Result {
     public void plusTryCount(){
         this.tryCount = getTryCount()+1;
     }
-
-    public void setKeeping(boolean keeping){
-        this.keeping = keeping;
-    }
+    
     public void checkKeeping(String restart){
         if(restart.equals("R")){
             keeping = true;
@@ -47,9 +44,9 @@ public class Result {
             keeping = false;
     }
     public void combineResult(List<String> up, List<String> down){
-        allResult.clear();
-        allResult.add(up);
-        allResult.add(down);
+        allResults.clear();
+        allResults.add(up);
+        allResults.add(down);
     }
     public void judgeResult(boolean right){
         if(right)
@@ -58,7 +55,7 @@ public class Result {
             resultType = ResultType.FAIL;
     }
     public void resetAllResult(){
-        allResult.clear();
+        allResults.clear();
     }
 
 }

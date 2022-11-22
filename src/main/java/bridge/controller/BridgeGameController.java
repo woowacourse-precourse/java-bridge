@@ -55,11 +55,11 @@ public class BridgeGameController {
 
     public void combineUpDown(){
         result.combineResult(moving.getUp(),moving.getDown());
-        outputView.printMap(result.getAllResult());
+        outputView.printMap(result.getAllResults());
     }
     public void makeTotalResult(){
         bridgeGame.judgeResult();
-        outputView.printResult(result.getAllResult(),result.getResultType().getName(),result.getTryCount());
+        outputView.printResult(result.getAllResults(),result.getResultType().getName(),result.getTryCount());
     }
 
 
