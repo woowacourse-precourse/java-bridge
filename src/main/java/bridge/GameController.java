@@ -12,7 +12,7 @@ public class GameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final BridgeGame bridgeGame = new BridgeGame(new ValidatorProcessorImpl(), new BridgeMaker(new BridgeRandomNumberGenerator()));
+    private final BridgeGame bridgeGame = new BridgeGame(new ValidatorProcessorImpl());
     private static int retryNumber = 1;
     private static final int upSide = 0;
     private static final int downSide = 1;

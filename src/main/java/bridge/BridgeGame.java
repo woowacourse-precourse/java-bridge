@@ -13,14 +13,13 @@ import java.util.List;
 public class BridgeGame {
 
     private final ValidatorProcessor validatorProcessor;
-    private final BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static final int upSide = 0;
     private static final int downSide = 1;
     private static final String BLANK_STRING = " ";
 
-    public BridgeGame(ValidatorProcessor validatorProcessor, BridgeMaker bridgeMaker) {
+    public BridgeGame(ValidatorProcessor validatorProcessor) {
         this.validatorProcessor = validatorProcessor;
-        this.bridgeMaker = bridgeMaker;
     }
 
     /**

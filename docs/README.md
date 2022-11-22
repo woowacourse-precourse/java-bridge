@@ -52,3 +52,4 @@
 6. [x] OutputView 기능
 7. [x] BridgeGame 기능
 8. [x] GameController 기능 
+9. [x] BridgeGame 테스트
