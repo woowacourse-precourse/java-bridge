@@ -11,11 +11,13 @@ public class BridgeGame {
     private List<String> bridge;
     private int step;
     private BridgeGameStstus status;
+    private int tryCnt;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.step = 0;
         this.status = BridgeGameStstus.PROCEEDING;
+        this.tryCnt = 1;
     }
 
     /**
@@ -51,6 +53,7 @@ public class BridgeGame {
     public void retry() {
         step = 0;
         status = BridgeGameStstus.PROCEEDING;
+        tryCnt++;
     }
 
     public List<String> getBridge() {
@@ -61,5 +64,8 @@ public class BridgeGame {
     }
     public BridgeGameStstus getStatus() {
         return this.status;
+    }
+    public int getTryCnt() {
+        return this.tryCnt;
     }
 }
