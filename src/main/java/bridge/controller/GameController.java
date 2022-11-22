@@ -3,10 +3,14 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.OutputView;
 import bridge.model.Moving;
 import bridge.model.ReEnter;
 
 import java.util.List;
+
+import static bridge.enums.Sentence.*;
+
 
 public class GameController {
 
@@ -33,5 +37,11 @@ public class GameController {
             }
         }
         isClear = false;
+    }
+
+    public static void printMovingAndResult() {
+        System.out.println(RESULT.getValue());
+        Moving.printMoving();
+        OutputView.printResult(returnSuccessOrFailure(!isClear), TRY_COUNT);
     }
 }
