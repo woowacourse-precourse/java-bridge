@@ -15,6 +15,4 @@ public class ExceptionView {
     public static void commandRestartOrNotError() {
         message = "[ERROR] R(재시작)과 Q(종료) 중 하나를 선택하여야 합니다.";
     }
-
-
 }

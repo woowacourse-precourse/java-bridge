@@ -8,8 +8,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -52,7 +50,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 입력_에러_재시작_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("1","a","3","X", "U", "U", "U");
+            run("1", "a", "3", "X", "U", "U", "U");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O | O | O ]",
@@ -67,7 +65,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 틀린_값_재시도_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D","R","U","D","U");
+            run("3", "U", "D", "D", "R", "U", "D", "U");
             assertThat(output()).contains(
                     "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
                     "최종 게임 결과",
@@ -83,7 +81,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 중도_포기_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D","Q");
+            run("3", "U", "D", "D", "Q");
             assertThat(output()).contains(
                     "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
                     "최종 게임 결과",

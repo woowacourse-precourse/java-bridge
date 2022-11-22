@@ -1,6 +1,5 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -20,7 +19,7 @@ public class BridgeTest extends NsTest {
     void 다리길이_범위초과_예외_테스트(int size) {
         List<String> ar = new ArrayList<>();
 
-        for(int i=0; i < size ; i++){
+        for (int i = 0; i < size; i++) {
             ar.add(String.valueOf(i));
         }
         assertThatThrownBy(() -> new Bridge(ar))
@@ -29,8 +28,8 @@ public class BridgeTest extends NsTest {
 
     @DisplayName("다리의 index 번째에서 건널 수 있는 다리가 movingPoint 가 맞는지 테스트")
     @Test
-    void checkPassableTest(){
-        Bridge bridge = new Bridge(List.of("U","D","U"));
+    void checkPassableTest() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
 
         assertThat(bridge.checkPassable("U", 0)).isTrue();
         assertThat(bridge.checkPassable("U", 1)).isFalse();
@@ -39,9 +38,9 @@ public class BridgeTest extends NsTest {
 
     @DisplayName("다리와 사용자가 건넌 다리가 같을때, 반환값 테스트")
     @Test
-    void isSameBridgeTest(){
-        Bridge bridge = new Bridge(List.of("U","D","U"));
-        List<String> mark = new ArrayList<>(List.of("U","D","U"));
+    void isSameBridgeTest() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        List<String> mark = new ArrayList<>(List.of("U", "D", "U"));
 
         assertThat(bridge.isSameBridge(mark)).isTrue();
     }
