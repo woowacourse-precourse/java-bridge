@@ -2,6 +2,9 @@ package bridge.domain;
 
 import java.util.List;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+
 public class Bridge {
     private List<String> bridge;
 
