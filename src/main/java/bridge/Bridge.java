@@ -33,13 +33,6 @@ public class Bridge {
         visitMiddleBlock(type);
     }
 
-    private void visitMiddleBlock(BlockPosition type) {
-        current.visit(type);
-        if (current.isPassed()) {
-            current = current.next();
-        }
-    }
-
     public boolean isArrived() {
         return current.isLastBlock() && current.isPassed();
     }
@@ -69,5 +62,12 @@ public class Bridge {
 
     private int lastBlockIndex(List<String> bridge) {
         return bridge.size() - 1;
+    }
+
+    private void visitMiddleBlock(BlockPosition type) {
+        current.visit(type);
+        if (current.isPassed()) {
+            current = current.next();
+        }
     }
 }
