@@ -38,6 +38,14 @@ public class BridgeController {
     }
   }
 
+  public void showResult() {
+    System.out.println();
+    outputView.printLastMapResult();
+    outputView.printMap(game.getResultMap());
+    System.out.println();
+    outputView.printResult(crossed, gameCount);
+  }
+
   private void modifyForRetry() {
     game.initMap();
     index = -1;
