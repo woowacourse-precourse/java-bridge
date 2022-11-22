@@ -29,4 +29,8 @@ public final class BridgeGame {
     public void retry() {
         visited = new BridgeVisited();
     }
+
+    public boolean isFinish() {
+        return !visited.isRemained(bridge);
+    }
 }
