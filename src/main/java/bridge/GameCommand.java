@@ -8,15 +8,15 @@ public enum GameCommand {
 
     RETRY("R"), QUIT("Q");
 
-    private final String inputSymbol;
+    private final String inputValue;
 
-    GameCommand(String inputSymbol) {
-        this.inputSymbol = inputSymbol;
+    GameCommand(String inputValue) {
+        this.inputValue = inputValue;
     }
 
-    public static GameCommand getEnum(String inputSymbol) {
+    public static GameCommand getEnum(String inputValue) {
         return Arrays.stream(values())
-                .filter(symbol -> symbol.inputSymbol.equals(inputSymbol))
+                .filter(command -> command.inputValue.equals(inputValue))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_GAME_COMMAND_ERROR));
     }

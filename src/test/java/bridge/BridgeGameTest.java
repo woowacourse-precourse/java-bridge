@@ -1,6 +1,6 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,9 +22,8 @@ class BridgeGameTest {
     void moveSuccessTest() {
         assertThat(testBridgeGame.move("U")).isTrue();
         assertThat(testBridgeGame.getCurrentPosition()).isEqualTo(0);
-        assertThat(testBridgeGame.getMoveHistory()).containsExactly(
-                new History(0, "U", true)
-        );
+        assertThat(testBridgeGame.getMoveHistory())
+                .containsExactly(new History(0, "U", true));
     }
 
     @DisplayName("위쪽으로 이동 가능한 다리에서 아래쪽으로 가면 이동할 수 없다.")
@@ -32,9 +31,8 @@ class BridgeGameTest {
     void moveFailTest() {
         assertThat(testBridgeGame.move("D")).isFalse();
         assertThat(testBridgeGame.getCurrentPosition()).isEqualTo(0);
-        assertThat(testBridgeGame.getMoveHistory()).containsExactly(
-                new History(0, "D", false)
-        );
+        assertThat(testBridgeGame.getMoveHistory())
+                .containsExactly(new History(0, "D", false));
     }
 
     @DisplayName("다리의 끝에서는 이동할 수 없다.")

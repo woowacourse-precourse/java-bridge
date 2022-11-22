@@ -29,9 +29,9 @@ public class InputView {
      */
     public String readMoving(Runnable printInputMessage) {
         printInputMessage.run();
-        String moveDirection = readLine();
-        validateMoveDirection(moveDirection);
-        return moveDirection;
+        String moveDirectionInput = readLine();
+        validateMoveDirection(moveDirectionInput);
+        return moveDirectionInput;
     }
 
     /**
@@ -50,10 +50,10 @@ public class InputView {
         }
     }
 
-    public void validateMoveDirection(String moveDirection) {
+    public void validateMoveDirection(String moveDirectionInput) {
         final List<String> validMoveDirections = List.of(UP_BLOCK_MARK, DOWN_BLOCK_MARK);
 
-        if (!validMoveDirections.contains(moveDirection)) {
+        if (!validMoveDirections.contains(moveDirectionInput)) {
             throw new IllegalArgumentException(INVALID_MOVE_DIRECTION_ERROR);
         }
     }

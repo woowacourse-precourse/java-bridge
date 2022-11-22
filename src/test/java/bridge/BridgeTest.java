@@ -15,7 +15,7 @@ public class BridgeTest {
     void checkMoveSuccessTest(int nextPosition, String moveDirection) {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
 
-        assertThat(bridge.checkMoveResult(nextPosition, moveDirection)).isTrue();
+        assertThat(bridge.determineMoveResult(nextPosition, moveDirection)).isTrue();
     }
 
     @DisplayName("다음 이동할 칸이 이동할 수 있는 칸이 아닌지 확인한다.")
@@ -24,6 +24,6 @@ public class BridgeTest {
     void checkMoveFailTest(int nextPosition, String moveDirection) {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
 
-        assertThat(bridge.checkMoveResult(nextPosition, moveDirection)).isFalse();
+        assertThat(bridge.determineMoveResult(nextPosition, moveDirection)).isFalse();
     }
 }

@@ -1,7 +1,10 @@
 package bridge;
 
+import static bridge.Bridge.UP_BLOCK_MARK;
+import static bridge.Bridge.DOWN_BLOCK_MARK;
+import static java.util.Collections.unmodifiableList;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,15 +25,17 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> result = new ArrayList<>();
         for (int curr = 0; curr < size; curr++) {
-            result.add(makeBlock(bridgeNumberGenerator.generate()));
+            result.add(
+                    makeBlock(bridgeNumberGenerator.generate())
+            );
         }
-        return Collections.unmodifiableList(result);
+        return unmodifiableList(result);
     }
 
     private String makeBlock(int randomNumber) {
         if (randomNumber == 0) {
-            return Bridge.DOWN_BLOCK_MARK;
+            return DOWN_BLOCK_MARK;
         }
-        return Bridge.UP_BLOCK_MARK;
+        return UP_BLOCK_MARK;
     }
 }

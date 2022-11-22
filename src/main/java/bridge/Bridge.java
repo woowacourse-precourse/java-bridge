@@ -13,9 +13,8 @@ public class Bridge {
         this.movableBlocks = movableBlocks;
     }
 
-    public boolean checkMoveResult(int position, String moveDirection) {
-        String movableBlockAtPosition = movableBlocks.get(position);
-        return movableBlockAtPosition.equals(moveDirection);
+    public boolean determineMoveResult(int position, String moveDirection) {
+        return movableBlocks.get(position).equals(moveDirection);
     }
 
     public boolean isEndOfBridge(int currentPosition) {

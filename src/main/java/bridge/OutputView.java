@@ -2,10 +2,11 @@ package bridge;
 
 import static bridge.Bridge.UP_BLOCK_MARK;
 import static bridge.Bridge.DOWN_BLOCK_MARK;
+import static java.util.stream.Collectors.toUnmodifiableList;
+import static java.util.stream.Collectors.joining;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -20,8 +21,8 @@ public class OutputView {
      */
     public void printMap(List<History> moveHistory) {
         int distance = moveHistory.size();
-        printRowOfMap(getRowMoveHistory(moveHistory, UP_BLOCK_MARK), distance);
-        printRowOfMap(getRowMoveHistory(moveHistory, DOWN_BLOCK_MARK), distance);
+        printRowOfMap(findMoveHistoryByRow(moveHistory, UP_BLOCK_MARK), distance);
+        printRowOfMap(findMoveHistoryByRow(moveHistory, DOWN_BLOCK_MARK), distance);
     }
 
     /**
@@ -32,7 +33,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("\n최종 게임 결과");
         printMap(bridgeGame.getMoveHistory());
-        System.out.println("\n게임 성공 여부: " + toGameSuccessWord(bridgeGame.isWin()));
+        System.out.println("\n게임 성공 여부: " + toOutputSignFromGameSuccess(bridgeGame.isWin()));
         System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
     }
 
@@ -44,21 +45,21 @@ public class OutputView {
         System.out.println(stringBuilder.toString());
     }
 
-    private List<History> getRowMoveHistory(List<History> moveHistory, String rowMark) {
+    private List<History> findMoveHistoryByRow(List<History> moveHistory, String rowMark) {
         return moveHistory.stream()
                 .filter(history -> history.isSameMoveDirection(rowMark))
-                .collect(Collectors.toUnmodifiableList());
+                .collect(toUnmodifiableList());
     }
 
     private String makeRowMoveBody(List<History> rowMoveHistory, int distance) {
         return IntStream.range(0, distance)
                 .mapToObj(position -> makeMoveBlockBody(position, rowMoveHistory))
-                .collect(Collectors.joining(" | "));
+                .collect(joining(" | "));
     }
 
     private String makeMoveBlockBody(int column, List<History> rowMoveHistory) {
         return findMoveHistoryAtColumn(column, rowMoveHistory)
-                .map(moveHistory -> toSymbol(moveHistory.isMoveSucess()))
+                .map(moveHistory -> toOutputSignFromMoveSuccess(moveHistory.isMoveSucess()))
                 .orElse(" ");
     }
 
@@ -68,14 +69,14 @@ public class OutputView {
                 .findFirst();
     }
 
-    private String toSymbol(boolean moveSuccess) {
+    private String toOutputSignFromMoveSuccess(boolean moveSuccess) {
         if (moveSuccess) {
             return "O";
         }
         return "X";
     }
 
-    private String toGameSuccessWord(boolean gameSuccess) {
+    private String toOutputSignFromGameSuccess(boolean gameSuccess) {
         if (gameSuccess) {
             return "성공";
         }

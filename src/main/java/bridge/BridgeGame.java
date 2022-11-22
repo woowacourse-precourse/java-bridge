@@ -25,7 +25,7 @@ public class BridgeGame {
     public boolean move(String moveDirection) {
         boolean moveSuccess = false;
         if (canMove()) {
-            moveSuccess = this.bridge.checkMoveResult(this.currentPosition + 1, moveDirection);
+            moveSuccess = this.bridge.determineMoveResult(this.currentPosition + 1, moveDirection);
             this.currentPosition++;
             this.moveHistory.add(new History(this.currentPosition, moveDirection, moveSuccess));
         }
@@ -44,13 +44,16 @@ public class BridgeGame {
     }
 
     public boolean isWin() {
-        return this.bridge.isEndOfBridge(this.currentPosition)
-                && moveHistory.get(this.currentPosition).isMoveSucess();
+        return isReachedEndOfBridge() && isRecentMoveSucceed();
     }
 
     private boolean canMove() {
         return !isReachedEndOfBridge()
-                && (this.currentPosition == -1 || this.moveHistory.get(this.currentPosition).isMoveSucess());
+                && (this.currentPosition == -1 || isRecentMoveSucceed());
+    }
+
+    private boolean isRecentMoveSucceed() {
+        return this.moveHistory.get(this.currentPosition).isMoveSucess();
     }
 
     private boolean isReachedEndOfBridge() {
