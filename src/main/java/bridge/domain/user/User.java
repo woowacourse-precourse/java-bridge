@@ -1,37 +1,26 @@
 package bridge.domain.user;
 
-import java.util.ArrayList;
-import java.util.List;
+import bridge.domain.Bridge;
 
 public class User {
-    private final List<MoveType> moveTypes = new ArrayList<>();
-    private final List<UserPath> userPaths = new ArrayList<>();
-    private int tryCount = 0;
+    private final UserPath userPath = new UserPath();
+    private int tryCount = 1;
+    private int location = 0;
 
     public User() {
     }
 
-    public void saveMove(String moveType) {
-        if (MoveType.UP_TYPE.compareTo(moveType)) {
-            moveTypes.add(MoveType.UP_TYPE);
+    public void cross(Bridge bridge, MoveType moveType) {
+        if (bridge.canCross(location, moveType)) {
+            userPath.addUserPath(true, moveType);
+            return;
         }
 
-        if (MoveType.DOWN_TYPE.compareTo(moveType)) {
-            moveTypes.add(MoveType.DOWN_TYPE);
-        }
+        userPath.addUserPath(false, moveType);
+        increaseLocation();
     }
 
-    public void addPath(boolean isCorrect) {
-        if (isCorrect) {
-            userPaths.add(UserPath.CORRECT_PATH);
-        }
-
-        if (!isCorrect) {
-            userPaths.add(UserPath.WRONG_PATH);
-        }
-    }
-
-    public void addEmptyPath() {
-        userPaths.add(UserPath.EMPTY_PATH);
+    private void increaseLocation() {
+        location++;
     }
 }
