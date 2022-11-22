@@ -11,25 +11,36 @@ public class GameManager {
 
     public void initGame() {
         outputView.printGameStart();
-
         bridgeGame = new BridgeGame(BridgeMap.generateMap(), createBridge());
+        Round round = new Round();
 
-        int tryCount = 1;
-        boolean gameStatus = true;
+        startGame(round);
 
-        while (!bridgeGame.isEnd()) {
-            if (!askMove()) {
-                if (askRetry()) {
-                    tryCount++;
-                    bridgeGame.retry();
-                } else {
-                    gameStatus = false;
-                    break;
-                }
+        outputView.printResult(bridgeGame.getBridgeMap(), round);
+    }
+
+    private void startGame(Round round) {
+        while (true) {
+            if (playRound(round) == false) {
+                round.recordResult(false);
+                break;
+            }
+            if (bridgeGame.isEnd()) {
+                round.recordResult(true);
+                break;
             }
         }
+    }
 
-        outputView.printResult(bridgeGame.getBridgeMap(), tryCount, gameStatus);
+    private boolean playRound(Round round) {
+        if (!askMove()) {
+            if (!askRetry()) {
+                return false;
+            }
+            round.addTryCount();
+            bridgeGame.retry();
+        }
+        return true;
     }
 
     private List<String> createBridge() {
