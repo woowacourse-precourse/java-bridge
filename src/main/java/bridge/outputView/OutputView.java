@@ -1,5 +1,7 @@
 package bridge.outputView;
 
+import bridge.input.ValidationType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,11 +57,16 @@ public class OutputView {
     }
 
     public void printInputMoveMessage() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        List<String> block = ValidationType.CHECK_MOVING.getValidationRange();
+        String message = String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)\n", block.get(0), block.get(1));
+        System.out.println(message);
     }
 
     public void printRestartMessage() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        List<String> command = ValidationType.CHECK_GAME_COMMAND.getValidationRange();
+        String message = String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)\n",
+                command.get(0), command.get(1));
+        System.out.println(message);
     }
 
     private String makeMessageForPrintMap(int countOfMove, boolean isMove, String target) {
@@ -77,7 +84,7 @@ public class OutputView {
         if (bridge.get(index) == target && isMove) {
             return "O";
         }
-        if (bridge.get(index) != target && !isMove) { // 수정 필요
+        if (bridge.get(index) != target && !isMove) {
             return "X";
         }
         return " ";
