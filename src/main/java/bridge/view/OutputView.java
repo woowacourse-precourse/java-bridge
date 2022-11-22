@@ -17,12 +17,17 @@ public class OutputView {
     private static final String BAR = "|";
     private static final String NEW_LINE = System.lineSeparator();
 
+    private static final String MSG_GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String MSG_FINAL_GAME_RESULT = "최종 게임 결과";
     private static final String MSG_GAME_SUCCESS_RESULT = "게임 성공 여부: %s" + NEW_LINE;
     private static final String MSG_TOTAL_TRY_COUNT = "총 시도한 횟수: %d" + NEW_LINE;
     ;
     private StringBuilder upRow;
     private StringBuilder downRow;
+
+    public void printGameStart() {
+        System.out.println(MSG_GAME_START);
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
