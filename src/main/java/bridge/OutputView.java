@@ -12,6 +12,15 @@ public class OutputView {
     private static final String END_BRIDGE = " ]";
     private static final String BRIDGE_DIVISION = " | ";
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String COUNT_MESSAGE = "총 시도한 횟수: ";
+
+    private static final String SUCCESS_FAIL_MESSAGE = "게임 성공 여부: ";
+    private static final String SUCCESS_MESSAGE = "성공";
+    private static final String FAIL_MESSAGE = "실패";
+    private static final String ERROR_MESSAGE_UP_DOWN = " 다리는 U와 D만 움직여야 합니다.";
+    private static final String ERROR_MESSAGE_RETRY = " 재시작은 R과 Q로만 입력 가능합니다.";
+    private static final String ERROR_MESSAGE_NUMBER = " 3과 20 사이의 자연수를 입력해주세요.";
+
 
     /**
      *
@@ -31,24 +40,24 @@ public class OutputView {
      */
     public void printResult(boolean nowState, int gameCount) {
         if (nowState) {
-            System.out.println("게임 성공 여부: 성공");
-            System.out.println("총 시도한 횟수: " + gameCount);
+            System.out.println(SUCCESS_FAIL_MESSAGE + SUCCESS_MESSAGE);
+            System.out.println(COUNT_MESSAGE + gameCount);
         }
         if (!nowState) {
-            System.out.println("게임 성공 여부: 실패");
-            System.out.println("총 시도한 횟수: " + gameCount);
+            System.out.println(SUCCESS_FAIL_MESSAGE + FAIL_MESSAGE);
+            System.out.println(COUNT_MESSAGE + gameCount);
         }
     }
 
     public static String getErrorMessageUpOrDown() {
-        return ERROR_MESSAGE + " 다리는 U와 D만 움직여야 합니다.";
+        return ERROR_MESSAGE + ERROR_MESSAGE_UP_DOWN;
     }
 
     public static String getErrorMessageInputTry() {
-        return ERROR_MESSAGE + " 재시작은 R과 Q로만 입력 가능합니다.";
+        return ERROR_MESSAGE + ERROR_MESSAGE_RETRY;
     }
 
     public static String getErrorMessageAllNumber() {
-        return ERROR_MESSAGE + " 3과 20 사이의 자연수를 입력해주세요.";
+        return ERROR_MESSAGE + ERROR_MESSAGE_NUMBER;
     }
 }
