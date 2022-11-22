@@ -13,7 +13,7 @@ public class Map {
 		init();
 	}
 
-	void init(){
+	void init() {
 		map.clear();
 		map.add(new ArrayList<>());
 		map.add(new ArrayList<>());
@@ -27,28 +27,13 @@ public class Map {
 		map.get(1).add(answer);
 	}
 
-	public int getSize(){
+	public int getSize() {
 		return map.get(0).size();
 	}
 
-	public boolean containX(){
-		for (List<String> map : this.map){
+	public boolean containX() {
+		for (List<String> map : this.map) {
 			if (map.contains(X))
-				return true;
-		}
-		return false;
-	}
-
-	public boolean success(Map map, int size) {
-		if (map.getSize() == size && !map.containX()) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean fail() {
-		for (List<String> way : map){
-			if (way.contains(X))
 				return true;
 		}
 		return false;

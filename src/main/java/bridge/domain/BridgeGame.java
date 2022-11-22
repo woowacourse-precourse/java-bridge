@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.List;
+
 import static bridge.Constants.*;
 
 /**
@@ -40,5 +42,17 @@ public class BridgeGame {
 		map.init();
 		playerBridge.init();
 		return count + 1;
+	}
+
+	public static boolean success(Map map, int size) {
+		return map.getSize() == size && !map.containX();
+	}
+
+	public static boolean fail(Map map) {
+		for (List<String> way : map.getMap()) {
+			if (way.contains(X))
+				return true;
+		}
+		return false;
 	}
 }

@@ -32,7 +32,7 @@ public class Application {
 	}
 
 	private static void runGame(int size) {
-		while (!map.success(map, size)) {
+		while (!BridgeGame.success(map, size)) {
 			System.out.println(MESSAGE_WANNA_MOVE);
 			playerBridge.add(InputView.readMoving());
 			BridgeGame.move(map, bridge, playerBridge);
@@ -45,7 +45,7 @@ public class Application {
 	}
 
 	private static boolean whenFail() {
-		if (!map.fail()) {
+		if (!BridgeGame.fail(map)) {
 			return false;
 		}
 		System.out.println(MESSAGE_WANNA_RESTART);
