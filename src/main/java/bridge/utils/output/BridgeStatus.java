@@ -19,11 +19,11 @@ public class BridgeStatus {
     }
 
     private void appendResult(List<Result> results) {
-        for (int i = 0; i < results.size(); i++) {
-            if (i > 0) {
+        for (int loc = 0; loc < results.size(); loc++) {
+            if (loc > 0) {
                 appendPoint(BridgeConstants.BRIDGE_DIVIDING_POINT);
             }
-            Result result = results.get(i);
+            Result result = results.get(loc);
             appendCorrect(result);
             appendIncorrect(result);
         }
