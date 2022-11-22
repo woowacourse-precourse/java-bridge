@@ -19,10 +19,7 @@ public class BridgeGame {
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
         userBridge.add(input);
-        if(!validateMove(userBridge,Controller.answerBridge)){
-            return false;
-        }
-        return true;
+        return validateMove(userBridge,Controller.answerBridge);
     }
 
     private boolean validateMove(List<String> userBridge, List<String> answerBridge){
@@ -61,10 +58,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(boolean isSuccess) {
-        if(isSuccess){
-            return true;
-        }
-        return false;
+        return isSuccess;
     }
 
 }

@@ -19,19 +19,18 @@ public class Controller {
 
     private int getBridgeSize() {
         InputView inputView = new InputView();
-        int result = 0;
-        result = getBridgeSizeInput(result, inputView);
+        int result;
+        result = getBridgeSizeInput(inputView);
         return result;
     }
 
-    private int getBridgeSizeInput(int result, InputView inputView) {
+    private int getBridgeSizeInput( InputView inputView) {
         while (true) {
             System.out.println(MessageView.PRINT_BRIDGE_INPUT_MESSAGE);
             try {
-                return result = inputView.readBridgeSize();
+                return inputView.readBridgeSize();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
     }
@@ -54,7 +53,6 @@ public class Controller {
                 return bridgeGame.retry(inputView.readGameCommand());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
     }
@@ -65,7 +63,7 @@ public class Controller {
         outputView = new OutputView();
         int addNumber = 0;
         while (addNumber++ != answerBridge.size()) {
-            if (!moveBridgePrint(inputView) == true)
+            if (!moveBridgePrint(inputView))
                 return false;
         }
         return true;
@@ -77,7 +75,6 @@ public class Controller {
                 return moveBridgePrintInput(inputView);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
     }

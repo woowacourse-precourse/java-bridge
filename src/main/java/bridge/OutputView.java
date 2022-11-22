@@ -43,6 +43,5 @@ public class OutputView {
             System.out.println(MessageView.PRINT_GAME_SUCCESS + "성공");
 
         System.out.println(MessageView.PRINT_GAME_ATTEMPTS + Attempts);
-
     }
 }
