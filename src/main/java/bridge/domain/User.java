@@ -12,7 +12,7 @@ public class User {
     private List<String> userMovings = new ArrayList<>();
     private Bridge bridge;
     private BridgeResult bridgeResult;
-
+    private int location;
     public User(Bridge bridge, BridgeResult bridgeResult) {
         this.bridge = bridge;
         this.bridgeResult = bridgeResult;
@@ -21,6 +21,7 @@ public class User {
 
     public void init() {
         userMovings.clear();
+        location = 0;
     }
 
     public void move(String userMoving) {
@@ -36,8 +37,8 @@ public class User {
 
     private int updateUserMove(String userMoving) {
         userMovings.add(userMoving);
-        int location = userMovings.size()-1;
+        location = userMovings.size()-1;
         BridgeValidation.isValidUserLocation(location, bridge.getSize());
-        return location;
+        return this.location;
     }
 }
