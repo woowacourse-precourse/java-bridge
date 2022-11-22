@@ -8,7 +8,7 @@ import bridge.view.ErrorView;
 public class Application {
 
     public static void main(String[] args) {
-        ViewMediator concreteMediator = new ConcreteControllerMediator();
-        concreteMediator.start();
+//        ViewMediator concreteMediator = new ConcreteControllerMediator();
+//        concreteMediator.start();
     }
 }
