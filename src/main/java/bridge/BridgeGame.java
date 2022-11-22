@@ -22,11 +22,11 @@ public class BridgeGame {
 
     BridgeGame(int size){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> upper = new ArrayList<>();
-        List<String> lower = new ArrayList<>();
+        List<String> up = new ArrayList<>();
+        List<String> down = new ArrayList<>();
 
         this.answerBridge = bridgeMaker.makeBridge(size);
-        this.curBridge = List.of(upper, lower);
+        this.curBridge = List.of(up,down);
         this.stageNum = 1;
         this.status = STATUS_PLAY;
     }
@@ -42,15 +42,16 @@ public class BridgeGame {
         return this.status;
     }
 
+
     public void move(String moving) {
-        addCurBridge(moving);
+        addCurMoving(moving);
 
         if(this.status != STATUS_FAIL){
             checkSuccess();
         }
     }
 
-    private void addCurBridge(String moving){
+    private void addCurMoving(String moving){
         String isRight = compareCurMoving(moving);
         if(moving.equals(UP)){
             curBridge.get(UP_LINE).add(isRight);

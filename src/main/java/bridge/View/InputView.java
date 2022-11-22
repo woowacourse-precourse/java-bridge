@@ -4,9 +4,6 @@ import static bridge.Constant.Command.*;
 import static bridge.Constant.Message.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
     public int readBridgeSize() {

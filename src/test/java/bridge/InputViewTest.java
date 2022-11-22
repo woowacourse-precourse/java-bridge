@@ -8,8 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
     private final InputView inputView = new InputView();
 
     @DisplayName("다리길이가 정상인 경우")
@@ -70,9 +68,4 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.validateCommand("ABCD"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
-
-
-
 }

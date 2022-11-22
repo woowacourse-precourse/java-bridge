@@ -33,9 +33,7 @@ public class OutputViewTest extends NsTest {
         );
     }
 
-
     @Override
-    protected void runMain() {
-    }
+    protected void runMain() { }
 
 }
