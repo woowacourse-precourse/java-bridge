@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.model.BridgeResult;
+
 public class ConsolidatedView {
     private final InputView inputView;
     private final OutputView outputView;
@@ -45,5 +47,9 @@ public class ConsolidatedView {
                 System.out.println(error.getMessage());
             }
         }
+    }
+
+    public void printMoveMap(BridgeResult bridgeResult) {
+        outputView.printMap(bridgeResult);
     }
 }
