@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.validator.BridgeValidator.validateBridgeSize;
+import static bridge.validator.GameCommandValidator.validateGameCommand;
 import static bridge.validator.MovingValidator.validateMoving;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -30,6 +31,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = readLine().trim();
+        validateGameCommand(gameCommand);
+        return gameCommand;
+
     }
 }
