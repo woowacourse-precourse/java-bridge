@@ -1,4 +1,6 @@
-package bridge;
+package bridge.controller;
+
+import bridge.util.InputValidator;
 
 public class InputController {
 

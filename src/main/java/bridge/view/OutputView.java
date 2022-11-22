@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class OutputView {
             downBridge.add(map.get(0));
             upperBridge.add(map.get(1));
         }
-        
+
         for (List<String> sideBridge : bridge) {
             System.out.print(LEFT_SQUARE_BRACKET);
             System.out.print(String.join(DELIMITER, sideBridge));

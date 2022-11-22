@@ -1,12 +1,17 @@
 package bridge;
 
+import bridge.controller.InputController;
+import bridge.domain.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
-        try{
+        try {
             InputController inputController = new InputController();
 
             int bridgeSize = inputController.getBridgeSize(InputView.readBridgeSize());
@@ -36,7 +41,6 @@ public class Application {
                 }
             } while (bridgeGame.retry(inputController.getGameCommand(InputView.readGameCommand())));
             OutputView.printResult(bridgeMap, success, gameCount);
-
         } catch (RuntimeException exception) {
             System.out.println(exception.getMessage());
         }
