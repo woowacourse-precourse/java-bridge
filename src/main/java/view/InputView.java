@@ -1,8 +1,7 @@
 package view;
 
-import model.Exception;
 import camp.nextstep.edu.missionutils.Console;
-import org.mockito.internal.matchers.Null;
+import model.Exception;
 
 import java.util.NoSuchElementException;
 
