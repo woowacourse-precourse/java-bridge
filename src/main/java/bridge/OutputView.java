@@ -21,23 +21,18 @@ public class OutputView {
         String mark=checkMap(command,count,Bridge);
         if (mark.equals(Constants.CROSS_MARK)){
             printOX(mark,command);
-            System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
-            System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
-            System.out.println();
+            printMartix(upBridgeMap,downBridgeMap);
             return false;
         };
         printOX(mark,command);
-        System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
-        System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
-        System.out.println();
+        printMartix(upBridgeMap,downBridgeMap);
         return true;
     }
 
     public void printResult(int number,boolean gameStatus) {
         String whether = "실패";
         System.out.println("최종 게임 결과");
-        System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
-        System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
+        printMartix(upBridgeMap,downBridgeMap);
         if (gameStatus){whether = "성공";}
         System.out.println("게임 성공 여부: " + whether);
         System.out.println("총 시도한 횟수: " +number);
@@ -70,5 +65,12 @@ public class OutputView {
             upBridgeMap.add(Constants.BLANK_MARK);
             downBridgeMap.add(mark);
         }
+    }
+
+    public void printMartix(List<String> upBridgeMap,List<String> downBridgeMap){
+        System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
+        System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
+        System.out.println();
+
     }
 }
