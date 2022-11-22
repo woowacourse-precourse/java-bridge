@@ -39,12 +39,12 @@ public class Player {
         initMoveResults();
     }
 
-    public boolean move(Bridge bridge, Move moveTo) {
+    public MoveResult move(Bridge bridge, Move moveTo) {
         MoveResult moveResult = bridge.crossBridge(moveDistance, moveTo);
         moveResults.get(moveTo).add(moveResult);
         moveResults.get(Move.other(moveTo)).add(MoveResult.OTHER);
         moveDistance++;
 
-        return moveResult.canMove;
+        return moveResult;
     }
 }
