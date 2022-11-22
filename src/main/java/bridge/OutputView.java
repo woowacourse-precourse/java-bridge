@@ -12,21 +12,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, int coordinate, boolean isDirectionanAndLocationSame) {
-        printFirstLine(bridge, coordinate, isDirectionanAndLocationSame);
-        printSecondLine(bridge, coordinate, isDirectionanAndLocationSame);
+    public void printMap(List<String> bridge, int coordinate, boolean doesPlayerSucceedMoving) {
+        printFirstLine(bridge, coordinate, doesPlayerSucceedMoving);
+        printSecondLine(bridge, coordinate, doesPlayerSucceedMoving);
     }
 
-    public void printFirstLine(List<String> bridge, int coordinate, boolean isDirectionAndLocationSame) {
+    public void printFirstLine(List<String> bridge, int coordinate, boolean doesPlayerSucceedMoving) {
         printStartPart();
         printMiddlePart(bridge, coordinate, "U");
-        printEndPart(bridge, isDirectionAndLocationSame, coordinate, "U");
+        printEndPart( bridge.get(coordinate+1), doesPlayerSucceedMoving, "U");
     }
 
-    public void printSecondLine(List<String> bridge, int coordinate,boolean isDirectionAndLocationSame) {
+    public void printSecondLine(List<String> bridge, int coordinate, boolean doesPlayerSucceedMoving) {
         printStartPart();
         printMiddlePart(bridge, coordinate, "D");
-        printEndPart(bridge, isDirectionAndLocationSame, coordinate, "D");
+        printEndPart( bridge.get(coordinate+1), doesPlayerSucceedMoving, "D");
     }
 
 
@@ -46,18 +46,27 @@ public class OutputView {
         }
     }
 
-    private void printEndPart(List<String> bridge, boolean isDirectionAndLocationSame, int coordinate, String direction) {
-        if (bridge.get(coordinate+1).equals(direction)) {
-            if (isDirectionAndLocationSame == true) {
+    private void printEndPart(String bridgeNextLocation, boolean doesPlayerSucceedMoving, String direction) {
+        if (doesPlayerSucceedMoving) {
+            if (direction.equals(bridgeNextLocation)) {
                 System.out.println("O ]");
             }
-            if (isDirectionAndLocationSame == false) {
-                System.out.println("X ]");
+            if (!direction.equals(bridgeNextLocation)) {
+                System.out.println(("  ]"));
             }
         }
-        if (!bridge.get(coordinate+1).equals(direction)) {
-            System.out.println("  ]");
+        if (!doesPlayerSucceedMoving) {
+            if (direction.equals(bridgeNextLocation)) {
+                System.out.println("  ]");
+            }
+            if (!direction.equals(bridgeNextLocation)) {
+                System.out.println(("X ]"));
+            }
         }
+    }
+
+    public void printWholeBridge() {
+
     }
 
 
@@ -66,12 +75,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int trialNumber, int coordinate, int bridgeSize, boolean doesPlayerRetry) {
-        if (coordinate == bridgeSize) {
+    public void printResult(int trialNumber, int coordinate, List<String> bridge) {
+        if (coordinate == bridge.size()-1) {
             System.out.println("게임 성공 여부: 성공");
             System.out.println(("총 시도한 횟수: " + trialNumber));
         }
-        if (doesPlayerRetry == false) {
+        if (coordinate < bridge.size()-1) {
             System.out.println("게임 성공 여부: 실패");
             System.out.println("총 시도한 횟수: " + trialNumber);
         }
