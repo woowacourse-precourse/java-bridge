@@ -1,7 +1,6 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ public class InputView {
     private static final String ERR_BRIDGE_SIZE_IS_NUMBER = "[ERROR] 다리의 길이는 숫자여야 합니다.";
     private static final String ERR_BRIDGE_SIZE_RANGE = "[ERROR] 다리의 길이는 최소 3이상 최대 20이하입니다.";
     private static final String ERR_MOVING_COMMAND_IS_U_OR_D = "[ERROR] 이동할 칸은 U 또는 D를 입력해야합니다.";
-    public static final String ERR_RESTART_COMMAND_IS_R_OR_Q = "[ERROR] 게임의 재시도 여부는 R 또는 Q를 입력해야 합니다.";
+    private static final String ERR_RESTART_COMMAND_IS_R_OR_Q = "[ERROR] 게임의 재시도 여부는 R 또는 Q를 입력해야 합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
