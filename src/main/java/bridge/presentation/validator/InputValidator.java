@@ -8,6 +8,8 @@ public class InputValidator {
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final String UP_COMMAND = "U";
     private static final String DOWN_COMMAND = "D";
+    private static final String RETRY_COMMAND = "R";
+    private static final String QUIT_COMMAND = "Q";
 
     public static void validateBridgeSize(String bridgeSize) {
         if (!isNumber(bridgeSize)) {
@@ -21,6 +23,12 @@ public class InputValidator {
     public static void validateMoving(String moving) {
         if (!moving.equals(UP_COMMAND) && !moving.equals(DOWN_COMMAND)) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_ODD_MOVING);
+        }
+    }
+
+    public static void validateGameCommand(String gameCommand) {
+        if (!gameCommand.equals(RETRY_COMMAND) && !gameCommand.equals(QUIT_COMMAND)) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_ODD_GAME_COMMAND);
         }
     }
 

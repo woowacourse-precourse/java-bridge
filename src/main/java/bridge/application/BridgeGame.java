@@ -2,8 +2,11 @@ package bridge.application;
 
 import bridge.domain.Bridge;
 import bridge.domain.Count;
+import bridge.domain.GameCommand;
+import bridge.domain.GameStatus;
 import bridge.domain.Move;
 import bridge.domain.Moving;
+import bridge.domain.Result;
 import bridge.domain.UserBridge;
 
 public class BridgeGame {
@@ -27,6 +30,21 @@ public class BridgeGame {
     }
 
     public void retry() {
+    }
+
+    public GameStatus getGameStatusByGameCommand(GameCommand gameCommand) {
+        if (gameCommand.equals(GameCommand.RETRY)) {
+            retry();
+            return GameStatus.RETRY;
+        }
+        return GameStatus.QUIT;
+    }
+
+    public Result getResult() {
+        if (userBridge.isArrive(bridge)) {
+            return Result.SUCCESS;
+        }
+        return Result.FAIL;
     }
 
 }
