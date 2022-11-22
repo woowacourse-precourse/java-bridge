@@ -1,10 +1,9 @@
 package ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import bridge.CustomException;
 
 import java.util.NoSuchElementException;
-
-import bridge.CustomException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -14,12 +13,9 @@ public class InputView {
     private final String PROMPT_USER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String PROMPT_RESTART_OR_END = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
-
     public int readBridgeSize() {
         try {
-            String input = promptInput(PROMPT_BRIDGE_LENGTH);
-            System.out.println();
-            return inputToInteger(validBridgeNumber(input));
+            return inputToInteger(validBridgeNumber(promptInput(PROMPT_BRIDGE_LENGTH)));
         } catch (IllegalArgumentException exception) {
             errorPrinter(exception);
             return readBridgeSize();
@@ -28,7 +24,7 @@ public class InputView {
 
     public String readMoving() {
         try {
-            return validCommand(promptInput(PROMPT_USER_MOVE));
+            return validMoving(promptInput(PROMPT_USER_MOVE));
         } catch (IllegalArgumentException exception) {
             errorPrinter(exception);
             return readMoving();
@@ -46,7 +42,12 @@ public class InputView {
 
     private String promptInput(String message) {
         promptPrinter(message);
-        return validInput(Console.readLine());
+        try {
+            return validInput(Console.readLine());
+        } catch (IllegalArgumentException exception) {
+            errorPrinter(exception);
+            return promptInput(message);
+        }
     }
 
     private void promptPrinter(String message) {
@@ -98,7 +99,7 @@ public class InputView {
     }
 
     private void validateNotBlank(String input) {
-        if (input.length() == 0) {
+        if (input.length() == 0 || input.strip().length() == 0) {
             CustomException.NotBlankException();
         }
     }
@@ -112,8 +113,7 @@ public class InputView {
     }
 
     private void validateNotStartWithZero(String input) {
-        //startWith?
-        if (input.charAt(0) == '0') {
+        if (input.startsWith("0")) {
             CustomException.StartWithZeroException();
         }
     }

@@ -6,7 +6,7 @@ public class CustomException {
     public static final String ERROR_HEAD = "[ERROR] ";
     public static final String NOT_NULL = "입력은 NULL이 불가능합니다.";
     public static final String NOT_BLANK = "입력은 공백이 불가능합니다.";
-    public static final String NOT_NUMBER = "입력이 숫자가 아닙니다.";
+    public static final String NOT_NUMBER = "입력이 숫자로 이루어져있지 않습니다.";
     public static final String NOT_START_ZERO = "다리 길이는 0으로 시작할 수 없습니다.";
     public static final String OUT_OF_RANGE = "다리길이가 범위를 초과합니다.";
     public static final String OUT_OF_COMMAND_RANGE = "명령의 길이가 다릅니다.";
