@@ -20,4 +20,13 @@ public class BridgeProgram {
 	public void useBridge() {
 		bridge.matchBridge(bridgeMaker.makeBridge(checkBridgeSizeInputOrMove()));
 	}
+
+	private int checkBridgeSizeInputOrMove() {
+		try {
+			return inputView.readBridgeSize();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return checkBridgeSizeInputOrMove();
+		}
+	}
 }
