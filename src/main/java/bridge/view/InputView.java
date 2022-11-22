@@ -23,7 +23,7 @@ public class InputView extends IOPrinter {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public BridgePosition readMoving() {
-        this.printlnBeforeNextLine("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        this.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         return BridgePosition.convertCodeToPosition(readLine());
     }
 

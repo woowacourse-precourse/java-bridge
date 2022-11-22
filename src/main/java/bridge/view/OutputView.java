@@ -15,6 +15,7 @@ public class OutputView extends IOPrinter {
      */
     public void printMap(String recordedHistory) {
         this.println(recordedHistory);
+        this.println();
     }
 
     /**
@@ -23,9 +24,9 @@ public class OutputView extends IOPrinter {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(String recordedHistory, GameStatus status, RepeatCount repeatCount) {
-        this.printlnBeforeNextLine("최종 게임 결과");
+        this.println("최종 게임 결과");
         this.printMap(recordedHistory);
-        this.printlnBeforeNextLine(status.resultMessage());
+        this.println(status.resultMessage());
         this.println(repeatCount.result());
     }
 
