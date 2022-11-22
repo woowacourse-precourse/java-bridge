@@ -12,11 +12,14 @@ public class InputView {
         this.exceptionHandler = new ExceptionHandler();
     }
 
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+
         String sizeString = Console.readLine();
+
         while (!exceptionHandler.checkBridgeSize(sizeString)) {
             sizeString = Console.readLine();
         }
@@ -28,6 +31,7 @@ public class InputView {
      */
     public String readMoving() {
         String moveString = Console.readLine();
+
         while (!exceptionHandler.checkMoving(moveString)) {
             moveString = Console.readLine();
         }
