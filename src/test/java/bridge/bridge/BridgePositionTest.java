@@ -3,6 +3,7 @@ package bridge.bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.exception.IllegalArgumentExceptionMessage;
 import org.junit.jupiter.api.Test;
 
 class BridgePositionTest {
@@ -26,6 +27,7 @@ class BridgePositionTest {
         // when
 
         // then
-        assertThatThrownBy(() -> BridgePosition.fromString(position)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> BridgePosition.fromString(position)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(IllegalArgumentExceptionMessage.ILLEGAL_BRIDGE_POSITION.getMessage());
     }
 }
