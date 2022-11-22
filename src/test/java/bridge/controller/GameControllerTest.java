@@ -25,7 +25,7 @@ class GameControllerTest {
     @ParameterizedTest
     @DisplayName("플레이어가 다리 이동이 가능한지 확인하는 기능 테스트")
     @CsvSource(value = {"D , true", "U , false"})
-    void isPossibleMove(String moveCommand, boolean expected) {
+    void moveTest(String moveCommand, boolean expected) {
 
         List<String> bridge = List.of("U", "D", "U");
         int turn = 1;
@@ -38,7 +38,7 @@ class GameControllerTest {
     @ParameterizedTest
     @DisplayName("판단한 결과값으로 이동 결과를 리턴하는 메서드 테스트")
     @CsvSource(value = {"U, true", "U, false", "D, true", "D, false"})
-    void moveTest(String moveCommand, boolean isPossibleMove) {
+    void recordBridgeMoveTest(String moveCommand, boolean isPossibleMove) {
 
         currentBridgeState.recordBridgeMove(moveCommand, isPossibleMove);
 
