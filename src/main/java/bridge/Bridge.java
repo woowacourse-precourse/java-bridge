@@ -26,4 +26,8 @@ public class Bridge {
 
         return new Bridge(bridge);
     }
+
+    public boolean isSameMoving(int index, Moving moving) {
+        return Moving.isSame(bridge.get(index), moving);
+    }
 }
