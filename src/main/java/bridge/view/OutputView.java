@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.BridgeGame;
 import bridge.Direction;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class OutputView {
             }
             System.out.println("\b]");
         }
+        System.out.println();
     }
 
     /**
@@ -32,6 +34,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame, List<List<String>> userMap) {
+        System.out.println("최종 게임 결과");
+        printMap(userMap, bridgeGame.getCur());
+        System.out.print("게임 성공 여부: ");
+        if (bridgeGame.isEnd()) {
+            System.out.println("성공");
+        }  //TODO isEnd()지만 실패인 경우 처리
+        System.out.printf("총 시도한 횟수: %d\n", bridgeGame.getTryCount());
     }
 }

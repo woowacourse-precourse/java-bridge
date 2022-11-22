@@ -68,4 +68,8 @@ public class BridgeGame {
     public int getCur() {
         return cur;
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }
