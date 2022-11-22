@@ -31,4 +31,16 @@ public class ExceptionTest {
     }
 
 
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 2, 3, 5})
+    void moveExceptionTest(int number) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            BridgeMaker bridgeMaker = new BridgeMaker(new TestNumberGenerator(newArrayList(0, 0, 0)));
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3));
+            Direction direction = Direction.toDirection(number);
+            bridgeGame.move(direction);
+        });
+    }
+
+
 }
