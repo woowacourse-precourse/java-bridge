@@ -6,11 +6,10 @@ public enum PlayerStatus {
     SUCCESS("성공");
 
     private final String name;
-    private int tryCount;
+    private static int tryCount = 0;
 
     PlayerStatus(String name) {
         this.name = name;
-        tryCount = 1;
     }
 
     public String getName() {
