@@ -32,10 +32,8 @@ public class PlayerChoiceValidatorTest {
         "D,U,D",
     })
     void directionOptionSuccessTest(String choice, String option, String otherOption) {
-        assertThrows(IllegalArgumentException.class, () ->
-            PlayerChoiceValidator.validate(
-                choice, option, otherOption
-            ));
+        assertDoesNotThrow(() ->
+            PlayerChoiceValidator.validate(choice, option, otherOption));
     }
 
     @DisplayName("재시작 여부 입력 실패")
@@ -55,7 +53,7 @@ public class PlayerChoiceValidatorTest {
     @ParameterizedTest
     @CsvSource({
         "R,R,Q",
-        "R,R,Q",
+        "Q,R,Q",
     })
     void retryOptionSuccessTest(String choice, String option, String otherOption) {
         assertDoesNotThrow(() ->
