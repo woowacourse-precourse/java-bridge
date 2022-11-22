@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +20,12 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-
         for (int i =0; i < size; i++) {
             int generate = bridgeNumberGenerator.generate();
-            String directionIndicator = upperOrDown(generate);
+            String directionIndicator = Bridge.upperOrDown(generate);
             bridge.add(directionIndicator);
         }
 
         return bridge;
-    }
-
-    private String upperOrDown(int randomNum) { // 위인지 아래인지 고르는 메서드
-        if (randomNum == 1) {
-            return Constants.UserChoices.UP_UPPERSTRING;
-        }
-        return Constants.UserChoices.DOWN_UPPERSTRING;
     }
 }
