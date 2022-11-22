@@ -30,8 +30,8 @@ public class OutputView {
     public String printMap(ArrayList<String> bridge, int nowOn, String lastInput) {
         StringBuilder upMap = new StringBuilder("[");
         StringBuilder downMap = new StringBuilder("[");
-        makePreviousUpMap(bridge, nowOn, upMap);
-        makePreviousDownMap(bridge, nowOn, downMap);
+        upMap.append(makePreviousMap(bridge, nowOn, BridgeJoyStick.U));
+        downMap.append(makePreviousMap(bridge, nowOn, BridgeJoyStick.D));
         upMap.append(makeNowMap(bridge.get(nowOn), lastInput, BridgeJoyStick.U));
         downMap.append(makeNowMap(bridge.get(nowOn), lastInput, BridgeJoyStick.D));
         String lastText = upMap.append("]\n").toString() + downMap.append("]\n").toString();
@@ -51,26 +51,17 @@ public class OutputView {
         return "   ";
     }
 
-    public void makePreviousUpMap(ArrayList<String> bridge, int nowOn, StringBuilder upMap) {
+    public String makePreviousMap(ArrayList<String> bridge, int nowOn, BridgeJoyStick bridgeJoyStick) {
+        StringBuffer block = new StringBuffer();
         for (int i = 0; i < nowOn; i++) {
-            String block = " ";
-            if (bridge.get(i).equals(BridgeJoyStick.U.toString()))
-                block = "O";
-            upMap.append(" " + block + " ");
+            String blockValue = " ";
+            if (bridge.get(i).equals(bridgeJoyStick.toString()))
+                blockValue = "O";
+            block.append(" " + blockValue + " ");
             if (i <= nowOn - 1)
-                upMap.append("|");
+                block.append("|");
         }
-    }
-
-    public void makePreviousDownMap(ArrayList<String> bridge, int nowOn, StringBuilder downMap) {
-        for (int i = 0; i < nowOn; i++) {
-            String block = " ";
-            if (bridge.get(i).equals(BridgeJoyStick.D.toString()))
-                block = "O";
-            downMap.append(" " + block + " ");
-            if (i <= nowOn - 1)
-                downMap.append("|");
-        }
+        return block.toString();
     }
 
     /**
