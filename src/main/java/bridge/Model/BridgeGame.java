@@ -10,24 +10,25 @@ public class BridgeGame {
     private int currentLocation = 0;
     private int tries = 1;
 
-    public BridgeGame(){
+    public BridgeGame() {
         bridgeResult = new BridgeResult();
     }
 
-    public BridgeGame(LinkedList<String> upperBridgeState, LinkedList<String> lowerBridgeState){
+    public BridgeGame(LinkedList<String> upperBridgeState, LinkedList<String> lowerBridgeState) {
         bridgeResult = new BridgeResult(upperBridgeState, lowerBridgeState);
     }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
+     *
      * @param command 사용자가 입력한 명령
-     * @param result 사용자가 이동하려는 칸이 건널 수 있는 칸이라면 "O", 아니라면 "X"
+     * @param result  사용자가 이동하려는 칸이 건널 수 있는 칸이라면 "O", 아니라면 "X"
      */
     public void move(String command, String result) {
-        if (command.equals("U")){
+        if (command.equals("U")) {
             bridgeResult.selectUpperBridge(result);
         }
-        if (command.equals("D")){
+        if (command.equals("D")) {
             bridgeResult.selectLowerBridge(result);
         }
         currentLocation++;
@@ -44,15 +45,15 @@ public class BridgeGame {
         tries++;
     }
 
-    public int getCurrentLocation(){
+    public int getCurrentLocation() {
         return currentLocation;
     }
 
-    public int getTries(){
+    public int getTries() {
         return tries;
     }
 
-    public String getBridgeResult(){
+    public String getBridgeResult() {
         return bridgeResult.toString();
     }
 }

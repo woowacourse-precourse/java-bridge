@@ -22,7 +22,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         Map<Integer, String> map = Map.of(0, "D", 1, "U");  // key와 value로 쌍을 지어놓음(if문을 사용하지 않기 위함)
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             int generatedNumber = bridgeNumberGenerator.generate();
             bridge.add(map.get(generatedNumber));
         }

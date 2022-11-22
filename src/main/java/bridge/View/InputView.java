@@ -24,9 +24,9 @@ public class InputView {
         System.out.println(GET_BRIDGE_SIZE);
         String input = Console.readLine();
         validator = new BridgeSizeValidator();
-        try{
+        try {
             validator.validate(input);
-        } catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 입력값이 올바르지 않습니다.");
             return readBridgeSize();
         }
@@ -40,9 +40,9 @@ public class InputView {
         System.out.println(GET_MOVING_COMMAND);
         String input = Console.readLine();
         validator = new MovingCommandValidator();
-        try{
+        try {
             validator.validate(input);
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 입력값이 올바르지 않습니다.");
             return readMoving();
         }
@@ -56,9 +56,9 @@ public class InputView {
         System.out.println(GET_GAME_COMMAND);
         String input = Console.readLine();
         validator = new GameCommandValidator();
-        try{
+        try {
             validator.validate(input);
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 입력값이 올바르지 않습니다.");
             return readGameCommand();
         }
