@@ -1,31 +1,40 @@
 package bridge.domain;
 
-import bridge.exception.Validator;
+import static bridge.exception.Validator.validMoving;
+
 import java.util.Objects;
 
 public class Round {
 
-    private final String playerMoving;
+    private final Moving playerMoving;
     private final RoundResult result;
 
-    public Round(String playerMoving, String bridgeMoving) {
-        Validator.validMoving(playerMoving);
-        this.playerMoving = playerMoving;
-        this.result = compare(bridgeMoving);
+    public Round(String playerMovingExpression, String bridgeMovingExpression) {
+        this.playerMoving = validMoving(playerMovingExpression);
+        this.result = compare(playerMovingExpression, bridgeMovingExpression);
     }
 
-    public String getPlayerMoving() {
-        return playerMoving;
+    public RoundResult compare(String playerMovingExpression, String bridgeMovingExpression) {
+        if (Objects.equals(bridgeMovingExpression, playerMovingExpression)) {
+            return RoundResult.SUCCESS;
+        }
+        return RoundResult.FAILURE;
+    }
+
+    public String getUpMap() {
+        if (Objects.equals(playerMoving, Moving.UP)) {
+            return result.getExpression();
+        }
+        return " ";
+    }
+    public String getDownMap() {
+        if (Objects.equals(playerMoving, Moving.DOWN)) {
+            return result.getExpression();
+        }
+        return " ";
     }
 
     public RoundResult getResult() {
         return result;
-    }
-
-    public RoundResult compare(String bridgeMoving) {
-        if (Objects.equals(bridgeMoving, playerMoving)) {
-            return RoundResult.SUCCESS;
-        }
-        return RoundResult.FAILURE;
     }
 }

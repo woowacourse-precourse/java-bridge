@@ -14,10 +14,12 @@ public class Validator {
         }
     }
 
-    public static void validMoving(String movingExpression) {
-        if (Moving.findByExpression(movingExpression).isEmpty()) {
+    public static Moving validMoving(String movingExpression) {
+        Optional<Moving> moving = Moving.findByExpression(movingExpression);
+        if (moving.isEmpty()) {
             throw new IllegalArgumentException(Error.WRONG_MOVING.getMessage());
         }
+        return moving.get();
     }
 
     public static GameCommand validGameCommand(String gameCommandExpression) {

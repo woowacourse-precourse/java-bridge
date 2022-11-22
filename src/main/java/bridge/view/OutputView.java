@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.domain.Moving;
 import bridge.domain.Round;
 import java.util.List;
 import java.util.Objects;
@@ -20,26 +19,18 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<Round> rounds) {
-        StringBuilder upMap = new StringBuilder("[");
-        StringBuilder downMap = new StringBuilder("[");
+        String upMap = "[";
+        String downMap = "[";
+        String endStr = "|";
+
         for (Round round : rounds) {
-            if (Objects.equals(round.getPlayerMoving(), Moving.UP.getExpression())) {
-                upMap.append(" ").append(round.getResult().getExpression()).append(" ");
-                downMap.append(" ").append(" ").append(" ");
-            } else if (Objects.equals(round.getPlayerMoving(), Moving.DOWN.getExpression())) {
-                upMap.append(" ").append(" ").append(" ");
-                downMap.append(" ").append(round.getResult().getExpression()).append(" ");
+            if (Objects.equals(round, rounds.get(rounds.size() - 1))) {
+                endStr = "]";
             }
-            if (round != rounds.get(rounds.size() - 1)) {
-                upMap.append("|");
-                downMap.append("|");
-            }
+            upMap += " " + round.getUpMap() + " " + endStr;
+            downMap += " " + round.getDownMap() + " " + endStr;
         }
-        upMap.append("]").append("\n");
-        downMap.append("]");
-
-        System.out.println(upMap.toString() + downMap.toString());
-
+        System.out.println(upMap + "\n" + downMap);
     }
 
     /**
@@ -50,7 +41,8 @@ public class OutputView {
     public static void printResult(List<Round> rounds, int totalNumberOfAttempts) {
         System.out.println("최종 게임 결과");
         printMap(rounds);
-        System.out.println("게임 성공 여부: " + rounds.get(rounds.size() - 1).getResult().getDescription());
+        System.out.println(
+                "게임 성공 여부: " + rounds.get(rounds.size() - 1).getResult().getDescription());
         System.out.println("총 시도한 횟수: " + totalNumberOfAttempts);
 
     }
