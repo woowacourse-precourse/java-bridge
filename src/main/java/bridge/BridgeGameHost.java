@@ -6,19 +6,22 @@ import bridge.enums.GameResult;
 import bridge.enums.MovingDirection;
 import bridge.io.InputView;
 import bridge.io.OutputView;
+import bridge.validation.InputValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameHost {
 
-    private final InputView inputView = new InputView();
+    private final InputValidator inputValidator = new InputValidator();
+    private final InputView inputView = new InputView(inputValidator);
     private final BridgeChecker bridgeChecker = new BridgeChecker();
     private final OutputView outputView = new OutputView(bridgeChecker);
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private final BridgeGame bridgeGame = new BridgeGame();
     private int trial=1;
+    private int bridgeSize;
     private GameResult gameResult;
 
     private List<String> bridge;
@@ -54,7 +57,9 @@ public class BridgeGameHost {
 
     public void startGame() {
         printStartingComment();
-        int bridgeSize = inputView.readBridgeSize();
+
+        bridgeSize = inputView.readBridgeSizeUntilSuccess();
+
         bridge = bridgeMaker.makeBridge(bridgeSize);
 
         System.out.println(bridge);
@@ -67,7 +72,7 @@ public class BridgeGameHost {
 
     public void runOneStep() {
         printGuideComment();
-        String moving = inputView.readMoving();
+        String moving = inputView.readMovingSizeUntilSuccess();
         bridgeGame.move(userInput, moving);
         outputView.printMap(bridge, userInput);
     }
