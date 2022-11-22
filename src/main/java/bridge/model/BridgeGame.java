@@ -4,6 +4,7 @@ import bridge.view.InputView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -51,18 +52,22 @@ public class BridgeGame {
         this.status = GameStatus.SUCCESS;
     }
 
+    /*
+     * 다리들의 정답 결과를 가져오는 메소드
+     * 각 다리의 생성 순서는 Move enum의 상수 순서이다.
+     */
     public List<List<String>> getGameMap() {
-        List<String> upMap = makeEachBridge(Move.UP.getCommand(), playerMove, answerMove);
-        List<String> downMap = makeEachBridge(Move.DOWN.getCommand(), playerMove, answerMove);
-
-        return new ArrayList<>(Arrays.asList(upMap, downMap));
+        return Arrays.stream(Move.values())
+                .map(move -> makeEachBridge(move.getCommand()))
+                .collect(Collectors.toList());
     }
 
-    private List<String> makeEachBridge(String way, List<String> playerMove, List<String> answerMove) {
+    private List<String> makeEachBridge(String way) {
         List<String> result = new ArrayList<>();
-        
+
         for (int index = 0; index < playerMove.size(); index++) {
-            result.add(checkStep(way, playerMove.get(index), answerMove.get(index)));
+            String resultStep = checkStep(way, playerMove.get(index), answerMove.get(index));
+            result.add(resultStep);
         }
         return result;
     }
