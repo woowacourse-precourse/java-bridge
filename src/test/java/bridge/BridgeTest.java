@@ -1,25 +1,16 @@
 package bridge;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 public class BridgeTest extends NsTest{
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private BridgeNumberGenerator numberGenerator;
-    private BridgeMaker bridgeMaker;
 
-    @BeforeEach
-    void 미리_다리_만들기() {
-        numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
-        bridgeMaker = new BridgeMaker(numberGenerator);
-    }
     @Test
     void 다리_길이_범위_예외_테스트_3_보다_작은거_입력() {
         assertSimpleTest(() -> {
