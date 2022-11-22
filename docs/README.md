@@ -1,12 +1,35 @@
 ## 기능 구현
-- InputView:
-  [X] 자동으로 생성할 다리 길이를 입력받는다: int readBridgeSize()
-    [X] 숫자인 경우만 가능하다: isNumber()
-    [X] 다리길이 x는 3 <= x <= 20 식을 만족한다: isOutOfSize() 
-  [X] 이동할 칸을 입력받는다: String readMoving()
-    [X] U or D 만 입력이 가능하다: isMovingCommend()
-  [X] 게임 시도 여부를 입력받는다: readGameCommand()
-    [X] R or Q 만 입력이 가능하다: isGameCommand()
+- InputView
+  - [X] 자동으로 생성할 다리 길이를 입력받는다: int readBridgeSize()
+    - [X] 숫자인 경우만 가능하다: isNumber()
+    - [X] 다리길이 x는 3 <= x <= 20 식을 만족한다: isOutOfSize() 
+  - [X] 이동할 칸을 입력받는다: String readMoving()
+    - [X] U or D 만 입력이 가능하다: isMovingCommend()
+  - [X] 게임 시도 여부를 입력받는다: readGameCommand()
+    - [X] R or Q 만 입력이 가능하다: isGameCommand()
 - BridgeMaker
-  [X] 다리 길이에 따른 정답지 생성: makeBridge(int size)
-    [X] 랜덤 함수를 활용하여 답지를 생성한다.(0 == D, 1 == U): checking()
+  - [X] 다리 길이에 따른 정답지 생성: makeBridge(int size)
+    - [X] 랜덤 함수를 활용하여 답지를 생성한다.(0 == D, 1 == U): checking()
+- Bridge
+  - [ ] 다리 길이를 입력받아 정답과 실행 결과 리스트를 생성한다.
+    - [ ] 입력받은 값이 정답과 같은지 확인 후 결과 값을 실행 결과 리스트에 추가한다.
+      - 결과 리스트 form ex) ["O, ", "X, "]
+      - UP 맞췄을 시: "O, "
+      - UP 틀렸을 시: "X, "
+      - DOWN 맞췄을 시: " ,O"
+      - DOWN 틀렸을 시: " ,X"
+    - [ ] 재 시작 버튼 을 눌렀을 시 결과 리스트를 클리어한다
+    - [ ] 마지막 결과의 상태를 반환한다
+- OutputView
+  - [ ] 다리 결과 리스트를 받아 다리 윗부분과 아랫부분을 그린다
+    - [ ] 결과 리스트 데이터를 분리한다
+    - [ ] 한개 이상의 다리를 그릴 시 | 파티션을 추가한다
+  - [ ] 다리 결과 리스트와 게임 최종 횟수를 받아 데이터를 출력한다
+    - [ ] 다리 결과 리스트에서 성공 실패 여부확인
+    - [ ] 현재까지 그려진 다리를 출력
+  - BridgeGame
+    - [ ] 움직임에 따른 결과 데이터를 저장한다
+    - [ ] 재시도 여부에 따른 값을 반환한다
+    - [ ] 게임 횟수를 저장후 반환한다
+  - MainController
+    - [ ] 기능을 종합하여 게임을 구현한다 
