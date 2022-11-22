@@ -29,7 +29,7 @@ public class InputView {
     public boolean validate(String size) {
         try {
             int Size = Integer.parseInt(size);
-            if (Size <= 3 || Size >= 20) {
+            if (Size < 3 || Size > 20) {
                 System.out.println("[ERROR] 유효하지 않은 수 입니다.");
                 return false;
             }
