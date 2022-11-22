@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.domain.generator.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
