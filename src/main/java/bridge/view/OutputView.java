@@ -57,10 +57,16 @@ public class OutputView {
         printCompleteBridgeMap();
     }
 
-    private void printCompleteBridgeMap() {
-        System.out.println(bridgeUpMap.toString());
-        System.out.println(bridgeDownMap.toString());
-        System.out.println();
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void printResult() {
+        System.out.println(RESULT.getMessage());
+        printCompleteBridgeMap();
+        System.out.printf(SUCCESS_OR_FAILURE.getMessage(), getGameResult());
+        System.out.printf(TOTAL_ATTEMPTS.getMessage(), bridgePlayer.getTryCount());
     }
 
     private void deleteLastSeparator(boolean isRetry) {
@@ -70,7 +76,6 @@ public class OutputView {
         }
         deleteBridgeLastSeparator();
     }
-
 
     /**
      * 재시도했을 때 이전의 다리 기록에 대해서 삭제를 진행한다.
@@ -119,7 +124,7 @@ public class OutputView {
      * 결과에 따라 위쪽 다리에 표시를 진행한다.
      */
     private void makeBridgeUpPart() {
-        if (bridgePlayer.checkMoveSuccess()) {
+        if (bridgePlayer.isSuccess()) {
             bridgeUpMap.append(POSSIBLE.getIdentifier());
             return;
         }
@@ -130,7 +135,7 @@ public class OutputView {
      * 결과에 따라 아래쪽 다리에 표시를 진행한다.
      */
     private void makeBridgeDownPart() {
-        if (bridgePlayer.checkMoveSuccess()) {
+        if (bridgePlayer.isSuccess()) {
             bridgeDownMap.append(POSSIBLE.getIdentifier());
             return;
         }
@@ -145,22 +150,16 @@ public class OutputView {
         bridgeDownMap.append(MAP_END.getIdentifier());
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
-        System.out.println(RESULT.getMessage());
-        printCompleteBridgeMap();
-        System.out.printf(SUCCESS_OR_FAILURE.getMessage(), getGameResult());
-        System.out.printf(TOTAL_ATTEMPTS.getMessage(), bridgePlayer.getTryCount());
-    }
-
     private String getGameResult() {
-        if (bridgePlayer.checkMoveSuccess()) {
+        if (bridgePlayer.isSuccess()) {
             return SUCCESS.getIdentifier();
         }
         return FAILURE.getIdentifier();
+    }
+
+    private void printCompleteBridgeMap() {
+        System.out.println(bridgeUpMap.toString());
+        System.out.println(bridgeDownMap.toString());
+        System.out.println();
     }
 }

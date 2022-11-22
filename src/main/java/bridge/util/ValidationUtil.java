@@ -22,21 +22,6 @@ public class ValidationUtil {
         return bridgeLength;
     }
 
-    private void checkNumberType(String input) {
-        String regex = "[0-9]+";
-
-        if (!Pattern.matches(regex, input)) {
-            throw new IllegalArgumentException(BRIDGE_LENGTH_TYPE.getMessage());
-        }
-    }
-
-    private void checkNumberRange(int input) {
-        if (input < MIN_LENGTH.getNumber() || input > MAX_LENGTH.getNumber()) {
-            throw new IllegalArgumentException(String.format(BRIDGE_LENGTH_RANGE.getMessage(),
-                    MIN_LENGTH.getNumber(), MAX_LENGTH.getNumber()));
-        }
-    }
-
     /**
      * 사용자가 입력한 이동할 칸이 U 혹은 D인지 검증한다.
      *
@@ -65,5 +50,20 @@ public class ValidationUtil {
 
         throw new IllegalArgumentException(String.format(PLAY_CONTROL.getMessage(),
                 RESTART.getIdentifier(), QUIT.getIdentifier()));
+    }
+
+    private void checkNumberType(String input) {
+        String regex = "[0-9]+";
+
+        if (!Pattern.matches(regex, input)) {
+            throw new IllegalArgumentException(BRIDGE_LENGTH_TYPE.getMessage());
+        }
+    }
+
+    private void checkNumberRange(int input) {
+        if (input < MIN_LENGTH.getNumber() || input > MAX_LENGTH.getNumber()) {
+            throw new IllegalArgumentException(String.format(BRIDGE_LENGTH_RANGE.getMessage(),
+                    MIN_LENGTH.getNumber(), MAX_LENGTH.getNumber()));
+        }
     }
 }

@@ -6,6 +6,7 @@ import static bridge.constant.BridgeControl.RESTART;
 import static bridge.constant.BridgeMove.UP;
 
 public class BridgePlayer {
+
     private Integer moveBridgeSpace = 0, tryCount = 1;
 
     private Boolean isSuccess;
@@ -20,16 +21,16 @@ public class BridgePlayer {
         moveWrongBridge();
     }
 
-    public void moveCorrectBridge() {
+    private void moveCorrectBridge() {
         this.moveBridgeSpace++;
         this.isSuccess = true;
     }
 
-    public void moveWrongBridge() {
+    private void moveWrongBridge() {
         this.isSuccess = false;
     }
 
-    public boolean checkMoveSuccess() {
+    public boolean isSuccess() {
         return isSuccess;
     }
 

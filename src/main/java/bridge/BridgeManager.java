@@ -51,10 +51,9 @@ public class BridgeManager {
     private boolean isSuccessCrossBridge() {
         getPlayerMove();
         bridgeGame.move();
-        boolean isSuccess = bridgePlayer.checkMoveSuccess();
         outputView.printMap(bridgeGame.getRetryStatus());
-        bridgeGame.checkRetryGameResult(isSuccess);
-        return isSuccess;
+        bridgeGame.checkRetryGameResult();
+        return bridgePlayer.isSuccess();
     }
 
     private void makeBridge(int bridgeLength) {

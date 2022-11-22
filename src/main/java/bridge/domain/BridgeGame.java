@@ -45,8 +45,8 @@ public class BridgeGame {
         return bridgePlayer.getCurrentBridgeSpace() < bridge.size();
     }
 
-    public void checkRetryGameResult(boolean isSuccess) {
-        if (isSuccess && isRetryGame) {
+    public void checkRetryGameResult() {
+        if (bridgePlayer.isSuccess() && isRetryGame) {
             isRetryGame = false;
         }
     }
