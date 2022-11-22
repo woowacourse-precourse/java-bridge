@@ -58,11 +58,18 @@ class ValidatorTest {
         assertThatCode(() -> validateIsMovingValue(value)).doesNotThrowAnyException();
     }
 
-    @DisplayName("재시작 입력값이 Q, D 중 하나가 아닐 때 예외테스트")
+    @DisplayName("재시작 입력값이 Q, R 중 하나가 아닐 때 예외테스트")
     @ParameterizedTest
     @ValueSource(strings = {"q", "d", "재시작"})
     void validateIsRetryValueExceptionTest(String value) {
         assertThatThrownBy(() -> validateIsRetryValue(value))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시작 입력값이 Q, R 중 하나 일 때 통과테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"Q", "R"})
+    void validateIsRetryValuePassTest(String value) {
+        assertThatCode(() -> validateIsRetryValue(value)).doesNotThrowAnyException();
     }
 }
