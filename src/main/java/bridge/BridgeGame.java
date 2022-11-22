@@ -40,4 +40,14 @@ public class BridgeGame {
         int lastIndex = directions.size() - 1;
         return (directions.size() == bridge.getBridgeSize()) && bridge.isSame(lastIndex, directions.get(lastIndex));
     }
+
+    public void retry(String inputKey) {
+        if(inputKey.equals(ControlKey.RETRY.getKey())){
+            initMap();
+            directions.clear();
+            gameCount++;
+            return;
+        }
+        crossed = false;
+    }
 }
