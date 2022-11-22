@@ -12,6 +12,7 @@ public class OutputView {
     public void printMap(GameStatus gameStatus) {
         System.out.printf(OUTPUT_FORM, bridgeToMap(gameStatus.topBridge));
         System.out.printf(OUTPUT_FORM, bridgeToMap(gameStatus.bottomBridge));
+        printNewLine();
     }
 
     public void printResult(GameStatus gameStatus) {
@@ -47,5 +48,9 @@ public class OutputView {
 
     public void askWhetherToRetry() {
         System.out.println(InGameMessage.WHETHER_TO_RETRY);
+    }
+
+    public void printNewLine() {
+        System.out.println();
     }
 }

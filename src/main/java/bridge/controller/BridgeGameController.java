@@ -36,8 +36,8 @@ public class BridgeGameController {
     }
 
     public void start() {
-        makeBridge(getBridgeLengthUntilQualifiedInput());
         outputView.printStart();
+        makeBridge(getBridgeLengthUntilQualifiedInput());
         while (isFinish) {
             boolean check = crossTheBridge();
             outputView.printMap(gameStatus);
@@ -87,6 +87,25 @@ public class BridgeGameController {
         copyBridge = new Bridge(bridge.copyBridge());
     }
 
+    private int getBridgeLengthUntilQualifiedInput() {
+        outputView.askBridgeSize();
+        while (true) {
+            try {
+                return getBridgeLengthAndValidate();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private int getBridgeLengthAndValidate() {
+        String input = inputView.readBridgeSize();
+        BridgeLengthValidator.validateNaturalNumber(input);
+        BridgeLengthValidator.validateRange(input);
+        outputView.printNewLine();
+        return Integer.parseInt(input);
+    }
+
     private String getWhetherToRetryUntilQualifiedInput() {
         outputView.askWhetherToRetry();
         while (true) {
@@ -119,23 +138,5 @@ public class BridgeGameController {
         String input = inputView.readMoving();
         SpaceToMoveValidator.validateSpaceToMove(input);
         return input;
-    }
-
-    private int getBridgeLengthUntilQualifiedInput() {
-        outputView.askBridgeSize();
-        while (true) {
-            try {
-                return getBridgeLengthAndValidate();
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
-    }
-
-    private int getBridgeLengthAndValidate() {
-        String input = inputView.readBridgeSize();
-        BridgeLengthValidator.validateNaturalNumber(input);
-        BridgeLengthValidator.validateRange(input);
-        return Integer.parseInt(input);
     }
 }
