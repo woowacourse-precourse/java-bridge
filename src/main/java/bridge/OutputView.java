@@ -90,10 +90,21 @@ public class OutputView {
     }
 
     /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param bridge 다리 상태
+     * @param move   현재까지의 입력 커맨드
+     * @param count  시도 횟수
+     *               <p>
+     *               게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     *               <p>
+     *               출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> bridge, List<String> move, int count) {
+        if (bridge.equals(move)) {
+            System.out.println("게임 성공 여부: 성공");
+            System.out.println("총 시도한 횟수: " + count);
+            return;
+        }
+        System.out.println("게임 성공 여부: 실패");
+        System.out.println("총 시도한 횟수: " + count);
     }
 }
