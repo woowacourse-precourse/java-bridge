@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.constant.InGameMessage;
+import bridge.constants.InGameMessage;
 import bridge.domain.GameStatus;
 import java.util.List;
 

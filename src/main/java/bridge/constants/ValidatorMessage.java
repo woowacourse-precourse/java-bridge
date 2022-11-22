@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.constants;
 
 public enum ValidatorMessage {
 

@@ -1,6 +1,6 @@
 package bridge.validator;
 
-import bridge.constant.ValidatorMessage;
+import bridge.constants.ValidatorMessage;
 
 public class RetryInputValidator {
 
