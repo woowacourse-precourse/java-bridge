@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
+import bridge.handler.InputMoveStepHandler;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class OutputView {
     OrderView orderView = new OrderView();
     BridgeGame bridgeGame = new BridgeGame();
     InputView inputView = new InputView();
+    InputMoveStepHandler inputMoveStepHandler = new InputMoveStepHandler();
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -32,11 +34,13 @@ public class OutputView {
     }
 
     public void stepBridge(List<String> bridgeData) {
+        String moveStep = "";
         orderView.retryCount++;
         for(int index = 0 ; index < bridgeData.size(); index++) {
             if(index != 0) orderView.lineSkip();
             System.out.println(orderView.MOVE_STEP);
-            bridgeGame.move(inputView.readMoving(), bridgeData.get(index), index);
+            moveStep = inputView.readMoving();
+            bridgeGame.move(inputMoveStepHandler.checkValidator(moveStep), bridgeData.get(index), index);
             if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) break;
             successBridge(index, bridgeData);
         }
