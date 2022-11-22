@@ -4,6 +4,9 @@ package bridge.domain;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final String SUCCESS_MESSAGE = "\n\n게임 성공 여부: 성공\n";
+    private final String FAIL_MESSAGE = "\n\n게임 성공 여부: 실패\n";
+    private final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
     private final int ZERO_COUNT = 0;
     private int tryCount;
     private final Bridge bridge;
@@ -61,11 +64,23 @@ public class BridgeGame {
         return bridge.isEqual(playerMovement.getMovement());
     }
 
-    public int getTryCount() {
-        return tryCount;
+    public String getResultGame() {
+        return getResultBridgeMap() + getResultSuccessOrFail() + getResultTry();
     }
 
-    public String getResultBridgeMap() {
+    private String getResultBridgeMap() {
         return currentBridgeMap.getBridgeMap();
+    }
+
+    private String getResultSuccessOrFail() {
+        if (isEndBridge()) {
+            return SUCCESS_MESSAGE;
+        }
+
+        return FAIL_MESSAGE;
+    }
+
+    private String getResultTry() {
+        return String.format(TOTAL_TRY_COUNT_MESSAGE, tryCount);
     }
 }

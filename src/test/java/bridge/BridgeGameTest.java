@@ -91,15 +91,4 @@ class BridgeGameTest {
         assertThat(bridgeGame.isFinish()).isTrue();
         assertThat(bridgeGame.isSuccess()).isFalse();
     }
-
-    @DisplayName("retry 테스트 - tryCount 값 확인")
-    @ValueSource(ints = {0, 1, 5})
-    @ParameterizedTest
-    void getTryCountTestByRetry(int retryCount) {
-        for (int i = 0; i < retryCount; i++) {
-            bridgeGame.retry();
-        }
-
-        assertThat(bridgeGame.getTryCount()).isEqualTo(retryCount + 1);
-    }
 }
