@@ -1,23 +1,47 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    GameConstructor gameConstructor;
+    int tryCount;
+    boolean wrongMovement = true;
+    boolean playMore = true;
+    List<String> bridge;
+
+    public BridgeGame(GameConstructor gameConstructor) {
+        this.gameConstructor = gameConstructor;
+        this.bridge = gameConstructor.bridge;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public boolean move() {
+        return gameConstructor.getMoveBool();
     }
-}
+
+    public void playOneGame() {
+        tryCount = 0;
+        while (playMore && wrongMovement) {
+            gameConstructor.clearResult();
+            wrongMovement = move();
+            retry();
+            tryCount += 1;
+        }
+    }
+
+    public boolean retry() {
+        playMore = true;
+        if (wrongMovement) {
+            playMore = gameConstructor.askForRetry();
+        }
+        return  playMore;
+    }
+
+    public void play () {
+            playOneGame();
+            gameConstructor.resultPrint(tryCount);
+        }
+    }
