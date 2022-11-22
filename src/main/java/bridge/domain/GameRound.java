@@ -47,14 +47,21 @@ public class GameRound {
 
     public void recordResult(String movingCommand, String nowBridgePosition) {
         if (isCorrect(movingCommand, nowBridgePosition)) {
-            if (movingCommand.equals(MOVING_COMMAND_UP)) {
-                recordUpperCorrect();
-                return;
-            }
-            recordLowerCorrect();
+            checkCorrectPosition(movingCommand);
             return;
         }
+        checkUnCorrectPosition(movingCommand);
+    }
 
+    private void checkCorrectPosition(String movingCommand) {
+        if(movingCommand.equals(MOVING_COMMAND_UP)) {
+            recordUpperCorrect();
+            return;
+        }
+        recordLowerCorrect();
+    }
+
+    private void checkUnCorrectPosition(String movingCommand) {
         if (movingCommand.equals(MOVING_COMMAND_UP)) {
             recordUpperUncorrect();
             return;
