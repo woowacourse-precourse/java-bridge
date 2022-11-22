@@ -62,4 +62,10 @@ public class OutputView {
     public void tryNumber(int tryCount) {
         System.out.println("총 시도한 횟수: " + tryCount);
     }
+
+    public void printGameEnding(List<String> bridge, List<String> moves, boolean hit, int count) {
+        printResult(bridge, moves);
+        gameResult(hit);
+        tryNumber(count);
+    }
 }

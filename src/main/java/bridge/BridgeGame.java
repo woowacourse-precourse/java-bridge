@@ -61,13 +61,14 @@ public class BridgeGame {
         tryCount++;
         ArrayList<String> moves = new ArrayList<>();
         for (String bridgeBlock : bridge) {
-            if (stepForward(moves, bridgeBlock)) break;
+            String move = inputView.readValidMoving();
+            if (stepForward(moves, bridgeBlock, move)) break;
         }
         return moves;
         }
 
-    private boolean stepForward(ArrayList<String> moves, String bridgeBlock) {
-        String move = inputView.readValidMoving();
+    public boolean stepForward(ArrayList<String> moves, String bridgeBlock, String move) {
+
 
         if (move.equals(bridgeBlock)) moves.add(move);
         if (!move.equals(bridgeBlock)) {
