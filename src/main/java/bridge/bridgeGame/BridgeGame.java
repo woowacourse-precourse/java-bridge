@@ -2,11 +2,12 @@ package bridge.bridgeGame;
 
 import bridge.bridge.BridgeMaker;
 import bridge.bridge.BridgeNumberGenerator;
+import bridge.bridge.BridgePosition;
 
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private BridgeGameState bridgeGameState;
-    private Integer tryCount = 1;
+    private final Integer tryCount = 1;
 
     public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -18,5 +19,9 @@ public class BridgeGame {
 
     public Integer getTryCount() {
         return tryCount;
+    }
+
+    public void move(BridgePosition bridgePosition) {
+        bridgeGameState.move(bridgePosition);
     }
 }
