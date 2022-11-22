@@ -24,19 +24,18 @@ public class InputView {
 
     private boolean validateSize(String bridgeSize) {
         try{
-            int size = Integer.parseInt(bridgeSize);
-            validateSizeRange(size);
+            try {
+                Integer.parseInt(bridgeSize);
+            }catch (NumberFormatException e){
+                throw new IllegalArgumentException();}
+            validateSizeRange(Integer.parseInt(bridgeSize));
             return false;
-        }catch (NumberFormatException e){
-            System.out.println("[ERROR] 다리 길이는 숫자여야 합니다.");
-            return true;
         }catch (IllegalArgumentException e){
-            return true;}
-    }
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            return true;}}
 
     private static void validateSizeRange(int size) {
         if (size <3 || size >20){
-            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }
