@@ -105,7 +105,8 @@ public class BridgeGame {
         printChooseRetryGameMessage();
         String retryGameInput = readGameCommand();
         if (retryGameInput.equals(QUIT)) {
-            printFinalGameResult(bridges, false);
+            printResult(bridges, false);
+            printGameFail();
             return true;
         }
 
@@ -125,7 +126,8 @@ public class BridgeGame {
                 return false;
             }
         }
-        printFinalGameResult(bridges, true);
+        printResult(bridges, true);
+        printGameSuccess();
         return true;
     }
 }
