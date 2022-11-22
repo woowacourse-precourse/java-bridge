@@ -50,6 +50,16 @@ public class BridgeGameController {
     }
 
 
+    public boolean checkRestartOption(Bridge bridge, Game game, String inputGameOption) {
+        if(inputGameOption.equals(RESTART)) {
+            outputView.initView();
+            bridgeGame.retry(bridge, game);
+            return true;
+        }
+        return false;
+    }
+
+
 
 
 }
