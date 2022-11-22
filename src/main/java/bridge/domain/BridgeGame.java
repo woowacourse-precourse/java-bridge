@@ -52,4 +52,8 @@ public class BridgeGame {
   public GameState getGameState() {
     return gameState;
   }
+
+  public Bridge getBridge() {
+    return bridge;
+  }
 }
