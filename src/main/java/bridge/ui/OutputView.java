@@ -13,23 +13,28 @@ public class OutputView {
     }
 
     public void printMap(Bridge bridge) {
-        String UpperBridgeMapInfo = printEachBridgeMap(bridge, "U");
-        String BelowBridgeMapInfo = printEachBridgeMap(bridge, "D");
-        System.out.println(UpperBridgeMapInfo);
-        System.out.println(BelowBridgeMapInfo);
+        List<String> upperBridgeMapInfo = bridge.getUserRouteInTargetBridge("U");
+        List<String> belowBridgeMapInfo = bridge.getUserRouteInTargetBridge("D");
+
+        String upperBridgeMap = getFinalBridgeMap(upperBridgeMapInfo);
+        String belowBridgeMap = getFinalBridgeMap(belowBridgeMapInfo);
+
+        System.out.println(upperBridgeMap);
+        System.out.println(belowBridgeMap);
     }
 
-    public String printEachBridgeMap(Bridge bridge, String direction) {
-        List<String> mapInfo = bridge.getUserRouteInTargetBridge(direction);
-        String eachBridgeMap = "[ ";
-        for (int round=0; round<mapInfo.size(); round++) {
-            eachBridgeMap += mapInfo.get(round);
-            if (round != mapInfo.size()-1) { // 마지막이 아니라면
+    /**
+    * 각 다리의 최종 Map을 [ O | O |  | X ] 와 같이 문자열로 만들어 반환합니다.
+    */
+    public String getFinalBridgeMap(List<String> targetBridgeMapInfo) {
+        String eachBridgeMap = "";
+        for (int round=0; round<targetBridgeMapInfo.size(); round++) {
+            eachBridgeMap += targetBridgeMapInfo.get(round);
+            if (round != targetBridgeMapInfo.size()-1) { // 마지막 칸이 아니라면 " | " 추가
                 eachBridgeMap += " | ";
             }
         }
-        eachBridgeMap += " ]";
-        return eachBridgeMap;
+        return "[ " + eachBridgeMap + " ]";
     }
 
     public void printResult(BridgeGame bridgeGame) {
