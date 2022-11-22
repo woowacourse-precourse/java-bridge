@@ -115,6 +115,7 @@ public class OutputView {
     public static void printBridgeResult(boolean result, int tryCount) {
         OutputView.printResultMessage();
         OutputView.printMap();
+        System.out.println();
         OutputView.printSuccessOrFailureResult(tryCount, result);
     }
 }
