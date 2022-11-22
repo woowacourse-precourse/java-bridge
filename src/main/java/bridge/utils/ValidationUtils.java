@@ -13,10 +13,10 @@ import static bridge.exception.Errors.NOT_RIGHT_MOVE_COMMAND;
 public class ValidationUtils {
 
     private static final String NUMBER_REGEX = "^\\d+$";
-    private static final int MINIMUM_BRIDGE_LENGTH = 3;
-    private static final int MAXIMUM_BRIDGE_LENGTH = 20;
     private static final String MOVE_COMMAND_REGEX = "[U|D]";
     private static final String GAME_COMMAND_REGEX = "[R|Q]";
+    private static final int MAXIMUM_BRIDGE_LENGTH = 20;
+    private static final int MINIMUM_BRIDGE_LENGTH = 3;
 
     private ValidationUtils() {
     }

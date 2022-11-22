@@ -14,6 +14,7 @@ class ValidationUtilsTest {
     @Nested
     @DisplayName("입력되는 다리 크기의 값을 검증한다.")
     class inputBridgeSizeTest {
+
         @DisplayName("아무것도 입력이 안되면 오류가 발생된다.")
         @ParameterizedTest
         @ValueSource(strings = {" ", ""})
@@ -49,6 +50,7 @@ class ValidationUtilsTest {
     @Nested
     @DisplayName("입력되는 이동 명령의 값을 검증한다.")
     class inputMoveCommandTest {
+
         @DisplayName("아무것도 입력이 안되면 오류가 발생된다.")
         @ParameterizedTest
         @ValueSource(strings = {" ", ""})
@@ -76,6 +78,7 @@ class ValidationUtilsTest {
     @Nested
     @DisplayName("입력되는 게임 명령을 검증한다.")
     class inputGameCommandTest {
+
         @DisplayName("아무것도 입력이 안되면 오류가 발생된다.")
         @ParameterizedTest
         @ValueSource(strings = {" ", ""})

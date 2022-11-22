@@ -7,6 +7,7 @@ import java.util.Objects;
 import static bridge.exception.Errors.INVALID_PARAMETER;
 
 public enum BridgePosition {
+
     BRIDGE_POSITION_UP("U", 1),
     BRIDGE_POSITION_DOWN("D", 0);
 

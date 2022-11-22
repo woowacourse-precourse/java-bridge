@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeRepository {
+
     private final List<String> upBridges = new ArrayList<>();
     private final List<String> downBridges = new ArrayList<>();
 

@@ -3,6 +3,7 @@ package bridge.model;
 import java.util.Objects;
 
 public enum GameCommand {
+
     RETRY("R"), QUIT("Q");
 
     private final String sign;

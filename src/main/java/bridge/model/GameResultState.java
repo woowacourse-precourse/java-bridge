@@ -1,6 +1,7 @@
 package bridge.model;
 
 public enum GameResultState {
+
     WIN("성공"), LOSE("실패");
 
     private final String message;
