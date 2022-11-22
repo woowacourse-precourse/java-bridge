@@ -5,9 +5,9 @@ public class MapViewDto {
     private String selectedBridge;
     private boolean result;
 
-    public MapViewDto(String selectedBridge, boolean result) {
-        this.selectedBridge = selectedBridge;
-        this.result = result;
+    public MapViewDto(MoveResponseDto dto) {
+        this.selectedBridge = dto.getSelectedBridge();
+        this.result = dto.getResultBooleanType();
     }
 
     //getter -> 메시지를 보내자.

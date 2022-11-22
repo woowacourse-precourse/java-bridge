@@ -2,9 +2,9 @@ package bridge;
 
 public class MoveResponseDto {
     private String selectedBridge;
-    private boolean result;
+    private Result result;
 
-    public MoveResponseDto(String selectedBridge, boolean result) {
+    public MoveResponseDto(String selectedBridge, Result result) {
         this.selectedBridge = selectedBridge;
         this.result = result;
     }
@@ -13,7 +13,11 @@ public class MoveResponseDto {
         return selectedBridge;
     }
 
-    public boolean getResult() {
-        return result;
+    public Result getResult() {
+        return this.result;
+    }
+
+    public boolean getResultBooleanType() {
+        return result.getValue();
     }
 }

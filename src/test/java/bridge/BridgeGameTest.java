@@ -27,8 +27,8 @@ class BridgeGameTest {
 
         assertThat(player.getCommands().get(0)).isEqualTo(Command.UP);
         assertThat(move.getSelectedBridge()).isEqualTo("UP");
-        assertThat(move.getResult()).isTrue();
+        assertThat(move.getResultBooleanType()).isTrue();
     }
 
-    //에외 테스트.
+    //에외 테스트
 }
