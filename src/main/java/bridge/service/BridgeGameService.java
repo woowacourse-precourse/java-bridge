@@ -17,7 +17,7 @@ public interface BridgeGameService {
 
     InGameCommandResponseDto playGame(InGameCommandRequestDto requestDto);
 
-    FailMenuResponseDto askRestart(FailMenuRequestDto requestDto);
+    FailMenuResponseDto askRetry(FailMenuRequestDto requestDto);
 
     FinalResultResponseDto getResult(FinalResultRequestDto requestDto);
 }
