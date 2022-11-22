@@ -18,9 +18,9 @@ public class Progress {
     }
 
 
-    public void saveProgress(SuccessStep successStep, String userStep) {
+    public String saveProgress(SuccessStep successStep, String userStep) {
         makeBridge(successStep, userStep);
-        finalBridge();
+        return finalBridge();
     }
 
     public void makeBridge(SuccessStep successStep, String userStep) {
