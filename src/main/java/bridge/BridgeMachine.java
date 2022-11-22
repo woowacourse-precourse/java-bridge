@@ -5,6 +5,12 @@ public class BridgeMachine {
     private int index = 0;
     private boolean success = false;
 
+    public void initiateBridgeMachine() {
+        BridgeGame bridgeGame = bridgeGameStart();
+        Bridge bridge = getBridge();
+        playBridgeGame(bridgeGame, bridge);
+        printAfterGame(bridge);
+    }
 
     private void playBridgeGame(BridgeGame bridgeGame, Bridge bridge) {
         while (true) {
