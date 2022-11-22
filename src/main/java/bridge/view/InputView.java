@@ -7,8 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public int readBridgeSize() {
-        System.out.println(GameMessage.OUTPUT_INIT_GAME + "\n\n"
-                            + GameMessage.INPUT_BRIDGE_SIZE);
+        System.out.println(GameMessage.OUTPUT_INIT_GAME + "\n\n" + GameMessage.INPUT_BRIDGE_SIZE);
 
         int inputSize = Integer.parseInt(Console.readLine());
         System.out.println(" ");

@@ -16,16 +16,15 @@ public class BridgeController {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static BridgeGame bridgeGame = new BridgeGame();
-    public static int inputSize;
-    private static List<String> bridges;
-    private static Boolean trueOrFalse = true;
+    public int inputSize;
+    private List<String> bridges;
+    private Boolean trueOrFalse = true;
     private static int attempts = 0;
     private static String successOrFail = "";
-    private static List<String> upFloor = new ArrayList<>();
-    private static List<String> downFloor = new ArrayList<>();
+    private List<String> upFloor = new ArrayList<>();
+    private List<String> downFloor = new ArrayList<>();
 
     public void init() {
-
         inputSize = getBridgeSize();
         bridges = makeRandomBridges(inputSize);
 
@@ -48,7 +47,7 @@ public class BridgeController {
         return bridgeMaker.makeBridge(inputSize);
     }
 
-    private int getAttempts(int inputSize) {;
+    private int getAttempts(int inputSize) {
         cleanAndAdd();
         int lengthOfBridge = 0;
         lengthOfBridge = startGame(inputSize, lengthOfBridge);
@@ -56,7 +55,6 @@ public class BridgeController {
         trueOrFalse = getFalse();
 
         attempts++;
-
         return attempts;
     }
 
@@ -71,16 +69,15 @@ public class BridgeController {
         while (lengthOfBridge < inputSize) {
             String inputMoving = inputView.readMoving();
             lengthOfBridge = bridgeGame.move(bridges, lengthOfBridge, inputMoving);
-
             List<String> toStringBridges = new ArrayList<>();
-            addforBridges(toStringBridges);
+            addBridges(toStringBridges);
             outputView.printMap(toStringBridges);
             lengthOfBridge++;
         }
         return lengthOfBridge;
     }
 
-    private static void addforBridges(List<String> toStringBridges) {
+    private static void addBridges(List<String> toStringBridges) {
         String upToString = String.join("", upAndDown.get(0).subList(0, upAndDown.get(0).size()-1));
         String downToString = String.join("", upAndDown.get(1).subList(0, upAndDown.get(1).size()-1));
 
@@ -110,7 +107,7 @@ public class BridgeController {
     private static void printResult() {
 
         List<String> finalMap = new ArrayList<>();
-        addforBridges(finalMap);
+        addBridges(finalMap);
 
         outputView.printResult(finalMap, successOrFail, attempts);
     }

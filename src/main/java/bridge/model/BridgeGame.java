@@ -64,6 +64,7 @@ public class BridgeGame {
 
     public String retry(String restartOrQuit) {
         userInput.validateRestartOrQuit(restartOrQuit);
+
         if (restartOrQuit.equals(Command.QUIT)) {
             return Command.FAIL;
         }

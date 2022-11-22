@@ -24,7 +24,7 @@ public class BridgeMakerTest {
 
     @ParameterizedTest
     @CsvSource({"1", "21"})
-    void 입력값이_범위_밖인_경우_test(int number) {
+    void 입력값이_범위_밖인_경우_예외발생_test(int number) {
         assertThatThrownBy(() -> bridgeMaker.validateNumberRange(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
