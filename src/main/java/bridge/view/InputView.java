@@ -2,9 +2,8 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.util.message.GameMessage.*;
+
 import static bridge.util.message.ErrorMessage.*;
-import static bridge.view.OutputView.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -15,14 +14,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        showMessage(START_MESSAGE.getMessage());
         String bridgeSize = input();
-        exceptionBridgeSize(bridgeSize);
+        bridgeSizeException(bridgeSize);
 
-        return 0;
+        return Integer.parseInt(bridgeSize);
     }
 
-    private void exceptionBridgeSize(String size){
+    private void bridgeSizeException(String size){
 
         //예외 범위 입력시
         if(size.length()<3||size.length()>20){
@@ -32,7 +30,7 @@ public class InputView {
         //숫자 이외에 문자 입력시
         for(int i=0;i<size.length();i++){
             if('1'>size.charAt(i)||size.charAt(i)>'9'){
-                throw new IllegalArgumentException(INPUT_NUMERIC.getMessage());
+                throw new IllegalArgumentException(ONLY_NUMERIC.getMessage());
             }
         }
 
@@ -41,7 +39,22 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+
+        String move =input();
+        moveException(move);
+
+        return move;
+    }
+
+    private void moveException(String move){
+
+        if(move.length()!=1){
+            throw new IllegalArgumentException(UP_OR_DOWN.getMessage());
+        }
+
+        if(!move.equals("U")|| !move.equals("D")){
+            throw new IllegalArgumentException(ONE_CHARACTER.getMessage());
+        }
     }
 
     /**
