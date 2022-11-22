@@ -68,10 +68,10 @@ public class OutputView {
 
     private void printGamestatus(boolean isGameover) {
         if (!isGameover) {
-            System.out.println(Message.SUC_OR_FAIL.getMessage() + " 성공");
+            System.out.println(Message.SUC_OR_FAIL.getMessage() + Constant.SUCCESS.getConstant());
             return;
         }
-        System.out.println(Message.SUC_OR_FAIL.getMessage() + " 실패");
+        System.out.println(Message.SUC_OR_FAIL.getMessage() + Constant.FAIL.getConstant());
     }
 
     private void printAttempt(int attempt) {
