@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 import java.util.regex.Pattern;
 import camp.nextstep.edu.missionutils.Console;

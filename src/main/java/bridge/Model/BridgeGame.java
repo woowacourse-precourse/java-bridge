@@ -1,6 +1,8 @@
-package bridge;
+package bridge.Model;
 
 import java.util.List;
+
+import bridge.View.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

@@ -1,4 +1,8 @@
-package bridge;
+package bridge.Controller;
+
+import bridge.Model.BridgeGame;
+import bridge.View.InputView;
+import bridge.View.OutputView;
 
 /*
  * 게임을 진행하는 클래스

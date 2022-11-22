@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 public class Message {
     protected static String SIZE_RANGE_ERROR = "[ERROR] size out of range";
