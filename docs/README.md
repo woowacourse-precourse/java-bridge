@@ -48,6 +48,13 @@ input regex를 모은 enum
 
     player 의 위치를 초기화 시키고 총시도 횟수를 1회 증가 시킴
 
+### status
+
+    player 의 현재 상태를 확인함
+
+# Player 
+
+player 의 status 분류를 위한 enum
 
 # OutputView
 

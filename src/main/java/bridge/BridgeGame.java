@@ -6,7 +6,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    BridgeGameInfo gameInfo;
+    private BridgeGameInfo gameInfo;
 
     BridgeGame(BridgeGameInfo bridgeGameInfo){
         this.gameInfo = bridgeGameInfo;
@@ -35,5 +35,15 @@ public class BridgeGame {
 
     public BridgeGameInfo getInfo(){
         return gameInfo;
+    }
+
+    public Player status(){
+        int position = gameInfo.getPosition();
+        int end = gameInfo.getEnd();
+        String bridge = gameInfo.getBridgeAt(position);
+        String player = gameInfo.getPlayer();
+        if(position==end && bridge.equals(player))return Player.WIN;
+        if(bridge.equals(player)) return Player.SURVIVE;
+        return Player.DIE;
     }
 }

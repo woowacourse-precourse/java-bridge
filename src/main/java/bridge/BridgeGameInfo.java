@@ -46,4 +46,8 @@ public class BridgeGameInfo {
     public void addTrial(){
         this.trial++;
     }
+
+    public int getEnd() {
+        return end;
+    }
 }

@@ -11,6 +11,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = camp.nextstep.edu.missionutils.Console.readLine();
         int size = validateBridgeSize(input);
+        System.out.println("");
         return size;
     }
 
