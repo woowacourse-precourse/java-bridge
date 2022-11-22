@@ -19,19 +19,18 @@ public class Bridge {
     }
 
     public ResultType move(MoveType moveType) {
-        if (isFinished()) {
-            return ResultType.FINISHED;
-        }
         String position = bridge.get(this.index++);
-
         if (!moveType.isSame(position)) {
             return ResultType.FAIL;
+        }
+        if (isFinished()) {
+            return ResultType.FINISHED;
         }
         return ResultType.SUCCESS;
     }
 
     private boolean isFinished() {
-        return index + 1 == bridge.size();
+        return index == bridge.size();
     }
 
     public void retry() {

@@ -23,12 +23,12 @@ public class Result {
         updateResult(resultType);
 
     }
+
     public void addDownBlock(ResultType resultType) {
         map.addDownBlock(resultType);
         updateResult(resultType);
     }
 
-    //수정
     public Map toMap() {
         return map;
     }
@@ -40,5 +40,10 @@ public class Result {
 
     public boolean isFinished() {
         return lastResultType.isFinished();
+    }
+
+    //getter 없이 살아남기 도전
+    public int getTryCount() {
+        return tryCount;
     }
 }
