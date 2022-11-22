@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
-import bridge.domain.generator.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.GameCommand;
 import bridge.domain.object.Bridge;
 import bridge.domain.object.Player;
