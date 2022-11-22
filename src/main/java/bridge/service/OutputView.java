@@ -64,7 +64,6 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(GAME_RESULT_MAP_MESSAGE);
         printMap(bridgeGame);
-        System.out.println();
         bridgeGame.printFinalResult();
     }
 }

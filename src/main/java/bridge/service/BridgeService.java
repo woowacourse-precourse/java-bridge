@@ -1,9 +1,9 @@
 package bridge.service;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.domain.MoveDirection;
-import bridge.domain.SuccessOrFail;
+import bridge.BridgeMaker;
+
 import static bridge.domain.SuccessOrFail.실패;
 
 import java.util.*;
