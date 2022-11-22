@@ -18,11 +18,20 @@ public class StartBridgeGame {
     private static List<String> bridge;
     private static List<String> checkUpCross;
     private static List<String> checkDownCross;
+    private static String direction;
+    private static String possibility;
+    private static boolean reStart = true;
 
     public void run(){
         printStartGame();
         makeBridge(inputView.readBridgeSize());
-        moveBridge();
+        while(reStart){
+            moveBridge();
+            if(reStart){
+                checkReStartGame();
+            }
+        }
+        getPrintResult();
     }
 
     private void printStartGame(){
@@ -38,12 +47,13 @@ public class StartBridgeGame {
     private void moveBridge(){
         initCheckCross();
         for(int i=0;i<bridge.size();i++){
-            outputView.printInputMoveDirectionNotice();
-            String direction = inputView.readMoving();
-            String possibility = bridgeGame.move(bridge.get(i),direction);
-            checkDirection(direction,possibility);
-            outputView.printMap(checkUpCross,checkDownCross);
+            setDirectionAndPossibility(i);
+            getPrintMap();
+            if(checkPossibility(possibility)){
+                return;
+            }
         }
+        reStart = false;
     }
 
     private void initCheckCross(){
@@ -51,7 +61,18 @@ public class StartBridgeGame {
         checkDownCross = new LinkedList<>();
     }
 
-    private void checkDirection(String direction, String possibility){
+    private void setDirectionAndPossibility(int index){
+        outputView.printInputMoveDirectionNotice();
+        direction = inputView.readMoving();
+        possibility = bridgeGame.move(bridge.get(index),direction);
+    }
+
+    private void getPrintMap(){
+        setUpDownCross(direction,possibility);
+        outputView.printMap(checkUpCross,checkDownCross);
+    }
+
+    private void setUpDownCross(String direction, String possibility){
         if(direction.equals("U")){
             checkUpCross.add(possibility);
             checkDownCross.add(" ");
@@ -59,5 +80,22 @@ public class StartBridgeGame {
         }
         checkUpCross.add(" ");
         checkDownCross.add(possibility);
+    }
+
+    private boolean checkPossibility(String possibility){
+        if(possibility.equals("X")){
+            return true;
+        }
+        return false;
+    }
+
+    private void checkReStartGame(){
+        outputView.printReStartGameNotice();
+        String gameCommand = inputView.readGameCommand();
+        reStart = bridgeGame.retry(gameCommand);
+    }
+
+    private void getPrintResult(){
+
     }
 }

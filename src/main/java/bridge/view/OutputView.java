@@ -9,6 +9,8 @@ public class OutputView {
     private static final String PRINT_START_GAME_NOTICE = "다리 건너기 게임을 시작합니다.";
     private static final String PRINT_INPUT_BRIDGE_SIZE_NOTICE = "다리의 길이를 입력해주세요.";
     private static final String PRINT_INPUT_MOVE_DIRECTION_NOTICE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String PRINT_RESTART_GAME_NOTICE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String PRINT_RESULT_NOTICE = "최종 게임 결과";
     private static final String INIT = "";
     private static final String FIRST_BRACKET = "[";
     private static final String LAST_BRACKET = "]";
@@ -28,6 +30,14 @@ public class OutputView {
 
     public void printInputMoveDirectionNotice(){
         System.out.println(PRINT_INPUT_MOVE_DIRECTION_NOTICE);
+    }
+
+    public void printReStartGameNotice(){
+        System.out.println(PRINT_RESTART_GAME_NOTICE);
+    }
+
+    public void printResultNotice(){
+        System.out.println(PRINT_RESULT_NOTICE);
     }
 
     /**
@@ -54,6 +64,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+        printResultNotice();
+        printUpDownMap();
     }
 
     private void initMap(){
