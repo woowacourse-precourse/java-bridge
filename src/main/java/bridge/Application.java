@@ -11,12 +11,8 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame(new GameService(), new BridgeService(), new RoundService());
         bridgeGame.start();
         boolean status = true;
-        while (status) {
-            if (!bridgeGame.move()) {
-                status = bridgeGame.retry();
-                continue;
-            }
-            status = false;
-        }
+        do {
+            status = bridgeGame.move();
+        } while (!status && bridgeGame.retry());
     }
 }
