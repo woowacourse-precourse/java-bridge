@@ -66,7 +66,7 @@ public class BridgeGameHost {
             String gameCommand = inputView.readGameCommand();
             gameProgress.gameCommand = GameCommandMapper.getInstance().stringToGameCommand(gameCommand);
 
-            if(gameProgress.gameCommand.equals(GameCommand.Retrial)) {
+            if(gameProgress.gameCommand.equals(GameCommand.RETRIAL)) {
                 bridgeGame.retry(userInput, gameProgress);
             }
         }
@@ -85,7 +85,7 @@ public class BridgeGameHost {
 
     public void printRetrialComment() {
         System.out.printf("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)" + System.lineSeparator(),
-                GameCommand.Retrial.getExpression(), GameCommand.Quit.getExpression());
+                GameCommand.RETRIAL.getExpression(), GameCommand.QUIT.getExpression());
     }
 
     public List<String> getBridge() {

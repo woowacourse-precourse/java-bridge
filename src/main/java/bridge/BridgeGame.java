@@ -37,7 +37,7 @@ public class BridgeGame {
     public void retry(List<String> userInput, GameProgress gameProgress) {
         userInput.clear();
         gameProgress.gameOver = GameOver.YET;
-        gameProgress.gameCommand = GameCommand.Retrial;
+        gameProgress.gameCommand = GameCommand.RETRIAL;
         gameProgress.gameResult = GameResult.UNDETERMINED;
         gameProgress.trial += 1;
     }

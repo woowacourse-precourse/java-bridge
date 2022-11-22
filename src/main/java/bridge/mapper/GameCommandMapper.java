@@ -12,9 +12,9 @@ public class GameCommandMapper {
 
     public GameCommand stringToGameCommand(String input) {
         if(input.equals("R")) {
-            return GameCommand.Retrial;
+            return GameCommand.RETRIAL;
         }
 
-        return GameCommand.Quit;
+        return GameCommand.QUIT;
     }
 }

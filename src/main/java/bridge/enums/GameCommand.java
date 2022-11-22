@@ -1,8 +1,8 @@
 package bridge.enums;
 
 public enum GameCommand {
-    Retrial("R"),
-    Quit("Q");
+    RETRIAL("R"),
+    QUIT("Q");
 
     private final String expression;
 
