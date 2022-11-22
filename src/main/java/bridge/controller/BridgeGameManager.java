@@ -19,7 +19,7 @@ public class BridgeGameManager {
         System.out.println("다리 건너기 게임을 시작합니다.");
         makeBridge();
         crossBridge();
-        printGameResult();
+        outputView.printResult(bridgeGame);
     }
 
     private void makeBridge() {
@@ -63,9 +63,5 @@ public class BridgeGameManager {
             System.out.println(e.getMessage());
             return inputGameCommand();
         }
-    }
-
-    private void printGameResult() {
-
     }
 }

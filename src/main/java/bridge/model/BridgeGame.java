@@ -1,6 +1,5 @@
 package bridge.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +9,7 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private Player player = new Player();
+    private int totalTryCount = 1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -31,6 +31,7 @@ public class BridgeGame {
      */
     public void retry() {
         player.backInitialPosition();
+        totalTryCount++;
     }
 
     public boolean isCrossed() {
@@ -43,5 +44,9 @@ public class BridgeGame {
 
     public List<Direction> getRoute() {
         return player.getRoute();
+    }
+
+    public int getTotalTryCount() {
+        return totalTryCount;
     }
 }

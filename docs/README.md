@@ -44,7 +44,7 @@
 
 # 기능 목록
 ## 도메인 로직
-- [ ] 게임을 시작한다. - BridgeGameManager#play
+- [x] 게임을 시작한다. - BridgeGameManager#play
   - [x] 다리를 생성한다. - BridgeMaker#makeBridge
     - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다.
     - [x] U와 D로 이루어진 다리로 변환한다. - BridgeConverter#convert
@@ -52,7 +52,6 @@
     - [x] 플레이어가 움직인다. - BridgeGame#move
     - [x] 플레이어가 재시도한다. - BridgeGame#retry
     - [x] 플레이어가 물에 빠져있는지 안다. - BridgeGame#isFailed
-  - [ ] 게임 최종 결과를 출력한다.
 ## UI 로직
 ### 입력
 - [x] 다리의 길이를 입력받는다. - InputView#readBridgeSize
@@ -65,10 +64,10 @@
   - 예외) 문자 하나를 입력하지 않은 경우
   - 예외) R과 Q 외의 문자를 입력한 경우
 ### 출력
-- [ ] 게임 시작 문구를 출력한다.
+- [x] 게임 시작 문구를 출력한다.
 - [x] 현재까지 이동한 경로를 출력한다. - OutputView#printRoute
-- [ ] 게임의 최종 결과를 출력한다. - OutputView#printResult
-  - [ ] 지금까지 이동한 경로를 출력한다.
-  - [ ] 게임 성공 여부를 출력한다.
-  - [ ] 총 시도한 횟수를 출력한다.
+- [x] 게임의 최종 결과를 출력한다. - OutputView#printResult
+  - [x] 지금까지 이동한 경로를 출력한다.
+  - [x] 게임 성공 여부를 출력한다.
+  - [x] 총 시도한 횟수를 출력한다.
 - [ ] 에러 문구를 출력한다.
