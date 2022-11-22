@@ -33,4 +33,7 @@ public class BridgeGame {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
+    public void initPlayer() {
+        this.player = new Player();
+    }
 }
