@@ -13,43 +13,14 @@ public class BridgeGameController {
     private Bridge bridge;
     private BridgeGame bridgeGame = new BridgeGame();
     private GameResult gameResult;
+    private boolean retryFlag = true;
+    private String inputMove;
+    private int gameCount = 0;
 
     public void run() {
         outputView.printGameStartMessage();
         setBridgeSize();
-        boolean retryFlag = true;
-        int gameCount = 0;
-        while (retryFlag) {
-            bridgeGame.initGameResult();
-            for (String str : bridge.getShape()) {
-                while (true) {
-                    try {
-                        String inputMove = inputView.readMoving();
-                        gameResult = bridgeGame.move(str, inputMove);
-                        break;
-                    } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
-                    }
-                }
-                outputView.printMap(gameResult.getUpBridgeResult());
-                outputView.printMap(gameResult.getDownBridgeResult());
-                if (!gameResult.isBridgeGameResult()) {
-                    break;
-                }
-            }
-            gameCount++;
-            if (gameResult.isBridgeGameResult()) {
-                break;
-            }
-            while (true) {
-                try {
-                    retryFlag = bridgeGame.retry(inputView.readGameCommand());
-                    break;
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        }
+        startGame();
         outputView.printResult(gameResult, checkGameResult(), gameCount);
     }
 
@@ -59,6 +30,52 @@ public class BridgeGameController {
                 bridge = new Bridge(inputView.readBridgeSize());
                 break;
             } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void startGame() {
+        while (retryFlag) {
+            playGame();
+            gameCount++;
+            if (gameResult.isBridgeGameResult()) {
+                break;
+            }
+            setRetryOrEnd();
+        }
+    }
+
+    public void playGame() {
+        bridgeGame.initGameResult();
+        for (String str : bridge.getShape()) {
+            setMove(str);
+            outputView.printMap(gameResult.getUpBridgeResult());
+            outputView.printMap(gameResult.getDownBridgeResult());
+            if (!gameResult.isBridgeGameResult()) {
+                break;
+            }
+        }
+    }
+
+    public void setMove(String str) {
+        while (true) {
+            try {
+                inputMove = inputView.readMoving();
+                gameResult = bridgeGame.move(str, inputMove);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void setRetryOrEnd() {
+        while (true) {
+            try {
+                retryFlag = bridgeGame.retry(inputView.readGameCommand());
+                break;
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
