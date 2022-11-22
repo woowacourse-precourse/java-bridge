@@ -22,6 +22,13 @@ public class BridgeGame {
     private int tries; // 사용자의 총 시도
     private int bridgeLen; // 다리의 길이
 
+    // 하나의 게임 도중 3가지 상태 가능 : 실패 / 성공 / 진행 중
+    private static int CONTINUE = 0;
+    private static int WRONG = 1;
+    private static int RIGHT = 2;
+
+    private int userStatus;
+
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         gameInput = new InputView();
@@ -38,7 +45,6 @@ public class BridgeGame {
     void init() {
         boolean status = true;
         while(status) {
-            clear();
             status = play();
         }
     }
@@ -48,6 +54,7 @@ public class BridgeGame {
         bridge.clear();
         userInput.clear();
         tries = 0;
+        userStatus = CONTINUE;
     }
 
     /**
@@ -58,16 +65,14 @@ public class BridgeGame {
         // 사용자 게임 시작에 대한 알림과 함께 초기 길이 값 입력받기
         setAnswer();
 
+        // 사용자 입력을 받기
+        // 최종 정답에 도달하거나 중간에 틀릴 때까지
+        while(userStatus == CONTINUE) {
+            userStatus = move();
+        }
         // 한 게임 사이클의 종료
         // retry : 다음 게임을 수행할 지 아닐 지에 대한 입력
         return retry();
-    }
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
     }
 
     /**
@@ -97,6 +102,49 @@ public class BridgeGame {
         }
         catchErrors(ans >= 3 && ans <= 20, ErrorCodes.ANSWER_ILLEGAL_RANGE.getMessage());
         return ans;
+    }
+
+    /**
+     * 사용자가 칸을 이동할 때 사용하는 메서드
+     * <p>
+     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public int move() {
+        // 매 시행마다 사용자 입력받고
+        String read = gameInput.readMoving();
+        // 정답 체크 및 사용자 입력에 추가
+        int ans = checkUserInput(read);
+        // 중간중간마다 결과 출력해줘야 함
+        gameOutput.printMap(this.bridge, this.userInput, this.tries);
+
+        return ans;
+    }
+
+    /**
+     * 무조건 "U" 혹은 "D만 들어와야 한다.
+     * @param input : 입력된 이동할 칸 문자열
+     */
+    int checkUserInput(String input) {
+        // 입력된 문자열이 "U"인지 "D"인지 비교
+        String errorMessage = ErrorCodes.USER_ILLEGAL_INPUT.getMessage();
+        catchErrors(input.equals("U") || input.equals("D"), errorMessage);
+        // 사용자 입력에 넣기
+        userInput.add(input);
+
+        // 총 입력받은 횟수가 1 증가
+        // 넣은 해당 인덱스가 bridge의 해당 인덱스와 같은지 비교
+        boolean status = input.equals(bridge.get(this.tries++));
+
+        // 만약 다르면 재
+        if(status == false) {
+            return WRONG;
+        }
+        // 만약 같아도 모두 수행했으면 더 수행할 필요 없음
+        if(status == true && tries == bridgeLen) {
+            return RIGHT;
+        }
+        // 맞았고, 더 수행해야 한다면 더 수행한다.
+        return CONTINUE;
     }
 
     /**
