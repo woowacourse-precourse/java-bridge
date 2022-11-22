@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class InputViewTest {
     private static InputView inputView;
@@ -16,6 +16,14 @@ class InputViewTest {
     @BeforeEach
     private void setUp() {
         inputView = new InputView();
+    }
+
+    @Test
+    void 다리크기입력_입력테스트() {
+        String input = "7";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(inputView.readBridgeSize()).isEqualTo(7);
     }
 
     @Test
