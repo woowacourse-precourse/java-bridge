@@ -26,4 +26,27 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public String getMap(List<String> userMoving, boolean iscorrect, String command){
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for(int i = 0; i < userMoving.size() - 1; i++){
+            if(userMoving.get(i).equals(command)){
+                sb.append(" O |");
+                continue;
+            }
+            sb.append("   |");
+        }
+        if(userMoving.get(userMoving.size() - 1).equals(command)){
+            if(iscorrect){
+                sb.append(" O ]");
+                return sb.toString();
+            }
+            sb.append(" X ]");
+            return sb.toString();
+        }
+        sb.append("   ]");
+        return sb.toString();
+    }
+
 }
