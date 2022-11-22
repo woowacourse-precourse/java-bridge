@@ -58,5 +58,9 @@ public class BridgeGame {
         progressState = GameProgressState.RUNNING;
         mapDrawer.initializeMap();
     }
-    
+
+    public void quit() {
+        progressState = GameProgressState.STOP;
+    }
+
 }
