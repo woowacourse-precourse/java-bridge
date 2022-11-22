@@ -3,15 +3,11 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.model.BridgeMaker;
 import camp.nextstep.edu.missionutils.test.NsTest;
-
 import java.util.List;
-
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -70,5 +66,4 @@ class ApplicationTest extends NsTest {
             return numbers.remove(0);
         }
     }
-
 }

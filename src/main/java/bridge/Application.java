@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
-import bridge.model.BridgeGame;
 
 
 public class Application {
@@ -10,6 +9,5 @@ public class Application {
         // TODO: 프로그램 구현
         BridgeGameController bridgeGameController = new BridgeGameController();
         bridgeGameController.go();
-
     }
 }

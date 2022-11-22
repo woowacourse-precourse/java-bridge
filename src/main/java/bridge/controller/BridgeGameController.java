@@ -26,6 +26,7 @@ public class BridgeGameController {
             outputView.printMap(bridgeGame.getMap(), bridgeGame.getLocation());
         } while (retryGame(bridgeSize));
         end();
+
     }
 
     private boolean isPassBridgeEnd() {
@@ -52,6 +53,7 @@ public class BridgeGameController {
     private void play() {
         String moving = getMoving();
         bridgeGame.move(moving);
+
     }
 
     private String getMoving() {
