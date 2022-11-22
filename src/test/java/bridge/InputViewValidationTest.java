@@ -35,4 +35,13 @@ public class InputViewValidationTest {
                 .isThrownBy(() -> InputViewValidation.isValidMovingCommand(input))
                 .withMessageStartingWith(ERROR_NOT_VALID_MOVING_COMMAND);
     }
+
+    @DisplayName("예외 처리 : 재시작 여부에 대한 명령어를 제대로 입력했는지 검증 (재시도: R, 종료: Q)")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "r", "q", "s"})
+    void checkNotValidGameCommandValidation(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputViewValidation.isValidGameCommand(input))
+                .withMessageStartingWith(ERROR_NOT_VALID_GAME_COMMAND);
+    }
 }
