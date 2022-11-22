@@ -1,7 +1,6 @@
 package bridge;
 
-import static bridge.InputView.*;
-import static bridge.OutputView.*;
+import static bridge.BridgeGameController.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +21,8 @@ public class BridgeGame {
 
     public void Start() {
         Repeat();
-        String("최종 게임 결과");
-        printMap(playerList, BRIDGE_ANSWER);
-        printResult(success, tryCount);
+        ShowFinalMap(playerList, BRIDGE_ANSWER);
+        ShowFinalResult(success, tryCount);
     }
 
     public Boolean Repeat() {
@@ -50,13 +48,7 @@ public class BridgeGame {
     }
 
     public Boolean Proceed() {
-        String playerInput;
-        while (true) {
-            try {
-                playerInput = InputView.readMoving();
-                break;
-            } catch (IllegalArgumentException e) { OutputView.String("[ERROR] 유효한 값이 아닙니다."); }
-        }
+        String playerInput = RepeatReadMoving();
         return AnalyzeBridgeInput(playerInput);
     }
 
@@ -75,11 +67,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String playerInput) {
+    public String move(String playerInput) {
         playerList.add(playerInput);
-        String(playerInput);
-        printMap(playerList, BRIDGE_ANSWER);
+        BridgeGameController.ShowResult(playerInput, playerList, BRIDGE_ANSWER);
         moveCount ++;
+        return playerInput;
     }
 
     /**
@@ -88,20 +80,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Boolean retry() {
-        Boolean result = false;
-        while (true) {
-            try {
-                result = AnalyzeRetryInput(readGameCommand());
-                break;
-            } catch (IllegalArgumentException e) { OutputView.String("[ERROR] 유효한 값이 아닙니다."); }
-        }
-        return result;
-    }
-
-    private Boolean AnalyzeRetryInput(String string) {
-        if (string.equals("R")) { return true; }
-        if (string.equals("Q")) { return false; }
-        return false;
+        return BridgeGameController.RepeatRetry();
     }
 
     public List<String> GetPlayerList() {
