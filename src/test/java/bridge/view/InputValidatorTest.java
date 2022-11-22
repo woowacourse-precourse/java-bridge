@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 class InputValidatorTest {
 
 	InputValidator inputValidator = new InputValidator();
-	private static final String ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
 	@DisplayName("다리의 길이가 3부터 20사이의 숫자가 아니라면 예외가 발생한다.")
 	@ParameterizedTest

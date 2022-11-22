@@ -47,23 +47,23 @@ public class BridgeGame {
 
     @Override
     public String toString() {
-        String upper = getOutputString(Inputs.MOVE_UP);
-        String lower = getOutputString(Inputs.MOVE_DOWN);
+        String upper = getOutputRow(Inputs.MOVE_UP);
+        String lower = getOutputRow(Inputs.MOVE_DOWN);
         return upper + "\n" + lower;
     }
 
-    private String getOutputString(Inputs target) {
+    private String getOutputRow(Inputs target) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for (int i = 0; i < moveLog.size(); i++) {
-            String s = getMoveOutput(i, target);
+            String s = getSingleOutput(i, target);
             sb.append(" " + s + " |");
         }
         sb.setLength(sb.length()-1);
         return sb.append("]").toString();
     }
 
-    private String getMoveOutput(int index, Inputs target) {
+    private String getSingleOutput(int index, Inputs target) {
         Inputs move = moveLog.get(index);
         if (move == target && bridge.get(index).equals(move.getMessage())) {
             return "O";
