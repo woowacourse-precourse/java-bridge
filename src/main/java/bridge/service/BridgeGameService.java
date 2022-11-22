@@ -36,7 +36,9 @@ public class BridgeGameService {
 
             if (bridgeGame.isCurrentRoundResultFailure()) {
                 if (isGameRetry(inputView.readGameCommand())) {
-
+                    bridgeGame.retry();
+                } else {
+                    break;
                 }
             }
         }
