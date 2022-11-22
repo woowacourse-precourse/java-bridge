@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.controller.request.MoveAtBridgeRequest;
 import bridge.controller.request.MoveByBlockRequest;
-import bridge.domain.BridgeResult;
+import bridge.domain.result.BridgeResult;
 import bridge.service.BridgeGame;
 
 public class BridgeGameController {

@@ -1,18 +1,18 @@
 package bridge.controller.request;
 
-import bridge.domain.Bridge;
-import bridge.view.InputView;
+import bridge.domain.bridge.Bridge;
+import bridge.handler.InputHandler;
 import bridge.view.OutputView;
 
 public class MoveAtBridgeRequest {
 
     private final MoveByBlockRequest moveByBlockRequest;
-    private final InputView inputView;
+    private final InputHandler inputHandler;
     private final Bridge bridge;
 
-    public MoveAtBridgeRequest(InputView inputView, OutputView outputView, Bridge bridge) {
-        this.moveByBlockRequest = new MoveByBlockRequest(inputView, outputView, bridge);
-        this.inputView = inputView;
+    public MoveAtBridgeRequest(InputHandler inputHandler, OutputView outputView, Bridge bridge) {
+        this.moveByBlockRequest = new MoveByBlockRequest(inputHandler, outputView, bridge);
+        this.inputHandler = inputHandler;
         this.bridge = bridge;
     }
 
@@ -21,7 +21,7 @@ public class MoveAtBridgeRequest {
     }
 
     public String getGameCommand() {
-        return inputView.readGameCommand();
+        return inputHandler.getGameCommand();
     }
 
     public Bridge getBridge() {

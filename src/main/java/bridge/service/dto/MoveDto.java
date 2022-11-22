@@ -1,22 +1,22 @@
 package bridge.service.dto;
 
-import bridge.domain.Bridge;
-import bridge.view.InputView;
+import bridge.domain.bridge.Bridge;
+import bridge.handler.InputHandler;
 import bridge.view.OutputView;
 
 public class MoveDto {
-    private final InputView inputView;
+    private final InputHandler inputHandler;
     private final OutputView outputView;
     private final Bridge bridge;
 
-    public MoveDto(InputView inputView, OutputView outputView, Bridge bridge) {
-        this.inputView = inputView;
+    public MoveDto(InputHandler inputHandler, OutputView outputView, Bridge bridge) {
+        this.inputHandler = inputHandler;
         this.outputView = outputView;
         this.bridge = bridge;
     }
 
-    public InputView getInputView() {
-        return inputView;
+    public InputHandler getInputHandler() {
+        return inputHandler;
     }
 
     public OutputView getOutputView() {

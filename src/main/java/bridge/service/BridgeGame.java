@@ -1,12 +1,14 @@
 package bridge.service;
 
-import bridge.domain.BridgeResult;
+import bridge.domain.result.BridgeResult;
 import bridge.service.dto.MoveDto;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final static String CORRECT = "O";
+    private final static String WRONG = "X";
     private final BridgeResult resultBridge;
 
     public BridgeGame(BridgeResult resultBridge) {
@@ -20,14 +22,14 @@ public class BridgeGame {
      */
     public String move(MoveDto moveDto, int blockPosition) {
         String block = moveDto.getBridge().getBlock(blockPosition);
-        String blockToMove = moveDto.getInputView().readMoving();
+        String blockToMove = moveDto.getInputHandler().getBlockToMove();
 
         if (blockToMove.equals(block)) {
-            resultBridge.addBlock(blockToMove, "O");
-            return "O";
+            resultBridge.addBlock(blockToMove, CORRECT);
+            return CORRECT;
         }
-        resultBridge.addBlock(blockToMove, "X");
-        return "X";
+        resultBridge.addBlock(blockToMove, WRONG);
+        return WRONG;
     }
 
     /**
