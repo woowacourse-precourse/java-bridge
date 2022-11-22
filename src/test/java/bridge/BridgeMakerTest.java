@@ -3,6 +3,7 @@ package bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeMakerTest {
@@ -21,5 +22,12 @@ public class BridgeMakerTest {
     void createBridgeByUnderSize() {
         assertThatThrownBy(() -> bridgeMaker.makeBridge(-1))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("생성된 다리에 U, D만 포함되어 있는지 검사")
+    @Test
+    void testIsValidBridge() {
+        assertThat(bridgeMaker.makeBridge(3)).
+                containsOnly("U", "D");
     }
 }
