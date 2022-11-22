@@ -70,7 +70,9 @@ public class BridgeGameController {
         if(restart){
             run();
         }
-        outputView.printResult(FAILED);
+        if(!restart){
+            outputView.printResult(FAILED);
+        }
     }
 
     private boolean crossBridge(int index){
