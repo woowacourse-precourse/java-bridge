@@ -10,6 +10,5 @@ public class Application {
         } catch (Exception error) {
             System.out.println(error.getMessage());
         }
-
     }
 }

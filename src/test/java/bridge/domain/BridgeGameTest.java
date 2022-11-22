@@ -19,6 +19,9 @@ class BridgeGameTest {
         Assertions.assertThat((size > 2 && size < 21)).isTrue();
     }
 
+
+
+
     @DisplayName("다리 길이가 3보다 작으면 예외가 발생한다.")
     @Test
     void bridgeSizeLessThanThree() {

@@ -47,11 +47,6 @@ public class OutputView {
         }
     }
 
-    /**
-     * 위 칸 입력 후 다리 건너기 성공했을 시 Map에 O 표시를 추가하는 메소드
-     * index에서 바로 insert 할 경우 닫는 괄호가 추가 되
-     * @param index
-     */
     private static void moveSuccessUpside(int index) {
         upsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + ADDITIONAL_NUMBER_FOR_EXCLUDE_BRACKET ,SUCCESSFUL_MARK);
         downsideBridge.insert(BRIDGE_ONE_TRY_SPACE_SIZE * index + ADDITIONAL_NUMBER_FOR_EXCLUDE_BRACKET , BRIDGE_FAIL_SPACE_BLANK);
