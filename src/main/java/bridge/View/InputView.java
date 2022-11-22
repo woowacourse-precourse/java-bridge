@@ -20,6 +20,7 @@ public class InputView {
         try {
             System.out.println(BRIDGE_SIZE_PHRASE);
             String userInputLengthOfBridge = Console.readLine();
+            validateBridgeLengthNotNumber(userInputLengthOfBridge);
             validateBridgeLength(userInputLengthOfBridge);
             return Integer.parseInt(userInputLengthOfBridge);
         } catch (IllegalArgumentException e) {
@@ -49,11 +50,14 @@ public class InputView {
     }
 
     private static void validateBridgeLength(String input) {
-        if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException(INVALID_CANT_CONVERT_INTEGER);
-        }
         if (input.length() < 2 || input.length() > 20) {
             throw new IllegalArgumentException(INVALID_RANGE);
+        }
+    }
+
+    private static void validateBridgeLengthNotNumber(String input) {
+        if (!input.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException(INVALID_CANT_CONVERT_INTEGER);
         }
     }
 
