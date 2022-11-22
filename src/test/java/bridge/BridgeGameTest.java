@@ -36,14 +36,14 @@ public class BridgeGameTest {
     @DisplayName("애플리케이션 실행 시 다리 길이를 입력받아 리턴한다.")
     @Test
     void createBridgeTest() {
-        BridgeGame bridgeGame = new BridgeGame(new OutputView(), new InputView());
+        BridgeGame bridgeGame = new BridgeGame();
         assertEquals(bridgeGame.createBridge(5).size(), 5);
     }
 
     @DisplayName("한 턴을 실행할 때마다 점수를 계산해 리턴한다.")
     @Test
     void calculateScoreTest() {
-        BridgeGame bridgeGame = new BridgeGame(new OutputView(), new InputView());
+        BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.setNewBridge(List.of("U", "D", "D"));
         assertEquals(bridgeGame.calculateScore(List.of("U", "D", "U")), 2);
 
@@ -52,7 +52,7 @@ public class BridgeGameTest {
     @DisplayName("입력한 이동 값을 반환한다.")
     @Test
     void moveTest() {
-        BridgeGame bridgeGame = new BridgeGame(new OutputView(), new InputView());
+        BridgeGame bridgeGame = new BridgeGame();
         InputStream in = generateUserInput("U");
         System.setIn(in);
         Scanner sc = new Scanner(System.in);
@@ -62,7 +62,7 @@ public class BridgeGameTest {
     @DisplayName("사용자의 입력 값을 업데이트 한다.")
     @Test
     void updatePlayerInputTest() {
-        BridgeGame bridgeGame = new BridgeGame(new OutputView(), new InputView());
+        BridgeGame bridgeGame = new BridgeGame();
         List<String> playerInput = new ArrayList<>(List.of("U", "D"));
         assertThat(bridgeGame.updatePlayerInput(playerInput, "U")).containsExactly("U", "D", "U");
     }

@@ -13,17 +13,12 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
-    private final OutputView outputView;
-    private final InputView inputView;
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
     private List<String> newBridge;
     private int gameTrialCount = 1;
     private DrawMap drawMap;
     private String currentMap;
-
-    public BridgeGame(OutputView outputView, InputView inputView) {
-        this.outputView = outputView;
-        this.inputView = inputView;
-    }
 
     /**
      * 다리 건너기 게임을 실행하는 메서드
