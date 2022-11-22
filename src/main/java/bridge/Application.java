@@ -12,7 +12,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
         List<String> bridgeState = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        System.out.println(bridgeState);
+
         List<String> currentBridgeState=bridgeMaker.initialBridge();
         String choicePosition;
         String retryCommand="실패";
@@ -20,7 +20,7 @@ public class Application {
         int count=0;
         String passFail="";
         while (true) {
-            if (retryCommand=="Q" || count >= bridgeState.size()){
+            if (retryCommand.equals("Q") || count >= bridgeState.size()){
                 break;
             }
             currentBridgeState=bridgeMaker.initialBridge();
