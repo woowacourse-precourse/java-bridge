@@ -17,8 +17,8 @@ public class OutputView {
     public void printMap(GameResult gameResult) {
         List<String> upperPath = gameResult.getPlayerPath().get(UPPER);
         List<String> lowerPath = gameResult.getPlayerPath().get(LOWER);
-        System.out.println("[" + String.join(" | ", upperPath) + "]");
-        System.out.println("[" + String.join(" | ", lowerPath) + "]");
+        System.out.println("[" + String.join("|", upperPath) + "]");
+        System.out.println("[" + String.join("|", lowerPath) + "]");
     }
 
     /**
@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println();
         System.out.println("최종 게임 결과");
         printMap(gameResult);
-        System.out.println("게임 성공 여부:" + gameResult.getSuccess());
+        System.out.println("게임 성공 여부: " + gameResult.getSuccess());
         System.out.println("총 시도한 횟수: " + gameResult.getTryCount());
     }
 
