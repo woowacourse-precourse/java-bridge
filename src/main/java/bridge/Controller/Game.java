@@ -29,7 +29,6 @@ public class Game {
 
     private void startGame() {
         while (isStart) {
-            BridgeGame.plusPlayCount();
             isStart = crossBridge();
             if (isStart) { // 다리를 다 건넜을 때
                 break;

@@ -11,7 +11,7 @@ public class BridgeGame {
 
     static {
         bridgeSize = 0;
-        playCount = 0;
+        playCount = 1;
     }
 
     public BridgeGame(final List<String> bridge) {
@@ -29,6 +29,7 @@ public class BridgeGame {
     }
 
     public boolean retry(final String input) {
+        ++playCount;
         return (BridgeValue.RESTART.value()).equals(input);
     }
 
