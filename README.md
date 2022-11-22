@@ -10,7 +10,7 @@
 ## 2. 다리 생성
 - 다리 길이에 맞게 "U" 또는 "D"를 랜덤으로 생성하여 List에 저장
 - (추가) 현재 다리 폭이 2 (U 또는 D)이지만 나중에 다리 폭을 늘려도 게임이 잘 돌아가도록 Enum을 사용할 예정.
-  -> Enum을 이용하여 다리의 폭의 길이를 자유롭게 조절할 수 있도록 설계하였습니다.
+  -> Enum을 이용하여 다리의 폭의 길이를 Enum객체 개수와 객체의 정보를 통해 조절할 수 있도록 설계하였습니다.
 
 ## 3. 게임 시작
 - 사용자에게 U 또는 D를 입력 받음
@@ -31,7 +31,23 @@
 
 -----
 ## 각 클래스 기능
+### View
 InputView : 화면에 입력을 받기 위한 
+OutputView : 
+
+### Controller
+Controller : 
+Validation : 
+
+### Domain
+Bridge : 
+BridgeGame : 
+BridgeMaker : 
+BridgeNumberGenerator : 
+BridgeRandomNumberGenerator : 
+BridgeRow : 
+Command : 
+Movement :
 
 
 ---------
