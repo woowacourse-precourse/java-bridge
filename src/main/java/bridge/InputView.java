@@ -86,6 +86,12 @@ public class InputView {
         }
         return false;
     }
+    public boolean checkFinishString(String s){
+        if(s.charAt(0) == "R" || s.charAt(0) == "Q"){
+            return true;
+        }
+        throw new IllegalArgumentException("[ERROR]재시작여부는 R,Q로만 판단가능합니다.");
+    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
