@@ -6,15 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeMakerTest {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
     private static final int SIZE = 10;
     private static List<String> bridge;
+    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     @BeforeEach
     void setUp() {
