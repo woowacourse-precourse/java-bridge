@@ -1,7 +1,7 @@
-package bridge;
+package bridge.controller;
 
-import bridge.View.InputView;
-import bridge.View.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 

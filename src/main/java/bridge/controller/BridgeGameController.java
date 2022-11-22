@@ -1,9 +1,12 @@
-package bridge;
+package bridge.controller;
+
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.Enum.Result.*;
+import static bridge.enums.Result.*;
 
 public class BridgeGameController {
     private final ConsoleController consoleController;

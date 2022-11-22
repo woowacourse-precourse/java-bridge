@@ -1,4 +1,4 @@
-package bridge.Enum;
+package bridge.enums;
 
 import java.util.HashMap;
 import java.util.Map;

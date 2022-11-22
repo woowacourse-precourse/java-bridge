@@ -1,7 +1,10 @@
 package bridge;
 
-import bridge.View.InputView;
-import bridge.View.OutputView;
+import bridge.controller.BridgeGameController;
+import bridge.controller.ConsoleController;
+import bridge.domain.BridgeMaker;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Application {
 

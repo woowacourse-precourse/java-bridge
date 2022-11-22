@@ -1,10 +1,10 @@
-package bridge.View;
+package bridge.view;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static bridge.View.InputValidator.*;
+import static bridge.view.InputValidator.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputValidatorTest {

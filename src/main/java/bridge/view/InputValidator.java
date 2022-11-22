@@ -1,7 +1,7 @@
-package bridge.View;
+package bridge.view;
 
-import static bridge.Enum.Error.*;
-import static bridge.Enum.Regex.*;
+import static bridge.enums.Error.*;
+import static bridge.enums.Regex.*;
 
 public class InputValidator {
     public static void validateBridgeSize(String bridgeSizeInput) {

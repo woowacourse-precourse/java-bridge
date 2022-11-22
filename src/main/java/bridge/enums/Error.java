@@ -1,4 +1,4 @@
-package bridge.Enum;
+package bridge.enums;
 
 public enum Error {
     BRIDGE_SIZE_FORMAT_ERROR("[ERROR] bridge 사이즈 입력형식이 잘못되었습니다 (숫자만 입력)"),

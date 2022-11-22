@@ -1,4 +1,4 @@
-package bridge.Enum;
+package bridge.enums;
 
 public enum Regex {
     BRIDGE_SIZE_ONLY_NUMBER("\\d+"),

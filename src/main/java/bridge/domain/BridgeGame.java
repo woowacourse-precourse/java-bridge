@@ -1,9 +1,9 @@
-package bridge;
+package bridge.domain;
 
 import java.util.*;
 
-import static bridge.Enum.Direction.*;
-import static bridge.Enum.Result.*;
+import static bridge.enums.Direction.*;
+import static bridge.enums.Result.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
