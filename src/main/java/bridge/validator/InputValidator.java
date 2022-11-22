@@ -29,10 +29,11 @@ public class InputValidator {
         }
     }
 
-    public static void validateBlock(final String inputBlock) {
+    public static String validateBlock(final String inputBlock) {
         if (!inputBlock.equals(UP) && !inputBlock.equals(DOWN)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BLOCK_COMMAND_ERROR);
         }
+        return inputBlock;
     }
 
     public static String validateGameCommand(final String inputGameCommand) {
