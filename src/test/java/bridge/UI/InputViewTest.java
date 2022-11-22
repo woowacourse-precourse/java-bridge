@@ -45,70 +45,70 @@ class InputViewTest {
             assertThat(inputView.readBridgeSize()).isEqualTo(output);
         }
 
-        @DisplayName("10을 넣었을 때, 정상적으로 다리 크기 return")
+        @DisplayName("readBridgeSize 에 10을 넣었을 때, 정상적으로 다리 크기 return")
         @Test
         void readBridgeSize_case1(){
             String input = "10";
             getBridgeSizeTest(input);
         }
 
-        @DisplayName("3을 넣었을 때, 정상적으로 다리 크기 return")
+        @DisplayName("readBridgeSize 에 3을 넣었을 때, 정상적으로 다리 크기 return")
         @Test
         void readBridgeSize_case2(){
             String input = "3";
             getBridgeSizeTest(input);
         }
 
-        @DisplayName("20을 넣었을 때, 정상적으로 다리 크기 return")
+        @DisplayName("readBridgeSize 에 20을 넣었을 때, 정상적으로 다리 크기 return")
         @Test
         void readBridgeSize_case3(){
             String input = "20";
             getBridgeSizeTest(input);
         }
 
-        @DisplayName("1을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
+        @DisplayName("readBridgeSize 에 1을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase1(){
             String input = "1";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("100을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
+        @DisplayName("readBridgeSize 에 100을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase2(){
             String input = "100";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("-5(음수)를 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
+        @DisplayName("readBridgeSize 에 -5(음수)를 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase3(){
             String input = "-5";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("0을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
+        @DisplayName("readBridgeSize 에 0을 넣었을 때, 3 이상 20 이하가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase4(){
             String input = "0";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("문자열을 넣었을 때, 정수가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
+        @DisplayName("readBridgeSize 에 문자열을 넣었을 때, 정수가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase5(){
             String input = "Hello World";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("특수문자 문자열을 넣었을 때, 정수가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
+        @DisplayName("readBridgeSize 에 특수문자 문자열을 넣었을 때, 정수가 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase6(){
             String input = "!@#!$";
             getExceptionTest(input,functionSupply);
         }
 
-        @DisplayName("빈칸을 넣었을 때, 정수를 입력한 것이 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
+        @DisplayName("readBridgeSize 에 빈칸을 넣었을 때, 정수를 입력한 것이 아니므로 에러 메세지와 함께 IllegalArgumentException 발생.")
         @Test
         void readBridgeSize_exceptionCase7(){
             String input = " ";
