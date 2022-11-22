@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.type.BridgeGameCommandType;
 import bridge.type.BridgeSideType;
 import bridge.ExceptionMesssage;
+import bridge.validate.ValidateInput;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -10,10 +11,8 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private final static int MIN_BRIDGE_SIZE = 3;
-    private final static int MAX_BRIDGE_SIZE = 20;
-
     private OutputView outputView = new OutputView();
+    private ValidateInput validateInput = new ValidateInput();
 
     /**
      * 다리의 길이를 입력받는다.
@@ -21,7 +20,7 @@ public class InputView {
     public int readBridgeSize() {
         String input = Console.readLine();
         try {
-            validateInputBridgeSize(input);
+            validateInput.validateInputBridgeSize(input);
         } catch (IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.BRIDGE_SIZE_ERROR);
             return readBridgeSize();
@@ -35,7 +34,7 @@ public class InputView {
     public String readMoving() {
         String input = Console.readLine();
         try {
-            validateInputBridgeSide(input);
+            validateInput.validateInputBridgeSide(input);
         } catch (IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.BRIDGE_MOVING_ERROR);
             return readMoving();
@@ -49,42 +48,11 @@ public class InputView {
     public String readGameCommand() {
         String input = Console.readLine();
         try {
-            validateInputGameCommand(input);
+            validateInput.validateInputGameCommand(input);
         } catch (IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.GAME_COMMAND_ERROR);
             return readGameCommand();
         }
         return input;
-    }
-
-    private void validateInputIsNumber(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateInputBridgeSize(String input) {
-        validateInputIsNumber(input);
-        int number = Integer.parseInt(input);
-
-        if (number < MIN_BRIDGE_SIZE || number > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateInputBridgeSide(String input) {
-        if (input.equals(BridgeSideType.UPPER_SIDE.getSide()) || input.equals(BridgeSideType.LOWER_SIDE.getSide())) {
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    private void validateInputGameCommand(String input) {
-        if (input.equals(BridgeGameCommandType.RESTART.getGameCommand()) || input.equals(BridgeGameCommandType.QUIT.getGameCommand())) {
-            return;
-        }
-        throw new IllegalArgumentException();
     }
 }
