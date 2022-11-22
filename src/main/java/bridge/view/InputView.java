@@ -17,6 +17,17 @@ public class InputView {
         return result;
     }
 
+    private int tryBridgeSizeInput() {
+        try {
+            String bridgeLengthInput = Console.readLine();
+            Validation.checkBridgeSizeInput(bridgeLengthInput);
+            return Integer.parseInt(bridgeLengthInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return BRIDGE_LENGTH_INPUT_ERROR;
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
