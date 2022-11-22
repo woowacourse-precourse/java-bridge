@@ -9,6 +9,7 @@ import view.GameMessage;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public static final String WRONG = "X";
 
     private Service service;
     private Util util;
@@ -44,7 +45,7 @@ public class BridgeGame {
 
 
     public boolean retry(String resultMoving) {
-        if (resultMoving.equals("X")) {
+        if (resultMoving.equals(WRONG)) {
             String retry = util.inputRetry();
             if (service.checkRetry(retry))
                 return true;
