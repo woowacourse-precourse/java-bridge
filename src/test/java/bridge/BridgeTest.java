@@ -42,7 +42,7 @@ class BridgeTest {
         assertThat(resultOfMoving).isEqualTo(wrongAnswer);
     }
 
-    private static Stream<Arguments>movingOnEachRound() {
+    private static Stream<Arguments> movingOnEachRound() {
         return Stream.of(
                 Arguments.of("U", 0),
                 Arguments.of("D", 1),
@@ -51,5 +51,4 @@ class BridgeTest {
                 Arguments.of("D", 4)
         );
     }
-
 }
