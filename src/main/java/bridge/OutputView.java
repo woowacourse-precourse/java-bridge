@@ -64,7 +64,7 @@ public class OutputView {
     }
 
     public void printSuccessOrFail(BridgeGame game) {
-        String SorF = "실퍠";
+        String SorF = "실패";
         if (game.isSuccess) {
             SorF = "성공";
         }
