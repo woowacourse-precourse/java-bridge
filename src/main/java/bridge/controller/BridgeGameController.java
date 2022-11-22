@@ -4,6 +4,9 @@ import bridge.model.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BridgeGameController {
     // view 에서 입력받은 값을 model로 전달하는 컨트롤러
     private InputView inputView;
@@ -18,14 +21,17 @@ public class BridgeGameController {
         int bridgeSize = inputView.readBridgeSize();
 
         doGame(bridgeSize);
+        endGame();
     }
 
     private void doGame(int bridgeSize) {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+        List<String> inputResults = new ArrayList<>();
 
         for (int i = 0; i < bridgeSize; i++) {
             String moveAnswer = inputView.readMoving();
-            outputView.printMap(bridgeGame.move(moveAnswer, i), i);
+            inputResults.add(bridgeGame.move(moveAnswer, i));
+            outputView.printMap(inputResults, i);
         }
     }
 

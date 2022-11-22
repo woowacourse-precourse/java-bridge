@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.dto;
 
 public class Bridge {
 
