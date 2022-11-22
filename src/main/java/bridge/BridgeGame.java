@@ -25,34 +25,30 @@ public class BridgeGame {
      */
     public boolean move(boolean result,String moveCommand) {
         if(result) {
-            if(moveCommand.equals("U"))
-            {
-                userUpNumbers.add(" O ");
-                userDownNumbers.add("   ");
+            setUserAnswer(moveCommand," O ");
             return true;
-            }
-            if(moveCommand.equals("D"))
-            {
-                userUpNumbers.add("   ");
-                userDownNumbers.add(" O ");
-                return true;
-            }
         }
+        setUserAnswer(moveCommand," X ");
+        return false;
+    }
+    public void setUserAnswer(String moveCommand,String answer){
         if(moveCommand.equals("U"))
         {
-            userUpNumbers.add(" X ");
-            userDownNumbers.add("   ");
-            return false;
+            setUpCase(answer);
         }
         if(moveCommand.equals("D"))
         {
-            userUpNumbers.add("   ");
-            userDownNumbers.add(" X ");
-            return false;
+            setDownCase(answer);
         }
-        return false;
     }
-
+    public void setUpCase(String answer){
+        userUpNumbers.add(answer);
+        userDownNumbers.add("   ");
+    }
+    public void setDownCase(String answer){
+        userUpNumbers.add("   ");
+        userDownNumbers.add(answer);
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
