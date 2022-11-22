@@ -4,9 +4,11 @@ import java.util.List;
 
 public class Application {
 
+    static final String UP = "U";
+    static final String DOWN = "D";
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
-    static BridgeGame bridgeGame= new BridgeGame();
+    static BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
         try {
@@ -45,8 +47,8 @@ public class Application {
     }
 
     private static void printBridge() {
-        List<String> upBridge = bridgeGame.getBridgeLine("U");
-        List<String> downBridge = bridgeGame.getBridgeLine("D");
+        List<String> upBridge = bridgeGame.getBridgeLine(UP);
+        List<String> downBridge = bridgeGame.getBridgeLine(DOWN);
 
         outputView.printMap(upBridge);
         outputView.printMap(downBridge);
