@@ -1,7 +1,6 @@
 package bridge.type;
 
-public enum GameMessageType {
-    INIT_MESSAGE("다리 건너기 게임을 시작합니다."),
+public enum InputMessageType {
     ASK_BRINDGE_SIZE_MESSAGE("다리의 길이를 입력해주세요."),
     ASK_IN_GAME_COMMAND_MESSAGE("이동할 칸을 선택해주세요. (%s)",
             InGameCommandType.getDescription()),
@@ -11,7 +10,7 @@ public enum GameMessageType {
 
     private final String message;
 
-    GameMessageType(String message, Object... replacers) {
+    InputMessageType(String message, Object... replacers) {
         this.message = String.format(message, replacers);
     }
 
