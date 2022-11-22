@@ -10,21 +10,21 @@ public class Referee {
     private static final String COMPARE_PATH_NOT_EQUAL = "X";
     private static final int BRIDGE_COUNT = 2;
 
-    public int convertPath(String path) {
+    private static int convertPath(String path) {
         if (path.equals(MOVE_COMMAND_UP)) {
             return 1;
         }
         return 0;
     }
 
-    public String comparePath(String movePath, String bridgePath) {
+    private static String comparePath(String movePath, String bridgePath) {
         if (movePath.equals(bridgePath)) {
             return COMPARE_PATH_EQUAL;
         }
         return COMPARE_PATH_NOT_EQUAL;
     }
 
-    public String[][] makeComparePath(List<String> myPaths, List<String> bridgePaths) {
+    public static String[][] makeComparePath(List<String> myPaths, List<String> bridgePaths) {
         String[][] comparePaths = new String[BRIDGE_COUNT][];
 
         for (int i = 0; i < BRIDGE_COUNT; i++) {
