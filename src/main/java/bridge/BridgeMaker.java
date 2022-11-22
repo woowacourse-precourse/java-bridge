@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final List<String> POSITION_NAME = Arrays.asList("DOWN", "UP");
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -26,7 +25,7 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int randomNum = bridgeNumberGenerator.generate();
-            Position position = Position.valueOf(POSITION_NAME.get(randomNum));
+            Position position = Position.valueOfCode(randomNum);
             bridge.add(position.getValue());
         }
         return bridge;
