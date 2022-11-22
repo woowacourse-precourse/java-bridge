@@ -10,7 +10,7 @@ import java.util.List;
 public class OutputView {
     public void printMap(List<List<String>> map) {
         map.stream().forEach(line -> {
-                    printBridge(String.join(UserInterfaceSymbol.get(UserInterfaceSymbol.BRIDGE_DELIMITER), line));
+                    printBridge(String.join(UserInterfaceSymbol.BRIDGE_DELIMITER.getSymbol(), line));
                 });
     }
 
@@ -23,7 +23,7 @@ public class OutputView {
     }
 
     public void printResult(GameStatus gameStatus) {
-        printGuideMessage(GuideMessage.GAME_RESULT ,GameStatus.get(gameStatus));
+        printGuideMessage(GuideMessage.GAME_RESULT, gameStatus.getMessage());
     }
 
     public void printAskGameCommand() {
@@ -31,11 +31,11 @@ public class OutputView {
     }
 
     public void printGuideMessage(GuideMessage situation) {
-        System.out.println(GuideMessage.get(situation));
+        System.out.println(situation.getMessage());
     }
 
     public void printGuideMessage(GuideMessage situation, String gameStatus) {
-        System.out.printf(GuideMessage.get(situation), gameStatus);
+        System.out.printf(situation.getMessage(), gameStatus);
     }
 
     public void printNewline() {
@@ -48,9 +48,9 @@ public class OutputView {
 
     private void printBridge(String line) {
         System.out.println(
-                UserInterfaceSymbol.get(UserInterfaceSymbol.START_OF_BRIDGE)
+                UserInterfaceSymbol.START_OF_BRIDGE.getSymbol()
                         .concat(line)
-                        .concat(UserInterfaceSymbol.get(UserInterfaceSymbol.END_OF_BRIDGE))
+                        .concat(UserInterfaceSymbol.END_OF_BRIDGE.getSymbol())
         );
     }
 }

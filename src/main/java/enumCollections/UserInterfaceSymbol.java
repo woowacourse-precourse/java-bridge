@@ -14,12 +14,8 @@ public enum UserInterfaceSymbol {
         this.symbol = symbol;
     }
 
-    public static String get(UserInterfaceSymbol occasion) {
-        return occasion.symbol;
-    }
-
-    public static String getBlank() {
-        return BLANK.symbol;
+    public String getSymbol() {
+        return this.symbol;
     }
 
     public static String getMovableSymbol(boolean moved) {

@@ -27,7 +27,7 @@ public class Map {
 
     public void add(Side playerMovedSide, boolean movable) {
         addSymbolToMap(playerMovedSide, UserInterfaceSymbol.getMovableSymbol(movable));
-        addSymbolToMap(playerMovedSide.getOppositePosition(), UserInterfaceSymbol.getBlank());
+        addSymbolToMap(playerMovedSide.getOppositePosition(), UserInterfaceSymbol.BLANK.getSymbol());
     }
 
     public void initialize() {

@@ -15,7 +15,7 @@ public enum GuideMessage {
         this.message = message;
     }
 
-    public static String get(GuideMessage situation) {
-        return situation.message;
+    public String getMessage() {
+        return this.message;
     }
 }
