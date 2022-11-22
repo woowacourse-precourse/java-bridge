@@ -11,15 +11,11 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        try {
-            runBridgeGame();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        runBridgeGame();
     }
 
     static void runBridgeGame() {
-        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        List<String> bridge = bridgeMaker.makeBridge(getBridgeSize());
         bridgeGame.initialize(bridge);
         crossBridge();
         outputView.printResult(bridgeGame.getRecord(), bridgeGame.getSuccess(),
@@ -28,10 +24,49 @@ public class Application {
 
     static void crossBridge() {
         while (!bridgeGame.checkComplete()) {
-            outputView.printMap(bridgeGame.move(inputView.readMoving()));
-            if (bridgeGame.hasFail() && !bridgeGame.retry(inputView.readGameCommand())) {
+            outputView.printMap(bridgeGame.move(getMoving()));
+            if (bridgeGame.hasFail() && !bridgeGame.retry(getGameCommand())) {
                 break;
             }
         }
+    }
+
+    static int getBridgeSize() {
+        int bridgeSize = 0;
+        while (true) {
+            try {
+                bridgeSize = inputView.readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bridgeSize;
+    }
+
+    static String getMoving() {
+        String moving = "";
+        while (true) {
+            try {
+                moving = inputView.readMoving();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return moving;
+    }
+
+    static String getGameCommand() {
+        String gameCommand = "";
+        while (true) {
+            try {
+                gameCommand = inputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return gameCommand;
     }
 }
