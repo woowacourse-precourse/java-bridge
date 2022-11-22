@@ -37,11 +37,12 @@ public class Position {
         this.latitude = latitude;
     }
 
-    public int getLongitude() {
-        return longitude;
-    }
-
     public Latitude getLatitude() {
         return latitude;
+    }
+
+    public void init() {
+        this.longitude = -1;
+        latitude = null;
     }
 }

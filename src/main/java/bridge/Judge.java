@@ -37,4 +37,8 @@ public class Judge {
     public boolean isPlayerWin(Player player) {
         return player.isOn(goal);
     }
+
+    public void reset() {
+        safePosition.init();
+    }
 }

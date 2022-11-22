@@ -35,8 +35,8 @@ public class Player {
         return this.position.equals(position);
     }
 
-    public void retry() {
-        life = false;
+    public void reset() {
+        life = true;
         position = new Position(-1, null);
     }
 }
