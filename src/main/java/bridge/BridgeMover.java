@@ -16,7 +16,7 @@ public class BridgeMover {
 
     public void printCrossResults(List<Result> results) {
         OutputView outputView = new OutputView();
-        results.forEach(outputView::printMap);
+        outputView.printMap(results);
     }
 
     public List<Result> getCrossResults(List<Result> crossResults, boolean crossed, String direction) {
