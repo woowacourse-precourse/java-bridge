@@ -9,12 +9,7 @@ public class InputView {
         System.out.println(BRIDGE_LENGTH_INPUT);
         String input = Console.readLine();
         try {
-            int inputLength;
-            try {
-                inputLength = Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ERROR_NO_NUMBER_INPUT);
-            }
+            int inputLength = checkConvertToInt(input);
             if (inputLength < 3 || inputLength > 20) {
                 throw new IllegalArgumentException(ERROR_NOT_IN_RANGE);
             }
@@ -23,6 +18,14 @@ public class InputView {
             System.out.println(e.getMessage());
         }
         return readBridgeSize();
+    }
+
+    private static int checkConvertToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_NO_NUMBER_INPUT);
+        }
     }
 
     public static String readMoving() {
