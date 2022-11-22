@@ -19,5 +19,12 @@ public class BridgeGameController {
             gameContinueStatus = checkIfContinue(bridge);
         }
     }
+    public boolean checkIfContinue (List<String> bridge) {
+        bridgeGame = new BridgeGame(bridge);
+        if (!tryMoves(0, bridge)) {
+            return gameEndSelect();
+        }
+        return false;
+    }
 
 }
