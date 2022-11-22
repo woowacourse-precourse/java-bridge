@@ -4,8 +4,6 @@ import bridge.model.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
-
 public class BridgeGameController {
 
     BridgeGame bridgeGame;
@@ -22,7 +20,7 @@ public class BridgeGameController {
     public void run() {
         try {
             makeBride();
-            gamePlay();
+            playGame();
             printResult();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -34,7 +32,7 @@ public class BridgeGameController {
         bridgeGame.makeBridge(iv.readBridgeSize());
     }
 
-    private void gamePlay() {
+    private void playGame() {
         do {
             bridgeGame.move(iv.readMoving());
             bridgeGame.makeMap(bridgeGame.getBridge(), bridgeGame.getMarks());

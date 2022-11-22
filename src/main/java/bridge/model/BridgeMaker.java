@@ -31,20 +31,20 @@ public class BridgeMaker {
     }
 
     private void validateBridgeNumber(int number) {
-        if(number < Course.BOTTOM.getNumber() || number > Course.TOP.getNumber()) {
+        if (number < Course.BOTTOM.getNumber() || number > Course.TOP.getNumber()) {
             throw Exception.BRIDGE_NUMBER_RANGE_EXCEPTION.getException();
         }
     }
 
     private void validateSize(int size) {
-        if(size < 3 ||size > 20) {
+        if (size < 3 || size > 20) {
             throw Exception.SIZE_RANGE_EXCEPTION.getException();
         }
     }
 
     public String topOrBottom(int num) {
         validateBridgeNumber(num);
-        if(num == Course.TOP.getNumber()) {
+        if (num == Course.TOP.getNumber()) {
             return Course.TOP.getDirection();
         }
         return Course.BOTTOM.getDirection();
