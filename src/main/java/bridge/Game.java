@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.function.BridgeGame;
-import bridge.function.InputView;
 import bridge.ui.OutputView;
 
 public class Game {

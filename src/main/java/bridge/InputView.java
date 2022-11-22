@@ -1,4 +1,4 @@
-package bridge.function;
+package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 import static bridge.ui.ErrorMessage.*;

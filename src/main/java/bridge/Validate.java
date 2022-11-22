@@ -1,4 +1,4 @@
-package bridge.function;
+package bridge;
 
 import static bridge.ui.ErrorMessage.*;
 

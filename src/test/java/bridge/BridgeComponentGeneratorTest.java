@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.function.BridgeComponentGenerator;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
