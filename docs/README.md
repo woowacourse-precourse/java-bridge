@@ -206,6 +206,8 @@
 ### 문제 1 : BridgeGame 클래스가 Referee, Bridge 클래스 모두와 관계를 맺고 있다.
 
 - 도메인 클래스의 다이어그램 수정 전
+<img width="80%" src="https://user-images.githubusercontent.com/106813090/203343333-42b65940-cc3b-4817-b11a-d4c61f168638.png"/>
+
 
 - BridgeGame 클래스는 Referee 객체를 참조해 Bridge, Pedestrian 두 객체에 대한 연산을 한다.
 - 이 연산을 위해 Referee 클래스는 Bridge 클래스를 다시 한 번 참조하게 된다.
@@ -225,6 +227,7 @@
 ### 리팩토링 1 : BridgeGame 클래스가 Referee와 관계를 맺을 수 있도록 한다.
 
 - 도메인 클래스의 다이어그램 수정 후
+<img width="80%" src="https://user-images.githubusercontent.com/106813090/203343255-000a1ddd-502e-49b7-a163-674f9eab931b.png"/>
 
 - BridgeGame 클래스는 Referee에 의존하고, Referee는 Bridge에 의존할 수 있도록 수정한다.
 
