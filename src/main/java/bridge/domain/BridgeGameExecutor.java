@@ -21,26 +21,34 @@ public class BridgeGameExecutor {
     }
 
     public void start() {
-        BridgeGame bridgeGame = BridgeGame.initNewGame(inputView.readBridgeSize());
+        outputView.printWelcomeMessage();
+        outputView.printAskBridgeSize();
 
+        BridgeGame bridgeGame = BridgeGame.initNewGame(inputView.readBridgeSize());
+        startNewGame(bridgeGame);
+
+        outputView.printResult(bridgeGame);
+    }
+
+    private void startNewGame(BridgeGame bridgeGame) {
         while (startNewRound(bridgeGame) == RoundResult.FAIL) {
+            outputView.printAskRetryMessage();
             if (inputView.readGameCommand() == SystemOperation.QUIT) {
                 break;
             }
             bridgeGame.retry();
         }
-        outputView.printResult(bridgeGame);
     }
 
     private RoundResult startNewRound(BridgeGame bridgeGame) {
         while (!bridgeGame.reachOppositeSide()) {
+            outputView.printAskDirectionMessage();
             MoveResult moveResult = bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame);
             if (moveResult == MoveResult.NOT_ANSWER) {
                 return RoundResult.FAIL;
             }
         }
-
         return RoundResult.SUCCESS;
     }
 }
