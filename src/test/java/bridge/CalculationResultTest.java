@@ -7,7 +7,6 @@ import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.CalculationResult;
 import bridge.domain.User;
-import bridge.utils.BridgeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
