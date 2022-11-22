@@ -87,23 +87,23 @@ D
    2. BridgeMap, upMap, downMap, index 초기화
 3. create Map
     - [x] `List<String>` 맵 생성하기
-    - [ ] `List<String>` 형 맵 생성
+    - [x] `List<String>` 형 맵 생성
 ### OutMessage enum
 1. `START_MESSAGE`
-   - [ ] 다리 건너기 게임을 시작합니다.
+   - [x] 다리 건너기 게임을 시작합니다.
 2. `INPUT_BRIDGE_MESSAGE`
-   - [ ] 다리의 길이를 입력해주세요.
+   - [x] 다리의 길이를 입력해주세요.
 3. `INPUT_MOVE_MESSAGE`
-   - [ ] 이동할 칸을 선택해주세요. (위: U, 아래: D)
+   - [x] 이동할 칸을 선택해주세요. (위: U, 아래: D)
 4. `INPUT_RETRY_MESSAGE`
-   - [ ] 게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+   - [x] 게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
 5. `PRINT_BRIDGE_STATE`<br>
    [ O |   |   ]<br>
    [   | O | O ]
 6. `RESULT_MESSAGE`
-   - [ ] 게임 성공 여부: 성공
+   - [x] 게임 성공 여부: 성공
 7. `TRY_COUNT_MESSAGE`
-   - [ ] 총 시도한 횟수: 2
+   - [x] 총 시도한 횟수: 2
 
 ### OutputView
 1. `printMap`
@@ -120,10 +120,14 @@ D
 1. `UpMap`
 2. `DownMap` 
 
+### Valid
+1. Bridge의  "U", "D"로 이뤄진 List<String>
+2. Move 이동하기 위한 문자열
+3. Retry 재시작, 종료 하기 위한 문자열 검증 "R", "Q"
+4. Player의 입력값 "R", "Q" 문자열 검증
+5. 
 ### Bridge
 
-- [ ] 생성자
-- [ ] validate로 입력조건을 관리한다.
 
 
 ### BridgeIngredient enum
@@ -149,6 +153,9 @@ D
   - value
     - OutMessage enum
     - BridgeIngredient
+    - MatchMessage
+    - OutMessage
+    - PlayerMessage
   - entity
     - Play
     - Bridge
