@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
+import bridge.model.enumeration.ExceptionMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,7 +18,7 @@ public class BridgeController {
     private static final BridgeGame bridgeGame = new BridgeGame();
     private static List<String> bridges;
     private static Boolean trueOrFalse = true;
-    private static int triedNumber = 0;
+    private static int attempts = 0;
     private static String successOrFail = "";
     private static List<String> upFloor = new ArrayList<>();
     private static List<String> downFloor = new ArrayList<>();
@@ -28,13 +29,17 @@ public class BridgeController {
         bridges = makeRandomBridges(inputSize);
 
         while (trueOrFalse) {
-            triedNumber = getTriedNumber(inputSize);
+            attempts = getAttempts(inputSize);
         }
         printResult();
     }
 
     private int getBridgeSize() {
-        return inputView.readBridgeSize();
+        try {
+            return inputView.readBridgeSize();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_ONLY_NUMBER.getExceptionMessage());
+        }
     }
 
     private List<String> makeRandomBridges(int inputSize) {
@@ -42,16 +47,16 @@ public class BridgeController {
         return bridgeMaker.makeBridge(inputSize);
     }
 
-    private int getTriedNumber(int inputSize) {;
+    private int getAttempts(int inputSize) {;
         cleanAndAdd();
         int lengthOfBridge = 0;
         lengthOfBridge = startGame(inputSize, lengthOfBridge);
         successOrFail = getSuccess(inputSize, lengthOfBridge);
         trueOrFalse = getFalse();
 
-        triedNumber++;
+        attempts++;
 
-        return triedNumber;
+        return attempts;
     }
 
     private void cleanAndAdd() {
@@ -106,7 +111,7 @@ public class BridgeController {
         List<String> finalMap = new ArrayList<>();
         addforBridges(finalMap);
 
-        outputView.printResult(finalMap, successOrFail, triedNumber);
+        outputView.printResult(finalMap, successOrFail, attempts);
     }
 }
 
