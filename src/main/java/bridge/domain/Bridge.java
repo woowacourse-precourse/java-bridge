@@ -15,6 +15,7 @@ public class Bridge {
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
+        validateSize(bridge.size());
         this.bridge = bridge;
     }
 
