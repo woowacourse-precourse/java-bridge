@@ -33,14 +33,13 @@ public class OutputView {
     }
 
     private void printUpperLastStep(String lastStep, String lastStepByUser) {
-        if (Objects.equals(lastStepByUser, "X") && Objects.equals(lastStep, "D")) {
+        if (isEndX(lastStep, lastStepByUser, "D")) {
             System.out.println(" X ]");
         }
-        if ((Objects.equals(lastStepByUser, "X") && Objects.equals(lastStep, "U")) ||
-                (!Objects.equals(lastStepByUser, " X ") && Objects.equals(lastStepByUser, "D"))) {
+        if (isBlank(lastStep, lastStepByUser, "D", "U")) {
             System.out.println("   ]");
         }
-        if (!Objects.equals(lastStepByUser, " X ") && Objects.equals(lastStepByUser, "U")) {
+        if (isEndO(lastStepByUser, "U")) {
             System.out.println(" O ]");
         }
     }
@@ -59,16 +58,30 @@ public class OutputView {
     }
 
     private void printLowerLastStep(String lastStep, String lastStepByUser) {
-        if (Objects.equals(lastStepByUser, "X") && Objects.equals(lastStep, "U")) {
+        if (isEndX(lastStep, lastStepByUser, "U")) {
             System.out.println(" X ]");
         }
-        if ((Objects.equals(lastStepByUser, "X") && Objects.equals(lastStep, "D")) ||
-                (!Objects.equals(lastStepByUser, " X ") && Objects.equals(lastStepByUser, "U"))) {
+        if (isBlank(lastStep, lastStepByUser, "U", "D")) {
             System.out.println("   ]");
         }
-        if (!Objects.equals(lastStepByUser, " X ") && Objects.equals(lastStepByUser, "D")) {
+        if (isEndO(lastStepByUser, "D")) {
             System.out.println(" O ]");
         }
+    }
+
+    private boolean isEndX(String lastStep, String lastStepByUser, String otherSide) {
+        return Objects.equals(lastStepByUser, "X") && Objects.equals(lastStep, otherSide);
+    }
+
+    private boolean isBlank(String lastStep, String lastStepByUser, String otherSide,
+            String thisSide) {
+        return (Objects.equals(lastStepByUser, "X") && Objects.equals(lastStep, thisSide)) ||
+                (!Objects.equals(lastStepByUser, " X ") && Objects.equals(lastStepByUser,
+                        otherSide));
+    }
+
+    private boolean isEndO(String lastStepByUser, String thisSide) {
+        return !Objects.equals(lastStepByUser, " X ") && Objects.equals(lastStepByUser, thisSide);
     }
 
     public void printResult(GameStatus gameStatus, int totalAttempt) {
