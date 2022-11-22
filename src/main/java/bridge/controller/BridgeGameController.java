@@ -23,10 +23,9 @@ public class BridgeGameController {
     public void run() {
         try {
             startBrideGame();
-            System.out.println(correctBridge);
             crossBridge();
         } catch (IllegalArgumentException illegalArgumentException) {
-
+            outputView.printError(illegalArgumentException.getMessage());
         }
     }
 
@@ -40,8 +39,7 @@ public class BridgeGameController {
     }
 
     private void crossBridge() {
-        BridgeGame bridgeGame = new BridgeGame();
-        tryCount += 1;
+        BridgeGame bridgeGame = gameInit();
         for (String bridgeValue : correctBridge) {
             boolean correctAnswerCheck = bridgeGame.move(inputView.readMoving(), bridgeValue);
             outputView.printMap(bridgeGame.getBridges());
@@ -62,5 +60,10 @@ public class BridgeGameController {
 
     private void endGame(BridgeGame bridgeGame) {
         outputView.printResult(bridgeGame.getBridges(), bridgeGame.getGameResult(), tryCount);
+    }
+
+    private BridgeGame gameInit() {
+        tryCount += 1;
+        return new BridgeGame();
     }
 }
