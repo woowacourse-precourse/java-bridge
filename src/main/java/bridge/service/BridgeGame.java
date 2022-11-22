@@ -5,7 +5,9 @@ import bridge.config.AppConfig;
 import bridge.domain.Bridge;
 import bridge.domain.TryCount;
 import bridge.rule.EndRule;
-import bridge.util.Constant;
+
+import static bridge.util.Constant.*;
+
 import java.util.List;
 
 /**
@@ -35,7 +37,7 @@ public class BridgeGame {
     public static Bridge generateBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(AppConfig.selectNumberGenerator());
         List<String> baseBridge = bridgeMaker.makeBridge(bridgeSize);
-        return new Bridge(Constant.FIRSTPOSITION, baseBridge);
+        return new Bridge(FIRSTPOSITION, baseBridge);
     }
 
     public static TryCount getFinalResult(Bridge bridge, TryCount tryCount) {
