@@ -32,36 +32,53 @@ public class OutputView {
             firstIndex(userMove, moveResult);
         }
         if (location != 0) {
-            afterFisrt(userMove, moveResult);
+            afterFirst(userMove, moveResult);
         }
-        System.out.println(upSb + "\n" + downSb);
+        printUpDownSb();
+    }
+
+    private void firstIndexIsU(String userMove, String moveResult) {
+        upSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
+        downSb.append(START.getMessage() + "   " + END.getMessage());
+    }
+
+    private void firstIndexIsD(String userMove, String moveResult) {
+        upSb.append(START.getMessage() + "   " + END.getMessage());
+        downSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
     }
 
     private void firstIndex(String userMove, String moveResult) {
         if (userMove.equals("U")) {
-            upSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
-            downSb.append(START.getMessage() + "   " + END.getMessage());
+            firstIndexIsU(userMove, moveResult);
         }
         if (userMove.equals("D")) {
-            upSb.append(START.getMessage() + "   " + END.getMessage());
-            downSb.append(START.getMessage() + " " + moveResult + " " + END.getMessage());
+            firstIndexIsD(userMove, moveResult);
         }
     }
 
-    private void afterFisrt(String userMove, String moveResult) {
+    private void afterFirst(String userMove, String moveResult) {
         if (userMove.equals("U")) {
-            upSb.deleteCharAt(upSb.length() - 1);
-            upSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
-            downSb.deleteCharAt(downSb.length() - 1);
-            downSb.append(MIDDLE.getMessage() + "   " + END.getMessage());
+            afterFirstCheckIsU(userMove, moveResult);
         }
         if (userMove.equals("D")) {
-            upSb.deleteCharAt(upSb.length() - 1);
-            upSb.append(MIDDLE.getMessage() + "   " + END.getMessage());
-            downSb.deleteCharAt(downSb.length() - 1);
-            downSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
+            afterFistCheckIsD(userMove, moveResult);
         }
     }
+
+    private void afterFirstCheckIsU(String userMove, String moveResult) {
+        upSb.deleteCharAt(upSb.length() - 1);
+        upSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
+        downSb.deleteCharAt(downSb.length() - 1);
+        downSb.append(MIDDLE.getMessage() + "   " + END.getMessage());
+    }
+
+    private void afterFistCheckIsD(String userMove, String moveResult) {
+        upSb.deleteCharAt(upSb.length() - 1);
+        upSb.append(MIDDLE.getMessage() + "   " + END.getMessage());
+        downSb.deleteCharAt(downSb.length() - 1);
+        downSb.append(MIDDLE.getMessage() + " " + moveResult + " " + END.getMessage());
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -70,17 +87,25 @@ public class OutputView {
      */
     public void printResult(boolean moveCheck, int cnt) {
         if (moveCheck == true) {
-            RESULT_MESSAGE.printMessage();
-            System.out.println(upSb + "\n" + downSb + "\n");
-            System.out.println(SUCCEES.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
+            printResultIsTrue(cnt);
         }
-
         if (moveCheck == false) {
-            RESULT_MESSAGE.printMessage();
-            System.out.println(upSb + "\n" + downSb + "\n");
-            System.out.println(Fail.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
+            printResultIsFalse(cnt);
         }
     }
+
+    private void printResultIsTrue(int cnt) {
+        RESULT_MESSAGE.printMessage();
+        printUpDownSb();
+        System.out.println(SUCCEES.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
+    }
+
+    private void printResultIsFalse(int cnt) {
+        RESULT_MESSAGE.printMessage();
+        printUpDownSb();
+        System.out.println(Fail.getMessage() + "" + TOTAL_TRY.getMessage() + "" + cnt);
+    }
+
 
     public void startMessage() {
         START_MESSAGE.printMessage();
@@ -101,5 +126,10 @@ public class OutputView {
         }
         return "X";
     }
+
+    public void printUpDownSb() {
+        System.out.println(upSb + "\n" + downSb + "\n");
+    }
+
 }
 
