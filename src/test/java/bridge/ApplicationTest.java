@@ -54,6 +54,7 @@ class ApplicationTest extends NsTest {
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
         }
+
         @DisplayName("다리 사이즈 입력 예외처리 -> 3 ~ 20 범위 내 숫자가 아니면 예외")
         @ParameterizedTest
         @CsvSource({"1", "2", "21", "-123"})
@@ -63,12 +64,31 @@ class ApplicationTest extends NsTest {
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
         }
+
         @DisplayName("이동 입력 예외처리 -> 입력값이 U, D가 아니면 예외")
         @ParameterizedTest
         @CsvSource({"a", "b", "BB", "u", "d"})
         void invalidMoving(String input) {
             assertSimpleTest(() -> {
                 runException("3", input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("재시작 입력 예외처리 -> 입력값이 R, Q가 아니면 예외)")
+        @ParameterizedTest
+        @CsvSource({"Rr", "r", "Quit", "q"})
+        void invalidGameCommand(String input) {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "U", "U", input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }, 1, 0, 1);
+        }
+
+        @Test
+        void 예외_테스트() {
+            assertSimpleTest(() -> {
+                runException("a");
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
         }
