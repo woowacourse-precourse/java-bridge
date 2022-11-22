@@ -5,11 +5,11 @@ import bridge.ui.OutputView;
 import java.util.List;
 
 public class Game {
+    public static int gameCount;
     private final int SUCCESS = 1;
     private final int FAILURE = 0;
     private final int BRIDGE_SIZE;
     private final List<String> BRIDGE;
-
     private OutputView outputView;
     private BridgeGame bridgeGame;
     private InputView inputView;
@@ -17,12 +17,13 @@ public class Game {
     private boolean move;
     public Game(List<String> bridge, int bridgeSize){
         this.outputView = new OutputView();
-        this.bridgeGame = new BridgeGame();
+        this.bridgeGame = new BridgeGame(0);
         this.inputView = new InputView();
         this.mapString = new MapString("","");
         this.BRIDGE = bridge;
         this.BRIDGE_SIZE= bridgeSize;
         this.move = true;
+        this.gameCount += 1;
     }
 
     public void start(){
@@ -42,8 +43,7 @@ public class Game {
         String readMove = inputView.readMoving();
         this.move = bridgeGame.move(BRIDGE, readMove);
         outputView.printMap(bridgeGame.makeMap(readMove, this.move, mapString));
-        bridgeGame.index++;
-        return (bridgeGame.index);
+        return (bridgeGame.getIndex());
     }
 
     private void routineWhenFail(){
