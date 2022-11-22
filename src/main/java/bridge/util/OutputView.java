@@ -1,5 +1,6 @@
-package bridge;
+package bridge.util;
 
+import bridge.BridgeInfo;
 import bridge.constant.Message;
 
 import java.util.List;

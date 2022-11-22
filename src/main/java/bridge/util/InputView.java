@@ -1,4 +1,6 @@
-package bridge;
+package bridge.util;
+
+import bridge.Validator;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
