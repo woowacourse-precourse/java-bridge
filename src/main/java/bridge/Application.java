@@ -9,8 +9,8 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        BridgeGame game = new BridgeGame();
-        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        Application app = new Application();
+        app.output.printGameStart();
         // TODO: 프로그램 구현
     }
 }
