@@ -36,6 +36,8 @@
     - [x] 생성자 추가
     - [x] 다리 길이 검증
         - 검증 실패 시 IllegalArgumentException
+    - [x] 다리 길이 문자열 정수로 변환 검증
+        - 검증 실패 시 IllegalArgumentException
     - [x] 이동할 칸 검증
         - 검증 실패 시 IllegalArgumentException
     - [x] 게임 재시도 여부 검증
@@ -68,6 +70,8 @@
     - [x] 다리 길이 검증 테스트
         - 다리길이가 3~20을 벗어나면 IllegalArgumentException
         - 그 외에는 pass
+    - [x] 다리 길이 문자열 정수로 변환 검증 테스트
+        - 다리 길이 문자열이 정수로 변환 가능하지 않다면 IllegalArgumentException
     - [x] 이동할 칸 검증 테스트
         - 이동할 칸이 U나 D가 아니라면 IllegalArgumentException
         - 그 외에는 pass
