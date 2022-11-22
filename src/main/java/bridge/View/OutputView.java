@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println(start);
     }
 
-    public static int BridgeLengthCheck(String val) {
+    public static int BridgeLengthCheck(String val) throws IllegalArgumentException {
         return PrintLenError(toInt(val));
     }
 
@@ -56,7 +56,7 @@ public class OutputView {
 
     private static int toInt(String val) throws IllegalArgumentException {
         if (!val.matches(VALID_NUMERIC_FORMAT)) {
-            throw new IllegalArgumentException(error);
+            throw new IllegalArgumentException(error + LenError);
         }
         return Integer.parseInt(val);
     }
