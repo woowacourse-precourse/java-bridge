@@ -8,4 +8,11 @@ public class Converter {
         }
         return "X";
     }
+
+    public static int convertToIndex(String moving) {
+        if (moving.equals("U")) {
+            return 0;
+        }
+        return 1;
+    }
 }
