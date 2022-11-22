@@ -7,11 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -35,7 +38,7 @@ class BridgeGameTest {
     }
 
     @DisplayName("올바른 move 명령어를 입력한다.")
-    @CsvSource(value = {"U,true","D,false"})
+    @CsvSource(value = {"U,true", "D,false"})
     @ParameterizedTest
     void returnResultWhenInputValidMoveCommand(String command, boolean result) {
         Assertions.assertThat(bridgeGame.move(command)).isEqualTo(result);
@@ -69,25 +72,16 @@ class BridgeGameTest {
     }
 
     @DisplayName("재시도 요청을 한 경우 그에 맞는 상태 값을 반환한다.")
-    @Test
-    void returnMoveStatusWhenGiveCorrectRetryCommand() {
-        String command = "R";
-        ViewStatus result  = bridgeGame.retry(command);
+    @MethodSource("provideInputForRetry")
+    @ParameterizedTest
+    void returnMoveStatusWhenGiveCorrectRetryCommand(String command, ViewStatus status) {
+        ViewStatus result = bridgeGame.retry(command);
 
-        assertThat(result).isEqualTo(ViewStatus.DETERMINE_MOVE);
-    }
-
-    @DisplayName("종료 요청을 한 경우 그에 맞는 상태 값을 반환한다.")
-    @Test
-    void returnLoseStatusWhenGiveCorrectRetryCommand() {
-        String command = "Q";
-        ViewStatus result  = bridgeGame.retry(command);
-
-        assertThat(result).isEqualTo(ViewStatus.LOSE);
+        assertThat(result).isEqualTo(status);
     }
 
     @DisplayName("재시도 요청 중 잘못된 입력을 한 경우 오류 반환.")
-    @ValueSource(strings = {"adf","1","A","d"})
+    @ValueSource(strings = {"adf", "1", "A", "d"})
     @ParameterizedTest
     void throwErrorWhenInvalidRetryCommand(String command) {
         assertThatThrownBy(() -> bridgeGame.retry(command))
@@ -99,7 +93,7 @@ class BridgeGameTest {
     @ParameterizedTest
     void returnRetryCount(int count) {
         retryMultipleTime(count);
-        assertThat(bridgeGame.getGameCount()).isEqualTo(count+1);
+        assertThat(bridgeGame.getGameCount()).isEqualTo(count + 1);
     }
 
     private GameResult moveUntilWin(BridgeGame bridgeGame) {
@@ -111,10 +105,15 @@ class BridgeGameTest {
     }
 
     private void retryMultipleTime(int count) {
-        for(int retryCount=1; retryCount<=count; retryCount++) {
+        for (int retryCount = 1; retryCount <= count; retryCount++) {
             bridgeGame.retry("R");
         }
     }
 
-
+    private static Stream<Arguments> provideInputForRetry() { // argument source method
+        return Stream.of(
+                Arguments.of("Q", ViewStatus.LOSE),
+                Arguments.of("R", ViewStatus.DETERMINE_MOVE)
+        );
+    }
 }
