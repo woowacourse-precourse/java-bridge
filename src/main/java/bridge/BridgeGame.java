@@ -25,15 +25,20 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> move(String moving) {
+    public List<String> move(Boolean canSuccess) {
         List<String> tmpBridge = this.bridgeAnswer.subList(0,nowStep);
-        if (tmpBridge.get(nowStep).equals(moving)){
+        if (canSuccess){
             this.nowStep += 1;
             return tmpBridge;
         }
         tmpBridge.set(nowStep,"F");
         this.nowStep = 0;
         return tmpBridge;
+    }
+    public Boolean checkCanSuccess(String moving){
+        if (this.bridgeAnswer.get(nowStep).equals(moving))
+            return true;
+        return false;
     }
 
     /**

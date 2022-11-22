@@ -14,10 +14,16 @@ public class OutputView {
         System.out.println(GAME_START.getMessage());
     }
     public void printGetBridgeLength(){
+        System.out.println();
         System.out.println(GET_BRIDGE_LENGTH.getMessage());
     }
     public void printGetSpaceToMove(){
+        System.out.println();
         System.out.println(GET_SPACE_TO_MOVE.getMessage());
+    }
+    public void printGetTryAgain(){
+        System.out.println();
+        System.out.println(GET_TRY_AGAIN.getMessage());
     }
 
     /**

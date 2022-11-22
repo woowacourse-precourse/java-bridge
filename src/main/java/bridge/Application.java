@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.List;
+import java.util.SplittableRandom;
 
 import static bridge.OutputView.*;
 public class Application {
@@ -11,22 +12,37 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
+        phase1_gameInitialize(outputView, bridgeGame);
+        phase2_setBridge(inputView,bridgeMaker,bridgeGame);
+
     }
 
     public static void phase1_gameInitialize(OutputView outputView,
                                              BridgeGame bridgeGame){
         outputView.printStartMessage();
         bridgeGame.startGameSetCount();
+        outputView.printGetBridgeLength();
     }
 
-    public static List<String> phase2_setBridge(OutputView outputView,
-                                                InputView inputView,
+    public static List<String> phase2_setBridge(InputView inputView,
                                                 BridgeMaker bridgeMaker,
                                                 BridgeGame bridgeGame){
-        outputView.printGetBridgeLength();
         int bridgeLength = inputView.readBridgeSize();
         List<String> bridgeAnswer = bridgeMaker.makeBridge(bridgeLength);
         bridgeGame.setBridgeAnswer(bridgeAnswer);
         return bridgeAnswer;
+    }
+
+    public static List<String> phase3_getMoving(OutputView outputView,
+                                                InputView inputView,
+                                                BridgeGame bridgeGame){
+        outputView.printGetSpaceToMove();
+        String nextMove = inputView.readMoving();
+        Boolean canSuccess = bridgeGame.checkCanSuccess(nextMove);
+        List<String> tmpBridge = bridgeGame.move(canSuccess);
+        outputView.printMap(tmpBridge);
+
+        return null;
     }
 }
