@@ -14,7 +14,7 @@ public class Application {
 //            System.out.println(e.getMessage());
 //        }
         int size = InputController.checkSize(new InputView());
-//        BridgeGame game = new BridgeGame(size);
-//        game.play();
+        BridgeGame game = new BridgeGame(size);
+        game.play();
     }
 }
