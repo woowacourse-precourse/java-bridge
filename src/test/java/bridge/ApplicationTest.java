@@ -41,14 +41,23 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-//    @Test
-//    void 예외_테스트() {
-//        System.out.println("예외 테스트");
-//        assertSimpleTest(() -> {
-//            runException("a");
-//            assertThat(output()).contains(ERROR_MESSAGE);
-//        });
-//    }
+    @Test
+    void 예외_테스트1() {
+        System.out.println("예외 테스트");
+        assertSimpleTest(() -> {
+            runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트2() {
+        System.out.println("예외 테스트");
+        assertSimpleTest(() -> {
+            runException("35");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Override
     protected void runMain() {

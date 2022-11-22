@@ -28,7 +28,6 @@ public class BridgeMaker {
             if (num == 0)
                 bridge.add("D");
         }
-        System.out.println("bridge: " + bridge);
         return bridge;
     }
 }
