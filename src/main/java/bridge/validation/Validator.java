@@ -1,10 +1,14 @@
 package bridge.validation;
 
+import bridge.constant.BridgeConstant;
+
+import static bridge.constant.BridgeConstant.*;
+
 public class Validator {
 
     public String validateBridgeSize(String bridgeSize) {
         validateBridgeSizeFormat(bridgeSize);
-        validateBridgeSizeRange(bridgeSize, 3, 20);
+        validateBridgeSizeRange(bridgeSize, BRIDGE_SIZE_START_INCLUSIVE.getValue(), BRIDGE_SIZE_END_INCLUSIVE.getValue());
 
         return bridgeSize;
     }
