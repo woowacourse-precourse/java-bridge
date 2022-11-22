@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import static bridge.Constants.SIZE_MAX;
 import static bridge.Constants.SIZE_MIN;

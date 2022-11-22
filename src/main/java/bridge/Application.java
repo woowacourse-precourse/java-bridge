@@ -1,6 +1,8 @@
 package bridge;
 
-import java.beans.PropertyEditorSupport;
+import bridge.domain.*;
+import bridge.domain.view.InputView;
+import bridge.domain.view.OutputView;
 
 import static bridge.Constants.*;
 

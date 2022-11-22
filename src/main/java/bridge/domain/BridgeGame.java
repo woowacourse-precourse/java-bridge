@@ -1,8 +1,4 @@
-package bridge;
-
-import org.mockito.internal.matchers.Null;
-
-import java.util.List;
+package bridge.domain;
 
 import static bridge.Constants.*;
 

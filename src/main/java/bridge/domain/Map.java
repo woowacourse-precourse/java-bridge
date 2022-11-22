@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import static bridge.Constants.X;
 public class Map {
 	private final List<List<String>> map;
 
-	Map() {
+	public Map() {
 		this.map = new ArrayList<>();
 		init();
 	}

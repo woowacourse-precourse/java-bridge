@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

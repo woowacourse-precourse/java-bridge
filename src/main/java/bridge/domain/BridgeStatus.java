@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.Constants;
 
 public enum BridgeStatus {
 	UP(Constants.UP, 1),

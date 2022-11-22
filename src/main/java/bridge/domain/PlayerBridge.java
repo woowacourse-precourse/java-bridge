@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 public class PlayerBridge {
 	private final List<String> playerBridge;
 
-	PlayerBridge() {
+	public PlayerBridge() {
 		// todo 예외처리
 		this.playerBridge = new ArrayList<>();
 	}
@@ -15,7 +15,7 @@ public class PlayerBridge {
 		playerBridge.clear();
 	}
 
-	void add(String move){
+	public void add(String move){
 		playerBridge.add(move);
 	}
 
