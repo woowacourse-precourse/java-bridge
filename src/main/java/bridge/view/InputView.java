@@ -16,9 +16,13 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(OutMsg.BRIDGE_SIZE_REQUEST.getMessage());
-        String bridgeSize = Console.readLine();
-        inputValidator.validateBridgeSize(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        try {
+            String bridgeSize = inputValidator.validateBridgeSize(Console.readLine());
+            return Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -26,8 +30,16 @@ public class InputView {
      */
     public Inputs readMoving() {
         System.out.println(OutMsg.MOVE_REQUEST.getMessage());
-        String move = Console.readLine();
-        inputValidator.validateMovement(move);
+        try {
+            String move = inputValidator.validateMovement(Console.readLine());
+            return moveToInputElement(move);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+    }
+
+    private Inputs moveToInputElement(String move) {
         if (move.equals(Inputs.MOVE_UP.getMessage())) {
             return Inputs.MOVE_UP;
         }
@@ -39,8 +51,11 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(OutMsg.RETRY_REQUEST.getMessage());
-        String retry = Console.readLine();
-        inputValidator.validateRetry(retry);
-        return retry;
+        try {
+            return inputValidator.validateRetry(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 }

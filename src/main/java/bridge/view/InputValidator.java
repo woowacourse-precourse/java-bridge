@@ -8,9 +8,10 @@ public class InputValidator {
 	private static final int MIN_BRIDGE_LENGTH = 3;
 	private static final int MAX_BRIDGE_LENGTH = 20;
 
-	public void validateBridgeSize(String string) {
+	public String validateBridgeSize(String string) {
 		assertStringIsPositiveNumber(string);
 		assertStringIsInValidRange(string);
+		return string;
 	}
 
 	private void assertStringIsPositiveNumber(String string) {
@@ -26,15 +27,17 @@ public class InputValidator {
 		}
 	}
 
-	public void validateMovement(String string) {
+	public String validateMovement(String string) {
 		if (!string.equals(Inputs.MOVE_UP.getMessage()) && !string.equals(Inputs.MOVE_DOWN.getMessage())) {
 			throw new IllegalArgumentException(ErrorMsg.MOVE_MSG_NOT_VALID.getMessage());
 		}
+		return string;
 	}
 
-	public void validateRetry(String string) {
+	public String validateRetry(String string) {
 		if (!string.equals(Inputs.RETRY.getMessage()) && !string.equals(Inputs.QUIT.getMessage())) {
 			throw new IllegalArgumentException(ErrorMsg.RETRY_MSG_NOT_VALID.getMessage());
 		}
+		return string;
 	}
 }
