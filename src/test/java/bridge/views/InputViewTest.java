@@ -1,7 +1,6 @@
 package bridge.views;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import bridge.InOutStreamTest;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -11,38 +10,9 @@ import java.io.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class InputViewTest {
-
-    private PrintStream standardOut;
-    private OutputStream outputStream;
-
-    private InputStream standardIn;
+class InputViewTest extends InOutStreamTest {
 
     InputView ui = new InputView();
-
-    @BeforeEach
-    protected final void initiallyAct() {
-        standardIn = System.in;
-        standardOut = System.out;
-        outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-    }
-
-    @AfterEach
-    protected final void finallyAct() {
-        System.setIn(standardIn);
-        System.setOut(standardOut);
-        System.out.println(output());
-    }
-
-    private String output() {
-        return outputStream.toString().trim();
-    }
-
-    private void input(final String... args) {
-        final byte[] buffer = String.join("\n", args).getBytes();
-        System.setIn(new ByteArrayInputStream(buffer));
-    }
 
     @Nested
     class ReadBridgeSizeTest {
