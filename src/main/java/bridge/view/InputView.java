@@ -2,8 +2,6 @@ package bridge.view;
 
 import bridge.domain.Command;
 import bridge.exception.InputExceptionHandler;
-import camp.nextstep.edu.missionutils.Console;
-import java.util.NoSuchElementException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

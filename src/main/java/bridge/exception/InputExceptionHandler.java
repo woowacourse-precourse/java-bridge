@@ -1,6 +1,5 @@
 package bridge.exception;
 
-import bridge.domain.Command;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.NoSuchElementException;
 

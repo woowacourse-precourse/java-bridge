@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.Arrays;
-
 public enum Result {
     FAIL("실패"), SUCCESS("성공"), ARRIVED("성공");
 
