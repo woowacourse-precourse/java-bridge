@@ -1,12 +1,13 @@
-package bridge;
+package bridge.data;
 
-public enum Moving {
-    DOWN("D"),
-    UP("U");
+public enum Pass {
+    YES(" O "),
+    NO(" X "),
+    NOTHING("   ");
 
     private final String label;
 
-    Moving(String label) {
+    Pass(String label) {
         this.label = label;
     }
 

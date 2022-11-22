@@ -1,12 +1,12 @@
-package bridge;
+package bridge.data;
 
-public enum Command {
-    RETRY("R"),
-    QUIT("Q");
+public enum Moving {
+    DOWN("D"),
+    UP("U");
 
     private final String label;
 
-    Command(String label) {
+    Moving(String label) {
         this.label = label;
     }
 

@@ -1,13 +1,12 @@
-package bridge;
+package bridge.data;
 
-public enum Pass {
-    YES(" O "),
-    NO(" X "),
-    NOTHING("   ");
+public enum Command {
+    RETRY("R"),
+    QUIT("Q");
 
     private final String label;
 
-    Pass(String label) {
+    Command(String label) {
         this.label = label;
     }
 

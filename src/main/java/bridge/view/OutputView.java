@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.Moving;
+import bridge.data.Moving;
 
 import java.util.List;
 
