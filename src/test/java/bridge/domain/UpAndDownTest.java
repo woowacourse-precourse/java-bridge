@@ -16,4 +16,14 @@ class UpAndDownTest {
         assertThat(down).isEqualTo(UpAndDown.DOWN);
         assertThat(up).isEqualTo(UpAndDown.UP);
     }
+
+    @Test
+    @DisplayName("랜덤값(0,1)이 주어지면 알맞은 UpAndDown의 command(D,U)를 찾아 반환할 수 있다.")
+    void tryConvertRandomValueToCommand() {
+        String upCommand = UpAndDown.convertRandomValueToCommand(1);
+        String downCommand = UpAndDown.convertRandomValueToCommand(0);
+
+        assertThat(upCommand).isEqualTo("U");
+        assertThat(downCommand).isEqualTo("D");
+    }
 }
