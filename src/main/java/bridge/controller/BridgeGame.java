@@ -1,13 +1,8 @@
 package bridge.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bridge.model.Bridge;
 import bridge.model.CrossBridgeType;
 import bridge.utils.Validator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -43,9 +38,7 @@ public class BridgeGame {
     public boolean retry() {
         while (true) {
             try {
-                String command = InputView.readGameCommand();
-                Validator.checkValueOfReadGameCommand(command);
-                return equalStringCommand("R", command);
+                return equalStringCommand("R", Validator.readGameCommand());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -67,12 +60,12 @@ public class BridgeGame {
             if (!retry())
                 break;
         }
-        printResult(attemptCount);
+        bridge.printResult(attemptCount, round, isCross);
     }
 
     public boolean moveBridge() {
         for (round = 0; round != bridge.getBridgeSize(); round++) {
-            isCross = move(round, bridge.readBridgeMove());
+            isCross = move(round, Validator.readBridgeMove());
             bridge.printMap(round, isCross);
             if (!isCross)
                 break;
@@ -82,8 +75,4 @@ public class BridgeGame {
         return true;
     }
 
-    public void printResult(int attemptCount) {
-        List<String> usedMap = new ArrayList<>(bridge.getUsedMap(round));
-        OutputView.printResult(usedMap, isCross, attemptCount);
-    }
 }

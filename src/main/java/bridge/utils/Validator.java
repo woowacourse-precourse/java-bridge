@@ -1,6 +1,38 @@
 package bridge.utils;
 
+import bridge.view.InputView;
+
 public class Validator {
+
+    public static String readGameCommand() {
+        String command = InputView.readGameCommand();
+        checkValueOfReadGameCommand(command);
+        return command;
+    }
+
+    public static String readBridgeMove() {
+        while (true) {
+            try {
+                String inputBridgeMove = InputView.readMoving();
+                Validator.checkValueOfReadBridgeMove(inputBridgeMove);
+                return inputBridgeMove;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static int readBridgeSize() {
+        while (true) {
+            try {
+                String inputBridgeSize = InputView.readBridgeSize();
+                Validator.checkValueOfReadBridgeSize(inputBridgeSize);
+                return Integer.parseInt(inputBridgeSize);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
     public static void checkValueOfReadBridgeSize(String value) {
         if (isNumeric(value))
