@@ -14,6 +14,7 @@ public class GameController {
         bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         runGame(bridgeGame);
+        endGame(bridgeGame);
     }
 
     public void runGame(BridgeGame bridgeGame) {
@@ -24,6 +25,11 @@ public class GameController {
                 bridgeGame.move();
             } while (bridgeGame.checkCanMove());
         } while (checkRetry(bridgeGame));
+    }
+
+    public void endGame(BridgeGame bridgeGame) {
+        outputView.printResult(bridgeGame.getPlayerBridge(), bridgeGame.getIsSuccess());
+        outputView.printTotalAttempts(bridgeGame.getCountAttempts());
     }
 
     public boolean checkRetry(BridgeGame bridgeGame) {
