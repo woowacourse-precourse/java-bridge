@@ -57,4 +57,8 @@ public class BridgeGame {
     public boolean canMoveMoreBlock(int length) {
         return length > movingData.size();
     }
+
+    public boolean isMovingFail() {
+        return movingResults.contains(false);
+    }
 }
