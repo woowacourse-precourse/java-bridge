@@ -1,7 +1,7 @@
 package bridge.view;
 
+import static bridge.constant.Deck.BLANK;
 import static bridge.constant.Deck.MATCH;
-import static bridge.constant.Deck.ROW_NOT_MATCH;
 import static bridge.constant.Deck.WRONG;
 import static bridge.constant.Direction.LOWER;
 import static bridge.constant.Direction.UPPER;
@@ -34,7 +34,7 @@ public class OutputView {
 
     private Deck getDeck(Direction row, TrialResult trialResult) {
         if (row != trialResult.getDirection()) {
-            return ROW_NOT_MATCH;
+            return BLANK;
         }
         if (trialResult.wasSuccessful()) {
             return MATCH;

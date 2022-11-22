@@ -3,7 +3,7 @@ package bridge.constant;
 public enum Deck {
     MATCH("O"),
     WRONG("X"),
-    ROW_NOT_MATCH(" ");
+    BLANK(" ");
 
     private final String displayCharacter;
 
