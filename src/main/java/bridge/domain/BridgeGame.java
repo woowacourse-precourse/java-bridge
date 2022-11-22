@@ -7,7 +7,7 @@ import bridge.utils.Constant;
  */
 public class BridgeGame {
 
-    User user;
+    private User user;
 
     public BridgeGame() {
         user = new User();
