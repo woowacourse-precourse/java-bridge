@@ -60,7 +60,7 @@ public class InputView {
      */
     public void readMoving() {
         while (true) {
-            gameStatistics.getCheckRoad().add(bridgeGame.move(enterMoveDirection(),
+            gameStatistics.getCheckRoad().add(bridgeGame.move(getMoveDirection(),
                     gameStatistics.getAnswerRoad(), bridgeGame.getPlayer()));
             boolean roundResult = bridge.buildBridge();
             outputView.printMap();
@@ -68,18 +68,23 @@ public class InputView {
         }
     }
 
-    private String enterMoveDirection() {
-        String moveDirection = null;
-        boolean b = true;
+    private String getMoveDirection() {
+        String moveDirection;
+        boolean isInvalidMoving = true;
+        moveDirection = enterMoveDirection(null, isInvalidMoving);
+        return moveDirection;
+    }
+
+    private String enterMoveDirection(String moveDirection, boolean isInvalidMoving) {
         do {
             System.out.println(MessageView.SELECT_TO_MOVE.getMessage());
             try {
                 moveDirection = Console.readLine();
-                b = bridgeException.invalidMovingInputValue(moveDirection);
+                isInvalidMoving = bridgeException.invalidMovingInputValue(moveDirection);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        } while (b);
+        } while (isInvalidMoving);
         return moveDirection;
     }
 
