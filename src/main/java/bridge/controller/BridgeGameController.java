@@ -70,10 +70,9 @@ public class BridgeGameController {
         String retry = RETRY;
         if (!check) {
             retry = getWhetherToRetry();
-
             if (retry.equals(RETRY)) {
                 bridgeGame.retry(gameStatus);
-                copyBridge = new Bridge(bridge.copyBridge()); // Call by value, Call by reference
+                copyBridge = new Bridge(bridge.copyBridge());
             }
         }
         return retry;
