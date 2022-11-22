@@ -9,17 +9,14 @@ public class Application {
     static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     static GameController gameController = new GameController(bridgeGame,bridgeMaker);
 
-    public static void main(String[] args) {
-        try {
+    public static void main(String[] args){
             GAMESTART();
             GAMEPROCESS();
             GAMESTOP();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public static void GAMESTART() {
+        gameController.printGameStart();
         gameController.GAMESTART();
     }
 

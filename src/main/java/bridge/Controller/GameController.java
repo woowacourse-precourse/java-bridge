@@ -17,17 +17,29 @@ public class GameController {
     }
 
     public void GAMESTART() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        try {
+            MAKEBRIDGE();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            GAMESTART();
+        }
+    }
+
+    public void MAKEBRIDGE() {
         int input = inputView.readBridgeSize();
         bridgeGame.setBridge(bridgeMaker.makeBridge(input));
     }
 
+    public void printGameStart() {
+        outputView.printGameStart();
+    }
+
     public void RUNPROCESS() {
-        bridgeGame.increaseGameCount();
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             boolean match = bridgeGame.move(inputView,outputView,i);
             if (!match) { break; }
         }
+        bridgeGame.increaseGameCount();
     }
 
     public boolean SELECTRESTART() {
