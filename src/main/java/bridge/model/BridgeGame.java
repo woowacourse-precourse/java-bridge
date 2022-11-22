@@ -6,22 +6,15 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> bridge;
-    private int userLocation;
-    private GameState gameState;
+
+    private final Bridge bridge;
     private int attempts;
-    private GameResultBoard gameResultBoard;
+    private GameState gameState;
 
     public BridgeGame(List<String> bridge) {
-        this.userLocation = 0;
-        this.bridge = bridge;
+        this.bridge = new Bridge(bridge);
         this.gameState = GameState.NOT_FINISH;
         this.attempts = 1;
-        this.gameResultBoard = new GameResultBoard();
-    }
-
-    public List<String> getBridge() {
-        return bridge;
     }
 
     public GameState getGameState() {
@@ -32,12 +25,8 @@ public class BridgeGame {
         return attempts;
     }
 
-    public GameResultBoard getGameResultBoard() {
-        return gameResultBoard;
-    }
-
-    public String currentBridge() {
-        return bridge.get(userLocation - 1);
+    public List<List<String>> getBridge() {
+        return this.bridge.getBridge();
     }
 
     /**
@@ -47,20 +36,16 @@ public class BridgeGame {
      */
     public void move(String direction) {
         if (gameState.equals(GameState.NOT_FINISH))
-            userLocation++;
+            bridge.move();
         changeState(direction);
     }
 
     private void changeState(String direction) {
-        if (!bridge.get(userLocation - 1).equals(direction)) {
+        if (!bridge.canMove(direction)) {
             gameState = GameState.FINISH_FAIL;
             return;
         }
-        finishGame();
-    }
-
-    private void finishGame() {
-        if (this.userLocation >= this.bridge.size())
+        if (bridge.arrived())
             gameState = GameState.FINISH_SUCCESS;
     }
 
@@ -72,9 +57,12 @@ public class BridgeGame {
     public void retry(String command) {
         if (command.equals("R")) {
             gameState = GameState.NOT_FINISH;
-            userLocation = 0;
-            gameResultBoard = new GameResultBoard();
+            bridge.init();
             attempts++;
         }
+    }
+
+    public void update(String direction) {
+        bridge.update(direction);
     }
 }

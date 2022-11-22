@@ -19,9 +19,8 @@ public class OutputView {
     }
 
     private String printBridge(BridgeGame game, String direction) {
-        boolean success = game.currentBridge().equals(direction);
-        game.getGameResultBoard().update(direction, success);
-        return makeMap(game.getGameResultBoard().getState());
+        game.update(direction);
+        return makeMap(game.getBridge());
     }
 
     private String makeMap(List<List<String>> bridges) {
@@ -41,7 +40,7 @@ public class OutputView {
      */
     public void printResult(BridgeGame game) {
         System.out.println(Message.FINAL_STATE);
-        System.out.println(makeMap(game.getGameResultBoard().getState()));
+        System.out.println(makeMap(game.getBridge()));
         System.out.println(Message.GAME_SUCCESS + game.getGameState().stateMsg());
         System.out.println(Message.NUMBER_OF_TRY.toString() + game.getAttempts());
     }

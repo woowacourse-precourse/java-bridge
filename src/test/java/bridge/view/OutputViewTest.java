@@ -27,7 +27,6 @@ class OutputViewTest extends NsTest {
         for (String direction : directions) {
             game.move(direction);
             outputView.printMap(game, direction);
-            System.out.println(game.currentBridge());
         }
     }
 
