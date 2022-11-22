@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ class BridgeGameTest {
     void createSuccessORFail(String userInput, String output) {
         // given
         List<String> bridge = new ArrayList<>(List.of("U", "U", "D"));
-        for(int play = 1; play <= 3; play++){
+        for (int play = 1; play <= 3; play++) {
             round.plusRound();
         }
         // when
