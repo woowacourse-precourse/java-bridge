@@ -26,5 +26,12 @@ public class BridgeGameController {
         }
         return false;
     }
+    private boolean gameEndSelect() {
+        if (!bridgeGame.retry()) {
+            outputView.printResult(this, bridgeGame,false);
+            return false;
+        }
+        return true;
+    }
 
 }
