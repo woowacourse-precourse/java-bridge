@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.*;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.BridgeMap;
 import bridge.message.Message;
 import bridge.view.ViewMessage;
