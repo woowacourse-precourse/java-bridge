@@ -2,8 +2,8 @@ package bridge.engine.state;
 
 import bridge.engine.BridgeGame;
 import bridge.engine.reporter.BridgeResult;
-import bridge.engine.generator.BridgeMaker;
-import bridge.engine.generator.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.engine.BridgeGame;
+import bridge.engine.BridgeGameContext;
 
 public class Application {
 

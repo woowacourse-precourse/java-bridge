@@ -1,11 +1,9 @@
-package bridge;
+package bridge.engine;
 
-import bridge.engine.BridgeGame;
 import bridge.engine.reporter.BridgeResult;
 import bridge.engine.reporter.BridgeReporter;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
 
 /**
  * 브릿지 게임 전체 프로세스를 진행하는 Context

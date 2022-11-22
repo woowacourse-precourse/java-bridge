@@ -1,4 +1,4 @@
-package bridge.engine.generator;
+package bridge;
 
 import bridge.engine.BridgeDirection;
 
