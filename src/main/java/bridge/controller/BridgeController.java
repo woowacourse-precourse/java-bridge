@@ -35,14 +35,14 @@ public class BridgeController {
         outputView.printStartNotice();
         int size = inputBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
-        ResultDTO resultDTO = crossBridge(size, bridge, new User(new ArrayList<>()));
+        ResultDTO resultDTO = crossBridge(bridge, new User(new ArrayList<>()));
         outputView.printResult(resultDTO);
     }
 
-    private ResultDTO crossBridge(int size, Bridge bridge, User user) {
+    private ResultDTO crossBridge(Bridge bridge, User user) {
         int count = 1;
         while (true) {
-            boolean end = isCross(size, bridge, user);
+            boolean end = isCross(bridge, user);
             if (isEnd(end)) {
                 return new ResultDTO(converter.convertToMapDTO(user), end, count);
             }
@@ -71,8 +71,9 @@ public class BridgeController {
         }
     }
 
-    private boolean isCross(int size, Bridge bridge, User user) {
+    private boolean isCross(Bridge bridge, User user) {
         boolean end = false;
+        int size = bridge.getSize();
         for (int round = 0; round < size; round++) {
             if (!isMove(bridge, user, round)) {
                 break;

@@ -21,4 +21,8 @@ public class Bridge {
     public boolean isPassable(int round, String move) {
         return path.get(round).equals(move);
     }
+
+    public int getSize() {
+        return path.size();
+    }
 }
