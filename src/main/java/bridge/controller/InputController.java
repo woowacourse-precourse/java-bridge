@@ -2,14 +2,16 @@ package bridge.controller;
 
 import bridge.view.InputView;
 import bridge.domain.Player;
+import bridge.view.OutputView;
 
 public class InputController {
+    private static final String NEW_LINE = "\n";
     public static int checkSize(InputView inputView) {
         int size;
         try {
             size = inputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printGuide(e.getMessage() + NEW_LINE);
             return (checkSize(inputView));
         }
         return size;
@@ -19,7 +21,7 @@ public class InputController {
         try {
             player.move();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printGuide(e.getMessage() + NEW_LINE);
             checkMove(player);
         }
     }
@@ -29,7 +31,7 @@ public class InputController {
         try {
             gameCommand = player.retry();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printGuide(e.getMessage() + NEW_LINE);
             return checkGameCommend(player);
         }
         return gameCommand;

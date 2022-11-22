@@ -27,6 +27,7 @@ public class InputView {
     public static int readBridgeSize() {
         OutputView.printGuide(PUT_SIZE);
         String command = Console.readLine();
+        OutputView.printGuide("");
         validateNumber(command);
         validateRange(Integer.parseInt(command));
         return Integer.parseInt(command);
