@@ -12,12 +12,12 @@ class BridgeTest {
     @Test
     void 다리_값과_입력값이_같은_경우() {
         Bridge bridge = new Bridge(List.of("U", "D", "U", "D"));
-        Assertions.assertThat(bridge.isMatch(0, BridgeMaker.UP)).isEqualTo(true);
+        Assertions.assertThat(bridge.isMatch(0, Direction.UP)).isEqualTo(true);
     }
 
     @Test
     void 다리_값과_입력값이_다른_경우() {
         Bridge bridge = new Bridge(List.of("U", "U", "U", "U"));
-        Assertions.assertThat(bridge.isMatch(0, BridgeMaker.DOWN)).isEqualTo(false);
+        Assertions.assertThat(bridge.isMatch(0, Direction.DOWN)).isEqualTo(false);
     }
 }
