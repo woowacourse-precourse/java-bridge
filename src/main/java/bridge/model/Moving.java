@@ -23,6 +23,9 @@ public class Moving {
         downLine.clear();
     }
 
+    public boolean checkWrong() {
+        return upLine.contains(WRONG) || downLine.contains(WRONG);
+    }
     public static void printMoving() {
         OutputView.printMap(upLine, downLine);
     }
