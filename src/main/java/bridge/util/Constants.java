@@ -52,7 +52,7 @@ public class Constants {
     public static final String RETRY_GUIDE = "[ERROR] 다시 입력해주십시오. (최대 %d번의 기회 제공, 현재 %d번 시도)\n";
 
     // 아웃풋
-    public static final String FINAL_RESULT_GUIDE = "최종 게임 결과";
+    public static final String RESULT_GUIDE = "최종 게임 결과";
     public static final String RESULT_MAP_PREFIX = "[ ";
     public static final String RESULT_MAP_SUFFIX = " ]";
     public static final String RESULT_MAP_DELIMITER = " | ";

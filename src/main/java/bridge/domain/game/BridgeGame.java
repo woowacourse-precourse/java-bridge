@@ -17,18 +17,6 @@ public class BridgeGame {
         this.realBridge = bridge;
     }
 
-    public boolean isUserCanMove() {
-        return realBridge.canMove(userLocation);
-    }
-
-    public int getGameRoundCount() {
-        return gameRoundCount;
-    }
-
-    public BridgeGameResult getGameResult() {
-        return bridgeGameResult;
-    }
-
     private void initSettings() {
         this.userLocation = USER_LOCATION_INIT_VALUE;
         this.bridgeGameResult = new BridgeGameResult();
@@ -45,5 +33,17 @@ public class BridgeGame {
     public void retry() {
         initSettings();
         gameRoundCount++;
+    }
+
+    public boolean isUserCanMove() {
+        return realBridge.canMove(userLocation);
+    }
+
+    public int getGameRoundCount() {
+        return gameRoundCount;
+    }
+
+    public BridgeGameResult getGameResult() {
+        return bridgeGameResult;
     }
 }

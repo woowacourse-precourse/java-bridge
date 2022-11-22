@@ -33,7 +33,7 @@ public class BridgeGameController {
             restartRoundStart();
         }
 
-         outputView.printFinalResult(bridgeGame, isSuccess);
+        outputView.printResult(bridgeGame, isSuccess);
     }
 
     private Bridge createBridge() {
@@ -64,30 +64,6 @@ public class BridgeGameController {
         restart = getIsNeedRestart(isSuccess);
     }
 
-    private boolean getRoundResultAndPrintMap() {
-        boolean isSuccessMove;
-        do{
-            outputView.printInputMovingGuide();
-            String moving = readMoving();
-            isSuccessMove = bridgeGame.move(moving);
-
-            outputView.printMap(bridgeGame.getGameResult());
-        } while (isSuccessMove && bridgeGame.isUserCanMove());
-
-        return isSuccessMove;
-    }
-
-    private String readMoving() {
-        for (int tryCnt = 1; tryCnt <= MAX_TRY_OF_READ_MOVING; tryCnt++) {
-            try {
-                return inputView.readMoving();
-            } catch (IllegalArgumentException e) {
-                callRetryGuide(tryCnt, MAX_TRY_OF_READ_MOVING, e);
-            }
-        }
-        throw new IllegalArgumentException(EXCEED_THE_NUMBER_OF_TRY);
-    }
-
     private boolean getIsNeedRestart(boolean isSuccess) {
         if (isSuccess) {
             return false;
@@ -113,6 +89,30 @@ public class BridgeGameController {
         if (tryCnt != maxTry) {
             outputView.printRetryGuide(tryCnt, maxTry);
         }
+    }
+
+    private boolean getRoundResultAndPrintMap() {
+        boolean isSuccessMove;
+        do {
+            outputView.printInputMovingGuide();
+            String moving = readMoving();
+            isSuccessMove = bridgeGame.move(moving);
+
+            outputView.printMap(bridgeGame.getGameResult());
+        } while (isSuccessMove && bridgeGame.isUserCanMove());
+
+        return isSuccessMove;
+    }
+
+    private String readMoving() {
+        for (int tryCnt = 1; tryCnt <= MAX_TRY_OF_READ_MOVING; tryCnt++) {
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                callRetryGuide(tryCnt, MAX_TRY_OF_READ_MOVING, e);
+            }
+        }
+        throw new IllegalArgumentException(EXCEED_THE_NUMBER_OF_TRY);
     }
 
     private void restartRoundStart() {

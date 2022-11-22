@@ -17,8 +17,8 @@ public class OutputView {
         System.out.println(bridgeStatus);
     }
 
-    public void printFinalResult(BridgeGame bridgeGame, boolean isCorrect) {
-        printFinalResultGuide();
+    public void printResult(BridgeGame bridgeGame, boolean isCorrect) {
+        printResultGuide();
         printMap(bridgeGame.getGameResult());
         System.out.println(getResultString(bridgeGame.getGameRoundCount(), isCorrect));
     }
@@ -39,8 +39,8 @@ public class OutputView {
         System.out.println(INPUT_RESTART_OPTION_GUIDE);
     }
 
-    public void printFinalResultGuide() {
-        System.out.println(FINAL_RESULT_GUIDE);
+    public void printResultGuide() {
+        System.out.println(RESULT_GUIDE);
     }
 
     public String getBridgeStatus(BridgeGameResult bridgeGameResult) {

@@ -53,6 +53,4 @@ public class BridgeGameResult {
         }
         return IS_WRONG;
     }
-
-
 }
