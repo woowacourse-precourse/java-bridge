@@ -5,12 +5,12 @@ import bridge.domain.Player;
 import java.util.List;
 
 public class CompareBridgeRepository extends CompareBridge {
-    public CompareBridgeRepository(Player player, List<String> bridge) {
-        super(player, bridge);
+    public CompareBridgeRepository(List<String> bridge) {
+        super(bridge);
     }
 
     @Override
-    public List<Boolean> stepping(Player player, List<String> bridge) {
-        return super.stepping(player, bridge);
+    public List<Boolean> canStepping(Player player) {
+        return super.canStepping(player);
     }
 }

@@ -20,7 +20,7 @@ class CompareBridgeTest {
     void beforeEach() {
         player = new Player(new ArrayList<>());
         bridge = new ArrayList<>();
-        compareBridge = new CompareBridge(player, bridge);
+        compareBridge = new CompareBridge(bridge);
     }
 
     @DisplayName("입력값과 다리 패널의 값이 같은지 확인하는 테스트")
@@ -29,7 +29,7 @@ class CompareBridgeTest {
     void isSameTest(List<String> movingInputs, List<String> bridge) {
         // given
         player = new Player(movingInputs);
-        compareBridge = new CompareBridge(player, bridge);
+        compareBridge = new CompareBridge(bridge);
         String panel = bridge.get(0);
 
         // when, then
@@ -42,10 +42,10 @@ class CompareBridgeTest {
     void steppingTest(List<String> movingInputs, List<String> bridge, List<Boolean> expected) {
         // given
         player = new Player(movingInputs);
-        compareBridge = new CompareBridge(player, bridge);
+        compareBridge = new CompareBridge(bridge);
 
         // when, then
-        assertThat(compareBridge.stepping(player, bridge)).isEqualTo(expected);
+        assertThat(compareBridge.canStepping(player)).isEqualTo(expected);
     }
 
     static Stream<Arguments> sameTestData() {

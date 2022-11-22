@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompareBridge {
-    private Player player;
-    private List<String> bridge;
+    private final List<String> bridge;
 
-    public CompareBridge(Player player, List<String> bridge) {
-        this.player = player;
+    public CompareBridge(List<String> bridge) {
         this.bridge = bridge;
     }
 
@@ -16,7 +14,7 @@ public class CompareBridge {
         return moving.equals(panel);
     }
 
-    public List<Boolean> stepping(Player player, List<String> bridge) {
+    public List<Boolean> canStepping(Player player) {
         List<String> movingChoices = player.getMovingInputs();
         List<Boolean> moveResults = new ArrayList<>();
         checkSameOrNot(movingChoices, moveResults);
