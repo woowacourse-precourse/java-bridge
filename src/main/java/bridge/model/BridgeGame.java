@@ -64,5 +64,10 @@ public class BridgeGame {
     public void retry() {
         currentLocation = INIT_LOCATION;
         trial += 1;
+        records.clear();
+    }
+
+    public int getTrial() {
+        return trial;
     }
 }
