@@ -49,12 +49,12 @@ public class InputView {
         System.out.println(constant.Select_Retry);
         String cmd = Console.readLine();
         if (!(cmd.equals(constant.Restart) || cmd.equals(constant.Quit)))
-            throw new IllegalArgumentException(constant.Error_Message + constant.Err_Retry);
+            throw new IllegalArgumentException(constant.Replay_Restrict());
         return cmd;
     }
     
     public void checkRetryValidate(String input) {
-        if(!(input.equals("R") || input.equals("Q")))
+        if(!(input.equals(constant.Restart) || input.equals(constant.Quit)))
             throw new IllegalArgumentException(constant.Replay_Restrict());
     }
 }
