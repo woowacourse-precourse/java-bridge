@@ -36,14 +36,11 @@ public class InputView {
     public String readMoving() {
         do {
             System.out.printf((SELECT_UP_AND_DOWN) + "%n", UP, DOWN);
-            String movingNext = Console.readLine();
             try {
-                validation.validMovingNext(movingNext);
+                return validation.validMovingNext(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
-            return movingNext;
         } while (true);
     }
 

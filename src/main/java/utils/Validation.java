@@ -12,18 +12,19 @@ public class Validation {
 
     }
 
-    public void validMovingNext(String movingNext) throws IllegalArgumentException {
+    public String validMovingNext(String movingNext) throws IllegalArgumentException {
         try {
-            validUpperUOrUpperD(movingNext);
-        } catch (NullPointerException e) {
+            return validUpperUOrUpperD(movingNext);
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_VALUE, ERROR_HEAD_MESSAGE));
         }
     }
 
-    public void validUpperUOrUpperD(String movingNext) throws IllegalArgumentException {
+    public String validUpperUOrUpperD(String movingNext) throws IllegalArgumentException {
         if (!(movingNext.equals("U") || movingNext.equals("D"))) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_CHARACTER_U_OR_D, ERROR_HEAD_MESSAGE));
         }
+        return movingNext;
     }
 
     public int validBridgeSize(String bridgeSize) throws IllegalArgumentException {
