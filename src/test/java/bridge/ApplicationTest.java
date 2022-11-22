@@ -57,7 +57,7 @@ class ApplicationTest extends NsTest {
 
     @DisplayName("재시도로 성공된 게임 종료")
     @Test
-    void 기능_테스트2() {
+    void 재시도로_성공된_게임() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "R", "U", "R", "D", "D", "D");
             assertThat(output()).contains(
@@ -82,7 +82,7 @@ class ApplicationTest extends NsTest {
 
     @DisplayName("재시도로 실패된 게임 종료")
     @Test
-    void 기능_테스트3() {
+    void 재시도로_실패된_게임() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U", "R", "U", "U", "Q");
             assertThat(output()).contains(
