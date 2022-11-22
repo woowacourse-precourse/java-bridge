@@ -28,6 +28,7 @@ public class BridgeGameController {
     public void run(){
         init();
         playGame();
+        printGameResult();
     }
 
     private void initView(){
@@ -65,5 +66,9 @@ public class BridgeGameController {
     private void gameRetry(){
         bridgeGame.retry();
         playGame();
+    }
+
+    private void printGameResult(){
+        outputView.printResult(bridgeGame.isCompletedGame(), bridgeGame.getPlayerAttemptCount());
     }
 }

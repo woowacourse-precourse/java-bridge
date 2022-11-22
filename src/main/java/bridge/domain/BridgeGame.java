@@ -45,4 +45,8 @@ public class BridgeGame {
     public boolean isCompletedGame(){
         return (bridge.getBridgeSize() == player.getCurrentBridgePosition()+1) && isPlayerAlive;
     }
+
+    public int getPlayerAttemptCount(){
+        return player.getGameAttemptCount();
+    }
 }
