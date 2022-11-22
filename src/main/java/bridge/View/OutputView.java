@@ -1,5 +1,7 @@
 package bridge.View;
 
+import bridge.Domain.GameMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,17 +9,11 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
-    private static final String GAME_RESULT = "최종 게임 결과";
-    private static final String iS_SUCCESS_OR_NOT = "게임 성공 여부: ";
-    private static final String SUCCESS_PHRASE = "성공";
-    private static final String FAILURE_PHRASE = "실패";
-    private static final String TRY_AMOUNT_PHARASE = "총 시도한 횟수: ";
     public static List<String> upSide = new ArrayList<>();
     public static List<String> downSide = new ArrayList<>();
 
     public void printGameStart() {
-        System.out.println(GAME_START);
+        System.out.println(GameMessage.GAME_START.getGameMessage());
     }
 
     public void printEmptyLine() {
@@ -105,12 +101,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(int tryAmount, boolean isSuccess) {
-        System.out.println(GAME_RESULT);
+        System.out.println(GameMessage.GAME_RESULT.getGameMessage());
         printMap();
         if (isSuccess)
-            System.out.println(iS_SUCCESS_OR_NOT + SUCCESS_PHRASE);
+            System.out.println(GameMessage.iS_SUCCESS_OR_NOT.getGameMessage() + GameMessage.SUCCESS_PHRASE.getGameMessage());
         if (!isSuccess)
-            System.out.println(iS_SUCCESS_OR_NOT + FAILURE_PHRASE);
-        System.out.println(TRY_AMOUNT_PHARASE + tryAmount);
+            System.out.println(GameMessage.iS_SUCCESS_OR_NOT.getGameMessage() + GameMessage.FAILURE_PHRASE.getGameMessage());
+        System.out.println(GameMessage.TRY_AMOUNT_PHARASE.getGameMessage() + tryAmount);
     }
 }

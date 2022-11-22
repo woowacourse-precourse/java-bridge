@@ -1,24 +1,19 @@
 package bridge.View;
 
+import bridge.Domain.ErrorMessage;
+import bridge.Domain.GameMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final String BRIDGE_SIZE_PHRASE = "다리의 길이를 입력해주세요.";
-    private static final String MOVING_BRIDGE_PHRASE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String QUIT_OR_RESTART_PHRASE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String INVALID_CANT_CONVERT_INTEGER = "[ERROR] 숫자가 아닙니다.";
-    private static final String INVALID_RANGE = "[ERROR] 3 이상 20 이하 숫자를 입력해주세요.";
-    private static final String INVALID_VALUE = "[ERROR] 올바른 값을 입력해주세요.";
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
         try {
-            System.out.println(BRIDGE_SIZE_PHRASE);
+            System.out.println(GameMessage.BRIDGE_SIZE_PHRASE.getGameMessage());
             String userInputLengthOfBridge = Console.readLine();
             validateBridgeLengthNotNumber(userInputLengthOfBridge);
             validateBridgeLength(userInputLengthOfBridge);
@@ -33,7 +28,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        System.out.println(MOVING_BRIDGE_PHRASE);
+        System.out.println(GameMessage.MOVING_BRIDGE_PHRASE.getGameMessage());
         String input = Console.readLine();
         validateIsUOrD(input);
         return input;
@@ -43,7 +38,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        System.out.println(QUIT_OR_RESTART_PHRASE);
+        System.out.println(GameMessage.QUIT_OR_RESTART_PHRASE.getGameMessage());
         String input = Console.readLine();
         validateIsROrQ(input);
         return input;
@@ -51,25 +46,25 @@ public class InputView {
 
     private static void validateBridgeLength(String input) {
         if (Integer.parseInt(input) < 2 || Integer.parseInt(input) > 20) {
-            throw new IllegalArgumentException(INVALID_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getErrorMessage());
         }
     }
 
     private static void validateBridgeLengthNotNumber(String input) {
         if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException(INVALID_CANT_CONVERT_INTEGER);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CANT_CONVERT_INTEGER.getErrorMessage());
         }
     }
 
     private static void validateIsUOrD(String input) {
         if (!(input.equals("U") || input.equals("D"))) {
-            throw new IllegalArgumentException(INVALID_VALUE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getErrorMessage());
         }
     }
 
     private static void validateIsROrQ(String input) {
         if (!(input.equals("R") || input.equals("Q"))) {
-            throw new IllegalArgumentException(INVALID_VALUE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getErrorMessage());
         }
     }
 }
