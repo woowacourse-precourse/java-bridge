@@ -31,6 +31,7 @@ public class OutputView {
     public void printMap(List<String> bridgeLineOne, List<String> bridgeLineTwo) {
         System.out.println(START_BRIDGE + String.join(BRIDGE_DIVISION, bridgeLineOne) + END_BRIDGE);
         System.out.println(START_BRIDGE + String.join(BRIDGE_DIVISION, bridgeLineTwo) + END_BRIDGE);
+        System.out.println();
     }
 
     /**
