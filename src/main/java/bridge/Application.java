@@ -15,7 +15,7 @@ public class Application {
 
         List<String> currentBridgeState=bridgeMaker.initialBridge();
         String choicePosition;
-        String retryCommand;
+        String retryCommand="";
         int countTry=0;
         int count=0;
         String passFail="실패";
