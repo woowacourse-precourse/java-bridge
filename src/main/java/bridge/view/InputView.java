@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.exception.BridgeSizeException;
 import bridge.exception.CommandException;
@@ -17,7 +17,6 @@ public class InputView {
         bridgeSizeException.isValidSize(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
-
 
     public String readMoving() {
         String moving = Console.readLine();
