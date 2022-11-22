@@ -3,7 +3,10 @@ package bridge.Constant;
 public enum BridgeValue {
 
     UP("U"),
-    DOWN("D");
+    DOWN("D"),
+    TRUE(" O "),
+    FALSE(" X "),
+    EMPTY("   ");
 
     private final String value;
 
