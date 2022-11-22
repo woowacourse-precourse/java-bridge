@@ -16,10 +16,15 @@ public class BridgeController {
 
 	public void start() {
 		OutputView.printMessage(Message.GAME_START_MSG);
-		List<String> bridge = initBridge();
-		bridgeGame = new BridgeGame(bridge);
+		bridgeGame = new BridgeGame(initBridge());
 		gameProcess();
 		OutputView.printResult(bridgeGame);
+	}
+
+	private List<String> initBridge() {
+		InputNumValidator bridgeSizeInputValidator = new InputNumValidator(InputView.readBridgeSize());
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+		return bridgeMaker.makeBridge(bridgeSizeInputValidator.getInputValue());
 	}
 
 	private void gameProcess() {
@@ -46,16 +51,11 @@ public class BridgeController {
 		return moveCommandValidator.getInputValue();
 	}
 
-	private List<String> initBridge() {
-		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		InputNumValidator bridgeSizeInputValidator = new InputNumValidator(InputView.readBridgeSize());
-		return bridgeMaker.makeBridge(bridgeSizeInputValidator.getInputValue());
-	}
 
 	private boolean isRestartInput() {
-		final List<String> RESTART_VALUE = List.of("R", "Q");
+		final List<String> RESTART_ALPHABETS = List.of("R", "Q");
 		InputStringValidator restartInputValidator = new InputStringValidator(InputView.readGameCommand());
-		restartInputValidator.isValidateAlphabet(RESTART_VALUE);
+		restartInputValidator.isValidateAlphabet(RESTART_ALPHABETS);
 		return restartInputValidator.getInputValue().equals("R");
 	}
 

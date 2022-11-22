@@ -36,7 +36,7 @@ public class OutputView {
         printMap(bridgeGame);
     }
 
-    private static void printStatusResult(BridgeGame bridgeGame) { // TODO 수정 필요
+    private static void printStatusResult(BridgeGame bridgeGame) {
         System.out.println(Message.GAME_RESULT_STATE_MSG.getMessage() + getGameStatus(bridgeGame));
         System.out.println(Message.GAME_RESULT_TRY_MSG.getMessage() + "" + bridgeGame.getTrial());
     }
