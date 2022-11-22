@@ -57,4 +57,9 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    private void bridgeClear(){
+        upBridge.clear();
+        downBridge.clear();
+    }
 }
