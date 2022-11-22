@@ -9,7 +9,7 @@ public class Controller {
 
     private boolean playGame = true;
 
-    public Controller(){
+    public Controller() {
         this.bridgeGame = new BridgeGame();
     }
 
@@ -55,7 +55,7 @@ public class Controller {
         while (game != true) {
             String inputRetry = InputView.readGameCommand();
             playGame = bridgeGame.retry(inputRetry);
-            if(playGame){
+            if (playGame) {
                 OutputView.reset();
             }
             break;
