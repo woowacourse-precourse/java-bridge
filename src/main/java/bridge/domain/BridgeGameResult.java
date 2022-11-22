@@ -26,7 +26,7 @@ public class BridgeGameResult {
     }
 
     public boolean isSuccess() {
-        return !this.playerMoveResult.contains(false) && bridge.sizeEqual(this.playerMoveResult.size());
+        return !this.playerMoveResult.contains(false) && this.bridge.sizeEqual(this.playerMoveResult.size());
     }
 
     @Override
