@@ -15,12 +15,10 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
-            bridge.add(getMovableSide(bridgeNumberGenerator.generate()));
+            int randomNumber = bridgeNumberGenerator.generate();
+            String side = Side.getBridgeSavingFormat(randomNumber);
+            bridge.add(side);
         }
         return bridge;
-    }
-
-    private String getMovableSide(int generationNumber) {
-        return Side.getBridgeSavingFormat(generationNumber);
     }
 }
