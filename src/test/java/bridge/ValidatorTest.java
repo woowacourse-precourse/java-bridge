@@ -31,4 +31,12 @@ public class ValidatorTest {
             Validator.isMoveAlpha(alpha);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"D", "U", "S", "QAQ", "DASKFJL"})
+    public void 재시작을_결정하는_알파벳_인지_확인(String alpha){
+        assertThatThrownBy(()->{
+            Validator.isRestart(alpha);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
