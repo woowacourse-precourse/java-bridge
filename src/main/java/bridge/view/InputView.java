@@ -22,10 +22,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(SIZE_INPUT);
-
-        int bridgeSize = convertToInt(readPlayerInput());
-        checkSizeRange(bridgeSize);
-
+        int bridgeSize;
+        try{
+            bridgeSize = convertToInt(readPlayerInput());
+            checkSizeRange(bridgeSize);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return readBridgeSize();
+        }
         return bridgeSize;
     }
 
@@ -44,17 +48,26 @@ public class InputView {
             throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
         }
     }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
         System.out.println(MOVE_INPUT);
-
         String moveMessage = readPlayerInput();
+        try {
+            checkMoveMessageValid(moveMessage);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return readMoving();
+        }
+        return moveMessage;
+    }
+
+    private void checkMoveMessageValid(String moveMessage) {
         if (!(moveMessage.equals(UP_BRIDGE) || moveMessage.equals(DOWN_BRIDGE))) {
             throw new IllegalArgumentException(MOVE_MESSAGE_ERROR);
         }
-        return moveMessage;
     }
 
     /**
@@ -63,10 +76,19 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(RETRY_INPUT);
         String retryMessage = readPlayerInput();
+        try {
+            checkRetryMessageValid(retryMessage);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return readGameCommand();
+        }
+        return retryMessage;
+    }
+
+    private void checkRetryMessageValid(String retryMessage) {
         if (!(retryMessage.equals(RETRY) || retryMessage.equals(QUIT))) {
             throw new IllegalArgumentException(RETRY_MESSAGE_ERROR);
         }
-        return retryMessage;
     }
 
     private String readPlayerInput() {
