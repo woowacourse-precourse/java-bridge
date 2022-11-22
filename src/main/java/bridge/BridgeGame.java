@@ -73,7 +73,7 @@ public class BridgeGame {
     }
 
     public GameResult gameResult() {
-        return new GameResult(complete(), player.getTryCount());
+        return new GameResult(status == GameStatus.COMPLETE, player.getTryCount());
     }
 
     private void setStatus(GameStatus status) {
@@ -81,15 +81,11 @@ public class BridgeGame {
     }
 
     public boolean end() {
-        return status.end();
+        return status == GameStatus.FAIL;
     }
 
     public boolean quit() {
-        return status.quit();
-    }
-
-    private boolean complete() {
-        return status.complete();
+        return status == GameStatus.COMPLETE || status == GameStatus.FAIL_QUIT;
     }
 
     public String getGameMap() {
