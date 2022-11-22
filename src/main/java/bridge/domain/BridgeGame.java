@@ -2,7 +2,6 @@ package bridge.domain;
 
 import bridge.constant.GameCommand;
 import bridge.constant.MoveCommand;
-import bridge.constant.MoveSign;
 
 import static bridge.constant.MoveSign.MOVE_FAIL;
 import static bridge.constant.MoveSign.MOVE_SUCCESS;
@@ -70,8 +69,8 @@ public class BridgeGame {
         return bridgeGameResults;
     }
 
-    public int totalNumberOfChallenges() {
-        return player.numberOfChallenges();
+    public int totalChallengeNumbers() {
+        return player.challengeNumbers();
     }
 
     public String gameResult() {

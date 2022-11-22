@@ -29,7 +29,7 @@ public class Player {
         return position.value();
     }
 
-    public int numberOfChallenges() {
+    public int challengeNumbers() {
         return challengeNumbers.value();
     }
 }

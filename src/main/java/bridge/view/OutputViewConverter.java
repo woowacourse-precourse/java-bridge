@@ -31,7 +31,7 @@ public class OutputViewConverter {
                 .add("최종 게임 결과")
                 .add(bridgeFormat(bridgeGame.bridgeGameResults()))
                 .add("게임 성공 여부: " + bridgeGame.gameResult())
-                .add("총 시도한 횟수: " + bridgeGame.totalNumberOfChallenges())
+                .add("총 시도한 횟수: " + bridgeGame.totalChallengeNumbers())
                 .toString();
     }
 }

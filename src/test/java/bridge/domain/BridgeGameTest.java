@@ -75,7 +75,7 @@ class BridgeGameTest {
         for (int i = 0; i < tryNum; i++) {
             bridgeGame.retryOrQuit(RETRY);
         }
-        assertThat(bridgeGame.totalNumberOfChallenges()).isEqualTo(result);
+        assertThat(bridgeGame.totalChallengeNumbers()).isEqualTo(result);
     }
 
     @DisplayName("RETRY 입력시 초기화.")
