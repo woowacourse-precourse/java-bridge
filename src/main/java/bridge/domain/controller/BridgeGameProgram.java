@@ -8,7 +8,9 @@ import bridge.domain.view.OutputView;
 
 public class BridgeGameProgram {
 
-    private final String SUCCESS = "성공";
+    private static final String SUCCESS = "성공";
+    private static boolean go = true;
+    
     //model
     Bridge bridge = new Bridge();
     //view
@@ -18,8 +20,6 @@ public class BridgeGameProgram {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     BridgeGame bridgeGame = new BridgeGame();
     CrossBridge crossBridge = new CrossBridge();
-
-    private boolean go = true;
 
     public BridgeGameProgram() {
 
@@ -72,5 +72,15 @@ public class BridgeGameProgram {
         bridgeGame.move(moving);
         outputView.printMap();
         return moving;
+    }
+
+    public void restart() {
+        outputView.printGuideMessage(GuideMessage.RESTART_MESSAGE);
+        String restart = inputView.readGameCommand();
+
+        if (!bridgeGame.retry(restart)) {
+            outputView.printResult();
+            go = false;
+        }
     }
 }
