@@ -9,7 +9,7 @@ import static bridge.View.Constants.OutputConstants.WRONG;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> bridge;
+    private final List<String> bridge;
     private User user;
     private int attempt;
     private boolean success;
@@ -27,28 +27,21 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String direction) {
-        boolean resultOfStep = isResultOfStep(direction);
-        String OorX = convertResultOfStepToString(resultOfStep);
-        user.addPathOfBridge(direction, OorX);
-        return resultOfStep;
+        boolean movable = isMovable(direction);
+        user.addPathOfBridge(direction, movable);
+        isSuccess();
+        return movable;
     }
 
-    public void isSuccess() {
+    private void isSuccess() {
         if (bridge.size() == user.getRound()) {
             success = true;
         }
     }
 
-    public boolean isResultOfStep(String direction) {
+    private boolean isMovable(String direction){
         int round = user.getRound();
         return bridge.get(round).equals(direction);
-    }
-
-    public String convertResultOfStepToString(boolean resultOfStep) {
-        if (resultOfStep) {
-            return RIGHT;
-        }
-        return WRONG;
     }
 
     /**

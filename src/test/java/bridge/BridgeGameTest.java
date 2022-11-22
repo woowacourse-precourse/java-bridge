@@ -1,7 +1,6 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -29,23 +28,6 @@ public class BridgeGameTest extends NsTest {
         assertThat(bridgeGame.move("D")).isFalse();
     }
 
-    @Test
-    void convert_테스트_O() {
-        BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        assertThat(bridgeGame.convertResultOfStepToString(true)).isEqualTo("O");
-    }
-
-    @Test
-    void convert_테스트_X() {
-        BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        assertThat(bridgeGame.convertResultOfStepToString(false)).isEqualTo("X");
-    }
     @Test
     void retry_테스트(){
         BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
