@@ -11,6 +11,7 @@ public class GameController {
     private final OutputView outputView = new OutputView();
 
     public void getSizeAndMakeBridge() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
         int bridgeSize = 0;
         try {
             bridgeSize = inputView.readBridgeSize();

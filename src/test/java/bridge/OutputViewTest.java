@@ -26,7 +26,7 @@ class OutputViewTest {
         outputView.printUpLineMap(userInput,result);
         outputView.printDownLineMap(userInput,result);
 
-        assertThat(out.toString()).isEqualTo("[ O |   |   ]\n[   | O | O ]");
+        assertThat(out.toString()).isEqualTo("[ O |   |   ]\n[   | O | O ]\n");
 
         OutputStream out2 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out2));
@@ -35,7 +35,7 @@ class OutputViewTest {
         List<Boolean> result2 = List.of(true,false);
         outputView.printUpLineMap(userInput2,result2);
         outputView.printDownLineMap(userInput2,result2);
-        assertThat(out2.toString()).isEqualTo("[ O | X ]\n[   |   ]");
+        assertThat(out2.toString()).isEqualTo("[ O | X ]\n[   |   ]\n");
     }
     @Test
     void printShortMap(){
@@ -46,7 +46,7 @@ class OutputViewTest {
         List<Boolean> result = List.of(true);
         outputView.printShortMap(userInput,result);
 
-        assertThat(out.toString()).isEqualTo("[ O ]\n[   ]");
+        assertThat(out.toString()).isEqualTo("[ O ]\n[   ]\n");
     }
 
     @Test
