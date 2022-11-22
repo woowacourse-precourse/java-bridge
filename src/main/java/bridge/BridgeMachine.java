@@ -6,6 +6,18 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+
+    private String getReplayCommand() {
+        while (true) {
+            try {
+                OutputView.inputUserReplayCommand();
+                return InputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
     private String getUserCommand() {
         while (true) {
             try {
