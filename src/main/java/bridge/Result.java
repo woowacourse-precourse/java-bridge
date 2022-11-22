@@ -6,26 +6,27 @@ import java.util.List;
 public class Result {
     private List<ResultType> firstRow;
     private List<ResultType> secondRow;
+    private ResultType lastResultType;
     private int count;
 
     Result() {
         firstRow = new ArrayList<ResultType>();
         secondRow = new ArrayList<ResultType>();
+        lastResultType = ResultType.FAIL;
         count = 0;
     }
 
     public void appendResult(ResultType resultType, Direction direction) {
+        lastResultType = resultType;
         if (direction == Direction.UP) {
             firstRow.add(resultType);
             secondRow.add(ResultType.EMPTY);
-            count += 1;
-            return;
         }
         if (direction == Direction.DOWN) {
             firstRow.add(ResultType.EMPTY);
             secondRow.add(resultType);
-            return;
         }
+        count += 1;
     }
 
     public List<ResultType> getFirstRow() {
@@ -38,5 +39,9 @@ public class Result {
 
     public int getCount() {
         return count;
+    }
+
+    public ResultType getLastResultType() {
+        return lastResultType;
     }
 }
