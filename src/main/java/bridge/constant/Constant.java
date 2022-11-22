@@ -11,5 +11,5 @@ public class Constant {
     public static final CharSequence BRIDGE_MAP_DELIMITER = " | ";
 
     public static final String GAME_FAIL = "실패";
-    public static final String GAME_SUCCESS = "실패";
+    public static final String GAME_SUCCESS = "성공";
 }
