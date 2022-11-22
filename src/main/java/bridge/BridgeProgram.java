@@ -111,4 +111,14 @@ public class BridgeProgram {
 		downBridge.add(" O ");
 		stack++;
 	}
+
+	public void upMoving(int i) {
+		if (bridge.getBridge().get(i).equals("U")) {
+			upPattern();
+		}
+		if (bridge.getBridge().get(i).equals("D")) {
+			upBridge.add(" X ");
+			downBridge.add("   ");
+		}
+	}
 }
