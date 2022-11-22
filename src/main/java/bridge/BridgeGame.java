@@ -20,10 +20,6 @@ public class BridgeGame {
         this.result = new ArrayList<>();
     }
 
-    public void answerReset() {
-        result.clear();
-    }
-
     public boolean isWrong() {
         return result.get(getLastIndex()).isMoveStatus();
     }
@@ -50,7 +46,7 @@ public class BridgeGame {
         if(command.equals(QUIT)){
             return false;
         }
-        answerReset();
+        result.clear();
         return true;
     }
 
