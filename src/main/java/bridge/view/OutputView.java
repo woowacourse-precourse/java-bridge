@@ -14,6 +14,12 @@ import bridge.constant.Direction;
 import bridge.dto.TrialResult;
 
 public class OutputView {
+
+    private static final String ROW_BEGIN = "[ ";
+    private static final String ROW_END = " ]";
+    private static final String DECK_SEPARATOR = " | ";
+    private static final String EXCEPTION_PREFIX = "[ERROR] ";
+
     public void printMap(List<TrialResult> trialResults) {
         printRow(getRow(UPPER, trialResults));
         printRow(getRow(LOWER, trialResults));
@@ -23,7 +29,7 @@ public class OutputView {
     private List<Deck> getRow(Direction row, List<TrialResult> trialResults) {
         return trialResults.stream()
                 .map(trialResult -> getDeck(row, trialResult))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private Deck getDeck(Direction row, TrialResult trialResult) {
@@ -37,15 +43,15 @@ public class OutputView {
     }
 
     private void printRow(List<Deck> row) {
-        System.out.print("[ ");
+        System.out.print(ROW_BEGIN);
         System.out.print(joinDecksForDisplay(row));
-        System.out.println(" ]");
+        System.out.println(ROW_END);
     }
 
     private String joinDecksForDisplay(List<Deck> row) {
         return row.stream()
                 .map(Deck::getDisplayCharacter)
-                .collect(Collectors.joining(" | "));
+                .collect(Collectors.joining(DECK_SEPARATOR));
     }
 
     public void printResult(List<TrialResult> trialResults, int trialCount, boolean finished) {
@@ -70,6 +76,6 @@ public class OutputView {
     }
 
     public void printException(String message) {
-        System.out.println("[ERROR] " + message);
+        System.out.println(EXCEPTION_PREFIX + message);
     }
 }
