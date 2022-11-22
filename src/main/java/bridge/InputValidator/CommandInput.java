@@ -24,8 +24,7 @@ public class CommandInput {
 
     private void validateCommandInput() {
         if (!(Objects.equals(commandInput, "R")) && !(Objects.equals(commandInput, "Q"))) {
-            System.out.println("[ERROR] : 게임 커맨드 입력은 'R' 또는 'Q' 가 입력되어야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] : 게임 커맨드 입력은 'R' 또는 'Q' 가 입력되어야 합니다.");
         }
     }
 }

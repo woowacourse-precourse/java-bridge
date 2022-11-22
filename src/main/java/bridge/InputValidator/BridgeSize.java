@@ -22,8 +22,7 @@ public class BridgeSize {
 
     private void validateRange() {
         if (this.bridgeSize < 3 || this.bridgeSize > 20) {
-            System.out.println("[ERROR] 다리 길이는 3 이상 20 이하의 숫자가 들어가야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3 이상 20 이하의 숫자가 들어가야 합니다.");
         }
     }
 }

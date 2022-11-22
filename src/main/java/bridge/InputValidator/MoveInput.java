@@ -16,8 +16,7 @@ public class MoveInput {
 
     private void validateMoveInput() {
         if (!Objects.equals(this.moveDirection, "U") && !this.moveDirection.equals("D")) {
-            System.out.println("[ERROR] : 이동 칸 입력은 'U' 또는 'D' 가 입력되어야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] : 이동 칸 입력은 'U' 또는 'D' 가 입력되어야 합니다.");
         }
     }
 }
