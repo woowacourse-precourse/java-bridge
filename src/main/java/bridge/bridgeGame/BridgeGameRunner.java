@@ -28,13 +28,13 @@ public class BridgeGameRunner {
         outputView.printResult(bridgeGame);
     }
 
-    private void initGame() {
+    private void initGame() throws IllegalArgumentException {
         outputView.printInitGameMessage();
         int bridgeSize = inputView.readBridgeSize();
         bridgeGame.makeBridge(bridgeSize);
     }
 
-    private RoundResult runRound() {
+    private RoundResult runRound() throws IllegalArgumentException {
         while (!bridgeGame.isEnded()) {
             outputView.printRequestBridgeMoving();
             BridgePosition bridgePosition = inputView.readMoving();
@@ -44,14 +44,14 @@ public class BridgeGameRunner {
         return checkRoundResult();
     }
 
-    private RoundResult checkRoundResult() {
+    private RoundResult checkRoundResult() throws IllegalArgumentException {
         if (bridgeGame.isWon()) {
             return RoundResult.END;
         }
         return checkRetry();
     }
 
-    private RoundResult checkRetry() {
+    private RoundResult checkRetry() throws IllegalArgumentException {
         outputView.printRequestGameRetry();
         GameCommand gameCommand = inputView.readGameCommand();
         if (gameCommand.equals(COMMAND_RETRY)) {

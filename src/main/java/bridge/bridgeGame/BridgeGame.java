@@ -30,7 +30,7 @@ public class BridgeGame {
         tryCount++;
     }
 
-    public void makeBridge(int bridgeSize) {
+    public void makeBridge(int bridgeSize) throws IllegalArgumentException {
         bridgeGameState = new BridgeGameState(bridgeMaker.makeBridge(bridgeSize));
     }
 

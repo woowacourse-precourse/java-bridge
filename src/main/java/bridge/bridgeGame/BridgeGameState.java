@@ -10,7 +10,7 @@ public class BridgeGameState {
 
     private final Bridge finalState;
 
-    public BridgeGameState(List<String> finalState) {
+    public BridgeGameState(List<String> finalState) throws IllegalArgumentException {
         this.finalState = new Bridge(finalState);
     }
 
