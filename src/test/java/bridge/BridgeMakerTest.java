@@ -1,8 +1,8 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import bridge.domain.BridgeMaker;
 import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {

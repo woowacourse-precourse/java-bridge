@@ -2,6 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.BridgeGameResult;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

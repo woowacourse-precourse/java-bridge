@@ -2,6 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.Bridge;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
