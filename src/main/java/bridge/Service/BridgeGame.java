@@ -15,7 +15,7 @@ public class BridgeGame {
     private final Record movingRecord;
     private final Judgement judgement;
 
-    BridgeGame() {
+    public BridgeGame() {
         movingRecord = new Record();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         judgement = new Judgement();
@@ -39,13 +39,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    public void retry() {
+        movingRecord.addRetryCount();
+        movingRecord.reset();
+    }
 
     public boolean checkRetry(String RetryInput){
         return RetryInput.equals("R");
     }
-    public boolean checkArrival(){
-        return judgement.checkArrival(movingRecord,bridge);
-    }
+    public boolean checkArrival(){return judgement.checkArrival(movingRecord,bridge);}
     public boolean checkPlay(String movingDirection){
         move(movingDirection);
         movingRecord.printMap(bridge);
@@ -53,12 +55,7 @@ public class BridgeGame {
         return judgement.checkSameDirection(movingRecord,movingDirection,bridge);
     }
 
-    public void retry() {
-        movingRecord.addRetryCount();
-        movingRecord.reset();
-    }
-
     public void printResult() {
-        movingRecord.printResult(bridge,checkArrival());
+        movingRecord.printResult(bridge,judgement.checkSuccess(movingRecord,bridge));
     }
 }

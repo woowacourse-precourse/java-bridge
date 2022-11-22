@@ -14,23 +14,18 @@ public class OutputView {
     public static void printBridgeLengthMsg() {
         System.out.println(BRIDGE_LENGTH_MSG.getMsg());
     }
-
     public static void printStartGameMsg() {
         System.out.println(START_MSG.getMsg());
     }
-
     public static void printRetryQuitMsg() {
         System.out.println(CHOOSE_RETRY_QUIT_MSG.getMsg());
     }
-
     public static void printResultMsg() {
         System.out.println(RESULT_MSG.getMsg());
     }
-
     public static void printMovingMsg() {
         System.out.println(CHOOSE_UPDOWN_MSG.getMsg());
     }
-
     public static void printIsSuccessMsg() {
         System.out.print(ISSUCCESS_MSG.getMsg());
     }
@@ -41,6 +36,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<String> movingRecord, List<String> bridge) {
+        for (int i = 0 ; i< movingRecord.size() ; i++) {
+            System.out.println(movingRecord.get(i));
+        }System.out.println();
+        for (int i = 0 ; i< bridge.size(); i++){
+            System.out.println(bridge.get(i));
+        }System.out.println();
         printOneMap(movingRecord, bridge, 1);
         printOneMap(movingRecord, bridge, 0);
     }

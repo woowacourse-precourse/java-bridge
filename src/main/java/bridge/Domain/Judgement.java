@@ -15,4 +15,13 @@ public class Judgement {
             return true;
         return false;
     }
+
+    public boolean checkSuccess(Record movingRecord, List<String> bridge){
+        if (!checkArrival(movingRecord,bridge)) return false;
+        for (int i = 0 ; i< bridge.size(); i++){
+            if(!movingRecord.getRecord().get(i).equals(bridge.get(i)))
+                return false;
+        }
+        return true;
+    }
 }
