@@ -51,6 +51,7 @@ public class BridgeGameController {
 
     private boolean askRetry() {
         String inputValue = inputView.readGameCommand();
+        validate(inputValue);
 
         if (inputValue.equals(RETRY_GAME)) {
             bridgeGame.retry();
@@ -58,5 +59,11 @@ public class BridgeGameController {
         }
 
         return false;
+    }
+
+    private void validate(String inputValue) {
+        if (!inputValue.equals(END_GAME) && !inputValue.equals(RETRY_GAME)) {
+            ExceptionMessage.INPUT_WRONG_RETRY_ANSWER_MESSAGE.throwException();
+        }
     }
 }
