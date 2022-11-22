@@ -18,4 +18,12 @@ public enum RetryCommand {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(""));
     }
+
+    public boolean isRetry() {
+        return command.equals(RETRY.getCommand());
+    }
+
+    public String getCommand() {
+        return command;
+    }
 }
