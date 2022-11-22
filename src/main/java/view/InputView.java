@@ -8,6 +8,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
 
     static InputValidation inputValidation = new InputValidation();
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -15,7 +16,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = readLine();
         inputValidation.checkBlank(input);
-        inputValidation.checkNumeric(input);
+        inputValidation.checkInteger(input);
         int bridgeSize = Integer.parseInt(input);
         inputValidation.checkBridgeSize(bridgeSize);
         return bridgeSize;

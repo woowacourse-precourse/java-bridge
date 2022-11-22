@@ -23,7 +23,7 @@ class InputValidationTest {
     @ParameterizedTest
     void inputNotNumeric(String input) {
         assertThatThrownBy(
-            () -> new InputValidation().checkNumeric(input)).isInstanceOf(
+            () -> new InputValidation().checkInteger(input)).isInstanceOf(
             IllegalArgumentException.class);
     }
 
