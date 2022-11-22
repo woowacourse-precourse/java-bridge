@@ -1,16 +1,19 @@
-package bridge;
+package bridge.Service;
 
-import java.util.ArrayList;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.Utils.BridgeMaker;
+import bridge.Domain.Judgement;
+import bridge.Domain.Record;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker;
     private List<String> bridge;
-    private Record movingRecord;
-    private Judgement judgement;
+    private final Record movingRecord;
+    private final Judgement judgement;
 
     BridgeGame() {
         movingRecord = new Record();

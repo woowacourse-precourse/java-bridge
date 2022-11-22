@@ -1,15 +1,10 @@
-package bridge;
+package bridge.View;
 
-import static bridge.OutputMsg.*;
-import static bridge.OutputView.printBridgeLengthMsg;
-import static bridge.OutputView.printMovingMsg;
-import static bridge.OutputView.printRetryQuitMsg;
-import static bridge.Validator.*;
+import static bridge.View.OutputView.printBridgeLengthMsg;
+import static bridge.View.OutputView.printMovingMsg;
+import static bridge.View.OutputView.printRetryQuitMsg;
+import static bridge.Validator.Validator.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
-
-import java.awt.desktop.SystemEventListener;
-import java.io.Console;
-import javax.swing.plaf.synth.SynthTextAreaUI;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

@@ -1,6 +1,4 @@
-package bridge;
-
-import java.util.Map;
+package bridge.Type;
 
 public enum DirectionType {
     UP("U", 1),

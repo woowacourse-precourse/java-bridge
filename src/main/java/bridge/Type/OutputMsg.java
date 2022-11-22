@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Type;
 
 public enum OutputMsg {
     START_MSG("다리 건너기 게임을 시작합니다."),

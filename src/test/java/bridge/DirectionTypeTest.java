@@ -1,10 +1,10 @@
 package bridge;
 
-import static bridge.DirectionType.DOWN;
-import static bridge.DirectionType.UP;
+import static bridge.Type.DirectionType.DOWN;
+import static bridge.Type.DirectionType.UP;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import org.junit.jupiter.api.BeforeEach;
+import bridge.Type.DirectionType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

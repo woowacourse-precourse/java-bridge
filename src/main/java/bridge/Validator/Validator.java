@@ -1,8 +1,9 @@
-package bridge;
+package bridge.Validator;
 
-import static bridge.DirectionType.DOWN;
-import static bridge.DirectionType.UP;
-import static bridge.ErrorGenerator.*;
+import static bridge.Type.DirectionType.DOWN;
+import static bridge.Type.DirectionType.UP;
+
+import bridge.Utils.ErrorGenerator;
 
 public class Validator {
     private static final int BRIDGE_LEN_LOWER_BOUND=3;

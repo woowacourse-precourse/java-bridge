@@ -1,5 +1,6 @@
-package bridge;
+package bridge.Domain;
 
+import bridge.View.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class Record {
     private List<String> movingRecord ;
     private int retryCount ;
 
-    Record() {
+    public Record() {
         this.movingRecord = new ArrayList<>();
         retryCount = 1;
     }

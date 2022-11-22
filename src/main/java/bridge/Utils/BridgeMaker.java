@@ -1,8 +1,9 @@
-package bridge;
+package bridge.Utils;
 
-import static bridge.DirectionType.*;
-import static bridge.Validator.validateBridgeRandomNum;
+import static bridge.Validator.Validator.validateBridgeRandomNum;
 
+import bridge.BridgeNumberGenerator;
+import bridge.Type.DirectionType;
 import java.util.ArrayList;
 import java.util.List;
 

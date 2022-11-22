@@ -1,6 +1,6 @@
 package bridge;
 
-import org.junit.jupiter.api.BeforeEach;
+import bridge.Validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

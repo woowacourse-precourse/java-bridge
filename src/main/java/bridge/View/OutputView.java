@@ -1,8 +1,9 @@
-package bridge;
+package bridge.View;
 
-import static bridge.OutputMsg.*;
+import static bridge.Type.OutputMsg.*;
 
-import java.awt.desktop.SystemEventListener;
+import bridge.Type.DirectionType;
+import bridge.Domain.Record;
 import java.util.List;
 
 /**

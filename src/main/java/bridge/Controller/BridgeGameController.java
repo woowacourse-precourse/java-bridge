@@ -1,16 +1,16 @@
-package bridge;
+package bridge.Controller;
 
-import static bridge.OutputMsg.RESULT_MSG;
-import static bridge.OutputView.*;
-import static bridge.InputView.*;
+import static bridge.View.OutputView.*;
+import static bridge.View.InputView.*;
 
-import java.awt.desktop.SystemEventListener;
+import bridge.Service.BridgeGame;
+import bridge.View.InputView;
 
 public class BridgeGameController {
 
     private final BridgeGame bridgeGame;
 
-    BridgeGameController(BridgeGame bridgeGame) { this.bridgeGame = bridgeGame; }
+    public BridgeGameController(BridgeGame bridgeGame) { this.bridgeGame = bridgeGame; }
 
     public void setBridge() {
         bridgeGame.setBridge(readBridgeSize());
@@ -23,7 +23,6 @@ public class BridgeGameController {
             endGame();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return;
         }
     }
 
