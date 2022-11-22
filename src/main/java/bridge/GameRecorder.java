@@ -1,6 +1,6 @@
 package bridge;
 
-public class GameStatus {
+public class GameRecorder {
     private static final int DEFAULT_POSITION = 0;
     private final int bridgeSize;
     private final BridgeMatcher bridgeMatcher;
@@ -8,7 +8,7 @@ public class GameStatus {
 
     private int pivot = 0;
 
-    public GameStatus(int bridgeSize) {
+    public GameRecorder(int bridgeSize) {
         this.bridgeSize = bridgeSize;
         bridgeMatcher = new BridgeMatcher(bridgeSize);
     }

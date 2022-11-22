@@ -70,7 +70,7 @@
 - [ ] 아래로 이동 실패시
 - [ ] 3번 이동 후
 
-## GameResult
+## GameRecorder
 - [ ] gameClear 호출 전 isGameClear 값
 - [ ] gameClear 호출 후 isGameClear 값
 - [ ] retry() 여러번 호출 후 tryCount 값
@@ -93,5 +93,5 @@
 - [X] gamePlayer에서 bridgeMap new 연산자 사용하는 대신 리셋 기능 구현
 - [X] GamePlayer 필드들 클래스로 빼기
 - [X] GameResult 메서드명 변경
-- [ ] GameStatus 메서드명 변경
+- [ ] GameRecorder 메서드명 변경
 - [X] BridgeGame -> BridgeMatcher로 변경
