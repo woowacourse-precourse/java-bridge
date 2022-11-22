@@ -35,7 +35,7 @@ class BridgeGameTest {
         assertThat(game.move(BridgeCell.DOWN)).isTrue();
 
         assertThatThrownBy(() -> game.move(BridgeCell.DOWN))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
+                .isInstanceOf(IllegalStateException.class);
     }
 
     @DisplayName("이동 기록을 통해 현재 다리의 상태를 알 수 있다.")

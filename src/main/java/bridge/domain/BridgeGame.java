@@ -24,6 +24,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(BridgeCell cell) {
+        validateMove();
 
         if (bridge.canMove(cell, history.size())) {
             moveForward(cell);
@@ -32,6 +33,12 @@ public class BridgeGame {
 
         moveFail(cell);
         return false;
+    }
+
+    private void validateMove() {
+        if (isEnd()) {
+            throw new IllegalStateException("[ERROR] 더이상 움직일 수 없습니다.");
+        }
     }
 
     private void moveForward(BridgeCell cell) {
