@@ -1,6 +1,8 @@
 package bridge;
 
+import static bridge.domain.UpDownBridgeValidator.validateDownBridge;
 import static bridge.domain.UpDownBridgeValidator.validateUpBridge;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class BridgeValidatorTest {
     @Test
     void downBridgeNullTest() {
         downBridge = new ArrayList<>();
-        assertThatThrownBy(() -> validateUpBridge(downBridge))
+        assertThatThrownBy(() -> validateDownBridge(downBridge))
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -41,7 +43,7 @@ public class BridgeValidatorTest {
     @Test
     void downBridgeDataTest() {
         downBridge = new ArrayList<>(List.of("o", "x", "R", "Q", "0"));
-        assertThatThrownBy(() -> validateUpBridge(downBridge))
+        assertThatThrownBy(() -> validateDownBridge(downBridge))
                 .isInstanceOf(IllegalStateException.class);
     }
 }
