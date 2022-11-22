@@ -98,8 +98,8 @@ public class GameController {
             inputValidator.validateInput(input);
             return false;
         } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(errorMessage);
             exception.printStackTrace();
+            outputView.printErrorMessage(errorMessage);
             return true;
         }
     }
