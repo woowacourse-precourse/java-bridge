@@ -11,7 +11,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import bridge.constant.Direction;
-import bridge.dto.TrialResult;
 
 class BridgeGameTest {
 
@@ -20,10 +19,7 @@ class BridgeGameTest {
     void 위나_아래로_이동한다(Direction direction, boolean expected) {
         BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER, LOWER, UPPER, LOWER));
 
-        TrialResult trialResult = bridgeGame.move(direction);
-
-        assertThat(trialResult.wasSuccessful()).isEqualTo(expected);
-        assertThat(trialResult.getDirection()).isEqualTo(direction);
+        assertThat(bridgeGame.move(direction)).isEqualTo(expected);
     }
 
     @ParameterizedTest
