@@ -17,7 +17,7 @@ class BridgeResultTest {
 
     @Test
     void checkSuccess() {
-        Bridge bridge = new Bridge(List.of("U", "D", "u"));
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
         assertThat(new BridgeResult(List.of(true, true, true)).checkSuccess(bridge)).isEqualTo(true);
         assertThat(new BridgeResult(List.of(true, true, false)).checkSuccess(bridge)).isEqualTo(false);
         assertThat(new BridgeResult(List.of(true, true)).checkSuccess(bridge)).isEqualTo(false);
