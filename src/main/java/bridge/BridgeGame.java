@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,13 +14,21 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private final List<String> bridge;
-
+    private ArrayList<String> playerMove;
+    private int moveCount =0;
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
     }
 
     public List<String> move(String input) {
 
+        if(input.equals(bridge.get(moveCount))){
+            playerMove.add("O");
+            moveCount++;
+            return playerMove;
+        }
+        playerMove.add("X");
+        return playerMove;
     }
 
     /**
@@ -28,5 +37,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        playerMove.clear();
+        moveCount = 0;
     }
 }
