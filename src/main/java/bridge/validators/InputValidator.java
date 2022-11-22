@@ -6,6 +6,11 @@ import java.util.Arrays;
 
 public class InputValidator {
 
+    private static final boolean NUMERIC = true;
+    private static final boolean NOT_NUMERIC = false;
+    private static final boolean OUT_OF_RANGE = true;
+    private static final boolean IN_RANGE = false;
+
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
     private static final String[] RETRY = { "R", "r" };
@@ -36,14 +41,14 @@ public class InputValidator {
      */
     static boolean isNumeric(String input) {
         if (input.charAt(0) == '0') {
-            return false;
+            return NOT_NUMERIC;
         }
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            return false;
+            return NOT_NUMERIC;
         }
-        return true;
+        return NUMERIC;
     }
 
     /**
@@ -53,9 +58,9 @@ public class InputValidator {
      */
     static boolean isOutOfRange(int bridgeSize) {
         if (bridgeSize < MINIMUM_BRIDGE_SIZE || bridgeSize > MAXIMUM_BRIDGE_SIZE) {
-            return true;
+            return OUT_OF_RANGE;
         }
-        return false;
+        return IN_RANGE;
     }
 
     /**
