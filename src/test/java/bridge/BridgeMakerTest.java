@@ -13,15 +13,15 @@ class BridgeMakerTest {
     private BridgeMaker bridgeMaker;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     @Test
-    void 다리생성_테스트(){
-        assertRandomNumberInRangeTest(()->{
+    void 다리생성_테스트() {
+        assertRandomNumberInRangeTest(() -> {
             List<String> bridge = bridgeMaker.makeBridge(3);
-            assertThat(bridge).isEqualTo(List.of("U","D","D"));
-        },1, 0, 0);
+            assertThat(bridge).isEqualTo(List.of("U", "D", "D"));
+        }, 1, 0, 0);
     }
 }

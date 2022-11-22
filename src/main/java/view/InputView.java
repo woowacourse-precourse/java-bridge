@@ -20,7 +20,7 @@ public class InputView {
         while (size == 0) {
             input = Console.readLine();
             size = validateSize(input);
-            size = validateRange(3,20,size);
+            size = validateRange(3, 20, size);
         }
         return size;
     }

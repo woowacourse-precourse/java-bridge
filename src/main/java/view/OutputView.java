@@ -2,8 +2,6 @@ package view;
 
 import bridge.BridgeGame;
 
-import java.util.List;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -25,7 +23,7 @@ public class OutputView {
         firstRow = drawFirstRowInMap(bridgeGame, firstRow);
         secondRow = drawSecondRowInMap(bridgeGame, secondRow);
 
-        System.out.println(wrapUpMap(firstRow,secondRow));
+        System.out.println(wrapUpMap(firstRow, secondRow));
         System.out.println();
     }
 
@@ -33,9 +31,9 @@ public class OutputView {
         for (int i = 0; i < bridgeGame.getCurrentProgress(); i++) {
 
             if (bridgeGame.getDirectionAt(i).equals("U")) {
-                boolean isCorrect = bridgeGame.compareTo(i);
+                boolean isCorrect = bridgeGame.compareAt(i);
                 map = markMap(map, isCorrect);
-            }else if(bridgeGame.getDirectionAt(i).equals("D")){
+            } else if (bridgeGame.getDirectionAt(i).equals("D")) {
                 map = fillMap(map);
             }
         }
@@ -46,9 +44,9 @@ public class OutputView {
         for (int i = 0; i < bridgeGame.getCurrentProgress(); i++) {
 
             if (bridgeGame.getDirectionAt(i).equals("D")) {
-                boolean isCorrect = bridgeGame.compareTo(i);
+                boolean isCorrect = bridgeGame.compareAt(i);
                 map = markMap(map, isCorrect);
-            }else if(bridgeGame.getDirectionAt(i).equals("U")){
+            } else if (bridgeGame.getDirectionAt(i).equals("U")) {
                 map = fillMap(map);
             }
         }
@@ -79,7 +77,7 @@ public class OutputView {
         secondRow.deleteCharAt(secondRow.length() - 1);
         secondRow.append("]");
 
-        return fisrtRow.toString()+"\n"+secondRow.toString();
+        return fisrtRow.toString() + "\n" + secondRow.toString();
     }
 
     /**
@@ -89,8 +87,8 @@ public class OutputView {
      */
     public void printResult(String result) {
         String[] split = result.split(",");
-        System.out.println("게임 성공 여부: "+split[1]);
-        System.out.println("총 시도한 횟수: "+split[0]);
+        System.out.println("게임 성공 여부: " + split[1]);
+        System.out.println("총 시도한 횟수: " + split[0]);
     }
 
     public void printStart() {
@@ -107,7 +105,7 @@ public class OutputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
-    public void printRetry(){
+    public void printRetry() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }

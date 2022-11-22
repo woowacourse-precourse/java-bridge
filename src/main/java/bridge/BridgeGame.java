@@ -84,15 +84,15 @@ public class BridgeGame {
         return "성공";
     }
 
-    public int getCurrentProgress(){
+    public int getCurrentProgress() {
         return this.userInput.size();
     }
 
-    public String getDirectionAt(int index){
+    public String getDirectionAt(int index) {
         return this.userInput.get(index);
     }
 
-    public boolean compareTo(int index){
+    public boolean compareAt(int index) {
         return this.userInput.get(index).equals(this.bridge.get(index));
     }
 }
