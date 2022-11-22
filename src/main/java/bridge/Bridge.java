@@ -9,6 +9,10 @@ public class Bridge {
     public static final int JUST_CROSSED = 1;
     public static final int CANNOT_CROSS_NEXT = 2;
     public static final int JUST_CROSSED_AND_CROSS_OVER = 3;
+    public static final int INITIAL_CURRENT_INDEX = -1;
+    public static final int INITIAL_GAME_COUNT = 1;
+    public static final int MOVE = 1;
+    public static final int ADD_ONE = 1;
 
     private final List<String> bridge;
     private int currentIndex;
@@ -16,8 +20,8 @@ public class Bridge {
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
-        this.currentIndex = -1;
-        this.gameCount = 1;
+        this.currentIndex = INITIAL_CURRENT_INDEX;
+        this.gameCount = INITIAL_GAME_COUNT;
     }
 
     public int getCurrentIndex() {
@@ -25,7 +29,7 @@ public class Bridge {
     }
 
     private void move() {
-        currentIndex += 1;
+        currentIndex += MOVE;
     }
 
     public boolean isGivenIndexUpside(int index) {
@@ -37,7 +41,7 @@ public class Bridge {
     }
 
     public boolean whetherFollowingEndOrNot() {
-        return getCurrentIndex() == (bridge.size() - 1);
+        return getCurrentIndex() + ADD_ONE == bridge.size();
     }
 
     public void reset() {
@@ -46,11 +50,11 @@ public class Bridge {
     }
 
     private void addGameCount() {
-        this.gameCount += 1;
+        this.gameCount += ADD_ONE;
     }
 
     private void resetCurrent() {
-        this.currentIndex = -1;
+        this.currentIndex = INITIAL_CURRENT_INDEX;
     }
 
     public int getGameCount() {

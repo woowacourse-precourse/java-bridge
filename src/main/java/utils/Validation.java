@@ -1,5 +1,7 @@
 package utils;
 
+import static constant.Message.*;
+
 public class Validation {
 
     public static final int MINIMUM_LENGTH = 3;
@@ -22,7 +24,7 @@ public class Validation {
     }
 
     public String validUOrD(String movingNext) throws IllegalArgumentException {
-        if (!(movingNext.equals("U") || movingNext.equals("D"))) {
+        if (!(movingNext.equals(UP) || movingNext.equals(DOWN))) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_CHARACTER_U_OR_D, ERROR_HEAD_MESSAGE));
         }
         return movingNext;
@@ -52,7 +54,7 @@ public class Validation {
     }
 
     private String validIsRegameOrQuitCharacter(String gameCommand) throws IllegalArgumentException {
-        if (!(gameCommand.equals("R") || gameCommand.equals("Q"))) {
+        if (!(gameCommand.equals(REGAME) || gameCommand.equals(QUIT))) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_CHARACTER_R_OR_Q, ERROR_HEAD_MESSAGE));
         }
         return gameCommand;
