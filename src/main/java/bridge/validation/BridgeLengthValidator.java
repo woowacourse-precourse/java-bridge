@@ -1,4 +1,4 @@
-package bridge.view.validation;
+package bridge.validation;
 
 import bridge.vo.ErrorMessage;
 

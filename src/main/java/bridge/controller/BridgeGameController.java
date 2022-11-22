@@ -4,34 +4,32 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.config.NumberGeneratorDependencyContainer;
 import bridge.service.BridgeGame;
-import bridge.view.InputView;
+import bridge.view.iterator.BridgeLengthInputIterator;
+import bridge.view.iterator.MoveInputIterator;
 import bridge.view.OutputView;
-import bridge.view.validation.BridgeLengthValidator;
-import bridge.view.validation.InputMoveValidator;
-import bridge.view.validation.InputRestartValidator;
+import bridge.view.iterator.RestartInputIterator;
 import bridge.vo.GameProgressMessage;
 
 import java.util.List;
 
 public class BridgeGameController {
 
-    private InputView inputView;
+    private InputController inputController;
     private OutputView outputView;
     private List<StringBuilder> currentBridgeStatus;
     private BridgeGame bridgeGame;
     private BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeGameController(NumberGeneratorDependencyContainer numberGeneratorDependencyContainer) {
-        inputView = new InputView();
+        inputController = new InputController();
         outputView = new OutputView();
         bridgeNumberGenerator = numberGeneratorDependencyContainer.bridgeNumberGenerator();
     }
 
     public void setUpGame() {
-        outputView.printGameProgressMessage(GameProgressMessage.GAME_START_INPUT_LENGTH_MESSAGE);
+        outputView.printGameProgressMessage(GameProgressMessage.GAME_START_MESSAGE);
+        String inputLength = inputController.getInput(new BridgeLengthInputIterator());
 
-        String inputLength = inputView.readBridgeSize();
-        BridgeLengthValidator.validate(inputLength);
         List<String> createdBridge = new BridgeMaker(bridgeNumberGenerator)
                 .makeBridge(Integer.parseInt(inputLength));
 
@@ -41,10 +39,7 @@ public class BridgeGameController {
 
     public void move() {
         while (!bridgeGame.isUserDead() && !bridgeGame.checkPlayerCrossedAllBridge()) {
-            outputView.printGameProgressMessage(GameProgressMessage.MOVE_MESSAGE);
-
-            String stepInput = inputView.readMoving();
-            InputMoveValidator.validate(stepInput);
+            String stepInput = inputController.getInput(new MoveInputIterator());
             currentBridgeStatus = bridgeGame.move(stepInput);
             outputView.printMap(currentBridgeStatus);
         }
@@ -70,9 +65,7 @@ public class BridgeGameController {
 
     public boolean GameKeepGoingOrNot() {
         if (!bridgeGame.checkPlayerCrossedAllBridge()) {
-            System.out.println(GameProgressMessage.GAME_RETRY_MESSAGE);
-            String retryInput = inputView.readGameCommand();
-            InputRestartValidator.validate(retryInput);
+            String retryInput = inputController.getInput(new RestartInputIterator());
 
             return bridgeGame.retry(retryInput);
         }
