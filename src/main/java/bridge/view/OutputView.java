@@ -6,6 +6,8 @@ package bridge.view;
 public class OutputView {
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String GET_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
+    private static final String GET_MOVE_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GONNA_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public void printGameStart() {
         System.out.println(GAME_START);
@@ -13,6 +15,14 @@ public class OutputView {
 
     public void printGetBridgeLength() {
         System.out.println(GET_BRIDGE_LENGTH);
+    }
+
+    public void printGetMoveDirection() {
+        System.out.println(GET_MOVE_DIRECTION);
+    }
+
+    public void printGetRetry() {
+        System.out.println(GONNA_RETRY);
     }
 
     /**
@@ -29,5 +39,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
