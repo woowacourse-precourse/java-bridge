@@ -60,7 +60,6 @@ public class BridgeGameController {
         if (retryInput) {
             OutputView.setUpSide("");
             OutputView.setDownSide("");
-            //OutputView.downSide = "";
         }
     }
 
