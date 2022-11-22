@@ -86,7 +86,7 @@ public class GameController {
 	}
 
 	private boolean checkRestart(MoveResultResponseDto finalResultResponseDto) {
-		if (finalResultResponseDto.isSuccess()) {
+		if (bridgeGame.success(finalResultResponseDto) != null) {
 			return false;
 		}
 		GameCommandRequestDto gameCommandRequestDto = inputView.readGameCommand();

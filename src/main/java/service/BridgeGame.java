@@ -86,4 +86,12 @@ public class BridgeGame {
 		}
 		return false;
 	}
+
+	public MoveResultResponseDto success(MoveResultResponseDto finalResultResponseDto) {
+		if (finalResultResponseDto.isSuccess()) {
+			return finalResultResponseDto;
+		}
+		return null;
+
+	}
 }
