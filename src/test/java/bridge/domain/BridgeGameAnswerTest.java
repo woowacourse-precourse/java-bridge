@@ -3,6 +3,9 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.common.ErrorMessage;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

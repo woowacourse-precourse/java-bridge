@@ -3,6 +3,8 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import bridge.TestNumberGenerator;
 import java.util.List;
 import java.util.stream.Stream;

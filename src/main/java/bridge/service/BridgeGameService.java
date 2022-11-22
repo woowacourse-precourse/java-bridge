@@ -1,14 +1,12 @@
 package bridge.service;
 
-import static bridge.domain.MoveResult.SUCCESS;
-
 import bridge.common.Code;
 import bridge.common.ErrorMessage;
 import bridge.common.Result;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameAnswer;
 import bridge.domain.BridgeGameStatus;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.Move;
 import bridge.domain.Player;
 import bridge.dto.MoveResultDto;

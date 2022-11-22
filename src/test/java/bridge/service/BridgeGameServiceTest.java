@@ -3,8 +3,8 @@ package bridge.service;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import bridge.domain.MoveResult;
 import bridge.domain.Player;
 import bridge.dto.MoveResultDto;
