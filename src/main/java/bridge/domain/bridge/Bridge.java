@@ -7,6 +7,8 @@ import java.util.List;
 public class Bridge {
 
     public static final int STARTING_POINT = 0;
+    public static final int MINIMUM_SIZE = 3;
+    public static final int MAXIMUM_SIZE = 20;
     private final List<Direction> bridge;
 
     public Bridge(List<Direction> bridge) {

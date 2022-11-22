@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Direction {
 
+    public static final int DOWNWARD_NUMBER = 0;
     public static final String UPWARD_DIRECTION = "U";
     public static final String DOWNWARD_DIRECTION = "D";
     private final String direction;

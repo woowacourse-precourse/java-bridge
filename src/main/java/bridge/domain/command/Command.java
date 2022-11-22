@@ -22,10 +22,6 @@ public class Command {
         return this.command.equals(RETRY_COMMAND);
     }
 
-    public boolean isNull() {
-        return command == null;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -46,7 +42,6 @@ public class Command {
     @Override
     public String toString() {
         return "Command{" +
-                "command='" + command + '\'' +
-                '}';
+                "command='" + command + '}';
     }
 }

@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.bridge.Bridge;
 import bridge.domain.direction.Direction;
 
 import java.util.ArrayList;
@@ -28,13 +29,17 @@ public class BridgeMaker {
     }
 
     private void validateSize(int size) {
-        if (size < 3 || size > 20) {
+        if (isOutOfRange(size)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
+    private boolean isOutOfRange(int size) {
+        return size < Bridge.MINIMUM_SIZE || size > Bridge.MAXIMUM_SIZE;
+    }
+
     private String mapToDirection(int number) {
-        if (number == 0) {
+        if (number == Direction.DOWNWARD_NUMBER) {
             return Direction.DOWNWARD_DIRECTION;
         }
         return Direction.UPWARD_DIRECTION;
