@@ -45,12 +45,16 @@ public class BridgeController {
     }
 
     public boolean bridgeRound() {
-        return bridgeGame.move(requestMovingPoint());
+        boolean passable = bridgeGame.move(requestMovingPoint());
+        outputView.printMap(bridgeGame);
+        return passable;
     }
 
     public void bridgeGame(){
         while (bridgeRound()) {
-            outputView.printMap(bridgeGame,true);
+            if(bridgeGame.gameComplete()){
+                break;
+            }
         }
     }
 
@@ -58,7 +62,6 @@ public class BridgeController {
         do {
             bridgeGame.retry();
             bridgeGame();
-            outputView.printMap(bridgeGame,bridgeGame.gameComplete());
         } while (isGameOver());
     }
 
