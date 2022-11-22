@@ -1,6 +1,6 @@
 # 🍀 다리건너기
 
-## Model
+# Model
 
 ---
 
@@ -44,43 +44,25 @@
 - 인스턴스 변수
     - 움직임 (String)
     - 움직임 (int)
-- 움직임 (int)를 넣으면 움직임(String)으로 반환
+- [x] 움직임 (int)를 넣으면 움직임(String)으로 반환
 
 <br>
 
-## Validator
+# View
 
 ---
-
-## InputValidator
-
-- [ ] 숫자인지 확인
-- [ ] 숫자 아닐 시, 에러 발생
-- [ ] 다리길이 범위 (3 ~ 20)가 아닐 시, 에러 발생
-- [ ] U, D가 아닐 시, 에러 발생
-- [ ] R, Q가 아닐 시, 에러 발생
-
-## Constants
-
----
-
-### ErrorConstants
-
-- [x] 에러 발생 시, 출력되는 String
-
-<br>
 
 ## UI
 
 ---
 
-## InputView
+### InputView
 
 - [x] 다리 길이를 입력
 - [x] 이동할 칸 입력 (U, D)
 - [x] 게임 재시작 / 종료 여부를 입력
 
-## OutputView
+### OutputView
 
 - [x] "다리 건너기 게임을 시작합니다." 출력
 - [x] "다리의 길이를 입력해주세요." 출력
@@ -90,10 +72,6 @@
 - [x] 게임 결과 출력
 - [x] 에러 발생 시 에러메세지 출력
 
-## Constants
-
----
-
 ### InputConstants
 
 - [x] 입력 제한 상수
@@ -101,6 +79,22 @@
 ### OutputConstants
 
 - [x] System.out 시, 출력되는 String 상수
+
+## Validator
+
+---
+
+### InputValidator
+
+- [ ] 숫자인지 확인
+- [ ] 숫자 아닐 시, 에러 발생
+- [ ] 다리길이 범위 (3 ~ 20)가 아닐 시, 에러 발생
+- [ ] U, D가 아닐 시, 에러 발생
+- [ ] R, Q가 아닐 시, 에러 발생
+
+### ErrorConstants
+
+- [x] 에러 발생 시, 출력되는 String
 
 <br>
 
@@ -117,7 +111,7 @@
 
 <br>
 
-## Test
+# Test
 
 ---
 
