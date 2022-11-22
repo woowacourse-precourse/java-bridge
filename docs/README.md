@@ -79,6 +79,10 @@
 - [ ] 총 시도 횟수를 반환한다. #getTryCount
 - [ ] 사용자가 다리를 모두 건넜는지 확인한다. #isCrossAllBridge
 
+### InputMessage : 입력 요청 메시지
+
+### OutputMessage : 결과 메시지
+
 ### ValidateMessage : 검증 메시지
 
 ### BridgeUtil : 다리 관련 상수
