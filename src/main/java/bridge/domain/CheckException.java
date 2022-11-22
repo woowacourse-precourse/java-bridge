@@ -28,4 +28,16 @@ public class CheckException {
             return false;
         }
     }
+
+    public boolean checkInputRetryChoice(String retryChoice){
+        try {
+            if(!retryChoice.equals("R") && !retryChoice.equals("Q")){
+                throw  new IllegalArgumentException();
+            }
+            return true;
+        }catch (IllegalArgumentException e){
+            System.out.println(errorMessage.ERROR_MESSAGE_INPUT_RETRY_CHOICE_NOT_VALID.getMessage());
+            return false;
+        }
+    }
 }
