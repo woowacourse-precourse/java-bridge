@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Application {
 
-    static final String UP = "U";
-    static final String DOWN = "D";
-    static InputView inputView = new InputView();
-    static OutputView outputView = new OutputView();
-    static BridgeGame bridgeGame = new BridgeGame();
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
+    private static final BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
         try {
