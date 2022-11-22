@@ -160,6 +160,8 @@ int number = bridgeNumberGenerator.generate();
 
     - [x] 재시작 여부 출력 후 최종 결과와 성공 여부 및 시도한 횟수 구현
 
+    - [x] 예외처리 부분 무한루프를 통해 알맞은 값을 입력받도록 기능 구현
+
 
 <br></br>
 ### 🎯 실행 결과 예시

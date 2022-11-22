@@ -46,7 +46,19 @@ public class BridgeGame {
             bridgeFlag = BridgeFlag.FAIL.getNumber();
             printView.lineSkip();
             System.out.println(printView.EXIT_OR_CONTINUE);
-            checkExitOrQuit(inputRestartHandler.checkValidator(printView.exitOrContinue()));
+            String exitOrContinue = loopInputExitOrContinue();
+            checkExitOrQuit(exitOrContinue);
+        }
+    }
+
+    private String loopInputExitOrContinue() {
+        try {
+            String pickExitOrContinue = printView.exitOrContinue();
+            inputRestartHandler.checkValidator(pickExitOrContinue);
+            return pickExitOrContinue;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return loopInputExitOrContinue();
         }
     }
 

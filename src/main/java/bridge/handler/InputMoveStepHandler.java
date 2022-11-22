@@ -13,6 +13,7 @@ public class InputMoveStepHandler {
 
     public void checkIsUpDown(String moveStep) {
         PrintView printView = new PrintView();
+
         if(!moveStep.equals("U") && !moveStep.equals("D")){
             throw new IllegalArgumentException(printView.ERROR_ORDER+" 잘못된 이동 입력입니다. 다시 입력해주세요.");
         }

@@ -1,6 +1,7 @@
 package bridge;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
@@ -18,7 +19,13 @@ class ApplicationTest extends NsTest {
     InputMoveStepHandler inputMoveStepHandler = new InputMoveStepHandler();
     InputRestartHandler inputRestartHandler = new InputRestartHandler();
     InputBridgeLengthHandler inputBridgeLengthHandler = new InputBridgeLengthHandler();
-
+    @Test
+    void 예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));

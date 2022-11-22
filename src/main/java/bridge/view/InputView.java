@@ -12,10 +12,21 @@ public class InputView {
         System.out.println(printView.START_ORDER);
         printView.lineSkip();
         System.out.println(printView.INPUT_BRIDGE_LENGTH);
-        String bridgeLength = inputBridgeLengthHandler.checkValidator(Console.readLine());
+        String bridgeLength = loopInputBridgeLength();
         printView.lineSkip();
 
         return bridgeLength;
+    }
+
+    private String loopInputBridgeLength() {
+        try {
+            String bridgeLength = readGameCommand();
+            inputBridgeLengthHandler.checkValidator(bridgeLength);
+            return bridgeLength;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return loopInputBridgeLength();
+        }
     }
 
     public String readGameCommand() {

@@ -30,8 +30,19 @@ public class OutputView {
 
     private void stepIntoBridge(List<String> bridgeData, int index) {
         System.out.println(printView.MOVE_STEP);
-        String moveStep = inputView.readGameCommand();
+        String moveStep = loopInputUpOrDown();
         bridgeGame.move(inputMoveStepHandler.checkValidator(moveStep), bridgeData.get(index), index);
+    }
+
+    private String loopInputUpOrDown() {
+        try {
+            String upOrDown = inputView.readGameCommand();
+            inputMoveStepHandler.checkValidator(upOrDown);
+            return upOrDown;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return loopInputUpOrDown();
+        }
     }
 
     private void succesStepBridge(int index, List<String> bridgeData) {

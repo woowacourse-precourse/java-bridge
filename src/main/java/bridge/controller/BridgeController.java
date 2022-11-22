@@ -17,11 +17,7 @@ public class BridgeController {
     OutputView outputView = new OutputView();
 
     public void run() {
-        try {
-            bridgeData = bridgeMaker.makeBridge(Integer.parseInt(inputView.readBridgeSize()));
-            outputView.printMap(bridgeData);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        bridgeData = bridgeMaker.makeBridge(Integer.parseInt(inputView.readBridgeSize()));
+        outputView.printMap(bridgeData);
     }
 }
