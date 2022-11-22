@@ -72,7 +72,7 @@ public class OutputView {
     }
 
     /**
-     * 게임의 성공 여부를 판단하는 메소드
+     * 게임의 성공 여부를 출력한다.
      *
      * @param gameOverResult <p>true : 성공 <p>false : 실패
      */
