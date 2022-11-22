@@ -8,7 +8,7 @@ import java.util.List;
 public class OutputView {
 
     private String getBlankOrX() {
-        if(BridgeGame.isCorrect) return " ";
+        if (BridgeGame.isCorrect) return " ";
         return "X";
     }
 
@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     private String getSuccessOfFailure() {
-        if(BridgeGame.isCorrect) return "성공";
+        if (BridgeGame.isCorrect) return "성공";
         return "실패;";
     }
 

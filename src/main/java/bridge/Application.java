@@ -60,9 +60,9 @@ public class Application {
         while (!GAME_STATE.equals("Q")) {
             updateUserPicks();
             showMap();
-            if(handleSuccess()) return;
-            if(handleFailure() && GAME_STATE == "Q") return;
-            if(handleFailure() && GAME_STATE == "R") continue;
+            if (handleSuccess()) return;
+            if (handleFailure() && GAME_STATE == "Q") return;
+            if (handleFailure() && GAME_STATE == "R") continue;
             BridgeGame.index++;
         }
     }

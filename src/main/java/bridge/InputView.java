@@ -29,7 +29,7 @@ public class InputView {
         String shape = "";
         try {
             shape = readLine();
-            if(shape != "U" || shape != "D") throw new IllegalArgumentException();
+            if (shape != "U" || shape != "D") throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 이동할 칸은 U 또는 D 이어야 합니다.");
         }
@@ -44,7 +44,7 @@ public class InputView {
         String state = "";
         try {
             state = readLine();
-            if(state != "R" || state != "Q") throw new IllegalArgumentException();
+            if (state != "R" || state != "Q") throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 게임을 다시 시도할지 여부는 R 또는 Q 이어야 합니다.");
         }
