@@ -68,6 +68,6 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
-        return !isMoveSuccess || bridgeMap.isCompareSize(playerMap);
+        return !isMoveSuccess || bridgeMap.isSameSize(playerMap);
     }
 }
