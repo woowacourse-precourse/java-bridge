@@ -86,4 +86,11 @@ public class BridgeController {
         downBridge.append(wrongBridge);
         upBridge.append(emptyBridge);
     }
+
+    private void initBuilder() {
+        upBridge.setLength(0);
+        upBridge.append("[");
+        downBridge.setLength(0);
+        downBridge.append("[");
+    }
 }
