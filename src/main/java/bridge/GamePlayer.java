@@ -4,20 +4,20 @@ public class GamePlayer {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
-    private GameRecorder gameRecoder;
+    private GameRecorder gameRecorder;
     private Command isExit = Command.RETRY;
 
     public void play() {
-        gameRecoder = new GameRecorder(inputView.readBridgeSize());
+        gameRecorder = new GameRecorder(inputView.readBridgeSize());
         playGame();
-        outputView.printResult(gameRecoder.getResult());
+        outputView.printResult(gameRecorder.getResult());
     }
 
     private void playGame() {
         while (isExit != Command.QUIT) {
-            gameRecoder.start();
+            gameRecorder.start();
             cross();
-            if (gameRecoder.getResult().getGameClear()) {
+            if (gameRecorder.getResult().getGameClear()) {
                 break;
             }
             isExit = inputView.readGameCommand();
@@ -25,9 +25,9 @@ public class GamePlayer {
     }
 
     private void cross() {
-        while (!gameRecoder.getResult().getGameClear()) {
-            boolean crossResult = gameRecoder.recodeMove(inputView.readMoving());
-            outputView.printMap(gameRecoder.getResult().getBridgeMap());
+        while (!gameRecorder.getResult().getGameClear()) {
+            boolean crossResult = gameRecorder.recodeMove(inputView.readMoving());
+            outputView.printMap(gameRecorder.getResult().getBridgeMap());
             if (!crossResult) {
                 break;
             }
