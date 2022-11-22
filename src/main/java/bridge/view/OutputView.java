@@ -2,18 +2,41 @@ package bridge.view;
 
 import bridge.domain.GameCommand;
 import bridge.domain.Moving;
+import bridge.utils.Converter;
+import java.util.Scanner;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String PREFIX = "[ ";
+    private static final String INFIX = " | ";
+    private static final String SUFFIX = " ]";
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    private static String[] map = new String[Moving.values().length];
+
+    public static void printMap(int position, String moving, boolean isAnswer) {
+        String movingResult = Converter.convertToOX(isAnswer);
+        int selectedIndex = Converter.convertToIndex(moving);
+
+        makeMap(position, movingResult, selectedIndex);
+
+        for (String compartment : map) {
+            System.out.println(compartment);
+        }
+    }
+
+    private static void makeMap(int position, String movingResult, int selectedIndex) {
+        int notSelectedIndex = 1 - selectedIndex;
+        int length = map[selectedIndex].length();
+
+        if (position == 0) {
+            map[selectedIndex] = PREFIX + movingResult + SUFFIX;
+            map[notSelectedIndex] = PREFIX + " " + SUFFIX;
+            return;
+        }
+        map[selectedIndex] = map[selectedIndex].substring(0, length - 2) + INFIX + movingResult + SUFFIX;
+        map[notSelectedIndex] = map[notSelectedIndex].substring(0, length - 2) + INFIX + " " + SUFFIX;
     }
 
     /**
