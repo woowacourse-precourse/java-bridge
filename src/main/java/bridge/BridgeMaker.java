@@ -5,11 +5,19 @@ import java.util.List;
 
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private enum Direction{
+        UP(1,"U"),
+        DOWN(0,"D");
 
-    private static final int UP = 1;
-    private static final String DOWN_DIRECTION = "D";
-    private static final String UP_DIRECTION = "U";
+        private int num;
+        private String word;
+        Direction(int num, String word) {
+            this.num = num;
+            this.word = word;
+        }
+    }
+
+    private final BridgeNumberGenerator bridgeNumberGenerator;
     
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -27,9 +35,9 @@ public class BridgeMaker {
     private String checkUpDown() {
         int num;
         num = bridgeNumberGenerator.generate();
-        if(num == UP){
-            return UP_DIRECTION;
+        if(num == Direction.UP.num){
+            return Direction.UP.word;
         }
-        return DOWN_DIRECTION;
+        return Direction.DOWN.word;
     }
 }
