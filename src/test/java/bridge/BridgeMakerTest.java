@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -6,9 +6,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeMakerTest {
 	@DisplayName("Enum을 활용한 다리 생성 테스트")
