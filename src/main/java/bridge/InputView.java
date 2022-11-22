@@ -13,7 +13,7 @@ public class InputView {
     public static int readBridgeSize() {
         while (true) {
             try {
-                int size = inputBridgeSize();
+                int size = Integer.parseInt(inputBridgeSize());
                 if (size >=3 && size <= 20) {
                     return size;
                 } throw new IllegalArgumentException();
@@ -23,10 +23,9 @@ public class InputView {
         }
     }
 
-    public static int inputBridgeSize() {
+    public static String inputBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요");
-        String input = Console.readLine();
-        int size = Integer.parseInt(input);
+        String size = Console.readLine();
         return size;
     }
 

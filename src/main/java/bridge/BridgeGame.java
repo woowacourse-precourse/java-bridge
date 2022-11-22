@@ -15,7 +15,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void move(List<String> bridge, List<String>userMoving) {
+    public static void move(List<String> bridge, List<String> userMoving) {
         while(userMoving.size() != bridge.size() && failCheck == 0){
             userMoving = InputUserMoving(userMoving);
             OutputView.printMap(bridge,userMoving);
@@ -29,7 +29,6 @@ public class BridgeGame {
      }
      public static void failMove(List<String> bridge, List<String> userMoving, int turn) {
          if (!userMoving.get(turn).equals(bridge.get(turn))) {
-             System.out.print(" X");
              failCheck = 1;
          }
      }
