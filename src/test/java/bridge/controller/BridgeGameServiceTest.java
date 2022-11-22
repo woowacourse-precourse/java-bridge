@@ -84,8 +84,6 @@ public class BridgeGameServiceTest {
     @ValueSource(ints = {0, 6, 8})
     @ParameterizedTest
     void 시도한_횟수_확인하는_테스트(int retry) {
-        //given
-        List<String> bridge = bridgeGameService.getBridge();
         //when
         for (int i = 0; i < retry; i++) {
             bridgeGameService.restart();
