@@ -1,9 +1,6 @@
 package bridge.view;// @ author ninaaano
 
 public enum MapView {
-    // [ O |   |   ]
-    MAP_LEFT("[ "),
-    MAP_RIGHT(" ]"),
     MAP_MIDDLE(" | "),
     MAP_BLANK(" "),
     MAP_O("O"),

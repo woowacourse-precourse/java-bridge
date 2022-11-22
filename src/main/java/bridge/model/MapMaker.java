@@ -1,9 +1,7 @@
-package bridge;// @ author ninaaano
+package bridge.model;// @ author ninaaano
 
-import bridge.view.InputView;
 import bridge.view.MapView;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;

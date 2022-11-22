@@ -3,7 +3,8 @@ package bridge.controller;// @ author ninaaano
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.MapMaker;
+import bridge.model.MapMaker;
+import bridge.model.BridgeGame;
 import bridge.view.*;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class BridgeGameController {
 
     public BridgeGameController() {
         try {
-            OutputView.showStartMessage(); // 1. 게임 시작 메세지 출력 완료
+            OutputView.showStartMessage();
             createBridge();
             moveBridge();
             printResult();
@@ -35,8 +36,8 @@ public class BridgeGameController {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-        OutputView.showInputBridgeLength(); // 2. 다리 길이 입력해주세요까지 출력
-        bridge = bridgeMaker.makeBridge(InputView.readBridgeSize()); // 3. 길이 입력받고 종료함...
+        OutputView.showInputBridgeLength();
+        bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
         System.out.println();
     }
 
