@@ -8,6 +8,11 @@ public class BridgeController {
     public void run() {
         outputView.printStart();
         outputView.printAskLength();
+        makeBridge();
+        System.out.println();
+    }
+
+    private void makeBridge() {
         while (true) {
             try {
                 bridgeGame = new BridgeGame(inputView.readBridgeSize());
