@@ -7,7 +7,7 @@ import bridge.data.Moving;
 public class InputValidator {
 
     public static void validateBridgeLength(String length) {
-        if (!isNumber(length)) {
+        if (!isNumber(length) || length.isEmpty()) {
             throw new IllegalArgumentException(Error.INVALID_BRIDGE_LENGTH_TYPE_MESSAGE.getMessage());
         }
         int parsedNumber = Integer.parseInt(length);
