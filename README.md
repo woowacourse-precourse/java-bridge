@@ -35,7 +35,7 @@
 ## Todo
 * [x] refactor : 함수 이름 변경 BridgeGame - getResult()
 * [x] refactor : 주석 제거
-* [ ] java 컨벤션 지키기
+* [x] java 컨벤션 지키기
 * [x] BridgeMaker - makeBridge : 10줄 이하로 리팩토링하기
 * [x] BridgeGame - retry : controller에서 in&output 관리. retry 함수 자체에서는 boolean 반환 
 * [x] InputView - validateSize : 리팩토링 필요
