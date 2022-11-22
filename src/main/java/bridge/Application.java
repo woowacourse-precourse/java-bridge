@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.command.BridgeSize;
 import bridge.command.Movement;
+import bridge.command.Retry;
 import bridge.path.Path;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -25,11 +26,12 @@ public class Application {
         final Movement movement = askMoving();
         final Path path = bridgeGame.onMove(movement);
         printMap(path);
-        askRetrying();
+        final Retry retry = askRetrying();
     }
 
-    private static void askRetrying() {
+    private static Retry askRetrying() {
         outputView.printRetrying();
+        return inputView.readRetrying();
     }
 
     private static void printMap(final Path path) {
