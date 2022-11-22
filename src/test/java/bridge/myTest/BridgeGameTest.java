@@ -1,4 +1,4 @@
-package bridge;
+package bridge.myTest;
 
 import bridge.game.BridgeGame;
 import org.assertj.core.api.Assertions;
