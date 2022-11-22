@@ -1,9 +1,9 @@
 package bridge.views;
 
-import bridge.utils.constants.BridgeGameResult;
 import bridge.utils.constants.BridgeRoute;
 import bridge.utils.constants.BridgeShape;
 
+import bridge.utils.constants.OutputMessage;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,17 +31,17 @@ public class OutputView {
     }
 
     public void printResult(boolean isGameSuccess, int attemptCount) {
-        System.out.println(BridgeGameResult.END_GAME_MESSAGE);
+        System.out.println(OutputMessage.END_GAME_MESSAGE.getMessage());
         System.out.println(tempMap);
-        System.out.println(BridgeGameResult.GAME_RESULT_MESSAGE + printGameSuccessResult(isGameSuccess));
-        System.out.println(BridgeGameResult.TOTAL_ATTEMPT_MESSAGE + attemptCount);
+        System.out.println(OutputMessage.GAME_RESULT_MESSAGE.getMessage() + printGameSuccessResult(isGameSuccess));
+        System.out.println(OutputMessage.TOTAL_ATTEMPT_MESSAGE.getMessage() + attemptCount);
     }
 
     private String printGameSuccessResult(boolean isGameSuccess){
         if(!isGameSuccess){
-            return BridgeGameResult.FAIL;
+            return OutputMessage.FAIL.getMessage();
         }
-        return BridgeGameResult.SUCCESS;
+        return OutputMessage.SUCCESS.getMessage();
     }
 
 }
