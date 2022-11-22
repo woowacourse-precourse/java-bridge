@@ -101,6 +101,13 @@ class BridgeGameTest {
         assertThat(bridgeGame.bridge).containsExactly("D", "U", "U", "U");
     }
 
+    @DisplayName("정답을 모두 맞추었는지 확인한다.")
+    @Test
+    void isSucceed_테스트() {
+        bridgeGame = new BridgeGame(3);
+        assertTrue(bridgeGame.isSucceed(3));
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
         private final List<Integer> numbers;
 
