@@ -1,7 +1,11 @@
 package bridge;
 
+import java.util.List;
+
 public class BridgeGameService {
     private static final InputView inputView = new InputView();
+    private static final BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
     public Integer askBridgeSize() {
         while (true) {
@@ -12,5 +16,11 @@ public class BridgeGameService {
             }
         }
     }
+
+    public List<String> makeBridge(Integer bridgeSize) {
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+
 
 }
