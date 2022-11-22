@@ -13,7 +13,43 @@
 
 최종적으로 게임 종료시 게임 결과를 리턴합니다.
 
-
+## 패키지 구조
+```text
+├── controller/
+│   └── BridgeController.java
+│ 
+├── domain/
+│   ├── BridgeLength.java
+│   ├── BridgeStatus.java
+│   ├── GameStatus.java
+│   ├── MovingCommand.java
+│   └── RetryCommand.java
+│ 
+├── service/
+│   └── BridgeGame.java
+│
+├── cache/
+│   └── BridgeStatusSaver.java
+│
+├── io/
+│   └── ConsoleReader.java
+│ 
+├── view/
+│   ├── View.java
+│   ├── InputView.java
+│   ├── OutputView.java
+│   └── draw/
+│       ├── BridgeDrawer.java
+│       ├── BridgeCommonDrawer.java
+│       ├── BridgeFailDrawer.java
+│       └── BridgeDrawerFactory.java
+│ 
+├── Application.java
+│ 
+├── BridgeMaker.java
+├── BridgeNumberGenerator.java
+└── BridgeRandomNumberGenerator.java
+```
 ## 기능 목록
 
 ### 도메인 객체
