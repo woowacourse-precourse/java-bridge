@@ -3,6 +3,8 @@ package bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
@@ -16,6 +18,12 @@ class BridgeGameTest {
         assertTrue(bridgeGame.move(userBridge.get(0), 0).contains(" O "));
         assertFalse(bridgeGame.move(userBridge.get(0), 0).contains(" X "));
         assertTrue(bridgeGame.move(userBridge.get(2), 2).contains(" X "));
+    }
+
+    @DisplayName("사용자가 2번 이상 이동 시 연속하여 출력되는지 확인")
+    @Test
+    void test2TurnMove() {
+        assertThat(bridgeGame.move(userBridge.get(1), 1).contains(" | "));
     }
 
     @DisplayName("Bridge Game 재시작 시 result 초기화 확인")
