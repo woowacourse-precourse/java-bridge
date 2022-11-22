@@ -1,5 +1,6 @@
 package bridge.Model;
 
+import bridge.Constant.BridgeValue;
 import java.util.List;
 
 public class BridgeGame {
@@ -15,7 +16,14 @@ public class BridgeGame {
         rightBridge = new Bridge(bridge);
     }
 
-    public void move() {
+    public boolean move(final String input, final BridgeMap bridgeMap, final int position) {
+        if(BridgeValue.UP.value().equals(input)) {
+            return bridgeMap.isCrossUp(rightBridge, position);
+        }
+        if(BridgeValue.DOWN.value().equals(input)) {
+            return bridgeMap.isCrossDown(rightBridge, position);
+        }
+        return false;
     }
 
     public void retry() {
