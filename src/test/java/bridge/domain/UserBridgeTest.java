@@ -18,6 +18,13 @@ class UserBridgeTest {
 		);
 	}
 
+	private static Stream<Arguments> getOtherUserBridgeStatusProvideForResult() {
+		return Stream.of(
+			Arguments.of(GameConst.MOVING_UP, UserBridge.LOWER_BRIDGE),
+			Arguments.of(GameConst.MOVING_DOWN, UserBridge.UPPER_BRIDGE)
+		);
+	}
+
 	@ParameterizedTest(name = "주어진 location 의 userBridge 확인 테스트")
 	@MethodSource("getUserBridgeStatusProvideForResult")
 	void getUserBridgeStatus(String location, UserBridge userBridge) {
@@ -25,13 +32,6 @@ class UserBridgeTest {
 		UserBridge userBridgeStatusTest = UserBridge.getUserBridgeStatus(location);
 
 		Assertions.assertThat(userBridge).isEqualTo(userBridgeStatusTest);
-	}
-
-	private static Stream<Arguments> getOtherUserBridgeStatusProvideForResult() {
-		return Stream.of(
-			Arguments.of(GameConst.MOVING_UP, UserBridge.LOWER_BRIDGE),
-			Arguments.of(GameConst.MOVING_DOWN, UserBridge.UPPER_BRIDGE)
-		);
 	}
 
 	@ParameterizedTest(name = "주어진 location 반대 userBridge 확인 테스트")
