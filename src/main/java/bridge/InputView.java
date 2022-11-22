@@ -43,7 +43,22 @@ public class InputView  {
         }
         return moving;
     }
-
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public static String readGameCommand() {
+        String gameCommand = "";
+        while (true) {
+            try {
+                gameCommand = validate.validateGameCommand(input());
+                System.out.println(gameCommand);
+                break;
+            } catch (IllegalArgumentException e) {
+                ErrorMessage.INVALID_RETRY.getDesc();
+            }
+        }
+        return gameCommand;
+    }
     public InputView(){
         this.validate = new Validate();
     }
