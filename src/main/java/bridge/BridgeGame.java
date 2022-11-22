@@ -13,6 +13,22 @@ public class BridgeGame {
     StringBuilder firstData = new StringBuilder();
     StringBuilder secondData = new StringBuilder();
 
+    InputView iv = new InputView();
+
+    /**
+     *
+     * @param bridgeData 현재 전진할 다리의 정답 정보
+     * @param inputMoving 이동할 칸 정보
+     * @return 오답시에는 사용자가 입력한 정보 (R 혹은 Q) 가 반환, 정답시에는 null로 반환
+     */
+    public String getNowResult(String bridgeData, String inputMoving) {
+        move(bridgeData, inputMoving);
+        if (Objects.equals(isSuccess, "실패")) {
+            return  iv.readGameCommand();
+        }
+        return null;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
