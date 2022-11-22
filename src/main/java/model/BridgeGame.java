@@ -2,6 +2,7 @@ package model;
 
 
 import controller.BridgeGameController;
+import controller.InputController;
 import controller.OutputController;
 import model.BridgeStatus;
 import util.Constants;
@@ -71,7 +72,7 @@ public class BridgeGame {
     }
 
     public static boolean retry() {
-        if (InputView.readGameCommand().equals(Constants.EXIT)) {
+        if (InputController.checkRestartOrExit().equals(Constants.EXIT)) {
             OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]",Constants.FAIL,attempt);
             return true;
         }
