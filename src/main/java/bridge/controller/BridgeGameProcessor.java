@@ -38,7 +38,8 @@ public class BridgeGameProcessor {
     }
 
     private void printResult(BridgeGame bridgeGame, InformationMessage successOrNot) {
-        outputView.printResultMap(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult());
+        outputView.printEndMessage();
+        outputView.printMap(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult());
         outputView.printSuccessOrNot(successOrNot);
         outputView.printTrialCount(bridgeGame.getTrialCount());
     }
