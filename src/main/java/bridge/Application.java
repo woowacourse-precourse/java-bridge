@@ -7,21 +7,26 @@ public class Application {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator())
-                .makeBridge(inputView.readBridgeSize()));
+        int bridgeSize = inputView.readBridgeSize();
+        if (bridgeSize == -1) { return; }
+        Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         RetryState retryState = RetryState.RETRY;
         OutputView outputView = new OutputView(bridge);
         while (retryState == RetryState.RETRY) {
             BridgeGameState bridgeGameState = BridgeGameState.NORMAL;
             while (bridgeGameState == BridgeGameState.NORMAL) {
-                bridgeGameState = bridgeGame.move(inputView.readMoving());
+                String moving = inputView.readMoving();
+                if (moving == null) { return; }
+                bridgeGameState = bridgeGame.move(moving);
                 outputView.printMap();
             }
             if (bridgeGameState == BridgeGameState.SUCCESS_AND_END) {
                 break;
             }
-            retryState = bridgeGame.retry(inputView);
+            String gameCommand = inputView.readGameCommand();
+            if (gameCommand == null) { return; }
+            retryState = bridgeGame.retry(gameCommand);
         }
         outputView.printResult();
     }
