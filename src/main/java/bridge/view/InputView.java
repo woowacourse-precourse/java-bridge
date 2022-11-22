@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.constant.message.GameMessage;
-import camp.nextstep.edu.missionutils.Console;
+import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -13,7 +13,7 @@ public class InputView {
      */
     public static String readBridgeSize() {
         System.out.println(GameMessage.GAME_INPUT_LENGTH.getMessage());
-        return Console.readLine();
+        return readLine();
     }
 
     /**
@@ -21,7 +21,7 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println(GameMessage.GAME_INPUT_MOVE.getMessage());
-        return Console.readLine();
+        return readLine();
     }
 
     /**
@@ -29,6 +29,6 @@ public class InputView {
      */
     public static String readGameCommand() {
         System.out.println(GameMessage.GAME_INPUT_RESTART.getMessage());
-        return Console.readLine();
+        return readLine();
     }
 }
