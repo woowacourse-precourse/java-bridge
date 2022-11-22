@@ -7,28 +7,52 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public static String readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
-        return Console.readLine();
+    private static final String BLANK = "";
+    private static final OutputView outputView = new OutputView();
+
+    public int readBridgeSize() {
+        String inputBridgeSize = BLANK;
+        boolean input = true;
+        while (input) {
+            try {
+                outputView.printBridgeSizeToInput();
+                inputBridgeSize = Console.readLine();
+                input = Exception.validateBridgeSize(inputBridgeSize);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return Integer.parseInt(inputBridgeSize);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public static String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return Console.readLine();
+    public String readMoving() {
+        String inputMove = BLANK;
+        boolean input = true;
+        while (input) {
+            try {
+                outputView.printPlayerMove();
+                inputMove = Console.readLine();
+                input = Exception.validatePlayerMove(inputMove);
+            } catch (IllegalArgumentException exceptionMessage) {
+                System.out.println(exceptionMessage.getMessage());
+            }
+        }
+        return inputMove;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public static String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return Console.readLine();
+    public String readGameCommand() {
+        String progress = BLANK;
+        boolean input = true;
+        while (input) {
+            try {
+                outputView.printProgress();
+                progress = Console.readLine();
+                input = Exception.validateGameProgress(progress);
+            } catch (IllegalArgumentException exceptionMessage) {
+                System.out.println(exceptionMessage.getMessage());
+            }
+        }
+        return progress;
     }
 
 }
