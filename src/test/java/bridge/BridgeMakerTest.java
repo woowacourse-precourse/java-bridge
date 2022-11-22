@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.domain.BridgeMaker;
 import bridge.enums.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

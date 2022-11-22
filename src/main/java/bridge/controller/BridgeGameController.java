@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,6 @@ public class BridgeGameController {
     }
 
     private int initBridge() {
-
         int bridgeSizeInput = consoleController.inputBridgeSize();
 
         this.bridgeScaffold = bridgeMaker.makeBridge(bridgeSizeInput);
