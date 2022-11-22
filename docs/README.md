@@ -20,12 +20,12 @@
   - [x] 사용자로부터 R과 Q 시도여부 입력받기 InputView#readGameCommand
   - [x] 사용자로부터 재시도 입력 에러처리 
 - [x] 최종 게임 결과 출력 OutputView#printResult
-  - [x] 게임 성공 여부 출력 OutputView#printGameSuccess
-  - [x] 총 시도한 횟수 출력 OutputView#printGameAttempts
+  - [x] 게임 성공 여부 출력 MessageView#printGameSuccess
+  - [x] 총 시도한 횟수 출력 MessageView#printGameAttempts
 
 ---
 ## 기능 요구 사항
-1. "다리 건너기 게임을 시작합니다." 문구 출력
+1. "다리 건너기 게임을 시작합니다." 문구 출력 
 2. "다리의 길이를 입력해주세요." 문구 출력
 3. 사용자가 다리 길이 입력
    - 숫자 이외의 값 예외 처리

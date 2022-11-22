@@ -9,10 +9,11 @@ public class Controller {
     public static List<String> answerBridge;
 
     public void run() {
+        boolean isSuccess;
         System.out.println(MessageView.START_GAME_MESSAGE);
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         answerBridge = bridgeMaker.makeBridge(getBridgeSize());
-        boolean isSuccess = moveBridgeController();
+        isSuccess = moveBridgeController();
         printBridgeResult(isSuccess, tryNumber);
     }
 
@@ -35,7 +36,7 @@ public class Controller {
         }
     }
 
-    private boolean moveBridgeController() {
+    public boolean moveBridgeController() {
         InputView inputView = new InputView();
         boolean isSuccess;
         while (isSuccess = !moveBridge()) {
@@ -73,9 +74,7 @@ public class Controller {
     private boolean moveBridgePrint(InputView inputView) {
         while (true) {
             try {
-                if(moveBridgePrintInput(inputView))
-                    return true;
-                return false;
+                return moveBridgePrintInput(inputView);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;

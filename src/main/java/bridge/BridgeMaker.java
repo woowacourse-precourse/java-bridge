@@ -21,7 +21,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridgeShape = new ArrayList<>();
         for(int i=0; i<size; i++){
-                int randomNumber = bridgeNumberGenerator.generate();
+            int randomNumber = bridgeNumberGenerator.generate();
             if(randomNumber==0)
                 bridgeShape.add("D");
             else if(randomNumber==1)
