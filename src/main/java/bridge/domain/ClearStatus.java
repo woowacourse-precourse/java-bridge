@@ -20,4 +20,7 @@ public enum ClearStatus {
         return FAILURE;
     }
 
+    public String getMessage() {
+        return message;
+    }
 }
