@@ -77,4 +77,8 @@ public class Bridge {
     public void initializeUserRoute() {
         this.userRoute = new ArrayList<>();
     }
+
+    public List<String> getUserRoute() {
+        return this.userRoute;
+    }
 }
