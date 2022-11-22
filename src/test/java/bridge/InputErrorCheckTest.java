@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static bridge.InputErrorCheck.readBridgeSizeErrorCheck;
+import static bridge.InputErrorCheck.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputErrorCheckTest {
@@ -14,9 +14,19 @@ public class InputErrorCheckTest {
     @DisplayName("다리 사이즈 입력 시 형식에 맞지 않는 값 예외 처리 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"asd","one","i"," ","\n","-1","1","22"})
-    void BridgeSizeIsOutofFormat(String input){
+    void BridgeSizeIsOutOfFormat(String input){
         assertThatThrownBy(()->
                 readBridgeSizeErrorCheck(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("사용자가 이동할 칸 입력 시 형식에 맞지 않는 값 예외 처리 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"u","d","U123","456U","asd","1","move"," ","\n"})
+    void MovingIsOutOfFormat(String input){
+        assertThatThrownBy(()->
+                readMovingErrorCheck(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
