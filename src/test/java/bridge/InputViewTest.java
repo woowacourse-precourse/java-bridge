@@ -12,7 +12,7 @@ class InputViewTest {
     private final InputView inputView = new InputView();
 
     @Test
-    public void 다리_길이_입력(){
+    public void 다리_길이_입력() {
         String input = "20";
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -34,5 +34,7 @@ class InputViewTest {
         InputStream in3 = new ByteArrayInputStream(inputError2.getBytes());
         System.setIn(in3);
         assertThatThrownBy(inputView::readBridgeSize)
-                .isInstanceOf(IllegalArgumentException.class);  }
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
