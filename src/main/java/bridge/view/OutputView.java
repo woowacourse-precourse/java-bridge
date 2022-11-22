@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public static void printException(Exception exception) {
-        OutputUtils.output(ERROR_HEAD_MESSAGE + exception.getMessage());
+        OutputUtils.outputLine(ERROR_HEAD_MESSAGE + exception.getMessage());
     }
 
     /**
