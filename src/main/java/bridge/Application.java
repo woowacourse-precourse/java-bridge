@@ -30,15 +30,13 @@ public class Application {
         }catch(Exception e) { }
     }
 
-    public static int canYouRetry(boolean successOrFail) {
+    public static void canYouRetry(boolean successOrFail) {
         if(!successOrFail){
             CURRENT_LOCATION = inputView.readGameCommand(gameCnt, BRIDGE_LENGTH);
             idx = INITIALIZE;
             outputView.bridgeInitialize();
             outputView.getSuccessOrFail();;
             if(CURRENT_LOCATION != 0) gameCnt++;
-            return CURRENT_LOCATION;
         }
-        return CURRENT_LOCATION;
     }
 }
