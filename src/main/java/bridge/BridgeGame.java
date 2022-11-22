@@ -50,7 +50,7 @@ public class BridgeGame {
         }
     }
 
-    private boolean canMove(String moving) {
+    public boolean canMove(String moving) {
         if (bridge.get(userLocation).equals(moving)) {
             return true;
         }
