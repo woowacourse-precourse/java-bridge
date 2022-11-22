@@ -67,7 +67,12 @@ public class BridgeGameController {
     }
 
     private void askRetry() {
-        gameStatus = bridgeGame.retry(InputView.printAskRetry());
+        gameStatus = InputView.printAskRetry();
+
+        if (gameStatus == GameStatus.RETRY) {
+            bridgeGame.retry();
+            gameStatus = GameStatus.PLAYING;
+        }
     }
 
     private void moveBridge() {
