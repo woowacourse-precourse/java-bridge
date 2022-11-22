@@ -21,8 +21,13 @@ public class Application {
         return moveResult;
     }
 
+    private static void validateRetryCommand(String cmd) {
+        Validator validator = new Validator();
+        validator.validateCommand(cmd);
+    }
+
     private static boolean retryGame(String cmd) {
-        Validation.validateCommand(cmd);
+        validateRetryCommand(cmd);
         if (cmd.equals("Q")) {
             return false;
         }
