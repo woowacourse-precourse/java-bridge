@@ -2,6 +2,12 @@ package bridge;
 
 import java.util.List;
 
+/**
+ * Bridge Game을 진행한다.
+ *
+ * 다리를 생성하여 사용자의 입력을 받아 게임을 진행하고, 결과를 출력한다.
+ *
+ */
 public class Controller {
 
     private final BridgeMaker bridgeMaker;
