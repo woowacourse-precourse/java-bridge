@@ -1,11 +1,15 @@
 package bridge.view;
 
+import static bridge.constant.Deck.MATCH;
+import static bridge.constant.Deck.ROW_NOT_MATCH;
+import static bridge.constant.Deck.WRONG;
 import static bridge.constant.Direction.LOWER;
 import static bridge.constant.Direction.UPPER;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import bridge.constant.Deck;
 import bridge.constant.Direction;
 import bridge.dto.TrialResult;
 
@@ -16,26 +20,32 @@ public class OutputView {
         System.out.println();
     }
 
-    private List<String> getRow(Direction row, List<TrialResult> trialResults) {
+    private List<Deck> getRow(Direction row, List<TrialResult> trialResults) {
         return trialResults.stream()
                 .map(trialResult -> getDeck(row, trialResult))
                 .collect(Collectors.toList());
     }
 
-    private String getDeck(Direction row, TrialResult trialResult) {
+    private Deck getDeck(Direction row, TrialResult trialResult) {
         if (row != trialResult.getDirection()) {
-            return " ";
+            return ROW_NOT_MATCH;
         }
         if (trialResult.wasSuccessful()) {
-            return "O";
+            return MATCH;
         }
-        return "X";
+        return WRONG;
     }
 
-    private void printRow(List<String> row) {
+    private void printRow(List<Deck> row) {
         System.out.print("[ ");
-        System.out.print(String.join(" | ", row));
+        System.out.print(joinDecksForDisplay(row));
         System.out.println(" ]");
+    }
+
+    private String joinDecksForDisplay(List<Deck> row) {
+        return row.stream()
+                .map(Deck::getDisplayCharacter)
+                .collect(Collectors.joining(" | "));
     }
 
     public void printResult(List<TrialResult> trialResults, int trialCount, boolean finished) {
