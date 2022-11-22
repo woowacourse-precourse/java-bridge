@@ -28,13 +28,9 @@ public class OutputView extends OutputConfig {
         for (int key: result.keySet()){
             List<String> resultList = result.get(key);
             String output = resultList.get(0);
-            if (output.equals("E")) {
-                output = " ";
-            }
+            if (output.equals("E")) { output = " "; }
             System.out.print(output);
-            if (key==(result.size()-1)){
-                break;
-            }
+            if (key==(result.size()-1)){ break; }
             System.out.print(" | ");
         }
     }
@@ -43,13 +39,9 @@ public class OutputView extends OutputConfig {
         for (int key: result.keySet()){
             List<String> resultList = result.get(key);
             String output = resultList.get(1);
-            if (output.equals("E")) {
-                output = " ";
-            }
+            if (output.equals("E")) { output = " "; }
             System.out.print(output);
-            if (key==(result.size()-1)){
-                break;
-            }
+            if (key==(result.size()-1)){ break; }
             System.out.print(" | ");
         }
     }
