@@ -19,7 +19,6 @@ public class BridgeSizeInputException {
         }
     }
 
-    // 에러 메세지 생성해야 됨
     private static void checkNumberRange(String bridgeSize) {
         int bridgeSizeCheck = Integer.parseInt(bridgeSize);
         if (!(MIN_BRIDGE_SIZE <= bridgeSizeCheck && bridgeSizeCheck <= MAX_BRIDGE_SIZE)) {
