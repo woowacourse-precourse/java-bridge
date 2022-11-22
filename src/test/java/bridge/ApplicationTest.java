@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.domain.BridgeMaker;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
-import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.type.GameStatus;
 import bridge.view.InputView;

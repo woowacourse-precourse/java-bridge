@@ -1,6 +1,7 @@
-package bridge.domain;
+package bridge;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.domain.Player;
 import bridge.type.RetryType;
 import bridge.utils.PositionUtils;
 
@@ -23,6 +24,7 @@ public class BridgeGame {
 
     /**
      * @param player 사용자
+     * @param start
      * @return 건널 수 있다면 true / 건널 수 없다면 false
      * <p>
      * 사용자가 다리를 이동하고 이동 결과를 boolean type 으로 반환 한다.
