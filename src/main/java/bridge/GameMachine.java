@@ -1,6 +1,8 @@
 package bridge;
 
 import java.util.List;
+import view.InputView;
+
 
 public class GameMachine {
     private InputView ui = new InputView();
