@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bridge.model.BridgeMaker;
+import bridge.model.CrossBridgeType;
 import bridge.utils.BridgeRandomNumberGenerator;
 import bridge.utils.Validator;
 import bridge.view.InputView;
@@ -30,9 +31,11 @@ public class BridgeGame {
      */
     public boolean move(int round, String moveKey) {
         String crossablePosition = bridge.get(round);
-        if (moveKey.equals("U") && Integer.parseInt(crossablePosition) == 0)
+        if (moveKey.equals(CrossBridgeType.UPPER_BRIDGE.getStringKey()) && crossablePosition.equals(
+            CrossBridgeType.UPPER_BRIDGE.getStringKey()))
             return true;
-        if (moveKey.equals("D") && Integer.parseInt(crossablePosition) == 1)
+        if (moveKey.equals(CrossBridgeType.DOWN_BRIDGE.getStringKey()) && crossablePosition.equals(
+            CrossBridgeType.DOWN_BRIDGE.getStringKey()))
             return true;
         return false;
     }
@@ -51,6 +54,7 @@ public class BridgeGame {
     }
 
     public void playGame(List<String> bridge) {
+        System.out.println(bridge);
         this.bridge = bridge;
         while (true) {
             if (!moveBridge())
@@ -88,7 +92,6 @@ public class BridgeGame {
 
     public void printMap(int round, boolean isCross) {
         List<String> usedMap = new ArrayList<>(bridge.subList(0, round + 1));
-
         outputView.printMap(usedMap, isCross);
     }
 
