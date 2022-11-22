@@ -26,7 +26,7 @@ public class GameController {
     public void playGame() {
         do {
             round();
-            if ((bridgeSize == bridgeGame.getMoves().size()) && (!isFailed())) {
+            if ((bridgeSize == bridgeGame.getMoves().size()) && (isSuccess())) {
                 successResult();
                 break;
             }
@@ -40,14 +40,14 @@ public class GameController {
             bridgeGame.move(InputView.readMoving());
             result.updateBridge(bridge, bridgeGame.getMoves());
             OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
-        } while ((!isFailed()) && (bridgeGame.getMoves().size() < bridgeSize));
+        } while ((isSuccess()) && (bridgeGame.getMoves().size() < bridgeSize));
         countTry++;
     }
 
-    private boolean isFailed() {
+    private boolean isSuccess() {
         int current = bridgeGame.getMoves().size() - 1;
 
-        return !bridge.get(current).equals(bridgeGame.getMoves().get(current));
+        return bridge.get(current).equals(bridgeGame.getMoves().get(current));
     }
 
     private void setBridge(BridgeController bridgeController) {
