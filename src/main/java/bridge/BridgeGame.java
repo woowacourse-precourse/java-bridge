@@ -35,6 +35,16 @@ public class BridgeGame {
         return bridge.isRightDirection(idx, direction);
     }
 
+    public List<String> getDownBridge() {
+        List<String> downBridge = new ArrayList<>();
+        for(int i=0; i<visited.size(); i++){
+            boolean rightDirection = isRightDirection(i, visited.get(i));
+            String result = getResult(i,"D", rightDirection);
+            downBridge.add(result);
+        }
+        return downBridge;
+    }
+
     public String getResult(int i, String direction, boolean rightDirection) {
         String result = "O";
         if(!rightDirection){
