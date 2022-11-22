@@ -10,7 +10,7 @@ public class BridgeGame {
     private final List<String> bridge;
 
     public BridgeGame(int size) {
-        isInRange(size);
+        validateSize(size);
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 
@@ -30,13 +30,13 @@ public class BridgeGame {
     public void retry() {
     }
 
-    private void isInRange(int size) {
+    private void validateSize(int size) {
         if (size < BridgeConstant.MIN_LENGTH || BridgeConstant.MAX_LENGTH < size) {
             throw new IllegalArgumentException(ExceptionConstant.INCORRECT_LENGTH.getMessage());
         }
     }
 
-    private void isCorrectMovingInput(String input) {
+    private void validateMoving(String input) {
         if (!List.of(BridgeConstant.DOWN, BridgeConstant.UP).contains(input)) {
             throw new IllegalArgumentException(ExceptionConstant.INCORRECT_MOVING_INPUT.getMessage());
         }
