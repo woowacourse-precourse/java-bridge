@@ -14,6 +14,7 @@ public class GameLauncher {
     public void startGame() {
         printer.printStartMessage();
         BridgeGame bridgeGame = new BridgeGame(bridgeManager());
-        bridgeGame.runGame();
+        boolean isSuccess = bridgeGame.runGame();
+        printer.printSuccess(isSuccess);
     }
 }

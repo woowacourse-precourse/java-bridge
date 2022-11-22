@@ -37,4 +37,12 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(upResult, downResult);
     }
+
+    public void printSuccess(boolean isSuccess) {
+        String resultToString = "성공";
+        if(!isSuccess){
+            resultToString = "실패";
+        }
+        System.out.println("게임 성공 여부: " + resultToString);
+    }
 }
