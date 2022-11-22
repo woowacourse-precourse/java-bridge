@@ -1,7 +1,9 @@
-package bridge.domain;
+package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.TestNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.domain.Player;
 import bridge.service.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

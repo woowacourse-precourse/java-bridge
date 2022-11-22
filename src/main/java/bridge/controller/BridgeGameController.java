@@ -55,17 +55,6 @@ public class BridgeGameController {
     }
 
     private void playGame(BridgeGame bridgeGame) {
-        while (true) {
-            try {
-                crossBridgeUntilFinish(bridgeGame);
-                return;
-            } catch (IllegalArgumentException exception) {
-                outputView.printError(exception);
-            }
-        }
-    }
-
-    private void crossBridgeUntilFinish(BridgeGame bridgeGame) {
         while (!bridgeGame.isFinished()) {
             crossBridge(bridgeGame);
             outputView.printMap(bridgeGame);
@@ -79,9 +68,14 @@ public class BridgeGameController {
     }
 
     private String getSpaceToMove() {
-        outputView.printMovingSpaceInputRequest();
-        String spaceToMove = inputView.readMoving();
-        return spaceToMove;
+        while (true) {
+            try {
+                outputView.printMovingSpaceInputRequest();
+                return inputView.readMoving();
+            } catch (IllegalArgumentException exception) {
+                outputView.printError(exception);
+            }
+        }
     }
 
     private void checkFailed(BridgeGame bridgeGame) {

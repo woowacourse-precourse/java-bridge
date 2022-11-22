@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.util.validator.GameCommandValidator;
+import bridge.util.validator.MovingValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.util.constants.ErrorMessage.NUMERIC_ERROR_MESSAGE;
@@ -33,7 +34,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return Console.readLine();
+        String SpaceToMove = Console.readLine();
+        MovingValidator.validate(SpaceToMove);
+        return SpaceToMove;
     }
 
     /**
