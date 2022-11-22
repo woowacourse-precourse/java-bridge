@@ -5,22 +5,20 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class StartGame {
-    public static String movingInput;
 
     public static boolean startGame(BridgeGame bridgeGame) {
-        requestMove();
+        requestMove(bridgeGame);
         bridgeGame.move();
         OutputView.printMap(bridgeGame);
         if (bridgeGame.isWrongWay()) {
             return chooseWhenWrong(bridgeGame);
         }
-        bridgeGame.movingTurn++;
         return true;
     }
 
-    public static void requestMove() {
+    public static void requestMove(BridgeGame bridgeGame) {
         OutputView.printSelect();
-        movingInput = InputView.readMoving();
+        bridgeGame.movingInput = InputView.readMoving();
     }
 
     public static boolean chooseWhenWrong(BridgeGame bridgeGame) {
