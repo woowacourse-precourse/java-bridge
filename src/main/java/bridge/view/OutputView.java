@@ -13,6 +13,8 @@ public class OutputView {
     private static final String GAME_RESULT_MESSAGE = "게임 성공 여부: ";
     private static final String GAME_TRY_MESSAGE = "총 시도한 횟수: ";
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+
 
     private OutputView() {
     }
@@ -46,4 +48,8 @@ public class OutputView {
         OutputUtils.outputLine(GAME_TRY_MESSAGE + gameResult.getTryCount());
     }
 
+    public static void printStartMessage() {
+        OutputUtils.outputLine(GAME_START_MESSAGE);
+        OutputUtils.outputLine("");
+    }
 }
