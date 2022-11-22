@@ -13,7 +13,9 @@ public class Application {
         bridgeGame.setGame();
         bridgeGame.make();
         bridgeGame.move();
-        bridgeGame.check();
+        if (!bridgeGame.check()) {
+            bridgeGame.retry();
+        };
 
         while (round != BridgeGame.bridge.size()) {
             bridgeGame.move();
