@@ -34,8 +34,6 @@ class InputViewTest {
     }
 
 
-
-
     @DisplayName("이동할 칸 입력에 대한 예외 테스트")
     @ParameterizedTest
     @MethodSource("readMovingParam")

@@ -38,7 +38,6 @@ class BridgeGameTest {
     }
 
 
-
     private final BridgeController bridgeController = new BridgeController();
 
 

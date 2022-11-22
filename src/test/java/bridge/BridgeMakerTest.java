@@ -25,9 +25,9 @@ class BridgeMakerTest {
 
     static Stream<Arguments> makeBridgeParam() {
         return Stream.of(
-                Arguments.of(newArrayList(0,1,0), newArrayList("D", "U", "D")),
-                Arguments.of(newArrayList(1,1,1,1,1), newArrayList("U", "U", "U", "U", "U")),
-                Arguments.of(newArrayList(0,0,0,0,0,0,1), newArrayList("D", "D", "D", "D", "D", "D", "U"))
+                Arguments.of(newArrayList(0, 1, 0), newArrayList("D", "U", "D")),
+                Arguments.of(newArrayList(1, 1, 1, 1, 1), newArrayList("U", "U", "U", "U", "U")),
+                Arguments.of(newArrayList(0, 0, 0, 0, 0, 0, 1), newArrayList("D", "D", "D", "D", "D", "D", "U"))
         );
     }
 }
