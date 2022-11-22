@@ -5,8 +5,6 @@ import enumCollections.ExceptionMessage;
 import enumCollections.Side;
 
 public class InputException {
-    private static final String regularExpression = "^[0-9]*$";
-
     public static void validateGameCommand(String gameCommand) {
         if (!AvailableInput.isGameCommand(gameCommand)) {
             throw new IllegalArgumentException(ExceptionMessage.RESTART.getMessage());
@@ -20,13 +18,13 @@ public class InputException {
     }
 
     protected static void validateCharactersOnly(String value) {
-        if (value.matches(regularExpression)) {
+        if (value.matches(AvailableInput.NUMERIC_RANGE.getUserInput())) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_CHARACTER.getMessage());
         }
     }
 
     protected static void validateNumbersOnly(String value) {
-        if (!value.matches(regularExpression)) {
+        if (!value.matches(AvailableInput.NUMERIC_RANGE.getUserInput())) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMERIC.getMessage());
         }
     }

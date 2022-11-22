@@ -4,9 +4,6 @@ import enumCollections.AvailableInput;
 import enumCollections.ExceptionMessage;
 
 public class BridgeSizeException {
-    private static final String NUMERIC = "^[0-9]*$";
-
-
     public static void validate(String size) {
         validateNumeric(size);
         validateMinimumRange(stringToInteger(size));
@@ -14,7 +11,7 @@ public class BridgeSizeException {
     }
 
     private static void validateNumeric(String size) {
-        if (!size.matches(NUMERIC)) {
+        if (!size.matches(AvailableInput.NUMERIC_RANGE.getUserInput())) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMERIC.getMessage());
         }
     }

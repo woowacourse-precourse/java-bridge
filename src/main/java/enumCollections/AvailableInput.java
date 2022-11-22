@@ -4,7 +4,8 @@ public enum AvailableInput {
     BRIDGE_MINIMUM_SIZE("3"),
     BRIDGE_MAXIMUM_SIZE("20"),
     QUIT_COMMAND("Q"),
-    RETRY_COMMAND("R");
+    RETRY_COMMAND("R"),
+    NUMERIC_RANGE("^[0-9]*$");
 
     private String userInput;
 
