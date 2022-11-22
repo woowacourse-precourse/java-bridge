@@ -1,6 +1,6 @@
-package bridge.View;
+package bridge.view;
 
-import static bridge.View.ViewConstants.*;
+import static bridge.view.ViewConstants.*;
 
 public class StaticView {
 
@@ -24,11 +24,11 @@ public class StaticView {
         System.out.println(FINAL_RESULT.getMessage());
     }
 
-    public void successOrFailMsg() {
-        System.out.println(SUCCESS_OR_FAIL.getMessage());
+    public void successOrFailMsg(String result) {
+        System.out.println(SUCCESS_OR_FAIL.getMessage() + result);
     }
 
-    public void tryNumMsg() {
-        System.out.println(TRY_NUM.getMessage());
+    public void tryNumMsg(int num) {
+        System.out.println(TRY_NUM.getMessage() + num);
     }
 }

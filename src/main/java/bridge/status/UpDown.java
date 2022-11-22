@@ -1,4 +1,4 @@
-package bridge;
+package bridge.status;
 
 public enum UpDown {
     UP("U"),
@@ -6,11 +6,11 @@ public enum UpDown {
 
     private final String value;
 
-    public String getValue() {
-        return value;
-    }
-
     UpDown(String value) {
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 }

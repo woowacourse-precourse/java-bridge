@@ -1,60 +1,114 @@
 package bridge;
 
-import bridge.View.InputView;
-import bridge.View.OutputView;
-import bridge.View.StaticView;
+import bridge.game.BridgeGame;
+import bridge.game.BridgeMaker;
+import bridge.status.GameResult;
+import bridge.status.PassOrNot;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.view.StaticView;
 
 import java.util.List;
 import java.util.Objects;
 
-import static bridge.RetryOrQuit.*;
-import static bridge.View.InputView.bridgeSize;
+import static bridge.status.GameResult.*;
+import static bridge.status.PassOrNot.*;
+import static bridge.status.RetryOrQuit.*;
+import static bridge.view.InputView.*;
 
 
 public class Controller {
     BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(generator); //위에랑 세트로 한번만쓰임
+    BridgeMaker bridgeMaker = new BridgeMaker(generator);
     InputView inputView = new InputView();
     BridgeGame bridgeGame;
     OutputView outputView = new OutputView();
     StaticView staticView = new StaticView();
 
+    GameResult gameResult;
+
     public void run() {
-//        =========================== ! 1회만 실행될 애들
-        staticView.gameStartMsg();
-        staticView.askSizeMsg();
-        inputView.readBridgeSize();
         setBridge();
-//        =========================== !
+        gameController();
+    }
 
-        String command;
+    private void gameController() {
+        String command = null;
 
-        do {
+        while (noQuitNoSuccess(command)) {
             playGame();
+//            ====================================== 재시작 관련 로직
+            command = noPassAskRetry(command);
+            choseToRetry(command);
+        }
+//        =====================================================
+        // Q 입력시 로직 [종료 - 실패]
+        choseToQuit(command);
+    }
 
-            staticView.askRetryMsg();
+    private void choseToQuit(String command) {
+        if (Objects.equals(command, QUIT.getMessage())) {
+            gameResult = FAIL;
+            staticView.gameResultMsg();
+            outputView.printResult();
+            staticView.successOrFailMsg(gameResult.getValue());
+            staticView.tryNumMsg(BridgeGame.tryNum);
+        }
+    }
+
+    private void choseToRetry(String command) {
+        if (Objects.equals(command, RETRY.getMessage())) { // R 입력시 로직
+            bridgeGame.retry();
+        }
+    }
+
+    private String noPassAskRetry(String command) {
+        if (gameResult != SUCCESS) { //다리건너기 실패시 실행되는 로직
             command = inputView.readGameCommand();
-            if (Objects.equals(command, RETRY.getMessage())) {
-                bridgeGame.retry();
-            }
-        } while (!Objects.equals(command, QUIT.getMessage()));
+        }
+        return command;
     }
 
     public void setBridge() {
+        staticView.gameStartMsg();
+        inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame = new BridgeGame(bridge);
         System.out.println(bridge);
     }
 
-    public void playGame() {
-        for (int i = 0; i < bridgeSize; i++) {
-            staticView.askMoveMsg();
-            String readMoving = inputView.readMoving();
+    private boolean noQuitNoSuccess(String command) {
+        return !Objects.equals(command, QUIT.getMessage()) && gameResult != SUCCESS;
+    }
 
-            PassFail result = bridgeGame.move(readMoving, i);
-            outputView.printMap(result, readMoving, i);
-            if (result == PassFail.FAIL) break;
+    public void playGame() {
+
+        for (int i = 0; i < bridgeSize; i++) {
+
+            PassOrNot result = moveAndPrintMap(i);
+
+            if (result == NO_PASS) break;
+
+            gameSuccess(i, result);
         }
+    }
+
+    private void gameSuccess(int i, PassOrNot result) {
+        if (result == PASS && i == bridgeSize -1) { // [종료 - 성공]
+            gameResult = SUCCESS;
+            staticView.gameResultMsg();
+            outputView.printResult();
+            staticView.successOrFailMsg(gameResult.getValue());
+            staticView.tryNumMsg(BridgeGame.tryNum);
+        }
+    }
+
+    private PassOrNot moveAndPrintMap(int i) {
+        String readMoving = inputView.readMoving();
+
+        PassOrNot result = bridgeGame.move(readMoving, i);
+        outputView.printMap(result, readMoving, i);
+        return result;
     }
 }
 

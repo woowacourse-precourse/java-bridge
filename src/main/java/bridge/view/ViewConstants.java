@@ -1,4 +1,4 @@
-package bridge.View;
+package bridge.view;
 
 public enum ViewConstants {
 

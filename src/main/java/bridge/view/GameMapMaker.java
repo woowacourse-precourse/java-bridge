@@ -1,36 +1,26 @@
-package bridge;
+package bridge.view;
+
+import bridge.status.PassOrNot;
+import bridge.status.UpDown;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static bridge.BridgeGame.down;
-import static bridge.BridgeGame.up;
-import static bridge.View.TemplateLetters.*;
+import static bridge.game.BridgeGame.down;
+import static bridge.game.BridgeGame.up;
+import static bridge.view.TemplateLetters.*;
 
 public class GameMapMaker {
 
-    public List<String> makeMap(PassOrNot result, String input, int index) {
-        List<String> printMapList = new ArrayList<>();
-        inputUp(result, input, index);
-        inputDown(result, input, index);
-        String upList = getUpList();
-        String downList = getDownList();
-        printMapList.add(upList);
-        printMapList.add(downList);
-        return printMapList;
-    }
-
     private static String getDownList() {
         String downJoin = String.join("", down);
-        String downList = downJoin + END.getValue();
-        return downList;
+        return downJoin + END.getValue();
     }
 
     private static String getUpList() {
         String upJoin = String.join("", up);
-        String upList = upJoin + END.getValue();
-        return upList;
+        return upJoin + END.getValue();
     }
 
     private static void inputDown(PassOrNot result, String input, int index) {
@@ -81,5 +71,16 @@ public class GameMapMaker {
             down.add(START.getValue());
             down.add(BLANK.getValue());
         }
+    }
+
+    public List<String> makeMap(PassOrNot result, String input, int index) {
+        List<String> printMapList = new ArrayList<>();
+        inputUp(result, input, index);
+        inputDown(result, input, index);
+        String upList = getUpList();
+        String downList = getDownList();
+        printMapList.add(upList);
+        printMapList.add(downList);
+        return printMapList;
     }
 }

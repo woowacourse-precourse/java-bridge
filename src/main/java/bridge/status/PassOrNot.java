@@ -1,12 +1,12 @@
-package bridge;
+package bridge.status;
 
-public enum PassFail {
+public enum PassOrNot {
     PASS("O"),
-    FAIL("X");
+    NO_PASS("X");
 
     private final String value;
 
-    PassFail(String value) {
+    PassOrNot(String value) {
         this.value = value;
     }
 
