@@ -17,20 +17,24 @@ public class BridgeGameController {
     }
 
     public void gameStart() {
-        while (shouldIMove(bridgeGame)) {
-            outputView.printMap(bridgeGame.getBridgeMap());
-        }
-        outputView.printMap(bridgeGame.getBridgeMap());
+        moveControl(bridgeGame);
         outputView.printResult(bridgeGame.getBridgeMap(), bridgeGame.getIsGame(), bridgeGame.getRetryCount());
     }
 
-    public boolean shouldIMove(BridgeGame bridgeGame) {
+    public void moveControl(BridgeGame bridgeGame) {
         String moving = inputView.readMoving();
         outputView.printMoving(moving);
         bridgeGame.createMap(moving);
+        outputView.printMap(bridgeGame.getBridgeMap());
+        confirmRestart(moving);
+    }
+
+    private void confirmRestart(String moving){
         if (bridgeGame.isGameComplete(moving)) {
-            return false;
+            return;
         }
-        return bridgeGame.move(moving) || bridgeGame.retry(outputView.printGameCommand(inputView.readGameCommand()));
+        if(bridgeGame.move(moving) || bridgeGame.retry(outputView.printGameCommand(inputView.readGameCommand()))){
+             moveControl(bridgeGame);
+        }
     }
 }
