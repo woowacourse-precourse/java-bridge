@@ -5,7 +5,6 @@ import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator; // 변경이 불가능한 기본 인스턴스 변수
 
