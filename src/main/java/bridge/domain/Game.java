@@ -12,6 +12,10 @@ public class Game {
         this.gameCount = 1;
     }
 
+    public boolean isGameDone() {
+        return isGameDone;
+    }
+
 
 
 }
