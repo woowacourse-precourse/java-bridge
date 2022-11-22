@@ -2,60 +2,57 @@ package bridge;
 
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final List<String> bridge;
-    private int coordinate = -1;
-    private boolean isDirectionanAndLocationSame;
-    public boolean doesPlayerRetry;
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public BridgeGame(List<String> bridge) {
+    public int playerLocation = -1;
+    private int trial = 1;
+
+
+    public BridgeGame(List<String> bridge) {;
         this.bridge = bridge;
     }
 
-    public void move() {
-        if (isDirectionanAndLocationSame == true) {
-            coordinate ++;
+    public void move(String playerMoving) {
+        if (bridge.get(playerLocation + 1).equals(playerMoving)) {
+            this.playerLocation++;
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
-        if (isDirectionanAndLocationSame == false) {
-            InputView input = new InputView();
-            String gameCommand = input.readGameCommand();
-
-            doesPlayerRetry = convertGameComand(gameCommand);
+    public void retry(String gameCommand) {
+        if (gameCommand.equals("R")) {
+            trial++;
         }
     }
 
-    private Boolean checkDirectionAndLocationSame(String direction, String bridgeLocation) {
-        if (direction.equals(bridgeLocation)) {
+    public Boolean checkMoveIsAvailable (String playerMoving) {
+        if (bridge.get(playerLocation+1).equals(playerMoving)) {
             return true;
         }
-        if (!direction.equals(bridgeLocation)) {
+        if (!bridge.get(playerLocation+1).equals(playerMoving)) {
             return false;
         }
         return null;
     }
 
-    private Boolean convertGameComand(String gameComand) {
-        if (gameComand.equals("R") {
+    public Boolean checkPlayerWantsRetrial (String gameCommand) {
+        if (gameCommand.equals("R")) {
             return true;
         }
-        if(gameComand.equals(("Q")) {
+        if (gameCommand.equals("Q")) {
             return false;
         }
         return null;
+    }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
+    public int getPlayerLocation() {
+        return this.playerLocation;
+    }
+
+    public int getTrial() {
+        return this.trial;
     }
 }
