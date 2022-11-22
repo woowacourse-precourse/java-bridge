@@ -32,7 +32,7 @@ public class ValidationUtils {
             throw new IllegalArgumentException(ExceptionMsg.SIZE.msg);
         }
     }
-    public static void validateLetter(String input) {
+    public static void letter(String input) {
         if(!(BY_CAPITAL_LETTER.containsKey(input)) || input.equals("")){
             throw new IllegalArgumentException(ExceptionMsg.LETTER.msg);
         }

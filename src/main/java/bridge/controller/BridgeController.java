@@ -9,27 +9,27 @@ import bridge.view.OutputView;
 
 
 public class BridgeController {
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final InputView input;
+    private final OutputView output;
     private final BridgeGame bridgeGame;
     private BridgeBuffer buffer;
 
     public BridgeController(){
-        inputView = new InputView();
-        outputView = new OutputView();
+        input = new InputView();
+        output = new OutputView();
         bridgeGame = new BridgeGame();
     }
 
     public void startGame(){
         int size = inputSize();
-        handleStartingGame(size);
+        bridgeGame.start(size);
         playing(size);
     }
 
     private int playing(int size){
         for(int step = 0; step < size; step++) {
             if (checkAnswer(step)) {
-                outputView.printMap(buffer.running());
+                output.printMap(buffer.running());
                 continue;
             }
             return judgeGameStatus(step, size);
@@ -38,65 +38,62 @@ public class BridgeController {
     }
     private int inputSize(){
         try {
-            outputView.printIntro();
-            return inputView.readBridgeSize();
+            output.printIntro();
+            return input.readBridgeSize();
         }catch (IllegalArgumentException e){
-            outputView.printException(e.getMessage());
-            return handleStartGame();
+            output.printException(e.getMessage());
+            return inputSize();
         }
     }
-    private String handleMoveGame(){
+    private String inputMove(){
         try {
-            outputView.printMove();
-            String letter = inputView.readMoving();
-            Column.validateLetter(letter);
-            return letter;
+            output.printMove();
+            return input.readMoving();
         }catch (IllegalArgumentException e){
-            outputView.printException(e.getMessage());
-            return handleMoveGame();
+            output.printException(e.getMessage());
+            return inputMove();
         }
     }
     private boolean checkAnswer(int step){
-        String letter = handleMoveGame();
-        Column answer = bridgeGame.move(step,letter);
-        if(answer != Column.NONE){
-            buffer.addColumn(answer);
+        String position = inputMove();
+        Column result = bridgeGame.move(step,position);
+        if(result.isAnswer()){
+            buffer.addColumn(result);
             return true;
         }
         return false;
     }
 
     private int judgeGameStatus(int step, int size){
-        outputView.printMap(buffer.fail(step,bridgeGame));
+        output.printMap(buffer.fail(step,bridgeGame));
         return checkRetry(size);
     }
 
 
     private int checkRetry(int size){
-        String letter = handleRetryGame();
+        String letter = inputRetry();
         if(letter.equals(GameMessage.RETRY)){
             bridgeGame.retry();
             return playing(size);
         }
         return failGame();
     }
-    private String handleRetryGame(){
+    private String inputRetry(){
         try {
-            outputView.printRetry();
-            String letter = validate.endLetter(inputView.readGameCommand());
-            return letter;
+            output.printRetry();
+            return input.readGameCommand();
         }catch (IllegalArgumentException e){
-            outputView.printException(e.getMessage());
-            return handleRetryGame();
+            output.printException(e.getMessage());
+            return inputRetry();
         }
     }
 
     private int failGame(){
-        outputView.printResult(buffer.over(), GameMessage.FAILURE, bridgeGame.getTotalCount());
+        output.printResult(buffer.over(), GameMessage.FAILURE, bridgeGame.getTotalCount());
         return 0;
     }
     private int succeedGame(){
-        outputView.printResult(buffer.over(),GameMessage.SUCCESS, bridgeGame.getTotalCount());
+        output.printResult(buffer.over(),GameMessage.SUCCESS, bridgeGame.getTotalCount());
         return 0;
     }
 }
