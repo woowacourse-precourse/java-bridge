@@ -51,7 +51,7 @@ public class BridgeMap {
         if(currentUpperLine.get(lastIdx).equals(BridgeShape.ANSWER_BRIDGE)){
             changeLastSymbol(BridgeShape.BLANK, BridgeShape.WRONG_BRIDGE);
         }
-        if(currentUpperLine.get(lastIdx).equals(BridgeShape.ANSWER_BRIDGE)){
+        if(currentLowerLine.get(lastIdx).equals(BridgeShape.ANSWER_BRIDGE)){
             changeLastSymbol(BridgeShape.WRONG_BRIDGE,BridgeShape.BLANK);
         }
     }

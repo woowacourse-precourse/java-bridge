@@ -42,4 +42,13 @@ public class BridgeMapTest {
         assertThat(upperMap).containsExactly("O"," ", " ");
         assertThat(lowerMap).containsExactly(" ","O", "X");
     }
+    @DisplayName("3번째 오답칸으로 이동 시 upper에는 [O,공백, 공백] lower에는 [공백,O, X] 가 저장됨")
+    @Test
+    void caseMoveInCorrect1Step(){
+        bridgeMap.updateCurrentMap(0, false);
+        List<String> upperMap =bridgeMap.getCurrentMap().get(BridgeRoute.UP.getRoute());
+        List<String> lowerMap = bridgeMap.getCurrentMap().get(BridgeRoute.DOWN.getRoute());
+        assertThat(upperMap).containsExactly(" ");
+        assertThat(lowerMap).containsExactly("X");
+    }
 }
