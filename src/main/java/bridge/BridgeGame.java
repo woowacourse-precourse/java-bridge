@@ -1,23 +1,67 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import static bridge.Cross.canNotCross;
+import static bridge.GameCommand.isRetry;
+import static bridge.controller.GameController.addAttempt;
+import static bridge.controller.InputController.getMoving;
+
+import bridge.controller.GameController;
+
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final Bridge bridge;
+    private final Map map;
+    private Cross cross;
+
+    public BridgeGame(Bridge bridge, Map map) {
+        this.bridge = bridge;
+        this.map = map;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public Cross getCross() {
+        return cross;
+    }
+
+    public int move() {
+        int index;
+        for (index = 0; index < bridge.getBridgeSize(); index++) {
+            moveByIndex(index);
+            if (canNotCross(cross)) {
+                break;
+            }
+        }
+        return index;
+    }
+
+    private void moveByIndex(int index) {
+        Moving moving = getMoving();
+
+        cross = Cross.from(bridge.isSameMoving(index, moving));
+
+        updateMap(moving);
+
+        printMap();
+    }
+
+    private void updateMap(Moving moving) {
+        map.update(moving, cross);
+    }
+
+    private void printMap() {
+        map.print();
+    }
+
+    public void retry(GameCommand userCommand) {
+        if (isRetry(userCommand)) {
+            addAttempt();
+
+            GameController.setRetry();
+            return;
+        }
+        GameController.setQuit();
     }
 }
