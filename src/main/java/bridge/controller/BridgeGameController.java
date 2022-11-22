@@ -29,7 +29,9 @@ public class BridgeGameController {
     }
 
     private boolean judgePlayerMove() {
-        bridgeGame.move();
+        InputView inputView = new InputView();
+        String step = inputView.readMoving();
+        bridgeGame.move(step);
         return !bridgeGame.isEnd();
     }
 

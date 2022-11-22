@@ -2,7 +2,6 @@ package bridge.model;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +28,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        InputView inputView = new InputView();
-        String step = inputView.readMoving();
+    public void move(String step) {
         playerMove.add(step);
     }
 
@@ -43,7 +40,7 @@ public class BridgeGame {
     public void retry() {
         this.playerMove = new ArrayList<>();
     }
-    
+
     public List<List<String>> getGameMap() {
         answerMove.makeAllMap(playerMove);
         return answerMove.getBridgeMap();
