@@ -48,6 +48,9 @@ public class BridgeGameServiceImpl implements BridgeGameService {
 
     @Override
     public FinalResultResponseDto getResult(FinalResultRequestDto requestDto) {
-        return null;
+        BridgeGame selectedBridgeGame = bridgeGameDao.selectBridgeGame(requestDto.getSessionId());
+        InGameCommandResponseDto inGameCommandResponseDto =
+                new InGameCommandResponseDto(selectedBridgeGame.getBridgeMap(), selectedBridgeGame.getMoves());
+        return new FinalResultResponseDto(inGameCommandResponseDto, selectedBridgeGame.getTryCount());
     }
 }

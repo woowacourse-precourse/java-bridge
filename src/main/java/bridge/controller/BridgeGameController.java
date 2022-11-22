@@ -1,12 +1,13 @@
 package bridge.controller;
 
 import static bridge.type.GameStateType.*;
-import static bridge.type.GameMessageType.*;
 
 import bridge.data.dto.requestDto.FailMenuRequestDto;
+import bridge.data.dto.requestDto.FinalResultRequestDto;
 import bridge.data.dto.requestDto.GameInitRequestDto;
 import bridge.data.dto.requestDto.InGameCommandRequestDto;
 import bridge.data.dto.responseDto.FailMenuResponseDto;
+import bridge.data.dto.responseDto.FinalResultResponseDto;
 import bridge.data.dto.responseDto.GameInitResponseDto;
 import bridge.data.dto.responseDto.InGameCommandResponseDto;
 import bridge.service.BridgeGameService;
@@ -88,6 +89,9 @@ public class BridgeGameController {
     }
 
     private void result() {
+        FinalResultRequestDto requestDto = new FinalResultRequestDto(sessionId);
+        FinalResultResponseDto responseDto = gameService.getResult(requestDto);
+        outputView.printResult(responseDto);
         state = state.getNextState();
     }
 

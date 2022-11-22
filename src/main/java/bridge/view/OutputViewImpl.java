@@ -72,13 +72,25 @@ public class OutputViewImpl implements OutputView{
 
     @Override
     public void printResult(FinalResultResponseDto responseDto) {
+        System.out.println(RESULT_HEAD);
+        printMap(responseDto.getGameResult());
+        System.out.println(getPassMessage(responseDto));
+        System.out.println(getTryMessage(responseDto));
     }
 
-    public static void main(String[] args) {
-        OutputView outputView = new OutputViewImpl();
-        outputView.printMap(new InGameCommandResponseDto(
-                List.of("U", "U", "D", "U"),
-                List.of("U", "U", "U", "U")
-        ));
+    private String getPassMessage(FinalResultResponseDto responseDto) {
+        return String.format(RESULT_PASS_OR_FAIL.toString(),
+                getPassOrFail(responseDto.getGameResult().isGameCleared()));
+    }
+
+    private String getPassOrFail(boolean isPass) {
+        if (isPass) {
+            return RESULT_PASS.toString();
+        }
+        return RESULT_FAIL.toString();
+    }
+
+    private String getTryMessage(FinalResultResponseDto responseDto) {
+        return String.format(RESULT_TRY_COUNT.toString(), responseDto.getTryCount());
     }
 }

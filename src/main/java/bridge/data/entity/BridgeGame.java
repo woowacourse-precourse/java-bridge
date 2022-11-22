@@ -3,6 +3,7 @@ package bridge.data.entity;
 import static bridge.type.CommonConstantType.MAX_BRIDGE_SIZE;
 import static bridge.type.CommonConstantType.MIN_BRIDGE_SIZE;
 import static bridge.type.ErrorMessageDevType.BAD_BRIDGE_SIZE_MESSAGE;
+import static bridge.type.ErrorMessageDevType.BAD_FAIL_MENU_COMMAND_REQUEST_MESSAGE;
 import static bridge.type.ErrorMessageDevType.BAD_GAME_COMMAND_MESSAGE;
 import static bridge.type.ErrorMessageDevType.BAD_MAP_COMPONENT_MESSAGE;
 
@@ -91,9 +92,16 @@ public class BridgeGame {
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
     public void retry(FailMenuCommandType command) {
+        validateRetryableState();
         if (command == FailMenuCommandType.RETRY) {
             tryCount++;
             moves.clear();
+        }
+    }
+
+    private void validateRetryableState() {
+        if (isPlayerAlive()) {
+            throw new IllegalStateException(BAD_FAIL_MENU_COMMAND_REQUEST_MESSAGE.toString());
         }
     }
 
