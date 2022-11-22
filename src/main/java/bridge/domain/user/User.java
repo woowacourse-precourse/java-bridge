@@ -1,6 +1,7 @@
 package bridge.domain.user;
 
 import bridge.domain.Bridge;
+import bridge.domain.status.UserStatus;
 
 public class User {
     private final UserPath userPath = new UserPath();

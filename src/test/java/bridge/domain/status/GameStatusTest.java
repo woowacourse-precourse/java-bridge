@@ -11,7 +11,7 @@ public class GameStatusTest {
     public void isGameStatusTest() {
         GameStatus gameStatus = GameStatus.RETRY;
 
-        Assertions.assertThat(gameStatus.isGameStatus(GameStatus.RETRY)).isTrue();
+        Assertions.assertThat(gameStatus.checkGameStatus(GameStatus.RETRY)).isTrue();
     }
 
 }

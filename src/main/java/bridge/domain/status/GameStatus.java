@@ -11,7 +11,7 @@ public enum GameStatus {
         this.gameStatus = gameStatus;
     }
 
-    public boolean isGameStatus(GameStatus gameStatus) {
+    public boolean checkGameStatus(GameStatus gameStatus) {
         return this.gameStatus.equals(gameStatus.gameStatus);
     }
 }
