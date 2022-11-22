@@ -9,6 +9,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final int BRIDGE_RANGE_MAX = 20;
+    private static final int BRIDGE_RANGE_MIN = 3;
     OutputView outputView = new OutputView();
 
     /**
@@ -19,12 +21,18 @@ public class InputView {
         String sizeInput = Console.readLine();
         outputView.enterLine();
         try {
+            validateBridgeSizeRange(Integer.parseInt(sizeInput));
             return Integer.parseInt(sizeInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Message.ERROR_NOT_NUMBER.getMessage());
         }
     }
 
+    public void validateBridgeSizeRange(int bridgeSize) {
+        if (bridgeSize > BRIDGE_RANGE_MAX || bridgeSize < BRIDGE_RANGE_MIN) {
+            throw new IllegalArgumentException(Message.ERROR_BRIDGE_SIZE_RANGE.getMessage());
+        }
+    }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
