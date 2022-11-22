@@ -11,6 +11,10 @@ public class BridgeGame {
         this.map = map;
     }
 
+    public Bridge getBridge() {
+        return bridge;
+    }
+
     public void move() {
     }
 
