@@ -1,11 +1,9 @@
 package bridge.validator;
 
 import bridge.constant.ErrorConstant;
+import bridge.enums.GameCommand;
 
 public class GameRetryOrEndCommandValidator {
-
-    private static final String RETRY_COMMAND = "R";
-    private static final String END_COMMAND = "Q";
 
     public void validate(String gameRetryOrEndCommand) {
         if (isGameRetryOrEndCommandNotROrNotQ(gameRetryOrEndCommand)) {
@@ -14,6 +12,7 @@ public class GameRetryOrEndCommandValidator {
     }
 
     private boolean isGameRetryOrEndCommandNotROrNotQ(String gameRetryOrEndCommand) {
-        return !gameRetryOrEndCommand.equals(RETRY_COMMAND) && !gameRetryOrEndCommand.equals(END_COMMAND);
+        return !gameRetryOrEndCommand.equals(GameCommand.RETRY.getCommand())
+                && !gameRetryOrEndCommand.equals(GameCommand.END.getCommand());
     }
 }
