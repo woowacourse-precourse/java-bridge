@@ -32,11 +32,7 @@ public class BridgeGameController {
             List<String> bridgeStatus = bridgeGame.move(movingCommand, bridge);
             outputView.printMap(bridge, bridgeStatus);
 
-            if (bridgeGame.isSuccess(bridge)) {
-                outputView.printResult();
-                outputView.printSuccess();
-                break;
-            }
+            if (gameSuccess(bridge)) break;
 
             if (bridgeGame.isFailure()) {
                 String gameCommand = inputView.readGameCommand();
@@ -53,5 +49,15 @@ public class BridgeGameController {
                 }
             }
         }
+    }
+
+    private boolean gameSuccess(List<String> bridge) {
+        if (bridgeGame.isSuccess(bridge)) {
+            outputView.printResult();
+            outputView.printSuccess();
+            return true;
+        }
+
+        return false;
     }
 }
