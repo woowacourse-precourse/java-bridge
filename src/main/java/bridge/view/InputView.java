@@ -11,8 +11,8 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
-    private static final String INPUT_MOVE_DIRECTION = "이동할 칸을 선택해주세요. (위:U, 아래:D)";
-    private static final String INPUT_ASK_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도:R, 종료:Q)";
+    private static final String INPUT_MOVE_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String INPUT_ASK_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private InputView() {
     }
