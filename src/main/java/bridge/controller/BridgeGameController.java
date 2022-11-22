@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.model.BridgeGame;
 import bridge.model.Plate;
-import bridge.util.Rules;
+import bridge.model.PlayerStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -52,7 +52,7 @@ public class BridgeGameController {
     // 3-1. 한 라운드를 진행 시키는 메소드를 호출 그 결과 성공하지 못했다면 재시작 여부 확인
     public void playGame() {
         playRound();
-        if (!(bridgeGame.isSuccessCrossingBridge())) {
+        if (bridgeGame.checkPlayerStatus() != PlayerStatus.COMPLETE_CROSSING_BRIDGE) {
             askRetry();
         }
     }
@@ -66,8 +66,8 @@ public class BridgeGameController {
     }
 
     private boolean isSuccessAndNotVictory() {
-        return (!bridgeGame.isSuccessCrossingBridge())
-                && (bridgeGame.isSuccessNextStep());
+        return (bridgeGame.checkPlayerStatus() != PlayerStatus.COMPLETE_CROSSING_BRIDGE)
+                && (bridgeGame.possibleNextStep());
     }
 
     // 3-3. 다리를 선택(입력)
@@ -84,7 +84,7 @@ public class BridgeGameController {
     // 3-4. 선택한 다리로 이동 후 경로 표시(출력)
     public void moveBridge(String nextStep) {
         bridgeGame.move(nextStep);
-        outputView.printMap(bridgeGame.isSuccessNextStep(), bridgeGame.getPlayerPath());
+        outputView.printMap(bridgeGame.possibleNextStep(), bridgeGame.getPlayerPath());
     }
 
     // 3-5. 게임 재시작 여부 선택(입력)
@@ -109,9 +109,9 @@ public class BridgeGameController {
      * 4. 결과(출력)
      */
     public void gameResult() {
-        boolean isVictory = bridgeGame.isSuccessCrossingBridge();
+        PlayerStatus playerStatus = bridgeGame.checkPlayerStatus();
         int tryCount = bridgeGame.getTryCount();
         List<Plate> playerPath = bridgeGame.getPlayerPath();
-        outputView.printResult(isVictory, tryCount, playerPath);
+        outputView.printResult(playerStatus, tryCount, playerPath);
     }
 }

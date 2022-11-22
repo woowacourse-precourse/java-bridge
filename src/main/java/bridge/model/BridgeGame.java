@@ -32,12 +32,13 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean isSuccessCrossingBridge() {
+    public PlayerStatus checkPlayerStatus() {
         List<Plate> playerPath = this.playerPath.getPlayerPath();
-        return bridge.sameAs(playerPath);
+        boolean isSuccess = bridge.sameAs(playerPath);
+        return PlayerStatus.findBySurvive(isSuccess);
     }
 
-    public boolean isSuccessNextStep() {
+    public boolean possibleNextStep() {
         int currentIndex = playerPath.currentPosition();
         Plate currentPlate = playerPath.currentPlate();
         return bridge.possibleNextStep(currentIndex, currentPlate);

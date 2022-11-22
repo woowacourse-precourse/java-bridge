@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.Plate;
+import bridge.model.PlayerStatus;
 
 import java.util.List;
 
@@ -23,19 +24,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printMap(boolean isSuccess, List<Plate> playerPath) {
-        System.out.println(tracePathByPlate(isSuccess, playerPath, Plate.UP_PLATE));
-        System.out.println(tracePathByPlate(isSuccess, playerPath, Plate.DOWN_PLATE));
+    public void printMap(boolean possibleNextStep, List<Plate> playerPath) {
+        System.out.println(tracePathByPlate(possibleNextStep, playerPath, Plate.UP_PLATE));
+        System.out.println(tracePathByPlate(possibleNextStep, playerPath, Plate.DOWN_PLATE));
         System.out.println();
     }
 
-    private String tracePathByPlate(boolean isSuccess, List<Plate> playerPath, Plate bridgePlate) {
+    private String tracePathByPlate(boolean possibleNextStep, List<Plate> playerPath, Plate bridgePlate) {
         StringBuilder plateRecord = new StringBuilder(MAP_PREFIX);
         for (int pathIndex = 0; pathIndex < playerPath.size() - 1; pathIndex++) {
             plateRecord.append(getStringPlate(playerPath.get(pathIndex), bridgePlate));
             plateRecord.append(MAP_SEPARATOR);
         }
-        plateRecord.append(getLastPlate(isSuccess, playerPath.get(playerPath.size() - 1), bridgePlate));
+        plateRecord.append(getLastPlate(possibleNextStep, playerPath.get(playerPath.size() - 1), bridgePlate));
         plateRecord.append(MAP_SUFFIX);
         return plateRecord.toString();
     }
@@ -47,21 +48,22 @@ public class OutputView {
         return MAP_NOT_STEP;
     }
 
-    private String getLastPlate(boolean isSuccess, Plate playerStep, Plate bridgePlate) {
+    private String getLastPlate(boolean possibleNextStep, Plate playerStep, Plate bridgePlate) {
         if (!playerStep.equals(bridgePlate)) {
             return MAP_NOT_STEP;
         }
-        if (isSuccess) {
+        if (possibleNextStep) {
             return MAP_SUCCESS_STEP;
         }
         return MAP_FAIL_STEP;
     }
 
-    public void printResult(boolean isVictory, int tryCount, List<Plate> playerPath) {
+    public void printResult(PlayerStatus playerStatus, int tryCount, List<Plate> playerPath) {
         System.out.println(NOTICE_RESULT);
-        printMap(isVictory, playerPath);
+        boolean possibleNextStep = (playerStatus == PlayerStatus.COMPLETE_CROSSING_BRIDGE);
+        printMap(possibleNextStep, playerPath);
         String successOrFail = RESULT_FAIL;
-        if (isVictory) {
+        if (playerStatus == PlayerStatus.COMPLETE_CROSSING_BRIDGE) {
             successOrFail = RESULT_SUCCESS;
         }
         System.out.println(NOTICE_RESULT_VICTORY + successOrFail);

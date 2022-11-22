@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.Plate;
+import bridge.model.PlayerStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -51,7 +52,7 @@ public class OutputViewTest {
     @Test
     void printResultSuccessTest() {
         List<Plate> path = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
-        outputView.printResult(true, 5, path);
+        outputView.printResult(PlayerStatus.COMPLETE_CROSSING_BRIDGE, 5, path);
 
         String expectedOutput
                 = "최종 게임 결과\n[ O |   | O ]\n[   | O |   ]\n\n게임 성공 여부: 성공\n총 시도한 횟수: 5";
@@ -64,7 +65,7 @@ public class OutputViewTest {
     @Test
     void printResultFailTest() {
         List<Plate> path = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
-        outputView.printResult(false, 5, path);
+        outputView.printResult(PlayerStatus.FALL_BRIDGE, 5, path);
 
         String expectedOutput
                 = "최종 게임 결과\n[ O |   | X ]\n[   | O |   ]\n\n게임 성공 여부: 실패\n총 시도한 횟수: 5";
