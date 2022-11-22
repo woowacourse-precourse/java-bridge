@@ -65,15 +65,15 @@
 
 ## Model
 
-### 명령 실행(executeCommand)
+### 명령 실행(ExecuteCommand)
 - [ ] 다리 이동
+- [ ] 현재 다리 상황 기록
 - [ ] 게임 재시작
 - [ ] 게임 종료
 
-### 명령 판단(judgeCommand)
+### 명령 판단(JudgeCommand)
 - [ ] 다리 이동 성패 여부 판단
 - [ ] 게임 재시작 / 종료 여부 판단
-- [ ] 현재 다리 상황 기록
 
 ### 다리 생성(BridgeMaker)
 - [x] 다리 생성
