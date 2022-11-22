@@ -1,12 +1,13 @@
-package bridge;
+package bridge.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import bridge.domain.BridgeGame;
 
 class BridgeGameTest {
 	List<String> bridge;
