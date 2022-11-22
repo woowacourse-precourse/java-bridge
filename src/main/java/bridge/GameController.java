@@ -9,16 +9,13 @@ import views.OutputView;
 public class GameController {
     public static void bridgeGameProcess() {
 
-        // TODO: 프로그램 구현
         int gameCount = 1;
         OutputView outputView = gameStart();
 
         InputView inputView = new InputView();
         int size = inputView.readBridgeSize();
 
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(size);
+        List<String> bridge = getBridge(size);
 
         BridgeGame bridgeGame = new BridgeGame();
 
@@ -28,6 +25,13 @@ public class GameController {
         outputView.printResult(upstairsBridge, downstairsBridge, gameCount);
         movementClear(upstairsBridge, downstairsBridge);
     }
+
+    private static List<String> getBridge(int size) {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        return bridgeMaker.makeBridge(size);
+    }
+
     private static OutputView gameStart() {
         OutputView outputView = new OutputView();
         outputView.gameStart();

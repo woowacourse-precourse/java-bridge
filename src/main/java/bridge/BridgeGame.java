@@ -47,7 +47,6 @@ public class BridgeGame {
         getDownstairsBridge(direction, bridge, numberOfTrying);
     }
 
-
     public static boolean retry(String command) {
         return !Objects.equals(command, QUIT);
     }
