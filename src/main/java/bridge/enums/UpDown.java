@@ -9,8 +9,8 @@ public enum UpDown {
 	DOWN(0, "D");
 
 
-	private int numValue;
-	private String strValue;
+	private final int numValue;
+	private final String strValue;
 
 	UpDown(int numValue, String strValue) {
 		this.numValue = numValue;
@@ -29,7 +29,7 @@ public enum UpDown {
 		return strValue;
 	}
 
-	public static List<String> getStrValues(){
+	public static List<String> getStrValues() {
 		return Arrays.stream(values())
 				.map(UpDown::getStrValue)
 				.collect(Collectors.toList());
