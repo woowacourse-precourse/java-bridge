@@ -45,11 +45,11 @@ public class BridgeGameController {
     private void startGame(){
         outputView.printStart();
         createBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void run(){
         outputView.initBridgeState();
-        bridge = bridgeMaker.makeBridge(bridgeSize);
         boolean go = true;
         for (int index = 0;index<bridgeSize && go;index++) go = crossBridge(index);
         retryOrEnd(go);
