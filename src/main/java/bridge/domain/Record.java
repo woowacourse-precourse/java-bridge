@@ -26,8 +26,8 @@ public class Record {
 
     public List<String> getRecordedMap() {
         List<String> map = new ArrayList<>();
-        map.add(getResultMessage(upBridgeResult));
-        map.add(getResultMessage(downBridgeResult));
+        map.add(getFormedMap(upBridgeResult));
+        map.add(getFormedMap(downBridgeResult));
 
         return map;
     }
@@ -75,7 +75,7 @@ public class Record {
         upBridgeResult.add(MoveResults.NONE.getValue());
     }
 
-    private String getResultMessage(List<String> bridgeResult) {
+    private String getFormedMap(List<String> bridgeResult) {
         return String.join("|", bridgeResult);
     }
 
