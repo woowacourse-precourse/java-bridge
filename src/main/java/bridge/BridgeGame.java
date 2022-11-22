@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
+    static List<String> trialMap_up = new ArrayList<>();
+    static List<String> trialMap_down = new ArrayList<>();
+    static final int MAXIMUM_LENGTH = 20;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+
+
+    public void move(String userDirection, List<String> bridge, int successCount) {
+        moveUpRoadEqualCount(userDirection, bridge, successCount);
+        moveUpRoadUnequalCount(userDirection, bridge, successCount);
+        moveDownRoadEqualCount(userDirection, bridge, successCount);
+        moveDownRoadUnequalCount(userDirection, bridge, successCount);
     }
 
     public void moveUpRoadEqualCount(String userDirection, List<String> bridge, int successCount) {
