@@ -33,8 +33,7 @@ public class BridgeGame {
                 quit = true;
             }
         } else {
-            position++;
-            outputView.printMap(bridge, position, true);
+            outputView.printMap(bridge, ++position, true);
         }
     }
 
