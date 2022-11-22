@@ -9,13 +9,24 @@ public class ViewService {
     private final InputView inputView = new InputView();
 
     public int requestBridgeSize() {
-        outputView.askBridgeSize();
-        return inputView.readBridgeSize();
+        try{
+            outputView.askBridgeSize();
+            return inputView.readBridgeSize();
+        } catch (IllegalArgumentException e){
+            outputView.printError(e.getMessage());
+            return requestBridgeSize();
+        }
+
     }
 
     public String requestMovement() {
-        outputView.askMovement();
-        return inputView.readMovement();
+        try{
+            outputView.askMovement();
+            return inputView.readMovement();
+        }catch (IllegalArgumentException e){
+            outputView.printError(e.getMessage());
+            return requestMovement();
+        }
     }
 
     public String requestDecision() {
