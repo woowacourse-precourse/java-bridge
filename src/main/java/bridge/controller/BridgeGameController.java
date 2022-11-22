@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.domain.Bridge.runMoving;
+
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
@@ -11,33 +13,24 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    boolean successMoving = true;
-
-    public void startGame() {
-
+    public  void playGame(){
+        Bridge bridge = startGame();
+        runGame(bridge);
     }
-
-
-    public void runGame() {
-        BridgeGame bridgeGame = new BridgeGame();
+    public Bridge startGame() {
         Bridge bridge = new Bridge(InputView.readBridgeSize());
-        List<MoveResult> moveResult = new ArrayList<>();
-        if (runMoving(bridgeGame, bridge, moveResult)){
-            bridgeGame.retry();
+        return bridge;
+    }
+
+
+    public static void runGame(Bridge bridge) {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        if (runMoving(bridgeGame, bridge)){
+            bridgeGame.retry(bridge);
         }
     }
 
 
-    private boolean runMoving(BridgeGame bridgeGame, Bridge bridge, List<MoveResult> moveResult) {
-        boolean movingFail = true;
-        while (movingFail) {
-            bridgeGame.move(moveResult, bridge);
-            OutputView.printMap(moveResult);
-            movingFail = bridge.getCurrentResult();
-            if (bridge.stepCount == bridge.bridge.size()) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 }

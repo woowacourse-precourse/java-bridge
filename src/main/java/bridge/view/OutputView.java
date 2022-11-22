@@ -21,8 +21,8 @@ public class OutputView {
 
     public static void printUpMap(List<MoveResult> moveResult){
         StringJoiner upResult = new StringJoiner(" | ", "[ ", " ]");
-
         for(int i = 0; i<moveResult.size(); i++){
+            moveResult.get(i).pringMoveResult(moveResult.get(i));
             upResult.add(createUpMap(moveResult.get(i)));
         }
 
@@ -32,8 +32,8 @@ public class OutputView {
 
     public static void printDownMap(List<MoveResult> moveResult){
         StringJoiner downResult = new StringJoiner(" | ", "[ ", " ]");
-
         for(int i = 0; i<moveResult.size(); i++){
+            moveResult.get(i).pringMoveResult(moveResult.get(i));
             downResult.add(createDownMap(moveResult.get(i)));
         }
 
@@ -42,20 +42,20 @@ public class OutputView {
     }
 
     private static String createUpMap(MoveResult moveResult){
-        if(moveResult.isUpMove() && moveResult.isSuccessMove()){
+        if(moveResult.isUpMove(moveResult) && moveResult.isSuccessMove(moveResult)){
             return "O";
         }
-        if(moveResult.isUpMove() && !moveResult.isSuccessMove()){
+        if(moveResult.isUpMove(moveResult) && !moveResult.isSuccessMove(moveResult)){
             return "X";
         }
         return " ";
     }
 
-    private static String createDownMap(MoveResult bridgeResult){
-        if(!bridgeResult.isUpMove() && bridgeResult.isSuccessMove()){
+    private static String createDownMap(MoveResult moveResult){
+        if(!moveResult.isUpMove(moveResult) && moveResult.isSuccessMove(moveResult)){
             return "O";
         }
-        if(!bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()){
+        if(!moveResult.isUpMove(moveResult) && !moveResult.isSuccessMove(moveResult)){
             return "X";
         }
         return " ";
