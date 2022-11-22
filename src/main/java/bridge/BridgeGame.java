@@ -21,8 +21,7 @@ public class BridgeGame {
     Bridge bridge;
     private int tryNum = 1;
     private boolean isSuccess = true;
-    public void init() {
-        String input = inputview.readBridgeSize();
+    public void init(String input){
         validate.validateNumberRange(input, MINBRIDGELEN, MAXBRIDGELEN);
         int bridgeLen = Integer.parseInt(input);
         List<String> answerBridge = bridgeMaker.makeBridge(bridgeLen);
@@ -33,34 +32,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move() {
-        String direction = inputview.readMoving();
-        validate.validateContainWord(direction, UP, DOWN);
+    public List<String> move(String direction) {
+        validate.validateContainWord(direction,UP,DOWN);
         visited.add(direction);
-        printUpBridge();
-        printDownBridge();
-        int index = visited.size() - 1;
-        return bridge.isRightDirection(index, direction);
+        return visited;
+
     }
-    private void printUpBridge() {
-        List<String> upBridge = new ArrayList<>();
-        for(int i = 0; i < visited.size(); i++) {
-            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
-            String result = getResult(i, DOWN, rightDirection);
-            upBridge.add(result);
-        }
-        outputView.printMap(upBridge);
+    public boolean isRightDirection(int idx, String direction) {
+        return bridge.isRightDirection(idx, direction);
     }
-    private void printDownBridge() {
-        List<String> downBridge = new ArrayList<>();
-        for(int i = 0; i < visited.size(); i++) {
-            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
-            String result = getResult(i, UP, rightDirection);
-            downBridge.add(result);
-        }
-        outputView.printMap(downBridge);
-    }
-    private String getResult(int i, String direction, boolean rightDirection) {
+
+
+    public String getResult(int i, String direction, boolean rightDirection) {
         String result = "O";
         if(!rightDirection) {
             isSuccess = false;
@@ -83,8 +66,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        String select = inputview.readGameCommand();
+    public boolean retry(String select) {
         validate.validateContainWord(select, RESTART, QUIT);
         if(select.equals("R")) {
             reStartInit();
@@ -97,16 +79,14 @@ public class BridgeGame {
         tryNum += 1;
         isSuccess = true;
     }
-
-    public void printGameResult() {
-        outputView.printEnding();
-        printUpBridge();
-        printDownBridge();
-        boolean isCompleted = bridge.isCrossedBridge(visited);
+    public int getTryNum(){
+        return tryNum;
+    }
+    public String getGameResult(){
         String result = "실패";
-        if(isGameCompleted()) {
+        if(isGameCompleted()){
             result = "성공";
         }
-        outputView.printResult(result, tryNum);
+        return result;
     }
 }
