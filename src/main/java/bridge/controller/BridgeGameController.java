@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameController {
-    // view 에서 입력받은 값을 model로 전달하는 컨트롤러
     private final InputView INPUT_VIEW;
     private final OutputView OUTPUT_VIEW;
     private BridgeGame bridgeGame;
@@ -51,7 +50,7 @@ public class BridgeGameController {
                 if (retryAnswer.equals("R")) {
                     doGame(bridgeSize);
                 } else {
-                    endGame(false);
+                    endGame(false, bridgeSize, upResults, downResults);
                 }
 
                 return;
@@ -59,10 +58,12 @@ public class BridgeGameController {
         }
 
         count++;
-        endGame(true);
+        endGame(true, bridgeSize, upResults, downResults);
     }
 
-    private void endGame(boolean isWinning) {
-        OUTPUT_VIEW.printResult(isWinning, count);
+    private void endGame(boolean isWinning, int bridgeSize, List<String> upResults, List<String> downResults) {
+        System.out.println("최종 게임 결과");
+        OUTPUT_VIEW.printMap(upResults, downResults, bridgeSize - 1);
+        OUTPUT_VIEW.printResult(isWinning, count, bridgeSize);
     }
 }
