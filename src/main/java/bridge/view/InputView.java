@@ -48,12 +48,8 @@ public class InputView {
     }
 
     private String getInput(String message) {
-        try {
-            System.out.println(message);
-            return Console.readLine();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
-        }
+        System.out.println(message);
+        return Console.readLine();
     }
 
     private void validateAllNumber(String input) {
