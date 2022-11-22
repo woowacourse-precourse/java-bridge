@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.Map;
@@ -40,5 +41,16 @@ class MovingMapTest {
 
         assertThat(uStatus).isEqualTo(resultOfU);
         assertThat(dStatus).isEqualTo(resultOfD);
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true,false})
+    @DisplayName("마지막 입력으로 인해 저장된 결과값이 성공인지 확인할 수 있다.")
+    void tryIsLastStepCorrectSuccess(boolean moveStatus) {
+        movingMap.putStatus("U", moveStatus);
+
+        boolean lastStepCorrect = movingMap.isLastStepCorrect();
+
+        assertThat(lastStepCorrect).isEqualTo(moveStatus);
     }
 }
