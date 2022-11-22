@@ -59,8 +59,6 @@
 ## Domain
 ### BridgeMaker
 - [x] 다리 생성
-  - [x] 숫자를 이동 방향 값으로 변환
-
 
 ### BridgeRandomNumberGenerator
 - [x] 랜덤 숫자 생성 (기작성된 코드)
@@ -114,6 +112,7 @@
 
 ### BridgeRule : 다리 게임 규칙 관련 수
 - [x] 구현하기
+- [x] 랜덤 숫자를 이동 방향 값으로 변환
 ---
 
 ## Test
