@@ -15,14 +15,6 @@ public class Bridge {
         return currentBlock;
     }
 
-    public void updateCurrentBlock() {
-        currentBlock += 1;
-    }
-
-    public void initGame() {
-        currentBlock = 0;
-    }
-
     public int getLastBlock() {
         return bridge.size() - 1;
     }
