@@ -13,7 +13,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> dashboard, int count) {
-        for(int i=0; i<dashboard.size(); i++) {
+        for(int i=dashboard.size()-1; i>=0; i--) {
             System.out.print("[ ");
             for(int j=0; j<count-1; j++){
                 System.out.print(dashboard.get(i).get(j)+" | ");
