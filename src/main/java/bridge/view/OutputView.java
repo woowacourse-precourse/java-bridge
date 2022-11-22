@@ -11,6 +11,7 @@ public class OutputView {
     private static final String OUTPUT_MESSAGE_SUCCESSORFAIL = "게임 성공 여부: ";
     private static final String OUTPUT_MESSAGE_TRIAL = "총 시도한 횟수: ";
     private static final String CLOSED_BRACKET = " ]";
+    private static final String PARTITION = " | ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -27,7 +28,7 @@ public class OutputView {
     private void printUp(String up) {
         System.out.print(up.substring(0, 3));
         for (int i = 3; i < up.length(); i++) {
-            System.out.printf(" | %c", up.charAt(i));
+            System.out.printf(PARTITION + "%c", up.charAt(i));
         }
         System.out.println(CLOSED_BRACKET);
     }
