@@ -11,7 +11,11 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private static final InputView inputView = new InputView();
 
+    public static InputView getInstance() {
+        return inputView;
+    }
 
     /**
      * 다리의 길이를 입력받는다.
