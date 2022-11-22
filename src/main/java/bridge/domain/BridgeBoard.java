@@ -31,11 +31,6 @@ public class BridgeBoard {
 
     }
 
-    public void addWall(){
-        downBoard.add("|");
-        upBoard.add("|");
-    }
-
     public String showUpBoard(){
         return String.join(" | ", upBoard);
     }

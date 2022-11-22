@@ -10,7 +10,7 @@ public class BridgeGame {
 
     private BridgeBoard bridgeBoard;
     private int current;
-    private int chance;
+    private int chance=1;
 
     public BridgeGame(){
        init();
@@ -19,7 +19,6 @@ public class BridgeGame {
     public void init(){
         bridgeBoard = new BridgeBoard();
         current =0;
-        chance=1;
     }
 
 
@@ -69,8 +68,8 @@ public class BridgeGame {
      */
     public boolean retry(List<String> bridge,String command) {
         if(command=="R"){
-            init();
             chance+=1;
+            init();
             return false;
         }
         current=bridge.size();
