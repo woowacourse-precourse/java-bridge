@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.code.BridgePosition;
 import java.util.ArrayList;

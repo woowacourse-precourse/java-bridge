@@ -1,7 +1,6 @@
 package bridge.view;
 
-import bridge.domain.GameResult;
-import java.util.List;
+import bridge.GameResult;
 
 
 /**

@@ -3,7 +3,6 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.code.GameStatus;
-import bridge.domain.BridgeGame;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
