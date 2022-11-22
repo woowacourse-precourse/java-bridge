@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.util.validator.BridgeLengthValidator;
 import bridge.util.validator.GameCommandValidator;
 import bridge.util.validator.MovingValidator;
 import camp.nextstep.edu.missionutils.Console;
@@ -17,17 +18,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        int bridgeSize = convertToInteger(input);
+        BridgeLengthValidator.validate(input);
+        int bridgeSize = Integer.parseInt(input);
         return bridgeSize;
-    }
-
-    public int convertToInteger(String input) {
-        try {
-            int convertedInput = Integer.parseInt(input);
-        } catch (Exception exception) {
-            throw new IllegalArgumentException(NUMERIC_ERROR_MESSAGE.getMessage());
-        }
-        return Integer.parseInt(input);
     }
 
     /**

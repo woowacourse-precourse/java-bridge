@@ -32,13 +32,9 @@ public class BridgeGameController {
     }
 
     private BridgeGame generateGame() {
-        while (true) {
-            try {
-                return new BridgeGame(generateBridge(), new Player());
-            } catch (IllegalArgumentException exception) {
-                outputView.printError(exception);
-            }
-        }
+        Bridge bridge = generateBridge();
+        Player player = new Player();
+        return new BridgeGame(bridge, player);
     }
 
     private Bridge generateBridge() {
@@ -49,9 +45,14 @@ public class BridgeGameController {
     }
 
     private int getBridgeSize() {
-        outputView.printBridgeSizeInputRequest();
-        int bridgeSize = inputView.readBridgeSize();
-        return bridgeSize;
+        while (true) {
+            try {
+                outputView.printBridgeSizeInputRequest();
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException exception) {
+                outputView.printError(exception);
+            }
+        }
     }
 
     private void playGame(BridgeGame bridgeGame) {
