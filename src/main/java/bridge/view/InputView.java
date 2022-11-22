@@ -8,7 +8,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-
     public int readBridgeSize() {
         String bridgeSize = readLine().trim();
         validateBridgeSize(bridgeSize);
@@ -20,7 +19,7 @@ public class InputView {
         validateMoving(moving);
         return moving;
     }
-    
+
     public String readGameCommand() {
         String gameCommand = readLine().trim();
         validateGameCommand(gameCommand);
