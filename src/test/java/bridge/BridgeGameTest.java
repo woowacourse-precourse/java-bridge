@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import bridge.gameController.GameController;
 import bridge.service.BridgeGame;
+import bridge.view.OutputView;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,8 @@ class BridgeGameTest {
     private BridgeGame bridgeGame = new BridgeGame();
 
     private GameController gameController = new GameController();
+
+    private OutputView outputView = new OutputView();
 
     @Nested
     class makeBridgeTest {
@@ -52,7 +55,6 @@ class BridgeGameTest {
             bridge = List.of("U", "D", "U", "D");
         }
 
-        String userMove = "U";
         int location = 0;
 
         @DisplayName("생성된 다리 후 사용자 입력값이 U 일 때 값 확인")
@@ -74,6 +76,32 @@ class BridgeGameTest {
             assertThat(bridgeGame.retry(element)).isEqualTo(expected);
         }
     }
+
+    @Nested
+    class printMapTest {
+        @DisplayName("처음 이동 시 맞았을 때 지도 확인")
+        @Test
+        void printMapFirstTest() {
+            String userMove = "U";
+            int location = 0;
+            outputView.printMap(true, userMove, location);
+            String result1 = outputView.getUpSb().toString();
+            String result2 = outputView.getDownSb().toString();
+            assertThat(result1 + result2).contains("[ O ][   ]");
+        }
+
+        @DisplayName("처음 이동 시 틀렸을 때 지도 확인")
+        @Test
+        void printMapSecondTest2() {
+            String userMove = "U";
+            int location = 0;
+            outputView.printMap(false, userMove, location);
+            String result1 = outputView.getUpSb().toString();
+            String result2 = outputView.getDownSb().toString();
+            assertThat(result1 + result2).contains("[ X ][   ]");
+        }
+    }
+
 }
 
 
