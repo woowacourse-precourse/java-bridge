@@ -25,12 +25,16 @@ public class BridgeMaker {
         List<String> bridgeAnswers = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            if(bridgeNumberGenerator.generate() == DOWN_VALUE) {
+            if(isDownValue(bridgeNumberGenerator.generate())) {
                 bridgeAnswers.add(DOWN_SIGN);
                 continue;
             }
             bridgeAnswers.add(UP_SIGN);
         }
         return bridgeAnswers;
+    }
+
+    private boolean isDownValue(int randomValue) {
+        return randomValue == DOWN_VALUE;
     }
 }
