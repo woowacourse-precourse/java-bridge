@@ -26,6 +26,8 @@ public class GamePlay {
         } catch (IllegalArgumentException e) {
             OutputView outputView = new OutputView();
             outputView.printErrorMessage(e.getMessage());
+        } catch (Exception e) {
+            outputView.printMove(e.getMessage());
         }
     }
 
