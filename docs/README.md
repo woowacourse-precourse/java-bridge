@@ -2,46 +2,46 @@
 
 ### 다리 생성 `BridgeMaker#makeBridge()`
 
-- [x] 사용자에게 생성할 다리 길이를 입력 받는다. `GameController#setBridgeSize()`
-- [x] 입력값이 숫자인지 확인하고, 숫자가 아니면 예외 처리한다. `Util#validateBridgeSizeType()`
-- [x] 예외 처리 후에, 그 부분부터 입력을 다시 받는다. `GameController#setBridgeSize()`
+- [x] 사용자에게 생성할 다리 길이를 입력 받는다. `InputView#readBridgeSize()`
+- [x] 입력값이 숫자인지 확인하고, 숫자가 아니면 예외 처리한다. `BridgeMaker#validateBridgeSizeType()`
+- [x] 예외 처리 후에, 그 부분부터 입력을 다시 받는다. `InputView#readBridgeSize()`
 - [x] 3 이상 20 이하의 숫자가 아니면 예외 처리한다. `BridgeMaker#validateBridgeSizeRange()`
 - [x] 다리 길이 만큼 0과 1 중 무작위 값을 생성한다. `BridgeNumberGenerator#generate()`
-- [x] 무작위 값이 0인 경우 "D", 1인 경우 "D"로 이루어진 **다리**`리스트 형태`를 반환한다. `BridgeMaker#makeBridge()`
+- [x] 무작위 값이 0인 경우 "D", 1인 경우 "D"로 이루어진 **다리**를 `리스트 형태`로 반환한다. `BridgeMaker#makeBridge()`
 
 ### 다리 게임
 
-- [x] 다리를 불러오고, 시도한 회수를 1로 초기화한다.
+- [x] 다리를 불러오고, 시도한 회수를 1로 초기화한다. `BridgeGame`
 - [x] 사용자에게 `이동 방향`을 입력받는다. `InputView#readMoving()`
-- [x] "U", "D" 중의 입력값이 아닌 경우 예외 처리한다. `Util#validateMovingInput()`
-- [x] 예외 문구 출력 후 다시 이동 방향부터 입력받는다.
-- [x] 이동 방향 입력값과 다리의 값을 비교해 두 값이 같으면`SURVIVE` O, 다르면 X`DIE`를 다이어그램에 추가한다.
-- [x] 위 반환값으로 모든 이동 후에 진행 상황 다이어그램을 출력한다.
-- [x] 비교한 결과가 같은 경우, 이동 방향 입력값을 받아 다음 다리의 값을 비교한다.
-- [x] 비교한 결과가 같으며 다리의 모든 값을 비교한 경우 성공 처리`SUCCESS`하고 게임을 종료한다.
-- [x] 비교한 결과가 다른 경우, 게임을 실패 처리`FAIL`한다.
+- [x] "U", "D" 중의 입력값이 아닌 경우 예외 처리한다. `Position`
+- [x] 예외 문구 출력 후 다시 이동 방향부터 입력받는다. `InputView#readMoving()`
+- [x] 이동 방향 입력값과 다리의 값을 비교해 두 값이 같으면`SURVIVE` O, 다르면 X`DIE`를 다이어그램에 추가한다. `Diagram#updateDiagrams`
+- [x] 위 반환값으로 모든 이동 후에 진행 상황 다이어그램을 출력한다. `GameController#moveOnce => OutputView#printMap 호출`
+- [x] 비교한 결과가 같은 경우, 이동 방향 입력값을 받아 다음 다리의 값을 비교한다. `GameController#moving`
+- [x] 비교한 결과가 같으며 다리의 모든 값을 비교한 경우 성공 처리`SUCCESS`하고 게임을 종료한다. `GameController#handleSuccess`
+- [x] 비교한 결과가 다른 경우, 게임을 실패 처리`FAIL`한다. `GameController#handleFail`
 
 ### 재시작 or 종료
 
-- [x] 게임에 실패한 경우 사용자에게 "R", "Q" 중의 입력값을 받아 재시작 여부를 결정한다.
-- [x] "R", "Q" 중의 입력값이 아닌 경우 예외 처리한다.
-- [x] 예외 문구 출력 후 다시 재시작 여부부터 입력받는다.
-- [x] "R"을 입력해 재시작한 경우, 시도한 회수에 1을 더한다.
-- [x] "R"을 입력해 재시작한 경우, 다리와 다이어그램을 처음부터 다시 불러온다.
-- [x] "Q"를 입력한 경우 게임을 종료한다.
-- [x] 게임을 종료한 경우, 최종 게임 결과 다이어그램, 게임 성공 여부, 총 시도 회수를 출력한다.
-- [x] 위의 내용을 반복한다.
+- [x] 게임에 실패한 경우 사용자에게 "R", "Q" 중의 입력값을 받는다. `InputView#readGameCommand`
+- [x] "R", "Q" 중의 입력값이 아닌 경우 예외 처리한다. `RetryAndQuit`
+- [x] 예외 문구 출력 후 다시 재시작 여부부터 입력받는다. `InputView#readGameCommand`
+- [x] 입력받은 재시작 값으로 재시작 여부를 결정한다. `GameController#handleRetryAfterFail`
+- [x] "R"을 입력해 재시작한 경우, 시도한 회수에 1을 더한다. `BridgeGame#retry`
+- [x] "R"을 입력해 재시작한 경우, 다리와 다이어그램을 처음부터 다시 불러온다. `BridgeGame#retry`
+- [x] "Q"를 입력한 경우 게임을 종료한다.`GameController#printResult`
+- [x] 게임을 종료한 경우, 최종 게임 결과 다이어그램, 게임 성공 여부, 총 시도 회수를 출력한다. `OutputView#printResult`
 
-- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.`OutputView#printErrorMessage` 
 - [x] 재시작해도 처음에 만든 다리로 재사용한다.
 
 ## MVC 패턴 적용 시 유의사항
 
-- [ ] Model 내부에 Controller와 View에 관련된 코드가 있으면 안 된다.
-- [ ] View는 내부에 Model의 코드만 있을 수 있고, Controller의 코드가 있으면 안 된다.
-- [ ] View가 Model로부터 데이터를 받을 때는, 사용자마다 다르게 보여줘야 하는 데이터에 대해서만 받아야 한다.
-- [ ] Controller 내부에는 Model과 View의 코드가 있어도 된다.
-- [ ] View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다.
+- [x] Model 내부에 Controller와 View에 관련된 코드가 있으면 안 된다.
+- [x] View는 내부에 Model의 코드만 있을 수 있고, Controller의 코드가 있으면 안 된다.
+- [x] View가 Model로부터 데이터를 받을 때는, 사용자마다 다르게 보여줘야 하는 데이터에 대해서만 받아야 한다.
+- [x] Controller 내부에는 Model과 View의 코드가 있어도 된다.
+- [x] View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다.
 
 ## 클래스별 추가 요구사항
 
