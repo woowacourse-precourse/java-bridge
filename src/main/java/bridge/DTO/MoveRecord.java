@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.DTO;
 
 public class MoveRecord {
     private final String step;
@@ -9,7 +9,7 @@ public class MoveRecord {
         this.success = success;
     }
 
-    public static MoveRecord addResult(String step, boolean success) {
+    public static MoveRecord addRecord(String step, boolean success) {
         return new MoveRecord(step, success);
     }
 
