@@ -66,5 +66,9 @@ public class BridgeGame {
         return MAXIMUM_LENGTH + 1;
     }
 
-
+    public int trialAddValidCheck(String check, int trialCount) {
+        if (check.equals("R"))
+            return trialCount + 1;
+        return trialCount;
+    }
 }
