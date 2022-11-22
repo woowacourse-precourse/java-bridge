@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.model.constant.GameCommand;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -69,7 +70,7 @@ public class BridgeGame {
             String bridgePosition = bridge.get(index);
             currentMap.add(comparePosition(playerPosition, bridgePosition, direction));
         }
-        return currentMap;
+        return Collections.unmodifiableList(currentMap);
     }
 
     public String comparePosition(String playerPosition, String bridgePosition, GameCommand direction) {
