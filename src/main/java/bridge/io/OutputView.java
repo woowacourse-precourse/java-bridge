@@ -20,12 +20,16 @@ public class OutputView {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
-    public static void printMap(final String course, final boolean result) {
-        final String OX = checkResult(result);
-        addResult(course, OX);
+    public static void printMap() {
         final int length = UPPER_BRIDGE_RESULT.length();
         System.out.println(START_RESULT + UPPER_BRIDGE_RESULT.substring(0, length - 3) + END_RESULT);
         System.out.println(START_RESULT + LOWER_BRIDGE_RESULT.substring(0, length - 3) + END_RESULT);
+    }
+
+    public static void printMap(final String course, final boolean result) {
+        final String OX = checkResult(result);
+        addResult(course, OX);
+        printMap();
     }
 
     private static String checkResult(final boolean result) {
@@ -50,6 +54,8 @@ public class OutputView {
     }
 
     public static void printResult(final String isSucceed, final int tries) {
+        System.out.println("\n최종 게임 결과");
+        printMap();
         final String result = String.format("\n게임 성공 여부: %s\n총 시도한 횟수: %d", isSucceed, tries);
         System.out.println(result);
     }
