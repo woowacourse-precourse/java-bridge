@@ -8,6 +8,11 @@ public class InputMessage {
     public static final String TOTAL_RESULT = "최종 게임 결과";
     public static final String IS_SUCCESS_GAME = "게임 성공 여부: ";
     public static final String TOTAL_TRY = "총 시도한 횟수: ";
+    public static final String UP = "U";
+    public static final String DONW = "D";
+    public static final String REGAME = "R";
+    public static final String QUIT = "Q";
+
 
     public static void print(String sentence) {
         System.out.println(sentence);

@@ -12,9 +12,10 @@ public class InputView {
 
     private static final int MAXIMUM_NUMBER = 20;
 
-    public InputView() {
+    private static final String UP = "U";
 
-    }
+    private static final String DONW = "D";
+
 
     /**
      * 다리의 길이를 입력받는다.
@@ -31,7 +32,7 @@ public class InputView {
         }
     }
 
-    public int toInt(String strNumber) {
+    private int toInt(String strNumber) {
         validateInt(strNumber);
         return Integer.parseInt(strNumber);
     }
@@ -54,13 +55,41 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        InputMessage.print(InputMessage.INPUT_MOVE_SIDE);
+        String input = Console.readLine();
+        try {
+            validateReadMoving(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+        return input;
+    }
+
+    private void validateReadMoving(String word) {
+        if (!word.equals(InputMessage.UP) && !word.equals(InputMessage.DONW)) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D가 입력되지 않았습니다");
+        }
+
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        InputMessage.print(InputMessage.INPUT_GAME_RESTART);
+        String input = Console.readLine();
+        try {
+            validateReadGameCommand(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return input;
+    }
+
+    private void validateReadGameCommand(String word) {
+        if (!word.equals(InputMessage.REGAME) && !word.equals(InputMessage.QUIT)) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q가 입력되지 않았습니다");
+        }
     }
 }
