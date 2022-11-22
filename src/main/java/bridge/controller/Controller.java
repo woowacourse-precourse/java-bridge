@@ -65,4 +65,12 @@ public class Controller {
         bridgeGame.move();
         editBuilder(bridgeGame);
     }
+
+    public void wrongCase(String moveInput, BridgeGame bridgeGame, User user) {
+        wrongPrintMap(moveInput);
+        printBuilder();
+        outputView.printRestartOrQuit();
+        String retryInput = inputView.readGameCommand();
+        RetryOrQuit(retryInput, bridgeGame , user);
+    }
 }
