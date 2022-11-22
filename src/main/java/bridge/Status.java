@@ -15,6 +15,26 @@ public class Status {
         this.down = new StringJoiner(" | ");
     }
 
+    public void addSuccess(Bridge bridge) {
+        if (bridge.getNow().equals("U")) {
+            up.add("O");
+            down.add(" ");
+            return;
+        }
+        down.add("O");
+        up.add(" ");
+    }
+
+    public void addFail(Bridge bridge) {
+        if (bridge.getNow().equals("U")) {
+            up.add(" ");
+            down.add("X");
+            return;
+        }
+        down.add(" ");
+        up.add("X");
+    }
+
     public StringJoiner getUp() {
         return null;
     }
