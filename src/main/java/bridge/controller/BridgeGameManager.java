@@ -27,8 +27,8 @@ public class BridgeGameManager {
             int readBridgeSize = inputView.readBridgeSize();
             List<String> bridge = bridgeMaker.makeBridge(readBridgeSize);
             bridgeGame = new BridgeGame(bridge);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
             makeBridge();
         }
     }
@@ -50,8 +50,9 @@ public class BridgeGameManager {
     private Direction chooseDirection() {
         try {
             return inputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
+
             return chooseDirection();
         }
     }
@@ -59,8 +60,8 @@ public class BridgeGameManager {
     private Command inputGameCommand() {
         try {
             return inputView.readGameCommand();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
             return inputGameCommand();
         }
     }

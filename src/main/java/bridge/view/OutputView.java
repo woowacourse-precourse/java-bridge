@@ -46,6 +46,10 @@ public class OutputView {
         System.out.printf("총 시도한 횟수: %d\n", bridgeGame.getTotalTryCount());
     }
 
+    public void printErrorMessage(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
     private static void writeBridgeStart() {
         upRow = new StringBuilder(BRIDGE_START);
         downRow = new StringBuilder(BRIDGE_START);
