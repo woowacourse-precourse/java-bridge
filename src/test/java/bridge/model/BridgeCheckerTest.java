@@ -3,20 +3,25 @@ package bridge.model;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class BridgeCheckerTest {
-	@DisplayName("정상적으로 이동하는 경우") @Test public void 이동가능테스트2() {
+	private static List<String> bridge;
+
+	@BeforeEach void initialize() {
 		int userInputLength = 3;
 		BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 		BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-		List<String> bridge = bridgeMaker.makeBridge(userInputLength);
+		bridge = bridgeMaker.makeBridge(userInputLength);
+	}
 
+	@DisplayName("정상적으로 이동하는 경우") @Test public void bridgeCheckerTest1() {
 		int currentStep = 0;
-		while(true) {
+		while (true) {
 			if (BridgeChecker.isGameClear(bridge, currentStep)) {
 				break;
 			}
