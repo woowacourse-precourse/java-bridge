@@ -10,7 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
-    BridgeGame bridgeGame = new BridgeGame(new InputView());
+    BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
 
     @Test
     @ValueSource(ints = {0, 1, 2, 3})
