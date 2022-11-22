@@ -31,4 +31,10 @@ public class OutputView {
     public void printResult() {
 
     }
+
+    //게임시작 메시지 출력
+    public void printGameStart(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
+    }
 }
