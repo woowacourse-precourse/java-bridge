@@ -12,6 +12,13 @@ public class InputView {
      */
     public static String readBridgeSize() {
         String inputSize = Console.readLine();
+        try{
+            Validation.isLengthNumber(inputSize);
+            Validation.isLengthRange(Integer.parseInt(inputSize));
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            readBridgeSize();
+        }
         return inputSize;
     }
 
@@ -21,6 +28,12 @@ public class InputView {
     public static String readMoving() {
         System.out.println(Constant.SELECT_MOVE_MESSAGE);
         String moveWord = Console.readLine();
+        try{
+            Validation.isNotUpOrDown(moveWord);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            readMoving();
+        }
         return moveWord;
     }
 
@@ -30,6 +43,12 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println(Constant.SELECT_RETRY_MESSAGE);
         String retryWord = Console.readLine();
+        try{
+            Validation.isNotRetryOrQuit(retryWord);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            readGameCommand();
+        }
         return retryWord;
     }
 }

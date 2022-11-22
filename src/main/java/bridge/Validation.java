@@ -15,7 +15,7 @@ public class Validation {
     }
     public static void isLengthNumber(String s){
         if(!isInteger(s))
-            throw new IllegalArgumentException(Constant.ERROR+"s:"+s+Constant.ERROR_IS_NOT_NUMBER);
+            throw new IllegalArgumentException(Constant.ERROR+Constant.ERROR_IS_NOT_NUMBER);
     }
     public static void isLengthRange(int number){
         if(!(number>=3 && number<=20))
