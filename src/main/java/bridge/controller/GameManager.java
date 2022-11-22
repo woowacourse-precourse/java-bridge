@@ -4,6 +4,7 @@ import bridge.ValidationException;
 import bridge.model.movingOorX;
 import bridge.model.Score;
 import bridge.model.User;
+import bridge.view.GuideOutputView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -22,6 +23,7 @@ public class GameManager {
     }
 
     public void initGameSetting() {
+        GuideOutputView.printStart();
         int size = inputView.readBridgeSize();
         bridgeGame.makeBridge(size);
     }

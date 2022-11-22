@@ -5,7 +5,7 @@ import static bridge.constants.GuideMessage.*;
 public class GuideOutputView {
 
     public static void printStart() {
-        System.out.println(START_MESSAGE);
+        System.out.println(START_MESSAGE+"\n");
     }
 
     public static void printBridgeLength() {
