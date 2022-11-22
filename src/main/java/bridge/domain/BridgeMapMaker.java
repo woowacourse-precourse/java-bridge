@@ -7,7 +7,7 @@ public class BridgeMapMaker {
     final private List<String> userPath;
     private List<String> bridge;
 
-    public BridgeMapMaker(List<String> userPath, List<String> bridge) {
+    public BridgeMapMaker(final List<String> userPath, final List<String> bridge) {
         this.userPath = userPath;
         this.bridge = bridge;
     }
@@ -35,7 +35,7 @@ public class BridgeMapMaker {
         return lowerPathMap;
     }
 
-    private String makeUpperMoveResult(String bridgePath, String userPath) {
+    private String makeUpperMoveResult(final String bridgePath, final String userPath) {
         if (!bridgePath.equals(userPath) && bridgePath.equals("D")) {
             return "X";
         }
@@ -45,7 +45,7 @@ public class BridgeMapMaker {
         return " ";
     }
 
-    private String makeLowerMoveResult(String bridgePath, String userPath) {
+    private String makeLowerMoveResult(final String bridgePath, final String userPath) {
         if (!bridgePath.equals(userPath) && bridgePath.equals("U")) {
             return "X";
         }

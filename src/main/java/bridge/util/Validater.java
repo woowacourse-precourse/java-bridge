@@ -6,31 +6,31 @@ public class Validater {
     private static final String ERROR_MESSAGE_NOT_PROPER_MOVE = "[ERROR] 대문자 U또는 D를 입력해주세요.";
     private static final String ERROR_MESSAGE_NOT_PROPER_COMMAND = "[ERROR] 대문자 R또는 Q를 입력해주세요.";
 
-    public void validateBridgeSize(String input) {
+    public void validateBridgeSize(final String input) {
         validateIsNumeric(input);
         validateBridgeSizeRange(input);
     }
 
-    public void validateMovingInput(String input) {
+    public void validateMovingInput(final String input) {
         if (!(input.equals("D") || input.equals("U"))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_MOVE);
         }
     }
 
-    public void validateGameCommandInput(String input) {
+    public void validateGameCommandInput(final String input) {
         if (!(input.equals("Q") || input.equals("R"))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_COMMAND);
         }
     }
 
-    private void validateIsNumeric(String input) {
+    private void validateIsNumeric(final String input) {
         final String REGEX = "[0-9]+";
         if(!input.matches(REGEX)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_INT);
         }
     }
 
-    private void validateBridgeSizeRange(String input) {
+    private void validateBridgeSizeRange(final String input) {
         int bridgeSize = Integer.valueOf(input);
         if(!(bridgeSize >= 3 && bridgeSize <= 20)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_BRIDGE_SIZE);

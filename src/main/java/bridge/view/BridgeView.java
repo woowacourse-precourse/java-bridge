@@ -47,7 +47,7 @@ public class BridgeView {
         outputView.printMap(map);
     }
 
-    public void printGameResult(List<List<String>> map, boolean result, int tryCounty) {
+    public void printGameResult(final List<List<String>> map, final boolean result, final int tryCounty) {
         outputView.printResult(map, result, tryCounty);
     }
 }

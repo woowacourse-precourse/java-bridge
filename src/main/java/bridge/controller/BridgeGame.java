@@ -11,7 +11,7 @@ public class BridgeGame {
     final BridgeView view;
     final Bridge domain;
 
-    public BridgeGame(BridgeView view, Bridge domain) {
+    public BridgeGame(final BridgeView view, final Bridge domain) {
         this.view = view;
         this.domain = domain;
     }
@@ -58,7 +58,7 @@ public class BridgeGame {
         move();
     }
 
-    private void selectActAfterGame(String command) {
+    private void selectActAfterGame(final String command) {
         if (command.equals("Q")) {
             end();
         }
@@ -67,7 +67,7 @@ public class BridgeGame {
         }
     }
 
-    private void selectActAfterMove(MoveResult moveResult) {
+    private void selectActAfterMove(final MoveResult moveResult) {
         if (moveResult == MoveResult.MOVE_FAIL) {
             actAfterMoveFail();
         }

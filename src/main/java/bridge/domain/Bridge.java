@@ -2,7 +2,6 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.util.MoveResult;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class Bridge {
         tryCount = 1;
     }
 
-    public void makeBridge(int bridgeSize, BridgeMaker bridgeMaker) {
+    public void makeBridge(final int bridgeSize, final BridgeMaker bridgeMaker) {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 

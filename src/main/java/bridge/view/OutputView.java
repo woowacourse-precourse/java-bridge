@@ -12,13 +12,13 @@ public class OutputView {
     private static final String MESSAGE_WHETHER_SUCCESS_OR_NOT = "게임 성공 여부: ";
     private static final String MESSAGE_TRY_COUNT = "총 시도한 횟수: ";
 
-    public void printMap(List<List<String>> map) {
+    public void printMap(final List<List<String>> map) {
         printOneRoad(map.get(0));
         printOneRoad(map.get(1));
         System.out.println();
     }
 
-    public void printResult(List<List<String>> map, boolean result, int tryCount) {
+    public void printResult(final List<List<String>> map, final boolean result, final int tryCount) {
         printMap(map);
         printSuccessOrNot(result);
         printTryCount(tryCount);
@@ -55,7 +55,7 @@ public class OutputView {
         System.out.println(sb.toString());
     }
 
-    private void printSuccessOrNot(boolean result) {
+    private void printSuccessOrNot(final boolean result) {
         System.out.print(MESSAGE_WHETHER_SUCCESS_OR_NOT);
         if (result) {
             System.out.println("성공");
@@ -64,7 +64,7 @@ public class OutputView {
         System.out.println("실패");
     }
 
-    private void printTryCount(int tryCount) {
+    private void printTryCount(final int tryCount) {
         System.out.print(MESSAGE_TRY_COUNT);
         System.out.println(tryCount);
     }
