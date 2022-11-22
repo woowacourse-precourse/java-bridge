@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.view.exception.IllegalNumberRangeException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -11,34 +10,37 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public Integer readBridgeSize() {
         String input = Console.readLine();
 
-        validateBridgeSizeInputLength(input);
-        int bridgeSize = getBridgeSize(input);
-        validateSizeLimit(bridgeSize);
+        Integer bridgeSize = bridgeSizeParseInt(input);
+        bridgeSize = validateSizeLimit(bridgeSize);
 
         return bridgeSize;
     }
 
-    private void validateBridgeSizeInputLength(String input) {
-        if(input.length() > 2) {
-            throw new IllegalArgumentException("validateBridgeSizeInputLength");
+    private Integer validateSizeLimit(Integer bridgeSize) {
+        try {
+            checkBridgeSize(bridgeSize);
+            return bridgeSize;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private void checkBridgeSize(Integer bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
-    private void validateSizeLimit(int bridgeSize) {
-        if(bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalNumberRangeException("범위를 벗어난 입력입니다. ", bridgeSize);
-        }
-    }
-
-    private int getBridgeSize(String input) {
-        int bridgeSize;
+    private Integer bridgeSizeParseInt(String input) {
+        Integer bridgeSize = null;
         try {
             bridgeSize = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("getBridgeSize");
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자만 입력해주세요.");
         }
         return bridgeSize;
     }
@@ -49,20 +51,40 @@ public class InputView {
     public String readMoving() {
         String input = Console.readLine();
 
-        validateMovingInputLength(input);
-        validateMovingSpace(input);
-        return input;
+        input = validateMovingInputLength(input);
+        String validInput = validateMovingSpace(input);
+        return validInput;
     }
 
-    private void validateMovingInputLength(String input) {
-        if(input.length() != 1) {
-            throw new IllegalArgumentException("validateMovingInputLength");
+    private String validateMovingInputLength(String input) {
+        try {
+            checkMovingInputLength(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private void checkMovingInputLength(String input) {
+        if (input.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 입력 가능한 길이를 초과하였습니다.");
         }
     }
 
-    private void validateMovingSpace(String input) {
-        if(!input.equals("U") && !input.equals("D")) {
-            throw new IllegalArgumentException("validateMovingSpace");
+    private String validateMovingSpace(String input) {
+        try {
+            checkMovingSpace(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private void checkMovingSpace(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] \"U\" 또는 \"D\"만 입력 가능합니다. ");
         }
     }
 

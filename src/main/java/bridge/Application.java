@@ -13,51 +13,60 @@ public class Application {
 
     private static GameState state = GameState.START;
     private static List<String> bridge;
-
+    private static Route route = new Route();
+    private static int tryCount = 1;
+    private static String result = "실패";
 
     public static void main(String[] args) {
         try {
-            // 게임 시작
-            output.printStartMessage();
-            createBridge();
-
-            Route route = new Route();
-            int tryCount = 1;
-            String result = "실패";
-            while (state != GameState.QUIT) {
-
-                if(state == GameState.RESTART) {
-                    route = new Route();
-                    tryCount++;
-                    state = GameState.START;
-                }
-
-                boolean success = goToNextSpace(route);
-
-                if(!success) {
-                    chooseGameContinue();
-                }
-
-                if(route.gameSuccess(bridge.size())) {
-                    result = "성공";
-                    state = GameState.QUIT;
-                }
-
-                if(state == GameState.QUIT) {
-                    output.printFinalResult(route);
-                }
-            }
-
+            start();
+            gameInProgress();
             output.printResult(result, tryCount);
         } catch (IllegalArgumentException e) {
             System.out.printf("[ERROR] %s", e.getMessage());
         }
+    }
 
+    private static void gameInProgress() {
+        while (state != GameState.QUIT) {
+            tryCount = restart(tryCount);
+            boolean success = goToNextSpace(route);
+            chooseGameContinue(success);
+            result = isGameWin(result);
+            quit();
+        }
+    }
+
+    private static void start() {
+        output.printStartMessage();
+        createBridge();
+    }
+
+    private static void quit() {
+        if (state == GameState.QUIT) {
+            output.printFinalResult(route);
+        }
+    }
+
+    private static String isGameWin(String result) {
+        if (route.gameSuccess(bridge.size())) {
+            state = GameState.QUIT;
+            result = "성공";
+        }
+        return result;
+    }
+
+    private static Integer restart(Integer tryCount) {
+        if (state == GameState.RESTART) {
+            route = new Route();
+            tryCount++;
+            state = GameState.START;
+        }
+        return tryCount;
     }
 
     private static boolean goToNextSpace(Route route) {
-        output.printMoveSpaceInputRequestMessage();
-        String moveNext = input.readMoving();
+        String moveNext = chooseNextSpace();
 
         Route nextRoute = game.move(route, moveNext, bridge);
         boolean success = nextRoute.moveSuccess();
@@ -65,14 +74,29 @@ public class Application {
         return success;
     }
 
-    private static void createBridge() {
-        output.printBridgeLengthInputRequestMessage();
+    private static String chooseNextSpace() {
+        String moveNext = null;
+        while(moveNext == null) {
+            output.printMoveSpaceInputRequestMessage();
+            moveNext = input.readMoving();
+        }
+        return moveNext;
+    }
 
-        int bridgeSize = input.readBridgeSize();
+    private static void createBridge() {
+        Integer bridgeSize = null;
+        while (bridgeSize == null) {
+            output.printBridgeLengthInputRequestMessage();
+            bridgeSize = input.readBridgeSize();
+        }
         bridge = maker.makeBridge(bridgeSize);
     }
 
-    private static void chooseGameContinue() {
+    private static void chooseGameContinue(boolean success) {
+        if (!success) {
+            return;
+        }
+
         output.printChoseRetryInputRequestMessage();
         String gameCommand = input.readGameCommand();
 
