@@ -12,6 +12,7 @@ import java.util.List;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
+
 public class MyBridgeTest {
     MyBridge myBridge;
     private static MockedStatic<InputView> inputView;
