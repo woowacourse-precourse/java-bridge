@@ -63,3 +63,10 @@
 ### OutputView
 - 게임 시작 메시지 출력
 - 에러 메시지 출력
+
+
+### Code
+- 최종 게임 결과 Code (SUCCESS("성공"), FAILURE("실패"))
+
+### Result
+- 최종 게임 결과 클래스 
