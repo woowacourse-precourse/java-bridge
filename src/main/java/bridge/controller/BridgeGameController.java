@@ -1,12 +1,12 @@
 
 
 
-
 package bridge.controller;
 
 import bridge.BridgeGame;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.identifiers.Direction;
+import bridge.identifiers.GameRetry;
 import bridge.views.InputView;
 import bridge.views.OutputView;
 
@@ -36,7 +36,7 @@ public class BridgeGameController {
     }
 
     public void playGame() {
-        while (!bridgeGame.getIsSuccess() && !bridgeGame.isOver()) {
+        while (!bridgeGame.getIsSuccess() && !bridgeGame.isGameOver()) {
             retryWhenExceptionOrTryOnce(outputView, () -> {
                 String rawDirection = inputView.readMoving();
                 Direction direction = Direction.parseDirection(rawDirection);
@@ -47,17 +47,31 @@ public class BridgeGameController {
     }
 
     public boolean askRetry() {
+        askValidRetry();
+        if (!bridgeGame.isTerminated())
+            return true;
+        bridgeGame.retry();
         return false;
+    }
+
+    private void askValidRetry(){
+        retryWhenExceptionOrTryOnce(outputView, () -> {
+            String rawRetry = inputView.readGameCommand();
+            GameRetry gameRetry = GameRetry.parseRetry(rawRetry);
+            if (gameRetry.equals(GameRetry.RETRY)) {
+                bridgeGame.setTerminated();
+            }
+        });
     }
 
     public void end() {
 
     }
 
-    private static void retryWhenExceptionOrTryOnce(OutputView outputView, Task task) {
+    private static void retryWhenExceptionOrTryOnce(OutputView outputView, Function function) {
         while (true) {
             try {
-                task.run();
+                function.run();
                 break;
             } catch (IllegalArgumentException | IllegalStateException exception) {
                 outputView.printErrorMessage(exception.getMessage());
@@ -66,6 +80,6 @@ public class BridgeGameController {
     }
 }
 
-interface Task {
+interface Function {
     void run();
 }
