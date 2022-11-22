@@ -29,20 +29,19 @@ public class OutputView {
     public static void printMap(List<List<String>> bridgeMap) {
         List<String> downBridge = new ArrayList<>();
         List<String> upperBridge = new ArrayList<>();
+        List<List<String>> bridge = new ArrayList<>(List.of(upperBridge, downBridge));
+
         for (List<String> map : bridgeMap) {
             downBridge.add(map.get(0));
             upperBridge.add(map.get(1));
         }
-
-        System.out.print(LEFT_SQUARE_BRACKET);
-        System.out.print(String.join(DELIMITER, upperBridge));
-        System.out.print(RIGHT_SQUARE_BRACKET);
-        System.out.println();
-
-        System.out.print(LEFT_SQUARE_BRACKET);
-        System.out.print(String.join(DELIMITER, downBridge));
-        System.out.print(RIGHT_SQUARE_BRACKET);
-        System.out.println();
+        
+        for (List<String> sideBridge : bridge) {
+            System.out.print(LEFT_SQUARE_BRACKET);
+            System.out.print(String.join(DELIMITER, sideBridge));
+            System.out.print(RIGHT_SQUARE_BRACKET);
+            System.out.println();
+        }
     }
 
     public static void printSuccess(boolean success) {
