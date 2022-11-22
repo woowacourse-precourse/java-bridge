@@ -5,13 +5,14 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.Domain.Key;
+import bridge.Domain.State;
+import bridge.Domain.UserBridges;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
-
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
     void 다리_생성_테스트() {
@@ -22,7 +23,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트() {
+    void 다리_끝까지_도달_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
@@ -40,11 +41,26 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+    void 잘못된_곳으로_이동_종료_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "Q");
+            assertThat(output()).contains(
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+            );
+            assertThat(output()).doesNotContain("총 시도한 횟수: 2");
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 잘못된_곳으로_이동_재시작_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "최종 게임 결과",
+                    "총 시도한 횟수: 2"
+            );
+        }, 1, 0, 1);
     }
 
     @Override
