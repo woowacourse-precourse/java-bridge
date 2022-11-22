@@ -91,7 +91,6 @@ public class Controller {
         out.printMessage(PRINT_RESULT_MESSAGE);
         out.printMap(dto.getMapDto());
         out.printMessage(PRINT_ENTER);
-        out.printSuccessOrNot(dto.getState());
-        out.printTryCount(dto.getRetryCountDto());
+        out.printResult(dto.getState(), dto.getRetryCountDto());
     }
 }
