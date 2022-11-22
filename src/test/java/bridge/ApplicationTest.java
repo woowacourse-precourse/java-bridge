@@ -3,11 +3,16 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -19,6 +24,20 @@ class ApplicationTest extends NsTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
+    }
+
+    @DisplayName("입력된 크기의 길이를 가진 다리를 생성한다")
+    @ValueSource(ints = {3, 5, 7})
+    @ParameterizedTest
+    void makeBridgeWithCorrectInputSize(int size) {
+        // given
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        // when
+        List<String> bridge = bridgeMaker.makeBridge(size);
+
+        // then
+        assertThat(bridge.size()).isEqualTo(size);
     }
 
     @Test
