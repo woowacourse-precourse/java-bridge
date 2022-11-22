@@ -49,7 +49,7 @@ public class BridgeController {
 			String moveCommand = askMove();
 			bridgeGame.move(moveCommand);
 			outputView.printMap(bridgeGame);
-			if (bridgeGame.isFailStage(moveCommand)) {
+			if (bridgeGame.isFailStage()) {
 				askRetry();
 			}
 		}

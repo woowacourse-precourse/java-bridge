@@ -85,7 +85,7 @@ public class BridgeGame {
 		return stageLevel < bridges.size() && isSuccessStage;
 	}
 
-	public boolean isEndGame() {
+	public boolean isFailStage() {
 		return !isSuccessStage;
 	}
 
