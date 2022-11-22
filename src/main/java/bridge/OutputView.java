@@ -13,6 +13,9 @@ public class OutputView {
     public void printGetBridgeLength(){
         System.out.println(GET_BRIDGE_LENGTH.getMessage());
     }
+    public void printGetSpaceToMove(){
+        System.out.println(GET_SPACE_TO_MOVE.getMessage());
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
