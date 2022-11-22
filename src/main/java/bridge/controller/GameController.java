@@ -1,5 +1,8 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -13,7 +16,7 @@ public class GameController {
     private List<Stack> stairs;
     private int runCnt;
 
-    GameController() {
+    public GameController() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int bridgeSize = ready();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
