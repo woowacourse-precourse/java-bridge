@@ -28,4 +28,9 @@ public class BridgeGameController {
         }
     }
 
+    private void move() {
+        String direction = inputView.readMoving();
+        bridgeGame.move(direction);
+    }
+
 }
