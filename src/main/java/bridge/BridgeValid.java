@@ -25,6 +25,25 @@ public class BridgeValid {
             checkMoving(upBridge.size());
         }
     }
+    public void checkMoving(int i) {
+        String userMoving = checkMovingInput();
+        if (bridgeGame.move(userMoving)) {
+            upMoving(i);
+        }
+        if (!bridgeGame.move(userMoving)) {
+            downMoving(i);
+        }
+        outputView.printMap(upBridge,downBridge);
+    }
+
+    private String checkMovingInput() {
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return checkMovingInput();
+        }
+    }
 
     public boolean checkRetry() {
         if (upBridge.contains("X") || downBridge.contains("X")) {
@@ -35,6 +54,59 @@ public class BridgeValid {
             setNumber();
         }
         return true;
+    }
+
+    private String checkRetryInput() {
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return checkRetryInput();
+        }
+    }
+
+
+
+    public void setNumber() {
+        clearList();
+        stack = 0;
+        count++;
+    }
+
+    public void clearList() {
+        upBridge.clear();
+        downBridge.clear();
+    }
+
+    public void upMoving(int i) {
+        if (bridge.getBridge().get(i).equals("U")) {
+            upPattern();
+        }
+        if (bridge.getBridge().get(i).equals("D")) {
+            upBridge.add("X");
+            downBridge.add(" ");
+        }
+    }
+
+    public void upPattern() {
+        upBridge.add("O");
+        downBridge.add(" ");
+        stack++;
+    }
+
+    public void downMoving(int i) {
+        if (bridge.getBridge().get(i).equals("D")) {
+            downPattern();
+        }
+        if (bridge.getBridge().get(i).equals("U")) {
+            upBridge.add(" ");
+            downBridge.add("X");
+        }
+    }
+    public void downPattern() {
+        upBridge.add(" ");
+        downBridge.add("O");
+        stack++;
     }
 
 
