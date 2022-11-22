@@ -67,7 +67,7 @@ public class GameProcess {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridgeAnswer = bridgeMaker.makeBridge(userBridgeSize);
-        System.out.println(bridgeAnswer);
+//        System.out.println(bridgeAnswer);
         return bridgeAnswer;
     }
 
