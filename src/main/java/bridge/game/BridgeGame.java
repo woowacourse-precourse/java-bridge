@@ -3,7 +3,6 @@ package bridge.game;
 import static bridge.result.GameResult.SUCCESS;
 
 import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeController;
 import bridge.result.Result;
 

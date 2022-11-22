@@ -1,5 +1,6 @@
 package bridge.bridgemaker;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.command.enums.PlayerMove;

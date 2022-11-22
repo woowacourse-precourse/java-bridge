@@ -9,18 +9,6 @@ public class PlayerBridge {
 
     private Bridge bridge;
 
-    public Bridge getBridge() {
-        return bridge;
-    }
-
-    public void setBridge(Bridge bridge) {
-        this.bridge = bridge;
-    }
-
-    private boolean isEmpty() {
-        return bridge == null;
-    }
-
     public void clear() {
         this.bridge = null;
     }
@@ -47,5 +35,9 @@ public class PlayerBridge {
     private void insertMoveInEmptyBridge(Move move) {
         List<String> square = List.of(move.getMove());
         bridge = new Bridge(square);
+    }
+
+    private boolean isEmpty() {
+        return bridge == null;
     }
 }

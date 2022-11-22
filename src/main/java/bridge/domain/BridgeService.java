@@ -1,7 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
-import bridge.bridgemaker.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.command.Size;
 import bridge.gamebridge.BridgeContainer;
 import bridge.command.Move;

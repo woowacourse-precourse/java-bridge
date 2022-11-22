@@ -8,8 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeNumberGenerator;
-import bridge.bridgemaker.BridgeMaker;
-import bridge.bridgemaker.TestBridgeNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.Testbridgemaker.TestBridgeNumberGenerator;
 import bridge.command.Size;
 import bridge.result.Result;
 import java.util.List;

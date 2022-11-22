@@ -9,8 +9,8 @@ import bridge.result.Result;
 
 public class BridgeContainer {
 
-    private AnswerBridge answerBridge;
     private final PlayerBridge playerBridge;
+    private AnswerBridge answerBridge;
 
     public BridgeContainer() {
         this.playerBridge = new PlayerBridge();
