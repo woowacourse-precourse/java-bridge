@@ -38,11 +38,15 @@ public class Player {
     }
 
     public String getGameResult() {
-        int index = directions.size() - 1;
-        if (directions.size() == bridges.size() && directions.get(index).equals(bridges.get(index))) {
+        int index = getLastIndex();
+        if (isGameSuccess(index)) {
             return SUCCESS;
         }
         return FAIL;
+    }
+
+    private boolean isGameSuccess(int index) {
+        return directions.size() == bridges.size() && directions.get(index).equals(bridges.get(index));
     }
 
     public void resetDirections() {
@@ -51,7 +55,7 @@ public class Player {
     }
 
     public boolean isMovePossible() {
-        int index = directions.size() - 1;
+        int index = getLastIndex();
         return directions.get(index).equals(bridges.get(index));
     }
 
@@ -89,7 +93,8 @@ public class Player {
     }
 
     private boolean isLastIndex(int index) {
-        return index == directions.size() - 1;
+        int lastIndex = getLastIndex();
+        return index == lastIndex;
     }
 
     private boolean isMovingPossible(String target, String direction, String bridge) {
@@ -98,5 +103,9 @@ public class Player {
 
     private boolean isMovingImpossible(String target, String direction, String bridge) {
         return direction.equals(target) && !direction.equals(bridge);
+    }
+
+    private int getLastIndex() {
+        return directions.size() - 1;
     }
 }
