@@ -18,11 +18,13 @@ public class GameController {
 
     public void GAMESTART() {
         outputView.printGameStart();
+        outputView.printReadBridgeSize();
         int input = inputView.readBridgeSize();
         bridgeGame.setBridge(bridgeMaker.makeBridge(input));
     }
 
     public void RUNPROCESS() {
+        outputView.printReadMoving();
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             boolean match = bridgeGame.move(inputView,outputView,i);
             if (!match) { break; }
@@ -31,6 +33,7 @@ public class GameController {
     }
 
     public boolean SELECTRESTART() {
+        outputView.printReadGameCommand();
         return bridgeGame.retry(inputView);
     }
 
