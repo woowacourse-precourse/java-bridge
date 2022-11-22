@@ -8,9 +8,12 @@ public final class BridgeGame {
     private final Bridge bridge;
     private BridgeVisited visited;
 
-    public BridgeGame(Bridge bridge) {
+    private BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         retry();
+    }
+    public static BridgeGame of (Bridge bridge){
+        return new BridgeGame(bridge);
     }
 
     /**

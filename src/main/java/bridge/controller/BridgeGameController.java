@@ -26,7 +26,7 @@ public class BridgeGameController {
             outputView.printStartMessage();
             outputView.printAskBridgeLength();
             final int size = inputView.readBridgeSize();
-            return new Bridge(bridgeMaker.makeBridge(size));
+            return Bridge.of(bridgeMaker.makeBridge(size));
         } catch (final IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return initBridge(bridgeMaker);
@@ -35,7 +35,7 @@ public class BridgeGameController {
 
     public void gamePlay() {
         BridgeGameCommand playerChoice = BridgeGameCommand.RETRY;
-        final BridgeGame bridgeGame = new BridgeGame(bridge);
+        final BridgeGame bridgeGame = BridgeGame.of(bridge);
         while (playerChoice != BridgeGameCommand.QUIT) {
             bridgeGame.retry();
             continuousGame(bridgeGame);
