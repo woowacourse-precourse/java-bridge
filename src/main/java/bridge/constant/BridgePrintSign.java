@@ -1,24 +1,24 @@
 package bridge.constant;
 
-public enum BridgeSign {
+public enum BridgePrintSign {
     MOVABLE("O"),
     IMMOVABLE("X"),
     EMPTY(" ");
 
     private final String sign;
 
-    BridgeSign(String sign) {
+    BridgePrintSign(String sign) {
         this.sign = sign;
     }
 
-    public static BridgeSign create(boolean isEdge, boolean isRightCurrentBridgePick, boolean isRightLastBridgePick) {
+    public static BridgePrintSign create(boolean isEdge, boolean isRightCurrentBridgePick, boolean isRightLastBridgePick) {
         if (isRightCurrentBridgePick && (!isEdge || isRightLastBridgePick)) {
-            return BridgeSign.MOVABLE;
+            return BridgePrintSign.MOVABLE;
         }
         if (!isRightLastBridgePick && !isRightCurrentBridgePick && isEdge) {
-            return BridgeSign.IMMOVABLE;
+            return BridgePrintSign.IMMOVABLE;
         }
-        return BridgeSign.EMPTY;
+        return BridgePrintSign.EMPTY;
     }
 
     public String getSign() {

@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.constant.Bridge;
-import bridge.constant.BridgeSign;
+import bridge.constant.BridgePrintSign;
 import bridge.constant.Constant;
 import bridge.constant.Message;
 import bridge.constant.SuccessOrFail;
@@ -36,8 +36,8 @@ public class OutputView {
             String currentBridgeType = bridgeMap.get(position);
             boolean isEdge = position == (bridgeMap.size() - Constant.INDEX_ZEROING_NUMBER);
             boolean isRightCurrentBridgePick = currentBridgeType.equals(bridgeTypeToPrint);
-            BridgeSign bridgeSign = BridgeSign.create(isEdge, isRightCurrentBridgePick, isRightLastBridgePick);
-            bridgesSign.add(bridgeSign.getSign());
+            BridgePrintSign bridgePrintSign = BridgePrintSign.create(isEdge, isRightCurrentBridgePick, isRightLastBridgePick);
+            bridgesSign.add(bridgePrintSign.getSign());
         }
         return bridgesSign;
     }
