@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.PrintMessage.FAIL;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -14,10 +16,23 @@ public class Application {
         try {
             int bridgeSize = inputView.readBridgeSize();
 
-            List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+            List<String> randomBridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+            System.out.println(randomBridge);
 
-            outputView.printChooseSpaceToMoveMessage();
-            inputView.readMoving();
+            BridgeGame bridgeGame = new BridgeGame();
+            for (int i = 0; i < bridgeSize; i++) {
+                outputView.printChooseSpaceToMoveMessage();
+                String space = inputView.readMoving();
+
+                List<String> bridges = bridgeGame.move(space, i, randomBridge.get(i));
+                System.out.println(bridges.get(0));
+                System.out.println(bridges.get(1));
+
+                if (bridges.get(2).equals(FAIL)) {
+                    break;
+                }
+            }
+
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
