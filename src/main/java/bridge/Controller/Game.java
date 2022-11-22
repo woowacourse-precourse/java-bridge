@@ -19,7 +19,10 @@ public class Game {
         OutputView.printInit();
         makeBridge();
         while (isStart) {
-            crossBridge();
+            isStart = crossBridge();
+            if(isStart) { // 다리를 다 건넜을 때
+                break;
+            }
         }
     }
 
@@ -33,7 +36,10 @@ public class Game {
         boolean gameState;
         bridgeMap = new BridgeMap();
         for (int position = ZERO; position < BridgeGame.getBridgeSize(); position++) {
-            isCrossed(position);
+            gameState = isCrossed(position);
+            if(!gameState) {
+                return false;
+            }
         }
         return true;
     }
