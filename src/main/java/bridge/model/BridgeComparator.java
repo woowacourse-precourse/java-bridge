@@ -6,13 +6,10 @@ public class BridgeComparator {
 
     private static final String BRIDGE_CORRECT = "O";
     private static final String BRIDGE_FAIL = "X";
-    private static final int INDEX_PLUS = 1;
-
 
     public static String compareBridge(List<String> bridge, String moving, int location) {
         if (bridge.get(location).equals(moving)) {
-            return
-                    BRIDGE_CORRECT;
+            return BRIDGE_CORRECT;
         }
         return BRIDGE_FAIL;
     }

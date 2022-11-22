@@ -19,7 +19,7 @@ public class BridgeGameController {
     public void go() {
         int bridgeSize = start();
         do {
-            if(isPassBridgeEnd()){
+            if (isPassBridgeEnd()) {
                 break;
             }
             play();

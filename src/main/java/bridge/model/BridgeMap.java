@@ -21,7 +21,7 @@ public class BridgeMap {
         return new BridgeMap(size);
     }
 
-    public List<List<String>> getBridgeMap(){
+    public List<List<String>> getBridgeMap() {
         return Collections.unmodifiableList(List.of(bridgeUpMap, bridgeDownMap));
     }
 
