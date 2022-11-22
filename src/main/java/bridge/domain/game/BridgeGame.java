@@ -2,7 +2,6 @@ package bridge.domain.game;
 
 import bridge.constant.Bridge;
 import bridge.constant.Bridge.GameConstants;
-import bridge.constant.Message.LogicExceptionMessage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,16 +42,6 @@ public class BridgeGame {
         movings.clear();
         bridgeMap.clear();
         numberOfAttempts++;
-    }
-
-    public String findOutSuccessOrNot() {
-        if (inProgress()) {
-            throw new IllegalStateException(LogicExceptionMessage.WRONG_USE_SUCCESS_OR_NOT);
-        }
-        if (success()) {
-            return Bridge.GameConstants.GAME_SUCCESS;
-        }
-        return Bridge.GameConstants.GAME_FAILURE;
     }
 
     public boolean over() {

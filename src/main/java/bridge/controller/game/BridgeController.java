@@ -1,5 +1,7 @@
 package bridge.controller.game;
 
+import bridge.constant.Bridge;
+import bridge.constant.Message.LogicExceptionMessage;
 import bridge.controller.service.BridgeCommunication;
 import bridge.domain.game.BridgeGame;
 import bridge.BridgeMaker;
@@ -15,16 +17,17 @@ public class BridgeController {
 
     public BridgeController() {
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        service = new BridgeCommunication();
-        game = new BridgeGame(bridgeMaker.makeBridge(service.takeSize()));
+        this.service = new BridgeCommunication();
+        this.game = new BridgeGame(bridgeMaker.makeBridge(service.takeSize()));
     }
 
     public void play() {
         OutputView.printGameStart();
         attemptGameClear();
         OutputView.printResult(bridgeMap.toString(),
-                game.findOutSuccessOrNot(), game.getNumberOfAttempts());
+                findOutSuccessOrNot(), game.getNumberOfAttempts());
     }
+
 
     private void attemptGameClear() {
         move();
@@ -41,5 +44,14 @@ public class BridgeController {
             bridgeMap.update(direction, game.over());
             OutputView.printMap(bridgeMap.toString());
         }
+    }
+    private String findOutSuccessOrNot() {
+        if (game.inProgress()) {
+            throw new IllegalStateException(LogicExceptionMessage.WRONG_USE_SUCCESS_OR_NOT);
+        }
+        if (game.success()) {
+            return Bridge.GameConstants.GAME_SUCCESS;
+        }
+        return Bridge.GameConstants.GAME_FAILURE;
     }
 }

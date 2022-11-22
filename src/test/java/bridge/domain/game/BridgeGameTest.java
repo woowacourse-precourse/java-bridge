@@ -1,7 +1,5 @@
 package bridge.domain.game;
 
-import bridge.constant.Message.LogicExceptionMessage;
-
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameTest {
 
@@ -57,24 +54,6 @@ public class BridgeGameTest {
         }
         게임_상태_확인_기능들_테스트(inProgressExcepted, overExcepted,
                 successExcepted);
-    }
-
-    @DisplayName("게임 종료 시 성공 여부 반환 기능 테스트")
-    @ParameterizedTest
-    @CsvSource({"U,U,성공", "U,D,실패"})
-    public void 게임_성공_여부_반환_테스트(final String direction1, final String direction2,
-            final String excepted) {
-        bridgeGame.move(direction1);
-        bridgeGame.move(direction2);
-        assertThat(bridgeGame.findOutSuccessOrNot()).isEqualTo(excepted);
-    }
-
-    @DisplayName("게임 진행 중 성공 여부 반환 기능 호출 시 예외발생 테스트")
-    @Test
-    public void 게임_성공_여부_반환_예외_테스트() {
-        assertThatThrownBy(() -> bridgeGame.findOutSuccessOrNot())
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage(LogicExceptionMessage.WRONG_USE_SUCCESS_OR_NOT);
     }
 
     private void 게임_상태_확인_기능들_테스트(final boolean inProgressExcepted,
