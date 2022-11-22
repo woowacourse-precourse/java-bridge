@@ -25,7 +25,12 @@ public class GameSystem {
     }
 
     public void inputBridgeLength() {
-        saveSize = inputView.readBridgeSize();
+        outputView.printTryLengthInput();
+        String input = inputView.readBridgeSize();
+        if (inputvalid.checkLengthValid(input) == false) {
+            inputBridgeLength();
+        }
+        saveSize = Integer.parseInt(input);
         game.saveBridge(make.makeBridge(saveSize));
     }
 
