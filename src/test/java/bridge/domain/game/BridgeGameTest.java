@@ -14,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeGameTest {
 
@@ -40,4 +41,13 @@ class BridgeGameTest {
 				Arguments.of(Arrays.asList("U", "D", "U"), Arrays.asList("U", "U"), 1,false)
 		);
 	}
+
+	@DisplayName("재시작 기능 테스트")
+	@ParameterizedTest
+	@CsvSource(value = {"R:0","Q:2147483647"},delimiterString = ":")
+	void 재시작_기능_테스트(String command,int expected){
+		BridgeGame bridgeGame = new BridgeGame();
+		Assertions.assertThat(bridgeGame.retry(command)).isEqualTo(expected);
+	}
+
 }
