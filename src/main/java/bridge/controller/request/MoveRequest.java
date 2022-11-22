@@ -1,15 +1,17 @@
 package bridge.controller.request;
 
+import static bridge.domain.enums.Move.D;
+import static bridge.domain.enums.Move.U;
+
+import bridge.domain.enums.Move;
+
 public class MoveRequest {
 
-    private static final String MOVE_UP = "U";
-    private static final String MOVE_DOWN = "D";
-
-    private final String move;
+    private final Move move;
 
     public MoveRequest(String move) {
         validate(move);
-        this.move = move;
+        this.move = Move.valueOf(move);
     }
 
     private void validate(String move) {
@@ -19,10 +21,10 @@ public class MoveRequest {
     }
 
     private boolean isValid(String move) {
-        return move.equals(MOVE_UP) || move.equals(MOVE_DOWN);
+        return move.equals(U.name()) || move.equals(D.name());
     }
 
-    public String getMove() {
+    public Move getMove() {
         return move;
     }
 }
