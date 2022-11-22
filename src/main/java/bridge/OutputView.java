@@ -33,7 +33,7 @@ public class OutputView {
         while(keys.hasNext()){
             String command = keys.next();
             System.out.print(BRIDGE_LEFT);
-            for(int j=0;j<index+1;j++){
+            for(int j=0;j<=index;j++){
                 System.out.print(bridgeMap.get(command).get(j));
                 if(j!=index){
                     System.out.print(BRIDGE_MIDDLE);

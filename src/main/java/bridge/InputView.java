@@ -20,6 +20,7 @@ public class InputView {
      */
     public static String readMoving() {
         String userMove = Console.readLine();
+        validateUserMove(userMove);
         return userMove;
     }
 
@@ -28,6 +29,23 @@ public class InputView {
      */
     public static String readGameCommand() {
         String replayGame = Console.readLine();
+        validateGameCommand(replayGame);
         return replayGame;
+    }
+    public static void validateUserMove(String userMove){
+        if(!userMove.equals(UserCommand.MOVE_UP.getCommand())&&
+                !userMove.equals(UserCommand.MOVE_DOWN.getCommand())){
+            throw new IllegalArgumentException(ErrorResource.ERROR_START+ErrorResource.INPUT_MOVE_WRONG_FRONT+
+                    UserCommand.MOVE_UP.getCommand()+ErrorResource.OR+UserCommand.MOVE_DOWN.getCommand()+
+                    ErrorResource.INPUT_SHOULD_BACK);
+        }
+    }
+    public static void validateGameCommand(String replayGame){
+        if(!replayGame.equals(UserCommand.REPLAY.getCommand())&&
+                !replayGame.equals(UserCommand.END.getCommand())){
+            throw new IllegalArgumentException(ErrorResource.ERROR_START+ErrorResource.INPUT_REPLAY_FRONT+
+                    UserCommand.REPLAY.getCommand()+ErrorResource.OR+UserCommand.END.getCommand()+
+                    ErrorResource.INPUT_SHOULD_BACK);
+        }
     }
 }
