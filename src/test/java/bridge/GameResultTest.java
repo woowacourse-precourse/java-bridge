@@ -18,4 +18,16 @@ class GameResultTest {
         assertThat(result).isEqualTo(expect);
     }
 
+    @Test
+    @DisplayName("gameClear 호출 후 isGameClear 값이 true로 변경되는지 확인")
+    void getIsGameClearAfterGameClear() throws Exception {
+        //given
+        GameResult gameResult = new GameResult();
+        boolean expect = true;
+        //when
+        gameResult.gameClear();
+        boolean result = gameResult.getGameClear();
+        //then
+        assertThat(result).isEqualTo(expect);
+    }
 }
