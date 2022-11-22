@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.utils.State;
+
 import java.util.ArrayList;
 import java.util.List;
 

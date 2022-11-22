@@ -1,5 +1,7 @@
 package bridge.view.validation;
 
+import static bridge.utils.Command.DOWN;
+import static bridge.utils.Command.UP;
 import static bridge.view.Message.ERROR_STATE_MESSAGE;
 
 public class StateValidation {
@@ -15,7 +17,7 @@ public class StateValidation {
     }
 
     private static void inNotValidation(String input) {
-        if (!(input.equals("D") || input.equals("U"))) {
+        if (!(input.equals(DOWN) || input.equals(UP))) {
             System.out.println(ERROR_STATE_MESSAGE);
             throw new IllegalArgumentException();
         }

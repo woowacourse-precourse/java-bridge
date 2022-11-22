@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static bridge.utils.Command.CORRECT;
+import static bridge.utils.Command.WRONG;
+
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
@@ -42,9 +45,9 @@ public class BridgeGame {
     public String isCorrectInput(String playerMovingInRandomBridge, String playerAnswer) {
 
         if (playerMovingInRandomBridge.equals(playerAnswer)) {
-            return "O";
+            return CORRECT;
         }
-        return "X";
+        return WRONG;
     }
 
     public void retry() {
@@ -54,7 +57,7 @@ public class BridgeGame {
     }
 
     public boolean checkCanMove() {
-        if (playerBridgeState.get(playerBridgeState.size() - 1).get(1).equals("O") && playerBridgePosition < (bridge.getPositions().size())) {
+        if (playerBridgeState.get(playerBridgeState.size() - 1).get(1).equals(CORRECT) && playerBridgePosition < (bridge.getPositions().size())) {
             return true;
         }
         return false;

@@ -3,7 +3,7 @@ package bridge.view;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static bridge.State.isUP;
+import static bridge.utils.State.isUP;
 import static bridge.view.Message.*;
 
 public class OutputView {

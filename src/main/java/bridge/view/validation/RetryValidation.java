@@ -1,5 +1,7 @@
 package bridge.view.validation;
 
+import static bridge.utils.Command.QUIT;
+import static bridge.utils.Command.RETRY;
 import static bridge.view.Message.ERROR_RETRY_MESSAGE;
 
 public class RetryValidation {
@@ -15,7 +17,7 @@ public class RetryValidation {
     }
 
     private static void inNotValidation(String input) {
-        if (!(input.equals("R") || input.equals("Q"))) {
+        if (!(input.equals(RETRY) || input.equals(QUIT))) {
             System.out.println(ERROR_RETRY_MESSAGE);
             throw new IllegalArgumentException();
         }
