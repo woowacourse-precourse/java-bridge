@@ -15,6 +15,11 @@ public enum Column {
     private final String capitalLetter;
     private final int index;
 
+    Column(String capitalLetter, int randomNumber, int index) {
+        this.randomNumber = randomNumber;
+        this.capitalLetter = capitalLetter;
+        this.index = index;
+    }
 
     private String capitalLetter() {
         return capitalLetter;
@@ -26,18 +31,12 @@ public enum Column {
         return index;
     }
 
-    Column(String capitalLetter, int randomNumber, int index) {
-        this.randomNumber = randomNumber;
-        this.capitalLetter = capitalLetter;
-        this.index = index;
-    }
-
-
     private static final Map<Integer, Column> BY_RANDOM_NUMBER = Stream.of(values()).collect(Collectors.toMap(Column::randomNumber, Function.identity()));
-    private static final Map<String, Column> BY_CAPITAL_LETTER = Stream.of(values()).collect(Collectors.toMap(Column::capitalLetter, Function.identity()));
+    public static final Map<String, Column> BY_CAPITAL_LETTER = Stream.of(values()).collect(Collectors.toMap(Column::capitalLetter, Function.identity()));
     public boolean equals(Column column){
-        if(this.capitalLetter == column.capitalLetter)
+        if(this.capitalLetter.equals(column.capitalLetter)) {
             return true;
+        }
         return false;
     }
     public int getOppositeIndex(){
@@ -48,17 +47,19 @@ public enum Column {
     }
     public static Column valueOfCapitalLetter(String capitalLetter) {
         return Arrays.stream(values())
-                .filter(row -> row.capitalLetter.equals(capitalLetter))
+                .filter(row -> row.capitalLetter.equals(capitalLetter) && !row.capitalLetter.equals(""))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .get();
     }
     public static String changeNumToLetter(int randomNumber) {
         return BY_RANDOM_NUMBER.get(randomNumber).capitalLetter;
     }
-
-    public static void validateLetter(String input) {
-        if(!(BY_CAPITAL_LETTER.containsKey(input)) || input.equals("")){
-            throw new IllegalArgumentException("[ERROR] 문자가 올바르지 않습니다.");
+    public boolean isAnswer(){
+        if(!capitalLetter.equals("")){
+            return true;
         }
+        return false;
     }
+
+
 }
