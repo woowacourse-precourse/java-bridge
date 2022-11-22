@@ -1,23 +1,57 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import java.util.ArrayList;
+import java.util.List;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+import static bridge.constant.GameKeyboard.WRONG_ANSWER;
+
+public class BridgeGame {
+    private List<String> myAnswerBridges;
+    private AttemptCount attemptCount;
+
+    public BridgeGame() {
+        this.myAnswerBridges = new ArrayList<>();
+        this.attemptCount = new AttemptCount();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void move(Bridge bridge) {
+        if (isDroppedBridge(bridge)) {
+            myAnswerBridges.add(WRONG_ANSWER.letter());
+        }
+
+        myAnswerBridges.add(bridge.getMyMovingPosition());
+    }
+
+    private static boolean isDroppedBridge(Bridge bridge) {
+        return !bridge.isCorrectBridge();
+    }
+
     public void retry() {
+        this.myAnswerBridges.clear();
+        this.attemptCount = attemptCount.plus();
+    }
+
+    public boolean isSelectedCorrectBridge() {
+        return !myAnswerBridges.contains(WRONG_ANSWER.letter());
+    }
+
+    public boolean isSelectedWrongBridge() {
+        return myAnswerBridges.contains(WRONG_ANSWER.letter());
+    }
+
+    public String getWrongMovingMark(int currentBridgeIndex) {
+        return myAnswerBridges.get(currentBridgeIndex + 1);
+    }
+
+    public String getCorrectMovingMark(int currentBridgeIndex) {
+        return myAnswerBridges.get(currentBridgeIndex);
+    }
+
+    public List<String> getMyAnswerBridges() {
+        return myAnswerBridges;
+    }
+
+    public AttemptCount getAttemptCount() {
+        return attemptCount;
     }
 }

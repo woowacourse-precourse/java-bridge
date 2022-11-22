@@ -1,23 +1,45 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
+import static bridge.constant.GameKeyboard.DOWN;
+import static bridge.constant.GameKeyboard.UP;
+
 public class BridgeMaker {
 
+    public static final int BRIDGE_DOWN_RANDOM_NUMBER = 0;
+    public static final int BRIDGE_UP_RANDOM_NUMBER = 1;
+    public static final int INIT_SIZE_INDEX = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        for (int sizeIndex = INIT_SIZE_INDEX; sizeIndex < size; sizeIndex++) {
+            int number = bridgeNumberGenerator.generate();
+            changeNumberToMark(bridge, number);
+        }
+        return bridge;
+    }
+
+    private static void changeNumberToMark(List<String> bridge, int number) {
+        if (isSameDownBridge(number)) {
+            bridge.add(DOWN.letter());
+        }
+        if (isSameUpBridge(number)) {
+            bridge.add(UP.letter());
+        }
+    }
+
+    private static boolean isSameUpBridge(int number) {
+        return number == BridgeMaker.BRIDGE_UP_RANDOM_NUMBER;
+    }
+
+    private static boolean isSameDownBridge(int number) {
+        return number == BridgeMaker.BRIDGE_DOWN_RANDOM_NUMBER;
     }
 }
