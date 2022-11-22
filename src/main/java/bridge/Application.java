@@ -8,6 +8,12 @@ public class Application {
         BridgeGame game = new BridgeGame();
         game.createGame();
 
+        // 2.다리 길이 입력
+        InputView gameInputView = new InputView();
+        int gameBridgeLength = gameInputView.readBridgeSize();
+
+
+
 
     }
 }
