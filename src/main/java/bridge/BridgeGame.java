@@ -51,6 +51,7 @@ public class BridgeGame {
     public void move(String userMove) {
         bridgePrintMaker.addStepBridge(userMove, Direction.convertDirection(answerBridge.get(position)));
         position++;
+        checkGame();
     }
 
     /**
@@ -59,5 +60,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    private void checkGame() {
+        if (position.equals(answerBridge.size())) {
+            result = Result.SUCCESS;
+        }
+
+        if (!bridgePrintMaker.isContinueGame()) {
+            result = Result.FAIL;
+        }
     }
 }
