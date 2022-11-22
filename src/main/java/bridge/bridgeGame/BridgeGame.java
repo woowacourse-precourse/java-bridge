@@ -47,7 +47,7 @@ public class BridgeGame {
             moveCount++;
         }
         if (moveDirection.equals("D")) {
-            bridgeGameResult.addResultUp(move);
+            bridgeGameResult.addResultDown(move);
             moveCount++;
         }
     }
