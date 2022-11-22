@@ -8,9 +8,8 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String START = "[";
-    private static final String END = "]";
-    private static final String MIDDLE = "|";
+    private static final String SUCCESS = "SUCCESS";
+    private static final String FAIL = "FAIL";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -26,25 +25,25 @@ public class OutputView {
     }
 
     private void printBridge(int endTurn, HashMap<Integer, Boolean> bridge) {
-        System.out.print(START);
+        System.out.print(OutputStatic.START.getOutputPrint());
         for (int key : bridge.keySet()) {
             System.out.print(String.format(" %s ", convertBooleanToString(bridge.get(key))));
             if (key + 1 == endTurn) {
                 continue;
             }
-            System.out.print(MIDDLE);
+            System.out.print(OutputStatic.MIDDLE.getOutputPrint());
         }
-        System.out.println(END);
+        System.out.println(OutputStatic.END.getOutputPrint());
     }
 
     private String convertBooleanToString(Boolean convertTarget) {
         try {
             if (convertTarget) {
-                return "O";
+                return OutputStatic.TRUE_PRINT.getOutputPrint();
             }
-            return "X";
+            return OutputStatic.FALSE_PRINT.getOutputPrint();
         } catch (NullPointerException NPE) {
-            return " ";
+            return OutputStatic.SPACE_PRINT.getOutputPrint();
         }
     }
 
@@ -61,16 +60,21 @@ public class OutputView {
 
     private void printOutput(int endTurn, HashMap<Integer, Boolean> bridge, int tryCount) {
         try {
+            System.out.print(OutputStatic.END_GAME.getOutputPrint());
             if (bridge.get(endTurn - 1)) {
-                System.out.println("게임 성공 여부: 성공");
-                System.out.println(String.format("총 시도한 횟수: %s", tryCount));
+                printGameOver(SUCCESS, tryCount);
                 return;
             }
         } catch (NullPointerException NPE) {
             return;
         }
-        System.out.println("게임 성공 여부: 실패");
-        System.out.println(String.format("총 시도한 횟수: %s", tryCount));
+        printGameOver(FAIL, tryCount);
         return;
+    }
+
+    private void printGameOver(String check, int tryCount) {
+        String test = OutputStatic.valueOf(check).getOutputPrint();
+        System.out.println(test);
+        System.out.println(String.format(OutputStatic.TRY_COUNT.getOutputPrint(), tryCount));
     }
 }
