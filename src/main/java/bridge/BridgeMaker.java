@@ -29,6 +29,6 @@ public class BridgeMaker {
             }
 
         }
-        return null;
+        return bridge;
     }
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Player {
 
+    private int currentPosition = -1;
+
     private final InputView inputView = new InputView();
 
     public List<String> makeBridge(){
@@ -18,5 +20,14 @@ public class Player {
 
     private int getSize(){
         return inputView.readBridgeSize();
+    }
+
+    public int getNextIdx() {
+        currentPosition++;
+        return currentPosition;
+    }
+
+    public String getNextSpot(){
+        return inputView.readMoving();
     }
 }
