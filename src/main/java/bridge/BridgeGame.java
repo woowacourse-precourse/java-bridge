@@ -1,6 +1,4 @@
-package bridge.model;
-
-import bridge.BridgeMaker;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +11,7 @@ public class BridgeGame {
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
+
     public List<String> move(String input) {
         String move = new Move(input).getMove();
         if (!checkMove(move)) {
@@ -21,8 +20,7 @@ public class BridgeGame {
         } else if (user.getBridgeState().size() + 1 == bridge.getAnswer().size()) {
             user.setState(GameState.Success.getState());
         }
-        user.addBridgeState(move);
-        return user.getBridgeState();
+        return user.addBridgeState(move);
     }
 
     private boolean checkMove(String move) {
@@ -37,6 +35,7 @@ public class BridgeGame {
         user = new User();
         setBridgeAnswer(bridgeMaker.makeBridge(bridge.getSize()));
     }
+
     public void setBridgeAnswer(List<String> answer) {
         bridge.setAnswer(answer);
     }

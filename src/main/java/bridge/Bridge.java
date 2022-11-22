@@ -1,13 +1,15 @@
-package bridge.model;
+package bridge;
 
 import java.util.List;
 
 public class Bridge {
     private final int size;
     private List<String> answer;
+
     public Bridge(String size) {
         this.size = checkBridgeSize(size);
     }
+
     public void setAnswer(List<String> answer) {
         this.answer = answer;
     }
@@ -19,17 +21,17 @@ public class Bridge {
     public List<String> getAnswer() {
         return this.answer;
     }
+
     private int checkBridgeSize(String size) {
-        int num;
         if (!isNumeric(size)) {
             generateError("[ERROR] 다리길이는 숫자여야 합니다.");
         }
-        num = Integer.parseInt(size);
-        if (num < 3 || num > 20) {
+        if (Integer.parseInt(size) < 3 || Integer.parseInt(size) > 20) {
             generateError("[ERROR] 다리길이는 3부터 20 사이의 숫자여여 합니다.");
         }
-        return num;
+        return Integer.parseInt(size);
     }
+
     private boolean isNumeric(String s) {
         try {
             Integer.parseInt(s);

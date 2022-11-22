@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +18,6 @@ public class User {
         return tryTime;
     }
 
-    public void setTryTime(int tryTime) {
-        this.tryTime = tryTime;
-    }
     public void addTryTime() {
         tryTime++;
     }
@@ -41,7 +38,8 @@ public class User {
         this.bridgeState = bridgeState;
     }
 
-    public void addBridgeState(String move) {
+    public List<String> addBridgeState(String move) {
         bridgeState.add(move);
+        return bridgeState;
     }
 }

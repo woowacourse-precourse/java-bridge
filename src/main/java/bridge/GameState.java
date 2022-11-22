@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge;
 
 public enum GameState {
     Over("실패"),

@@ -1,6 +1,4 @@
-package bridge.view;
-
-import bridge.model.GameState;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +17,7 @@ public class OutputView {
             up.add(items.get(0));
             down.add(items.get(1));
         }
-        printOneLine(up);
-        printOneLine(down);
+        printLines(Arrays.asList(up, down));
     }
 
     private List<String> setItem(String move) {
@@ -34,14 +31,19 @@ public class OutputView {
         return Arrays.asList(" ", "X");
     }
 
+    private void printLines(List<List<String>> lines) {
+        for (List<String> line : lines) {
+            printOneLine(line);
+        }
+    }
+
     private void printOneLine(List<String> line) {
         System.out.print("[");
         for (int i = 0; i < line.size(); i++) {
-            System.out.print(" " + line.get(i) + " ");
             if (i == line.size() - 1) {
-                System.out.println("]");
+                System.out.println(" " + line.get(i) + " " + "]");
             } else if (i != line.size() - 1) {
-                System.out.print("|");
+                System.out.print(" " + line.get(i) + " " + "|");
             }
         }
     }

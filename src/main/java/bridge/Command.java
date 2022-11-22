@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge;
 
 public class Command {
     private String command;
@@ -17,6 +17,7 @@ public class Command {
         }
         return input;
     }
+
     private void generateError(String message) {
         throw new IllegalArgumentException(message);
     }

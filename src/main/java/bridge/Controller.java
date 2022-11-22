@@ -1,18 +1,11 @@
-package bridge.controller;
+package bridge;
 
-import bridge.model.BridgeGame;
-import bridge.model.Command;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
-import java.util.List;
-
-public class BridgeController {
+public class Controller {
     private OutputView outputView;
     private InputView inputView;
     private BridgeGame bridgeGame;
 
-    public BridgeController() {
+    public Controller() {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeGame = new BridgeGame();
@@ -35,8 +28,7 @@ public class BridgeController {
     public void moveController() {
         try {
             final String move = inputView.readMoving();
-            final List<String> bridge = bridgeGame.move(move);
-            outputView.printMap(bridge);
+            outputView.printMap(bridgeGame.move(move));
             subMoveController(bridgeGame.getUserState());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

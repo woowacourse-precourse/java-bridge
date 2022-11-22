@@ -1,9 +1,5 @@
 package bridge;
 
-import bridge.model.Bridge;
-import bridge.model.BridgeGame;
-import bridge.model.Command;
-import bridge.model.Move;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

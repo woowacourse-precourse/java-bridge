@@ -1,7 +1,8 @@
-package bridge.model;
+package bridge;
 
 public class Move {
     private String move;
+
     public Move(String move) {
         this.move = checkMove(move);
     }
@@ -16,6 +17,7 @@ public class Move {
         }
         return input;
     }
+
     private void generateError(String message) {
         throw new IllegalArgumentException(message);
     }
