@@ -14,9 +14,10 @@ class OutputViewTest extends NsTest {
     public void resultTest(boolean isSuccess, long value, String resultSuccess) {
         OutputView outputView = new OutputView();
         outputView.printResult(isSuccess, value);
-        String result = String.format("게임 성공 여부: %s\n총 시도한 횟수: %d", resultSuccess, value);
-        assertThat(output()).contains(result);
-
+        String resultMessage = String.format("게임 성공 여부: %s", resultSuccess);
+        String resultCountMessage = String.format("총 시도한 횟수: %d", value);
+        assertThat(output()).contains(resultMessage);
+        assertThat(output()).contains(resultCountMessage);
     }
 
     @Test
@@ -29,7 +30,6 @@ class OutputViewTest extends NsTest {
         String result = "[ O |   |   ]\n"
                 + "[   | O | O ]";
         assertThat(output()).contains(result);
-
     }
 
     @Override
