@@ -96,7 +96,7 @@ class MapTest extends NsTest {
         map.add(Side.UP, true);
         map.add(Side.UP, true);
         map.add(Side.DOWN, false);
-        new OutputView().printMap(map.get());
+//        new OutputView().printMap(map.get());
         assertThat(map.get().toString()).contains("?");
     }
 
@@ -107,7 +107,7 @@ class MapTest extends NsTest {
         map.add(Side.DOWN, true);
         map.add(Side.UP, true);
         map.add(Side.DOWN, false);
-        new OutputView().printMap(map.get());
+//        new OutputView().printMap(map.get());
     }
 
     @Override

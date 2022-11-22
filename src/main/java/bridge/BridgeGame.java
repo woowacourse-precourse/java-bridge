@@ -56,13 +56,6 @@ public class BridgeGame {
         return Integer.toString(this.trial);
     }
 
-    public void updateMap() {
-        this.map.add(
-                Side.get(player.getLastMoving()),
-                isPlayerInMovableSide()
-        );
-    }
-
     public List<List<String>> getMap() {
         return this.map.get();
     }
@@ -70,6 +63,13 @@ public class BridgeGame {
     private void initialize_game() {
         this.player.initializePosition();
         this.map.initialize();
+    }
+
+    private void updateMap() {
+        this.map.add(
+                Side.get(player.getLastMoving()),
+                isPlayerInMovableSide()
+        );
     }
 
     private void addTrial() {

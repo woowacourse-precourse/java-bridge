@@ -25,12 +25,6 @@ public class OutputView {
         printGuideMessage(GuideMessage.GAME_TRIAL, bridgeGame.getTrial());
     }
 
-    public void printMap(List<List<String>> map) {
-        map.stream().forEach(line -> {
-                    printBridge(String.join(UserInterfaceSymbol.BRIDGE_DELIMITER.getSymbol(), line));
-                });
-    }
-
     public void printAskGameCommand() {
         printNewline();
         printGuideMessage(GuideMessage.GET_GAME_COMMAND);
@@ -64,6 +58,12 @@ public class OutputView {
 
     private void printNewline() {
         System.out.println();
+    }
+
+    private void printMap(List<List<String>> map) {
+        map.stream().forEach(line -> {
+            printBridge(String.join(UserInterfaceSymbol.BRIDGE_DELIMITER.getSymbol(), line));
+        });
     }
 
     private void printBridge(String line) {

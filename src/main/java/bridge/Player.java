@@ -1,6 +1,5 @@
 package bridge;
 
-import exceptionHandler.BridgeGenerationException;
 import exceptionHandler.SideSelectionException;
 
 import java.util.ArrayList;
