@@ -23,6 +23,7 @@ public class BridgeGame {
     static List<String> mark = new ArrayList<>();
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    static int challenge = 1;
 
     public void setGame() {
         View.gameStartMessage();
@@ -93,6 +94,20 @@ public class BridgeGame {
                 retryCheckNumber = 1;
             }
         }
+        tryOrNot(userInput);
+    }
+
+    private void tryOrNot(String userInput) {
+
+        if(userInput.equals("R")){
+            challenge++;
+            round = 0;
+            mark.clear();
+            OutputView.upSide ="";
+            OutputView.downSide ="";
+            return;
+        }
+        round = bridgeSize;
     }
 
     /* 사용자가 선택한 칸이 건널 수 있는 칸인지 확인하는 메서드 */
@@ -109,5 +124,9 @@ public class BridgeGame {
         outputView.printMap(bridge, mark, round);
 
         return crossPossible;
+    }
+
+    public void challengeCount() {
+        View.showChallengeCount(challenge);
     }
 }

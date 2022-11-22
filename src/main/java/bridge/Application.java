@@ -19,8 +19,9 @@ public class Application {
             bridgeGame.move();
 
             if (!bridgeGame.check()) {
-                return;
+                bridgeGame.retry();
             }
-        };
+        }
+        bridgeGame.challengeCount();
     }
 }
