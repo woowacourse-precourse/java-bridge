@@ -7,7 +7,11 @@ public class RetryController extends Controller {
         super();
     }
 
-    public boolean askToRetryAndQuitAfterReturnIsRetry() {
+    public boolean askToRetryAndQuitAfterReturnIsRetry(boolean isPass) {
+        if (isPass) {
+            return false;
+        }
+
         return this.inputView.readGameCommand();
     }
 
