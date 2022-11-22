@@ -71,13 +71,13 @@ public class BridgeGameTest {
         }
 
         @Override
-        public void validateRetryInput(String input) {
-
+        public String validateRetryInput(String input) {
+            return null;
         }
 
         @Override
-        public void validateCommandInput(String input) {
-
+        public String validateCommandInput(String input) {
+            return null;
         }
     }
 }

@@ -24,7 +24,7 @@ public class GameController {
     }
 
     public void run(List<String> bridge, List<String> inputCommand) {
-        List<String> addedInputCommand = bridgeGame.addCommandInput(inputCommand, inputView.readMoving());
+        List<String> addedInputCommand = bridgeGame.addCommandInput(inputCommand, inputMoveCommand());
         List<List<String>> result = bridgeGame.move(bridge, addedInputCommand);
         outputView.printMap(result.get(upSide), result.get(downSide));
         isMatchSize(bridge, addedInputCommand, result);
@@ -38,25 +38,45 @@ public class GameController {
         if (!failGame && bridge.size() != result.get(upSide).size()) run(bridge, inputCommand);
     }
 
-    private int inputBridgeSize() {
-        while (true) {
-            try {
-                return bridgeGame.convertBridgeSize(inputView.readBridgeSize());
-
-            } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessageEnum.NOT_VALIDATE_SIZE.getValue());
-            }
-        }
-    }
 
     private void checkRetry(List<String> bridge, List<List<String>> result) {
-        String command = inputView.readGameCommand();
+        String command = inputRetryCommand();
         if (bridgeGame.retry(command)) {
             retryNumber++;
             run(bridge, new ArrayList<>());
         }
         if (!bridgeGame.retry(command)) {
             outputView.printResult(result, retryNumber, false);
+        }
+    }
+
+    private int inputBridgeSize() {
+        while (true) {
+            try {
+                return bridgeGame.convertBridgeSize(inputView.readBridgeSize());
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessageEnum.NOT_VALIDATE_SIZE.getValue());
+            }
+        }
+    }
+
+    private String inputRetryCommand() {
+        while (true) {
+            try {
+                return bridgeGame.checkRetryCommand(inputView.readGameCommand());
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessageEnum.NOT_VALIDATE.getValue());
+            }
+        }
+    }
+
+    private String inputMoveCommand() {
+        while (true) {
+            try {
+                return bridgeGame.checkMoveCommand(inputView.readMoving());
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessageEnum.NOT_VALIDATE.getValue());
+            }
         }
     }
 }

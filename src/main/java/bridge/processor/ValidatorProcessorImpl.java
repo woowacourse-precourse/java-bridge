@@ -18,21 +18,23 @@ public class ValidatorProcessorImpl implements ValidatorProcessor{
     }
 
     @Override
-    public void validateRetryInput(String input) {
+    public String validateRetryInput(String input) {
         validateNullCheck(input);
         if (!CommandEnum.RESTART.getValue().equals(input) &&
                 !CommandEnum.QUIT.getValue().equals(input)) {
             throw new IllegalArgumentException(ErrorMessageEnum.NOT_VALIDATE.getValue());
         }
+        return input;
     }
 
     @Override
-    public void validateCommandInput(String input) {
+    public String validateCommandInput(String input) {
         validateNullCheck(input);
         if (!CommandEnum.UP.getValue().equals(input) &&
                 !CommandEnum.DOWN.getValue().equals(input)) {
             throw new IllegalArgumentException(ErrorMessageEnum.NOT_VALIDATE.getValue());
         }
+        return input;
     }
 
     private void validateNullCheck(String input) {

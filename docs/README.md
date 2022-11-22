@@ -53,3 +53,4 @@
 7. [x] BridgeGame 기능
 8. [x] GameController 기능 
 9. [x] BridgeGame 테스트
+10. [x] 예외처리 및 다시입력하는 기능
