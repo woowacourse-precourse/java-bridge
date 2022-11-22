@@ -25,6 +25,10 @@ public class BridgeSize {
         }
     }
 
+    public int getSize() {
+        return size;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
