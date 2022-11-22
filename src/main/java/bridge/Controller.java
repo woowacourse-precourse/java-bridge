@@ -16,7 +16,7 @@ public class Controller {
         String command = "";
         while (!bridgeGame.isEnd() && !command.equals(QUIT_COMMAND)) {
             move(bridgeGame);
-            if (!bridgeGame.isMovableArea()) {
+            if (!bridgeGame.canStandOnCurrentBridge()) {
                 command = checkReset(bridgeGame);
             }
         }

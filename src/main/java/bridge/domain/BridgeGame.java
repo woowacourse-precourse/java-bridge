@@ -43,7 +43,7 @@ public class BridgeGame {
         return player.equals(bridge);
     }
 
-    public boolean isMovableArea() {
+    public boolean canStandOnCurrentBridge() {
         int currentIndex = player.size() - 1;
 
         return player.get(currentIndex).equals(bridge.get(currentIndex));

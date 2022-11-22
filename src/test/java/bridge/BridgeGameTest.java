@@ -70,7 +70,7 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
 
-        assertThat(bridgeGame.isMovableArea()).isEqualTo(true);
+        assertThat(bridgeGame.canStandOnCurrentBridge()).isEqualTo(true);
     }
 
     @Test
@@ -80,7 +80,7 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("U");
 
-        assertThat(bridgeGame.isMovableArea()).isEqualTo(false);
+        assertThat(bridgeGame.canStandOnCurrentBridge()).isEqualTo(false);
     }
 
     @Test
@@ -93,6 +93,6 @@ class BridgeGameTest {
         bridgeGame.retry();
 
         softAssertions.assertThat(bridgeGame.getPlayer()).as("플레이어 비우기").isEqualTo("");
-        softAssertions.assertThat(bridgeGame.getRetryCount()).as("시도 횟수 카운트").isEqualTo(1);
+        softAssertions.assertThat(bridgeGame.getTryCount()).as("시도 횟수 카운트").isEqualTo(1);
     }
 }
