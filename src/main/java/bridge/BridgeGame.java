@@ -35,4 +35,8 @@ public class BridgeGame{
     public boolean isPaused(){
         return !bridge.isPlayerRightBridge(player);
     }
+
+    public boolean isSuccess(){
+        return player.isGameFinished(bridge);
+    }
 }
