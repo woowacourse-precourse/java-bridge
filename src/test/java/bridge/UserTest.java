@@ -1,36 +1,17 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import bridge.dto.Moving;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("User 클래스")
 class UserTest {
-	@Nested
-	@DisplayName("User 생성자는")
-	class Describe_User_constructor {
-
-		@Nested
-		@DisplayName("만약 매개변수가 U,D중 하나가 아니라면")
-		class Context_parameter_is_not_U_or_D {
-
-			@DisplayName("예외를 발생시킨다.")
-			@ValueSource(strings = {"A", "a", "31", "U3", " U", "U ", " "})
-			@ParameterizedTest
-			void it_returns_illegal_argument_exception(String input) {
-				assertThatThrownBy(() -> new User(input))
-					.isInstanceOf(IllegalArgumentException.class);
-			}
-		}
-	}
 
 	@Nested
 	@DisplayName("checkMoving 메소드는")
@@ -47,9 +28,10 @@ class UserTest {
 			void it_returns_moving_result_includes_true() {
 				Bridge bridge = new Bridge(inputBridge);
 				movings.stream()
-					.forEach(moving -> {
-						User user = new User(moving);
-						boolean movingResult = user.checkMoving(bridge);
+					.forEach(input -> {
+						Moving moving = new Moving(input);
+						User user = new User(bridge);
+						boolean movingResult = user.checkMoving(moving);
 						assertThat(movingResult).isTrue();
 					});
 			}
@@ -65,11 +47,56 @@ class UserTest {
 			void it_returns_moving_result_includes_false() {
 				Bridge bridge = new Bridge(inputBridge);
 				movings.stream()
-					.forEach(moving -> {
-						User user = new User(moving);
-						boolean movingResult = user.checkMoving(bridge);
+					.forEach(input -> {
+						Moving moving = new Moving(input);
+						User user = new User(bridge);
+						boolean movingResult = user.checkMoving(moving);
 						assertThat(movingResult).isFalse();
 					});
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("isKeepMove 메소드는")
+	class Describe_isKeepMove {
+		private List<String> InputBridge = new ArrayList<>(Arrays.asList("U", "D", "U"));
+
+		@Nested
+		@DisplayName("만약 다리의 모든 칸을 건너면")
+		class Context_cross_bridge {
+			List<String> userMoving = new ArrayList<>(Arrays.asList("U", "D", "U"));
+
+			@Test
+			@DisplayName("true를 반환한다.")
+			void it_returns_true() {
+				Bridge bridge = new Bridge(InputBridge);
+				User user = new User(bridge);
+				userMoving.stream()
+					.forEach(direction -> {
+						bridge.checkUserMoving(direction);
+					});
+
+				assertThat(user.isKeepMove()).isTrue();
+			}
+		}
+
+		@Nested
+		@DisplayName("만약 다리의 모든 칸을 건너지 못하면")
+		class Context_not_cross_bridge {
+			List<String> userMoving = new ArrayList<>(Arrays.asList("U", "U"));
+
+			@Test
+			@DisplayName("false를 반환한다.")
+			void it_returns_true() {
+				Bridge bridge = new Bridge(InputBridge);
+				User user = new User(bridge);
+				userMoving.stream()
+					.forEach(direction -> {
+						bridge.checkUserMoving(direction);
+					});
+
+				assertThat(user.isKeepMove()).isFalse();
 			}
 		}
 	}

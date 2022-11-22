@@ -54,8 +54,8 @@ class ConvertorTest {
 		@Nested
 		@DisplayName("만약 매개변수가 true이면")
 		class Context_parameter_is_true {
-			boolean isSuccess = true;
-			String expected = SUCCESS;
+			private boolean isSuccess = true;
+			private String expected = SUCCESS;
 
 			@Test
 			@DisplayName("성공을 반환한다.")
@@ -68,8 +68,8 @@ class ConvertorTest {
 		@Nested
 		@DisplayName("만약 매개변수가 false이면")
 		class Context_parameter_is_false {
-			boolean isSuccess = false;
-			String expected = FAIL;
+			private boolean isSuccess = false;
+			private String expected = FAIL;
 
 			@Test
 			@DisplayName("실패를 반환한다.")

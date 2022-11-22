@@ -1,18 +1,31 @@
 package bridge;
 
-import bridge.Bridge;
-import bridge.utils.validator.MovingValidator;
+import bridge.dto.Moving;
 
-public class User extends MovingValidator {
-	private String moving;
+public class User {
+	private Bridge bridge;
+	private BridgeMap bridgeMap = new BridgeMap();
 
-	public User(String moving) {
-		validateMoving(moving);
-		this.moving = moving;
+	public User(Bridge bridge) {
+		this.bridge = bridge;
 	}
 
-	public boolean checkMoving(Bridge bridge) {
-		bridge.checkUserMoving(moving);
-		return bridge.getMovingResult();
+	public boolean checkMoving(Moving moving) {
+		MovingResult movingResult = bridge.checkUserMoving(moving.getMoving());
+		bridgeMap.addMovingResult(movingResult);
+		return movingResult.isMovingSuccess();
+	}
+
+	public boolean isKeepMove() {
+		return bridge.isCrossBridge();
+	}
+
+	public BridgeMap getBridgeMap() {
+		return bridgeMap;
+	}
+
+	public void resetGame() {
+		bridge.resetGame();
+		bridgeMap.resetMap();
 	}
 }

@@ -6,32 +6,28 @@ import java.util.List;
 public class Bridge extends BridgeValidator {
 	private final boolean MOVING_SUCCESS = true;
 	private final boolean MOVING_FAIL = false;
-	private int currentLocation = 0;
+	private final int RESET = 0;
+	private int currentLocation;
 	private List<String> bridge;
-	private BridgeMap bridgeMap = new BridgeMap();
 
 	public Bridge(List<String> bridge) {
 		validateBridge(bridge);
 		validateBridgeSize(bridge);
+		currentLocation = RESET;
 		this.bridge = bridge;
 	}
 
-	public void checkUserMoving(String userMoving) {
+	public MovingResult checkUserMoving(String userMoving) {
 		String currentBridgeDirection = bridge.get(currentLocation++);
-		boolean isMovingSuccess = MOVING_FAIL;
+		boolean isMovingSuccess = isMatch(currentBridgeDirection, userMoving);
+		return new MovingResult(userMoving, isMovingSuccess);
+	}
+
+	private boolean isMatch(String currentBridgeDirection, String userMoving) {
 		if (currentBridgeDirection.equals(userMoving)) {
-			isMovingSuccess = MOVING_SUCCESS;
+			return MOVING_SUCCESS;
 		}
-		MovingResult movingResult = new MovingResult(userMoving, isMovingSuccess);
-		bridgeMap.addMovingResult(movingResult);
-	}
-
-	public BridgeMap getBridgeMap() {
-		return bridgeMap;
-	}
-
-	public boolean getMovingResult() {
-		return bridgeMap.getMovingResult();
+		return MOVING_FAIL;
 	}
 
 	public boolean isCrossBridge() {
@@ -42,7 +38,6 @@ public class Bridge extends BridgeValidator {
 	}
 
 	public void resetGame() {
-		this.currentLocation = 0;
-		bridgeMap.resetMap();
+		this.currentLocation = RESET;
 	}
 }

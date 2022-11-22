@@ -10,10 +10,10 @@ import bridge.utils.Controller.InputController;
 public class BridgeGame {
 	private final String RETRY = "R";
 	private InputController inputController = new InputController();
-	private Bridge bridge;
+	private User user;
 
-	public BridgeGame(Bridge bridge) {
-		this.bridge = bridge;
+	public BridgeGame(User user) {
+		this.user = user;
 	}
 
 	/**
@@ -23,8 +23,7 @@ public class BridgeGame {
 	 */
 	public boolean move() {
 		Moving moving = inputController.getMoving();
-		User user = new User(moving.getMoving());
-		return user.checkMoving(bridge);
+		return user.checkMoving(moving);
 	}
 
 	/**
@@ -42,14 +41,14 @@ public class BridgeGame {
 	}
 
 	public boolean keepMove() {
-		return bridge.isCrossBridge();
+		return user.isKeepMove();
 	}
 
 	public BridgeMap getBridgeMap() {
-		return bridge.getBridgeMap();
+		return user.getBridgeMap();
 	}
 
 	public void resetGame() {
-		bridge.resetGame();
+		user.resetGame();
 	}
 }

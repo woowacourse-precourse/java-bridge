@@ -1,10 +1,11 @@
 package bridge.utils.Controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.Bridge;
 import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.GameCounter;
+import bridge.User;
 import bridge.dto.BridgeSize;
 import java.util.List;
 
@@ -16,16 +17,22 @@ public class GameController {
 	private GameCounter gameCounter;
 	private BridgeGame bridgeGame;
 
+
 	public void start() {
 		try {
-			Bridge bridge = createBridge();
-			bridgeGame = new BridgeGame(bridge);
-			gameCounter = new GameCounter();
+			setUp();
 			play();
 		} catch (IllegalArgumentException error) {
 			System.out.println(error.getMessage());
 			return;
 		}
+	}
+
+	private void setUp() {
+		Bridge bridge = createBridge();
+		User user = new User(bridge);
+		bridgeGame = new BridgeGame(user);
+		gameCounter = new GameCounter();
 	}
 
 	private Bridge createBridge() {

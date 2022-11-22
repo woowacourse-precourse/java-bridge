@@ -24,7 +24,8 @@ class BridgeGameTest {
 		class Context_moving_result_success {
 			private List<String> movings = new ArrayList<>(Arrays.asList("U", "D", "D", "U"));
 			private Bridge bridge = new Bridge(inputBridge);
-			private BridgeGame bridgeGame = new BridgeGame(bridge);
+			private User user = new User(bridge);
+			private BridgeGame bridgeGame = new BridgeGame(user);
 
 			@Test
 			@DisplayName("true를 반환한다.")
@@ -44,7 +45,8 @@ class BridgeGameTest {
 		class Context_moving_result_fail {
 			private List<String> movings = new ArrayList<>(Arrays.asList("D", "U", "U", "D"));
 			private Bridge bridge = new Bridge(inputBridge);
-			private BridgeGame bridgeGame = new BridgeGame(bridge);
+			private User user = new User(bridge);
+			private BridgeGame bridgeGame = new BridgeGame(user);
 
 			@Test
 			@DisplayName("false를 반환한다.")
@@ -65,7 +67,8 @@ class BridgeGameTest {
 	class Describe_retry {
 		private List<String> inputBridge = new ArrayList<>(Arrays.asList("U", "D", "D", "U"));
 		private Bridge bridge = new Bridge(inputBridge);
-		private BridgeGame bridgeGame = new BridgeGame(bridge);
+		private User user = new User(bridge);
+		private BridgeGame bridgeGame = new BridgeGame(user);
 
 		@Nested
 		@DisplayName("만약 입력한 재시도 명령어가 R이면")
@@ -113,7 +116,8 @@ class BridgeGameTest {
 			@DisplayName("true를 반환한다.")
 			void it_returns_true() {
 				Bridge bridge = new Bridge(inputBridge);
-				BridgeGame bridgeGame = new BridgeGame(bridge);
+				User user = new User(bridge);
+				BridgeGame bridgeGame = new BridgeGame(user);
 				movings.stream()
 					.forEach(moving -> {
 						InputStream in = new ByteArrayInputStream(moving.getBytes());
@@ -133,7 +137,8 @@ class BridgeGameTest {
 			@DisplayName("false를 반환한다.")
 			void it_returns_false() {
 				Bridge bridge = new Bridge(inputBridge);
-				BridgeGame bridgeGame = new BridgeGame(bridge);
+				User user = new User(bridge);
+				BridgeGame bridgeGame = new BridgeGame(user);
 				movings.stream()
 					.forEach(moving -> {
 						InputStream in = new ByteArrayInputStream(moving.getBytes());
@@ -162,7 +167,8 @@ class BridgeGameTest {
 		@DisplayName("이동결과들을 반환한다.")
 		void it_returns_moving_results() {
 			Bridge bridge = new Bridge(inputBridge);
-			BridgeGame bridgeGame = new BridgeGame(bridge);
+			User user = new User(bridge);
+			BridgeGame bridgeGame = new BridgeGame(user);
 			movings.stream()
 				.forEach(moving -> {
 					InputStream in = new ByteArrayInputStream(moving.getBytes());
