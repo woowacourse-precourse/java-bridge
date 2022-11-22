@@ -10,14 +10,15 @@ public class User {
     public User() {
     }
 
-    public void cross(Bridge bridge, MoveType moveType) {
+    public UserStatus cross(Bridge bridge, MoveType moveType) {
         if (bridge.canCross(location, moveType)) {
             userPath.addUserPath(true, moveType);
-            return;
+            increaseLocation();
+            return UserStatus.SUCCESS;
         }
 
         userPath.addUserPath(false, moveType);
-        increaseLocation();
+        return UserStatus.OUT;
     }
 
     private void increaseLocation() {
