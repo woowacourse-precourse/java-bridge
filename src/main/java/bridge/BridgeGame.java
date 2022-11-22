@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,9 +36,9 @@ public class BridgeGame {
         return bridgeGameResult;
     }
 
-    public String move(String movingCommand) {
+    public List<String> move(String movingCommand) {
         user.add(movingCommand);
-        return bridge.compare(user);
+        return Collections.unmodifiableList(user);
     }
 
     public void retry() {
