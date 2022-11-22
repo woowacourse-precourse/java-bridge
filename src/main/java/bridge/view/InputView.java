@@ -22,54 +22,33 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(START_GAGE_MESSAGE);
-        while(true) {
-            System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
-            Integer bridgeSize = validBridgeSize();
-            if(bridgeSize != null) return bridgeSize;
-        }
+        System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
+        return validBridgeSize(Console.readLine());
     }
 
-    private Integer validBridgeSize() {
-        String bridgeLengthOfString = Console.readLine();
-        if(validException.validInteger(bridgeLengthOfString)
-                && validException.validIntegerRange(Integer.parseInt(bridgeLengthOfString))) return Integer.parseInt(bridgeLengthOfString);
-        return null;
+    private int validBridgeSize(String bridgeLengthOfString) {
+        validException.validInteger(bridgeLengthOfString);
+        validException.validIntegerRange(Integer.parseInt(bridgeLengthOfString));
+
+        return Integer.parseInt(bridgeLengthOfString);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        while(true) {
-            System.out.println(INPUT_MOVE_NEXT_STEP);
-            String nextStep = Console.readLine();
-            if(!validNextStep(nextStep)) {
-                IllegalArgumentException illegalArgumentException = new IllegalArgumentException();
-                continue;
-            }
-            return nextStep;
-        }
+        System.out.println(INPUT_MOVE_NEXT_STEP);
+        String nextStep = Console.readLine();
+        validException.validMoveNextStep(nextStep);
+        return nextStep;
     }
-
-    private boolean validNextStep(String nextStep){
-        return validException.validMoveNextStep(nextStep);
-    }
-
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        while(true) {
-            System.out.println(INPUT_GAME_RESTART_OR_QUIT);
-            String order = Console.readLine();
-            if(!validOrderString(order)){
-                continue;
-            }
-            return order;
-        }
-    }
-
-    private boolean validOrderString(String order){
-        return validException.validOrder(order);
+        System.out.println(INPUT_GAME_RESTART_OR_QUIT);
+        String order = Console.readLine();
+        validException.validOrder(order);
+        return order;
     }
 }
