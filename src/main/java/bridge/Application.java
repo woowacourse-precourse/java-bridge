@@ -55,7 +55,6 @@ public class Application {
 
         }
 
-        outputView.printEndMessage();
         outputView.printMap(bridgeGame.getUpperLine(),bridgeGame.getLowerLine());
         outputView.printResult(game,gameCount);
 
