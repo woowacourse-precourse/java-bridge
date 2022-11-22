@@ -59,7 +59,7 @@ public class Result {
         results[1].add(CORRECT_PATH);
     }
 
-    public int getCurrent() {
+    private int getCurrent() {
         return results[0].size();
     }
 
