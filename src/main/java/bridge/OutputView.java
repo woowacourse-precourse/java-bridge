@@ -1,9 +1,7 @@
 package bridge;
 
-import bridge.constant.BridgeConstant;
 import bridge.constant.GameCommand;
 import bridge.constant.Message;
-import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -18,26 +16,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> bridge, List<String> playerInput) {
-        upperSide = "";
-        lowerSide = "";
-        connectBridge(BridgeConstant.LEFT_WRAPPER.getBridgeConstant());
-        for (int i = 0; i < playerInput.size(); i++) {
-            if (0 < i && i < bridge.size()) {
-                connectBridge(BridgeConstant.JOINT.getBridgeConstant());
-            }
-            String answer = bridge.get(i);
-            String currentPlayerInput = playerInput.get(i);
-            if (currentPlayerInput.equals(answer)) {
-                recordResult(currentPlayerInput, BridgeConstant.CAN_GO.getBridgeConstant());
-            }
-            if (!currentPlayerInput.equals(answer)) {
-                recordResult(currentPlayerInput, BridgeConstant.CAN_NOT_GO.getBridgeConstant());
-            }
-        }
-        connectBridge(BridgeConstant.RIGHT_WRAPPER.getBridgeConstant());
-        System.out.println(upperSide);
-        System.out.println(lowerSide);
+    public static void printMap(String connectedBridge) {
+        System.out.println(connectedBridge);
     }
 
     /**
@@ -45,10 +25,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(int gamePlayCount, boolean isClear) {
+    public static void printResult(int gamePlayCount, boolean isClear, String connectedBridge) {
         System.out.println(Message.FINAL_RESULT.getMessage());
-        System.out.println(upperSide);
-        System.out.println(lowerSide);
+        System.out.println(connectedBridge);
         System.out.print(Message.GAME_RESULT.getMessage());
         if (isClear) {
             System.out.println(Message.SUCCESS.getMessage());
