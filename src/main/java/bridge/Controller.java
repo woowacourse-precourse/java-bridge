@@ -36,7 +36,6 @@ public class Controller {
         inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame = new BridgeGame(bridge);
-        System.out.println(bridge); //
     }
 
     public void gameController() {
