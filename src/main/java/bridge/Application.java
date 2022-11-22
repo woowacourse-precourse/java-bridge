@@ -19,7 +19,7 @@ public class Application {
         List<String> bridgeList = initalBridgeListGenerate();
         do{
             bridgeGame.resetMap();
-            successFail = gameJudge.successFailMethod(bridgeList); //true면 성공, false면 실패
+            successFail = gameJudge.successFailMethod(bridgeList);
             retryJudge = gameJudge.retryJudgeMethod(successFail);
             tryNumber++;
         }while(retryJudge);

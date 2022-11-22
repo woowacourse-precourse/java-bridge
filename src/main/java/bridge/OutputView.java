@@ -8,12 +8,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static List<String> mapUp = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
-    private static List<String> mapDown = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
-    private static final String CONTOUR = " | ";
     private static String str;
-    String addOxContour;
-    String emptyContour;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -25,33 +20,6 @@ public class OutputView {
         System.out.println(map);
         this.str = map;
     }
-private enum sf{
-        SUCCESS(true, "성공"),
-    FAIL(false, "실패");
-
-        boolean tf;
-        String sungsil;
-
-    sf(boolean tf, String sungsil) {
-        this.tf = tf;
-        this.sungsil=sungsil;
-
-    }
-    public boolean getTf(){
-        return this.tf;
-    }
-    public String getsungsil(){
-        return this.sungsil;
-    }
-
-}
-
-public sf originFromsf(String successFail){
-        if (successFail == "성공"){
-            return sf.SUCCESS;
-        }
-    return sf.FAIL;
-}
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -61,9 +29,9 @@ public sf originFromsf(String successFail){
     public void printResult(int tryNumber, String successFail) {
         System.out.println("최종 게임 결과");
         System.out.println(this.str);
-        sf origin = originFromsf(successFail);
 
-        System.out.println("게임 성공 여부: "+origin.getsungsil()+"\n"
+
+        System.out.println("게임 성공 여부: "+successFail+"\n"
                 + "총 시도한 횟수: "+tryNumber);
     }
 }
