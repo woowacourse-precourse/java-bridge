@@ -20,8 +20,6 @@ public enum BridgeBlock {
     }
 
     public String getBlockSymbol() {
-        if (this == DOWN) return DOWN.blockSymbol;
-        if (this == UP) return UP.blockSymbol;
-        return null;
+        return this.blockSymbol;
     }
 }
