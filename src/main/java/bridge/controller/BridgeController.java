@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.commom.constant.GameState;
 import bridge.model.BridgeHistory;
 import bridge.BridgeManager;
@@ -27,10 +27,10 @@ public class BridgeController {
         outputView.printGreeting();
     }
 
-    public void setupGame(BridgeNumberGenerator bridgeNumberGenerator) {
+    public void setupGame() {
         int size = inputView.readBridgeSize();
         bridgeHistory = new BridgeHistory(new HashMap<>(), size);
-        bridgeManager = new BridgeManager(bridgeNumberGenerator);
+        bridgeManager = new BridgeManager(new BridgeRandomNumberGenerator());
         bridgeManager.setBridgeWithSize(size);
     }
 

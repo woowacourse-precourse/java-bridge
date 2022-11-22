@@ -1,6 +1,5 @@
 package bridge.game;
 
-import bridge.BridgeNumberGenerator;
 import bridge.commom.constant.GameState;
 import bridge.controller.BridgeController;
 
@@ -9,11 +8,9 @@ import static bridge.commom.constant.GameMessage.Exception.ERROR_HEADER;
 public class BridgeGame {
 
     private final BridgeController bridgeController;
-    private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    public BridgeGame(BridgeController bridgeController, BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeController = bridgeController;
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
+    public BridgeGame() {
+        this.bridgeController = new BridgeController();
     }
 
     public void run() {
@@ -41,7 +38,7 @@ public class BridgeGame {
 
     public void start() {
         bridgeController.playGreeting();
-        bridgeController.setupGame(bridgeNumberGenerator);
+        bridgeController.setupGame();
     }
 
     public void close() {
