@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GameControllStatusTest {
+class GameControllerStatusTest {
 
     private GameStatus gameStatus = new GameStatus();
 
@@ -38,7 +38,7 @@ class GameControllStatusTest {
     }
 
     @Nested
-    class GameControllPowerWheterTest {
+    class GameControllerPowerWheterTest {
 
         @DisplayName("게임의 전원 버튼 역할을 하는 gamePower를 전원을 껐을때")
         @Test
@@ -51,7 +51,7 @@ class GameControllStatusTest {
     }
 
     @Nested
-    class GameControllSucessWheterTest {
+    class GameControllerSucessWheterTest {
 
         @DisplayName("게임에서 성공했을때")
         @Test

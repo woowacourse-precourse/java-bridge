@@ -10,16 +10,16 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 
-public class GameControll {
+public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final static GameStatus GAME_STATUS = new GameStatus();
-    private final static BridgeGame bridgeGame = new BridgeGame();
-    private final static BridgeShape bridgeShape = new BridgeShape();
-    private final static Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
+    private final GameStatus GAME_STATUS = new GameStatus();
+    private final BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeShape bridgeShape = new BridgeShape();
+    private final Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
 
-    public GameControll(InputView inputView, OutputView outputView){
+    public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -29,18 +29,18 @@ public class GameControll {
     private String retryOrQuit;
 
     public void play() {
-
-            outputView.printStart();
-            viewBridgeSize();
-            resetGameStatus();
-            GAME_STATUS.plusCnt();
-            playBridgeGame();
+        outputView.printStart();
+        viewBridgeSize();
+        resetGameStatus();
+        GAME_STATUS.plusCnt();
+        playBridgeGame();
 
     }
 
-    private void viewBridgeSize(){
+    private void viewBridgeSize() {
         inputBridgeSize();
     }
+
     private void inputBridgeSize() {
         size = inputView.readBridgeSize();
         makeBridge();
@@ -54,10 +54,10 @@ public class GameControll {
         while (GAME_STATUS.getGamePower()) {
             viewMove();
             checkMoveBridge();
-            makeBirdgeShape();
+            makeBridgeShape();
             showNowBridgeShape();
             GAME_STATUS.plusIdx();
-            controllMove();
+            controlMove();
         }
     }
 
@@ -69,7 +69,7 @@ public class GameControll {
         bridgeGame.move(move, GAME_STATUS.getIdx(), bridge.getBridge());
     }
 
-    private void makeBirdgeShape() {
+    private void makeBridgeShape() {
         bridgeShape.moveBridge(move, bridgeGame.getCanMove());
     }
 
@@ -79,7 +79,7 @@ public class GameControll {
 
 
     /////
-    private void controllMove() {
+    private void controlMove() {
         if (size == GAME_STATUS.getIdx() && bridgeGame.getCanMove()) {
             GAME_STATUS.turnoffGamePower();
             GAME_STATUS.sucessGame();
