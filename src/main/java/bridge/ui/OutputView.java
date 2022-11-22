@@ -1,4 +1,4 @@
-package bridge;
+package bridge.ui;
 
 import java.util.List;
 
