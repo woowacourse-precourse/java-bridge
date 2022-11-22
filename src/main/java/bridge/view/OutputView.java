@@ -37,7 +37,7 @@ public class OutputView {
             true, GAME_SUCCESS_COMMENT.getValue(),
             false, GAME_FAIL_COMMENT.getValue());
 
-    private final Function<Boolean, String> moveFunction = moveSuccess -> {
+    private final Function<Boolean, String> moveResultSymbolMapper = (moveSuccess) -> {
         if (moveSuccess == null) {
             return BLANK_SYMBOL.getValue();
         }
@@ -51,6 +51,7 @@ public class OutputView {
 
     public void printInitComment() {
         System.out.println(GAME_INIT_COMMENT.getValue());
+        System.out.println();
     }
 
     /**
@@ -74,7 +75,7 @@ public class OutputView {
     private List<String> getRowMoveResults(MoveDirection row, GameStatus gameStatus) {
         List<MoveDirection> moveDirections = gameStatus.getMoveDirections();
         List<String> rowMoveResults = IntStream.range(0, moveDirections.size())
-                .mapToObj((index) -> moveFunction.apply(gameStatus.successMove(index, row)))
+                .mapToObj((index) -> moveResultSymbolMapper.apply(gameStatus.successMove(index, row)))
                 .collect(Collectors.toUnmodifiableList());
 
         return rowMoveResults;
