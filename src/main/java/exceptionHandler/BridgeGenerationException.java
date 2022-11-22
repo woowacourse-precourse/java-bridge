@@ -7,6 +7,9 @@ import java.util.List;
 
 public class BridgeGenerationException extends InputException {
     public static void validate(List<String> movableSides) {
+        validateCommonException(String.join("", movableSides));
+        validateMinimumRange(movableSides.size());
+        validateMaximumRange(movableSides.size());
         movableSides.stream()
                 .forEach(side -> validateEachSide(side));
     }
