@@ -42,6 +42,10 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean hasBridgeToMove() {
+        return bridgeGameResult.getMoveCount() < bridge.getSize();
+    }
+
     public boolean isSuccess() {
         return bridgeGameResult.isSuccess();
     }

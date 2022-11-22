@@ -53,7 +53,7 @@ public class BridgeGameController {
             outputView.printMovingMsg();
             canMove = canMove();
             outputView.printMap(bridgeGame.getBridge(), bridgeGame.getMoveState());
-        } while (canMove);
+        } while (canMove && bridgeGame.hasBridgeToMove());
     }
 
     private boolean canMove() {
