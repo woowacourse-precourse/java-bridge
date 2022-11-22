@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.Constants;
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -14,7 +15,7 @@ public class InputView {
      */
     public static int readBridgeSize() throws IllegalArgumentException {
         try {
-            int length = Integer.parseInt(Console.readLine());
+            int length = Integer.parseInt(camp.nextstep.edu.missionutils.Console.readLine());
             if (length > Constants.GameElements.MAX_BRIDGE_SIZE || length < Constants.GameElements.MIN_BRIDGE_SIZE) {
                 throw new IllegalArgumentException(Constants.ErrorMessages.THREE_TO_TWENTY);
             }
@@ -29,7 +30,7 @@ public class InputView {
      */
     public static String readMoving() throws IllegalArgumentException{
         try {
-            String s = Console.readLine();
+            String s = camp.nextstep.edu.missionutils.Console.readLine();
 
             throwError(List.of("U","D"), s, Constants.ErrorMessages.UPPER_OR_DOWN);
 
