@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
 import bridge.type.Direction;

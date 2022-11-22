@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.BridgeJudge;
+import bridge.domain.BridgeMaker;
 import bridge.domain.Player;
 import bridge.dto.BridgeRouteDto;
 import bridge.dto.ResultDto;
