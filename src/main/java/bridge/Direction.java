@@ -1,9 +1,14 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Direction {
     UP("U"), DOWN("D");
 
     private final String value;
+    static private final String invalidMoveDirectionMessage = "이동할 방향은 U 또는 D여야 합니다.";
+    static private final String invalidNumberMessage = "값은 0과 1중 하나여야 합니다.";
 
     Direction(String value) {
         this.value = value;
@@ -19,7 +24,7 @@ public enum Direction {
                 return direction;
             }
         }
-        throw new IllegalArgumentException("잘못된 방향 입력입니다.");
+        throw new IllegalArgumentException(invalidMoveDirectionMessage);
     }
 
     static public String getDirection(int number) {
@@ -29,6 +34,14 @@ public enum Direction {
         if (number == 0) {
             return DOWN.getValue();
         }
-        throw new IllegalArgumentException("값은 0과 1중 하나여야 합니다.");
+        throw new IllegalArgumentException(invalidNumberMessage);
+    }
+
+    static public List<Direction> getDirections(List<String> values) {
+        List<Direction> directions = new ArrayList<>();
+        for (String value : values) {
+            directions.add(getDirection(value));
+        }
+        return directions;
     }
 }

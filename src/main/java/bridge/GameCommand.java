@@ -5,6 +5,8 @@ public enum GameCommand {
 
     private final String value;
 
+    static private final String invalidGameCommandMessage = "게임 재시도 여부는 R 또는 Q를 입력해야 합니다.";
+
     GameCommand(String value) {
         this.value = value;
     }
@@ -19,7 +21,7 @@ public enum GameCommand {
                 return gameCommand;
             }
         }
-        throw new IllegalArgumentException("잘못된 게임 명령입니다.");
+        throw new IllegalArgumentException(invalidGameCommandMessage);
     }
 
     static public boolean isRetry(String value) {
