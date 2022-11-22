@@ -7,6 +7,9 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final int GAME_FAIL = 0;
+    private static final int GAME_SUCCESS = 1;
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -30,6 +33,17 @@ public class OutputView {
         System.out.println("[ " + String.join(" | ", finalState.get(0)) + " ]");
         System.out.println("[ " + String.join(" | ", finalState.get(1)) + " ]");
         System.out.println();
-        System.out.println();
+        printGameResultAndGameCount(gameResult, gameCount);
+    }
+
+    private void printGameResultAndGameCount(int gameResult, int gameCount) {
+        if (gameResult == GAME_SUCCESS) {
+            System.out.println("게임 성공 여부: 성공");
+            System.out.println("총 시도한 횟수: " + gameCount);
+        }
+        if (gameResult == GAME_FAIL) {
+            System.out.println("게임 성공 여부: 실패");
+            System.out.println("총 시도한 횟수: " + gameCount);
+        }
     }
 }
