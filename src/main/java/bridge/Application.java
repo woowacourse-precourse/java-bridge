@@ -12,10 +12,10 @@ public class Application {
         //1. 게임 시작 문구 출력
         bridgeGame.printStartMessage();
 
-        //2. 다리 개수 입력
-        gameCount = bridgeGame.enterNumberOfBridge();
-
         try {
+            //2. 다리 개수 입력
+            gameCount = bridgeGame.enterNumberOfBridge();
+
             for(int tempCount = gameCount; tempCount > 0 ; tempCount--) {
                 //3. 사용자가 다음에 이동할 칸을 입력
                 bridgeGame.enterNextStep();
@@ -44,7 +44,6 @@ public class Application {
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            throw e;
         }
     }
 }
