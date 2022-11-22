@@ -87,7 +87,8 @@ class ApplicationTest extends NsTest {
     }
     @Test
     void 예외_테스트4() {
-        assertThatThrownBy(() -> new Brid)
+        assertThatThrownBy(() -> new BridgeGame())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 

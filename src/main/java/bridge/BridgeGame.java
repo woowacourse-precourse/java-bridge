@@ -82,10 +82,7 @@ public class BridgeGame {
         }
     }
     public boolean checkEnd(){
-        if (gameEnd == false && current == bridgeSize) {
-            return true;
-        }
-        return false;
+        return gameEnd == false && current == bridgeSize;
     }
     public boolean oneMore(){
         outputView.printGameRetry();
