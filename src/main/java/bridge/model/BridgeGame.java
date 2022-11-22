@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.Utility;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +10,8 @@ public class BridgeGame {
 
     private final List<Bridge> result = new ArrayList<>();
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void move(String userInput, String bridge) {
-        Bridgelocation bridgelocation = Bridgelocation.valueOf(userInput,
-                Utility.StringEquals(userInput, bridge));
+        Bridgelocation bridgelocation = Bridgelocation.valueOf(userInput,userInput.equals(bridge));
         validate(bridgelocation);
         result.add(bridgelocation.getBridge());
     }
@@ -30,11 +22,6 @@ public class BridgeGame {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public Boolean retry(String userInput) {
         if (userInput.equals("R")) {
             result.clear();
@@ -42,6 +29,18 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public String gameSuccessMessage() {
+        if (failCheck()) {
+            return "실패";
+        }
+        return "성공";
+    }
+
+    public boolean failCheck(){
+        return result.contains(List.of(Bridgelocation.UPX, Bridgelocation.DOWNX));
+    }
+
 
     public StringBuilder upline() {
         StringBuilder sb = new StringBuilder();
