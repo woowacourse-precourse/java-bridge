@@ -31,6 +31,7 @@ public class BridgeGame {
                 return true;
             }
             upBridge.add("X");
+            downBridge.add(" ");
         }
         else if(input.equals("D")) {
             if(isCorrect(answerBridge.get(index), input)) {
@@ -39,6 +40,7 @@ public class BridgeGame {
                 return true;
             }
             downBridge.add("X");
+            upBridge.add(" ");
         }
         return false;
     }
