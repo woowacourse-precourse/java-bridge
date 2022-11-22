@@ -67,3 +67,16 @@
     2. 플레이어의 게임 결과 출력
     3. 플레이어가 시도한 게임 횟수 출력
 11. 애플리케이션 종료
+
+### 예외 처리
+
+- 플레이어의 잘못된 입력으로 인해 발생하는 `IllegalArgumentException` 예외의 경우 애플리케이션 정상 동작
+- 플레이어의 잘못된 입력으로 발생한 예외가 아닌 애플리케이션 구성 요소에 의해 예외가 발생할 경우 애플리케이션 종료
+  - `GameRunner` 에서의 예외 처리
+    - `Custom Exception`이 아닌 애플리케이션 내부 예외를 처리
+    - `IndexOutOfBoundsException` : 플레이어가 이동한 경로와 관련된 로직을 처리할 때 발생할 수 있는 예외
+    - `NullPointerException` : `GameController`에서 `GameStatus`에 필요한 로직을 찾을 때 발생할 수 있는 예외
+  - `GameController`에서의 예외 처리
+    - `Custom Exception`이 발생하는 애플리케이션 내부 예외를 처리
+    - `WrongGeneratorException` : 다리 생성 전략(`BridgeNumberGenerator`)이 게임 규칙과 맞지 않을 때 발생하는 예외
+    - `NotFoundViewException` : `GameController`에서 존재하지 않는 `View`를 호출했을 때 발생하는 예외
