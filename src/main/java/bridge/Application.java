@@ -13,6 +13,7 @@ public class Application {
 
     public static void main(String[] args) {
         try {
+            outputView.printGameStartMessage();
             start();
         } catch (UserInputException inputException) {
             System.out.println(inputException.getMessage());
@@ -27,19 +28,30 @@ public class Application {
     }
 
     private static void gameInitProcess() {
-        outputView.printGameStartMessage();
-        int bridgeSize = getBridgeSize();
-        game.initBridge(bridgeSize);
+        int bridgeSize = 0;
+        try {
+            bridgeSize = getBridgeSize();
+            game.initBridge(bridgeSize);
+        } catch (UserInputException bridgeSizeException) {
+            outputView.printUserInputExceptionMessage(bridgeSizeException);
+            gameInitProcess();
+        }
     }
 
     private static void gameProcess() {
-        outputView.printMovementRequestMessage();
-        String movement = inputView.readMoving();
+        try {
+            outputView.printMovementRequestMessage();
+            String movement = inputView.readMoving();
 
-        checkGameStatus(movement);
+            checkGameStatus(movement);
 
-        outputView.printMap(game);
-        gameProcess();
+            outputView.printMap(game);
+            gameProcess();
+
+        } catch (UserInputException userInputException) {
+            outputView.printUserInputExceptionMessage(userInputException);
+            gameProcess();
+        }
     }
 
     private static void checkGameStatus(String movement) {
@@ -57,13 +69,19 @@ public class Application {
 
     private static void gameCommandProcess() {
         outputView.printExitCodeRequestMessage();
-        String exitCode = inputView.readGameCommand();
-        if (exitCode.equals("R")) {
-            resetProcess();
-            return;
-        }
 
-        quitProcess();
+        try {
+            String exitCode = inputView.readGameCommand();
+            if (exitCode.equals("R")) {
+                resetProcess();
+                return;
+            }
+
+            quitProcess();
+        } catch (UserInputException userInputException) {
+            outputView.printUserInputExceptionMessage(userInputException);
+            gameCommandProcess();
+        }
     }
 
     private static void resetProcess() {
