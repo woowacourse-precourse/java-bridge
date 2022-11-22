@@ -13,12 +13,20 @@ public class BridgeGameController {
     private OutputView outputView = new OutputView();
     private BridgeGame bridgeGame = new BridgeGame();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    
+    private int trialCnt;
 
     public void play() {
-        int trialCnt = 1;
+        trialCnt = 1;
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
+        playUntilGameOver(bridge);
+
+        outputView.printTrialCnt(trialCnt);
+    }
+
+    private void playUntilGameOver(List<String> bridge) {
         while(true) {
             String movingCommand = inputView.readMoving();
             List<String> bridgeStatus = bridgeGame.move(movingCommand, bridge);
@@ -45,7 +53,5 @@ public class BridgeGameController {
                 }
             }
         }
-
-        outputView.printTrialCnt(trialCnt);
     }
 }
