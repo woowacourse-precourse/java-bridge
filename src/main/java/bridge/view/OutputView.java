@@ -54,11 +54,11 @@ public class OutputView {
         System.out.println(GAME_FINAL_RESULT);
     }
 
-    public String printSuccessCheck(boolean check1) {
-        if (check1 == true) {
-            return String.format(GAME_SUCCESS_CHECK, GAME_SUCCESS);
+    public void printSuccessCheck(boolean gameEndCheck) {
+        if (gameEndCheck == true) {
+            System.out.println(String.format(GAME_SUCCESS_CHECK, GAME_SUCCESS));
         }
-        return String.format(GAME_SUCCESS_CHECK, GAME_FAIL);
+        System.out.println(String.format(GAME_SUCCESS_CHECK, GAME_FAIL));;
     }
 
     public void printGameTotalTry(int count) {
