@@ -1,4 +1,4 @@
-package bridge.bridgeDomain.operator;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 
@@ -26,7 +26,6 @@ public class BridgeMaker {
             return "U";
         }
         return "D";
-
     }
 
 }
