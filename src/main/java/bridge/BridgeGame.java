@@ -1,6 +1,4 @@
-package bridge.domain;
-
-import bridge.view.InputView;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +14,8 @@ public class BridgeGame {
     private int attempt = 1;
     private int bridgeIndex = 0;
 
+    public final String UPWARD_DIRECTION = "U";
+    public final String DOWNWARD_DIRECTION = "D";
     private final String BLANK = " ";
     private final String RIGHT_WAY_SIGN = "O";
     private final String WRONG_WAY_SIGN = "X";
@@ -45,7 +45,7 @@ public class BridgeGame {
     }
 
     public List<String> makeUpperBridge(String answer, String inputMoveValue) {
-        if (inputMoveValue.equals(InputView.DOWNWARD_DIRECTION)) {
+        if (inputMoveValue.equals(DOWNWARD_DIRECTION)) {
             upperBridge.add(BLANK);
             return upperBridge;
         }
@@ -55,7 +55,7 @@ public class BridgeGame {
     }
 
     public List<String> makeLowerBridge(String answer, String inputMoveValue) {
-        if (inputMoveValue.equals(InputView.UPWARD_DIRECTION)) {
+        if (inputMoveValue.equals(UPWARD_DIRECTION)) {
             lowerBridge.add(BLANK);
             return lowerBridge;
         }
