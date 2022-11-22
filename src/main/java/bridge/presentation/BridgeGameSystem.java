@@ -26,7 +26,7 @@ public class BridgeGameSystem {
 
     public void play() {
         Moving moving;
-                GameStatus gameStatus;
+        GameStatus gameStatus;
         do {
             moving = move();
             gameStatus = getGameStatus(moving);
@@ -40,6 +40,9 @@ public class BridgeGameSystem {
     }
 
     private GameStatus getGameStatus(Moving moving) {
+        if (bridgeGame.getResult() == Result.SUCCESS) {
+            return GameStatus.SUCCESS;
+        }
         if (moving.getResult() == Result.FAIL) {
             GameCommand gameCommand = inputView.readGameCommand();
             return bridgeGame.getGameStatusByGameCommand(gameCommand);
