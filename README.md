@@ -328,11 +328,7 @@ int number = bridgeNumberGenerator.generate();
   - "게임 성공 여부: "+successAndFailCheck
   - "총 시도한 횟수: "+trialNum
 ~~~
-  - String first_bridge "[ "
-  - String final_bridge " ]"
-  - String middle_bridge " | "
-  - String ok "O"
-  - String no "x"
+
 - 예외
   - 입력
     - 3미만, 20초과 예외
