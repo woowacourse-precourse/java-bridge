@@ -13,13 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 
-    BridgeGame bridgeGame = new BridgeGame();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    BridgeGame bridgeGame = new BridgeGame(bridgeMaker);
 
     @BeforeEach
     void makeBridge(){
-        List<String> bridge = bridgeMaker.makeBridge(4);
-        bridgeGame.setBridge(bridge);
+        bridgeGame.makeBridge(15);
     }
 
 

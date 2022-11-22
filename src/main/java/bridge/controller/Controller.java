@@ -9,12 +9,12 @@ import bridge.view.OutputView;
 import bridge.view.text.OutputText;
 
 public class Controller {
-    private final BridgeMaker bridgeMaker;
+    private final BridgeGame bridgeGame;
     private final InputView inputView;
     private final OutputView outputView;
-    private BridgeGame bridgeGame;
-    public Controller (BridgeMaker bridgeMaker, InputView inputView, OutputView outputView){
-        this.bridgeMaker = bridgeMaker;
+
+    public Controller (BridgeGame bridgeGame, InputView inputView, OutputView outputView){
+        this.bridgeGame = bridgeGame;
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -39,7 +39,6 @@ public class Controller {
      */
     private void startGame(){
         outputView.printGameStart();
-        this.bridgeGame = new BridgeGame();
     }
 
     /**
@@ -48,7 +47,7 @@ public class Controller {
     private void inputBridgeLength(){
         try {
             outputView.printBridgeLengthInputRequest();
-            bridgeGame.setBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+            bridgeGame.makeBridge(inputView.readBridgeSize());
             showMap();
         }
         catch (IllegalArgumentException exception){

@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
 import bridge.domain.constants.BlockSymbol;
 import bridge.domain.constants.Command;
 import bridge.domain.constants.DomainError;
@@ -13,10 +14,20 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> bridge = new ArrayList<>();
-    private Integer trialCount = 1;
-    private GameState gameState = GameState.RUNNING;
-    private final BridgeProgress progress = new BridgeProgress();
+    private List<String> bridge;
+    private Integer trialCount;
+    private GameState gameState;
+    private BridgeProgress progress;
+    private BridgeMaker bridgeMaker;
+
+    public BridgeGame(BridgeMaker bridgeMaker){
+        this.bridge = new ArrayList<>();
+        this.trialCount = 1;
+        this.gameState = GameState.RUNNING;
+        this.progress = new BridgeProgress();
+        this.bridgeMaker = bridgeMaker;
+    }
+
 
     /**
      *
@@ -117,8 +128,8 @@ public class BridgeGame {
      *
      * @param bridge 생성된 다리
      */
-    public void setBridge(List<String> bridge){
-        this.bridge = bridge;
+    public void makeBridge(int size){
+        this.bridge = bridgeMaker.makeBridge(size);
     }
 
     /**
