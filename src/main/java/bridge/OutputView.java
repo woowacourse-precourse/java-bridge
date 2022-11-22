@@ -41,6 +41,7 @@ public class OutputView {
         completeBridgeMap();
         System.out.println(upperBridgeView);
         System.out.println(lowerBridgeView);
+        System.out.println("");
     }
 
     private void parseBridge(BridgeGame bridgeGame) {
@@ -107,6 +108,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame);
         printResultStatistic(bridgeGame);
+        System.out.println("");
     }
 
     private void printResultStatistic(BridgeGame bridgeGame){
