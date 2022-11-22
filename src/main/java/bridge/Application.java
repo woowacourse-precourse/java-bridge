@@ -22,6 +22,10 @@ public class Application {
 
         // 4.이동 위치 입력
         String gameBridgeMoveKey = gameInputView.readMoving();
+
+        // 5.다리 이동
+        List<String> gameBridgeMoving = new ArrayList<>();
+        BridgeGame.move(gameBridgeMoving,gameBridgeMoveKey);
     }
 }
 
