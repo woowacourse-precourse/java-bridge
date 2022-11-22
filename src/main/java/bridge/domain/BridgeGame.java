@@ -5,16 +5,15 @@ import java.util.List;
 import bridge.constant.Direction;
 
 public class BridgeGame {
-    private static final int INITIAL_TRIAL_COUNT = 1;
-    private static final int TRIAL_COUNT_INCREASE_AMOUNT = 1;
 
     private final Bridge bridge;
     private Player player;
-    private int trialCount = INITIAL_TRIAL_COUNT;
+    private final TrialCount trialCount;
 
     private BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.player = new Player(bridge);
+        this.trialCount = new TrialCount();
     }
 
     static BridgeGame fromDirections(List<Direction> directions) {
@@ -31,7 +30,7 @@ public class BridgeGame {
 
     public void retry() {
         player = new Player(bridge);
-        trialCount += TRIAL_COUNT_INCREASE_AMOUNT;
+        trialCount.increase();
     }
 
     public boolean isFinished() {
@@ -39,6 +38,6 @@ public class BridgeGame {
     }
 
     public int getTrialCount() {
-        return trialCount;
+        return trialCount.getCount();
     }
 }
