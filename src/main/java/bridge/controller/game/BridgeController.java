@@ -1,6 +1,6 @@
 package bridge.controller.game;
 
-import bridge.controller.service.BridgeService;
+import bridge.controller.service.BridgeCommunication;
 import bridge.domain.game.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.domain.game.BridgeMap;
@@ -11,11 +11,11 @@ public class BridgeController {
 
     private final BridgeMap bridgeMap = new BridgeMap();
     private final BridgeGame game;
-    private final BridgeService service;
+    private final BridgeCommunication service;
 
     public BridgeController() {
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        service = new BridgeService();
+        service = new BridgeCommunication();
         game = new BridgeGame(bridgeMaker.makeBridge(service.takeSize()));
     }
 

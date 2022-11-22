@@ -4,11 +4,11 @@ import bridge.domain.service.BridgeChecker;
 import bridge.view.InputView;
 import bridge.constant.Bridge.GameConstants;
 
-public class BridgeService {
+public class BridgeCommunication {
 
     private final BridgeChecker bridgeChecker;
 
-    public BridgeService() {
+    public BridgeCommunication() {
         bridgeChecker = BridgeChecker.getInstance();
     }
 
