@@ -1,5 +1,6 @@
 package bridge.domain.PlayerMove;
 
+import bridge.domain.gameManagement.BridgeGame;
 import bridge.domain.gameManagement.BridgeState;
 import bridge.domain.gameOver.GameRestartOrQuit;
 import bridge.view.InputView;
@@ -9,6 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlayerMove {
+    private static final String GAME_COMMAND_RESTART = "R";
+    private static final int ONE_INDEX = 1;
+
     public static String takeMovingPosition() {
         InputView inputView = new InputView();
         String movingPosition = inputView.readMoving();
@@ -22,12 +26,25 @@ public class PlayerMove {
         }
     }
 
+    public static void repeatGame(List<String> bridge, List<String> currentBridge, int currentLocation) {
+        int count = 0;
+        while (true) {
+            count++;
+            int updatedCurrentLocation = handlePlayerMove(currentLocation, bridge, currentBridge);
+
+            if (count == 5) {
+                break;
+            }
+            currentLocation = updatedCurrentLocation;
+        }
+    }
+
     public static int handlePlayerMove(int currentLocation, List<String> bridge, List<String> currentBridge) {
         currentLocation = crossBridgeUntilFailOrEnd(currentLocation, bridge, currentBridge);
 
-        String restartOrEndCommand = handleIntermediateFailure(currentLocation, bridge);
+        int currentLocationForRestart = handleIntermediateFailure(currentLocation, bridge, currentBridge);
 
-        return currentLocation;
+        return currentLocationForRestart;
     }
 
     public static int crossBridgeUntilFailOrEnd (int currentLocation, List<String> bridge, List<String> currentBridge) {
@@ -43,13 +60,15 @@ public class PlayerMove {
         return currentLocation;
     }
 
-    public static String handleIntermediateFailure(int currentLocation, List<String> bridge) {
-        String gameRestartOrQuitCommand = null;
-
+    public static int handleIntermediateFailure(int currentLocation, List<String> bridge, List<String> currentBridge) {
         if (currentLocation <= bridge.size()) {
-            gameRestartOrQuitCommand = GameRestartOrQuit.takeGameRestartOrQuitCommand();
+            String gameRestartOrQuitCommand = GameRestartOrQuit.takeGameRestartOrQuitCommand();
+
+            BridgeGame bridgeGame = new BridgeGame();
+            currentLocation = bridgeGame.retry(gameRestartOrQuitCommand, currentLocation, currentBridge);
         }
-        return gameRestartOrQuitCommand;
+
+        return currentLocation;
     }
 
     public static int moveFail(List<String> currentBridge, List<String> bridge, int currentLocation) {
@@ -74,6 +93,15 @@ public class PlayerMove {
 
         currentLocation++;
         outputView.printMap(currentBridge);
+        return currentLocation;
+    }
+
+    public static int checkGameRestartOrQuitCommand(String gameRestartOrQuitCommand, int currentLocation, List<String> currentBridge) {
+        if (gameRestartOrQuitCommand.equals(GAME_COMMAND_RESTART)) {
+            currentLocation--;
+            int lastFailedStateLocation = currentBridge.size() - ONE_INDEX;
+            currentBridge.remove(lastFailedStateLocation);
+        }
         return currentLocation;
     }
 }

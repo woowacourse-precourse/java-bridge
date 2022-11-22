@@ -1,10 +1,13 @@
 package bridge.domain.gameManagement;
 
+import static bridge.domain.PlayerMove.PlayerMove.checkGameRestartOrQuitCommand;
+
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.PlayerMove.PlayerMove;
 
 import java.util.List;
+
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -20,7 +23,9 @@ public class BridgeGame {
     public int move(List<String> bridge, List<String> currentBridge) {
         int currentLocation = INITIAL_LOCATION;
 
-        currentLocation = PlayerMove.handlePlayerMove(currentLocation, bridge, currentBridge);
+        //currentLocation = PlayerMove.handlePlayerMove(currentLocation, bridge, currentBridge);
+
+        PlayerMove.repeatGame(bridge, currentBridge, currentLocation);
 
         return currentLocation;
     }
@@ -30,7 +35,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public int retry(String gameRestartOrQuitCommand, int currentLocation, List<String> currentBridge) {
+        int currentLocationForRestart = checkGameRestartOrQuitCommand(gameRestartOrQuitCommand, currentLocation, currentBridge);
+
+        if (currentLocation == currentLocationForRestart) {
+            return currentLocation;
+        }
+
+        return currentLocationForRestart;
     }
 
     public List<String> constructBridge() {
