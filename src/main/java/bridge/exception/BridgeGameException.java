@@ -27,4 +27,10 @@ public class BridgeGameException {
             throw new IllegalArgumentException();
         }
     }
+
+    public void checkRestartOrDoneException(String str) {
+        if (!str.equals("R") && !str.equals("Q")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
