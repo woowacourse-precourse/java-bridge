@@ -22,7 +22,7 @@ public class OutputView {
     public static final String RIGHT_WALL = " ]";
 
     public void printStart() {
-
+        System.out.println(START_MESSAGE);
     }
 
     /**
