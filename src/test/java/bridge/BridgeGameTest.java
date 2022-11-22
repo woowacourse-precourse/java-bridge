@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
 
-    private static BridgeGame bridgeGame = new BridgeGame();
+    private final static BridgeGame bridgeGame = new BridgeGame();
 
     @BeforeAll
     public static void setBridge() {

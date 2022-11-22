@@ -60,10 +60,7 @@ public class BridgeGame {
     }
 
     public boolean checkArrive() {
-        if (this.bridgeIndex == this.bridgeSize) {
-            return true;
-        }
-        return false;
+        return this.bridgeIndex == this.bridgeSize;
     }
 
     public void increaseBridgeIndex() {
