@@ -25,4 +25,19 @@ class BridgeGameTest {
         // then
         assertThat(bridge.getCurrentBlock()).isEqualTo(1);
     }
+
+    @DisplayName("Failure : restart 테스트")
+    @Test
+    public void FailureWithRestartTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        User user = new User();
+        String status = "R";
+
+        // when
+        bridgeGame.processFailure(bridge, user, status);
+
+        // then
+        assertThat(user.getTrial()).isEqualTo(2);
+    }
 }
