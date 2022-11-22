@@ -190,6 +190,60 @@ public class AllTest extends NsTest {
         }, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0);
     }
 
+    @DisplayName("기능 테스트 9 : 다리 수 20개, 시도 1회")
+    @Test
+    void 기능_테스트9() {
+        assertRandomNumberInRangeTest(() -> {
+            run("20",
+                    "U", "D", "U", "D", "U",
+                    "D", "U", "D", "U", "D",
+                    "D", "U", "D", "U", "D",
+                    "D", "U", "D", "U", "D"
+                    );
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O |   | O |   | O |   | O |   |   | O |   | O |   |   | O |   | O |   ]",
+                    "[   | O |   | O |   | O |   | O |   | O | O |   | O |   | O | O |   | O |   | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf(
+                    "[ O |   | O |   | O |   | O |   | O |   |   | O |   | O |   |   | O |   | O |   ]");
+            int downSideIndex = output().indexOf(
+                    "[   | O |   | O |   | O |   | O |   | O | O |   | O |   | O | O |   | O |   | O ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0);
+    }
+
+    @DisplayName("기능 테스트 10 : 다리 수 20개, 시도 3회")
+    @Test
+    void 기능_테스트10() {
+        assertRandomNumberInRangeTest(() -> {
+            run("20",
+                    "U","U","R",
+                    "U","D","D","R",
+                    "U", "D", "U", "D", "U",
+                    "D", "U", "D", "U", "D",
+                    "D", "U", "D", "U", "D",
+                    "D", "U", "D", "U", "D"
+            );
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O |   | O |   | O |   | O |   |   | O |   | O |   |   | O |   | O |   ]",
+                    "[   | O |   | O |   | O |   | O |   | O | O |   | O |   | O | O |   | O |   | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf(
+                    "[ O |   | O |   | O |   | O |   | O |   |   | O |   | O |   |   | O |   | O |   ]");
+            int downSideIndex = output().indexOf(
+                    "[   | O |   | O |   | O |   | O |   | O | O |   | O |   | O | O |   | O |   | O ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
