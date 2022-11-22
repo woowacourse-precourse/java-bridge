@@ -2,6 +2,8 @@ package bridge.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
