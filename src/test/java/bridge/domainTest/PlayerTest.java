@@ -1,4 +1,4 @@
-package bridge.modelTest;
+package bridge.domainTest;
 import bridge.model.Bridge;
 import bridge.model.Player;
 import org.junit.jupiter.api.BeforeEach;
