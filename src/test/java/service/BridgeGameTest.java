@@ -9,13 +9,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import bridge.Bridge;
-import bridge.MoveResult;
 import bridge.PlayCount;
 import dto.BridgeResponseDto;
 import dto.BridgeSizeRequestDto;
 import dto.GameCommandRequestDto;
-import dto.MapResponseDto;
-import dto.MoveResultResponseDto;
 import dto.MovingRequestDto;
 
 class BridgeGameTest {
@@ -54,6 +51,7 @@ class BridgeGameTest {
 		//then
 		assertTrue(bridgeGame.produceResult(new BridgeResponseDto(new Bridge(List.of("U", "D", "U")))).isCorrect());
 	}
+
 	@DisplayName("사용자의 입력에 대해 제대로 결과를 출력하는지 확인한다.")
 	@Test
 	void produceResult() {

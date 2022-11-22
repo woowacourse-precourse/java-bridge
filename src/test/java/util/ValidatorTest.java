@@ -19,7 +19,8 @@ class ValidatorTest {
 	@ValueSource(strings = {"25.1", "abcde", "가나다라", "1ㅁ2a3", "", "-1"})
 	@ParameterizedTest
 	void validateSizeIsNumberAbnormal(String strings) {
-		assertThatThrownBy(() -> Validator.validateSizeIsNaturalNumber(strings)).isInstanceOf(IllegalArgumentException.class);
+		assertThatThrownBy(() -> Validator.validateSizeIsNaturalNumber(strings)).isInstanceOf(
+			IllegalArgumentException.class);
 	}
 
 	@DisplayName("이동할 칸을 입력받는다.")
