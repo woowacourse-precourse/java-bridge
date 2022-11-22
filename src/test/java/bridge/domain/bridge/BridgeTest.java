@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.result.ResultType;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeTest {
 
@@ -66,9 +68,9 @@ class BridgeTest {
 
     @Test
     @DisplayName("정수가 아닌값이 인자로 들어왔을때 예외발생")
-    public void 예외테스트_1(){
+    public void 예외테스트_1() {
         //given
-        bridge = new Bridge(getTestBridgeMaker(Lists.newArrayList(1,0,1,0,1)));
+        bridge = new Bridge(getTestBridgeMaker(Lists.newArrayList(1, 0, 1, 0, 1)));
         String input = "3d";
         //when
         //then
@@ -76,6 +78,21 @@ class BridgeTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 정수만 입력해야 합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1", "2", "21"})
+    @DisplayName("다리 사이즈 범위 밖을 벋어나는 값을 인자로 받을 시 예외발생")
+    public void 예외테스트_2(String input) {
+        //given
+        bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()));
+        //when
+        //then
+        System.out.println(input);
+        Assertions.assertThatThrownBy(() -> bridge.create(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
+
     private static Stream<Arguments> providerMoveTypeForResultType() {
         return Stream.of(
                 Arguments.arguments(Lists.newArrayList(1, 1, 0, 0), List.of(UP, UP, DOWN, DOWN),
