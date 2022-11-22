@@ -39,4 +39,8 @@ public class GameManager {
         return bridgeGame.retry(inputView.readGameCommand());
     }
 
+    public void showResult(BridgeGame bridgeGame) {
+        outputView.printResult(bridgeGame.getMapLines(), bridgeGame.winTheGame(), bridgeGame.tried);
+    }
+
 }
