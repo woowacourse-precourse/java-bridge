@@ -7,7 +7,6 @@ public class GameSimulation {
     private List<List<String>> bridge;
 
     private int location;
-    private List<String> step;
     private String success;
 
     public GameSimulation() {
@@ -15,7 +14,6 @@ public class GameSimulation {
         this.location = 0;
         List<String> up = new ArrayList<>();
         List<String> down = new ArrayList<>();
-        step = new ArrayList<>();
         bridge.add(up);
         bridge.add(down);
         this.success = "실패";
@@ -37,10 +35,6 @@ public class GameSimulation {
 
     public int getLocation() {
         return location;
-    }
-
-    public void setLocation(int location) {
-        this.location = location;
     }
 
     public void setSuccess(String success) {

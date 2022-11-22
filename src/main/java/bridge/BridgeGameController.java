@@ -11,19 +11,21 @@ public class BridgeGameController {
         init();
         do {
             gameResult.setCount(gameResult.getCount() + 1);
-            bridgeGame.newGame();
+            bridgeGame.newGameSimulation();
             start();
         } while (retry());
-        outputView.printResult(gameResult.getResult(), gameResult.getCount());
+        outputView.printResult(gameResult.getGameResult(), gameResult.getCount());
     }
 
     private boolean retry() {
-        if (checkEnd()) return false;
+        if (checkEnd()) {
+            return false;
+        }
         try {
             outputView.printRetry();
             return bridgeGame.retry(inputView.readGameCommand());
         } catch (IllegalArgumentException e) {
-            outputView.printError();
+            System.out.println("[ERROR]");
             retry();
         }
         return true;
@@ -35,35 +37,32 @@ public class BridgeGameController {
             int bridgeSize = inputView.readBridgeSize();
             bridgeGame.createBridge(bridgeSize);
         } catch (IllegalArgumentException e) {
-            outputView.printError();
+            System.out.println("[ERROR]");
             init();
         }
     }
 
-    private static void start() {
+    private void start() {
         try {
             move();
         } catch (IllegalArgumentException e) {
-            outputView.printError();
+            System.out.println("[ERROR]");
             start();
         }
     }
 
     private boolean checkEnd() {
-        gameResult.save(bridgeGame.getGame());
-        if (bridgeGame.success()) {
-            return true;
-        }
+        gameResult.save(bridgeGame.getGameSimulation());
+        if (bridgeGame.success()) return true;
         return false;
     }
 
-    private static void move() {
-        String match;
+    private void move() {
+        String compare;
         do {
-            outputView.printMove();
-            match = bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.getGame());
-        } while (bridgeGame.fail(match));
-
+            outputView.printMoveInput();
+            compare = bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.getGameSimulation());
+        } while (bridgeGame.fail(compare));
     }
 }

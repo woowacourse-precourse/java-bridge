@@ -8,8 +8,13 @@ import java.util.List;
 public class BridgeGame {
     private BridgeMaker bridgeMaker;
 
-    private GameSimulation game;
+    private GameSimulation gameSimulation;
     private List<String> bridge;
+    private static final String SUCCESS = "O";
+    private static final String FAIL = "X";
+    private static final String RESULT_SUCCESS = "성공";
+    private static final String RESULT_FAIL = "실패";
+    private static final String RETRY = "R";
 
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -26,25 +31,25 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String direction) {
-        int location = game.getLocation();
-        String match = input(direction, bridge.get(location));
-        game.print(direction, match);
-        if (match.equals("O")) {
-            game.addLocation();
+        int location = gameSimulation.getLocation();
+        String compare = compare(direction, bridge.get(location));
+        gameSimulation.print(direction, compare);
+        if (compare.equals(SUCCESS)) {
+            gameSimulation.addLocation();
         }
         checkMove();
-        return match;
+        return compare;
     }
 
 
     private void checkMove() {
-        if (game.getLocation() == bridge.size()) {
-            game.setSuccess("성공");
+        if (gameSimulation.getLocation() == bridge.size()) {
+            gameSimulation.setSuccess(RESULT_SUCCESS);
         }
     }
 
     public boolean success() {
-        if (game.getSuccess().equals("성공")) {
+        if (gameSimulation.getSuccess().equals(RESULT_SUCCESS)) {
             return true;
         }
         return false;
@@ -54,17 +59,17 @@ public class BridgeGame {
         if (success()) {
             return false;
         }
-        if (match.equals("X")) {
+        if (match.equals(FAIL)) {
             return false;
         }
         return true;
     }
 
-    private String input(String user, String answer) {
+    private String compare(String user, String answer) {
         if (!user.equals(answer)) {
-            return "X";
+            return FAIL;
         }
-        return "O";
+        return SUCCESS;
     }
 
     /**
@@ -73,17 +78,17 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String command) {
-        if (!game.getSuccess().equals("실패") && command.equals("R")) {
+        if (!gameSimulation.getSuccess().equals(RESULT_FAIL) && command.equals(RETRY)) {
             return true;
         }
         return false;
     }
 
-    public void newGame() {
-        game = new GameSimulation();
+    public void newGameSimulation() {
+        gameSimulation = new GameSimulation();
     }
 
-    public GameSimulation getGame() {
-        return game;
+    public GameSimulation getGameSimulation() {
+        return gameSimulation;
     }
 }

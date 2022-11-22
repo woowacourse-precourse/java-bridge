@@ -1,15 +1,15 @@
 package bridge;
 
 public class GameResult {
-    private GameSimulation result;
+    private GameSimulation gameResult;
     private int count;
 
     public GameResult() {
         count = 0;
     }
 
-    public GameSimulation getResult() {
-        return result;
+    public GameSimulation getGameResult() {
+        return gameResult;
     }
 
     public int getCount() {
@@ -21,9 +21,9 @@ public class GameResult {
     }
 
     public void save(GameSimulation game) {
-        if (result == null
-                || result.getLocation() < game.getLocation()) {
-            result = game;
+        if (gameResult == null
+                || gameResult.getLocation() < game.getLocation()) {
+            gameResult = game;
         }
     }
 }
