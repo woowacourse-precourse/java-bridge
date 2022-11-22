@@ -8,7 +8,7 @@ import bridge.domain.GameStatus;
 import bridge.validation.BridgeLengthValidator;
 import bridge.validation.RetryInputValidator;
 import bridge.validation.SpaceToMoveValidator;
-import bridge.validation.TryCountValidator;
+import bridge.validation.NumberOfTryValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -40,9 +40,9 @@ public class BridgeGameController {
         outputView.printStart();
         makeBridge(getBridgeLengthUntilQualifiedInput());
         while (isFinish) {
-            boolean check = crossTheBridge();
+            boolean SuccessORFailure = crossTheBridge();
             outputView.printMap(gameStatus);
-            askWhetherRetry(check);
+            askWhetherRetry(SuccessORFailure);
             ifGoThroughTheBridge();
         }
         outputView.printResult(gameStatus);
@@ -56,8 +56,8 @@ public class BridgeGameController {
     }
 
     private void askWhetherRetry(boolean check) {
-        String retry = askToRetryIfFailed(check);
-        ifWantToQuitTheGame(retry);
+        String userInput = askToRetryIfFailed(check);
+        ifWantToQuitTheGame(userInput);
     }
 
     private void ifWantToQuitTheGame(String retry) {
@@ -75,10 +75,10 @@ public class BridgeGameController {
         return userInput;
     }
 
-    private void wantToRetry(String retry) {
-        if (retry.equals(RETRY)) {
+    private void wantToRetry(String userInput) {
+        if (userInput.equals(RETRY)) {
             bridgeGame.retry(gameStatus);
-            TryCountValidator.validateTryCount(gameStatus.getTryCount());
+            NumberOfTryValidator.validateNumberOfTry(gameStatus.getTryCount());
             copyBridge = new Bridge(bridge.copyBridge());
         }
     }
