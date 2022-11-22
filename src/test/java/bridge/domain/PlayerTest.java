@@ -4,7 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static bridge.util.BridgeUtil.*;
+import static bridge.util.BridgeUtil.UP;
+import static bridge.util.BridgeUtil.DOWN;
 
 class PlayerTest {
 
