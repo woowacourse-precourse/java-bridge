@@ -26,7 +26,6 @@ public class Application {
                 }
                 continue;
             }
-
             String retry = loseAndRetryCheck();
             if (retry.equals("Q")) {
                 outputView.printResult(bridge, player, inputStep);
