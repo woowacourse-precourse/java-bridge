@@ -6,11 +6,12 @@ public enum GameCommand {
 
     private final String expression;
 
-    private GameCommand(String expression) {
+    GameCommand(String expression) {
         this.expression = expression;
     }
 
     public String getExpression() {
         return expression;
     }
+
 }
