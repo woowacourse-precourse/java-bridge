@@ -25,7 +25,7 @@ class BridgeGameTest {
         Bridge bridge = new Bridge(getTestBridgeMaker(numbers));
         Result result = new Result(new Map());
         bridgeGame = new BridgeGame(bridge, result);
-        bridgeGame.createBridge(numbers.size());
+        bridgeGame.createBridge("3");
     }
 
     @Test
