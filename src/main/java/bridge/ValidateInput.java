@@ -18,4 +18,11 @@ public class ValidateInput {
         }
         throw new IllegalArgumentException(ERROR_MESSAGE + BRIDGE_SIZE_RANGE_ERROR_MESSAGE);
     }
+
+    public static String checkEmptyInput(String input) {
+        if (input.equals("")) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + EMPTY_INPUT_ERROR_MESSAGE);
+        }
+        return input;
+    }
 }
