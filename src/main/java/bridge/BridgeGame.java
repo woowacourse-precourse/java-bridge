@@ -1,35 +1,47 @@
-package bridge;
+package bridge.Model;
 
 import java.util.List;
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+
 public class BridgeGame {
-    private final List<String> bridgeStructure;
+    private static List<String> bridge;
+    private static boolean stop;
+    private static int location, countGame;
 
-    public BridgeGame(List<String> bridgeShape) {
-        bridgeStructure = bridgeShape;
+    public static void makeGame(int bridgeSize) {
+        BridgeNumberGenerator NumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(NumberGenerator);
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+        location = -1;
+        countGame = 1;
+        stop = false;
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean move(String userInput, int location) {
-        if (!bridgeStructure.get(location).equals(userInput))
+    public static void move(String selectWay) {
+        if (!selectWay.equals(bridge.get(location++ + 1)))
+            stop = true;
+    }
+
+    public static boolean play() {
+        if (stop || location > bridge.size() - 2)
             return false;
         return true;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean retry(String userInput) {
-        if (userInput.equals("Q"))
-            return false;
-        return true;
+    public static void replay() {
+        stop = false;
+        location = -1;
+        countGame++;
+    }
+
+    public static boolean stop() {
+        return stop;
+    }
+
+    public static int getGameCount() {
+        return countGame;
+    }
+
+    public static String getLocation() {
+        return bridge.get(location);
     }
 }
