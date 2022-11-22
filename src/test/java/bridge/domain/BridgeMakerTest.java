@@ -1,14 +1,16 @@
 package bridge.domain;
 
 import bridge.domain.generator.BridgeNumberGenerator;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeMakerTest {
     static class TestNumberGenerator implements BridgeNumberGenerator {
@@ -25,43 +27,22 @@ class BridgeMakerTest {
         }
     }
 
-    @Test
-    void makeBridge_case_1() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 0, 0));
+    @ParameterizedTest
+    @MethodSource("makeBridgeTestData")
+    void makeBridgeTest(List<Integer> geneartedNumber, int bridgeSize, List<String> answer) {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(geneartedNumber));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge).containsExactly("D", "D", "D");
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        assertThat(bridge).isEqualTo(answer);
     }
 
-    @Test
-    void makeBridge_case_2() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 1, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge).containsExactly("D", "U", "D");
-    }
-
-    @Test
-    void makeBridge_case_3() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge).containsExactly("U", "D", "U");
-    }
-
-    @Test
-    void makeBridge_case_4() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(0, 0, 0, 1, 1, 1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(6);
-        assertThat(bridge).containsExactly("D", "D", "D", "U", "U", "U");
-    }
-
-    @Test
-    void makeBridge_case_5() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 1, 0, 1));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(5);
-        assertThat(bridge).containsExactly("U", "D", "U", "D", "U");
+    static Stream<Arguments> makeBridgeTestData() {
+        return Stream.of(
+                Arguments.of(List.of(0, 0, 0), 3, List.of("D", "D", "D")),
+                Arguments.of(List.of(0, 1, 0), 3, List.of("D", "U", "D")),
+                Arguments.of(List.of(1, 0, 1), 3, List.of("U", "D", "U")),
+                Arguments.of(List.of(1, 0, 1, 0, 1), 5, List.of("U", "D", "U", "D", "U")),
+                Arguments.of(List.of(0, 0, 0, 1, 1, 1), 6, List.of("D", "D", "D", "U", "U", "U"))
+        );
     }
 }
