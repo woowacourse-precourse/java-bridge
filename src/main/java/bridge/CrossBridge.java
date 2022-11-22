@@ -20,10 +20,9 @@ public class CrossBridge {
                 break;
             }
             UpDown.BridgeGameState(selectMove, "PASS");
-            if (i < bridgeSize - 1) {
-                OutputView.printMap();
-            }
+            OutputView.printMap();
             i++;
         }
+        i = 0;
     }
 }
