@@ -1,6 +1,6 @@
 package bridge.utils.Controller;
 
-import bridge.domain.BridgeMap;
+import bridge.BridgeMap;
 import bridge.utils.Convertor;
 import bridge.view.InputView;
 import bridge.view.OutputView;

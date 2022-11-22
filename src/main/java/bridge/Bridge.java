@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.utils.validator.BridgeValidator;
 import java.util.List;

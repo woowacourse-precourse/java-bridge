@@ -3,6 +3,8 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import bridge.Bridge;
+import bridge.User;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

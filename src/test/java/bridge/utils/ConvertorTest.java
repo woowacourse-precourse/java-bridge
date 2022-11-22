@@ -2,7 +2,7 @@ package bridge.utils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import bridge.domain.MovingResult;
+import bridge.MovingResult;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

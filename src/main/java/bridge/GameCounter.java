@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 public class GameCounter {
 	private int count = 0;

@@ -1,6 +1,6 @@
 package bridge.utils;
 
-import bridge.domain.MovingResult;
+import bridge.MovingResult;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,11 +9,21 @@ public class Convertor {
 	private final String BLANK = " ";
 	private final String RIGHT = "O";
 	private final String WRONG = "X";
-	private static final String SEPARATOR = " | ";
-	private static final String OPENING_BRACKET = "[ ";
-	private static final String CLOSING_BRACKET = " ]";
+	private final String SEPARATOR = " | ";
+	private final String OPENING_BRACKET = "[ ";
+	private final String CLOSING_BRACKET = " ]";
 	private final String SUCCESS = "성공";
 	private final String FAIL = "실패";
+	private static final String UP_DIRECTION = "U";
+	private static final String DOWN_DIRECTION = "D";
+	private static final int RANDOM_LOWER_INCLUSIVE = 0;
+
+	public static String convertMovingDirection(int number) {
+		if (number == RANDOM_LOWER_INCLUSIVE) {
+			return DOWN_DIRECTION;
+		}
+		return UP_DIRECTION;
+	}
 
 	public String convertSuccessOrFail(boolean isSuccess) {
 		if (isSuccess) {

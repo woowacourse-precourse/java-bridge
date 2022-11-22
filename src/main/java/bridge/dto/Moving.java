@@ -1,4 +1,4 @@
-package bridge.domain.dto;
+package bridge.dto;
 
 import bridge.utils.validator.MovingValidator;
 

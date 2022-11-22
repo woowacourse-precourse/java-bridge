@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.BridgeMap;
+import bridge.BridgeMap;
 import java.util.List;
 
 /**

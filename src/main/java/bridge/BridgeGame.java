@@ -1,16 +1,14 @@
-package bridge.domain;
+package bridge;
 
-import bridge.domain.dto.GameCommand;
-import bridge.domain.dto.Moving;
+import bridge.dto.GameCommand;
+import bridge.dto.Moving;
 import bridge.utils.Controller.InputController;
-import bridge.utils.Controller.ViewController;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 	private final String RETRY = "R";
-	private ViewController viewController = new ViewController();
 	private InputController inputController = new InputController();
 	private Bridge bridge;
 

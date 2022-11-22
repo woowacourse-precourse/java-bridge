@@ -2,10 +2,10 @@ package bridge.utils.Controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
-import bridge.domain.GameCounter;
-import bridge.domain.dto.BridgeSize;
+import bridge.Bridge;
+import bridge.BridgeGame;
+import bridge.GameCounter;
+import bridge.dto.BridgeSize;
 import java.util.List;
 
 public class GameController {

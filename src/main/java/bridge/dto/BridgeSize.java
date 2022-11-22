@@ -1,4 +1,4 @@
-package bridge.domain.dto;
+package bridge.dto;
 
 public class BridgeSize {
 	private final String INVALID_LETTER = "[ERROR] 숫자만 입력해야 합니다.\n";

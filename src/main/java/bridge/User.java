@@ -1,5 +1,6 @@
-package bridge.domain;
+package bridge;
 
+import bridge.Bridge;
 import bridge.utils.validator.MovingValidator;
 
 public class User extends MovingValidator {

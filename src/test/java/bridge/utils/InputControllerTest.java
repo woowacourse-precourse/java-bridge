@@ -2,9 +2,9 @@ package bridge.utils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import bridge.domain.dto.BridgeSize;
-import bridge.domain.dto.GameCommand;
-import bridge.domain.dto.Moving;
+import bridge.dto.BridgeSize;
+import bridge.dto.GameCommand;
+import bridge.dto.Moving;
 import bridge.utils.Controller.InputController;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

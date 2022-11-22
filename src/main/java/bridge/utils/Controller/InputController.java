@@ -1,8 +1,8 @@
 package bridge.utils.Controller;
 
-import bridge.domain.dto.BridgeSize;
-import bridge.domain.dto.GameCommand;
-import bridge.domain.dto.Moving;
+import bridge.dto.BridgeSize;
+import bridge.dto.GameCommand;
+import bridge.dto.Moving;
 import bridge.view.InputView;
 
 public class InputController {
