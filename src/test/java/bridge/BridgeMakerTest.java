@@ -9,8 +9,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeMakerTest {
-    private final int MINIMUM_NUMBER = 1;
-    private final int MAXIMUM_NUMBER = 45;
+    private final int MINIMUM_NUMBER = 0;
+    private final int MAXIMUM_NUMBER = 1;
+
     private BridgeMaker bridgeMaker;
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
 
