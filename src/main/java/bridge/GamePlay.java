@@ -108,4 +108,12 @@ public class GamePlay {
             }
         }
     }
+
+    private boolean isRetry() {
+        outputView.printInputRetryCommand();
+        String retryCommand = inputView.readGameCommand();
+
+        outputView.printRetryCommand(retryCommand);
+        return bridgeGame.retry(retryCommand);
+    }
 }
