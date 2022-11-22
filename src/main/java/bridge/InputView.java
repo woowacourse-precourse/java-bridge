@@ -9,7 +9,19 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        try {
+            System.out.println("다리의 길이를 입력해주세요.");
+            String Input = Console.readLine();
+            System.out.println("");
+            Integer BridgeSize = Integer.valueOf(Input);
+            if (BridgeSize > 20 || BridgeSize < 3) {
+                throw new IllegalArgumentException();
+            }
+            return BridgeSize;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 다리길이는 3이상 20이하의 숫자만 입력 가능합니다.");
+            return readBridgeSize();
+        }
     }
 
     /**
