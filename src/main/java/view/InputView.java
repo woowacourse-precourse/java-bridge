@@ -2,7 +2,8 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import exceptionHandler.BridgeSizeException;
-import exceptionHandler.InputException;
+import exceptionHandler.GameCommandException;
+import exceptionHandler.SideSelectionException;
 
 public class InputView {
     public int readBridgeSize() {
@@ -13,13 +14,13 @@ public class InputView {
 
     public String readMoving() {
         String movingSide = Console.readLine();
-        InputException.validateSideSelection(movingSide);
+        SideSelectionException.validate(movingSide);
         return movingSide;
     }
     
     public String readGameCommand() {
         String gameCommand = Console.readLine().trim();
-        InputException.validateGameCommand(gameCommand);
+        GameCommandException.validate(gameCommand);
         return gameCommand;
     }
 

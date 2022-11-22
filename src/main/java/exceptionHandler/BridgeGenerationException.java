@@ -1,15 +1,26 @@
 package exceptionHandler;
 
+import enumCollections.AvailableInput;
+import enumCollections.ExceptionMessage;
+import enumCollections.Side;
+
 import java.util.List;
 
 public class BridgeGenerationException extends InputException {
     public static void validate(List<String> movableSides) {
         movableSides.stream()
-                .forEach(side -> validate(side));
+                .forEach(side -> validateEachSide(side));
     }
 
-    public static void validate(String side) {
+    protected static void validateEachSide(String side) {
+        validateCommonException(side);
         validateSideSelection(side);
         validateCharactersOnly(side);
+    }
+
+    private static void validateSideSelection(String side) {
+        if (!Side.isBridgeSavingFormat(side)) {
+            throw new IllegalArgumentException(ExceptionMessage.SELECT_SIDE.getMessage());
+        }
     }
 }

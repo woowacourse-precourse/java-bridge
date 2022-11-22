@@ -3,14 +3,15 @@ package exceptionHandler;
 import enumCollections.AvailableInput;
 import enumCollections.ExceptionMessage;
 
-public class BridgeSizeException {
+public class BridgeSizeException extends InputException {
     public static void validate(String size) {
-        validateNumeric(size);
+        validateCommonException(size);
+        validateNumericOnly(size);
         validateMinimumRange(stringToInteger(size));
         validateMaximumRange(stringToInteger(size));
     }
 
-    private static void validateNumeric(String size) {
+    private static void validateNumericOnly(String size) {
         if (!size.matches(AvailableInput.NUMERIC_RANGE.getUserInput())) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMERIC.getMessage());
         }

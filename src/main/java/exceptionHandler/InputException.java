@@ -5,16 +5,8 @@ import enumCollections.ExceptionMessage;
 import enumCollections.Side;
 
 public class InputException {
-    public static void validateGameCommand(String gameCommand) {
-        if (!AvailableInput.isGameCommand(gameCommand)) {
-            throw new IllegalArgumentException(ExceptionMessage.RESTART.getMessage());
-        }
-    }
-
-    public static void validateSideSelection(String side) {
-        if (!Side.isBridgeSavingFormat(side)) {
-            throw new IllegalArgumentException(ExceptionMessage.SELECT_SIDE.getMessage());
-        }
+    protected static void validateCommonException(String input) {
+        validateNullString(input);
     }
 
     protected static void validateCharactersOnly(String value) {
@@ -23,9 +15,9 @@ public class InputException {
         }
     }
 
-    protected static void validateNumbersOnly(String value) {
-        if (!value.matches(AvailableInput.NUMERIC_RANGE.getUserInput())) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_NUMERIC.getMessage());
+    private static void validateNullString(String value) {
+        if (value.isBlank()) {
+            throw new IllegalArgumentException(ExceptionMessage.EMPTY_STRING.getMessage());
         }
     }
 }

@@ -1,6 +1,7 @@
 package bridge;
 
 import exceptionHandler.BridgeGenerationException;
+import exceptionHandler.SideSelectionException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,6 @@ public class Player {
     }
 
     private void validate(String movableSide) {
-        BridgeGenerationException.validate(movableSide);
+        SideSelectionException.validate(movableSide);
     }
 }
