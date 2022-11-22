@@ -38,24 +38,28 @@ public class BridgeGameController {
 
     private void move(Position position) {
         if (!this.isMoveSuccess(position)) {
-            this.outputView.printMap(this.bridgeGame.printResult());
-            this.retry();
+            this.gameOver();
             return;
         }
-        this.outputView.printMap(this.bridgeGame.printResult());
-        this.continueOrSuccess();
+        this.continueGame();
+    }
+
+    private void gameOver() {
+        printMap(this.bridgeGame);
+        this.retry();
     }
 
     private boolean isMoveSuccess(Position position) {
         return this.bridgeGame.move(position);
     }
 
-    private void continueOrSuccess() {
+    private void continueGame() {
+        printMap(this.bridgeGame);
         if (!this.isCompletedGame()) {
             this.play();
             return;
         }
-        this.printResult(SUCCESS_MESSAGE);
+        this.printGameResult(SUCCESS_MESSAGE);
     }
 
     private boolean isCompletedGame() {
@@ -65,20 +69,32 @@ public class BridgeGameController {
     private void retry() {
         String answer = this.inputView.readGameCommand();
         if (this.isInputRetry(answer)) {
-            this.bridgeGame.retry();
+            initBridgeGame();
             this.play();
             return;
         }
-        this.printResult(FAILURE_MESSAGE);
+        this.printGameResult(FAILURE_MESSAGE);
+    }
+
+    private void initBridgeGame() {
+        this.bridgeGame.retry();
     }
 
     private boolean isInputRetry(String answer) {
         return answer.equals(RETRY_SIGNAL);
     }
 
-    private void printResult(String message) {
+    private void printGameResult(String message) {
         this.outputView.printGameOverMessage();
-        this.outputView.printMap(bridgeGame.printResult());
+        printMap(bridgeGame);
+        printGameReport(message);
+    }
+
+    private void printGameReport(String message) {
         this.outputView.printResult(message, bridgeGame.getRetryCount());
+    }
+
+    private void printMap(BridgeGame bridgeGame) {
+        this.outputView.printMap(bridgeGame.printResult());
     }
 }
