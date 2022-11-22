@@ -56,33 +56,31 @@ public class OutputView {
         printResultBridge(bridgeGame, gameResult);
         if (gameResult == Constant.GAME_CLEAR) {
             System.out.println("게임 성공 여부: 성공");
-        }
-        else if (gameResult == Constant.GAME_FAIL) {
+        } else if (gameResult == Constant.GAME_FAIL) {
             System.out.println("게임 성공 여부: 실패");
         }
         System.out.println("총 시도한 횟수: " + bridgeGame.getCountGameTry());
     }
 
-    public void printNewLine() { System.out.println(); }
+    public void printNewLine() {
+        System.out.println();
+    }
 
     private String createToken(BridgeGame bridgeGame, String floor, int index) {
-        if (Objects.equals(bridgeGame.getBridge().get(index), floor)){
+        if (Objects.equals(bridgeGame.getBridge().get(index), floor)) {
             return Constant.TOKEN_CLEAR;
         }
         return Constant.TOKEN_NULL;
     }
 
-    // TODO: 리팩토링해서 10줄 이하로 만들기
     private String createToken(BridgeGame bridgeGame, String floor, String token) {
-        if (Objects.equals(token, Constant.TOKEN_FAIL)) {
-            if (!Objects.equals(bridgeGame.getBridge().get(bridgeGame.getCurrentPosition() - 1), floor)){
-                return token;
-            }
+        if (Objects.equals(token, Constant.TOKEN_FAIL) &&
+                !Objects.equals(bridgeGame.getBridge().get(bridgeGame.getCurrentPosition() - 1), floor)) {
+            return token;
         }
-        if (Objects.equals(token, Constant.TOKEN_CLEAR)) {
-            if (Objects.equals(bridgeGame.getBridge().get(bridgeGame.getCurrentPosition() - 1), floor)) {
-                return token;
-            }
+        if (Objects.equals(token, Constant.TOKEN_CLEAR) &&
+                Objects.equals(bridgeGame.getBridge().get(bridgeGame.getCurrentPosition() - 1), floor)) {
+            return token;
         }
         return Constant.TOKEN_NULL;
     }
