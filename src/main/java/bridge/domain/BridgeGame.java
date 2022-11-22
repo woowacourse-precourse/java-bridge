@@ -12,4 +12,6 @@ public class BridgeGame {
     public void retry() {
         this.position = 0;
     }
+
+    public int getPosition(){ return this.position;}
 }
