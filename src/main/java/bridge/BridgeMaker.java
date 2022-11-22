@@ -1,23 +1,47 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
-
-    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private List<String> bridge;
+    private BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-        return null;
+        if (bridgeNumberGenerator instanceof BridgeNumberGenerator) {
+            makeBridgeByBridgeNumberGenerator(size);
+        }
+        return bridge;
+    }
+
+    public void makeBridgeByBridgeNumberGenerator(int size) {
+        bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
+            makeBridgeBlock(randomNumber);
+        }
+    }
+
+    public List<String> makeBridgeByBridgeRandomNumberGenerator(int size) {
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
+            makeBridgeBlock(randomNumber);
+        }
+        return bridge;
+    }
+
+    public void makeBridgeBlock(String randomNumber) {
+        if (randomNumber.equals("0")) {
+            bridge.add("D");
+        }
+        if (randomNumber.equals("1")) {
+            bridge.add("U");
+        }
     }
 }
