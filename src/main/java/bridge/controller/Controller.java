@@ -12,9 +12,9 @@ public class Controller {
 
 
     public void run() {
+        outputView.printGameStartMessage();
         final BridgeSize bridgeSize = inputBridgeSize();
-        final Bridge bridge = createBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = new BridgeGame(createBridge(bridgeSize));
         while (true) {
             crossingGame(bridgeSize, bridgeGame);
             if (isSuccess || !isGameRetry(bridgeGame)) {
