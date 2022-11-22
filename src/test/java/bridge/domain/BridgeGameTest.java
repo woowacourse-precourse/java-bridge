@@ -70,4 +70,14 @@ class BridgeGameTest {
         assertFalse(actual);
     }
 
+    @Test
+    void retryTest() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("D", "U", "D"));
+        String direction = "D";
+        bridgeGame.move(direction);
+
+        bridgeGame.retry();
+
+        assertEquals(0, bridgeGame.getIndex());
+    }
 }
