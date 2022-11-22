@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.enumeration.ErrorMessage;
 import bridge.enumeration.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 
 /**
@@ -19,7 +20,7 @@ public class InputView {
     private void validBridgeSize(String inputBridgeSize) {
         if (!Pattern.matches("^[0-9]*$", inputBridgeSize)) {
             System.out.println(ErrorMessage.NOT_NUMBER.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getErrorMessage());
+            throw new NoSuchElementException(ErrorMessage.NOT_NUMBER.getErrorMessage());
         }
     }
 
