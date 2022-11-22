@@ -48,7 +48,12 @@ public class GameSystem {
             player.bridges.downBridge.add(index,"X");
         }
     }
+    public Boolean retryOrNot(){
+        String retry = InputView.readGameCommand();
+        if(Objects.equals(retry,"R")) return true;
 
+        return false;
+    }
     public void printResult(Boolean moveSuccess,int trialNumber){
         OutputView.printFinalResult(player.bridges,moveSuccess,trialNumber);
     }
