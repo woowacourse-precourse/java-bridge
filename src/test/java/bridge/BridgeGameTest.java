@@ -69,7 +69,7 @@ public class BridgeGameTest {
         moveRecord.moveDOWN(1, false);
         moveRecord.moveUP(1, true);
         moveRecord.moveUP(2, true);
-        assertThat(moveRecord.getString()).isEqualTo("[ O | O | O ]\n[   | X |   ]");
+        assertThat(moveRecord.getString()).isEqualTo("[ O | O | O ]\n[   |   |   ]");
     }
 
     @DisplayName("게임 성공 여부-성공")
