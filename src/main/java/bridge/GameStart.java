@@ -58,4 +58,7 @@ public class GameStart {
         return tryNum;
     }
 
+    public BridgeGame getBridgeGame() {
+        return bridgeGame;
+    }
 }
