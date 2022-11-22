@@ -1,6 +1,9 @@
 package bridge;
 
 import static bridge.Moving.getMarkByMoving;
+import static bridge.constant.mark.OutputMark.BEGIN_OF_BRIDGE;
+import static bridge.constant.mark.OutputMark.DIVISION;
+import static bridge.constant.mark.OutputMark.END_OF_BRIDGE;
 
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -22,5 +25,11 @@ public class Map {
 
     public void print() {
 
+    }
+
+    public String format(List<String> row) {
+        return BEGIN_OF_BRIDGE.getMark()
+                + String.join(DIVISION.getMark(), row)
+                + END_OF_BRIDGE.getMark();
     }
 }
