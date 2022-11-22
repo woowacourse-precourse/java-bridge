@@ -79,9 +79,9 @@ public class Player {
         return playerBridge.successRoot();
     }
 
-    public PlayerBridge getPlayerBridge(){return playerBridge;}
+    public PlayerBridge findPlayerBridge(){return playerBridge;}
 
-    public int getCoinUsed(){return coinUsed;}
+    public int findCoinUsed(){return coinUsed;}
 
     public String readGameCommand(){
         return inputView.readGameCommand();
