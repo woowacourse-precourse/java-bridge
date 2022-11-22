@@ -39,11 +39,12 @@ public class OutputView {
     }
 
     private void printStatusMessage(UserStatus userStatus) {
-        if (userStatus.isAvailable()) {
-            print(OutputMessage.STATUS_SUCCESS);
+        if (!userStatus.isAvailable()) {
+            print(OutputMessage.STATUS_FAILED);
+            return;
         }
 
-        print(OutputMessage.STATUS_FAILED);
+        print(OutputMessage.STATUS_SUCCESS);
     }
 
     private void printTryCountMessage(UserStatus userStatus) {
