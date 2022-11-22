@@ -29,7 +29,6 @@ public class BridgeGame {
                 isPlaying = retry();
             }
         }
-
         if (isEnd) {
             outputView.printResult(count, idx, bridge,true);
             return;
