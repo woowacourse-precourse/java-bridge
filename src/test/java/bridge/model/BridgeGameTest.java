@@ -37,4 +37,13 @@ class BridgeGameTest {
     public void quitTest(String cmd, boolean expected) {
         assertThat(bridgeGame.retry(cmd)).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("재시작일 경우 다리 상태 초기화하는 메소드 테스트")
+    void makeBridgeSectionsTest() {
+        List<String[]> actual = bridgeGame.makeBridgeSections(List.of("U", "D"), List.of("O", "X"));
+        String[] section1 = {" ", "O"};
+        String[] section2 = {"X", " "};
+        assertThat(actual).contains(section1, section2);
+    }
 }

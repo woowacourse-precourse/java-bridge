@@ -109,7 +109,7 @@ public class BridgeGame {
         map = makeBridgeSections(bridge, marks);
     }
 
-    private List<String[]> makeBridgeSections(List<String> bridge, List<String> marks) {
+    public List<String[]> makeBridgeSections(List<String> bridge, List<String> marks) {
         List<String[]> temp = new ArrayList<>();
         for (int i = 0; i < marks.size(); i++) {
             String[] bridgeSection = makeBridgeSection(bridge.get(i), marks.get(i));
