@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static camp.nextstep.edu.missionutils.Console.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -34,13 +35,17 @@ public class InputView {
         while (true) {
             try {
                 String bridgeLen = Console.readLine();
-                if(checkInputSizeString(bridgeLen))
+                if(checkInputSizeString(bridgeLen)){
                     return Integer.parseInt(bridgeLen);
+                }
+
             }
             catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
         }
+
+
     }
 
     public static boolean checkInputSizeString(String bridgeLen) {

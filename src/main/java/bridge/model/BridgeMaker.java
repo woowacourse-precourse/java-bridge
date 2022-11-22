@@ -27,7 +27,7 @@ public class BridgeMaker {
             //generate();
             int rand =  (int) ran;
             //int rand = bridgeNumberGenerator.generate();
-            System.out.println("rand: " + rand);
+            //System.out.println("rand: " + rand);
             // 0이면 U, 1이면 D
             if(rand == 1){
                 bridges.add("U");
