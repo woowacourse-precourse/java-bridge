@@ -40,12 +40,11 @@ public class OutputView {
     public void printMap(List<String> bridgeResult) {
         String currentBridgeResult = "[ ";
         for (int i = 0; i < bridgeResult.size(); i++) {
-            currentBridgeResult += bridgeResult.get(i);
             if (i == bridgeResult.size() - 1) {
-                currentBridgeResult += " ]";
+                currentBridgeResult += bridgeResult.get(i) + " ]";
             }
             if (i != bridgeResult.size() - 1) {
-                currentBridgeResult += " | ";
+                currentBridgeResult += bridgeResult.get(i) + " | ";
             }
         }
         System.out.println(currentBridgeResult);
@@ -58,8 +57,7 @@ public class OutputView {
      */
     public void printResult(List<String> upBridgeResult, List<String> downBridgeResult, String gameStatus, int cnt) {
         System.out.println("최종 게임 결과");
-        printMap(upBridgeResult);
-        printMap(downBridgeResult);
+        printCrossResult(upBridgeResult, downBridgeResult);
         System.out.println();
         System.out.println("게임 성공 여부: " + gameStatus);
         System.out.println("총 시도한 횟수: " + cnt);
