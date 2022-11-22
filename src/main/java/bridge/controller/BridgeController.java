@@ -19,9 +19,18 @@ public class BridgeController {
         validate = new ValidateInput();
 
     }
+    private int handleStartGame(){
+        try {
+            outputView.printIntro();
+            int size = validate.numeric(inputView.readBridgeSize());
+            return size;
+        }catch (IllegalArgumentException e){
+            e.getMessage();
+            return handleStartGame();
+        }
+    }
     public void startGame(){
-        outputView.printIntro();
-        int size = validate.numeric(inputView.readBridgeSize());
+        int size = handleStartGame();
         bridgeGame.start(size);
         playing(size);
     }
@@ -36,11 +45,19 @@ public class BridgeController {
         }
         return succeedGame();
     }
-
+    private String handleMoveGame(){
+        try {
+            outputView.printMove();
+            String letter = inputView.readMoving();
+            Column.validateLetter(letter);
+            return letter;
+        }catch (IllegalArgumentException e){
+            e.getMessage();
+            return handleMoveGame();
+        }
+    }
     private boolean checkAnswer(int step){
-        outputView.printMove();
-        String letter = inputView.readMoving();
-        Column.validateLetter(letter);
+        String letter = handleMoveGame();
         Column answer = bridgeGame.move(step,letter);
         if(answer != Column.NONE){
             bridgeGame.addColumn(answer);
@@ -54,10 +71,18 @@ public class BridgeController {
         return checkRetry(size);
     }
 
+    private String handleRetryGame(){
+        try {
+            outputView.printRetry();
+            String letter = validate.endLetter(inputView.readGameCommand());
+            return letter;
+        }catch (IllegalArgumentException e){
+            e.getMessage();
+            return handleRetryGame();
+        }
+    }
     private int checkRetry(int size){
-        outputView.printRetry();
-        String letter = inputView.readGameCommand();
-        validate.endLetter(letter);
+        String letter = handleRetryGame();
         if(letter.equals(GameMessage.RETRY)){
             bridgeGame.retry();
             return playing(size);
