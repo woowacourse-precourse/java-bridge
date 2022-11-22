@@ -30,10 +30,9 @@ public class Application {
 
             if(!Bridge.bridge.isRightAnswer()) {
                 String cont = InputView.getInstance.readGameCommand();
-                if(bridgeGame.retry(cont)) {
-                    continue;
+                if(!bridgeGame.retry(cont)) {
+                    break;
                 }
-                break;
             }
         }
 
