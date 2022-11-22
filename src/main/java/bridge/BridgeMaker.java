@@ -22,9 +22,8 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         ArrayList<Integer> numbers = new ArrayList<>();
-        BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         for (int i = 0; i < size; i++) {
-            numbers.add(numberGenerator.generate());
+            numbers.add(bridgeNumberGenerator.generate());
         }
         return numberToBridge(numbers);
 
