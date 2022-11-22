@@ -7,6 +7,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -20,6 +21,8 @@ class ApplicationTest extends NsTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
     }
+
+
 
     @Test
     void 기능_테스트() {

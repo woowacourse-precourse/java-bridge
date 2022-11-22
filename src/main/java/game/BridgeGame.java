@@ -2,7 +2,6 @@ package game;
 
 public class BridgeGame {
 
-
     public String move(String movingInputFloor, String bridgeFloorStatus) {
         if (movingInputFloor.equals(bridgeFloorStatus)) {
             return GameResult.CORRECT_FLOOR.getResultMessage();
