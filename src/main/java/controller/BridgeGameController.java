@@ -9,8 +9,8 @@ public class BridgeGameController {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    public BridgeGameController() {
-        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    public BridgeGameController(BridgeNumberGenerator numberGenerator) {
+        bridgeNumberGenerator = numberGenerator;
     }
 
     public void gameStart() {
