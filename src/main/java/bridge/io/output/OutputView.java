@@ -19,6 +19,7 @@ public class OutputView {
     public void printMap(GameStatus gameStatus) {
         System.out.println("[ " + gameStatus.getUpBridge() + " ]");
         System.out.println("[ " + gameStatus.getDownBridge() + " ]");
+        System.out.println();
     }
 
     /**

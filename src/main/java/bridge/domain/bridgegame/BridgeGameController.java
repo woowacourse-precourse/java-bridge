@@ -26,8 +26,9 @@ public class BridgeGameController implements BridgeGameStarter {
     @Override
     public void start() {
         outputView.printStartMessage();
-        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-
+        int bridgeSize = inputView.readBridgeSize();
+        System.out.println();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
         while (!moveUser()) {
             if (!wantRetry()) {
                 break;
