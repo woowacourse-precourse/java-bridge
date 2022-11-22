@@ -14,8 +14,8 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            inputView.readBridgeSize();
-            bridgeGameStart();
+            inputView.readBridgeSize(); //다리길이 입력
+            bridgeGameStart();          //게임 시작
         }
         catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -41,16 +41,12 @@ public class Application {
         }
     }
     public static void successOrFalseCheck(String falseOrTure){
-        if(falseOrTure.equals("성공")){   //성공 시 값 출력
-            outputView.printResult(falseOrTure, count);
+        if(falseOrTure.equals("성공")){   //성공 시 값 출력 후 종료하는 구문 실행
+            exit();
         }
-        if(falseOrTure.equals("실패")){   //실패 시 retry 구문 실행
-            String retry = inputView.readGameCommand();
-            bridgeGame.retry(retry);
+        if(falseOrTure.equals("실패")){   //실패 시 retry 구문 실행. R, Q를 입력받음
+            bridgeGame.retry(inputView.readGameCommand());
         }
-    }
-    public static void exit(){
-        outputView.printResult(falseOrTure, count);
     }
     public static void  clearAndRetry(){
         outputView.init();
@@ -58,5 +54,8 @@ public class Application {
         falseOrTure = "성공";
         count++;
         bridgeGameStart();
+    }
+    public static void exit(){
+        outputView.printResult(falseOrTure, count);
     }
 }
