@@ -16,10 +16,11 @@ class InputViewTest {
     InputStream inputStream;
 
     @BeforeEach
-    void init(){
+    void init() {
         inputView = new InputView();
     }
-    void setIn(String input){
+
+    void setIn(String input) {
         inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
     }
@@ -34,6 +35,7 @@ class InputViewTest {
         int result = 3;
         assertThat(size).isEqualTo(result);
     }
+
     @Test
     void 다리_길이_입력_예외_테스트() {
         String input = "300";
@@ -53,6 +55,7 @@ class InputViewTest {
         String result = "U";
         assertThat(size).isEqualTo(result);
     }
+
     @Test
     void 이동할_칸_입력_예외_테스트() {
         String input = "F";
@@ -62,6 +65,7 @@ class InputViewTest {
             inputView.readMoving();
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void 재시작_종료_입력_테스트() {
         String input = "R";
@@ -71,6 +75,7 @@ class InputViewTest {
         String result = "R";
         assertThat(size).isEqualTo(result);
     }
+
     @Test
     void 재시작_종료_입력_예외_테스트() {
         String input = "E";

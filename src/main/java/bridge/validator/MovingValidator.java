@@ -4,8 +4,8 @@ public class MovingValidator {
     private static final String UP = "U";
     private static final String DOWN = "D";
 
-    public static boolean isRightCharacter(String input){
-        if (input.equals(UP) || input.equals(DOWN)){
+    public static boolean isRightCharacter(String input) {
+        if (input.equals(UP) || input.equals(DOWN)) {
             return true;
         }
         return false;

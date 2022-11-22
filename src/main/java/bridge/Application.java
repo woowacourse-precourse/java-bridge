@@ -25,16 +25,16 @@ public class Application {
         startMakingBridge();
         cnt = 0;
         location = 0;
-        do{ upBridgeResult = new ArrayList<>();
+        do { upBridgeResult = new ArrayList<>();
             downBridgeResult = new ArrayList<>();
             gameStatus = "성공";
             playGame();
-        } while(retryOrQuit());
+        } while (retryOrQuit());
         printTotalResult();
     }
 
     public static void startMakingBridge() {
-        try{
+        try {
             outputView.printBridgeSize();
             bridgeSize = inputView.readBridgeSize();
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -45,7 +45,7 @@ public class Application {
         }
     }
 
-    public static boolean retryOrQuit(){
+    public static boolean retryOrQuit() {
         if (endGame()) return false;
         try {
             return getGameCommandResult();
@@ -55,36 +55,39 @@ public class Application {
         }
         return true;
     }
-    public static boolean getGameCommandResult(){
+
+    public static boolean getGameCommandResult() {
         outputView.printGameCommand();
-        if (inputView.readGameCommand().equals("R")){
+        if (inputView.readGameCommand().equals("R")) {
             bridgeGame.retry(location, upBridgeResult, downBridgeResult);
             return true;
         }
         return false;
     }
-    public static boolean endGame(){
-        if (gameStatus.equals("성공")){
+
+    public static boolean endGame() {
+        if (gameStatus.equals("성공")) {
             return true;
         }
         return false;
     }
 
-    public static void playGame(){
+    public static void playGame() {
         cnt++;
         try {
             location = movePlayer();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             playGame();
             outputView.printError(e.getMessage());
         }
     }
+
     public static int movePlayer() {
-        do{
+        do {
             outputView.printMoving();
             String moving = inputView.readMoving();
             gameStatus = crossResult(moving);
-            if (gameStatus.equals("성공")){
+            if (gameStatus.equals("성공")) {
                 location = bridgeGame.move(location);
             }
             outputView.printCrossResult(upBridgeResult, downBridgeResult);
@@ -92,12 +95,12 @@ public class Application {
         return location;
     }
 
-    public static void printTotalResult(){
+    public static void printTotalResult() {
         outputView.printResult(upBridgeResult, downBridgeResult);
         outputView.printGameResult(gameStatus, cnt);
     }
 
-    public static String crossResult(String moving){
+    public static String crossResult(String moving) {
         boolean compareResult = bridgeGame.compare(bridge, moving, location);
         if (compareResult) {
             bridgeGame.addSuccess(moving, upBridgeResult, downBridgeResult);

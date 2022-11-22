@@ -14,6 +14,7 @@ public class OutputView {
     private final static String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private final static String GAME_STATUS_MESSAGE = "게임 성공 여부: ";
     private final static String GAME_TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
+
     public void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
     }
@@ -26,7 +27,7 @@ public class OutputView {
         System.out.println(MOVING_MESSAGE);
     }
 
-    public void printGameCommand(){
+    public void printGameCommand() {
         System.out.println(GAME_COMMAND_MESSAGE);
     }
 
@@ -34,7 +35,7 @@ public class OutputView {
         System.out.println(ERROR + errMsg);
     }
 
-    public void printCrossResult(List<String> upBridgeResult, List<String> downBridgeResult){
+    public void printCrossResult(List<String> upBridgeResult, List<String> downBridgeResult) {
         printMap(upBridgeResult);
         printMap(downBridgeResult);
     }
@@ -67,7 +68,8 @@ public class OutputView {
         printCrossResult(upBridgeResult, downBridgeResult);
         System.out.println();
     }
-    public void printGameResult(String gameStatus, int cnt){
+
+    public void printGameResult(String gameStatus, int cnt) {
         System.out.println(GAME_STATUS_MESSAGE + gameStatus);
         System.out.println(GAME_TRY_COUNT_MESSAGE + cnt);
     }
