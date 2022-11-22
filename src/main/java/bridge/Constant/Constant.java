@@ -2,7 +2,6 @@ package bridge.Constant;
 
 public class Constant {
     public final static int UP = 1;
-    public final static int DOWN = 0;
     public static final String INT_REGEX = "^[0-9]*$";
     public final static String UP_STR = "U";
     public final static String DOWN_STR = "D";

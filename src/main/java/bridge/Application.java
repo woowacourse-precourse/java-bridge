@@ -30,7 +30,7 @@ public class Application {
             OutputView.getInstance.printMap(userBridge);
 
             // 틀렸는지 체크
-            if (!Bridge.bridge.isRightAnswer()) {
+            if (!Bridge.getInstance.isRightAnswer()) {
                 String cont = InputView.getInstance.readGameCommand();
                 if (!bridgeGame.retry(cont)) {
                     break;
