@@ -1,9 +1,12 @@
-package bridge.ui;
+package bridge;
 
-import static bridge.ui.Expression.DOWN;
-import static bridge.ui.Expression.UP;
-import static bridge.ui.UserInterface.RANGE_OUT_OF_EXCEPTION;
-import static bridge.ui.UserInterface.SELECT_RE_TRY;
+import static bridge.Expression.DOWN;
+import static bridge.Expression.UP;
+import static bridge.UserInterface.INSERT_SIZE;
+import static bridge.UserInterface.RANGE_OUT_OF_EXCEPTION;
+import static bridge.UserInterface.RE_TRY;
+import static bridge.UserInterface.SELECT_RE_TRY;
+import static bridge.UserInterface.SELECT_ROW;
 import static java.lang.Integer.parseInt;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -24,6 +27,7 @@ public class InputView {
      */
     public int readBridgeSize() {
 
+        System.out.println(INSERT_SIZE.interact());
         String readLine = Console.readLine();
         if ( parseInt(readLine) < 3 || parseInt(readLine) > 20) {
             throw new IllegalArgumentException(RANGE_OUT_OF_EXCEPTION.interact());
@@ -37,6 +41,7 @@ public class InputView {
      */
     public String readMoving() {
 
+        System.out.println(SELECT_ROW.interact());
         String readLine = Console.readLine();
         exception.validate(readLine);
         if (readLine.equals("U")) {
@@ -54,6 +59,7 @@ public class InputView {
      */
     public String readGameCommand() {
 
+        System.out.println(RE_TRY.interact());
         String readLine = Console.readLine();
 
         exception.validate(readLine);
