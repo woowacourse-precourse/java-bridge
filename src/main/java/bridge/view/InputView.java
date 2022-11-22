@@ -10,20 +10,32 @@ public class InputView {
         out(InputMessage.START_GAME);
         blank();
         out(InputMessage.INPUT_BRIDGE_SIZE);
-        String input = Console.readLine();
         blank();
-        stringType(input);
-        return Integer.parseInt(input);
+        int inputNum = 0;
+        while (true) {
+            String input = Console.readLine();
+            try {
+                inputNum = Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException e) {
+                out(ExceptionMessage.NOT_INTEGER);
+                continue;
+            }
+        }
+        return inputNum;
     }
-
-    private void stringType(String bonus) {
-        int eachChar = String.valueOf(bonus).charAt(0);
-        if (!Character.isDigit(eachChar)) {
-            out(ExceptionMessage.NOT_INTEGER);
-            throw new IllegalArgumentException(ExceptionMessage.NOT_INTEGER);
+    /*
+    private void stringType(String input) {
+        while (true) {
+            try {
+                Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException e) {
+                out(ExceptionMessage.NOT_INTEGER);
+            }
         }
     }
-
+     */
     public String readMoving() {
         out(InputMessage.INPUT_MOVING);
         String input = Console.readLine();
