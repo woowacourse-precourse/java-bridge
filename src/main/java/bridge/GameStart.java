@@ -34,11 +34,11 @@ public class GameStart {
             isSuccess = play();
             isRestart = checkRestart(isSuccess);
         }
-        outputView.printResult(bridge, countOfMove, isSuccess, countOfPlay);
+        outputView.printResult(bridge, bridge.size()-1, isSuccess, countOfPlay);
     }
 
     private boolean play() {
-        for (countOfMove = 0; countOfMove < bridgeSize; countOfMove++) {
+        for (int countOfMove = 0; countOfMove < bridgeSize; countOfMove++) {
             String moveBlock = inputMove();
             boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
             outputView.printMap(bridge, countOfMove, isMove);
