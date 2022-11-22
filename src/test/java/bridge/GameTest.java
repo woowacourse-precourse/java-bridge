@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.controller.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.enums.UpDown;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

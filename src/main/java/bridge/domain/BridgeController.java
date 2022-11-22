@@ -1,13 +1,13 @@
-package bridge.controller;
+package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.enums.Message;
 import bridge.enums.UpDown;
-import bridge.view.InputNumValidator;
-import bridge.view.InputStringValidator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.io.InputNumValidator;
+import bridge.io.InputStringValidator;
+import bridge.io.InputView;
+import bridge.io.OutputView;
 
 import java.util.List;
 
@@ -37,12 +37,12 @@ public class BridgeController {
 
 	private void gameStart() {
 		do {
-			bridgeGame.move(getDirection());
+			bridgeGame.move(inputDirection());
 			outputView.printMap(bridgeGame);
 		} while (bridgeGame.isMatchDirection() && bridgeGame.isNotFinish());
 	}
 
-	private String getDirection() {
+	private String inputDirection() {
 		InputStringValidator moveCommandValidator = new InputStringValidator(inputView.readMoving());
 		moveCommandValidator.isValidateAlphabet(UpDown.getStrValues());
 		return moveCommandValidator.getInputValue();

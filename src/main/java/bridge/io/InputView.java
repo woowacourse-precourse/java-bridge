@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.io;
 
 import bridge.enums.Message;
 import camp.nextstep.edu.missionutils.Console;

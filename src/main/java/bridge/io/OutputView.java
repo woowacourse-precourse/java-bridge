@@ -1,0 +1,55 @@
+package bridge.io;
+
+import bridge.domain.BridgeGame;
+import bridge.enums.Message;
+import bridge.domain.BridgeMap;
+
+/**
+ * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
+ */
+public class OutputView {
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
+    /**
+     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void printMap(BridgeGame bridgeGame) {
+        BridgeMap bridgeMap = new BridgeMap(bridgeGame.getAnswerBridge(), bridgeGame.getPlayerBridge());
+        bridgeMap.getMap()
+                .forEach(System.out::println);
+        System.out.println();
+    }
+
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void printResult(BridgeGame bridgeGame) {
+        printFinalBridgeResult(bridgeGame);
+        printStatusResult(bridgeGame);
+    }
+
+    private void printFinalBridgeResult(BridgeGame bridgeGame) {
+        System.out.println(Message.GAME_RESULT_PREV_MSG.getMessage());
+        printMap(bridgeGame);
+    }
+
+    private void printStatusResult(BridgeGame bridgeGame) { // TODO 수정 필요
+        System.out.println(Message.GAME_RESULT_STATE_MSG.getMessage() + getGameStatus(bridgeGame));
+        System.out.println(Message.GAME_RESULT_TRY_MSG.getMessage() + "" + bridgeGame.getTrial());
+    }
+
+    private String getGameStatus(BridgeGame bridgeGame) {
+        if (bridgeGame.isGameWin()) {
+            return SUCCESS;
+        }
+        return FAIL;
+    }
+
+    public void printMessage(Message message){
+        System.out.println(message.getMessage());
+    }
+}

@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.domain;
 
 import bridge.Util;
 
@@ -29,6 +29,7 @@ public class BridgeGame {
      */
     public void move(String direction) {
         myBridge.add(direction);
+//        bridgeMap.addBlock(direction);
     }
 
     /**

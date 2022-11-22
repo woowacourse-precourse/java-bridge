@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.io;
 
 public class InputNumValidator {
 	private String INPUT_VALUE;

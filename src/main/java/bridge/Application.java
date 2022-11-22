@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.controller.BridgeController;
+import bridge.domain.BridgeController;
 
 public class Application {
 

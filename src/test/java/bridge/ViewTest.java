@@ -1,10 +1,9 @@
 package bridge;
 
-import bridge.view.InputNumValidator;
-import bridge.view.InputStringValidator;
+import bridge.io.InputNumValidator;
+import bridge.io.InputStringValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
