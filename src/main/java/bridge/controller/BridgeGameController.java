@@ -73,7 +73,6 @@ public class BridgeGameController {
     }
 
     private void requestQuitGame(MovingResult movingResult) {
-        // TODO 기존 기능 테스트 및 메시지 성공, 실패 여부 꽂는 기능 개발하기 이후 리팩토링
         outputView.printResult(MessageGenerator.createMovedMessage(movingResult),
                 bridgeGameService.getGameCount(),
                 movingResult.getMovingResultStatus());
