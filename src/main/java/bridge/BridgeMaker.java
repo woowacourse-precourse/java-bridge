@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 import bridge.utils.constants.Comments;
