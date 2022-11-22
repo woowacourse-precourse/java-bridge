@@ -2,8 +2,6 @@ package bridge;
 
 import model.Bridge;
 import model.Moving;
-import view.InputView;
-import view.OutputView;
 
 public class Application {
     private static OutputView outputView = new OutputView();

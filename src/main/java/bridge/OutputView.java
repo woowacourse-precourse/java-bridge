@@ -1,4 +1,4 @@
-package view;
+package bridge;
 
 import model.Bridge;
 import bridge.BridgeGame;
