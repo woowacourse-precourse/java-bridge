@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.view.OutputView;
+import bridge.BridgeMaker;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
 

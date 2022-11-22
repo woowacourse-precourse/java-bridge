@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 import bridge.Constants.CommandConstant;
 import bridge.Constants.ErrorMessageConstant;
