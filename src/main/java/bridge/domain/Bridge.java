@@ -21,11 +21,8 @@ public class Bridge {
         return false;
     }
 
-    public boolean isSame(List<String> bridge) {
-        if (this.bridge.equals(bridge)) {
-            return true;
-        }
-        return false;
+    public int getLength() {
+        return bridge.size();
     }
 
     private void validate(List<String> bridge) {
@@ -34,5 +31,4 @@ public class Bridge {
             throw new IllegalArgumentException(SIZE_OUT_OF_RANGE_ERROR);
         }
     }
-
 }
