@@ -54,32 +54,32 @@ public class OutputView {
             String current = currentBridge.get(i);
             String OX = makeOX(currentBridge, flag, i);
             setUpsideBridge(upBridge, current, OX);
-            setDownSideBridge(upBridge, current, OX);
+            setDownSideBridge(downBridge, current, OX);
         }
     }
 
-    private String makeOX(List<String> currentBridge, boolean flag, int i) {
-        String correctCheck = O;
-        if (!flag && i == currentBridge.size() - 1) {
-            correctCheck = X;
+    private String makeOX(List<String> currentBridge, boolean flag, int index) {
+        String OX = O;
+        if (!flag && index == currentBridge.size() - 1) {
+            OX = X;
         }
-        return correctCheck;
+        return OX;
     }
 
     public void printEmptyLine(){
         System.out.println();
     }
 
-    private void setUpsideBridge(List<String> upBridge, String current, String correctCheck) {
+    private void setUpsideBridge(List<String> upBridge, String current, String OX) {
         if (current.equals(UP)) {
-            upBridge.add(correctCheck);
-
+            upBridge.add(OX);
+            return;
         }
         upBridge.add("   ");
     }
-    private void setDownSideBridge(List<String> downBridge, String current, String correctCheck) {
+    private void setDownSideBridge(List<String> downBridge, String current, String OX) {
         if (current.equals(DOWN)) {
-            downBridge.add(correctCheck);
+            downBridge.add(OX);
             return;
         }
         downBridge.add("   ");
