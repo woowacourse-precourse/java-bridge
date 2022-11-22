@@ -25,22 +25,22 @@ public class Application {
 
     public static int moveUser(List<String> bridge) {
         List<String> result = new ArrayList<>();
-        moveDetail(result, bridge);
-        outputView.printClearResult(result);
+        outputView.printClearResult(moveDetail(result, bridge));
         return count;
     }
 
-    public static void moveDetail(List<String> result, List<String> bridge) {
+    public static List<String> moveDetail(List<String> result, List<String> bridge) {
         for (int i = 0; i < bridge.size(); i++) {
             String moving = inputUpDown();
             if (!bridgeGame.move(moving, bridge.get(i))) {
                 outputView.printMap(addFalseResult(i, moving, result));
-                i = restartGame(i, result, bridge);
+                i = restartGame(result, bridge);
                 result = new ArrayList<>();
                 continue;
             }
             outputView.printMap(addTrueResult(i, moving, result));
         }
+        return result;
     }
 
     public static String inputUpDown() {
@@ -48,7 +48,7 @@ public class Application {
         return inputView.readMoving();
     }
 
-    public static int restartGame(int i, List<String> result, List<String> bridge) {
+    public static int restartGame(List<String> result, List<String> bridge) {
         outputView.printRestartMessage();
         return restartGameDetail(inputView.readGameCommand(), result, bridge);
     }
