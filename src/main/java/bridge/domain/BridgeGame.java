@@ -2,8 +2,9 @@ package bridge.domain;
 
 import java.util.List;
 
-import bridge.domain.strategy.BridgeNumberGenerator;
-import bridge.domain.strategy.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

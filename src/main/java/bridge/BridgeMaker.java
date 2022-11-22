@@ -1,9 +1,7 @@
-package bridge.domain;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import bridge.domain.strategy.BridgeNumberGenerator;
 
 public class BridgeMaker {
 
