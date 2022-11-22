@@ -8,7 +8,7 @@ import java.util.List;
 public class DrawMap {
 
     private StringBuilder upperSideOfMap;
-    private StringBuilder downSideOfMap;
+    private StringBuilder lowerSideOfMap;
     private List<String> bridge;
     private List<String> playerInput;
     private List<String> upperLog = new ArrayList<>();
@@ -16,7 +16,7 @@ public class DrawMap {
 
     public DrawMap(List<String> bridge, List<String> playerInput) {
         this.upperSideOfMap = new StringBuilder();
-        this.downSideOfMap = new StringBuilder();
+        this.lowerSideOfMap = new StringBuilder();
         this.bridge = bridge;
         this.playerInput = playerInput;
     }
@@ -67,5 +67,19 @@ public class DrawMap {
             }
         }
         upperSideOfMap.append(MapImage.postfix);
+    }
+
+    /**
+     * 다리의 아래쪽 부분 결과를 String 값으로 만드는 메서드
+     */
+    public void setLowerSideOfMap() {
+        lowerSideOfMap.append(MapImage.prefix);
+        for (int i = 0; i < lowerLog.size(); i++) {
+            lowerSideOfMap.append(lowerLog.get(i));
+            if (i != lowerLog.size() - 1) {
+                lowerSideOfMap.append(MapImage.separation);
+            }
+        }
+        lowerSideOfMap.append(MapImage.postfix);
     }
 }
