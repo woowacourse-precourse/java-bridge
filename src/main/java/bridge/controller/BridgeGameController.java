@@ -27,7 +27,7 @@ public class BridgeGameController {
 
     private void start() {
         outputView.printGameStartMsg();
-        bridgeGame = new BridgeGame(makeBridge());
+        makeBridge();
         bridgeGame.start();
         isPlaying = true;
     }
@@ -36,7 +36,7 @@ public class BridgeGameController {
         outputView.printResult(bridgeGame.getBridgeGameResult());
     }
 
-    private Bridge makeBridge() {
+    private void makeBridge() {
         outputView.printBridgeSizeMsg();
         while (true) {
             try {
