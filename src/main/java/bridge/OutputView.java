@@ -1,23 +1,55 @@
 package bridge;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
+    public static StringBuilder up = new StringBuilder();
+    public static StringBuilder down = new StringBuilder();
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    public void printMap(String state, boolean stop) {
+        if (state.equals(Constant.Up)) moveUp(stop);
+        if (state.equals(Constant.Down)) moveDown(stop);
+
+        System.out.println(Constant.Front + up + Constant.Back);
+        System.out.println(Constant.Front + down + Constant.Back);
+
+        up.append(Constant.Delimiter);
+        down.append(Constant.Delimiter);
+    }
+    
+    public void printResult(boolean stop, int count) {
+        System.out.println(Constant.Result_of_game);
+        System.out.println(Constant.Front + up.substring(0, up.length() - 2) + Constant.Back);
+        System.out.println(Constant.Front + down.substring(0, up.length() - 2) + Constant.Back);
+        if (!stop) System.out.println(Constant.Result_of_try + Constant.Win);
+        if (stop) System.out.println(Constant.Result_of_try + Constant.Lose);
+        System.out.println(Constant.Total_Try + count);
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void moveUp(boolean stop) {
+        if (stop) {
+            down.append(Constant.Fail + Constant.Space);
+            up.append(Constant.Space + Constant.Space);
+        }
+
+        if (!stop) {
+            up.append(Constant.Success + Constant.Space);
+            down.append(Constant.Space + Constant.Space);
+        }
+    }
+
+    public void moveDown(boolean stop) {
+        if (stop) {
+            up.append(Constant.Fail + Constant.Space);
+            down.append(Constant.Space + Constant.Space);
+        }
+
+        if (!stop) {
+            down.append(Constant.Success + Constant.Space);
+            up.append(Constant.Space + Constant.Space);
+        }
+    }
+
+    public void ResetAll() {
+        up.delete(0, up.length());
+        down.delete(0, down.length());
     }
 }
