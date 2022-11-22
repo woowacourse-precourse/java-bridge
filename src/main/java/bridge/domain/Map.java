@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.domain;
 
 import bridge.domain.BridgeDirection;
 
@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Map {
-    private static final String DIVIDING_LINE = "|";
     private static final String PASS = "O";
     private static final String NOT_PASS = "X";
     private static final String BLANK = " ";
@@ -21,12 +20,13 @@ public class Map {
     }
 
 
+    public List<List<String>> getMap() {
+        return map;
+    }
+
     public void drawMap(int moveDirectionNumber, boolean canMove) {
         for (int layer = 0; layer < BridgeDirection.getBridgeDirectionSize(); layer++) {
             map.get(layer).add(checkDirection(layer, moveDirectionNumber, canMove));
-        }
-        for(List<String> layer : map){
-            System.out.println(layer);
         }
     }
 
