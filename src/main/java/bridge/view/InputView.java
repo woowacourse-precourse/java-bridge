@@ -20,6 +20,7 @@ public class InputView {
         InputViewValidation.isValidInput(input);
         int bridgeSize = Integer.parseInt(input);
         InputViewValidation.isValidRangeOfBridgeSize(bridgeSize);
+        System.out.println();
         return bridgeSize;
     }
 

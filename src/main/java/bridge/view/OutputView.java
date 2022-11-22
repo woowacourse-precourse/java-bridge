@@ -23,6 +23,7 @@ public class OutputView {
         printBlank();
         System.out.printf(MESSAGE_OUTPUT_BRACKET, String.join(MESSAGE_OUTPUT_WALL, bridgeResult.getLowerBridge()));
         printBlank();
+        printBlank();
     }
 
     /**

@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.vallidation.BridgeValidation;
 
+import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,33 +13,43 @@ public class User {
     private List<String> userMovings = new ArrayList<>();
     private Bridge bridge;
     private BridgeResult bridgeResult;
-    private int location;
+    private boolean moveStatus;
     public User(Bridge bridge, BridgeResult bridgeResult) {
         this.bridge = bridge;
         this.bridgeResult = bridgeResult;
-
-    }
-
-    public void init() {
-        userMovings.clear();
-        location = 0;
+        moveStatus = true;
     }
 
     public void move(String userMoving) {
-        boolean canMove = bridge.checkCanMove(updateUserMove(userMoving), userMoving);
+        boolean canMove = bridge.checkCanMove(updateUserLocation(userMoving), userMoving);
+        updateUserMove(canMove, userMoving);
+    }
 
+    private int updateUserLocation(String userMoving) {
+        userMovings.add(userMoving);
+        int location = userMovings.size()-1;
+        BridgeValidation.isValidUserLocation(location, bridge.getSize());
+        return location;
+    }
+
+    private void updateUserMove(boolean canMove, String userMoving) {
         if (canMove) {
             bridgeResult.saveBridgeResult(BRIDGE_RESULT_CORRECT, userMoving);
         }
         if (!canMove) {
             bridgeResult.saveBridgeResult(BRIDGE_RESULT_WRONG,userMoving);
+            this.moveStatus = false;
         }
     }
 
-    private int updateUserMove(String userMoving) {
-        userMovings.add(userMoving);
-        location = userMovings.size()-1;
-        BridgeValidation.isValidUserLocation(location, bridge.getSize());
-        return this.location;
+    public boolean isFinishedMove() {
+        if (userMovings.size() == bridge.getSize() && moveStatus) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean getMoveStatus() {
+        return this.moveStatus;
     }
 }
