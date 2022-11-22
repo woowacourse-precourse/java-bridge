@@ -101,11 +101,11 @@ public class OutputView {
     }
 
     private static void messageFinalResult() {
-        System.out.println("최종 게임 결과");
+        System.out.println("\n최종 게임 결과");
     }
 
     private static void printIsSuccess(boolean status) {
-        System.out.println("게임 성공 여부: " + Status.convertCheckToMessage(status));
+        System.out.println("\n게임 성공 여부: " + Status.convertCheckToMessage(status));
     }
 
     private static void printTryCount(int tryCount) {
