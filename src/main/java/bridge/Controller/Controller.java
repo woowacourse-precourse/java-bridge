@@ -22,18 +22,9 @@ public class Controller {
         outputView = new OutputView();
     }
 
-    public void run(){ //함수 길이 줄이기
-        inputView.printGameStartMessage();
-
-        //다리 길이 입력 받기
-        int bridgeLen = inputView.readBridgeSize();
-
-        //다리 생성하기
-        List<String> bridge = bridgeMaker.makeBridge(bridgeLen);
-
-        bridgeGame = new BridgeGame(bridge);
+    public void run(){
+        bridgeGameInitialization();
         //게임 시작
-
         boolean gameContinue = true;
         boolean gameStatus = true;
         while(gameContinue){
@@ -51,9 +42,21 @@ public class Controller {
             gameContinue = bridgeGame.move();
         }
 
+        finishBridgeGame(gameStatus);
+    }
+
+    public void bridgeGameInitialization(){
+        inputView.printGameStartMessage();
+        int bridgeLen = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeLen);
+        bridgeGame = new BridgeGame(bridge);
+    }
+
+
+
+    public void finishBridgeGame(boolean gameStatus){
         System.out.println("최종 게임 결과");
         outputView.printMap(bridgeGame.mySelectBridge, gameStatus, bridgeGame.mySelectBridge.size()-1);
-        //결과 출력
         outputView.printResult(bridgeGame.gameSuccess, bridgeGame.gameTryCount);
     }
 

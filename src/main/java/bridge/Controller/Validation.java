@@ -4,6 +4,8 @@ import bridge.Domain.BridgeRow;
 import java.util.regex.Pattern;
 
 public class Validation {
+    public static final String GAME_RETRY = "R";
+    public static final String GAME_QUIT = "Q";
     static final String REGEX_NUMERIC = "^[0-9]*$";
     static final String REGEX_ALPHABET = "^[a-zA-Z]*$";
     static final int BRIDGE_SIZE_RANGE_START = 3;
@@ -47,8 +49,8 @@ public class Validation {
     }
 
     public static void validateGameCommand(String input){
-        if(!input.equals("R") && !input.equals("Q")){
-            throw new IllegalArgumentException("게임 재시작 또는 종료 시, 조건에 맞지 않는 입력입니다.");
+        if(!input.equals(GAME_RETRY) && !input.equals(GAME_QUIT)){
+            throw new IllegalArgumentException("게임 재시작 또는 종료 시, 조건에 맞지 않는 입력입니다. (" + Validation.GAME_RETRY + " 또는 " + Validation.GAME_RETRY + " 이어야 합니다.)");
         }
     }
 }
