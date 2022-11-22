@@ -1,23 +1,74 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import bridge.model.UserInput;
+import bridge.model.constants.Command;
+
+import java.util.List;
+
+import static bridge.controller.BridgeController.upAndDown;
+
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final UserInput userInput;
+
+    public BridgeGame() {
+        this.userInput = new UserInput();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public int move(List<String> bridges, int count, String inputMoving) {
+        userInput.validateInputMoving(inputMoving);
+
+        if (inputMoving.equals(Command.UP) && bridges.get(count).equals(Command.UP)) isUAndU();
+        if (inputMoving.equals(Command.UP) && bridges.get(count).equals(Command.DOWN)) {
+            isUAndD();
+            return Command.MAX_LENGTH_PLUS_ONE;
+        }
+        return getCountNotU(bridges, count, inputMoving);
+    }
+
+    private int getCountNotU(List<String> bridges, int count, String inputMoving) {
+        if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.DOWN)) isDAndD();
+        if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.UP)) {
+            isDAndU();
+            return Command.MAX_LENGTH_PLUS_ONE;
+        }
+        return count;
+    }
+
+    private void isDAndU() {
+        upAndDown.get(0).add(Command.BLANK);
+        upAndDown.get(0).add(Command.BAR);
+        upAndDown.get(1).add(Command.IMPOSSIBLE);
+        upAndDown.get(1).add(Command.BAR);
+    }
+
+    private void isDAndD() {
+        upAndDown.get(0).add(Command.BLANK);
+        upAndDown.get(0).add(Command.BAR);
+        upAndDown.get(1).add(Command.POSSIBLE);
+        upAndDown.get(1).add(Command.BAR);
+    }
+
+    private void isUAndD() {
+        upAndDown.get(0).add(Command.IMPOSSIBLE);
+        upAndDown.get(0).add(Command.BAR);
+        upAndDown.get(1).add(Command.BLANK);
+        upAndDown.get(1).add(Command.BAR);
+    }
+
+    private void isUAndU() {
+        upAndDown.get(0).add(Command.POSSIBLE);
+        upAndDown.get(0).add(Command.BAR);
+        upAndDown.get(1).add(Command.BLANK);
+        upAndDown.get(1).add(Command.BAR);
+    }
+
+    public String retry(String restartOrQuit) {
+        userInput.validateRestartOrQuit(restartOrQuit);
+
+        if (restartOrQuit.equals(Command.QUIT)) {
+            return Command.FAIL;
+        }
+        return "";
     }
 }

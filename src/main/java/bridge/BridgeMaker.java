@@ -1,10 +1,12 @@
 package bridge;
 
+import bridge.BridgeNumberGenerator;
+import bridge.model.constants.Command;
+import bridge.model.enumeration.ExceptionMessage;
+
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -13,11 +15,27 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-        return null;
+        validateNumberRange(size);
+
+        List<String> bridges = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            addBridge(bridges, bridgeNumberGenerator.generate());
+        }
+        return bridges;
+    }
+
+    private void addBridge(List<String> bridges, int randomNumber) {
+        if (randomNumber == 1) {
+            bridges.add(Command.UP);
+            return;
+        }
+        bridges.add(Command.DOWN);
+    }
+
+    public void validateNumberRange(int size) {
+        if (size < Command.INPUT_NUMBER_RANGE_START || size > Command.INPUT_NUMBER_RANGE_LAST) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getExceptionMessage());
+        }
     }
 }

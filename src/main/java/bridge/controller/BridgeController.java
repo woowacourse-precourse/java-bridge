@@ -1,0 +1,117 @@
+package bridge.controller;
+
+import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.model.enumeration.ExceptionMessage;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BridgeController {
+
+    public static List<List<String>> upAndDown = new ArrayList<>();
+    private static final InputView inputView = new InputView();
+    public static final OutputView outputView = new OutputView();
+    private static BridgeGame bridgeGame = new BridgeGame();
+    public int inputSize;
+    private List<String> bridges;
+    private Boolean trueOrFalse = true;
+    private static int attempts = 0;
+    private static String successOrFail = "";
+    private List<String> upFloor = new ArrayList<>();
+    private List<String> downFloor = new ArrayList<>();
+
+    public void init() {
+        inputSize = getBridgeSize();
+        bridges = makeRandomBridges(inputSize);
+
+        while (trueOrFalse) {
+            attempts = getAttempts(inputSize);
+        }
+        printResult();
+    }
+
+    private int getBridgeSize() {
+        while (true) {
+            try {
+                return inputView.readBridgeSize();
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_ONLY_NUMBER.getExceptionMessage());
+            }
+        }
+    }
+
+    private List<String> makeRandomBridges(int inputSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return bridgeMaker.makeBridge(inputSize);
+    }
+
+    private int getAttempts(int inputSize) {
+        cleanAndAdd();
+        int lengthOfBridge = 0;
+        lengthOfBridge = startGame(inputSize, lengthOfBridge);
+        successOrFail = getSuccess(inputSize, lengthOfBridge);
+        trueOrFalse = getFalse();
+
+        attempts++;
+        return attempts;
+    }
+
+    private void cleanAndAdd() {
+        upFloor.clear();
+        downFloor.clear();
+        upAndDown.add(upFloor);
+        upAndDown.add(downFloor);
+    }
+
+    private int startGame(int inputSize, int lengthOfBridge) {
+        while (lengthOfBridge < inputSize) {
+            String inputMoving = inputView.readMoving();
+            lengthOfBridge = bridgeGame.move(bridges, lengthOfBridge, inputMoving);
+            List<String> toStringBridges = new ArrayList<>();
+            addBridges(toStringBridges);
+            outputView.printMap(toStringBridges);
+            lengthOfBridge++;
+        }
+        return lengthOfBridge;
+    }
+
+    private static void addBridges(List<String> toStringBridges) {
+        String upToString = String.join("", upAndDown.get(0).subList(0, upAndDown.get(0).size()-1));
+        String downToString = String.join("", upAndDown.get(1).subList(0, upAndDown.get(1).size()-1));
+
+        toStringBridges.add("[" + upToString + "]");
+        toStringBridges.add("[" + downToString + "]");
+    }
+
+    private static String getSuccess(int inputSize, int count) {
+        if (count == inputSize) {
+            return "성공";
+        }
+        return getSuccessOrFail();
+    }
+
+    private static String getSuccessOrFail() {
+        String restartOrQuit = inputView.readGameCommand();
+        return bridgeGame.retry(restartOrQuit);
+    }
+
+    private boolean getFalse() {
+        if (!successOrFail.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    private static void printResult() {
+
+        List<String> finalMap = new ArrayList<>();
+        addBridges(finalMap);
+
+        outputView.printResult(finalMap, successOrFail, attempts);
+    }
+}
+
