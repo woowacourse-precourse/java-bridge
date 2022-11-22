@@ -11,5 +11,15 @@ public class GameCommandTest {
     void createCommandByUnValid() {
         assertThatThrownBy(() -> new GameCommand("A"))
                 .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new GameCommand("r"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new GameCommand("q"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new GameCommand("qwer"))
+                .isInstanceOf(IllegalArgumentException.class);
+
     }
 }
