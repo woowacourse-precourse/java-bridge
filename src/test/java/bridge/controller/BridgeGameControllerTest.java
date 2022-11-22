@@ -40,7 +40,7 @@ class BridgeGameControllerTest {
         bridgeGameController.runPassOrFailCase(pass, bridge, user);
 
         //when
-        bridgeGameController.completeBridge(bridge,user);
+        bridgeGameController.isArriveByEnd(bridge,user);
 
         //then
         assertThat(user.isSuccessComplete()).isEqualTo(true);
