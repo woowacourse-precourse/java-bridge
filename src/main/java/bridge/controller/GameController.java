@@ -19,20 +19,21 @@ public class GameController {
     BridgeGame bridgeGame;
 
 
-    public GameController(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.bridgeGame = bridgeGame;
+    public GameController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.bridgeGame = new BridgeGame();
     }
 
     public void StartGame() {
         storeBridge();
         setUserStatus();
         System.out.println(bridge);
+        userStatus.addUserAttempt();
     }
 
     public boolean playEachGame() {
-        if(bridgeGame.isGameFinished(bridge, userStatus.getUserLocation())){
+        if (checkGameFinished()) {
             return quitGame();
         }
         String input = inputView.readMoving();
@@ -42,6 +43,14 @@ public class GameController {
         userStatus.addUserLocation();
         outputView.printMap(bridge, userStatus.getUserLocation());
         return playEachGame();
+    }
+
+    private boolean checkGameFinished() {
+        if (bridgeGame.isGameFinished(bridge, userStatus.getUserLocation())) {
+            userStatus.setGameResultSuccess();
+            return true;
+        }
+        return false;
     }
 
     private void storeBridge() {
@@ -68,9 +77,10 @@ public class GameController {
     }
 
     private boolean quitGame() {
-        outputView.printResult();
+        outputView.printResult(bridge, userStatus);
         return false;
     }
+
 
     private void setUserStatus() {
         this.userStatus = new UserStatus(this.bridge);

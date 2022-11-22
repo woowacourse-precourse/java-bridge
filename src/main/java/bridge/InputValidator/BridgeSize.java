@@ -16,8 +16,7 @@ public class BridgeSize {
         try {
             return Integer.parseInt(bridgeSize);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 다리 길이에 유효한 숫자가 들어가야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 다리 길이에 유효한 숫자가 들어가야 합니다.");
         }
     }
 

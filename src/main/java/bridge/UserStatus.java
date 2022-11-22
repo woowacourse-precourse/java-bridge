@@ -7,11 +7,20 @@ public class UserStatus {
     private int userAttempt;
     private int userLocation;
     private final int bridgeLength;
+    private boolean gameResultSuccess;
 
     public UserStatus(List<String> bridge) {
         this.bridgeLength = bridge.size();
         this.userAttempt = 0;
         this.userLocation = 0;
+        this.gameResultSuccess = false;
+    }
+    public void setGameResultSuccess(){
+        this.gameResultSuccess = true;
+    }
+
+    public boolean isGameResultSuccess() {
+        return gameResultSuccess;
     }
 
     public int getUserAttempt() {
