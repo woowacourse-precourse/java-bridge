@@ -22,7 +22,7 @@ public class BridgeMaker {
         List<String> bridges = new ArrayList<>();
         for (int i=0;i<size;i++){
             int number = bridgeNumberGenerator.generate();
-            bridges.add(CellType.values()[number].getCell());
+            bridges.add(CommandType.values()[number].getCell());
         }
         return bridges;
     }
