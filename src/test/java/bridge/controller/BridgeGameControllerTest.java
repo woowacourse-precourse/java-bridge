@@ -144,11 +144,14 @@ class BridgeGameControllerTest extends InOutStreamTest {
     @Nested
     class EndTest{
 
-
         @Test
         void 게임에_성공한_경우_정상동작한다(){
             assertRandomNumberInRangeTest(()->{
-                        inputAndOperate("3", "U", "U", "U");
+                        input("3", "U", "U", "U");
+                        controller.start();
+                        controller.setDifficulty();
+                        controller.playGame();
+                        controller.end();
                         assertThat(output()).contains(
                                 "최종 게임 결과",
                                 "게임 성공 여부: 성공",
@@ -162,7 +165,14 @@ class BridgeGameControllerTest extends InOutStreamTest {
         @Test
         void 게임에_실패한_경우_정상동작한다(){
             assertRandomNumberInRangeTest(()->{
-                        inputAndOperate("3", "U", "D", "R", "U", "U", "D");
+                        input("3", "U", "D", "R", "U", "U", "D", "Q");
+                        controller.start();
+                        controller.setDifficulty();
+                        controller.playGame();
+                        controller.askRetry();
+                        controller.playGame();
+                        controller.askRetry();
+                        controller.end();
                         assertThat(output()).contains(
                                 "최종 게임 결과",
                                 "게임 성공 여부: 실패",
@@ -171,16 +181,6 @@ class BridgeGameControllerTest extends InOutStreamTest {
                     },
                     1, 1, 1
             );
-        }
-
-        void inputAndOperate(String... inputs) throws IllegalAccessException {
-            input(inputs);
-            controller.start();
-            controller.setDifficulty();
-            controller.playGame();
-            controller.askRetry();
-            controller.playGame();
-            controller.end();
         }
     }
 
