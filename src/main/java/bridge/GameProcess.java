@@ -70,7 +70,7 @@ public class GameProcess {
     }
 
     private static void checkMoving(String moving) {
-        if(!(moving.equals(up)||moving.equals(down))){
+        if(!moving.equals(up) && !moving.equals(down)){
             throw new IllegalArgumentException(inputE);
         }
     }

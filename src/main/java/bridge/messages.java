@@ -7,6 +7,7 @@ public class messages {
         String up = "U";
         String down = "D";
         String quit = "Q";
+        String restart = "R";
         String right = "O";
         String wrong = "X";
         String partition = "| ";
