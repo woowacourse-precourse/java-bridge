@@ -1,7 +1,5 @@
 package exceptionHandler;
 
-import bridge.Bridge;
-import enumCollections.AvailableInput;
 import enumCollections.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +12,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGenerationExceptionTest {
     @ParameterizedTest
@@ -22,9 +19,9 @@ class BridgeGenerationExceptionTest {
     @DisplayName("U 또는 D가 아닌 값 입력한 경우 예외 처리한다.")
     void 다리_생성_잘못된_값_입력_예외_테스트(List<String> movableSides) {
         assertThatThrownBy(() -> BridgeGenerationException.validate(movableSides))
-                .hasMessage(ExceptionMessage.SELECT_SIDE.getMessage());
+                .hasMessage(ExceptionMessage.WRONG_SELECTED_SIDE.getMessage());
         assertThatThrownBy(() -> SideSelectionException.validate(movableSides))
-                .hasMessage(ExceptionMessage.SELECT_SIDE.getMessage());
+                .hasMessage(ExceptionMessage.WRONG_SELECTED_SIDE.getMessage());
     }
 
     @ParameterizedTest
@@ -41,14 +38,6 @@ class BridgeGenerationExceptionTest {
     void 최댓값보다_큰_길이의_다리_생성_예외_테스트(List<String> movableSides) {
         assertThatThrownBy(() -> BridgeGenerationException.validate(movableSides))
                 .hasMessage(ExceptionMessage.BIGGER_THAN_MAXIMUM_BRIDGE_LENGTH.getMessage());
-    }
-
-    @ParameterizedTest
-    @MethodSource("generateMovableSmallerThanMinimum")
-    @DisplayName("다리의 길이가 최소값보다 작은 경우 예외 처리한다.")
-    void 최댓값보다_작은_길이의_다리_생성_예외_테스트(List<String> movableSides) {
-        assertThatThrownBy(() -> BridgeGenerationException.validate(movableSides))
-                .hasMessage(ExceptionMessage.SMALLER_THAN_MINIMUM_BRIDGE_LENGTH.getMessage());
     }
 
     @Test
@@ -76,7 +65,6 @@ class BridgeGenerationExceptionTest {
 
     static Stream<Arguments> generateMovableSmallerThanMinimum() {
         return Stream.of(
-                Arguments.of(Arrays.asList("")),
                 Arguments.of(Arrays.asList("U")),
                 Arguments.of(Arrays.asList("U", "U"))
         );
