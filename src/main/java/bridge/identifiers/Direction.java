@@ -1,5 +1,7 @@
 package bridge.identifiers;
 
+import java.util.Objects;
+
 public enum Direction {
     DOWN(0, "D"), UP(1, "U");
 
@@ -20,9 +22,9 @@ public enum Direction {
     }
 
     public static Direction parseDirection(String directionValue) {
-        if (directionValue == DOWN.asString)
+        if (Objects.equals(directionValue, DOWN.asString))
             return DOWN;
-        if (directionValue == UP.asString)
+        if (Objects.equals(directionValue, UP.asString))
             return UP;
         throw new IllegalArgumentException(
                 DOWN.asString + " 또는 " + UP.asString + " 을 입력해야 합니다."
