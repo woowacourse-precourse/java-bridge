@@ -21,6 +21,18 @@ public class InputView {
     }
 
     /**
+     * 입력 받은 다리 길이가 정수인지 맞는지 판별한다.
+     */
+    public boolean isNumber(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
