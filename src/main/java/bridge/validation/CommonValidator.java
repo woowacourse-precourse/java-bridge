@@ -9,7 +9,7 @@ public class CommonValidator {
     private static final String ERROR = "[ERROR] ";
     private static final String MOVING_ERROR = ERROR + UP + " 또는 " + DOWN + "를 입력해주세요.";
     private static final String COMMAND_ERROR = ERROR + RESTART + " 또는 " + QUIT + "를 입력해주세요.";
-    private static final String NUMBER_FORMAT_ERROR = ERROR + "숫자를 입력해주세요.";
+
 
     public static void checkCommand(String command) {
         if (isWrongCommand(command)) {
@@ -20,14 +20,6 @@ public class CommonValidator {
     public static void checkMoving(String moving) {
         if (isWrongMoving(moving)) {
             throw new IllegalArgumentException(MOVING_ERROR);
-        }
-    }
-
-    public static void checkNumberFormat(String number) {
-        try {
-            Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_FORMAT_ERROR);
         }
     }
 
