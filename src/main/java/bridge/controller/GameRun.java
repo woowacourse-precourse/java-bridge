@@ -16,7 +16,6 @@ public class GameRun {
     private final static BridgeGame bridgeGame = new BridgeGame();
     private final static InputView inputView = new InputView();
     private final static OutputView outputView = new OutputView();
-    private static int tryCnt = 0;
 
     /**
      * 게임을 계속 진행하는 메인 로직이다.
@@ -27,7 +26,7 @@ public class GameRun {
      * @param bridge       다리 정보
      * @return 게임 진행 횟수
      */
-    public static int gameRun(UserMovement userMovement, Bridge bridge) {
+    public static int gameRun(UserMovement userMovement, Bridge bridge, int tryCnt) {
         do {
             tryCnt = bridgeGame.retry(userMovement, tryCnt);
             while (whetherToRepeatMovingUser(userMovement, bridge)) {
