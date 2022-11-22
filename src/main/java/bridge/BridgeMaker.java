@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.controller.BridgeStatus;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,27 +20,11 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        int number;
-
+        BridgeMakerUtil bridgeMakerUtil = new BridgeMakerUtil();
         for (int i = 0; i < size; i++) {
-            number = generateZeroOrOne();
-            bridge.add(parseZeroOrOneToUorD(number));
+            int number = bridgeNumberGenerator.generate();
+            bridge.add(bridgeMakerUtil.parseZeroOrOneToUorD(number));
         }
-
         return bridge;
-    }
-
-    private int generateZeroOrOne() {
-        return bridgeNumberGenerator.generate();
-    }
-
-    private String parseZeroOrOneToUorD(int number) {
-        String movement = "";
-        for (BridgeStatus bridgeStatus : BridgeStatus.values()) {
-            if (number == bridgeStatus.getNumber()) {
-                movement = bridgeStatus.getMoving();
-            }
-        }
-        return movement;
     }
 }
