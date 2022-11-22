@@ -20,6 +20,14 @@ public class Application {
         final BridgeSize bridgeSize = askBridgeSize();
         final BridgeGame bridgeGame = createBridgeGame(bridgeSize);
         final Path path = run(bridgeGame);
+        printResult(bridgeGame, path);
+    }
+
+    private static void printResult(
+            final BridgeGame bridgeGame,
+            final Path path
+    ) {
+        outputView.printResult(path, bridgeGame.getNumTry());
     }
 
     private static Path run(final BridgeGame bridgeGame) {
