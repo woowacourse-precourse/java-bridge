@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.InputView.RESTART;
+
 import java.util.List;
 
 public class BridgeController {
@@ -30,4 +32,9 @@ public class BridgeController {
             }
         } while (bridgeGame.isCorrect());
     }
+
+    private boolean isRestart() {
+        return inputView.readGameCommand().equals(RESTART);
+    }
+
 }
