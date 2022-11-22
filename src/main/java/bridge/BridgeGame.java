@@ -14,17 +14,14 @@ public class BridgeGame {
     private final BridgeMapGenerator bridgeMapGenerator = new BridgeMapGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-    public void playGame() {
-        outputView.printGameStart();
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+    public void playGame(List<String> bridge) {
         while (restart == null || !restart.equals("Q")) {
             gameRepeatCount++;
             bridgeMapGenerator.clearAllBridgeMap();
             crossBridge(bridge);
-            retry(bridgeSize);
+            retry(bridge.size());
         }
-        outputView.printResult(bridgeMapGenerator.getBridgeMap(), checkSuccessOrNot(bridgeSize), gameRepeatCount);
+        outputView.printResult(bridgeMapGenerator.getBridgeMap(), checkSuccessOrNot(bridge.size()), gameRepeatCount);
     }
 
     private void crossBridge(List<String> bridge) {
