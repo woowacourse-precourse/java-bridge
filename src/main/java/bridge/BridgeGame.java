@@ -10,11 +10,11 @@ import java.util.List;
 public class BridgeGame {
     private Bridge bridge;
     private BridgeGameResult bridgeGameResult;
-    private List<String> user;
+    private List<String> userInput;
     private int tryCount;
 
     public BridgeGame(int size, BridgeMaker bridgeMaker) {
-        user = new ArrayList<>();
+        userInput = new ArrayList<>();
         tryCount = 1;
         bridge = new Bridge(bridgeMaker.makeBridge(size));
         bridgeGameResult = new BridgeGameResult();
@@ -24,8 +24,8 @@ public class BridgeGame {
         return tryCount;
     }
 
-    public List<String> getUser() {
-        return user;
+    public List<String> getUserInput() {
+        return Collections.unmodifiableList(userInput);
     }
 
     public Bridge getBridge() {
@@ -37,12 +37,12 @@ public class BridgeGame {
     }
 
     public List<String> move(String movingCommand) {
-        user.add(movingCommand);
-        return Collections.unmodifiableList(user);
+        userInput.add(movingCommand);
+        return Collections.unmodifiableList(userInput);
     }
 
     public void retry() {
-        user.clear();
+        userInput.clear();
         tryCount++;
         bridgeGameResult.clear();
     }
