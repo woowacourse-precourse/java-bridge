@@ -17,4 +17,14 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateMoving(String moving) {
+        if (!isOneCharacter(moving)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!isValidMoving(moving)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
