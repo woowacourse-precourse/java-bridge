@@ -39,5 +39,17 @@ public class BridgeGameTest {
         Assertions.assertTrue(bridgeGame.move(Direction.DOWN));
     }
 
+    @Test
+    void clearTest() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new TestNumberGenerator(newArrayList(0, 0, 0)));
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3));
+        bridgeGame.move(Direction.DOWN);
+        bridgeGame.move(Direction.UP);
+        bridgeGame.move(Direction.DOWN);
+        Assertions.assertFalse(bridgeGame.isCleared());
+        bridgeGame.move(Direction.DOWN);
+        Assertions.assertTrue(bridgeGame.isCleared());
+    }
+
 
 }
