@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.domain.MovementType;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +21,19 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridges = new ArrayList<>();
+        for (int count = 0; count < size; count++) {
+            int bridgeIndex = bridgeNumberGenerator.generate();
+            addBridge(bridges, bridgeIndex);
+        }
+        return bridges;
+    }
+
+    private void addBridge(List<String> bridges, int bridgeIndex) {
+        if (bridgeIndex == MovementType.UP.getIndex()) {
+            bridges.add(MovementType.UP.getCode());
+            return;
+        }
+        bridges.add(MovementType.DOWN.getCode());
     }
 }
