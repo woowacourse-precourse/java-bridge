@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.domain;
 
 import bridge.domain.BridgeEnum;
 import java.util.ArrayList;
@@ -56,7 +56,6 @@ public class BridgeGame {
         }
         return retry;
     }
-
 
     public int getNumberOfTry() {
         return numberOfTry;

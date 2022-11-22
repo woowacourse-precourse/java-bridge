@@ -39,9 +39,6 @@ public class BridgeController {
         outputView.printResult(bridgeGame.currentBridge(),gameEndCheck,bridgeGame.getNumberOfTry());
     }
 
-    private static BridgeGame createBridgeGame(InputView inputView) {
-        return new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator())
-                .makeBridge(inputView.readBridgeSize()));
     }
 
     private static boolean inputMoving(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {

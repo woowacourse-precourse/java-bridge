@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.exception;
 
 public class BridgeGameException {
     private static final int MIN_BRIDGE_SIZE = 3;
@@ -13,8 +13,9 @@ public class BridgeGameException {
     private static final String MOVING_COMMAND_ERROR = "[ERROR] 입력은 대문자 'U' 또는 'D'를 입력해 주시기 바랍니다.";
     private static final String RETRY_COMMAND_ERROR = "[ERROR] 입력은 대문자 'R' 또는 'Q'를 입력해 주시기 바랍니다.";
 
-    public void validateBridgeSize(String readLine){
-        validateType(readLine);;
+    public void validateBridgeSize(String readLine) {
+        validateType(readLine);
+        ;
         validateRange(readLine);
     }
 
