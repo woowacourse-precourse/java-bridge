@@ -27,10 +27,28 @@ public class InputView {
         retryAndQuit_in = Console.readLine();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+    private void bridgeSizeRangeValidation(int bridgeSize_in) {
+        if (20 < bridgeSize_in || bridgeSize_in < 3)
+            try {
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 가능한 범위를 벗어났습니다.");
+                readBridgeSize();
+            }
     }
+
+    private void bridgeSizeNotLetterValidation(String bridgeSizeLetter_in) {
+        String filter = "^[0-9]+";
+        try {
+            if (String.valueOf(bridgeSizeLetter_in).matches(filter)) {
+                bridgeSize_in = Integer.parseInt(String.valueOf(bridgeSizeLetter_in));
+                return;
+            }
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 문자가 감지되었습니다.");
+            readBridgeSize();
+        }
+    }
+
 }
