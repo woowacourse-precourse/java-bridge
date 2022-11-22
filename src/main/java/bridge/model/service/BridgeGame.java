@@ -3,10 +3,6 @@ package bridge.model.service;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.dto.Bridge;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -45,7 +41,7 @@ public class BridgeGame {
         MAP_MAKER.insertUpResult(" ");
     }
 
-    public boolean isCorrectAnswer(String moveAnswer, int index) {
+    private boolean isCorrectAnswer(String moveAnswer, int index) {
         if (!BRIDGE.getBridge().get(index).equals(moveAnswer)) {
             return false;
         }

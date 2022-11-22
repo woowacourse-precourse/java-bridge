@@ -1,12 +1,8 @@
 package bridge.controller;
 
-import bridge.model.constant.GameResult;
 import bridge.model.service.BridgeGame;
-import bridge.model.service.MapMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,15 +42,16 @@ public class BridgeGameController {
                     return;
                 }
 
-                endGame(false, bridgeSize, bridgeGame.getMapMaker().getResults());
+                endGame(false, bridgeGame.getMapMaker().getResults());
                 return;
             }
         }
         count++;
-        endGame(true, bridgeSize, bridgeGame.getMapMaker().getResults());
+        endGame(true, bridgeGame.getMapMaker().getResults());
     }
 
-    private void endGame(boolean isWinning, int bridgeSize, Map<String, List<String>> results) {
+    private void endGame(boolean isWinning, Map<String, List<String>> results) {
         OUTPUT_VIEW.printResult(isWinning, count, results);
     }
+
 }

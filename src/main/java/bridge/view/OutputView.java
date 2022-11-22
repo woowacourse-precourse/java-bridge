@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printUpMap(List<String> upResults) {
+    private void printUpMap(List<String> upResults) {
         System.out.print("[ ");
         for (int i = 0; i < upResults.size(); i++) {
             System.out.print(upResults.get(i));
@@ -31,7 +31,7 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    public void printDownMap(List<String> downResults) {
+    private void printDownMap(List<String> downResults) {
         System.out.print("[ ");
         for (int i = 0; i < downResults.size(); i++) {
             System.out.print(downResults.get(i));
@@ -54,7 +54,7 @@ public class OutputView {
         printCount(count);
     }
 
-    public void printWinningResult(boolean isWinning) {
+    private void printWinningResult(boolean isWinning) {
         if (isWinning) {
             System.out.println("게임 성공 여부: 성공");
             return;
@@ -62,7 +62,7 @@ public class OutputView {
         System.out.println("게임 성공 여부: 실패");
     }
 
-    public void printCount(int count) {
+    private void printCount(int count) {
         System.out.println("총 시도한 횟수: " + count);
     }
 
