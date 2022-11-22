@@ -1,8 +1,9 @@
 package bridge;
 
-import static bridge.view.Validator.validateInputDirectionException;
-import static bridge.view.Validator.validateInputGameRestartException;
-import static bridge.view.Validator.validateInputSizeException;
+
+import static bridge.view.InputDirectionValidator.validateInputDirectionException;
+import static bridge.view.InputRestartValidator.validateInputGameRestartException;
+import static bridge.view.InputSizeValidator.validateInputSizeException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
