@@ -68,8 +68,7 @@ public class BridgeController {
 
     public String inputMoving(){
         try {
-            String move = InputView.readMoving();
-            return move;
+            return InputView.readMoving();
         }catch (IllegalArgumentException e){
             inputError(e);
             return inputMoving();
@@ -96,8 +95,7 @@ public class BridgeController {
 
     public String inputGameCommand(){
         try{
-            String reply = InputView.readGameCommand();
-            return reply;
+            return InputView.readGameCommand();
         }catch (IllegalArgumentException e){
             inputError(e);
             return inputGameCommand();
