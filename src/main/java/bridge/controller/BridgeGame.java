@@ -36,6 +36,7 @@ public class BridgeGame {
     }
 
     private String askGameCommand() {
+        outputView.printGameCommandInputNotice();
         return inputView.readGameCommand();
     }
 
