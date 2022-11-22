@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.NoSuchElementException;
+
 public class BridgeSize {
 
     private final int size;
@@ -18,13 +20,16 @@ public class BridgeSize {
         try {
             return Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(WRONG_SIZE);
+            System.out.println(WRONG_SIZE);
+            throw new NoSuchElementException();
         }
     }
 
     private int validateBridgeSize(int size) {
-        if (size < 3 || size > 20)
-            throw new IllegalArgumentException(WRONG_SIZE);
+        if (size < 3 || size > 20) {
+            System.out.println(WRONG_SIZE);
+            throw new IllegalArgumentException();
+        }
         return size;
     }
 }
