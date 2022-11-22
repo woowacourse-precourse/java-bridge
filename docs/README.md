@@ -50,7 +50,10 @@
         - [x] User 클래스 생성
         - [x] BridgeGame의 User 요소 삭제
     - [x] BridgeGame의 비지니스 로직을 담당하는 메서드는 user를 파라미터로 받도록 수정
+    - [ ] BridgeGame 에서 bridge 필드 제거
     - [ ] BridgeGame 싱글톤으로 구현
+    - [ ] MapService 생성
+        - [ ] 게임 진행이 될 다리 생성
     - [ ] 다리 생성 메서드 추가
 - [ ] UserController 생성
     - [ ] User 생성
