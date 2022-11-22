@@ -25,4 +25,11 @@ public class Validate {
         return moving;
     }
 
+    public static String validateGameCommand(String gameCommand){
+        if((!Objects.equals(gameCommand, BridgeStatus.RETRY.getValueString()) && !Objects.equals(gameCommand, BridgeStatus.QUIT.getValueString()))){
+            throw new IllegalArgumentException();
+        }
+        return gameCommand;
+    }
+
 }
