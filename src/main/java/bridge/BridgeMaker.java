@@ -15,11 +15,9 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        while (size != 0) {
+        for(int i = 0; i < size; i++){
             int number = bridgeNumberGenerator.generate();
-            String footHold = ConvertBridge.toUpOrDown(number);
-            bridge.add(footHold);
-            size--;
+            bridge.add(ConvertBridge.toUpOrDown(number));
         }
         System.out.println("bridge = " + bridge);
         return bridge;

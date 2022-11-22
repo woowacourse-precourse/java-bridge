@@ -13,7 +13,6 @@ public class BridgeSize {
         if (!isSizeOfBoundary(size)) {
             throw new OutOfBridgeSizeBoundaryException();
         }
-
         this.size = size;
     }
 

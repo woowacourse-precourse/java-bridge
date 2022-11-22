@@ -49,10 +49,12 @@ public class BridgeGame {
         return bridgeMap.getFlag();
     }
 
-    public void isRetry(final boolean button) {
+    public boolean isRetry(final boolean button) {
         if (button == RETRY) {
             bridgeMap.clearBridgeMap();
+            return true;
         }
+        return false;
     }
 
     public int totalAttempts() {
