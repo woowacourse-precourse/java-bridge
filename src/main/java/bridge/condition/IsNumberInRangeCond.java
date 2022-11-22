@@ -1,5 +1,7 @@
 package bridge.condition;
 
+import bridge.exception.OutOfRangeException;
+
 import java.util.Arrays;
 
 public class IsNumberInRangeCond implements Condition {
@@ -18,6 +20,11 @@ public class IsNumberInRangeCond implements Condition {
     @Override
     public boolean test(String input) {
         return isNumeric(input) && isInRange(input);
+    }
+
+    @Override
+    public IllegalArgumentException getException() {
+        return new OutOfRangeException();
     }
 
     private boolean isNumeric(String input) {

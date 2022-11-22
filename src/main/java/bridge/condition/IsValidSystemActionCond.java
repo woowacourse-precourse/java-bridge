@@ -1,5 +1,7 @@
 package bridge.condition;
 
+import bridge.exception.NotAllowedSystemOperationException;
+
 public class IsValidSystemActionCond implements Condition {
 
     private static final Condition instance = new IsValidSystemActionCond();
@@ -15,5 +17,10 @@ public class IsValidSystemActionCond implements Condition {
     @Override
     public boolean test(String input) {
         return input.matches(OPERATION_REGEX);
+    }
+
+    @Override
+    public IllegalArgumentException getException() {
+        return new NotAllowedSystemOperationException();
     }
 }

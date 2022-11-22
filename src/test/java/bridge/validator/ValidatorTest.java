@@ -39,6 +39,11 @@ class ValidatorTest {
             public boolean test(String input) {
                 return true;
             }
+
+            @Override
+            public IllegalArgumentException getException() {
+                return new IllegalArgumentException("[ERROR]");
+            }
         };
     }
 
@@ -47,6 +52,11 @@ class ValidatorTest {
             @Override
             public boolean test(String input) {
                 return false;
+            }
+
+            @Override
+            public IllegalArgumentException getException() {
+                return new IllegalArgumentException("[ERROR]");
             }
         };
     }

@@ -12,7 +12,7 @@ public class Validator {
     public static void validateConditions(List<Condition> conditions, String input) {
         for (Condition condition : conditions) {
             if (!condition.test(input)) {
-                throw new IllegalArgumentException();
+                throw condition.getException();
             }
         }
     }
