@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.constant.Error;
+import bridge.exception.Exception;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
