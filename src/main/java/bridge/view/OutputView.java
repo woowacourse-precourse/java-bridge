@@ -8,6 +8,13 @@ import static bridge.view.constant.BridgeShape.NONE_DIRECTION;
 import static bridge.view.constant.BridgeShape.PREFIX_BRIDGE;
 import static bridge.view.constant.BridgeShape.SAME_DIRECTION;
 import static bridge.view.constant.BridgeShape.SUFFIX_BRIDGE;
+import static bridge.view.constant.OutputMessage.GAME_RESULT_MAIN_PHRASE;
+import static bridge.view.constant.OutputMessage.GAME_RESULT_PHRASE;
+import static bridge.view.constant.OutputMessage.INPUT_BRIDGE_LENGTH_REQUEST_PHRASE;
+import static bridge.view.constant.OutputMessage.INPUT_MOVING_DIRECTION_REQUEST_PHRASE;
+import static bridge.view.constant.OutputMessage.INPUT_RETRY_QUIT_REQUEST_PHRASE;
+import static bridge.view.constant.OutputMessage.START_PHRASE;
+import static bridge.view.constant.OutputMessage.TOTAL_TRY_COUNT_PHRASE;
 
 import bridge.BridgeGame;
 import bridge.constant.MovingDirection;
@@ -61,33 +68,26 @@ public class OutputView {
      * @param bridgeGame
      */
     public void printResult(BridgeGame bridgeGame) {
-        if (bridgeGame.isNotFail()) {
-            System.out.println("최종 게임 결과");
-            printMap(bridgeGame);
-            System.out.println("게임 성공 여부: 성공");
-            System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
-            return;
-        }
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULT_MAIN_PHRASE.getMessage());
         printMap(bridgeGame);
-        System.out.println("게임 성공 여부: 실패");
-        System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
+        System.out.printf(GAME_RESULT_PHRASE.getMessage(), bridgeGame.getResultPhrase());
+        System.out.printf(TOTAL_TRY_COUNT_PHRASE.getMessage(), bridgeGame.getTryCount());
     }
 
     public void printStartPhrase() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(START_PHRASE.getMessage());
     }
 
     public void printInputBridgeSizePhrase() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(INPUT_BRIDGE_LENGTH_REQUEST_PHRASE.getMessage());
     }
 
     public void printOnGamePhrase() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(INPUT_MOVING_DIRECTION_REQUEST_PHRASE.getMessage());
     }
 
     public void printRetryOrQuitPhrase() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(INPUT_RETRY_QUIT_REQUEST_PHRASE.getMessage());
     }
 
     public void printExceptionMessage(RuntimeException exception) {

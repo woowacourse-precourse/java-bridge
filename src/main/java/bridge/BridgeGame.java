@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    public static final String SUCCESS = "성공";
+    public static final String FAILURE = "실패";
     private final BridgeMaker bridgeMaker;
     private UserBridge userBridge;
     private AnswerBridge answerBridge;
@@ -76,8 +78,8 @@ public class BridgeGame {
         return currentPosition;
     }
 
-    public String getTryCount() {
-        return String.valueOf(tryCount);
+    public int getTryCount() {
+        return tryCount;
     }
 
     public boolean hasSameDirectionAtPosition(int position, MovingDirection movingDirection) {
@@ -90,5 +92,12 @@ public class BridgeGame {
 
     public boolean isFinished() {
         return answerBridge.isLastPosition(this.currentPosition);
+    }
+
+    public String getResultPhrase() {
+        if (result == true) {
+            return SUCCESS;
+        }
+        return FAILURE;
     }
 }
