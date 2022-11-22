@@ -9,26 +9,32 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    InputView inputView;
-    OutputView outputView;
-    BridgeMaker bridgeMaker;
-    public List<String> bridgeUsable = new ArrayList<>();
-
-    public HashMap<Integer, List<String>> resultMap = new HashMap<Integer, List<String>>();
+    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    public List<String> bridgeUsable;
 
     public int currentIndex = 0;
     public int retrycount=0;
 
-    public void startGame(int currentIndex) {
-        retrycount+=1;
+    public void startGame() {
+        bridgeUsable = new ArrayList<>();
         int bridgeSize = inputView.readBridgeSize();
         bridgeUsable = bridgeMaker.makeBridge(bridgeSize);
-        for (int i=currentIndex; i<bridgeUsable.size(); i++) {
+        restartGame();
+    }
+
+    public void restartGame() {
+        currentIndex=0;
+        retrycount+=1;
+        HashMap<Integer, List<String>> resultMap = new HashMap<Integer, List<String>>();
+        for (int i=0; i<bridgeUsable.size(); i++) {
             String inputMove = inputView.readMoving();
-            move(bridgeUsable.get(currentIndex), inputMove, currentIndex);
-            outputView.printMap(resultMap);
+            move(bridgeUsable.get(i), inputMove, resultMap);
         }
         outputView.printResult("성공", retrycount, resultMap);
+
     }
 
     /**
@@ -36,7 +42,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String move, String inputMove, int currentIndex) {
+    public void move(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
         String resultUp="";
         String resultDown="";
         List<String> results = new ArrayList<>();
@@ -47,12 +53,17 @@ public class BridgeGame {
                 results.add(resultUp);
                 results.add(resultDown);
                 resultMap.put(currentIndex, results);
+                outputView.printMap(resultMap);
                 currentIndex += 1;
             }
             if (!move.equals(inputMove)){
-                resultUp="X";
-                resultDown="E";
-                retry("실패");
+                resultUp="E";
+                resultDown="X";
+                results.add(resultUp);
+                results.add(resultDown);
+                resultMap.put(currentIndex, results);
+                outputView.printMap(resultMap);
+                retry("실패", resultMap);
             }
         }
         if (move.equals("D")){
@@ -62,12 +73,17 @@ public class BridgeGame {
                 results.add(resultUp);
                 results.add(resultDown);
                 resultMap.put(currentIndex, results);
+                outputView.printMap(resultMap);
                 currentIndex += 1;
             }
             if (!move.equals(inputMove)){
-                resultUp="E";
-                resultDown="X";
-                retry("실패");
+                resultUp="X";
+                resultDown="E";
+                results.add(resultUp);
+                results.add(resultDown);
+                resultMap.put(currentIndex, results);
+                outputView.printMap(resultMap);
+                retry("실패", resultMap);
             }
         }
     }
@@ -79,13 +95,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String result) {
+    public void retry(String result, HashMap<Integer, List<String>> resultMap) {
         String gameCommand = inputView.readGameCommand();
         if (gameCommand.equals("R")) {
-            startGame(currentIndex);
+            restartGame();
         }
         if (gameCommand.equals("Q")) {
             outputView.printResult(result, retrycount, resultMap);
+            currentIndex=0;
+            System.exit(0);
         }
     }
 }
