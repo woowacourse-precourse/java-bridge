@@ -23,4 +23,16 @@ public class PlayerTest {
         int afterTryCount = status.getTryCount();
         assertThat(beforeTryCount).isLessThan(afterTryCount);
     }
+
+    @DisplayName("사용자 위치와 상태가 제대로 초기화가 되는지 확인한다.")
+    @Test
+    void checkPlayerAfterInit() {
+        player.success();
+        player.fail();
+
+        player.init();
+
+        assertThat(player.getNextPosition()).isEqualTo(0);
+        assertThat(player.getStatus()).isEqualTo(PlayerStatus.PLAYING);
+    }
 }
