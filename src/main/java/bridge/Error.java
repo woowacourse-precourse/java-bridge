@@ -20,4 +20,7 @@ public class Error {
         }
     }
 
+    public static int validBridegeLen() {
+        return 0;
+    }
 }
