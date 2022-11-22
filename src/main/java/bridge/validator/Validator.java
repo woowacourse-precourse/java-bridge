@@ -57,7 +57,7 @@ public class Validator {
     }
 
     private static void checkMoveFormat(String moveInput) {
-        if (!MovingType.isValidInput(moveInput)) {
+        if (!bridge.validator.MoveType.isValidInput(moveInput)) {
             throw new IllegalArgumentException(ErrorType.INVALID_MOVE_INPUT.getMessage());
         }
     }

@@ -1,6 +1,6 @@
 package bridge.io;
 
-import bridge.validator.MovingType;
+import bridge.validator.MoveType;
 
 import java.util.List;
 
@@ -22,13 +22,13 @@ public class OutputView {
 
     private void printUpperMap(List<String> bridge, List<String> userMoving) {
         printLeftWall();
-        tileView.printTiles(bridge, userMoving, MovingType.UP_MOVING.getValue());
+        tileView.printTiles(bridge, userMoving, MoveType.UP_MOVING.getValue());
         printRightWall();
     }
 
     private void printLowerMap(List<String> bridge, List<String> userMoving) {
         printLeftWall();
-        tileView.printTiles(bridge, userMoving, MovingType.DOWN_MOVING.getValue());
+        tileView.printTiles(bridge, userMoving, MoveType.DOWN_MOVING.getValue());
         printRightWall();
     }
 
