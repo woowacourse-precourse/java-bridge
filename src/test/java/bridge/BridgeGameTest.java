@@ -1,7 +1,8 @@
-package bridge.service;
+package bridge;
 
 import bridge.model.entity.BridgeMap;
 import bridge.model.entity.Bridge;
+import bridge.service.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
