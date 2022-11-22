@@ -52,15 +52,12 @@ public class BridgeGame {
         return new GameStatus(Optional.empty(), gameOver(), getMoveChoices());
     }
 
-    public boolean inProcess() {
-        return !succeed() && !gameOver();
+    public boolean succeed() {
+        return (!gameOver() && !inProcess());
     }
 
-    public boolean succeed() {
-        if (gameOver() || bridge.size() != moveDirections.size()) {
-            return false;
-        }
-        return true;
+    public boolean inProcess() {
+        return !gameOver() && (moveDirections.size() != bridge.size());
     }
 
     public boolean gameOver() {

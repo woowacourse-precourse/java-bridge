@@ -25,7 +25,14 @@ public class GameStatus {
         return fail;
     }
 
-    public List<MoveDirection> getMoveChoices() {
+    public List<MoveDirection> getMoveDirections() {
         return moveDirections;
+    }
+
+    public Boolean successMove(int column, MoveDirection direction){
+        if(moveDirections.get(column) != direction){
+            return null;
+        }
+        return (column != moveDirections.size() - 1) || !fail;
     }
 }
