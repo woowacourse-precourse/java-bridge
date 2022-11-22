@@ -35,6 +35,14 @@ public class InputView {
     }
 
     /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public static String readGameCommand() throws IllegalArgumentException{
+        System.out.println(GAME_RESTART_MESSAGE);
+        return validateGameCommand(Console.readLine());
+    }
+
+    /**
      * 입려받은 다리의 길이를 int 데이터로 바꾸고, 예외를 처리하는 메소드
      *
      * @param inputBridgeSize 입력받은 다리의 길이(String)
@@ -65,5 +73,21 @@ public class InputView {
             throw new IllegalArgumentException(BRIDGE_CHOOSE_OUT_OF_BOUND_ERROR);
         }
         return inputBridgeChoose;
+    }
+
+    /**
+     * 사용자가 입력한 '게임 재시도 여부'가 적합한지 확인하는 메소드
+     *
+     * @param gameCommand 입력받은 '게임 재시도 여부'
+     * @return 예외처리를 마친 '게임 재시도 여부'
+     */
+    private static String validateGameCommand(String gameCommand) throws IllegalArgumentException{
+        if (gameCommand.length() != 1) {
+            throw new IllegalArgumentException(GAME_COMMAND_OUT_OF_BOUND_ERROR);
+        }
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            throw new IllegalArgumentException(GAME_COMMAND_OUT_OF_BOUND_ERROR);
+        }
+        return gameCommand;
     }
 }
