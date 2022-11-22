@@ -28,6 +28,7 @@ public class BridgeGame {
     public void retry() {
     }
 
+
     /**
      * 다리 길이를 입력받아 다리를 생성하는 메서드
      *
@@ -38,5 +39,29 @@ public class BridgeGame {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    /**
+     * 사용자가 입력할 때마다 점수를 계산해주는 메서드
+     *
+     * @param playerInput
+     * @return
+     */
+    public int calculateScore(List<String> playerInput) {
+        int score = 0;
+        for (int i = 0; i < playerInput.size(); i++) {
+            if (playerInput.get(i).equals(newBridge.get(i))) {
+                score += 1;
+            }
+        }
+        return score;
+    }
+
+    /**
+     * 테스트용으로 사용하는 메서드
+     * @param bridge
+     */
+    public void setNewBridge(List<String> bridge) {
+        newBridge = bridge;
     }
 }
