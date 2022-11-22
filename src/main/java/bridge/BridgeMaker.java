@@ -13,7 +13,7 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int i = 0 ; i < size; ++i) {
+        for (int i = 0; i < size; ++i) {
             int randomNumber = bridgeNumberGenerator.generate();
             String moving = mappingNumber(randomNumber);
             bridge.add(moving);
@@ -30,5 +30,4 @@ public class BridgeMaker {
         }
         throw new IllegalArgumentException("0과 1 이외에는 mapping 할 수 없습니다");
     }
-
 }
