@@ -21,12 +21,8 @@ public class BridgeGameController {
     }
 
     public void run() {
-        try {
-            startBrideGame();
-            crossBridge();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printError(illegalArgumentException.getMessage());
-        }
+        startBrideGame();
+        crossBridge();
     }
 
     private void startBrideGame() {
@@ -35,13 +31,18 @@ public class BridgeGameController {
     }
 
     private List<String> makeBridge() {
-        return bridgeMaker.makeBridge(inputView.readBridgeSize());
+        try {
+            return bridgeMaker.makeBridge(inputView.readBridgeSize());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printError(illegalArgumentException.getMessage());
+            return makeBridge();
+        }
     }
 
     private void crossBridge() {
         BridgeGame bridgeGame = gameInit();
         for (String bridgeValue : correctBridge) {
-            boolean correctAnswerCheck = bridgeGame.move(inputView.readMoving(), bridgeValue);
+            boolean correctAnswerCheck = crossSuccess(bridgeGame, bridgeValue);
             outputView.printMap(bridgeGame.getBridges());
             if (correctAnswerCheck != true) {
                 chooseRetryGameOrEndGame(bridgeGame);
@@ -50,12 +51,28 @@ public class BridgeGameController {
         }
         endGame(bridgeGame);
     }
-    private void chooseRetryGameOrEndGame(BridgeGame bridgeGame) {
-        if (bridgeGame.retry(inputView.readGameCommand())) {
-            crossBridge();
-            return;
+
+    private boolean crossSuccess(BridgeGame bridgeGame, String bridgeValue) {
+        while (true) {
+            try {
+                return bridgeGame.move(inputView.readMoving(), bridgeValue);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printError(illegalArgumentException.getMessage());
+            }
         }
-        endGame(bridgeGame);
+    }
+
+    private void chooseRetryGameOrEndGame(BridgeGame bridgeGame) {
+        try {
+            if (bridgeGame.retry(inputView.readGameCommand())) {
+                crossBridge();
+                return;
+            }
+            endGame(bridgeGame);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printError(illegalArgumentException.getMessage());
+            chooseRetryGameOrEndGame(bridgeGame);
+        }
     }
 
     private void endGame(BridgeGame bridgeGame) {
