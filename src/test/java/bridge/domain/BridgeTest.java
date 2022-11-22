@@ -1,16 +1,16 @@
 package bridge.domain;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.bridgeTool.BridgeMaker;
+import bridge.domain.bridgeTool.BridgeNumberGenerator;
+import bridge.domain.bridgeTool.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static util.BridgeUtil.UP;
-import static util.BridgeUtil.DOWN;
+import static bridge.util.BridgeUtil.UP;
+import static bridge.util.BridgeUtil.DOWN;
 
 class BridgeTest {
 

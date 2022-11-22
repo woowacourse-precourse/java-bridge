@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static util.BridgeUtil.GAP_IN_INDEX_AND_SIZE;
+import static bridge.util.BridgeUtil.GAP_IN_INDEX_AND_SIZE;
 
 public class Player {
 
