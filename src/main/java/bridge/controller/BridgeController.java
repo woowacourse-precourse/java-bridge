@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import bridge.domain.status.GameStatus;
+import bridge.domain.user.UserStatus;
 import bridge.exception.ExceptionMessage;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
@@ -11,7 +13,7 @@ public class BridgeController {
     private final OutputView outputView = new OutputView();
     private BridgeGame bridgeGame;
 
-    public void run() {
+    public void init() {
         try {
             String size = inputView.readBridgeSize();
             validateBridgeSize(size);
@@ -21,6 +23,22 @@ public class BridgeController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
         }
+    }
+
+    public void run() {
+        init();
+        GameStatus gameStatus = GameStatus.PROCEED;
+
+        while (gameStatus == GameStatus.PROCEED) {
+            play();
+        }
+
+    }
+
+    public void play() {
+        String moveInput = inputView.readMoving();
+        UserStatus userStatus = bridgeGame.move(moveInput);
+        outputView.printMap(bridgeGame.getUserPathLog());
     }
 
     // 검증 메서드
