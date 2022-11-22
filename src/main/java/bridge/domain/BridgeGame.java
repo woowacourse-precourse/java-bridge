@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
 import bridge.constants.Life;
 import bridge.constants.Moving;
 
