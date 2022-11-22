@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import static bridge.constant.GameCommand.EXIT;
 import static bridge.constant.GameCommand.RETRY;
 
 import java.util.List;
@@ -16,15 +17,10 @@ public class Controller {
     private static final InputView INPUT_VIEW = new InputView();
     private static final OutputView OUTPUT_VIEW = new OutputView();
 
-    private static final int INITIAL_TRIAL_COUNT = 1;
-    private static final int RETRY_ADD_COUNT = 1;
-
-    private BridgeGame game;
-
     public void run() {
-        game = makeGame();
-        int trialCount = doGame();
-        OUTPUT_VIEW.printResult(game.getTrialResults(), trialCount, game.isFinished());
+        BridgeGame game = makeGame();
+        doGame(game);
+        OUTPUT_VIEW.printResult(game.getTrialResults(), game.getTrialCount(), game.isFinished());
     }
 
     private BridgeGame makeGame() {
@@ -38,33 +34,34 @@ public class Controller {
         }
     }
 
-    private int doGame() {
-        if (game.isFinished()) {
-            return INITIAL_TRIAL_COUNT;
+    private void doGame(final BridgeGame game) {
+        while (!game.isFinished()) {
+            if (move(game).wasSuccessful()) {
+                continue;
+            }
+            if (retryOrExit(game) == EXIT) {
+                break;
+            }
         }
-        if (tryToMove().wasSuccessful()) {
-            return doGame();
-        }
-        return retryOrExit();
     }
 
-    private TrialResult tryToMove() {
+    private GameCommand retryOrExit(final BridgeGame game) {
+        GameCommand command = askCommand();
+        if (command.equals(RETRY)) {
+            game.retry();
+        }
+        return command;
+    }
+
+    private TrialResult move(final BridgeGame game) {
         try {
             TrialResult trialResult = game.move(INPUT_VIEW.readDirection());
             OUTPUT_VIEW.printMap(game.getTrialResults());
             return trialResult;
         } catch (IllegalArgumentException exception) {
             OUTPUT_VIEW.printException(exception.getMessage());
-            return tryToMove();
+            return move(game);
         }
-    }
-
-    private int retryOrExit() {
-        if (askCommand().equals(RETRY)) {
-            game.retry();
-            return doGame() + RETRY_ADD_COUNT;
-        }
-        return INITIAL_TRIAL_COUNT;
     }
 
     private GameCommand askCommand() {
