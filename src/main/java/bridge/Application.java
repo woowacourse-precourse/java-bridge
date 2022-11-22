@@ -15,9 +15,8 @@ public class Application {
     public static void main(String[] args) {
         while (!currentState.end) {
             try {
-                System.out.println(currentState.name());
                 currentState.routine();
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 dispatch(TRIGGER.INPUT_INVALID);
                 System.out.println(e.getMessage());
             }
@@ -28,8 +27,8 @@ public class Application {
         currentState = rules.get(List.of(currentState.ordinal(), trigger.ordinal()));
     }
 
-    private static void dispatch2(TRIGGER trigger, boolean result) {
-        currentState = rules.get(List.of(currentState.ordinal(), trigger.ordinal()));
+    private static void dispatchWithResult(TRIGGER trigger, boolean result) {
+        dispatch(trigger);
         currentState.result = result;
     }
 
@@ -47,12 +46,11 @@ public class Application {
             public void routine(){
                 String direction = in.readMoving();
                 boolean result = bg.move(direction);
-                dispatch2(TRIGGER.INPUT_VALID, result);
+                dispatchWithResult(TRIGGER.INPUT_VALID, result);
             }
         },
         SUCCESS_TEST_STATE{
             public void routine(){
-                System.out.println(currentState.result);
                 if (!currentState.result) {
                     dispatch(TRIGGER.SELECTION_FAILURE);
                     return;

@@ -29,8 +29,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String direction) {
-        System.out.println(direction);
-        System.out.println(map);
         user.add(direction);
         out.printMap(map,user);
 
@@ -56,6 +54,8 @@ public class BridgeGame {
     }
 
     public void finish(){
+        System.out.println("최종 게임 결과");
+        out.printMap(map,user);
         out.printResult(map.equals(user),trials);
     }
 
