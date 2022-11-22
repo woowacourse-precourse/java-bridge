@@ -1,17 +1,18 @@
 package bridge.Model;
 
 import bridge.MovingStatus;
-import bridge.View.ExceptionMessage;
+
+import static bridge.View.ExceptionMessage.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final Bridge bridge;
     private int movementCount;
     private int round;
-    private final Bridge bridge;
-    private BridgeMap bridgeMap;
     private boolean isAnswer;
+    private BridgeMap bridgeMap;
 
     public BridgeGame(Bridge bridge) {
         this.movementCount = 0;
@@ -32,7 +33,7 @@ public class BridgeGame {
 
     void validateIsRightMoving(String inputMoving) throws IllegalArgumentException {
         if (!inputMoving.equals("U") && !inputMoving.equals("D"))
-            throw new IllegalArgumentException(ExceptionMessage.MOVING_EXCEPTION_MESSAGE.getExceptionMessage());
+            throw new IllegalArgumentException(MOVING_EXCEPTION_MESSAGE.getExceptionMessage());
     }
 
     public boolean validateGameCommand(String command) {
@@ -47,7 +48,7 @@ public class BridgeGame {
 
     void validateIsRightCommand(String command) throws IllegalArgumentException {
         if (!command.equals("R") && !command.equals("Q"))
-            throw new IllegalArgumentException(ExceptionMessage.GAME_COMMAND_EXCEPTION_MESSAGE.getExceptionMessage());
+            throw new IllegalArgumentException(GAME_COMMAND_EXCEPTION_MESSAGE.getExceptionMessage());
     }
 
     public void move(String movement) {
