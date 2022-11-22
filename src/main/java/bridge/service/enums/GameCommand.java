@@ -4,7 +4,7 @@ public enum GameCommand {
     RETRY("R"),
     QUIT("Q");
 
-    private String type;
+    private final String type;
 
     GameCommand(String type) {
         this.type = type;
