@@ -28,22 +28,18 @@ public class BridgeGameController {
 
 
         for(int count = 0; count < bridgeLen; count++){
-            bridges.clear();
-            bridges.add("U");
-            bridges.add("D");
-            bridges.add("U");
             String move = readMoving();
-            //moveCheck(move);
+            moveCheck(move);
             inputMove.add(move);
             resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
-            System.out.println("result: " + resultFinal.toString());
+            //System.out.println("result: " + resultFinal.toString());
 
             if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen+1){
                 check++;
                 break;
             }
         }
-        System.out.println("check" + check);
+        //System.out.println("check" + check);
         //System.out.println("result: " + resultFinal.toString());
 
         if(check == 0){

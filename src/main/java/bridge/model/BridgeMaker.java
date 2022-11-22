@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static BridgeNumberGenerator bridgeNumberGenerator;
+    private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -35,10 +35,6 @@ public class BridgeMaker {
                 bridges.add("D");
             }
         }
-        bridges.clear();
-        bridges.add("U");
-        bridges.add("D");
-        bridges.add("D");
         return bridges;
     }
 }

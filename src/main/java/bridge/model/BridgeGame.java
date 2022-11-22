@@ -198,17 +198,17 @@ public class BridgeGame {
             moveCheck(move);
             inputMove.add(move);
             resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
-            System.out.println("result: " + resultFinal.toString());
+            //System.out.println("result: " + resultFinal.toString());
 
             if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen){
-                System.out.println("여기");
+                //System.out.println("여기");
                 check++;
                 break;
             }
 
         }
 
-        System.out.println("check" + check);
+        //System.out.println("check" + check);
         if(check == 0){
             gameResult(resultFinal, bridgeLen, bridges, startCount);
         }
