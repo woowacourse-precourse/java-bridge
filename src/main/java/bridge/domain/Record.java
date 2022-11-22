@@ -6,9 +6,9 @@ public final class Record {
     private static final String START_BRACKET = "[";
     private static final String END_BRACKET = "]";
     private static final String DELIMITER = "|";
-    private static final String MATCH = "O";
-    private static final String NOT_MATCH = "X";
-    private static final String BLANK = " ";
+    private static final String MATCH = " O ";
+    private static final String NOT_MATCH = " X ";
+    private static final String BLANK = "   ";
 
     private Record() {
 
@@ -22,7 +22,7 @@ public final class Record {
     }
 
     public static String getBottomLane(UsersRoute usersRoute, Bridge bridge) {
-        StringBuilder bottomLane = new StringBuilder();
+        StringBuilder bottomLane = new StringBuilder(START_BRACKET);
         createBottomLane(bottomLane, usersRoute, bridge);
         bottomLane.replace(bottomLane.length() - 1, bottomLane.length(), END_BRACKET);
         return bottomLane.toString();
