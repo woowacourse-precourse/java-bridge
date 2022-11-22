@@ -77,6 +77,18 @@ public class CustomTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("사용자가 재시작 여부를 잘못 입력할 경우 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다")
+    @Test
+    void reenter_command_test() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "r", "Q");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    GAME_RESULT
+            );
+        }, 1, 0, 1);
+    }
+
 
     @Override
     protected void runMain() {
