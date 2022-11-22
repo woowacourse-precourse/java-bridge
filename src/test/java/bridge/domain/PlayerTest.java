@@ -4,6 +4,8 @@ import bridge.constant.ErrorCode;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +29,10 @@ class PlayerTest {
         assertThatThrownBy(()-> new Player(bridgeShapeMatchers)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 플레이어_입력_예외테스트2(){
-        BridgeShapeMatcher bridgeShapeMatcher = BridgeShapeMatcher.findBridgeShape("X",true);
+    @ParameterizedTest
+    @CsvSource({"X,true", "u,true","UU,false"})
+    void 플레이어_입력_예외테스트2(String input, boolean isTrue){
+        BridgeShapeMatcher bridgeShapeMatcher = BridgeShapeMatcher.findBridgeShape(input,isTrue);
         bridgeShapeMatchers.add(bridgeShapeMatcher);
         assertThatThrownBy(()-> new Player(bridgeShapeMatchers)).isInstanceOf(IllegalArgumentException.class);
     }
