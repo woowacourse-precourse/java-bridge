@@ -10,7 +10,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(BridgeMap bridge) {
+        System.out.println(bridge);
     }
 
     /**
@@ -18,6 +19,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(GameResult gameResult) {
+        System.out.println(ConsoleMessage.GAME_RESULT);
+        System.out.println(gameResult.getBridgeMap());
+        printIsGameClear(gameResult.getGameClear());
+        System.out.printf(String.valueOf(ConsoleMessage.TRY_COUNT), gameResult.getTryCount());
+    }
+
+    private void printIsGameClear(boolean isGameClear) {
+        if (isGameClear) {
+            System.out.println(ConsoleMessage.GAME_CLEAR);
+            return;
+        }
+        System.out.println(ConsoleMessage.GAME_OVER);
     }
 }
