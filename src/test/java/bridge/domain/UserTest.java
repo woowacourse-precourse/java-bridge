@@ -44,8 +44,7 @@ public class UserTest {
         }
 
         user.resetUserData();
-        String afterResult = user.getUserPathLog();
-        Assertions.assertThat(afterResult).isEqualTo("[  ]\n[  ]\n\n");
+        Assertions.assertThat(user.getUserPathLog()).isEqualTo("[  ]\n[  ]\n\n");
     }
 
     @Test
