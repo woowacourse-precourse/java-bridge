@@ -18,4 +18,5 @@
 - printSuccess() // 성공 출력
 - printFail1()  // 실패 출력
 - printFail2() // 실패 출력
+- sbConnect // stringBuilder간 연결하는 함수
 - printResult() // 게임 결과 출력
