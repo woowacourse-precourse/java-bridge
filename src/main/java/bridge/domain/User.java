@@ -17,7 +17,7 @@ public class User {
   }
 
   public boolean isCorrectlyMove(List<String> bridgeShapes) {
-    final int index = moveStatus.size() - 1;
+    int index = getCurrentIndex();
     if (index < 0) return true;
     return bridgeShapes.get(index).equals(moveStatus.get(index));
   }
@@ -27,15 +27,15 @@ public class User {
     this.moveStatus.clear();
   }
 
-  public boolean isArriveFinishLine(int bridgeLength) {
-    return bridgeLength == moveStatus.size();
-  }
-
   public int getMoveCount() {
     return this.moveStatus.size();
   }
 
   public int getTryCount() {
     return this.tryCount;
+  }
+
+  public int getCurrentIndex(){
+    return getMoveCount() - 1;
   }
 }
