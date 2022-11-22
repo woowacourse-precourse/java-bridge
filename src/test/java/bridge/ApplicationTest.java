@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.View.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 
@@ -68,20 +69,4 @@ class ApplicationTest extends NsTest {
         }
     }
 
-    @DisplayName("각 위치가 담긴 리스트를 요구사항의 결과값과 같은지 테스트")
-    @Test
-    void utilsTest(){
-        String str=Utils.change_delimter(List.of("U","D","U","U"));
-        assertThat(str).isEqualTo("[ U | D | U | U ]");
-    }
-    @DisplayName("결과값 위쪽 아래쪽이 정상적인 format으로 저장되는지 테스트")
-    @Test
-    void setPositionTest(){
-        BridgeGame bridgeGame=new BridgeGame();
-        String up_status=bridgeGame.set_upposition("U",true);
-        String down_status=bridgeGame.set_upposition("D",true);
-        assertThat(up_status).isEqualTo("pass");
-        assertThat(down_status).isEqualTo("pass");
-
-    }
 }
