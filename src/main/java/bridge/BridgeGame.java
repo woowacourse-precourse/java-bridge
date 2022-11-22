@@ -1,23 +1,51 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+    int count = 1;
+    int idx = 0;
+    public void simulate(List<String> bridge) {
+        boolean isPlaying = true;
+        while (isPlaying && idx<bridge.size()) {
+            boolean isMoved = move(bridge);
+            if (!isMoved) {
+                isPlaying = retry();
+            }
+        }
+        if (idx==bridge.size()) {
+            outputView.printResult(count, idx-1, bridge,true);
+            return;
+        }
+        outputView.printResult(count,idx, bridge, false);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public boolean move(List<String> bridge) {
+        //up : 1, down : 0
+        String moving = inputView.readMoving();
+
+        if (bridge.get(idx).equals(moving)) {
+            outputView.printMap(idx,bridge,true);
+            idx++;
+            return true;
+        }
+        outputView.printMap(idx,bridge,false);
+        return false;
+    }
+
+    public boolean retry() {
+        String command = inputView.readGameCommand();
+        if (command.equals("R")){
+            count++;
+            idx=0;
+            return true;
+        }
+        return false;
     }
 }
