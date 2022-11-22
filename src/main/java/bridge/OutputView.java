@@ -3,9 +3,6 @@ package bridge;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
     public String mapU = "[";
     public String mapD = "[";
@@ -15,6 +12,11 @@ public class OutputView {
             mapU += "|";
             mapD += "|";
         }
+        postCoordinateOnMap(bridgeCount, currentCoordinate);
+        BoilerPlates.printMap(mapU,mapD);
+    }
+
+    private void postCoordinateOnMap(int bridgeCount, ArrayList<String> currentCoordinate) {
         if (Objects.equals(currentCoordinate.get(bridgeCount), "U")){
             mapU += " O ";
             mapD += "   ";
@@ -23,7 +25,6 @@ public class OutputView {
             mapU += "   ";
             mapD += " O ";
         }
-        BoilerPlates.printMap(mapU,mapD);
     }
 
     public void printFinalResult(ArrayList<String> currentCoordinate, int gameCount) {
