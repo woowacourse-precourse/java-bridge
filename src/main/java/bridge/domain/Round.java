@@ -20,4 +20,12 @@ public class Round {
         round++;
     }
 
+    //라운드를 초기화하는 기능
+    public void initRound() {
+        round = INIT;
+    }
+
+    public int getRound() {
+        return round;
+    }
 }
