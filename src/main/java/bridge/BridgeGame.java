@@ -14,62 +14,56 @@ public class BridgeGame {
     private List<String> playerList = new ArrayList<>();
     private Boolean success = false;
     private Integer tryCount = 0;
-    private Integer count = 0;
+    private Integer moveCount = 0;
 
     public BridgeGame(List<String> BRIDGE_ANSWER) {
         this.BRIDGE_ANSWER = BRIDGE_ANSWER;
-        System.out.println(BRIDGE_ANSWER);
 
-        Boolean keepPlay = true;
-        Boolean retry = true;
-        while (retry) {
-            while (keepPlay) {
-                keepPlay = Play();
-            }
-            if (playerList.equals(BRIDGE_ANSWER)) {
-                break;
-            }
-            retry = retry();
-            keepPlay = retry;
-        }
+        Repeat();
 
         printResult(success, tryCount);
         printMap(playerList, BRIDGE_ANSWER);
     }
 
+    public void Repeat() {
+        Boolean keepPlay = true;
+        Boolean retry = true;
+        while (retry) {
+            while (keepPlay) { keepPlay = Play(); }
+            if (playerList.equals(BRIDGE_ANSWER)) { break; }
+            retry = retry();
+            keepPlay = retry;
+        }
+    }
+
     private Boolean Play() {
-        count = 0;
+        moveCount = 0;
         playerList.clear();
         Boolean repeat = true;
-
-        while (repeat && (count < BRIDGE_ANSWER.size())) {
-            repeat = Proceed();
-        }
-        if (playerList.equals(BRIDGE_ANSWER)) {
-            success = true;
-        }
+        while (repeat && (moveCount < BRIDGE_ANSWER.size())) { repeat = Proceed(); }
+        if (playerList.equals(BRIDGE_ANSWER)) { success = true; }
         tryCount ++;
         return false;
     }
 
     private Boolean Proceed() {
-        String playerInput = "";
+        String playerInput;
         while (true) {
             try {
                 playerInput = InputView.readMoving();
                 break;
-            } catch (IllegalArgumentException e) {
-                OutputView.String("[ERROR] 유효한 값이 아닙니다.");
-            }
+            } catch (IllegalArgumentException e) { OutputView.String("[ERROR] 유효한 값이 아닙니다."); }
         }
-        if (BRIDGE_ANSWER.get(count).equals(playerInput)) {
+        return AnalyzeInput(playerInput);
+    }
+
+    private Boolean AnalyzeInput(String playerInput) {
+        if (BRIDGE_ANSWER.get(moveCount).equals(playerInput)) {
             move(playerInput);
-            count ++;
             return true;
         }
-        if (!BRIDGE_ANSWER.get(count).equals(playerInput)) {
+        if (!BRIDGE_ANSWER.get(moveCount).equals(playerInput)) {
             move(playerInput);
-            count ++;
             return false;
         }
         return false;
@@ -84,6 +78,7 @@ public class BridgeGame {
         playerList.add(playerInput);
         String(playerInput);
         printMap(playerList, BRIDGE_ANSWER);
+        moveCount ++;
     }
 
     /**
@@ -92,14 +87,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Boolean retry() {
-        Boolean result = null;
+        Boolean result;
         while (true) {
             try {
                 result = readGameCommand();
                 break;
-            } catch (IllegalArgumentException e) {
-                OutputView.String("[ERROR] 유효한 값이 아닙니다.");
-            }
+            } catch (IllegalArgumentException e) { OutputView.String("[ERROR] 유효한 값이 아닙니다."); }
         }
         return result;
     }
