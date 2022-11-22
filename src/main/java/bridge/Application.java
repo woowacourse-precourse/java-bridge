@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -15,21 +16,25 @@ public class Application {
             List<String> bridge = bridgeMaker.makeBridge(size);
 
             BridgeGame game = new BridgeGame(bridge);
+            List<String> lastMap = new ArrayList<>();
+            boolean flag = true;
 
             for(int i = 0; i < size; i++){
                 String moving = inputView.readMoving();
                 if(game.move(moving)){
-                    outputView.printMap(game.userMoving, true);
+                    lastMap = outputView.printMap(game.userMoving, true);
                     continue;
                 }
-                outputView.printMap(game.userMoving, false);
+                lastMap = outputView.printMap(game.userMoving, false);
 
                 if(!inputView.readGameCommand()){
+                    flag = false;
                     break;
                 }
                 game.retry();
                 i = -1;
             }
+            outputView.printResult(lastMap, flag, game.getCount());
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
