@@ -1,7 +1,6 @@
 package bridge.domain.vo;
 
-import static bridge.enumeration.ErrorMessage.NOT_NUMBER;
-import static bridge.enumeration.ErrorMessage.OUT_OF_RANGE;
+import static bridge.view.enumeration.ErrorMessage.*;
 import static java.lang.Integer.parseInt;
 
 public class BridgeSize {
@@ -23,10 +22,10 @@ public class BridgeSize {
 
     private void validateBridgeSize(String bridgeSize) {
         if (!bridgeSize.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(IS_NOT_NUMBER.getErrorMessage());
         }
         if (parseInt(bridgeSize) < 3 || parseInt(bridgeSize) > 20) {
-            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(BRIDGE_SIZE_IS_NOT_IN_RANGE.getErrorMessage());
         }
     }
 }

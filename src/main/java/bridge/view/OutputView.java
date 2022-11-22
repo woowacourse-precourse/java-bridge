@@ -7,8 +7,8 @@ import java.util.List;
 import static bridge.domain.BridgeGame.TOTAL_TRY_COUNT;
 import static bridge.domain.BridgeGame.isSuccess;
 import static bridge.domain.vo.BridgeGameResult.*;
-import static bridge.enumeration.Format.*;
-import static bridge.enumeration.GameMessage.*;
+import static bridge.view.enumeration.Format.*;
+import static bridge.view.enumeration.Message.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -33,8 +33,8 @@ public class OutputView {
     private static void printRows(StringBuilder upRow, StringBuilder downRow) {
         upRow.deleteCharAt(upRow.length() - 1);
         downRow.deleteCharAt(downRow.length() - 1);
-        System.out.println(FIRST_BRAKET.getFormat() + upRow + LAST_BRAKET.getFormat());
-        System.out.println(FIRST_BRAKET.getFormat() + downRow + LAST_BRAKET.getFormat());
+        System.out.println(FIRST_BRACKET.getFormat() + upRow + LAST_BRACKET.getFormat());
+        System.out.println(FIRST_BRACKET.getFormat() + downRow + LAST_BRACKET.getFormat());
     }
 
     private static String makeUpRow(BridgeGameResult bridgeGameResult) {
@@ -44,7 +44,7 @@ public class OutputView {
         if (checkUp(bridgeGameResult.getUserMoving()) && !bridgeGameResult.getIsMatched()) {
             return makeRowWithFormat(WRONG.getFormat());
         }
-        return makeRowWithFormat(BLANK.getFormat());
+        return makeRowWithFormat(EMPTY.getFormat());
     }
 
     private static String makeDownRow(BridgeGameResult bridgeGameResult) {
@@ -54,7 +54,7 @@ public class OutputView {
         if (checkDown(bridgeGameResult.getUserMoving()) && !bridgeGameResult.getIsMatched()) {
             return makeRowWithFormat(WRONG.getFormat());
         }
-        return makeRowWithFormat(BLANK.getFormat());
+        return makeRowWithFormat(EMPTY.getFormat());
     }
 
     private static String makeRowWithFormat(String result) {
@@ -74,23 +74,23 @@ public class OutputView {
     }
 
     private static void printLastGameResultMessage() {
-        System.out.println(GAME_FINAL_RESULT.getMessage());
+        System.out.println(LAST_GAME_RESULT_MESSAGE.getMessage());
     }
 
     private static void printIsSuccess(List<BridgeGameResult> bridgeGameResults, int bridgeSize) {
         if (isSuccess(bridgeGameResults, bridgeSize)) {
-            System.out.println(GAME_SUCCESS_OR_NOT.getMessage() + GAME_SUCCESS.getMessage());
+            System.out.println(WHETHER_SUCCESS.getMessage() + SUCCESS.getMessage());
             return;
         }
-        System.out.println(GAME_SUCCESS_OR_NOT.getMessage() + GAME_FAILURE.getMessage());
+        System.out.println(WHETHER_SUCCESS.getMessage() + FAIL.getMessage());
     }
 
     private static void printRetryCount() {
-        System.out.println(TRY_COUNT.getMessage() + TOTAL_TRY_COUNT);
+        System.out.println(TOTAL_RETRY_COUNT_IS.getMessage() + TOTAL_TRY_COUNT);
     }
 
     public static void printStartMessage() {
-        System.out.println(GAME_START.getMessage());
+        System.out.println(START_MESSAGE.getMessage());
         printEnter();
     }
 
@@ -99,15 +99,15 @@ public class OutputView {
     }
 
     public static void printBridgeSizeRequestMessage() {
-        System.out.println(INPUT_BRIDGE_SIZE.getMessage());
+        System.out.println(BRIDGE_SIZE_REQUEST_MESSAGE.getMessage());
     }
 
     public static void printMovingRequestMessage() {
-        System.out.println(INPUT_MOVE.getMessage());
+        System.out.println(MOVING_REQUEST_MESSAGE.getMessage());
     }
 
     public static void printGameCommandRequestMessage() {
-        System.out.println(INPUT_RETRY_COMMAND.getMessage());
+        System.out.println(GAME_COMMAND_REQUEST_MESSAGE.getMessage());
     }
 
     public static void printErrorMessage(String errorMessage) {

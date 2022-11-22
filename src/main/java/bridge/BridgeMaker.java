@@ -1,11 +1,10 @@
-package bridge.domain;
-
-import bridge.domain.generator.BridgeNumberGenerator;
-import static bridge.enumeration.Command.*;
-import static bridge.enumeration.BridgeNumber.*;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.domain.vo.enumeration.BridgeNumber.*;
+import static bridge.domain.vo.enumeration.MovingType.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -33,10 +32,10 @@ public class BridgeMaker {
 
     private void pushToBridge(int numberOfUpOrDown, List<String> bridgeMovableInfo) {
         if (numberOfUpOrDown == DOWN_NUMBER.getBridgeNumber()) {
-            bridgeMovableInfo.add(DOWN.getCommand());
+            bridgeMovableInfo.add(DOWN.getMovingType());
         }
         if (numberOfUpOrDown == UP_NUMBER.getBridgeNumber()) {
-            bridgeMovableInfo.add(UP.getCommand());
+            bridgeMovableInfo.add(UP.getMovingType());
         }
     }
 }

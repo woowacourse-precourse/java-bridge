@@ -1,6 +1,6 @@
 package bridge.domain.vo;
 
-import bridge.enumeration.Command;
+import bridge.domain.vo.enumeration.MovingType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +11,8 @@ class BridgeGameResultTest {
 
     boolean isMatched = true;
     String userMoving = "U";
-    String upMoving = Command.UP.getCommand();
-    String downMoving = Command.DOWN.getCommand();
+    String upMoving = MovingType.UP.getMovingType();
+    String downMoving = MovingType.DOWN.getMovingType();
 
     @DisplayName("BridgeGameResult를 생성한다.")
     @Test

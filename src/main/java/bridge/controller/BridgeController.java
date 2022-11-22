@@ -1,8 +1,8 @@
 package bridge.controller;
 
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.domain.generator.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.domain.*;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.vo.BridgeGameResult;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class BridgeController {
         this.bridgeGame = new BridgeGame();
     }
 
-    public void runGame() {
+    public void start() {
         try {
             init();
             List<String> bridge = createBridge();

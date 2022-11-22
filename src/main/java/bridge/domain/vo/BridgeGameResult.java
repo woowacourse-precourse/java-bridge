@@ -2,9 +2,9 @@ package bridge.domain.vo;
 
 import java.util.Objects;
 
-import static bridge.enumeration.Command.DOWN;
-import static bridge.enumeration.Command.UP;
-import static bridge.enumeration.ErrorMessage.INVALID_MOVE;
+import static bridge.view.enumeration.ErrorMessage.MOVING_IS_NOT_U_AND_D;
+import static bridge.domain.vo.enumeration.MovingType.DOWN;
+import static bridge.domain.vo.enumeration.MovingType.UP;
 
 public class BridgeGameResult {
 
@@ -23,16 +23,16 @@ public class BridgeGameResult {
 
     private void validateBrideGameResult(boolean isMatched, String userMoving) {
         if (!checkDown(userMoving) && !checkUp(userMoving)) {
-            throw new IllegalArgumentException(INVALID_MOVE.getMessage());
+            throw new IllegalArgumentException(MOVING_IS_NOT_U_AND_D.getErrorMessage());
         }
     }
 
     public static boolean checkUp(String userMoving) {
-        return Objects.equals(userMoving, UP.getCommand());
+        return Objects.equals(userMoving, UP.getMovingType());
     }
 
     public static boolean checkDown(String userMoving) {
-        return Objects.equals(userMoving, DOWN.getCommand());
+        return Objects.equals(userMoving, DOWN.getMovingType());
     }
 
     public boolean getIsMatched() {

@@ -1,9 +1,7 @@
 package bridge.domain.vo;
 
-import static bridge.enumeration.Command.DOWN;
-import static bridge.enumeration.Command.UP;
-import static bridge.enumeration.ErrorMessage.INVALID_MOVE;
-import static bridge.enumeration.ErrorMessage.OUT_OF_RANGE;
+import static bridge.view.enumeration.ErrorMessage.*;
+import static bridge.domain.vo.enumeration.MovingType.*;
 
 public class Moving {
 
@@ -25,10 +23,10 @@ public class Moving {
 
     private void validateMoving(String moving) {
         if (moving.length() != MOVING_MAX_LENGTH) {
-            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(MOVING_LENGTH_IS_NOT_ONE.getErrorMessage());
         }
-        if (!moving.equals(UP.getCommand()) && !moving.equals(DOWN.getCommand())) {
-            throw new IllegalArgumentException(INVALID_MOVE.getMessage());
+        if (!moving.equals(UP.getMovingType()) && !moving.equals(DOWN.getMovingType())) {
+            throw new IllegalArgumentException(MOVING_IS_NOT_U_AND_D.getErrorMessage());
         }
     }
 

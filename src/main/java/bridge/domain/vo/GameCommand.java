@@ -1,9 +1,7 @@
 package bridge.domain.vo;
 
-import static bridge.enumeration.Command.QUIT;
-import static bridge.enumeration.Command.RETRY;
-import static bridge.enumeration.ErrorMessage.INVALID_RETRY_COMMAND;
-import static bridge.enumeration.ErrorMessage.NOT_CHARACTER;
+import static bridge.view.enumeration.ErrorMessage.*;
+import static bridge.domain.vo.enumeration.GameCommandType.*;
 
 public class GameCommand {
 
@@ -25,10 +23,10 @@ public class GameCommand {
 
     private void validateGameCommand(String gameCommand) {
         if (gameCommand.length() != GAME_COMMAND_MAX_LENGTH) {
-            throw new IllegalArgumentException(NOT_CHARACTER.getMessage());
+            throw new IllegalArgumentException(GAME_COMMAND_LENGTH_IS_NOT_ONE.getErrorMessage());
         }
-        if (!gameCommand.equals(RETRY.getCommand()) && !gameCommand.equals(QUIT.getCommand())) {
-            throw new IllegalArgumentException(INVALID_RETRY_COMMAND.getMessage());
+        if (!gameCommand.equals(RETRY.getGameCommandType()) && !gameCommand.equals(QUIT.getGameCommandType())) {
+            throw new IllegalArgumentException(GAME_COMMAND_IS_NOT_R_AND_Q.getErrorMessage());
         }
     }
 }
