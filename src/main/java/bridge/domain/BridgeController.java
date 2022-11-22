@@ -12,16 +12,14 @@ import bridge.io.OutputView;
 import java.util.List;
 
 public class BridgeController {
-	private static final OutputView outputView = new OutputView();
-	private static final InputView inputView = new InputView();
 	private static BridgeGame bridgeGame;
 
 	public void start() {
-		outputView.printMessage(Message.GAME_START_MSG);
+		OutputView.printMessage(Message.GAME_START_MSG);
 		List<String> bridge = initBridge();
 		bridgeGame = new BridgeGame(bridge);
 		gameProcess();
-		outputView.printResult(bridgeGame);
+		OutputView.printResult(bridgeGame);
 	}
 
 	private void gameProcess() {
@@ -38,25 +36,25 @@ public class BridgeController {
 	private void gameStart() {
 		do {
 			bridgeGame.move(inputDirection());
-			outputView.printMap(bridgeGame);
+			OutputView.printMap(bridgeGame);
 		} while (bridgeGame.isMatchDirection() && bridgeGame.isNotFinish());
 	}
 
 	private String inputDirection() {
-		InputStringValidator moveCommandValidator = new InputStringValidator(inputView.readMoving());
+		InputStringValidator moveCommandValidator = new InputStringValidator(InputView.readMoving());
 		moveCommandValidator.isValidateAlphabet(UpDown.getStrValues());
 		return moveCommandValidator.getInputValue();
 	}
 
 	private List<String> initBridge() {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		InputNumValidator bridgeSizeInputValidator = new InputNumValidator(inputView.readBridgeSize());
+		InputNumValidator bridgeSizeInputValidator = new InputNumValidator(InputView.readBridgeSize());
 		return bridgeMaker.makeBridge(bridgeSizeInputValidator.getInputValue());
 	}
 
 	private boolean isRestartInput() {
 		final List<String> RESTART_VALUE = List.of("R", "Q");
-		InputStringValidator restartInputValidator = new InputStringValidator(inputView.readGameCommand());
+		InputStringValidator restartInputValidator = new InputStringValidator(InputView.readGameCommand());
 		restartInputValidator.isValidateAlphabet(RESTART_VALUE);
 		return restartInputValidator.getInputValue().equals("R");
 	}

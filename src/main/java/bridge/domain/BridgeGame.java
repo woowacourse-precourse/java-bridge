@@ -29,7 +29,6 @@ public class BridgeGame {
      */
     public void move(String direction) {
         myBridge.add(direction);
-//        bridgeMap.addBlock(direction);
     }
 
     /**

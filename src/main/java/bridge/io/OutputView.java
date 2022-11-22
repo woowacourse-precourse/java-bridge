@@ -15,7 +15,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame bridgeGame) {
+    public static void printMap(BridgeGame bridgeGame) {
         BridgeMap bridgeMap = new BridgeMap(bridgeGame.getAnswerBridge(), bridgeGame.getPlayerBridge());
         bridgeMap.getMap()
                 .forEach(System.out::println);
@@ -27,29 +27,29 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGame bridgeGame) {
+    public static void printResult(BridgeGame bridgeGame) {
         printFinalBridgeResult(bridgeGame);
         printStatusResult(bridgeGame);
     }
 
-    private void printFinalBridgeResult(BridgeGame bridgeGame) {
+    private static void printFinalBridgeResult(BridgeGame bridgeGame) {
         System.out.println(Message.GAME_RESULT_PREV_MSG.getMessage());
         printMap(bridgeGame);
     }
 
-    private void printStatusResult(BridgeGame bridgeGame) { // TODO 수정 필요
+    private static void printStatusResult(BridgeGame bridgeGame) { // TODO 수정 필요
         System.out.println(Message.GAME_RESULT_STATE_MSG.getMessage() + getGameStatus(bridgeGame));
         System.out.println(Message.GAME_RESULT_TRY_MSG.getMessage() + "" + bridgeGame.getTrial());
     }
 
-    private String getGameStatus(BridgeGame bridgeGame) {
+    private static String getGameStatus(BridgeGame bridgeGame) {
         if (bridgeGame.isGameWin()) {
             return SUCCESS;
         }
         return FAIL;
     }
 
-    public void printMessage(Message message){
+    public static void printMessage(Message message){
         System.out.println(message.getMessage());
     }
 }
