@@ -21,18 +21,16 @@ public class Application {
 
             for(int i = 0; i < size; i++){
                 String moving = inputView.readMoving();
-                if(game.move(moving)){
-                    lastMap = outputView.printMap(game.userMoving, true);
-                    continue;
-                }
-                lastMap = outputView.printMap(game.userMoving, false);
+                flag = game.move(moving);
+                lastMap = outputView.printMap(game.userMoving, flag);
 
-                if(!inputView.readGameCommand()){
-                    flag = false;
-                    break;
+                if(!flag){
+                    if(!inputView.readGameCommand()){
+                        break;
+                    }
+                    game.retry();
+                    i = -1;
                 }
-                game.retry();
-                i = -1;
             }
             outputView.printResult(lastMap, flag, game.getCount());
         }catch(IllegalArgumentException e){
