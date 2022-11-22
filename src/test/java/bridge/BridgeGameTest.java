@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BridgeGameTest {
     BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
 
-    @Test
     @ValueSource(ints = {0, 1, 2, 3})
     @ParameterizedTest
     void isCorrectStep_동작_true_테스트(int input) {
@@ -32,7 +31,6 @@ public class BridgeGameTest {
         return inputs.get(i);
     }
 
-    @Test
     @ValueSource(ints = {0, 1, 2, 3})
     @ParameterizedTest
     void isCorrectStep_동작_false_테스트(int input) {

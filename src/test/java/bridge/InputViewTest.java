@@ -16,7 +16,6 @@ public class InputViewTest {
         assertThat(iv.convertBridgeSize("3")).isEqualTo(3);
     }
 
-    @Test
     @ValueSource(strings = {"3d", " _5", "0", "-1", "21"})
     @ParameterizedTest
     void convertBridgeSize_에러_테스트(String input) {
@@ -34,7 +33,6 @@ public class InputViewTest {
         assertThat(iv.convertMoving("D")).isEqualTo("D");
     }
 
-    @Test
     @ValueSource(strings = {"3", "Q", "UD"})
     @ParameterizedTest
     void convertMoving_에러_테스트(String input) {
@@ -52,7 +50,6 @@ public class InputViewTest {
         assertThat(iv.convertGameCommand("R")).isEqualTo("R");
     }
 
-    @Test
     @ValueSource(strings = {"3", "U", "QR"})
     @ParameterizedTest
     void convertGameCommand_에러_테스트(String input) {

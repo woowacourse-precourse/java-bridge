@@ -14,9 +14,8 @@ import java.util.List;
 public class OutputViewTest {
     OutputView outputView = new OutputView();
 
-    @Test
-    @ValueSource(ints = {0, 1, 2, 3})
     @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
     void printMap_동작_테스트(int input) {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
