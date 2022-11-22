@@ -1,7 +1,7 @@
 package bridge;
 
 public class BridgeMachine {
-    private int totalTry = 0;
+    private int totalTry = 1;
     private int index = 0;
     private boolean success = false;
     public void initiateBridgeMachine() {
@@ -12,7 +12,6 @@ public class BridgeMachine {
         String bridgeSize = InputView.readBridgeSize(); //예외
         Bridge bridge = new Bridge(bridgeSize);
         while (true) {
-            totalTry++;
             OutputView.inputUserMoveCommand();
             String userMoveCommand = InputView.readMoving();
             //움직이는 거 여부를 판단하는 예외 메소드 추가
@@ -25,6 +24,7 @@ public class BridgeMachine {
                 //게임 재시도 여부 판단하는 예외 메소드 추가
                 if (replay.equals(UserCommand.REPLAY.getCommand())) {
                     bridgeGame.retry(bridge);
+                    totalTry++;
                     index =0;
                 }
                 else{
@@ -40,6 +40,9 @@ public class BridgeMachine {
                 success = true;
                 break;
             }
+        }
+        if(success){
+            index--;
         }
         OutputView.printLastBridgeResult();
         OutputView.printMap(bridge.getBridgeMap(), index);
