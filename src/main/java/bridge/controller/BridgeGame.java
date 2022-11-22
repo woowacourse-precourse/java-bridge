@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Attempt;
 import bridge.domain.Command;
 import bridge.domain.Status;
 import bridge.service.BridgeGameService;
@@ -12,12 +13,12 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridge;
-    private int attempt;
+    private final Attempt attempt;
     private final BridgeGameService bridgeGameService;
 
     public BridgeGame() {
         bridge = new ArrayList<>();
-        attempt = 0;
+        attempt = new Attempt();
         bridgeGameService = new BridgeGameService();
     }
 
@@ -34,12 +35,8 @@ public class BridgeGame {
      * @return Status
      */
     public Status move() {
-        increaseAttempt();
+        attempt.increase();
         return bridgeGameService.proceedGame(bridge);
-    }
-
-    private void increaseAttempt() {
-        this.attempt++;
     }
 
     /**

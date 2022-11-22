@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Attempt;
 import bridge.domain.Command;
 import bridge.domain.Status;
 import bridge.view.InputView;
@@ -110,7 +111,7 @@ public class BridgeGameService {
     /**
     * 최종 결과를 출력할 때 사용하는 메서드
     * */
-    public void printResult(Status status, List<String> bridge, int attempt) {
+    public void printResult(Status status, List<String> bridge, Attempt attempt) {
         OutputView.printFinalGameResult();
         OutputView.printResult(bridge, userMoving);
         OutputView.printGameStatus(status);

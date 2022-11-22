@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.Attempt;
 import bridge.domain.Status;
 
 import java.util.List;
@@ -118,7 +119,7 @@ public class OutputView {
         System.out.println(FINAL_GAME_STATUS + status.getMessage());
     }
 
-    public static void printAllAttempts(int attempt) {
-        System.out.println(ALL_ATTEMPTS + attempt);
+    public static void printAllAttempts(Attempt attempt) {
+        System.out.println(ALL_ATTEMPTS + attempt.getAttempt());
     }
 }
