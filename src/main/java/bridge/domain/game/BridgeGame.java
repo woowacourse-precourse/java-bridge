@@ -1,6 +1,5 @@
 package bridge.domain.game;
 
-import bridge.domain.bridge.Bridge;
 import bridge.domain.direction.Direction;
 import bridge.domain.pedestrian.Pedestrian;
 import bridge.domain.referee.Judgement;
@@ -8,12 +7,14 @@ import bridge.domain.referee.Referee;
 
 public class BridgeGame {
 
+    private static final int MINIMUM_ROUND = 1;
+    private static final int MAXIMUM_ROUND = 2_147_483_647;
     private final Referee referee;
-    private int attempt;
+    private int round;
 
     private BridgeGame(Referee referee) {
-        this.attempt = 0;
         this.referee = referee;
+        this.round = MINIMUM_ROUND;
     }
 
     public static BridgeGame from(Referee referee) {
@@ -26,14 +27,30 @@ public class BridgeGame {
     }
 
     public void retry(Pedestrian pedestrian) {
-        pedestrian.clearRecord();
+        increaseRound();
+        pedestrian.returnToStartPoint();
     }
 
-    public int countRound() {
-        return this.attempt += 1;
+    public Round createRound() {
+        return new Round(this.round);
+    }
+
+    private void increaseRound() {
+        validateRound(this.round);
+        this.round++;
     }
 
     public boolean isSuccess(Pedestrian pedestrian) {
         return referee.isEnd(pedestrian.findLocation());
+    }
+
+    private void validateRound(int number) {
+        if (isEqualToMaximum(number)) {
+            throw new IllegalArgumentException("[ERROR] 가능한 게임 라운드를 초과하였습니다.");
+        }
+    }
+
+    private boolean isEqualToMaximum(int number) {
+        return number == MAXIMUM_ROUND;
     }
 }
