@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class BridgeMap {
     private final static String SEPARATOR = "|";
     private final static String COMMA = ",";
     private final static String START = "[ ";
-    private final static String END= "]";
+    private final static String END = "]";
 
     private final List<String> upperBridge;
     private final List<String> lowerBridge;
@@ -53,7 +52,7 @@ public class BridgeMap {
         return bridge.toString();
     }
 
-    private void addSelectBridge(boolean isMatch,List<String> selectBridge, List<String> notSelectBridge) {
+    private void addSelectBridge(boolean isMatch, List<String> selectBridge, List<String> notSelectBridge) {
         if (isMatch) {
             selectBridge.add(CORRECT);
             notSelectBridge.add(NOT_SELECTED);

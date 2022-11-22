@@ -19,6 +19,7 @@ public class BridgeGame {
 
     private final Bridge bridge = new Bridge();
     private BridgeMap bridgeMap = new BridgeMap();
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -37,7 +38,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(BridgeGameCommandType gameCommandType) {
-        if(gameCommandType.getIsRetry()) {
+        if (gameCommandType.getIsRetry()) {
             bridgeMap = new BridgeMap();
             compareCount = 0;
             challengeCount++;
@@ -46,8 +47,8 @@ public class BridgeGame {
     }
 
     public boolean isFinish(String bridgeSide) {
-        if(bridge.isLastCount(compareCount) || !bridge.isMatchBothIndexAndString(bridgeSide, compareCount - ONE)) {
-            if(bridge.isLastCount(compareCount) && bridge.isMatchBothIndexAndString(bridgeSide, compareCount - ONE)) {
+        if (bridge.isLastCount(compareCount) || !bridge.isMatchBothIndexAndString(bridgeSide, compareCount - ONE)) {
+            if (bridge.isLastCount(compareCount) && bridge.isMatchBothIndexAndString(bridgeSide, compareCount - ONE)) {
                 challengeResult = true;
             }
             return false;
@@ -56,7 +57,7 @@ public class BridgeGame {
     }
 
     public String getChallengeResultToString() {
-        if(challengeResult == true) {
+        if (challengeResult == true) {
             return SUCCESS;
         }
         return FAIL;
@@ -67,7 +68,7 @@ public class BridgeGame {
     }
 
     private void addBridgeMap(String bridgeSide) {
-        if(bridgeSide.equals(BridgeSideType.UPPER_SIDE.getSide())) {
+        if (bridgeSide.equals(BridgeSideType.UPPER_SIDE.getSide())) {
             bridgeMap.addUpperBridge(bridge.isMatchBothIndexAndString(bridgeSide, compareCount));
             return;
         }
@@ -83,5 +84,7 @@ public class BridgeGame {
         return challengeCount;
     }
 
-    public boolean getChallengeResult() { return challengeResult; }
+    public boolean getChallengeResult() {
+        return challengeResult;
+    }
 }

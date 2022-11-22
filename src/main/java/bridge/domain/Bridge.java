@@ -19,14 +19,14 @@ public class Bridge {
     }
 
     public boolean isMatchBothIndexAndString(String string, int index) {
-        if(bridge.get(index).equals(string)) {
+        if (bridge.get(index).equals(string)) {
             return true;
         }
         return false;
     }
 
     public boolean isLastCount(int count) {
-        if(count == bridge.size()) {
+        if (count == bridge.size()) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public class Bridge {
     }
 
     public List<String> createBridge(int bridgeSize) {
-        BridgeNumberGenerator bridgeNumberGenerator= new BridgeRandomNumberGenerator();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         List<String> newBridge = bridgeMaker.makeBridge(bridgeSize);

@@ -14,6 +14,7 @@ public class InputView {
     private final static int MAX_BRIDGE_SIZE = 20;
 
     private OutputView outputView = new OutputView();
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -21,7 +22,7 @@ public class InputView {
         String input = Console.readLine();
         try {
             validateInputBridgeSize(input);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.BRIDGE_SIZE_ERROR);
             return readBridgeSize();
         }
@@ -35,7 +36,7 @@ public class InputView {
         String input = Console.readLine();
         try {
             validateInputBridgeSide(input);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.BRIDGE_MOVING_ERROR);
             return readMoving();
         }
@@ -49,7 +50,7 @@ public class InputView {
         String input = Console.readLine();
         try {
             validateInputGameCommand(input);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printError(ExceptionMesssage.GAME_COMMAND_ERROR);
             return readGameCommand();
         }
@@ -74,14 +75,14 @@ public class InputView {
     }
 
     private void validateInputBridgeSide(String input) {
-        if(input.equals(BridgeSideType.UPPER_SIDE.getSide()) || input.equals(BridgeSideType.LOWER_SIDE.getSide())) {
+        if (input.equals(BridgeSideType.UPPER_SIDE.getSide()) || input.equals(BridgeSideType.LOWER_SIDE.getSide())) {
             return;
         }
         throw new IllegalArgumentException();
     }
 
     private void validateInputGameCommand(String input) {
-        if(input.equals(BridgeGameCommandType.RESTART.getGameCommand()) || input.equals(BridgeGameCommandType.QUIT.getGameCommand())) {
+        if (input.equals(BridgeGameCommandType.RESTART.getGameCommand()) || input.equals(BridgeGameCommandType.QUIT.getGameCommand())) {
             return;
         }
         throw new IllegalArgumentException();

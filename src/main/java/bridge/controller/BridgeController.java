@@ -22,7 +22,7 @@ public class BridgeController {
 
     public void moveBridge() {
         boolean isFinish = true;
-        while(isFinish) {
+        while (isFinish) {
             outputView.printAskingMovingSide();
             String bridgeSide = inputView.readMoving();
             BridgeMap bridgeMap = bridgeGame.move(bridgeSide);
@@ -48,10 +48,10 @@ public class BridgeController {
     public void executeBridgeGame() {
         startBridgeGame();
         boolean isRetry = true;
-        while(isRetry) {
+        while (isRetry) {
             moveBridge();
-            if(bridgeGame.getChallengeResult()) {
-               break;
+            if (bridgeGame.getChallengeResult()) {
+                break;
             }
             isRetry = retryBridgeGame();
         }
