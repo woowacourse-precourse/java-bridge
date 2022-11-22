@@ -50,9 +50,9 @@ public class OutputView {
         BridgeGameStstus status = bridgeGame.getStatus();
 
         for (int i = 0; i < bridgeGame.getStep() - 1; i++) {
-            parseDirection(bridge.get(i));
+            addBridgeInfoByDirection(bridge.get(i), BRIDGE_PASS);
         }
-        parseLastDirection(bridge.get(step - 1), status);
+        addBridgeInfoByDirection(bridge.get(step - 1), getPassOrFail(status));
     }
 
     private void initBridgeMap() {
@@ -60,25 +60,13 @@ public class OutputView {
         lowerBridge.clear();
     }
 
-    private void parseDirection(String dir) {
+    private void addBridgeInfoByDirection(String dir, String info) {
         if (dir.equals(BridgeMoveCommand.MOVE_UP.command)) {
-            upperBridge.add(BRIDGE_PASS);
+            upperBridge.add(info);
             lowerBridge.add(" ");
             return;
         }
-        lowerBridge.add(BRIDGE_PASS);
-        upperBridge.add(" ");
-    }
-
-    private void parseLastDirection(String dir, BridgeGameStstus status) {
-        String passOrFail = getPassOrFail(status);
-
-        if (dir.equals(BridgeMoveCommand.MOVE_UP.command)) {
-            upperBridge.add(passOrFail);
-            lowerBridge.add(" ");
-            return;
-        }
-        lowerBridge.add(passOrFail);
+        lowerBridge.add(info);
         upperBridge.add(" ");
     }
 
