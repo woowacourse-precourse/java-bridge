@@ -5,8 +5,8 @@ import bridge.domain.type.MoveResultType;
 public class BridgeWalker {
     static final int START_POSITION = 0;
     private int position;
-    private MoveRecord moveRecord;
-    private Bridge bridge;
+    private final MoveRecord moveRecord;
+    private final Bridge bridge;
 
     private BridgeWalker(MoveRecord moveRecord, Bridge bridge) {
         this.moveRecord = moveRecord;

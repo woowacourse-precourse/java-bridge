@@ -9,14 +9,14 @@ import bridge.domain.type.RoundResultType;
 public class BridgeGame {
     static final int INIT_GAME_TRY_COUNT = 0;
     private int gameTryCount;
-    private BridgeWalker bridgeWalker;
+    private final BridgeWalker bridgeWalker;
 
     private BridgeGame(BridgeWalker bridgeWalker) {
         this.bridgeWalker = bridgeWalker;
         this.gameTryCount = INIT_GAME_TRY_COUNT;
     }
 
-    public static BridgeGame from(Bridge bridge){
+    public static BridgeGame from(Bridge bridge) {
         return new BridgeGame(BridgeWalker.valueOf(bridge));
     }
 

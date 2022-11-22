@@ -1,7 +1,7 @@
 package bridge.domain;
 
-import bridge.domain.type.MoveType;
 import bridge.domain.type.MoveResultType;
+import bridge.domain.type.MoveType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package bridge.view.printer;
 
-import bridge.domain.type.MoveType;
 import bridge.domain.type.GameCommandType;
+import bridge.domain.type.MoveType;
 
 public class InputPrinter {
     public void printInputBridgeSizeMessage() {

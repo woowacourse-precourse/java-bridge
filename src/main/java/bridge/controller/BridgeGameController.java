@@ -14,8 +14,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private BridgeGame bridgeGame;
 
     public void runGame() {
@@ -52,10 +52,7 @@ public class BridgeGameController {
     }
 
     private boolean isRestart() {
-        if (getGameCommand().equals(GameCommandType.RESTART)) {
-            return true;
-        }
-        return false;
+        return getGameCommand().equals(GameCommandType.RESTART);
     }
 
     private Bridge createBridgeByUserInputSize() {
@@ -63,20 +60,20 @@ public class BridgeGameController {
         return Bridge.from(bridgeMaker.makeBridge(inputBridgeSizeByUser()));
     }
 
-    private int inputBridgeSizeByUser(){
+    private int inputBridgeSizeByUser() {
         String inputBridgeSize;
         BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
-        do{
+        do {
             inputBridgeSize = inputView.readBridgeSize();
-        } while(!isValidBridgeSize(inputBridgeSize));
+        } while (!isValidBridgeSize(inputBridgeSize));
         return bridgeSizeValidator.getValidBridgeSize(inputBridgeSize);
     }
 
-    private boolean isValidBridgeSize(String bridgeSize){
+    private boolean isValidBridgeSize(String bridgeSize) {
         BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
-        try{
+        try {
             bridgeSizeValidator.getValidBridgeSize(bridgeSize);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return false;
         }

@@ -6,8 +6,8 @@ import bridge.validator.PositionValidator;
 import java.util.List;
 
 public class Bridge {
-    final List<String> bridge;
-    PositionValidator positionValidator;
+    private final List<String> bridge;
+    private final PositionValidator positionValidator;
 
     private Bridge(List<String> bridge) {
         this.bridge = bridge;
