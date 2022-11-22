@@ -20,6 +20,7 @@ public class OutputView {
         for (int i = 0; i < printDownRoadRecord().size(); i++)
             System.out.print(printDownRoadRecord().get(i));
     }
+
     public List<String> printUpRoadRecord() {
         recordUpTable = new ArrayList<>();
         recordUpTable.add("[");
@@ -32,7 +33,6 @@ public class OutputView {
         return recordUpTable;
     }
 
-
     public List<String> printDownRoadRecord() {
         recordDownTable = new ArrayList<>();
         recordDownTable.add("[");
@@ -44,7 +44,6 @@ public class OutputView {
 
         return recordDownTable;
     }
-
 
     public void printResult(String lastFilter, int totalTrial) {
         System.out.println("최종 게임 결과");
