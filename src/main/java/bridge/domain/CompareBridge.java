@@ -15,7 +15,7 @@ public class CompareBridge {
     }
 
     public List<Boolean> canStepping(Player player) {
-        List<String> movingChoices = player.getMovingInputs();
+        List<String> movingChoices = player.getMovingChoices();
         List<Boolean> moveResults = new ArrayList<>();
         checkSameOrNot(movingChoices, moveResults);
         return moveResults;

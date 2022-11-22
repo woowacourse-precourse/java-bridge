@@ -33,7 +33,7 @@ class CompareBridgeTest {
         String panel = bridge.get(0);
 
         // when, then
-        assertThat(compareBridge.isSame(player.getMovingInputs().get(0), panel)).isTrue();
+        assertThat(compareBridge.isSame(player.getMovingChoices().get(0), panel)).isTrue();
     }
 
     @DisplayName("한 칸 이동하는 기능 테스트")
