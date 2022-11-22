@@ -2,7 +2,9 @@ package bridge;
 
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.domain.BridgeGame;
@@ -28,5 +30,14 @@ public class BridgeGameTest {
         assertEquals("O", firstMove);
         assertEquals("O", secondMove);
         assertNotEquals("O", thirdMove);
+    }
+
+    @DisplayName("retry() 메서드 테스트")
+    @Test
+    void retryTest() {
+        String moveSuccess = "O";
+        String moveFail = "X";
+        assertTrue(bridgeGame.retry(moveSuccess));
+        assertFalse(bridgeGame.retry(moveFail));
     }
 }
