@@ -74,7 +74,6 @@ class ApplicationTest extends NsTest {
     /**
      * custom test
      */
-
     @Nested
     @DisplayName("입력 예외 테스트")
     class InputExceptionTest {
@@ -148,47 +147,6 @@ class ApplicationTest extends NsTest {
                 run("3", "D", "W");
                 assertThat(output()).contains(ERROR_MESSAGE);
             }, 1);
-        }
-    }
-
-    @Nested
-    @DisplayName("재도전 테스트")
-    class RepeatTest {
-        @Test
-        @DisplayName("재도전 후 다리 생성")
-        void repeatMakeBridge() {
-            BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0, 1, 1, 1));
-            BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-
-            List<String> bridge = bridgeMaker.makeBridge(3);
-            assertThat(bridge).containsExactly("U", "D", "D");
-
-            bridge = bridgeMaker.makeBridge(3);
-            assertThat(bridge).containsExactly("U", "U", "U");
-        }
-
-        @Test
-        @DisplayName("재도전 후 게임 진행")
-        void repeatPlay() {
-            assertRandomNumberInRangeTest(() -> {
-                run("3", "U", "U", "R", "3", "D", "D", "D");
-                assertThat(output()).contains(
-                        "[ O | X ]",
-                        "[   |   ]",
-                        "[   |   |   ]",
-                        "[ O | O | O ]",
-                        "게임 성공 여부: 성공",
-                        "총 시도한 횟수: 2"
-                );
-
-                int upSideIndex = output().indexOf("[ O | X ]");
-                int downSideIndex = output().indexOf("[   |   ]");
-                assertThat(upSideIndex).isLessThan(downSideIndex);
-
-                upSideIndex = output().indexOf("[   |   |   ]");
-                downSideIndex = output().indexOf("[ O | O | O ]");
-                assertThat(upSideIndex).isLessThan(downSideIndex);
-            }, 1, 0, 1, 0, 0, 0);
         }
     }
 }

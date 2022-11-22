@@ -15,7 +15,9 @@ import static org.assertj.core.util.Lists.newArrayList;
 class UnitTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream standardOut = System.out;
+
     private final OutputView outputView = new OutputView();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     @BeforeEach
     void setUp() {
@@ -114,11 +116,9 @@ class UnitTest {
         @DisplayName("이동 도중 실패")
         void moveFailOnPath() {
             InputView inputView = new TestInputView(4, List.of("U", "D", "U"));
-
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             BridgeGame bridgeGame = new BridgeGame(bridgeMaker, inputView, outputView);
 
-            bridgeGame.move(List.of("U", "D", "D", "U"));
+            assert(bridgeGame.move(List.of("U", "D", "D", "U")) == false);
 
             assertThat(outputStreamCaptor.toString().trim())
                     .contains(
@@ -131,11 +131,9 @@ class UnitTest {
         @DisplayName("이동 마지막 실패")
         void moveFailOnEnd() {
             InputView inputView = new TestInputView(4, List.of("U", "D", "D", "D"));
-
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             BridgeGame bridgeGame = new BridgeGame(bridgeMaker, inputView, outputView);
 
-            bridgeGame.move(List.of("U", "D", "D", "U"));
+            assert(bridgeGame.move(List.of("U", "D", "D", "U")) == false);
 
             assertThat(outputStreamCaptor.toString().trim())
                     .contains(
@@ -148,17 +146,37 @@ class UnitTest {
         @DisplayName("이동 성공")
         void moveSuccess() {
             InputView inputView = new TestInputView(4, List.of("U", "D", "D", "U"));
-
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             BridgeGame bridgeGame = new BridgeGame(bridgeMaker, inputView, outputView);
 
-            bridgeGame.move(List.of("U", "D", "D", "U"));
+            assert(bridgeGame.move(List.of("U", "D", "D", "U")) == true);
 
             assertThat(outputStreamCaptor.toString().trim())
                     .contains(
                             "[ O |   |   | O ]",
                             "[   | O | O |   ]"
                     );
+        }
+    }
+
+    @Nested
+    @DisplayName("재시작 테스트")
+    class RetryTest {
+        @Test
+        @DisplayName("재시작")
+        void repeatPlay() {
+            InputView inputView = new TestInputView(4, List.of("R"));
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker, inputView, outputView);
+
+            assert(bridgeGame.retry() == true);
+        }
+
+        @Test
+        @DisplayName("포기")
+        void quittPlay() {
+            InputView inputView = new TestInputView(4, List.of("Q"));
+            BridgeGame bridgeGame = new BridgeGame(bridgeMaker, inputView, outputView);
+
+            assert(bridgeGame.retry() == false);
         }
     }
 }
