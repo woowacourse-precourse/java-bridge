@@ -53,4 +53,25 @@ public class Controller {
             return (true);
         }
     }
+
+    private boolean askRetrySafeLoop() {
+        GameStatus status = GAME_INVALID;
+        outputView.printRestartOrQuit();
+        while (status.isInvalid()) {
+            status = askRetry();
+        }
+        if (status.isContinue()) {
+            bridgeGame.retry();
+        }
+        return (status.isContinue());
+    }
+
+    private GameStatus askRetry() {
+        try {
+            return (inputView.readGameCommand());
+        } catch (IllegalArgumentException ex) {
+            outputView.printExceptionMessage(ex.getMessage());
+            return (GAME_INVALID);
+        }
+    }
 }
