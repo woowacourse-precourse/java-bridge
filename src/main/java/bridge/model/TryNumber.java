@@ -1,7 +1,11 @@
 package bridge.model;
 
 public class TryNumber {
-    private Integer tryNumber = 1;
+    private Integer tryNumber;
+
+    public TryNumber() {
+        this.tryNumber = 1;
+    }
 
     public void add() {
         tryNumber++;
