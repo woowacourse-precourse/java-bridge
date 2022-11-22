@@ -2,6 +2,8 @@ package bridge.domain;
 
 import java.util.Arrays;
 
+import static bridge.exception.ExceptionMessage.*;
+
 public enum Position {
     UP("U", 1),
     DOWN("D", 0);
@@ -22,7 +24,7 @@ public enum Position {
         return Arrays.stream(Position.values())
                 .filter(position -> position.value == value)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(""))
+                .orElseThrow(() -> new IllegalArgumentException(NOT_POSITION_VALUE_EXCEPTION.getMessage()))
                 .command;
     }
 
@@ -30,6 +32,6 @@ public enum Position {
         return Arrays.stream(Position.values())
                 .filter(position -> position.command.equals(command))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(""));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_POSITION_COMMAND_EXCEPTION.getMessage()));
     }
 }

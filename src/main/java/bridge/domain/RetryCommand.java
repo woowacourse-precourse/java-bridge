@@ -2,6 +2,8 @@ package bridge.domain;
 
 import java.util.Arrays;
 
+import static bridge.exception.ExceptionMessage.*;
+
 public enum RetryCommand {
     RETRY("R"),
     QUIT("Q");
@@ -16,7 +18,7 @@ public enum RetryCommand {
         return Arrays.stream(RetryCommand.values())
                 .filter(retryCommand -> retryCommand.command.equals(command))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(""));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_RETRY_COMMAND_EXCEPTION.getMessage()));
     }
 
     public boolean isRetry() {
