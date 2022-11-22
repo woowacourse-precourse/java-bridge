@@ -27,7 +27,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public String positionJudgement() {
+    private String positionJudgement() {
         if (bridgeNumberGenerator.generate() == Position.UP.getPositionNumber()) {
             return Position.UP.getInitial();
         }
