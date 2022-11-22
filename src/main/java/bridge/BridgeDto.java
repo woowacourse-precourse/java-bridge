@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.Player;
+
 import java.util.List;
 
 public class BridgeDto {

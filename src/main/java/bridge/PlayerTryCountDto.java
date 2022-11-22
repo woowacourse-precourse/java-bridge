@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.GameData;
+
 public class PlayerTryCountDto {
     private final int tryCount;
 

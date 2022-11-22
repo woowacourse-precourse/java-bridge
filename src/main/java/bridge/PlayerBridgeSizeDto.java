@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.Player;
+
 public class PlayerBridgeSizeDto {
     private final int bridgeSize;
 

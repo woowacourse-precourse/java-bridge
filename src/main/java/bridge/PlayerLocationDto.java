@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.GameData;
+
 public class PlayerLocationDto {
     private final int location;
 

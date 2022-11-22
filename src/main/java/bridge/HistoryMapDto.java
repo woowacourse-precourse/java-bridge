@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.GameData;
+
 public class HistoryMapDto {
     private final String historyMap;
 

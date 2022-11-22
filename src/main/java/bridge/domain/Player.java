@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain;
+
+import bridge.BridgeDto;
+import bridge.PlayerBridgeSizeDto;
 
 import java.util.List;
 
