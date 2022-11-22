@@ -32,4 +32,11 @@ public class ValidateInput {
         }
         throw new IllegalArgumentException(ERROR_MESSAGE + SPACE_TO_MOVE_ERROR_MESSAGE);
     }
+
+    public static String checkGameRetry(String space) {
+        if (space.equals("R") || space.equals("Q")) {
+            return space;
+        }
+        throw new IllegalArgumentException(ERROR_MESSAGE + GAME_RETRY_ERROR_MESSAGE);
+    }
 }
