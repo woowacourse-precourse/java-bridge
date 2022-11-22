@@ -19,8 +19,8 @@ public class OutputView {
      */
     public void printMap(BridgeGame bridgeGame) {
         GameMap gameMap = bridgeGame.getGameMap();
-        System.out.println(BRIDGE_START + joinBySeparator(gameMap.getUpstairBridge()) + BRIDGE_END);
-        System.out.println(BRIDGE_START + joinBySeparator(gameMap.getDownstairBridge()) + BRIDGE_END);
+        System.out.println(BRIDGE_START + joinBySeparator(gameMap.getUpperBridge()) + BRIDGE_END);
+        System.out.println(BRIDGE_START + joinBySeparator(gameMap.getLowerBridge()) + BRIDGE_END);
         System.out.println();
     }
 
