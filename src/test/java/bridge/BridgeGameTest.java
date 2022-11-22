@@ -30,4 +30,13 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(new OutputView(), new InputView());
         assertEquals(bridgeGame.createBridge(5).size(), 5);
     }
+
+    @DisplayName("한 턴을 실행할 때마다 점수를 계산해 리턴한다.")
+    @Test
+    void calculateScoreTest() {
+        BridgeGame bridgeGame = new BridgeGame(new OutputView(), new InputView());
+        bridgeGame.setNewBridge(List.of("U", "D", "D"));
+        assertEquals(bridgeGame.calculateScore(List.of("U", "D", "U")), 2);
+
+    }
 }
