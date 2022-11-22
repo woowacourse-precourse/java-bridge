@@ -5,7 +5,7 @@ import bridge.domain.util.StringUtils;
 import java.util.regex.Pattern;
 
 public class Place {
-    private static final String PLACE_PATTERN = "^[U|D]$";
+    private static final String PLACE_PATTERN = "^[U|D]$";  // U 또는 D
     private static final String BLANK_EXCEPTION_MESSAGE = "Null 또는 Empty 를 입력할 수 없습니다.";
     private static final String VALUE_EXCEPTION_MESSAGE = "U 또는 D 만 입력할 수 있습니다.";
 

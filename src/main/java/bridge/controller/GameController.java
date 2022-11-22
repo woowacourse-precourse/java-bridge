@@ -56,10 +56,10 @@ public class GameController {
     private void rounds(Result result, BridgeGame bridgeGame) {
         do {
             round(result, bridgeGame);
-            if (result.hasFail()) {  // 입력한 칸이 이동할 수 없는 경우
+            if (result.hasFail()) {
                 return;
             }
-        } while (!result.isSameLength()); // 정답과 입력한 이동칸의 수가 같은 경우
+        } while (!result.isSameLength());
     }
 
     private void round(Result result, BridgeGame bridgeGame) {
