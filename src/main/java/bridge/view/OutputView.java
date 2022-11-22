@@ -15,16 +15,11 @@ import static bridge.message.OutputMessage.TOTAL_TRY_COUNT_FORMAT;
 
 import bridge.model.GameStatus;
 import bridge.model.constant.MoveDirection;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import javax.swing.plaf.metal.MetalIconFactory.PaletteCloseIcon;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
