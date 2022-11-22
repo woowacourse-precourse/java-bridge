@@ -19,13 +19,11 @@ import org.junit.jupiter.api.Test;
 class ExceptionHandlerTest{
     ExceptionHandler exc = new ExceptionHandler();
     BridgeView view = new BridgeView();
-
+    StringFunction sf;
 
     interface StringFunction{
         String valid(String param);
     }
-
-    StringFunction sf;
 
     public void setInput(String input){
         InputStream in = new ByteArrayInputStream(input.getBytes());
