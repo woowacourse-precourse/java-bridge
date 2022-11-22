@@ -21,6 +21,7 @@ public class GameSystem {
     private final InputValid inputvalid = new InputValid();
 
     private String input;
+    private String userChoice;
 
     public void welcome() {
         outputView.printWelcome();
@@ -59,7 +60,7 @@ public class GameSystem {
 
     private String choiceMove() {
         outputView.printChoice();
-        String userChoice = inputView.readMoving();
+        userChoice = inputView.readMoving();
         if (inputvalid.checkChoice(userChoice) == false) {
             choiceMove();
         }
