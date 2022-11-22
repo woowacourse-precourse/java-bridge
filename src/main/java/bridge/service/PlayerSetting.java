@@ -5,6 +5,7 @@ import bridge.dto.BridgeCorrectLocationDto;
 import bridge.dto.BridgeDto;
 import bridge.dto.PlayerBridgeSizeDto;
 import bridge.exception.InputException;
+import bridge.BridgeMaker;
 
 import java.util.List;
 
