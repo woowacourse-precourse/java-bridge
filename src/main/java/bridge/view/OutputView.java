@@ -1,9 +1,6 @@
 package bridge.view;
 
-import bridge.domain.Bridge;
-import bridge.domain.GameProgress;
-import bridge.domain.GameResult;
-import bridge.domain.Move;
+import bridge.domain.*;
 
 import java.util.List;
 
@@ -11,10 +8,6 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String GOOD_BLOCK = "O";
-    private static final char GOOD_BLOCK_CHAR = GOOD_BLOCK.charAt(0);
-    private static final String BAD_BLOCK = "X";
-    private static final String BLANK_BLOCK = " ";
     private static final String START_WITH = "[ ";
     private static final String END_WITH = " ]";
     private static final String SEPARATOR = " | ";
@@ -66,10 +59,10 @@ public class OutputView {
         String row = "";
         for (String upDown : bridge) {
             if (upDown.equals(direction)) {
-                row += GOOD_BLOCK;
+                row += Block.GOOD.gerWord();
             }
             if (!upDown.equals(direction)) {
-                row += BLANK_BLOCK;
+                row += Block.BLANK.gerWord();
             }
         }
         return row;
@@ -77,8 +70,8 @@ public class OutputView {
 
     private static String replaceFailedStep(String row) {
         int rowLength = row.length();
-        if (row.charAt(rowLength - 1) == GOOD_BLOCK_CHAR) {
-            row = row.substring(0, rowLength - 1) + BAD_BLOCK;
+        if (row.charAt(rowLength - 1) == Block.GOOD.gerWord().charAt(0)) {
+            row = row.substring(0, rowLength - 1) + Block.BAD.gerWord();
         }
         return row;
     }

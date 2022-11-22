@@ -20,6 +20,7 @@
 - GameCommand
 - GameResult
 - Bridge
+- Block
 
 ## 🚀 기능 목록
 
@@ -160,3 +161,6 @@
   - [x] 다리의 길이는 3~20 사이여야 한다. - validateLength
 - [x] 다리 정보를 추가한다. - addBlock
   - [x] 추가시 다리 사이즈도 갱신한다. addLength
+
+### Block
+- [x] 다리의 칸 상태를 나타내는 용어들을 저장한다.
