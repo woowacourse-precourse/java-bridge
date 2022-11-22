@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.utils.BridgeMaker;
+import bridge.BridgeMaker;
 
 import static bridge.resources.ErrorMessage.*;
 import static bridge.resources.GameCommand.*;
