@@ -40,47 +40,11 @@ public class ControllerTest {
         String input = "3\nU\nD\nD\nR\nU\nD\nU";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
-
         bridgeGameController.run();
-
-        String expectedOutput = "다리 건너기 게임을 시작합니다.\n" +
-                "\n" +
-                "다리의 길이를 입력해주세요.\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O ]\n" +
-                "[   ]\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O |   ]\n" +
-                "[   | O ]\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O |   |   ]\n" +
-                "[   | O | X ]\n" +
-                "\n" +
-                "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O ]\n" +
-                "[   ]\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O |   ]\n" +
-                "[   | O ]\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O |   | O ]\n" +
-                "[   | O |   ]\n" +
-                "\n" +
-                "최종 게임 결과\n" +
-                "[ O |   | O ]\n" +
-                "[   | O |   ]\n" +
-                "\n" +
-                "게임 성공 여부: 성공\n" +
-                "총 시도한 횟수: 2";
-
-        assertThat(out.toString().trim())
-                .isEqualTo(expectedOutput);
+        assertThat(out.toString().trim()).contains(
+                "최종 게임 결과\n[ O |   | O ]\n[   | O |   ]"
+                , "게임 성공 여부: 성공"
+                , "총 시도한 횟수: 2");
     }
 
     @DisplayName("각 입력 마다 예외 상황에 재입력하는 시나리오")
@@ -89,52 +53,10 @@ public class ControllerTest {
         String input = "3j\n3\nU\n1D\nD\nD\n2R\nR\nU\nD\nU";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
-
         bridgeGameController.run();
-
-        String expectedOutput = "다리 건너기 게임을 시작합니다.\n" +
-                "\n" +
-                "다리의 길이를 입력해주세요.\n" +
-                "[ERROR] 숫자 타입을 입력해주세요.\n" +
-                "다리의 길이를 입력해주세요.\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O ]\n" +
-                "[   ]\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ERROR] 'U', 'D' 이 외 문자는 입력할 수 없습니다.\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O |   ]\n" +
-                "[   | O ]\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O |   |   ]\n" +
-                "[   | O | X ]\n" +
-                "\n" +
-                "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n" +
-                "[ERROR] 'R', 'Q' 이 외 문자는 입력할 수 없습니다.\n" +
-                "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O ]\n" +
-                "[   ]\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O |   ]\n" +
-                "[   | O ]\n" +
-                "\n" +
-                "이동할 칸을 선택해주세요. (위: U, 아래: D)\n" +
-                "[ O |   | O ]\n" +
-                "[   | O |   ]\n" +
-                "\n" +
-                "최종 게임 결과\n" +
-                "[ O |   | O ]\n" +
-                "[   | O |   ]\n" +
-                "\n" +
-                "게임 성공 여부: 성공\n" +
-                "총 시도한 횟수: 2";
-
-        assertThat(out.toString().trim())
-                .isEqualTo(expectedOutput);
+        assertThat(out.toString().trim()).contains(
+                "[ERROR] 숫자 타입을 입력해주세요.",
+                "[ERROR] 'R', 'Q' 이 외 문자는 입력할 수 없습니다.",
+                "[ERROR] 'R', 'Q' 이 외 문자는 입력할 수 없습니다.");
     }
 }
