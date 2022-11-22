@@ -30,6 +30,7 @@ public class BridgeMaker {
                 bridge.add("U");
             }
         }
+        System.out.println(bridge);정
         return bridge;
     }
 
@@ -39,6 +40,7 @@ public class BridgeMaker {
         for (int i=0; i<size; i++) {
             bridgeUsable.add(bridgeRandomNumberGenerator.generate());
         }
+        System.out.println(bridgeUsable);
         return bridgeUsable;
     }
 }
