@@ -24,7 +24,16 @@ public class OutputView {
     private String makePath(List<String> currentPath, List<String> answerPath, String keyString) {
 
         return IntStream.range(0, currentPath.size()).boxed()
-                .map((idx) -> (currentPath.get(idx).equals(keyString) ? (currentPath.get(idx).equals(answerPath.get(idx)) ? " O |" : " X |") : "   |")).collect(Collectors.joining());
+                .map((idx) -> getNextPathString(currentPath.get(idx), answerPath.get(idx), keyString)).collect(Collectors.joining());
+    }
+
+    private String getNextPathString(String current, String answer, String keyString) {
+        if (!current.equals(keyString))
+            return "   |";
+        if (current.equals(answer)) {
+            return " O |";
+        }
+        return " X |";
     }
 
     /**

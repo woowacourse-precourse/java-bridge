@@ -7,11 +7,12 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private final OutputView view = new OutputView();
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-
         String line = Console.readLine();
         validateNumber(line);
         return Integer.parseInt(line);
@@ -41,6 +42,9 @@ public class InputView {
             if (!Character.isDigit(line.charAt(i)))
                 throw new InputException(InputExceptionMessage.MOVE_INPUT_ERROR);
         }
+        int sz = Integer.parseInt(line);
+        if (sz < 3 || sz > 20)
+            throw new InputException(InputExceptionMessage.MOVE_INPUT_ERROR);
 
     }
 
