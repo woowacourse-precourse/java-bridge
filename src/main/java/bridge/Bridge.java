@@ -15,8 +15,9 @@ public class Bridge {
         this.bridgeSize = validate(bridgeSize);
         bridgeInit();
     }
-    public List<String> getCrossAble(){
-        return crossAble;
+
+    public List<String> getBridgeCanCross() {
+        return bridgeCanCross;
     }
     private void bridgeInit(){
         crossAble = bridgeMaker.makeBridge(bridgeSize);
@@ -48,12 +49,16 @@ public class Bridge {
         }
         return false;
     }
-    public void setBridgeMap(){
-        bridgeMap = new ArrayList<>();
-        for(int i=0;i<bridgePositionNumber;i++){
-            for(int j=0;j<bridgeSize;j++){
-                bridgeMap.add(" ");
-            }
+
+    public int getBridgeSize() {
+        return bridgeSize;
+    }
+
+    public void setBridgeUnit(){
+        bridgeMap = new LinkedHashMap<>();
+        List<String> bridgeMapUnit = new ArrayList<>();
+        for(int i=0;i<bridgeSize;i++){
+            bridgeMapUnit.add(" ");
         }
     }
     public List<String> getBridgeMap(){
