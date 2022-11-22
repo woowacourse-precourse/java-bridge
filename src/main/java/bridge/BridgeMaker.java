@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.data.Choice;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +21,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-
         for (int bridgeCount = 0; bridgeCount < size; bridgeCount++) {
             int rand = bridgeNumberGenerator.generate();
-            if (rand == 0){
-                bridge.add("D");
-            }
-            if (rand == 1) {
-                bridge.add("U");
-            }
+            bridge.addAll(Choice.UP.save(rand));
+            bridge.addAll(Choice.DOWN.save(rand));
         }
         return bridge;
     }
