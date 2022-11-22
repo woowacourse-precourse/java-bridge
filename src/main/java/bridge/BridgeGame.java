@@ -82,7 +82,12 @@ public class BridgeGame {
      * @return true : 재시도, false: 종료
      */
     public boolean checkGameCommand(String input) {
-        return true;
+        String errorMessage = ErrorCodes.RETRY_ILLEGAL_INPUT.getMessage();
+        // Q와 R 둘 중 어디에도 해당하지 않으면 에러
+        catchErrors(input.equals("R") || input.equals("Q"), errorMessage);
+
+        // 둘 중 R에 해당하면 true -> 재시작, Q일 경우 false 반환, 종료하기
+        return input.equals("R");
     }
 
     /**
