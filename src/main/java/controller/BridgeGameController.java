@@ -18,6 +18,14 @@ public class BridgeGameController {
         generateBridge();
     }
 
+    private void crossBridge() {
+        while (bridgeGame.canMove() && !bridgeGame.isWin()) {
+            move();
+            bridgeGame.saveResult();
+            outputView.printMap(bridgeGame.getResult());
+        }
+    }
+
     private void generateBridge() {
         try {
             outputView.printMessage(Message.REQUEST_BRIDGE_SIZE);

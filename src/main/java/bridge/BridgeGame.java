@@ -3,6 +3,7 @@ package bridge;
 import repository.BridgeRepository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
@@ -72,6 +73,10 @@ public class BridgeGame {
 
     public boolean isWin() {
         return bridgeRepository.getBridge().equals(bridgeRepository.getProgress());
+    }
+
+    public Map<String, List<String>> getResult() {
+        return bridgeRepository.getResult();
     }
 
     /**
