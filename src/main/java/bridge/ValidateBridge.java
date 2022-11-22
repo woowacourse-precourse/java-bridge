@@ -15,4 +15,11 @@ public class ValidateBridge {
         }
         return size;
     }
+
+    static String validateMovement(String beforeMovement) {
+        if (!beforeMovement.equals("U") && !beforeMovement.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D로 입력해야 합니다.");
+        }
+        return beforeMovement;
+    }
 }

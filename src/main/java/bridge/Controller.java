@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.ValidateBridge.validateBridgeSize;
+import static bridge.ValidateBridge.validateMovement;
 
 public class Controller {
     private InputView inputView;
@@ -13,13 +14,15 @@ public class Controller {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     }
 
     public void run() {
         String beforeValidateSize = inputView.readBridgeSize();
         int size = validateBridgeSize(beforeValidateSize);
-        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridgeMaker.makeBridge(size);
+        String BeforeMovement = inputView.readMoving();
+        String movement = validateMovement(BeforeMovement);
     }
 }
