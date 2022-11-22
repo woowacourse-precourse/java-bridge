@@ -14,7 +14,7 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = makeBridgeException(bridgeMaker);
         BridgeGame bridgeGame = new BridgeGame(bridge, new Player(new Map()));
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        OutputView.printStart();
         playGame(bridgeGame);
         OutputView.printResult(bridgeGame);
     }
