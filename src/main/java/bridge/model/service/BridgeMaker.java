@@ -9,10 +9,10 @@ import java.util.*;
  */
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
+    private final BridgeNumberGenerator BRIDGE_NUMBER_GENERATOR;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
+        this.BRIDGE_NUMBER_GENERATOR = bridgeNumberGenerator;
     }
 
     /**
@@ -23,7 +23,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            int randomNumber = bridgeNumberGenerator.generate();
+            int randomNumber = BRIDGE_NUMBER_GENERATOR.generate();
             bridge.add(returnBridgeValue(randomNumber));
         }
 

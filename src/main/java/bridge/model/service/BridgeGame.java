@@ -8,11 +8,12 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final BridgeMaker BRIDGE_MAKER = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private List<String> bridge;
+    private final BridgeMaker BRIDGE_MAKER;
+    private final List<String> BRIDGE;
 
     public BridgeGame(int bridgeSize) {
-        bridge = BRIDGE_MAKER.makeBridge(bridgeSize);
+        BRIDGE_MAKER = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BRIDGE = BRIDGE_MAKER.makeBridge(bridgeSize);
     }
 
     /**
@@ -29,7 +30,7 @@ public class BridgeGame {
     }
 
     public boolean isCorrectAnswer(String moveAnswer, int index) {
-        if (!bridge.get(index).equals(moveAnswer)) {
+        if (!BRIDGE.get(index).equals(moveAnswer)) {
             return false;
         }
 
