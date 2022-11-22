@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.UserBridge;
+import bridge.domain.User;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -51,7 +51,7 @@ public class OutputView {
             secondMap.append(PARTITION);
         }
         showMovement(movement, isCorrect);
-        printMidResult();
+        printCurrentResult();
     }
 
     public void showMovement(String movement, boolean isCorrect){
@@ -83,16 +83,27 @@ public class OutputView {
         firstMap.append(SPACE);
     }
 
-    public void printMidResult(){
+    public void printCurrentResult(){
         System.out.println(BEGIN_MAP + firstMap + END_MAP);
         System.out.println(BEGIN_MAP + secondMap + END_MAP);
     }
 
-    public void printResult() {
+    public void printResult(User user) {
         /**
          * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
          * <p>
          * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
          */
+        System.out.println("최종 게임 결과");
+        printCurrentResult();
+        System.out.println("\n게임 성공 여부: " + getStatus(user.isSuccessful()));
+        System.out.println("총 시도한 횟수: " + user.getTrial());
+    }
+
+    public String getStatus(boolean isSuccess){
+        if(isSuccess){
+            return "성공";
+        }
+        return "실패";
     }
 }
