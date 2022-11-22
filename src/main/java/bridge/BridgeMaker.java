@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class BridgeMaker {
     }
 
     public List<String> transmitBridge() {
+        OutputView.requestReadBridgeSizeMessage();
         InputView inputView = new InputView();
         int size = inputView.readBridgeSize();
         return makeBridge(size);

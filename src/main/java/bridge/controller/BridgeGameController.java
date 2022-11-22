@@ -21,6 +21,7 @@ public class BridgeGameController {
     private int attempts = 1;
 
     public void run() {
+        outputView.requestStartMessage();
         while (true) {
             resultMap = new ArrayList<>();
             if (isEnd()){
@@ -44,10 +45,10 @@ public class BridgeGameController {
 
     private boolean isSuccessfulCrossing() {
         for (String block : bridge) {
+            outputView.requestReadMovingMessage();
             String currentMoving = inputView.readMoving();
             boolean isSuccess = bridgeGame.move(block, currentMoving);
-            List<String> newMap = outputView.printMap(currentMoving, isSuccess, resultMap);
-            resultMap.add(newMap);
+            addNewMap(currentMoving, isSuccess);
             if (!isSuccess) {
                 return false;
             }
@@ -55,7 +56,14 @@ public class BridgeGameController {
         return true;
     }
 
+    private void addNewMap(String currentMoving, boolean isSuccess){
+        List<String> newMap = outputView.printMap(currentMoving, isSuccess, resultMap);
+        resultMap.add(newMap);
+    }
+
+
     private boolean isRetry() {
+        outputView.requestReadGameCommandMessage();
         String inputForRestart = inputView.readGameCommand();
         //최종 게임 결과
         return bridgeGame.retry(inputForRestart);
