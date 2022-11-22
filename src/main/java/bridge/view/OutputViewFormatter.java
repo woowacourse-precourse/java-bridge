@@ -21,7 +21,7 @@ public class OutputViewFormatter {
         return "[ " + String.join(" | ", results) + " ]";
     }
 
-    String resultFormat(final BridgeGame bridgeGame) {
+    String finalResultFormat(final BridgeGame bridgeGame) {
         return new StringJoiner("\n")
                 .add("최종 게임 결과")
                 .add(bridgeFormat(bridgeGame.moveResults()))

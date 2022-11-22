@@ -20,6 +20,6 @@ public class OutputView {
     }
 
     public void printResult(final BridgeGame bridgeGame) {
-        System.out.println(outputViewFormatter.resultFormat(bridgeGame));
+        System.out.println(outputViewFormatter.finalResultFormat(bridgeGame));
     }
 }
