@@ -3,6 +3,8 @@ package bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController {
@@ -25,6 +27,26 @@ public class GameController {
     return new Bridge(bridgeMaker.makeBridge(size)
             .stream().map(Direction::findByValue)
             .collect(Collectors.toList()));
+  }
+
+  public Direction getMove() {
+    return inputView.readMoving();
+  }
+
+  public boolean canCross(Direction bridgeDirection, Direction userDirection) {
+    return bridgeDirection.equals(userDirection);
+  }
+
+  public List<Cross> move(Bridge bridge) {
+    List<Cross> crossResult = new ArrayList<>();
+    for (Direction bridgeDirection : bridge.getDirections()) {
+      Direction userDirection = getMove();
+      crossResult.add(new Cross(userDirection, canCross(bridgeDirection, userDirection)));
+      if (!canCross(bridgeDirection, userDirection)) {
+        return crossResult;
+      }
+    }
+    return crossResult;
   }
 
 }
