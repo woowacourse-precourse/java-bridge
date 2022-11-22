@@ -2,7 +2,6 @@ package bridge.domain;
 
 import bridge.util.BridgePosition;
 import bridge.util.GameCommand;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

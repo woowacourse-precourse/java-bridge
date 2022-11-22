@@ -29,15 +29,15 @@ public class User {
         this.movements = new ArrayList<>();
     }
 
-    public String getBlockResult(BridgePosition bridgePosition, int index) {
-        if (bridgePosition.isEqualToBridgePosition(movements.get(index))) {
-            return getMovedResult(movements.get(index), index);
+    public String getBlockResult(BridgePosition bridgePosition, int point) {
+        if (bridgePosition.isEqualToBridgePosition(movements.get(point))) {
+            return getMovedResult(movements.get(point), point);
         }
         return BridgeBlock.NOT_MOVED.getBlock();
     }
 
-    public String getMovedResult(String movingPosition, int index) {
-        if (bridge.isMovable(movingPosition, index)) {
+    private String getMovedResult(String movingPosition, int point) {
+        if (bridge.isMovable(movingPosition, point)) {
             return BridgeBlock.SUCCESS_MOVED.getBlock();
         }
         return BridgeBlock.FAIL_MOVED.getBlock();

@@ -22,12 +22,11 @@ public class BridgeGameProcessor {
         outputView.printStartMessage();
         BridgeGame bridgeGame = startBridgeGame(setUser(setBridge(bridgeMaker)));
 
-        while (!isOver(bridgeGame)) {
-        }
+        while (!isOver(bridgeGame)) { }
     }
 
     private boolean isOver(BridgeGame bridgeGame) {
-        if (!isContinueMoving(bridgeGame)) {
+        if (!isKeepMoving(bridgeGame)) {
             outputView.printResult(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.FAILURE);
             return true;
         }
@@ -38,17 +37,17 @@ public class BridgeGameProcessor {
         return false;
     }
 
-    private boolean isContinueMoving(BridgeGame bridgeGame) {
-        boolean isSuccessMoving = isSuccessMoving(bridgeGame);
+    private boolean isKeepMoving(BridgeGame bridgeGame) {
+        boolean isSuccessMoving = isSuccessMoved(bridgeGame);
         outputView.printMap(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult());
         if (isSuccessMoving) {
             return true;
         }
 
-        return isRetry(bridgeGame);
+        return isRetried(bridgeGame);
     }
 
-    private boolean isRetry(BridgeGame bridgeGame) {
+    private boolean isRetried(BridgeGame bridgeGame) {
         while (true) {
             try {
                 outputView.printGameCommandSelectionMessage();
@@ -59,7 +58,7 @@ public class BridgeGameProcessor {
         }
     }
 
-    private boolean isSuccessMoving(BridgeGame bridgeGame) {
+    private boolean isSuccessMoved(BridgeGame bridgeGame) {
         while (true) {
             try {
                 outputView.printPositionSelectionMessage();
