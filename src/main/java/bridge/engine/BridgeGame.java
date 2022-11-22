@@ -22,9 +22,6 @@ public class BridgeGame {
     /*브릿지 게임의 상태별 행동을 정의한 인터페이스*/
     private BridgeState state;
 
-    /*시작 상태의 행위들을 정의함*/
-    private BridgeStartState startState;
-
     /*이동 상태의 행위들을 정의함*/
     private BridgeMoveState moveState;
 
@@ -37,7 +34,6 @@ public class BridgeGame {
         this.bridge = new ArrayList<>();
         this.userDirection = new ArrayList<>();
         this.state = new BridgeStartState(this);
-        this.startState = new BridgeStartState(this);
         this.moveState = new BridgeMoveState(this);
         this.retryState = new BridgeRetryState(this);
     }
