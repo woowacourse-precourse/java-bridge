@@ -1,5 +1,8 @@
-package bridge;
+package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.exeption.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

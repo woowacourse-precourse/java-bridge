@@ -1,4 +1,4 @@
-package bridge;
+package bridge.exeption;
 
 public enum ExceptionMessage {
     incorrectSize("[ERROR] 숫자를 입력해주세요."),
