@@ -23,8 +23,15 @@ public class BridgeMaker {
         int randomNumber;
         for (int i = 0; i < size; i++) {
             randomNumber = bridgeNumberGenerator.generate();
-            bridge.add(Integer.toString(randomNumber));
+            bridge.add(getUpOrDownWithNum(randomNumber));
         }
         return bridge;
+    }
+
+    public String getUpOrDownWithNum(int number) {
+        if (number == 0) {
+            return "U";
+        }
+        return "D";
     }
 }
