@@ -27,6 +27,11 @@ public class OutputView {
         System.out.println("[ERROR] " + errMsg);
     }
 
+    public void printCrossResult(List<String> upBridgeResult, List<String> downBridgeResult){
+        printMap(upBridgeResult);
+        printMap(downBridgeResult);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
