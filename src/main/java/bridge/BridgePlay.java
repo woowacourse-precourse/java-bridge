@@ -13,11 +13,14 @@ public class BridgePlay {
 
     private final BridgeMaker bridgeMaker;
 
+    private final BridgePlayer bridgePlayer;
+
     private BridgeGame bridgeGame;
 
     public BridgePlay() {
         inputView = new InputView();
-        outputView = new OutputView();
+        bridgePlayer = new BridgePlayer();
+        outputView = new OutputView(bridgePlayer);
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
@@ -25,16 +28,36 @@ public class BridgePlay {
         outputView.printStartMessage();
         int bridgeLength = getBridgeLength();
         makeBridge(bridgeLength);
+        startGame();
+        outputView.printResult();
+    }
+
+    private void startGame() {
+        while(bridgeGame.isNotGameEnd()) {
+            getPlayerMove();
+            crossBridge();
+            if(bridgePlayer.checkMoveSuccess()) {
+                bridgeGame.retry(false);
+                continue;
+            }
+            getPlayControlNumber();
+            if (bridgePlayer.isRestart()) {
+                bridgeGame.retry(true);
+                continue;
+            }
+            break;
+        }
+    }
+
+    private void crossBridge() {
+        outputView.printPlayerMoveMessage();
+        bridgeGame.move();
+        outputView.printMap(bridgeGame.getRetryStatus());
     }
 
     private void makeBridge(int bridgeLength) {
         List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
-        bridgeGame = new BridgeGame(bridge);
-    }
-
-    private String getPlayControlNumber() {
-        outputView.printPlayControlMessage();
-        return inputView.readGameCommand();
+        bridgeGame = new BridgeGame(bridge, bridgePlayer);
     }
 
     private int getBridgeLength() {
@@ -42,8 +65,15 @@ public class BridgePlay {
         return inputView.readBridgeLength();
     }
 
-    private String getPlayerMove() {
+    private void getPlayerMove() {
         outputView.printPlayerMoveMessage();
-        return inputView.readMoving();
+        String moveNumber = inputView.readMoving();
+        bridgePlayer.saveInputCommand(moveNumber);
+    }
+
+    private void getPlayControlNumber() {
+        outputView.printPlayControlMessage();
+        String controlNumber = inputView.readGameCommand();
+        bridgePlayer.saveInputCommand(controlNumber);
     }
 }
