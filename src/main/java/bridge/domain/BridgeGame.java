@@ -2,14 +2,15 @@ package bridge.domain;
 
 import bridge.handler.InputRestartHandler;
 import bridge.service.BridgeMoveStepService;
+import bridge.view.BridgeFlag;
 import bridge.view.PrintView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
-    private static final int ZERO = 0;
-    public static int checkResultFlag = 0;
+    private final int ZERO = 0;
+    public static int bridgeFlag = 0;
     public static int retryCount = 0;
     public List<String> upSide = new ArrayList<>();
     public List<String> downSide = new ArrayList<>();
@@ -42,7 +43,7 @@ public class BridgeGame {
         printFirstStep();
 
         if (upSide.get(ZERO).contains("X") || downSide.get(ZERO).contains("X")) {
-            checkResultFlag = 1;
+            bridgeFlag = BridgeFlag.FAIL.getNumber();
             printView.lineSkip();
             System.out.println(printView.EXIT_OR_CONTINUE);
             checkExitOrQuit(inputRestartHandler.checkValidator(printView.exitOrContinue()));
@@ -76,7 +77,7 @@ public class BridgeGame {
     }
 
     private void checkQuitOrContinue() {
-        checkResultFlag = 1;
+        bridgeFlag = BridgeFlag.FAIL.getNumber();
         printView.lineSkip();
         System.out.println(printView.EXIT_OR_CONTINUE);
         String checkRestart = retry();

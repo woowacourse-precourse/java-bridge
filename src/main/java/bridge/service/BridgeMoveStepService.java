@@ -12,7 +12,7 @@ public class BridgeMoveStepService {
     public void pickRestart(List<String> upSide, List<String> downSide) {
         OutputView outputView = new OutputView();
 
-        BridgeGame.checkResultFlag = 0;
+        BridgeGame.bridgeFlag = 0;
         upSide.clear();
         downSide.clear();
         outputView.stepBridge(BridgeController.bridgeData);
