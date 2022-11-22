@@ -18,8 +18,10 @@ public class BridgeControl {
 
     public void start() {
         //게임 시작 메시지 출력
+        outputView.printGameStart();
 
         //다리 길이 입력받기
+        getBridgeSize();
 
         //다리 생성
 
@@ -27,5 +29,12 @@ public class BridgeControl {
         
         //결과 출력
     }
-
+    private void getBridgeSize(){
+        try {
+            int size = inputView.readBridgeSize();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
