@@ -11,13 +11,16 @@ import java.util.List;
 
 import static bridge.message.ValidateMessage.INVALID_INPUT;
 import static bridge.message.ValidateMessage.OUT_OF_RANGE;
-import static bridge.util.BridgeUtil.*;
+import static bridge.util.BridgeUtil.BINARY_UP;
+import static bridge.util.BridgeUtil.UP;
 import static bridge.util.BridgeUtil.DOWN;
 import static bridge.util.GameCommand.QUIT;
 import static bridge.util.GameCommand.RESTART;
 import static bridge.util.View.SPACE;
 import static bridge.util.View.ANSWER_RESULT;
 import static bridge.util.View.WRONG_ANSWER_RESULT;
+import static bridge.util.BridgeUtil.MIN_BRIDGE_SIZE;
+import static bridge.util.BridgeUtil.MAX_BRIDGE_SIZE;
 
 public class BridgeGame {
 
