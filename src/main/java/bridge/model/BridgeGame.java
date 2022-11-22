@@ -18,12 +18,15 @@ public class BridgeGame {
     private List<String> upPresentBridge;
     private List<String> downPresentBridge;
     private List<String> userMoveList;
+    private String gameSuccess;
+    private int gameCount=1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge=bridge;
         upPresentBridge=new ArrayList<>();
         downPresentBridge=new ArrayList<>();
         userMoveList=new ArrayList<>();
+        gameSuccess="성공";
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -41,6 +44,7 @@ public class BridgeGame {
             }
             upPresentBridge.add("X");
             downPresentBridge.add("O");
+            gameSuccess="실패";
             return;
         }
         if (bridge.get(userMoveList.size() - 1).equals(userMove)) {
@@ -50,6 +54,7 @@ public class BridgeGame {
         }
         upPresentBridge.add("O");
         downPresentBridge.add("X");
+        gameSuccess="실패";
     }
 
     /**
@@ -58,6 +63,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        upPresentBridge.clear();
+        downPresentBridge.clear();
+        gameSuccess="성공";
+        userMoveList.clear();
     }
 
     public List<String> getUpPresentBridge() {
@@ -74,5 +83,17 @@ public class BridgeGame {
 
     public List<String> getUserMoveList() {
         return userMoveList;
+    }
+
+    public String getGameSuccess() {
+        return gameSuccess;
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
+
+    public void totalGamePlus(){
+        gameCount++;
     }
 }
