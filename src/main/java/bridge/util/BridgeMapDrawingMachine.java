@@ -6,7 +6,7 @@ import bridge.domain.Result;
 
 import java.util.List;
 
-public class BridgeMapDrawer {
+public class BridgeMapDrawingMachine {
 
     public static final String BLANK = "   |";
     public static final String O = " O |";

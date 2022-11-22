@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.domain.GameStatus;
 import bridge.domain.Result;
-import bridge.util.BridgeMapDrawer;
+import bridge.util.BridgeMapDrawingMachine;
 
 
 /**
@@ -16,7 +16,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Result result) {
-        String map = BridgeMapDrawer.draw(result);
+        String map = BridgeMapDrawingMachine.draw(result);
         System.out.println(map);
     }
 

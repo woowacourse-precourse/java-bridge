@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BridgeMapDrawerTest {
+class BridgeMapDrawingMachineTest {
     private static OutputStream consoleOut;
 
 
@@ -27,7 +27,7 @@ class BridgeMapDrawerTest {
     void 맵_그리기_테스트1() {
         Result failResult = Result.fail(new Bridge(List.of("U", "D", "D")));
 
-        String map = BridgeMapDrawer.draw(failResult);
+        String map = BridgeMapDrawingMachine.draw(failResult);
         System.out.println(map);
 
         String printOut = consoleOut.toString().trim();
@@ -42,7 +42,7 @@ class BridgeMapDrawerTest {
     void 맵_그리기_테스트2() {
         Result successResult = Result.success(new Bridge(List.of("U", "D", "D")));
 
-        String map = BridgeMapDrawer.draw(successResult);
+        String map = BridgeMapDrawingMachine.draw(successResult);
         System.out.println(map);
 
         String printOut = consoleOut.toString().trim();
@@ -57,7 +57,7 @@ class BridgeMapDrawerTest {
     void 맵_그리기_테스트3() {
         Result successResult = Result.success(new Bridge(List.of("U", "D", "D", "U")));
 
-        String map = BridgeMapDrawer.draw(successResult);
+        String map = BridgeMapDrawingMachine.draw(successResult);
         System.out.println(map);
 
         String printOut = consoleOut.toString().trim();
@@ -73,7 +73,7 @@ class BridgeMapDrawerTest {
     void 맵_그리기_테스트4() {
         Result successResult = Result.fail(new Bridge(List.of("U", "D", "D", "U")));
 
-        String map = BridgeMapDrawer.draw(successResult);
+        String map = BridgeMapDrawingMachine.draw(successResult);
         System.out.println(map);
 
         String printOut = consoleOut.toString().trim();
