@@ -8,8 +8,7 @@ public class BridgeMachine {
 
     private boolean chooseReplay(BridgeGame bridgeGame, Bridge bridge) {
         OutputView.printMap(bridge.getBridgeMap(), index);
-        String replay = getReplayCommand();
-        if (checkReplay(bridgeGame, bridge, replay)) return false;
+        if (checkReplay(bridgeGame, bridge, getReplayCommand())) return false;
         return true;
     }
     private boolean checkReplay(BridgeGame bridgeGame, Bridge bridge, String replay) {
