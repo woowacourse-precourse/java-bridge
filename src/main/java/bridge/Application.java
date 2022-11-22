@@ -9,7 +9,8 @@ public class Application {
         Controller controller = new Controller(new BridgeGameService(), new InputView(), new OutputView());
         try {
             controller.start();
-            controller.move();
+            controller.play();
+            controller.print();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

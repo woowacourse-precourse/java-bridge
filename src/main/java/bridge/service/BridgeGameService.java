@@ -17,8 +17,9 @@ public class BridgeGameService {
         game = new BridgeGame(bridge);
     }
 
-    public void move(String direction) {
+    public Result move(String direction) {
         game.move(direction);
+        return game.getResult();
     }
 
     public void retry() {

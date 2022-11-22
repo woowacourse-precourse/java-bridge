@@ -22,22 +22,31 @@ public class Controller {
         service.makeBridge(size);
     }
 
-    public void move() {
+    public void play() {
         while (true) {
             String moving = inputView.readMoving();
-            service.move(moving);
-            Result result = service.getResult();
+            Result result = service.move(moving);
             outputView.printMap(result);
-            if (result.getState() == State.Win) {
+            if (isWin(result)) {
                 break;
             }
-            if (result.getState() == State.Loss) {
+            if (isLoss(result)) {
                 String s = inputView.readGameCommand();
                 if ("Q".equals(s)) break;
                 service.retry();
             }
         }
-        // 끝난거면 결과 출력
+    }
+
+    private boolean isLoss(Result result) {
+        return result.getState() == State.Loss;
+    }
+
+    private boolean isWin(Result result) {
+        return result.getState() == State.Win;
+    }
+
+    public void print() {
         Result result = service.getResult();
         outputView.printResult(result);
     }
