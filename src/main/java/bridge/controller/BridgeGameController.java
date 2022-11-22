@@ -21,6 +21,6 @@ public class BridgeGameController {
     public void bridgeGameStart() {
         System.out.println(UIMessage.INFO_GAME_START.getValue());
         bridgeGameInputService.createBridge();
-        bridgeGameInputService.readMoving();
+        bridgeGameInputService.moveBridge();
     }
 }
