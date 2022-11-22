@@ -43,7 +43,7 @@ class InputViewTest {
     @DisplayName(" R 와 Q 중 하나가 아닐때 예외처리")
     @ValueSource(strings = {"0", "-1", "D", "U"})
     @ParameterizedTest
-    void  GameCommandValidate(String input)  {
+    void GameCommandValidate(String input) {
         assertThatThrownBy(() -> inputView.GameCommandValidate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }

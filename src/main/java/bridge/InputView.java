@@ -55,6 +55,7 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         return movingValidateRetry(Console.readLine());
     }
+
     public String movingValidateRetry(String input) {
         try {
             return movingValidate(input);
