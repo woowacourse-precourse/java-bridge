@@ -59,4 +59,15 @@ class BridgeGameTest {
         assertTrue(actual);
     }
 
+    @Test
+    void IsFailedMethodSucceedTest() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("D", "U", "D"));
+        String direction = "D";
+        bridgeGame.move(direction);
+
+        boolean actual = bridgeGame.isFailed();
+
+        assertFalse(actual);
+    }
+
 }
