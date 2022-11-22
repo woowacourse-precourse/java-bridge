@@ -11,7 +11,6 @@ public class BridgeGame {
     private Bridge bridge;
     private User user;
     private BridgeMaker bridgeMaker;
-    private Boolean retryInput;
     public BridgeGame(){
         user = new User();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -51,17 +50,11 @@ public class BridgeGame {
     public void inputBridgeSize(int input){
         bridge = new Bridge(bridgeMaker.makeBridge(input));
     }
-    public Boolean isSuccess(){
-        return user.getResult();
-    }
     public Bridge getBridge(){
         return this.bridge;
     }
     public User getUser(){
         return this.user;
-    }
-    public Boolean getRetryInput(){
-        return this.retryInput;
     }
     public void setBridge(Bridge bridge){this.bridge = bridge;}
 }
