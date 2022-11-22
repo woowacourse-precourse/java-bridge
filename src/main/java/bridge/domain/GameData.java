@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.service.PlayerCommend;
+import bridge.PlayerCommend;
 
 import java.util.ArrayList;
 import java.util.List;

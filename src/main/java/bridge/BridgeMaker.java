@@ -1,13 +1,11 @@
 package bridge;
 
-import bridge.service.BridgeNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static bridge.service.BridgeLayer.LOWER_LAYER;
-import static bridge.service.BridgeLayer.UPPER_LAYER;
+import static bridge.BridgeLayer.LOWER_LAYER;
+import static bridge.BridgeLayer.UPPER_LAYER;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.

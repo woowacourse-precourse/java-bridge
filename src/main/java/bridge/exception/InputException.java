@@ -1,6 +1,6 @@
 package bridge.exception;
 
-import static bridge.service.PlayerCommend.*;
+import static bridge.PlayerCommend.*;
 
 public class InputException extends IllegalArgumentException {
     private static final int MAX_SIZE = 20;

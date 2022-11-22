@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 public enum PlayerCommend {
     MOVE_UPPER("U"),
