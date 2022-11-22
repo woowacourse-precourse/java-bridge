@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BridgeResult {
+
     private final List<String> upBlocks;
     private final List<String> downBlocks;
 

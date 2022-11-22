@@ -8,6 +8,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
 public class Bridge {
+
     private static final String INPUT_NOT_INTEGER_ERROR = "[ERROR] 생성할 다리의 길이는 정수만 입력이 가능합니다.";
     private static final String INPUT_VALID_RANGE_OF_NUMBER_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
@@ -17,10 +18,6 @@ public class Bridge {
         validateBridgeSize(input);
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.blocks = bridgeMaker.makeBridge(parseInt(input));
-    }
-
-    public List<String> getBlocks() {
-        return blocks;
     }
 
     public int getSize() {

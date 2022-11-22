@@ -4,6 +4,7 @@ import bridge.domain.bridge.Bridge;
 import bridge.view.InputView;
 
 public class InputHandler {
+
     private static final String INPUT_VALUE_LENGTH_ERROR = "[ERROR] 입력 값의 길이는 1이어야 합니다.";
     private static final String INPUT_BLOCK_TO_MOVE_ERROR = "[ERROR] 이동할 칸은 U 또는 D 중 하나의 문자여야 합니다.";
     private static final String INPUT_GAME_COMMAND_ERROR = "[ERROR] 게임 재시작/종료 값은 R 또는 Q 중 하나의 문자여야 합니다.";
