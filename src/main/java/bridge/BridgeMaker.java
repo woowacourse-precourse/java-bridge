@@ -1,5 +1,8 @@
 package bridge;
 
+
+
+import constant.Message;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +34,9 @@ public class BridgeMaker {
 
     public void appendBridge(List<String> bridge) {
         if (bridgeNumberGenerator.generate() == UP) {
-            bridge.add("U");
+            bridge.add(Message.UP);
             return;
         }
-        bridge.add("D");
+        bridge.add(Message.DOWN);
     }
 }
