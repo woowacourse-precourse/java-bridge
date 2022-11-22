@@ -10,7 +10,7 @@ public class BridgeCrossingHistory {
         this.downLine = downLine;
     }
 
-    public void updateStatus(String upOrDown){
+    public void updateHistory(String upOrDown){
         statusUtil.checkLineElementsExists(upLine,downLine);
         if(upOrDown.equals("U")){
             upLine.append("O");
@@ -26,7 +26,7 @@ public class BridgeCrossingHistory {
         downLine.delete(0,downLine.length());
     }
 
-    public String getBridgeStatus(String upOrDown, boolean isLastPickIsRight){
+    public String getBridgeHistory(String upOrDown, boolean isLastPickIsRight){
         if(upOrDown.equals("U")){
             StringBuilder getStatus = new StringBuilder(upLine);
             return statusUtil.checkLastAndPacking(getStatus,isLastPickIsRight);

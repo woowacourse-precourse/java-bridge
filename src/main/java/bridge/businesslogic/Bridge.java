@@ -26,7 +26,7 @@ public class Bridge {
 
     public void crossBridge(String userPick){
         currentlyCrossedBridge.add(userPick);
-        status.updateStatus(userPick);
+        status.updateHistory(userPick);
     }
 
     public void reset(){
@@ -40,8 +40,8 @@ public class Bridge {
 
     public List<String> getAlreadyCrossedBridge(boolean isLastPickIsRight){
         return List.of(
-                status.getBridgeStatus("U",isLastPickIsRight),
-                status.getBridgeStatus("D",isLastPickIsRight)
+                status.getBridgeHistory("U",isLastPickIsRight),
+                status.getBridgeHistory("D",isLastPickIsRight)
         );
     }
 }

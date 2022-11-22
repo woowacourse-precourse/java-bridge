@@ -1,10 +1,10 @@
 package bridge.businesslogic.bridgehistorystatus;
 
 public class BridgeHistoryUtil {
-    public void checkLast(StringBuilder targetStatus,boolean isLastPickIsRight){
-        if(!isLastPickIsRight && targetStatus.charAt(targetStatus.length() - 1) == 'O'){
-            targetStatus.deleteCharAt(targetStatus.length() -1);
-            targetStatus.append("X");
+    public void checkLast(StringBuilder targetHistory,boolean isLastPickIsRight){
+        if(!isLastPickIsRight && targetHistory.charAt(targetHistory.length() - 1) == 'O'){
+            targetHistory.deleteCharAt(targetHistory.length() -1);
+            targetHistory.append("X");
         }
     }
 

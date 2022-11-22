@@ -19,7 +19,7 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder();
             StringBuilder downLine = new StringBuilder();
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            bridgeCrossing.updateStatus("U");
+            bridgeCrossing.updateHistory("U");
             assertThat(upLine.toString()).isEqualTo("O");
             assertThat(downLine.toString()).isEqualTo(" ");
         }
@@ -30,7 +30,7 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder();
             StringBuilder downLine = new StringBuilder();
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            bridgeCrossing.updateStatus("D");
+            bridgeCrossing.updateHistory("D");
             assertThat(upLine.toString()).isEqualTo(" ");
             assertThat(downLine.toString()).isEqualTo("O");
         }
@@ -41,7 +41,7 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder("O");
             StringBuilder downLine = new StringBuilder(" ");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            bridgeCrossing.updateStatus("U");
+            bridgeCrossing.updateHistory("U");
             assertThat(upLine.toString()).isEqualTo("O | O");
             assertThat(downLine.toString()).isEqualTo("  |  ");
         }
@@ -52,7 +52,7 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder("O");
             StringBuilder downLine = new StringBuilder(" ");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            bridgeCrossing.updateStatus("D");
+            bridgeCrossing.updateHistory("D");
             assertThat(upLine.toString()).isEqualTo("O |  ");
             assertThat(downLine.toString()).isEqualTo("  | O");
         }
@@ -92,8 +92,8 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder("O");
             StringBuilder downLine = new StringBuilder(" ");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O ]");
-            assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   ]");
+            assertThat(bridgeCrossing.getBridgeHistory("U",true)).isEqualTo("[ O ]");
+            assertThat(bridgeCrossing.getBridgeHistory("D",true)).isEqualTo("[   ]");
         }
 
         @DisplayName("첫 선택이 아래면서, 정답을 맞췄을 때의 BridgeStatus")
@@ -102,8 +102,8 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder(" ");
             StringBuilder downLine = new StringBuilder("O");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[   ]");
-            assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[ O ]");
+            assertThat(bridgeCrossing.getBridgeHistory("U",true)).isEqualTo("[   ]");
+            assertThat(bridgeCrossing.getBridgeHistory("D",true)).isEqualTo("[ O ]");
         }
 
         @DisplayName("첫 선택이 위면서, 정답을 틀렸을 때의 BridgeStatus")
@@ -112,8 +112,8 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder("O");
             StringBuilder downLine = new StringBuilder(" ");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ X ]");
-            assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   ]");
+            assertThat(bridgeCrossing.getBridgeHistory("U",false)).isEqualTo("[ X ]");
+            assertThat(bridgeCrossing.getBridgeHistory("D",false)).isEqualTo("[   ]");
         }
 
         @DisplayName("첫 선택이 아래면서, 정답을 틀렸을 때의 BridgeStatus")
@@ -122,8 +122,8 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder(" ");
             StringBuilder downLine = new StringBuilder("O");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[   ]");
-            assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[ X ]");
+            assertThat(bridgeCrossing.getBridgeHistory("U",false)).isEqualTo("[   ]");
+            assertThat(bridgeCrossing.getBridgeHistory("D",false)).isEqualTo("[ X ]");
         }
 
         @DisplayName("마지막 선택이 위면서, 정답을 맞았을 때의 BridgeStatus")
@@ -132,8 +132,8 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder("O | O");
             StringBuilder downLine = new StringBuilder("  |  ");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O | O ]");
-            assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   |   ]");
+            assertThat(bridgeCrossing.getBridgeHistory("U",true)).isEqualTo("[ O | O ]");
+            assertThat(bridgeCrossing.getBridgeHistory("D",true)).isEqualTo("[   |   ]");
         }
 
         @DisplayName("마지막 선택이 위면서, 정답을 틀렸을 때의 BridgeStatus")
@@ -142,8 +142,8 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder("O | O");
             StringBuilder downLine = new StringBuilder("  |  ");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ O | X ]");
-            assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   |   ]");
+            assertThat(bridgeCrossing.getBridgeHistory("U",false)).isEqualTo("[ O | X ]");
+            assertThat(bridgeCrossing.getBridgeHistory("D",false)).isEqualTo("[   |   ]");
         }
 
         @DisplayName("마지막 선택이 아래면서, 정답을 맞았을 때의 BridgeStatus")
@@ -152,8 +152,8 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder("O |  ");
             StringBuilder downLine = new StringBuilder("  | O");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O |   ]");
-            assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   | O ]");
+            assertThat(bridgeCrossing.getBridgeHistory("U",true)).isEqualTo("[ O |   ]");
+            assertThat(bridgeCrossing.getBridgeHistory("D",true)).isEqualTo("[   | O ]");
         }
 
         @DisplayName("마지막 선택이 아래면서, 정답을 틀렸을 때의 BridgeStatus")
@@ -162,8 +162,8 @@ class BridgeCrossingHistoryTest {
             StringBuilder upLine = new StringBuilder("O |  ");
             StringBuilder downLine = new StringBuilder("  | O");
             bridgeCrossing = new BridgeCrossingHistory(upLine,downLine);
-            assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ O |   ]");
-            assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   | X ]");
+            assertThat(bridgeCrossing.getBridgeHistory("U",false)).isEqualTo("[ O |   ]");
+            assertThat(bridgeCrossing.getBridgeHistory("D",false)).isEqualTo("[   | X ]");
         }
     }
 }
