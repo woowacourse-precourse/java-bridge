@@ -38,6 +38,14 @@ class ApplicationTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
+    @Test
+    void 기능_테스트_재시작() {
+        assertRandomNumberInRangeTest(() -> {
+            run("4", "U", "D", "U","D","R","U","D","U","U");
+
+
+        }, 1, 0, 1);
+    }
 
     @Test
     void 예외_테스트() {
