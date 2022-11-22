@@ -8,13 +8,17 @@ public class InputView {
 
     public static int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        int Size;
-        try{
-            Size = Integer.parseInt(bridgeSize);
-        } catch(NumberFormatException e){
-            throw new IllegalArgumentException(Constant.Length_Restrict());
-        }
+        int Size = 0;
+        boolean Try = true;
         System.out.println(Constant.Input_Length);
+        while(Try){
+            try{
+                Size = Integer.parseInt(bridgeSize);
+                Try = false;
+            } catch(NumberFormatException e){
+                throw new IllegalArgumentException(Constant.Length_Restrict());
+            }
+        }
         System.out.println(Size);
         return Size;
     }
