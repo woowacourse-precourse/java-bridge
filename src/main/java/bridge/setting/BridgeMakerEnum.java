@@ -6,15 +6,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum BridgeMakerEnum {
-    DOWN(0, Setting.PLAYER_MOVE_DOWN),
-    UP(1, Setting.PLAYER_MOVE_UP);
+    DOWN(0, Setting.PLAYER_MOVE_DOWN, 1),
+    UP(1, Setting.PLAYER_MOVE_UP, 0);
 
     private final int randomNumber;
     private final char bridge;
 
-    BridgeMakerEnum(int randomNumber, char bridge) {
+    private final int row;
+
+    BridgeMakerEnum(int randomNumber, char bridge, int row) {
         this.randomNumber = randomNumber;
         this.bridge = bridge;
+        this.row = row;
     }
 
     public Integer randomNumber() {
@@ -36,6 +39,6 @@ public enum BridgeMakerEnum {
     }
 
     public static int valuesOfRandomNumber(Character bridge) {
-        return BY_MOVE_CODE.get(bridge).randomNumber;
+        return BY_MOVE_CODE.get(bridge).row;
     }
 }
