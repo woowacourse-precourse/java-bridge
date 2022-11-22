@@ -3,13 +3,10 @@ package bridge;
 import java.util.List;
 import console.Ladder;
 import console.OutputMessage;
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+
 public class OutputView {
     static BridgeGame bm = new BridgeGame();
     static InputView iv = new InputView();
-
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -18,7 +15,7 @@ public class OutputView {
      */
     public boolean printMap(List<String> upOrDown) {
         for (int i = 0; i < upOrDown.size(); i++) {
-            String userInput = bm.move();
+            String userInput = bm.move(iv.readMoving());
             boolean canMove = startLadder(i, upOrDown, userInput);
             if (!canMove) {
                 return bm.retry(iv.readGameCommand());

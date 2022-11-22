@@ -3,12 +3,15 @@ package bridge;
 import java.util.List;
 
 public class Application {
-
+    static InputView iv = new InputView();
+    static OutputView ov = new OutputView();
     public static void main(String[] args) {
-        InputView inputview = new InputView();
-        OutputView ov = new OutputView();
+        start();
+    }
+
+    public static void start(){
         List<String> list;
-        int size = inputview.readBridgeSize();
+        int size = iv.readBridgeSize();
         BridgeMaker bm = generateBridgeMaker();
         while (true) {
             list = bm.makeBridge(size);

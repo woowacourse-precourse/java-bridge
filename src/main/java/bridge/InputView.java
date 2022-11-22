@@ -19,7 +19,8 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(InputMessage.OPEN_STATEMENT.getMessage());
         System.out.println(InputMessage.ENTER_BRIDGE_LENGTH.getMessage());
-        return catchException();
+        String read = Console.readLine();
+        return catchException(read);
     }
 
     /**
@@ -53,15 +54,14 @@ public class InputView {
         return redoOrQuit;
     }
 
-    public static int catchException() {
-        String read = Console.readLine();
+    public static int catchException(String read) {
         int input;
         try {
             input = isNumeric(read);
             rangeCheck(input);
         } catch (IllegalArgumentException argException) {
             System.out.println(argException.getMessage());
-            return catchException();
+            return catchException(Console.readLine());
         }
         return input;
     }
