@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,6 +13,32 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    private static String checkForUpMap(String move, String log){
+        if (move.equals("success") && log.equals("U")) {
+            return " O ";
+        }
+        if (move.equals("success") && log.equals("D")) {
+            return "   ";
+        }
+        if (move.equals("fail") && log.equals("U")) {
+            return "   ";
+        }
+        if (move.equals("fail") && log.equals("D")) {
+            return " X ";
+        }
+        return "   ";
+    }
+    private static ArrayList<String> makeUpBridge(ArrayList<String> moveResult, List<String> bridge) {
+        ArrayList<String> upMap = new ArrayList<>();
+
+        for (int i = 0; i < moveResult.size(); i++) {
+            String move = moveResult.get(i);
+            String log = bridge.get(i);
+            upMap.add(checkForUpMap(move, log));
+        }
+
+        return upMap;
+    }
     public void printMap(ArrayList<String> moveResult, List<String> bridge) {
         ArrayList<String> upMap = new ArrayList<>();
         ArrayList<String> downMap = new ArrayList<>();
