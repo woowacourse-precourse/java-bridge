@@ -20,6 +20,14 @@ public class TotalResult {
         return !playerMap.isFailure();
     }
 
+    public boolean winGame() {
+        List<String> bridge = bridgeGame.getBridge();
+        BridgeMapMaker bridgeMapMaker = new BridgeMapMaker(bridge);
+        PlayerMap successBridgeMap = bridgeMapMaker.getSuccessBridgeMap();
+
+        return playerMap.equals(successBridgeMap);
+    }
+
     public int getTryCnt() {
         return bridgeGame.getTryCnt();
     }

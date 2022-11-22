@@ -33,7 +33,7 @@ public class BridgeGameController {
         if (!result.win()) {
             return restartOrQuit(result);
         }
-        if (bridgeGame.getBridgeSize() == distance) {
+        if (result.winGame()) {
             return result;
         }
         return progressByDistance(distance + 1);
