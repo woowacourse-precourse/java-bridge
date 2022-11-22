@@ -18,46 +18,20 @@ public class BridgeGame {
 
     public boolean move(String moveInput) {
         validateMoveInput(moveInput);
-
         user.move(moveInput);
-
-        return checkMoveSuccess();
+        result.updateResult(user.getMoveCount(), moveInput, answerBridge);
+        return result.isMoveSuccess();
     }
 
     public String getPlayResult() {
-        boolean moveSuccess = checkMoveSuccess();
-        boolean gameEnd = checkFinish();
-
-        return getGameState(moveSuccess, gameEnd);
+        return result.getGameState();
     }
 
     public void retry() {
         user.clearUserMove();
     }
 
-    public boolean checkMoveSuccess() {
-        int lastIndex = user.getMoveCount() - 1;
-        String lastMove = user.getLastMove();
-        return lastMove.equals(answerBridge.get(lastIndex));
-    }
-
     private void validateMoveInput(String moveInput) {
         Validator.checkMoveInput(moveInput);
-    }
-
-    private boolean checkFinish() {
-        return user.getMoveCount() == answerBridge.size();
-    }
-
-    private String getGameState(boolean moveSuccess, boolean gameEnd) {
-        if (!moveSuccess) {
-            return GameState.LOOSE.name();
-        }
-
-        if (gameEnd) {
-            return GameState.WIN.name();
-        }
-
-        return GameState.PLAYING.name();
     }
 }
