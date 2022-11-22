@@ -21,7 +21,7 @@ public class Controller {
         outputView.printResult(gameResult, bridgeGame);
     }
 
-    public GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
+    private GameStatus play(final BridgeGame bridgeGame, GameStatus gameStatus) {
         while (gameStatus == GameStatus.CONTINUE) {
             movePlayer(bridgeGame);
             outputView.printProgress(bridgeGame);
@@ -58,14 +58,14 @@ public class Controller {
     }
 
     private GameStatus askForRetry(final BridgeGame bridgeGame, GameStatus gameStatus) {
-        outputView.printAskGameCommand();
         try {
+            outputView.printAskGameCommand();
             if (bridgeGame.retry(inputView.readGameCommand())) {
                 gameStatus = GameStatus.CONTINUE;
             }
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception);
-            askForRetry(bridgeGame, gameStatus);
+            return askForRetry(bridgeGame, gameStatus);
         }
         return gameStatus;
     }
