@@ -25,15 +25,27 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<String>(size);
+
+        makeAnswerRoad(bridge, randomGenerateNumber(size));
+
+        return bridge;
+    }
+
+    private List<Integer> randomGenerateNumber(int size) {
+        List<Integer> numbers = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
-            int generateNumber = bridgeNumberGenerator.generate();
+            numbers.add(bridgeNumberGenerator.generate());
+        }
+        return numbers;
+    }
+
+    public void makeAnswerRoad(List<String> bridge, List<Integer> generateNumbers) {
+        for (Integer generateNumber : generateNumbers) {
             if (generateNumber == 0) {
                 bridge.add(MessageView.DOWN.getMessage());
             } else if (generateNumber == 1) {
                 bridge.add(MessageView.UP.getMessage());
             }
         }
-//        System.out.println(bridge);
-        return bridge;
     }
 }
