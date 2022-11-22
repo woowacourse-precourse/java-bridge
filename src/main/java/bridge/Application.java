@@ -9,7 +9,6 @@ public class Application {
             bridgeGame.startGame();
         }
         catch (IllegalArgumentException e){
-            System.out.println(e);;
         }
     }
 }
