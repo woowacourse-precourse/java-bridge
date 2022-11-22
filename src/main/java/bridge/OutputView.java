@@ -33,7 +33,7 @@ public class OutputView {
             System.out.print(" | ");
             printOneResult(bridge.get(i), userMove.get(i), oneSide);
         }
-        System.out.print(" ]");
+        System.out.println(" ]");
     }
 
     /**
