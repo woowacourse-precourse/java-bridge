@@ -12,7 +12,6 @@ public class GameController {
         String re="R";
         int try_count = 1;
         boolean success = true;
-
         while(re.contains("R")) {
             success = try_cross(bridge, size);
             if(success_info(size, success)) break;
@@ -29,7 +28,6 @@ public class GameController {
     public static boolean try_cross(List<String> bridge, int size){
         boolean success = true;
         String move;
-
         for (int i = 0; i < size; i++) {
             AnnouncementView.move();
             move = InputView.readMoving();
