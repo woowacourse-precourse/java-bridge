@@ -3,10 +3,13 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -46,6 +49,87 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @DisplayName("입력 값에 문자가 포함되어 있을 시 예외를 발생시킨다.")
+    @Test
+    void enterInputValueContainCharacter(){
+        assertThatThrownBy(() -> Exception.convertStringToInteger("1d"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 값이 숫자일 시 정수형으로 변환하여 반환한다.")
+    @Test
+    void enterInputValueInteger(){
+        String input = "12";
+        assertThat(Exception.convertStringToInteger(input) == Integer.parseInt(input));
+    }
+
+    @DisplayName("입력 받은 정수형이 3이상 20이하가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void enterInputValueOutRangeOf3to20(){
+        assertThatThrownBy(() -> Exception.validateRangeThreeToTwenty(30))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 정수형이 3이상 20이하일 시 입력 값을 반환한다.")
+    @Test
+    void enterInputValueInRangeOf3to20(){
+        int input = 13;
+        assertThat(Exception.validateRangeThreeToTwenty(input) == input);
+    }
+
+    @DisplayName("입력 받은 문자열이 U혹은 D가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void enterInvalidInputValueToMove(){
+        String input = "QD";
+        assertThatThrownBy(() -> Exception.validateInputValueForMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 문자열이 U혹은 D일 시 입력 값을 반환 한다.")
+    @Test
+    void enterValidInputValueToMove(){
+        String input = "D";
+        assertThat(Exception.validateInputValueForMove(input).equals(input));
+    }
+
+    @DisplayName("입력 받은 문자열이 R혹은 Q가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void enterInvalidInputValueToRetry(){
+        String input = "D";
+        assertThatThrownBy(() -> Exception.validateInputValueForReStart(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 문자열이 R혹은 Q일 시 입력 값을 반환 한다.")
+    @Test
+    void enterValidInputValueToRetry(){
+        String input = "Q";
+        assertThat(Exception.validateInputValueForReStart(input).equals(input));
+    }
+
+    @DisplayName("입력 받은 다리 사이즈가 올바르지 않다면 예외를 발생시킨다.")
+    @Test
+    void enterInvalidBridgeSize(){
+        assertThatThrownBy(() -> Validate.bridgeSize("25"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 다리 이동 문자가 올바르지 않다면 예외를 발생시킨다.")
+    @Test
+    void enterInvalidMoving(){
+        assertThatThrownBy(() -> Validate.moving("R"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 게임 재시작 문자가 올바르지 않다면 예외를 발생시킨다.")
+    @Test
+    void enterInvalidGameCommand(){
+        assertThatThrownBy(() -> Validate.gameCommend("D"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 
     @Override
     protected void runMain() {
