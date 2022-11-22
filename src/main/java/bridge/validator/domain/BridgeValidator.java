@@ -4,8 +4,8 @@ import bridge.exception.LengthOutOfRangeException;
 import java.util.List;
 
 public class BridgeValidator {
-  private static final int MIN_LENGTH = 3;
-  private static final int MAX_LENGTH = 20;
+  public static final int MIN_LENGTH = 3;
+  public static final int MAX_LENGTH = 20;
 
   public static void validateLength(final int length) {
     if (!isLengthInRange(length)) {
