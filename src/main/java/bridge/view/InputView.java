@@ -19,7 +19,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        return null;
+        System.out.println(GameMessage.GAME_INPUT_MOVE.getMessage());
+        return Console.readLine();
     }
 
     /**
