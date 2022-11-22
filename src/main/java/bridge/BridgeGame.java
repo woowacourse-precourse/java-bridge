@@ -35,8 +35,7 @@ public class BridgeGame {
     }
 
     public List<List<String>> move(String moving) {
-        String answer = answerBridge.get(curBridge.get(0).size());
-        addCurBridge(answer, moving);
+        addCurBridge(moving);
 
         if(this.status != STATUS_FAIL){
             checkSuccess();
@@ -44,18 +43,19 @@ public class BridgeGame {
         return this.curBridge;
     }
 
-    private void addCurBridge(String answer, String moving){
-        String isRight = compareCurMoving(answer, moving);
-        if(answer.equals("U")){
+    private void addCurBridge(String moving){
+        String isRight = compareCurMoving(moving);
+        if(moving.equals("U")){
             curBridge.get(0).add(isRight);
             curBridge.get(1).add(NOTHING);
         }
-        if(answer.equals("D")){
+        if(moving.equals("D")){
             curBridge.get(0).add(NOTHING);
             curBridge.get(1).add(isRight);
         }
     }
-    private String compareCurMoving(String answer, String moving){
+    private String compareCurMoving(String moving){
+        String answer = answerBridge.get(curBridge.get(0).size());
         if(answer.equals(moving)){
             return RIGHT;
         }
@@ -70,6 +70,7 @@ public class BridgeGame {
     }
 
     public void retry() {
+        this.status = STATUS_PLAY;;
         this.stageNum += 1;
         this.curBridge.get(0).clear();
         this.curBridge.get(1).clear();
