@@ -85,23 +85,25 @@ public class BridgeGame {
      */
 
     public boolean retry() {
-        String retryInput = finish();
-        if (success.equals("성공") || retryInput.equals("Q")) {
-            return false;
-        }
-        return true;
+        String map = Common.formatToPrintMap(upperBridge, underBridge);
+        String retryInput = finish(map);
+        return checkRetry(retryInput);
     }
 
-    private String finish() {
+    private boolean checkRetry(String retryInput) {
+        return !success.equals("성공") && !retryInput.equals("Q");
+    }
+
+    private String finish(String map) {
         String input = "";
         if (success.equals("실패")) {
             input = inputView.readGameCommand();
         }
-        outputView.printResult(Common.formatToPrintMap(upperBridge, underBridge), success, retryCount);
+        outputView.printResult(map, success, retryCount);
         return input;
     }
 
-    private void reset() {
+    public void reset() {
         upperBridge = new StringJoiner("|", "[", "]");
         underBridge = new StringJoiner("|", "[", "]");
         success = "성공";
