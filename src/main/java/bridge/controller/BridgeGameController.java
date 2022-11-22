@@ -32,7 +32,7 @@ public class BridgeGameController {
         while (!game.isEnd(gameCommand, movingChoices, bridge)) {
             playing();
         }
-        printResult(gameCommand);
+        printResult();
     }
 
     public void initGame() {
@@ -90,11 +90,9 @@ public class BridgeGameController {
         return gameCommand;
     }
 
-    public void printResult(String gameCommand) {
+    public void printResult() {
         PrintGuideMessage.printResultGuide();
-        printMap(game.move(player, bridge));
-        String successOrNot = game.getSuccessOrNot(gameCommand, movingChoices, bridge);
-        int attempts = game.getAttempts();
-        outputView.printResult(successOrNot, attempts);
+        outputView.printMap(movingChoices, game.move(player, bridge));
+        outputView.printResult(game.getSuccessOrNot(gameCommand, movingChoices, bridge), game.getAttempts());
     }
 }
