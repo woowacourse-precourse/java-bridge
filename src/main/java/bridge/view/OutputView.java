@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(MessageConstant.TOTAL_RESULT.getValue());
         printMap(result);
         System.out.println(MessageConstant.SUCCESS_OR_NOT.getValue() + message);
-        System.out.println(MessageConstant.TRY_COUNT.getValue() + player.getTryGameCount());
+        System.out.println(MessageConstant.TRY_COUNT.getValue() + player);
     }
 
     public void printStartMessage() {

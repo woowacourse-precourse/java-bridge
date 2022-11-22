@@ -13,8 +13,9 @@ public class Player  {
         this.temp++;
     }
 
-    public int getTryGameCount() {
-        return temp;
+    @Override
+    public String toString() {
+        return String.valueOf(this.temp);
     }
 
 }
