@@ -22,7 +22,7 @@ class BridgeGameTest {
     }
 
     @Nested
-    class addJudgment {
+    class AddJudgment {
 
         @Test
         void 플레이어가_U를_입력하였을_경우_다리와_비교하여_같다면_윗칸에_O가_출력_되는지_확인() {
@@ -74,7 +74,7 @@ class BridgeGameTest {
     }
 
     @Nested
-    class retry {
+    class Retry {
 
         @Test
         void 플레이어의_입력값이_R이라면_R을_반환하는지_확인() {
@@ -112,7 +112,7 @@ class BridgeGameTest {
     }
 
     @Nested
-    class restartOrQuit {
+    class RestartOrQuit {
 
         @Test
         void 플레이어가_R를_입력_하였다면_gameCount가_증가되었는지_확인() {
@@ -133,7 +133,7 @@ class BridgeGameTest {
     }
 
     @Nested
-    class isNotGameEnd {
+    class IsNotGameEnd {
 
         @Test
         void 게임을_끝내는_조건_확인() {
