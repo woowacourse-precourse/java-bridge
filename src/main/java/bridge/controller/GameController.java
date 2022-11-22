@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.User;
 import bridge.service.BridgeGame;
 import bridge.service.constant.GameStatus;
 import bridge.view.InputView;
@@ -29,20 +30,20 @@ public class GameController {
         }
     }
 
-    public void operate (BridgeGame game) {
-        while (game.getStatus() == GameStatus.PLAYING) {
-            game.move(requestStringInput(inputView::readMoving));
-            outputView.printMap(game.obtainGameLog());
+    public void operate (User user, BridgeGame game) {
+        while (user.getStatus() == GameStatus.PLAYING) {
+            game.move(user, requestStringInput(inputView::readMoving));
+            outputView.printMap(game.obtainGameLog(user));
             outputView.insertLineBreak();
-            operateRetryOption(game);
+            operateRetryOption(user, game);
         }
     }
 
-    private void operateRetryOption (BridgeGame game) {
-        if (game.getStatus() == GameStatus.FAIL) {
+    private void operateRetryOption (User user, BridgeGame game) {
+        if (user.getStatus() == GameStatus.FAIL) {
             String retryOption = requestStringInput(inputView::readRetryOption);
             if (retryOption.equals(RetryOptions.RETRY.get())) {
-                game.retry();
+                game.retry(user);
             }
         }
     }
@@ -56,11 +57,11 @@ public class GameController {
         }
     }
 
-    public void finish (BridgeGame game) {
+    public void finish (User user, BridgeGame game) {
         outputView.printResult(
-                game.obtainGameLog(),
-                game.isGameCleared(),
-                game.getAttemptCount()
+                game.obtainGameLog(user),
+                game.isGameCleared(user),
+                user.getAttemptCount()
         );
     }
 }
