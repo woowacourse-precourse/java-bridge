@@ -105,7 +105,18 @@ class BridgeGameTest {
     }
 
     //play메서드에서 2번째 턴 부터 ]대신 |로 잘 바꿔서 출력 되는지 테스트
+    @DisplayName("2번째 이상의 차례부터 결과맵의 구분자가 ']'대신 '|'이 들어가야 한다.")
+    @Test
+    void checkChangeFormat() {
+        useMove("R","U",0);
+        useMove("R","D",1);
+        assertThat(out.toString()).contains(
+                "다리의 길이를 입력해주세요.",
+                "[ O |   ]",
+                "[   | O ]"
+        );
+    }
 
-    //play메서드에서 게임 결과에 따라 적절한 값이 반환되는지 테스트
+
 }
 
