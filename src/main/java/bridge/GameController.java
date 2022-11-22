@@ -11,14 +11,15 @@ public class GameController {
 
     }
 
-    private void simulate() {
+    private boolean simulate() {
         while (!bridgeGame.isOver()) {
             if (!bridgeGame.canMove(inputView.readMoving())) {
-                break;
+                outputView.printMap(bridgeGame.bridgeMap.getBridgeMap());
+                return false;
             }
             outputView.printMap(bridgeGame.bridgeMap.getBridgeMap());
         }
-        outputView.printMap(bridgeGame.bridgeMap.getBridgeMap());
+        return true;
     }
 
     private void ending() {
@@ -28,8 +29,7 @@ public class GameController {
     public void run() {
         bridgeGame = new BridgeGame(inputView.readBridgeSize());
         while (true) {
-            simulate();
-            if (inputView.readGameCommand().equals("Q")) {
+            if (simulate() || inputView.readGameCommand().equals("Q")) {
                 break;
             }
             bridgeGame.retry();
