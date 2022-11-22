@@ -35,7 +35,7 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
-        int bridgeSize = bridge.getBridgeSize();
+        int bridgeSize = bridge.size();
         int movingPosition = player.getMovingPosition();
         return bridgeSize == movingPosition;
     }

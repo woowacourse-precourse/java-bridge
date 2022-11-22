@@ -12,7 +12,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public int getBridgeSize() {
+    public int size() {
         return bridge.size();
     }
 
