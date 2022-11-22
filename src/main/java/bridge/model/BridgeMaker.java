@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
