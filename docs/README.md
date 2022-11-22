@@ -23,11 +23,6 @@ int number = bridgeNumberGenerator.generate();
 String answer = readLine();
 ```
 -------------------
-### 생각 해야 할 것!
-1. InputView 에 있는 OutputView 객체 제거해보기
-2. UI 메세지들 모두 모아서 처리해보기..?
-3. test 코드들 10줄 넘어가는 것들 해결해야함! 
--------------------
 ### 주요 요구 사항
 1. indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용 check!
 2. 3항 연산자를 쓰지 않는다. check!
