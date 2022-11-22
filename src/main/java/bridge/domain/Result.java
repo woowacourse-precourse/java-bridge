@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
-
+    private static final String RESTART = "R";
+    private static final String QUIT = "Q";
     private ResultType resultType;
     private boolean keeping;
     private List<List<String>> allResults;
@@ -35,12 +36,12 @@ public class Result {
     public void plusTryCount(){
         this.tryCount = getTryCount()+1;
     }
-    
+
     public void checkKeeping(String restart){
-        if(restart.equals("R")){
+        if(restart.equals(RESTART)){
             keeping = true;
         }
-        if(restart.equals("Q"))
+        if(restart.equals(QUIT))
             keeping = false;
     }
     public void combineResult(List<String> up, List<String> down){
