@@ -27,10 +27,10 @@ public class OutputView {
 
     // 위 통로를 출력하는 함수
     private void printUpTunnel(List<String> userPaths, boolean lastRoundResult) {
-        String upTunnel = "[";
+        String upTunnel = "[ ";
         for (int i = 0; i < userPaths.size() - 1; i++) {
-            String tmpPath = userPaths.get(i);
-            upTunnel += Square.getSquareResult(tmpPath, UP_PATH);
+            String userPath = userPaths.get(i);
+            upTunnel += Square.getSquareResult(userPath, UP_PATH) + " | ";
         }
         upTunnel += Square.getLastSquareResult(userPaths.get(userPaths.size() - 1), UP_PATH, lastRoundResult);
 
@@ -39,10 +39,10 @@ public class OutputView {
 
     // 아래 통로를 출력하는 함수
     private void printDownTunnel(List<String> userPaths, boolean lastRoundResult) {
-        String downTunnel = "[";
+        String downTunnel = "[ ";
         for (int i = 0; i < userPaths.size() - 1; i++) {
-            String tmpPath = userPaths.get(i);
-            downTunnel += Square.getSquareResult(tmpPath, DOWN_PATH);
+            String userPath = userPaths.get(i);
+            downTunnel += Square.getSquareResult(userPath, DOWN_PATH) + " | ";
         }
         downTunnel += Square.getLastSquareResult(userPaths.get(userPaths.size() - 1), DOWN_PATH, lastRoundResult);
 
