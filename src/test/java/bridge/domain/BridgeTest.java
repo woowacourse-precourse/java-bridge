@@ -33,7 +33,7 @@ class BridgeTest {
     @ValueSource(ints = {-1, 50})
     void invalidMove(int position) {
         assertThatThrownBy(() -> bridge.canMove(BridgeCell.UP, position))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
     @DisplayName("다리의 길이를 알 수 있다.")
