@@ -5,7 +5,7 @@ import static constant.Values.Message.*;
 import constant.Values.MoveCase;
 
 public class Checker {
-    public int checkValidate(String input) throws IllegalArgumentException {
+    public int checkValidate(String input) {
         try {
             return checkNumeric(input);
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -15,7 +15,7 @@ public class Checker {
         }
     }
 
-    public int checkNumeric(String input) throws IllegalArgumentException {
+    public int checkNumeric(String input) {
         int inputNumber;
         try {
             inputNumber = Integer.parseInt(input);
@@ -25,14 +25,14 @@ public class Checker {
         return checkNegative(inputNumber);
     }
 
-    public int checkNegative(int input) throws IllegalArgumentException {
+    public int checkNegative(int input) {
         if (input < 0) {
             throw new IllegalArgumentException();
         }
         return checkBoundary(input);
     }
 
-    public int checkBoundary(int input) throws IllegalArgumentException {
+    public int checkBoundary(int input) {
         if (input < 3 || input > 20) {
             throw new IllegalArgumentException();
         }
