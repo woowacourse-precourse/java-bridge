@@ -40,7 +40,7 @@ class BridgeGameTest {
     @Test
     void generateEndPoint() {
         //given
-        bridgeGame = BridgeGame.createBridgeGame(2);
+        bridgeGame = BridgeGame.createBridgeGame(3);
         bridgeGame.move("U");
         bridgeGame.move("U");
         bridgeGame.move("U");

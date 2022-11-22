@@ -53,7 +53,7 @@ public class BridgeGame {
     }
 
     private void countLocation() {
-        location += bridgeCalculator.countNum(location);
+        location = bridgeCalculator.countNum(location);
     }
 
 
