@@ -40,9 +40,8 @@
   - 예외. Bridge가 null일 경우
 - [x] 다음 칸 움직일 수 있는 칸인지 평가하기 BridgeGame#isCorrectMove(String move)
 - [x] 움직이기 BrideGame#moveForward()
-  - 현재까지 움직인 칸 index++
-  - 마지막 칸까지 도달했다면, 1 리턴
-  - 마지막 칸까지 도달하지 않았다면, 0리턴
+  - [x] 현재까지 움직인 다리를 2차원 배열로 기록하기 BridgeGame#recordCurrentMove(MoveResult moveResult, String move)
+  - 가능한 움직임이면 현재까지 움직인 칸 index++
   - 예외. 마지막 칸을 넘어서 움직인 경우
 - [x] 현재까지의 맵 array 기록하기 BridgeGame#recordCurrentMove(String userMove, boolean isPossibleMove)
 - [X] 다시 시도 BridgeGame#retry()
