@@ -41,6 +41,16 @@ public class InputExceptionTest extends NsTest {
         });
     }
 
+    @DisplayName("플레이어 이동 공백인지 확인하는 테스트")
+    @ValueSource(strings = {" ", "\n"})
+    @ParameterizedTest
+    void createBlankUserMove(String input) {
+        assertSimpleTest(() -> {
+            runException("3", input);
+            assertThat(output()).contains(InputException.BLANK_PLAYER_MOVE.getExceptionMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
