@@ -27,4 +27,16 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private String inputData() {
+        String input = Console.readLine();
+        nullValidate(input);
+        return input;
+    }
+
+    private void nullValidate(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
