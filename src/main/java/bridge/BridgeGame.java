@@ -10,12 +10,17 @@ public class BridgeGame {
     //private static final String UP = "O";
     private static final String RIGHT = "O";
     private static final String WRONG = "X";
+    private BridgeMaker bridgeMaker;
+    private List<String> rightWayBridge;
     private List<List<String>> dashBoard;
     private List<String> bridgeDown;
     private List<String> bridgeUp;
     private int numberOfTimes;
     private int count;
+    private boolean isWin;
+
     public BridgeGame(int size){
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         for(int i=0; i<size; i++){
             this.bridgeUp.add(" ");
             this.bridgeDown.add(" ");
@@ -24,6 +29,16 @@ public class BridgeGame {
         this.dashBoard.add(bridgeUp); //1
         this.count =0;
         this.numberOfTimes =1;
+        isWin =false;
+    }
+    public void setBridge(int size) {
+        rightWayBridge = bridgeMaker.makeBridge(size);
+    }
+
+    public void checkWin() {
+        if(this.count == rightWayBridge.size()){
+            this.isWin = true;
+        }
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
