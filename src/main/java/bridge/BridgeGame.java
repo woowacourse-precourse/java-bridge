@@ -1,6 +1,4 @@
-package bridge.Model;
-
-import bridge.MovingStatus;
+package bridge;
 
 import static bridge.View.ExceptionMessage.*;
 
