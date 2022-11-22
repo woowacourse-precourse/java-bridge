@@ -90,4 +90,10 @@ public class BridgeGame {
             throw new IllegalArgumentException(ExceptionConstant.INCORRECT_MOVING_INPUT.getMessage());
         }
     }
+
+    private void validateRestart(String input) {
+        if (!List.of(BridgeConstant.RESTART, BridgeConstant.QUIT).contains(input)) {
+            throw new IllegalArgumentException(ExceptionConstant.INCORRECT_GAME_COMMAND.getMessage());
+        }
+    }
 }
