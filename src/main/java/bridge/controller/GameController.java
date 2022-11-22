@@ -1,12 +1,12 @@
 package bridge.controller;
 
-import bridge.Progress;
+import bridge.model.Progress;
 import bridge.constant.BridgePattern;
 import bridge.constant.Command;
 import bridge.constant.GameCondition;
 import bridge.model.BridgeGame;
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.utils.BridgeMaker;
+import bridge.utils.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;

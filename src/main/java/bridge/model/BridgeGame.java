@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.Progress;
 import bridge.constant.BridgePattern;
 import bridge.constant.GameCondition;
 import java.util.List;

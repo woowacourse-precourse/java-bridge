@@ -1,4 +1,4 @@
-package bridge;
+package bridge.utils;
 
 import bridge.constant.BridgeLengthRule;
 import bridge.constant.BridgePattern;

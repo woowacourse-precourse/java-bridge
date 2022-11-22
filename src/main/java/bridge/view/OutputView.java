@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.Progress;
+import bridge.model.Progress;
 import bridge.constant.BridgePattern;
 import bridge.constant.Command;
 import bridge.constant.GameCondition;
