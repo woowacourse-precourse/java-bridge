@@ -1,6 +1,5 @@
 package model;
 
-
 import controller.BridgeGameController;
 import controller.InputController;
 import controller.OutputController;
@@ -9,7 +8,6 @@ import util.Constants;
 import view.InputView;
 
 import java.util.List;
-
 
 public class BridgeGame {
     private static int attempt = Constants.ONE;
@@ -23,15 +21,15 @@ public class BridgeGame {
         if (count == Constants.ZERO) {
             return fillFirstBridge(upOrDown + bridge.get(count));
         }
-        return fillBridge(count,bridge,upOrDown + bridge.get(count));
+        return fillBridge(count, bridge, upOrDown + bridge.get(count));
     }
 
-    private static boolean fillBridge(int count,List<String> bridge,String checkFalse) {
-        upBridge += " | " + resultStatus.charAt(count*2);
-        downBridge += " | " + resultStatus.charAt(count*2+1) ;
-        OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
+    private static boolean fillBridge(int count, List<String> bridge, String checkFalse) {
+        upBridge += " | " + resultStatus.charAt(count * 2);
+        downBridge += " | " + resultStatus.charAt(count * 2 + 1) ;
+        OutputController.deliverStatus(upBridge + " ]", downBridge + " ]");
         if (count == bridge.size() - Constants.ONE && checkFalse.charAt(Constants.ZERO) == checkFalse.charAt(Constants.ONE)) {
-            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]",Constants.SUCCESS,attempt);
+            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]", Constants.SUCCESS, attempt);
             return true;
         }
         return checkInputAndBridge(checkFalse);
@@ -39,7 +37,7 @@ public class BridgeGame {
 
     private static boolean fillFirstBridge(String checkFalse) {
         fillOneBlcok(String.valueOf(resultStatus.charAt(Constants.ZERO)),String.valueOf(resultStatus.charAt(Constants.ONE)));
-        OutputController.deliverStatus(upBridge + " ]",downBridge + " ]");
+        OutputController.deliverStatus(upBridge + " ]", downBridge + " ]");
         resetBridge();
         resetStatus();
         return checkInputAndBridge(checkFalse);
@@ -55,9 +53,9 @@ public class BridgeGame {
     private static void resetStatus() {
         for (int i = 0; i < resultStatus.length() / 2; i++) {
             if (i != resultStatus.length() / 2 - 1) {
-                fillOneBlcok(resultStatus.charAt(i*2)+ " |",resultStatus.charAt(i*2+1)+" |");
+                fillOneBlcok(resultStatus.charAt(i*2) + " |",resultStatus.charAt(i*2+1) +" |");
             }
-            fillOneBlcok(String.valueOf(resultStatus.charAt(i*2)),String.valueOf(resultStatus.charAt(i*2+1)));
+            fillOneBlcok(String.valueOf(resultStatus.charAt(i * 2)), String.valueOf(resultStatus.charAt(i * 2 + 1)));
         }
     }
 
@@ -73,7 +71,7 @@ public class BridgeGame {
 
     public static boolean retry() {
         if (InputController.checkRestartOrExit().equals(Constants.EXIT)) {
-            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]",Constants.FAIL,attempt);
+            OutputController.deliverResult(upBridge + " ]\n"+downBridge + " ]", Constants.FAIL,attempt);
             return true;
         }
         resetInfo();
