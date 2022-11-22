@@ -30,7 +30,7 @@ public class BridgeController {
     private int playing(int size){
         for(int step = 0; step < size; step++) {
             if (checkAnswer(step)) {
-                output.printMap(buffer.running());
+                output.printMap(buffer.getCurrent());
                 continue;
             }
             return judgeGameStatus(step, size);
@@ -59,14 +59,14 @@ public class BridgeController {
         String position = inputMove();
         Column result = bridgeGame.move(step,position);
         if(result.isAnswer()){
-            buffer.addColumn(result);
+            buffer.add(result);
             return true;
         }
         return false;
     }
 
     private int judgeGameStatus(int step, int size){
-        output.printMap(buffer.fail(step,bridgeGame));
+        output.printMap(buffer.addFailLetter(step,bridgeGame));
         return checkRetry(size);
     }
 
@@ -90,11 +90,11 @@ public class BridgeController {
     }
 
     private int failGame(){
-        output.printResult(buffer.over(), Letter.FAILURE, bridgeGame.getTotalCount());
+        output.printResult(buffer.getResult(), Letter.FAILURE, bridgeGame.getTotalCount());
         return 0;
     }
     private int succeedGame(){
-        output.printResult(buffer.over(),Letter.SUCCESS, bridgeGame.getTotalCount());
+        output.printResult(buffer.getResult(),Letter.SUCCESS, bridgeGame.getTotalCount());
         return 0;
     }
 }
