@@ -2,6 +2,7 @@ package controller;
 
 import model.BridgeGame;
 import view.InputView;
+import view.OutputStatic;
 import view.OutputView;
 
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class PlayGame {
             turn++;
         }
         List<HashMap> bridge = List.of(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
-        System.out.println("최종 게임 결과");
+        System.out.println(OutputStatic.END_GAME_TITLE.getOutputPrint());
         outputView.printMap(endTurn, bridge);
         outputView.printResult(endTurn, bridge, tryCount);
     }

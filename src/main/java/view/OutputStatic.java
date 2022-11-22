@@ -10,7 +10,8 @@ public enum OutputStatic {
     END_GAME("게임 성공 여부: "),
     TRUE_PRINT("O"),
     FALSE_PRINT("X"),
-    SPACE_PRINT(" ");
+    SPACE_PRINT(" "),
+    END_GAME_TITLE("최종 게임 결과");
 
     private final String outputPrint;
 
