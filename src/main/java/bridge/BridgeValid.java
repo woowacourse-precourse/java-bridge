@@ -106,13 +106,13 @@ public class BridgeValid {
         }
         if (bridge.getBridge().get(i).equals("D")) {
             upBridge.add("X");
-            downBridge.add(" ");
+            downBridge.add(Command.BLANK);
         }
     }
 
     public void upPattern() {
         upBridge.add("O");
-        downBridge.add(" ");
+        downBridge.add(Command.BLANK);
         stack++;
     }
 
@@ -121,12 +121,12 @@ public class BridgeValid {
             downPattern();
         }
         if (bridge.getBridge().get(i).equals("U")) {
-            upBridge.add(" ");
+            upBridge.add(Command.BLANK);
             downBridge.add("X");
         }
     }
     public void downPattern() {
-        upBridge.add(" ");
+        upBridge.add(Command.BLANK);
         downBridge.add("O");
         stack++;
     }
