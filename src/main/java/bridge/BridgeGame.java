@@ -7,17 +7,12 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private InputView input = new InputView();
-    private OutputView output = new OutputView();
     private List<String> bridge;
     private List<String> current = new ArrayList<>();
-    private int tryCount = 0;
-    private String retryOrQuit = ConstString.RETRY;
-    public void init() throws IllegalArgumentException {
-        output.printStartGame();
+    private int tryCount = -1;
+    public void init(int size) throws IllegalArgumentException {
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
         try {
-            int size = input.readBridgeSize();
             bridge = maker.makeBridge(size);
         }
         catch (Exception e) {
@@ -25,44 +20,12 @@ public class BridgeGame {
         }
     }
 
-    public void update() throws IllegalArgumentException {
-        while (!isClear() && retryOrQuit.equals(ConstString.RETRY)) {
-            try {
-                playOneGame();
-                retry();
-            }
-            catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException(e.getMessage());
-            }
-        }
-    }
-
-    private void playOneGame() throws IllegalArgumentException {
-        while (!isOver() && !isClear()) {
-            String step = input.readMoving();
-            try {
-                move(step);
-            }
-            catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException(e.getMessage());
-            }
-            output.printMap(bridge, current);
-        }
-    }
-
-    public void end() {
-        output.printResult(bridge, current, this);
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private void move(String step) throws IllegalArgumentException{
-        if (!(step.equals(ConstString.UP) || step.equals(ConstString.DOWN))) {
-            throw new IllegalArgumentException(ConstString.INPUT_MOVE_ERROR);
-        }
+    public void move(String step) {
         current.add(step);
     }
 
@@ -71,30 +34,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private void retry() throws IllegalArgumentException{
-        try {
-            retryOrQuit = input.readGameCommand();
-            if (isRetry()) {
-                tryCount++;
-                current.clear();
-            }
-        }
-        catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-    }
-
-    private boolean isRetry() throws IllegalArgumentException{
-        if (isClear()) {
-            return false;
-        }
-        if (!retryOrQuit.equals(ConstString.RETRY) && !retryOrQuit.equals(ConstString.QUIT)) {
-            throw new IllegalArgumentException(ConstString.INPUT_RETRY_OR_QUIT_ERROR);
-        }
-        if (retryOrQuit.equals(ConstString.RETRY)) {
-            return true;
-        }
-        return false;
+    public void retry(){
+        tryCount++;
+        current.clear();
     }
 
     public boolean isOver() {
@@ -119,4 +61,6 @@ public class BridgeGame {
     }
 
     public int getTryCount() { return tryCount;}
+    public List<String> getBridge() { return bridge; }
+    public List<String> getCurrent() { return current; }
 }
