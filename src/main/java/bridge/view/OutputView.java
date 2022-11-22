@@ -31,8 +31,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> map) {
-        System.out.print(RESULT_START_BRACKET + String.join(DELIMITER, map) + RESULT_END_BRACKET);
+    public void printMap(List<List<String>> map) {
+        System.out.println(RESULT_START_BRACKET + String.join(DELIMITER, map.get(0)) + RESULT_END_BRACKET);
+        System.out.println(RESULT_START_BRACKET + String.join(DELIMITER, map.get(1)) + RESULT_END_BRACKET + LINE_BREAK);
+
     }
 
     /**
@@ -40,11 +42,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> map, boolean gameResult, int tryCount) {
+    public void printResult(List<List<String>> map, boolean gameResult, int tryCount) {
+        String result = "실패";
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(map);
-
-        System.out.printf(GAME_CHECK_SUCCESS_MESSAGE + LINE_BREAK, "성공");
+        if (gameResult) {
+            result = "성공";
+        }
+        System.out.printf(GAME_CHECK_SUCCESS_MESSAGE + LINE_BREAK, result);
         System.out.printf(GAME_TRY_COUNT_MESSAGE, tryCount);
     }
 }
