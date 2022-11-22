@@ -21,7 +21,7 @@ public class BridgeGame {
     private Bridge bridge;
 
     public BridgeGame (int lengthInput) {
-        attemptCount = 0;
+        attemptCount = 1;
         panelOrder = 0;
         status = GameStatus.PLAYING;
         this.bridge = new Bridge(lengthInput);
@@ -34,7 +34,6 @@ public class BridgeGame {
      */
     public boolean move(String userChoice) {
         increaseOrder();
-        increaseAttemptCount();
         boolean isUserChoiceCorrect = bridge.isCorrectPanel(panelOrder, userChoice);
         modifyStatusAfterChoice(isUserChoiceCorrect);
         return  isUserChoiceCorrect;
@@ -112,6 +111,10 @@ public class BridgeGame {
         if (lastPanel == ChoiceResult.CORRECT) {
             lineLog.set(lastPanelIndex, ChoiceResult.NOT_CHOSEN);
         }
+    }
+
+    public boolean isGameCleared() {
+        return status == GameStatus.SUCCESS;
     }
 
     public int getAttemptCount() {
