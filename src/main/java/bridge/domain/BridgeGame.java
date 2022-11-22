@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
+
 import static bridge.utils.Constants.RETRY;
 
 public class BridgeGame {

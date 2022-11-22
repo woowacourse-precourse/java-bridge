@@ -1,4 +1,4 @@
-package bridge.utils.generator;
+package bridge;
 
 import static bridge.utils.Constants.UPPER_NUMBER;
 

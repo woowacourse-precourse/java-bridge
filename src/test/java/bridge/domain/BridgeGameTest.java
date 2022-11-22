@@ -1,6 +1,7 @@
 package bridge.domain;
 
-import bridge.utils.generator.BridgeSpecificNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeSpecificNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
