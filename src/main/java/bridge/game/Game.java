@@ -24,4 +24,15 @@ public class Game {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
+
+    /**
+     * 게임 시작: initialize, 다리 생성
+     */
+    public void startGame() {
+        outputView.printGameStart();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        this.bridgeGame = new BridgeGame(bridge.getBridge());
+        playBridgeGame();
+    }
 }
