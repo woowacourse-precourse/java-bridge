@@ -40,6 +40,7 @@ public class BridgeGame {
 		BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
 		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 		BridgeSize bridgeSize = new BridgeSize(bridgeSizeRequestDto.getBridgeSize());
+
 		List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
 		return new BridgeResponseDto(new Bridge(bridge));
 	}
