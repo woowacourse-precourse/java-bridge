@@ -142,7 +142,9 @@ Q
 
 ### 6. 재시작 여부에 따라 게임을 진행한다
 
-### 7. 다리를 끝까지 건넜다면 다음을 출력하고 게임을 종료한다 
+### 7. 다리를 끝까지 건넜다면 다음을 출력하고 게임을 종료한다
+
+### 8. 사용자 입력을 받는 경우 유효성을 검사한다
 
 - 최종 게임 결과 
   
@@ -181,6 +183,8 @@ Q
 ## bridge
   - ### BridgeNumberGenerator Class
   - ### BridgeRandumNumberGenerator Class
+  - ### Application Class
+  - ### BridgeMaker Class
   - ### 내부 패키지 목록 
     - #### bridgeDomain
       - ##### data
@@ -188,7 +192,6 @@ Q
       - ##### operator
         - BridgeException Class
         - BridgeGameResult Class
-        - BridgeMaker Class
 
 ### 다음을 저장한다
 - 생성된 다리
@@ -234,7 +237,6 @@ UI와 사용자 입력에 의해 바뀌는 data를 처리합니다
 ## 3. game
 게임이 진행되는 영역입니다
 bridge와 userdomain을 이용하여 게임을 진행합니다
-- Application Class
 - playGame Class
 ---
 
@@ -253,15 +255,15 @@ bridge와 userdomain을 이용하여 게임을 진행합니다
   - 재시작 입력의 크기가 1이 아닌 경우
 ---
 
----
-
 ## 테스트 목록 
 
 도메인 단위의 테스트를 목적으로 합니다
-- ### bridge 영역 
+  
 - ### userdomain 영역
+  - 사용자의 입력이 올바른 경우를 test
+  - 사용자의 입력이 올바르지 않은 경우 test
 
-
+---
 
 
 
