@@ -12,17 +12,23 @@ import static org.assertj.core.api.Assertions.*;
 class InputViewTest {
     private InputView inputView;
 
+    private InputStream inputStream;
+
     @BeforeEach
     void init() {
         inputView = new InputView();
     }
 
+    void inputStreamInit(String input) {
+        inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+    }
+
     @DisplayName("숫자가 아닌 값을 입력하면 예외 발생")
     @Test
     void 잘못된_다리_입력() {
-        String input = "a";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        final String input = "a";
+        inputStreamInit(input);
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -30,9 +36,8 @@ class InputViewTest {
     @DisplayName("3-20 사이가 아닌 값을 입력하면 예외 발생")
     @Test
     void 잘못된_다리_사이즈_입력() {
-        String input = "200";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        final String input = "200";
+        inputStreamInit(input);
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -40,18 +45,16 @@ class InputViewTest {
     @DisplayName("정상 값을 입력하는 경우 정상 통과")
     @Test
     void 정상_다리_사이즈_입력() {
-        String input = "10";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        final String input = "10";
+        inputStreamInit(input);
         assertDoesNotThrow(() -> inputView.readBridgeSize());
     }
 
     @DisplayName("U 또는 D 이외의 값을 입력하는 경우 예외 발생")
     @Test
     void 잘못된_이동_위치_입력() {
-        String input = "A";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        final String input = "A";
+        inputStreamInit(input);
         assertThatThrownBy(() -> inputView.readMoving())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -60,8 +63,7 @@ class InputViewTest {
     @Test
     void 정상_이동_위치_U_입력() {
         final String input = "U";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        inputStreamInit(input);
         assertThat(inputView.readMoving()).isEqualTo(input);
     }
 
@@ -69,17 +71,15 @@ class InputViewTest {
     @Test
     void 정상_이동_위치_D_입력() {
         final String input = "D";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        inputStreamInit(input);
         assertThat(inputView.readMoving()).isEqualTo(input);
     }
 
     @DisplayName("R 또는 Q 이외의 값을 입력하는 경우 예외 발생")
     @Test
     void 잘못된_커맨드_입력() {
-        String input = "A";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        final String input = "A";
+        inputStreamInit(input);
         assertThatThrownBy(() -> inputView.readMoving())
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -88,8 +88,7 @@ class InputViewTest {
     @Test
     void 정상_커맨드_U_입력() {
         final String input = "R";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        inputStreamInit(input);
         assertThat(inputView.readGameCommand()).isEqualTo(input);
     }
 
@@ -97,8 +96,7 @@ class InputViewTest {
     @Test
     void 정상_커맨드_Q_입력() {
         final String input = "Q";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        inputStreamInit(input);
         assertThat(inputView.readGameCommand()).isEqualTo(input);
     }
 }
