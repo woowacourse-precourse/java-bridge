@@ -3,6 +3,7 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.GameStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,16 @@ public class BridgeGame {
      */
     public void move(String next) {
         user.moveNext(next);
+    }
+
+    public GameStatus getCurrentStatus() {
+        if (!user.isCorrectLastElement(bridge))
+            return GameStatus.OVER;
+
+        if (bridge.getSize() == user.getSize())
+            return GameStatus.WIN;
+
+        return GameStatus.CONTINUE;
     }
 
     /**
