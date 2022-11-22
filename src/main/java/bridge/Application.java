@@ -10,11 +10,11 @@ public class Application {
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
             InputView inputView = new InputView();
             OutputView outputView = new OutputView();
-            BridgeGame game = new BridgeGame();
 
             int size = inputView.readBridgeSize();
             List<String> bridge = bridgeMaker.makeBridge(size);
 
+            BridgeGame game = new BridgeGame(bridge);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
