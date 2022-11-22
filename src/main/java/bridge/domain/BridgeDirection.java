@@ -6,8 +6,8 @@ public enum BridgeDirection {
     UP(1, "U"),
     DOWN(0, "D");
 
-    private int number;
-    private String word;
+    private final int number;
+    private final String word;
 
     BridgeDirection(int number, String word) {
         this.number = number;

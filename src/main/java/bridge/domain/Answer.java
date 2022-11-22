@@ -6,8 +6,8 @@ public enum Answer {
     RIGHT("O", true),
     WRONG("X", false);
 
-    private String message;
-    private boolean isCorrect;
+    private final String message;
+    private final boolean isCorrect;
 
     Answer(String message, boolean isCorrect) {
         this.message = message;
