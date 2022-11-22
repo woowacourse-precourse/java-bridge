@@ -52,4 +52,12 @@ public class BridgeGame {
             Direction.valueOfIcon(block);
         }
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getCur() {
+        return cur;
+    }
 }

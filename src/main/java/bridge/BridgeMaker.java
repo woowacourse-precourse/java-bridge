@@ -22,7 +22,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) throws IllegalArgumentException{
         return Stream.generate(bridgeNumberGenerator::generate)
                 .limit(size)
-                .map(Direction::valueOfNumber)
+                .map(Direction::valueOfDecisionCode)
                 .map(Direction::getIcon)
                 .collect(Collectors.toList());
     }

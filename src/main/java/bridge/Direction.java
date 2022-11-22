@@ -1,24 +1,26 @@
 package bridge;
 
 public enum Direction {
-    DOWN("D", 0),
-    UP("U", 1);
+    DOWN("D", 0, 1),
+    UP("U", 1, 0);
 
     private final String icon;
-    private final int number;
+    private final int decisionCode;
+    private final int userMapRow;
 
-    Direction(String icon, int number) {
+    Direction(String icon, int decisionCode, int userMapRow) {
         this.icon = icon;
-        this.number = number;
+        this.decisionCode = decisionCode;
+        this.userMapRow = userMapRow;
     }
 
-    public static Direction valueOfNumber(int number) {
+    public static Direction valueOfDecisionCode(int decisionCode) {
         for (Direction direction : Direction.values()) {
-            if (direction.number == number) {
+            if (direction.decisionCode == decisionCode) {
                 return direction;
             }
         }
-        throw new IllegalArgumentException(String.format("[ERROR] %d에 해당하는 방향이 없습니다.", number));
+        throw new IllegalArgumentException(String.format("[ERROR] %d에 해당하는 방향이 없습니다.", decisionCode));
     }
 
     public static Direction valueOfIcon(String icon) {
@@ -32,5 +34,9 @@ public enum Direction {
 
     public String getIcon() {
         return icon;
+    }
+
+    public int getUserMapRow() {
+        return userMapRow;
     }
 }

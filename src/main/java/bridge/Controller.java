@@ -9,12 +9,13 @@ public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final BridgeGame bridgeGame = new BridgeGame();
+    private final UserMap userMap = new UserMap(); //TODO BridgeGame 의 멤버여야 하는가?
 
     public void play() {
         try {
             outputView.printStartGame();
-            setUpBridge(requestBridgeSize());
-            boolean moveSuccess = bridgeGame.move(requestMoving());
+            setUp(requestBridgeSize());
+            boolean moveSuccess = singleRound();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -29,11 +30,12 @@ public class Controller {
         }
     }
 
-    private void setUpBridge(int bridgeSize) throws IllegalArgumentException{
+    private void setUp(int bridgeSize) throws IllegalArgumentException{
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame.setBridge(bridge);
+        userMap.buildUserMap(bridgeGame.getBridge());
     }
 
     private String requestMoving() {
@@ -43,5 +45,12 @@ public class Controller {
             System.out.println(e.getMessage());
             return requestMoving();
         }
+    }
+
+    private boolean singleRound() {
+        boolean moveSuccess = bridgeGame.move(requestMoving());
+        userMap.updateUserMap(bridgeGame.getCur(), moveSuccess);
+        outputView.printMap(userMap.getUserMap(), bridgeGame.getCur());
+        return moveSuccess;
     }
 }
