@@ -1,5 +1,6 @@
 package bridge.Domain;
 
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Database.BridgeData;
