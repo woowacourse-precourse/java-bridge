@@ -84,8 +84,6 @@ public class OutputView {
         StringBuilder stringBuilder = new StringBuilder();
         printFinalResult(stringBuilder);
         printStatistics(stringBuilder, isSuccess, count);
-
-
         System.out.println(stringBuilder);
     }
 
@@ -101,5 +99,4 @@ public class OutputView {
             stringBuilder.append("실패");
         stringBuilder.append("\n총 시도한 횟수: ").append(count);
     }
-
 }

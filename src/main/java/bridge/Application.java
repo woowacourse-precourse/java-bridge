@@ -16,8 +16,7 @@ public class Application {
         while (playgame) {
             count++;
             isSuccess = play(bridge);
-            if (isSuccess)
-                break;
+            if (isSuccess) break;
             playgame = bridgeGame.retry(inputView.readGameCommand());
         }
         quit(isSuccess,count);
