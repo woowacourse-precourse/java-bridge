@@ -32,4 +32,8 @@ public class BridgeGame {
         gameInfo.setPosition(-1);
         gameInfo.setPlayer("");
     }
+
+    public BridgeGameInfo getInfo(){
+        return gameInfo;
+    }
 }
