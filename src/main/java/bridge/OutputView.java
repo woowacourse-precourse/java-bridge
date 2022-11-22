@@ -14,25 +14,55 @@ public class OutputView {
     public boolean score = true;//결과과 X면(-1) 게임 계속 할 지 묻기
 
     public boolean printMap(int i, int val ,String udsel, int[] arry) {
+        arry = new int[arry.length];
 
-        System.out.print("[ ");
-        if(udsel.equals("U") && val == 0) {//U가 입력되고 U가 0 틀릴때
-            System.out.print("X");
-            score=false;
-        }else if(udsel.equals("U") && val == 1){ //U가 입력되고 U가 1 맞을때
-            System.out.print("O");
-            score=true;
-        }else { System.out.print(" "); }
-        System.out.print(" ]\r\n");
-        System.out.print("[ ");
-        if(udsel.equals("D") && val == 0) {//U가 입력되고 U가 0 틀릴때
-            System.out.print("O");
-            score=true;
-        }else if(udsel.equals("D") && val == 1){ //U가 입력되고 U가 1 맞을때
-            System.out.print("X");
-            score=false;
-        }else { System.out.print(" "); }
-        System.out.print(" ]");
+        System.out.print("[");
+
+        for(int j=0;j<=i;j++) {
+            if(udsel.equals("U")) {
+                if(arry[i] == 0) { // U가 0이면 아니므로  X
+                    System.out.print("X");
+                    score=false;
+                }else if(arry[i] == 1){
+                    System.out.print("O");
+                    score=true;
+                }
+            }else {
+                System.out.print(" ");
+            }
+
+            if(i>0 && i!=j) {
+                System.out.print("|");
+            }
+        }
+
+        System.out.print("]\r\n");
+
+        System.out.print("[");
+
+        for(int j=0;j<=i;j++) {
+            if(udsel.equals("D")) {
+                if(arry[i] == 1) { // U가 0이면 아니므로  X
+                    System.out.print("X");
+                    score=false;
+                }else if(arry[i] == 0){
+                    System.out.print("O");
+                    score=true;
+                }else {
+                    System.out.print(" ");
+                }
+
+            }else {
+                System.out.print(" ");
+            }
+
+            if(i>0 && i!=j) {
+                System.out.print("|");
+            }
+
+        }
+
+        System.out.print("]");
 
         return score;
     }
