@@ -101,6 +101,39 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 다리길이_작은_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 다리길이_큰_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("21");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 방향_입력_소문자_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "u");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 방향_입력_다른문자_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "3");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
