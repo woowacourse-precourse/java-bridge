@@ -16,23 +16,23 @@ public class Result {
         this.resultInformation = new ResultInformation(size);
     }
 
-    void handleUpBridge(int position, boolean isCorrect) {
+    public void handleUpBridge(int position, boolean isCorrect) {
         resultInformation.updateUpBridge(position, isCorrect ? O_SIGN : X_SIGN);
         resultInformation.updateDownBridge(position, BLANK);
         return;
     }
 
-    void handleDownBridge(int position, boolean isCorrect) {
+    public void handleDownBridge(int position, boolean isCorrect) {
         resultInformation.updateUpBridge(position, BLANK);
         resultInformation.updateDownBridge(position, isCorrect ? O_SIGN : X_SIGN);
         return;
     }
 
-    void clear() {
+    public void clear() {
         resultInformation.clear();
     }
 
-    String printStatus(int position) {
+    public String printStatus(int position) {
         return resultInformation.makeMap(position);
     }
 

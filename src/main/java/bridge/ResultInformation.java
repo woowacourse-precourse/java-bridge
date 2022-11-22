@@ -15,15 +15,15 @@ public class ResultInformation {
         this.downBridge = new char[size];
     }
 
-    void updateUpBridge(int position, char sign) {
+    public void updateUpBridge(int position, char sign) {
         upBridge[position] = sign;
     }
 
-    void updateDownBridge(int position, char sign) {
+    public void updateDownBridge(int position, char sign) {
         downBridge[position] = sign;
     }
 
-    String makeMap(int stage) {
+    public String makeMap(int stage) {
         StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
         StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
         for (int i = 0; i < stage + 1; i++) {
@@ -32,7 +32,7 @@ public class ResultInformation {
         }
         return upJoiner + "\n" + downJoiner;
     }
-    void clear() {
+    public void clear() {
         for (int i = 0; i < bridgeSize; i++) {
             upBridge[i] = '\u0000';
             downBridge[i] = '\u0000';
@@ -40,11 +40,11 @@ public class ResultInformation {
         tryCount++;
     }
 
-    boolean isPossibility() {
+    public boolean isPossibility() {
         return upBridge[bridgeSize - 1] == O_SIGN || downBridge[bridgeSize - 1] == O_SIGN;
     }
 
-    int getTryCount() {
+    public int getTryCount() {
         return tryCount;
     }
 }

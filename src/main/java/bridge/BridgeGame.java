@@ -29,7 +29,7 @@ public class BridgeGame {
         result.handleDownBridge(position, isCorrect(input));
     }
 
-    boolean isCorrect(String input) {
+    public boolean isCorrect(String input) {
         return bridge.get(position).getValue().equals(input);
     }
 
