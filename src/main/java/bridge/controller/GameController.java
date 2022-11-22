@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import static bridge.model.GameCommand.isRetry;
+import static bridge.model.RetryAndQuit.isRetry;
 import static bridge.model.SurviveAndDie.isDie;
 import static bridge.model.SuccessAndFail.isSuccess;
 

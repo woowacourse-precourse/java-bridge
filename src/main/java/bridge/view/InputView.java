@@ -4,7 +4,7 @@ import static bridge.BridgeMaker.convertStringToInt;
 import static bridge.BridgeMaker.validateBridgeSizeRange;
 import static bridge.BridgeMaker.validateBridgeSizeType;
 
-import bridge.model.GameCommand;
+import bridge.model.RetryAndQuit;
 import bridge.model.Position;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -46,10 +46,10 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public GameCommand readGameCommand() {
+    public RetryAndQuit readGameCommand() {
         try {
             outputView.printGameCommandInput();
-            return GameCommand.from(Console.readLine());
+            return RetryAndQuit.from(Console.readLine());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
             return readGameCommand();
