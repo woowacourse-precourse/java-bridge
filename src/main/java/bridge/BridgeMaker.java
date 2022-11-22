@@ -29,11 +29,22 @@ public class BridgeMaker {
 
         return bridge;
     }
+
+    /**
+     * 입력받은 다리 길이가 3부터 20 사이인지 확인한다.
+     * @param size 다리 길이
+     */
     private static void checkBridgeSize(int size){
         if(size< 3 || size > 20){
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
+
+    /**
+     * 1이면 U를 0이면 D를 반환한다.
+     * @param number 0 또는 1
+     * @return "U" 또는 "D"
+     */
     public String makeWood(int number){
         if(number == 1){
             return "U";
