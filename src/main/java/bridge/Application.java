@@ -21,7 +21,11 @@ public class Application {
         return moveResult;
     }
 
-    private static boolean retryGame() {
+    private static boolean retryGame(String cmd) {
+        Validation.validateCommand(cmd);
+        if (cmd.equals("Q")) {
+            return false;
+        }
         bridgeGame.retry();
         return gamePlay();
     }
@@ -33,11 +37,7 @@ public class Application {
             return true;
         }
         String cmd = inputView.readGameCommand();
-        Validation.validateCommand(cmd);
-        if (cmd.equals("Q")) {
-            return false;
-        }
-        return retryGame();
+        return retryGame(cmd);
     }
 
     private static void initBridge() {
