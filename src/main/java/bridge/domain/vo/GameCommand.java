@@ -1,9 +1,7 @@
 package bridge.domain.vo;
 
-import static bridge.enumeration.Command.QUIT;
-import static bridge.enumeration.Command.RETRY;
-import static bridge.enumeration.ErrorMessage.INVALID_RETRY_COMMAND;
-import static bridge.enumeration.ErrorMessage.NOT_CHARACTER;
+import static bridge.enumeration.Command.*;
+import static bridge.enumeration.ErrorMessage.*;
 
 public class GameCommand {
 

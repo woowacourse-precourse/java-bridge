@@ -1,6 +1,7 @@
 package bridge.enumeration;
 
 public enum ErrorMessage {
+    NULL_INPUT("입력값이 존재하지 않습니다."),
     NOT_NUMBER("다리 길이는 숫자로 입력해야 합니다."),
     OUT_OF_RANGE("다리 길이는 3부터 20 사이의 숫자여야 합니다."),
     NOT_CHARACTER("한 문자를 입력해야 합니다."),

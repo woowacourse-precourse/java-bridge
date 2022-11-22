@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static bridge.domain.vo.GameCommand.determineRetry;
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class GameCommandTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
