@@ -29,7 +29,7 @@ public class GameController {
         end(game.getGameStatus());
     }
 
-    public void move() {
+    private void move() {
         boolean isMoveSuccess = game.move(inputView.readMoving());
         outputView.printMap(game.getResult());
         if (!isMoveSuccess) {
@@ -37,11 +37,11 @@ public class GameController {
         }
     }
 
-    public void retry() {
+    private void retry() {
         game.retry(inputView.readGameCommand());
     }
 
-    public void end(int gameStatus) {
+    private void end(int gameStatus) {
         outputView.printResult(game.getResult(),
             BridgeMap.FOR_TOTAL.getString(gameStatus == GameStatus.SUCCESS));
     }
