@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.model.constnce.CustomErrorMessage;
+
 import static bridge.model.constnce.Text.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -16,7 +18,7 @@ public class InputView {
             System.out.println(BRIDGE_SIZE_MESSAGE);
             return Integer.parseInt(readLine());
         } catch (IllegalArgumentException e){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CustomErrorMessage.INCORRECT_FORMAT.getMessage());
         }
     }
     /**

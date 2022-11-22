@@ -1,5 +1,7 @@
 package bridge.model.validation;
 
+import bridge.model.constnce.CustomErrorMessage;
+
 import java.util.Arrays;
 
 public enum Command {
@@ -33,13 +35,13 @@ public enum Command {
 
     private static void checkUppercase(String input) {
         if (!input.equals(input.toUpperCase())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CustomErrorMessage.IS_NOT_UPPERCASE.getMessage());
         }
     }
 
     private static void checkCorrectKey(String input) {
         if (isIncorrect(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CustomErrorMessage.INCORRECT_COMMAND_INPUT.getMessage());
         }
     }
 

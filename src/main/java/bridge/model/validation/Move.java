@@ -1,5 +1,7 @@
 package bridge.model.validation;
 
+import bridge.model.constnce.CustomErrorMessage;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -23,7 +25,7 @@ public enum Move {
         return moveValue;
     }
 
-    public boolean isEquals(String randomKey, Move move){
+    public boolean isEquals(String randomKey, Move move) {
         return Objects.equals(move.getMoveKey(), randomKey);
     }
 
@@ -37,8 +39,8 @@ public enum Move {
         return MOVE_DOWN;
     }
 
-    public static Move of(int randomValue){
-        if(MOVE_UP.moveValue == randomValue){
+    public static Move of(int randomValue) {
+        if (MOVE_UP.moveValue == randomValue) {
             return MOVE_UP;
         }
         return MOVE_DOWN;
@@ -51,17 +53,17 @@ public enum Move {
 
     private static void checkUppercase(String input) {
         if (!input.equals(input.toUpperCase())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CustomErrorMessage.IS_NOT_UPPERCASE.getMessage());
         }
     }
 
-    private static void checkCorrectKey(String input){
+    private static void checkCorrectKey(String input) {
         if (isIncorrect(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CustomErrorMessage.INCORRECT_KEY_INPUT.getMessage());
         }
     }
 
-    private static boolean isIncorrect(String input){
+    private static boolean isIncorrect(String input) {
         return Arrays.stream(Move.values()).noneMatch(e -> e.moveKey.equals(input));
     }
 
