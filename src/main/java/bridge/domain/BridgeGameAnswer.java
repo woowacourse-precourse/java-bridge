@@ -36,9 +36,9 @@ public class BridgeGameAnswer {
 
     private List<String> getWrongMessage(String answer, boolean isLast) {
         if (answer.equals(UP)) {
-            return BridgeShape.WRONG_UP.getShapeMessages(isLast);
+            return BridgeShape.WRONG_DOWN.getShapeMessages(isLast);
         }
-        return BridgeShape.WRONG_DOWN.getShapeMessages(isLast);
+        return BridgeShape.WRONG_UP.getShapeMessages(isLast);
     }
 
     private boolean isLastIndex(int historySize, int index) {
