@@ -10,7 +10,7 @@ import static bridge.constant.GameCommand.*;
 import static bridge.constant.SuccessFail.*;
 
 public class Run {
-    int attempts = 1;
+    private int attempts = 1;
 
     public Run() {
         int bridgeSize = getBridgeSize();
