@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final int FIRST_BLOCK = 0;
+    private static final int STARTING_INDEX = 0;
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
 
@@ -28,9 +28,9 @@ public class BridgeMaker {
         validate(size);
         List<String> bridge = new ArrayList<>();
 
-        for (int block = FIRST_BLOCK; block < size; block++) {
-            int generatedNumber = bridgeNumberGenerator.generate();
-            bridge.add(generateBlock(generatedNumber));
+        for (int index = STARTING_INDEX; index < size; index++) {
+            int command = bridgeNumberGenerator.generate();
+            bridge.add(convertToDirection(command));
         }
         return bridge;
     }
@@ -45,14 +45,7 @@ public class BridgeMaker {
         return size < MIN_SIZE || size > MAX_SIZE;
     }
 
-    private String generateBlock(int generatedNumber) {
-        if (isDownCommand(generatedNumber)) {
-            return Moving.DOWN.getDirection();
-        }
-        return Moving.UP.getDirection();
-    }
-
-    private boolean isDownCommand(int generatedNumber) {
-        return Moving.DOWN.isSameCommand(generatedNumber);
+    private String convertToDirection(int command) {
+        return Moving.convertToDirection(command);
     }
 }

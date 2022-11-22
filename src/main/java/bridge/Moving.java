@@ -23,6 +23,14 @@ public enum Moving {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_MOVING_INPUT));
     }
 
+    public static String convertToDirection(int command) {
+        return Arrays.stream(values())
+                .filter(moving -> moving.isSameCommand(command))
+                .findFirst()
+                .get()
+                .getDirection();
+    }
+
     public boolean isSameDirection(String direction) {
         return this.direction.equals(direction);
     }
