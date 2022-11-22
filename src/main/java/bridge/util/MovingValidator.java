@@ -6,7 +6,7 @@ public class MovingValidator {
 
     private static final int LENGTH = 1;
     private static final char UP = 'U';
-    private static final char DOWN = 'U';
+    private static final char DOWN = 'D';
 
     public static void validateMoving(String input) {
         if(input.charAt(0) != LENGTH) {
@@ -15,7 +15,7 @@ public class MovingValidator {
 
         char command = input.charAt(0);
         if(command != UP && command != DOWN) {
-            throw new IllegalArgumentException(OutputView.MOVING_ERROR_MESSGAE);
+            throw new IllegalArgumentException(OutputView.MOVING_ERROR_MESSAGE);
         }
     }
 }
