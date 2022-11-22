@@ -33,10 +33,10 @@ public class BridgeGame {
         int currentLevel = player.checkCurrentLevel();
         player.enterCommand(command);
         Result result = bridge.compare(command, currentLevel);
-        return makeMoveResponseDto(command.toString(), result, player.getAttemptCount());
+        return makeMoveResponseDto(command.toString(), result);
     }
 
-    private MoveResponseDto makeMoveResponseDto(String command, Result result, int attemptCount) {
+    private MoveResponseDto makeMoveResponseDto(String command, Result result) {
         MoveResponseDto response = new MoveResponseDto(command, result, player.getAttemptCount());
         if (checkIfAllCorrect(result)) {
             response.setAllCorrect(Boolean.TRUE);

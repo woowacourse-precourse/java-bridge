@@ -32,5 +32,25 @@ class BridgeGameTest {
         assertThat(move.getResultBooleanType()).isTrue();
     }
 
-    //에외 테스트
+    @Test
+    void retryTest() {
+        Command commandRetry = Command.RETRY;
+
+        RetryResponseDto retry = bridgeGame.retry(commandRetry);
+
+        assertThat(player.getAttemptCount()).isEqualTo(2);
+        assertThat(retry.getAttemptCount()).isEqualTo(2);
+        assertThat(retry.isRetryGame()).isTrue();
+    }
+
+    @Test
+    void exitTest() {
+        Command commandExit = Command.EXIT;
+
+        RetryResponseDto exit = bridgeGame.retry(commandExit);
+
+        assertThat(player.getAttemptCount()).isEqualTo(2);
+        assertThat(exit.getAttemptCount()).isEqualTo(2);
+        assertThat(exit.isRetryGame()).isFalse();
+    }
 }
