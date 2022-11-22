@@ -13,7 +13,7 @@ class ExceptionBasketTest {
     public static final String ERROR_MESSAGE = "[ERROR]";
 
     //@Test
-    @ValueSource(strings = {"5.0", "5.3", "+5", "-5", "05"})
+    @ValueSource(strings = {"5.0", "5.3", "+5", "-5", "05", "111222333444555666777888999"})
     @DisplayName("1~20이외의 숫자일 경우 예외 처리")
     @ParameterizedTest
     void inputIsNotRangeExceptionTest(String input) {
@@ -35,33 +35,15 @@ class ExceptionBasketTest {
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
-    @Test
+    @ValueSource(strings = {"A", "UU", "DD"})
     @DisplayName("게임 플레이중 잘못된 U, D이외를 누를경우 예외 처리")
-    void invalidGameKeyTest() {
+    @ParameterizedTest
+    void invalidGameKeyTest(String input) {
 
-        //U나 D 이외의 문자를 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.invalidGameKey("A"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
-
-        //U를 두번 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.invalidGameKey("UU"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
-
-        //D를 두번 넣을 경우(에러)
-        {
-            assertThatThrownBy(() ->
-                    ExceptionBasket.invalidGameKey("DD"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ERROR_MESSAGE);
-        }
+        assertThatThrownBy(() ->
+                ExceptionBasket.invalidGameKey(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @Test
