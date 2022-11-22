@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.enums.BlockExpression;
+import bridge.enums.MovingDirection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +12,11 @@ public class BridgeChecker {
         List<String> matchingResult = new ArrayList<>();
 
         for(int i=0; i<userInput.size(); i++) {
-            if(bridge.get(i).equals(userInput.get(i))) {
-                matchingResult.add(BlockExpression.Same.getMark());
-                continue;
+            if(bridge.get(i).equals(userInput.get(i))==false) {
+                matchingResult.add(BlockExpression.Diff.getMark());
+                break;
             }
-            matchingResult.add(BlockExpression.Diff.getMark());
+            matchingResult.add(BlockExpression.Same.getMark());
         }
 
         return matchingResult;
