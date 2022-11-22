@@ -18,6 +18,17 @@ public class BridgeGameController {
         this.bridgeGame = new BridgeGame();
     }
 
+    public void start() {
+        outputView.printStart();
+        createAnswerBridge();
+
+        do {
+            playGame();
+        } while (bridgeGame.isContinue());
+
+        resultGame();
+    }
+
     private void createAnswerBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
