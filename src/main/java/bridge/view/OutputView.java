@@ -1,23 +1,91 @@
 package bridge.view;
 
+import bridge.domain.GameCommand;
+import bridge.domain.MoveCommand;
+import bridge.domain.BridgeGame;
+import bridge.domain.object.Bridge;
+import bridge.domain.object.Player;
+
+import java.util.List;
+import java.util.Objects;
+
+import static bridge.domain.MoveCommand.DOWN;
+import static bridge.domain.MoveCommand.UP;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private final MoveCommand[] commands = MoveCommand.values();
+    private final GameCommand[] gameCommands = GameCommand.values();
+    private final String START = "[";
+    private final String END = "]";
+    private final String BETWEEN = "|";
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    public void printStartMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void guideInputBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    public void guideInputMoving() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("이동할 칸을 선택해주세요. (");
+        for (MoveCommand command : commands) {
+            builder.append(String.format(", %s: %s", command.getWord(), command.getCommand()));
+        }
+        String message = builder.append(")").toString().replaceFirst(", ", "");
+        System.out.println(message);
+    }
+
+    public void printMap(Bridge bridge, Player player) {
+        List<String> bridgeRoute = bridge.getRoute();
+        List<String> playerMoves = player.getMoves();
+
+        System.out.println(START + getFloor(UP, bridgeRoute, playerMoves) + END);
+        System.out.println(START + getFloor(DOWN, bridgeRoute, playerMoves) + END);
+    }
+
+    private String getFloor(final MoveCommand marker, final List<String> bridgeRoutes, final List<String> playerMoves) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < playerMoves.size(); i++) {
+            builder.append(BETWEEN + " ");
+            String mark = marker(marker.getCommand(), playerMoves.get(i), bridgeRoutes.get(i));
+            builder.append(mark).append(" ");
+        }
+        return builder.toString().replaceFirst("\\|", "");
+    }
+
+    private String marker(final String floorCommand, final String playerMove, final String bridgeRoute) {
+        if (!Objects.equals(floorCommand, playerMove)) {
+            return " ";
+        }
+        if (Objects.equals(playerMove, bridgeRoute)) {
+            return MoveMarker.CORRECT.getMark();
+        }
+        return MoveMarker.WRONG.getMark();
+    }
+
+    public void guideInputGameOver() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("게임을 다시 시도할지 여부를 입력해주세요. (");
+        for (GameCommand command : gameCommands) {
+            builder.append(String.format(", %s: %s", command.getWord(), command.getCommand()));
+        }
+        String message = builder.append(")").toString().replaceFirst(", ", "");
+        System.out.println(message);
+    }
+
+    public void printResult(String result, BridgeGame bridgeGame) {
+        Bridge bridge = bridgeGame.getBridge();
+        Player player = bridgeGame.getPlayer();
+        int tryCount = bridgeGame.getTryCount();
+
+        System.out.println("최종 게임 결과");
+        printMap(bridge, player);
+        System.out.println("게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수: " + tryCount);
     }
 }

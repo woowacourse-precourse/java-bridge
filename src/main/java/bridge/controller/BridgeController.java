@@ -4,17 +4,20 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.GameCommand;
 import bridge.domain.object.Bridge;
 import bridge.domain.object.Player;
 import bridge.input.*;
+import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.controller.GameCommand.*;
+import static bridge.domain.GameCommand.*;
 import static bridge.controller.GameState.*;
 
 public class BridgeController {
     private final InputView inputView;
+    private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private BridgeGame game;
 
@@ -24,23 +27,30 @@ public class BridgeController {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 
         this.inputView = new InputView(bridgeInput, bridgeValidator);
+        this.outputView = new OutputView();
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator, bridgeValidator);
     }
 
     public BridgeController(BridgeInput bridgeInput, BridgeNumberGenerator bridgeNumberGenerator, BridgeValidator bridgeValidator) {
         this.inputView = new InputView(bridgeInput, bridgeValidator);
+        this.outputView = new OutputView();
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator, bridgeValidator);
     }
 
     public void start() {
+        outputView.printStartMessage();
         game = init();
         play();
     }
 
     public void play() {
         do {
+            outputView.guideInputMoving();
             String moving = inputView.readMoving();
             game.move(moving);
+            Bridge bridge = game.getBridge();
+            Player player = game.getPlayer();
+            outputView.printMap(bridge, player);
         } while (game.checkGameState() == RUN);
         confirmState();
     }
@@ -55,6 +65,7 @@ public class BridgeController {
     }
 
     private void choiceRestartOrQuit() {
+        outputView.guideInputGameOver();
         String command = inputView.readGameCommand();
         GameCommand gameCommand = parseCommandToInstance(command);
         if (gameCommand == RESTART) {
@@ -65,8 +76,8 @@ public class BridgeController {
         }
     }
 
-    public void end(String result) {
-
+    public void end (String result) {
+        outputView.printResult(result, this.game);
     }
 
     public BridgeGame init() {
@@ -80,6 +91,7 @@ public class BridgeController {
     }
 
     private Bridge initBridge() {
+        outputView.guideInputBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         return new Bridge(bridge);
