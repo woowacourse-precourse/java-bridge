@@ -51,6 +51,9 @@ public class BridgeGame {
     public List<String> getProgress1() {
         return Progress1;
     }
+    public List<String> getProgress2() {
+        return Progress2;
+    }
     public void retry() {
     }
 }
