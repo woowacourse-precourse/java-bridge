@@ -11,8 +11,8 @@ public class Controller {
     String bridgeSize;
     String command;
     String restartCommand;
-    int bridgeCount;
-    int gameCount = 1;
+    private int bridgeCount = 0;
+    private int gameCount = 1;
 
 
     public void run() {
@@ -24,7 +24,8 @@ public class Controller {
     private void bridgeGameStart(List<String> bridge) {
         boolean reStart = false;
         do {
-            crossBridge(bridge);
+            bridgeGame.initMap();
+            crossBridge(bridge, 0);
             reStart = isRestart(reStart);
             gameCount++;
         }while(reStart);
@@ -36,12 +37,12 @@ public class Controller {
         }
         if(bridgeGame.isPlayerDead()) {
             tryInputRestartOrQuit();
+            reStart = bridgeGame.retry(restartCommand);
         }
         return reStart;
     }
 
-    private void crossBridge(List<String> bridge) {
-        boolean playerDead = true;
+    private void crossBridge(List<String> bridge, int bridgeCount) {
         do {
             tryInputBridgeUpOrDown();
             bridgeGame.move(command, bridge, bridgeCount++);
@@ -51,10 +52,9 @@ public class Controller {
 
     private List<String> bridgeGameInit() {
         outputView.printGameStart();
-        bridgeGame.initMap();
-        bridgeCount = 0;
         tryInputBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
+
         return bridge;
     }
 
