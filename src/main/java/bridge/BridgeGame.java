@@ -9,14 +9,14 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> bridge;
     private final Player player;
     private final Judge judge;
+    private final GameResult gameResult;
 
     public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
         this.player = new Player();
         this.judge = new Judge(bridge);
+        this.gameResult = new GameResult();
     }
 
     /**
@@ -30,6 +30,10 @@ public class BridgeGame {
         if (!safe) {
             player.death();
         }
+        gameResult.addPath(latitude, safe);
+        if (judge.isPlayerWin(player)) {
+            gameResult.success();
+        }
         return safe;
     }
 
@@ -40,9 +44,14 @@ public class BridgeGame {
      */
     public void retry() {
         player.retry();
+        gameResult.retry();
     }
 
     public boolean isProcessing() {
         return player.isAlive() && !judge.isPlayerWin(player);
+    }
+
+    public GameResult getGameResult() {
+        return gameResult;
     }
 }
