@@ -11,6 +11,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeSystem {
+    private static final String OUTPUT_MESSAGE_GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String GAME_SUCCESS = "성공";
     private static final String GAME_FAIL = "실패";
     private final InputView inputView;
@@ -22,7 +23,7 @@ public class BridgeSystem {
     }
 
     public void run() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(OUTPUT_MESSAGE_GAME_START);
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);

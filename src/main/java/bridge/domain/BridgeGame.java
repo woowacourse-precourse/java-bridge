@@ -13,7 +13,6 @@ public class BridgeGame {
     private final Results results;
     private int trial = 1;
     private String successOrFail;
-
     private boolean isAlive;
 
     public BridgeGame(List<String> bridge, Results results) {
@@ -24,15 +23,19 @@ public class BridgeGame {
     public int getTrial() {
         return trial;
     }
+
     public Results getResults() {
         return results;
     }
+
     public List<String> getBridge() {
         return bridge;
     }
+
     public String getSuccessOrFail() {
         return successOrFail;
     }
+
     public boolean isAlive() {
         return isAlive;
     }
@@ -67,11 +70,11 @@ public class BridgeGame {
         this.results.deleteAll();
     }
 
-    public boolean isProcessing(){
+    public boolean isProcessing() {
         return this.results.getResults().size() < bridge.size();
     }
 
-    public int getRound(){
+    private int getRound() {
         return this.results.getResults().size();
     }
 

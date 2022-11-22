@@ -20,6 +20,15 @@ class BridgeGameTest {
         results = new Results();
         bridgeGame = new BridgeGame(bridge, results);
     }
+    @Test
+    @DisplayName("Retry메소드 시도횟수 증가와 결과(results)초기화 테스트")
+    void retryTest(){
+        //when
+        bridgeGame.retry();
+        //then
+        assertThat(bridgeGame.getTrial()).isEqualTo(2);
+        assertThat(bridgeGame.getResults().getResults().size()).isEqualTo(0);
+    }
 
     @Test
     @DisplayName("move메소드 이동 가능한 칸 테스트")
