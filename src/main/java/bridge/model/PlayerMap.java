@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public class PlayerMap {
 
-    protected final List<String> upSide;
-    protected final List<String> downSide;
+    private final List<String> upSide;
+    private final List<String> downSide;
 
     public PlayerMap(List<String> upSide, List<String> downSide) {
         this.upSide = upSide;
