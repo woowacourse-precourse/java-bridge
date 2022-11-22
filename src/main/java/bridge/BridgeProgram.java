@@ -79,4 +79,8 @@ public class BridgeProgram {
 			outputView.Fail(count);
 		}
 	}
+
+	public void totalResult() {
+		outputView.printResult(upBridge,downBridge);
+	}
 }
