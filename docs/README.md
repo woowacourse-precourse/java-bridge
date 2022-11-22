@@ -90,23 +90,28 @@
 ## 프로그램 구성
 
 ```
-\src
-		\main
-				\bridge
-						\model
-								Bridge.java
-						\view
-								InputView.java
-								OutputView.java
-						\controller
-								BridgeGame.java
-						\service
-								BridgeMaker.java
-								BridgeNumberGenerator.java
-								BridgeRandomNumberGenerator.java
-						Application.java
-		\test
-				\bridge
+/src
+	/main
+		/bridge
+		    /controller
+				GameController.java
+			/model
+			    /constant
+			        BridgeLengthRule.java
+			        BridgePattern.java
+			        Command.java
+			        GameCondition.java
+				BridgeGame.java
+				Progress.java
+			/utils
+			    BridgeMaker.java
+				BridgeNumberGenerator.java
+				BridgeRandomNumberGenerator.java
+			/view
+				InputView.java
+				OutputView.java
+			
+			Application.java
 ```
 
 ## 기능 목록
