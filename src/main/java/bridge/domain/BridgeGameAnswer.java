@@ -20,11 +20,11 @@ public class BridgeGameAnswer {
     }
 
     public List<List<String>> getMapByHistory(List<String> history) {
-        List<List<String>> rvalue = new ArrayList<>();
+        List<List<String>> map = new ArrayList<>();
         for (int i = 0; i < history.size(); i++) {
-            rvalue.add(getMap(history, i));
+            map.add(getMap(history, i));
         }
-        return rvalue;
+        return map;
     }
 
     private List<String> getCollectMessage(String answer, boolean isLast) {
