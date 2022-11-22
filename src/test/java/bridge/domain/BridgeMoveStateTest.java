@@ -11,21 +11,33 @@ class BridgeMoveStateTest {
 
     private final BridgeMoveState moveState = new BridgeMoveState();
 
-    @DisplayName("윗 칸 이동 상태 업데이트 확인")
-    @CsvSource(value = {"true, O", "false, X"})
+    @DisplayName("이동 상태 업데이트 확인")
+    @CsvSource(value = {"true", "false"})
     @ParameterizedTest
-    void checkUpdateUpState(boolean canMove, String expected) {
-        moveState.update("U", canMove);
-        List<String> upState = moveState.getUpState();
-        assertThat(upState).isEqualTo(List.of(expected));
+    void checkUpdateUpState(boolean canMove) {
+        moveState.update(canMove);
+        List<Boolean> state = moveState.getState();
+        assertThat(state).isEqualTo(List.of(canMove));
     }
 
-    @DisplayName("아래 칸 이동 상태 업데이트 확인")
-    @CsvSource(value = {"true, O", "false, X"})
+    @DisplayName("이동 횟수를 구한다.")
+    @CsvSource(value = {"1", "2", "3", "5"})
     @ParameterizedTest
-    void checkUpdateDownState(boolean canMove, String expected) {
-        moveState.update("D", canMove);
-        List<String> downState = moveState.getDownState();
-        assertThat(downState).isEqualTo(List.of(expected));
+    void checkMoveCount(int count) {
+        for (int i = 1; i <= count; i++) {
+            moveState.update(true);
+        }
+        int actual = moveState.getMoveCount();
+        assertThat(actual).isEqualTo(count);
+    }
+
+    @DisplayName("마지막 이동 상태를 구한다.")
+    @CsvSource(value = {"true", "false"})
+    @ParameterizedTest
+    void checkLastState(boolean lastState) {
+        moveState.update(true);
+        moveState.update(lastState);
+        boolean actual = moveState.getLastState();
+        assertThat(actual).isEqualTo(lastState);
     }
 }
