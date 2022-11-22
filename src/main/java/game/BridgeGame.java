@@ -1,5 +1,6 @@
 package game;
 
+import constant.Constant;
 import constant.StateCode;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class BridgeGame {
 
     public boolean checkComplete() {
         if (record.size() == bridge.size() && !hasFail()) {
-            success = "성공";
+            success = Constant.SUCCESS;
             return true;
         }
         return false;
@@ -50,7 +51,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(Constant.RETRY)) {
             this.record = new ArrayList<>();
             this.trial += 1;
             return true;
@@ -62,11 +63,11 @@ public class BridgeGame {
         this.bridge = bridge;
         this.record = new ArrayList<>();
         this.trial = 1;
-        this.success = "실패";
+        this.success = Constant.FAILURE;
     }
 
     public boolean hasFail() {
-        if (record.contains(2) || record.contains(3)) {
+        if (record.contains(StateCode.U_FALSE) || record.contains(StateCode.D_FALSE)) {
             return true;
         }
         return false;

@@ -1,6 +1,8 @@
 package view;
 
+import constant.Constant;
 import constant.NoticeMessage;
+import constant.StateCode;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class OutputView {
     }
 
     private String mapToString(StringBuilder stringBuilder, char[][] map) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = Constant.TOPSIDE; i <= Constant.DOWNSIDE; i++) {
             for (int j = 0; j < map.length; j++) {
                 stringBuilder.append(String.format(" %c |", map[j][i]));
             }
@@ -46,23 +48,23 @@ public class OutputView {
     private char[][] initializeMap(int mapLength) {
         char[][] Map = new char[mapLength][2];
         for (int i = 0; i < mapLength; i++) {
-            Arrays.fill(Map[i], ' ');
+            Arrays.fill(Map[i], Constant.DEFAULT);
         }
         return Map;
     }
 
     private int getRecordIndex(int record) {
-        if (record == 1 || record == 3) {
-            return 0;
+        if (record == StateCode.U_TRUE.getCode() || record == StateCode.D_FALSE.getCode()) {
+            return Constant.TOPSIDE;
         }
-        return 1;
+        return Constant.DOWNSIDE;
     }
 
     private char getRecordResult(int record) {
-        if (record == 1 || record == 4) {
-            return 'O';
+        if (record == StateCode.U_TRUE.getCode() || record == StateCode.D_TRUE.getCode()) {
+            return Constant.RIGHT;
         }
-        return 'X';
+        return Constant.WRONG;
     }
 
     /**
