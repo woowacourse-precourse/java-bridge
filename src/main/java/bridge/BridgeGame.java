@@ -1,14 +1,13 @@
 package bridge;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
     private List<String> bridges;
-    private final List<String> userInputs = new LinkedList<>();
-    private int tries = 0;
+    private int tries = 1;
+    private int nowIndex = 0;
     private boolean success = false;
 
     public BridgeGame(final BridgeMaker bridgeMaker) {
@@ -16,18 +15,17 @@ public class BridgeGame {
     }
 
     public void setupGame(final int size) {
-        tries++;
         bridges = bridgeMaker.makeBridge(size);
     }
 
     public boolean move(final String course) {
-        final String nowBridge = bridges.get(userInputs.size());
-        userInputs.add(course);
+        final String nowBridge = bridges.get(nowIndex);
+        nowIndex++;
         return course.equals(nowBridge);
     }
 
     public void retry() {
-        userInputs.clear();
+        nowIndex = 0;
         tries++;
     }
 

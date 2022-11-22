@@ -26,8 +26,13 @@
 
 - BridgeGame
     - BridgeMaker를 통해 Bridge 생성한다.
-    - move
-    - retry
+    - 게임을 새로 시작할때마다 tries 값을 1씩 증가시킨다.
+    - move(String course)
+        - bridge course를 입력받아 한 칸 이동하고 성공, 실패 여부를 boolean type으로 반환한다.
+        - nowIndex를 1 증가시킨다.
+    - retry()
+        - nowIndex를 0으로 세팅하고, tries 횟수를 1 증가시킨다.
+    - 성공했는지 여부를 boolean type으로 가진다.
 
 - BridgeMaker
     - size에 맞는 bridge를 생성한다.
