@@ -47,4 +47,10 @@ public class BridgeGame {
     public boolean getIsSuccess(){
         return bridge.isCompletedWith(playerPath);
     }
+
+    public boolean isOver(){
+        if(!playerPath.getIsAlive() || getIsSuccess())
+            return true;
+        return false;
+    }
 }
