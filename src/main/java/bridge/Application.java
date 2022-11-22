@@ -6,6 +6,8 @@ public class Application {
         OutputView OV = new OutputView();
         OV.startGuidance();
         InputView IV = new InputView();
-        IV.readBridgeSize();
+        BridgeNumberGenerator BNG = new BridgeRandomNumberGenerator();
+        BridgeMaker BM = new BridgeMaker(BNG);
+        System.out.println(BM.makeBridge(IV.readBridgeSize()));
     }
 }
