@@ -17,7 +17,7 @@ import static bridge.view.InputView.readMoving;
 public class BridgeGame {
 
     private final String QUIT_CONDITION = "Q";
-    public static int RETRY_COUNT = 1;
+    public static int TOTAL_TRY_COUNT = 1;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -41,7 +41,7 @@ public class BridgeGame {
         if (Objects.equals(readGameCommand().getGameCommand(), QUIT_CONDITION)) {
             return false;
         }
-        RETRY_COUNT += 1;
+        TOTAL_TRY_COUNT += 1;
         return true;
     }
 

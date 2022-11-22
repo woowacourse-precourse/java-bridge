@@ -4,7 +4,7 @@ import bridge.domain.vo.BridgeGameResult;
 
 import java.util.List;
 
-import static bridge.domain.BridgeGame.RETRY_COUNT;
+import static bridge.domain.BridgeGame.TOTAL_TRY_COUNT;
 import static bridge.domain.BridgeGame.isSuccess;
 import static bridge.domain.vo.BridgeGameResult.*;
 import static bridge.view.enumeration.Format.*;
@@ -86,7 +86,7 @@ public class OutputView {
     }
 
     private static void printRetryCount() {
-        System.out.println(TOTAL_RETRY_COUNT_IS.getMessage() + RETRY_COUNT);
+        System.out.println(TOTAL_RETRY_COUNT_IS.getMessage() + TOTAL_TRY_COUNT);
     }
 
     public static void printStartMessage() {

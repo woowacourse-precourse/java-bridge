@@ -8,7 +8,7 @@ import bridge.domain.vo.BridgeGameResult;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.BridgeGame.RETRY_COUNT;
+import static bridge.domain.BridgeGame.TOTAL_TRY_COUNT;
 import static bridge.view.InputView.*;
 import static bridge.view.OutputView.*;
 
@@ -35,7 +35,7 @@ public class BridgeController {
 
     private void init() {
         printStartMessage();
-        RETRY_COUNT = 1;
+        TOTAL_TRY_COUNT = 1;
     }
 
     private List<BridgeGameResult> play(List<String> bridge) {
