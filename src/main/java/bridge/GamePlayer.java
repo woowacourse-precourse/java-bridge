@@ -15,7 +15,7 @@ public class GamePlayer {
 
     private void playGame() {
         while (isExit != Command.QUIT) {
-            gameRecoder.retry();
+            gameRecoder.start();
             cross();
             if (gameRecoder.getResult().getGameClear()) {
                 break;
@@ -26,7 +26,7 @@ public class GamePlayer {
 
     private void cross() {
         while (!gameRecoder.getResult().getGameClear()) {
-            boolean crossResult = gameRecoder.cross(inputView.readMoving());
+            boolean crossResult = gameRecoder.recodeMove(inputView.readMoving());
             outputView.printMap(gameRecoder.getResult().getBridgeMap());
             if (!crossResult) {
                 break;

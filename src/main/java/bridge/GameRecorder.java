@@ -17,13 +17,13 @@ public class GameRecorder {
         return gameResult;
     }
 
-    public void retry() {
+    public void start() {
         bridgeMatcher.init();
         gameResult.attempt();
         pivot = DEFAULT_POSITION;
     }
 
-    public boolean cross(Command command) {
+    public boolean recodeMove(Command command) {
         if(bridgeMatcher.match(command)) {
             gameResult.addMapSuccess(command);
             pivotUp();
