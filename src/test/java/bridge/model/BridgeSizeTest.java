@@ -40,17 +40,19 @@ public class BridgeSizeTest {
     }
 
     @DisplayName("다리 길이가 3 미만일 경우 에러가 발생한다.")
-    @Test
-    void createBridgeSizeUnderRange() {
-        assertThatThrownBy(() -> new BridgeSize("2"))
+    @ValueSource(strings = {"2", "1", "0"})
+    @ParameterizedTest
+    void createBridgeSizeUnderRange(String size) {
+        assertThatThrownBy(() -> new BridgeSize(size))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.SIZE_RANGE.getMessage());
     }
 
     @DisplayName("다리 길이가 20 초과일 경우 에러가 발생한다.")
-    @Test
-    void createBridgeSizeOverRange() {
-        assertThatThrownBy(() -> new BridgeSize("21"))
+    @ValueSource(strings = {"21", "100000", "30"})
+    @ParameterizedTest
+    void createBridgeSizeOverRange(String size) {
+        assertThatThrownBy(() -> new BridgeSize(size))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.SIZE_RANGE.getMessage());
     }
