@@ -14,13 +14,16 @@ import bridge.domain.DrawBridge;
  */
 public class BridgeGame {
 
-    private Bridge bridge;
+    private final Bridge bridge;
     private final DrawBridge drawBridge;
     private final Commands commands;
+    private final BridgeMaker maker;
 
     public BridgeGame() {
+        bridge = new Bridge();
         drawBridge = new DrawBridge();
         commands = new Commands();
+        maker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     /**
@@ -56,8 +59,7 @@ public class BridgeGame {
     }
 
     public void createBridge(BridgeSize bridgeSize) {
-        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = new Bridge(maker.makeBridge(bridgeSize.getLength()));
+        this.bridge.createBridge(maker.makeBridge(bridgeSize.getLength()));
     }
 
     public boolean isCorrect(String nextMove) {
