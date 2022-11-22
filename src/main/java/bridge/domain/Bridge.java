@@ -1,9 +1,6 @@
 package bridge.domain;
 
 import bridge.domain.game.SuccessStep;
-import bridge.domain.generator.BridgeMaker;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -33,9 +30,9 @@ public class Bridge {
         }
         return result;
     }
-    //끝까지 갔으면 false, 아직 진행 가능이면 true
+
     public boolean bridgeEnd() {
-        return nowPosition != answerBridge.size();
+        return nowPosition == answerBridge.size();
     }
 
 }
