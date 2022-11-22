@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.constant.Score;
+import bridge.model.GameResult.Result;
 
 import java.util.List;
 
@@ -11,12 +12,12 @@ public class BridgeGame {
 
     private Referee referee;
     private Bridge bridge;
-    private User user;
-    private Record record = new Record();
+    private User user = new User();
     private Result result = new Result();
 
     public void createBridge(List<String> bridgeInput) {
         bridge = new Bridge(bridgeInput);
+        referee = new Referee(bridge);
     }
 
     /**
@@ -25,23 +26,21 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moveDirection) {
-        user = new User(moveDirection);
-        bridge.addCurrentRoundNumber();
+        user.setMoveDirection(moveDirection);
     }
 
     public void judgeMove(String moveDirection) {
-        int currentRoundNumber = bridge.getCurrentRoundNumber();
-        referee = new Referee(bridge, currentRoundNumber);
-
+        referee.addCurrentRoundNumber();
         Score score = referee.judgeMove(moveDirection);
-        result.setScore(score);
-        record.updateBridgeRecord(score, moveDirection);
+
+        user.setScore(score);
+        result.updateBridgeRecord(score, moveDirection);
     }
 
     public List<List<String>> getRecordByMove(String moveDirection) {
         move(moveDirection);
         judgeMove(moveDirection);
-        return record.getBridgeRecord();
+        return result.getBridgeRecord();
     }
 
     /**
@@ -51,21 +50,21 @@ public class BridgeGame {
      */
     public void retry() {
         result.addTryCount();
-        bridge.resetCurrentRoundNumber();
-        record.deleteBridgeRecord();
+        referee.resetCurrentRoundNumber();
+        result.deleteBridgeRecord();
     }
 
     public Boolean isFail() {
         String moveDirection = user.getMoveDirection();
         Boolean isFail = referee.isFail(moveDirection);
         if (isFail) {
-            bridge.resetCurrentRoundNumber();
+            referee.resetCurrentRoundNumber();
         }
         return isFail;
     }
 
     public Boolean isRoundLeft() {
-        int currentRoundNumber = bridge.getCurrentRoundNumber();
+        int currentRoundNumber = referee.getCurrentRoundNumber();
         return bridge.isRoundLeft(currentRoundNumber);
     }
 
@@ -73,11 +72,15 @@ public class BridgeGame {
         return referee.isGameRestart(userChoice);
     }
 
-    public Record getRecord() {
-        return record;
+    public List<List<String>> getBridgeRecord() {
+        return result.getBridgeRecord();
     }
 
-    public Result getResult() {
-        return result;
+    public String getScoreMessage() {
+        return user.getScoreMessage();
+    }
+
+    public int getTryCount() {
+        return result.getTryCount();
     }
 }

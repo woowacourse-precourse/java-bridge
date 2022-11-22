@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.model.GameResult.Record;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -64,12 +65,11 @@ class BridgeGameTest {
         bridgeGame.getRecordByMove("D");
         bridgeGame.retry();
 
-        Record record = bridgeGame.getRecord();
-        List<List<String>> bridgeRecord = record.getBridgeRecord();
-        Result result = bridgeGame.getResult();
+        List<List<String>> bridgeRecord = bridgeGame.getBridgeRecord();
+        int tryCount = bridgeGame.getTryCount();
 
         Assertions.assertThat(bridgeRecord.get(0)).isEmpty();
         Assertions.assertThat(bridgeRecord.get(1)).isEmpty();
-        Assertions.assertThat(result.getTryCount()).isEqualTo(2);
+        Assertions.assertThat(tryCount).isEqualTo(2);
     }
 }
