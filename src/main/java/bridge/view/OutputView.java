@@ -2,6 +2,9 @@ package bridge.view;
 
 import java.util.List;
 import bridge.model.BridgeGame;
+import bridge.constants.ViewMessage;
+
+import javax.swing.text.View;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -77,21 +80,21 @@ public class OutputView {
         if (success) {
             System.out.println("성공");
         }
-        else {
+        if (!success) {
             System.out.println("실패");
         }
         System.out.println("총 시도한 횟수: " +numTrial);
     }
     public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(ViewMessage.START.getDescription());
     }
     public void printGetLength() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(ViewMessage.SET_LENGTH.getDescription());
     }
     public void printGetMove() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(ViewMessage.SET_MOVE.getDescription());
     }
     public void printGetCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(ViewMessage.SET_RETRY.getDescription());
     }
 }
