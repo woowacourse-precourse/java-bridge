@@ -28,4 +28,14 @@ class PlayerTest {
         assertThat(player.getChoiceIndex(1)).isEqualTo(DOWN);
     }
 
+    @DisplayName("가장 마지막 choice 를 가져온다.")
+    @Test
+    void getLastChoice() {
+        Player player = new Player();
+        player.addChoice(UP);
+        player.addChoice(DOWN);
+        player.addChoice(UP);
+
+        assertThat(player.getLastChoice()).isEqualTo(UP);
+    }
 }
