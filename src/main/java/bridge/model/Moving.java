@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.views.OutputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;

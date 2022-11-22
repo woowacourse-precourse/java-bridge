@@ -1,4 +1,4 @@
-package bridge.views;
+package bridge.view;
 
 import bridge.model.ValidityCheck;
 import camp.nextstep.edu.missionutils.Console;
@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import static bridge.enums.DorU.*;
 import static bridge.enums.ErrorMessage.*;
 import static bridge.enums.Sentence.*;
-import static bridge.views.OutputView.printStartGame;
+import static bridge.view.OutputView.printStartGame;
 
 public class InputView {
 

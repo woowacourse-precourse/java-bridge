@@ -6,7 +6,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Moving;
 import bridge.model.ReEnter;
-import bridge.views.OutputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 

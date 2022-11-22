@@ -1,6 +1,6 @@
 package bridge.model;
 
-import bridge.views.InputView;
+import bridge.view.InputView;
 
 public class ReEnter {
 
