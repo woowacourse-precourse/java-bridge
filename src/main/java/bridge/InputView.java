@@ -10,8 +10,13 @@ import java.util.NoSuchElementException;
 public class InputView {
     private static final String BRIDGE_SIZE_OUT_OF_RANGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String INPUT_NOT_DIGIT = "[ERROR] 입력 값은 숫자가 아닙니다.";
+    public static final String NOT_CORRECT_UP_OR_DOWN_INPUT = "[ERROR] 이동할 칸 입력은 위: U, 아래: D 중 하나를 입력해야 합니다.";
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final int CLIPPED_WORD_LENGTH = 1;
+    private static final String U_INPUT_CLIPPED_WORD = "U";
+    private static final String D_INPUT_CLIPPED_WORD = "D";
     private static final int BRIDGE_SIZE_MIN_VALUE = 3;
     private static final int BRIDGE_SIZE_MAX_VALUE = 20;
     private static final String NEW_LINE = "\n";
@@ -32,7 +37,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(INPUT_MOVING);
+        String input = Console.readLine();
+        validateIsUpOrDown(input);
+        return input;
     }
 
     /**
@@ -59,5 +67,19 @@ public class InputView {
                 throw new IllegalArgumentException(INPUT_NOT_DIGIT);
             }
         }
+    }
+
+    private void validateIsUpOrDown(String input) {
+        if (!isUp(input) && !isDown(input)) {
+            throw new IllegalArgumentException(NOT_CORRECT_UP_OR_DOWN_INPUT);
+        }
+    }
+
+    private static boolean isUp(String input) {
+        return input.length() == CLIPPED_WORD_LENGTH && input.equals(U_INPUT_CLIPPED_WORD);
+    }
+
+    private static boolean isDown(String input) {
+        return input.length() == CLIPPED_WORD_LENGTH && input.equals(D_INPUT_CLIPPED_WORD);
     }
 }
