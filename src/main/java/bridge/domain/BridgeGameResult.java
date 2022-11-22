@@ -9,8 +9,8 @@ public class BridgeGameResult {
     private String result;
     private BridgeMoveState moveState = new BridgeMoveState();
 
-    public int increaseTryCount() {
-        return ++tryCount;
+    public void increaseTryCount() {
+        ++tryCount;
     }
 
     public void initMoveState() {
