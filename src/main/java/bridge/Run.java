@@ -12,7 +12,7 @@ public class Run {
     int attempts = 1;
 
     public Run() {
-        int bridgeSize = new InputView().readBridgeSize();
+        int bridgeSize = getBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
@@ -29,7 +29,7 @@ public class Run {
         SuccessFail isSuccess = bridgeGame.isSuccess(bridgeGame.bridge, bridgeGame.player);
 
         if (isSuccess == FAIL) {
-            String gameCommand = new InputView().readGameCommand();
+            String gameCommand = getGameCommand();
             if (gameCommand.equals("R")) {
                 attempts++;
                 bridgeGame.retry();
@@ -43,10 +43,40 @@ public class Run {
     private void playOneSet(BridgeGame bridgeGame) {
         boolean isFinish;
         do {
-            String moving = new InputView().readMoving();
+            String moving = getMoving();
             bridgeGame.move(moving);
             new OutputView().printMap(bridgeGame.bridge, bridgeGame.player);
             isFinish = bridgeGame.isFinish();
         } while(!isFinish);
+    }
+
+    private int getBridgeSize() {
+        while(true) {
+            try {
+                return new InputView().readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                e.getMessage();
+            }
+        }
+    }
+
+    private String getMoving() {
+        while(true) {
+            try {
+                return new InputView().readMoving();
+            } catch (IllegalArgumentException e) {
+                e.getMessage();
+            }
+        }
+    }
+
+    private String getGameCommand() {
+        while(true) {
+            try {
+                return new InputView().readGameCommand();
+            } catch (IllegalArgumentException e) {
+                e.getMessage();
+            }
+        }
     }
 }
