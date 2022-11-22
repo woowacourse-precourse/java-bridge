@@ -33,7 +33,6 @@ public class OutputView {
      * 메서드의 이름은 변경할 수 없다
      */
     public void printResult(Map<Integer, Map<String, String>> userStatus, CountRound countRound) {
-        printMap(userStatus);
         Collection<String> result = userStatus.get(userStatus.size()-1).values();
         System.out.println(OutputString.FINAL_RESULT.getMessage());
         if(result.stream().anyMatch(wrong -> wrong.equals("X"))){
