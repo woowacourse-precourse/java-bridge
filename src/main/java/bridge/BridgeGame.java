@@ -1,83 +1,55 @@
 package bridge;
 
-import java.util.ArrayDeque;
 import java.util.List;
 
 /**
- * 다리 건너기 게임을 관리하는 클래스
+ * 이동, 재시작, 정답 유무 시 실행 동작 관리
  */
 public class BridgeGame {
-
-    private final OutputView outputView;
     private final List<String> bridge;
-    private ArrayDeque<String> bridgeForPrint;
-    private int bestRecordPosition;
-    private int currentPosition;
-    private int trialCount;
+    private String bridgeMessage;
+    BridgeMessageMaker bridgeMessageMaker;
+    GameInfo gameInfo;
 
-    public BridgeGame(List<String> bridge) {
-        bridgeForPrint = new ArrayDeque<>();
+    public BridgeGame(List<String> bridge, GameInfo gameInfo) {
+        bridgeMessageMaker = new BridgeMessageMaker(bridge);
+        this.gameInfo = gameInfo;
         this.bridge = bridge;
-        outputView = new OutputView();
-        bestRecordPosition = currentPosition = 0;
-        trialCount = 1;
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     */
-    public String move() {
-        String moving = new InputView().readMoving();
-        bridgeForPrint = new BridgeStatusMaker().makeBridgeForPrint(bridge, moving, currentPosition);
-
-        // 상태 출력
-        outputView.printMap(bridgeForPrint);
-
-        // 맞추기 실패 시 재시도
-        if (!moving.equals(bridge.get(currentPosition))) {
-            return retry();
+    public void move(String moving) {
+        bridgeMessage = bridgeMessageMaker.makeBridgeMessage(moving, gameInfo.getCurrentPosition());
+        gameInfo.setSuccessOrFail(checkMoving(moving));
+        if (!gameInfo.getSuccessOrFail()) {
+            gameInfo.setGameRound("Retry");
+            return;
         }
-        // 정답 시 현재 위치 + 1
-        currentPosition += 1;
-
-        // 현재가 최고 기록이면 최고 기록 갱신
-        if (currentPosition > bestRecordPosition) {
-            bestRecordPosition = currentPosition;
-        }
-
-        // 정답을 전부 맞춘 상황일 시 게임 종료
-        if (bestRecordPosition == bridge.size()) {
-            outputView.printResult(bridgeForPrint, trialCount);
-            return "GameOver";
-        }
-        return "Continue";
+        gameInfo.setGameRound("Continue");
+        isCorrectMoving();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     */
-    public String retry() {
-        String gameCommand = new InputView().readGameCommand();
+    private void isCorrectMoving() {
+        gameInfo.setCurrentPosition(gameInfo.getCurrentPosition() + 1);
+        if (gameInfo.getCurrentPosition() == bridge.size()) {
+            gameInfo.setSuccessOrFail(true);
+            gameInfo.setGameRound("GameOver");
+        }
+    }
+
+    public void retry(String gameCommand) {
         if (gameCommand.equals("R")) {
-            addTrialCount();
-            initCurrentPosition();
-            initBridgeForPrint();
-            return "Retry";
+            gameInfo.setTrialCount(gameInfo.getTrialCount() + 1);
+            gameInfo.setCurrentPosition(0);
+            return;
         }
-        // 최종 결과 출력
-        outputView.printResult(bridgeForPrint, trialCount);
-        return "GameOver";
+        gameInfo.setGameRound("GameOver");
     }
 
-    private void addTrialCount() {
-        this.trialCount += 1;
+    private boolean checkMoving(String moving) {
+        return moving.equals(bridge.get(gameInfo.getCurrentPosition()));
     }
 
-    private void initCurrentPosition() {
-        currentPosition = 0;
-    }
-
-    private void initBridgeForPrint() {
-        bridgeForPrint = new ArrayDeque<>();
+    public String getBridgeMessage() {
+        return bridgeMessage;
     }
 }
