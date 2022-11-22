@@ -26,6 +26,7 @@ class InputTestMovingStr extends NsTest {
         assertThatThrownBy(() -> new ValidationCheck().checkMovingEnum(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("이동할 칸 입력 테스트 : 공백 입력")
     @Test
     void testMovingBySpaceBar() {

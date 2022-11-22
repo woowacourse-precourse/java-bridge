@@ -25,8 +25,6 @@ public class ValidationCheck {
             return moving;
         }
         throw new IllegalArgumentException(" 이동할 칸은 U 혹은 D 만 입력해야만합니다.");
-        // "U" -> 변수선언 가능성
-        // enum class 이용 가능
     }
     public String checkGameCommand(String gameCommand) throws IllegalArgumentException {
         if(gameCommand.equals("R") || gameCommand.equals("Q")){

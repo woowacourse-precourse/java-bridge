@@ -25,6 +25,7 @@ class InputTestBridgeSize {
         assertThatThrownBy(() -> new ValidationCheck().toInts(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("다리 길이 입력 테스트 : 범위를 벗어나는 숫자 입력")
     @Test
     void testBridgeSizeOutOfRange1() {
@@ -35,6 +36,7 @@ class InputTestBridgeSize {
         assertThatThrownBy(() -> new ValidationCheck().checkBridgeSizeRange(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("다리 길이 입력 테스트 : 범위를 벗어나는 숫자 입력 2")
     @Test
     void testBridgeSizeOutOfRange2() {
@@ -45,6 +47,7 @@ class InputTestBridgeSize {
         assertThatThrownBy(() -> new ValidationCheck().checkBridgeSizeRange(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("다리 길이 입력 테스트 : 소수 입력")
     @Test
     void testBridgeSizeByFloatingNumber() {
@@ -54,6 +57,7 @@ class InputTestBridgeSize {
         assertThatThrownBy(() -> new ValidationCheck().toInts(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("다리 길이 입력 테스트 : space bar (whitespace 입력)")
     @Test
     void testBridgeSizeBySpaceBar() {
@@ -63,6 +67,7 @@ class InputTestBridgeSize {
         assertThatThrownBy(() -> new ValidationCheck().isBlank(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("다리 길이 입력 테스트 : 줄바뀜 문자 입력")
     @Test
     void testBridgeSizeByOpeningChar() {

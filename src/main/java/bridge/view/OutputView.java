@@ -17,19 +17,20 @@ public class OutputView {
      */
     public void printMap(List<String> bridge) {
         String str = "[ ";
-        for(String s : bridge){
+        for (String s : bridge) {
             str += s + " | ";
         }
-        str = str.substring(0, str.length()-2);
+        str = str.substring(0, str.length() - 2);
         str += "]";
         System.out.println(str);
     }
 
-    public void printBridge(){
+    public void printBridge() {
         printMap(MoveResult.getUpBridge());
         printMap(MoveResult.getDownBridge());
         System.out.println();
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -45,22 +46,28 @@ public class OutputView {
     public void printGameStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
+
     public void printBridgeRequestMessage() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
-    public void printMovingInputMessage(){
+
+    public void printMovingInputMessage() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
+
     public void printRetryMessage() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
-    public void printResultPrefixMessage(){
+
+    public void printResultPrefixMessage() {
         System.out.println("최종 게임 결과");
     }
-    public void printGameSuccessOrNot(String gameResult){
+
+    public void printGameSuccessOrNot(String gameResult) {
         System.out.println("\n게임 성공 여부: " + gameResult);
     }
-    public void printNumberOfAttempts(String gameCountMessage){
+
+    public void printNumberOfAttempts(String gameCountMessage) {
         System.out.println(gameCountMessage);
     }
 }

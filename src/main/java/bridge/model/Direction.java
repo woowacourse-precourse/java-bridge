@@ -21,6 +21,5 @@ public enum Direction {
         return Arrays.stream(Direction.values())
                 .filter(bridge -> bridge.directionNumber == directionNumber)
                 .findAny().get().directionString;
-
     }
 }

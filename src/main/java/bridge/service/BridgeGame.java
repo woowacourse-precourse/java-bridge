@@ -2,8 +2,6 @@ package bridge.service;
 
 import bridge.model.MoveResult;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,16 +20,17 @@ public class BridgeGame {
         this.gameAttemptCount = 1;
         this.progressStatus = true;
     }
+
     public void move(String moving) {
         progressStatus = true;
         createBridgeResult(moving);
         moveCount++;
     }
 
-    public void createBridgeResult(String moving){
+    public void createBridgeResult(String moving) {
         boolean move = bridgeList.get(moveCount).equals(moving);
         MoveResult.apply(moving, move);
-        if(!move)
+        if (!move)
             progressStatus = false;
     }
 
@@ -48,21 +47,24 @@ public class BridgeGame {
         }
         return progressStatus;
     }
-    public void initBeforeRestart(){
+
+    public void initBeforeRestart() {
         progressStatus = true;
         moveCount = 0;
         gameAttemptCount++;
         MoveResult.retrySetting();
     }
 
-    public boolean isSuccess(){
+    public boolean isSuccess() {
         return progressStatus && moveCount == bridgeList.size();
     }
-    public String gameCount(){
+
+    public String gameCount() {
         return "총 시도한 횟수: " + gameAttemptCount;
     }
-    public String gameSuccess(){
-        if(progressStatus) {
+
+    public String gameSuccess() {
+        if (progressStatus) {
             return "성공";
         }
         return "실패";
