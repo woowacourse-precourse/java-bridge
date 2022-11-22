@@ -25,7 +25,7 @@ public class BridgeMaker {
 
         for (int index = 0; index < size; index++) {
             String passBridge = PositionType.matchNumber(bridgeNumberGenerator.generate())
-                    .orElseThrow(IllegalArgumentException::new);
+                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] PositionType is not match !!"));
 
             passBridges.add(passBridge);
         }
