@@ -8,11 +8,12 @@ import java.util.List;
 public class Result {
 
     private static final int PREVIOUS = -1;
+    private static final int NEXT = 1;
     private final List<List<ResultType>> resultsGroup = new ArrayList<>();
     private int distance;
 
     public Result(List<ResultType> upDirections, List<ResultType> downDirections, int distance) {
-        this.distance = distance + 1;
+        this.distance = distance + NEXT;
         resultsGroup.add(upDirections);
         resultsGroup.add(downDirections);
     }
