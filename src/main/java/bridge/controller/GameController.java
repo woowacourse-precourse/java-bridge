@@ -16,6 +16,8 @@ public class GameController {
     private final String ERROR = "[ERROR] ";
 
     private BridgeGame bridgeGame = new BridgeGame();
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
 
     public void init() {
         try {
@@ -26,8 +28,8 @@ public class GameController {
     }
 
     private void runGame() {
-        OutputView.printStart();
-        int bridgeSize = InputView.readBridgeSize();
+        outputView.printStart();
+        int bridgeSize = inputView.readBridgeSize();
         createBridge(bridgeSize);
 
         startGame();
@@ -50,13 +52,13 @@ public class GameController {
     }
 
     private String loadMoveDirection() {
-        return InputView.readMoving();
+        return inputView.readMoving();
     }
 
     private void playRound() {
         String moveDirection = loadMoveDirection();
         List<List<String>> bridgeRecord = bridgeGame.getRecordByMove(moveDirection);
-        OutputView.printMap(bridgeRecord);
+        outputView.printMap(bridgeRecord);
     }
 
     private boolean isFail() {
@@ -68,7 +70,7 @@ public class GameController {
     }
 
     private void isRestartOrQuit() {
-        String gameCommand = InputView.readGameCommand();
+        String gameCommand = inputView.readGameCommand();
         if (bridgeGame.isGameRestart(gameCommand)) {
             bridgeGame.retry();
             startGame();
@@ -82,9 +84,9 @@ public class GameController {
     private void printGameResult() {
         Record record = bridgeGame.getRecord();
         List<List<String>> bridgeRecord = record.getBridgeRecord();
-        OutputView.printFinalResult(bridgeRecord);
+        outputView.printFinalResult(bridgeRecord);
 
         Result result = bridgeGame.getResult();
-        OutputView.printResult(result);
+        outputView.printResult(result);
     }
 }

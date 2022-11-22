@@ -23,7 +23,7 @@ public class OutputView {
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
 
 
-    public static void printStart() {
+    public void printStart() {
         out.println(GAME_START_MESSAGE);
     }
 
@@ -32,7 +32,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<List<String>> bridges) {
+    public void printMap(List<List<String>> bridges) {
         for (List<String> bridge : bridges) {
             out.print(BRIDGE_START);
             printEachBridge(bridge);
@@ -41,7 +41,7 @@ public class OutputView {
         out.println();
     }
 
-    private static void printEachBridge(List<String> bridge) {
+    private void printEachBridge(List<String> bridge) {
         bridge =createSpace(bridge);
 
         boolean isFirst = true;
@@ -51,13 +51,13 @@ public class OutputView {
         }
     }
 
-    private static List<String> createSpace(List<String> bridge) {
+    private List<String> createSpace(List<String> bridge) {
         return bridge.stream()
                 .map(i -> SPACE + i + SPACE)
                 .collect(Collectors.toList());
     }
 
-    private static void printEachRound(Boolean isFirst, String round) {
+    private void printEachRound(Boolean isFirst, String round) {
         if (!isFirst) {
             out.print(BAR);
         }
@@ -69,7 +69,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(Result result) {
+    public void printResult(Result result) {
         int tryCount = result.getTryCount();
         String scoreMessage = result.getScoreMessage();
 
@@ -77,7 +77,7 @@ public class OutputView {
         out.println(TRY_COUNT_MESSAGE + tryCount);
     }
 
-    public static void printFinalResult(List<List<String>> bridges) {
+    public void printFinalResult(List<List<String>> bridges) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printMap(bridges);
     }
