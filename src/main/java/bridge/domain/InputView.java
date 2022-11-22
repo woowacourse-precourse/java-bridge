@@ -23,7 +23,7 @@ public class InputView {
 			} catch (IllegalArgumentException e) {
 				System.out.println("[ERROR] 다리의 길이는 3이상 20이하의 정수입니다.");
 			}
-		} while (bridgeLength < 3 || bridgeLength > 20);
+		} while (bridgeLength == 0);
 		return this.bridgeLength;
 	}
 
@@ -46,20 +46,23 @@ public class InputView {
 	public String readMoving() {
 		do {
 			System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
-			upOrDown = Console.readLine();
+			String tempUpOrDown = Console.readLine();
 			try {
-				readMovingExceptionCheck(upOrDown);
+				readMovingExceptionCheck(tempUpOrDown);
 			} catch (IllegalArgumentException e) {
-				System.out.println("[ERROR] U와 D만 선택하세요.");
+				continue;
 			}
 		} while (!upOrDown.equals("U") && !upOrDown.equals("D"));
 		return upOrDown;
 	}
 
-	public void readMovingExceptionCheck(String upOrDown) {
-		if (!upOrDown.equals("U") && !upOrDown.equals("D")) {
-			throw new IllegalArgumentException("[ERROR] U와 D만 선택하세요.");
+	public void readMovingExceptionCheck(String tempUpOrDown) {
+		if (tempUpOrDown.equals("U") || tempUpOrDown.equals("D")) {
+			this.upOrDown = tempUpOrDown;
+			return;
 		}
+		System.out.println("[ERROR] U와 D만 선택하세요.");
+		throw new IllegalArgumentException("[ERROR] U와 D만 선택하세요.");
 	}
 
 	/**
@@ -72,7 +75,7 @@ public class InputView {
 			try {
 				readGameCommandExceptionCheck(tempRestartOrQuit);
 			} catch (IllegalArgumentException e) {
-				System.out.println("[ERROR] R와 Q만 선택하세요.");
+				continue;
 			}
 		} while (!restartOrQuit.equals("R") && !restartOrQuit.equals("Q"));
 		return restartOrQuit;
@@ -83,6 +86,7 @@ public class InputView {
 			this.restartOrQuit = tempRestartOrQuit;
 			return;
 		}
+		System.out.println("[ERROR] R와 Q만 선택하세요.");
 		throw new IllegalArgumentException("[ERROR] R와 Q만 선택하세요.");
 	}
 
