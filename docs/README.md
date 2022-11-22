@@ -1,0 +1,129 @@
+# Bridge - 다리 건너기
+
+## Feature
+
+#### 입력
+
+- 생성할 다리 길이를 입력받고 다리를 생성한다.
+  - `inputView.readBridgeSize()`를 호출하여 다리 길이를 입력받는다.
+  - `GameController`의 생성자를 통해 구현한다.
+- 라운드마다 플레이어가 이동할 칸을 입력받는다.
+  - `GameController.playBridgeGame()`메서드를 통해 게임을 진행한다.
+  - `GameController.playRound()`메서드를 통해 라운드를 진행한다.
+  - `inputView.readMoving()`를 호출하여 플레이어가 이동할 칸을 입력받는다.
+- 게임 재시작/종료 여부를 입력받는다.
+  - `playBridgeGame()`메서드를 통해 구현한다.
+  - `BridgeGame.checkLastMove()`를 호출하여 입력한 이동이 정답인지 확인한다.
+  - `GameContoller.manageRetry()`를 호출하여 재시작 요청을 처리한다.
+#### 출력
+- 게임 시작 문구
+  - `OutputView.printStartGame()`을 호출하여 게임시작 문구를 출력한다.
+- 게임 종료 문구
+  - `OutputView.printResult()`메서드를 호출하여 출력한다.
+- 현재까지 이동한 다리의 상태
+  - `BridgeMap.makeMap()`를 호출하여 다리의 상태를 담은 메시지를 만든다.
+  - `OutputView.printMap()`을 호출하여 다리의 상태를 출력한다.
+- 예외 상황 시 에러 문구
+  - `ExceptionHandler.java`의 메서드들을 이용해 구현한다.
+
+## Class
+- GameController
+  - 직접적으로 게임을 제어한다.
+    - 생성자
+      - `InputView`, `OutputView`, `BridgeMap` 인스턴스를 생성한다.
+    - `makeBridgeGame()`
+      - 브릿지 게임을 만드는 기능을 한다.
+      - 사용자로부터 다리의 길이를 입력받은 후 `BridgeGame` 인스턴스를 생성한다.
+    - `playBridgeGame()`
+      - 브릿지 게임을 진행하는 기능을 한다.
+      - 순차적으로 라운드를 진행하며 최근의 라운드를 평가한다.
+    - `playRound()`
+      - 라운드를 진행하는 기능을 한다.
+      - 사용자에게 이동 안내 메시지를 출력한 후 사용자로부터 이동을 입력받는다.
+      - 입력받은 이동을 처리한 후 현재까지의 이동 상태를 출력한다.
+    - `manageRetry()`
+      - 사용자에게 재시작/종료 질의 메시지를 출력한 후 사용자로부터 커맨드를 입력받는다.
+      - 입력받은 커맨드에 따라 재사작 또는 게임 종료를 처리한다.
+    - `sumUpBridgeGame()`
+      - `OutputView.printResult`메서드를 호출하여 게임결과를 출력한다.
+- BridgeGame
+  - 생성자
+    - 사용자가 입력한 길이의 다리를 생성한다.
+  - `move()`
+    - 사용자의 이동입력을 moves 변수에 저장한다.
+  - `retry()` 
+    - moves 변수를 비워서 이동기록을 초기화한다.
+  - `getBridgeSize()`
+    - 다리의 길이를 반환한다.
+  - `getBridge()`
+    - 다리 정보를 반환한다.
+  - `getMoves()`
+    - 사용자의 이동 기록을 반환한다.
+  - `equalLastMove`
+    - 사용자의 마지막 이동이 정답인지 반환한다.
+- BridgeMaker
+  - 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
+  - 생성자
+    - 다리를 생성하는 인스턴스를 저장한다.
+  - `makeBridge()`
+    - 다리를 생성한다.
+    - 위 칸이면 "U", 아래 칸이면 "D"로 표현한다
+- BridgeMap
+  - 다리의 정보를 가공한다.
+  - `makeMap()`
+    - 다리의 정보를 문자열 배열로 반환한다.
+  - `makeBridgeSide()`
+    - 사용자가 어느 방향으로 이동해서 맞았는지 틀렸는지 여부를 반환한다.
+  - `mapMaker()`
+    - 다리의 정보를 문자열 배열로 만든다.
+  - `makeUpSide()`
+    - 위쪽 다리의 이동 정보를 문자열로 반환한다.
+  - `makeDownSide()`
+    - 아래쪽 다리의 이동 정보를 문자열로 반환한다.
+  - `correctSide()`
+    - 맞았을때 이동한 쪽의 다리의 이동 정보를 추가하여 문자열로 반환한다.
+  - `otherSide()`
+    - 맞았을때 이동하지 않은 쪽의 다리의 이동 정보를 추가하여 문자열로 반환한다.
+  - `wrongSide()`
+    - 틀렸을때 이동한 쪽의 다리의 이동 정보를 추가하여 문자열로 반환한다.
+  - `notWrongSide()`
+    - 틀렸을때 이동하지 않은 쪽의 다리의 이동 정보를 추가하여 문자열로 반환한다.
+- ExceptionHandler
+  - 예외처리를 위한 클래스
+  - `checkBridgeSize()`
+    - 입력된 다리 길이가 적법한지 확인한다.
+  - `convert2Integer()`
+    - 입력된 문자열이 정수로 변환될 수 있는지 확인한다.
+    - 변환된 정수를 반환한다.
+  - `checkBridgeSizeRange()`
+    - 입력된 정수의 범위가 적법한지 확인한다.
+  - `checkMoving()`
+    - 입력된 움직임이 적법한지 확인한다.
+  - `checkRetry()`
+    - 입력된 재시작/종료 커맨드가 적법한지 확인한다.
+- InputView
+  - 사용자로부터 입력을 받는 역할을 한다.
+  - 생성자
+    - `ExceptionHandler` 인스턴스를 생성한다
+  - `readBridgeSize()`
+    - 다리의 길이를 입력받는다.
+  - `readMoving()` 
+    - 사용자가 이동할 칸을 입력받는다.
+  - `readGameCommand()`
+    - 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+- OutputView
+  - 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다. 
+  - `printNewLine()`
+    - 새로운 한 줄을 출력한다.
+  - `printStartGame()`
+    - 게임 시작메시지를 출력한다.
+  - `printBridgeSizeQuestion()`
+    - 다리 길이를 입력하라고 하는 메시지를 출력한다.
+  - `printMoveQuestion()`
+    - 이동을 입력하라고 하는 메시지를 출력한다.
+  - `printRetryQuestion()`
+    - 게임 재시작/종료 질의 메시지를 출력한다.
+  - `printMap()`
+    - 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+  - `printResult()`
+    - 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
