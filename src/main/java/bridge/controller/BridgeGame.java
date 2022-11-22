@@ -57,17 +57,17 @@ public class BridgeGame {
         if (!move.equals(inputMove)){
             isMoveNotEqualsU(resultMap);
         }
+        bridgeGameInput.getBridgePrint(resultMap);
     }
 
     public void checkMoveEqualsD(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
-        if (move.equals("D")) {
-            if (move.equals(inputMove)){
-                isMoveEqualsD(resultMap);
-            }
-            if (!move.equals(inputMove)){
-                isMoveNotEqualsD(resultMap);
-            }
+        if (move.equals(inputMove)){
+            isMoveEqualsD(resultMap);
         }
+        if (!move.equals(inputMove)){
+            isMoveNotEqualsD(resultMap);
+        }
+        bridgeGameInput.getBridgePrint(resultMap);
     }
 
     public void isMoveEqualsU(HashMap<Integer, List<String>> resultMap) {
@@ -76,7 +76,6 @@ public class BridgeGame {
         String resultDown="E";
         addToResultList(resultUp, resultDown, results);
         addToResultMap(results, resultMap);
-        bridgeGameInput.getBridgePrint(resultMap);
         currentIndex += 1;
     }
 
@@ -86,7 +85,6 @@ public class BridgeGame {
         String resultDown="X";
         addToResultList(resultUp, resultDown, results);
         addToResultMap(results, resultMap);
-        bridgeGameInput.getBridgePrint(resultMap);
         retry("실패", resultMap);
     }
 
@@ -94,10 +92,8 @@ public class BridgeGame {
         List<String> results = new ArrayList<>();
         String resultUp="E";
         String resultDown="O";
-        results.add(resultUp);
-        results.add(resultDown);
-        resultMap.put(currentIndex, results);
-        bridgeGameInput.getBridgePrint(resultMap);
+        addToResultList(resultUp, resultDown, results);
+        addToResultMap(results, resultMap);
         currentIndex += 1;
     }
 
@@ -105,10 +101,8 @@ public class BridgeGame {
         List<String> results = new ArrayList<>();
         String resultUp="X";
         String resultDown="E";
-        results.add(resultUp);
-        results.add(resultDown);
-        resultMap.put(currentIndex, results);
-        bridgeGameInput.getBridgePrint(resultMap);
+        addToResultList(resultUp, resultDown, results);
+        addToResultMap(results, resultMap);
         retry("실패", resultMap);
     }
 
@@ -136,7 +130,7 @@ public class BridgeGame {
         if (gameCommand.equals("Q")) {
             bridgeGameInput.getResultPrint(result, retrycount, resultMap);
             currentIndex=0;
-            System.exit(0);
+            startGame();
         }
     }
 }
