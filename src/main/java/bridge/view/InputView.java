@@ -3,7 +3,6 @@ package bridge.view;
 import bridge.model.BridgeValidator;
 import bridge.model.Command;
 import bridge.model.Direction;
-import bridge.utils.InputUtil;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -16,7 +15,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("\n다리의 길이를 입력해주세요.");
-        int bridgeSize = InputUtil.readNumber();
+        int bridgeSize = readNumber();
         BridgeValidator.validateBridgeSize(bridgeSize);
         return bridgeSize;
     }
@@ -26,7 +25,7 @@ public class InputView {
      */
     public Direction readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String direction = InputUtil.readAndTrim();
+        String direction = readAndTrim();
         return Direction.find(direction);
     }
 
@@ -35,7 +34,19 @@ public class InputView {
      */
     public Command readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String command = InputUtil.readAndTrim();
+        String command = readAndTrim();
         return Command.find(command);
+    }
+
+    private static int readNumber() {
+        try {
+            return Integer.parseInt(readAndTrim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 문자가 입력되었습니다. 숫자를 입력해주세요.");
+        }
+    }
+
+    private static String readAndTrim() {
+        return Console.readLine().trim();
     }
 }
