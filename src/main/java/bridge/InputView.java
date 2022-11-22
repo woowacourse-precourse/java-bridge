@@ -113,6 +113,12 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        while (true) {
+            String isReGame = Console.readLine();
+            // 올바른 값이라면 그 값 리턴
+            return null;
+            // 올바르지 않은 값이라면 에러 발생 후 메시지 출력
+        }
     }
 }
