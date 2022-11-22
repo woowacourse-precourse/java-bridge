@@ -28,3 +28,4 @@
 - 재시작 선택에 대한 입력이 R 또는 Q가 아님
 
 # 🔧 리팩토링한 부분
+- BridgeGame에서 InputView 와 OutputView를 사용하지 않도록 변경
