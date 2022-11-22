@@ -21,8 +21,9 @@ public class Bridge {
     }
 
     public void initBridge() {
-        this.upperBridgeResult.remove(upperBridgeResult.size() - 1);
-        this.lowerBridgeResult.remove(lowerBridgeResult.size() - 1);
+        this.upperBridgeResult.clear();
+        this.lowerBridgeResult.clear();
+        this.currentPosition = 0;
     }
 
     public String toString() {
