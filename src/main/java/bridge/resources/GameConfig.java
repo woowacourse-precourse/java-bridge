@@ -7,6 +7,5 @@ public abstract class GameConfig {
     public static final String BLANK = " ";
     public static final String CAN_GO = "O";
     public static final String CANNOT_GO = "X";
-    public static final String UPPER = "U";
-    public static final String LOWER = "D";
+
 }
