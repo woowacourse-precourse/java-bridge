@@ -3,6 +3,8 @@ package bridge.view;
 import bridge.util.BridgeUtil;
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.util.BridgeUtil.*;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -22,7 +24,7 @@ public class InputView {
     public static String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String square = Console.readLine();
-        if(!(square.equals(BridgeUtil.UP) || square.equals(BridgeUtil.DOWN))){
+        if(!(square.equals(UP.getValue()) || square.equals(DOWN.getValue()))){
             System.out.println(ExceptionMessage.isProperMsg());
             return readMoving();
         }
@@ -35,7 +37,7 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String reply = Console.readLine();
-        if(!(reply.equals(BridgeUtil.RESTART) || reply.equals(BridgeUtil.QUIT))){
+        if(!(reply.equals(RESTART.getValue()) || reply.equals(QUIT.getValue()))){
             System.out.println(ExceptionMessage.isReplyMsg());
             return readGameCommand();
         }

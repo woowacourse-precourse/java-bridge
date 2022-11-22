@@ -10,6 +10,8 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.util.BridgeUtil.*;
+
 public class BridgeController {
 
     BridgeGame bridgeGame = new BridgeGame();
@@ -22,7 +24,7 @@ public class BridgeController {
         do {
             List<String> bridge = makeBridge();
             reply = play(bridge);
-        }while(!reply.equals(BridgeUtil.QUIT));
+        }while(!reply.equals(QUIT.getValue()));
     }
 
     public List<String> makeBridge(){
@@ -33,12 +35,12 @@ public class BridgeController {
     public String play(List<String> bridge){
         int attempt = 0;
         String successStatus;
-        String reply = BridgeUtil.RESTART;
+        String reply = RESTART.getValue();
         do{
             successStatus = resetBridge(bridge);
             attempt = bridgeGame.retry(reply, attempt);
             reply = replyQuit(successStatus);
-        }while (!reply.equals(BridgeUtil.QUIT));
+        }while (!reply.equals(QUIT.getValue()));
         printResult(successStatus, attempt);
         return reply;
     }
@@ -53,11 +55,11 @@ public class BridgeController {
             String move = InputView.readMoving();
             List<List<String>> bridges = bridgeGame.move(s, move);
             OutputView.printMap(bridgeGame.toString());
-            if (endGame(bridges).equals(BridgeUtil.FAIL)) {
-                return BridgeUtil.FAIL;
+            if (endGame(bridges).equals(FAIL.getValue())) {
+                return FAIL.getValue();
             }
         }
-        return BridgeUtil.SUCCESS;
+        return SUCCESS.getValue();
     }
 
 
@@ -65,19 +67,19 @@ public class BridgeController {
         List<String> bridgeUp = bridges.get(0);
         List<String> bridgeDown = bridges.get(1);
 
-        if(bridgeUp.contains(BridgeUtil.WRONG) || bridgeDown.contains(BridgeUtil.WRONG)){
-            return BridgeUtil.FAIL;
+        if(bridgeUp.contains(WRONG.getValue()) || bridgeDown.contains(WRONG.getValue())){
+            return FAIL.getValue();
         }
-        return BridgeUtil.SUCCESS;
+        return SUCCESS.getValue();
     }
 
     public String replyQuit(String successStatus){
         String reply;
-        if(successStatus.equals(BridgeUtil.FAIL)) {
+        if(successStatus.equals(FAIL.getValue())) {
             reply = InputView.readGameCommand();
             return reply;
         }
-        return BridgeUtil.QUIT;
+        return QUIT.getValue();
     }
 
     public void printResult(String successStatus, int attempt) {
