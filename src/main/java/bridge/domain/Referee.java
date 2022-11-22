@@ -10,13 +10,12 @@ public class Referee {
 
     public void start() {
         BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
-        int flag = runningGame(bridgeGame);
-        while (flag == Constant.GAME_RESTART) {
+        int gameResult = runningGame(bridgeGame);
+        while (gameResult == Constant.GAME_RESTART) {
             bridgeGame.retry();
-            flag = runningGame(bridgeGame);
+            gameResult = runningGame(bridgeGame);
         }
-        // TODO: 최종 결과 출력
-        outputView.printResult(flag, bridgeGame);
+        outputView.printResult(gameResult, bridgeGame);
     }
 
     private int runningGame(BridgeGame bridgeGame) {
