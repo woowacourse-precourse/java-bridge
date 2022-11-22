@@ -1,9 +1,9 @@
 package bridge.view;
 
-import bridge.model.BridgeGame;
 import bridge.model.Moving;
 import bridge.model.Player;
 import bridge.model.PlayerStatus;
+import bridge.model.TrialCount;
 
 import java.util.List;
 
@@ -15,6 +15,9 @@ public class OutputView {
     public static final String MAP_HEAD = "[ ";
     public static final String MAP_TAIL = " ]";
     public static final String MOVING_DELIMITER = " | ";
+    public static final String GOOD_CHOICE_FORM = "O";
+    public static final String BAD_CHOICE_FORM = "X";
+    public static final String NO_CHOICE_FORM = " ";
     private static OutputView instance;
 
     private OutputView() {}
@@ -27,6 +30,7 @@ public class OutputView {
     }
     public void printInit() {
         System.out.println(INIT_MESSAGE);
+        printBlankLine();
     }
 
     /**
@@ -35,39 +39,46 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Player player) {
-        printPartialMap(player, Moving.U);
-        printPartialMap(player, Moving.D);
+        printMap(player, Moving.U);
+        printMap(player, Moving.D);
+        printBlankLine();
     }
 
-    private void printPartialMap(Player player, Moving expected) {
-        List<Moving> movingHistory = player.getHistory();
+    private void printMap(Player player, Moving movingToPrint) {
         System.out.print(MAP_HEAD);
-        for (int i = 0; i < movingHistory.size() - 1; i++) {
-            printMoving(movingHistory.get(i), expected);
-            System.out.print(MOVING_DELIMITER);
-        }
-        printLastMoving(movingHistory.get(movingHistory.size() - 1), expected, player.getPlayerStatus());
+        printMovings(player, movingToPrint);
         System.out.println(MAP_TAIL);
     }
 
-    private void printMoving(Moving moving, Moving expected) {
-        if (moving != expected) {
-            System.out.print(" ");
-            return;
+    private void printMovings(Player player, Moving movingToPrint) {
+        List<Moving> movings = player.getHistory();
+        for (int i = 0; i < movings.size() - 1; i++) {
+            System.out.print(generateMovingResult(movings.get(i), movingToPrint));
+            System.out.print(MOVING_DELIMITER);
         }
-        System.out.print("O");
+        System.out.print(generateLastMovingResult(player, movingToPrint));
     }
 
-    private void printLastMoving(Moving moving, Moving expected, PlayerStatus playerStatus) {
-        if (moving != expected) {
-            System.out.print(" ");
-            return;
+    private String generateMovingResult(Moving moving, Moving movingToPrint) {
+        if (moving != movingToPrint) {
+            return NO_CHOICE_FORM;
         }
-        if (playerStatus == PlayerStatus.DEAD) {
-            System.out.print("X");
-            return;
+        return GOOD_CHOICE_FORM;
+    }
+
+    private String generateLastMovingResult(Player player, Moving movingToPrint) {
+        if (getLastMoving(player) != movingToPrint) {
+            return NO_CHOICE_FORM;
         }
-        System.out.print("O");
+        if (player.isDead()) {
+            return BAD_CHOICE_FORM;
+        }
+        return GOOD_CHOICE_FORM;
+    }
+
+    private Moving getLastMoving(Player player) {
+        List<Moving> movings = player.getHistory();
+        return movings.get(movings.size() - 1);
     }
 
     /**
@@ -75,13 +86,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Player player, BridgeGame bridgeGame) {
+    public void printResult(Player player, TrialCount trialCount) {
         System.out.println("최종 게임 결과");
         printMap(player);
 
         System.out.printf("게임 성공 여부: %s\n", player.getPlayerStatus() == PlayerStatus.DEAD ?
                 "실패" : "성공");
-        System.out.printf("총 시도한 횟수: %d\n", bridgeGame.getTrialCount().getCount());
+        System.out.printf("총 시도한 횟수: %d\n", trialCount.getCount());
+    }
+
+    private void printBlankLine() {
+        System.out.println();
     }
 
     public void printErrorMessage(String message) {

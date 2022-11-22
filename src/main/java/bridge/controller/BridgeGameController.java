@@ -42,7 +42,7 @@ public class BridgeGameController {
             move(bridgeGame);
             checkRetry(bridgeGame);
         }
-        outputView.printResult(bridgeGame.getPlayer(), bridgeGame);
+        outputView.printResult(bridgeGame.getPlayer(), bridgeGame.getTrialCount());
     }
 
     private void move(BridgeGame bridgeGame) {
