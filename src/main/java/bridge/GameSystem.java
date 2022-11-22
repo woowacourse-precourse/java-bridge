@@ -1,6 +1,5 @@
 package bridge;
 
-import view.InputView;
 
 import java.util.Objects;
 

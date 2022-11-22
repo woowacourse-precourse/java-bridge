@@ -62,5 +62,8 @@ public class BridgeGame {
         trialNumber++;
         return true;
     }
-   
+    public void finalResult(boolean moveSuccess){
+        gameSystem.printResult(moveSuccess,trialNumber);
+    }
+
 }
