@@ -100,8 +100,7 @@ public class BridgeGameController {
 
     // 3-6. 재시작 선택시 재시작하는 메소드 호출
     private void decideRetryOrQuit(String retryRorQ) {
-        if (retryRorQ.equals(Rules.GAME_RETRY)) {
-            bridgeGame.retry();
+        if (bridgeGame.retry(retryRorQ)) {
             playGame();
         }
     }

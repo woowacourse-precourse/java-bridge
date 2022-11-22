@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.util.Rules;
+
 import java.util.List;
 
 public class BridgeGame {
@@ -21,9 +23,13 @@ public class BridgeGame {
         playerPath.nextStep(nextPlate);
     }
 
-    public void retry() {
-        playerPath = new PlayerPath();
-        tryCount.retry();
+    public boolean retry(String inputRetry) {
+        if (inputRetry.equals(Rules.GAME_RETRY)) {
+            playerPath = new PlayerPath();
+            tryCount.retry();
+            return true;
+        }
+        return false;
     }
 
     public boolean isSuccessCrossingBridge() {

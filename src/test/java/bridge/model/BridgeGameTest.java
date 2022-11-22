@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.util.Rules;
 import camp.nextstep.edu.missionutils.Randoms;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,7 +74,7 @@ public class BridgeGameTest {
     @DisplayName("재시도 시 플레이어 경로 초기화 테스트")
     @Test
     void retryPlayerFieldInitTest() throws Exception {
-        bridgeGame.retry();
+        bridgeGame.retry(Rules.GAME_RETRY);
 
         assertThat(playerPath.currentPosition()).isEqualTo(-1);
         assertThat(playerPath.currentPlate()).isEqualTo(null);
@@ -84,7 +85,7 @@ public class BridgeGameTest {
     void retryCountAddTest() throws Exception {
         int beforeCount = tryCount.getTryCount();
 
-        bridgeGame.retry();
+        bridgeGame.retry(Rules.GAME_RETRY);
 
         assertThat(tryCount.getTryCount()).isEqualTo(beforeCount + 1);
     }
