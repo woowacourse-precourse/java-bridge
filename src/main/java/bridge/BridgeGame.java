@@ -1,5 +1,6 @@
-package bridge.model;
+package bridge;
 
+import bridge.model.UserInput;
 import bridge.model.constants.Command;
 
 import java.util.List;
