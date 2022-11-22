@@ -46,10 +46,10 @@ public class BridgeGame {
     private void down(List<String> bridgeCorrect, String bridge, String user) {
         if (user.equals(MessageStorage.DOWN.getMessage())) {
             if (bridge.equals(user)) {
-                addBridgeCorrect(bridgeCorrect, MessageStorage.DOWN.getMessage(), MessageStorage.CORRECT.getMessage());
+                addBridgeCorrect(bridgeCorrect,MessageStorage.DOWN.getMessage(),MessageStorage.CORRECT.getMessage());
             }
             if (!bridge.equals(user)) {
-                addBridgeCorrect(bridgeCorrect, MessageStorage.DOWN.getMessage(), MessageStorage.INCORRECT.getMessage());
+                addBridgeCorrect(bridgeCorrect,MessageStorage.DOWN.getMessage(),MessageStorage.INCORRECT.getMessage());
             }
         }
     }
