@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.enums.MarkResult;
+import bridge.enums.Number;
+import bridge.enums.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,17 +14,17 @@ public class Result {
 
     Result() {
         tryCount = 1;
-        isSuccess = "성공";
+        isSuccess = MarkResult.SUCCESS.getMessage();
         results = new ArrayList<>();
     }
 
     public void addResult(String movingPosition, boolean isCorrect) {
         if (isCorrect) {
-            results.add(List.of(movingPosition, "O"));
+            results.add(List.of(movingPosition, MarkResult.MARK_CORRECT.getMessage()));
         }
 
         if (!isCorrect) {
-            results.add(List.of(movingPosition, "X"));
+            results.add(List.of(movingPosition, MarkResult.MARK_INCORRECT.getMessage()));
         }
     }
 
@@ -37,7 +41,7 @@ public class Result {
     }
 
     public void setFail() {
-        isSuccess = "실패";
+        isSuccess = MarkResult.FAIL.getMessage();
     }
 
     public String getIsSuccess() {
@@ -49,9 +53,9 @@ public class Result {
     }
 
     public void makeUpPositionMap() {
-        for (int i = 0; i < results.size(); i++) {
-            printMovableMark("U", i);
-            printNothing("D", i);
+        for (int i = Number.FIRST.getMessage(); i < results.size(); i++) {
+            printMovableMark(String.valueOf(Position.UP.getMessage()), i);
+            printNothing(String.valueOf(Position.DOWN.getMessage()), i);
 
             if (i == results.size() - 1) {
                 continue;
@@ -61,9 +65,9 @@ public class Result {
     }
 
     public void makeDownPositionMap() {
-        for (int i = 0; i < results.size(); i++) {
-            printMovableMark("D", i);
-            printNothing("U", i);
+        for (int i = Number.FIRST.getMessage(); i < results.size(); i++) {
+            printMovableMark(String.valueOf(Position.DOWN.getMessage()), i);
+            printNothing(String.valueOf(Position.UP.getMessage()), i);
 
             if (i == results.size() - 1) {
                 continue;
@@ -73,14 +77,14 @@ public class Result {
     }
 
     public void printNothing(String position, int index) {
-        if (results.get(index).get(0).equals(position)) {
+        if (results.get(index).get(Number.FIRST.getMessage()).equals(position)) {
             System.out.print(" ");
         }
     }
 
     public void printMovableMark(String position, int index) {
-        if (results.get(index).get(0).equals(position)) {
-            System.out.print(results.get(index).get(1));
+        if (results.get(index).get(Number.FIRST.getMessage()).equals(position)) {
+            System.out.print(results.get(index).get(Number.SECOND.getMessage()));
         }
     }
 }

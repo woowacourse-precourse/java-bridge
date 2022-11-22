@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.enums.Number;
+import bridge.enums.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +23,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int order = 0; order < size; order++) {
+        for (int order = Number.FIRST.getMessage(); order < size; order++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
             bridge = addBridgeUpPosition(bridgeNumber, bridge);
             bridge = addBridgeDownPosition(bridgeNumber, bridge);
@@ -31,7 +34,7 @@ public class BridgeMaker {
 
     public List<String> addBridgeUpPosition(int bridgeNumber, List<String> bridge) {
         if (bridgeNumber == 1) {
-            bridge.add("U");
+            bridge.add(Position.UP.getMessage());
         }
 
         return bridge;
@@ -39,7 +42,7 @@ public class BridgeMaker {
 
     public List<String> addBridgeDownPosition(int bridgeNumber, List<String> bridge) {
         if (bridgeNumber == 0) {
-            bridge.add("D");
+            bridge.add(Position.DOWN.getMessage());
         }
 
         return bridge;

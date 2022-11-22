@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.Number;
+
 public class BridgeGameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -10,7 +12,7 @@ public class BridgeGameController {
     boolean isRetry;
 
     BridgeGameController() {
-        index = 0;
+        index = Number.FIRST.getMessage();
         isRetry = false;
     }
 

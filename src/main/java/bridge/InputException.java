@@ -1,34 +1,36 @@
 package bridge;
 
+import bridge.enums.ErrorMessage;
+
 public class InputException {
 
     public void validateReadBridgeSize(String inputNumber) {
         if (!isNumber(inputNumber)) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값을 입력했습니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());
         }
 
         if (!isRangeThreeToTwenty(inputNumber)) {
-            throw new IllegalArgumentException("[ERROR] 범위를 벗어 난 값을 입력했습니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validateReadMoving(String inputNumber) {
         if (!isLengthOne(inputNumber)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 값을 입력했습니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());
         }
 
         if (!isInputPositionRight(inputNumber)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 값을 입력했습니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validateReadGameCommand(String inputCommand) {
         if (!isLengthOne(inputCommand)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 값을 입력했습니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());
         }
 
         if (!isInputCommandRight(inputCommand)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 값을 입력했습니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());
         }
     }
 
