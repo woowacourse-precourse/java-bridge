@@ -13,7 +13,7 @@ public class BridgeGame {
     public void move() {
     }
 
-    public boolean isCorrectStep(List<String> userPosition, List<String> bridge) {
+    public boolean isCorrectStep(List<String> bridge, List<String> userPosition) {
         for (int i = 0; i < userPosition.size(); i++) {
             if (!userPosition.get(i).equals(bridge.get(i)))
                 return false;
