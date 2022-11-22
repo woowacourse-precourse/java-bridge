@@ -12,12 +12,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import validator.BridgeSizeValidator;
+import validator.BridgeSizeInputValidator;
 
 public class InputViewTest {
 
 	InputView inputView = new InputView();
-	BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
+	BridgeSizeInputValidator bridgeSizeValidator = new BridgeSizeInputValidator();
 
 	@Nested
 	@DisplayName("다리 길이 입력 기능 테스트 클래스")

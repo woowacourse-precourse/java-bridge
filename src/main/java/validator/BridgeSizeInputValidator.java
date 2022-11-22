@@ -5,7 +5,7 @@ import static view.InputViewConstants.ERROR_MESSAGE_OUT_OF_RANGE;
 import static view.InputViewConstants.MAX_BRIDGE_SIZE;
 import static view.InputViewConstants.MIN_BRIDGE_SIZE;
 
-public class BridgeSizeValidator {
+public class BridgeSizeInputValidator {
 
 	public String validateBridgeSize(String bridgeSize) {
 		validateBridgeSizeNumeric(bridgeSize);
