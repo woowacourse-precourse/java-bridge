@@ -1,11 +1,15 @@
 package bridge.domain;
 
 import bridge.BridgeMaker;
+import bridge.command.BridgeSizeCommand;
 import bridge.dto.BridgeGameResultDto;
 import bridge.dto.PlayLogDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+/**
+ * BridgeGame 의 전체 순서를 담당하는 컨트롤러 클래스
+ */
 public final class BridgeGameController {
 
     private static final String INPUT_VIEW_NULL_MESSAGE = "inputView 에는 null 이 올 수 없습니다";
@@ -60,9 +64,9 @@ public final class BridgeGameController {
     }
 
     private int receiveBridgeSize() {
-        final int size = inputView.readBridgeSize();
-        BridgeValidator.validateBridgeSize(size);
-        return size;
+        final BridgeSizeCommand sizeCommand = inputView.readBridgeSize();
+        BridgeValidator.validateBridgeSize(sizeCommand.getBridgeSize());
+        return sizeCommand.getBridgeSize();
     }
 
     public void play() {

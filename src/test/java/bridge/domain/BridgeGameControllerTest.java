@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.command.BridgeSizeCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +27,7 @@ class BridgeGameControllerTest {
     @BeforeEach
     void setUp() {
         inputView = mock(InputView.class);
-        when(inputView.readBridgeSize()).thenReturn(3);
+        when(inputView.readBridgeSize()).thenReturn(new BridgeSizeCommand("3"));
     }
 
     @Test

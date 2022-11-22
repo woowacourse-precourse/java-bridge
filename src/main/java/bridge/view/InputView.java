@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.command.BridgeSizeCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Pattern;
@@ -15,13 +16,10 @@ public final class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public BridgeSizeCommand readBridgeSize() {
         final String input = Console.readLine();
-        if (!NUMBERS.matcher(input).matches()) {
-            throw new IllegalArgumentException(NOT_NUMBER_MESSAGE);
-        }
         try {
-            return Integer.parseInt(input);
+            return new BridgeSizeCommand(input);
         } catch (final NumberFormatException e) {
             throw new IllegalArgumentException(OVER_RANGE_MESSAGE);
         }
