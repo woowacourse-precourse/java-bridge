@@ -25,8 +25,8 @@ public class Application {
         new CrossBridge(bridgeSize, bridgeShape);
 
         // 게임 재시작 or 게임 종료 선택
-        bridgeShape = bridgeCopy;
-        int count = selectRetryOrEnd(bridgeSize, bridgeShape);
+        bridgeShape.clear();
+        int count = selectRetryOrEnd(bridgeSize, bridgeShape, bridgeCopy);
 
         // 게임 종료
         String gameState = checkGameState(bridgeShape);
@@ -39,20 +39,21 @@ public class Application {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public static int selectRetryOrEnd(int bridgeSize, List<String> bridgeShape){
+    public static int selectRetryOrEnd(int bridgeSize, List<String> bridgeShape, List<String> bridgeCopy){
         int count = 1;
-        Boolean flag = true;
-        while (flag) {
+        while (true) {
             String selectRestart = InputView.readGameCommand();
-            System.out.println(selectRestart);
+            if (Objects.equals(selectRestart, "Q")) break;
             if (Objects.equals(selectRestart, "R")) {
+                bridgeShape.clear();
+                bridgeShape.addAll(bridgeCopy);
                 BridgeGame.retry(bridgeSize, bridgeShape);
                 count++;
             }
-            flag = false;
         }
         return count;
     }
+
 
     private static String checkGameState(List<String> bridgeShape){
         if (bridgeShape.isEmpty()){
