@@ -1,0 +1,62 @@
+- docs(README): docs(README): add lists of test codes
+- add(BridgeGameTest): test to check method retry
+- add(UserTest): tests to check methods of numberOfMoves, numberOfGameTrials
+- refactor: delete lines
+- docs(README): add lists of test codes
+- refactor(Test): add lines, comments
+- docs(README): fix lists of fields and methods
+- refactor(OutputView): change method names, add comments
+- refactor(InputView): add lines, comments
+- refactor(BridgeGame): add lines, comments
+- refactor(User): add lines, comments
+- refactor(GameManager): change method names, add comments
+- fix: delete field in User, put into enum GameStatus
+- refactor(GameManager): change method names
+- fix: move enum to User, add new enum
+- feat(GameManager): add codes to handle exceptions
+- feat(OutputView): add methods to print error message
+- docs(README): add field and method lists in GameManager, BridgeGame, OutputView
+- fix(OutputView): change field & method names
+- feat: add methods to retry game
+- feat(GameManager): add method to print gameResult
+- feat(User): add method to get numberOfGameTrials
+- add(OutputViewTest): tests to check method printResult
+- feat(OutputView): add methods to print gameResult
+- feat(GameManager): add methods to check if the user is quitting the game
+- add(InputViewTest): tests to check userGameCommand input
+- feat(InputView): add methods to get userGameCommand input
+- feat(OutputView): add method to print askGameCommandMessage
+- docs(README): add method lists of GameManager, BridgeGame
+- add(BridgeGameTest): tests to check method checkIfGameIsFailed
+- feat: add methods to check if the game is failed
+- docs(README): separate list of Functional Requirements #6
+- docs(README): add field & method lists of BridgeGame, User
+- add(BridgeGameTest): tests to check method checkIfGameIsSucceed
+- feat: add methods to check if the game is succeed
+- fix(BridgeGameTest): fix tests to check method move
+- docs(README): add method lists in BridgeGame, InputView, OutputView
+- add(OutputViewTest): tests to check method printMap
+- feat: add methods to print map
+- add(BridgeGameTest): test to check method move
+- docs(README): fix field & method list of BridgeGame
+- feat(BridgeGame): add methods to move user on bridge
+- add(InputViewTest): tests to check userMoveDirection input
+- feat(InputView): add methods to get userMoveDirection input
+- feat(OutputView): add method to print askUserMoveDirectionMessage
+- refactor(GameManager): separate method moveUser
+- docs(README): add list of Functional Requirements between #3 & #4
+- add(BridgeMakerTest): test to check method makeBridge
+- docs(README): add field list of BridgeGame
+- feat(BridgeMaker): add method to make bridge
+- docs(README): fix method lists of GameManager
+- refactor(GameManager): separate method startBridgeGame
+- add(InputViewTest): tests to check bridgeSize input
+- feat(InputView): add methods to get bridgeSize input
+- feat(OutputView): add method to print askBridgeSizeMessage
+- fix(README): separate list of Functional Requirements #1
+- feat(OutputView): add method to print gameStartMessage
+- docs(README): add method lists in <Package & Class Structure>
+- add: set entire flow of the program
+- docs(README): add lists of Functional Requirements
+- fix: file structure
+- feat: setup precourse bridge game project
