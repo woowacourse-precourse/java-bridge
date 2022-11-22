@@ -14,7 +14,6 @@ public class BridgeController {
 
     private static final int RETURN_TO_BEGINNING = -1;
     private static final int END_GAME = 21;
-    private static final int FIRST_TRY = 1;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -26,41 +25,34 @@ public class BridgeController {
 
     public void prepareGame() {
         Bridge answerBridge = buildAnswerBridge();
-        OXBridge oxBridge = buildUserBridge();
-        runGame(answerBridge, oxBridge, FIRST_TRY);
+        OXBridge oxBridge = buildOXBridge();
+
+        runGame(answerBridge, oxBridge);
     }
 
-    private void runGame(Bridge answerBridge, OXBridge oxBridge, int tries) {
-        for (int i = 0; i < answerBridge.size(); i++) {
-            if (!isInputUDCorrect(answerBridge, oxBridge)) {
-                i = returnToZeroOrQuit(makeRQ(), oxBridge, tries++);
-                oxBridge = buildUserBridge();
+    private void runGame(Bridge answerBridge, OXBridge oxBridge) {
+        for (int bridgeIndex = 0; bridgeIndex < answerBridge.size(); bridgeIndex++) {
+            BridgeGame.move(answerBridge, oxBridge, makeUD());
+            printBridge(oxBridge);
+            if (!oxBridge.isCorrectOrWrong()) {
+                bridgeIndex = returnToZeroOrQuit(makeRQ(), oxBridge);
+                oxBridge = buildOXBridge();
             }
-            if (i == answerBridge.size() - 1) {
-                printSuccess(oxBridge, tries);
+            if (bridgeIndex == answerBridge.size() - 1) {
+                printSuccess(oxBridge);
             }
         }
     }
 
-    private boolean isInputUDCorrect(Bridge answerBridge, OXBridge oxBridge) {
-        boolean correctOrWrong = isInputCorrect(answerBridge, oxBridge, makeUD());
-        printBridge(oxBridge);
-        return correctOrWrong;
-    }
-
-    private boolean isInputCorrect(Bridge answerBridge, OXBridge oxBridge, UpOrDown upOrDown) {
-        return BridgeGame.move(answerBridge, oxBridge, upOrDown);
-    }
-
-    private int returnToZeroOrQuit(ReOrQuit reOrQuit, OXBridge oxBridge, int tries) {
+    private int returnToZeroOrQuit(ReOrQuit reOrQuit, OXBridge oxBridge) {
         if (wannaRetry(reOrQuit)) {
             return RETURN_TO_BEGINNING;
         }
-        return beforeEndingGame(oxBridge, tries);
+        return beforeEndingGame(oxBridge);
     }
 
-    private int beforeEndingGame(OXBridge oxBridge, int tries) {
-        printLose(oxBridge, tries);
+    private int beforeEndingGame(OXBridge oxBridge) {
+        printLose(oxBridge);
         return END_GAME;
     }
 
@@ -68,14 +60,14 @@ public class BridgeController {
         return BridgeGame.retry(reOrQuit.getInputRQ());
     }
 
-    private void printLose(OXBridge oxBridge, int tries) {
+    private void printLose(OXBridge oxBridge) {
         printResult(oxBridge);
-        outputView.printLose(tries);
+        outputView.printLose(oxBridge.getTries());
     }
 
-    private void printSuccess(OXBridge oxBridge, int tries) {
+    private void printSuccess(OXBridge oxBridge) {
         printResult(oxBridge);
-        outputView.printSuccess(tries);
+        outputView.printSuccess(oxBridge.getTries());
     }
 
     private void printBridge(OXBridge oxBridge) {
@@ -90,7 +82,7 @@ public class BridgeController {
         outputView.printStartMessage();
     }
 
-    private OXBridge buildUserBridge() {
+    private OXBridge buildOXBridge() {
         return FirstInstanceBuilder.buildOXBridge();
     }
 
