@@ -23,4 +23,8 @@ public class User {
     private void increaseLocation() {
         location++;
     }
+
+    public String getUserPathLog() {
+        return userPath.toString();
+    }
 }
