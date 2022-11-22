@@ -23,14 +23,14 @@ public enum SurviveAndDie {
                 .orElse(null);
     }
 
-    public static boolean isDie(SurviveAndDie surviveAndDie) {
-        return surviveAndDie == SurviveAndDie.DIE;
+    public boolean isDie() {
+        return this == SurviveAndDie.DIE;
     }
 
-    public static String getDisplay(boolean isNone, SurviveAndDie surviveOrDie) {
-        if (isNone) {
-            return NONE.display;
+    public String getDisplay(boolean isRightPlace) {
+        if (isRightPlace) {
+            return this.display;
         }
-        return surviveOrDie.display;
+        return NONE.display;
     }
 }

@@ -1,6 +1,5 @@
 package bridge.model;
 
-import static bridge.util.Constants.BRIDGE_WHITE_SPACE;
 import static bridge.util.ErrorMessage.ERROR_GENERATED_NUMBER;
 import static bridge.util.ErrorMessage.ERROR_MOVING_INPUT;
 
@@ -37,15 +36,15 @@ public enum Position {
                 .findFirst().orElseThrow(() -> new IllegalArgumentException(ERROR_MOVING_INPUT));
     }
 
-    public static boolean isSame(String string, Position position) {
-        return string.equals(position.abbreviation);
+    public boolean isSame(String string) {
+        return string.equals(this.abbreviation);
     }
 
-    public static boolean isNone(Position diagramPosition, Position position) {
-        if (diagramPosition == position) {
-            return false;
+    public boolean isRightPlace(Position diagramPosition) {
+        if (this == diagramPosition) {
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

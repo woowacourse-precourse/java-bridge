@@ -1,9 +1,5 @@
 package bridge.controller;
 
-import static bridge.model.RetryAndQuit.isRetry;
-import static bridge.model.SuccessAndFail.isSuccess;
-import static bridge.model.SurviveAndDie.isDie;
-
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
@@ -43,7 +39,7 @@ public class GameController {
 
     public void attempt() {
         SuccessAndFail successAndFail = moveUntilSuccessOrFail();
-        if (isSuccess(successAndFail)) {
+        if (successAndFail.isSuccess()) {
             handleSuccess();
             return;
         }
@@ -53,7 +49,7 @@ public class GameController {
     private SuccessAndFail moveUntilSuccessOrFail() {
         for (int index = 0; index < bridgeGame.getBridgeSize(); index++) {
             SurviveAndDie surviveAndDie = moveToDecideSurviveOrDie(index);
-            if (isDie(surviveAndDie)) {
+            if (surviveAndDie.isDie()) {
                 return SuccessAndFail.FAIL;
             }
         }
@@ -72,7 +68,7 @@ public class GameController {
     }
 
     private void handleFail() {
-        if (isRetry(inputView.readGameCommand())) {
+        if (inputView.readGameCommand().isRetry()) {
             handleRetryAfterFail();
         }
     }

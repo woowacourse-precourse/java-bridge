@@ -16,8 +16,8 @@ public enum SuccessAndFail {
         return koreanDisplay;
     }
 
-    public static boolean isSuccess(SuccessAndFail successAndFail) {
-        return successAndFail.isSuccess;
+    public boolean isSuccess() {
+        return this.isSuccess;
     }
 
 }

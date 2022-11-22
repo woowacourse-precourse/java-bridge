@@ -7,9 +7,7 @@ import java.util.Arrays;
 public enum RetryAndQuit {
     RETRY("R"),
     QUIT("Q");
-
     private final String command;
-
 
     RetryAndQuit(String command) {
         this.command = command;
@@ -23,9 +21,8 @@ public enum RetryAndQuit {
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_GAME_COMMAND_INPUT));
     }
 
-    public static boolean isRetry(RetryAndQuit command) {
-        return command == RetryAndQuit.RETRY;
+    public boolean isRetry() {
+        return this == RetryAndQuit.RETRY;
     }
-
 
 }
