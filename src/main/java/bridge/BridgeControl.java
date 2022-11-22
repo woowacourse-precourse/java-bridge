@@ -9,7 +9,6 @@ public class BridgeControl {
     private OutputView outputView;
     private BridgeGame bridgeGame;
 
-
     public BridgeControl() {
         inputView = new InputView();
         outputView = new OutputView();
@@ -31,16 +30,13 @@ public class BridgeControl {
         catch (NullPointerException e){
             return;
         }
-
         //결과 출력
         outputView.printResult(bridgeGame);
-
     }
 
     private void getBridgeSize(){
         try {
             int size = inputView.readBridgeSize();
-            //bridgeGame = new BridgeGame();
             //다리생성
             bridgeGame.setBridge(size);
         }
@@ -57,9 +53,6 @@ public class BridgeControl {
            System.out.println(e.getMessage());
            play();
        }
-
-
-
     }
     private void moving(){
         do {
@@ -67,7 +60,6 @@ public class BridgeControl {
             outputView.printMap(bridgeGame.getDashBoard(), bridgeGame.getCount());
             //x가 있거나 게임이 종료되면 false
             bridgeGame.checkWin();
-            //System.out.println(bridgeGame.getDashBoard().get(0).get(0));
         }while(bridgeGame.isProceed());
 
     }

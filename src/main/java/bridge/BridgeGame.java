@@ -25,12 +25,6 @@ public class BridgeGame {
         bridgeUp = new ArrayList<String>();
         bridgeDown = new ArrayList<String>();
         dashBoard = new ArrayList<>();
-//        for(int i=0; i<size; i++){
-//            this.bridgeUp.add(" ");
-//            this.bridgeDown.add(" ");
-//        }
-//        this.dashBoard.add(bridgeDown); //0
-//        this.dashBoard.add(bridgeUp); //1
         this.correctCount=0;
         this.count =0;
         this.numberOfTimes =0;
