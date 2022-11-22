@@ -43,14 +43,18 @@ public class BridgeGameController {
     private void inputBridgeSize() {
         while (true) {
             try {
-                outputView.printInputBridgeSizeMessage();
-                inputBridgeSize = inputView.inputBridgeSize();
-                bridgeGameValidateService.validateInputBridgeSize(inputBridgeSize);
+                inputBridgeSizeProcess();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void inputBridgeSizeProcess() {
+        outputView.printInputBridgeSizeMessage();
+        inputBridgeSize = inputView.inputBridgeSize();
+        bridgeGameValidateService.validateInputBridgeSize(inputBridgeSize);
     }
 
     private void generateBridge() {
@@ -69,14 +73,18 @@ public class BridgeGameController {
     public void inputNextStep() {
         while (true) {
             try {
-                outputView.printInputMovingStepMessage();
-                inputNextStep = inputView.inputMovingStep();
-                bridgeGameValidateService.validateInputNextStep(inputNextStep);
+                inputNextStepProcess();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void inputNextStepProcess() {
+        outputView.printInputMovingStepMessage();
+        inputNextStep = inputView.inputMovingStep();
+        bridgeGameValidateService.validateInputNextStep(inputNextStep);
     }
 
     private void printCurrentBridge() {
@@ -106,26 +114,34 @@ public class BridgeGameController {
     private void retryOrEnd() {
         inputRetryOrEndCommand();
         if (gameRetryOrEndCommand.equals(GameCommand.RETRY.getCommand())) {
-            tryCount++;
-            bridgeGame.retry();
-            moveUntilSuccessOrFailure();
-            gameSuccessOrRetryOrEnd();
+            retryProcess();
         }
         if (gameRetryOrEndCommand.equals(GameCommand.END.getCommand())) {
             printGameResult();
         }
     }
 
+    private void retryProcess() {
+        tryCount++;
+        bridgeGame.retry();
+        moveUntilSuccessOrFailure();
+        gameSuccessOrRetryOrEnd();
+    }
+
     public void inputRetryOrEndCommand() {
         while (true) {
             try {
-                outputView.printRetryOrEndMessage();
-                gameRetryOrEndCommand = inputView.inputRetryOrEndCommand();
-                bridgeGameValidateService.validateGameRetryOrEndCommand(gameRetryOrEndCommand);
+                inputRetryOrEndCommandProcess();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void inputRetryOrEndCommandProcess() {
+        outputView.printRetryOrEndMessage();
+        gameRetryOrEndCommand = inputView.inputRetryOrEndCommand();
+        bridgeGameValidateService.validateGameRetryOrEndCommand(gameRetryOrEndCommand);
     }
 }
