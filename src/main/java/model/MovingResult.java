@@ -3,13 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Result {
+public class MovingResult {
 
     private List<List<String>> totalMovingResult;
 
     private List<String> currentResult;
 
-    public Result(List<List<String>> totalMovingResult) {
+    public MovingResult(List<List<String>> totalMovingResult) {
         this.totalMovingResult = totalMovingResult;
     }
     public void setCurrentResult(List<String> currentResult) {

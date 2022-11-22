@@ -16,7 +16,7 @@ public class BridgeGame {
 
     private Bridge bridge;
 
-    private Result result;
+    private MovingResult movingResult;
 
     public void run(){
 
@@ -40,7 +40,7 @@ public class BridgeGame {
      */
     public void retry() {
         user.clearUser();
-        result.clearResult();
+        movingResult.clearResult();
     }
 
     public void enterResult(){
@@ -48,8 +48,8 @@ public class BridgeGame {
         String movingResult = compareBridge();
         currentResult.add(user.getCurrentMoving());
         currentResult.add(movingResult);
-        result.setCurrentResult(currentResult);
-        result.addTotalMovingResult(currentResult);
+        this.movingResult.setCurrentResult(currentResult);
+        this.movingResult.addTotalMovingResult(currentResult);
     }
 
     private String compareBridge(){

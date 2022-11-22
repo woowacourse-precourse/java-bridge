@@ -3,6 +3,7 @@ package view;
 public enum GameMessage {
     START_MESSAGE("다리 건너기 게임을 시작합니다."),
     SUCCESS_MESSAGE("게임 성공 여부: "),
+    TOTAL_MESSAGE("최종 게임 결과"),
     TRY_MESSAGE("총 시도한 횟수: ");
 
     private final String gameMessage;
