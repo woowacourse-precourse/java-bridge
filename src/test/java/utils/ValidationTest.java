@@ -10,9 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-/**
- *  추가적인 예외사항은 없는가??
- */
 class ValidationTest {
     private Validation validation;
 
@@ -21,9 +18,6 @@ class ValidationTest {
         this.validation = new Validation();
     }
 
-    /**
-     *  빈 문자열("")은 NumberFormatException 예외 발생
-     */
     @DisplayName("")
     @ParameterizedTest
     @CsvSource(value = {"NULL", "''", "a", "-1", "2", "21"},
