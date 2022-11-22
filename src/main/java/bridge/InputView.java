@@ -49,7 +49,6 @@ public class InputView {
     public String readGameCommand() {
         while (true) {
             String input = Console.readLine();
-            System.out.println("입력받은 값 : " + input);
             try {
                 if (input.equals("R") || input.equals("Q")) {
                     return input;

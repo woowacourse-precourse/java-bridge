@@ -23,8 +23,8 @@ public class OutputView {
         result = lastTrueOrFalse(posList, res, result);
 
         result = closeResult(result);
-        System.out.println("listU = " + result.get(0));
-        System.out.println("listD = " + result.get(1));
+        System.out.println(result.get(0));
+        System.out.println(result.get(1));
     }
 
     private List<String> lastTrueOrFalse(List<String> posList, Boolean res, List<String> result) {
