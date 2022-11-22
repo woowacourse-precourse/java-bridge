@@ -27,22 +27,32 @@ public class BridgeGameController {
 
     public void run() {
         bridgeInit();
-        move();
+        if (!isAvailableBridge()) {
+            handlingWrongAnswer();
+            return;
+        }
+        sendResult(ResultState.SUCCESS);
     }
 
     public void bridgeInit() {
         bridgeCombinator.bridgeInit();
     }
 
-    public void move() {
+    public boolean isAvailableBridge() {
         for (int index = 0; index < bridgeSize; index++) {
             BridgeCase bridgeCase = bridgeGame.move(getBridgeToMove(), index);
             sendBridgeShape(bridgeCase);
-            if (!bridgeCase.isAnswer()) {
-                handlingWrongAnswer(); return;
-            }
+            if (!bridgeCase.isAnswer()) return false;
         }
-        sendResult(ResultState.SUCCESS);
+        return true;
+    }
+
+    public void handlingWrongAnswer() {
+        if (bridgeGame.retry(getRetryCode())) {
+            run();
+            return;
+        }
+        sendResult(ResultState.FAIL);
     }
 
     public int getBridgeSize() {
@@ -56,14 +66,6 @@ public class BridgeGameController {
 
     public String getRetryCode() {
         return inputView.readGameCommand();
-    }
-
-    public void handlingWrongAnswer() {
-        if (bridgeGame.retry(getRetryCode())) {
-            run();
-            return;
-        }
-        sendResult(ResultState.FAIL);
     }
 
     public void sendBridgeShape(BridgeCase bridgeCase) {
