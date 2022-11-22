@@ -5,10 +5,14 @@ import bridge.views.OutputView;
 public interface ExceptionCheckedFunction {
     void run();
 
-    static void retryWhenExceptionOrTryOnce(OutputView outputView, ExceptionCheckedFunction function) {
+    static void retryWhenExceptionOrTryOnce(OutputView outputView, ExceptionCheckedFunction function) throws IllegalAccessException {
+        int count = 0;
         while (true) {
             if(!retryExceptionChecker(outputView, function)){
-                break;
+                return;
+            }
+            if(++count > 10){
+                throw new IllegalAccessException("10회 이상 잘못된 입력을 했습니다. 프로그램을 종료합니다.");
             }
         }
     }

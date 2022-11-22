@@ -107,7 +107,7 @@ class BridgeGameControllerTest extends InOutStreamTest {
 
 
         @BeforeEach
-        void initMore(){
+        void initMore() throws IllegalAccessException {
             input("5");
             controller.start();
             controller.setDifficulty();
@@ -173,7 +173,7 @@ class BridgeGameControllerTest extends InOutStreamTest {
             );
         }
 
-        void inputAndOperate(String... inputs){
+        void inputAndOperate(String... inputs) throws IllegalAccessException {
             input(inputs);
             controller.start();
             controller.setDifficulty();

@@ -17,13 +17,17 @@ public class BridgeGameController {
     BridgeGame bridgeGame;
 
 
-    public void run() {
-        start();
-        setDifficulty();
-        do {ㄴ
-            playGame();
-        } while (!isSuccess() && askRetry());
-        end();
+    public void run(){
+        try{
+            start();
+            setDifficulty();
+            do {
+                playGame();
+            } while (!isSuccess() && askRetry());
+            end();
+        } catch (IllegalAccessException e) {
+            outputView.printErrorMessage(e.getMessage());
+        }
     }
 
     public void start() {
@@ -37,14 +41,14 @@ public class BridgeGameController {
         bridgeGame = new BridgeGame();
     }
 
-    public void setDifficulty() {
+    public void setDifficulty() throws IllegalAccessException {
         retryWhenExceptionOrTryOnce(outputView, () -> {
             int bridgeSize = inputView.readBridgeSize();
             bridgeGame.initComponents(new BridgeRandomNumberGenerator(), bridgeSize);
         });
     }
 
-    public void playGame() {
+    public void playGame() throws IllegalAccessException {
         while (!bridgeGame.getIsSuccess() && !bridgeGame.isGameOver()) {
             retryWhenExceptionOrTryOnce(outputView, () -> {
                 String rawDirection = inputView.readMoving();
@@ -55,7 +59,7 @@ public class BridgeGameController {
         }
     }
 
-    public boolean askRetry() {
+    public boolean askRetry() throws IllegalAccessException {
         retryWhenExceptionOrTryOnce(outputView, () -> {
             String rawRetry = inputView.readGameCommand();
             GameRetry gameRetry = GameRetry.parseRetry(rawRetry);
@@ -68,7 +72,7 @@ public class BridgeGameController {
         return bridgeGame.isAlive();
     }
 
-    public boolean isSuccess() {
+    public boolean isSuccess(){
         return bridgeGame.getIsSuccess();
     }
 
