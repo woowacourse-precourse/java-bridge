@@ -1,11 +1,13 @@
 package utils;
 
-import static constant.ErrorMessage.*;
-
 public class Validation {
 
     public static final int MINIMUM_LENGTH = 3;
     public static final int MAXIMUM_LENGTH = 20;
+    public static final String ERROR_HEAD_MESSAGE = "[ERROR]";
+    public static final String WRONG_LENGTH = "%s 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    public static final String ASK_INPUT_CHARACTER_U_OR_D = "%s 'U'나 'D'를 입력하셔야 합니다.";
+    public static final String ASK_INPUT_CHARACTER_R_OR_Q = "%s 'R'나 'Q'를 입력하셔야 합니다.";
 
     public Validation() {
 
