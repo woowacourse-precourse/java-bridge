@@ -16,9 +16,18 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        System.out.println(ENTER_BRIDGE_SIZE);
-        int bridgeSize = Integer.parseInt(Console.readLine());
-        return bridgeSize;
+        try{
+            System.out.println(ENTER_BRIDGE_SIZE);
+            int bridgeSize = Integer.parseInt(Console.readLine());
+            if (bridgeSize < 3 | bridgeSize > 20){
+                System.out.println("[ERROR] 다리 길이는 3이상 20이사의 숫자를 입력할 수 있습니다.");
+                return readBridgeSize();
+            }
+            return bridgeSize;
+        }catch (NumberFormatException e){
+            System.out.println("[ERROR] 숫자만 입력가능합니다.");
+            return readBridgeSize();
+        }
     }
 
     /**

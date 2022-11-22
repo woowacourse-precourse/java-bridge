@@ -14,7 +14,7 @@
 |10| 재시작한다면 처음에 만든 다리로 재사용  |  |![](https://geps.dev/progress/100)|✅|
 |11|게임 결과의 성공여부 출력  | `게임 성공 여부: 성공`|![](https://geps.dev/progress/100)|✅|
 |12|게임 결과의 총 시도한 횟수 출력 <br>  (첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수) | `총 시도한 횟수: 2`|![](https://geps.dev/progress/100)|✅|
-|13<td rowspan="4">사용자가 잘못된 값을 입력할 경우 `Exception`를 발생시킨다.</td>| 자동으로 생성할 다리 길이를 입력 받는다. 3 이상 20 이하의 숫자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.|`IllegalArgumentException` <br> "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다. |![](https://geps.dev/progress/0)|☑️|
+|13<td rowspan="4">사용자가 잘못된 값을 입력할 경우 `Exception`를 발생시킨다.</td>| 자동으로 생성할 다리 길이를 입력 받는다. 3 이상 20 이하의 숫자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.|`IllegalArgumentException` <br> "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다. |![](https://geps.dev/progress/100)|✅|
 |13| 라운드마다 플레이어가 이동할 칸을 입력 받는다. U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다. |`IllegalArgumentException` <br> "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다. |![](https://geps.dev/progress/0)|☑️|
 |13| 게임 재시작/종료 여부를 입력 받는다. R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다. |`IllegalArgumentException` <br> "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다. |![](https://geps.dev/progress/100)|✅|
 |13| 입력된 값이 없다면 예외처리한다. |`IllegalStateException` <br> "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다. |![](https://geps.dev/progress/0)|☑️|
