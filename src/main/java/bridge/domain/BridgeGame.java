@@ -16,9 +16,9 @@ public class BridgeGame {
      */
     public String move(List<String> bridge, String direction, int stage) {
         if(bridge.get(stage - 1).equals(direction)){
-            return "O";
+            return " O ";
         }
-        return "X";
+        return " X ";
     }
 
     /**
