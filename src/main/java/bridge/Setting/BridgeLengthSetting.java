@@ -1,6 +1,6 @@
 package bridge.Setting;
 
-public enum BridgeLengthSetting{
+public enum BridgeLengthSetting {
     MIN_LENGTH(3),
     MAX_LENGTH(20);
 

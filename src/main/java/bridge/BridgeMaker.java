@@ -24,7 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         List<BridgeSideIndex> bridgeSideIndices = List.of(BridgeSideIndex.values());
         for (int index = 0; index < size; index++) {
-            int bridgeNumber = bridgeSideIndices.size() - bridgeNumberGenerator.generate();
+            int bridgeNumber = bridgeSideIndices.size() - 1 - bridgeNumberGenerator.generate();
             bridge.add(bridgeSideIndices.get(bridgeNumber).getLabel());
         }
         return List.copyOf(bridge);

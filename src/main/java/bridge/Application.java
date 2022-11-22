@@ -1,19 +1,17 @@
 package bridge;
 
-import bridge.Setting.OutputViewPrintEnum;
-
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println(OutputViewPrintEnum.GAME_START.getMessage());
+        OutputView outputView = new OutputView();
         InputView inputView = new InputView();
+        outputView.printGameStart();
         BridgeGame bridgeGame = new BridgeGame(new BridgeRandomNumberGenerator(), inputView.readBridgeSize());
-        while (bridgeGame.keepMove()){
+        while (bridgeGame.keepMove()) {
             bridgeGame.move();
             bridgeGame.retry();
         }
-        OutputView outputView = new OutputView();
-        outputView.printResult(bridgeGame.getResultLines());
+        outputView.printResult(bridgeGame.getResult());
         // TODO: 프로그램 구현
     }
 }
