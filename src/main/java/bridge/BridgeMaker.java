@@ -41,27 +41,21 @@ public class BridgeMaker {
         initialBridgeState.add("[");
         return initialBridgeState;
     }
-    public List<String> addBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
+    public List<String> addBridge(List<String> preBridgeState, String bridgeState, String choicePosition){
         if (preBridgeState.get(0)=="["){
-            return firstAddBridge(preBridgeState, randomNumber, positionNumber);
+            return firstAddBridge(preBridgeState, bridgeState, choicePosition);
         }
-        return afterAddBridge(preBridgeState, randomNumber, positionNumber);
+        return afterAddBridge(preBridgeState, bridgeState, choicePosition);
     }
-    private List<String> firstAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
-        if (randomNumber==positionNumber){
-            return firstOAddBridge(preBridgeState,randomNumber,positionNumber);
+    private List<String> firstAddBridge(List<String> preBridgeState, String bridgeState, String choicePosition){
+        if (bridgeState == choicePosition){
+            return firstOAddBridge(preBridgeState, choicePosition);
         }
-        return firstXAddBridge(preBridgeState,randomNumber,positionNumber);
+        return firstXAddBridge(preBridgeState, choicePosition);
     }
 
-    private List<String> afterAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber){
-        if (randomNumber==positionNumber){
-            return afterOAddBridge(preBridgeState,randomNumber,positionNumber);
-        }
-        return afterXAddBridge(preBridgeState,randomNumber,positionNumber);
-    }
-    private List<String> firstOAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber) {
-        if (randomNumber == 1 && positionNumber == 1) {
+    private List<String> firstOAddBridge(List<String> preBridgeState, String choicePosition) {
+        if (choicePosition == "U") {
             preBridgeState.set(0, preBridgeState.get(0) + " O ");
             preBridgeState.set(1, preBridgeState.get(1) + "   ");
             return preBridgeState;
@@ -71,8 +65,8 @@ public class BridgeMaker {
         return preBridgeState;
     }
 
-    private List<String> firstXAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber) {
-        if (randomNumber == 0 && positionNumber == 1) {
+    private List<String> firstXAddBridge(List<String> preBridgeState, String choicePosition) {
+        if (choicePosition == "D") {
             preBridgeState.set(0, preBridgeState.get(0) + " X ");
             preBridgeState.set(1, preBridgeState.get(1) + "   ");
             return preBridgeState;
@@ -82,8 +76,15 @@ public class BridgeMaker {
         return preBridgeState;
     }
 
-    private List<String> afterOAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber) {
-        if (randomNumber == 1 && positionNumber == 1) {
+    private List<String> afterAddBridge(List<String> preBridgeState, String bridgeState, String choicePosition){
+        if (bridgeState == choicePosition){
+            return afterOAddBridge(preBridgeState, choicePosition);
+        }
+        return afterXAddBridge(preBridgeState, choicePosition);
+    }
+
+    private List<String> afterOAddBridge(List<String> preBridgeState, String choicePosition) {
+        if (choicePosition == "U") {
             preBridgeState.set(0, preBridgeState.get(0) + "| O ");
             preBridgeState.set(1, preBridgeState.get(1) + "|   ");
             return preBridgeState;
@@ -93,8 +94,8 @@ public class BridgeMaker {
         return preBridgeState;
     }
 
-    private List<String> afterXAddBridge(List<String> preBridgeState, int randomNumber, int positionNumber) {
-        if (randomNumber == 0 && positionNumber == 1) {
+    private List<String> afterXAddBridge(List<String> preBridgeState, String choicePosition) {
+        if (choicePosition == "D") {
             preBridgeState.set(0, preBridgeState.get(0) + "| X ");
             preBridgeState.set(1, preBridgeState.get(1) + "|   ");
             return preBridgeState;
