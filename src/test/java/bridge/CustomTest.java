@@ -3,11 +3,13 @@ package bridge;
 import bridge.Util.VerificationUtil;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -15,6 +17,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CustomTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String ENTER_MOVING_SPACE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String RETRY_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     @DisplayName("다리 길이로 숫자 이외의 값이 들어오면 예외처리")
     @ValueSource(strings = {"H", "i", "!", ""})
@@ -32,6 +36,18 @@ public class CustomTest extends NsTest {
             runException(strings);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("사용자가 잘못된 다리 값을 입력할 경우 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다")
+    @Test
+    void reenter_bridgeSize_test() {
+        assertRandomNumberInRangeTest(() -> {
+            run("a", "1", "3", "U", "D", "U");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    ENTER_MOVING_SPACE
+            );
+        }, 1, 0, 1);
     }
 
     @DisplayName("이동할 칸 입력이 U 또는 D가 아닌 경우 예외처리")
