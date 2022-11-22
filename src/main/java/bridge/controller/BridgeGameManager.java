@@ -15,12 +15,12 @@ public class BridgeGameManager {
     private String gameResult = "실패";
     private int gameTryCount = 0;
 
-   public BridgeGameManager(BridgeMaker bridgeMaker, BridgeGame bridgeGame, InputView inputView, OutputView outputView) {
+    public BridgeGameManager(BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
        this.bridgeMaker = bridgeMaker;
        this.bridgeGame = bridgeGame;
-       this.inputView = inputView;
-       this.outputView = outputView;
-   }
+       this.inputView = new InputView();
+       this.outputView = new OutputView(bridgeGame);
+    }
 
     public void start() {
         outputView.printStart();
