@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.command.Movement;
+import bridge.command.Retry;
 import bridge.path.Path;
 import bridge.path.Result;
 
@@ -12,6 +13,7 @@ public class OutputView {
     private static final String MESSAGE_TITLE = "다리 건너기 게임을 시작합니다.";
     private static final String MESSAGE_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String MESSAGE_MOVING = "이동할 칸을 선택해주세요. (위: %s, 아래: %s)";
+    private static final String MESSAGE_RETRYING = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)";
 
     private static final EnumMap<Result, String> format = new EnumMap<>(
             Map.ofEntries(
@@ -40,6 +42,11 @@ public class OutputView {
 
     public void printMap(final Path path) {
         System.out.println(path.format(format));
+        System.out.println();
+    }
+
+    public void printRetrying() {
+        System.out.printf(MESSAGE_RETRYING, Retry.YES.getCommand(), Retry.NO.getCommand());
         System.out.println();
     }
 
