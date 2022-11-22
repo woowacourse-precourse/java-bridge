@@ -9,27 +9,27 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private BridgeGame bridgeGame;
+    private final BridgeGame bridgeGame;
     private final MapConverter mapConverter;
 
     public BridgeGameController() {
+        OutputView.printStartMessage();
+        this.bridgeGame = initializeBridgeGame();
         this.mapConverter = new MapConverter();
+        OutputView.printBlankLine();
     }
 
     public void process() {
-        initializeGame();
         playGame();
         finishGame();
     }
 
-    public void initializeGame() {
-        OutputView.printStartMessage();
-        bridgeGame = new BridgeGame(
+    private BridgeGame initializeBridgeGame() {
+        return new BridgeGame(
                 BridgeInitializer.initialize(),
                 new CurrentRoute(),
                 new GameProgress()
         );
-        OutputView.printBlankLine();
     }
 
     private void playGame() {
