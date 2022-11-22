@@ -41,6 +41,6 @@ public class ExceptionHandler {
     }
 
     private static boolean isRorQ(String input) {
-        return input != null && input.length() == 1 && (input.contains("U") || input.contains("D"));
+        return input != null && input.length() == 1 && (input.contains("R") || input.contains("Q"));
     }
 }
