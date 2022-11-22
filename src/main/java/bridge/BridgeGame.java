@@ -12,9 +12,9 @@ import bridge.constant.SuccessFail;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.constant.PrintMessage.*;
 import static bridge.constant.SuccessFail.*;
-import static bridge.constant.Updown.DOWN;
-import static bridge.constant.Updown.UP;
+import static bridge.constant.Updown.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -39,20 +39,20 @@ public class BridgeGame {
         player.add(moving);
         int nowIdx = player.size() - 1;
         if (moving.equals(UP.getKey())) {
-            downBridge.add(" ");
+            downBridge.add(EMPTY);
             if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
-                upBridge.add("O");
+                upBridge.add(ALIVE);
                 return;
             }
-            upBridge.add("X");
+            upBridge.add(DIE);
         }
         if (moving.equals(DOWN.getKey())) {
-            upBridge.add(" ");
+            upBridge.add(EMPTY);
             if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
-                downBridge.add("O");
+                downBridge.add(ALIVE);
                 return;
             }
-            downBridge.add("X");
+            downBridge.add(DIE);
         }
     }
 

@@ -6,7 +6,8 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.constant.SuccessFail.FAIL;
+import static bridge.constant.GameCommand.*;
+import static bridge.constant.SuccessFail.*;
 
 public class Run {
     int attempts = 1;
@@ -27,7 +28,7 @@ public class Run {
 
         if (isSuccess == FAIL) {
             String gameCommand = getGameCommand();
-            if (gameCommand.equals("R")) {
+            if (gameCommand.equals(RETRY.getKey())) {
                 attempts++;
                 bridgeGame.retry();
                 play(bridgeGame);

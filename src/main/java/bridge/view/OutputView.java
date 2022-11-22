@@ -9,6 +9,8 @@ import bridge.BridgeGame;
 
 import java.util.List;
 
+import static bridge.constant.PrintMessage.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -25,13 +27,13 @@ public class OutputView {
     }
 
     public void printInFormat(List<String> ox) {
-        System.out.print("[ ");
+        System.out.print(BRIDGE_OPEN);
         for (int i = 0; i < ox.size(); i++) {
             System.out.print(ox.get(i));
             if (i != ox.size() - 1)
-                System.out.print(" | ");
+                System.out.print(BRIDGE_BAR);
         }
-        System.out.println(" ]");
+        System.out.println(BRIDGE_CLOSE);
     }
 
     /**
@@ -41,9 +43,9 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame, int attempts) {
 
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULT);
         printMap(bridgeGame.upBridge, bridgeGame.downBridge);
-        System.out.println("게임 성공 여부: " + bridgeGame.isSuccess().getKorean());
-        System.out.println("총 시도한 횟수: " + attempts);
+        System.out.println(SUCCESS_FAIL + bridgeGame.isSuccess().getKorean());
+        System.out.println(ATTEMPTS_CNT + attempts);
     }
 }
