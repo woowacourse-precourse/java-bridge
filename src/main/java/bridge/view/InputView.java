@@ -29,7 +29,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String input = Console.readLine();
+        validMovingInput(input);
+        return input;
     }
 
     /**
@@ -51,6 +54,13 @@ public class InputView {
     private void validBridgeLength(int input) {
         if (input < BRIDGE_MIN || input > BRIDGE_MAX) {
             System.out.println("[ERROR] 다리 길이는 3이상 20이하만 가능합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validMovingInput(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            System.out.println("[ERROR] 이동할 칸은 'U'와 'D'만 입력 가능합니다.");
             throw new IllegalArgumentException();
         }
     }
