@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.CheckException;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.ViewMessage;
@@ -24,6 +25,7 @@ public class GameController {
     private List<String> upBridge = new ArrayList<>();
     private List<String> downBridge = new ArrayList<>();
     private List<String> resultGame = new ArrayList<>();
+    private CheckException checkException = new CheckException();
 
     /* 인스턴스 변수 */
     private int bridgeSize = 0;
@@ -33,7 +35,14 @@ public class GameController {
     public void init() {
         outputView.printGameStart();
         System.out.println();
+        makeBridgeForGame();
+    }
+
+    public void makeBridgeForGame(){
         bridgeSize = inputView.readBridgeSize();
+        if(!checkException.checkBridgeSize(bridgeSize)){
+            makeBridgeForGame();
+        }
         System.out.println();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
