@@ -41,13 +41,21 @@ public class BridgeGame {
     public List<List<Answer>> getCurrentBridge(Answer answer){
         List<List<Answer>> result = new LinkedList<>();
         if(answer == Answer.CORRECT || answer == Answer.END){
-            result.add(getCorrectBridge(Direction.UP));
-            result.add(getCorrectBridge(Direction.DOWN));
+            addCorrectBridge(result);
             return result;
         }
+        addFailedBridge(result);
+        return result;
+    }
+
+    private void addCorrectBridge(List<List<Answer>> result){
+        result.add(getCorrectBridge(Direction.UP));
+        result.add(getCorrectBridge(Direction.DOWN));
+    }
+
+    private void addFailedBridge(List<List<Answer>> result){
         result.add(getFailedBridge(Direction.UP));
         result.add(getFailedBridge(Direction.DOWN));
-        return result;
     }
 
     private List<Answer> getCorrectBridge(Direction direction){
