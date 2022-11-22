@@ -19,4 +19,12 @@ class UOrDValidationTest {
       .hasMessageContaining(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.NOT_U_OR_D.getMessage());
   }
 
+  @ParameterizedTest
+  @ValueSource(strings = {"U", "D"})
+  void 입력값이_U혹은_D라면_정상적으로_작동하는가(String input) {
+    UOrDValidation uOrDValidation = new UOrDValidation(new NullValidation());
+    assertThatCode(() -> uOrDValidation.validate(input))
+      .doesNotThrowAnyException();
+  }
+
 }
