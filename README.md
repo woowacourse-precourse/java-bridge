@@ -163,7 +163,28 @@ Q
 ```
 
 ---
-
+## 구현할 기능 목록
+1. 브릿지게임을 플레이어의 선택에 맞게 진행할 start 메서드 
+2. GameSystem 클래스 구현 -> 유저와 브릿지게임 룰을 결합 
+3. Player 클래스 구현 -> Bridges 클래스 포함
+4. Bridges 클래스 구현 -> 필드 upBridge, downBridge
+5. [GameSystem] 플레이어가 다리를 선택하며 게임을 진행하는 move 메서드 
+6. [GameSystem] 플레이어의 재시도 여부 기능을 담당하는 retryOrNot 메서드 
+7. AnswerBridge 클래스 구현 -> BridgeRandomNumberGenerator를 이용하여 RandomNumber을 생성하고 List<String>에 정답 저장
+8. [BridgeMaker] 브릿지의 크기를 받는 getBridgeSize 메서드 
+9. [BridgeMaker] RandomNumber에 따라 U또는 D를 저장하는 numberToString 메서드
+10. [BridgeMaker] 9번의 기능을 이용하여 브릿지를 완성하여 리턴하는 makeBridge 메서드 수정
+11. 플레이어로부터 입력받는 인풋의 타당성을 체크하는 ExceptionHandler 클래스 구현
+12. [ExceptionHandler] 플레이어로부터 다리의 크기를 입력받고 그 타당성을 검사하는 sizeValidTest 메서드 
+13. [ExceptionHandler] 플레이어로부터 Upbridge와 downbridge 중 움직일 하나의 다리를 입력받고 그 타당성을 검사하는 movingValidTest 메서드
+14. [ExceptionHandler] 플레이어로부터 브릿지를 건너는 것을 다시 진행할지 말지를 입력받고 그 타당성을 검사하는 gameCommandValidTest 메서드
+15. [InputView] ExceptionHandler의 반환타입에 맞게 InputView 클래스 내의 메서드를 변경
+16. [OutputView] 기본적인 output error message 출력
+17. [OutputView] 최종 결과를 print하는 메서드
+18. [OutputView] 플레이어가 입력한 문자를 다리의 형식에 맞춰서 새로 String을 만들어 return하는 메서드
+19. [BridgeGame] 구현한 GameSystem 클래스를 이용해 move, retry 기능을 수행하는 메서드
+20. [BridgeGmae] 최종 결과를 프린트하는 메서드
+    
 ## 🎯 프로그래밍 요구 사항
 
 - JDK 11 버전에서 실행 가능해야 한다. **JDK 11에서 정상적으로 동작하지 않을 경우 0점 처리한다.**
