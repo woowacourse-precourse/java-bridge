@@ -32,29 +32,20 @@ public class OutputView {
         StringBuilder downMap = new StringBuilder("[");
         makePreviousUpMap(bridge, nowOn, upMap);
         makePreviousDownMap(bridge, nowOn, downMap);
-        upMap.append(makeNowUpMap(bridge, lastInput, nowOn));
-        downMap.append(makeNowDownMap(bridge,lastInput,nowOn));
-        String lastText = upMap.append("]\n").toString()+downMap.append("]\n").toString();
+        upMap.append(makeNowMap(bridge.get(nowOn), lastInput, BridgeJoyStick.U));
+        downMap.append(makeNowMap(bridge.get(nowOn), lastInput, BridgeJoyStick.D));
+        String lastText = upMap.append("]\n").toString() + downMap.append("]\n").toString();
         System.out.print(lastText);
         return lastText;
     }
 
 
-    public String makeNowUpMap(ArrayList<String> bridge, String lastInput, int nowOn) {
-        if (lastInput.equals("U") && bridge.get(nowOn).equals("U")) {
-            return " O "; //마지막 입력 윗다리 값 일치
+    public String makeNowMap(String nowBridgeValue, String lastInput, BridgeJoyStick bridgeJoyStick) {
+        String key = bridgeJoyStick.toString();
+        if (lastInput.equals(key) && nowBridgeValue.equals(key)) {
+            return " O ";
         }
-        if (lastInput.equals("U") && (!(bridge.get(nowOn).equals("U")))) {
-            return " X ";
-        }
-        return "   ";
-    }
-
-    public String makeNowDownMap(ArrayList<String> bridge, String lastInput, int nowOn) {
-        if (lastInput.equals("D") && bridge.get(nowOn).equals("D")) {
-            return " O "; //마지막 입력 윗다리 값 일치
-        }
-        if (lastInput.equals("D") && (!(bridge.get(nowOn).equals("D")))) {
+        if (lastInput.equals(key) && (!(nowBridgeValue.equals(key)))) {
             return " X ";
         }
         return "   ";
@@ -65,8 +56,8 @@ public class OutputView {
             String block = " ";
             if (bridge.get(i).equals(BridgeJoyStick.U.toString()))
                 block = "O";
-            upMap.append(" "+block+" ");
-            if(i<=nowOn-1)
+            upMap.append(" " + block + " ");
+            if (i <= nowOn - 1)
                 upMap.append("|");
         }
     }
@@ -76,8 +67,8 @@ public class OutputView {
             String block = " ";
             if (bridge.get(i).equals(BridgeJoyStick.D.toString()))
                 block = "O";
-            downMap.append(" "+block+" ");
-            if(i<=nowOn-1)
+            downMap.append(" " + block + " ");
+            if (i <= nowOn - 1)
                 downMap.append("|");
         }
     }
@@ -87,13 +78,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int tryNumber,String lastText,boolean win) {
+    public void printResult(int tryNumber, String lastText, boolean win) {
         System.out.print("최종 게임 결과\n");
         System.out.print(lastText);
         String resultMessage = "게임 성공 여부: 실패";
-        if(win)
-            resultMessage = resultMessage.replace("실패","성공");
+        if (win)
+            resultMessage = resultMessage.replace("실패", "성공");
         System.out.println(resultMessage);
-        System.out.print("총 시도한 횟수: "+tryNumber);
+        System.out.print("총 시도한 횟수: " + tryNumber);
     }
 }

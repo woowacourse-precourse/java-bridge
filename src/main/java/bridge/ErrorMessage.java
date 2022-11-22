@@ -8,8 +8,7 @@ public enum ErrorMessage {
 
     private String errorMessage;
 
-    private ErrorMessage(String errorMessage)
-    {
+    private ErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
