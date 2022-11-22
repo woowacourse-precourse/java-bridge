@@ -7,7 +7,7 @@ import bridge.domain.Results;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String OUTPUT_MESSAGE_RESULT = "최종 게임 결과";
+    private static final String OUTPUT_MESSAGE_RESULT = "\n최종 게임 결과";
     private static final String OUTPUT_MESSAGE_SUCCESSORFAIL = "게임 성공 여부: ";
     private static final String OUTPUT_MESSAGE_TRIAL = "총 시도한 횟수: ";
     private static final String CLOSED_BRACKET = " ]";

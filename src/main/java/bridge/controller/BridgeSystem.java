@@ -37,23 +37,29 @@ public class BridgeSystem {
             String userCommand = inputView.readMoving();
             bridgeGame.move(userCommand);
             outputView.printMap(bridgeGame.getResults());
-            checkAlive(bridgeGame);
+            boolean quit = checkAlive(bridgeGame);
+            if(quit){
+                return;
+            }
         }
         bridgeGame.setSuccessOrFail(GAME_SUCCESS);
     }
 
-    public void checkAlive(BridgeGame bridgeGame) {
+    public boolean checkAlive(BridgeGame bridgeGame) {
         if (!bridgeGame.isAlive()) {
             String gameCommand = inputView.readGameCommand();
-            checkRetryOrQuit(bridgeGame, gameCommand);
+            boolean isQuit = checkRetryOrQuit(bridgeGame, gameCommand);
+            return isQuit;
         }
+        return false;
     }
 
-    public void checkRetryOrQuit(BridgeGame bridgeGame, String gameCommand) {
+    public boolean checkRetryOrQuit(BridgeGame bridgeGame, String gameCommand) {
         if (gameCommand.equals(Command.RETRY)) {
             bridgeGame.retry();
-            return;
+            return false;
         }
         bridgeGame.setSuccessOrFail(GAME_FAIL);
+        return true;
     }
 }
