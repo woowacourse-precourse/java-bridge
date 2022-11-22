@@ -40,4 +40,16 @@ public class GameService {
         }
         return true;
     }
+
+    public boolean isNotPass() {
+        if (!canMove()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void retry() {
+        map.retry();
+        user.retry();
+    }
 }

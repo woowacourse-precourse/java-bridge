@@ -19,6 +19,11 @@ public class Map {
                 .collect(Collectors.toList());
     }
 
+    public void retry(){
+        for(List<String> mapLayer : map){
+            mapLayer.clear();
+        }
+    }
 
     public List<List<String>> getMap() {
         return map;
