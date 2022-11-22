@@ -9,6 +9,7 @@ public class OutputView {
     private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private final String GAME_SUCCESS_OR_FAIL_MESSAGE = "게임 성공 여부: ";
+    private final String NUMBER_OF_GAME_ATTEMPTS_MESSAGE = "총 시도한 횟수: ";
     private final String SUCCESS_MESSAGE = "성공";
     private final String FAIL_MESSAGE = "실패";
 
@@ -73,5 +74,9 @@ public class OutputView {
         if (!successOrFail) {
             System.out.println(FAIL_MESSAGE);
         }
+    }
+
+    public void printTotalGameAttemptsCount(int gameAttemptsCount) {
+        System.out.print(NUMBER_OF_GAME_ATTEMPTS_MESSAGE + gameAttemptsCount);
     }
 }

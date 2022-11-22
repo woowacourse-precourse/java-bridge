@@ -14,6 +14,8 @@ public class GameResult {
 
         boolean successOrFail = checkSuccessOrFailOfGameResult(currentBridge, originalBridge);
         outputView.printGameSuccessOrFail(successOrFail);
+
+        outputView.printTotalGameAttemptsCount(gameAttemptsCount);
     }
 
     public static boolean checkSuccessOrFailOfGameResult(List<String> currentBridge, List<String> originalBridge) {
