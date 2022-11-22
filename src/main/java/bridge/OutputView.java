@@ -43,11 +43,6 @@ public class OutputView {
      * @param result {" ","O","X"} : 현재 상태값
      */
     public void updateMap(String[] result) {
-        if (map[0].contains("]")) {
-            if (!map[1].equals("[")) map[1] += "|";
-            map[1] = " " + result[1] + " ";
-            return;
-        }
         for (int i = 0; i < 2; i++) {
             if (!map[i].equals("[")) map[i] += "|";
             map[i] += " " + result[i] + " ";
@@ -58,6 +53,7 @@ public class OutputView {
      * 다시 시작하기 위해 저장된 게임 진행 상황을 지운다.
      */
     public void reMap() {
+        map[0]= map[0].substring(0, map.length-1);
         map[1] = "[";
     }
 }
