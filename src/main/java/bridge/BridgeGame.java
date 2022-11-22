@@ -11,8 +11,12 @@ public class BridgeGame {
     private BridgeMaker bridgeMaker;
     private int currentIndex;
 
+    // 게임 시도 횟수
+    private int gameTryCount;
+
     public BridgeGame(int bridgeLength) {
         this.bridge = bridgeMaker.makeBridge(bridgeLength);
+        gameTryCount = 1;
         currentIndex = 0;
     }
 
@@ -39,6 +43,8 @@ public class BridgeGame {
     public boolean retry(String gameCommandInput) {
         if(gameCommandInput.equals("Q"))
             return false;
+
+        gameTryCount++;
         return true;
     }
 
