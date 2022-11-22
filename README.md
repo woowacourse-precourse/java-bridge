@@ -24,6 +24,9 @@ F --> I
 >- View가 Model로부터 데이터를 받을 때는, 사용자마다 다르게 보여줘야 하는 데이터에 대해서만 받아야 한다. ✅
 >- Controller 내부에는 Model과 View의 코드가 있어도 된다. ✅
 >- View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다. ✅
+>
+> 또한 개인적으로 프로그램 내에서 **각 클래스의 역할을 단 한 문장으로 요약**하는 연습을 했습니다.
+> 각 문장은 아래에서 Model 내에 볼드 체로 작성했습니다.
 
 ---
 
@@ -31,44 +34,47 @@ F --> I
 
 #### `Bridge`
 
-- 다리를 리스트 형태로 관리한다.
+- **다리를 리스트 형태로 관리한다.**
 - `index`와 사용자가 선택한 `position`을 받아, 사용자의 생존 여부를 `boolean` 형태로 반환한다. `isSamePosition`
 - 다리의 길이를 반환한다. `size`
 
 #### `BridgeGame`
 
-- 전체 게임을 관리한다.
-- 게임의 중요한 변수인 시도 회수`attempts`, 최종 성공 여부`successAndFail`, 다이어그램`diagram`을 관리한다.
+- **전체 게임을 관리한다.**
 - 다리 한 칸 이동 시에 생존 여부에 따라 다이어그램을 업데이트하고 결과를 반환한다. `move`
 - 사용자가 `DIE` 후에 재시작을 선택한 경우 다이어그램을 초기화하고 시도 회수를 +1 하여 재시작을 설정한다. `retry`
 - 게임의 중요 변수를 설정하고 반환한다. `getAttempts` `getSuccessOrFail` `getDiagram` `setSuccess`
 - 다리의 길이를 반환한다. `getBridgeSize`
 
+### `Result`
+
+- **게임의 중요한 변수인 시도 회수`attempts`, 최종 성공 여부`successAndFail`, 다이어그램`diagram`을 관리한다.**
+
 #### `Position`
 
-- 다리 생성 시와 한 칸 이동 시에 다리의 "U", "D"와 같은 축약어를 관리한다.
+- **다리의 `UP`과 `DOWN`의 포지션을 관리한다.**
 - `BridgeMaker` 객체에서 0과 1의 숫자로부터 다리를 생성할 때, 숫자를 입력하면 해당하는 축약어`abbreviation`를 반환한다. `getAbbreviation`
 - 사용자의 이동 방향 입력값이 해당 포지션의 축약어`abbreviation`와 동일한지 비교한다. `isSame`
 - 다이어그램을 업데이트할 때, 다이어그램의 포지션이 사용자가 선택한 포지션과 동일한지 비교한다. `isRightPlace`
 
 #### `SurviveAndDie`
 
-- 다리 한 칸 이동의 결과를 `SURVIVE`와 `DIE`로 나누어 관리한다.
+- **다리 한 칸 이동의 결과를 `SURVIVE`와 `DIE`로 나누어 관리한다.**
 - 생존 여부를 비교하여 반환한다. `isDie`
 - 다이어그램을 업데이트할 때, 추가할 내용을 반환한다. `getDisplay`
 
 #### `SuccessAndFail`
 
-- 게임 전체의 성공과 실패를 관리한다.
+- **게임 전체의 성공`SUCCESS`과 실패`FAIL`를 관리한다.**
 - 결과 출력 시 보여줄 부분을 반환한다. `getKoreanDisplay`
 
 #### `RetryAndQuit`
 
-- 사용자의 한 칸 이동 중 `DIE`한 경우 입력받는 `GameCommand`를 관리한다.
+- **사용자의 한 칸 이동 중 `DIE`한 경우 입력받는 `GameCommand`를 관리한다.**
 
 #### `Diagram`
 
-- 매 이동 시와 최종 결과 출력 시에 함께 출력되는 `Map`을 관리한다.
+- **매 이동 시와 최종 결과 출력 시에 함께 출력되는 `Map`을 관리한다.**
 - 매 이동 시에 다이어그램을 업데이트한다. `updateDiagrams`
 - 다이어그램을 출력 형식에 맞게 다듬는다. `formatDiagram`
 - 다이어그램을 리스트에 넣어 함께 반환한다. `getFormattedDiagrams`
