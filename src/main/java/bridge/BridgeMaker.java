@@ -22,11 +22,24 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int order = 0; order < size; order++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-            if (bridgeNumber == 1) {
-                bridge.add("U");
-            } else if(bridgeNumber == 0) {
-                bridge.add("D");
-            }
+            bridge = addBridgeUpPosition(bridgeNumber, bridge);
+            bridge = addBridgeDownPosition(bridgeNumber, bridge);
+        }
+
+        return bridge;
+    }
+
+    public List<String> addBridgeUpPosition(int bridgeNumber, List<String> bridge) {
+        if (bridgeNumber == 1) {
+            bridge.add("U");
+        }
+
+        return bridge;
+    }
+
+    public List<String> addBridgeDownPosition(int bridgeNumber, List<String> bridge) {
+        if (bridgeNumber == 0) {
+            bridge.add("D");
         }
 
         return bridge;
