@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.code.GameStatus;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -16,6 +17,12 @@ public class GameController {
     }
     public static GameController start() {
         return new GameController();
+    }
+    public void play() {
+        while (game.getGameStatus() == GameStatus.PLAY) {
+            move();
+        }
+        //결과 출력 아웃뷰 추가
     }
 
     public void move() {
