@@ -26,6 +26,16 @@ class BridgeGameControllerTest extends NsTest {
         });
     }
 
+    @DisplayName("게임 재시작/종료 여부에 R과 Q 이외의 값이 입력되면 예외 메시지가 출력된다.")
+    @ValueSource(strings = {"Retry", "33", "1", "K", "U", "D", "5"})
+    @ParameterizedTest
+    void printErrorMessageWhenInvalidInputAtGameCommand(String gameCommand) {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", gameCommand, "Q");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
     @DisplayName("게임을 2회 시도하여 성공했을 때 성공 여부인 성공과 총 시도한 횟수가 2회 출력된다.")
     @Test
     void testFinalResultHasCorrectTrial() {
