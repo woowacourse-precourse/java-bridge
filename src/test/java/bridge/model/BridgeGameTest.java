@@ -1,7 +1,6 @@
 package bridge.model;
 
-import bridge.BridgeNumberGenerator;
-import org.assertj.core.util.Lists;
+import bridge.TestNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,9 +23,7 @@ class BridgeGameTest {
 
     @BeforeEach
     void init() {
-        bridgeGame = BridgeGame.of(
-                3, new TestNumberGenerator(Lists.newArrayList(1, 0, 0))
-        );
+        bridgeGame = BridgeGame.of(3, TestNumberGenerator.from(List.of(1, 0, 0)));
     }
 
     @DisplayName("다음 위치와 사용자의 입력이 주어지면 다음 위치와 비교해서, 움직가능 여부를 판단한다.")
@@ -66,19 +63,5 @@ class BridgeGameTest {
                 Arguments.of(List.of("X", " "), false),
                 Arguments.of(List.of(" ", "X"), false)
         );
-    }
-
-    static class TestNumberGenerator implements BridgeNumberGenerator {
-
-        private final List<Integer> numbers;
-
-        TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-
-        @Override
-        public int generate() {
-            return numbers.remove(0);
-        }
     }
 }
