@@ -1,14 +1,12 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.service.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.bridgeInfo.Bridge;
-import bridge.domain.userInfo.Direction;
 import bridge.domain.userInfo.GameCommand;
 import bridge.domain.bridgeInfo.Length;
 import bridge.domain.result.PassingPositions;
-import bridge.domain.userInfo.Position;
 import bridge.domain.result.Result;
 import bridge.handler.InputHandler;
 import bridge.view.OutputView;

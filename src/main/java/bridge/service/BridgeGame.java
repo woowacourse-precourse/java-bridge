@@ -1,4 +1,4 @@
-package bridge;
+package bridge.service;
 
 import bridge.domain.result.PassingPositions;
 import bridge.domain.result.Result;
