@@ -20,25 +20,25 @@ public class OutputView {
         printLowerBridge(bridge, userLocation, false);
     }
 
-    private void printBridgeContent(String bridgeValue, Command command){
+    private void printBridgeContent(String bridgeValue, Command command) {
         if (Objects.equals(bridgeValue, command.getCommandString())) {
             System.out.print(" O ");
         }
     }
 
-    private void printEmptyContent(String bridgeValue, Command command){
+    private void printEmptyContent(String bridgeValue, Command command) {
         if (Objects.equals(bridgeValue, command.getCommandString())) {
             System.out.print("   ");
         }
     }
 
-    private void printEndBracket(int userLocation, int currentLocation){
+    private void printEndBracket(int userLocation, int currentLocation) {
         if (userLocation - 1 == currentLocation) {
             System.out.print("] ");
         }
     }
 
-    private void printHorizontalLine(int userLocation, int currentLocation){
+    private void printHorizontalLine(int userLocation, int currentLocation) {
         if (userLocation - 1 != currentLocation) {
             System.out.print("|");
         }
@@ -47,19 +47,20 @@ public class OutputView {
     private void printUpperBridge(List<String> bridge, int userLocation, boolean isFailed) {
         printBlock(bridge, userLocation, Command.UP);
         printAdditionalHorizontalLine(userLocation, isFailed);
-        if(isFailed){
+        if (isFailed) {
             String failedValue = bridge.get(userLocation);
             handleFailedBlock(failedValue, Command.UP, isFailed);
         }
         printBridgeEndLine();
     }
 
-    private void printAdditionalHorizontalLine(int userLocation, boolean isFailed){
-        if(userLocation != 0 && isFailed){
+    private void printAdditionalHorizontalLine(int userLocation, boolean isFailed) {
+        if (userLocation != 0 && isFailed) {
             System.out.print("|");
         }
     }
-    private void printBlock(List<String> bridge, int userLocation, Command commandTarget){
+
+    private void printBlock(List<String> bridge, int userLocation, Command commandTarget) {
         System.out.print("[");
         Command commandOpposite = Command.getOppositeCommand(commandTarget);
         for (int i = 0; i < userLocation; i++) {
@@ -70,41 +71,43 @@ public class OutputView {
         }
 
     }
+
     private void printLowerBridge(List<String> bridge, int userLocation, boolean isFailed) {
         printBlock(bridge, userLocation, Command.DOWN);
         printAdditionalHorizontalLine(userLocation, isFailed);
-        if(isFailed){
+        if (isFailed) {
             String failedValue = bridge.get(userLocation);
             handleFailedBlock(failedValue, Command.DOWN, isFailed);
         }
         printBridgeEndLine();
     }
 
-    private void handleFailedBlock(String bridgeValue, Command command, boolean isFailed){
-        if(isFailed){
+    private void handleFailedBlock(String bridgeValue, Command command, boolean isFailed) {
+        if (isFailed) {
             printFailedBlock(bridgeValue, command);
             printBlankBlock(bridgeValue, command);
         }
     }
 
-    private void printFailedBlock(String bridgeValue, Command command){
+    private void printFailedBlock(String bridgeValue, Command command) {
         if (Objects.equals(bridgeValue, command.getCommandString())) {
             System.out.print(" X ");
         }
     }
-    private void printBlankBlock(String bridgeValue, Command command){
+
+    private void printBlankBlock(String bridgeValue, Command command) {
         if (!Objects.equals(bridgeValue, command.getCommandString())) {
             System.out.print("   ");
         }
     }
 
 
-    private void printBridgeEndLine(){
+    private void printBridgeEndLine() {
         System.out.print("] ");
         System.out.println("");
     }
 
-    public void printFailedMap(List <String> bridge, int userLocation) {
+    public void printFailedMap(List<String> bridge, int userLocation) {
         printUpperBridge(bridge, userLocation, true);
         printLowerBridge(bridge, userLocation, true);
     }
@@ -122,7 +125,7 @@ public class OutputView {
     }
 
 
-    private String printSuccessFailure(List<String> bridge, UserStatus userStatus){
+    private String printSuccessFailure(List<String> bridge, UserStatus userStatus) {
         System.out.println("최종 게임 결과");
         if (userStatus.isGameResultSuccess()) {
             printMap(bridge, userStatus.getUserLocation());

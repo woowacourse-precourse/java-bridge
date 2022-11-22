@@ -15,7 +15,8 @@ public class UserStatus {
         this.userLocation = 0;
         this.gameResultSuccess = false;
     }
-    public void setGameResultSuccess(){
+
+    public void setGameResultSuccess() {
         this.gameResultSuccess = true;
     }
 
@@ -39,5 +40,7 @@ public class UserStatus {
         this.userLocation++;
     }
 
-    public void resetUserLocation() {this.userLocation = 0;}
+    public void resetUserLocation() {
+        this.userLocation = 0;
+    }
 }

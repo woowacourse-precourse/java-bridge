@@ -17,7 +17,7 @@ public class BridgeGame {
         return bridge.get(userLocation).equals(userInput);
     }
 
-    public boolean isGameFinished(List<String> bridge, int userLocation){
+    public boolean isGameFinished(List<String> bridge, int userLocation) {
         return bridge.size() == userLocation;
     }
 
