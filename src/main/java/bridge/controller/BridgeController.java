@@ -6,10 +6,6 @@ import bridge.io.InputView;
 import bridge.io.OutputView;
 
 public class BridgeController {
-  private int bridgeSize;
-  private int gameCount;
-  private int index;
-  private boolean crossed;
   private InputView inputView;
   private OutputView outputView;
   private BridgeGame game;
@@ -17,8 +13,6 @@ public class BridgeController {
   public BridgeController() {
     inputView = new InputView();
     outputView = new OutputView();
-    gameCount = 1;
-    crossed = true;
   }
 
   public void play() {
@@ -29,21 +23,20 @@ public class BridgeController {
 
   public void makeBridgeByInput() {
     outputView.printStart();
-    bridgeSize = inputView.readBridgeSize();
+    int bridgeSize = inputView.readBridgeSize();
     game = new BridgeGame(new Bridge((bridgeSize)));
   }
 
   public void crossBridge() {
-    for (index = 0; index < bridgeSize; index++) {
+    do {
       String move = inputView.readMoving();
-      outputView.printMap(game.getMap(index, move));
-      if (game.move(move, index)) continue;
-      if (!game.retry(inputView.readGameCommand())) {
-        crossed = false;
-        break;
+      game.play(move);
+      outputView.printMap(game.getMap());
+      if(game.isWin()) break;
+      if (!game.canCross()) {
+        game.retry(inputView.readGameCommand());
       }
-      modifyForRetry();
-    }
+    } while (game.canCross());
   }
 
   public void showResult() {
@@ -51,13 +44,6 @@ public class BridgeController {
     outputView.printLastMapResult();
     outputView.printMap(game.getResultMap());
     System.out.println();
-    outputView.printResult(crossed, gameCount);
+    outputView.printResult(game.getResult());
   }
-
-  private void modifyForRetry() {
-    game.initMap();
-    index = -1;
-    gameCount++;
-  }
-
 }
