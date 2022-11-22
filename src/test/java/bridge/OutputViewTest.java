@@ -27,6 +27,15 @@ class OutputViewTest {
         outputView.printDownLineMap(userInput,result);
 
         assertThat(out.toString()).isEqualTo("[ O |   |   ]\n[   | O | O ]");
+
+        OutputStream out2 = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out2));
+
+        List<String> userInput2 = List.of("U","U");
+        List<Boolean> result2 = List.of(true,false);
+        outputView.printUpLineMap(userInput2,result2);
+        outputView.printDownLineMap(userInput2,result2);
+        assertThat(out2.toString()).isEqualTo("[ O | X ]\n[   |   ]");
     }
 
     @Test
