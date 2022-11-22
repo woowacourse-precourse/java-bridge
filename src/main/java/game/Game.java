@@ -12,7 +12,7 @@ public class Game {
 
     public Game() {
         this.gameData = new GameData();
-        this.bridgeGame = new BridgeGame(gameData);
+        this.bridgeGame = new BridgeGame();
     }
 
     public GameData play(List<String> bridge) {
@@ -24,8 +24,13 @@ public class Game {
 
     private int operate(int stage, List<String> bridge) {
         OutputView.printMoveChoiceMessage();
-        bridgeGame.move(InputCheck.setMovingValue(), bridge.get(stage));
+        String movingValue = InputCheck.movingValue();
+        setGameData(movingValue, bridgeGame.move(movingValue, bridge.get(stage)));
         OutputView.printMap(gameData.getMovingFloorDataSet(), gameData.getPassDataSet(), gameData.getDataSetSize());
         return GameOver.isGameOver(gameData.getPassDataSet().get(stage), stage, bridge.size());
+    }
+
+    private void setGameData(String movingFloor, String passData) {
+        gameData.setGameData(movingFloor, passData);
     }
 }

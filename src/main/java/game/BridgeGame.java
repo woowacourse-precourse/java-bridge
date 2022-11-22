@@ -1,21 +1,13 @@
 package game;
 
-import inMemoryDB.GameData;
-
 public class BridgeGame {
 
-    GameData gameData;
 
-    public BridgeGame(GameData gameData) {
-        this.gameData = gameData;
-    }
-
-    public void move(String movingInputFloor, String bridgeFloorStatus) {
+    public String move(String movingInputFloor, String bridgeFloorStatus) {
         if (movingInputFloor.equals(bridgeFloorStatus)) {
-            gameData.setGameData(movingInputFloor, GameResult.CORRECT_FLOOR.getResultMessage());
-            return;
+            return GameResult.CORRECT_FLOOR.getResultMessage();
         }
-        gameData.setGameData(movingInputFloor, GameResult.WRONG_FLOOR.getResultMessage());
+        return GameResult.WRONG_FLOOR.getResultMessage();
     }
 
     public static boolean retry(String restartStatus) {
