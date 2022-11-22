@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.model.Bridge;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

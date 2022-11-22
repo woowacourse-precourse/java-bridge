@@ -27,7 +27,6 @@ public class BridgeGame {
 
     private int getCountNotU(List<String> bridges, int count, String inputMoving) {
         if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.DOWN)) isDAndD();
-
         if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.UP)) {
             isDAndU();
             return Command.MAX_LENGTH_PLUS_ONE;
@@ -63,9 +62,9 @@ public class BridgeGame {
         upAndDown.get(1).add(Command.BAR);
     }
 
-    public String retry(String restartOrEnd) {
-        userInput.validateRestartOrEnd(restartOrEnd);
-        if (restartOrEnd.equals(Command.QUIT)) {
+    public String retry(String restartOrQuit) {
+        userInput.validateRestartOrQuit(restartOrQuit);
+        if (restartOrQuit.equals(Command.QUIT)) {
             return Command.FAIL;
         }
         return "";

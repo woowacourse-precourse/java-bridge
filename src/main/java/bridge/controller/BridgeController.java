@@ -106,8 +106,8 @@ public class BridgeController {
     }
 
     private static String getSuccessOrFail() {
-        String restartOrEnd = inputView.readGameCommand();
-        return bridgeGame.retry(restartOrEnd);
+        String restartOrQuit = inputView.readGameCommand();
+        return bridgeGame.retry(restartOrQuit);
     }
 
     private boolean getFalse() {

@@ -32,7 +32,7 @@ public class BridgeMaker {
         bridges.add(Command.DOWN);
     }
 
-    private void validateNumberRange(int size) {
+    public void validateNumberRange(int size) {
         if (size < Command.INPUT_NUMBER_RANGE_START || size > Command.INPUT_NUMBER_RANGE_LAST) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getExceptionMessage());
         }
