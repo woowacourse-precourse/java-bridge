@@ -114,6 +114,9 @@ public class BridgeGame {
     public void retry() {
         numberOfTimes +=1;
         //초기화
+        dashBoard.clear();
+        bridgeDown.clear();
+        bridgeUp.clear();
         int size = this.rightWayBridge.size();
         for(int i=0; i<size; i++){
             this.bridgeUp.add(" ");
