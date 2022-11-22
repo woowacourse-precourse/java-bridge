@@ -78,7 +78,7 @@ public class InputView {
         endMessage();
         String command = Console.readLine();
         validateGameCommand(command);
-        return null;
+        return command;
     }
 
     private void endMessage() {
