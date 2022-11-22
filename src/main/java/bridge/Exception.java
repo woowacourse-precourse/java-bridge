@@ -33,7 +33,7 @@ public class Exception {
     }
 
     public static void validateIsValidCommand(String input) {
-        ErrorMessage errorMessage = ErrorMessage.NOT_VALID_MOVING;
+        ErrorMessage errorMessage = ErrorMessage.NOT_VALID_COMMAND;
         if (input.equals(RETRY) || input.equals(QUIT)){
             return;
         }
