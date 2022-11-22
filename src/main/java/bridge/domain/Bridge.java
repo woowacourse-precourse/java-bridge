@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.validator.BridgeFormatValidator;
-
 import java.util.List;
 
 public class Bridge {
