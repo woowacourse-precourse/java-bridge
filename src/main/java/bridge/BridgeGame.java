@@ -17,7 +17,7 @@ public class BridgeGame {
         this.bridgeGameStarter = new BridgeGameStarter();
         this.bridgeSizeGetter = new BridgeSizeGetter();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.exceptionHandler = new GameExceptionHandler();
+        this.exceptionHandler = GameExceptionHandler.getGameExceptionHandler();
     }
 
     public static BridgeGame getBridgeGame() {
