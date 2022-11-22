@@ -50,5 +50,13 @@ class BridgeInputExceptionTest {
         assertThatThrownBy(() -> bridgeInputException.validMoveDirection(move))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"UU", "DD", "UD", "UDU"})
+    @DisplayName("사용자의 이동 방향이 두글자 이상의 문자일 때 예외처리")
+    void validInputSizeMove(String move) {
+        assertThatThrownBy(() -> bridgeInputException.validMoveDirection(move))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
