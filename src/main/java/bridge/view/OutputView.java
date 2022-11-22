@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println(OutputMessage.GAME_RESULT.getMessage());
         printMap(bridgeGameResult);
         System.out.println(OutputMessage.GAME_SUCCESS_OR_FAILURE.getMessage() + getSuccessPhrase(
-                bridgeGameResult.getSuccess()));
+                bridgeGameResult.isSuccess()));
         System.out.println(OutputMessage.TRY_COUNT.getMessage() + bridgeGame.getTryCount());
     }
 

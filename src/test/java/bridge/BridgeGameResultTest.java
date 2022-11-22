@@ -1,7 +1,6 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +22,7 @@ class BridgeGameResultTest {
 
         assertThat(bridgeGameResult.getUpBridge()).isEqualTo(Arrays.asList("O", " ", " "));
         assertThat(bridgeGameResult.getDownBridge()).isEqualTo(Arrays.asList(" ", "O", "O"));
-        assertThat(bridgeGameResult.getSuccess()).isTrue();
+        assertThat(bridgeGameResult.isSuccess()).isTrue();
     }
 
     @Test
@@ -31,6 +30,6 @@ class BridgeGameResultTest {
         bridgeGameResult.clear();
         assertThat(bridgeGameResult.getUpBridge().size()).isEqualTo(0);
         assertThat(bridgeGameResult.getDownBridge().size()).isEqualTo(0);
-        assertThat(bridgeGameResult.getSuccess()).isTrue();
+        assertThat(bridgeGameResult.isSuccess()).isTrue();
     }
 }

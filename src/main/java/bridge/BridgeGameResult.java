@@ -33,7 +33,7 @@ public class BridgeGameResult {
         return Collections.unmodifiableList(downBridge);
     }
 
-    public boolean getSuccess() {
+    public boolean isSuccess() {
         return Success;
     }
 
