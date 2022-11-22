@@ -26,6 +26,7 @@ public class OutputView {
 
     public void printStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("");
     }
 
     /**
@@ -93,7 +94,6 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame);
         printResultStatistic(bridgeGame);
-        System.out.println("");
     }
 
     private void printResultStatistic(BridgeGame bridgeGame){
