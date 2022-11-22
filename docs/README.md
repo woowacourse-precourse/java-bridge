@@ -99,6 +99,10 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
     - 게임의 진행 상황을 나타냅니다.
         - [X] 진행 상태와 클리어 상태 실패상태를 가집니다.
         - [X] 게임이 진행중인지 확인할 수 있습니다.
+- RepeatCount
+    - 게임의 반복 횟수를 나타냅니다.
+        - [ ] 횟수를 추가할 수 있습니다.
+        - [ ] 타입의 허용범위를 벗어나면 오류가 납니다.
 
 #
 
