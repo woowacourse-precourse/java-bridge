@@ -81,8 +81,8 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 재시도_정상_테스트() {
-        assertThat(new BridgeGame().checkGameCommand("R")).isTrue();
-        assertThat(new BridgeGame().checkGameCommand("Q")).isFalse();
+        assertThat(new BridgeGame().checkGameCommand("R")).isEqualTo(0);
+        assertThat(new BridgeGame().checkGameCommand("Q")).isEqualTo(1);
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {

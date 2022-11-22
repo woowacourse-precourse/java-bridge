@@ -22,10 +22,10 @@ public class BridgeGame {
     private int tries; // 사용자의 총 시도
     private int bridgeLen; // 다리의 길이
 
-    // 하나의 게임 도중 3가지 상태 가능 : 실패 / 성공 / 진행 중
-    private static int CONTINUE = 0;
+    // 하나의 게임 도중 3개 상황 가능, PLAYING이라도 다 하면 CORRECT
+    private static int PLAYING = 0;
     private static int WRONG = 1;
-    private static int RIGHT = 2;
+    private static int CORRECT = 2;
 
     private int userStatus;
 
@@ -42,37 +42,41 @@ public class BridgeGame {
      * while문으로 반복
      * 게임의 한 사이클은 한 번의 play 함수 호출로 수행
      */
-    void init() {
-        boolean status = true;
-        while(status) {
-            status = play();
-        }
-    }
 
     // 매 게임 사이클마다 다시 시작하기 위해 갱신해 줘야 함
     void clear() {
         bridge.clear();
         userInput.clear();
         tries = 0;
-        userStatus = CONTINUE;
+        userStatus = PLAYING;
+    }
+
+    void init() {
+        // 정답은 한 번만 구하기
+        setAnswer();
+        // 하나의 정답을 가지고 여러 번 틀려서 여러 번 play할 수 있음
+        while(userStatus == PLAYING) {
+            play();
+        }
+
+        gameOutput.printResult(bridge, userInput, userStatus, tries);
     }
 
     /**
      *
      * @return 다음 게임을 수행할 지 아닐 지에 대한 입력 - true : 다음 게임 수행 / false : 다음 게임을 수행하지 않음
      */
-    boolean play() {
-        // 사용자 게임 시작에 대한 알림과 함께 초기 길이 값 입력받기
-        setAnswer();
-
-        // 사용자 입력을 받기
-        // 최종 정답에 도달하거나 중간에 틀릴 때까지
-        while(userStatus == CONTINUE) {
+    void play() {
+        clear();
+        while(userStatus == PLAYING) {
             userStatus = move();
         }
-        // 한 게임 사이클의 종료
-        // retry : 다음 게임을 수행할 지 아닐 지에 대한 입력
-        return retry();
+        if(userStatus == CORRECT) {
+            return;
+        }
+        if(userStatus == WRONG) {
+            userStatus = retry();
+        }
     }
 
     /**
@@ -109,7 +113,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int move() {
+    int move() {
         // 매 시행마다 사용자 입력받고
         String read = gameInput.readMoving();
         // 정답 체크 및 사용자 입력에 추가
@@ -135,16 +139,16 @@ public class BridgeGame {
         // 넣은 해당 인덱스가 bridge의 해당 인덱스와 같은지 비교
         boolean status = input.equals(bridge.get(this.tries++));
 
-        // 만약 다르면 재
+        // 만약 다르면 재시작해야 함
         if(status == false) {
             return WRONG;
         }
         // 만약 같아도 모두 수행했으면 더 수행할 필요 없음
         if(status == true && tries == bridgeLen) {
-            return RIGHT;
+            return CORRECT;
         }
         // 맞았고, 더 수행해야 한다면 더 수행한다.
-        return CONTINUE;
+        return PLAYING;
     }
 
     /**
@@ -152,7 +156,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
+    public int retry() {
         String input = gameInput.readGameCommand();
         return checkGameCommand(input);
     }
@@ -162,13 +166,17 @@ public class BridgeGame {
      * @param input : String - 무조건 "Q"(종료) 혹은 "R"(재시도)만 들어와야 한다
      * @return true : 재시도, false: 종료
      */
-    public boolean checkGameCommand(String input) {
+    public int checkGameCommand(String input) {
         String errorMessage = ErrorCodes.RETRY_ILLEGAL_INPUT.getMessage();
         // Q와 R 둘 중 어디에도 해당하지 않으면 에러
         catchErrors(input.equals("R") || input.equals("Q"), errorMessage);
 
         // 둘 중 R에 해당하면 true -> 재시작, Q일 경우 false 반환, 종료하기
-        return input.equals("R");
+        if(input.equals("R")) {
+            clear();
+            return PLAYING;
+        }
+        return WRONG;
     }
 
     /**
