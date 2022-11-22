@@ -16,7 +16,7 @@ public class Controller {
         outputView.printStart();
         BridgeGame bridgeGame = new BridgeGame(make());
         String command = "";
-        while (!bridgeGame.isEnd() && !command.equals(BridgeSetting.QUIT_COMMAND)) {
+        while (!bridgeGame.isEnd() && !command.equals(BridgeSetting.QUIT_COMMAND)) { // 커맨드가 q거나 다 건넜다면
             move(bridgeGame);
             if (!bridgeGame.canStandOnCurrentBridge()) {
                 command = retry(bridgeGame);
@@ -26,9 +26,7 @@ public class Controller {
     }
 
     private String retry(BridgeGame bridgeGame) {
-        String command;
-
-        command = inputView.readGameCommand();
+        String command = inputView.readGameCommand();
         if (command.equals(BridgeSetting.RETRY_COMMAND)) {
             bridgeGame.retry();
         }

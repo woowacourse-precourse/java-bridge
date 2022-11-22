@@ -3,6 +3,10 @@ package bridge.view;
 import bridge.controller.BridgeSetting;
 import bridge.controller.BridgeStatus;
 
+/**
+ * 뷰에서 일어나는 모든 것들을 enum으로 묵었습니다.
+ * 이번에 공부하면서 알게된 추상메서드를 이용해서 검증을 진행했습니다.
+ */
 public enum InputViewType {
     BRIDGE_SIZE("다리 길이를 입력해주세요.",
             "[ERROR] 다리는 숫자여야 합니다.") {

@@ -16,14 +16,13 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
+     * 설정했던 게임의 맵을 불러와서 형식대로 만들어준다.
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
         List<List<String>> map = bridgeGame.getMap();
         List<String> upSideBridge = map.get(0);
         List<String> downSideBridge = map.get(1);
-
         printBridge(upSideBridge);
         printBridge(downSideBridge);
         System.out.println();
@@ -41,7 +40,7 @@ public class OutputView {
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
+     * 위에 사용했던 맵을 이용해 출력해준다.
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
@@ -52,7 +51,7 @@ public class OutputView {
     }
 
     private void printSuccessOrFail(BridgeGame bridgeGame) {
-        if(bridgeGame.isEnd()) {
+        if (bridgeGame.isEnd()) {
             System.out.println("게임 성공 여부: 성공");
             return;
         }

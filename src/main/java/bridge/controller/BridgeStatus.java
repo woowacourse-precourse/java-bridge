@@ -19,4 +19,11 @@ public enum BridgeStatus {
     public int getNumber() {
         return number;
     }
+
+    public String findMovingByNumber(int number) {
+        if (number == this.number) {
+            return this.moving;
+        }
+        return "";
+    }
 }

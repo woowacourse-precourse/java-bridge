@@ -19,6 +19,7 @@ public class BridgeGameMap {
         updateUpSide(bridgeStatus, playerMoving);
         updateDownSide(bridgeStatus, playerMoving);
     }
+
     private void updateUpSide(String bridgeStatus, String playerMoving) {
         BridgeStatus bridgeStatus1 = BridgeStatus.UP;
         if (playerMoving.equals(bridgeStatus1.getMoving())) {
