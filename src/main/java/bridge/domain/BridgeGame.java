@@ -53,4 +53,8 @@ public class BridgeGame {
     public int getTotalAttempts() {
         return totalAttempts;
     }
+
+    public boolean canMoveMoreBlock(int length) {
+        return length > movingData.size();
+    }
 }
