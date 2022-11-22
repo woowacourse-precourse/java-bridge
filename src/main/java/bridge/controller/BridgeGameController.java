@@ -32,4 +32,30 @@ public class BridgeGameController {
             return initBridge(bridgeMaker);
         }
     }
+
+    public void gamePlay() {
+        BridgeGameCommand playerChoice = BridgeGameCommand.RETRY;
+        final BridgeGame bridgeGame = new BridgeGame(bridge);
+        while (playerChoice != BridgeGameCommand.QUIT) {
+            bridgeGame.retry();
+            continuousGame(bridgeGame);
+            triedCount++;
+            playerChoice = askRetry(bridgeGame);
+        }
+        gameFinish(bridgeGame);
+    }
+
+    private void gameFinish(final BridgeGame bridgeGame) {
+        final BridgeGameLocationDto log = BridgeGameLocationDto.of(bridgeGame.printMoveInfo());
+        final BridgeGameResult gameResult = bridgeGame.result();
+        outputView.printResult(BridgeGameResultDto.of(triedCount, log, gameResult));
+    }
+
+    private void continuousGame(final BridgeGame bridgeGame) {
+        while (!bridgeGame.isFinish()) {
+            final BridgeGamePosition nextPosition = askMove();
+            bridgeGame.move(nextPosition);
+            outputView.printMap(BridgeGameLocationDto.of(bridgeGame.printMoveInfo()));
+        }
+    }
 }
