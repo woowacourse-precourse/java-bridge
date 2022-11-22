@@ -23,7 +23,7 @@ public class BridgeGameController {
             moveBridge();
             printResult();
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage()); // 수정 필요
+            System.out.println(exception.getMessage());
         }
     }
 
@@ -44,33 +44,40 @@ public class BridgeGameController {
         do {
             bridgeGameSet();
             count++;
-        }while (gameProceeding());
+        } while (gameProceeding());
     }
 
-    private boolean gameProceeding(){
+    private boolean gameProceeding() {
         mapMaker = new MapMaker(bridge);
-        while(true){
+        return extracted();
+    }
+
+    private boolean extracted() {
+        while (true) {
             OutputView.showInputMove();
             boolean proceeding = bridgeGame.move(InputView.readMoving());
             addMap(proceeding);
-
-            if(!proceeding){ // 여기까진 맞음
-                OutputView.showGameStatus();
-                return bridgeGame.retry(InputView.readGameCommand());
-            }
-
-            if (bridgeGame.isEscape()){
+            if (extracted(proceeding)) return bridgeGame.retry(InputView.readGameCommand());
+            if (bridgeGame.isEscape()) {
                 return (gameResult = false);
             }
         }
     }
 
-    private void addMap(boolean result){
+    private boolean extracted(boolean proceeding) {
+        if (!proceeding) {
+            OutputView.showGameStatus();
+            return true;
+        }
+        return false;
+    }
+
+    private void addMap(boolean result) {
         mapMaker.addMap(result);
         OutputView.printMap(mapMaker);
     }
 
-    private void printResult(){
+    private void printResult() {
         OutputView.printResult(mapMaker, gameResult, count);
     }
 }
