@@ -36,4 +36,11 @@ public enum Command {
         return DOWN;
     }
 
+    public static Command getOppositeCommand(Command command) {
+        if (command == Command.UP){
+            return Command.DOWN;
+        }
+        return Command.UP;
+    }
+
 }
