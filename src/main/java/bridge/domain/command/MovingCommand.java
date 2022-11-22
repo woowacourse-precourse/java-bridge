@@ -1,7 +1,9 @@
 package bridge.domain.command;
 
 import bridge.domain.exception.NotExistCommandException;
+
 import bridge.utils.Constants;
+
 import java.util.Objects;
 
 public class MovingCommand {
@@ -18,7 +20,7 @@ public class MovingCommand {
 
     private boolean isValidateRange(String input) {
         return Objects.equals(input, Constants.UP_SITUATION) || Objects.equals(input,
-            Constants.DOWN_SITUATION);
+                Constants.DOWN_SITUATION);
     }
 
     public static MovingCommand from(String movingCommand) {

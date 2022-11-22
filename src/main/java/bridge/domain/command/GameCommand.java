@@ -1,7 +1,9 @@
 package bridge.domain.command;
 
 import bridge.domain.exception.NotExistCommandException;
+
 import bridge.utils.Constants;
+
 import java.util.Objects;
 
 public class GameCommand {

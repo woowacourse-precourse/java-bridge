@@ -3,10 +3,13 @@ package bridge.service;
 import bridge.domain.command.GameCommand;
 import bridge.domain.command.MovingCommand;
 import bridge.domain.bridge.BridgeSize;
+
 import bridge.utils.parser.CommandInputParser;
+
 import bridge.view.InputView;
 
 public class InputViewService {
+
     private final InputView inputView;
 
     public InputViewService() {

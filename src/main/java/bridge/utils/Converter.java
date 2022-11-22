@@ -1,10 +1,12 @@
 package bridge.utils;
 
 import bridge.domain.exception.WrongBridgeValueException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Converter {
+
     public static List<String> getSituationThrough(List<Integer> bridgeValues) {
         List<String> bridge = new ArrayList<>();
 

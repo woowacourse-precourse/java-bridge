@@ -1,13 +1,14 @@
 package bridge.utils.parser;
 
 import bridge.domain.exception.WrongNumberInputException;
+
 import bridge.utils.Constants;
+
 import java.util.stream.Stream;
 
 public class SizeInputParser {
 
     private SizeInputParser() {
-
     }
 
     public static int parseSize(final String input) {
@@ -22,11 +23,11 @@ public class SizeInputParser {
 
     private static int parse(final String input) {
         return Stream.of(input)
-            .map(String::trim)
-            .filter(i -> i.matches(Constants.NUMBER_PATTERN))
-            .map(Integer::parseInt)
-            .findFirst()
-            .orElseThrow(WrongNumberInputException::new);
+                .map(String::trim)
+                .filter(i -> i.matches(Constants.NUMBER_PATTERN))
+                .map(Integer::parseInt)
+                .findFirst()
+                .orElseThrow(WrongNumberInputException::new);
     }
 
 }

@@ -2,12 +2,15 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeSize;
 import bridge.domain.command.GameCommand;
 import bridge.domain.command.MovingCommand;
 import bridge.domain.result.BridgeMatchResult;
+
 import bridge.utils.Constants;
+
 import java.util.Objects;
 
 public class BridgeGame {

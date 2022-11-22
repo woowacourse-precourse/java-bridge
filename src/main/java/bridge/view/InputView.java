@@ -1,13 +1,14 @@
 package bridge.view;
 
 import bridge.utils.parser.SizeInputParser;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
     public int readBridgeSize() {
         printForInputMessage(Messages.SCAN_BRIDGE_SIZE);
-        
+
         return SizeInputParser.parseSize(getInput());
     }
 
@@ -30,5 +31,4 @@ public class InputView {
     public String getInput() {
         return Console.readLine();
     }
-
 }

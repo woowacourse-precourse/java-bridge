@@ -1,11 +1,13 @@
 package bridge.domain.result;
 
 import bridge.utils.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class EachSideResult {
+
     private List<String> sideResults;
 
     public EachSideResult() {
@@ -23,7 +25,7 @@ public class EachSideResult {
     @Override
     public String toString() {
         return sideResults.stream()
-                .collect(Collectors
-                        .joining(Constants.MAP_DELIMITER, Constants.MAP_PREFIX, Constants.MAP_SUFFIX));
+            .collect(Collectors
+                .joining(Constants.MAP_DELIMITER, Constants.MAP_PREFIX, Constants.MAP_SUFFIX));
     }
 }

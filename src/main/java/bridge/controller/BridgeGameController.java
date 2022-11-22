@@ -8,9 +8,13 @@ import bridge.domain.bridge.Bridge;
 import bridge.domain.result.BridgeGameResult;
 import bridge.domain.command.GameCommand;
 import bridge.domain.bridge.BridgeSize;
+
 import bridge.service.InputViewService;
+
 import bridge.utils.Constants;
+
 import bridge.view.OutputView;
+
 import java.util.Objects;
 
 public class BridgeGameController {
