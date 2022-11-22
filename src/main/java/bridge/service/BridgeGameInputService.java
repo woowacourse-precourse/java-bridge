@@ -75,7 +75,6 @@ public class BridgeGameInputService {
     }
 
     private void bridgeGameRetry(Boolean isPassedMoving) {
-//        readRetryGameCommand = readGameCommand();
         if (readRetryGameCommand.equals(BridgeGameRule.QUIT.getValue())) {
             return;
         }
