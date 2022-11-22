@@ -15,7 +15,14 @@ public class BridgeMaker {
     }
 
     public String returnMove(int number) {
-        return BridgeMove.returnMoving(number);
+        String upOrDown = "";
+        if (number == 1) {
+            upOrDown = "U";
+        }
+        if (number == 0) {
+            upOrDown = "D";
+        }
+        return upOrDown;
     }
 
     /**

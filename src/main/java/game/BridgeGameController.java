@@ -4,89 +4,67 @@ import bridge.BridgeDraw;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import game.BridgeGame;
 import view.InputView;
 import view.OutputView;
-import view.Valid;
-import view.ValidMessage;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class BridgeGameController {
-
-    private static List<String> answerBridge = new ArrayList<>();
-
-    private List<String> upAndDown = new ArrayList<>(Arrays.asList("", ""));
-
-    private int countRestart = 1;
 
     private static final InputView inputView = new InputView();
 
     private static final OutputView outputView = new OutputView();
 
-    private static final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private BridgeGame bridgeGame;
 
-    private static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private final BridgeDraw bridgeDraw = new BridgeDraw();
 
-    private static final BridgeGame bridgeGame = new BridgeGame();
+    public void restart() {
+        bridgeGame.retry();
+        dealMoveEnter();
+    }
 
-    public void restartOrNot() {
-        if (inputView.readGameCommand().equals("R")) {
-            countRestart++;
-            repeatMakeResult();
+    public void dealCorrectEnter(String userInput) {
+        bridgeDraw.saveSuccessMoving(userInput);
+        outputView.printMap(bridgeDraw.getUpMap(), bridgeDraw.getDownMap());
+        if (bridgeGame.isLastIndex()) {
+            outputView.printSuccessResult(bridgeGame.getCountRestart(), bridgeDraw.getUpMap(), bridgeDraw.getDownMap());
+            return;
         }
+        bridgeGame.move();
+        dealMoveEnter();
     }
 
-    public void isValueSpecial(int index) {
-        if ((index >= 0 && upAndDown.get(0).contains(" ")) && index < answerBridge.size()-1) {
-            upAndDown.set(0, upAndDown.get(0) + BridgeDraw.line.getDraw());
-            upAndDown.set(1, upAndDown.get(1) + BridgeDraw.line.getDraw());
+    public void dealWrongEnter(String userInput) {
+        bridgeDraw.saveFailMoving(userInput);
+        outputView.printMap(bridgeDraw.getUpMap(), bridgeDraw.getDownMap());
+        bridgeDraw.reset();
+    }
+
+    public void enterRestartState() {
+        String restartState = inputView.readGameCommand();
+        dealRestartEnter(restartState);
+    }
+
+    public void dealRestartEnter(String restartState) {
+        if (restartState.equals("R")) {
+            restart();
+            return;
         }
-        if (index == answerBridge.size()-1) {
-            outputView.printSuccessResult(countRestart, upAndDown);
-        }
+        outputView.printResult(bridgeGame.getCountRestart(), bridgeDraw.getUpMap(), bridgeDraw.getDownMap());
     }
 
-    public void sameWithAnswer(String userInput, int index) {
-        bridgeGame.isValueSame(userInput, upAndDown);
-        outputView.printMap(upAndDown);
-        isValueSpecial(index);
-    }
-
-    public void diffWithAnswer(String userInput) {
-        bridgeGame.isValueDiff(userInput, upAndDown);
-        outputView.printMap(upAndDown);
-        upAndDown = new ArrayList<>(Arrays.asList("", ""));
-        restartOrNot();
-    }
-
-    public String makeResult(String answerInput, int index) {
+    public void dealMoveEnter() {
         String userInput = inputView.readMoving();
-        if (userInput.equals(answerInput)) {
-            sameWithAnswer(userInput, index);
+        if (userInput.equals(bridgeGame.getBridgeCursorValue())) {
+            dealCorrectEnter(userInput);
+            return;
         }
-        if (!userInput.equals(answerInput)) {
-            diffWithAnswer(userInput);
-        }
-        return userInput;
-    }
-
-    public void repeatMakeResult() {
-        int i = 0;
-        while (i < answerBridge.size()) {
-            String userInput = makeResult(answerBridge.get(i), i);
-            if (!userInput.equals(answerBridge.get(i))) {
-                break;
-            }
-            i++;
-        }
+        dealWrongEnter(userInput);
+        enterRestartState();
     }
 
     public void startGame() {
         int size = inputView.readBridgeSize();
-        answerBridge = bridgeMaker.makeBridge(size);
-        repeatMakeResult();
+        bridgeGame = new BridgeGame(size);
+        dealMoveEnter();
     }
 }

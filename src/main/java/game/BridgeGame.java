@@ -1,7 +1,7 @@
 package game;
 
 
-import bridge.BridgeDraw;
+import bridge.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,12 +12,34 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public void isValueSame(String user, List<String> upAndDown) {
-        move(user, upAndDown);
+    private int countRestart = 1;
+
+    private int bridgeCursor = 0;
+
+    private final List<String> answerBridge;
+
+    private static final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+    public BridgeGame(int size) {
+        answerBridge = bridgeMaker.makeBridge(size);
     }
 
-    public void isValueDiff(String user, List<String> upAndDown) {
-        retry(user, upAndDown);
+    public int getCountRestart() {
+        return this.countRestart;
+    }
+
+    public int getBridgeCursor() {
+        return this.bridgeCursor;
+    }
+
+    public String getBridgeCursorValue() {
+        return this.answerBridge.get(bridgeCursor);
+    }
+
+    public boolean isLastIndex() {
+        return this.bridgeCursor == answerBridge.size()-1;
     }
 
     /**
@@ -25,15 +47,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String user, List<String> upAndDown) {
-        if (user.equals("U")) {
-            upAndDown.set(0, upAndDown.get(0)+ BridgeDraw.success.getDraw());
-            upAndDown.set(1, upAndDown.get(1)+ BridgeDraw.none.getDraw());
-        }
-        if (user.equals("D")) {
-            upAndDown.set(0, upAndDown.get(0)+BridgeDraw.none.getDraw());
-            upAndDown.set(1, upAndDown.get(1)+BridgeDraw.success.getDraw());
-        }
+    public void move() {
+        bridgeCursor++;
     }
 
     /**
@@ -41,14 +56,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String user, List<String> upAndDown) {
-        if (user.equals("U")) {
-            upAndDown.set(0, upAndDown.get(0) + BridgeDraw.fail.getDraw());
-            upAndDown.set(1, upAndDown.get(1) + BridgeDraw.none.getDraw());
-        }
-        if (user.equals("D")) {
-            upAndDown.set(0, upAndDown.get(0) + BridgeDraw.none.getDraw());
-            upAndDown.set(1, upAndDown.get(1) + BridgeDraw.fail.getDraw());
-        }
+    public void retry() {
+        countRestart++;
+        bridgeCursor = 0;
     }
 }

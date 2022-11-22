@@ -1,7 +1,5 @@
 package view;
 
-import bridge.BridgeMove;
-
 public class Valid {
 
     public static boolean isLengthEmpty(String length) {
@@ -55,7 +53,7 @@ public class Valid {
 
     public static boolean isEnterNotRequiredLetter(String enter) {
         boolean isNotRequired = false;
-        if (!enter.equals(BridgeMove.up.getMoving()) && !enter.equals(BridgeMove.down.getMoving())) {
+        if (!enter.equals("U") && !enter.equals("D")) {
             isNotRequired = true;
         }
         return isNotRequired;
