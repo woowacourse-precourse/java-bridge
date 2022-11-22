@@ -18,6 +18,11 @@ public class ExceptionCaseTest {
         assertThatThrownBy(() -> ExceptionCase.isInputAllNumber("50"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @Test
+    void isInputAllNumber_IllegalArgumentException_bridgeSizeNotNumber() {
+        assertThatThrownBy(() -> ExceptionCase.isInputAllNumber("15J"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     void isInputTry_IllegalArgumentException_InputIsNotQW() {
