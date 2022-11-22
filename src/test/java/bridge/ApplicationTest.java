@@ -30,6 +30,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("한번의 시도만에 성공하는 경우")
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
@@ -47,6 +48,7 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
     @Test
+    @DisplayName("여러 번의 시도로 성공하는 경우")
     void 기능_테스트2() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D", "R", "U", "D", "U");
@@ -64,6 +66,7 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
     @Test
+    @DisplayName("한 번의 시도만으로 포기하는 경우")
     void 기능_테스트3() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D", "Q");
@@ -82,6 +85,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("다리 길이가 숫자가 아닌 경우")
     void 예외_테스트1() {
         assertSimpleTest(() -> {
             runException("a");
