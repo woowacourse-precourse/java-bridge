@@ -1,7 +1,8 @@
-package bridge;
+package bridge.domain;
 
-import static bridge.BridgeConverter.generatePosition;
+import static bridge.domain.BridgeConverter.generatePosition;
 
+import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
