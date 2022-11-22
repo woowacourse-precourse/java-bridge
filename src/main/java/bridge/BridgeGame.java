@@ -47,5 +47,12 @@ public class BridgeGame {
         moveUpDown();
     }
 
+    public void startGame(){
+        BridgeRandomNumberGenerator BridgeRandomNumber = new BridgeRandomNumberGenerator();
+        BridgeMaker Bridge = new BridgeMaker(BridgeRandomNumber);
+        size = app.makeBridgeSize();
+        finishedBridge = Bridge.makeBridge(size);
+        moveUpDown();
+    }
 
 }
