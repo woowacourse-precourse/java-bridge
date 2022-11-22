@@ -2,6 +2,7 @@ package bridge.constant;
 
 import static bridge.constant.MovingDirection.U;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,4 +20,10 @@ class MovingDirectionTest {
         assertThat(direction).isEqualTo("U");
     }
 
+    @Test
+    void 제한된_방향을_가리키는_숫자외에_입력의경우_예외발생() throws Exception {
+        assertThatThrownBy(() -> {
+            MovingDirection.getDirection(3);
+        }).isInstanceOf(IllegalStateException.class);
+    }
 }
