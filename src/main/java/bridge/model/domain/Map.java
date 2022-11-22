@@ -14,8 +14,8 @@ public class Map {
     }
 
     public void draw(List <String> roundTrace) {
-        map1.append(roundTrace.get(Move.MOVE_DOWN.getMoveValue()));
-        map2.append(roundTrace.get(Move.MOVE_UP.getMoveValue()));
+        map1.append(roundTrace.get(Move.MOVE_UP.getMoveValue()));
+        map2.append(roundTrace.get(Move.MOVE_DOWN.getMoveValue()));
     }
 
     public String getMap1() {

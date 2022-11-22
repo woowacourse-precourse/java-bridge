@@ -34,8 +34,8 @@ public enum RoundTrace {
 
     private static List<String> convertToList(String randomKey, String trace){
         if(randomKey.equals("U")){
-            return Arrays.asList(trace, BLANK.footPrint);
+            return Arrays.asList(BLANK.footPrint, trace);
         }
-        return Arrays.asList(BLANK.footPrint, trace);
+        return Arrays.asList(trace, BLANK.footPrint);
     }
 }
