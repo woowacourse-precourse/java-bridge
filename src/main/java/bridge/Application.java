@@ -20,5 +20,6 @@ public class Application {
         }
 
         outputView.printChooseSpaceToMoveMessage();
+        inputView.readMoving();
     }
 }
