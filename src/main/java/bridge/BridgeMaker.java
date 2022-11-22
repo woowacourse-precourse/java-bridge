@@ -11,7 +11,8 @@ public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     private static final int UP = 1;
-    private static final int DOWN = 0;
+    private static final String UP_DIRECTION = "U";
+    private static final String DOWN_DIRECTION = "D";
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -34,8 +35,8 @@ public class BridgeMaker {
         int number;
         number = bridgeNumberGenerator.generate();
         if (number == UP) {
-            return "U";
+            return UP_DIRECTION;
         }
-        return "D";
+        return DOWN_DIRECTION;
     }
 }
