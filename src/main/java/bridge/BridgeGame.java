@@ -70,7 +70,7 @@ public class BridgeGame {
         List<Guess> roundResult = new ArrayList<>();
 
         for (int index = 0; index < guessBridge.size(); index++) {
-            Guess guessResult = Guess.getGuessResult(index, answerBridge.get(index), guessBridge.get(index));
+            Guess guessResult = Guess.getGuessResult(answerBridge.get(index), guessBridge.get(index));
             roundResult.add(guessResult);
         }
 
