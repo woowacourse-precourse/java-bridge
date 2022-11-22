@@ -1,4 +1,6 @@
-package bridge;
+package bridge.Controller;
+
+import bridge.Model.InputCase;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Controller;
 
 public enum BridgeCase {
     NOTHING(" "),

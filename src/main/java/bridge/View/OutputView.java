@@ -1,4 +1,7 @@
-package bridge;
+package bridge.View;
+
+import bridge.Controller.BridgeCase;
+import bridge.Controller.BridgeDTO;
 
 public class OutputView {
 
@@ -26,7 +29,7 @@ public class OutputView {
         printBridge(bridgeDTO.getDownCase(), bridgeDTO.getLength());
         System.out.printf("%s", MessageCase.RIGHT_BRACKET.getMessage() + "\n\n");
     }
-    public void printBridge(BridgeCase [] bridgeCase, int length){
+    public void printBridge(BridgeCase[] bridgeCase, int length){
         for(int i = 0; i < length; i++){
             System.out.printf("%s", bridgeCase[i] + " ");
             if(i < length - 1) {

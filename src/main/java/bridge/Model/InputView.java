@@ -1,7 +1,7 @@
-package bridge;
+package bridge.Model;
 
+import bridge.View.OutputView;
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.InputMismatchException;
 
 public class InputView {
@@ -37,12 +37,12 @@ public class InputView {
             return getBrideSize();
         }
     }
-    public String getReadMoving() {
+    public String getMovingCommand() {
         try {
             return readMoving();
         }catch(InputMismatchException e){
             OutputView.printError(e);
-            return getReadMoving();
+            return getMovingCommand();
         }
     }
     public String getRestartCommand(){

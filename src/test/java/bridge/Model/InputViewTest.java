@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +42,7 @@ class InputViewTest {
         System.setOut(new PrintStream(byteArrayOutputStream));
 
         InputView inputView = new InputView();
-        inputView.getReadMoving();
+        inputView.getMovingCommand();
 
         String [] result = byteArrayOutputStream.toString().split("\n");
         for (String resultAll : result) {

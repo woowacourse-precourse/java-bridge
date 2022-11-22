@@ -1,4 +1,7 @@
-package bridge;
+package bridge.Controller;
+
+import bridge.Model.InputView;
+import bridge.View.OutputView;
 
 public class TotalViewController {
     private final OutputView outputView;
@@ -12,7 +15,7 @@ public class TotalViewController {
       return inputView.getBrideSize();
     }
     public String inputMovingCommand(){
-        return inputView.getReadMoving();
+        return inputView.getMovingCommand();
     }
     public String inputReadGameCommand(){
         return inputView.getRestartCommand();
