@@ -1,9 +1,16 @@
-package bridge;
+package bridge.controller;
+
+import bridge.model.BridgeGame;
+import bridge.model.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.model.Bridgelocation;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.Utility;
 
 import java.util.List;
 
 public class BridgeGameController {
-
     private final OutputView outputView;
     private final InputView inputView;
 

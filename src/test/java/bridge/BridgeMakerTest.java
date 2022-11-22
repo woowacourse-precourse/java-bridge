@@ -7,6 +7,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import java.util.List;
 
+import bridge.model.BridgeMaker;
 import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {

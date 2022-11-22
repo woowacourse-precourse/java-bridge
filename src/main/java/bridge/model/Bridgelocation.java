@@ -1,5 +1,7 @@
-package bridge;
+package bridge.model;
 
+
+import bridge.Bridge;
 
 import java.util.Arrays;
 import java.util.function.BiPredicate;
