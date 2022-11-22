@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.view.InputView;
@@ -14,7 +14,7 @@ public class BridgeController {
     public static List<List<String>> upAndDown = new ArrayList<>();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    private static BridgeGame bridgeGame = new BridgeGame();
+    private static final BridgeGame bridgeGame = new BridgeGame();
     private static List<String> bridges;
     private static Boolean trueOrFalse = true;
     private static int triedNumber = 0;
@@ -67,14 +67,14 @@ public class BridgeController {
             lengthOfBridge = bridgeGame.move(bridges, lengthOfBridge, inputMoving);
 
             List<String> toStringBridges = new ArrayList<>();
-            toAddforBridges(toStringBridges);
+            addforBridges(toStringBridges);
             outputView.printMap(toStringBridges);
             lengthOfBridge++;
         }
         return lengthOfBridge;
     }
 
-    private static void toAddforBridges(List<String> toStringBridges) {
+    private static void addforBridges(List<String> toStringBridges) {
         String upToString = String.join("", upAndDown.get(0).subList(0, upAndDown.get(0).size()-1));
         String downToString = String.join("", upAndDown.get(1).subList(0, upAndDown.get(1).size()-1));
 
@@ -104,11 +104,9 @@ public class BridgeController {
     private static void printResult() {
 
         List<String> finalMap = new ArrayList<>();
-        toAddforBridges(finalMap);
+        addforBridges(finalMap);
 
         outputView.printResult(finalMap, successOrFail, triedNumber);
     }
-
-
 }
 
