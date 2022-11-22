@@ -10,11 +10,11 @@ public class Game {
     static BridgeGame bridgeGame;
 
     public Game() {
-        makeBridge();
+        makeGame();
         playGame();
     }
 
-    private void makeBridge() {
+    private void makeGame() {
         this.size = InputView.readBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker user = new BridgeMaker(bridgeNumberGenerator);
