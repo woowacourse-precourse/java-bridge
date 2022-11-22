@@ -1,6 +1,7 @@
-package bridge.model;
+package bridge;
 
 import bridge.exception.Exception;
+import bridge.model.Course;
 
 import java.util.ArrayList;
 import java.util.List;
