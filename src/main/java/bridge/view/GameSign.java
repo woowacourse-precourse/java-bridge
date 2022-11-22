@@ -6,7 +6,8 @@ public enum GameSign {
     MOVING_SUCCESS(" O "),
     MOVING_FAIL(" X "),
     MOVING_NOT("   "),
-    RETRY("R");
+    RETRY("R"),
+    QUIT("Q");
     private final String gameSign;
 
     GameSign(String message) {
