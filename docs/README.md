@@ -25,7 +25,7 @@
       3. [x] 다시 시도할지 여부에 대한 입력 검증.
    2. [x] inputView의 메서드 같은 경우는 static으로 만드는 것이 좋을 것 같다. 
    3. [x] input 받은 값의 return 타입은 enum에 저장되어 있는 값으로 하는 것이 좋을 것 같다.
-2. [ ] bridgeGame 구현.
+2. [x] bridgeGame 구현.
    1. [x] move 메서드 구현.
       1. ENUM 값의 value를 업데이트 함으로써 전역적인 index값을 관리한다.
       2. ENUM 타입의 결과를 반환함으로써 게임 상태를 체크한다.

@@ -3,22 +3,18 @@ package bridge.Util;
 public enum COMMAND_CONSTANTS {
     MOVE_UP("U", 1),
     MOVE_DOWN("D", 0),
-    RETRY("R", 2),
-    QUIT("Q", 3),
-    FINISH("FIN", 4),
-    CORRECT("COR", 0),
-    WRONG("WRN", 5);
+    CORRECT("COR", 0);
 
-    private String commnad;
+    private String command;
     private int value;
 
     COMMAND_CONSTANTS(String command, int value) {
-        this.commnad = command;
+        this.command = command;
         this.value = value;
     }
 
-    public String getCommnad() {
-        return commnad;
+    public String getCommand() {
+        return command;
     }
 
     public int getValue() {

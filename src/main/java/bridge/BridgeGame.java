@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.Util.COMMAND_CONSTANTS;
+import bridge.Util.GAME_STATE;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,13 +17,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public COMMAND_CONSTANTS move(String command, List<String> bridge) {
+    public GAME_STATE move(String command, List<String> bridge) {
         if (Objects.equals(bridge.get(index), command)) {
             index++;
             COMMAND_CONSTANTS.CORRECT.setValue(index);
-            return COMMAND_CONSTANTS.CORRECT;
+            return GAME_STATE.IN_GAME;
         }
-        return COMMAND_CONSTANTS.WRONG;
+        return GAME_STATE.END;
     }
 
     /**
