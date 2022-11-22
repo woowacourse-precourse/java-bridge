@@ -1,6 +1,8 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
+import bridge.config.BaseGameActivity;
+import bridge.config.ErrorMessageConstant;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgePrinter;
@@ -13,7 +15,7 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-public class BridgeGameController {
+public class BridgeGameController extends BaseGameActivity {
 
     private final BridgePrinter bridgePrinter = new BridgeConsolePrinter();
     private final BridgeMaker bridgeMaker;
@@ -26,38 +28,52 @@ public class BridgeGameController {
         this.bridgeMaker = bridgeMaker;
         this.inputView = inputView;
         this.outputView = outputView;
+        validationConstructorParams();
     }
 
-    public void run() {
+
+    @Override
+    protected final void onStart() {
+        int bridgeSize = readBridgeSize();
+        createBridgeGame(bridgeSize);
+    }
+
+    @Override
+    protected final void onLoop() {
+        while (bridgeGame.getStatus() == GameStatus.RUNNING) {
+            proceedTurn();
+        }
+        if (bridgeGame.getStatus() == GameStatus.LOSE && enterRetry()) {
+            bridgeGame.retry();
+            return;
+        }
+        super.stop();
+    }
+
+    @Override
+    protected final void onStop() {
+        outputView.printResult(bridgeGame, bridgePrinter);
+    }
+
+    private void validationConstructorParams() throws IllegalArgumentException {
+        if (this.bridgeMaker == null || inputView == null || outputView == null) {
+            throw new IllegalArgumentException(ErrorMessageConstant.PARAMS_HAVE_NULL_VALUE);
+        }
+    }
+
+    private int readBridgeSize() {
         outputView.printGameStart();
-        initBridge();
-        loopGame();
+        outputView.printEnterBridgeLength();
+        return inputView.readBridgeSize();
     }
 
-    private void initBridge() {
-        outputView.printEnterBridgeLength();
-        int bridgeSize = inputView.readBridgeSize();
+    private void createBridgeGame(int bridgeSize) {
         List<String> bridgeInfo = bridgeMaker.makeBridge(bridgeSize);
         Bridge bridge = new Bridge(bridgeInfo);
         bridgeGame = new BridgeGame(bridge);
     }
-
-    private void loopGame() {
-        while (bridgeGame.getStatus() != GameStatus.WIN) {
-            loopTurn();
-            determineRetry();
-
-        }
-        outputView.printResult(bridgeGame, bridgePrinter);
-    }
-
-    private void loopTurn() {
-        while (bridgeGame.getStatus() == GameStatus.RUNNING) {
-            proceedTurn();
-        }
-    }
-
-    private boolean determineRetry() {
+    
+    private boolean enterRetry() {
         outputView.printEnterGameRetry();
         CommandType command = inputView.readGameCommand();
         if (command == CommandType.GAME_QUIT) {

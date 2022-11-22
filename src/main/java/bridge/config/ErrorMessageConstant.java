@@ -11,4 +11,5 @@ public class ErrorMessageConstant {
     public static final String INVALID_COMMAND_IN_STATUS = "현재 상황에서 사용할 수 없는 명령어입니다.";
     public static final String COMMAND_GROUP_NOT_FOUND = "해당 명령어의 그룹을 찾을 수 없습니다.";
     public static final String GAME_NOT_FINISHED = "게임이 종료된 이후 결과를 출력할 수 있습니다.";
+    public static final String PARAMS_HAVE_NULL_VALUE = "NULL을 가질 수 없는 파라미터가 있습니다.";
 }

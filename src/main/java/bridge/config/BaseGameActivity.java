@@ -6,11 +6,9 @@ public abstract class BaseGameActivity {
 
     public void run() {
         onStart();
-
         while (!stopped) {
             onLoop();
         }
-
         onStop();
     }
 
