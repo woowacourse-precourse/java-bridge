@@ -3,6 +3,13 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGameController controller = new BridgeGameController();
+        controller.gameStart();
+        boolean isGameContinued = true;
+        while (isGameContinued) {
+            controller.gameRun();
+            isGameContinued = controller.isGameContinue();
+        }
+        controller.gameEnd();
     }
 }
