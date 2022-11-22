@@ -1,11 +1,11 @@
-package bridge;
+package bridge.Domain;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 public enum DirectionCommand {
-    UPPERPASS("U",1),
-    LOWERPASS("D",0);
+    UPPERPASS("U", 1),
+    LOWERPASS("D", 0);
 
     private final String directionCommand;
     private final Integer bridgeSafety;
@@ -14,14 +14,16 @@ public enum DirectionCommand {
         this.directionCommand = directionCommand;
         this.bridgeSafety = bridgeSafety;
     }
-    public String getDirectionCommand(){
+
+    public String getDirectionCommand() {
         return directionCommand;
     }
-    public Integer getBridge(){
+
+    public Integer getBridge() {
         return bridgeSafety;
     }
 
-    public String direction(Integer bridgeSafety){
+    public String direction(Integer bridgeSafety) {
         return Arrays.stream(values())
                 .filter(command -> Objects.equals(command.bridgeSafety, bridgeSafety))
                 .findFirst()
@@ -29,11 +31,15 @@ public enum DirectionCommand {
                 .directionCommand;
     }
 
-    public static DirectionCommand of(final String directionCommand){
+    public static DirectionCommand of(final String directionCommand) {
         return Arrays.stream(values())
                 .filter(command -> command.directionCommand.equals(directionCommand))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public boolean checkSameDirection(DirectionCommand directionCommand) {
+        return this != directionCommand;
     }
 
 

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Domain;
 
 public enum GameResult {
     PASS("O"),
@@ -7,17 +7,15 @@ public enum GameResult {
 
     private final String result;
 
-    GameResult(String result){
+    GameResult(String result) {
         this.result = result;
     }
 
-    public String getResult(){
+    public String getResult() {
         return result;
     }
 
-    public boolean fail(){
+    public boolean fail() {
         return this.equals(FAIL);
     }
-
-
 }

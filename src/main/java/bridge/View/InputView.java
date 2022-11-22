@@ -14,7 +14,8 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리 길이를 입력해주세요");
         String inputBridgeLength = Console.readLine();
-        return InputValidator.validateInputBridgeLength(inputBridgeLength);
+        InputValidator.validateInputBridgeLength(inputBridgeLength);
+        return Integer.parseInt(inputBridgeLength);
     }
 
     /**
@@ -23,7 +24,8 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래 : D)");
         String inputMove = Console.readLine();
-        return InputValidator.validateInputMoveCommande(inputMove);
+        InputValidator.validateInputMoveCommande(inputMove);
+        return inputMove;
     }
 
     /**
@@ -32,6 +34,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요.(재시도 : R , 종료 : Q)");
         String restartOrEndGame = Console.readLine();
-        return InputValidator.validateInputRestartOrEndGame(restartOrEndGame);
+        InputValidator.validateInputRestartOrEndGame(restartOrEndGame);
+        return restartOrEndGame;
     }
 }
