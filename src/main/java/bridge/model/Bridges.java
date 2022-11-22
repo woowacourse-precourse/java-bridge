@@ -26,7 +26,11 @@ public class Bridges {
     }
 
     boolean isCompletedGame(Player player) {
-        return player.isCompletedGame(this.positions.size());
+        return player.isCompletedGame(this.getSize());
+    }
+
+    private int getSize() {
+        return this.positions.size();
     }
 
     boolean isSuccess(Player player) {
