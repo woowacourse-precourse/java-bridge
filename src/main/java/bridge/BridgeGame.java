@@ -29,7 +29,6 @@ public class BridgeGame {
     public boolean move(String direction) {
         USetting(direction);
         DSetting(direction);
-        outputView.printMap(Us,Ds, index);
         return bridge.get(index++).equals(direction);
     }
 
@@ -57,6 +56,21 @@ public class BridgeGame {
         }
     }
 
+    public List<String> getUList() {
+        return this.Us;
+    }
+
+    public List<String> getDList() {
+        return this.Ds;
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public int getCount() {
+        return this.count;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

@@ -12,9 +12,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> result1, List<String> result2, int index) {
-        printOneMap(result1, index + 1);
-        printOneMap(result2, index + 1);
+    public void printMap(BridgeGame bridgeGame) {
+        printOneMap(bridgeGame.getUList(), bridgeGame.getIndex());
+        printOneMap(bridgeGame.getDList(), bridgeGame.getIndex());
     }
 
     public void printOneMap(List<String> result, int index) {
@@ -33,7 +33,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame, boolean SuccessOrFail) {
+        System.out.println("최종 게임 결과");
+        String status = "실패";
+        printMap(bridgeGame);
+        if (SuccessOrFail) {
+            status = "성공";
+        }
+        System.out.println("게임 성공 여부: " + status);
+        System.out.println("총 시도한 횟수: " + (bridgeGame.getCount() + 1));
     }
 
     public void printReadSizeError() {

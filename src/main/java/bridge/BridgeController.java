@@ -10,6 +10,7 @@ public class BridgeController {
     private OutputView outputView = new OutputView();
     private List<String> bridge;
     public void run() {
+        boolean success = false;
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
@@ -17,14 +18,19 @@ public class BridgeController {
             System.out.print(s + " ");
         for (int i = 0; i < bridgeSize; i++) {
             String direction = inputView.readMoving();
-            if (!bridgeGame.move(direction)) {
+            boolean retryOption = bridgeGame.move(direction);
+            outputView.printMap(bridgeGame);
+            if (!retryOption) {
                 if (!inputView.readGameCommand()) {
                     break;
                 }
                 i = -1;
                 bridgeGame.retry();
             }
+            if (i == bridgeSize - 1) {
+                success = true;
+            }
         }
-        outputView.printResult();
+        outputView.printResult(bridgeGame, success);
     }
 }
