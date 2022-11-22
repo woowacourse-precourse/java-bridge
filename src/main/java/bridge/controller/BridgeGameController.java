@@ -1,15 +1,14 @@
+
+
+
+
 package bridge.controller;
 
 import bridge.BridgeGame;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.identifiers.Direction;
 import bridge.views.InputView;
 import bridge.views.OutputView;
-
-import java.lang.reflect.Executable;
-import java.util.Observable;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class BridgeGameController {
 
@@ -36,12 +35,15 @@ public class BridgeGameController {
         });
     }
 
-    public boolean isGameDone() {
-        return false;
-    }
-
     public void playGame() {
-
+        while (!bridgeGame.getIsSuccess() && !bridgeGame.isOver()) {
+            retryWhenExceptionOrTryOnce(outputView, () -> {
+                String rawDirection = inputView.readMoving();
+                Direction direction = Direction.parseDirection(rawDirection);
+                bridgeGame.move(direction);
+            });
+            outputView.printMap(bridgeGame.getPlayerPath());
+        }
     }
 
     public boolean askRetry() {
@@ -57,7 +59,7 @@ public class BridgeGameController {
             try {
                 task.run();
                 break;
-            } catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException | IllegalStateException exception) {
                 outputView.printErrorMessage(exception.getMessage());
             }
         }
