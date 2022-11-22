@@ -25,11 +25,41 @@ GenerateBridgeStatus -- generate New Bridge --> Context
 GenerateBridgeStatus -- next --> UserMoveStatus
 ```
 
+- PlayerUnitMoveStatus
+
 ```mermaid
 flowchart LR
-UserMoveStatus -- select bridge command position U Or D --> inputView -- bridgePosition --> UserMoveStatus 
-UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStatus
+PlayerUnitMoveStatus -- game is running? --> context -- return game status--> PlayerUnitMoveStatus
+PlayerUnitMoveStatus -- request Player Moving Command--> inputView-- BridgePosition --> PlayerUnitMoveStatus
+PlayerUnitMoveStatus -- move by BridgePosition--> context1[context] -- history --> PlayerUnitMoveStatus
+
+PlayerUnitMoveStatus1[PlayerUnitMoveStatus] -- request gameStatus --> context2[context] -- return gameStatus --> PlayerUnitMoveStatus1
+
+PlayerUnitMoveStatus1 -- next by game status --> 
+validate{if game clear} -- yes --> ResultVerificationStatus
+validate -- no --> RestartGameStatus
+ 
 ```
+
+- RestartGameStatus
+
+```mermaid
+
+flowchart LR
+RestartGameStatus --> inputView -- restartCommand --> RestartGameStatus
+
+RestartGameStatus -- move --> validate{if command is continue} -- restart --> PlayerUnitMoveStatus
+validate -- quit --> ResultVerificationStatus
+
+```
+
+```mermaid
+flowchart LR 
+ResultVerificationStatus -- print result--> outputView
+ResultVerificationStatus -- move --> GsameEnd
+```
+
+- BridgeGameContext
 
 # 상태별 요구사항
 
