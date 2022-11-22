@@ -37,7 +37,7 @@ public class OutputView {
         System.out.println("]");
     }
 
-    public void designBridgeMap(List<String> bridgeAnswer, List<String> currentResult, boolean userChoice, int stage) {
+    public List<String> designBridgeMap(List<String> bridgeAnswer, List<String> currentResult, boolean userChoice, int stage) {
         BridgeGame bridgeGame = new BridgeGame();
         if (userChoice) {
             currentResult = bridgeGame.printMapCorrect(bridgeAnswer, currentResult, stage);
@@ -45,7 +45,7 @@ public class OutputView {
         if (!userChoice) {
             currentResult = bridgeGame.printMapWrong(bridgeAnswer, currentResult, stage);
         }
-        printMap(currentResult);
+        return currentResult;
     }
 
 
@@ -58,10 +58,10 @@ public class OutputView {
 
         System.out.println("최종 게임 결과");
         printMap(currentResult);
-        if(bridgeAnswer.size() == stage+1){
+        if(bridgeAnswer.size() == stage){
             System.out.println("게임 성공 여부: 성공");
         }
-        if(stage+1<bridgeAnswer.size()){
+        if(stage<bridgeAnswer.size()){
             System.out.println("게임 성공 여부: 실패");
         }
         System.out.println("총 시도한 횟수: "+count);
