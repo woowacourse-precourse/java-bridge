@@ -9,12 +9,12 @@ import java.util.List;
 
 public class BridgeGame {
     private final Bridge bridge;
-    private List<String> inputs;
+    private List<String> movements;
     private Result result;
 
     public BridgeGame(Bridge bridge, Result result) {
         this.bridge = bridge;
-        this.inputs = new ArrayList<>();
+        this.movements = new ArrayList<>();
         this.result = result;
     }
 
@@ -26,31 +26,31 @@ public class BridgeGame {
     }
 
     public void retry() throws IllegalArgumentException {
-        if(inputs.get(inputs.size() - 1).equals(InputConstant.UP.getValue())) {
+        if(movements.get(movements.size() - 1).equals(InputConstant.UP.getValue())) {
             result.changeUpStairsRecord();
         }
-        if(inputs.get(inputs.size() - 1).equals(InputConstant.DOWN.getValue())) {
+        if(movements.get(movements.size() - 1).equals(InputConstant.DOWN.getValue())) {
             result.changeDownStairsRecord();
         }
         throw new IllegalArgumentException(MessageConstant.ERROR_INPUT_GAME_CONTINUOUS.getValue());
     }
 
     public void inputDirection(String direction) {
-        inputs.add(direction);
+        movements.add(direction);
         result.recordDirection(direction);
     }
 
     public void initialize(Result result) {
-        inputs = new ArrayList<>();
+        movements = new ArrayList<>();
         this.result = result;
     }
 
     public boolean isFinish() {
-        return bridge.isFinish(inputs.size());
+        return bridge.isFinish(movements.size());
     }
 
     public boolean hasNotSameDirection() {
-        int lastIdx = inputs.size() - 1;
-        return !bridge.canMoveDirection(inputs.get(lastIdx), lastIdx);
+        int lastIdx = movements.size() - 1;
+        return !bridge.canMoveDirection(movements.get(lastIdx), lastIdx);
     }
 }
