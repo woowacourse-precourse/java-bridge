@@ -12,7 +12,6 @@ public class BridgeGame {
     private List<String> bridge;
     private List<String> up = new ArrayList<>();
     private List<String> down = new ArrayList<>();
-    private int round = 0;
     private String input;
 
     public void init() {
@@ -42,14 +41,23 @@ public class BridgeGame {
         return input.equals(bridge.get(round));
     }
 
-    public void correctCase(){
-        round++;
-        if(input.equals("U")){
+    public void correctCase() {
+        if (input.equals("U")) {
             up.add(" O ");
             down.add("   ");
             return;
         }
         up.add("   ");
         down.add(" O ");
+    }
+
+    public void wrongCase() {
+        if (input.equals("U")) {
+            up.add(" X ");
+            down.add("   ");
+            return;
+        }
+        up.add("   ");
+        down.add(" X ");
     }
 }
