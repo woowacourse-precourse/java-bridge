@@ -48,3 +48,36 @@
 ## 단위 테스트
 - [X] 다리 정상 생성 확인
 - [X] move 시 정상적으로 올라가는지 확인
+
+# 최종 클래스 구조
+
+![img_1.png](img_1.png)
+
+* domain
+  * BridgeController
+    * BridgeGame 을 조작하는 클래스
+    * io 을 관리한다
+  * BridgeGame
+    * 게임을 조작하는 클래스
+  * BridgeGameCheck
+    * 게임 상태를 확인하는 클래스
+  * BridgeMap
+    * 다리 문자열을 관리하는 클래스
+* enums
+  * BridgeFrame
+    * 다리 출력시 필요한 문자들의 대한 enum
+  * Constant
+    * private static final 변수에 대한 enum
+  * Message
+    * 출력되어야 하는 문자열을 관리하는 enum
+  * UpDown
+    * 위, 아래에 관한 값들을 관리하는 enum
+* io
+  * InputNumValidator
+    * 숫자 입력값 검증에 대한 클래스
+  * InputStringValidator
+    * 문자 입력값 검증에 대한 클래스
+  * InputView
+    * 입력을 담당하는 클래스
+  * OutputView
+    * 출력을 담당하는 클래스
