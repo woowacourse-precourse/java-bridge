@@ -36,4 +36,8 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public List<String> getBridges() {
+        return bridges;
+    }
 }
