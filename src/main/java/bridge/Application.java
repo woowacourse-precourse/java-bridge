@@ -35,4 +35,10 @@ public class Application {
         return true;
     }
 
+    public static void printTotalResult(int count) {
+        System.out.println("최종 게임 결과");
+        display.printMap(Game.getBridgeLineOne(), Game.getBridgeLineTwo());
+        display.printResult(Game.getNowState(), count);
+    }
+
 }
