@@ -1,6 +1,5 @@
 package bridge.view;
 
-import static bridge.Constants.ErrorMessage.IS_NOT_IN_RANGE;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
