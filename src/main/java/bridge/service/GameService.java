@@ -30,7 +30,6 @@ public class GameService {
 
     public boolean isFinalSuccess() {
         return bridgeGame.isFinalSuccess() && bridgeResult.isSuccess();
-
     }
 
     public boolean canContinueRound() {
