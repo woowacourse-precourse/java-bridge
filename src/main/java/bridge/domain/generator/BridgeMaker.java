@@ -1,5 +1,6 @@
 package bridge.domain.generator;
 
+import bridge.BridgeNumberGenerator;
 import bridge.domain.MoveCommand;
 import bridge.input.validate.BasicBridgeValidator;
 import bridge.input.validate.BridgeValidator;
