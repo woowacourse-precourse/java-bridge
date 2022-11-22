@@ -3,7 +3,7 @@ package bridge.model;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.combinator.BridgeCase;
+import bridge.drawer.BridgeCase;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 

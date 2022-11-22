@@ -1,7 +1,7 @@
 package bridge.model;
 
 import bridge.constant.RetryCode;
-import bridge.combinator.BridgeCase;
+import bridge.drawer.BridgeCase;
 
 import java.util.*;
 

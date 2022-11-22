@@ -2,11 +2,11 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.combinator.BridgeDrawer;
+import bridge.drawer.BridgeDrawer;
 import bridge.constant.ResultState;
 import bridge.model.BridgeGame;
 import view.input.InputView;
-import bridge.combinator.BridgeCase;
+import bridge.drawer.BridgeCase;
 import view.output.OutputView;
 
 public class BridgeGameController {

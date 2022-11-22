@@ -1,4 +1,4 @@
-package bridge.combinator;
+package bridge.drawer;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package bridge.combinator;
+package bridge.drawer;
 
 import bridge.constant.BridgeDirection;
 

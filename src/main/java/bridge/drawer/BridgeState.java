@@ -1,4 +1,4 @@
-package bridge.combinator;
+package bridge.drawer;
 
 public enum BridgeState {
     TRUE(true, "O"),
