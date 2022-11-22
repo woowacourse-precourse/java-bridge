@@ -21,25 +21,34 @@ public class OutputView {
         while(orderView.checkRestart){
             orderView.retryCount++;
             stepBridge(bridgeData);
-            if(exitLoop().equals("Q")) {break;}
+            if(!exitLoop()) {break;}
         }
     }
 
-    private String exitLoop() {
-        String exitOrContinue = "";
+    private boolean exitLoop() {
         if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) {
-            exitOrContinue = orderView.continueOrExit();
+            return false;
         }
-        return exitOrContinue;
+        return true;
     }
 
-    private void stepBridge(List<String> bridgeData) {
+    public void stepBridge(List<String> bridgeData) {
         for(int index = 0 ; index < bridgeData.size(); index++) {
+            orderView.lineSkip();
             System.out.println(orderView.MOVE_STEP);
             bridgeGame.move(inputView.readMoving(), bridgeData.get(index), index);
             if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) break;
+            successBridge(index, bridgeData);
+
         }
-        orderView.checkAnswerIndex = 2;
+    }
+
+    private void successBridge(int index, List<String> bridgeData) {
+        if(index == bridgeData.size()-1 && orderView.checkAnswerIndex == 0) {
+            orderView.checkAnswerIndex = 2;
+            System.out.println(orderView.THE_GAME_RESULT);
+            bridgeGame.finalGameResult();
+        }
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

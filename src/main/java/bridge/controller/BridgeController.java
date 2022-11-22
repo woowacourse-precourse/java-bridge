@@ -16,7 +16,7 @@ public class BridgeController {
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     OutputView outputView = new OutputView();
     OrderView orderView = new OrderView();
-    List<String> bridgeData = new ArrayList<>();
+    public static List<String> bridgeData = new ArrayList<>();
 
     public void run() {
         try {
