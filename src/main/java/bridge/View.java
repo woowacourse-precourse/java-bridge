@@ -34,7 +34,14 @@ public class View{
 	}
 
 	public String readRetry() {
-		return inputView.readGameCommand();
+		String retry;
+		try {
+			retry = inputView.readGameCommand();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			retry = readRetry();
+		}
+		return retry;
 	}
 
 	public void printMap(List<String>result, List<String> bridge) {
