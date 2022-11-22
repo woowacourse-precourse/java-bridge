@@ -60,27 +60,28 @@ public class Controller {
         } while (true);
     }
 
+    public boolean isQuit() {
+        outputView.restartOrQuit();
+        if (inputView.readGameCommand().equals("Q")) {
+            return true;
+        }
+        bridgeGame.retry();
+        outputView.removeRecentBridge();
+        return false;
+    }
+
     public void start() {
         makeBridgeGame();
         System.out.println(bridgeGame.bridge);
-        boolean onGoing = true;
-        String command = "";
         do {
             onGoing();
             if (bridgeGame.isSuccess) {
                 break;
             }
-            outputView.restartOrQuit();
-            command = inputView.readGameCommand();
-            if (command.equals("Q")) {
-                onGoing = false;
+            if (isQuit()) {
+                break;
             }
-            if (command.equals("R")) {
-                bridgeGame.retry();
-                outputView.removeRecentBridge();
-            }
-        } while(onGoing);
+        } while(true);
         end();
     }
-
 }
