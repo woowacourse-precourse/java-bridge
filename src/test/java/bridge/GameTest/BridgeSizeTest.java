@@ -11,8 +11,6 @@ public class BridgeSizeTest extends NsTest{
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-
-
     @DisplayName("범위와 다른 bridgeSize 들어올 때 제대로 처리가 되는지 확인")
     @Test
     void inputBridgeSizeExceptionProcessing1() {
