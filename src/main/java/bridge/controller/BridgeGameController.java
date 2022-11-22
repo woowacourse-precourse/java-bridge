@@ -8,10 +8,10 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private InputView inputView;
+    private OutputView outputView;
     private Bridge bridge;
-    private BridgeGame bridgeGame = new BridgeGame();
+    private BridgeGame bridgeGame;
     private GameResult gameResult;
     private boolean retryFlag;
     private String inputMove;
@@ -41,6 +41,7 @@ public class BridgeGameController {
                 System.out.println(e.getMessage());
             }
         }
+        outputView.printEmptyLine();
     }
 
     public void startGame() {
@@ -60,6 +61,7 @@ public class BridgeGameController {
             setMove(str);
             outputView.printMap(gameResult.getUpBridgeResult());
             outputView.printMap(gameResult.getDownBridgeResult());
+            outputView.printEmptyLine();
             if (!gameResult.isBridgeGameResult()) {
                 break;
             }
