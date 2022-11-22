@@ -49,7 +49,7 @@ public class BridgeGameController {
     }
 
     private void ifGoThroughTheBridge() {
-        if (copyBridge.getBridge().size() == 0) {
+        if (copyBridge.getSize() == 0) {
             gameStatus.gameResult = SUCCESS;
             isFinish = false;
         }
@@ -119,7 +119,7 @@ public class BridgeGameController {
         outputView.askBridgeSize();
         while (true) {
             try {
-                String input = Console.readLine();
+                String input = inputView.readBridgeSize();
                 BridgeLengthValidator.validateNaturalNumber(input);
                 BridgeLengthValidator.validateRange(input);
                 return Integer.parseInt(input);

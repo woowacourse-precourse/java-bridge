@@ -31,17 +31,17 @@ public class BridgeGame {
     }
 
     private boolean upAndCorrect(GameStatus gameStatus, Bridge bridge, String s) {
-        if (bridge.getBridge().get(0).equals(s)) {
+        if (bridge.checkTheBridge(s)) {
             gameStatus.topBridge.add(CORRECT);
             gameStatus.bottomBridge.add(WHITE_SPACE);
-            bridge.getBridge().remove(0);
+            bridge.passToTheNextSpace();
             return true;
         }
         return false;
     }
 
     private void upAndWrong(GameStatus gameStatus, Bridge bridge, String s) {
-        if (!bridge.getBridge().get(0).equals(s)) {
+        if (!bridge.checkTheBridge(s)) {
             gameStatus.topBridge.add(WRONG);
             gameStatus.bottomBridge.add(WHITE_SPACE);
         }
@@ -58,17 +58,17 @@ public class BridgeGame {
     }
 
     private boolean downAndCorrect(GameStatus gameStatus, Bridge bridge, String s) {
-        if (bridge.getBridge().get(0).equals(s)) {
+        if (bridge.checkTheBridge(s)) {
             gameStatus.bottomBridge.add(CORRECT);
             gameStatus.topBridge.add(WHITE_SPACE);
-            bridge.getBridge().remove(0);
+            bridge.passToTheNextSpace();
             return true;
         }
         return false;
     }
 
     private void downAndWrong(GameStatus gameStatus, Bridge bridge, String s) {
-        if (!bridge.getBridge().get(0).equals(s)) {
+        if (!bridge.checkTheBridge(s)) {
             gameStatus.bottomBridge.add(WRONG);
             gameStatus.topBridge.add(WHITE_SPACE);
         }

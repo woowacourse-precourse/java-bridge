@@ -11,12 +11,20 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public List<String> getBridge() {
-        return bridge;
-    }
-
     public List<String> copyBridge() {
         return new ArrayList<>(bridge);
+    }
+
+    public boolean checkTheBridge(String s) {
+        return bridge.get(0).equals(s);
+    }
+
+    public void passToTheNextSpace() {
+        bridge.remove(0);
+    }
+
+    public int getSize() {
+        return bridge.size();
     }
 
     @Override
