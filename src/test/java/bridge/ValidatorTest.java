@@ -40,4 +40,12 @@ class ValidatorTest {
     void validateIsDigitPassTest(String length) {
         assertThatCode(() -> validateIsDigit(length)).doesNotThrowAnyException();
     }
+
+    @DisplayName("이동할 칸 입력값이 U, D 중 하나가 아닐 때 예외테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "F", "위"})
+    void validateIsMovingValueExceptionTest(String value) {
+        assertThatThrownBy(() -> validateIsDigit(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
