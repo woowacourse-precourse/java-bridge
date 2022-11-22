@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.Move;
-
 public class MoveResult {
 
     private final Move move;
