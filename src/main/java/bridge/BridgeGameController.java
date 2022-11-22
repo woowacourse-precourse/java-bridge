@@ -29,6 +29,7 @@ public class BridgeGameController {
 
         while (gameState) {
             gameMovement();
+            gameState = isRetry();
         }
     }
 
@@ -36,5 +37,13 @@ public class BridgeGameController {
         while (!bridgeGame.isFinish()) {
             outputView.printMap(bridgeGame.move(inputView.readMoving()));
         }
+    }
+
+    private boolean isRetry() {
+        if (bridgeGame.isSuccess()) {
+            return false;
+        }
+
+        return true;
     }
 }
