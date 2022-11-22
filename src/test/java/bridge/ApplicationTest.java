@@ -35,9 +35,9 @@ class ApplicationTest extends NsTest {
                 "총 시도한 횟수: 1"
             );
 
-//            int upSideIndex = output().indexOf("[ O |   | O ]");
-//            int downSideIndex = output().indexOf("[   | O |   ]");
-//            assertThat(upSideIndex).isLessThan(downSideIndex);
+            int upSideIndex = output().indexOf("[ O |   | O ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
 

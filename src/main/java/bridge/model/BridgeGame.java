@@ -8,8 +8,6 @@ import static bridge.controller.BridgeController.upAndDown;
 
 public class BridgeGame {
 
-    private final String FAIL = "실패";
-    private final int MAX_LENGTH_PLUS_ONE = 21;
     private final UserInput userInput;
 
     public BridgeGame() {
@@ -18,23 +16,21 @@ public class BridgeGame {
 
     public int move(List<String> bridges, int count, String inputMoving) {
         userInput.validateInputMoving(inputMoving);
-        if (inputMoving.equals(Command.UP) && bridges.get(count).equals(Command.UP)) {
-            isUAndU();
-        }
+
+        if (inputMoving.equals(Command.UP) && bridges.get(count).equals(Command.UP)) isUAndU();
         if (inputMoving.equals(Command.UP) && bridges.get(count).equals(Command.DOWN)) {
             isUAndD();
-            return MAX_LENGTH_PLUS_ONE;
+            return Command.MAX_LENGTH_PLUS_ONE;
         }
         return getCountNotU(bridges, count, inputMoving);
     }
 
     private int getCountNotU(List<String> bridges, int count, String inputMoving) {
-        if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.DOWN)) {
-            isDAndD();
-        }
+        if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.DOWN)) isDAndD();
+
         if (inputMoving.equals(Command.DOWN) && bridges.get(count).equals(Command.UP)) {
             isDAndU();
-            count = MAX_LENGTH_PLUS_ONE;
+            return Command.MAX_LENGTH_PLUS_ONE;
         }
         return count;
     }
@@ -70,7 +66,7 @@ public class BridgeGame {
     public String retry(String restartOrEnd) {
         userInput.validateRestartOrEnd(restartOrEnd);
         if (restartOrEnd.equals(Command.QUIT)) {
-            return FAIL;
+            return Command.FAIL;
         }
         return "";
     }

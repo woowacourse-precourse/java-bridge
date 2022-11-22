@@ -1,5 +1,8 @@
 package bridge.model;
 
+import bridge.model.constants.Command;
+import bridge.model.enumeration.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
+        validateNumberRange(size);
 
         List<String> bridges = new ArrayList<>();
         for (int i = 0; i < size; i++) {
@@ -22,8 +26,14 @@ public class BridgeMaker {
 
     private String addBridge() {
         if (bridgeNumberGenerator.generate() == 1) {
-            return "U";
+            return Command.UP;
         }
-        return "D";
+        return Command.DOWN;
+    }
+
+    private void validateNumberRange(int size) {
+        if (size < Command.INPUT_NUMBER_RANGE_START || size > Command.INPUT_NUMBER_RANGE_LAST) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getExceptionMessage());
+        }
     }
 }
