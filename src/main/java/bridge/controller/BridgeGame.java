@@ -114,16 +114,8 @@ public class BridgeGame {
      * 최종 결과(다리 형태)를 반환하는 기능
      */
     public void printResult(boolean die, int epoch) {
-        System.out.println("최종 게임 결과");
-        bridgeView.printMap(bridgeNumber, user.getCurrentBridge(), die);
-
-        if(die) {
-            System.out.println("게임 성공 여부: 실패");
-        } else {
-            System.out.println("게임 성공 여부: 성공");
-        }
-
-        System.out.println("총 시도한 횟수: " + epoch);
+        bridgeView.printResult(bridgeNumber, user.getCurrentBridge(), die);
+        bridgeView.printEpoch(epoch);
     }
 
 }
