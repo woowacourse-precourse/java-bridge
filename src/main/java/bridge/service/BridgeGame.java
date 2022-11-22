@@ -1,4 +1,11 @@
-package bridge;
+package bridge.service;
+
+import bridge.domain.Command;
+import bridge.MoveResponseDto;
+import bridge.RetryResponseDto;
+import bridge.domain.Bridge;
+import bridge.domain.Player;
+import bridge.domain.Result;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

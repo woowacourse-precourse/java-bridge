@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum Command {
     UP("U"), DOWN("D"),RETRY("R"), EXIT("Q"),

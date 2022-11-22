@@ -1,5 +1,14 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.Command;
+import bridge.domain.Player;
+import bridge.in.InputView;
+import bridge.out.MapViewDto;
+import bridge.out.OutputView;
+import bridge.service.BridgeGame;
+import bridge.service.BridgeMaker;
+
 public class BridgeGameController {
     private BridgeGame bridgeGame;
     private final InputView inputView;

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.Result;
+
 public class MoveResponseDto {
     private String selectedBridge;
     private Result result;
