@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.Crossing;
+import bridge.model.TryCount;
 
 public class BridgeGameView {
 
@@ -30,5 +31,13 @@ public class BridgeGameView {
         String format = printFormatter.convertToFormat(crossing);
 
         outputView.printMap(format);
+    }
+
+    public void printGameResult(TryCount tryCount, Crossing crossing) {
+        outputView.printResult(tryCount.getValue(), crossing.isPass());
+    }
+
+    public void printRetry() {
+        outputView.printRetryPrompt();
     }
 }
