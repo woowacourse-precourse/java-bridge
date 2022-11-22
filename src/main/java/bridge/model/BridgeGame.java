@@ -38,6 +38,10 @@ public class BridgeGame {
         return bridge.getSize() == currentLocation;
     }
 
+    public List<MoveRecord> getResult() {
+        return records;
+    }
+
     public void retry() {
         trial = 0;
     }
