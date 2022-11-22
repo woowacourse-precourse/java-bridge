@@ -37,17 +37,16 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String command = null;
-        try {
-            command = Console.readLine();
-        } catch (Exception e) {
-            handleInputException(e);
-        }
+        command = Console.readLine();
         checkInputNotNullAndNotEmpty(command);
         return command;
     }
 
     public static void checkInputNotNullAndNotEmpty(String input) {
-        if (input == null || input.isEmpty()) {
+        if (input == null){
+            throw new NullPointerException("값이 없습니다.");
+        }
+        if (input.isEmpty()) {
             throw new IllegalArgumentException("공백이 아닌 문자를 입력해주세요.");
         }
     }

@@ -62,7 +62,7 @@ public class BridgeGameController {
         while (playerMove == null) {
             try {
                 playerMove = BridgeMove.getBridgeMoveByMoveCommand(InputView.readMoving());
-            } catch (Exception exception) {
+            } catch (IllegalArgumentException exception) {
                 OutputView.printErrorMessage(exception);
             }
         }
