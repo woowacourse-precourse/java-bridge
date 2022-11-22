@@ -1,23 +1,71 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import static bridge.constant.PrintMessage.*;
+import static bridge.constant.Moving.*;
+
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final List<String> bridge;
+    private List<String> player = new ArrayList<>();
+    private List<String> upBridge = new ArrayList<>();
+    private List<String> downBridge = new ArrayList<>();
+
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void move(String moving) {
+        player.add(moving);
+        if (moving.equals(UP.getKey())) {
+            upCase();
+        }
+        if (moving.equals(DOWN.getKey())) {
+            downCase();
+        }
+    }
+
+    public void upCase() {
+        int nowIdx = player.size() - 1;
+        downBridge.add(EMPTY);
+        if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
+            upBridge.add(ALIVE);
+            return;
+        }
+        upBridge.add(DIE);
+    }
+
+    public void downCase() {
+        int nowIdx = player.size() - 1;
+        upBridge.add(EMPTY);
+        if (player.get(nowIdx).equals(bridge.get(nowIdx))) {
+            downBridge.add(ALIVE);
+            return;
+        }
+        downBridge.add(DIE);
+    }
+
     public void retry() {
+        player = new ArrayList<>();
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
+    }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
+    public List<String> getPlayer() {
+        return this.player;
+    }
+
+    public List<String> getUpBridge() {
+        return this.upBridge;
+    }
+
+    public List<String> getDownBridge() {
+        return this.downBridge;
     }
 }
