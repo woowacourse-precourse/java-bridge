@@ -13,4 +13,8 @@ public class Bridge {
         Bridge bridgeInstance = new Bridge(bridge);
         return bridgeInstance;
     }
+
+    private String getBridgeLocation(int location) {
+        return bridge.get(location);
+    }
 }
