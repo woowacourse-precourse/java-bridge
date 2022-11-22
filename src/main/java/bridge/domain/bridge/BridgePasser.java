@@ -6,6 +6,7 @@ import static bridge.validate.BridgeValidation.validateBridgeMovable;
 import bridge.value.BridgeCharacter;
 
 public class BridgePasser {
+
     private BridgeLocation bridgeLocation;
     private final Bridge bridge;
 

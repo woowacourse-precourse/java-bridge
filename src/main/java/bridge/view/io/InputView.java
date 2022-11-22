@@ -11,7 +11,6 @@ import bridge.value.GameCommand;
 
 public class InputView {
 
-
     public BridgeSize readBridgeSize() {
         return makeBridgeSize(readLine());
     }

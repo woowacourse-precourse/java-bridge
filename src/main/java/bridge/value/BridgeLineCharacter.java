@@ -1,6 +1,7 @@
 package bridge.value;
 
 public enum BridgeLineCharacter {
+
     MOVABLE_SQUARE(" O "),
     IMMOVABLE_SQUARE(" X "),
     EMPTY_SQUARE("   "),

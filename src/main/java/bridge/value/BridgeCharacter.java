@@ -6,6 +6,7 @@ import static bridge.validate.BridgeValidation.validateBridgeValue;
 import java.util.Arrays;
 
 public enum BridgeCharacter {
+
     UP(1,"U"),
     DOWN(0,"D");
 

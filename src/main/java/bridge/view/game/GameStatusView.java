@@ -54,5 +54,4 @@ public class GameStatusView {
         stringBuffer.append(lineView.renderLine());
         stringBuffer.append(System.lineSeparator());
     }
-
 }

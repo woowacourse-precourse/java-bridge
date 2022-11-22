@@ -9,6 +9,7 @@ import bridge.domain.bridge.BridgePasser;
 import bridge.value.GameSuccessStatus;
 
 public class GameResult {
+
     private final BridgeAndPasser bridgeAndPasser;
     private final GameSuccessStatus gameSuccessStatus;
     private final GameRecord gameRecord;

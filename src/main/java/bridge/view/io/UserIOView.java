@@ -13,6 +13,7 @@ import bridge.view.game.GameResultView;
 import bridge.view.game.GameStatusView;
 
 public class UserIOView {
+
     private final InputView inputView;
     private final OutputView outputView;
 

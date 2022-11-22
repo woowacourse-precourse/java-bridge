@@ -1,6 +1,7 @@
 package bridge.message;
 
 public enum ErrorMessage {
+
     ERROR_PREFIX("[ERROR]"),
 
     INPUT_SIZE_OUT_OF_RANGE("잘못된 입력입니다. 다리의 길이가 범위에 해당되지 않습니다. 다시 입력해주세요."),

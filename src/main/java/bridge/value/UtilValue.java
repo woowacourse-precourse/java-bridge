@@ -1,6 +1,7 @@
 package bridge.value;
 
 public enum UtilValue {
+
     EMPTY_SIZE(0);
     private final int value;
 

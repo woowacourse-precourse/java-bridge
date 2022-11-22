@@ -27,5 +27,4 @@ public class OutputView {
     public void print(String content) {
         System.out.print(content);
     }
-
 }

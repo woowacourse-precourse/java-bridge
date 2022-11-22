@@ -4,6 +4,7 @@ import static bridge.value.RecordValue.RECORD_INCREMENT;
 import static bridge.value.RecordValue.RECORD_INIT;
 
 public class GameRecord {
+
     private int retryCount;
 
     public GameRecord() {

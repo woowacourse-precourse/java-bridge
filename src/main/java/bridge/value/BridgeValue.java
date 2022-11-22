@@ -1,6 +1,7 @@
 package bridge.value;
 
 public enum BridgeValue {
+
     LOCATION_INIT(0),
     LOCATION_INCREMENT(1),
     SIZE_START_RANGE(3),

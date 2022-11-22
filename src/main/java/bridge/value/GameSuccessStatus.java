@@ -1,6 +1,7 @@
 package bridge.value;
 
 public enum GameSuccessStatus {
+
     SUCCESS("성공"),
     FAIL("실패");
 

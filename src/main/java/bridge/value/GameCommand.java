@@ -5,6 +5,7 @@ import static bridge.validate.GameValidation.validateGameCommand;
 import java.util.Arrays;
 
 public enum GameCommand {
+
     RESTART("R"),
     QUIT("Q");
 
