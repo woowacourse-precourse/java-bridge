@@ -43,7 +43,20 @@ public class OutputView {
             System.out.println(printView.THE_GAME_RESULT);
             bridgeMoveStepService.extractBracket(bridgeGame.upSide,bridgeGame.downSide);
             printView.lineSkip();
-            bridgeGame.printSuccessOrFailCase();
+            printSuccessOrFailCase();
+        }
+    }
+
+    public void printSuccessOrFailCase() {
+        if(bridgeGame.checkResultFlag == 1) {
+            printView.lineSkip();
+            System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.FAIL);
+            System.out.println(printView.TOTAL_COUNT+" "+ bridgeGame.retryCount);
+        }
+        if(bridgeGame.checkResultFlag == 2) {
+            printView.lineSkip();
+            System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.SUCCESS);
+            System.out.println(printView.TOTAL_COUNT+" "+ bridgeGame.retryCount);
         }
     }
 }

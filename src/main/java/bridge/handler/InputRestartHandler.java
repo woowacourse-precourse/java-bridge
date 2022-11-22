@@ -4,12 +4,9 @@ import bridge.view.PrintView;
 
 public class InputRestartHandler {
 
-    private String restart;
-
     public String checkValidator(String restart) {
         checkNonInput(restart);
         checkQuitOrRestart(restart);
-        this.restart = restart;
 
         return restart;
     }

@@ -75,7 +75,7 @@ class ApplicationTest extends NsTest {
         long test_long = Long.parseLong(test_1);
         assertThatThrownBy(() -> {
             if(test_long > Integer.MAX_VALUE) {
-                inputBridgeLengthHandler.checkOverRange(test_1);
+                inputBridgeLengthHandler.checkOverIntegerRange(test_1);
             }
         }).isInstanceOf(IllegalArgumentException.class);
     }

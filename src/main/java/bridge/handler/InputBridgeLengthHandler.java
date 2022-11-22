@@ -3,19 +3,17 @@ package bridge.handler;
 import bridge.view.PrintView;
 
 public class InputBridgeLengthHandler {
-    private String bridgeLength;
 
     public String checkValidator(String bridgeLength){
         checkNonInput(bridgeLength);
         checkIsNumber(bridgeLength);
         checkInRange(bridgeLength);
-        checkOverRange(bridgeLength);
-        this.bridgeLength = bridgeLength;
+        checkOverIntegerRange(bridgeLength);
 
         return bridgeLength;
     }
 
-    public void checkOverRange(String bridgeLength) {
+    public void checkOverIntegerRange(String bridgeLength) {
         PrintView printView = new PrintView();
         long length = Long.parseLong(bridgeLength);
 

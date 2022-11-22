@@ -3,7 +3,6 @@ package bridge.handler;
 import bridge.view.PrintView;
 
 public class InputMoveStepHandler {
-    private String moveStep;
 
     public String checkValidator(String moveStep) {
         checkNonInput(moveStep);

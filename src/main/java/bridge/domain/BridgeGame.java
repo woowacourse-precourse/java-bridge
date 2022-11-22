@@ -66,19 +66,6 @@ public class BridgeGame {
         }
     }
 
-    public void printSuccessOrFailCase() {
-        if(checkResultFlag == 1) {
-            printView.lineSkip();
-            System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.FAIL);
-            System.out.println(printView.TOTAL_COUNT+" "+ retryCount);
-        }
-        if(checkResultFlag == 2) {
-            printView.lineSkip();
-            System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.SUCCESS);
-            System.out.println(printView.TOTAL_COUNT+" "+ retryCount);
-        }
-    }
-
     private void remainResult(List<String> upSideList, List<String> downSideList) {
         bridgeMoveStepService.extractBracket(upSideList, downSideList);
         printView.lineSkip();
