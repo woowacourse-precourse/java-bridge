@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    List<String> moves = new ArrayList<>();
+    private final List<String> moves = new ArrayList<>();
 
     public void addMove(final String move) {
         moves.add(move);

@@ -3,8 +3,8 @@ package bridge.input;
 import bridge.input.validate.BridgeValidator;
 
 public class InputView {
-    BridgeInput input;
-    BridgeValidator validator;
+    private final BridgeInput input;
+    private final BridgeValidator validator;
 
     public InputView(BridgeInput input, BridgeValidator validator) {
         this.input = input;

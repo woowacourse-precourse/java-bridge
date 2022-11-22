@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Bridge {
-    List<String> route;
+    private final List<String> route;
 
     public Bridge(List<String> bridge) {
         this.route = bridge;
