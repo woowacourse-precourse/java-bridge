@@ -10,7 +10,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+
+    public void printMap(BridgeMaker bridgeMake) { // 다리 출력
+        System.out.println(bridgeMake.upperMap);
+        System.out.println(bridgeMake.lowerMap);
     }
 
     /**
@@ -18,6 +21,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeMaker bridgeMake, int tryCount) { // 게임 결과
+        System.out.println("최종 게임 결과");
+        printMap(bridgeMake);
+        if (bridgeMake.upperMap.contains("X") || bridgeMake.lowerMap.contains("X")) {
+            System.out.println("게임 성공 여부: 실패");
+            System.out.println("총 시도한 횟수: " + tryCount);
+        } else if (!bridgeMake.upperMap.contains("X") || !bridgeMake.lowerMap.contains("X")) {
+            System.out.println("게임 성공 여부: 성공");
+            System.out.println("총 시도한 횟수: " + tryCount);
+        }
     }
 }
