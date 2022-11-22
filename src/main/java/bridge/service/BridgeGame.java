@@ -5,7 +5,7 @@ import static bridge.exception.Validator.validBridgeLength;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Round;
 import bridge.domain.RoundResult;
-import bridge.maker.BridgeMaker;
+import bridge.BridgeMaker;
 import java.util.ArrayList;
 import java.util.List;
 
