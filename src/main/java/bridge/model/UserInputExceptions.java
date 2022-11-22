@@ -1,5 +1,8 @@
 package bridge.model;
 
+import bridge.utils.CommandChecker;
+import bridge.utils.MoveChecker;
+
 public class UserInputExceptions {
 	public static boolean isNotValidSize(String size) {
 		return isNotNumber(size) || isNotInRangeNumber(size);
@@ -28,7 +31,7 @@ public class UserInputExceptions {
 	}
 
 	private static boolean isNotValidMovableCommand(String movableCommand) {
-		return !movableCommand.equals("U") && !movableCommand.equals("D");
+		return !MoveChecker.isEqualToUp(movableCommand) && !MoveChecker.isEqualToDown(movableCommand);
 	}
 
 	private static boolean isNotOneLength(String movableCommand) {
@@ -36,6 +39,6 @@ public class UserInputExceptions {
 	}
 
 	private static boolean isNotEndCommand(String endCommand) {
-		return !endCommand.equals("Q") && !endCommand.equals("R");
+		return !CommandChecker.isEqualToQuit(endCommand) && !CommandChecker.isEqualToRetry(endCommand);
 	}
 }

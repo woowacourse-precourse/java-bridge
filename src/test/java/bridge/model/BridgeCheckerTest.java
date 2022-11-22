@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-//todo : 테스트코드 간결하고 정확하게 고치자!
 public class BridgeCheckerTest {
 	@DisplayName("정상적으로 이동하는 경우") @Test public void 이동가능테스트2() {
 		int userInputLength = 3;
