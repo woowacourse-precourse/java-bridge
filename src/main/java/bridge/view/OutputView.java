@@ -1,8 +1,8 @@
 package bridge.view;
 
 public class OutputView {
-    private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
-    private final String FINAL_GAME_RESULT_MESSAGE = "\n최종 게임 결과\n%s";
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    private static final String FINAL_GAME_RESULT_MESSAGE = "\n최종 게임 결과\n%s";
 
     public void printStartMessage() {
         System.out.println(GAME_START_MESSAGE);

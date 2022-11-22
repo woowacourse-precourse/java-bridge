@@ -1,10 +1,10 @@
 package bridge.domain;
 
 public class BridgeGame {
-    private final String SUCCESS_MESSAGE = "\n게임 성공 여부: 성공\n";
-    private final String FAIL_MESSAGE = "\n게임 성공 여부: 실패\n";
-    private final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
-    private final int ZERO_COUNT = 0;
+    private static final String SUCCESS_MESSAGE = "\n게임 성공 여부: 성공\n";
+    private static final String FAIL_MESSAGE = "\n게임 성공 여부: 실패\n";
+    private static final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
+    private static final int ZERO_COUNT = 0;
     private int tryCount;
     private final Bridge bridge;
     private CurrentBridgeMap currentBridgeMap;

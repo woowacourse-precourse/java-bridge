@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
-    private final int MINIMUM_VALUE_OF_SIZE = 3;
-    private final int MAXIMUM_VALUE_OF_SIZE = 20;
-    private final int ANSWER_UP_BRIDGE_INT = 1;
-    private final String ANSWER_UP_BRIDGE_STRING = "U";
-    private final String ANSWER_DOWN_BRIDGE_STRING = "D";
+    private static final int MINIMUM_VALUE_OF_SIZE = 3;
+    private static final int MAXIMUM_VALUE_OF_SIZE = 20;
+    private static final int ANSWER_UP_BRIDGE_INT = 1;
+    private static final String ANSWER_UP_BRIDGE_STRING = "U";
+    private static final String ANSWER_DOWN_BRIDGE_STRING = "D";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 

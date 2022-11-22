@@ -7,7 +7,7 @@ public enum ExceptionMessage {
     ),
     INPUT_WRONG_RETRY_ANSWER_MESSAGE("게임 재시도 시 'R', 종료 시 'Q'를 입력해 주셔야 합니다.");
 
-    private final String ERROR_TAG = "[ERROR] ";
+    private static final String ERROR_TAG = "[ERROR] ";
     private final String message;
 
     ExceptionMessage(String message) {
