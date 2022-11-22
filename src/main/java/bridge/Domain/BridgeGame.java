@@ -10,31 +10,31 @@ public class BridgeGame {
     private int gameTryCount = 1;
     private boolean gameSuccess = false;
     private List<String> myMovingChoices = new ArrayList<>();
-    private List<String> bridge;
+    private Bridge bridge;
 
-    public BridgeGame(List<String> bridge){
+    public BridgeGame(Bridge bridge){
         this.bridge = bridge;
     }
 
-    public boolean move(String movingChoice){
-        myMovingChoices.add(movingChoice);
+    public boolean move(Moving movingChoice){
+        myMovingChoices.add(movingChoice.getMoving());
         int presentPosition = myMovingChoices.size() - 1;
-        if(myMovingChoices.get(presentPosition).equals(bridge.get(presentPosition)))
+        if(myMovingChoices.get(presentPosition).equals(bridge.getBridge().get(presentPosition)))
             return true;
         return false;
     }
 
     public boolean reachEndPosition() {
         int len = myMovingChoices.size();
-        if(len == bridge.size()) {
+        if(len == bridge.getBridge().size()) {
             gameSuccess = true;
             return false;
         }
         return true;
     }
 
-    public boolean retry(String gameCommand) {
-        if(gameCommand.equals(Validation.GAME_RETRY)){
+    public boolean retry(GameCommand gameCommand) {
+        if(gameCommand.getCommand().equals(Validation.GAME_RETRY)){
             gameTryCount += 1;
             myMovingChoices = new ArrayList<>();
             return true;

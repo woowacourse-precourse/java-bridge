@@ -1,24 +1,20 @@
 package bridge.Controller;
 
+import bridge.Domain.Bridge;
 import bridge.Domain.BridgeGame;
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.Domain.GameCommand;
+import bridge.Domain.Moving;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 import java.util.List;
 
 public class Controller {
     private  InputView inputView;
-    private  BridgeNumberGenerator bridgeNumberGenerator;
-    private  BridgeMaker bridgeMaker;
     private  OutputView outputView;
     private  BridgeGame bridgeGame;
 
     public Controller(){
         inputView = new InputView();
-        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         outputView = new OutputView();
     }
 
@@ -33,7 +29,8 @@ public class Controller {
         boolean movingSuccess = true;
         while(gameContinue){
             String movingChoice = inputView.readMoving();
-            movingSuccess = bridgeGame.move(movingChoice);
+            Moving moving = new Moving(movingChoice);
+            movingSuccess = bridgeGame.move(moving);
             printMovingStatusMap(movingSuccess);
             gameContinue = checkGameContinue(movingSuccess);
         }
@@ -42,8 +39,8 @@ public class Controller {
 
     private void bridgeGameInitialization(){
         inputView.printGameStartMessage();
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        String bridgeSize = inputView.readBridgeSize();
+        Bridge bridge = new Bridge(bridgeSize);
         bridgeGame = new BridgeGame(bridge);
     }
 
@@ -65,7 +62,8 @@ public class Controller {
 
     private boolean checkGameContinue(boolean movingSuccess){
         if(!movingSuccess){
-            String gameCommand = inputView.readGameCommand();
+            String readGameCommand = inputView.readGameCommand();
+            GameCommand gameCommand = new GameCommand(readGameCommand);
             return bridgeGame.retry(gameCommand);
         }
         return bridgeGame.reachEndPosition();

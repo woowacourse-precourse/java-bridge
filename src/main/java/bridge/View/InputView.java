@@ -22,12 +22,11 @@ public class InputView {
         System.out.println(GAME_START_MESSAGE);
     }
 
-    public int readBridgeSize() {
+    public String readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
         String bridgeSize = readLine();
-        Validation.validateReadBridgeSize(bridgeSize);
         System.out.println();
-        return Integer.parseInt(bridgeSize);
+        return bridgeSize;
     }
 
     public String readMoving() {
