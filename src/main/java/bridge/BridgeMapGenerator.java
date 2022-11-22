@@ -5,10 +5,29 @@ import java.util.List;
 
 public class BridgeMapGenerator {
 
-    List<String> upBridgeMap = new ArrayList<>();
-    List<String> downBridgeMap = new ArrayList<>();
+    private final List<String> upBridgeMap = new ArrayList<>();
+    private final List<String> downBridgeMap = new ArrayList<>();
+    private final List<List<String>> bridgeMap = new ArrayList<>();
 
-    public void crossUpBridge(String eachBridge) {
+    public void generateBridgeMap(String playerMoving, String eachBridge) {
+        if (playerMoving.equals("U")) {
+            crossUpBridge(eachBridge);
+        } else if (playerMoving.equals("D")) {
+            crossDownBridge(eachBridge);
+        }
+        combineToBridgeMap();
+    }
+
+    public List<List<String>> getBridgeMap() {
+        return bridgeMap;
+    }
+
+    public void clearAllBridgeMap() {
+        upBridgeMap.clear();
+        downBridgeMap.clear();
+    }
+
+    private void crossUpBridge(String eachBridge) {
         if (eachBridge.equals("U")) {
             upBridgeMap.add("O");
             downBridgeMap.add(" ");
@@ -18,7 +37,7 @@ public class BridgeMapGenerator {
         }
     }
 
-    public void crossDownBridge(String eachBridge) {
+    private void crossDownBridge(String eachBridge) {
         if (eachBridge.equals("U")) {
             upBridgeMap.add(" ");
             downBridgeMap.add("X");
@@ -28,19 +47,9 @@ public class BridgeMapGenerator {
         }
     }
 
-    public void generateBridgeMap(String playerMoving, String eachBridge) {
-        if (playerMoving.equals("U")) {
-            crossUpBridge(eachBridge);
-        } else if (playerMoving.equals("D")) {
-            crossDownBridge(eachBridge);
-        }
-    }
-
-    public List<List<String>> getBridgeMap() {
-        List<List<String>> bridgeMap = new ArrayList<>();
+    private void combineToBridgeMap() {
+        bridgeMap.clear();
         bridgeMap.add(upBridgeMap);
         bridgeMap.add(downBridgeMap);
-        return bridgeMap;
     }
-
 }

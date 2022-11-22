@@ -8,11 +8,11 @@ public class BridgeGame {
     private String restart = "";
     private int gameRepeatCount = 0;
 
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMapGenerator bridgeMapGenerator = new BridgeMapGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMapGenerator bridgeMapGenerator = new BridgeMapGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
     public void playGame() {
         outputView.printGameStart();
@@ -20,16 +20,11 @@ public class BridgeGame {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         while (restart == null || !restart.equals("Q")) {
             gameRepeatCount++;
-            clearBridgeMap();
+            bridgeMapGenerator.clearAllBridgeMap();
             crossBridge(bridge);
             retry(bridgeSize);
         }
         outputView.printResult(bridgeMapGenerator.getBridgeMap(), checkSuccessOrNot(bridgeSize), gameRepeatCount);
-    }
-
-    public void clearBridgeMap() {
-        bridgeMapGenerator.upBridgeMap.clear();
-        bridgeMapGenerator.downBridgeMap.clear();
     }
 
     private void crossBridge(List<String> bridge) {
@@ -61,15 +56,15 @@ public class BridgeGame {
         return true;
     }
 
-    public void move() {
+    private void move() {
         placeNumber++;
     }
 
-    public void returnToStartPoint() {
+    private void returnToStartPoint() {
         placeNumber = 0;
     }
 
-    public void retry(int bridgeSize) {
+    private void retry(int bridgeSize) {
         restart = "Q";
         if (placeNumber != bridgeSize) {
             restart = inputView.readGameCommand();
