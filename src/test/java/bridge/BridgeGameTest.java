@@ -21,5 +21,10 @@ class BridgeGameTest {
 
     @Test
     void retry() {
+        BridgeGame game = new BridgeGame();
+
+        boolean result = game.retry("R");
+
+        assertThat(result).isTrue();
     }
 }
