@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.Arrays;
 
@@ -14,8 +14,7 @@ public enum Direction {
         this.direction = direction;
     }
 
-    // TODO 메서드 이름 정리
-    public static String findByDirectionNumber(int directionNumber) {
+    public static String directionNumberToDirection(int directionNumber) {
         return Arrays.stream(Direction.values())
                 .filter(direction -> direction.hasDirectionNumber(directionNumber))
                 .findAny()
