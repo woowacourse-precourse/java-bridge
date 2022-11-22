@@ -26,7 +26,7 @@ public class MovingPathHistory {
         processHistory(target, noneTarget, movable);
     }
 
-    private void processHistory(List<String> target, List<String> noneTarget, boolean movable) {
+    private void processHistory(final List<String> target, final List<String> noneTarget, boolean movable) {
         target.add(mapToResult(movable));
         noneTarget.add(NOT_MOVE);
     }
