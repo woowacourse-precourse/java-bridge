@@ -27,6 +27,7 @@ public class BridgeMaker {
         }
         return blocks;
     }
+
     // TODO: 상수 Enum으로 리팩토링 하기
     private String convert(int number) {
         String block = "";
@@ -38,6 +39,4 @@ public class BridgeMaker {
         }
         return block;
     }
-
-
 }

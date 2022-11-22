@@ -25,10 +25,12 @@ public class BridgeGame {
         outputView.printBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
         Bridge bridge = bridgeGameController.createBridge(bridgeSize);
+
         while (!gameStatus.getEnd()) {
             System.out.println(bridge.getBridge());
             crossBridge(bridge);
         }
+
         outputView.printResult(gameStatus);
     }
 
