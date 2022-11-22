@@ -26,6 +26,9 @@ public class BridgeGameController {
         catch(IllegalArgumentException e){
             System.out.println(e);
         }
+        catch (IllegalStateException e){
+            System.out.println(e);
+        }
     }
 
     public void gameLogic(){
