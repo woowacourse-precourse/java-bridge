@@ -26,8 +26,9 @@ public class GameController {
         }
     }
 
-    public void retry(){
-
+    public void retry() {
+        game.retry(inputView.readGameCommand());
     }
+
 
 }
