@@ -13,7 +13,7 @@ class BridgeStatusTest {
     @Test
     void initOneWhenCreateBridgeStatus() {
         // given
-        List<String> bridge = List.of("U","D","U");
+        List<String> bridge = List.of("U", "D", "U");
 
         // when
         BridgeStatus bridgeStatus = BridgeStatus.createBridgeStatus(bridge);
@@ -21,35 +21,42 @@ class BridgeStatusTest {
         // then
         assertThat(bridgeStatus.getTryCount()).isEqualTo(1);
     }
+
     @DisplayName("이미 성공한 경우에 입력 요청한 경우 예외 발생")
     @Test
     void throwExceptionWhenGameStatusIsSuccess() {
         // given
-        List<String> bridge = List.of("U","D","U");
+        List<String> bridge = List.of("U", "D", "U");
         BridgeStatus bridgeStatus = BridgeStatus.createBridgeStatus(bridge);
 
         // expect
         assertThatThrownBy(() -> {
-            bridgeStatus.addUserMovingCommand(MovingCommand.UP);
-            bridgeStatus.addUserMovingCommand(MovingCommand.DOWN);
-            bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+            makeSuccessGameStatus(bridgeStatus);
             bridgeStatus.addUserMovingCommand(MovingCommand.UP);
         }).isInstanceOf(IllegalStateException.class);
+    }
+
+    private void makeSuccessGameStatus(BridgeStatus bridgeStatus) {
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+        bridgeStatus.addUserMovingCommand(MovingCommand.DOWN);
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
     }
 
     @DisplayName("이미 실패한 경우에 입력 요청한 경우 예외 발생")
     @Test
     void throwExceptionWhenGameStatusIsFail() {
         // given
-        List<String> bridge = List.of("U","D","U");
+        List<String> bridge = List.of("U", "D", "U");
         BridgeStatus bridgeStatus = BridgeStatus.createBridgeStatus(bridge);
 
         // expect
-        assertThatThrownBy(() -> {
-            bridgeStatus.addUserMovingCommand(MovingCommand.UP);
-            bridgeStatus.addUserMovingCommand(MovingCommand.UP);
-            bridgeStatus.addUserMovingCommand(MovingCommand.UP);
-        }).isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(() -> requestAddCommandWhenFail(bridgeStatus)).isInstanceOf(IllegalStateException.class);
+    }
+
+    private void requestAddCommandWhenFail(BridgeStatus bridgeStatus) {
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
     }
 
     @DisplayName("게임 상태가 성공인 경우 재시작 요청 여부는 false")
@@ -60,15 +67,13 @@ class BridgeStatusTest {
         BridgeStatus bridgeStatus = BridgeStatus.createBridgeStatus(bridge);
 
         // when
-        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
-        bridgeStatus.addUserMovingCommand(MovingCommand.DOWN);
-        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+        makeSuccessGameStatus(bridgeStatus);
 
         // expect
         assertThat(bridgeStatus.needCallRetryGame()).isEqualTo(false);
     }
 
-    @DisplayName("게임 상태가 성공인 경우 재시작 요청 여부는 true")
+    @DisplayName("게임 상태가 실패인 경우 재시작 요청 여부는 true")
     @Test
     void returnTrueWhenGameStatusIsFail() {
         // given
