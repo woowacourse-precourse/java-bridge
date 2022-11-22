@@ -18,7 +18,29 @@ public class InputView {
     }
 
     private int validateBridgeSize(String input){
-        return 0;
+        try{
+            return validateBridgeSizeRange(Integer.parseInt(input));
+        }catch (IllegalArgumentException e){
+            System.out.println(getBridgeSizeExceptionMessage(e));
+
+            return readBridgeSize();
+        }
+    }
+
+    private int validateBridgeSizeRange(int bridgeSize){
+        if(bridgeSize<3 || bridgeSize>20){
+            throw new IllegalArgumentException(Constants.BRIDGE_SIZE_RANGE_ERROR_MESSAGE);
+        }
+
+        return bridgeSize;
+    }
+
+    private String getBridgeSizeExceptionMessage(IllegalArgumentException e){
+        if(e.getClass().equals(NumberFormatException.class)){
+            return Constants.BRIDGE_SIZE_NUMBER_FORMAT_ERROR_MESSAGE;
+        }
+
+        return e.getMessage();
     }
 
     /**
