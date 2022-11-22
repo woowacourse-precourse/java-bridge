@@ -19,7 +19,7 @@ public class BridgeGameService extends OutputConfig {
     public Boolean isValidBridgeRange(int bridgeSize) {
         Boolean isValid=true;
         try {
-            if (bridgeSize <= 3 || bridgeSize >= 20) {
+            if (bridgeSize < 3 || bridgeSize > 20) {
                 isValid=false;
                 throw new IllegalArgumentException();
             }
@@ -32,7 +32,7 @@ public class BridgeGameService extends OutputConfig {
     public Boolean isValidMovingInput(String move) {
         Boolean isValid=true;
         try {
-            if (move.equals("U") || move.equals(("D"))) {
+            if (!move.equals("U") && !move.equals(("D"))) {
                 isValid=false;
                 throw new IllegalArgumentException();
             }
@@ -45,7 +45,7 @@ public class BridgeGameService extends OutputConfig {
     public Boolean isValidCommand(String command) {
         Boolean isValid=true;
         try{
-            if (command.equals("R") || command.equals("Q")) {
+            if (!command.equals("R") && !command.equals("Q")) {
                 isValid=false;
                 throw new IllegalArgumentException();
             }
