@@ -11,6 +11,19 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
     }
+
+    public static void run() {
+        gameSetting();
+
+        while (!gameRun()) {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            if (userInput.readGameCommand().equals("Q")) {
+                break;
+            }
+            Game.retry();
+        }
+        printTotalResult(Game.getCount());
+    }
     public static void gameSetting() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("다리 길이를 입력해주세요.");
