@@ -11,45 +11,71 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    GameController gameController = new GameController();
+    BridgeMaker bridgeMaker;
+    Bridge bridge;
+    BridgeGame bridgeGame;
+    boolean isSuccess, restart;
 
-    boolean isCorrect;
-    boolean isStart;
-    int count;
+
+    public BridgeGameController(BridgeNumberGenerator bridgeNumberGenerator){
+        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    }
 
      public void start(){
          outputView.printStartGuide();
-         Bridge bridge  = createBridge();
-         isStart = true;
-         count = 0;
+         bridge  = createBridge();
 
-         do{
-             count++;
-             isCorrect = gameController.start(bridge);
-             isStart = updateIsStart(isCorrect);
-         } while(isStart);
+         firstRoundStart();
 
-         outputView.printResult(count, isCorrect);
+         while(restart){
+             restartRoundStart();
+         }
+
+         outputView.printResult(bridgeGame.getGameRoundCount(), isSuccess);
      }
 
-    private boolean updateIsStart(boolean isCorrect) {
-        if(! isCorrect){
-            outputView.printInputRestartOptionGuide();
-            String restartOption = inputView.readGameCommand();
-            return getIsRestart(restartOption);
+    private Bridge createBridge(){
+        outputView.printInputBridgeLengthGuide();
+        int bridgeLength = inputView.readBridgeLength();
+
+        return new Bridge(bridgeMaker.makeBridge(bridgeLength));
+    }
+
+    private void firstRoundStart() {
+        bridgeGame = new BridgeGame(bridge);
+        newRoundStart();
+    }
+
+    private void newRoundStart() {
+        isSuccess = getRoundResultAndPrintMap();
+        restart = getIsNeedRestart(isSuccess);
+    }
+
+    private boolean getRoundResultAndPrintMap() {
+        boolean isSuccessMove;
+
+        do{
+            outputView.printInputMovingGuide();
+            String moving = inputView.readMoving();
+            isSuccessMove = bridgeGame.move(moving);
+
+            outputView.printMap(bridgeGame.getGameResult());
+        } while(isSuccessMove && bridgeGame.isUserCanMove());
+
+        return isSuccessMove;
+    }
+
+    private boolean getIsNeedRestart(boolean isSuccess) {
+        if(isSuccess){
+            return false;
         }
-        return false;
+        outputView.printInputRestartOptionGuide();
+        String restartOption = inputView.readRestartOption();
+        return Validator.isNeedRestart(restartOption);
     }
 
-    private boolean getIsRestart(String restartOption) {
-        return restartOption.equals("R");
+    private void restartRoundStart() {
+        bridgeGame.retry();
+        newRoundStart();
     }
-
-    public Bridge createBridge(){
-         outputView.printInputBridgeLengthGuide();
-         int bridgeLength = inputView.readBridgeLength();
-
-         return new Bridge(bridgeMaker.makeBridge(bridgeLength));
-     }
 }
