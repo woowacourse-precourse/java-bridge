@@ -1,7 +1,7 @@
 package bridge.service;
 
-import bridge.utils.BridgeRandomNumberGenerator;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
 import java.util.List;
 
 public class BridgeGenerateService {
