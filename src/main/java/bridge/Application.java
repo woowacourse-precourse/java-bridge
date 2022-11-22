@@ -10,6 +10,7 @@ public class Application {
     static BridgeGame Game = new BridgeGame();
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        run();
     }
 
     public static void run() {
