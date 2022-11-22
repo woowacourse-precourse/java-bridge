@@ -24,6 +24,10 @@ public class Game {
         return isWinGame;
     }
 
+    private void setWinGame(boolean winGame) {
+        isWinGame = winGame;
+    }
+
 
 
 }
