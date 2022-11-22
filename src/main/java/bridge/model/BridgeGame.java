@@ -54,7 +54,8 @@ public class BridgeGame {
      */
     public void retry() {
         userBridge.clear();
-        movingMap.clear();
+        movingMap.get(Moving.DOWN.ordinal()).clear();
+        movingMap.get(Moving.UP.ordinal()).clear();
         tryCount += 1;
     }
 
