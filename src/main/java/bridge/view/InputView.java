@@ -12,8 +12,8 @@ public class InputView {
     }
 
     private void validateSizeForm(String input) {
-        if (!input.matches("\\d{1,2}")) {
-            throw new IllegalArgumentException("[ERROR] 두 자리 이하의 숫자만 입력 가능합니다.");
+        if (!input.matches("\\d{1,}")) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력 형식입니다.");
         }
     }
 

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Command {
 
-    private final static String GAME_RETRY = "R";
+    private final static String RETRY_COMMAND = "R";
     private final String command;
 
     public Command(String input) {
@@ -19,7 +19,11 @@ public class Command {
     }
 
     public boolean isToRetryGame() {
-        return this.command.equals(GAME_RETRY);
+        return this.command.equals(RETRY_COMMAND);
+    }
+
+    public boolean isNull() {
+        return command == null;
     }
 
     @Override

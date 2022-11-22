@@ -12,6 +12,10 @@ public class Judgement {
         return judgement;
     }
 
+    public boolean isFalse() {
+        return !judgement;
+    }
+
     @Override
     public String toString() {
         return "Judgement{" +

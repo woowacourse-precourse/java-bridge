@@ -1,10 +1,9 @@
 package bridge;
 
+import bridge.domain.direction.Direction;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static bridge.domain.direction.Direction.DOWNWARD_DIRECTION;
-import static bridge.domain.direction.Direction.UPWARD_DIRECTION;
 
 public class BridgeMaker {
 
@@ -36,8 +35,8 @@ public class BridgeMaker {
 
     private String mapToDirection(int number) {
         if (number == 0) {
-            return UPWARD_DIRECTION;
+            return Direction.DOWNWARD_DIRECTION;
         }
-        return DOWNWARD_DIRECTION;
+        return Direction.UPWARD_DIRECTION;
     }
 }
