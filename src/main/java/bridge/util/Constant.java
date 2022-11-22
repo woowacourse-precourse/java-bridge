@@ -9,6 +9,7 @@ public class Constant {
     public static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
 
     public static final int BRIDGE_SIZE_INPUT_RETRY_POINT = -1;
+    public static final String BRIDGE_MOVE_INPUT_RETRY_POINT = "";
     public static final int BRIDGE_FIRST_TRY_INDEX = 0;
     public static final int BRIDGE_ONE_TRY_SPACE_SIZE = 4;
     public static final int MIN_BRIDGE_SIZE = 3;

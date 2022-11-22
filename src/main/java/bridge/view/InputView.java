@@ -30,10 +30,25 @@ public class InputView {
 
     public static String inputMoving() {
         OutputView.printMovingSelectMessage();
-        String moveWord = Console.readLine();
-        Validator.validateMovingWord(moveWord);
+        String moveWord = BRIDGE_MOVE_INPUT_RETRY_POINT;
+        while (moveWord.equals(BRIDGE_MOVE_INPUT_RETRY_POINT)) {
+            moveWord = retryBridgeMoveInput();
+        }
         return moveWord;
     }
+
+    private static String retryBridgeMoveInput() {
+        try {
+            String moveCommandInput = Console.readLine();
+            Validator.validateMovingWord(moveCommandInput);
+            return moveCommandInput;
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+        }
+        return BRIDGE_MOVE_INPUT_RETRY_POINT;
+    }
+
+
 
     public static String inputGameCommand() {
         String command = Console.readLine();
