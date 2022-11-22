@@ -15,9 +15,6 @@ class GameResultTest {
     void init() {
         bridgeGame = new BridgeGame(new Bridge(List.of("U", "D", "U", "D")));
         bridgeGame.move(0, Direction.UP);
-        bridgeGame.move(1, Direction.UP);
-        bridgeGame.retry(Command.RETRY);
-        bridgeGame.move(0, Direction.UP);
         bridgeGame.move(1, Direction.DOWN);
         bridgeGame.move(2, Direction.UP);
         bridgeGame.move(3, Direction.DOWN);
@@ -53,7 +50,7 @@ class GameResultTest {
     @DisplayName("성공 여부를 정상적으로 반환하는지 - 성공")
     @Test
     void 성공인_경우() {
-        Assertions.assertThat(bridgeGame.isClear()).isEqualTo("성공");
+        Assertions.assertThat(bridgeGame.isClear()).isEqualTo(GameResult.SUCCESS);
     }
 
     @DisplayName("성공 여부를 정상적으로 반환하는지 - 실패")
@@ -61,7 +58,7 @@ class GameResultTest {
     void 실패인_경우() {
         BridgeGame bridgeGame2 = new BridgeGame(new Bridge(List.of("U", "U", "U", "U")));
         bridgeGame.move(0, Direction.DOWN);
-        Assertions.assertThat(bridgeGame2.isClear()).isEqualTo("실패");
+        Assertions.assertThat(bridgeGame2.isClear()).isEqualTo(GameResult.FAIL);
     }
 
 }

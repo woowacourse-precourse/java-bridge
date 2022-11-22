@@ -12,13 +12,13 @@ class BridgeMakerTest {
     void 랜덤으로_생성된_값이_0인_경우() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         String result = bridgeMaker.convertNumberToDirection(0);
-        Assertions.assertThat(result).isEqualTo(Direction.DOWN);
+        Assertions.assertThat(result).isEqualTo(Direction.DOWN.getValue());
     }
 
     @Test
     void 랜덤으로_생성된_값이_1인_경우() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         String result = bridgeMaker.convertNumberToDirection(1);
-        Assertions.assertThat(result).isEqualTo(Direction.UP);
+        Assertions.assertThat(result).isEqualTo(Direction.UP.getValue());
     }
 }

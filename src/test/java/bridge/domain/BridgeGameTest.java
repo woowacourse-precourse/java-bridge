@@ -35,7 +35,6 @@ class BridgeGameTest {
     @DisplayName("재시도가 정상 동작하는 지(시도 횟수 증가 등)")
     @Test
     void 재시도_하는_경우() {
-        bridgeGame.retry(Command.RETRY);
         Assertions.assertThat(bridgeGame.getPlayCount()).isEqualTo(1);
         Assertions.assertThat(bridgeGame.getTop().size()).isEqualTo(0);
         bridgeGame.retry(Command.RETRY);
