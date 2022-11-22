@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.regex.Pattern;
-import static bridge.Util.convertStringToInt;
 
 public class Validation {
     public static void isPositiveInteger(String bridgeSize) {

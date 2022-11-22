@@ -50,11 +50,11 @@ public class GameController {
     }
 
     public void activateUserTurn(BridgeGame bridgeGame, Bridge bridge) {
-        while(true) {
+        while (true) {
             String userSelect = getMoveCommand();
             bridgeGame.move(userSelect);
             outputView.printMap(bridge.getBridge(), bridgeGame.getUserPath());
-            if(!bridge.moveCheck(userSelect, bridgeGame) || bridgeGame.checkGameClear(bridge)) {
+            if (!bridge.moveCheck(userSelect, bridgeGame) || bridgeGame.checkGameClear(bridge)) {
                 break;
             }
         }
@@ -82,6 +82,7 @@ public class GameController {
         }
         return checkRestart(bridgeGame); // 게임 실패, 재시작이면 계속하기, 종료이면 종료
     }
+
     public boolean checkRestart(BridgeGame bridgeGame) {
         try {
             return getRestartCommand(bridgeGame);
