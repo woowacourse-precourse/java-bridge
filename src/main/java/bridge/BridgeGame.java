@@ -70,6 +70,10 @@ public class BridgeGame {
         }
     }
 
+    public boolean isWin() {
+        return bridgeRepository.getBridge().equals(bridgeRepository.getProgress());
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
