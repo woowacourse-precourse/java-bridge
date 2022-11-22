@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class BridgeGame {
     private static int bridgeSize;
+    private static int position;
+    private static boolean onMovableCompartment = true;
     private static List<String> bridge;
 
     private final OutputView outputView;
@@ -31,8 +33,11 @@ public class BridgeGame {
         return bridgeGenerateService.generateBridgeBySize(bridgeSize);
     }
 
-    private boolean move(String moving, int position) {
-        return bridge.get(position).equals(moving);
+    private void move() {
+        outputView.printMovingInputNotice();
+        String moving = inputView.readMoving();
+        onMovableCompartment = bridge.get(position++).equals(moving);
+        outputView.printMap(position, moving, onMovableCompartment);
     }
 
     private String askGameCommand() {
