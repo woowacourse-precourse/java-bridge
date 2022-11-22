@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public class GameController {
     private static final InputView inputView = InputView.getInstance();
     private static final OutputView outputView = OutputView.getInstance();
-    private static final BridgeGame game = BridgeGame.getInstance();
+    private static final BridgeGame bridgeGameService = BridgeGame.getInstance();
     private static final BridgeService bridgeService = BridgeService.getInstance();
 
     private static GameController instance = new GameController();
@@ -36,8 +36,8 @@ public class GameController {
 
     public void operate (Bridge map, User user) {
         while (user.getStatus() == GameStatus.PLAYING) {
-            game.move(map, user, requestStringInput(inputView::readMoving));
-            outputView.printMap(game.obtainGameLog(map, user));
+            bridgeGameService.move(map, user, requestStringInput(inputView::readMoving));
+            outputView.printMap(bridgeGameService.obtainGameLog(map, user));
             outputView.insertLineBreak();
             operateRetryOption(user);
         }
@@ -47,7 +47,7 @@ public class GameController {
         if (user.getStatus() == GameStatus.FAIL) {
             String retryOption = requestStringInput(inputView::readRetryOption);
             if (retryOption.equals(RetryOptions.RETRY.get())) {
-                game.retry(user);
+                bridgeGameService.retry(user);
             }
         }
     }
@@ -63,8 +63,8 @@ public class GameController {
 
     public void finish (Bridge map, User user) {
         outputView.printResult(
-                game.obtainGameLog(map, user),
-                game.isGameCleared(user),
+                bridgeGameService.obtainGameLog(map, user),
+                bridgeGameService.isGameCleared(user),
                 user.getAttemptCount()
         );
     }
