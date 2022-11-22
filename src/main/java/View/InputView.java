@@ -15,6 +15,9 @@ public class InputView {
     private Pattern pattern = Pattern.compile("^[0-9]*?");
     private static final int MIN_RANGE = 3;
     private static final int MAX_RANGE = 20;
+    private final String errorNumberMessage = "[ERROR] 3이상 20 이하의 숫자를 입력해주세요.";
+    private final String errorDirectionMessage = "[ERROR] U 또는 D를 입력해주세요.";
+    private final String errorGameCommandMessage = "[ERROR] R 또는 Q를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -32,14 +35,14 @@ public class InputView {
 
     public void validateNotNumber(String input){
         if(!pattern.matcher(input).matches()){
-            throw new NumberFormatException("[ERROR] 3이상 20 이하의 숫자를 입력해주세요.");
+            throw new NumberFormatException(errorNumberMessage);
         }
     }
 
     public void validateRange(String input){
         int bridgeSize = Integer.parseInt(input);
         if(bridgeSize < MIN_RANGE || bridgeSize > MAX_RANGE){
-            throw new IllegalArgumentException("[ERROR] 3이상 20 이하의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(errorNumberMessage);
         }
     }
 
@@ -54,7 +57,7 @@ public class InputView {
 
     void validateMovingBlockInput(String movingBlock){
         if(!isMovingBlockInputValid(movingBlock)){
-            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
+            throw new IllegalArgumentException(errorDirectionMessage);
         }
     }
     /**
@@ -68,7 +71,7 @@ public class InputView {
 
     void validateGameCommand(String gameCommand){
         if(!isGameCommandInputValid(gameCommand)){
-            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
+            throw new IllegalArgumentException(errorGameCommandMessage);
         }
     }
 
