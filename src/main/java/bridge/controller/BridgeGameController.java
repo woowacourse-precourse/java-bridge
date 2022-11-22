@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGameService;
+import bridge.Constants.CommandConstant;
 import bridge.service.BridgeGame;
 
 import bridge.view.InputView;
@@ -12,18 +13,20 @@ import java.util.Objects;
 
 public class BridgeGameController {
 
-    InputView inputView;
-    OutputView outputView;
-    BridgeGameService bridgeGameService;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private BridgeGameService bridgeGameService;
 
     public BridgeGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
 
+
     public void run() {
         startGame();
-        makeMove();
+        executeGame();
+        getResult();
     }
 
     private void startGame() {
@@ -31,39 +34,38 @@ public class BridgeGameController {
         this.bridgeGameService = new BridgeGame(size);
     }
 
-    private void makeMove() {
+    private void executeGame() {
         String movement = inputView.readMoving();
         this.bridgeGameService.move(movement);
         List<List<String>> currentMaps = this.bridgeGameService.getMaps();
         outputView.printMap(currentMaps);
+        controlGameFlow(movement);
+    }
 
+    private void controlGameFlow(String movement) {
         if (!bridgeGameService.isValidLastStep(movement)) {
             retry();
         }
         if (bridgeGameService.isValidLastStep(movement) && !bridgeGameService.getSuccessStatus()) {
-            makeMove();
-        }
-        if (bridgeGameService.isValidLastStep(movement) && bridgeGameService.getSuccessStatus()) {
-            getResult();
+            executeGame();
         }
     }
 
+
     private void getResult() {
-        List<List<String>> currentMaps = this.bridgeGameService.getMaps();
-        boolean gameStatus = this.bridgeGameService.getSuccessStatus();
-        int attemptCount = this.bridgeGameService.getAttemptCount();
+        List<List<String>> currentMaps = bridgeGameService.getMaps();
+        boolean gameStatus = bridgeGameService.getSuccessStatus();
+        int attemptCount = bridgeGameService.getAttemptCount();
         outputView.printFinalMap(currentMaps);
         outputView.printResult(attemptCount, gameStatus);
     }
 
+
     private void retry() {
         String gameCommand = inputView.readGameCommand();
-        if (Objects.equals(gameCommand, "R")) {
+        if (Objects.equals(gameCommand, CommandConstant.REDO)) {
             bridgeGameService.retry();
-            makeMove();
-        }
-        if (Objects.equals(gameCommand, "Q")) {
-            getResult();
+            executeGame();
         }
     }
 }
