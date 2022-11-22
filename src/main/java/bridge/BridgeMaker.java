@@ -48,14 +48,14 @@ public class BridgeMaker {
         return afterAddBridge(preBridgeState, bridgeState, choicePosition);
     }
     private List<String> firstAddBridge(List<String> preBridgeState, String bridgeState, String choicePosition){
-        if (bridgeState == choicePosition){
+        if (bridgeState.equals(choicePosition)){
             return firstOAddBridge(preBridgeState, choicePosition);
         }
         return firstXAddBridge(preBridgeState, choicePosition);
     }
 
     private List<String> firstOAddBridge(List<String> preBridgeState, String choicePosition) {
-        if (choicePosition == "U") {
+        if (choicePosition.equals("U")) {
             preBridgeState.set(0, preBridgeState.get(0) + " O ");
             preBridgeState.set(1, preBridgeState.get(1) + "   ");
             return preBridgeState;
@@ -66,7 +66,7 @@ public class BridgeMaker {
     }
 
     private List<String> firstXAddBridge(List<String> preBridgeState, String choicePosition) {
-        if (choicePosition == "D") {
+        if (choicePosition.equals("U")) {
             preBridgeState.set(0, preBridgeState.get(0) + " X ");
             preBridgeState.set(1, preBridgeState.get(1) + "   ");
             return preBridgeState;
@@ -77,14 +77,14 @@ public class BridgeMaker {
     }
 
     private List<String> afterAddBridge(List<String> preBridgeState, String bridgeState, String choicePosition){
-        if (bridgeState == choicePosition){
+        if (bridgeState.equals(choicePosition)){
             return afterOAddBridge(preBridgeState, choicePosition);
         }
         return afterXAddBridge(preBridgeState, choicePosition);
     }
 
     private List<String> afterOAddBridge(List<String> preBridgeState, String choicePosition) {
-        if (choicePosition == "U") {
+        if (choicePosition.equals("U")) {
             preBridgeState.set(0, preBridgeState.get(0) + "| O ");
             preBridgeState.set(1, preBridgeState.get(1) + "|   ");
             return preBridgeState;
@@ -95,7 +95,7 @@ public class BridgeMaker {
     }
 
     private List<String> afterXAddBridge(List<String> preBridgeState, String choicePosition) {
-        if (choicePosition == "D") {
+        if (choicePosition.equals("U")) {
             preBridgeState.set(0, preBridgeState.get(0) + "| X ");
             preBridgeState.set(1, preBridgeState.get(1) + "|   ");
             return preBridgeState;
