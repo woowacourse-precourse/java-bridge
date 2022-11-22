@@ -34,11 +34,9 @@ public class BridgeGame {
             input = inputView.readMoving();
             if(!comparingInputBridge()) {
                 wrongCase();
-                OutputView.printMap(this.up, this.down);
             }
             if(comparingInputBridge()){
                 correctCase();
-                OutputView.printMap(this.up, this.down);
             }
         }
     }
@@ -64,6 +62,7 @@ public class BridgeGame {
         }
         up.add("   ");
         down.add(" O ");
+        OutputView.printMap(this.up, this.down);
     }
 
     public void wrongCase() {
@@ -74,5 +73,6 @@ public class BridgeGame {
         }
         up.add("   ");
         down.add(" X ");
+        OutputView.printMap(this.up, this.down);
     }
 }
