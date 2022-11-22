@@ -1,6 +1,6 @@
 package bridge.validator;
 
-public class PositionValidator implements SizeValidator{
+public class PositionValidator implements SizeValidator {
     static final int minLength = 0;
     final int maxLength;
 

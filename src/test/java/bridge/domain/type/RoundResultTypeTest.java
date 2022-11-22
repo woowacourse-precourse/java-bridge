@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -22,7 +21,7 @@ public class RoundResultTypeTest {
     @ParameterizedTest
     @MethodSource("getResourceForRoundResult")
     @DisplayName("올바른 RoundResult를 가져오는지 검사")
-    void TestGetRoundResult(MoveResultType moveResultType, boolean isClear, RoundResultType roundResultType){
+    void TestGetRoundResult(MoveResultType moveResultType, boolean isClear, RoundResultType roundResultType) {
         assertThat(RoundResultType.of(moveResultType, isClear)).isEqualTo(roundResultType);
     }
 }

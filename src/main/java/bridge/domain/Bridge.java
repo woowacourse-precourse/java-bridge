@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.type.MoveResultType;
 import bridge.validator.PositionValidator;
 
 import java.util.List;
@@ -13,31 +14,25 @@ public class Bridge {
         this.positionValidator = new PositionValidator(bridge.size());
     }
 
-    public static Bridge from(List<String> bridge){
+    public static Bridge from(List<String> bridge) {
         return new Bridge(bridge);
     }
 
     boolean isEndOfBridge(int position) {
         positionValidator.validatePosition(position);
-        if (position == bridge.size()) {
-            return true;
-        }
-        return false;
+        return position == bridge.size();
     }
 
     boolean isMovable(String moveCommand, int position) {
         positionValidator.validatePosition(position);
-        if (bridge.get(position).equals(moveCommand)) {
-            return true;
-        }
-        return false;
+        return bridge.get(position).equals(moveCommand);
     }
 
-    MoveResult getMoveResult(String moveCommand, int position) {
+    MoveResultType getMoveResult(String moveCommand, int position) {
         positionValidator.validatePosition(position);
         if (isMovable(moveCommand, position)) {
-            return MoveResult.SUCCESS;
+            return MoveResultType.SUCCESS;
         }
-        return MoveResult.FAIL;
+        return MoveResultType.FAIL;
     }
 }

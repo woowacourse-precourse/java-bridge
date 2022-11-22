@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.domain.type.MoveResultType;
+
 public class BridgeWalker {
     static int START_POSITION = 0;
     int position;
@@ -12,13 +14,13 @@ public class BridgeWalker {
         this.position = START_POSITION;
     }
 
-    public MoveResult move(String moveCommand) {
-        MoveResult moveResult = bridge.getMoveResult(moveCommand, position);
-        moveRecord.recordMovement(moveResult, moveCommand);
-        if (moveResult.equals(MoveResult.SUCCESS)) {
+    public MoveResultType move(String moveCommand) {
+        MoveResultType moveResultType = bridge.getMoveResult(moveCommand, position);
+        moveRecord.recordMovement(moveResultType, moveCommand);
+        if (moveResultType.equals(MoveResultType.SUCCESS)) {
             position++;
         }
-        return moveResult;
+        return moveResultType;
     }
 
     public String getMoveRecord() {
@@ -26,10 +28,7 @@ public class BridgeWalker {
     }
 
     public boolean isCrossAllStep() {
-        if (bridge.isEndOfBridge(position)) {
-            return true;
-        }
-        return false;
+        return bridge.isEndOfBridge(position);
     }
 
     public void reset() {

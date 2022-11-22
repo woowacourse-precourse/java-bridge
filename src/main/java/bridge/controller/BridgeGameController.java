@@ -2,7 +2,12 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.*;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeWalker;
+import bridge.domain.MoveRecord;
+import bridge.domain.type.GameCommandType;
+import bridge.domain.type.RoundResultType;
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.GameCommandValidator;
 import bridge.validator.MoveCommandValidator;
@@ -25,23 +30,23 @@ public class BridgeGameController {
     public void repeatRound() {
         outputView.printGameStartMessage();
         bridgeGame = new BridgeGame(new BridgeWalker(new MoveRecord(), createBridgeByUserInputSize()));
-        RoundResult roundResult;
+        RoundResultType roundResultType;
         do {
             bridgeGame.retry();
-            roundResult = runRound();
-        } while (!roundResult.equals(RoundResult.CLEAR) && getGameCommand().equals(GameCommand.RESTART));
+            roundResultType = runRound();
+        } while (!roundResultType.equals(RoundResultType.CLEAR) && getGameCommand().equals(GameCommandType.RESTART));
         outputView.printResult(
                 bridgeGame.getClearDescription(), bridgeGame.getGameTryCountDescription(), bridgeGame.getMoveRecord()
         );
     }
 
-    public RoundResult runRound() {
-        RoundResult roundResult;
+    public RoundResultType runRound() {
+        RoundResultType roundResultType;
         do {
-            roundResult = bridgeGame.move(getMoveCommand());
+            roundResultType = bridgeGame.move(getMoveCommand());
             outputView.printMap(bridgeGame.getMoveRecord());
-        } while (roundResult.equals(RoundResult.PLAYING));
-        return roundResult;
+        } while (roundResultType.equals(RoundResultType.PLAYING));
+        return roundResultType;
     }
 
     public Bridge createBridgeByUserInputSize() {
@@ -57,15 +62,15 @@ public class BridgeGameController {
         return userMove;
     }
 
-    public GameCommand getGameCommand() {
+    public GameCommandType getGameCommand() {
 
         if (bridgeGame.isClear()) {
-            return GameCommand.QUIT;
+            return GameCommandType.QUIT;
         }
         GameCommandValidator gameCommandValidator = new GameCommandValidator();
-        GameCommand gameCommand = GameCommand.findByCommand(
+        GameCommandType gameCommandType = GameCommandType.findByCommand(
                 gameCommandValidator.getValidCommand(inputView.readGameCommand())
         );
-        return gameCommand;
+        return gameCommandType;
     }
 }

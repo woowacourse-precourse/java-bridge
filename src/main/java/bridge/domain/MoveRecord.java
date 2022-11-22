@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.domain.type.BridgeLineType;
+import bridge.domain.type.MoveResultType;
+
 import java.util.*;
 
 public class MoveRecord {
@@ -8,34 +11,34 @@ public class MoveRecord {
     final static String RECORD_START_BRACKET = "[ ";
     final static String RECORD_END_BRACKET = " ]";
     final static String RECORD_SEPARATOR = "\n";
-    private final Map<BridgeLine, List<String>> record;
+    private final Map<BridgeLineType, List<String>> record;
 
     public MoveRecord() {
         record = new HashMap<>();
-        Arrays.stream(BridgeLine.values()).forEach(bridgeLine -> {
+        Arrays.stream(BridgeLineType.values()).forEach(bridgeLine -> {
             record.put(bridgeLine, new ArrayList<>());
         });
     }
 
-    private void recordOneLine(BridgeLine bridgeLine, String bridgePieceState) {
-        record.get(bridgeLine).add(bridgePieceState);
+    private void recordOneLine(BridgeLineType bridgeLineType, String bridgePieceState) {
+        record.get(bridgeLineType).add(bridgePieceState);
     }
 
-    public void recordMovement(MoveResult moveResult, String moveCommand) {
-        BridgeLine bridgeLineToMove = BridgeLine.findByCommand(moveCommand);
-        recordOneLine(bridgeLineToMove, moveResult.getSymbol());
+    public void recordMovement(MoveResultType moveResultType, String moveCommand) {
+        BridgeLineType bridgeLineTypeToMove = BridgeLineType.findByCommand(moveCommand);
+        recordOneLine(bridgeLineTypeToMove, moveResultType.getSymbol());
         record.keySet().stream()
-                .filter(bridgeLine -> !bridgeLine.equals(bridgeLineToMove))
+                .filter(bridgeLine -> !bridgeLine.equals(bridgeLineTypeToMove))
                 .forEach(bridgeLine -> recordOneLine(bridgeLine, NOT_CROSSED));
     }
 
-    public String getRecord(BridgeLine bridgeLine) {
-        return RECORD_START_BRACKET + String.join(BRIDGE_PIECE_SEPARATOR, record.get(bridgeLine)) + RECORD_END_BRACKET;
+    public String getRecord(BridgeLineType bridgeLineType) {
+        return RECORD_START_BRACKET + String.join(BRIDGE_PIECE_SEPARATOR, record.get(bridgeLineType)) + RECORD_END_BRACKET;
     }
 
     public String getRecord() {
         List<String> multipleRecord = new ArrayList<>();
-        Arrays.stream(BridgeLine.values()).forEach(bridgeLine -> {
+        Arrays.stream(BridgeLineType.values()).forEach(bridgeLine -> {
             multipleRecord.add(getRecord(bridgeLine));
         });
         return String.join(RECORD_SEPARATOR, multipleRecord);
@@ -43,7 +46,7 @@ public class MoveRecord {
 
     public void resetRecord() {
         record.clear();
-        Arrays.stream(BridgeLine.values()).forEach(bridgeLine -> {
+        Arrays.stream(BridgeLineType.values()).forEach(bridgeLine -> {
             record.put(bridgeLine, new ArrayList<>());
         });
     }

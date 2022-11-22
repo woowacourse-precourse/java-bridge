@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.domain.type.MoveResultType;
+import bridge.domain.type.RoundResultType;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -18,9 +21,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public RoundResult move(String moveCommand) {// U : direction
-        MoveResult moveResult = bridgeWalker.move(moveCommand);
-        return RoundResult.of(moveResult, isClear());
+    public RoundResultType move(String moveCommand) {// U : direction
+        MoveResultType moveResultType = bridgeWalker.move(moveCommand);
+        return RoundResultType.of(moveResultType, isClear());
     }
 
     /**
@@ -42,9 +45,9 @@ public class BridgeGame {
     }
 
     public String getClearDescription() {
-        String clearStatus = RoundResult.FAIL.getDescription();
+        String clearStatus = RoundResultType.FAIL.getDescription();
         if (isClear()) {
-            clearStatus = RoundResult.CLEAR.getDescription();
+            clearStatus = RoundResultType.CLEAR.getDescription();
         }
         return String.format("게임 성공 여부: %s", clearStatus);
     }
