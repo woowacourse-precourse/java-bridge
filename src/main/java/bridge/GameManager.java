@@ -5,9 +5,8 @@ import bridge.model.BridgeMap;
 import java.util.List;
 
 public class GameManager {
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private OutputView outputView = new OutputView();
+    private InputView inputView = new InputView();
     BridgeGame bridgeGame;
 
     public void initGame() {
@@ -24,24 +23,23 @@ public class GameManager {
                     tryCount++;
                     bridgeGame.retry();
                 } else {
-                    gameStatus=false;
+                    gameStatus = false;
                     break;
                 }
             }
         }
 
-        outputView.printResult(bridgeGame.getBridgeMap(),tryCount,gameStatus);
-
+        outputView.printResult(bridgeGame.getBridgeMap(), tryCount, gameStatus);
     }
 
     private List<String> createBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         while (true) {
             outputView.askBridgeSize();
             try {
                 return bridgeMaker.makeBridge(inputView.readBridgeSize());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
     }
@@ -55,7 +53,6 @@ public class GameManager {
                 return result;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
     }
@@ -67,7 +64,6 @@ public class GameManager {
                 return isRestart();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
     }
