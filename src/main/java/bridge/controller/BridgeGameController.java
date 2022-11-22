@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.data.Command;
+import bridge.data.Game;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -19,7 +20,7 @@ public class BridgeGameController {
     public void startGame() {
         outputView.printStartMessage();
         int bridgeSize = getBridgeSize();
-        outputView.nextLine();
+        outputView.printMessage();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
         crossBridge(bridgeGame);
@@ -48,7 +49,7 @@ public class BridgeGameController {
     }
 
     private boolean moveAndCheckMovingSuccess(BridgeGame bridgeGame) {
-        outputView.printMoveInputMessage();
+        outputView.printMessage(Game.MOVING_CHOICE_MESSAGE.getMessage());
         String moving = getMovingCommand();
         return bridgeGame.move(moving);
     }
@@ -64,7 +65,7 @@ public class BridgeGameController {
     }
 
     private boolean retryGame(BridgeGame bridgeGame) {
-        outputView.printRetryMessage();
+        outputView.printMessage(Game.RETRY_MESSAGE.getMessage());
         if (getGameCommand().equals(Command.RETRY.getLabel())) {
             bridgeGame.retry();
             return true;
