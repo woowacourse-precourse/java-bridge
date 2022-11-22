@@ -1,11 +1,13 @@
 package bridge;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class GameData {
-    public LinkedList<String> topStatus = new LinkedList<>();
-    public LinkedList<String> bottomStatus = new LinkedList<>();
+    private final LinkedList<String> topStatus = new LinkedList<>();
+    private final LinkedList<String> bottomStatus = new LinkedList<>();
     private int totalTry = 1;
+    private List<String> bridge;
 
     public LinkedList<String> getTopStatus() {
         return this.topStatus;
@@ -13,6 +15,14 @@ public class GameData {
 
     public LinkedList<String> getBottomStatus() {
         return this.bottomStatus;
+    }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
+    public void setBridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
     public int getTotalTry() {

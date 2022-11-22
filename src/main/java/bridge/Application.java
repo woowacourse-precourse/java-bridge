@@ -2,9 +2,9 @@ package bridge;
 
 public class Application {
 
-    public static InputView inputView = new InputView();
-    public static BridgeGame bridgeGame = new BridgeGame();
-    public static OutputView outputView = new OutputView();
+    private static final InputView inputView = new InputView();
+    private static final BridgeGame bridgeGame = new BridgeGame();
+    private static final OutputView outputView = new OutputView();
     public static String movingResult;
     public static boolean stopFlag = false;
 

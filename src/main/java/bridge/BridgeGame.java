@@ -10,8 +10,6 @@ public class BridgeGame {
     private final GameData gameData = new GameData();
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    public List<String> bridge;
-    public int bridgeSize;
     private int bridgeIndex = 0;
 
     /**
@@ -21,7 +19,7 @@ public class BridgeGame {
      */
     public String move(String direction) {
 
-        if (this.bridge.get(this.bridgeIndex).equals(direction)) {
+        if (this.gameData.getBridge().get(this.bridgeIndex).equals(direction)) {
             increaseBridgeIndex();
             this.gameData.updateStatus(direction, "O");
             return "O";
@@ -47,7 +45,7 @@ public class BridgeGame {
     }
 
     public String checkGameResult() {
-        if (this.bridgeSize == this.bridgeIndex) {
+        if (this.gameData.getBridge().size() == this.bridgeIndex) {
             return "성공";
         }
 
@@ -55,12 +53,11 @@ public class BridgeGame {
     }
 
     public void startGame(int bridgeSize) {
-        this.bridgeSize = bridgeSize;
-        this.bridge = bridgeMaker.makeBridge(this.bridgeSize);
+        this.gameData.setBridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public boolean checkArrive() {
-        return this.bridgeIndex == this.bridgeSize;
+        return this.bridgeIndex == this.gameData.getBridge().size();
     }
 
     public void increaseBridgeIndex() {
