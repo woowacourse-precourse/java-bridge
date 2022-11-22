@@ -40,6 +40,7 @@ class BridgeGameTest extends NsTest {
             runException("!@EAB");
             runException("21");
             runException(" ");
+            runException("Ua");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
