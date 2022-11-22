@@ -1,6 +1,8 @@
 package bridge.util;
 
 public class ErrorMessage {
+    private ErrorMessage() {
+    }
     public static final String ERROR_MESSAGE = "[ERROR] %s";
     public static final String ERROR_GAME_COMMAND_INPUT = "R/Q 중 재시작 여부를 입력해 주세요.";
     public static final String ERROR_GENERATED_NUMBER = "0, 1 중의 숫자로만 다리를 생성할 수 있습니다.";
