@@ -1,4 +1,4 @@
-package utils;
+package bridge.utils;
 
 public enum UpDown {
     UP(1, "U"),

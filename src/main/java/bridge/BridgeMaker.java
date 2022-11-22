@@ -1,6 +1,6 @@
 package bridge;
 
-import utils.UpDown;
+import bridge.utils.UpDown;
 import java.util.ArrayList;
 import java.util.List;
 
