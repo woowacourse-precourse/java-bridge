@@ -12,9 +12,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        //errorControl.brdigeSizeStrError(input);
+        errorControl.bridgeSizeStrError(input);
         int bridgeSize = Integer.parseInt(input);
-        //errorControl.bridgeSizeError(bridgeSize);
+        errorControl.bridgeSizeError(bridgeSize);
         return bridgeSize;
     }
 

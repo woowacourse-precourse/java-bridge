@@ -22,7 +22,6 @@ public class BridgeGame {
         }catch (IllegalArgumentException e){
             System.out.println(ErrorMessage.strError.getErrorMessage());
         }
-
     }
 
     private void makeBridge(){
