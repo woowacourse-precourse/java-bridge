@@ -3,7 +3,7 @@ package bridge.Controller;
 import static bridge.View.OutputView.*;
 import static bridge.View.InputView.*;
 
-import bridge.BridgeGame;
+import bridge.Service.BridgeGame;
 import bridge.View.InputView;
 
 public class BridgeGameController {

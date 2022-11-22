@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.Controller.BridgeGameController;
+import bridge.Service.BridgeGame;
 
 public class Application {
     public static void main(String[] args) {
