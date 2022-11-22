@@ -29,7 +29,9 @@ public class BridgeController {
         try {
             GameStatus status = playBridgeGame();
             outputView.printResult(service.getResultDto(status));
-        } catch (Exception | Error e) {
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+        } catch (OutOfMemoryError | StackOverflowError e) {
             OutputView.printError(UNEXPECTED_EXCEPTION);
         }
     }
