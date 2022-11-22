@@ -1,0 +1,57 @@
+- style: U와 D 상수로 관리
+- docs(CHANGELOG.md): CHNGELOG.md 파일 작성
+- test(UserTest): move() 함수가 올바른 반환값을 반환하는지 테스트 추가
+- docs(docs/README.md): 기능 요구사항 함수명 변경
+- refactor(User): isCrossBridge 함수 명 역할에 맞게 checkCrossBridge로 변경
+- refactor: 자바 코드 컨벤션에 맞게 일부 수정 및 주석 추가
+- test(UserTest): 유저 테스트 추가
+- docs: 기능 요구사항 재정리
+- test: BridgeTestNumberGenerator가 0만 봔환했던 것에서 생성자로 입력한 List를 반환하게끔 변경 및 그에 맞게 bridge test 변경
+- refactor(BridgeGame): BridgeGame의 내부에서만 쓰이는 함수 private로 변경
+- refactor: User의 NumberGenerator를 가장 상단의 Application 클래스에서 의존성 주입하도록 변경
+- feat(Application): BridgeGame을 이용한 게임 시작 기능 구현
+- feat(BridgeGame): User 인스턴스를 선언하고, 해당 인스턴스를 사용해서 게임의 흐름 구현
+- feat(User): 입력에 따라 사용자 상태를 업데이트하고, 다음으로 건널 수 없다면 false를 반환하는 기능 추가
+- feat(User): 사용자의 재시작 입력 분기 처리 및 분기 마다 해당 기능 추가
+- feat(User): 재시작을 위한 현재 상태 초기화 기능 추가
+- feat(User): 현재 status가 DOING이 아니면 마지막 결과를 출력하고, False 반환하는 기능 추가
+- fix(OutputView): OutputView의 printMap이 제대로 된 map을 출력하지 못하는 오류 해결
+- fix(BridgeMaker): 오타 C -> U 수정
+- feat(OutputView): 게임 종료 문구 출력 기능 추가
+- feat(OutputView): 사용자의 현재까지의 입력과 마지막 성공 여부에 따라 String으로 다리 모양 출력 기능 추가
+- feat(User): 현재 위치와 다리의 길이를 비교하여 성공했는지 실패했는는지 반환하는 기능 추가
+- feat(Bridge): 다리의 길이를 반환하는 기능 추가
+- feat(User): 현재 위치와 총 다리의 길이를 비교하여 현재 다리를 전부 다 건넌 상태인지 건너는 중인지, 실패하였는지 상태값 업데이트
+- feat(User): 생성자 및 변수 초기화
+- feat(User): User 클래스 생성 및 관리할 인스턴스 변수 구현
+- feat(Status): 유저가 다리를 건너는 현재 상태를 상수로 저장
+- test(BridgeTest): 다리가 사용자의 입력값과 현재위치와 비교하여, 알맞은 반환 값을 반환하는지 확인하는 테스트 추가
+- refactor(Bridge): Bridge 생성자가 BridgeNumberGenerator를 인자로 받도록 변경
+- feat(Bridge): 사용자의 현재 위치와 입력 값을 받아 다음 위치가 건널 수 있으면 True 건널 수 없으면 False 반환하는 기능 추가
+- feat(Bridge): Bridge클래스 생성과함께 bridge 생성하는 기능 추가
+- refactor: domain,controller,ui package로 각 클래스 분류
+- test(BridgeMakerTest): 만들어진 bridge가 알맞은 List<String>으로 변환되는지 확인하는 테스트 추가
+- test(BridgeMakerTest): 입력이 전부 0이기 때문에 List가 D만을 갖는지 확인하는 테스트 추가
+- docs(docs/README.md): User의 retry 오류 기능 수정
+- docs(docs/README.md): BridgeMakerTest의 List가 0과 1의 값을 U와 D로 변경하여 테스트로 변경
+- test: BridgeNumberGenertor를 상속받아 0만을 생성하는 클래스 생성 및 생성된 bridge가 입력한 길이만큼의 size를 갖는지 테스트
+- docs(docs/README.md): BridgeRandomNumberGenerator는 제공되는 API만을 사용하기 때문에 테스트 하지 않도록 기능 요구 사항 변경
+- docs(docs/README.md): BridgeRandomNumberGenerator 테스트 기능 정리 추가
+- docs(docs/README.md): BridgeGame이 유저의 상태까지 책임지기 때문에 USER클래스를 새로 분리하여 기능 요구사항 재정리
+- feat(BridgeMaker): 다리를 길이에 맞게 랜덤하게 숫자를 생성하여 0이면 D 1이면 U를 List에 추가하며 List를 반환하는 가능
+- docs(docs/README.md): 다리 생성 기능 요구사항 프로그래밍 요구사항에 맞춰 변경
+- refactor(InputView): java 컨벤션에 맞게 일부 수종
+- test(InputViewValidationTest): 입력이 R이나 Q가 아니면 예외 처리 하는 테스트 추가
+- feat(InputView): 게임을 재시작할지 종료할지 R이나 Q를 입력받고 예외처리를 적용한 후 입력 값을 반환하는 기능
+- feat(InputViewValidation): 입력이 'R' 혹은 'Q'인지 확인하고 아니면 예외 처리 하는 기능
+- test(InputViewValidationTest): 입력이 U나 D가 아니면 예외 처리 하는 테스트 추가
+- feat(InputView): 사용자가 이동할 칸을 입력받고 예외처리를 적용한 후 입력 값을 반환하는 기능
+- feat(InputViewValidation): 입력이 'U' 혹은 'D'인지 확인하고 아니면 예외 처리 하는 기능
+- test(InputViewValidationTest): 숫자가 3에서 20사이의 범위를 지키지 못했을 때 예외처리 테스트
+- test(InputViewValidationTest): 숫자가 아닌 수를 정확히 예외처리 하는지 테스트
+- feat(InputView): 다리의 길이를 입력 받고 입력값에 예외 처리 적용 후 숫자로 반환하는 기능 추가
+- refactor(InputViewValidation): Validation 함수 및 변수를 클래스의 기능을 고려하여 static으로 변경
+- feat(InputViewValidation): 숫자만 입력했는지 정규식으로 확인하고 아니면 예외 처리 하는 기능
+- docs(docs/README.md): 기능요구 사항 정리 테스트 추가
+- docs(docs/README.md): 기능요구 사항 정리
+- feat: setup precourse bridge game project
