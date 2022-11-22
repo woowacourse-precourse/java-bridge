@@ -15,7 +15,6 @@ public class BridgeMaker {
 
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
-
 		for (int i = 0; i < size; i++) {
 			int bridgeNumber = bridgeNumberGenerator.generate();
 			bridge.add(upOrDownCheck(bridgeNumber));
@@ -25,11 +24,9 @@ public class BridgeMaker {
 
 	private String upOrDownCheck(int number) {
 		String upOrDown = "U";
-
 		if (number == 0) {
 			upOrDown = "D";
 		}
-
 		return upOrDown;
 	}
 }
