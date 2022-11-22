@@ -14,6 +14,7 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullSource;
 
 class BridgeGameTest {
 
@@ -43,6 +44,21 @@ class BridgeGameTest {
         void throwIllegalArgumentExceptionWhenReceiveNull(Crossing crossing, PassOrFail passOrFail) {
             //then
             Assertions.assertThatThrownBy(() -> bridgeGame.move(crossing, passOrFail))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Nested
+    @TestInstance(Lifecycle.PER_CLASS)
+    @DisplayName("retry 메서드는")
+    class DescribeRetry {
+
+        @ParameterizedTest
+        @NullSource
+        @DisplayName("인자로 null을 받을 경우 IllegalArgumentException을 반환")
+        void throwIllegalArgumentExceptionWhenReceiveNull(Crossing crossing) {
+            //then
+            Assertions.assertThatThrownBy(() -> bridgeGame.retry(crossing))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
