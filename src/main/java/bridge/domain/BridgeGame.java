@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.Instances.EndType.*;
+import static bridge.Instances.Setting.COMMAND_RETRY;
 
 
 /**
@@ -13,16 +14,23 @@ import static bridge.Instances.EndType.*;
  */
 public class BridgeGame {
 
-    List<String> bridge;
-    int trial;
-    int position;
-    String lastMoving;
+    private List<String> bridge;
+    private int trial;
+    private int position;
+    private String lastMoving;
 
     public BridgeGame() {
         this.trial = 0;
         this.position = 0;
         this.bridge = new ArrayList<>();
         this.lastMoving = null;
+    }
+
+    public BridgeGame(int trial, int position, List<String> bridge, String lastMoving) {
+        this.trial = trial;
+        this.position = position;
+        this.bridge = bridge;
+        this.lastMoving = lastMoving;
     }
 
     private void getMoving() {
@@ -55,7 +63,7 @@ public class BridgeGame {
         GameUtils.printMoveResult(bridge, position, correct);
     }
 
-    private void moveUntilGameOver() {
+    public void moveUntilGameOver() {
         do {
             move();
         } while (isLastMovingCorrect() && !gameSuccess());
@@ -79,18 +87,18 @@ public class BridgeGame {
         }
     }
 
-    private EndType gameEnded() {
+    public EndType gameEnded() {
         if (gameSuccess()) {
             return SUCCESS;
         }
         String input = GameUtils.getGameCommand();
-        if (input.equals("R")) {
+        if (input.equals(COMMAND_RETRY)) {
             return FAIL_RETRY;
         }
         return FAIL_QUIT;
     }
 
-    private boolean successEndOrFailEnd(EndType type) {
+    public boolean successEndOrFailEnd(EndType type) {
         if (type.equals(SUCCESS)) {
             successEnd();
             return type.getRetry();
