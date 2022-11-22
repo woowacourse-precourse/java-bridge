@@ -6,9 +6,8 @@ public class BridgeGame {
     private List<String> bridge;
     private User player;
 
-    public void start(int bridgeSize){
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+    public void start(List<String> bridge){
+        this.bridge = bridge;
         this.player = new User();
     }
 
