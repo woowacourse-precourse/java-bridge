@@ -13,11 +13,8 @@ public class Player {
         tryCount++;
     }
 
-    public MoveResult move(Bridge bridge, Direction direction) {
-        if (bridge.isMovable(position++, direction)) {
-            return new MoveResult(DrawType.SUCCESS, direction);
-        }
-        return new MoveResult(DrawType.FAIL, direction);
+    public boolean move(Bridge bridge, Direction direction) {
+        return bridge.isMovable(position++, direction);
     }
 
     public boolean moveToEnd(Bridge bridge) {

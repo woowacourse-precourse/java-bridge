@@ -15,13 +15,13 @@ public class GameMap {
         initialize();
     }
 
-    public void draw(MoveResult moveResult) {
-        Arrays.stream(Direction.values()).forEach(direction -> {
-            if (moveResult.compareDirection(direction)) {
-                map.get(direction).add(moveResult.getDrawType());
+    public void draw(Direction direction, DrawType drawType) {
+        Arrays.stream(Direction.values()).forEach(directionType -> {
+            if (directionType == direction) {
+                map.get(directionType).add(drawType);
                 return;
             }
-            map.get(direction).add(DrawType.BLANK);
+            map.get(directionType).add(DrawType.BLANK);
         });
     }
 

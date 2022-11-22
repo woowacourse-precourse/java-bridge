@@ -6,7 +6,6 @@ import bridge.model.DrawType;
 import bridge.model.GameCommand;
 import bridge.model.GameMap;
 import bridge.model.GameStatus;
-import bridge.model.MoveResult;
 import bridge.model.Player;
 
 /**
@@ -31,15 +30,22 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(Direction direction) {
-        MoveResult moveResult = player.move(bridge, direction);
+        boolean moveResult = player.move(bridge, direction);
         changeStatusByMoveResult(moveResult);
-        gameMap.draw(moveResult);
+        drawGameMapByMoveResult(moveResult, direction);
     }
 
-    private void changeStatusByMoveResult(MoveResult moveResult) {
-        if (moveResult.compareDrawType(DrawType.FAIL)) {
-            setStatus(GameStatus.FAIL);
+    private void drawGameMapByMoveResult(boolean moveResult, Direction direction) {
+        if (moveResult) {
+            gameMap.draw(direction, DrawType.SUCCESS);
             return;
+        }
+        gameMap.draw(direction, DrawType.FAIL);
+    }
+
+    private void changeStatusByMoveResult(boolean moveResult) {
+        if (!moveResult) {
+            setStatus(GameStatus.FAIL);
         }
         if (player.moveToEnd(bridge)) {
             setStatus(GameStatus.COMPLETE);
