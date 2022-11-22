@@ -23,7 +23,7 @@ public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String BLANK_LINE = "\n";
-    private static final String EXCEPTION = "[ERROR] ";
+    private static final String ERROR = "[ERROR] ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -32,14 +32,17 @@ public class OutputView {
      */
     public void printMap(Result result) {
         StringBuilder context = new StringBuilder();
+        addContext(result, context);
+        System.out.println(context);
+    }
+
+    private void addContext(Result result, StringBuilder context) {
         for (List<String> bridge : result.getResults()) {
             context.append(BEGIN);
             appendResult(context, bridge);
             context.replace(context.length() - 1, context.length(), END);
             context.append(BLANK_LINE);
         }
-
-        System.out.println(context);
     }
 
     /**
@@ -93,6 +96,6 @@ public class OutputView {
     }
 
     public void printException(Exception exception) {
-        System.out.println(EXCEPTION + exception.getMessage());
+        System.out.println(ERROR + exception.getMessage());
     }
 }
