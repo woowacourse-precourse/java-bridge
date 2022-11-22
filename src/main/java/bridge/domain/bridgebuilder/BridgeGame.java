@@ -16,7 +16,7 @@ public class BridgeGame {
 
     public static void move(Bridge answerBridge, OXBridge oxBridge, UpOrDown upOrDown) {
         addUDToOXBridge(oxBridge, upOrDown,
-            isEquals(upOrDown.getInputUD(), answerBridge.getBridge(), oxBridge.sizeOfOXBridge()));
+                isEquals(upOrDown.getInputUD(), answerBridge.getBridge(), oxBridge.sizeOfOXBridge()));
     }
 
     public static boolean isEquals(String inputUD, List<String> bridgeUD, int oxBridgeSize) {
