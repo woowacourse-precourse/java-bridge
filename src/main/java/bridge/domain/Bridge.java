@@ -11,7 +11,6 @@ public class Bridge {
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
-        System.out.println(bridge);
         this.bridge = bridge;
     }
 
@@ -42,7 +41,6 @@ public class Bridge {
         List<String> line = new ArrayList<>();
 
         for (int j = 0; j < nth-1; j++) {
-            System.out.println(j+" "+row);
             line.add(getCanvas(true, j, row));
         }
 
