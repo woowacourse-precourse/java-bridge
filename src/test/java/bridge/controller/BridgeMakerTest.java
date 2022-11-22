@@ -1,11 +1,11 @@
-package bridge;
-
-import bridge.controller.BridgeMaker;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
+package bridge.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
+import bridge.BridgeRandomNumberGenerator;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {
 
@@ -18,4 +18,5 @@ class BridgeMakerTest {
         System.out.println(bridgeStr);
         assertThat(size).isEqualTo(result);
     }
+
 }
