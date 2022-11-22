@@ -2,7 +2,10 @@ package bridge;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -11,42 +14,34 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 public class BridgeGameTest {
 
-    @Test
-    void 이동_성공_테스트() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean isSuccess = bridgeGame.move(0, "U");
-        assertThat(isSuccess).isEqualTo(true);
+    private BridgeNumberGenerator numberGenerator;
+    private BridgeMaker bridgeMaker;
+    private List<String> bridge;
+    private BridgeGame bridgeGame;
+
+    @BeforeEach
+    void setUp() {
+        numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
+        bridgeMaker = new BridgeMaker(numberGenerator);
+        bridge = bridgeMaker.makeBridge(3);
+        bridgeGame = new BridgeGame(bridge);
     }
 
-    @Test
-    void 이동_실패_테스트() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean isSuccess = bridgeGame.move(0, "D");
-        assertThat(isSuccess).isEqualTo(false);
+    @ParameterizedTest
+    @CsvSource("0, U, true, 0, D, false")
+    public void 다리_이동_테스트(int index, String moving, boolean expected) {
+        boolean actual = bridgeGame.move(index, moving);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
     void 총_시도_횟수_증가_테스트() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
         bridgeGame.retry();
         assertThat(bridgeGame.getTryCount()).isEqualTo(2);
     }
 
     @Test
     void 현재_게임_결과_초기화_테스트() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
         bridgeGame.move(0, "D");
         bridgeGame.move(1, "D");
         bridgeGame.retry();
