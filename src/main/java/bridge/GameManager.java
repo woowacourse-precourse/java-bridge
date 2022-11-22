@@ -12,4 +12,13 @@ public class GameManager {
     public void showGameTitle() {
         outputView.printGameTitle();
     }
+
+    public BridgeGame buildBridgeGame(BridgeMaker bridgeMaker) {
+        outputView.printInputBridgeSize();
+        int size = inputView.readBridgeSize();
+
+        return new BridgeGame(bridgeMaker.makeBridge(size));
+    }
+
+
 }
