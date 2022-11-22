@@ -70,4 +70,13 @@ public class BridgeProgram {
 		stack = 0;
 		count++;
 	}
+
+	public void winOrFail() {
+		if (stack == bridge.getBridgeSize()) {
+			outputView.win(count);
+		}
+		if (upBridge.contains(" X ") || downBridge.contains(" X ")) {
+			outputView.Fail(count);
+		}
+	}
 }
