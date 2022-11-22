@@ -2,6 +2,8 @@ package bridge.domain;
 
 import bridge.domain.game.GameMode;
 
+import java.util.List;
+
 public class InputValidator {
 
     public boolean checkUpDown(String upDown){
@@ -43,6 +45,7 @@ public class InputValidator {
         validateNumRange(result);
         return result;
     }
+
 
 
 }

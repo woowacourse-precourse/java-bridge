@@ -4,8 +4,8 @@ public enum GameMode {
     RETRY("R", true),
     QUIT("Q", false);
 
-    private String retryKey;
-    private boolean retryOrNot;
+    private final String retryKey;
+    private final boolean retryOrNot;
 
     public String getKey() {
         return retryKey;
@@ -20,7 +20,7 @@ public enum GameMode {
         this.retryOrNot = retryOrNot;
     }
 
-    public boolean isRetry(String mode){
+    public boolean isRetry(String mode) {
         return GameMode.valueOf(mode).retryOrNot;
     }
 

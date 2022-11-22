@@ -12,23 +12,24 @@ public class Progress {
         return bridgeShape;
     }
 
-    public Progress(){
+    public Progress() {
         this.bridgeShape.put(Step.UPPER_STEP.getStepTxt(), new ArrayList<>());
         this.bridgeShape.put(Step.LOWER_STEP.getStepTxt(), new ArrayList<>());
     }
 
-    public void saveProgress(SuccessStep successStep, int nowPosition, String userStep){
+
+    public void saveProgress(SuccessStep successStep, String userStep) {
         makeBridge(successStep, userStep);
         finalBridge();
     }
 
-    public void makeBridge(SuccessStep successStep, String userStep){
-        bridgeShape.forEach((updown, bridge)->
+    public void makeBridge(SuccessStep successStep, String userStep) {
+        bridgeShape.forEach((updown, bridge) ->
                 bridge.add(decideStructure(userStep, successStep, updown)));
     }
 
-    public String decideStructure(String userStep, SuccessStep successStep, String updown){
-        if (userStep.equals(updown)){
+    public String decideStructure(String userStep, SuccessStep successStep, String updown) {
+        if (userStep.equals(updown)) {
             return successStep.getStep();
         }
         return BridgeStructure.BRIDGE_EMPTY.getShape();
@@ -36,14 +37,12 @@ public class Progress {
 
     public String makeEachRow(List<String> row) {
         String bridgeCell = row.stream().collect(Collectors.joining(BridgeStructure.BRIDGE_CELL.getShape()));
-        StringBuilder sb = new StringBuilder();
-        sb.append(BridgeStructure.BRIDGE_START.getShape()).append(bridgeCell).append(BridgeStructure.BRIDGE_END.getShape());
-        return sb.toString();
+        return BridgeStructure.BRIDGE_START.getShape() + bridgeCell + BridgeStructure.BRIDGE_END.getShape();
     }
 
-    public String finalBridge(){
+    public String finalBridge() {
         StringBuilder sb = new StringBuilder();
-        for (List<String> row: bridgeShape.values()){
+        for (List<String> row : bridgeShape.values()) {
             sb.append(makeEachRow(row));
             sb.append("\n");
         }
