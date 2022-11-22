@@ -37,4 +37,8 @@ public class BridgeGameController {
         return true;
     }
 
+    private void gameSetting(int bridgeSize) {
+        bridgeGame.initBridge(bridgeSize);
+    }
+
 }
