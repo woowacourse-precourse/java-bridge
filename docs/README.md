@@ -48,9 +48,10 @@
 
 
 ### Game Result
-- [ ] 게임의 시도 횟수를 저장하는 기능 
-- [ ] 게임의 성공유무를 저장하는 기능 
-
+- [x] 게임의 최종상태를 반환하는 기능
+- [x] 게임의 결과를 반환하는 기능
+- [x] 게임 시도 회숫를 반환하는 기능 
+- 
 ### Bridge
 - [x] 특정 index에 존재하는 방향이 입력 방향과 같은지 확인하는 기능
   - ![Generic badge](https://img.shields.io/badge/test-passed-blue.svg)
