@@ -13,13 +13,20 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String size = readLine();
+        int n = 0;
 
         if(size.length() >= 3) throw new IllegalArgumentException("[ERROR]");
         if(size.isEmpty()) throw new IllegalArgumentException("[ERROR]");
-        if(size.equals("a")) throw new IllegalArgumentException("[ERROR]");
 
+        try{
+            n = Integer.parseInt(size);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
 
-        return Integer.parseInt(size);
+        if(n < 3 || n >= 20) throw new IllegalArgumentException("[ERROR]");
+
+        return n;
     }
 
     /**
