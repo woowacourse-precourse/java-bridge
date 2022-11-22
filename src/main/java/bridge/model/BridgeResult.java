@@ -58,4 +58,14 @@ public class BridgeResult {
         bracket += " ]";
         return bracket;
     }
+
+    public void reset() {
+        upperLine.clear();
+        lowerLine.clear();
+        crossingCount = 0;
+    }
+
+    public int getCrossingCount() {
+        return crossingCount;
+    }
 }

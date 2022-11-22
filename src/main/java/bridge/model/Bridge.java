@@ -12,4 +12,8 @@ public class Bridge {
     public List<String> getBridge() {
         return List.copyOf(bridge);
     }
+
+    public int getSize() {
+        return bridge.size();
+    }
 }
