@@ -5,7 +5,8 @@ import bridge.Model.BridgeMap;
 
 public class OutputView {
 
-    public void printMap() {
+    public static void printMap(final BridgeMap bridgeMap) {
+        System.out.print(bridgeMap + "\n");
     }
 
     public void printResult() {
@@ -21,10 +22,6 @@ public class OutputView {
 
     public static void printMove() {
         System.out.println(Message.MOVE.print());
-    }
-
-    public static void printMap(final BridgeMap bridgeMap) {
-        System.out.print(bridgeMap + "\n");
     }
 
     public static void printStartOrEnd() {
