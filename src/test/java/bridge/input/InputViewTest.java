@@ -1,8 +1,8 @@
 package bridge.input;
 
-import bridge.controller.BasicBridgeValidator;
 import bridge.domain.GameCommand;
 import bridge.domain.MoveCommand;
+import bridge.input.validate.BasicBridgeValidator;
 import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayInputStream;

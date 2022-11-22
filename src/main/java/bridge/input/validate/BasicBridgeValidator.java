@@ -1,8 +1,7 @@
-package bridge.controller;
+package bridge.input.validate;
 
 import bridge.domain.GameCommand;
 import bridge.domain.MoveCommand;
-import bridge.input.BridgeValidator;
 
 import java.util.List;
 import java.util.regex.Pattern;

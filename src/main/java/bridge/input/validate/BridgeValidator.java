@@ -1,4 +1,4 @@
-package bridge.input;
+package bridge.input.validate;
 
 import java.util.List;
 

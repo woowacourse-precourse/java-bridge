@@ -1,8 +1,7 @@
 package bridge.input;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import bridge.input.validate.BridgeValidator;
+
 public class InputView {
     BridgeInput input;
     BridgeValidator validator;
@@ -44,9 +43,5 @@ public class InputView {
 
     private int parseInt(String str) {
         return Integer.parseInt(str);
-    }
-
-    private char convertFirstToChar(String str) {
-        return str.charAt(0);
     }
 }
