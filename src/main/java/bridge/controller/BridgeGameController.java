@@ -20,4 +20,16 @@ public class BridgeGameController {
         this.outputView = outputView;
         this.bridge = initBridge(bridgeMaker);
     }
+
+    private Bridge initBridge(final BridgeMaker bridgeMaker) {
+        try {
+            outputView.printStartMessage();
+            outputView.printAskBridgeLength();
+            final int size = inputView.readBridgeSize();
+            return new Bridge(bridgeMaker.makeBridge(size));
+        } catch (final IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return initBridge(bridgeMaker);
+        }
+    }
 }
