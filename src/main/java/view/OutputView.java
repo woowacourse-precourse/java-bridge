@@ -32,13 +32,17 @@ public class OutputView {
             addBrinkBridge(firstFloorBridge, secondFloorBridge);
             addFirstFloorBridge(firstFloorBridge, movingFloorDataSet.get(stage), passDataSet.get(stage));
             addSecondFloorBridge(secondFloorBridge, movingFloorDataSet.get(stage), passDataSet.get(stage));
-            if (stage != dataSetSize - 1) {
-                addSeparatorBridge(firstFloorBridge, secondFloorBridge);
-            }
+            if (stage != dataSetSize - 1) addSeparatorBridge(firstFloorBridge, secondFloorBridge);
         }
+        endWork(firstFloorBridge, secondFloorBridge);
+    }
+
+
+    private static void endWork(StringBuilder firstFloorBridge, StringBuilder secondFloorBridge) {
         addEndBridge(firstFloorBridge, secondFloorBridge);
         printFloor(firstFloorBridge, secondFloorBridge);
     }
+
 
     private static void printFloor(StringBuilder firstFloorBridge, StringBuilder secondFloorBridge) {
         System.out.println(firstFloorBridge);
