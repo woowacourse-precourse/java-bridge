@@ -40,9 +40,13 @@ public class OutputView {
 
     public void printSuccess(boolean isSuccess) {
         String resultToString = "성공";
-        if(!isSuccess){
+        if (!isSuccess) {
             resultToString = "실패";
         }
         System.out.println("게임 성공 여부: " + resultToString);
+    }
+
+    public void printRetryCount(int retry) {
+        System.out.println("총 시도한 횟수: " + retry);
     }
 }

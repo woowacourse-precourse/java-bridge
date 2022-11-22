@@ -12,6 +12,7 @@ public class BridgeGame {
     private List<String> player = new ArrayList<>();
     private String upResult = "";
     private String downResult = "";
+    private int retryCount = 1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -29,6 +30,7 @@ public class BridgeGame {
                 if (retry(input.readGameCommand())) {
                     upResult = "";
                     downResult = "";
+                    retryCount++;
                     continue;
                 }
                 printer.printResult(upResult,downResult);
@@ -69,5 +71,9 @@ public class BridgeGame {
      */
     public boolean retry(String userInput) {
         return userInput.equals("R");
+    }
+
+    public int getRetryCount(){
+        return retryCount;
     }
 }

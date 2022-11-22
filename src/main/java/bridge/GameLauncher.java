@@ -16,5 +16,6 @@ public class GameLauncher {
         BridgeGame bridgeGame = new BridgeGame(bridgeManager());
         boolean isSuccess = bridgeGame.runGame();
         printer.printSuccess(isSuccess);
+        printer.printRetryCount(bridgeGame.getRetryCount());
     }
 }
