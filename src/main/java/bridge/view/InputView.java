@@ -8,34 +8,34 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    BridgeRule bridgeRule = new BridgeRule();
+	BridgeRule bridgeRule = new BridgeRule();
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        String size = Console.readLine();
-        int number = bridgeRule.isNumber(size);
-        bridgeRule.isInRange(number);
-        return number;
-    }
+	/**
+	 * 다리의 길이를 입력받는다.
+	 */
+	public int readBridgeSize() {
+		String size = Console.readLine();
+		int number = bridgeRule.isNumber(size);
+		bridgeRule.isInRange(number);
+		return number;
+	}
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
+	/**
+	 * 사용자가 이동할 칸을 입력받는다.
+	 */
+	public String readMoving() {
 
-        String command = Console.readLine();
-        bridgeRule.isMoveCommand(command);
-        return command;
-    }
+		String command = Console.readLine();
+		bridgeRule.isMoveCommand(command);
+		return command;
+	}
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        String command = Console.readLine();
-        bridgeRule.isRetryCommand(command);
-        return command;
-    }
+	/**
+	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+	 */
+	public String readGameCommand() {
+		String command = Console.readLine();
+		bridgeRule.isRetryCommand(command);
+		return command;
+	}
 }

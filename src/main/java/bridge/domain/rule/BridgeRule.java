@@ -15,6 +15,7 @@ public class BridgeRule {
 			throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 		}
 	}
+
 	public int isNumber(String input) {
 		try {
 			return Integer.parseInt(input);
@@ -22,15 +23,17 @@ public class BridgeRule {
 			throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
 		}
 	}
-	public void isRetryCommand(String input){
+
+	public void isRetryCommand(String input) {
 		boolean isRetry = input.equals(RETRY) || input.equals(QUIT);
-		if(!isRetry){
+		if (!isRetry) {
 			throw new IllegalArgumentException("[ERROR] 재시도 R, 종료 Q를 입력해야 합니다.");
 		}
 	}
-	public void isMoveCommand(String input){
+
+	public void isMoveCommand(String input) {
 		boolean isMove = input.equals(UP) || input.equals(DOWN);
-		if(!isMove){
+		if (!isMove) {
 			throw new IllegalArgumentException("[ERROR] 위 U, 아래 D를 입력해야 합니다.");
 		}
 	}

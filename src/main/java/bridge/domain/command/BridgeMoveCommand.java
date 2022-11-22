@@ -3,8 +3,8 @@ package bridge.domain.command;
 import java.util.Arrays;
 
 public enum BridgeMoveCommand {
-	UP("U",1),
-	DOWN("D",0);
+	UP("U", 1),
+	DOWN("D", 0);
 	private String column;
 	private int number;
 

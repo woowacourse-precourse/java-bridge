@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
+
 	int numberOfAttempts = 0; //시도한 횟수
 	String successGame = "실패";
 	String map;
@@ -17,29 +18,31 @@ public class BridgeController {
 	List<String> moves = new ArrayList<>();
 
 
-	public void run(){
+	public void run() {
 		outputView.printStartGame();
 		List<String> bridges = makeBridge();
 		askMove(bridges);
 
 	}
 
-	public List<String> makeBridge(){
+	public List<String> makeBridge() {
 		int size = askBridgeSize();
 		List<String> bridges = bridgeGame.makeBridge(size);
 		return bridges;
 
 	}
+
 	public int askBridgeSize() {
-		while (true){
+		while (true) {
 			try {
 				outputView.printSizeSelect();
 				return inputView.readBridgeSize();
-			}catch (IllegalArgumentException e){
+			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 	}
+
 	public void askMove(List<String> bridges) {
 		int size = bridges.size();
 		int index = 0;
@@ -47,7 +50,8 @@ public class BridgeController {
 		while (index < size) {
 			String move = moving();
 			moves.add(move);
-			boolean canMove = bridgeGame.move(bridges,moves,index);// 이동을 했을때 boolean 값을 받아서 이동할 칸 입력 or retry할지 선택
+			boolean canMove = bridgeGame.move(bridges, moves,
+					index);// 이동을 했을때 boolean 값을 받아서 이동할 칸 입력 or retry할지 선택
 			map = outputView.printMap(bridges, moves);
 			index++;
 			if (!canMove) {//실패하면 false 성공하면 true
@@ -55,17 +59,18 @@ public class BridgeController {
 				numberOfAttempts++;
 			}
 		}
-		if(index == size){
-			successGame="성공";
+		if (index == size) {
+			successGame = "성공";
 			numberOfAttempts++;
 		}
-		outputView.printResult(numberOfAttempts,successGame,map);
+		outputView.printResult(numberOfAttempts, successGame, map);
 	}
-	public String moving(){
+
+	public String moving() {
 		try {
 			outputView.printMoveSelect();
 			return inputView.readMoving();
-		}catch (Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return moving();
 		}
@@ -77,7 +82,7 @@ public class BridgeController {
 			String command = inputView.readGameCommand();
 			moves = new ArrayList<>();
 			return bridgeGame.retry(command);
-		}catch (Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return askRetry();
 		}
