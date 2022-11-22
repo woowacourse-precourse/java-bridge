@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.domain.type.BridgeLineType;
+import bridge.domain.type.MoveType;
 import bridge.domain.type.MoveResultType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +35,7 @@ public class MoveRecordTest {
     void set() {
         moveRecord = new MoveRecord();
         moveResultType = MoveResultType.SUCCESS;
-        moveCommand = BridgeLineType.UP.getCommand();
+        moveCommand = MoveType.UP.getCommand();
     }
 
     @ParameterizedTest

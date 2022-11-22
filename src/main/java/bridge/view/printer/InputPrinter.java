@@ -1,6 +1,6 @@
 package bridge.view.printer;
 
-import bridge.domain.type.BridgeLineType;
+import bridge.domain.type.MoveType;
 import bridge.domain.type.GameCommandType;
 
 public class InputPrinter {
@@ -10,7 +10,7 @@ public class InputPrinter {
 
     public void printInputUserMoveCommandMessage() {
         System.out.printf("이동할 칸을 선택해주세요. (위: %s, 아래: %s)%n",
-                BridgeLineType.UP.getCommand(), BridgeLineType.DOWN.getCommand());
+                MoveType.UP.getCommand(), MoveType.DOWN.getCommand());
     }
 
     public void printInputGameCommandMessage() {

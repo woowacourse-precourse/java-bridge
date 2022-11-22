@@ -6,28 +6,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public enum BridgeLineType {
+public enum MoveType {
     UP(1, "U"),
     DOWN(0, "D");
 
     private final int number;
     private final String command;
 
-    BridgeLineType(int number, String command) {
+    MoveType(int number, String command) {
         this.number = number;
         this.command = command;
     }
 
     private static String getValidNumbers() {
         List<String> validNumbers = new ArrayList<>();
-        Arrays.stream(BridgeLineType.values()).forEach(bridgeLine -> {
+        Arrays.stream(MoveType.values()).forEach(bridgeLine -> {
             validNumbers.add(String.valueOf(bridgeLine.number));
         });
         return String.join(", ", validNumbers);
     }
 
-    public static BridgeLineType findByNumber(int number) {
-        return Arrays.stream(BridgeLineType.values())
+    public static MoveType findByNumber(int number) {
+        return Arrays.stream(MoveType.values())
                 .filter(bridgeLine -> bridgeLine.number == number)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(
@@ -35,10 +35,10 @@ public enum BridgeLineType {
                 ));
     }
 
-    public static BridgeLineType findByCommand(String inputCommand) {
+    public static MoveType findByCommand(String inputCommand) {
         MoveCommandValidator validator = new MoveCommandValidator();
         String command = validator.getValidCommand(inputCommand);
-        return Arrays.stream(BridgeLineType.values())
+        return Arrays.stream(MoveType.values())
                 .filter(bridgeLine -> bridgeLine.command.equals(command))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(

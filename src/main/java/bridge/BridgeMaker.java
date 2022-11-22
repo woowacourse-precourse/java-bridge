@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.type.BridgeLineType;
+import bridge.domain.type.MoveType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         while (size > 0) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-            bridge.add(BridgeLineType.findByNumber(bridgeNumber).getCommand());
+            bridge.add(MoveType.findByNumber(bridgeNumber).getCommand());
             size--;
         }
         return bridge;
