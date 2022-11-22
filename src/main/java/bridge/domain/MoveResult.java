@@ -1,13 +1,13 @@
 package bridge.domain;
 
-public enum PassResult {
+public enum MoveResult {
     PASS("O"),
     FAIL("X"),
     NONE(" ");
 
     private final String value;
 
-    PassResult(String value) {
+    MoveResult(String value) {
         this.value = value;
     }
 
