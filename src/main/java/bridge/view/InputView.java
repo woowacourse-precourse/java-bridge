@@ -19,7 +19,7 @@ public class InputView {
         System.out.println();
         try {
             validateInputSizeException(inputSize);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBridgeSize();
         }
@@ -33,7 +33,7 @@ public class InputView {
         String inputDirection = readLine();
         try {
             validateInputDirectionException(inputDirection);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMovingDirection();
         }
@@ -47,7 +47,7 @@ public class InputView {
         String inputRestart = readLine();
         try {
         validateInputGameRestartException(inputRestart);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputGameRestart();
         }
