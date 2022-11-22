@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputValidatorTest {
 
@@ -32,6 +34,23 @@ public class InputValidatorTest {
         String input = "3";
 
         assertThatCode(() -> InputValidator.validateBridgeSize(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("플레이어의 이동이 올바르지 않은 경우 예외 발생")
+    @Test
+    void validateMovingWrongTest() {
+        String moving = "1";
+
+        assertThatThrownBy(() -> InputValidator.validateMoving(moving))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("플레이어의 이동이 올바른 경우 정상 작동")
+    @ParameterizedTest
+    @ValueSource(strings = { "U", "D" })
+    void validateMovingRightTest(String moving) {
+        assertThatCode(() -> InputValidator.validateMoving(moving))
                 .doesNotThrowAnyException();
     }
 
