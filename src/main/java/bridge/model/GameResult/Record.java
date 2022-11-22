@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.GameResult;
 
 import bridge.constant.Direction;
 import bridge.constant.Score;

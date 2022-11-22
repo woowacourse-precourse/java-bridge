@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.constant.Score;
+import bridge.model.GameResult.Record;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
