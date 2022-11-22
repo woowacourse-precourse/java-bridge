@@ -18,6 +18,8 @@
 - 사용자가 잘못된 값을 입력할 경우`IllegalArgumentException`를 발생시키고, 
    "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - `Exception`이 아닌`IllegalArgumentException`,`IllegalStateException`등과 같은 명확한 유형을 처리한다.
+- InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
+  BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
 
 ****
 ## 다이어그램
@@ -43,19 +45,19 @@
         - [v]  대문자 확인
         - [v]  R 또는 Q 만 유효
 - OutputView
-    - [ ]  이동할 수 있는 칸 선택한 경우  `O` 표시
-    - [ ]  이동할 수 없는 칸 선택한 경우  `X` 표시
-    - [ ]  다리의 시작은 `[`, 다리의 끝 `]` 으로 표시
-    - [ ]  다리 칸 구분은 `|` 문자열로 표시
-    - [ ]  최종 게임 결과 ( 성공했을 경우, 실패했는데 종료하는 경우)
-        - [ ]  `현재까지 건넌 다리 결과`
-        - [ ]  `게임 성공 여부`
-        - [ ]  `총 시도한 횟수`
-            - [ ]  첫시도를 포함해 게임을 종료할 때 까지 시도한 횟수
-- BridgeGame
-    - [ ]  move
-    - [ ]  retry
-        - [ ]  재시작하면 처음 만든 다리 재사용
+    - [v]  이동할 수 있는 칸 선택한 경우  `O` 표시
+    - [v]  이동할 수 없는 칸 선택한 경우  `X` 표시
+    - [v]  다리의 시작은 `[`, 다리의 끝 `]` 으로 표시
+    - [v]  다리 칸 구분은 `|` 문자열로 표시
+    - [v]  최종 게임 결과 ( 성공했을 경우, 실패했는데 종료하는 경우)
+        - [x]  `현재까지 건넌 다리 결과`
+        - [v]  `게임 성공 여부`
+        - [v]  `총 시도한 횟수`
+            - [v]  첫시도를 포함해 게임을 종료할 때 까지 시도한 횟수
+  - BridgeGame
+    - [v]  move
+    - [v]  retry
+      - [?]  재시작하면 처음 만든 다리 재사용
 - BridgeMaker
     - [v] 사용자에게 입력 받은 길이대로 위아래 다리 생성
       - `int number = bridgeNumberGenerator.generate();`을 사용해 0이면 D, 1이면 U 로 다리 생성
@@ -64,7 +66,19 @@
     - [v]  위 칸 과 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값 이용해서 정하기
               `int number = bridgeNumberGenerator.generate();`
 
-- BridgeSafetyCheck
-    - [ ]  사용자가 선택 한 칸 건널 수 있는지 확인
+- DirectionCommand
+    - [v]  위 아래 다리 커맨드 관리
 - GameResult
-    - [ ]  게임 결과 판단
+    - [v] 선택한 다리 건널 수 있는지 없는지 결과 메세지 관리
+- GameResult
+    - [v]  게임 결과 메세지 관리
+- FinalGameResult
+    - [v]  총 게임 결과 메세지 관리(성공, 실패)
+- User
+    - 유저의 게임 상태 관리
+- GameRound
+  - 게임 실패 시 재시작 할 경우 시도한 횟수 관리
+- TryCount
+  - 게임 재시작/종료 전까지 1라운드에서 시도한 횟수 관리
+- MoveResult
+  -  유저의 게임 상태 값을 가져오기 위한 클래스
