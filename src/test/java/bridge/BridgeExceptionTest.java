@@ -3,13 +3,15 @@ package bridge;
 import exception.BridgeException;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class BridgeExceptionTest {
     @Test
     void 입력_받은_값이_숫자가_아닌_경우() {
         assertThatThrownBy(() -> new BridgeException("abc"))
-                .isInstanceOf(IllegalArgumentException.class );
+                .isInstanceOf(NoSuchElementException.class );
     }
 
     @Test
