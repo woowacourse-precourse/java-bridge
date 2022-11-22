@@ -54,4 +54,16 @@ public class BridgeGame {
     public void increaseTried(Bridge bridge) {
         bridge.setTried(bridge.getTried() + 1);
     }
+
+    public boolean isClear(Bridge bridge) {
+        if (!isAllCrossed(bridge)) {
+            return false;
+        }
+        for (int i = 0; i < bridge.getCrossed().size(); i++) {
+            if (!bridge.getFootholds().get(i).equals(bridge.getCrossed().get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
