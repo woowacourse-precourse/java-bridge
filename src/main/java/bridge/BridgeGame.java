@@ -5,6 +5,7 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private Integer step;
+    private Boolean quit = false;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -25,7 +26,11 @@ public class BridgeGame {
     }
 
     public Boolean isEnd() {
-        return step.equals(bridge.size());
+        return step.equals(bridge.size()) || quit;
+    }
+
+    public void quitGame() {
+        this.quit = true;
     }
 
     public List<String> getCurrentBridge() {
