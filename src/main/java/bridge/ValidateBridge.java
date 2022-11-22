@@ -22,4 +22,11 @@ public class ValidateBridge {
         }
         return beforeMovement;
     }
+
+    static String validateRetry(String beforeValidateRetry) {
+        if (!beforeValidateRetry.equals("Q") && !beforeValidateRetry.equals("R")) {
+            throw new IllegalArgumentException("[ERROR] 재시작/종료 여부는 R이나 Q로 입력해야 합니다.");
+        }
+        return beforeValidateRetry;
+    }
 }

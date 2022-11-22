@@ -2,8 +2,7 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.ValidateBridge.validateBridgeSize;
-import static bridge.ValidateBridge.validateMovement;
+import static bridge.ValidateBridge.*;
 
 public class Controller {
     private InputView inputView;
@@ -21,24 +20,33 @@ public class Controller {
     }
 
     public void run() {
-        String beforeValidateSize = inputView.readBridgeSize();
-        int size = validateBridgeSize(beforeValidateSize);
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        bridgeGame = new BridgeGame(bridge);
-        int tryCount = 1;
-        int index = 0;
-        while(index < bridge.size()) {
-            String BeforeMovement = inputView.readMoving();
-            String movement = validateMovement(BeforeMovement);
-            boolean isContinue = bridgeGame.move(movement, index);
-            outputView.printMap(bridgeGame);
-            if (isContinue == false) {
-                inputView.readGameCommand();
-                bridgeGame.retry();
-                tryCount++;
-                continue;
+        try {
+            String beforeValidateSize = inputView.readBridgeSize();
+            int size = validateBridgeSize(beforeValidateSize);
+            List<String> bridge = bridgeMaker.makeBridge(size);
+            bridgeGame = new BridgeGame(bridge);
+            int index = 0;
+            boolean isSuccess = true;
+            while (index < bridge.size()) {
+                String beforeMovement = inputView.readMoving();
+                String movement = validateMovement(beforeMovement);
+                boolean isContinue = bridgeGame.move(movement, index);
+                outputView.printMap(bridgeGame);
+                if (isContinue == false) {
+                    String beforeValidateRetry = inputView.readGameCommand();
+                    String retry = validateRetry(beforeValidateRetry);
+                    boolean isRetry = bridgeGame.retry(retry);
+                    if (isRetry) {
+                        index = 0;
+                        continue;
+                    }
+                    isSuccess = false;
+                    break;
+                }
+                index++;
             }
-            index++;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
