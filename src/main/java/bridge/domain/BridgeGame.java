@@ -43,13 +43,11 @@ public class BridgeGame {
         if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
             return bridge.get(progress.size()).equals(BlockSymbol.DOWN.getSymbol());
         }
+        return Boolean.FALSE;
     }
 
     private Boolean isClear(){
-        if (progress.size() == bridge.size()){
-            return true;
-        }
-        return false;
+        return progress.size() == bridge.size();
     }
 
     private void validateMoveCommand(String command){
