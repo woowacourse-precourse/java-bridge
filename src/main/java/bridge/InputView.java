@@ -7,7 +7,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
+    private static final String INPUT_UP_DOWN_ERROR = "[ERROR] 이동할 칸은 U 또는 D로만 입력가능 합니다.";
+    private static final String INPUT_RESTART_QUIT_ERROR = "[ERROR] 재시작은 R, 종료는 Q 두 가지 입력만 가능합니다.";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -31,7 +32,7 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
         if(isUpDown(input)){
-            throw  new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D로만 입력가능 합니다.");
+            throw  new IllegalArgumentException(INPUT_UP_DOWN_ERROR);
         }
         return input;
     }
@@ -51,7 +52,7 @@ public class InputView {
         String input = Console.readLine();
 
         if(isRestartQuit(input)){
-            throw  new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q 두 가지 입력만 가능합니다.");
+            throw  new IllegalArgumentException(INPUT_RESTART_QUIT_ERROR);
         }
         if(input.equals("R")){
             return true;
