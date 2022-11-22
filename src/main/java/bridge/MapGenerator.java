@@ -19,9 +19,11 @@ public class MapGenerator {
         List<String> row = new ArrayList<>();
         row.add(bridgeStart);
         for (ResultType col : resultRow) {
-            row.add(bridgeSeperator);
             row.add(col.getValue());
+            row.add(bridgeSeperator);
         }
+        // Remove last seperator
+        row.remove(row.size() - 1);
         row.add(bridgeEnd);
         return String.join(" ", row);
     }
