@@ -20,8 +20,12 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
-        String result = Console.readLine();
-        return Integer.parseInt(result);
+        try {
+            String result = Console.readLine();
+            return  Integer.parseInt(result);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_INPUT.getMessage());
+        }
     }
 
     /**
