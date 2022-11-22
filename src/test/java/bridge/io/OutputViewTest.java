@@ -62,6 +62,20 @@ class OutputViewTest {
       "[   |   | O | O |   |   |   | O | O |   |   | O | O |   | O | O | O | O | O | O ]\n\n");
   }
 
+  @Test
+  void 올바른_결과를_출력하는가() {
+    // given
+    OutputView outputView = new OutputView();
+
+    // when
+    outputView.printResult("게임 성공 여부: 성공\n" +
+      "총 시도한 횟수: 2");
+
+    // then
+    assertEquals(outContent.toString(), "게임 성공 여부: 성공\n" +
+      "총 시도한 횟수: 2\n");
+  }
+
 
 
 }
