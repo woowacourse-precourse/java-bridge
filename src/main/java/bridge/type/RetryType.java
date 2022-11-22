@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public enum RetryType implements RetrySupporter {
 
-    RETRY(0, "R") {
+    RETRY("R") {
         @Override
         public int reset(Player player, OutputView outputView, int size) {
             player.removePositions();
@@ -18,24 +18,22 @@ public enum RetryType implements RetrySupporter {
             return size;
         }
     },
-    END(-1, "Q"){
+    END("Q"){
         @Override
         public int reset(Player player, OutputView outputView, int size) {
             return size;
         }
     },
-    PASS(1, "P") {
+    PASS( "P") {
         @Override
         public int reset(Player player, OutputView outputView, int size) {
             return size;
         }
     };
 
-    private final int statusCode;
     private final String symbol;
 
-    RetryType(int statusCode, String symbol) {
-        this.statusCode = statusCode;
+    RetryType(String symbol) {
         this.symbol = symbol;
     }
 
@@ -49,7 +47,7 @@ public enum RetryType implements RetrySupporter {
                 .findFirst();
     }
 
-    public int getStatusCode() {
-        return statusCode;
+    public static boolean finish(RetryType retryType) {
+        return RetryType.END.equals(retryType);
     }
 }

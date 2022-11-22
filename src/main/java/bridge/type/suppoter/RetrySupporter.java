@@ -5,5 +5,5 @@ import bridge.view.OutputView;
 
 public interface RetrySupporter {
 
-    int reset(Player player, OutputView outputView, int count);
+    int reset(Player player, OutputView outputView, int size);
 }
