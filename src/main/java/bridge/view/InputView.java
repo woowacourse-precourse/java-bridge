@@ -1,6 +1,6 @@
 package bridge.view;
 
-import static bridge.BridgeMaker.convertStringToInt;
+import static bridge.BridgeMaker.toInt;
 import static bridge.BridgeMaker.validateBridgeSizeRange;
 import static bridge.BridgeMaker.validateBridgeSizeType;
 
@@ -21,7 +21,7 @@ public class InputView {
             outputView.printBridgeSizeInput();
             String input = Console.readLine();
             validateBridgeSizeType(input);
-            int bridgeSize = convertStringToInt(input);
+            int bridgeSize = toInt(input);
             validateBridgeSizeRange(bridgeSize);
             return bridgeSize;
         } catch (IllegalArgumentException exception) {

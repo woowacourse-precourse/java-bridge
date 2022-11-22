@@ -40,7 +40,7 @@ public class BridgeMaker {
         }
     }
 
-    public static int convertStringToInt(String input) {
+    public static int toInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {

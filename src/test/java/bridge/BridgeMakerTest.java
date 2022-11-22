@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.BridgeMaker.convertStringToInt;
+import static bridge.BridgeMaker.toInt;
 import static bridge.BridgeMaker.validateBridgeSizeRange;
 import static bridge.BridgeMaker.validateBridgeSizeType;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,7 +33,7 @@ class BridgeMakerTest {
     @ParameterizedTest
     @ValueSource(strings = {"2_222_222_222", "2222222222"})
     void int_범위를_초과한_입력(String input) {
-        assertThatThrownBy(() -> convertStringToInt(input))
+        assertThatThrownBy(() -> toInt(input))
                 .isInstanceOf(NumberFormatException.class);
     }
 
