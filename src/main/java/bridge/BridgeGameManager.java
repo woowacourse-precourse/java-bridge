@@ -67,8 +67,8 @@ public class BridgeGameManager {
     /**
      * 게임 종료시 처리하는 메서드
      */
-    public void gameOver(boolean gameWin) {
-        outputView.printResult(bridgeGame.getPlayerBridge(), bridgeGame.getTryCount(), gameWin);
+    public void gameOver() {
+        outputView.printResult(bridgeGame.getPlayerBridge(), bridgeGame.getTryCount(), bridgeGame.checkGameWin());
     }
 
     /**
@@ -77,15 +77,11 @@ public class BridgeGameManager {
     public void startGame() {
         outputView.printStartGame();
         buildBridge();
-        boolean gameWin = false;
-        while (!gameWin) {
+        while (!checkGameWin()) {
             move();
-            if (!checkGameOver()) {
-                gameWin = checkGameWin();
-                continue;
-            }
+            if (!checkGameOver()) continue;
             if (!retry()) break;
         }
-        gameOver(gameWin);
+        gameOver();
     }
 }
