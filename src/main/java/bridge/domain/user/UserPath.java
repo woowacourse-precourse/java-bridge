@@ -1,19 +1,17 @@
 package bridge.domain.user;
 
-public enum UserPath {
-    CORRECT_PATH("O"),
-    WRONG_PATH("X"),
-    EMPTY_PATH(" ");
+public class UserPath {
 
-    private final String path;
+    private final Path upPath;
+    private final Path downPath;
 
-    UserPath(String path) {
-        this.path = path;
+    public UserPath() {
+        this.upPath = new Path();
+        this.downPath = new Path();
     }
-
 
     @Override
     public String toString() {
-        return String.format("%s", this.path);
+        return String.format("%s%s", upPath, downPath);
     }
 }
