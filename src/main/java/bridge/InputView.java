@@ -14,15 +14,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         outputView.printBridgeSizeInput();
-        String input  = readLine();
-        try{
+        String input = readLine();
+        try {
             Integer.parseInt(input);
-        } catch (IllegalArgumentException e){
-            e.printStackTrace();
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR]");
         }
         int size = Integer.parseInt(input);
         if (size < 3 || size > 20){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
         return size;
     }
@@ -48,4 +48,6 @@ public class InputView {
             throw new IllegalArgumentException();}
         return input;
     }
+
 }
+
