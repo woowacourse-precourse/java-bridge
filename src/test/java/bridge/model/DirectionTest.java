@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 class DirectionTest {
     @Test
     void 랜덤한_숫자_1이_들어올_경우_U를_반환한다() {
-        assertThat(Direction.findDirectionByRandomValue(1)).isEqualTo(Direction.U);
+        assertThat(Direction.findDirectionByRandomValue(1)).isEqualTo(Direction.UP);
     }
 
     @Test
     void 랜덤한_숫자_0이_들어올_경우_D를_반환한다() {
-        assertThat(Direction.findDirectionByRandomValue(0)).isEqualTo(Direction.D);
+        assertThat(Direction.findDirectionByRandomValue(0)).isEqualTo(Direction.DOWN);
     }
 
     @Test

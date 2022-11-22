@@ -17,7 +17,9 @@ class BridgeMakerTest {
 
         assertThat(bridge.size()).isEqualTo(size);
 
-        List<String> directions = Arrays.stream(Direction.values()).map(Enum::toString).collect(Collectors.toList());
+        List<String> directions = Arrays.stream(Direction.values())
+                .map(Direction::getCommand)
+                .collect(Collectors.toList());
         bridge.forEach(direction -> assertThat(directions).contains(direction));
     }
 }

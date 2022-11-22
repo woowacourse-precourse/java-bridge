@@ -12,20 +12,31 @@ class PlayerTest {
 
     @BeforeEach
     void beforeEach() {
-        bridge = new Bridge(List.of("U", "D", "U", "D", "U"));
+        bridge = new Bridge(List.of("U", "D", "U"));
         player = new Player();
     }
 
     @Test
-    void 존재하지_않는_다리로_이동하면_지도에_X를_그려야한다() {
-        MoveResult move = player.move(bridge, Direction.D);
-        assertThat(move.getDrawType().getDrawCharacter()).isEqualTo("X");
+    void 존재하지_않는_다리로_이동하면_플레이어는_죽어야한다() {
+        player.move();
+        assertThat(player.die(bridge, Direction.DOWN)).isEqualTo(true);
     }
 
     @Test
-    void 존재하는_다리로_이동하면_지도에_O를_그려야한다() {
-        MoveResult move = player.move(bridge, Direction.U);
-        assertThat(move.getDrawType().getDrawCharacter()).isEqualTo("O");
+    void 존재하는_다리로_이동하면_플레이어는_죽지_않는다() {
+        player.move();
+        assertThat(player.die(bridge, Direction.UP)).isEqualTo(false);
+    }
+
+    @Test
+    void 모든_다리를_통과했으면_성공해야_한다() {
+        for (int moveCount = 0; moveCount < 2; moveCount++) {
+            player.move();
+            assertThat(player.isBridgePassed(bridge)).isEqualTo(false);
+        }
+
+        player.move();
+        assertThat(player.isBridgePassed(bridge)).isEqualTo(true);
     }
 
     @Test
