@@ -7,13 +7,13 @@ public class Exception {
     static final String WRONG_SIZE_INPUT = ERROR_HEADER + "다리 길이는 3 이상 20 이하의 숫자여야 합니다.";
 
     public void isMovingDirectionCorrect(String direction) {
-        if (direction != "U" || direction != "D") {
+        if (direction != "U" && direction != "D") {
             throw new IllegalArgumentException(WRONG_MOVING_MESSAGE);
         }
     }
 
     public void isCommandCorrect(String cmd) {
-        if (cmd != "R" || cmd != "Q") {
+        if (cmd != "R" && cmd != "Q") {
             throw new IllegalArgumentException(WRONG_COMMAND_MESSAGE);
         }
     }
