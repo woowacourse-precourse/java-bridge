@@ -19,13 +19,13 @@ public class BridgeGame {
     private static final String Move = "Move";
     private static int position = 0;
 
-    public BridgeGame(int readBridgeSize) {
-        brige = new_BridgeMaker(readBridgeSize);
+    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator, int readBridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        //brige = new_BridgeMaker(bridgeMaker);
+        brige = bridgeMaker.makeBridge(readBridgeSize);
     }
 
-    private List<String> new_BridgeMaker(int readBridgeSize) {
-        return new BridgeMaker().makeBridge(readBridgeSize);
-    }
+    //private List<String> new_BridgeMaker(BridgeMaker bridgeMaker)  { return new BridgeMaker().makeBridge(readBridgeSize); }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

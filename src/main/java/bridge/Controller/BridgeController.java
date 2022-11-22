@@ -1,12 +1,13 @@
 package bridge.Controller;
 
 import bridge.Domain.BridgeGame;
+import bridge.Domain.BridgeNumberGenerator;
+import bridge.Domain.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
 public class BridgeController {
     static int count_try;
-    static int result_print;
     static String continue_game = "Start";
     private static final String Retry = "Retry";
     private static final String Quit = "Quit";
@@ -34,7 +35,8 @@ public class BridgeController {
     }
 
     private BridgeGame new_BridgeGame() {
-        return new BridgeGame(OutputView.BridgeLengthCheck(InputView.readBridgeSize()));
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        return new BridgeGame(bridgeNumberGenerator, OutputView.BridgeLengthCheck(InputView.readBridgeSize()));
     }
 
     private String MovingCheck(String moving) {
