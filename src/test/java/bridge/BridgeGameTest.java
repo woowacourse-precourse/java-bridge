@@ -21,7 +21,6 @@ public class BridgeGameTest {
         bridgeGame = new BridgeGame();
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        // bridge => "UDD"
         List<String> bridge = bridgeMaker.makeBridge(3);
         BridgeGame.setBridge(bridge);
     }
@@ -57,32 +56,12 @@ public class BridgeGameTest {
     }
 
 
-    //FIXME
-//    @DisplayName("게임 시도 횟수를 리턴해준다")
-//    @Test
-//    void getAttemptCountTest() {
-//        assertThat(BridgeGame.attemptCountToString()).isEqualTo("총 시도한 횟수: " + 0);
-//    }
-
     @DisplayName("게임 시도 횟수를 증가시킨다")
     @Test
     void increaseAttemptCountTest() {
         BridgeGame.increaseAttemptCount();
         assertThat(BridgeGame.attemptCountToString()).isEqualTo("총 시도한 횟수: " + 1);
     }
-
-//    @DisplayName("이동한 위치에 대한 결과를 저장한다")
-//    @Test
-//    void addMovementTest() {
-//        bridgeGame.addMovement(
-//                Arrays.asList(bridgeGame.getUpLineForm().split("|")),
-//                Arrays.asList(bridgeGame.getUpLineForm().split("|")),
-//                true
-//        );
-//
-//        assertThat(bridgeGame.getUpLineForm()).isEqualTo(" O ");
-//        assertThat(bridgeGame.getDownLineForm()).isEqualTo("   ");
-//    }
 
     @DisplayName("입력한 방향과 해당 지점이 같으면 true를 다르면 false를 리턴한다")
     @ParameterizedTest
