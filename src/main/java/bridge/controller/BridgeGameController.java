@@ -19,8 +19,13 @@ public class BridgeGameController {
     }
     public void start(){
         inputView.printHello();
-        sizeLogic();
-        gameLogic();
+        try {
+            sizeLogic();
+            gameLogic();
+        }
+        catch(IllegalArgumentException e){
+            System.out.println(e);
+        }
     }
 
     public void gameLogic(){
