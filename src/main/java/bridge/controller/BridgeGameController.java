@@ -45,44 +45,31 @@ public class BridgeGameController {
     }
 
     public void playGame() {
-        userInput = gameSetting.validateMoveInput();
-        bridgeGame.move();
-        crossPossible = bridgeGame.check(userInput, bridge);
-        if (!crossPossible) {
-            printSemiResult(crossPossible);
-            userRetryInput = gameSetting.validateRetryInput();
-            mark.clear();
-            boolean retryInput =  bridgeGame.retry(userRetryInput, bridgeSize);
-            if(retryInput){
-                OutputView.upSide ="";
-                OutputView.downSide ="";
-            }
-        } else {
-            printSemiResult(crossPossible);
-        }
-
-        while (round != bridge.size()) {
+        do {
             userInput = gameSetting.validateMoveInput();
             bridgeGame.move();
             crossPossible = bridgeGame.check(userInput, bridge);
+            printSemiResult(crossPossible);
             if (!crossPossible) {
-                printSemiResult(crossPossible);
                 userRetryInput = gameSetting.validateRetryInput();
-                mark.clear();
-                bridgeGame.retry(userRetryInput, bridgeSize);
-            } else {
-                printSemiResult(crossPossible);
+                makeClearCondition();
             }
+        }while (round != bridge.size());
+    }
+
+    private void makeClearCondition() {
+        mark.clear();
+        boolean retryInput = bridgeGame.retry(userRetryInput, bridgeSize);
+        if (retryInput) {
+            OutputView.upSide = "";
+            OutputView.downSide = "";
         }
     }
 
+
     public void printSemiResult(boolean crossPossible) {
-        if (crossPossible == false) {
-            mark.add("X");
-        }
-        if (crossPossible == true) {
-            mark.add("O");
-        }
+        if (crossPossible == false) { mark.add("X"); }
+        if (crossPossible == true) { mark.add("O"); }
         outputView.printMap(bridge, mark);
     }
 
