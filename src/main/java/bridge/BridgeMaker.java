@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.enums.InputConstants;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import java.util.List;
  * 매서드 시그니쳐, 반환타입 변경 불가
  */
 public class BridgeMaker {
+
+    private static final int UP_MOVE_NUMBER = 1;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -31,10 +34,10 @@ public class BridgeMaker {
 
     private void makeBridgeBlock(List<String> bridge) {
         int blockNumber = bridgeNumberGenerator.generate();
-        if (blockNumber == 1) {
-            bridge.add("U");
+        if (blockNumber == UP_MOVE_NUMBER) {
+            bridge.add(InputConstants.UP_MOVE.getValue());
             return;
         }
-        bridge.add("D");
+        bridge.add(InputConstants.DOWN_MOVE.getValue());
     }
 }
