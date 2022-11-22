@@ -24,4 +24,11 @@ public enum Message {
     public String getMessage() {
         return message;
     }
+
+    public static Message getClear(boolean result) {
+        if(result) {
+            return GAME_CLEAR;
+        }
+        return GAME_FAIL;
+    }
 }
