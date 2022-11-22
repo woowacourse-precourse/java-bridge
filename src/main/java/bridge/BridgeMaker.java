@@ -1,5 +1,6 @@
-package bridge.domain.bridge;
+package bridge;
 
+import bridge.domain.bridge.BridgeBlock;
 import bridge.resource.ErrorMessage;
 
 import java.util.ArrayList;
@@ -55,14 +56,14 @@ public class BridgeMaker {
 
     private void assembleBlock(List<String> bridge) {
         BridgeBlock block = createBlock();
-        bridge.add(block.direction);
+        bridge.add(block.getDirection());
     }
 
     private BridgeBlock createBlock() {
         int randomNumber = bridgeNumberGenerator.generate();
 
         for (BridgeBlock block : BridgeBlock.values()) {
-            if (randomNumber == block.number) {
+            if (randomNumber == block.getNumber()) {
                 return block;
             }
         }
