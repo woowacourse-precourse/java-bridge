@@ -26,13 +26,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String moving, int idx) {
+    public void move(String moving) {
         usersMove.add(moving);
-        if (bridge.get(idx).equals(moving)) {
+        int usersMoveSize = usersMove.size() - 1;
+        if (!(bridge.get(usersMoveSize).equals(moving))) {
             isMove = true;
+            isExit = true;
             return;
         }
-        isMove = false;
+        isMove = (usersMove.size() == bridge.size());
     }
 
     /**
@@ -42,11 +44,16 @@ public class BridgeGame {
      */
     public void retry(String gameCommand) {
         if (gameCommand.equals("Q")) {
-            isExit = true;
             return;
         }
+        isMove = false;
+        isExit = false;
         initializationUserMoves();
         plusCnt();
+    }
+
+    public boolean isSuccessOrFailure() {
+        return !(isExit && isMove);
     }
 
     private void initializationUserMoves() {
