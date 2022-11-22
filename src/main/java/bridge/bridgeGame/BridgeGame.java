@@ -1,4 +1,4 @@
-package bridge;
+package bridge.bridgeGame;
 
 import bridge.Validation;
 import bridge.bridgeGame.BridgeGameResultDto;
