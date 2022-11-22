@@ -25,13 +25,19 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> resultBridge = new ArrayList<>();
         for(int i=0; i<size; i++){
-            if(bridgeNumberGenerator.generate() == RANDOM_UPPER_INCLUSIVE)
-                resultBridge.add("U");
-            if(bridgeNumberGenerator.generate() == RANDOM_LOWER_INCLUSIVE)
-                resultBridge.add("D");
+            resultBridge.add(randomNumber());
         }
-
         return resultBridge;
     }
 
+    public String randomNumber(){
+        int random = bridgeNumberGenerator.generate();
+
+        if(random == RANDOM_UPPER_INCLUSIVE)
+            return "U";
+        if(random == RANDOM_LOWER_INCLUSIVE)
+            return "D";
+
+        return "";
+    }
 }

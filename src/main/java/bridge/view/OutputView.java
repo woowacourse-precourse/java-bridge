@@ -32,12 +32,17 @@ public class OutputView {
         System.out.println();
 
         System.out.print("게임 성공 여부: ");
-        if(isSuccess)
-            System.out.println("성공");
-        if(!isSuccess)
-            System.out.println("실패");
+        System.out.println(isSuccessPrint(isSuccess));
 
         System.out.println("총 시도한 횟수: " +user.getTryCount());
+    }
+
+    private String isSuccessPrint(boolean isSuccess){
+        if(isSuccess)
+            return "성공";
+        if(!isSuccess)
+            return "실패";
+        return "";
     }
 
     private String printBridge(List<String> bridge){
@@ -45,7 +50,7 @@ public class OutputView {
         for(int i=0; i<bridge.size(); i++) {
             printWord += bridge.get(i);
             if (i != bridge.size() - 1)
-                System.out.print(" | ");
+                printWord += " | ";
         }
 
         return printWord + " ]";
