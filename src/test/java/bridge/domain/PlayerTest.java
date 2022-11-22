@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -22,9 +23,9 @@ class PlayerTest {
 
     private static Stream<Arguments> provideSucceedArguments() {
         return Stream.of(
-                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "D"), true, "최종 정답"),
-                Arguments.of(List.of("U", "D"), List.of("U", "U"), false, "다리 끝에 도달 전에 오답"),
-                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "U"), false, "다리 끝에서 오답")
+                Arguments.of(List.of("U", "U", "D"), true, "최종 정답"),
+                Arguments.of(List.of("U", "U"), false, "다리 끝에 도달 전에 오답"),
+                Arguments.of(List.of("U", "U", "U"), false, "다리 끝에서 오답")
         );
     }
 
@@ -50,9 +51,10 @@ class PlayerTest {
     @DisplayName("최종 게임 승리 여부 검사")
     @MethodSource("provideSucceedArguments")
     @ParameterizedTest(name = "{index}: {3}")
-    void testSucceed(List<String> bridge, List<String> inputs, boolean expected, String message) {
+    void testSucceed(List<String> inputs, boolean expected, String message) {
+        List<String> bridge = new ArrayList<>(List.of("U", "U", "D"));
         Player player = new Player(new Map());
-        for (int i = 0; i < bridge.size(); i++) {
+        for (int i = 0; i < inputs.size(); i++) {
             player.move(inputs.get(i), bridge.get(i));
         }
         assertThat(player.hasSucceeded(bridge)).isEqualTo(expected);
