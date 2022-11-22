@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
 import bridge.enums.MovingType;
 
 import java.util.ArrayList;
