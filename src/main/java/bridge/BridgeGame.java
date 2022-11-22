@@ -41,4 +41,9 @@ public class BridgeGame {
     public boolean checkCurrentStatus() {
         return (selectedPath.isEmpty() || isLastElementsSame());
     }
+
+    public boolean checkIfWin() {
+        return (selectedPath.size() == bridge.size()
+                && checkCurrentStatus());
+    }
 }
