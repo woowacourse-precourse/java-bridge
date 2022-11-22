@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.util.BridgeUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,22 +32,21 @@ public class BridgeGame {
 
     private String moveOne(String square, String choice) {
         if(square.equals(choice)) {
-            return "O";
+            return BridgeUtil.RIGHT;
         }
-        return "X";
+        return BridgeUtil.WRONG;
     }
 
     private void resultAdd(String choice,String result){
         this.bridgeUp = this.bridges.get(0);
         this.bridgeDown = this.bridges.get(1);
-
-        if(choice.equals("U")){
+        if(choice.equals(BridgeUtil.UP)){
             this.bridgeUp.add(result);
-            this.bridgeDown.add(" ");
+            this.bridgeDown.add(BridgeUtil.BLANK);
         }
-        if(choice.equals("D")){
+        if(choice.equals(BridgeUtil.DOWN)){
             this.bridgeDown.add(result);
-            this.bridgeUp.add(" ");
+            this.bridgeUp.add(BridgeUtil.BLANK);
         }
     }
 
@@ -78,7 +79,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public int retry(String reply,int attempt) {
-        if(reply.equals("R")){
+        if(reply.equals(BridgeUtil.RESTART)){
             attempt++;
             return attempt;
         }

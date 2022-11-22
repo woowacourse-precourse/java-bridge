@@ -4,6 +4,7 @@ import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeSize;
+import bridge.util.BridgeUtil;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -11,93 +12,77 @@ import java.util.List;
 
 public class BridgeController {
 
-    InputView inputView = new InputView();
-    BridgeSize bridgeSize = new BridgeSize();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     BridgeGame bridgeGame = new BridgeGame();
+    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    BridgeSize bridgeSize = new BridgeSize();
 
     public void start() {
         String reply;
         OutputView.printGameStart();
         do {
-            int size = inputSize();
-            List<String> bridge = bridgeMaker.makeBridge(size);
-
+            List<String> bridge = makeBridge();
             reply = play(bridge);
-
-        }while(!reply.equals("Q"));
+        }while(!reply.equals(BridgeUtil.QUIT));
     }
 
-    private int inputSize(){
-        String size = inputView.readBridgeSize();
-        bridgeSize.checkNumber(size);
-        return Integer.parseInt(size);
+    public List<String> makeBridge(){
+        int size = bridgeSize.checkNumber(InputView.readBridgeSize());
+        return bridgeMaker.makeBridge(size);
     }
 
-    private void printResult(String fail, int attempt) {
-        OutputView.printResult(bridgeGame.toString());
-        OutputView.printSuccessOrFail(fail);
-        OutputView.printAttemptCount(attempt);
-
-    }
-
-    private String crossBridge(List<String> bridge) {
-        for(int i=0;i<bridge.size();i++) {
-            String move = inputView.readMoving();
-            List<List<String>> bridges = bridgeGame.move(bridge.get(i),move);
-            OutputView.printMap(bridgeGame.toString());
-            if(endGame(bridges).equals("실패")) {
-                return "실패";
-            }
-        }
-        return "성공";
-    }
-
-    private String crossingBridge(List<String> bridge){
-        reset();
-        return crossBridge(bridge);
-    }
-
-    private String play(List<String> bridge){
+    public String play(List<String> bridge){
         int attempt = 0;
-        String fail;
-        String reply = "R";
+        String successStatus;
+        String reply = BridgeUtil.RESTART;
         do{
-            fail = crossingBridge(bridge);
+            successStatus = resetBridge(bridge);
             attempt = bridgeGame.retry(reply, attempt);
-            reply = replyQuit(fail);
-
-        }while (!reply.equals("Q"));
-        printResult(fail, attempt);
+            reply = replyQuit(successStatus);
+        }while (!reply.equals(BridgeUtil.QUIT));
+        printResult(successStatus, attempt);
         return reply;
     }
 
-    private String endGame(List<List<String>> bridges){
-        int last = bridges.get(0).size() -1;
+    public String resetBridge(List<String> bridge){
+        bridgeGame.reset();
+        return crossBridge(bridge);
+    }
+
+    public String crossBridge(List<String> bridge) {
+        for (String s : bridge) {
+            String move = InputView.readMoving();
+            List<List<String>> bridges = bridgeGame.move(s, move);
+            OutputView.printMap(bridgeGame.toString());
+            if (endGame(bridges).equals(BridgeUtil.FAIL)) {
+                return BridgeUtil.FAIL;
+            }
+        }
+        return BridgeUtil.SUCCESS;
+    }
+
+
+    public String endGame(List<List<String>> bridges){
         List<String> bridgeUp = bridges.get(0);
         List<String> bridgeDown = bridges.get(1);
 
-        if(bridgeUp.get(last).contains("X") || bridgeDown.get(last).contains("X")){
-            return "실패";
+        if(bridgeUp.contains(BridgeUtil.WRONG) || bridgeDown.contains(BridgeUtil.WRONG)){
+            return BridgeUtil.FAIL;
         }
-        return "성공";
-
-
+        return BridgeUtil.SUCCESS;
     }
 
-    private String replyQuit(String fail){
+    public String replyQuit(String successStatus){
         String reply;
-        if(fail.equals("실패")) {
+        if(successStatus.equals(BridgeUtil.FAIL)) {
             reply = InputView.readGameCommand();
             return reply;
         }
-        return "Q";
+        return BridgeUtil.QUIT;
     }
 
-    private void reset() {
-        bridgeGame.reset();
+    public void printResult(String successStatus, int attempt) {
+        OutputView.printResult(bridgeGame.toString());
+        OutputView.printSuccessOrFail(successStatus);
+        OutputView.printAttemptCount(attempt);
     }
-
-
-
 }

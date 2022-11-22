@@ -26,9 +26,10 @@ public class BridgeSize {
         return str;
     }
 
-    public void checkNumber(String str){
+    public int checkNumber(String str){
         isNumber(str);
         isRangeNumber(str);
+        return Integer.parseInt(str);
     }
 
 
