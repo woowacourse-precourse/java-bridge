@@ -35,9 +35,6 @@ public class ParserUtil {
             throw new IllegalArgumentException("[ERROR] R 또는 Q가 아닙니다.");
         }
     }
-
-
-
 }
 
 

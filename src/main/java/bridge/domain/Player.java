@@ -11,13 +11,14 @@ public class Player {
 
     public boolean matchPlayerAndBridge(Bridge bridge) {
         List<String> bridgeValues = bridge.getBridge();
-        for (int i = 0; i < distance; i++ ) {
+        for (int i = 0; i < distance; i++) {
             if (!bridgeValues.get(i).equals(route.get(i).getDirection())) {
                 return false;
             }
         }
         return true;
     }
+
     public void updateMovement(Movement movement) {
         distance++;
         route.add(movement);

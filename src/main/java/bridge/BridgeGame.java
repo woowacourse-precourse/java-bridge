@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.controller.InputController;
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
@@ -11,7 +10,6 @@ public class BridgeGame {
 
     private static final Boolean CORRECT_ANSWER = Boolean.TRUE;
     private static final Boolean WRONG_ANSWER = Boolean.FALSE;
-
     private final Bridge bridge;
     private final Player player;
 

@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
@@ -17,8 +16,4 @@ class MovementTest {
 
         assertThat(movement).isEqualTo(Movement.DOWN);
     }
-
-
-
-
 }

@@ -26,6 +26,6 @@ public class BridgeMaker {
         if (Movement.UP.getRandomDigit() == randomDigit) {
             return Movement.UP.getDirection();
         }
-        return Movement.DOWN.getDirection() ;
+        return Movement.DOWN.getDirection();
     }
 }

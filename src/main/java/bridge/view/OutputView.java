@@ -35,7 +35,7 @@ public class OutputView {
         if (route.get(index).getDirection().equals(UPPER_DIRECTION_IDENTIFIER)) {
             return isTrueOrFalse(index, result);
         }
-        return BLANK_INDICATOR+DIVIDER;
+        return BLANK_INDICATOR + DIVIDER;
     }
 
     private static String isLowerMap(int index, Player player, Result result) {
@@ -43,15 +43,15 @@ public class OutputView {
         if (route.get(index).getDirection().equals(LOWER_DIRECTION_IDENTIFIER)) {
             return isTrueOrFalse(index, result);
         }
-        return BLANK_INDICATOR+DIVIDER;
+        return BLANK_INDICATOR + DIVIDER;
     }
 
     private static String isTrueOrFalse(int index, Result result) {
         List<Boolean> gameResult = result.getGameResult();
         if (gameResult.get(index).equals(CORRECT_ANSWER_IDENTIFIER)) {
-            return SUCCESS_INDICATOR+DIVIDER;
+            return SUCCESS_INDICATOR + DIVIDER;
         }
-        return FAILURE_INDICATOR+DIVIDER;
+        return FAILURE_INDICATOR + DIVIDER;
     }
 
     private static String setAndSaveMapForPrint(Result result, String upperMap, String lowerMap) {

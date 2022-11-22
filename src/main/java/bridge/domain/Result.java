@@ -8,12 +8,9 @@ public class Result {
     private static final int DEFAULT_TRIAL_NUMBER = 1;
     private static final String SUCCESS_COMMENT = "성공";
     private static final String FAILURE_COMMENT = "실패";
-
     private int numberOfTrials = DEFAULT_TRIAL_NUMBER;
     private List<Boolean> gameResult = new ArrayList<>();
     private String resultMap;
-
-
 
     public void setGameResult(Boolean result) {
         gameResult.add(result);
@@ -34,6 +31,7 @@ public class Result {
     public void updateNumberOfTrials() {
         numberOfTrials++;
     }
+
     public int getNumberOfTrials() {
         return numberOfTrials;
     }
@@ -48,5 +46,4 @@ public class Result {
     public void resetGameResult() {
         this.gameResult = new ArrayList<>();
     }
-
 }

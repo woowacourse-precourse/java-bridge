@@ -54,6 +54,4 @@ public class GameController {
             crossABridge(bridge, player, bridgeGame);
         }
     }
-
-
 }
