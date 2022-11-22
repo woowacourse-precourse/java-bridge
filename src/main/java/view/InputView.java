@@ -3,10 +3,18 @@ package view;
 import static camp.nextstep.edu.missionutils.Console.*;
 import static view.InputViewConstants.*;
 
+import validator.BridgeSizeValidator;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
+	private final BridgeSizeValidator bridgeSizeValidator;
+
+	public InputView() {
+		this.bridgeSizeValidator = new BridgeSizeValidator();
+	}
 
 	public int readBridgeSize() {
 		System.out.println(MESSAGE_READ_BRIDGE_SIZE);
@@ -21,32 +29,10 @@ public class InputView {
 	public int readBridgeSizeUntilNoError() {
 		while (true) {
 			try {
-				return Integer.parseInt(validateBridgeSize((readLine())));
+				return Integer.parseInt(bridgeSizeValidator.validateBridgeSize((readLine())));
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
-		}
-	}
-	
-	private String validateBridgeSize(String bridgeSize) {
-		validateBridgeSizeNumeric(bridgeSize);
-		validateBridgeSizeRange(bridgeSize);
-		return bridgeSize;
-	}
-
-	private int validateBridgeSizeNumeric(String bridgeSize) {
-		try {
-			int validBridgeSize = Integer.parseInt(bridgeSize);
-			return validBridgeSize;
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(ERROR_MESSAGE_NON_NUMERIC);
-		}
-	}
-
-	private void validateBridgeSizeRange(String bridgeSize) {
-		int validBridgeSize = Integer.parseInt(bridgeSize);
-		if (validBridgeSize < MIN_BRIDGE_SIZE || validBridgeSize > MAX_BRIDGE_SIZE) {
-			throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
 		}
 	}
 
