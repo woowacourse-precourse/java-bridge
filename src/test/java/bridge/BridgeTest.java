@@ -32,7 +32,6 @@ public class BridgeTest {
         }
         @Override
         public int generate(){
-            System.out.println(list.isEmpty());
             return list.remove(0);
         }
     }
