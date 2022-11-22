@@ -36,11 +36,11 @@ public class OutputView {
     public static void printResult(int gameCount, List<String> currentBridge, boolean isSuccess) {
         System.out.println("최종 게임 결과");
         OutputView.printMap(currentBridge);
-        System.out.println("게임 성공 여부:"+ print(isSuccess));
+        System.out.println("게임 성공 여부: "+ print(isSuccess));
         System.out.println("총 시도한 횟수: " + gameCount);
     }
 
-    private String print(boolean isSuccess){
+    private static String print(boolean isSuccess){
         if(isSuccess){
             return SUCCESS;
         }
