@@ -1,8 +1,5 @@
 package bridge;
 
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
 public class Application {
     private static InputView inputView;
     private static OutputView outputView;
