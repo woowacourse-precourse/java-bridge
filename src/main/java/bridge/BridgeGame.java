@@ -27,8 +27,9 @@ public class BridgeGame {
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param command 이동 명령의 종류 ("U": 위, "D": 아래)
+     * @param currentPosition 이동할 칸의 위치
+     * @return 이동 가능 여부에 따라 가능하다면 true, 불가능하다면 false 반환
      */
     public boolean move(String command, int currentPosition) {
         int index = getIndex(command);
@@ -43,8 +44,6 @@ public class BridgeGame {
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
         this.numberOfTries += 1;
@@ -52,6 +51,11 @@ public class BridgeGame {
         this.isSuccess = true;
     }
 
+    /**
+     * 최초의 다리 상태를 만들 때 사용하는 메서드
+     * @param size 다리 길이
+     * @return 공백으로 채워져있는 다리 상태 반환
+     */
     private List<List<String>> makeBridgeMap(int size) {
         bridgeMap = new ArrayList<>();
         for (int height = 0; height < MAX_HEIGHT; height++) {
@@ -64,6 +68,11 @@ public class BridgeGame {
         return bridgeMap;
     }
 
+    /**
+     * 이동 명령에 따라 bridgeMap에서 올바른 인덱스를 구할 때 사용하는 메서드
+     * @param command 이동 명령의 종류 ("U": 위, "D": 아래)
+     * @return 이동 명령(위, 아래)에 따라 bridgeMap에서의 인덱스를 반환
+     */
     private int getIndex(String command) {
         if (command.equals(MOVE_UP)) {
             return UP_INDEX;
