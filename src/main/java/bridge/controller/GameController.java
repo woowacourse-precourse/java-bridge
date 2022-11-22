@@ -14,5 +14,8 @@ public class GameController {
         this.outputView = new OutputView();
         this.game = new BridgeGame(this.inputView.readBridgeSize());
     }
+    public static GameController start() {
+        return new GameController();
+    }
 
 }
