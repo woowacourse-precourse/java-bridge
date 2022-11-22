@@ -16,6 +16,10 @@ public class Player {
         map.add(moving);
     }
 
+    private void increaseGameAttempts() {
+        gameAttempts++;
+    }
+
     private void rollbackLastMoved() {
         int lastMovedPosition = getLastMovedPosition();
         if (lastMovedPosition == -1) {
