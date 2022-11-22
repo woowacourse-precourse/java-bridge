@@ -5,12 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static bridge.constant.BridgeControl.QUIT;
+import static bridge.constant.BridgeControl.RESTART;
 import static bridge.constant.BridgeMove.DOWN;
 import static bridge.constant.BridgeMove.UP;
 import static bridge.constant.BridgeRange.MAX_LENGTH;
 import static bridge.constant.BridgeRange.MIN_LENGTH;
-import static bridge.constant.message.ExceptionMessage.BRIDGE_LENGTH_RANGE;
-import static bridge.constant.message.ExceptionMessage.PLAYER_MOVE;
+import static bridge.constant.message.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -86,5 +87,32 @@ class ValidationUtilTest {
                         UP.getIdentifier(), DOWN.getIdentifier()));
     }
 
+    @DisplayName("재시작/종료 시 R 혹은 Q가 들어오면 통과해야 된다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void 재시작_종료_올바른_값_검증_테스트(String input) {
+        // given
+        ValidationUtil validationUtil = new ValidationUtil();
+
+        // when, then
+        assertThatCode(() ->
+                validationUtil.validatePlayControlInput(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("재시작/종료 시 R, Q가 아닌 다른 값이 들어오면 오류가 발생해야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D", "RR", "QR", "33", "(@#$"})
+    void 재시작_종료_잘못된_값_검증_테스트(String input) {
+        // given
+        ValidationUtil validationUtil = new ValidationUtil();
+
+        // when, then
+        assertThatThrownBy(() ->
+                validationUtil.validatePlayControlInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(String.format(PLAY_CONTROL.getMessage(),
+                        RESTART.getIdentifier(), QUIT.getIdentifier()));
+    }
 }
 
