@@ -18,37 +18,41 @@ public class OutputView {
 
     public void printMap(List<String> bridge, boolean success, int position) { //depth줄이기, 함수길이 줄이기
         List<String> check = new ArrayList<>();
-        check.add("U");
-        check.add("D");
-
-        for(int i=0; i<2; i++){
+        check.add("U"); //enum
+        check.add("D"); //enum
+        for(int i=0; i<2; i++){ //여기 enum
             String standard = check.get(i);
-            System.out.print(BRIDGE_START);
-            for(int j=0; j<position; j++){
-                String eachSpace = BLANK;
-                if(standard.equals(bridge.get(j))){
-                    eachSpace = CORRECT_SPACE;
-                }
-                System.out.print(BLANK + eachSpace + BLANK);
-                System.out.print(BAR);
-            }
-            if(success){
-                String eachSpace = BLANK;
-                if(standard.equals(bridge.get(position))){
-                    eachSpace = CORRECT_SPACE;
-                }
-                System.out.print(BLANK + eachSpace + BLANK);
-            }
-            else{
-                String eachSpace = BLANK;
-                if(standard.equals(bridge.get(position))){
-                    eachSpace = WRONG_SPACE;
-                }
-                System.out.print(BLANK + eachSpace + BLANK);
-            }
-            System.out.println(BRIDGE_END);
+            printMapStartPoint(bridge, standard, position);
+            printMapEndPoint(bridge.get(position), standard, success);
         }
         System.out.println();
+    }
+    public void printMapStartPoint(List<String> bridge, String standard, int position){
+        System.out.print(BRIDGE_START);
+        for(int j=0; j<position; j++){
+            String eachSpace = BLANK;
+            if(standard.equals(bridge.get(j))){
+                eachSpace = CORRECT_SPACE;
+            }
+            System.out.print(BLANK + eachSpace + BLANK);
+            System.out.print(BAR);
+        }
+    }
+
+    public void printMapEndPoint(String bridgePosition, String standard, boolean success){
+        String eachSpace = checkLastPrint(bridgePosition, standard, success);
+        System.out.print(BLANK + eachSpace + BLANK);
+        System.out.println(BRIDGE_END);
+    }
+
+    public String checkLastPrint(String bridgePosition, String standard, boolean success){
+        if(success){
+            if(standard.equals(bridgePosition))
+                return CORRECT_SPACE;
+        }
+        if(standard.equals(bridgePosition))
+            return WRONG_SPACE;
+        return BLANK;
     }
 
     public void printResult(boolean gameSuccess, int gameTryCount) {
