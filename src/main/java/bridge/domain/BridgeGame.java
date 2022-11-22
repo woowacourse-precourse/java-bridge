@@ -12,7 +12,11 @@ public class BridgeGame {
     private int current;
 
     public BridgeGame(){
-        this.bridgeBoard = new BridgeBoard();
+       init();
+    }
+
+    public void init(){
+        bridgeBoard = new BridgeBoard();
         current =0;
     }
 
@@ -55,6 +59,18 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(List<String> bridge,String command) {
+        if(command=="R"){
+            init();
+            return;
+        }
+        current=bridge.size();
+    }
+
+    public boolean gameFinish(List<String> bridge){
+        if(current==bridge.size()){
+            return true;
+        }
+        return false;
     }
 }
