@@ -2,8 +2,7 @@ package bridge.enums;
 
 public enum BridgeRange {
     MIN(3),
-    MAX(20),
-    EXCEPTION(-1);
+    MAX(20);
 
     private final int range;
 
@@ -24,9 +23,5 @@ public enum BridgeRange {
 
     public static int getMaxValue() {
         return MAX.range;
-    }
-
-    public static int getExceptionValue() {
-        return EXCEPTION.range;
     }
 }

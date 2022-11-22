@@ -8,15 +8,17 @@ public enum BridgeGameCommand {
 
     private boolean bool;
 
-    BridgeGameCommand(Boolean bool) {this.bool = bool;}
+    BridgeGameCommand(Boolean bool) {
+        this.bool = bool;
+    }
 
     public boolean isBool() {
         return bool;
     }
 
-    public static boolean getBool(String str) {
+    public static boolean getBool(String name) {
         return Arrays.stream(BridgeGameCommand.values())
-                .filter(command -> command.name().equals(str))
+                .filter(command -> command.name().equals(name))
                 .findAny()
                 .get().isBool();
     }

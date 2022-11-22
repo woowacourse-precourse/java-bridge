@@ -7,9 +7,9 @@ import bridge.InputView;
 import bridge.OutputView;
 import bridge.enums.BridgeGameCommand;
 import bridge.models.BridgeBluePrint;
-import bridge.models.BridgeResult;
 
 public class BridgeController {
+
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame game;
@@ -102,7 +102,7 @@ public class BridgeController {
         return null;
     }
 
-    public void result() {
+    public void exit() {
         outputView.printResult(game.getMap(), game.isSuccess(), game.getRetryCount());
     }
 }

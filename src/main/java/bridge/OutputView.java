@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.enums.BridgeDisplay;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,8 +31,8 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(map);
         System.out.println();
-        String successMessage = BridgeDisplay.getMessage(success);
-        System.out.println("게임 성공 여부: " + successMessage);
+        String state = BridgeDisplay.getState(success);
+        System.out.println("게임 성공 여부: " + state);
         System.out.println("총 시도한 횟수: " + count);
     }
 
@@ -41,9 +40,10 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    public void printBridgeSizeStatement(){
+    public void printBridgeSizeStatement() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
+
     public void printError(Exception e) {
         System.out.println(e.getMessage());
     }

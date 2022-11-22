@@ -18,13 +18,15 @@ public enum BridgeDisplay {
         return bool;
     }
 
-    public String getMessage() {return message;}
+    public String getState() {
+        return message;
+    }
 
-    public static String getMessage(Boolean bool) {
+    public static String getState(Boolean bool) {
         return Arrays.stream(BridgeDisplay.values())
                 .filter(display -> display.isBool() == bool)
                 .findAny()
-                .get().getMessage();
+                .get().getState();
     }
 
     public static String getName(boolean bool) {
@@ -33,6 +35,4 @@ public enum BridgeDisplay {
                 .findAny()
                 .get().name();
     }
-
-
 }

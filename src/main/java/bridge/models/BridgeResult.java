@@ -8,11 +8,11 @@ public class BridgeResult {
 
     private int count;
     private boolean success;
-    private ArrayList<String>[] result;
+    private ArrayList<String>[] map;
 
     public BridgeResult() {
         count = 0;
-        result = new ArrayList[BridgeMoving.values().length];
+        map = new ArrayList[BridgeMoving.values().length];
     }
 
     public int getCount() {
@@ -23,33 +23,33 @@ public class BridgeResult {
         return success;
     }
 
-    public int getResultSize() {
-        return result[0].size();
+    public int getMapSize() {
+        return map[0].size();
     }
 
-    public ArrayList<String>[] getResult() {
-        ArrayList<String>[] resultCopy = new ArrayList[result.length];
-        for (int index = 0; index < resultCopy.length; index++) {
-            resultCopy[index] =  new ArrayList<>();
-            resultCopy[index].addAll(result[index]);
+    public ArrayList<String>[] getMap() {
+        ArrayList<String>[] mapCopy = new ArrayList[map.length];
+        for (int index = 0; index < mapCopy.length; index++) {
+            mapCopy[index] = new ArrayList<>();
+            mapCopy[index].addAll(map[index]);
         }
-        return resultCopy;
+        return mapCopy;
     }
 
     public void init() {
         count++;
-        for (int index = 0; index < result.length; index++) {
-            result[index] = new ArrayList<>();
+        for (int index = 0; index < map.length; index++) {
+            map[index] = new ArrayList<>();
         }
     }
 
     public boolean add(String moving, boolean correct) {
         int index = BridgeMoving.valueOf(moving).getNumberNotation();
         String display = BridgeDisplay.getName(correct);
-        result[index].add(display);
-        for (int anotherIndex = 0; anotherIndex < result.length; anotherIndex++) {
+        map[index].add(display);
+        for (int anotherIndex = 0; anotherIndex < map.length; anotherIndex++) {
             if (anotherIndex != index) {
-                result[anotherIndex].add(" ");
+                map[anotherIndex].add(" ");
             }
         }
         success = correct;

@@ -2,8 +2,6 @@ package bridge;
 
 
 import bridge.controller.BridgeController;
-import bridge.models.BridgeResult;
-import java.util.List;
 
 public class Application {
 
@@ -17,7 +15,7 @@ public class Application {
         while (ready) {
             ready = crossBridge(controller);
         }
-        controller.result();
+        controller.exit();
     }
 
     private static boolean crossBridge(BridgeController controller) {

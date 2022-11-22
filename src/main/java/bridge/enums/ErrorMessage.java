@@ -9,14 +9,15 @@ public enum ErrorMessage {
             + "보다 작거나 같아야 합니다."),
     INVALID_MOVING("잘못된 칸을 입력하셨습니다."),
     INVALID_GAME_COMMAND("재시작 여부를 다시 입력해주세요.");
-    private String reference;
 
-    ErrorMessage(String reference) {
-        this.reference = reference;
+    private String message;
+
+    ErrorMessage(String message) {
+        this.message = message;
     }
 
-    public String getReference() {
-        return reference;
+    public String getMessage() {
+        return message;
     }
 
     public static String getMessage(String name) {
@@ -24,7 +25,7 @@ public enum ErrorMessage {
                 Arrays.stream(ErrorMessage.values())
                         .filter(error -> error.name().equals(name))
                         .findAny()
-                        .get().getReference();
+                        .get().getMessage();
     }
 
 }
