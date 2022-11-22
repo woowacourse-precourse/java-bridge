@@ -1,6 +1,6 @@
-package Utils.Validator;
+package bridge.Utils.Validator;
 
-import Utils.Constants.MoveInputAndNextInput;
+import bridge.Utils.Constants.MoveInputAndNextInput;
 
 public class BridgeMoveValidator {
 

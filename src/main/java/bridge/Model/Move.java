@@ -1,6 +1,6 @@
 package bridge.Model;
 
-import Utils.Validator.BridgeMoveValidator;
+import bridge.Utils.Validator.BridgeMoveValidator;
 import bridge.Controller.InputController;
 
 import java.util.ArrayList;
@@ -8,14 +8,13 @@ import java.util.List;
 
 public class Move {
     private static final String BLANK = " ";
-    private static final String INPUT_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
     private List<String> result;
     private final String inputMove;
     private final String correctMove;
 
 
     public Move(String correctMove) {
-        System.out.println(INPUT_MOVE);
         InputController inputController = new InputController();
         this.inputMove = inputController.getMovement();
         this.correctMove = correctMove;
@@ -28,10 +27,17 @@ public class Move {
      */
     public List<String> getMove() {
         int index = BridgeMoveValidator.compareMoveInputAndNextMove(inputMove, correctMove).getIndex();
-        for (int i = 0; i < 2; i++) {
-            if (index == i) {
-                result.add(BridgeMoveValidator.compareMoveInputAndNextMove(inputMove, correctMove).getOorX());
-            }
+        for (int current = 0; current < 2; current++) {
+            result = addOorX(index, current);
+        }
+        return result;
+    }
+
+    private List<String> addOorX(int index, int currentIndex){
+        if (index == currentIndex) {
+            result.add(BridgeMoveValidator.compareMoveInputAndNextMove(inputMove, correctMove).getOorX());
+        }
+        if(index != currentIndex){
             result.add(BLANK);
         }
         return result;

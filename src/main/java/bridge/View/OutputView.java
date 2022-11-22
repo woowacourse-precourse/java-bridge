@@ -2,7 +2,7 @@ package bridge.View;
 
 import java.util.List;
 
-import Utils.Converter;
+import bridge.Utils.Converter;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -11,6 +11,10 @@ public class OutputView {
     private static final String BRACKET_START= "[ ";
     private static final String BRACKET_END= " ]";
     private static final String BAR= " | ";
+    private static final String SUCCESS= "성공";
+
+    private static final String FAILED= "실패";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -19,6 +23,7 @@ public class OutputView {
     public static void printMap(List<String> moveOutput) {
         printLine(Converter.getOddList(moveOutput));
         printLine(Converter.getEvenList(moveOutput));
+        System.out.println();
     }
 
 
@@ -28,8 +33,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(int gameCount, List<String> currentBridge, boolean isSuccess) {
+        System.out.println("최종 게임 결과");
+        OutputView.printMap(currentBridge);
+        System.out.println("게임 성공 여부:"+ print(isSuccess));
+        System.out.println("총 시도한 횟수: " + gameCount);
     }
+
+    private String print(boolean isSuccess){
+        if(isSuccess){
+            return SUCCESS;
+        }
+        return FAILED;
+    }
+
 
     /**
      *

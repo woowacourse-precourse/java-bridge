@@ -5,6 +5,7 @@ import bridge.Model.Bridge;
 import bridge.Model.Move;
 import bridge.View.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +14,12 @@ import java.util.List;
 public class BridgeGame {
     private static final String X = "X";
     private static final String O = "O";
+    static final String RETRY = "R";
+    static final String QUIT = "Q";
+
     private final int bridgeSize;
     private final List<String> bridge;
-    private List<String> currentBridge;
+    private List<String> currentBridge = new ArrayList<>();
     private List<String> movement;
 
     private int gameCount;
@@ -25,7 +29,7 @@ public class BridgeGame {
         Bridge build = new Bridge(bridgeSize);
         this.bridge = build.getBridge();
         this.bridgeSize = bridgeSize;
-        this.gameCount = 0;
+        this.gameCount = 1;
         this.currentLocation = 0;
     }
 
@@ -44,19 +48,19 @@ public class BridgeGame {
             }
             currentLocation++;
         }
-        retry();
+        isSuccess();
     }
-    private void moveOnce(){
+
+    private void moveOnce() {
         Move move = new Move(bridge.get(currentLocation));
         movement = move.getMove();
-        addBridge(movement);
+        currentBridge.addAll(movement);
         OutputView.printMap(currentBridge);
     }
 
-    private void addBridge(List<String> movement) {
-        if (movement.contains(O)) {
-            currentBridge.addAll(movement);
-        }
+    private void isSuccess(){
+        OutputView.printResult(gameCount, currentBridge, currentLocation == bridgeSize);
+        isFailed();
     }
 
 
@@ -67,5 +71,29 @@ public class BridgeGame {
      */
     public void retry() {
         InputController input = new InputController();
+        String command = input.getCommand();
+        isRetry(command);
+        isQuit(command);
     }
+    private void isRetry(String command){
+        if (command.equals(RETRY)) {
+            currentLocation = 0;
+            currentBridge = new ArrayList<>();
+            move();
+        }
+    }
+
+    private void isQuit(String command){
+        if (command.equals(QUIT)) {
+            OutputView.printResult(gameCount, currentBridge, false);
+        }
+    }
+
+    private void isFailed(){
+        if (currentLocation != bridgeSize) {
+            retry();
+        }
+    }
+
+
 }

@@ -1,9 +1,9 @@
 package bridge.Model;
 
 
-import Utils.Bridge.BridgeMaker;
-import Utils.Bridge.BridgeNumberGenerator;
-import Utils.Bridge.BridgeRandomNumberGenerator;
+import bridge.Utils.Bridge.BridgeMaker;
+import bridge.Utils.Bridge.BridgeNumberGenerator;
+import bridge.Utils.Bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 

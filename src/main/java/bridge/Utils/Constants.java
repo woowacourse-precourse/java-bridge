@@ -1,4 +1,4 @@
-package Utils;
+package bridge.Utils;
 
 public class Constants {
     public enum MoveInputAndNextInput {

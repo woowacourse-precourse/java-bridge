@@ -1,4 +1,4 @@
-package Utils.Validator;
+package bridge.Utils.Validator;
 
 public class BridgeLengthValidator {
 
