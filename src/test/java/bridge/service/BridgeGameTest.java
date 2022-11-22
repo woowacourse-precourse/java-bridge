@@ -25,7 +25,6 @@ class BridgeGameTest {
     void 생성자와_다리생성_테스트() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.initBridge(3);
-        bridgeGame.initPlayer();
         bridgeGame.move(BridgeUtil.UP);
 
         assertThat(bridgeGame.getBridgeMap().get(0).size()).isEqualTo(1);
@@ -36,7 +35,6 @@ class BridgeGameTest {
     void 재시도_횟수_테스트() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.initBridge(3);
-        bridgeGame.initPlayer();
 
         int expectTryCount = 2;
         for (int tryTimes = 0; tryTimes < expectTryCount; tryTimes++) {
@@ -52,7 +50,6 @@ class BridgeGameTest {
     void 계속_이동이_가능한지_확인() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.initBridge(3);
-        bridgeGame.initPlayer();
 
         int expectTryCount = 3;
         for (int move = 0; move < expectTryCount; move++) {
@@ -68,7 +65,6 @@ class BridgeGameTest {
     void 계속_이동이_불가능한것을_확인() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.initBridge(3);
-        bridgeGame.initPlayer();
 
         int expectTryCount = 3;
         for (int move = 0; move < expectTryCount; move++) {
@@ -121,7 +117,6 @@ class BridgeGameTest {
     void 올바른_게임_입력시_정상_흐름() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.initBridge(3);
-        bridgeGame.initPlayer();
 
         assertThat(bridgeGame.isRestartGame(GameCommand.RESTART)).isTrue();
         assertThat(bridgeGame.isRestartGame(GameCommand.QUIT)).isFalse();
@@ -132,7 +127,6 @@ class BridgeGameTest {
     void 재시도_횟수_증가() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.initBridge(3);
-        bridgeGame.initPlayer();
 
         bridgeGame.isRestartGame(GameCommand.RESTART);
         assertThat(bridgeGame.getTryCount()).isEqualTo(2);

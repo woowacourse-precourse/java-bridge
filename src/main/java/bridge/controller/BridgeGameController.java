@@ -5,6 +5,8 @@ import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BridgeGameController {
@@ -66,7 +68,7 @@ public class BridgeGameController {
     }
 
     private void moveAndResult() {
-        bridgeGame.initPlayer();
+        bridgeGame.initPlayer(new ArrayList<>());
 
         do {
             bridgeGame.move(getMoveCommand());

@@ -45,8 +45,8 @@ public class BridgeGame {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public void initPlayer() {
-        this.player = new Player();
+    public void initPlayer(List<String> choice) {
+        this.player = new Player(choice);
     }
 
     /**
