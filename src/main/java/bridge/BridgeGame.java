@@ -20,14 +20,10 @@ public class BridgeGame { // private로 선언 후 getter, setter 생성
 
     public boolean move(List<String> bridgeMap, String userMoving) {
         if (userMoving.equals("U")) {
-            if (addUpAnswer(bridgeMap, userMoving)) {
-                return true;
-            }
+            return addUpAnswer(bridgeMap, userMoving);
         }
         if (userMoving.equals("D")) {
-            if (addDownAnswer(bridgeMap, userMoving)) {
-                return true;
-            }
+            return addDownAnswer(bridgeMap, userMoving);
         }
         return false;
     }
@@ -96,12 +92,17 @@ public class BridgeGame { // private로 선언 후 getter, setter 생성
         String userCommand = controller.inputViewCommand();
         if (userCommand.equals("R")) {
             gameTryCount += 1;
+            resetBridge();
             bridgeLogic(answer);
             return ;
         }
         resultMessage(up, down);
     }
 
+    public void resetBridge() {
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
+    }
     public void resultMessage(List<String> up, List<String> down) {
         Message.gameResultMesaage();
         controller.outputViewResult(up, down);
@@ -122,19 +123,18 @@ public class BridgeGame { // private로 선언 후 getter, setter 생성
         Message.tryCount(gameTryCount);
     }
 
-    public void gamePlay() {
+    public void gameSetting() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
         Message.startMessage();
         Message.requestBridgeSizeMessage();
         int size = controller.inputViewSize();
         List<String> answer = bridgeMaker.makeBridge(size); // 정답
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
         bridgeLogic(answer);
     }
     public void bridgeLogic(List<String> answer) {
-        upBridge = new ArrayList<>();
-        downBridge = new ArrayList<>();
-
         for (int i = 0; i < answer.size(); i++) {
             Message.requestMovingMessage();
             String userMovingValue = controller.inputViewMoving();

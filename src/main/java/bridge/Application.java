@@ -7,6 +7,6 @@ public class Application {
 
         BridgeGame bridgeGame = new BridgeGame();
 
-        bridgeGame.gamePlay();
+        bridgeGame.gameSetting();
     }
 }
