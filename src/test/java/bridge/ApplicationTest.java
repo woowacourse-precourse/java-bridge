@@ -3,11 +3,16 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -51,6 +56,37 @@ class ApplicationTest extends NsTest {
     protected void runMain() {
         Application.main(new String[]{});
     }
+
+    /*
+    @DisplayName("다리 길이는 3부터 20 사이의 숫자여야 합니다")
+    @ValueSource(strings = {"", "QR", "q", "r", "!", "1", "2", "2.9", "31"})
+    @ParameterizedTest
+    void 다리_길이_예외_테스트(String input) {
+        assertThatThrownBy(() -> new BridgeGame().checkBridgeLenCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 다리_길이_정상_테스트() {
+        assertThat(new BridgeGame().checkBridgeLenCommand("3")).isEqualTo(3);
+        assertThat(new BridgeGame().checkBridgeLenCommand("20")).isEqualTo(20);
+    }
+
+    @DisplayName("Q, R 이외의 재시작 입력에 대한 예외 처리")
+    @ValueSource(strings = {"", "QR", "q", "r", "!"})
+    @ParameterizedTest
+    void 재시도_예외_테스트(String input) {
+        assertThatThrownBy(() -> new BridgeGame().checkGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 재시도_정상_테스트() {
+        assertThat(new BridgeGame().checkGameCommand("R")).isEqualTo(0);
+        assertThat(new BridgeGame().checkGameCommand("Q")).isEqualTo(1);
+    }
+
+    */
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
