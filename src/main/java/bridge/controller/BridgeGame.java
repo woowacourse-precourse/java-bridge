@@ -6,9 +6,6 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private static int bridgeSize;
     private static int position;
@@ -39,6 +36,7 @@ public class BridgeGame {
     private List<String> generateBridge() {
         outputView.printBridgeSizeInputNotice();
         bridgeSize = inputView.readBridgeSize();
+        System.out.println();
         return bridgeGenerateService.generateBridgeBySize(bridgeSize);
     }
 
