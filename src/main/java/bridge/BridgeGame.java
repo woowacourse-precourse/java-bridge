@@ -41,7 +41,7 @@ public class BridgeGame {
             return;
         }
         if (player.isBridgePassed(bridge)) {
-            setState(GameState.COMPLETE);
+            setState(GameState.SUCCESS);
         }
     }
 
@@ -60,22 +60,22 @@ public class BridgeGame {
      */
     public void retry(GameCommand command) {
         if (command == GameCommand.QUIT) {
-            setState(GameState.FAIL_QUIT);
+            setState(GameState.QUIT);
             return;
         }
         initialize();
     }
 
     public GameResult gameResult() {
-        return new GameResult(state == GameState.COMPLETE, player.getTryCount());
+        return new GameResult(state == GameState.SUCCESS, player.getTryCount());
     }
 
-    public boolean end() {
+    public boolean fail() {
         return state == GameState.FAIL;
     }
 
     public boolean quit() {
-        return state == GameState.COMPLETE || state == GameState.FAIL_QUIT;
+        return state == GameState.SUCCESS || state == GameState.QUIT;
     }
 
     public String getGameMap() {

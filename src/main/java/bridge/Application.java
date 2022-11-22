@@ -43,7 +43,7 @@ public class Application {
     }
 
     private static void retryGameWhenGameFailed(BridgeGame bridgeGame) {
-        if (bridgeGame.end()) {
+        if (bridgeGame.fail()) {
             bridgeGame.retry(inputGameCommand());
         }
     }
