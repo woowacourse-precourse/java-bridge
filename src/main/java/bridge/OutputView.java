@@ -13,7 +13,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> playerList, List<String> BRIDGEANSWER) {
+    static void printMap(List<String> playerList, List<String> BRIDGEANSWER) {
         List<String> lowerList = new ArrayList<>(), upperList = new ArrayList<>();
         for (int i = 0; i < playerList.size(); i++) {
             if (playerList.get(i).equals(BRIDGEANSWER.get(i))) {AddEqualCase(playerList.get(i), upperList, lowerList);}
@@ -53,18 +53,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(Boolean success, Integer tryCount) {
+    static void printResult(Boolean success, Integer tryCount) {
         String result = SuccessConvert(success);
         String("최종 게임 결과");
         String("게임 성공 여부: "+result);
         String("총 시도한 횟수: "+tryCount);
     }
 
-    public static void String(String message) {
+    static void String(String message) {
         System.out.println(message);
     }
 
-    public static String SuccessConvert(Boolean boo) {
+    private static String SuccessConvert(Boolean boo) {
         String result = "";
         if (boo.equals(true)) { result = "성공"; }
         if (boo.equals(false)) { result = "실패"; }
