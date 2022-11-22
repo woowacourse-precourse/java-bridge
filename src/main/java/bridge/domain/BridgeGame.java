@@ -19,10 +19,34 @@ public class BridgeGame {
     return new BridgeGame(new Bridge(areas), new GameState());
   }
 
-  public void move() {
+  public boolean move(BridgeArea nextArea) {
+    int currentLocation = gameState.getCurrentLocation();
+    if (bridge.canMove(currentLocation, nextArea)) {
+      gameState.addHistory(nextArea);
+      return true;
+    }
+    return false;
   }
 
+  public boolean isClear() {
+    List<BridgeArea> bridgeAreas = bridge.getBridgeAreas();
+    List<BridgeArea> movementHistory = gameState.getMovementHistory();
+    return equalAll(bridgeAreas, movementHistory);
+  }
+
+  private boolean equalAll(List<BridgeArea> bridge, List<BridgeArea> userHistory) {
+    if (bridge.size() != userHistory.size()) {
+      return false;
+    }
+    for (int i = 0; i < bridge.size(); i++) {
+      if (!bridge.get(i).equals(userHistory.get(i))) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   public void retry() {
+    gameState.retry();
   }
 }

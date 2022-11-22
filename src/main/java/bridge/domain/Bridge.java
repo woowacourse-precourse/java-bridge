@@ -12,10 +12,13 @@ public class Bridge {
   }
 
   public boolean canMove(int location, BridgeArea area) {
-    if (bridgeAreas.size() >= location && bridgeAreas.get(location - 1).equals(area)) {
+    if (bridgeAreas.size() >= location && bridgeAreas.get(location).equals(area)) {
       return true;
     }
     return false;
   }
 
+  public List<BridgeArea> getBridgeAreas() {
+    return bridgeAreas;
+  }
 }

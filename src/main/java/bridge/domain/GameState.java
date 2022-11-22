@@ -13,4 +13,23 @@ public class GameState {
     this.movementHistory = new ArrayList<>();
   }
 
+  public int getTryCount() {
+    return tryCount;
+  }
+  public List<BridgeArea> getMovementHistory() {
+    return movementHistory;
+  }
+
+  public int getCurrentLocation() {
+    return movementHistory.size();
+  }
+
+  public void addHistory(BridgeArea area) {
+    movementHistory.add(area);
+  }
+
+  public void retry() {
+    tryCount++;
+    movementHistory = new ArrayList<>();
+  }
 }
