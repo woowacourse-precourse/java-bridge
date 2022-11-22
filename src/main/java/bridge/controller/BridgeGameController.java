@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.validator.InputBridgeSizeValidator;
@@ -14,14 +13,12 @@ public class BridgeGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeNumberGenerator bridgeNumberGenerator;
     private final BridgeMaker bridgeMaker;
 
     public BridgeGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void startGame() {
