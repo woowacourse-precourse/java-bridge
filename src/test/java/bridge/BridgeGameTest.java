@@ -20,7 +20,6 @@ public class BridgeGameTest extends NsTest {
         assertThat(bridge).hasSize(5);
     }
 
-
     @Test
     void 예외_테스트_다리길이_음수() {
         assertSimpleTest(() -> {
