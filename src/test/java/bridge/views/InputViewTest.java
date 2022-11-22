@@ -77,7 +77,7 @@ class InputViewTest {
     class ReadMovingTest {
 
         @Test
-        @DisplayName("valid moving direction(U or D)")
+        @DisplayName("valid moving direction(Up : U or u, Down : D or d)")
         void validMovingDirection() {
             String[] inputs = { "U", "D", "u", "d" };
             for (String input : inputs) {
@@ -97,6 +97,37 @@ class InputViewTest {
                 OutputStream out = new ByteArrayOutputStream();
                 assertThrows(NoSuchElementException.class, () -> {
                     inputView.readMoving();
+                    assertThat(out.toString()).contains(ErrorMessage.PREFIX_ERROR_MESSAGE.getMessage());
+                });
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("read retry input test")
+    class readRetryTest {
+
+        @Test
+        @DisplayName("valid retry inputs(Retry : R or r, Quit : Q or q)")
+        void validRetryInput() {
+            String[] inputs = { "R", "r", "Q", "q" };
+            for (String input : inputs) {
+                setInput(input);
+                assertDoesNotThrow(() -> {
+                    inputView.readGameCommand();
+                });
+            }
+        }
+
+        @Test
+        @DisplayName("invalid retry inputs")
+        void invalidRetryInput() {
+            String[] inputs = { "W", "RR", "QR", "QUIT", "123" };
+            for (String input : inputs) {
+                setInput(input);
+                assertThrows(NoSuchElementException.class, () -> {
+                    OutputStream out = new ByteArrayOutputStream();
+                    inputView.readGameCommand();
                     assertThat(out.toString()).contains(ErrorMessage.PREFIX_ERROR_MESSAGE.getMessage());
                 });
             }
