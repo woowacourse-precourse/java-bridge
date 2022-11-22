@@ -69,6 +69,22 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
+        while (true) {
+            try {
+                String command = Console.readLine();
+                validateGameCommand(command);
+                return command;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateGameCommand(String command) {
+        if (!command.equals(Command.RESTART.getCommandStr()) && !command.equals(Command.QUIT.getCommandStr())) {
+            throw new IllegalArgumentException(ErrorMessage.GAME_END_CHOICE_EXCEPTION.getMessage());
+        }
     }
 }
