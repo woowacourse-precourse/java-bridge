@@ -16,7 +16,7 @@ public class Application {
             bridgeGame = playBridgeGame(bridgeGame,outputView,inputView);
             bridgeGame = makeGameDecision(bridgeGame,outputView,inputView);
         }
-        outputView.printResult(bridgeGame.getGameResult());
+        finishGame(outputView,bridgeGame);
     }
 
     public static BridgeGame startBridgeGame(OutputView outputView, InputView inputView){
@@ -39,5 +39,11 @@ public class Application {
             bridgeGame.retry(inputView.readGameCommand());
         }
         return bridgeGame;
+    }
+
+    public static void finishGame(OutputView outputView, BridgeGame bridgeGame){
+        System.out.println("최종 게임 결과");
+        outputView.printMap(bridgeGame);
+        outputView.printResult(bridgeGame.getGameResult());
     }
 }
