@@ -2,8 +2,8 @@
 
 ### 1. 사용자로부터 다리의 길이를 입력 받는 기능 
 `InputView`
-- [ ] 3 이상 20 이하의 숫자 입력 받기
-- [ ] 예외처리 : 숫자 여부, 범위
+- [x] 3 이상 20 이하의 숫자 입력 받기
+- [x] 예외처리 : 숫자 여부, 범위
 
 ### 2. 다리 칸을 랜덤 생성하는 기능
 `BridgeRandomNumberGenerator`, `BridgeNumberGenerator`

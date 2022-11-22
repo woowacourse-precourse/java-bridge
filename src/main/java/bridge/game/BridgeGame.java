@@ -7,7 +7,8 @@ package bridge.game;
 public class BridgeGame {
 
     public void run() {
-
+        BridgeGameService service = new BridgeGameService();
+        service.getBridgeSize();
     }
 
     /**
