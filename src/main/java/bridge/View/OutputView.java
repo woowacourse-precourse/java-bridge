@@ -1,5 +1,6 @@
 package bridge.View;
 
+import bridge.Constants;
 import bridge.Domain.Result;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class OutputView {
 
     public void printBridgeGameStart(){
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println(Constants.GAME_START_MESSAGE);
     }
 
     /**

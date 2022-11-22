@@ -10,7 +10,7 @@ import java.util.Map;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final Map<Integer, String> upDownIndexSymbol = Map.of(0, "D", 1, "U");
+    private final Map<Integer, String> upDownIndexSymbol = Map.of(0, Constants.DOWN, 1, Constants.UP);
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
