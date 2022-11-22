@@ -51,7 +51,7 @@ public class OutputView {
         return topSideMap.toString();
     }
 
-    private static String topSideCheck(BridgeData bridgeData, int index){
+    private static String topSideCheck(BridgeData bridgeData, int index) {
         if (bridgeData.getBridge().get(index).equals(TOP)) {
             return CORRECT + BAR;
         }
@@ -76,7 +76,7 @@ public class OutputView {
         return bottomSideMap.toString();
     }
 
-    private static String bottomSideCheck(BridgeData bridgeData, int index){
+    private static String bottomSideCheck(BridgeData bridgeData, int index) {
         if (bridgeData.getBridge().get(index).equals(BOTTOM)) {
             return CORRECT + BAR;
         }
