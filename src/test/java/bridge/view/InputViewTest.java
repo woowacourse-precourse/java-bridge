@@ -15,4 +15,13 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.validateSizeNumber(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("다리 길이가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void bridgeSizeByChar() {
+        InputView inputView = new InputView();
+        String size = "a";
+        assertThatThrownBy(() -> inputView.validateSizeChar(size))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
