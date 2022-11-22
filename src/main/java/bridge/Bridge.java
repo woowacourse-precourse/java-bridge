@@ -17,6 +17,10 @@ public class Bridge {
         size = bridge.size();
     }
 
+    public void reuse() {
+        now = -1;
+    }
+
     public int size() {
         return size;
     }
