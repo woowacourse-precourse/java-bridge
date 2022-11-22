@@ -33,13 +33,23 @@ public class BridgeGame {
 
     public void move(String userMove) {
         userMoveList.add(userMove);
-        if(userMove=="U"){
-            upPresentBridge.add("O");
-            downPresentBridge.add("X");
+        if(userMove.equals("U")) {
+            if (bridge.get(userMoveList.size() - 1).equals(userMove)) {
+                upPresentBridge.add("O");
+                downPresentBridge.add("X");
+                return;
+            }
+            upPresentBridge.add("X");
+            downPresentBridge.add("O");
             return;
         }
-        upPresentBridge.add("X");
-        downPresentBridge.add("O");
+        if (bridge.get(userMoveList.size() - 1).equals(userMove)) {
+            upPresentBridge.add("X");
+            downPresentBridge.add("O");
+            return;
+        }
+        upPresentBridge.add("O");
+        downPresentBridge.add("X");
     }
 
     /**

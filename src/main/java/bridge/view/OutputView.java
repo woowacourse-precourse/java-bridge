@@ -42,7 +42,7 @@ public class OutputView {
         System.out.print("[");
         for (int i = 0; i < bridgeSize - 1; i++) {
             if (bridgeGame.getUserMoveList().get(i).equals("D")) {
-                System.out.printf(" %s |", bridgeGame.getDownPresentBridge().get(i - 1));
+                System.out.printf(" %s |", bridgeGame.getDownPresentBridge().get(i));
             } else {
                 System.out.print("   |");
             }
@@ -54,16 +54,14 @@ public class OutputView {
         }
 
         if (bridgeGame.getUserMoveList().get(bridgeSize - 1).equals("D")) {
+            if (bridgeGame.getDownPresentBridge().get(bridgeSize - 1).equals("X")) {
+                throw new IllegalArgumentException();
+            }
+        } else
             if (bridgeGame.getUpPresentBridge().get(bridgeSize - 1).equals("X")) {
                 throw new IllegalArgumentException();
             }
         }
-        if (bridgeGame.getUserMoveList().get(bridgeSize - 1).equals("U")) {
-            if (bridgeGame.getUpPresentBridge().get(bridgeSize - 1).equals("X")) {
-                throw new IllegalArgumentException();
-            }
-        }
-    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
