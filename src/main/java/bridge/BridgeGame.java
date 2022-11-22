@@ -40,13 +40,32 @@ public class BridgeGame {
         return stepCnt;
     }
 
+    public void progressGame(){
+        while(true){
+            outputView.printMoveQuestion();
+            if(move(inputView.readMoving()) == false){
+                isAnswer = 0;
+                outputView.printMap(stepCnt, bridge,isAnswer);
+                break;
+            }
+            outputView.printMap(stepCnt, bridge, isAnswer);
+            if(getStepCnt() == bridge.size()) break;
+        }
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(String nextStep) {
+        if(bridge.get(stepCnt).charAt(0) == nextStep.charAt(0)){
+            stepCnt++;
+            return true;
+        }
+        stepCnt++;
+        return false;
     }
 
     /**
@@ -55,5 +74,21 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+    public boolean compareRetryGameComman(char c) {
+    }
+
+    public List<String> setBridgeBySize() {
+        int bridgeSize = inputView.inputBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+        return bridge;
+    }
+
+    public void setBridge(List<String> inputString) {
+        this.bridge = inputString;
+    }
+
+    public void setBridgeStepCnt(int num) {
+        this.stepCnt = num;
     }
 }
