@@ -11,5 +11,6 @@ public class Constant {
     public static final int BRIDGE_MIN_SIZE = 3;
     public static final int BRIDGE_MAX_SIZE = 20;
 
-
+    public static final boolean MOVE_SUCCESS = true;
+    public static final boolean MOVE_FAIL = false;
 }

@@ -1,14 +1,16 @@
 package bridge.domain;
 
+import bridge.util.Constant;
+
 import java.util.Arrays;
 
 public enum StepResult {
 
-    UPPER_SUCCESS("U", true, "O"),
-    UPPER_FAIL("U",  false, "X"),
-    LOWER_SUCCESS("D", true, "O"),
-    LOWER_FAIL("D", false, "X"),
-    NO_RESULT("null", false, "null");
+    UPPER_SUCCESS("U", Constant.MOVE_SUCCESS, "O"),
+    UPPER_FAIL("U",  Constant.MOVE_FAIL, "X"),
+    LOWER_SUCCESS("D", Constant.MOVE_SUCCESS, "O"),
+    LOWER_FAIL("D", Constant.MOVE_FAIL, "X"),
+    NO_RESULT("null", Constant.MOVE_FAIL, "null");
 
     private final String direction;
     private final boolean passed;

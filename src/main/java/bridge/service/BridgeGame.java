@@ -4,6 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeState;
 import bridge.domain.StepResult;
 import bridge.domain.User;
+import bridge.util.Constant;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -28,10 +29,10 @@ public class BridgeGame {
     public boolean move(String moving) {
         if (bridge.canMove(user.getPosition(), moving)) {
             user.updatePosition();
-            bridgeState.update(StepResult.getStepResult(moving, true));
+            bridgeState.update(StepResult.getStepResult(moving, Constant.MOVE_SUCCESS));
             return true;
         }
-        bridgeState.update(StepResult.getStepResult(moving, false));
+        bridgeState.update(StepResult.getStepResult(moving, Constant.MOVE_FAIL));
         return false;
     }
 
