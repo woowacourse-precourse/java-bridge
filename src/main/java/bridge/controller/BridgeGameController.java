@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.map.BridgeMap;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -23,22 +24,13 @@ public class BridgeGameController {
 
     private void play(BridgeGame bridgeGame) {
         while (!bridgeGame.isGameEnd()) {
-            move(bridgeGame);
-            OutputView.printMap(bridgeGame);
-            bridgeGame.nextRound();
+            bridgeGame.move(InputView.readMoving());
+            OutputView.printMap(bridgeGame.getMap());
+
             if (!bridgeGame.isPlayerAlive()) {
-                getGameCommand(bridgeGame);
+                bridgeGame.retry(InputView.readGameCommand());
             }
         }
     }
 
-    private void move(BridgeGame bridgeGame) {
-        String playerChoice = InputView.readMoving();
-        bridgeGame.move(playerChoice);
-    }
-
-    private static void getGameCommand(BridgeGame bridgeGame) {
-        String playerChoice = InputView.readGameCommand();
-        bridgeGame.retry(playerChoice);
-    }
 }

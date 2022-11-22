@@ -36,4 +36,7 @@ public class Player {
         this.position++;
     }
 
+    public boolean matches(String answer) {
+        return lastSelection.equals(answer);
+    }
 }

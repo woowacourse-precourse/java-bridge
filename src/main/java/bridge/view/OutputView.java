@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.BridgeGame;
 import bridge.domain.map.BridgeMap;
 import bridge.domain.map.BridgeMark;
 import java.util.List;
@@ -32,11 +33,12 @@ public class OutputView {
         return sb.toString().replaceFirst(DELIMITER, BLANK);
     }
 
-    public static void printResult(BridgeMap map,int count,boolean isAlive) {
+    public static void printResult(BridgeGame game) {
+
         System.out.println(GAME_RESULT_MESSAGE);
-        printMap(map);
-        System.out.println(String.format(SUCCESS_OR_FAILURE, isSuccess(isAlive)));
-        System.out.println(String.format(TRIAL_COUNT_MESSAGE, count));
+        printMap(game.getMap());
+        System.out.println(String.format(SUCCESS_OR_FAILURE, isSuccess(game.isPlayerAlive())));
+        System.out.println(String.format(TRIAL_COUNT_MESSAGE, game.getTrialCount()));
     }
 
     private static String isSuccess(boolean isAlive) {
