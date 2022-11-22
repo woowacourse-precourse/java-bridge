@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.BridgeMaker;
+
 import java.util.ArrayList;
 import java.util.List;
 
