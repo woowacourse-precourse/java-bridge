@@ -1,5 +1,7 @@
 package bridge.game;
 
+import bridge.resource.ErrorMessage;
+
 public enum BridgeEnum {
     U(1),
     D(0);
@@ -11,12 +13,11 @@ public enum BridgeEnum {
     }
 
     public static String getDivision(int value) {
-        String data = "";
         for (BridgeEnum bridgeEnum : BridgeEnum.values()) {
-            if (value == bridgeEnum.value) {
-                data = bridgeEnum.name();
+            if (bridgeEnum.value == value) {
+                return bridgeEnum.name();
             }
         }
-        return data;
+        throw new IllegalArgumentException(ErrorMessage.UNEXPECTED_ERROR);
     }
 }
