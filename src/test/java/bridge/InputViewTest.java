@@ -1,8 +1,5 @@
 package bridge;
 
-import bridge.enums.Command;
-import bridge.enums.Move;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -29,12 +26,12 @@ public class InputViewTest {
 
     @Test
     void convertMoving_동작_테스트() {
-        assertThat(iv.convertMoving("U")).isEqualTo(Move.UP);
+        assertThat(iv.convertMoving("U")).isEqualTo("U");
     }
 
     @Test
     void convertMoving_동작_테스트_2() {
-        assertThat(iv.convertMoving("D")).isEqualTo(Move.DOWN);
+        assertThat(iv.convertMoving("D")).isEqualTo("D");
     }
 
     @Test
@@ -47,12 +44,12 @@ public class InputViewTest {
 
     @Test
     void convertGameCommand_동작_테스트() {
-        assertThat(iv.convertGameCommand("Q")).isEqualTo(Command.QUIT);
+        assertThat(iv.convertGameCommand("Q")).isEqualTo("Q");
     }
 
     @Test
     void convertGameCommand_동작_테스트_2() {
-        assertThat(iv.convertGameCommand("R")).isEqualTo(Command.RESTART);
+        assertThat(iv.convertGameCommand("R")).isEqualTo("R");
     }
 
     @Test
