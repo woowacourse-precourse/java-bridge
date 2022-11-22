@@ -11,4 +11,8 @@ public enum Error {
     Error(String message) {
         this.message = message;
     }
+
+    public String getMessage() {
+        return "[ERROR] " + this.message;
+    }
 }
