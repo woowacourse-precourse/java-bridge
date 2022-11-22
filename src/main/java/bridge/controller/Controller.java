@@ -60,8 +60,7 @@ public class Controller {
 
     private boolean iterateToCrossEachBridge(int size, boolean retry) {
         for (int i = 0 ; i< size; i++) {
-            String choice = makeChoice(i);
-            if (!(bridgeGame.move(bridge, choice, i))) {
+            if (!(bridgeGame.move(bridge, makeChoice(i), i))) {
                 choices.clear();
                 String s = inputController.setGameCommand();
                 return bridgeGame.retry(s);
