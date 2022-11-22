@@ -17,7 +17,7 @@ class GameCommandTest {
     }
 
     @ParameterizedTest(name = "{0}를 GameCommand로 변환하면 {1}")
-    @CsvSource({"R,R","Q,Q"})
+    @CsvSource({"R,RETRY","Q,QUIT"})
     void toGameCommand_문자열을_GameCommmand로_변환하는_기능(String format, GameCommand expected) {
         assertThat(GameCommand.toGameCommand(format)).isEqualTo(expected);
     }
