@@ -16,10 +16,7 @@ public enum Direction {
         if (input.equals("D")) {
             return DOWN;
         }
-        if (input.equals("U")) {
-            return UP;
-        }
-        throw new IllegalArgumentException("[ERROR] 방향은 D또는 U만 존재합니다.");
+        return UP;
     }
 
     public String getValue() {
