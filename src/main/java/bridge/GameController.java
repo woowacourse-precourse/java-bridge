@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.Util.convertStringToInt;
 import static bridge.Validation.*;
 
 public class GameController {
@@ -35,9 +36,10 @@ public class GameController {
     }
 
     public int getBridgeSize() {
-        int bridgeSize = isPositiveInteger(inputView.readBridgeSize());
-        isInRange(bridgeSize);
-        return bridgeSize;
+        String bridgeSize = inputView.readBridgeSize();
+        isPositiveInteger(bridgeSize);
+        isInRange(convertStringToInt(bridgeSize));
+        return convertStringToInt(bridgeSize);
     }
 
     public void readyForGame() {
