@@ -38,7 +38,7 @@ public class Controller {
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(getBridgeSize()));
     }
 
-    public void stepForward(boolean isRetry) {
+    public void stepForward() {
         bridgeGame.move(getMoving());
         outputView.makeBridgeMap(bridgeGame);
         outputView.printMap();
@@ -48,28 +48,25 @@ public class Controller {
         outputView.printResult(bridgeGame);
     }
 
-    public void onGoing(Boolean isRetry) {
+    public void onGoing() {
         do {
-            stepForward(isRetry);
-            isRetry = false;
+            stepForward();
             if (bridgeGame.getIsCorrect() == false) {
-                isRetry = true;
+                break;
             }
             if (bridgeGame.isSuccess) {
                 break;
             }
-        }
-        while (!isRetry);
+        } while (true);
     }
 
     public void start() {
         makeBridgeGame();
         System.out.println(bridgeGame.bridge);
         boolean onGoing = true;
-        boolean isRetry = false;
         String command = "";
         do {
-            onGoing(isRetry);
+            onGoing();
             if (bridgeGame.isSuccess) {
                 break;
             }
@@ -79,7 +76,6 @@ public class Controller {
                 onGoing = false;
             }
             if (command.equals("R")) {
-                isRetry = true;
                 bridgeGame.retry();
                 outputView.removeRecentBridge();
             }
