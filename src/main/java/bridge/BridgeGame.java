@@ -24,9 +24,9 @@ public class BridgeGame {
     public boolean move(String moving) {
         if(moving == answer.get(nowIndex)) {
             nowIndex++;
-            return true;
         }
-        return false;
+        PrintBridge printBridge = new PrintBridge();
+        printBridge.printBridgeMoveResult(answer, ++nowIndex);
     }
 
     /**
