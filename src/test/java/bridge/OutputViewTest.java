@@ -42,7 +42,7 @@ public class OutputViewTest {
         boolean correct = false;
         OutputView outputView = new OutputView();
         String output = outputView.buildResult(bridge, position, correct);
-        String answer = "최종 결과\n" + "[ O | O |   |   ]\n" + "[   |   | O | X ]\n";
+        String answer = "최종 게임 결과\n" + "[ O | O |   |   ]\n" + "[   |   | O | X ]\n";
         assertThat(output).isEqualTo(answer);
     }
 
@@ -53,7 +53,7 @@ public class OutputViewTest {
         boolean correct = true;
         OutputView outputView = new OutputView();
         String output = outputView.buildResult(bridge, position, correct);
-        String answer = "최종 결과\n" + "[ O | O |   | O |   ]\n" + "[   |   | O |   | O ]\n";
+        String answer = "최종 게임 결과\n" + "[ O | O |   | O |   ]\n" + "[   |   | O |   | O ]\n";
         assertThat(output).isEqualTo(answer);
     }
 
