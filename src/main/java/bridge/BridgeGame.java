@@ -24,8 +24,12 @@ public class BridgeGame {
      * 메서드의 이름을 변경할 수 없다
      */
     public Map<Integer, Map<String, String>> move(Map<Integer, Map<String, String>> userStatus, List<String> bridge) {
-        InputWhileException inputWhileException = new InputWhileException();
-        String userInput = inputWhileException.startWhileReadMoving();
+        InputWhileException input = new InputWhileException();
+        String userInput = input.startWhileReadMoving();
+        return storeResult(userStatus, bridge, userInput);
+    }
+
+    public Map<Integer, Map<String, String>> storeResult(Map<Integer, Map<String, String>> userStatus, List<String> bridge, String userInput) {
         int index = userStatus.size();
         Map<String, String> userResult = new HashMap<>();
         boolean isSame = userInput.equals(bridge.get(index));
@@ -34,6 +38,8 @@ public class BridgeGame {
         userStatus.put(index, userResult);
         return userStatus;
     }
+
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -51,6 +57,7 @@ public class BridgeGame {
 
     Condition checkEnd(Map<Integer, Map<String, String>> userStatus, List<String> bridge) {
         Condition condition = Condition.PLAY;
+        if(userStatus.size() == 0) { throw new IllegalStateException("[ERROR] 잘못된 매개변수"); }
         Set<Map.Entry<String, String>> turnStatus = userStatus.get(userStatus.size()-1).entrySet();
         if(turnStatus.stream().anyMatch(turn -> turn.getValue().equals("X"))) {
             condition = Condition.LOOSE;
@@ -58,7 +65,6 @@ public class BridgeGame {
         if(bridge.size() == userStatus.size()) {
             condition = Condition.WIN;
         }
-
         return condition;
     }
 
