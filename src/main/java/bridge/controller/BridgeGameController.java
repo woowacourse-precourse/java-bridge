@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.*;
 import bridge.exception.BridgeSizeException;
 import bridge.exception.CommandException;
