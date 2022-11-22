@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constants.ErrorMessage;
 import bridge.constants.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -7,7 +8,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    InputMessage inputMessage = new InputMessage();
+    private final InputMessage inputMessage = new InputMessage();
+    private final ErrorMessage errorMessage = new ErrorMessage();
 
     public void printMessage(String message) {
         System.out.println(message);
@@ -18,12 +20,11 @@ public class InputView {
      */
     public int readBridgeSize() {
         printMessage(inputMessage.INPUT_BRIDGE_SIZE);
-        String input = Console.readLine();
         int bridgeSize;
         try {
-            bridgeSize = Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            printMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            bridgeSize = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            printMessage(errorMessage.NOT_BRIDGE_LENGTH_RANGE);
             bridgeSize = Integer.parseInt(Console.readLine());
         }
         return bridgeSize;
