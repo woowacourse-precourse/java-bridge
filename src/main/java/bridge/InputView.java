@@ -7,6 +7,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String BAGIC_ERROR_MESSAGE = "[ERROR]";
+    private static final String ERROR_ONE = "다리 길이는 숫자로 입력 가능합니다.";
+    private static final String ERROR_TWO = "입력된 값이 U 혹은 D가 아닙니다 다시 입력해주세요";
+    private static final String ERROR_THREE = "입력된 값이 R 혹은 Q가 아닙니다 다시 입력해주세요";
     public static final String Retry_Enter = "R";
     public static final String Ending_Enter = "Q";
     public static final String Up_Enter = "U";
@@ -36,7 +39,7 @@ public class InputView {
     private boolean readBridgeSize_ERROR(String Bridge_length) {
         try {
             if (!(Bridge_length != null && Bridge_length.matches("^[0-9]*$")))
-                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE);
+                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE + ERROR_ONE);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
             return true;
@@ -60,7 +63,7 @@ public class InputView {
     private boolean readMoving_ERROR(String Bridge_length) {
         try {
             if (!(Bridge_length.equals(Up_Enter) || Bridge_length.equals(Down_Enter)))
-                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE);
+                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE + ERROR_TWO);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
             return true;
@@ -83,7 +86,7 @@ public class InputView {
     private boolean readGameCommand_ERROR(String Bridge_length) {
         try {
             if (!(Bridge_length.equals(Retry_Enter) || Bridge_length.equals(Ending_Enter)))
-                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE);
+                throw new IllegalArgumentException(BAGIC_ERROR_MESSAGE + ERROR_THREE);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
             return true;
