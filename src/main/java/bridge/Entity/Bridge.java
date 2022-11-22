@@ -3,9 +3,10 @@ package bridge.Entity;
 import java.util.Arrays;
 
 public enum Bridge {
-    UP("U", 1),
-    DOWN("D", 0),
-    WRONG("", -1);
+    UP("U", 0),
+    DOWN("D", 1),
+    WRONG("X", -1),
+    NOTHING(" ", -2);
 
     private final String letter;
     private final int number;
@@ -27,6 +28,22 @@ public enum Bridge {
         return Arrays.stream(values())
                 .filter(val -> val.number == number)
                 .findFirst()
-                .orElse(WRONG);
+                .orElse(NOTHING);
+    }
+
+    public static Bridge fintByLetter(String input) {
+        return Arrays.stream(values())
+                .filter(val -> val.letter.equals(input))
+                .findFirst()
+                .orElse(NOTHING);
+    }
+
+    public static Bridge compareTo(String bridge, String user){
+        if (!bridge.equals(user))
+            return WRONG;
+        return Arrays.stream(values())
+                .filter(val -> val.letter.equals(bridge))
+                .findFirst()
+                .orElse(NOTHING);
     }
 }

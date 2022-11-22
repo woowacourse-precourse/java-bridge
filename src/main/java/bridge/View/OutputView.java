@@ -1,5 +1,7 @@
 package bridge.View;
 
+import bridge.Entity.Bridge;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -26,7 +28,30 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public boolean printMap(Bridge result) {
+        if (result==Bridge.WRONG) {
+            System.out.print("X");
+            return false;
+        }
+        System.out.print("O");
+        return true;
+    }
+
+    public void printBlank() {
+        System.out.print(" ");
+    }
+
+    public void line() {
+        System.out.print(" | ");
+    }
+
+    public void openBranket() {
+        System.out.print("[ ");
+    }
+
+    public void closeBrank() {
+        System.out.print(" ]");
+        System.out.println();
     }
 
     /**

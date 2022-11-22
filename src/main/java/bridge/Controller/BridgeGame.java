@@ -1,10 +1,13 @@
 package bridge.Controller;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.Entity.Bridge;
 import bridge.Entity.BridgeMaker;
+import bridge.Service.BridgeResult;
 import bridge.Service.GenerateBridgeSize;
 import bridge.Service.GenerateUserBridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,8 +18,19 @@ public class BridgeGame {
 
     public void start() {
         int size = getsize();
-        getrandomBridge(size);
-        move(size);
+        List<String> randomBridge = getrandomBridge(size);
+        play(size, randomBridge);
+    }
+
+    public boolean play(int size, List<String> randomBridge) {
+        List<Bridge> bridgeList = new ArrayList<>();
+        List<String> userList = new ArrayList<>();
+        for (int i=0;i<size;i++) {
+            userList.add(move());
+            bridgeList.add(CanGo(randomBridge.get(i), userList.get(i)));
+            BridgeResult.getresult(bridgeList, userList);
+        }
+        return true;
     }
 
     private int getsize() {
@@ -34,8 +48,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String> move(int size) {
-        return new GenerateUserBridge().getUserBridge(size);
+    public String move() {
+        return new GenerateUserBridge().getInput();
+    }
+
+    public Bridge CanGo(String bridge, String user) {
+        return Bridge.compareTo(bridge, user);
     }
 
     /**
@@ -43,6 +61,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(int size, List<String> existingBridge) {
+        if (BridgeResult.requestReGame())
+            play(size, existingBridge);
+
     }
 }
