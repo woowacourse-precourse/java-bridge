@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
-
 	private static final String ERROR_MESSAGE = "[ERROR]";
 
 	@Test
@@ -120,7 +119,6 @@ class ApplicationTest extends NsTest {
 			assertThat(output()).contains(ERROR_MESSAGE);
 		});
 	}
-
 
 	@Override
 	protected void runMain() {
