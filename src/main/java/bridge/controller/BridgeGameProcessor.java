@@ -12,49 +12,49 @@ public class BridgeGameProcessor {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeGame bridgeGame;
 
-    public BridgeGameProcessor(InputView inputView, OutputView outputView) {
+    public BridgeGameProcessor(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.bridgeGame = initBridgeGame(initUser(generateBridge(bridgeMaker)));
     }
 
-    public void playGame(BridgeMaker bridgeMaker) {
+    public void playGame() {
         outputView.printStartMessage();
-        BridgeGame bridgeGame = startBridgeGame(initUser(generateBridge(bridgeMaker)));
-
-        while (!isOver(bridgeGame)) { }
+        while (!isOver()) { }
     }
 
-    private boolean isOver(BridgeGame bridgeGame) {
-        if (!isKeepMoving(bridgeGame)) {
-            printResult(bridgeGame, InformationMessage.FAILURE);
+    private boolean isOver() {
+        if (!isKeepMoving()) {
+            printResult(InformationMessage.FAILURE);
             return true;
         }
         if (bridgeGame.isFinished()) {
-            printResult(bridgeGame, InformationMessage.SUCCESS);
+            printResult(InformationMessage.SUCCESS);
             return true;
         }
         return false;
     }
 
-    private void printResult(BridgeGame bridgeGame, InformationMessage successOrNot) {
+    private void printResult(InformationMessage successOrNot) {
         outputView.printEndMessage();
         outputView.printMap(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult());
         outputView.printSuccessOrNot(successOrNot);
         outputView.printTrialCount(bridgeGame.getTrialCount());
     }
 
-    private boolean isKeepMoving(BridgeGame bridgeGame) {
-        boolean isSuccessMoving = isSuccessMoved(bridgeGame);
+    private boolean isKeepMoving() {
+        boolean isSuccessMoving = isSuccessMoved();
         outputView.printMap(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult());
         if (isSuccessMoving) {
             return true;
         }
 
-        return isRetried(bridgeGame);
+        return isRetried();
     }
 
-    private boolean isRetried(BridgeGame bridgeGame) {
+    private boolean isRetried() {
         while (true) {
             try {
                 outputView.printGameCommandSelectionMessage();
@@ -65,7 +65,7 @@ public class BridgeGameProcessor {
         }
     }
 
-    private boolean isSuccessMoved(BridgeGame bridgeGame) {
+    private boolean isSuccessMoved() {
         while (true) {
             try {
                 outputView.printPositionSelectionMessage();
@@ -76,8 +76,12 @@ public class BridgeGameProcessor {
         }
     }
 
-    private BridgeGame startBridgeGame(User user) {
+    private BridgeGame initBridgeGame(User user) {
         return new BridgeGame(user);
+    }
+
+    private User initUser(Bridge bridge) {
+        return new User(bridge);
     }
 
     private Bridge generateBridge(BridgeMaker bridgeMaker) {
@@ -89,9 +93,5 @@ public class BridgeGameProcessor {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private User initUser(Bridge bridge) {
-        return new User(bridge);
     }
 }

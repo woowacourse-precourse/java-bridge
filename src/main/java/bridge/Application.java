@@ -9,7 +9,9 @@ public class Application {
 
     public static void main(String[] args) {
         BridgeGameProcessor bridgeGameProcessor = new BridgeGameProcessor(
-                new InputView(new InputValidator()), new OutputView());
-        bridgeGameProcessor.playGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
+                new InputView(new InputValidator()),
+                new OutputView(),
+                new BridgeMaker(new BridgeRandomNumberGenerator()));
+        bridgeGameProcessor.playGame();
     }
 }
