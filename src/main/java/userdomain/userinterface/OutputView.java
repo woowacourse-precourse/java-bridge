@@ -16,20 +16,23 @@ public class OutputView {
     public void printSelectMove() {
         System.out.println(Message.SELECT_MOVING.getMessage());
     }
+
     public void printMap(List<String> bridgeGameResult) {
         for (int i = 0; i < bridgeGameResult.size(); i++) {
             System.out.println(bridgeGameResult.get(i));
         }
     }
-    public void printResult(List<String> bridgeGameResult,int totalTry,boolean gameContinue) {
+
+    public void printResult(List<String> bridgeGameResult, int totalTry, boolean gameContinue) {
         printGameResult();
         printMap(bridgeGameResult);
-        if(gameContinue==true){
+        if (gameContinue == true) {
             printGameFail(totalTry);
             return;
         }
         printGameSuccess(totalTry);
     }
+
     public void printReStart() {
         System.out.println(Message.RE_START.getMessage());
     }
@@ -39,12 +42,12 @@ public class OutputView {
     }
 
     public void printGameSuccess(int totalTry) {
-        System.out.println(Message.GAME_SUCCESS.getMessage()+" "+Message.SUCCESS.getMessage());
+        System.out.println(Message.GAME_SUCCESS.getMessage() + " " + Message.SUCCESS.getMessage());
         printGameTry(totalTry);
     }
 
-    public void printGameFail(int totalTry){
-        System.out.println(Message.GAME_SUCCESS.getMessage()+" "+Message.FAIL.getMessage());
+    public void printGameFail(int totalTry) {
+        System.out.println(Message.GAME_SUCCESS.getMessage() + " " + Message.FAIL.getMessage());
         printGameTry(totalTry);
     }
 

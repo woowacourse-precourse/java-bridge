@@ -11,13 +11,13 @@ public class BridgeGameResult {
 
     public BridgeGameResult(List<String> bridge, List<String> playerInput) {
         checkTop(bridge, playerInput);
-        checkBottom(bridge,playerInput);
+        checkBottom(bridge, playerInput);
         makeGameResult();
     }
 
-    public void makeGameResult(){
-        topResult="["+topResult+"]";
-        bottomResult="["+bottomResult+"]";
+    public void makeGameResult() {
+        topResult = "[" + topResult + "]";
+        bottomResult = "[" + bottomResult + "]";
         bridgeGameResult.add(topResult);
         bridgeGameResult.add(bottomResult);
     }
@@ -31,12 +31,12 @@ public class BridgeGameResult {
         }
     }
 
-    public void  checkBottom(List<String>list,List<String>playerInput){
-        for(int i=0;i<playerInput.size();i++){
-            if(i!=0){
-                bottomResult+="|";
+    public void checkBottom(List<String> list, List<String> playerInput) {
+        for (int i = 0; i < playerInput.size(); i++) {
+            if (i != 0) {
+                bottomResult += "|";
             }
-            bottomResult+=makeBottomResult(list.get(i),playerInput.get(i));
+            bottomResult += makeBottomResult(list.get(i), playerInput.get(i));
         }
     }
 
@@ -49,17 +49,18 @@ public class BridgeGameResult {
         }
         return "   ";
     }
-    public String makeBottomResult(String list,String playInput){
-        if(list.equals("D")&&playInput.equals("D")){
+
+    public String makeBottomResult(String list, String playInput) {
+        if (list.equals("D") && playInput.equals("D")) {
             return " O ";
         }
-        if(list.equals("U")&&playInput.equals("D")){
+        if (list.equals("U") && playInput.equals("D")) {
             return " X ";
         }
         return "   ";
     }
 
-    public List<String>getList(){
+    public List<String> getList() {
         return bridgeGameResult;
     }
 

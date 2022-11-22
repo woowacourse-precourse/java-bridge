@@ -20,6 +20,7 @@ public class UserException {
             throw new IllegalArgumentException(Message.USER_MOVE_INPUT_ERROR.getMessage());
         }
     }
+
     public void checkMoveInputSize(String userMove) {
         if (userMove.length() != 1) {
             throw new IllegalArgumentException(Message.USER_MOVE_INPUT_SIZE_ERROR.getMessage());
