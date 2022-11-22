@@ -17,8 +17,8 @@ public class Application {
         System.out.println("다리의 길이를 입력해주세요.");
         int bridgeSize = inputView.readBridgeSize();
 
-        List<String> strings = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println("strings = " + strings);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println("bridge = " + bridge);
 
         while (true) {
             List<String> posList = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Application {
                     String movingPos = inputView.readMoving(); // s : U or D // 1,3,5 위치
                     posList.add(movingPos);
 
-                    if (!(movingPos.charAt(0) == (strings.get(0).charAt(i * 2)))) {
+                    if (!(movingPos.equals(bridge.get(i)))) {
                         throw new IllegalArgumentException();
                     }
                     outputView.printMap(posList, true);
