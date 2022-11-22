@@ -4,10 +4,18 @@ public class BridgeGameResult {
 
     private final EachSideResult upSide;
     private final EachSideResult downSide;
+    private int numberOfRetries;
 
     public BridgeGameResult() {
-        this.upSide = new EachSideResult();
-        this.downSide = new EachSideResult();
+        upSide = new EachSideResult();
+        downSide = new EachSideResult();
+        numberOfRetries = 1;
+    }
+
+    public BridgeGameResult(int numberOfRetries) {
+        upSide = new EachSideResult();
+        downSide = new EachSideResult();
+        this.numberOfRetries = numberOfRetries;
     }
 
     public void append(BridgeMatchResult bridgeMatchResult) {
@@ -20,6 +28,14 @@ public class BridgeGameResult {
 
     public boolean isMissMatch() {
         return upSide.isMissMatch() || downSide.isMissMatch();
+    }
+
+    public int getNumberOfRetries() {
+        return numberOfRetries;
+    }
+
+    public void setNumberOfRetries() {
+        ++numberOfRetries;
     }
 
     @Override
