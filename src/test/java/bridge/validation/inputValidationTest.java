@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class inputValidationTest {
 
     private static final int MIN_BRIDGE_LENGTH = 3;
-    private static final int MAX_BRDIGE_LENGTH = 20;
+    private static final int MAX_BRIDGE_LENGTH = 20;
 
     @DisplayName("3에서 20 사이의 숫자 외에 공백, 한글 등 조건에 맞지 않는 값이 입력되면, 예외가 발생한다.")
     @ParameterizedTest
@@ -18,7 +18,7 @@ public class inputValidationTest {
         Assertions.assertThatThrownBy(() -> BridgeLengthValidator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format(ErrorMessage.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.toString(),
-                        MIN_BRIDGE_LENGTH, MAX_BRDIGE_LENGTH));
+                        MIN_BRIDGE_LENGTH, MAX_BRIDGE_LENGTH));
     }
 
     @DisplayName("U, D 이외의 값이 이동 방향으로 입력되면, 예외가 발생한다.")
