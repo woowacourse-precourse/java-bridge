@@ -11,7 +11,7 @@ public class Application {
         // TODO: 프로그램 구현
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        BridgeChecker bridgeChecker = new BridgeChecker();
+        BridgeChecker bridgeChecker = new BridgeCheckerImpl();
         InputValidator inputValidator = new InputValidatorImpl();
         InputView inputView = new InputView(inputValidator);
         OutputView outputView = new OutputView(bridgeChecker);

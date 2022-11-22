@@ -6,7 +6,7 @@ import bridge.enums.MovingDirection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeChecker {
+public class BridgeCheckerImpl implements BridgeChecker{
 
     public List<String> checkBridgeMatching(List<String> bridge, List<String> userInput) {
         List<String> matchingResult = new ArrayList<>();

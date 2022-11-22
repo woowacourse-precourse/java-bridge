@@ -1,6 +1,7 @@
 package bridge.io;
 
 import bridge.BridgeChecker;
+import bridge.BridgeCheckerImpl;
 import bridge.GameProgress;
 
 import java.util.List;
