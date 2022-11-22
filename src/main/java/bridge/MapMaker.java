@@ -45,7 +45,7 @@ public class MapMaker {
   }
 
   private String getBothLayer() {
-    builder = null;
+    builder.setLength(0);
     return builder.append(MapOutputFormat.START_SQUARE_BRACKET.getFormat()).append(String.join(MapOutputFormat.SEPARATOR.getFormat(), topLine)).append(MapOutputFormat.END_SQUARE_BRACKET.getFormat())
       .append("\n").append(MapOutputFormat.START_SQUARE_BRACKET.getFormat()).append(String.join(MapOutputFormat.SEPARATOR.getFormat(), bottomLine)).append(MapOutputFormat.END_SQUARE_BRACKET.getFormat()).toString();
   }
