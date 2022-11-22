@@ -37,7 +37,9 @@ public class BridgeGameView {
         outputView.printResult(tryCount.getValue(), crossing.isPass());
     }
 
-    public void printRetry() {
+    public String requestRetryOrQuit() {
         outputView.printRetryPrompt();
+
+        return inputView.readGameCommand();
     }
 }
