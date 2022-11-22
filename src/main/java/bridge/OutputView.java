@@ -28,6 +28,11 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(mapResult.get("U"), mapResult.get("D"));
 
+        printGameResult(isSuccess);
+        System.out.print("총 시도한 횟수: " + gameCount);
+    }
+
+    private void printGameResult(boolean isSuccess){
         String isSuccessByKorean;
         if(isSuccess){
             isSuccessByKorean = "성공";
@@ -36,7 +41,5 @@ public class OutputView {
             isSuccessByKorean = "실패";
         }
         System.out.println("게임 성공 여부: " + isSuccessByKorean);
-        System.out.print("총 시도한 횟수: " + gameCount);
-
     }
 }

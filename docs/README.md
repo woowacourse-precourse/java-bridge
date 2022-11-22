@@ -22,7 +22,7 @@
 - [ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
 - [ ] else 예약어를 쓰지 않는다.
 - [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-- [ ] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
+- [X] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
 - [ ] 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
 - [ ] 아래 있는 InputView, OutputView, BridgeGame, BridgeMaker, BridgeRandomNumberGenerator 클래스의 요구사항을 참고하여 구현한다
   

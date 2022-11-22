@@ -23,7 +23,6 @@ public class BridgeGame {
             play();
         }while(!player.isSuccess() && retry());
 
-        // 여기서 Upline, DownLine 줘야할듯 // totalMap; (Map<String, List<String>>)
         player.printTotalScore(lastBridgeMap(player.getCurrentPosition(), player.success));
     }
 
@@ -44,16 +43,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move() {
-        // 마지막 칸이 아니고 && 성공한 경우 -> true;
         boolean isCorrectSpot = bridge.isCorrectSpot(player.getNextIdx(), player.getNextSpot());
-        if(!isCorrectSpot) // 틀린 경우 false
+        if(!isCorrectSpot)
             return false;
-
         if(bridge.isLastSpot(player.getCurrentPosition())){
             player.success = true;
             return false;
         }
-
         return true;
     }
 

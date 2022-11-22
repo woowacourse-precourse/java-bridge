@@ -37,12 +37,9 @@ public class Player {
         }catch (IllegalArgumentException illegalArgumentException){
             return false;
         }
-
         if(Integer.parseInt(size) < 3 || Integer.parseInt(size) > 20)
             return false;
-
         return true;
-
     }
 
     public int getNextIdx() {
@@ -55,6 +52,7 @@ public class Player {
         if(!isValidSpot(nextSpot)){
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.");
         }
+
         return nextSpot;
     }
 
