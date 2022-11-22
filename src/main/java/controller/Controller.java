@@ -42,7 +42,7 @@ public class Controller {
         do {
             isCorrect = move(bridge, bridgeGame);
             gameCommand = getGameCommand(isCorrect);
-        } while (bridgeGame.isRetry(gameCommand, isCorrect, bridgeGame));
+        } while (bridgeGame.isRetry(gameCommand, isCorrect));
 
         return bridgeGame.isQuit(gameCommand);
     }

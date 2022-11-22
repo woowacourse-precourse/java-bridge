@@ -20,7 +20,7 @@ public class BridgeGame {
         return bridge.isCorrect(movingPlace);
     }
 
-    public void retry() {
+    private void retry() {
         bridge.initBridge();
         tryCount++;
     }
@@ -40,9 +40,9 @@ public class BridgeGame {
         return !bridge.isCompleted() && !isQuit;
     }
 
-    public boolean isRetry(String gameCommand, boolean isCorrect, BridgeGame bridgeGame) {
+    public boolean isRetry(String gameCommand, boolean isCorrect) {
         if (gameCommand.equals(ConstValue.RETRY)) {
-            bridgeGame.retry();
+            retry();
         }
 
         return gameCommand.equals(ConstValue.RETRY) && !isCorrect;
