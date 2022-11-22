@@ -10,6 +10,8 @@ import java.util.List;
 
 public class BridgeGameController {
     private static final int INITIAL_TRIAL_CNT = 1;
+    private static final String QUIT_COMMAND = "Q";
+    private static final String RETRY_COMMAND = "R";
 
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
@@ -61,7 +63,7 @@ public class BridgeGameController {
     }
 
     private boolean quit(String gameCommand) {
-        if (gameCommand.equals("Q")) {
+        if (gameCommand.equals(QUIT_COMMAND)) {
             outputView.printResult();
             outputView.printFailure();
             return true;
@@ -71,7 +73,7 @@ public class BridgeGameController {
     }
 
     private void retry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(RETRY_COMMAND)) {
             bridgeGame.retry();
             trialCnt++;
         }
