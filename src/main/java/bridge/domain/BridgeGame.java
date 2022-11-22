@@ -20,7 +20,6 @@ public class BridgeGame {
      *
      * @param moving
      * @param block
-     * @return
      */
     public void move(String moving, String block) {
         movingData.add(moving);
