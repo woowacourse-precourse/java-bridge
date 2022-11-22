@@ -55,6 +55,13 @@
 
 # 테스트 목록
 
+## Bridge
+- [ ] bridge 생성 및 요소 수 만큼 next 실행
+- [ ] 리셋 후에 요소 수 만큼 next 실행
+
+## BridgeElement
+- [ ] 다리요소 생성 및 반환
+
 ## BridgeMap
 - [ ] 초기 설정
 - [ ] 위로 이동 성공시
@@ -62,6 +69,11 @@
 - [ ] 위로 이동 실패시
 - [ ] 아래로 이동 실패시
 - [ ] 3번 이동 후
+
+## GameResult
+- [ ] gameClear 호출 전 isGameClear 값
+- [ ] gameClear 호출 후 isGameClear 값
+- [ ] retry() 여러번 호출 후 tryCount 값
 
 ## InputValidator
 - [X] 다리 개수 입력시 숫자가 아닐 때 예외처리
@@ -81,4 +93,5 @@
 - [X] gamePlayer에서 bridgeMap new 연산자 사용하는 대신 리셋 기능 구현
 - [X] GamePlayer 필드들 클래스로 빼기
 - [ ] GameResult 메서드명 변경
-- [ ] GameStatus 메서드명 변경 
+- [ ] GameStatus 메서드명 변경
+- [ ] BridgeGame -> BridgeMover로 변경
