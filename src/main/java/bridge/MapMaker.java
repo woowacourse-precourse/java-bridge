@@ -25,6 +25,13 @@ public class MapMaker {
     return getBothLayer();
   }
 
+  public void updateMap(Bridge bridge, int index, String move) {
+    if (!bridge.canCross(move, index)) {
+      drawWay(move, MapOutputFormat.WRONG_WAY.getFormat());
+      return;
+    }
+    drawWay(move, MapOutputFormat.RIGHT_WAY.getFormat());
+  }
 
   public String makeResultMap() {
     return getBothLayer();
