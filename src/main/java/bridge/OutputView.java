@@ -7,9 +7,6 @@ import java.util.List;
  */
 public class OutputView {
 
-    private List<String> ups;
-    private List<String> downs;
-
     private String greetingMsg = "다리 건너기 게임을 시작합니다.";
     private String gameResultMsg = "최종 게임 결과";
     private String gameSucceedMsg = "게임 성공 여부: ";
@@ -21,7 +18,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> ups, List<String> downs) {
         printOneMap(ups);
         printOneMap(downs);
     }
@@ -39,9 +36,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String success, int tries) {
+    public void printResult(List<String> ups, List<String> downs, String success, int tries) {
         System.out.println(gameResultMsg);
-        printMap();
+        printMap(ups, downs);
         System.out.println();
         System.out.println(gameSucceedMsg + success);
         System.out.println(totalTriesMsg + tries);
