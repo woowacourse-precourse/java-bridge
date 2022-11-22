@@ -16,8 +16,8 @@
     - InputView - readMoving() 구현 [X]
     - U, D외의 문자를 입력받았을 경우 예외 발생 [X]
 
-4. **이동할 칸이 건널 수 있는 칸인지 체크한다** [ ]
-    - Bridge - movingResult() 구현 [ ]
+4. **이동할 칸이 건널 수 있는 칸인지 체크한다** [X]
+    - Bridge - movingResult() 구현 [X]
 
 5. **해당 칸으로 플레이어를 이동시킨다** [X]
     - BridgeGame - move() 구현 [X]
@@ -45,6 +45,4 @@
     - OutputView - printResult() 구현 [X]
 
 
-10. **구현한 기능들을 통합한다** [ ]
-  
-
+10. **구현한 기능들을 통합한다** [X]
