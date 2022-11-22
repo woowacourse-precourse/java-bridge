@@ -1,7 +1,7 @@
 package bridge.bridgeGame;
 
-import bridge.bridge.BridgeMaker;
-import bridge.bridge.BridgeNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import bridge.bridge.BridgePosition;
 
 public class BridgeGame {

@@ -1,4 +1,4 @@
-package bridge.bridge;
+package bridge;
 
 import static bridge.bridge.BridgePosition.BRIDGE_DOWN;
 import static bridge.bridge.BridgePosition.BRIDGE_UP;

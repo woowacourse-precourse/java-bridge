@@ -2,7 +2,7 @@ package bridge.bridgeGame;
 
 import static bridge.bridgeGame.GameCommand.COMMAND_RETRY;
 
-import bridge.bridge.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import bridge.bridge.BridgePosition;
 import bridge.view.InputView;
 import bridge.view.OutputView;
