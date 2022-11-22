@@ -27,11 +27,9 @@ public class BridgeGameProcessor {
     }
 
     private boolean routing(List<String> bridge, List<String> route) {
-        boolean isPossibleRoute;
         outputView.printChoosingMovingDirection();
         route = bridgeGame.move(inputView.readMoving(), route);
-        isPossibleRoute = isPossibleRoute(route, bridge);
-        return isPossibleRoute;
+        return isPossibleRoute(route, bridge);
     }
 
     private boolean isPossibleRoute(List<String> route, List<String> bridge) {
