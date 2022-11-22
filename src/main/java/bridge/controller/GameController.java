@@ -15,10 +15,15 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
     private BridgeGame bridgeGame;
     private Bridge bridge;
+
+    public GameController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void play() {
         outputView.printStartGame();

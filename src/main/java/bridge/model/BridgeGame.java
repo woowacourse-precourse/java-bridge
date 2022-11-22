@@ -9,11 +9,10 @@ public class BridgeGame {
     private final Bridge bridge;
     private int attempts = INITIAL_ATTEMPTS;
     private SuccessAndFail successAndFail = SuccessAndFail.FAIL;
-    private Diagram diagram;
+    private Diagram diagram = new Diagram();
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        diagram = new Diagram();
     }
 
     /**
