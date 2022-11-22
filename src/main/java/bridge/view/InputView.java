@@ -1,8 +1,7 @@
-package bridge;
+package bridge.view;
 
 import bridge.constant.BridgeMoveCommand;
 import bridge.constant.BridgeRetryCommand;
-import bridge.constant.InputValidationError;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.constant.BridgeGameStstus;
 import bridge.constant.BridgeRetryCommand;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Application {
 

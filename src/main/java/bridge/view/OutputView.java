@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.BridgeGame;
 import bridge.constant.BridgeGameStstus;
 import bridge.constant.BridgeMoveCommand;
 import java.util.ArrayList;

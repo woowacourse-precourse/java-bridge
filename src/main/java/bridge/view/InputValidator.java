@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.constant.BridgeMoveCommand;
 import bridge.constant.BridgeRetryCommand;
