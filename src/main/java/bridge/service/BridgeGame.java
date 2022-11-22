@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.service;
 
 import bridge.service.BridgeGenerateService;
 import bridge.view.InputView;
