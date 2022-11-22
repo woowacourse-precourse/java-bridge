@@ -5,64 +5,65 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameRecord {
-	private final String EMPTY = " ";
 
-	private List<String> upLog;
-	private List<String> downLog;
-	private int tryAttempts;
+    private final String EMPTY = " ";
 
-	public GameRecord() {
-		initLog();
-		tryAttempts = 1;
-	}
+    private List<String> upLog;
+    private List<String> downLog;
+    private int tryAttempts;
 
-	private void initLog() {
-		upLog = new ArrayList<>();
-		downLog = new ArrayList<>();
-	}
+    public GameRecord() {
+        initLog();
+        tryAttempts = 1;
+    }
 
-	public void recordSuccess(String moving) {
-		final String SUCCESS = "O";
-		if (moving.equals(Constants.UP)) {
-			recordUpLog(SUCCESS);
-			return;
-		}
-		recordDownLog(SUCCESS);
-	}
+    private void initLog() {
+        upLog = new ArrayList<>();
+        downLog = new ArrayList<>();
+    }
 
-	private void recordUpLog(String gameResult) {
-		upLog.add(gameResult);
-		downLog.add(EMPTY);
-	}
+    public void recordSuccess(String moving) {
+        final String SUCCESS = "O";
+        if (moving.equals(Constants.UP)) {
+            recordUpLog(SUCCESS);
+            return;
+        }
+        recordDownLog(SUCCESS);
+    }
 
-	private void recordDownLog(String gameResult) {
-		downLog.add(gameResult);
-		upLog.add(EMPTY);
-	}
+    private void recordUpLog(String gameResult) {
+        upLog.add(gameResult);
+        downLog.add(EMPTY);
+    }
 
-	public void recordFail(String moving) {
-		final String FAIL = "X";
-		if (moving.equals(Constants.UP)) {
-			recordUpLog(FAIL);
-			return;
-		}
-		recordDownLog(FAIL);
-	}
+    private void recordDownLog(String gameResult) {
+        downLog.add(gameResult);
+        upLog.add(EMPTY);
+    }
 
-	public void retry() {
-		initLog();
-		tryAttempts++;
-	}
+    public void recordFail(String moving) {
+        final String FAIL = "X";
+        if (moving.equals(Constants.UP)) {
+            recordUpLog(FAIL);
+            return;
+        }
+        recordDownLog(FAIL);
+    }
 
-	public int getTryAttempts() {
-		return tryAttempts;
-	}
+    public void retry() {
+        initLog();
+        tryAttempts++;
+    }
 
-	public List<String> getUpLog() {
-		return upLog;
-	}
+    public int getTryAttempts() {
+        return tryAttempts;
+    }
 
-	public List<String> getDownLog() {
-		return downLog;
-	}
+    public List<String> getUpLog() {
+        return upLog;
+    }
+
+    public List<String> getDownLog() {
+        return downLog;
+    }
 }
