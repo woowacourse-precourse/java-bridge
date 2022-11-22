@@ -1,8 +1,5 @@
 package bridge;
 
-import static bridge.Constant.MOVE_DOWN;
-import static bridge.Constant.MOVE_UP;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +22,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            if (number == 0) {
-                bridge.add(MOVE_DOWN);
-            }
-            if (number == 1) {
-                bridge.add(MOVE_UP);
-            }
+            bridge.add(Movement.getValue(number));
         }
         return bridge;
     }
