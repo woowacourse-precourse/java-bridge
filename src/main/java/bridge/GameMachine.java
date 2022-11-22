@@ -23,6 +23,7 @@ public class GameMachine {
             retry = RetryCommand.of(ui.readGameCommand());
             counter++;
         }
+        view.printResult();
         view.printGameCount(counter);
     }
 
@@ -35,10 +36,10 @@ public class GameMachine {
             view.printMoveTypeRequest();
             BridgeType userInput = BridgeType.of(ui.readMoving());
             if (MoveResult.FAIL == bridgeGame.move(userInput)) {
-                System.out.println("FAIL");
+                view.printMap(bridge, location, MoveResult.FAIL);
                 return;
             }
-            System.out.println("PASS");
+            view.printMap(bridge, location, MoveResult.PASS);
         }
 
     }
