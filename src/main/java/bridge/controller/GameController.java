@@ -1,46 +1,25 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.view.inputview.InputViewInterface;
 import bridge.view.outputview.OutputView;
 import bridge.vo.Bridge;
 import bridge.vo.GameResult;
-import bridge.vo.enums.Step;
-
-import java.util.List;
 
 public class GameController {
-    private final InputViewInterface inputView;
     private final OutputView outputView;
-    private final BridgeMaker bridgeMaker;
     private final BridgeController bridgeController;
 
-    public GameController(InputViewInterface inputView, OutputView outputView, BridgeMaker bridgeMaker, BridgeController bridgeController) {
-        this.inputView = inputView;
+    public GameController(OutputView outputView, BridgeController bridgeController) {
         this.outputView = outputView;
-        this.bridgeMaker = bridgeMaker;
         this.bridgeController = bridgeController;
     }
 
     public void doGame() {
         outputView.printGameStartMessage();
 
-        Bridge bridge = makeBridge();
+        Bridge bridge = bridgeController.makeBridge();
         GameResult gameResult = bridgeController.doGame(bridge);
 
         handleGameResult(bridge, gameResult);
-    }
-
-    private Bridge makeBridge() {
-        outputView.printAskingBridgeSizeMessage();
-        int bridgeSize = inputView.readBridgeSize();
-
-        List<Step> steps = makeBridgeSteps(bridgeSize);
-        return new Bridge(steps);
-    }
-
-    private List<Step> makeBridgeSteps(int bridgeSize) {
-        return Step.from(bridgeMaker.makeBridge(bridgeSize));
     }
 
     private void handleGameResult(Bridge bridge, GameResult gameResult) {

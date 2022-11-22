@@ -1,7 +1,10 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.mock.MockInputView;
 import bridge.service.BridgeGame;
+import bridge.service.BridgeService;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.view.outputview.OutputView;
 import bridge.vo.Bridge;
@@ -23,7 +26,7 @@ class BridgeControllerTest {
     private final BridgeController bridgeController = new BridgeController(
             new OutputView(new BridgeMessageMaker()),
             new MockInputView(List.of(UP, DOWN, UP, UP)),
-            new BridgeGame()
+            new BridgeService(new BridgeGame(), new BridgeMaker(new BridgeRandomNumberGenerator()))
     );
 
     @Nested

@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.controller.BridgeController;
 import bridge.controller.GameController;
 import bridge.service.BridgeGame;
+import bridge.service.BridgeService;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.view.inputview.InputViewExceptionHandlingProxy;
 import bridge.view.inputview.InputViewInterface;
@@ -17,13 +18,16 @@ public class MockObjectMaker {
     public static GameController makeMockGameController(List<Integer> answers, List<String> mockInputs) {
         OutputView outputView = new OutputView(new BridgeMessageMaker());
         InputViewInterface inputView = makeMockProxyInputView(mockInputs);
+        BridgeService bridgeService = new BridgeService(new BridgeGame(), makeMockBridgeMaker(answers));
 
         return new GameController(
-                inputView,
                 outputView,
-                new BridgeMaker(new MockNumberGenerator(answers)),
-                new BridgeController(outputView, inputView, new BridgeGame())
+                new BridgeController(outputView, inputView, bridgeService)
         );
+    }
+
+    private static BridgeMaker makeMockBridgeMaker(List<Integer> answers) {
+        return new BridgeMaker(new MockNumberGenerator(answers));
     }
 
     public static InputViewInterface makeMockProxyInputView(List<String> mockInputs) {

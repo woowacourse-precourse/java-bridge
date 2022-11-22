@@ -1,9 +1,12 @@
 package bridge.controller;
 
-import bridge.service.BridgeGame;
+import bridge.service.BridgeService;
 import bridge.view.inputview.InputViewInterface;
 import bridge.view.outputview.OutputView;
-import bridge.vo.*;
+import bridge.vo.Bridge;
+import bridge.vo.GameResult;
+import bridge.vo.StepResult;
+import bridge.dto.TryCountDto;
 import bridge.vo.enums.Command;
 import bridge.vo.enums.Step;
 
@@ -13,12 +16,20 @@ import java.util.List;
 public class BridgeController {
     private final OutputView outputView;
     private final InputViewInterface inputView;
-    private final BridgeGame bridgeGame;
+    private final BridgeService bridgeService;
 
-    public BridgeController(OutputView outputView, InputViewInterface inputView, BridgeGame bridgeGame) {
+    public BridgeController(OutputView outputView, InputViewInterface inputView, BridgeService bridgeService) {
         this.outputView = outputView;
         this.inputView = inputView;
-        this.bridgeGame = bridgeGame;
+        this.bridgeService = bridgeService;
+    }
+
+    public Bridge makeBridge() {
+        outputView.printAskingBridgeSizeMessage();
+        int bridgeSize = inputView.readBridgeSize();
+
+        List<Step> steps = bridgeService.makeBridge(bridgeSize);
+        return new Bridge(steps);
     }
 
     public GameResult doGame(Bridge bridge) {
@@ -54,7 +65,7 @@ public class BridgeController {
     }
 
     private StepResult moveForward(Step answerStep, List<StepResult> stepHistory) {
-        StepResult stepResult = bridgeGame.move(getNextStep(), answerStep);
+        StepResult stepResult = bridgeService.move(getNextStep(), answerStep);
         stepHistory.add(stepResult);
         outputView.printMap(stepHistory);
         return stepResult;
