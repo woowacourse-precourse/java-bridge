@@ -1,26 +1,26 @@
 # Requirements list
 
 ## Domain logic
-- [] BridgeGame
-  - [] run
-  - [] trial
-  - [] retry
-  - [] createBridge
-  - [] move
-  - [] calculateScore
+- [x] BridgeGame
+  - [x] run
+  - [x] trial
+  - [x] retry
+  - [x] createBridge
+  - [x] move
+  - [x] calculateScore
     
 
-- [] BridgeMaker
-  - [] makeBridge
+- [x] BridgeMaker
+  - [x] makeBridge
 
 ## Validation logic
-- [] InputValidation
+- [x] InputValidation
   - [x] validateBridgeSize
   - [x] validateMoving
   - [x] validateGameCommand
 
-- [] Error
-  - [] errorMessage
+- [x] Error
+  - [x] errorMessage
 
 ## UI logic
 - [x] InputView
@@ -29,23 +29,30 @@
   - [x] readGameCommand
   - [x] readMove
 
-- [] OutputView
-  - [] printMap
-  - [] printResult
+- [x] OutputView
+  - [x] printMap
+  - [x] printResult
   - [x] printGameStart
 
-- [] UI tool
-  - [] mapImage
+- [x] UI tool
+  - [x] mapImage
+
+## Utils
+- [x] returnMapToPrint
+- [x] setUpperLog
+- [x] setLowerLog
+- [x] setUpperSideOfMap
+- [x] setLowerSideOfMap
 
 ## Test
-- [] Domain logic
-  - [] BridgeGame
-    - [] run
-    - [] trial
-    - [] retry
-    - [] createBridge
-    - [] move
-    - [] calculateScore
+- [x] Domain logic
+  - [x] BridgeGame
+    - [x] run
+    - [x] trial
+    - [x] retry
+    - [x] createBridge
+    - [x] move
+    - [x] calculateScore
 
   - [x] BridgeMaker
     - [x] makeBridge
