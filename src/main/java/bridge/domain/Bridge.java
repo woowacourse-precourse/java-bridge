@@ -7,17 +7,17 @@ import java.util.List;
 public class Bridge {
     private final PositionTable bridgeTable;
 
-    private Bridge(List<String> bridge) {
+    private Bridge(List<String> bridge) throws IllegalStateException {
         this.bridgeTable = mapToPositionTable(bridge);
     }
 
-    private static PositionTable mapToPositionTable(List<String> bridge) {
+    private static PositionTable mapToPositionTable(List<String> bridge) throws IllegalStateException {
         PositionTable positionTable = PositionTable.newInstance();
         bridge.stream().map(s -> Position.of(s)).forEach(positionTable::add);
         return positionTable;
     }
 
-    public static Bridge of(List<String> generatedBridge) {
+    public static Bridge of(List<String> generatedBridge) throws IllegalStateException {
         return new Bridge(generatedBridge);
     }
 

@@ -25,7 +25,7 @@ public class BridgeGameManager {
         System.out.println(OutputView.TRY_MESSAGE + tryNumber);
     }
 
-    public static GameResult moveUser(PositionTable userTable, Bridge bridge) {
+    public static GameResult moveUser(PositionTable userTable, Bridge bridge) throws IllegalStateException {
         userTable.add(Position.of(readMovingCommand()));
         GameResult gameResult = bridge.play(userTable);
         OutputView.printMap(userTable, gameResult);

@@ -2,16 +2,25 @@ package bridge.domain;
 
 import java.util.Objects;
 
+import static bridge.viewer.ErrorMessage.POSITION_STATE_ERROR;
 import static bridge.viewer.MoveCommand.DOWN;
 import static bridge.viewer.MoveCommand.UP;
 
 public class Position {
     private final String position;
 
-    private Position(String position) {
+    private Position(String position) throws IllegalStateException {
+        validatePosition(position);
         this.position = position;
     }
-    public static Position of(String position) {
+
+    private void validatePosition(String position) throws IllegalStateException {
+        if (!position.equals(DOWN)&&!position.equals(UP)) {
+            throw new IllegalStateException(POSITION_STATE_ERROR);
+        }
+    }
+
+    public static Position of(String position) throws IllegalStateException {
         return new Position(position);
     }
 
