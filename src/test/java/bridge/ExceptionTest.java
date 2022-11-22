@@ -7,14 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class CustomTest extends NsTest {
+public class ExceptionTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static final String GAME_RESULT = "최종 게임 결과";
@@ -93,19 +91,5 @@ public class CustomTest extends NsTest {
     @Override
     protected void runMain() {
         Application.main(new String[]{});
-    }
-
-    static class TestNumberGenerator implements BridgeNumberGenerator {
-
-        private final List<Integer> numbers;
-
-        TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-
-        @Override
-        public int generate() {
-            return numbers.remove(0);
-        }
     }
 }
