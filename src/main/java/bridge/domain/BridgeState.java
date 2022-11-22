@@ -87,4 +87,9 @@ public class BridgeState {
             map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(BLANK, FIRST_ROUND_WRONG));
         }
     }
+
+    // 사용자의 입력값과 다리의 건널 수 있는 위치의 일치 여부
+    private boolean compareBridgeRootToUserInput(String userInput, List<String> bridge) {
+        return userInput.equals(bridge.get(round.getRound()));
+    }
 }
