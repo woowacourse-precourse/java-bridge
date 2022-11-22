@@ -31,8 +31,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        List<String> upperBridge = setBridge(bridgeGame.getCrossedBridge(), "U");
-        List<String> lowerBridge = setBridge(bridgeGame.getCrossedBridge(), "D");
+        List<String> upperBridge = markBridge(bridgeGame.getCrossedBridge(), "U");
+        List<String> lowerBridge = markBridge(bridgeGame.getCrossedBridge(), "D");
 
         if (!bridgeGame.isCrossedBridge()) {
             setImpassable(upperBridge);
@@ -44,9 +44,9 @@ public class OutputView {
 
     private void printBridge(List<String> bridge) {
         System.out.print("[ ");
-        for (int i = 0; i < bridge.size(); i++) {
-            System.out.print(bridge.get(i));
-            if (i == bridge.size() - 1) {
+        for (int result = 0; result < bridge.size(); result++) {
+            System.out.print(bridge.get(result));
+            if (result == bridge.size() - 1) {
                 break;
             }
             System.out.print(" | ");
@@ -62,11 +62,11 @@ public class OutputView {
         }
     }
 
-    private List<String> setBridge(List<String> mark, String which) {
+    private List<String> markBridge(List<String> crossedBridge, String which) {
         List<String> bridge = new ArrayList<>();
 
-        for (String i : mark) {
-            if (i.equals(which)) {
+        for (String crossed : crossedBridge) {
+            if (crossed.equals(which)) {
                 bridge.add("O");
                 continue;
             }
