@@ -22,7 +22,7 @@ public class BridgeGenerationException extends InputException {
 
     private static void validateSideSelection(String side) {
         if (!Side.isBridgeSavingFormat(side)) {
-            throw new IllegalArgumentException(ExceptionMessage.SELECT_SIDE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.WRONG_SELECTED_SIDE.getMessage());
         }
     }
 }
