@@ -21,6 +21,11 @@ public enum BridgeMoveCommand {
 				.orElseThrow(IllegalArgumentException::new)
 				.getCommand();
 	}
+	public static boolean hasMoveCommand(String input) {
+		return Arrays.stream(values())
+				.anyMatch(bridgeMoveCommand -> bridgeMoveCommand.command.equals(input));
+
+	}
 
 	public String getCommand() {
 		return command;
