@@ -2,7 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.*;
 
-import bridge.utils.Pass;
+import bridge.utils.value.Pass;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

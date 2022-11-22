@@ -1,12 +1,12 @@
 package bridge.domain;
 
-import static bridge.utils.GameCommand.*;
-import static bridge.utils.Move.NO_MOVE;
-import static bridge.utils.Move.isMoveUp;
+import static bridge.utils.value.GameCommand.*;
+import static bridge.utils.value.Move.NO_MOVE;
+import static bridge.utils.value.Move.isMoveUp;
 import static bridge.utils.message.GameMessagesUtil.DELIMITER;
 
-import bridge.utils.GameCommand;
-import bridge.utils.Move;
+import bridge.utils.value.GameCommand;
+import bridge.utils.value.Move;
 import java.util.ArrayList;
 import java.util.List;
 

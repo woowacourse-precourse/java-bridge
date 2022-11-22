@@ -1,10 +1,10 @@
 package bridge.domain;
 
-import static bridge.utils.Move.*;
+import static bridge.utils.value.Move.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.utils.GameCommand;
-import bridge.utils.Move;
+import bridge.utils.value.GameCommand;
+import bridge.utils.value.Move;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

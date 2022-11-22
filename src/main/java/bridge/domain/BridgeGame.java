@@ -1,10 +1,10 @@
 package bridge.domain;
 
-import static bridge.utils.Move.FAIL;
-import static bridge.utils.Move.SUCCESS;
+import static bridge.utils.value.Move.FAIL;
+import static bridge.utils.value.Move.SUCCESS;
 
-import bridge.utils.GameCommand;
-import bridge.utils.Move;
+import bridge.utils.value.GameCommand;
+import bridge.utils.value.Move;
 import java.util.List;
 
 /**

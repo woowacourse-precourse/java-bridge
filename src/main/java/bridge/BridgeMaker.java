@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.utils.BridgeSize;
-import bridge.utils.Pass;
+import bridge.utils.value.BridgeSize;
+import bridge.utils.value.Pass;
 import java.util.ArrayList;
 import java.util.List;
 

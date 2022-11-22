@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.value;
 
 import static bridge.utils.message.ErrorMessagesUtil.MOVING;
 

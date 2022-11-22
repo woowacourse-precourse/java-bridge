@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.utils.GameCommand.*;
+import static bridge.utils.value.GameCommand.*;
 import static bridge.utils.message.GameMessagesUtil.CHOICE_MOVE;
 import static bridge.utils.message.GameMessagesUtil.INPUT_BRIDGE_SIZE;
 import static bridge.utils.message.GameMessagesUtil.INPUT_RETRY;
@@ -8,8 +8,8 @@ import static bridge.utils.message.GameMessagesUtil.START;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
-import bridge.utils.GameCommand;
-import bridge.utils.Move;
+import bridge.utils.value.GameCommand;
+import bridge.utils.value.Move;
 import bridge.utils.console.InputView;
 import bridge.utils.console.OutputView;
 import java.util.List;

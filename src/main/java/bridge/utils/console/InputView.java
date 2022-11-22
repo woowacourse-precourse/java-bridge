@@ -1,14 +1,14 @@
 package bridge.utils.console;
 
 
-import static bridge.utils.GameCommand.getGameCommand;
-import static bridge.utils.GameCommand.validateCommand;
-import static bridge.utils.Move.getMove;
-import static bridge.utils.Move.validateMove;
+import static bridge.utils.value.GameCommand.getGameCommand;
+import static bridge.utils.value.GameCommand.validateCommand;
+import static bridge.utils.value.Move.getMove;
+import static bridge.utils.value.Move.validateMove;
 
-import bridge.utils.BridgeSize;
-import bridge.utils.GameCommand;
-import bridge.utils.Move;
+import bridge.utils.value.BridgeSize;
+import bridge.utils.value.GameCommand;
+import bridge.utils.value.Move;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.value;
 
 public enum Pass {
     DOWN(0, "D"),
