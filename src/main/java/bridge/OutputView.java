@@ -2,6 +2,7 @@ package bridge;
 
 import constants.Output;
 import constants.Symbol;
+import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -26,6 +27,16 @@ public class OutputView {
 
     public void printEnd() {
         System.out.println(Output.END_MSG.getMsg());
+    }
+
+    public void printBridge(BridgeGame bridgeGame) {
+        printMap(toString(bridgeGame.getUpBridge()));
+        printMap(toString(bridgeGame.getDownBridge()));
+    }
+
+    public String toString(List<String> currentBridge) {
+        String result = String.join(Symbol.SPLIT.getSymbol(), currentBridge);
+        return result;
     }
 
     /**
