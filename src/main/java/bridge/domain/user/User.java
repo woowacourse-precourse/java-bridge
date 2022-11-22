@@ -26,6 +26,20 @@ public class User {
         location++;
     }
 
+    private void resetLocation() {
+        location = 0;
+    }
+
+    private void addTryCount() {
+        tryCount++;
+    }
+
+    public void resetUserData() {
+        resetLocation();
+        addTryCount();
+        userPath.clearUserPath();
+    }
+
     public String getUserPathLog() {
         return userPath.toString();
     }
