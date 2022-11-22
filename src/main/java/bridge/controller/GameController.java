@@ -56,4 +56,11 @@ public class GameController {
         }
     }
 
+    public void finish (BridgeGame game) {
+        outputView.printResult(
+                game.obtainGameLog(),
+                game.isGameCleared(),
+                game.getAttemptCount()
+        );
+    }
 }
