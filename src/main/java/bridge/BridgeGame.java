@@ -13,6 +13,8 @@ public class BridgeGame {
     private List<String> userMoves;
     private boolean finished;
     private boolean aborted;
+    private OutputView outputView;
+    private InputView inputView;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -46,6 +48,8 @@ public class BridgeGame {
         this.counter = 1;
         this.finished = false;
         this.aborted = false;
+        this.outputView = new OutputView();
+        this.inputView = new InputView();
     }
 
     public void setBridgeSize(int n) {
@@ -118,5 +122,38 @@ public class BridgeGame {
      */
     private boolean isValidMove(String userMove, String bridge) {
         return userMove.equals(bridge);
+    }
+
+    /**
+     * 게임 시작
+     */
+    public void start() {
+        init();
+        outputView.printGameStart();
+        outputView.printReadBridgeLength();
+        setBridgeSize(inputView.readBridgeSize());
+    }
+
+    /**
+     * 게임을 진행하는 핵심 루프
+     */
+    public void loop() {
+        while (!this.isFinished()) {
+            outputView.printReadNextBridgeStep();
+            this.move(inputView.readMoving());
+            outputView.printMap(this);
+            if (this.aborted()) {
+                outputView.printRestart();
+                this.retry(inputView.readGameCommand());
+            }
+        }
+    }
+
+    /**
+     * 게임을 마무리 짓고 결과를 출력하는 루프
+     */
+    public void finish() {
+        outputView.printTotalMap(this);
+        outputView.printResult(this.succeed(), this.getTries());
     }
 }
