@@ -13,10 +13,10 @@ public class BridgeGameController {
     OutputView outputView;
     BridgeGame bridgeGame;
 
-    public BridgeGameController(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.bridgeGame = bridgeGame;
+    public BridgeGameController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.bridgeGame = new BridgeGame();
     }
 
     public void run() {
@@ -40,8 +40,8 @@ public class BridgeGameController {
         try {
             int bridgeLength = inputView.readBridgeSize();
             bridgeGame.newBridge(bridgeLength);
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printErrorMessage(illegalArgumentException);
             createNewBridge();
         }
     }
@@ -75,8 +75,8 @@ public class BridgeGameController {
         try {
             String nextStep = inputView.readMoving();
             moveBridge(nextStep);
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printErrorMessage(illegalArgumentException);
             selectPlate();
         }
     }
@@ -92,8 +92,8 @@ public class BridgeGameController {
         try {
             String retryRorQ = inputView.readGameCommand();
             decideRetryOrQuit(retryRorQ);
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printErrorMessage(illegalArgumentException);
             askRetry();
         }
     }

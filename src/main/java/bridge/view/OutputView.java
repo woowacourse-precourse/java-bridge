@@ -18,7 +18,8 @@ public class OutputView {
     private final String NOTICE_RESULT_TRY_COUNT = "총 시도한 횟수: ";
     private final String RESULT_SUCCESS = "성공";
     private final String RESULT_FAIL = "실패";
-    private final String UNEXPECTED_EXCEPTION = "예상치 못한 오류가 발생하여 프로그램 종료합니다.";
+
+    private static final String UNEXPECTED_EXCEPTION = "예상치 못한 오류가 발생하여 프로그램 종료합니다.";
 
     public void printStart() {
         System.out.println(NOTICE_START_GAME);
@@ -75,7 +76,7 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-    public void printUnExpectedErrorMessage(Exception exception) {
+    public static void printUnExpectedErrorMessage(Exception exception) {
         System.out.println(UNEXPECTED_EXCEPTION);
         System.out.println(exception.getMessage());
     }
