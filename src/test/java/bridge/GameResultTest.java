@@ -18,8 +18,8 @@ public class GameResultTest {
         gameResult.setUpBridge("U", false);
         gameResult.setUpBridge("D", false);
         gameResult.setUpBridge("U", true);
-        List<String> answerList = List.of("O", " ", "X");
-        assertThat(gameResult.getUpBridge()).isEqualTo(answerList);
+        List<String> expectResult = List.of("O", " ", "X");
+        assertThat(gameResult.getUpBridge()).isEqualTo(expectResult);
     }
 
     @DisplayName("아레 다리 결과 저장 테스트")
@@ -29,8 +29,8 @@ public class GameResultTest {
         gameResult.setDownBridge("D", false);
         gameResult.setDownBridge("D", true);
         gameResult.setDownBridge("U", true);
-        List<String> answerList = List.of("O", "X", " ");
-        assertThat(gameResult.getDownBridge()).isEqualTo(answerList);
+        List<String> expectResult = List.of("O", "X", " ");
+        assertThat(gameResult.getDownBridge()).isEqualTo(expectResult);
     }
 
 }
