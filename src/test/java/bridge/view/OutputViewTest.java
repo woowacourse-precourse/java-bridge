@@ -27,7 +27,6 @@ class OutputViewTest {
     @Test
     void 최종_결과_성공_출력_테스트() {
         GameStatus gameStatus = new GameStatus();
-        gameStatus.setSuccess(true);
         outputView.printResult(gameStatus, Result.success(new Bridge(List.of("U", "D", "U", "D"))));
         String printOut = consoleOut.toString().trim();
 
@@ -43,7 +42,6 @@ class OutputViewTest {
     @Test
     void 최종_결과_실패_출력_테스트() {
         GameStatus gameStatus = new GameStatus();
-        gameStatus.setSuccess(false);
         outputView.printResult(gameStatus, Result.fail(new Bridge(List.of("U", "D", "U", "D"))));
         String printOut = consoleOut.toString().trim();
 
