@@ -2,13 +2,10 @@ package bridge.controller;
 
 import bridge.dto.CorrectInfo;
 import bridge.dto.GameOverStatus;
-import bridge.global.BridgeMessage;
 import bridge.domain.view.InputView;
 import bridge.domain.view.OutputView;
-import bridge.global.ErrorMessage;
 import bridge.service.BridgeService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.global.BridgeMessage.*;
@@ -108,6 +105,4 @@ public class BridgeController {
         String length = inputView.readBridgeSize();
         return bridgeService.makeBridge(length);
     }
-
-
 }
