@@ -1,11 +1,11 @@
 package bridge;
 
+import bridge.Constant.OutputValue;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final List<String> bridge;
     private final List<String> resultBridge;
@@ -15,18 +15,12 @@ public class BridgeGame {
         resultBridge = new ArrayList<>();
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean move(int index, String block) {
-        if (bridge.get(index).equals(block)) {
-            resultBridge.add("O");
-            return true;
+    public void move(String selectBlock) {
+        if (bridge.get(resultBridge.size()).equals(selectBlock)) {
+            resultBridge.add(OutputValue.rightBlock.get());
+            return;
         }
-        resultBridge.add("X");
-        return false;
+        resultBridge.add(OutputValue.wrongBlock.get());
     }
 
     public void retry() {
@@ -42,10 +36,10 @@ public class BridgeGame {
     }
 
     public List<String> getBridge() {
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 
     public List<String> getResultBridge() {
-        return resultBridge;
+        return Collections.unmodifiableList(resultBridge);
     }
 }
