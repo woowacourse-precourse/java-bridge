@@ -22,14 +22,21 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> randomNumberBridge = new ArrayList<>();
-        for (int i=0; i<size; i++){
-            if (bridgeNumberGenerator.generate()==1){
-                randomNumberBridge.add("U");
-            }
-            if (bridgeNumberGenerator.generate()==0){
-                randomNumberBridge.add("D");
-            }
+        for (int i = 0; i < size; i++) {
+            randomNumberBridge.add(makePosition());
         }
         return randomNumberBridge;
+    }
+
+
+    public String makePosition() {
+        int num = bridgeNumberGenerator.generate();
+        if (num == 1) {
+            return "U";
+        }
+        if (num == 0) {
+            return "D";
+        }
+        throw new IllegalArgumentException("[ERROR]");
     }
 }

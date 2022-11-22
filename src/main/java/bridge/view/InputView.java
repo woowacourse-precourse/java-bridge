@@ -12,7 +12,11 @@ public class InputView {
      */
     public int readBridgeSize() {
         String str = Console.readLine();
-        return isNumber(str);
+        int num = isNumber(str);
+        if (num<3 || num>20) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+        return num;
     }
 
     public static int isNumber(String str){
@@ -26,11 +30,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-
         String str = Console.readLine();
         validInput(str);
         return str;
-
     }
 
     public static void validInput(String str) {
@@ -46,7 +48,6 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         while (true){
             try {
                 String str = Console.readLine();

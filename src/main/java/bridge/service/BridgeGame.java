@@ -8,6 +8,7 @@ import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import static bridge.view.OutputView.askRetry;
 import static bridge.view.OutputView.printResult;
 
 /**
@@ -43,7 +44,6 @@ public class BridgeGame {
                 System.out.println(e.getMessage());
             }
         }
-
     };
 
     public void startGame(){
@@ -79,6 +79,7 @@ public class BridgeGame {
     public void retry(int gameNum, boolean correct) {
         printResult(gameNum, correct);
         if (!correct){
+            askRetry();
             String retryStr = inputview.readGameCommand();
             if (retryStr.equals("R")){
                 playGame(gameNum+1);

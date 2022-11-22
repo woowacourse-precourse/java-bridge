@@ -14,7 +14,7 @@ class SampleTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 예외_테스트() {
+    void 입력이_잘못된_예외테스트() {
         assertSimpleTest(() -> {
             runException("3","R");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -22,9 +22,9 @@ class SampleTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트1() {
+    void 다시_시작하고_게임_끝내는_경우() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D","E");
+            run("3", "U", "D", "D", "E", "Q");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   |   ]",
@@ -40,7 +40,7 @@ class SampleTest extends NsTest {
     }
 
     @Test
-    void 다시시작하는() {
+    void 다시_시작해서_성공하는_경우() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D","R","U","D","U");
             assertThat(output()).contains(

@@ -51,6 +51,7 @@ public class OutputView {
         }
         return(" ");
     }
+
     public String printCorrect(boolean correct){
         if (correct){
             return ("O");
@@ -70,5 +71,9 @@ public class OutputView {
             System.out.println("게임 성공 여부: 실패");
         }
         System.out.println("총 시도한 횟수: "+gameNum);
+    }
+
+    public static void askRetry(){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 }
