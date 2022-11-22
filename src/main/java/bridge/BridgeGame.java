@@ -26,7 +26,11 @@ public class BridgeGame {
      */
     public boolean move(Latitude latitude) {
         Position playerPosition = player.move(latitude);
-        return judge.isPlayerSafe(playerPosition);
+        boolean safe = judge.isPlayerSafe(playerPosition);
+        if (!safe) {
+            player.death();
+        }
+        return safe;
     }
 
     /**
