@@ -10,11 +10,9 @@ import java.util.stream.IntStream;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
     private final int START_RANGE = 3;
     private final int END_RANGE = 20;
-
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -27,7 +25,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         isValidate(size);
         return IntStream.range(0, size)
-                .mapToObj(i -> UpDown.getStringByNum(bridgeNumberGenerator.generate()))
+                .mapToObj(i -> UpDown.convertNumToDirection(bridgeNumberGenerator.generate()))
                 .collect(Collectors.toList());
     }
 

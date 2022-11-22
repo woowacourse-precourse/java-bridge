@@ -34,7 +34,7 @@ public class GameTest {
 	@Test
 	void normalTest(){
 		IntStream.range(0, BRIDGE_SIZE)
-				.forEach(i -> bridgeGame.move(UpDown.DOWN.getStrValue()));
+				.forEach(i -> bridgeGame.move(UpDown.DOWN.getDirection()));
 		Assertions.assertThat(bridgeGame.isGameWin()).isTrue();
 	}
 
@@ -42,7 +42,7 @@ public class GameTest {
 	@Test
 	void exceptionTest(){
 		IntStream.range(0, BRIDGE_SIZE)
-				.forEach(i -> bridgeGame.move(UpDown.UP.getStrValue()));
+				.forEach(i -> bridgeGame.move(UpDown.UP.getDirection()));
 		Assertions.assertThat(bridgeGame.isGameWin()).isFalse();
 	}
 

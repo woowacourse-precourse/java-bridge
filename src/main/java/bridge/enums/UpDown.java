@@ -10,37 +10,37 @@ public enum UpDown {
 
 
 	private final int numValue;
-	private final String strValue;
+	private final String direction;
 
-	UpDown(int numValue, String strValue) {
+	UpDown(int numValue, String direction) {
 		this.numValue = numValue;
-		this.strValue = strValue;
+		this.direction = direction;
 	}
 
-	public static String getStringByNum(int num) {
+	public static String convertNumToDirection(int num) {
 		return Arrays.stream(values())
 				.filter(upDown -> upDown.numValue == num)
-				.map(upDown -> upDown.strValue)
+				.map(upDown -> upDown.direction)
 				.findAny()
 				.orElseThrow(() -> new RuntimeException("No matched Number"));
 	}
 
-	public String getStrValue() {
-		return strValue;
+	public String getDirection() {
+		return direction;
 	}
 
 	public static List<String> getStrValues() {
 		return Arrays.stream(values())
-				.map(UpDown::getStrValue)
+				.map(UpDown::getDirection)
 				.collect(Collectors.toList());
 	}
 
 	public static boolean isUp(String src) {
-		return src.equals(UP.getStrValue());
+		return src.equals(UP.getDirection());
 	}
 
 	public static boolean isDown(String src) {
-		return src.equals(DOWN.getStrValue());
+		return src.equals(DOWN.getDirection());
 	}
 
 

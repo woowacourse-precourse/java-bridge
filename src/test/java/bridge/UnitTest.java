@@ -1,9 +1,13 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 public class UnitTest {
 
@@ -27,11 +31,12 @@ public class UnitTest {
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
-//	@Test
-//	void moveTest(){
-//		BridgeGame bridgeGame = new BridgeGame();
+	@Test
+	void moveTest(){
+		BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
+//		bridgeGame.move();
 //		Player player = new Player();
 //		bridgeGame.move(player);
 //		Assertions.assertThat(player.checkEnd(1)).isTrue();
-//	}
+	}
 }
