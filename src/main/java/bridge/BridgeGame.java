@@ -41,5 +41,33 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+
+        move_Status = true;
+        List<String> bridge;
+        int num = 0;
+        String currentMoving;
+        List<String> result = new ArrayList<>();
+
+        OutputView OV = new OutputView();
+        OV.startGuidance();
+        InputView IV = new InputView();
+        BridgeNumberGenerator BNG = new BridgeRandomNumberGenerator();
+        BridgeMaker BM = new BridgeMaker(BNG);
+        bridge = BM.makeBridge(IV.readBridgeSize());
+        BridgeGame BG = new BridgeGame();
+        System.out.println(bridge);
+
+        while(move_Status && num <bridge.size()) {
+            OV.moveGuidance();
+            currentMoving = IV.readMoving();
+            List<String> movement = BG.move(bridge.get(num), currentMoving);
+            result.add(movement.get(0));
+            result.add(movement.get(1));
+            OV.printMap(result, num);
+            num++;
+        }
+        if (!move_Status) {
+            retry();
+        }
     }
 }

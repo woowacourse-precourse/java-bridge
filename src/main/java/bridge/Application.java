@@ -29,6 +29,10 @@ public class Application {
             OV.printMap(result, num);
             num++;
         }
-//        OV.printMap(BG.move(bridge.get(num), currentMoving));
+        if(!move_Status){
+            OV.restartGuidance();
+//            if(IV.readGameCommand().equals("R"));
+//            BG.retry();
+        }
     }
 }
