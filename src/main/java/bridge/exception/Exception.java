@@ -14,4 +14,11 @@ public class Exception {
             throw new IllegalArgumentException();
         }
     }
+
+    public void checkRestartOrDoneException(String string) {
+        String REGEX = "^[RQ]{1}$";
+        if(!string.matches(REGEX)){
+            throw new IllegalArgumentException();
+        }
+    }
 }
