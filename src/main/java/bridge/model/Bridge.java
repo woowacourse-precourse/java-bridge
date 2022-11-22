@@ -1,8 +1,9 @@
 package bridge.model;
 
+import static bridge.exception.BridgeSizeException.validate;
+
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.exception.BridgeSizeException;
 import java.util.List;
 
 public class Bridge {
@@ -14,7 +15,7 @@ public class Bridge {
     }
 
     public Bridge(String size) {
-        validateSize(size);
+        validate(size);
         this.bridge = make(Integer.parseInt(size));
     }
 
@@ -24,11 +25,6 @@ public class Bridge {
 
     public List<String> make(int size) {
         return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
-    }
-
-    private int validateSize(String size) {
-        BridgeSizeException.validate(size);
-        return Integer.parseInt(size);
     }
 
     public boolean isRightMoving(int index, String moving) {
