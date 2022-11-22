@@ -10,8 +10,9 @@
 
 - constant
     - ErrorMessage.java (에러 메세지 상수)
+    - GameCommand.java (RETRY와 QUIT을 의미하는 상수 String R과 Q를 저장하는 enum 클래스)
+    - Moving.java (UP과 DOWN을 의미하는 상수 String U와 D를 저장하는 enum 클래스)
     - PrintMessage.java (출력문 상수)
-    - Updown.java (UP과 DOWN을 의미하는 상수 String U와 D를 저장하는 enum 클래스)
     - SuccessFail.java (SUCCESS와 FAIL을 의미하는 상수 String "성공"과 "실패"를 저장하는 enum 클래스)
 - validation
     - Validation.java (사용자의 입력에 대한 유효성 검사)
