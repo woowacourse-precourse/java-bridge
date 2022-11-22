@@ -12,6 +12,10 @@ public class GameResult {
         gameResult.add(result);
     }
 
+    public boolean isGameOver() {
+        return !gameResult.get(gameResult.size() - 1);
+    }
+
     public List<Boolean> getGameResult() {
         return Collections.unmodifiableList(gameResult);
     }

@@ -10,6 +10,7 @@
 
 ### GameResult
 - [x] 게임의 결과 보관
+- [x] 게임 오버 판단
 
 ### BridgeController
 - [] 다리 생성
