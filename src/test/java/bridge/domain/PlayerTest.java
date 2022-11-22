@@ -15,13 +15,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 class PlayerTest {
-    private List<String> bridge;
+    private Bridge bridge;
 
     @BeforeEach
     public final void initBridgeMaker() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        bridge = bridgeMaker.makeBridge(3);
+        bridge = new Bridge(bridgeMaker.makeBridge(3));
     }
 
     @DisplayName("플레이어가 다리 건너기를 성공한다.")

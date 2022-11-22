@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.List;
-
 public class Player {
     private int position;
     private int tryCount;
@@ -13,8 +11,8 @@ public class Player {
         lastCrossSuccess = true;
     }
 
-    public boolean move(List<String> bridge, String command){
-        if (bridge.get(position).equals(command)){
+    public boolean move(Bridge bridge, String command){
+        if (bridge.getCommandAt(position).equals(command)){
             position++;
             return lastCrossSuccess = true;
         }

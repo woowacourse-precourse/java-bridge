@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import bridge.domain.Key;
 import bridge.domain.Player;
 
@@ -14,11 +15,11 @@ public class BridgeGame {
     private static final String WHITESPACE = "   ";
     private static final String SEPARATOR = "|";
 
-    private List<String> bridge;
+    private Bridge bridge;
     private Player player;
 
     public BridgeGame(List<String> bridge, Player player) {
-        this.bridge = bridge;
+        this.bridge = new Bridge(bridge);
         this.player = player;
     }
 
@@ -41,7 +42,7 @@ public class BridgeGame {
     }
 
     public boolean isGameSuccess(){
-        return bridge.size() == player.getPosition();
+        return bridge.getSize() == player.getPosition();
     }
 
     public int getTryCount(){
@@ -86,7 +87,7 @@ public class BridgeGame {
     }
 
     private String compareBridgeIndexWithKey(int index, Key key, String expected) {
-        if (bridge.get(index).equals(key.command())) {
+        if (bridge.getCommandAt(index).equals(key.command())) {
             return expected;
         }
         return WHITESPACE;
@@ -102,7 +103,7 @@ public class BridgeGame {
         StringBuilder ret = new StringBuilder(getSeparator(player.getPosition(), 0));
 
         String addString = FAIL;
-        if (bridge.get(player.getPosition()).equals(key.command())) {
+        if (bridge.getCommandAt(player.getPosition()).equals(key.command())) {
             addString = WHITESPACE;
         }
 
