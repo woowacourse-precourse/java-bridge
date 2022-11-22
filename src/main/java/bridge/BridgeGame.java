@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  * 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
@@ -10,6 +13,15 @@ package bridge;
  * BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
  */
 public class BridgeGame {
+
+    private final Bridge answerBridge;
+    private List<Bridge> records = new ArrayList<>();
+    private Bridge onPlayingBridge;
+
+    public BridgeGame(List<String> answerBridge) {
+        this.answerBridge = new Bridge(answerBridge);
+        this.onPlayingBridge = new Bridge();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
