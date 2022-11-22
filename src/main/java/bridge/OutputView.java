@@ -34,6 +34,14 @@ public class OutputView {
         return (bridge.get(i).equals(Bridge.UP.getStr()) && states.get(i).equals("O")) || (!bridge.get(i).equals(Bridge.UP.getStr()) && !states.get(i).equals("O"));
     }
 
+    private void printUpperMoving(boolean isUpper, List<String> states, int i) {
+        if (isUpper) {
+            System.out.print(" " + states.get(i));
+            return ;
+        }
+        System.out.print("  ");
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
