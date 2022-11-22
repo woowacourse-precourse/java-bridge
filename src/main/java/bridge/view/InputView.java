@@ -9,7 +9,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(BRIDGE_INPUT_MSG);
+        int result = BRIDGE_LENGTH_INPUT_ERROR;
+        while (result == BRIDGE_LENGTH_INPUT_ERROR) {
+            result = tryBridgeSizeInput();
+        }
+        return result;
     }
 
     /**
