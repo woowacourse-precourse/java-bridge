@@ -18,7 +18,7 @@ public class Application {
     private static void playStage(){
         outputView.printCase("play");
         flag = calcBridge(inputView.readMoving());
-        outputView.printMap(bridgeGame.calcMap(bridgeGame.getUserBridge(),0,0), ' ', new StringBuilder());
+        outputView.printMap(bridgeGame.calcMap(bridgeGame.getUserBridge(),0,0),new StringBuilder());
     }
 
     private static void playGame(boolean isPlaying){
