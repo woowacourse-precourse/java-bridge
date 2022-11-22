@@ -23,11 +23,13 @@ public class BridgeView {
         outputView.printMap(history, lastState);
     }
 
-
     public void printResult(List<Glass> history, State lastState, int play) {
         outputView.printResult(history, lastState, play);
     }
 
+    public void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
+    }
 
     BridgeView(){
         inputView = new InputView();

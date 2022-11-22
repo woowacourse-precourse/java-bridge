@@ -12,22 +12,18 @@ public class OutputView {
     private static final List<String> RESULT_MESSAGE =
             new ArrayList<String>(List.of("최종 게임 결과",  "게임 성공 여부: ","총 시도한 횟수: "));
     private static final List<String> BRIDGE_MESSAGE = new ArrayList<String>(List.of("[ "," | ", " ]"));
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     public void printMap(List<Glass> history, State lastState) {
         System.out.println(drawMap(history, lastState));
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     public void printResult(List<Glass> history, State lastState, int play) {
         System.out.println(drawResult(history, lastState, play));
+    }
+
+    public void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
     }
 
     public String drawMap(List<Glass> history, State lastState){
