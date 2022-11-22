@@ -1,17 +1,13 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 
@@ -42,7 +38,7 @@ class BridgeGameTest {
     @CsvSource(value = {"U, true", "U, false", "D, true", "D, false"})
     void moveTest(String moveCommand, boolean isPossibleMove) {
 
-        bridgeGame.move(currentBridgeState, moveCommand, isPossibleMove);
+        currentBridgeState.recordBridgeMove(moveCommand, isPossibleMove);
 
         CurrentBridgeState expectedCurrentBridgeState = new CurrentBridgeState();
 
@@ -65,10 +61,8 @@ class BridgeGameTest {
                 expectedDownBridgeResult = List.of("X");
             }
         }
-        expectedCurrentBridgeState.setUpBridgeState(expectedUpBridgeResult);
-        expectedCurrentBridgeState.setDownBridgeState(expectedDownBridgeResult);
 
-        assertThat(currentBridgeState.getUpBridgeState()).isEqualTo(expectedCurrentBridgeState.getUpBridgeState());
-        assertThat(currentBridgeState.getDownBridgeState()).isEqualTo(expectedCurrentBridgeState.getDownBridgeState());
+        assertThat(currentBridgeState.getUpBridgeState()).isEqualTo(expectedUpBridgeResult);
+        assertThat(currentBridgeState.getDownBridgeState()).isEqualTo(expectedDownBridgeResult);
     }
 }

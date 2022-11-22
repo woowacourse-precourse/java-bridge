@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -23,7 +22,7 @@ public class Application {
             for (int turn = 0; turn < bridgeSize; turn++) {
                 String moveCommand = inputView.readMoving();
                 isPossibleMove = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
-                bridgeGame.move(currentBridgeState, moveCommand, isPossibleMove);
+                currentBridgeState.recordBridgeMove(moveCommand, isPossibleMove);
                 outputView.printMap(currentBridgeState);
                 if (isPossibleMove == false) {
                     String gameCommand = inputView.readGameCommand();

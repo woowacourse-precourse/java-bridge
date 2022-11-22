@@ -35,10 +35,10 @@ class OutputViewTest {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        List<String> upBridgeResult = List.of("O", "O", " ", "X");
-        List<String> downBridgeResult = List.of(" ", " ", "O", " ");
-        currentBridgeState.setUpBridgeState(upBridgeResult);
-        currentBridgeState.setDownBridgeState(downBridgeResult);
+        currentBridgeState.recordBridgeMove("U", true);
+        currentBridgeState.recordBridgeMove("U", true);
+        currentBridgeState.recordBridgeMove("D", true);
+        currentBridgeState.recordBridgeMove("U", false);
         outputView.printMap(currentBridgeState);
 
         assertThat(out.toString().contains(expected)).isTrue();
