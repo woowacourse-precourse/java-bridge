@@ -9,10 +9,8 @@ public class Bridge {
     private static List<String> bridge;
     private static List<String> upperBridge;
     private static List<String> lowerBridge;
-    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
 
-    public Bridge() {
-        bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    public Bridge(BridgeRandomNumberGenerator bridgeRandomNumberGenerator) {
         bridge = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(User.getBridgeSize());
     }
 
