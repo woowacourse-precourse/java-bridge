@@ -7,8 +7,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
-    BridgeMaker bridgeMaker;
-    BridgeGame bridgeGame;
+    private final BridgeMaker bridgeMaker;
+    private BridgeGame bridgeGame;
 
     public BridgeController() {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());

@@ -8,7 +8,7 @@ import java.util.StringJoiner;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> answerBridge; // 만들어진 다리
+    private final List<String> answerBridge; // 만들어진 다리
     private List<String> playerCommands; // 사용자가 이동한 칸들
     private int tryCount; // 총 시도한 횟수
 
