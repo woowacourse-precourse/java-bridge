@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,9 +58,9 @@ class BridgeTest {
     @Test
     void bridgeUnit_change(){
         Bridge bridge = new Bridge("3");
-        List<String> testBridgeUnit = Arrays.asList(" ","X","O");
+        List<String> testBridgeUnit = Arrays.asList(" ","X"," ");
         bridge.changeBridgeMap(1,"U","X");
-        bridge.changeBridgeMap(2,"U","O");
         Assertions.assertThat(testBridgeUnit).isEqualTo(bridge.getBridgeMap().get("U"));
+        Assertions.assertThat(testBridgeUnit).isNotEqualTo(bridge.getBridgeMap().get("D"));
     }
 }
