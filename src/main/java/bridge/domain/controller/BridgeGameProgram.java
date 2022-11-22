@@ -46,6 +46,13 @@ public class BridgeGameProgram {
     }
 
     public void goGame() {
-
+        while (go) {
+            oneGame();
+            if (crossBridge.getSuccess().equals(SUCCESS)) {
+                outputView.printResult();
+                break;
+            }
+            restart();
+        }
     }
 }
