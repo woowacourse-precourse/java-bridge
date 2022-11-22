@@ -31,7 +31,7 @@ public class InputValidator {
     public static int checkIsDigit(String input) {
         try {
             return Integer.parseInt(input);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(Message.BRIDGE_LENTH_NUM_ERROR);
         }
     }
