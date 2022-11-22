@@ -38,4 +38,10 @@ public class BridgeTest {
         player.addMoving("U");
         Assertions.assertThat(bridge.isMovable(player)).isFalse();
     }
+
+    @Test
+    @DisplayName("다리 생성 크기 확인 테스트")
+    void 다리_크기_확인_테스트() {
+        Assertions.assertThat(bridge.getBridgeSize()).isEqualTo(3);
+    }
 }
