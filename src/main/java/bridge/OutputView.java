@@ -14,6 +14,7 @@ public class OutputView {
         for (String printableMap : map.getPrintableMap()){
             System.out.println(printableMap);
         }
+        System.out.println();
     }
 
     /**

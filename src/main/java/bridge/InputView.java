@@ -8,9 +8,10 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     /**
      * readInput()을 통해 입력된 값을
-     * 인자로 받은 람다식에 대입하여 true 값이 나올 때까지 반복시켜주는 메소드
+     * 인자로 받은 람다식에 대입하여 true 값이 나올 때까지
+     * 재입력을 반복시켜주는 메소드
      *
-     * @param lambda true 가 나올 때까지 반복하고 싶은 람다식(Loopable 인터페이스를 받는)
+     * @param lambda 원하는 조건을 가진 람다식(Loopable 인터페이스를 받는)
      * @return true 값이 나온 입력
      */
     private String loopUntilValid(Loopable lambda) {
@@ -25,6 +26,7 @@ public class InputView {
 
     /**
      * 사용자의 입력을 받는 메소드
+     *
      * @return 사용자가 입력한 String 값
      */
     private String readInput() {
