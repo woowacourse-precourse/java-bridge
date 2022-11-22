@@ -36,7 +36,7 @@ public class BridgeGame {
     }
 
     public boolean isAllCrossed(Bridge bridge) {
-        int footholdsSize = bridge.getCrossed().size();
+        int footholdsSize = bridge.getFootholds().size();
         int crossedSize = bridge.getCrossed().size();
 
         if (footholdsSize == crossedSize) {
