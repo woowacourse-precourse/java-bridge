@@ -121,4 +121,13 @@ public class InputView {
             // 올바르지 않은 값이라면 에러 발생 후 메시지 출력
         }
     }
+
+    /**
+     * 입력받은 재시도 여부 정보가 올바른지 판별한다.
+     * @param isReGame 입력받은 재시도 여부 정보
+     * @return 입력받은 정보가 R 혹은 Q가 맞다면 true 를 반환 그렇지 않다면 false
+     */
+    public boolean isValidCommand(String isReGame) {
+        return Objects.equals(isReGame, "R") || Objects.equals(isReGame, "Q");
+    }
 }

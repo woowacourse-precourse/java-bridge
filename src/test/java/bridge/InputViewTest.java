@@ -77,4 +77,24 @@ public class InputViewTest {
 
         assertThat(bool).isEqualTo(false);
     }
+
+    @Test
+    void 재시도_여부를_올바르게_입력했을_때() {
+        InputView iv = new InputView();
+        String isReGame = "Q";
+
+        boolean bool = iv.isValidCommand(isReGame);
+
+        assertThat(bool).isEqualTo(true);
+    }
+
+    @Test
+    void 재시도_여부를_올바르지_않게_입력했을_때() {
+        InputView iv = new InputView();
+        String isReGame = "A";
+
+        boolean bool = iv.isValidCommand(isReGame);
+
+        assertThat(bool).isEqualTo(false);
+    }
 }
