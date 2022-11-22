@@ -1,12 +1,13 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
+import bridge.MockBridgeNumberGenerator;
+import bridge.command.BridgeSizeCommand;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,7 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DisplayName("Visited 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class VisitedTest {
-    private static final Bridge bridge = new Bridge(List.of("U", "U", "U"));
+    private static final Bridge bridge = Bridge.from(
+            new BridgeMaker(new MockBridgeNumberGenerator()), new BridgeSizeCommand("3"));
     private static final Visited visited1 = new Visited();
     private static final Visited visited2 = new Visited();
     private static final Visited visited3 = new Visited();
