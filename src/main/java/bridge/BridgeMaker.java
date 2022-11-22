@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import static bridge.viewer.ErrorMessage.BRIDGE_LENGTH_ERROR;
 import static bridge.viewer.MoveCommand.DOWN;
