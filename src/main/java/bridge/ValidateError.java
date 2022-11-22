@@ -11,7 +11,7 @@ public class ValidateError {
 
     public void validIsInRange(String userInput) {
         Integer userInputChangeNumber = Integer.parseInt(userInput);
-        if (userInputChangeNumber < 3 || 20 > userInputChangeNumber) {
+        if (userInputChangeNumber < 3 || 20 < userInputChangeNumber) {
             throw new IllegalArgumentException(ErrorMessage.NOT_IN_RANGE.getMessage());
         }
     }
