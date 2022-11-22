@@ -1,4 +1,4 @@
-package bridge;
+package bridge.io;
 
 public class ErrorMessage {
 	public static String INVALID_INPUT_ERROR_MESSAGE = "잘못된 입력입니다.";
