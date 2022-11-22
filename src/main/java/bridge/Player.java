@@ -12,4 +12,8 @@ public class Player {
     public void addGameCount() {
         this.gameCount++;
     }
+
+    public void setGameClear(boolean isClear) {
+        this.GameClear = isClear;
+    }
 }
