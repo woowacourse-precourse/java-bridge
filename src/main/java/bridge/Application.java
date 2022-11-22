@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.controller.BridgeGame;
-import bridge.domain.BridgeRandomNumberGenerator;
 
 public class Application {
 

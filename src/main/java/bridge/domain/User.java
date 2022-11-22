@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
 

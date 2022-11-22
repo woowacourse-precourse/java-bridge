@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
+
 import java.util.List;
 
 public class BridgeTestNumberGenerator  implements BridgeNumberGenerator {
