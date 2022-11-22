@@ -17,8 +17,7 @@ public class FeatureTest {
         int bridgeSize = 3;
         List<String> directions = bm.makeBridge(bridgeSize);
 
-        assertThat(directions).contains("U");
-        assertThat(directions).contains("D");
+        assertThat(directions).containsAnyElementsOf(Arrays.asList("U", "D"));
         assertThat(directions).hasSize(bridgeSize);
     }
 
