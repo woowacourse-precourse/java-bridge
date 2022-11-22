@@ -4,27 +4,30 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public enum BridgeRestartCommand {
-	RETRY("R", -1),
-	QUIT("Q", Integer.MAX_VALUE-1);
+	RETRY("R", true),
+	QUIT("Q", false);
 	private String command;
-	private int number;
+	private boolean isRetry;
 
-	BridgeRestartCommand(String command, int number) {
+	BridgeRestartCommand(String command,boolean isRetry) {
 		this.command = command;
-		this.number = number;
+		this.isRetry = isRetry;
 	}
 
-	public int getNumber() {
-		return number;
-	}
 
-	public static int getRestartCode(String input) {
+
+	public static boolean isRetry(String input) {
 		return Arrays.stream(values())
 				.filter(bridgeRestartCommand -> bridgeRestartCommand.command.equals(input))
 				.findAny()
 				.orElseThrow(NoSuchElementException::new)
-				.getNumber();
+				.isRetry();
 	}
+
+	public boolean isRetry() {
+		return isRetry;
+	}
+
 	public static boolean hasGameCommand(String input) {
 		return Arrays.stream(values())
 				.anyMatch(bridgeGameCommand -> bridgeGameCommand.command.equals(input));
