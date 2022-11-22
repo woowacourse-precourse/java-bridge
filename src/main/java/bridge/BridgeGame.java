@@ -6,8 +6,7 @@ import static bridge.domain.enums.Status.FAIL_STATUS;
 import static bridge.domain.enums.Status.PROGRESS_STATUS;
 import static bridge.domain.enums.Status.SUCCESS_STATUS;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+
 import bridge.controller.request.BridgeSizeRequest;
 import bridge.controller.request.MoveRequest;
 import bridge.domain.enums.Result;
