@@ -1,6 +1,7 @@
 package bridge;
 
 import static constant.Message.*;
+
 import java.util.List;
 
 public class Bridge {
@@ -17,8 +18,6 @@ public class Bridge {
         this.currentIndex = -1;
         this.gameCount = 1;
     }
-
-
 
     public int getCurrentIndex() {
         return currentIndex;
@@ -68,8 +67,6 @@ public class Bridge {
         return CANNOT_CROSS_NEXT;
     }
 
-
-
     public String movingResultToString(String successOrNot) {
         return lineToString(successOrNot, UP).concat(NEWLINE)
                 .concat(lineToString(successOrNot, DOWN));
@@ -115,7 +112,7 @@ public class Bridge {
             }
             return EMPTY;
         }
-        if(isGivenIndexUpside(index)) {
+        if (isGivenIndexUpside(index)) {
             return EMPTY;
         }
         return WRONG;
@@ -128,7 +125,7 @@ public class Bridge {
             }
             return EMPTY;
         }
-        if(isGivenIndexDownside(index)) {
+        if (isGivenIndexDownside(index)) {
             return EMPTY;
         }
         return WRONG;
