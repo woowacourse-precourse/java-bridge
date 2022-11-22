@@ -30,7 +30,8 @@ public class BridgeMaker {
             int generator = bridgeNumberGenerator.generate();
             if (generator == LOWER_LAYER.getLayer()) {
                 bridge.add("D");
-            } else if (generator == UPPER_LAYER.getLayer()) {
+            }
+            if (generator == UPPER_LAYER.getLayer()) {
                 bridge.add("U");
             }
         }
