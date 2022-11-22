@@ -17,7 +17,7 @@ public class BridgeGameTest {
     void setUp() {
         BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        bridge = new Bridge(bridgeMaker.makeBridge(new BridgeSize("3")));
+        bridge = new Bridge(bridgeMaker.makeBridge(3));
         game = new BridgeGame();
     }
 

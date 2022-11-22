@@ -9,7 +9,7 @@ public class BridgeSize {
         this.size = size;
     }
 
-    public boolean isEqual(int number) {
-        return this.size == number;
+    public int get() {
+        return size;
     }
 }

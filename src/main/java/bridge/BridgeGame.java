@@ -24,7 +24,7 @@ public class BridgeGame {
     public Bridge setBridge(BridgeSize size) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        return new Bridge(bridgeMaker.makeBridge(size));
+        return new Bridge(bridgeMaker.makeBridge(size.get()));
     }
 
     public Map<String, Bridge> getMovedBridge() {
