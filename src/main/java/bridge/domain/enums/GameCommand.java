@@ -5,8 +5,7 @@ import java.util.Arrays;
 
 public enum GameCommand {
     RETRY("R"),
-    QUIT("Q"),
-    UNKNOWN("");
+    QUIT("Q");
 
     private final String command;
 
@@ -15,14 +14,14 @@ public enum GameCommand {
     }
 
     public static GameCommand of(String input) {
-        GameCommand gameCommand = Arrays.stream(GameCommand.values())
-                .filter(command -> command.getCommand().equals(input))
+        return Arrays.stream(GameCommand.values())
+                .filter(gameCommand -> isSameCommand(gameCommand, input))
                 .findAny()
-                .orElse(UNKNOWN);
-        if (gameCommand == UNKNOWN) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_GAME_COMMAND);
-        }
-        return gameCommand;
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.INVALID_GAME_COMMAND));
+    }
+
+    private static boolean isSameCommand(GameCommand gameCommand, String input) {
+        return gameCommand.getCommand().equals(input);
     }
 
     public String getCommand() {

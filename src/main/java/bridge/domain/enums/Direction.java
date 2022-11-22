@@ -5,8 +5,7 @@ import java.util.Arrays;
 
 public enum Direction {
     UP("U", 1),
-    DOWN("D", 0),
-    UNKNOWN("", 9);
+    DOWN("D", 0);
 
     private final String command;
     private final int number;
@@ -17,14 +16,14 @@ public enum Direction {
     }
 
     public static Direction of(String input) {
-        Direction direction = Arrays.stream(values())
-                .filter(command -> command.getCommand().equals(input))
+        return Arrays.stream(values())
+                .filter(direction -> isSameCommand(direction, input))
                 .findAny()
-                .orElse(UNKNOWN);
-        if (direction == UNKNOWN) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_MOVE_COMMAND);
-        }
-        return direction;
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.INVALID_MOVE_COMMAND));
+    }
+
+    private static boolean isSameCommand(Direction direction, String input) {
+        return direction.getCommand().equals(input);
     }
 
     public String getCommand() {
