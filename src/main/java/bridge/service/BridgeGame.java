@@ -10,7 +10,7 @@ public class BridgeGame {
     private List<String> bridge;
     private int gameCount;
     private int bridgeIndex;
-    private List<String> user;
+    private String user;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -21,22 +21,18 @@ public class BridgeGame {
         return gameCount;
     }
 
-    public List<String> getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setup(){
-        this.gameCount = 0;
+    public void setup() {
         this.bridgeIndex = 0;
-        this.user = new ArrayList<>();
     }
 
-    public boolean stateGame(){
-        if((bridge.size()) == bridgeIndex){
-            user.add("O");
+    public boolean stateGame() {
+        if ((bridge.size()) == bridgeIndex) {
             return false;
         }
-        user.add("X");
         return true;
     }
 
@@ -46,11 +42,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String upDown) {
-        if(bridge.get(bridgeIndex).equals(upDown)){
-            bridgeIndex ++;
+        if (bridge.get(bridgeIndex).equals(upDown)) {
+            user = "O";
+            bridgeIndex++;
             return true;
         }
-        bridgeIndex = 0;
+        user = "X";
         return false;
     }
 
@@ -60,7 +57,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String retry) {
-        if(retry.equals("R")){
+        if (retry.equals("R")) {
             gameCount++;
             return true;
         }
