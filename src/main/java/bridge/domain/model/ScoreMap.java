@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 
 public class ScoreMap {
 
+    private static final String PREFIX = "[ ";
+    private static final String SUFFIX = " ]";
+    private static final String DELIMITER = " | ";
+
     private List<String> upperBoard = new ArrayList<>();
     private List<String> underBoard = new ArrayList<>();
 
@@ -31,6 +35,17 @@ public class ScoreMap {
     private void addUp(String judgeResult) {
         upperBoard.add(judgeResult);
         underBoard.add(NOTHING.getSymbol());
+    }
+
+
+    @Override
+    public String toString() {
+        return upperBoard.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX)) + "\n"
+                + underBoard.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX)) + "\n";
     }
 
 }
