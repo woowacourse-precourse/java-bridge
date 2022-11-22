@@ -31,6 +31,13 @@ public enum Column {
         return index;
     }
 
+    public int getOppositeIndex(){
+        if(index == 1){
+            return 0;
+        }
+        return 1;
+    }
+
     private static final Map<Integer, Column> BY_RANDOM_NUMBER = Stream.of(values()).collect(Collectors.toMap(Column::randomNumber, Function.identity()));
     public static final Map<String, Column> BY_CAPITAL_LETTER = Stream.of(values()).collect(Collectors.toMap(Column::capitalLetter, Function.identity()));
 
@@ -44,12 +51,7 @@ public enum Column {
     public static String changeNumToLetter(int randomNumber) {
         return BY_RANDOM_NUMBER.get(randomNumber).capitalLetter;
     }
-    public int getOppositeIndex(){
-        if(index == 1){
-            return 0;
-        }
-        return 1;
-    }
+
     public boolean isAnswer(){
         if(!capitalLetter.equals("")){
             return true;

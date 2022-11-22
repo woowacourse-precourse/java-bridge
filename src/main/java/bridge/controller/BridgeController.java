@@ -13,7 +13,7 @@ public class BridgeController {
     private final InputView input;
     private final OutputView output;
     private final BridgeGame bridgeGame;
-    private BridgeBuffer buffer;
+    private BridgeBuffer bridgeBuffer;
 
     public BridgeController(){
         input = new InputView();
@@ -23,20 +23,45 @@ public class BridgeController {
 
     public void startGame(){
         int size = inputSize();
-        buffer = bridgeGame.start(size);
-        playing(size);
+        bridgeBuffer = bridgeGame.start(size);
+        running(size);
     }
 
-    private int playing(int size){
+    private int running(int size){
         for(int step = 0; step < size; step++) {
             if (checkAnswer(step)) {
-                output.printMap(buffer.getCurrent());
+                output.printMap(bridgeBuffer.getCurrent());
                 continue;
             }
-            return judgeGameStatus(step, size);
+            return judgeFailureGame(step, size);
         }
         return succeedGame();
     }
+
+    private boolean checkAnswer(int step){
+        String position = inputMove();
+        Column result = bridgeGame.move(step,position);
+        if(result.isAnswer()){
+            bridgeBuffer.add(result);
+            return true;
+        }
+        return false;
+    }
+
+    private int judgeFailureGame(int step, int size){
+        output.printMap(bridgeBuffer.addFailLetter(step,bridgeGame));
+        return checkRetry(size);
+    }
+
+    private int checkRetry(int size){
+        String letter = inputRetry();
+        if(letter.equals(Letter.RETRY)){
+            bridgeGame.retry();
+            return running(size);
+        }
+        return failGame();
+    }
+
     private int inputSize(){
         try {
             output.printIntro();
@@ -55,30 +80,6 @@ public class BridgeController {
             return inputMove();
         }
     }
-    private boolean checkAnswer(int step){
-        String position = inputMove();
-        Column result = bridgeGame.move(step,position);
-        if(result.isAnswer()){
-            buffer.add(result);
-            return true;
-        }
-        return false;
-    }
-
-    private int judgeGameStatus(int step, int size){
-        output.printMap(buffer.addFailLetter(step,bridgeGame));
-        return checkRetry(size);
-    }
-
-
-    private int checkRetry(int size){
-        String letter = inputRetry();
-        if(letter.equals(Letter.RETRY)){
-            bridgeGame.retry();
-            return playing(size);
-        }
-        return failGame();
-    }
     private String inputRetry(){
         try {
             output.printRetry();
@@ -90,11 +91,11 @@ public class BridgeController {
     }
 
     private int failGame(){
-        output.printResult(buffer.getResult(), Letter.FAILURE, bridgeGame.getTotalCount());
+        output.printResult(bridgeBuffer.getResult(), Letter.FAILURE, bridgeGame.getTotalCount());
         return 0;
     }
     private int succeedGame(){
-        output.printResult(buffer.getResult(),Letter.SUCCESS, bridgeGame.getTotalCount());
+        output.printResult(bridgeBuffer.getResult(),Letter.SUCCESS, bridgeGame.getTotalCount());
         return 0;
     }
 }
