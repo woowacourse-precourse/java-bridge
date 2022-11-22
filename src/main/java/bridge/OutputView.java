@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,14 +16,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String currStr) {        // 현재 상황을 프린트한다.
+    public boolean printMap(String generatedBridgeStr, String currStr) {        // 현재 상황을 프린트한다.
 
-        List<String> bridges = bridgeMaker.change(currStr);
-
+        // 생성된 브릿지와 다르면 X를 넣고 재시작할 것인지 종료할 것인지 선택햐야한다.
+        List<String> bridges = bridgeMaker.change(currStr); // [ O | O |  ].. 이런형태
         for (String bridge : bridges) {
             System.out.println(bridge);
         }
 
+        boolean successOrFail = true;   // X가 있으면 실패니까 false 반환
+
+        for (String bridge : bridges) {         // 한 개의 다리라도 X가 포함되어 있으면 실패 케이스
+            if (bridge.contains("X")) {
+                successOrFail = false;
+                break;
+            }
+        }
+
+        return successOrFail;
     }
 
     /**
