@@ -22,12 +22,9 @@ public class BridgeGame {
      * @param block
      * @return
      */
-    public boolean move(String moving, String block) {
-        Boolean movingResult = Objects.equals(moving, block);
-
+    public void move(String moving, String block) {
         movingData.add(moving);
-        movingResults.add(movingResult);
-        return movingResult;
+        movingResults.add(Objects.equals(moving, block));
     }
 
     /**
