@@ -12,7 +12,6 @@ public class BridgeGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private BridgeViewConstructor bridgeViewConstructor;
     private final Bridge bridge;
     private final Player player = new Player();
     private int trialCount;
@@ -38,7 +37,7 @@ public class BridgeGameController {
     }
 
     private String constructBridge(){
-        bridgeViewConstructor = new BridgeViewConstructor();
+        BridgeViewConstructor bridgeViewConstructor = new BridgeViewConstructor();
         return bridgeViewConstructor
                 .constructBridge(player.getBridges(), bridge.getBridges());
     }
