@@ -46,4 +46,8 @@ public class BridgeGameController {
         }
     }
 
+    private void retryOrEnd() {
+        outputView.printMessage(Message.REQUEST_RETRY_OR_END);
+        bridgeGame.retryOrEnd(inputView.readGameCommand());
+    }
 }
