@@ -1,5 +1,5 @@
 > Application 아키텍쳐
-> > 1. **bridge.Bridge**: Bridge에 관련된 모든 클래쓰들을 담은 패키지
+> > 1. **bridge.Bridge**: Bridge에 관련된 클래쓰들을 담은 패키지
 > > > - **BridgeMaker**: Bridge를 생성하는 클래쓰
 > > > - **ValidBridgeInput**: 입력 받은 Bridge의 크기의 유효성을 검사하는 클래쓰
 > > > - **Bridge**: Bridge의 패턴을 담는 클래쓰
