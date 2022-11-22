@@ -3,6 +3,7 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -70,6 +71,25 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("30");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트4() {
+        assertThatThrownBy(() -> new Brid)
+    }
+
 
     @Override
     protected void runMain() {

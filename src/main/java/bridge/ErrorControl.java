@@ -11,7 +11,7 @@ public class ErrorControl {
         }
     }
     public void bridgeSizeError(int size){
-        if(size < 3 && size > 20)
+        if(size < 3 || size > 20)
             throw new IllegalArgumentException(ErrorMessage.bridgeSizeError.getErrorMessage());
     }
     public void moveCommandError(String command){

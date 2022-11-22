@@ -22,13 +22,11 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randNum = bridgeNumberGenerator.generate();
-            //System.out.println(randNum);
             if(randNum == 1)
                 bridge.add("U");
             if(randNum == 0)
                 bridge.add("D");
         }
-        //System.out.println(bridge.toString());
         return bridge;
     }
 }
