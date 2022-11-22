@@ -1,15 +1,11 @@
 package bridge;
 
+import bridge.game.BridgeDraw;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private static final String START_LETTER = "[";
-    private static final String FINISH_LETTER = "]";
-    private static final String DIVIDE_LETTER = "|";
-    private static final String EMPTY_SPACE = " ";
-    private static final String SUCCESS_LETTER = "O";
-    private static final String FAIL_LETTER = "X";
     private List<String> bridge;
 
     public Bridge(List<String> bridge) {
@@ -42,7 +38,7 @@ public class Bridge {
         List<Bridge> bridges = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             List<String> bridge = new ArrayList<>();
-            bridge.add(START_LETTER);
+            bridge.add(BridgeDraw.START.getLetter());
             bridges.add(new Bridge(bridge));
         }
         return bridges;
@@ -53,10 +49,13 @@ public class Bridge {
      * [   | O ]
      */
     public List<Bridge> drawSuccessLowerBridge(List<Bridge> bridges) {
-        bridges.get(0).getBridge().add(EMPTY_SPACE + EMPTY_SPACE + EMPTY_SPACE);
-        bridges.get(0).getBridge().add(FINISH_LETTER);
-        bridges.get(1).getBridge().add(EMPTY_SPACE + SUCCESS_LETTER + EMPTY_SPACE);
-        bridges.get(1).getBridge().add(FINISH_LETTER);
+        List<String> bridge1 = bridges.get(0).getBridge();
+        List<String> bridge2 = bridges.get(1).getBridge();
+
+        bridge1.add(BridgeDraw.EMPTY.getLetter() + BridgeDraw.EMPTY.getLetter() + BridgeDraw.EMPTY.getLetter());
+        bridge1.add(BridgeDraw.FINISH.getLetter());
+        bridge2.add(BridgeDraw.EMPTY.getLetter() + BridgeDraw.SUCCESS.getLetter() + BridgeDraw.EMPTY.getLetter());
+        bridge2.add(BridgeDraw.FINISH.getLetter());
         return bridges;
     }
 
@@ -65,10 +64,13 @@ public class Bridge {
      * [   |   ]
      */
     public List<Bridge> drawSuccessUpperBridge(List<Bridge> bridges) {
-        bridges.get(0).getBridge().add(EMPTY_SPACE + SUCCESS_LETTER + EMPTY_SPACE);
-        bridges.get(0).getBridge().add(FINISH_LETTER);
-        bridges.get(1).getBridge().add(EMPTY_SPACE + EMPTY_SPACE + EMPTY_SPACE);
-        bridges.get(1).getBridge().add(FINISH_LETTER);
+        List<String> bridge1 = bridges.get(0).getBridge();
+        List<String> bridge2 = bridges.get(1).getBridge();
+
+        bridge1.add(BridgeDraw.EMPTY.getLetter() + BridgeDraw.SUCCESS.getLetter() + BridgeDraw.EMPTY.getLetter());
+        bridge1.add(BridgeDraw.FINISH.getLetter());
+        bridge2.add(BridgeDraw.EMPTY.getLetter() + BridgeDraw.EMPTY.getLetter() + BridgeDraw.EMPTY.getLetter());
+        bridge2.add(BridgeDraw.FINISH.getLetter());
         return bridges;
     }
 
@@ -77,10 +79,13 @@ public class Bridge {
      * [   | X ]
      */
     public List<Bridge> drawFailLowerBridge(List<Bridge> bridges) {
-        bridges.get(0).getBridge().add(EMPTY_SPACE + EMPTY_SPACE + EMPTY_SPACE);
-        bridges.get(0).getBridge().add(FINISH_LETTER);
-        bridges.get(1).getBridge().add(EMPTY_SPACE + FAIL_LETTER + EMPTY_SPACE);
-        bridges.get(1).getBridge().add(FINISH_LETTER);
+        List<String> bridge1 = bridges.get(0).getBridge();
+        List<String> bridge2 = bridges.get(1).getBridge();
+
+        bridge1.add(BridgeDraw.EMPTY.getLetter() + BridgeDraw.EMPTY.getLetter() + BridgeDraw.EMPTY.getLetter());
+        bridge1.add(BridgeDraw.FINISH.getLetter());
+        bridge2.add(BridgeDraw.EMPTY.getLetter() + BridgeDraw.FAIL.getLetter() + BridgeDraw.EMPTY.getLetter());
+        bridge2.add(BridgeDraw.FINISH.getLetter());
         return bridges;
     }
 
@@ -89,10 +94,13 @@ public class Bridge {
      * [   |   ]
      */
     public List<Bridge> drawFailUpperBridge(List<Bridge> bridges) {
-        bridges.get(0).getBridge().add(EMPTY_SPACE + FAIL_LETTER + EMPTY_SPACE);
-        bridges.get(0).getBridge().add(FINISH_LETTER);
-        bridges.get(1).getBridge().add(EMPTY_SPACE + EMPTY_SPACE + EMPTY_SPACE);
-        bridges.get(1).getBridge().add(FINISH_LETTER);
+        List<String> bridge1 = bridges.get(0).getBridge();
+        List<String> bridge2 = bridges.get(1).getBridge();
+
+        bridge1.add(BridgeDraw.EMPTY.getLetter() + BridgeDraw.FAIL.getLetter() + BridgeDraw.EMPTY.getLetter());
+        bridge1.add(BridgeDraw.FINISH.getLetter());
+        bridge2.add(BridgeDraw.EMPTY.getLetter() + BridgeDraw.EMPTY.getLetter() + BridgeDraw.EMPTY.getLetter());
+        bridge2.add(BridgeDraw.FINISH.getLetter());
         return bridges;
     }
 }
