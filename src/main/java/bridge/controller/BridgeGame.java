@@ -19,6 +19,7 @@ public class BridgeGame {
     private int attemptCount = 0;
     InputView inputView = new InputView();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    OutputView outputView = new OutputView();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -43,25 +44,45 @@ public class BridgeGame {
     }
 
     public void playGame(List<String> bridge) {
-        bridgeSize = readBridgeSize();
         this.bridge = bridge;
         moveBridge();
+
+        // if 종료 선택시 결과값 리폿
+        // 클리어시 결과값 리폿
     }
 
     public List<String> makeBridge() {
+        bridgeSize = readBridgeSize();
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
     public void moveBridge() {
         int round = 0;
-        while (round != -1) {
-            attemptCount++;
+        attemptCount++;
+        while (true) {
             boolean isCross = move(round, readBridgeMove());
-            // printMap(round);
+            printMap(round, isCross);
             // round = nextRound;
 
             // 지도 출력해주기.
+            round++;
+            if (!isCross)
+                break;
         }
+        // 게임 결과 출력 및 계속 진행 여부
+    }
+
+    public void printMap(int round, boolean isCross) {
+        List<String> usedMap = new ArrayList<>(bridge.subList(0, round));
+        usedMap.add(addLastCross(round, isCross));
+
+        outputView.printMap(usedMap);
+    }
+
+    public String addLastCross(int round, boolean isCross) {
+        if (isCross)
+            return bridge.get(round);
+        return "-1";
     }
 
     public int readBridgeSize() {
