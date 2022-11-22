@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.domain.GameStatus;
 import bridge.domain.Bridge;
-import bridge.domain.Result;
+import bridge.domain.GameResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ class OutputViewTest {
     @Test
     void 최종_결과_성공_출력_테스트() {
         GameStatus gameStatus = new GameStatus();
-        outputView.printResult(gameStatus, Result.success(new Bridge(List.of("U", "D", "U", "D"))));
+        outputView.printResult(gameStatus, GameResult.success(new Bridge(List.of("U", "D", "U", "D"))));
         String printOut = consoleOut.toString().trim();
 
         assertThat(printOut).contains(
@@ -42,7 +42,7 @@ class OutputViewTest {
     @Test
     void 최종_결과_실패_출력_테스트() {
         GameStatus gameStatus = new GameStatus();
-        outputView.printResult(gameStatus, Result.fail(new Bridge(List.of("U", "D", "U", "D"))));
+        outputView.printResult(gameStatus, GameResult.fail(new Bridge(List.of("U", "D", "U", "D"))));
         String printOut = consoleOut.toString().trim();
 
         assertThat(printOut).contains(

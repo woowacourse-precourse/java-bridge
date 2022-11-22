@@ -1,10 +1,10 @@
 package bridge.domain;
 
-public class Result {
+public class GameResult {
     private final boolean success;
     private final Bridge selectedBridge;
 
-    private Result(boolean success, Bridge selectedBridge) {
+    private GameResult(boolean success, Bridge selectedBridge) {
         this.success = success;
         this.selectedBridge = selectedBridge;
     }
@@ -18,11 +18,11 @@ public class Result {
     }
 
 
-    public static Result fail(Bridge selectedBridge) {
-        return new Result(false, selectedBridge);
+    public static GameResult fail(Bridge selectedBridge) {
+        return new GameResult(false, selectedBridge);
     }
 
-    public static Result success(Bridge selectedBridge) {
-        return new Result(true, selectedBridge);
+    public static GameResult success(Bridge selectedBridge) {
+        return new GameResult(true, selectedBridge);
     }
 }

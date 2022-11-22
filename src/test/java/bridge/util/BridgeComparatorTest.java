@@ -1,7 +1,7 @@
 package bridge.util;
 
 import bridge.domain.Bridge;
-import bridge.domain.Result;
+import bridge.domain.GameResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,8 +10,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class BridgeComparatorTest {
     @DisplayName("입력된 다리 값까지 정답이면 정답 결과 반환")
     @ParameterizedTest
@@ -19,11 +17,11 @@ class BridgeComparatorTest {
     void 두_개의_브릿지_비교_테스트_성공(Bridges bridges) {
         Bridge realBridges = bridges.realBridges;
         Bridge selectedBridges = bridges.selectedBridges;
-        Result result = BridgeComparator.compareBridges(realBridges, selectedBridges);
+        GameResult gameResult = BridgeComparator.compareBridges(realBridges, selectedBridges);
 
-        Assertions.assertThat(result)
+        Assertions.assertThat(gameResult)
                 .usingRecursiveComparison()
-                .isEqualTo(Result.success(selectedBridges));
+                .isEqualTo(GameResult.success(selectedBridges));
     }
 
     @DisplayName("입력된 다리 값이 다르면 실패 결과 반환")
@@ -32,11 +30,11 @@ class BridgeComparatorTest {
     void 두_개의_브릿지_비교_테스트_실패(Bridges bridges) {
         Bridge realBridges = bridges.realBridges;
         Bridge selectedBridges = bridges.selectedBridges;
-        Result result = BridgeComparator.compareBridges(realBridges, selectedBridges);
+        GameResult gameResult = BridgeComparator.compareBridges(realBridges, selectedBridges);
 
-        Assertions.assertThat(result)
+        Assertions.assertThat(gameResult)
                 .usingRecursiveComparison()
-                .isEqualTo(Result.fail(selectedBridges));
+                .isEqualTo(GameResult.fail(selectedBridges));
     }
 
     static Stream<Bridges> generateSuccessData() {

@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.GameStatus;
-import bridge.domain.Result;
+import bridge.domain.GameResult;
 import bridge.util.BridgeMapDrawingMachine;
 
 
@@ -15,8 +15,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Result result) {
-        String map = BridgeMapDrawingMachine.draw(result);
+    public void printMap(GameResult gameResult) {
+        String map = BridgeMapDrawingMachine.draw(gameResult);
         System.out.println(map);
     }
 
@@ -25,10 +25,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameStatus gameStatus, Result result) {
+    public void printResult(GameStatus gameStatus, GameResult gameResult) {
         System.out.println(Message.FINAL_RESULT.getMessage());
-        printMap(result);
-        if (result.isSuccess()) {
+        printMap(gameResult);
+        if (gameResult.isSuccess()) {
             System.out.println(Message.FAIL_TRY_COUNT.getMessage() + gameStatus.getTryCount());
             return;
         }

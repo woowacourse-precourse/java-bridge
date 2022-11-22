@@ -1,7 +1,7 @@
 package bridge.util;
 
 import bridge.domain.Bridge;
-import bridge.domain.Result;
+import bridge.domain.GameResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ class BridgeMapDrawingMachineTest {
 
     @Test
     void 맵_그리기_테스트1() {
-        Result failResult = Result.fail(new Bridge(List.of("U", "D", "D")));
+        GameResult failResult = GameResult.fail(new Bridge(List.of("U", "D", "D")));
 
         String map = BridgeMapDrawingMachine.draw(failResult);
         System.out.println(map);
@@ -40,7 +40,7 @@ class BridgeMapDrawingMachineTest {
 
     @Test
     void 맵_그리기_테스트2() {
-        Result successResult = Result.success(new Bridge(List.of("U", "D", "D")));
+        GameResult successResult = GameResult.success(new Bridge(List.of("U", "D", "D")));
 
         String map = BridgeMapDrawingMachine.draw(successResult);
         System.out.println(map);
@@ -55,7 +55,7 @@ class BridgeMapDrawingMachineTest {
     }
     @Test
     void 맵_그리기_테스트3() {
-        Result successResult = Result.success(new Bridge(List.of("U", "D", "D", "U")));
+        GameResult successResult = GameResult.success(new Bridge(List.of("U", "D", "D", "U")));
 
         String map = BridgeMapDrawingMachine.draw(successResult);
         System.out.println(map);
@@ -71,13 +71,12 @@ class BridgeMapDrawingMachineTest {
 
     @Test
     void 맵_그리기_테스트4() {
-        Result successResult = Result.fail(new Bridge(List.of("U", "D", "D", "U")));
+        GameResult failResult = GameResult.fail(new Bridge(List.of("U", "D", "D", "U")));
 
-        String map = BridgeMapDrawingMachine.draw(successResult);
+        String map = BridgeMapDrawingMachine.draw(failResult);
         System.out.println(map);
 
         String printOut = consoleOut.toString().trim();
-
 
         assertThat(printOut).contains(
                 "[ O |   |   | X ]",

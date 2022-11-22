@@ -3,7 +3,7 @@ package bridge;
 import bridge.domain.Bridge;
 import bridge.domain.GameCommandType;
 import bridge.domain.GameStatus;
-import bridge.domain.Result;
+import bridge.domain.GameResult;
 import bridge.util.BridgeComparator;
 import bridge.view.InputView;
 import bridge.view.Message;
@@ -30,27 +30,27 @@ public class BridgeGame {
         int bridgeSize = requestBridgeSize();
         gameStatus.setRealBridge(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
 
-        Result result = playGame(gameStatus);
-        outputView.printResult(gameStatus, result);
+        GameResult gameResult = playGame(gameStatus);
+        outputView.printResult(gameStatus, gameResult);
     }
 
-    private Result playGame(GameStatus gameStatus) {
-        Result result = playOneTry(gameStatus);
-        while (!result.isSuccess()) {
+    private GameResult playGame(GameStatus gameStatus) {
+        GameResult gameResult = playOneTry(gameStatus);
+        while (!gameResult.isSuccess()) {
             String gameCommand = requestGameCommand();
-            if (gameCommand.equals(GameCommandType.RETRY.getCode())) result = retry(gameStatus);
+            if (gameCommand.equals(GameCommandType.RETRY.getCode())) gameResult = retry(gameStatus);
         }
-        return result;
+        return gameResult;
     }
 
-    public Result playOneTry(GameStatus gameStatus) {
+    public GameResult playOneTry(GameStatus gameStatus) {
         Bridge realBridges = gameStatus.getRealBridge();
         Bridge selectedBridges = gameStatus.getSelectedBridge();
         for (int index = 0; index < realBridges.getSize(); index++) {
-            Result result = move(gameStatus);
-            if (!result.isSuccess()) return result;
+            GameResult gameResult = move(gameStatus);
+            if (!gameResult.isSuccess()) return gameResult;
         }
-        return Result.success(selectedBridges);
+        return GameResult.success(selectedBridges);
     }
 
     /**
@@ -58,15 +58,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Result move(GameStatus gameStatus) {
+    public GameResult move(GameStatus gameStatus) {
         Bridge selectedBridges = gameStatus.getSelectedBridge();
         Bridge realBridges = gameStatus.getRealBridge();
 
         String newBridge = requestMove();
         selectedBridges.addNewBridge(newBridge);
-        Result result = BridgeComparator.compareBridges(realBridges, selectedBridges);
-        outputView.printMap(result);
-        return result;
+        GameResult gameResult = BridgeComparator.compareBridges(realBridges, selectedBridges);
+        outputView.printMap(gameResult);
+        return gameResult;
     }
 
 
@@ -75,7 +75,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Result retry(GameStatus gameStatus) {
+    public GameResult retry(GameStatus gameStatus) {
         gameStatus.setNewSelectedBridge();
         gameStatus.addTryCount();
         return playOneTry(gameStatus);
