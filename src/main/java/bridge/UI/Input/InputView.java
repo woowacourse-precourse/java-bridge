@@ -12,6 +12,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String userInput = Console.readLine();
+        System.out.println( );
         try {
             validate(userInput, ValidateType.SIZE);
             return Integer.parseInt(userInput);
@@ -26,7 +27,6 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-
         try {
             String userInput = Console.readLine();
             validate(userInput, ValidateType.MOVE);

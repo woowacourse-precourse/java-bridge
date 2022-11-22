@@ -31,8 +31,8 @@ public class BridgeMaker {
     private String allocateBlock() {
         int value = bridgeNumberGenerator.generate();
 
-        if(value == 0) return "U";
+        if(value == 0) return "D";
 
-        return "D";
+        return "U";
     }
 }

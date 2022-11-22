@@ -15,7 +15,7 @@ public class BridgeMakerTest {
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge.size() == 3);
-        assertThat(bridge).containsExactly("D", "U", "U");
+        assertThat(bridge).containsExactly("U", "D", "D");
     }
 }
 
