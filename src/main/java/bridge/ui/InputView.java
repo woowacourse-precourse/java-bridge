@@ -22,7 +22,7 @@ public class InputView {
 
     public String readGameCommand() {
         String gameCommand = Console.readLine();
-        // TODO: Q 또는 R이 아닌 입력이 들어왔을 때의 예외 처리
+        InputValidator.checkGameCommand(gameCommand);
         return gameCommand;
     }
 }

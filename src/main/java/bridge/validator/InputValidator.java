@@ -12,4 +12,10 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D로 입력해야 합니다.");
         }
     }
+
+    public static void checkGameCommand(String gameCommand) {
+        if ( (gameCommand.equals("Q") || gameCommand.equals("R")) == false ) {
+            throw new IllegalArgumentException("[ERROR] 재시작 여부는 R 또는 Q로 입력해야 합니다.");
+        }
+    }
 }
