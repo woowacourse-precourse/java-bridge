@@ -25,4 +25,5 @@ public class InputView {
         System.out.println(INPUT_RETRY);
         String move = Console.readLine();
         return move;
-    }}
+    }
+}

@@ -46,7 +46,7 @@ public class GameController {
         if (isPlayerArrive(bridgeGame)) {
             return false;
         }
-        if(inputRetry().equals("Q")){
+        if (inputRetry().equals("Q")) {
             bridgeGame.changeToLoose();
             return false;
         }
