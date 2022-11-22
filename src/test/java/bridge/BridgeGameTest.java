@@ -30,6 +30,17 @@ public class BridgeGameTest {
         assertThat(result).isFalse();
     }
 
+    @Test
+    @DisplayName("존재하지 않는 다리 영역을 건너려고 시도하여 예외를 발생한다.")
+    public void playGame_MoveOverBridge_ThrowException() {
+        List<String> bridge = List.of("U", "D", "U");
+        BridgeGame game = new BridgeGame(bridge);
+        game.move(PropertyMove.UP);
+        game.move(PropertyMove.DOWN);
+        game.move(PropertyMove.UP);
+        assertThatThrownBy(() -> game.move(PropertyMove.UP))
+            .isInstanceOf(IllegalStateException.class);
+    }
 
     @Test
     @DisplayName("게임을 실패하여 1회 재시작하여 2회차 게임을 수행중이다.")
@@ -73,4 +84,5 @@ public class BridgeGameTest {
         assertThatThrownBy(game::retry)
             .isInstanceOf(IllegalStateException.class);
     }
+
 }

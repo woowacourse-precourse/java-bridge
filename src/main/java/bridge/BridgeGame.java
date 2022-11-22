@@ -23,12 +23,19 @@ public class BridgeGame {
      */
     public boolean move(PropertyMove property) {
         int nextBridge = currentBridge + 1;
+        checkNextBridge(nextBridge);
         if (!bridge.get(nextBridge).equals(property.getValue())) {
             gameOver = true;
             return false;
         }
         currentBridge = nextBridge;
         return true;
+    }
+
+    private void checkNextBridge(final int nextBridge) {
+        if (bridge.size() <= nextBridge) {
+            throw new IllegalStateException();
+        }
     }
 
     /**
@@ -48,4 +55,5 @@ public class BridgeGame {
     public int getCountPlayGame() {
         return countPlayGame;
     }
+
 }
