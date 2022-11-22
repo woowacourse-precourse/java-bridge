@@ -19,13 +19,17 @@ public class InputView {
     private static int retryInputBridgeSize() {
         try {
             String inputSize = Console.readLine();
-            Validator.validateInputBridgeSizeType(inputSize);
-            Validator.validateInputBridgeSizeRange(inputSize);
+            validateSizeInput(inputSize);
             return Integer.parseInt(inputSize);
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
         }
         return BRIDGE_SIZE_INPUT_RETRY_POINT;
+    }
+
+    private static void validateSizeInput(String inputSize) {
+        Validator.validateInputBridgeSizeType(inputSize);
+        Validator.validateInputBridgeSizeRange(inputSize);
     }
 
     public static String inputMoving() {
