@@ -25,7 +25,7 @@ public class BridgeMaker {
 
         for(int i = 0; i<size; i++){
             int randomPathCode = bridgeNumberGenerator.generate();
-            bridgeAnswerPath.add(BridgeRoute.getMatchRoute(randomPathCode).get().getRouth());
+            bridgeAnswerPath.add(BridgeRoute.getMatchRoute(randomPathCode).get().getRoute());
         }
 
         return bridgeAnswerPath;
