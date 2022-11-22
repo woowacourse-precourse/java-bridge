@@ -1,14 +1,16 @@
 package bridge;
 
 
+import bridge.constant.Error;
+
 public class Exception {
 
     public static int validateBridgeSize(String input) {
         if (validateInputEmpty(input)) {
-            throw new IllegalArgumentException("[ERROR] 아무것도 입력되지 않았습니다. 메시지에 맞도록 입력해주세요.");
+            throw new IllegalArgumentException(Error.ERROR_EMPTY.getError());
         }
         if (validateInputtype(input) || validateInputrange(input)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(Error.ERROR_RANGE.getError());
         }
         return Integer.parseInt(input);
     }
@@ -31,10 +33,10 @@ public class Exception {
 
     public static String validateMoving(String input) {
         if (validateInputEmpty(input)) {
-            throw new IllegalArgumentException("[ERROR] 아무것도 입력되지 않았습니다. 메시지 조건에 맞게 입력해주세요.");
+            throw new IllegalArgumentException(Error.ERROR_EMPTY.getError());
         }
         if (validateMovinginput(input))
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. U와 D중 하나를 입력해주세요.");
+            throw new IllegalArgumentException(Error.ERROR_MOVING.getError());
         return input;
     }
 
@@ -47,10 +49,10 @@ public class Exception {
 
     public static String validateGameCommand(String restartInput) {
         if (validateInputEmpty(restartInput)) {
-            throw new IllegalArgumentException("[ERROR] 아무것도 입력되지 않았습니다. 메시지 조건에 맞게 입력해주세요.");
+            throw new IllegalArgumentException(Error.ERROR_EMPTY.getError());
         }
-        if ( validateGameCommandinput(restartInput)){
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. R과 Q중 하나를 입력해주세요.");
+        if (validateGameCommandinput(restartInput)) {
+            throw new IllegalArgumentException(Error.ERROR_RESTART.getError());
         }
         return restartInput;
     }
