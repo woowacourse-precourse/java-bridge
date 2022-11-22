@@ -14,10 +14,12 @@ public class BridgeController {
     private boolean gameEndCheck = false;
     private BridgeGame bridgeGame;
 
-
-    public void start() {
-        GameStartMessage();
-        GameTest();
+    public void run() {
+        try {
+            start();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     public void start() {
