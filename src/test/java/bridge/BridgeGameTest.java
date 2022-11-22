@@ -9,6 +9,7 @@ import ui.OutputView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,5 +57,13 @@ public class BridgeGameTest {
         System.setIn(in);
         Scanner sc = new Scanner(System.in);
         assertThat(bridgeGame.move()).isInstanceOf(String.class);
+    }
+
+    @DisplayName("사용자의 입력 값을 업데이트 한다.")
+    @Test
+    void updatePlayerInputTest() {
+        BridgeGame bridgeGame = new BridgeGame(new OutputView(), new InputView());
+        List<String> playerInput = new ArrayList<>(List.of("U", "D"));
+        assertThat(bridgeGame.updatePlayerInput(playerInput, "U")).containsExactly("U", "D", "U");
     }
 }
