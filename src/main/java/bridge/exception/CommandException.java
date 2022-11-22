@@ -15,9 +15,16 @@ public class CommandException {
     }
 
     public void isValidDecision(String command){
+        isNull(command);
         isSingle(command);
         isCharacter(command);
         isDecision(command);
+    }
+
+    public void isNull(String input){
+        if(input.isBlank()){
+            throw new IllegalArgumentException(ERROR + "입력값이 비었습니다.");
+        }
     }
 
     public static void isSingle(String command){
