@@ -9,10 +9,9 @@ public enum BridgeMakerEnum {
     DOWN(0, Setting.PLAYER_MOVE_DOWN, 1),
     UP(1, Setting.PLAYER_MOVE_UP, 0);
 
-    private final int randomNumber;
-    private final char bridge;
-
-    private final int row;
+    private final int randomNumber; // 매칭되는 랜덤 number
+    private final char bridge; // MOVE 코드
+    private final int row; // 다리 row번째
 
     BridgeMakerEnum(int randomNumber, char bridge, int row) {
         this.randomNumber = randomNumber;
