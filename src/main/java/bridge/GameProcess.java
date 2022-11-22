@@ -17,12 +17,18 @@ public class GameProcess {
     public static int gameCnt = 0;
     public static String length;
     public static int size;
+    public static String status;
     public static List<String> bridge;
     public static List<String> makingBridge = new ArrayList<>(Arrays.asList("[ ]","[ ]"));
 
     public static void gameStart(){
         outputView.printStart();
         size = getSize();
+        bridge = bridgeMaker.makeBridge(size);
+        while(true){
+            gameCnt++;
+            if (!gameRunning(bridge,size)) break;
+        }
     }
 
     public static int getSize() {
@@ -39,6 +45,13 @@ public class GameProcess {
         return size;
     }
 
+    private static boolean gameRunning(List<String> bridge, int size) {
+        makingBridge = new ArrayList<>(Arrays.asList("[ ]","[ ]"));
+        for (int i = 0; i < size; i++) {
+            String status = getStatus(bridge,i);
+        }
+        return false;
+    }
 
     private static String getStatus(List<String> bridge, int idx) {
         String moving = inputView.readMoving();
