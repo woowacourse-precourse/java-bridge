@@ -2,6 +2,7 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.Errors.NULL_ERROR;
 import static bridge.Validator.bridgeSizeValidate;
 import static bridge.Validator.numberValidate;
 import static bridge.Validator.moveValidate;
@@ -56,7 +57,7 @@ public class InputView {
 
     private void nullValidate(String input) {
         if (input == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NULL_ERROR.getMessage());
         }
     }
 }
