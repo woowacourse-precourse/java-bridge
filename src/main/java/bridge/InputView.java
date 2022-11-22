@@ -10,7 +10,11 @@ public class InputView {
      */
     public static int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        int bridgeSize = Integer.parseInt(camp.nextstep.edu.missionutils.Console.readLine());
+        String input = camp.nextstep.edu.missionutils.Console.readLine();
+        if (input == null || input.isEmpty() || !input.matches("[0-9]+")) {
+            throw new IllegalArgumentException("[ERROR] 다리의 길이를 다시 입력해주세요.");
+        }
+        int bridgeSize = Integer.parseInt(input);
 
         if (!(bridgeSize >= 3 && bridgeSize <= 20)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
