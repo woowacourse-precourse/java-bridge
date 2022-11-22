@@ -75,4 +75,22 @@ public class InputViewTest {
         // then
         assertThat(inputView.readBridgeSize()).isNull();
     }
+
+    @DisplayName("입력받은 문자가 R이면 정상적으로 입력된다.")
+    @Test
+    void readCommandLine_Success() {
+
+        // given
+        InputView inputView = new InputView();
+        String userInput = "R";
+
+        InputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
+
+        // when
+        String gameCommand = inputView.readGameCommand();
+
+        // then
+        assertThat(gameCommand).isEqualTo("R");
+    }
 }
