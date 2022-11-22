@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.BridgeGame.Direction;
-import bridge.BridgeGame.Result;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,43 +16,50 @@ public class BridgeGameTest {
 
     @Test
     void play_gameIsUnderAway_NOTHING_HAPPENED() {
-        game = new BridgeGame(List.of("U","U","U","D"));
-        Assertions.assertEquals(Result.NOTHING_HAPPENED, game.play(Direction.UP));
+        game = new BridgeGame(List.of("U", "U", "U", "D"));
+        game.move(Direction.UP);
+        Assertions.assertEquals(GameResult.NOTHING_HAPPENED, game.getGameResult());
     }
 
     @Test
     void play_nextIsUpAndUserSelectDown_USER_LOSE() {
         game = new BridgeGame(List.of("U"));
-        Assertions.assertEquals(Result.USER_LOSE, game.play(Direction.DOWN));
+        game.move(Direction.DOWN);
+        Assertions.assertEquals(GameResult.USER_LOSE, game.getGameResult());
     }
 
     @Test
     void play_nextIsDownAndUserSelectUp_USER_LOSE() {
         game = new BridgeGame(List.of("D"));
-        Assertions.assertEquals(Result.USER_LOSE, game.play(Direction.UP));
+        game.move(Direction.UP);
+        Assertions.assertEquals(GameResult.USER_LOSE, game.getGameResult());
     }
 
     @Test
     void play_nextIsUpAndUserSelectUp_USER_WIN() {
         game = new BridgeGame(List.of("D"));
-        Assertions.assertEquals(Result.USER_WIN, game.play(Direction.DOWN));
+        game.move(Direction.DOWN);
+        Assertions.assertEquals(GameResult.USER_WIN, game.getGameResult());
     }
 
     @Test
     void play_nextIsDownAndUserSelectDown_USER_WIN() {
         game = new BridgeGame(List.of("U"));
-        Assertions.assertEquals(Result.USER_WIN, game.play(Direction.UP));
+        game.move(Direction.UP);
+        Assertions.assertEquals(GameResult.USER_WIN, game.getGameResult());
     }
 
     @Test
     void retry_gameOver_reset() {
-        game = new BridgeGame(List.of("U","U","D"));
-        game.play(Direction.UP);
-        game.play(Direction.UP);
-        Assertions.assertEquals(Result.USER_LOSE, game.play(Direction.UP));
+        game = new BridgeGame(List.of("U", "U", "D"));
+        game.move(Direction.UP);
+        game.move(Direction.UP);
+        game.move(Direction.UP);
+        Assertions.assertEquals(GameResult.USER_LOSE, game.getGameResult());
         game.retry();
-        game.play(Direction.UP);
-        game.play(Direction.UP);
-        Assertions.assertEquals(Result.USER_WIN, game.play(Direction.DOWN));
+        game.move(Direction.UP);
+        game.move(Direction.UP);
+        game.move(Direction.DOWN);
+        Assertions.assertEquals(GameResult.USER_WIN, game.getGameResult());
     }
 }

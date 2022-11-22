@@ -21,16 +21,13 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridge.add(makeRandomBridgeArea());
+            int area = bridgeNumberGenerator.generate();
+            if (area == 0) {
+                bridge.add("D");
+                continue;
+            }
+            bridge.add("U");
         }
         return bridge;
-    }
-
-    public String makeRandomBridgeArea() {
-        int area = bridgeNumberGenerator.generate();
-        if (area == 0) {
-            return "D";
-        }
-        return "U";
     }
 }
