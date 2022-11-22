@@ -1,4 +1,11 @@
-# 미션 - 다리 건너기
+<p align="center">
+    <img src="./mainbanner.png" alt="메인배너" width="40%">
+</p>
+
+# 프리코스 4주차 미션 - 다리 건너기
+![Generic badge](https://img.shields.io/badge/language-java-green.svg)
+> 📢 이번 게임은 다리 건너기입니다. 안전한 다리를 골라서 반대편까지 건너가면 우승입니다!
+<br>
 
 ## 기능 목록
 
@@ -54,3 +61,7 @@
 - `OutputView`클래스의 `printResult` 메소드를 이용한다.
 - 다리를 전부 건너면 성공으로 간주하고, 총 시도 횟수를 출력한다.
 - 6번에서 게임을 종료하면 실패로 간주하고, 총 시도 횟수를 출력한다.
+
+---
+## 이미지 출처
+<a href="https://www.flaticon.com/free-icons/walk" title="walk icons">Walk icons created by Vitaly Gorbachev - Flaticon</a>
