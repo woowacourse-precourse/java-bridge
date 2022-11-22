@@ -54,4 +54,12 @@ public class InputTest {
     void 이동명령어_입력_성공_테스트(String size) {
         assertThatNoException().isThrownBy(() -> InputException.validateInputMoveCommand(size));
     }
+
+    @DisplayName("게임재시작_입력_실패")
+    @ValueSource(strings = {"r", "q", "RQ"})
+    @ParameterizedTest()
+    void 게임재시작_입력_실패_테스트(String size) {
+        assertThatThrownBy(() -> InputException.validateInputRetryCommand(size))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
