@@ -1,7 +1,5 @@
 package bridge.view;
 
-import static bridge.view.Validator.validateInputDirectionException;
-import static bridge.view.Validator.validateInputGameRestartException;
 import static bridge.view.Validator.validateInputSizeException;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -19,7 +17,7 @@ public class InputView {
         System.out.println();
         try {
             validateInputSizeException(inputSize);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBridgeSize();
         }
@@ -32,7 +30,7 @@ public class InputView {
     public String inputMovingDirection() {
         String inputDirection = readLine();
         try {
-            validateInputDirectionException(inputDirection);
+//            validateInputDirectionException(inputDirection);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputMovingDirection();
@@ -46,7 +44,7 @@ public class InputView {
     public String inputGameRestart() {
         String inputRestart = readLine();
         try {
-        validateInputGameRestartException(inputRestart);
+//        validateInputGameRestartException(inputRestart);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputGameRestart();
