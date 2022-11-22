@@ -1,6 +1,7 @@
 package bridge.outputView;
 
 import bridge.bridgeGame.BridgeGame;
+import bridge.bridgeGame.BridgeGameLog;
 import java.util.List;
 
 /**
@@ -21,8 +22,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame game) {
-        printMap(game.getGameLog().getBridges());
+    public void printMap(BridgeGameLog log) {
+        printMap(log.getBridges());
     }
 
     public void printMap(List<List<String>> logs) {
@@ -60,8 +61,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGame game) {
-        printResult(game.getBridges().isEmpty(), game.getGameLog().getCount());
+    public void printResult(BridgeGame game, BridgeGameLog log) {
+        printResult(game.getBridges().isEmpty(), log.getCount());
     }
 
     public void printResult(boolean isEnd, long count) {

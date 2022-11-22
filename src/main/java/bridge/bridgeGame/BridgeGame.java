@@ -8,31 +8,22 @@ import java.util.function.Supplier;
  */
 public class BridgeGame {
     private static final String END_COMMAND = "Q";
-    private final BridgeGameLog gameLog;
     private final List<String> bridges;
 
     private boolean isEnd;
 
     public BridgeGame(List<String> bridges) {
-        this.gameLog = new BridgeGameLog();
         this.bridges = bridges;
     }
 
-    public boolean isGameEnd() {
+    public boolean isGameNotEnd() {
         return !isEnd && !bridges.isEmpty();
-    }
-
-    public BridgeGameLog getGameLog() {
-        return gameLog;
     }
 
     public List<String> getBridges() {
         return bridges;
     }
 
-    public void addLog(String command) {
-        gameLog.addLog(command.equals(bridges.get(0)), command);
-    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -62,7 +53,7 @@ public class BridgeGame {
         }
     }
 
-    private boolean isMove(String command) {
+    public boolean isMove(String command) {
         return bridges.get(0).equals(command);
     }
 }
