@@ -11,4 +11,12 @@ public class GameClear {
     public boolean get() {
         return gameClear;
     }
+
+    public void printGameClear(int countOfTry) {
+        if (gameClear) {
+            OutputView.printGameClear("성공", countOfTry);
+            return;
+        }
+        OutputView.printGameClear("실패", countOfTry);
+    }
 }

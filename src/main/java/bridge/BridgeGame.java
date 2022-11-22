@@ -16,10 +16,13 @@ public class BridgeGame {
 
     public void runGameSystem(List<String> bridge, int countOfTry) {
         GameClear gameClear = new GameClear(move(bridge, "O"));
-        if (gameClear.get())
+        if (gameClear.get()) {
+            gameClear.printGameClear(countOfTry);
             return;
-        if (willRetry())
-            retry(bridge, countOfTry);
+        }
+        if (!willRetry())
+            gameClear.printGameClear(countOfTry);
+        retry(bridge, countOfTry);
     }
 
     private List<String> createBridge() {
@@ -102,8 +105,10 @@ public class BridgeGame {
     }
 
     private boolean isWin(Map<String, String> gameResult, String result) {
-        if (result.equals("O"))
+        if (result.equals("O")) {
+            new MoveResult(gameResult).printResult();
             return true;
+        }
         return false;
     }
 

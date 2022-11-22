@@ -16,6 +16,10 @@ public class MoveResult {
         OutputView.printMap(createMap());
     }
 
+    public void printResult() {
+        OutputView.printResult(createMap());
+    }
+
     private Map<String, String> createMap() {
         Map<String, String> printForm = new HashMap<>();
         printForm.put("U", upperPrintForm());
