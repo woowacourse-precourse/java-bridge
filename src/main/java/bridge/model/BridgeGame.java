@@ -55,6 +55,8 @@ public class BridgeGame {
         return progress;
     }
 
+    public int exportGameCount() { return counter; }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
