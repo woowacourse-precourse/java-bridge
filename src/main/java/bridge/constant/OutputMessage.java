@@ -8,13 +8,13 @@ public enum OutputMessage {
     INDEX_DELIMITER(" | "),
     INDEX_END(" ]");
 
-    private final String outputMessage;
+    private final String message;
 
-    OutputMessage(String outputMessage) {
-        this.outputMessage = outputMessage;
+    OutputMessage(String message) {
+        this.message = message;
     }
 
-    public String getOutputMessage() {
-        return outputMessage;
+    public String getMessage() {
+        return message;
     }
 }

@@ -3,6 +3,7 @@ package bridge;
 import bridge.constant.BridgeChoice;
 import bridge.constant.MovingResult;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +26,11 @@ public class BridgeGameResult {
     }
 
     public List<String> getUpBridge() {
-        return upBridge;
+        return Collections.unmodifiableList(upBridge);
     }
 
     public List<String> getDownBridge() {
-        return downBridge;
+        return Collections.unmodifiableList(downBridge);
     }
 
     public boolean getSuccess() {

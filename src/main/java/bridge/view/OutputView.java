@@ -19,11 +19,11 @@ public class OutputView {
     }
 
     public void printResult(BridgeGameResult bridgeGameResult, BridgeGame bridgeGame) {
-        System.out.println(OutputMessage.GAME_RESULT.getOutputMessage());
+        System.out.println(OutputMessage.GAME_RESULT.getMessage());
         printMap(bridgeGameResult);
-        System.out.println(OutputMessage.GAME_SUCCESS_OR_FAILURE.getOutputMessage() + getSuccessPhrase(
+        System.out.println(OutputMessage.GAME_SUCCESS_OR_FAILURE.getMessage() + getSuccessPhrase(
                 bridgeGameResult.getSuccess()));
-        System.out.println(OutputMessage.TRY_COUNT.getOutputMessage() + bridgeGame.getTryCount());
+        System.out.println(OutputMessage.TRY_COUNT.getMessage() + bridgeGame.getTryCount());
     }
 
     public String getSuccessPhrase(boolean comparisonResult) {
@@ -32,7 +32,7 @@ public class OutputView {
     }
 
     public String makeIndex(List<String> bridge) {
-        return OutputMessage.INDEX_START.getOutputMessage() + String.join(
-                OutputMessage.INDEX_DELIMITER.getOutputMessage(), bridge) + OutputMessage.INDEX_END.getOutputMessage();
+        return OutputMessage.INDEX_START.getMessage() + String.join(
+                OutputMessage.INDEX_DELIMITER.getMessage(), bridge) + OutputMessage.INDEX_END.getMessage();
     }
 }

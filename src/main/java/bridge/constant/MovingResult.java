@@ -3,8 +3,8 @@ package bridge.constant;
 import java.util.Arrays;
 
 public enum MovingResult {
-    POSSIBLE("O", true, "성공"),
-    IMPOSSIBLE("X", false, "실패");
+    SUCCESS("O", true, "성공"),
+    FAILURE("X", false, "실패");
 
     private final String sign;
     private final boolean comparison;
