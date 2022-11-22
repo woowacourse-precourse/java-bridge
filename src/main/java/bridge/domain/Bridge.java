@@ -1,8 +1,8 @@
 package bridge.domain;
 
-import bridge.constant.MoveCommand;
+import bridge.constant.*;
 
-import java.util.List;
+import java.util.*;
 
 public class Bridge {
 

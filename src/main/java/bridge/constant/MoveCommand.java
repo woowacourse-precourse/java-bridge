@@ -29,8 +29,4 @@ public enum MoveCommand {
     public boolean is(final String command) {
         return this.command.equals(command);
     }
-
-    public boolean is(final MoveCommand moveCommands) {
-        return this == moveCommands;
-    }
 }
