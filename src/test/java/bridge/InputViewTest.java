@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.view.InputView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import org.junit.jupiter.params.ParameterizedTest;

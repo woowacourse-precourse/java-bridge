@@ -2,6 +2,8 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.model.Result;
+import bridge.view.OutputView;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
@@ -30,7 +32,7 @@ public class OutputViewTest {
                 new Result("U",true),
                 new Result("U",false));
         outputView.printMap(gameResults);
-        assertThat(output.toString()).isEqualTo("[ O | X ]\n[   |   ]\n");
+        assertThat(output.toString()).isEqualTo("[ O | X ]\n[   |   ]\n\n");
     }
 
     @Test
@@ -40,7 +42,7 @@ public class OutputViewTest {
                 new Result("D",true),
                 new Result("U",false));
         outputView.printMap(gameResults);
-        assertThat(output.toString()).isEqualTo("[ O |   | X ]\n[   | O |   ]\n");
+        assertThat(output.toString()).isEqualTo("[ O |   | X ]\n[   | O |   ]\n\n");
     }
 
     @Test
@@ -50,7 +52,7 @@ public class OutputViewTest {
                 new Result("U",false));
         outputView.printResult(gameResults,false, 1);
 
-        String print = "최종 게임 결과\n[ O | X ]\n[   |   ]\n게임 성공 여부: 실패\n총 시도한 횟수: 1\n";
+        String print = "최종 게임 결과\n[ O | X ]\n[   |   ]\n\n게임 성공 여부: 실패\n총 시도한 횟수: 1\n";
         assertThat(output.toString()).isEqualTo(print);
     }
 
@@ -61,7 +63,7 @@ public class OutputViewTest {
                 new Result("D",false));
         outputView.printResult(gameResults,false, 2);
 
-        String print = "최종 게임 결과\n[ O |   ]\n[   | X ]\n게임 성공 여부: 실패\n총 시도한 횟수: 2\n";
+        String print = "최종 게임 결과\n[ O |   ]\n[   | X ]\n\n게임 성공 여부: 실패\n총 시도한 횟수: 2\n";
         assertThat(output.toString()).isEqualTo(print);
     }
 
@@ -73,7 +75,7 @@ public class OutputViewTest {
                 new Result("U", true));
         outputView.printResult(gameResults,true, 1);
 
-        String print = "최종 게임 결과\n[ O |   | O ]\n[   | O |   ]\n게임 성공 여부: 성공\n총 시도한 횟수: 1\n";
+        String print = "최종 게임 결과\n[ O |   | O ]\n[   | O |   ]\n\n게임 성공 여부: 성공\n총 시도한 횟수: 1\n";
         assertThat(output.toString()).isEqualTo(print);
     }
 }

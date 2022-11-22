@@ -1,10 +1,10 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.service.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.InputView;
-import bridge.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class GameController {
     private final InputView inputView = new InputView();
@@ -17,13 +17,13 @@ public class GameController {
         end();
     }
 
-    public void cycle(int gameSize, boolean isTry) {
-        int correctStep = 0;
+    public void cycle(int gameSize, boolean isRetry) {
+        int challengeStep = 0;
 
-        while (gameSize != correctStep && isTry) {
-            correctStep = move();
+        while (gameSize != challengeStep && isRetry) {
+            challengeStep = move();
             if (!bridgeGame.isSuccess()) {
-                isTry = askRetry();
+                isRetry = askRetry();
             }
         }
     }
@@ -37,11 +37,10 @@ public class GameController {
 
     private int move() {
         String direction = inputView.readMoving();
-        int correctStep = bridgeGame.move(direction);
+        int bridgeStep = bridgeGame.move(direction);
         outputView.printMap(bridgeGame.getGameResult());
-        return correctStep;
+        return bridgeStep;
     }
-
 
     private boolean askRetry() {
         String input = inputView.readGameCommand();

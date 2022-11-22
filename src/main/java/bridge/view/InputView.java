@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.system.SystemValue;
 import camp.nextstep.edu.missionutils.Console;
@@ -13,9 +13,10 @@ public class InputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
         System.out.println("다리의 길이를 입력해주세요.");
+
         String input = Console.readLine();
-        validateForConsistOfNumber(input);
-        validateForRangeOfNumber(input);
+        System.out.println();
+        validateOfBridgeSize(input);
         return Integer.parseInt(input);
     }
 
@@ -31,6 +32,11 @@ public class InputView {
         String input = Console.readLine();
         validateForRetryOrQuit(input);
         return input;
+    }
+
+    private void validateOfBridgeSize(String input){
+        validateForConsistOfNumber(input);
+        validateForRangeOfNumber(input);
     }
 
     private void validateForConsistOfNumber(String text) {

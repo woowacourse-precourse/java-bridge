@@ -1,27 +1,29 @@
-package bridge;
+package bridge.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class Player {
     private final List<Result> results;
-    private int correctStepNumber;
-    private int retry;
+    private int challengeStep;
+    private int retryCount;
 
-    public User() {
+    public Player() {
         this.results = new ArrayList<>();
-        correctStepNumber = 0;
-        retry = 1;
+        challengeStep = 0;
+        retryCount = 1;
     }
 
     public int move(List<String> bridge, String direction) {
         boolean isSuccess = false;
-        if (bridge.get(correctStepNumber).equals(direction)) {
-            correctStepNumber++;
+
+        if (bridge.get(challengeStep).equals(direction)) {
+            challengeStep++;
             isSuccess = true;
         }
+
         this.results.add(new Result(direction, isSuccess));
-        return correctStepNumber;
+        return challengeStep;
     }
 
     public List<Result> makeGameResult() {
@@ -33,11 +35,11 @@ public class User {
         return gameResult;
     }
 
-    public boolean lastResultIsSuccess(){
+    public boolean lastResultIsSuccess() {
         return results.get(results.size() - 1).isSuccess();
     }
 
-    private void addOnlySuccess(List<Result> gameResult){
+    private void addOnlySuccess(List<Result> gameResult) {
         for (int i = 0; i < results.size() - 1; i++) {
             if (results.get(i).isSuccess()) {
                 gameResult.add(results.get(i));
@@ -45,11 +47,11 @@ public class User {
         }
     }
 
-    public void upRetry(){
-        this.retry += 1;
+    public void upRetryCount() {
+        this.retryCount += 1;
     }
 
     public int getRetry() {
-        return retry;
+        return retryCount;
     }
 }
