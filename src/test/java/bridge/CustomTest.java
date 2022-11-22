@@ -17,7 +17,7 @@ public class CustomTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("다리 길이로 숫자 이외의 값이 들어오면 예외처리")
-    @ValueSource(strings = {"H", "i", "!"})
+    @ValueSource(strings = {"H", "i", "!", ""})
     @ParameterizedTest
     void bridgeSize_numeric_test(String strings) {
         assertThatThrownBy(() -> VerificationUtil.verifyNumeric(strings))
@@ -39,6 +39,14 @@ public class CustomTest extends NsTest {
     @ParameterizedTest
     void moving_test(String strings) {
         assertThatThrownBy(() -> VerificationUtil.verifyMoving(strings))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("게임 재시작/종료 여부 입력이 R 또는 Q가 아닌 경우 예외처리")
+    @ValueSource(strings = {"r", "q", "H", "i", ""})
+    @ParameterizedTest
+    void command_test(String strings) {
+        assertThatThrownBy(() -> VerificationUtil.verifyGameCommand(strings))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
