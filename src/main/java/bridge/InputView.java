@@ -10,10 +10,11 @@ public class InputView {
     public static final int MAX_BRIDGE_SIZE_RANGE = 20;
 
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String INPUT_PLAYER_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     private static final String ERR_MOVING_COMMAND_IS_U_OR_D = "[ERROR] 이동할 칸은 U 또는 D를 입력해야합니다.";
     private static final String ERR_BRIDGE_SIZE_IS_NUMBER = "[ERROR] 다리의 길이는 숫자여야 합니다.";
-    public static final String ERR_BRIDGE_SIZE_RANGE = "[ERROR] 다리의 길이는 최소 3이상 최대 20이하입니다.";
+    private static final String ERR_BRIDGE_SIZE_RANGE = "[ERROR] 다리의 길이는 최소 3이상 최대 20이하입니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -33,8 +34,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        do {
+            System.out.println(INPUT_PLAYER_MOVING);
+            try {
+                return validateUpOrDown(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
