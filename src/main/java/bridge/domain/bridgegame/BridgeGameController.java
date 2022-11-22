@@ -2,6 +2,7 @@ package bridge.domain.bridgegame;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGameStarter;
+import bridge.BridgeMaker;
 import bridge.io.input.InputView;
 import bridge.io.output.OutputView;
 
