@@ -1,5 +1,9 @@
 package bridge.core;
 
+import bridge.core.exception.CommonException;
+import bridge.core.exception.Error;
+import bridge.core.exception.ExceptionHandler;
+import bridge.core.exception.InvalidInputException;
 import bridge.domain.Bridge;
 import bridge.type.FinishCondition;
 import bridge.type.GameStatus;
@@ -17,8 +21,15 @@ public class BridgeGame {
     }
 
     public static BridgeGame initBridgeGame(String bridgeLength) {
-        GameInitializer gameInitializer = new GameInitializer();
-        return gameInitializer.init(bridgeLength);
+        try {
+            GameInitializer gameInitializer = new GameInitializer();
+            return gameInitializer.init(bridgeLength);
+        } catch (InvalidInputException e) {
+            ExceptionHandler.handle(e);
+            return null;
+        } catch (Exception e) {
+            throw new CommonException(Error.FAIL, "게임 초기화");
+        }
     }
 
     public ProcessCondition start() {
