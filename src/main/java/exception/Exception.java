@@ -3,9 +3,10 @@ package exception;
 public class Exception {
 
     private static final String ERROR = "[ERROR]";
+    private static final String NUMBER = "[+-]?\\d*(\\.\\d+)?";
 
     public static boolean bridgeLengthValidation(String bridgeSize) {
-        if (!bridgeSize.matches("[+-]?\\d*(\\.\\d+)?") || !(3 <= Integer.parseInt(bridgeSize) && Integer.parseInt(bridgeSize) <= 20)) {
+        if (!bridgeSize.matches(NUMBER) || !(3 <= Integer.parseInt(bridgeSize) && Integer.parseInt(bridgeSize) <= 20)) {
             throw new IllegalArgumentException(ERROR + " 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
         return true;

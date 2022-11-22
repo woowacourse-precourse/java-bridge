@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     private final BridgeGame bridgeGame;
     public final List<String> upOutputBoard;
@@ -40,11 +42,11 @@ public class OutputView {
     }
 
     private void enterCommandNotGoUp(String moving) {
-        if (moving.equals("U")) {
+        if (moving.equals(UP)) {
             if (!upOutputBoard.isEmpty()) printWhenNotGoUp();
             if (upOutputBoard.isEmpty()) printWhenFirstNotGoUp();
         }
-        if (moving.equals("D")) {
+        if (moving.equals(DOWN)) {
             if (!upOutputBoard.isEmpty()) printWhenNotGoDown();
             if (upOutputBoard.isEmpty()) printWhenFirstNotGoDown();
         }
@@ -57,11 +59,11 @@ public class OutputView {
     }
 
     private void enterCommandGoUp(int movedPosition, String moving, List<String> bridge) {
-        if (bridge.get(movedPosition).equals(moving) && moving.equals("U")) {
+        if (bridge.get(movedPosition).equals(moving) && moving.equals(UP)) {
             if (!upOutputBoard.isEmpty()) printWhenGoUp();
             if (upOutputBoard.isEmpty()) printWhenFirstGoUp();
         }
-        if (bridge.get(movedPosition).equals(moving) && moving.equals("D")) {
+        if (bridge.get(movedPosition).equals(moving) && moving.equals(DOWN)) {
             if (!upOutputBoard.isEmpty()) printWhenGoDown();
             if (upOutputBoard.isEmpty()) printWhenFirstGoDown();
         }

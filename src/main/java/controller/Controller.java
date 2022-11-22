@@ -10,12 +10,14 @@ import java.util.List;
 
 public class Controller {
 
+    private static final boolean SUCCESS = true;
+    private static final boolean FAIL = false;
     private final BridgeGame bridgeGame;
     private final InputView inputView;
     private final OutputView outputView;
     private int bridgeLengthIndex = 0, gameAttempts = 1;
     private String rOrQ = "";
-    private boolean success = true;
+    private boolean success = SUCCESS;
 
     public Controller(BridgeGame bridgeGame, InputView inputView, OutputView outputView) {
         this.bridgeGame = bridgeGame;
@@ -40,8 +42,8 @@ public class Controller {
     }
 
     private void checkResult() {
-        if (success) outputView.printResult(true, gameAttempts);
-        if (!success) outputView.printResult(false, gameAttempts);
+        if (success) outputView.printResult(SUCCESS, gameAttempts);
+        if (!success) outputView.printResult(FAIL, gameAttempts);
     }
 
     private void checkRetry() {
@@ -56,7 +58,7 @@ public class Controller {
 
     private boolean checkQuit() {
         if (bridgeGame.quit(rOrQ)) {
-            success = false;
+            success = FAIL;
             rOrQ = "";
             return true;
         }
