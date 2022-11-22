@@ -18,28 +18,28 @@ public class OutputView {
      * 게임 시작 메세지를 출력하는 메소드
      */
     public static void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("\n다리 건너기 게임을 시작합니다.");
     }
 
     /**
      * 다리 길이 입력 문구를 출력하는 메소드
      */
     public static void printBridgeSizeInput() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println("\n다리의 길이를 입력해주세요.");
     }
 
     /**
      * 이동할 칸 선택 입력 문구를 출력하는 메소드
      */
     public static void printMoveOptionInput() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
     /**
      * 재시작 여부 입력 문구를 출력하는 메소드
      */
     public static void printRestartOptionInput() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
     /**
@@ -71,7 +71,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(Bridge bridge, Bridge user, Attempt attempt) {
-        System.out.println("최종 게임 결과");
+        System.out.println("\n최종 게임 결과");
         printMap(bridge, user);
         System.out.print("\n게임 성공 여부: ");
         if (bridge.isSuccess(user)) {
