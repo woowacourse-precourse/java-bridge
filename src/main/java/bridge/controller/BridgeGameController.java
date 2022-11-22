@@ -5,7 +5,7 @@ import bridge.Command;
 import bridge.Message;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
