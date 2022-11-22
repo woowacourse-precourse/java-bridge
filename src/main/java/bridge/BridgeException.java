@@ -1,6 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
 import view.InputView;
 
 public class BridgeException {

@@ -15,7 +15,8 @@ public class InputView {
 
     public String readMoving() {
         System.out.println(MOVE_BRIDGE);
-        String sideToMove = Console.readLine();;
+        String sideToMove = Console.readLine();
+        ;
         return sideToMove;
     }
 
