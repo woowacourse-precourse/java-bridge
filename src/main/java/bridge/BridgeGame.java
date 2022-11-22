@@ -4,13 +4,13 @@ import repository.BridgeRepository;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private static final String BRIDGE_SIZE_REGEX = "([3-9]|1[0-9]|20)";
     private static final String MOVE_DIRECTION_REGEX = "[UD]";
+    private static final String SUCCESS = "O";
+    private static final String FAIL = "X";
 
     private final BridgeRepository bridgeRepository;
 
@@ -52,6 +52,22 @@ public class BridgeGame {
             return true;
         }
         return progress.get(lastMove).equals(bridge.get(lastMove));
+    }
+
+    public void saveResult() {
+        List<String> progress = bridgeRepository.getProgress();
+        bridgeRepository.resetResult();
+        drawResult(progress);
+    }
+
+    private void drawResult(List<String> progress) {
+        int lastMove = progress.size();
+        IntStream.range(0, lastMove)
+                .forEach(i -> bridgeRepository.saveResult(progress.get(i), i, SUCCESS));
+
+        if (!canMove()) {
+            bridgeRepository.saveResult(progress.get(lastMove - 1), lastMove - 1, FAIL);
+        }
     }
 
     /**
