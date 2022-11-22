@@ -8,10 +8,10 @@ public class InputValidator {
 
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
-    private static final String RETRY = "R";
-    private static final String QUIT = "Q";
-    private static final String[] UPs = { "U", "u" };
-    private static final String[] DOWNs = { "D", "d" };
+    private static final String[] RETRY = { "R", "r" };
+    private static final String[] QUIT = { "Q", "q" };
+    private static final String[] UP = { "U", "u" };
+    private static final String[] DOWN = { "D", "d" };
 
     public static void validateBridgeSize(String bridgeSizeInput) {
         if (!isNumeric(bridgeSizeInput)) {
@@ -43,14 +43,15 @@ public class InputValidator {
     }
 
     public static void validateMoveDirection(String moveDirectionInput) {
-        if (!(Arrays.asList(UPs).contains(moveDirectionInput)
-                || Arrays.asList(DOWNs).contains(moveDirectionInput))) {
+        if (!(Arrays.asList(UP).contains(moveDirectionInput)
+                || Arrays.asList(DOWN).contains(moveDirectionInput))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MOVE_DIRECTION.getMessage());
         }
     }
 
     public static void validateRetryInput(String retryInput) {
-        if (!(retryInput.equals(RETRY) || retryInput.equals(QUIT))) {
+        if (!(Arrays.asList(RETRY).contains(retryInput)
+                || Arrays.asList(QUIT).contains(retryInput))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RETRY_INPUT.getMessage());
         }
     }
