@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.controller.BridgeGame;
 
+import static bridge.controller.BridgeGame.round;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -11,12 +13,14 @@ public class Application {
         bridgeGame.setGame();
         bridgeGame.make();
         bridgeGame.move();
+        bridgeGame.check();
 
-        while (bridgeGame.check()) {
+        while (round != BridgeGame.bridge.size()) {
             bridgeGame.move();
-        }
-        if (!bridgeGame.check()) {
-            bridgeGame.retry();
+
+            if (!bridgeGame.check()) {
+                return;
+            }
         };
     }
 }

@@ -1,5 +1,7 @@
 package bridge.view;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,16 +12,33 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String userInput, String mark, int round) {
+    public void printMap(List<String> bridge, List<String> mark, int round) {
 
-        if (userInput.equals("U")) {
-            System.out.println("[ " + mark + " ]");
-            System.out.println("[   ]");
+        String upSide = "[";
+        String downSide = "[";
+        for (int i = 0; i < mark.size(); i++) {
+            if (bridge.get(i).equals("U")) {
+                if(i!=0){
+                    upSide += "|";
+                    downSide += "|";
+                }
+                upSide += " "+mark.get(i)+" ";
+                downSide += "   ";
+            }
+            if (bridge.get(i).equals("D")) {
+
+                if(i!=0){
+                    downSide += "|";
+                    upSide += "|";
+                }
+                downSide += " "+mark.get(i)+" ";
+                upSide += "   ";
+            }
         }
-        if (userInput.equals("D")) {
-            System.out.println("[   ]");
-            System.out.println("[ " + mark + " ]");
-        }
+        upSide += "]";
+        downSide += "]";
+        System.out.println(upSide);
+        System.out.println(downSide);
     }
 
     /**

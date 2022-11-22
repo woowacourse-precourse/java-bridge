@@ -8,6 +8,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +18,9 @@ public class BridgeGame {
 
     static int bridgeSize;
     static String userInput;
-    static List<String> bridge;
-    static int round;
-    static String mark;
+    public static List<String> bridge;
+    public static int round;
+    static List<String> mark = new ArrayList<>();
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
@@ -99,12 +100,13 @@ public class BridgeGame {
         CheckCrossBridge checkCrossBridge = new CheckCrossBridge();
         boolean crossPossible = checkCrossBridge.check(userInput, bridge, round);
         if (!crossPossible) {
-            mark = "X";
+            mark.add("X");
         }
         if (crossPossible) {
-            mark = "O";
+            mark.add("O");
         }
-        outputView.printMap(userInput, mark, round);
+        System.out.println("mark" + mark);
+        outputView.printMap(bridge, mark, round);
 
         return crossPossible;
     }
