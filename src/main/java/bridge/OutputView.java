@@ -36,13 +36,6 @@ public class OutputView {
         System.out.println("]");
     }
 
-    public static String valueOfStatus(boolean status) {
-        if (status) {
-            return "성공";
-        }
-        return "실패";
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -51,7 +44,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame);
-        System.out.println("게임 성공 여부: " + valueOfStatus(bridgeGame.isMatch()));
+        System.out.println("게임 성공 여부: " + GameResult.getResult(bridgeGame.isMatch()));
         System.out.println("총 시도한 횟수: " + bridgeGame.getCount());
     }
 }

@@ -13,20 +13,14 @@ public class MovingHistory {
         this.downCells = new ArrayList<>();
     }
 
-    public static String valueOfStatus(boolean status) {
-        if (status) {
-            return "O";
-        }
-        return "X";
-    }
 
     public void addMoving(String moving, boolean movingStatus) {
         if (moving.equals(CellType.DOWN.getCell())){
-            downCells.add(valueOfStatus(movingStatus));
+            downCells.add(GameResult.getMovingSign(movingStatus));
             upCells.add(" ");
         }
         if (moving.equals(CellType.UP.getCell())){
-            upCells.add(valueOfStatus(movingStatus));
+            upCells.add(GameResult.getMovingSign(movingStatus));
             downCells.add(" ");
         }
     }
