@@ -3,6 +3,7 @@ package bridge;
 import bridge.constant.GameCommand;
 import bridge.constant.GameResult;
 import bridge.constant.Move;
+import bridge.data.FinalResult;
 import bridge.data.MoveResult;
 import bridge.exception.GameExceptionHandler;
 import bridge.input.getter.BridgeSizeGetter;
@@ -78,6 +79,19 @@ public class BridgeGame {
             gameCommand = retry();
         }
         return gameCommand;
+    }
+
+    public FinalResult runGameWithBridge(List<String> bridge, List<MoveResult> moveResults, int numAttempts) {
+        int numCorrectMoves = runAttempt(bridge, moveResults);
+
+        GameResult gameResult = getFinalResultOrNull(numCorrectMoves, bridge);
+
+        if (gameResult == null) {
+            moveResults.clear();
+            return runGameWithBridge(bridge, moveResults, numAttempts + 1);
+        }
+
+        return new FinalResult(gameResult, numAttempts, moveResults);
     }
 
     public int runAttempt(List<String> bridge, List<MoveResult> moveResults) {
