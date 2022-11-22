@@ -10,16 +10,28 @@ public class Controller {
     private final OutputView outputView = new OutputView();
     private final BridgeGame bridgeGame = new BridgeGame();
 
-    public void start() {
-        outputView.printStartGame();
+    public void play() {
+        try {
+            outputView.printStartGame();
+            setUpBridge(requestBridgeSize());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
+    private int requestBridgeSize() {
+        try {
+            return inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestBridgeSize();
+        }
+    }
+
+    private void setUpBridge(int bridgeSize) throws IllegalArgumentException{
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        try {
-            List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-            bridgeGame.setBridge(bridge);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage()); //TODO 종료되도록 처리
-        }
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        bridgeGame.setBridge(bridge);
     }
 }
