@@ -1,5 +1,6 @@
-package bridge.bridgemaker;
+package bridge;
 
+import bridge.output.BridgeState;
 import java.util.ArrayList;
 import java.util.List;
 

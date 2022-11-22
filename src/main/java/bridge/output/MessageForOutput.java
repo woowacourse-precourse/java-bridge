@@ -1,6 +1,5 @@
 package bridge.output;
 
-import bridge.bridgemaker.BridgeState;
 import bridge.gameplay.GameState;
 
 public enum MessageForOutput {

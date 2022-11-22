@@ -4,8 +4,8 @@ import static bridge.gameplay.GameState.*;
 import static bridge.output.MessageForOutput.*;
 
 import bridge.input.InputView;
-import bridge.bridgemaker.BridgeMaker;
-import bridge.bridgemaker.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.output.OutputView;
 import java.util.List;
 

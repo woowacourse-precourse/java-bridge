@@ -2,7 +2,6 @@ package bridge.output;
 
 import static bridge.output.MessageForOutput.*;
 
-import bridge.bridgemaker.BridgeState;
 import java.util.ArrayList;
 import java.util.List;
 

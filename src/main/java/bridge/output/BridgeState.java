@@ -1,4 +1,4 @@
-package bridge.bridgemaker;
+package bridge.output;
 
 public enum BridgeState {
     UP(1, "U"),

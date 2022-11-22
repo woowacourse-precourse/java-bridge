@@ -1,6 +1,6 @@
 package bridge.input;
 
-import static bridge.bridgemaker.BridgeState.*;
+import static bridge.output.BridgeState.*;
 
 import bridge.gameplay.GameState;
 
