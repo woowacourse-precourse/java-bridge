@@ -5,6 +5,12 @@ bridge
 - Application
   : 사다리게임을 시작하는 클래스
 
+- BridgeMaker
+  : 다리를 생성하는 기능
+
+- BridgeNumberGenerator
+  : 다리 요소 생성에 관한 인터페이스
+
 constant
 
 - BothSideConstant
@@ -35,7 +41,6 @@ controller
 
 generator
 
-- BridgeNumberGenerator
 - BridgeRandomNumberGenerator
   : 다리의 요소를 랜덤으로 생성하는 기능
 
@@ -46,11 +51,6 @@ model
 
 - BridgeGame
   : 게임에 필요한 로직을 구성
-
-service
-
-- BridgeMaker
-  : 다리를 생성하는 기능
 
 util
 
