@@ -27,8 +27,8 @@ public class BridgeMaker {
             bridgeNumber.add(number);
         }
         for (Integer shape : bridgeNumber) {
-            UpDown shapeUD = UpDown.valueOfLabel(shape);
-            bridgeShape.add(String.valueOf(shapeUD));
+            String shapeUD = UpDown.valueOfLabel(shape);
+            bridgeShape.add(shapeUD);
         }
         System.out.println(bridgeNumber);
         System.out.println(bridgeShape);
