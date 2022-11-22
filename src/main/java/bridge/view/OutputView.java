@@ -22,10 +22,7 @@ public class OutputView {
 
     public void printResult(List<String> maps, List<String> result) {
         System.out.println(RESULT_MESSAGE);
-        for (String map : maps) {
-            System.out.println(map);
-        }
-        System.out.println();
+        printMap(maps);
         System.out.println(SUCCESS_OR_FAIL_MESSAGE + result.get(0));
         System.out.println(ATTEMPT_MESSAGE + result.get(1));
     }
