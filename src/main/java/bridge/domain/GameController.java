@@ -27,6 +27,18 @@ public class GameController {
         }
     }
 
+    public void playGame() {
+        RetryQuit retryQuit = RetryQuit.RETRY;
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        while (!retryQuit.equals(RetryQuit.QUIT)) {
+            if (retryGame(bridgeGame)) {
+                break;
+            }
+            retryQuit = getRetryQuit();
+        }
+        endGame(bridgeGame, retryQuit);
+    }
+
     private boolean retryGame(BridgeGame bridgeGame) {
         this.tryCount++;
         bridgeGame.retry();
@@ -45,6 +57,15 @@ public class GameController {
             }
         }
         return true;
+    }
+
+    private void endGame(BridgeGame bridgeGame, RetryQuit retryQuit) {
+        outputView.printFinalResult(bridgeGame.getUsersRoute(), bridge);
+        if (retryQuit.equals(RetryQuit.RETRY)) {
+            outputView.printResult(tryCount, true);
+            return;
+        }
+        outputView.printResult(tryCount, false);
     }
 
     private int getBridgeLength() {
@@ -67,7 +88,6 @@ public class GameController {
         }
     }
 
-
     private String getDirection() {
         try {
             outputView.printGetMoveDirection();
@@ -75,6 +95,16 @@ public class GameController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return getDirection();
+        }
+    }
+
+    private RetryQuit getRetryQuit() {
+        try {
+            outputView.printGetRetry();
+            return RetryQuit.convert(inputView.readGameCommand());
+        } catch (IllegalArgumentException e){
+            outputView.printErrorMessage(e.getMessage());
+            return getRetryQuit();
         }
     }
 
