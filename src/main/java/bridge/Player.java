@@ -9,7 +9,7 @@ public class Player {
 
     public Player() {
         this.commands = new ArrayList<>();
-        this.attemptCount = 0;
+        this.attemptCount = 1;
     }
 
     //객체가 행동하도록 메서드 구현.
@@ -28,5 +28,13 @@ public class Player {
 
     public List<Command> getCommands() {
         return commands;
+    }
+
+    public boolean checkIfMaxCount(Bridge bridge) {
+        int maxSize = bridge.getAnswers().size();
+        if (this.commands.size() == maxSize) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 }

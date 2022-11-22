@@ -10,6 +10,10 @@ public class Bridge {
         this.answers = answers;
     }
 
+    public List<Command> getAnswers() {
+        return answers;
+    }
+
     //비교 할 수 있는 메서드.
     public Result compare(Command command, int index) {
         if (this.answers.get(index).equals(command)) {

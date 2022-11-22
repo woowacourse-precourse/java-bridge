@@ -1,11 +1,13 @@
 package bridge;
 
 public class RetryResponseDto {
-    private String selectedBridge;
-    private Result result;
+    private boolean retryGame;
 
-    public RetryResponseDto(String selectedBridge, Result result) {
-        this.selectedBridge = selectedBridge;
-        this.result = result;
+    public RetryResponseDto(boolean retryGame) {
+        this.retryGame = retryGame;
+    }
+
+    public boolean isRetryGame() {
+        return retryGame;
     }
 }
