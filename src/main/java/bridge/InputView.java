@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
  */
 
 public class InputView {
-
     InputView(){
         System.out.println(Constants.START_INFO);
         System.out.println();
@@ -14,6 +13,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(Constants.INPUT_LENGTH_INFO);
         int bridgeLength = 0;
+//        int bridgeLength = 0;
         /**
          * 다리의 길이를 입력받는다.
          */

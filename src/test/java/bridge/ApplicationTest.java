@@ -47,12 +47,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @Test
-    void 입력_테스트(){
-        assertSimpleTest(()->{
-        });
-    }
-
     @Override
     protected void runMain() {
         Application.main(new String[]{});
