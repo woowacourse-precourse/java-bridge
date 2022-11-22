@@ -20,17 +20,20 @@ public class OutputView {
     private static final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
     private static final String FAIL_MESSAGE = "실패";
     private static final String SUCCESS_MESSAGE = "성공";
+
+    private OutputView() {}
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Result result) {
+    public static void printMap(Result result) {
         printFirstBridge(result);
         printSecondBridge(result);
     }
 
-    private void printFirstBridge(Result result) {
+    private static void printFirstBridge(Result result) {
         StringBuilder sb = new StringBuilder();
 
         appendOpenSquareBracket(sb);
@@ -41,7 +44,7 @@ public class OutputView {
         System.out.print(sb);
     }
 
-    private void printSecondBridge(Result result) {
+    private static void printSecondBridge(Result result) {
         StringBuilder sb = new StringBuilder();
 
         appendOpenSquareBracket(sb);
@@ -57,7 +60,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Result result) {
+    public static void printResult(Result result) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(result);
         if(result.hasWrong()) {
@@ -69,27 +72,27 @@ public class OutputView {
         System.out.println(TOTAL_TRY_COUNT + result.getTryCount());
     }
 
-    public void printGameStart() {
+    public static void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
     }
 
-    public void printInputBridgeSize() {
+    public static void printInputBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
     }
 
-    public void printInputMoveDirection() {
+    public static void printInputMoveDirection() {
         System.out.println(INPUT_MOVE_DIRECTION_MESSAGE);
     }
 
-    public void printInputGameCommand() {
+    public static void printInputGameCommand() {
         System.out.println(INPUT_GAME_RETRY_MESSAGE);
     }
 
-    private void appendOpenSquareBracket(StringBuilder sb) {
+    private static void appendOpenSquareBracket(StringBuilder sb) {
         sb.append(OPEN_BRACKET.getSign());
     }
 
-    private void appendCloseSquareBracket(StringBuilder sb) {
+    private static void appendCloseSquareBracket(StringBuilder sb) {
         sb.append(CLOSE_BRACKET.getSign());
     }
 }

@@ -9,13 +9,9 @@ import bridge.view.OutputView;
 public class GameController {
     private static final String RETRY_COMMAND = "R";
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    public GameController(InputView inputView, OutputView outputView, BridgeNumberGenerator bridgeNumberGenerator) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public GameController(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
@@ -33,10 +29,10 @@ public class GameController {
             this.playGame(result, bridgeGame);
             if (bridgeGame.retry(result)) {
                 this.changeGameStatus(status);
-                outputView.printResult(result);
+                OutputView.printResult(result);
                 continue;
             }
-            outputView.printResult(result);
+            OutputView.printResult(result);
             break;
         }
     }
@@ -57,8 +53,8 @@ public class GameController {
     private Bridge generateBridge() {
         try {
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-            int bridgeSize = this.readBridgeSize();
 
+            int bridgeSize = this.readBridgeSize();
             return new Bridge(bridgeMaker.makeBridge(bridgeSize));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -68,14 +64,14 @@ public class GameController {
     }
 
     private int readBridgeSize() {
-        outputView.printInputBridgeSize();
-        return inputView.readBridgeSize();
+        OutputView.printInputBridgeSize();
+        return InputView.readBridgeSize();
     }
 
     private MoveDirection readMoving() {
-        outputView.printInputMoveDirection();
+        OutputView.printInputMoveDirection();
         try {
-            return inputView.readMoving();
+            return InputView.readMoving();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return this.readMoving();
@@ -84,8 +80,8 @@ public class GameController {
 
     private void changeGameStatus(BridgeGameStatus status) {
         try {
-            outputView.printInputGameCommand();
-            status.changeStatus(inputView.readGameCommand());
+            OutputView.printInputGameCommand();
+            status.changeStatus(InputView.readGameCommand());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             changeGameStatus(status);
@@ -93,7 +89,7 @@ public class GameController {
     }
 
     private BridgeGame initGame() {
-        outputView.printGameStart();
+        OutputView.printGameStart();
         return new BridgeGame((this.generateBridge()));
     }
 }

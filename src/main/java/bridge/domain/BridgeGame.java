@@ -32,8 +32,7 @@ public class BridgeGame {
     }
 
     private void printMap(Result result) {
-        OutputView outputView = new OutputView();
-        outputView.printMap(result);
+        OutputView.printMap(result);
     }
 
     public Bridge getBridge() {

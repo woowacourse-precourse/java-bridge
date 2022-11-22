@@ -8,21 +8,22 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private InputView() {}
     private static final String NOT_A_NUMBER_MESSAGE = "[ERROR] 숫자를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String input = Console.readLine();
-        this.validateParseStringToInteger(input);
+        validateParseStringToInteger(input);
         return Integer.parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public MoveDirection readMoving() {
+    public static  MoveDirection readMoving() {
         String input = Console.readLine();
         return new MoveDirection(input);
     }
@@ -30,11 +31,11 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         return Console.readLine();
     }
 
-    private void validateParseStringToInteger(String input) {
+    public static void validateParseStringToInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
