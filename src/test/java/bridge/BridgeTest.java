@@ -1,12 +1,8 @@
-package bridge.domain;
+package bridge;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import bridge.Bridge;
-import bridge.BridgeGame;
-import bridge.BridgeMap;
-import bridge.MovingResult;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
