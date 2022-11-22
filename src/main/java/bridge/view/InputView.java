@@ -30,9 +30,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(InputMessage.INPUT_MOVING_COMMAND.getInputMessage());
-        String upDown = Console.readLine();
-        isMovingCommand(upDown);
-        return upDown;
+        String moving = Console.readLine();
+        isMovingCommand(moving);
+        return moving;
     }
 
     /**
@@ -41,7 +41,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(InputMessage.INPUT_RESTART_COMMAND.getInputMessage());
         String command = Console.readLine();
-        checkCommand(command);
+        isGameCommand(command);
         return command;
     }
 
@@ -58,13 +58,13 @@ public class InputView {
         }
     }
 
-    public void isMovingCommand(String alphabet) {
-        if (!(alphabet.equals(BridgeChoice.UP.getSide()) || alphabet.equals(BridgeChoice.DOWN.getSide()))) {
+    public void isMovingCommand(String moving) {
+        if (!(moving.equals(BridgeChoice.UP.getSide()) || moving.equals(BridgeChoice.DOWN.getSide()))) {
             throw new IllegalArgumentException(ExceptionMessage.MOVING_COMMAND.getErrorMessage());
         }
     }
 
-    public void checkCommand(String command) {
+    public void isGameCommand(String command) {
         if (!(command.equals(GameCommand.RESTART.getCommand()) || command.equals(GameCommand.QUIT.getCommand()))) {
             throw new IllegalArgumentException(ExceptionMessage.RESTART_COMMAND.getErrorMessage());
         }

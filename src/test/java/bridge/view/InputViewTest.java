@@ -1,8 +1,6 @@
 package bridge.view;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +41,7 @@ class InputViewTest {
     void 재시작_종료_커멘드_테스트() {
         String input = "I";
 
-        assertThatThrownBy(() -> inputView.checkCommand(input))
+        assertThatThrownBy(() -> inputView.isGameCommand(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
