@@ -5,8 +5,8 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.BridgeSymbol;
 import bridge.BridgeMaker;
 import bridge.constant.Direction;
-import bridge.domain.GameResult;
-import bridge.domain.Map;
+import bridge.model.GameResult;
+import bridge.model.Map;
 
 import java.util.Collections;
 import java.util.List;

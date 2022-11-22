@@ -1,9 +1,9 @@
 package bridge.controller;
 
 import bridge.service.BridgeGame;
-import bridge.domain.BridgeSize;
-import bridge.domain.Command;
-import bridge.domain.UserBridge;
+import bridge.model.BridgeSize;
+import bridge.model.Command;
+import bridge.model.UserBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
