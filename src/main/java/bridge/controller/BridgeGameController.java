@@ -12,15 +12,18 @@ import java.util.List;
 
 public class BridgeGameController {
 
+    private static final OutputView OUTPUT_VIEW = new OutputView();
+    private static final InputView INPUT_VIEW = new InputView();
+
     public void start() {
-        OutputView.printStart();
+        OUTPUT_VIEW.printStart();
         List<String> bridge = makeBridge();
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
         GameRecord gameRecord = new GameRecord();
 
         GameResultModel gameResultModel = playGame(bridgeGame, gameRecord);
-        OutputView.printResult(gameResultModel);
+        OUTPUT_VIEW.printResult(gameResultModel);
     }
 
     private GameResultModel playGame(BridgeGame bridgeGame, GameRecord gameRecord) {
@@ -37,8 +40,8 @@ public class BridgeGameController {
     }
 
     private boolean canRestart(BridgeGame bridgeGame) {
-        OutputView.printGameRestartRequest();
-        String retryInput = InputView.readGameCommand();
+        OUTPUT_VIEW.printGameRestartRequest();
+        String retryInput = INPUT_VIEW.readGameCommand();
         return bridgeGame.retry(retryInput);
     }
 
@@ -48,8 +51,8 @@ public class BridgeGameController {
     }
 
     private List<String> makeBridge() {
-        OutputView.printBridgeLengthRequest();
-        int bridgeSize = InputView.readBridgeSize();
+        OUTPUT_VIEW.printBridgeLengthRequest();
+        int bridgeSize = INPUT_VIEW.readBridgeSize();
 
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(bridgeSize);
@@ -70,13 +73,13 @@ public class BridgeGameController {
     }
 
     private boolean moveOneBlock(BridgeGame bridgeGame, GameRecord gameRecord, int bridgeBlock) {
-        OutputView.printUserMoveRequest();
-        String direction = InputView.readMoving();
+        OUTPUT_VIEW.printUserMoveRequest();
+        String direction = INPUT_VIEW.readMoving();
         boolean success = bridgeGame.move(direction, bridgeBlock);
         gameRecord.addRecord(direction, success);
 
         BridgeStatusModel bridgeStatusModel = new BridgeStatusModel(gameRecord.makeBridgeRecord());
-        OutputView.printMap(bridgeStatusModel);
+        OUTPUT_VIEW.printMap(bridgeStatusModel);
         return success;
     }
 }
