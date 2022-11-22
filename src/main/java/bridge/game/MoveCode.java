@@ -1,6 +1,6 @@
-package bridge;
+package bridge.game;
 
-import bridge.ErrorMessage;
+import bridge.io.ErrorMessage;
 
 import java.util.Arrays;
 
