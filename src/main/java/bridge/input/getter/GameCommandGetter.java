@@ -7,12 +7,21 @@ public class GameCommandGetter {
     private static final String TEXT_PROMPT_FOR_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String INVALID_GAME_COMMAND = "재시도(\"R\") 또는 종료(\"Q\")만 가능합니다.";
 
+    private static GameCommandGetter instance;
+
     private final InputView inputView;
     private final GameCommandValidator validator;
 
-    public GameCommandGetter() {
+    private GameCommandGetter() {
         this.inputView = new InputView();
         this.validator = new GameCommandValidator();
+    }
+
+    public static GameCommandGetter getGameCommandGetter() {
+        if (instance == null) {
+            instance = new GameCommandGetter();
+        }
+        return instance;
     }
 
     public String getGameCommandFromConsole() throws IllegalArgumentException {
