@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import bridge.Env;
+import bridge.model.CounterDTO;
+import bridge.model.Counters;
 import bridge.model.SlabDTO;
 import bridge.model.Slabs;
 import bridge.type.GlassType;
@@ -12,26 +15,25 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MoveControllerTest {
-
-    public MoveController controller;
+class ControllerTest {
+    public Controller controller;
 
     @Test
     void 슬래브_찾기() {
         SlabDTO slab = this.controller.findSlabBy(1, PositionType.DOWN);
-        assertThat(slab).isEqualTo(this.initData().get(3));
+        assertThat(slab).isEqualTo(this.slabData().get(3));
     }
 
     @Test
     void 밟은_슬래브로_설정하기() {
-        assertDoesNotThrow(() -> this.controller.updateTread(this.initData().get(0)));
-        assertDoesNotThrow(() -> this.controller.updateTread(this.initData().get(2)));
+        assertDoesNotThrow(() -> this.controller.updateTread(this.slabData().get(0)));
+        assertDoesNotThrow(() -> this.controller.updateTread(this.slabData().get(2)));
     }
 
     @Test
     void 마지막_밟은_위치_불러오기() {
-        this.controller.updateTread(this.initData().get(0));
-        this.controller.updateTread(this.initData().get(2));
+        this.controller.updateTread(this.slabData().get(0));
+        this.controller.updateTread(this.slabData().get(2));
 
         int step = this.controller.getLastTreadStep();
 
@@ -40,8 +42,8 @@ class MoveControllerTest {
 
     @Test
     void 밟은_슬래브_데이터_가져오기() {
-        this.controller.updateTread(this.initData().get(0));
-        this.controller.updateTread(this.initData().get(2));
+        this.controller.updateTread(this.slabData().get(0));
+        this.controller.updateTread(this.slabData().get(2));
 
         List<List<String>> maps = this.controller.getSlapMaps(1);
 
@@ -49,15 +51,29 @@ class MoveControllerTest {
         assertThat(maps.get(1)).containsExactly("O", " ");
     }
 
-    @BeforeEach
-    public void 초기_데이터_삽입하기() {
-        Slabs database = Slabs.newInstance();
-        database.insertAll(this.initData());
-
-        this.controller = new MoveController(database);
+    @Test
+    void 게임_시도_횟수_가져오기() {
+        assertThat(this.controller.getRetries()).isEqualTo(5);
     }
 
-    public List<SlabDTO> initData() {
+    @Test
+    void 게임_시도_횟수_더하기() {
+        this.controller.updateRetries();
+
+        assertThat(this.controller.getRetries()).isEqualTo(6);
+    }
+
+    @BeforeEach
+    public void 초기_데이터_삽입하기() {
+        Slabs slabs = Slabs.newInstance();
+        Counters counters = Counters.newInstance();
+        slabs.insertAll(this.slabData());
+        counters.insert(this.counterData);
+
+        this.controller = new Controller(slabs, counters);
+    }
+
+    public List<SlabDTO> slabData() {
         return List.of(
                 new SlabDTO(0, PositionType.DOWN, GlassType.TEMPERED),
                 new SlabDTO(0, PositionType.UP, GlassType.NORMAL),
@@ -67,4 +83,6 @@ class MoveControllerTest {
                 new SlabDTO(2, PositionType.DOWN, GlassType.TEMPERED)
         );
     }
+
+    public CounterDTO counterData = new CounterDTO(Env.NAME_OF_TRIES_NUMBER, 5);
 }

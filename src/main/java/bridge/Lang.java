@@ -9,7 +9,12 @@ public enum Lang {
     INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
     SELECT_SLAB("이동할 칸을 선택해주세요. (위: %s, 아래: %s"),
     SELECT_RETRY_OR_QUIT("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s"),
-    ERROR_OCCUR_WHILE_SAVE_DATA("데이터를 저장하던 중 오류가 발생했어요.");
+    ERROR_OCCUR_WHILE_SAVE_DATA("데이터를 저장하던 중 오류가 발생했어요."),
+    GAME_RESULT("최종 게임 결과"),
+    IS_GAME_PASS("게임 성공 여부: %s"),
+    GAME_IS_PASS("성공"),
+    GAME_IS_FAIL("실패"),
+    TOTAL_ATTEMPT("총 시도 횟수: %d");
 
     private final String message;
 
@@ -29,4 +34,5 @@ public enum Lang {
     public static String get(Lang lang) {
         return lang.toString();
     }
+
 }

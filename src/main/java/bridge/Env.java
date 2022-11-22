@@ -1,6 +1,8 @@
 package bridge;
 
 public class Env {
+    public static String NAME_OF_TRIES_NUMBER = "try";
+
     public static String CODE_OF_UP = "U";
     public static String CODE_OF_DOWN = "D";
     public static String CODE_OF_UNKNOWN = "N";

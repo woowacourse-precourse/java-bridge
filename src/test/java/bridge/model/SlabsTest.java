@@ -30,6 +30,15 @@ class SlabsTest {
     }
 
     @Test
+    void 단일_가져오기() {
+        Slabs database = Slabs.newInstance();
+        SlabDTO dto = new SlabDTO(0, PositionType.DOWN, GlassType.TEMPERED);
+        database.insert(dto);
+
+        assertThat(database.get(0)).isEqualTo(dto);
+    }
+
+    @Test
     void 모두_삽입하기() {
         Slabs database = Slabs.newInstance();
         List<SlabDTO> slabs = this.slabs();
