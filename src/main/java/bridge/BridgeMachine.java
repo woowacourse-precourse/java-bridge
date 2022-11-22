@@ -12,6 +12,7 @@ public class BridgeMachine {
         String bridgeSize = InputView.readBridgeSize(); //예외
         Bridge bridge = new Bridge(bridgeSize);
         while (true) {
+            totalTry++;
             OutputView.inputUserMoveCommand();
             String userMoveCommand = InputView.readMoving();
             //움직이는 거 여부를 판단하는 예외 메소드 추가
@@ -22,19 +23,19 @@ public class BridgeMachine {
                 OutputView.inputUserReplayCommand();
                 String replay = InputView.readGameCommand();
                 //게임 재시도 여부 판단하는 예외 메소드 추가
-                if (replay == UserCommand.REPLAY.getCommand()) {
+                if (replay.equals(UserCommand.REPLAY.getCommand())) {
                     bridgeGame.retry(bridge);
                     index =0;
-                    totalTry++;
-                    continue;
                 }
-                if (replay == UserCommand.END.getCommand()) {
+                else{
                     break;
                 }
             }
-            bridge.changeBridgeMap(index, userMoveCommand, "O");
-            OutputView.printMap(bridge.getBridgeMap(), index);
-            index++;
+            else{
+                bridge.changeBridgeMap(index, userMoveCommand, "O");
+                OutputView.printMap(bridge.getBridgeMap(), index);
+                index++;
+            }
             if (index == bridge.getBridgeSize()) {
                 success = true;
                 break;
@@ -49,6 +50,4 @@ public class BridgeMachine {
         }
         OutputView.printTotalTry(totalTry);
     }
-
-
 }
