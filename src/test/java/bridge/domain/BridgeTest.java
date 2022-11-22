@@ -15,6 +15,17 @@ class BridgeTest {
         return new ByteArrayInputStream(input.getBytes());
     }
 
+    @DisplayName("다리의 길이가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createBridgeByNotNumber() {
+        InputStream in = generateUserInput("size");
+        System.setIn(in);
+
+        assertThatThrownBy(InputView::readBridgeSize)
+                .hasMessageContaining("[ERROR] 다리의 길이에 대한 입력이 잘못되었습니다.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("다리의 길이가 20보다 크면 예외가 발생한다.")
     @Test
     void createBridgeByOverRange() {
@@ -36,6 +47,4 @@ class BridgeTest {
                 .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }
