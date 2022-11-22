@@ -2,6 +2,8 @@ package bridge.path;
 
 import bridge.command.Movement;
 
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -65,5 +67,17 @@ public class Path {
         return IntStream.range(0, size)
                 .mapToObj(idx -> new Pair<>(actualMovements.get(idx), expectedMovements.get(idx)))
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public String format(final EnumMap<Result, String> format) {
+        return evaluations.stream()
+                .flatMap(stages -> stages.stream().map(stage -> new Pair<>(stage.key, format.get(stage.value))))
+                .collect(Collectors.collectingAndThen(Collectors.groupingBy(stages -> stages.key,
+                                LinkedHashMap::new,
+                                Collectors.mapping(stage -> stage.value,
+                                        Collectors.joining(format.get(Result.DELIMITER),
+                                                format.get(Result.PREFIX),
+                                                format.get(Result.SUFFIX)))),
+                        movementToString -> String.join("\n", movementToString.values())));
     }
 }
