@@ -33,7 +33,8 @@ public class BridgeGameController {
         while (true) {
             try {
                 return inputView.readBridgeSize();
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
@@ -42,7 +43,8 @@ public class BridgeGameController {
         while (true) {
             try {
                 return inputView.readMoving();
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
@@ -51,7 +53,8 @@ public class BridgeGameController {
         while (true) {
             try {
                 return inputView.readGameCommand();
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
