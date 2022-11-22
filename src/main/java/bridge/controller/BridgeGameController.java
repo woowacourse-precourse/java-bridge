@@ -58,8 +58,9 @@ public class BridgeGameController {
         mark.clear();
         boolean retryInput = bridgeGame.retry(userRetryInput, bridgeSize);
         if (retryInput) {
-            OutputView.upSide = "";
-            OutputView.downSide = "";
+            OutputView.setUpSide("");
+            OutputView.setDownSide("");
+            //OutputView.downSide = "";
         }
     }
 
