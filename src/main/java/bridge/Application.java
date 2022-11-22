@@ -3,6 +3,7 @@ package bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.Map;
 import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -13,7 +14,7 @@ public class Application {
         try {
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
-            BridgeGame bridgeGame = new BridgeGame(bridge, new Player());
+            BridgeGame bridgeGame = new BridgeGame(bridge, new Player(new Map()));
             System.out.println("다리 건너기 게임을 시작합니다.");
             playGame(bridgeGame);
             OutputView.printResult(bridgeGame);
@@ -31,7 +32,7 @@ public class Application {
             if (!bridgeGame.retry(InputView.readGameCommand())) {
                 break;
             }
-            bridgeGame.setPlayer(new Player());
+            bridgeGame.setPlayer(new Player(new Map()));
         }
     }
 
@@ -41,7 +42,7 @@ public class Application {
             boolean isAnswer = bridgeGame.move(InputView.readMoving(), round);
             OutputView.printMap(bridgeGame.getMap());
             if (!isAnswer) {
-                break;
+                return;
             }
         }
     }

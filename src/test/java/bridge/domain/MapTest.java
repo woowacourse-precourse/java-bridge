@@ -10,25 +10,25 @@ class MapTest {
     void test1Right() {
         Map map = new Map();
 
-        map.update("U", "U");
+        map.update("U", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[ O ]",
                         "[   ]"));
 
-        map.update("D", "D");
+        map.update("D", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[ O |   ]",
                         "[   | O ]"));
 
-        map.update("U", "U");
+        map.update("U", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[ O |   | O ]",
                         "[   | O |   ]"));
 
-        map.update("D", "D");
+        map.update("D", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[ O |   | O |   ]",
@@ -39,13 +39,13 @@ class MapTest {
     void test1Wrong() {
         Map map = new Map();
 
-        map.update("U", "U");
+        map.update("U", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[ O ]",
                         "[   ]"));
 
-        map.update("U", "D");
+        map.update("U", false);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[ O | X ]",
@@ -56,25 +56,25 @@ class MapTest {
     void test2Right() {
         Map map = new Map();
 
-        map.update("D", "D");
+        map.update("D", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[   ]",
                         "[ O ]"));
 
-        map.update("U", "U");
+        map.update("U", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[   | O ]",
                         "[ O |   ]"));
 
-        map.update("D", "D");
+        map.update("D", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[   | O |   ]",
                         "[ O |   | O ]"));
 
-        map.update("U", "U");
+        map.update("U", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[   | O |   | O ]",
@@ -85,19 +85,19 @@ class MapTest {
     void test2Wrong() {
         Map map = new Map();
 
-        map.update("D", "D");
+        map.update("D", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[   ]",
                         "[ O ]"));
 
-        map.update("U", "U");
+        map.update("U", true);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[   | O ]",
                         "[ O |   ]"));
 
-        map.update("U", "D");
+        map.update("U", false);
         assertThat(map.getCurrentMap())
                 .isEqualTo(List.of(
                         "[   | O | X ]",

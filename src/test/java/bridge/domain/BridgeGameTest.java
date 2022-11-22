@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class BridgeGameTest {
     @Test
     void testRetry() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player());
+        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player(new Map()));
         assertThat(bridgeGame.getTrial()).isEqualTo(1);
         boolean isRetry = bridgeGame.retry("R");
         assertThat(isRetry).isEqualTo(true);
@@ -18,7 +18,7 @@ class BridgeGameTest {
 
     @Test
     void testQuit() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player());
+        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player(new Map()));
         assertThat(bridgeGame.getTrial()).isEqualTo(1);
         boolean isRetry = bridgeGame.retry("Q");
         assertThat(isRetry).isEqualTo(false);
@@ -27,7 +27,7 @@ class BridgeGameTest {
 
     @Test
     void testValidate() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player());
+        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player(new Map()));
         assertThat(bridgeGame.getTrial()).isEqualTo(1);
         assertThatThrownBy(() -> bridgeGame.retry("q"))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -35,7 +35,7 @@ class BridgeGameTest {
 
     @Test
     void testErrorMessage() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player());
+        BridgeGame bridgeGame = new BridgeGame(List.of("U","D","U"), new Player(new Map()));
         assertThat(bridgeGame.getTrial()).isEqualTo(1);
         try {
             bridgeGame.retry("q");

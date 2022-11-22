@@ -13,7 +13,7 @@ class PlayerTest {
         @Test
         void testLowerU() {
             assertThatThrownBy(() -> {
-                Player player = new Player();
+                Player player = new Player(new Map());
                 player.move("u", "U");
             }).isInstanceOf(IllegalArgumentException.class);
         }
@@ -22,7 +22,7 @@ class PlayerTest {
         @Test
         void testLowerD() {
             assertThatThrownBy(() -> {
-                Player player = new Player();
+                Player player = new Player(new Map());
                 player.move("d", "D");
             }).isInstanceOf(IllegalArgumentException.class);
         }
