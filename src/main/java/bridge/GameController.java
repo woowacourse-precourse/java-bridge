@@ -39,10 +39,7 @@ public class GameController {
     }
 
     private boolean decideToKeepPlaying() {
-        if (doesPlayerWantRetrial) {
-            return true;
-        }
-        if (bridgeGame.getPlayerLocation() < bridgeGame.getBridge().size() - 1) {
+        if (doesPlayerWantRetrial && bridgeGame.getPlayerLocation() < bridgeGame.getBridge().size() - 1) {
             return true;
         }
         return false;
