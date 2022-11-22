@@ -9,6 +9,7 @@ import bridge.View.OutputView;
 
 public class Game {
 
+    private static final int ZERO = 0;
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeGame bridgeGame;
     private BridgeMap bridgeMap;
@@ -31,8 +32,16 @@ public class Game {
     private boolean crossBridge() {
         boolean gameState;
         bridgeMap = new BridgeMap();
-
+        for (int position = ZERO; position < BridgeGame.getBridgeSize(); position++) {
+            isCrossed(position);
+        }
         return true;
+    }
+
+    private boolean isCrossed(final int position) {
+        boolean gameState;
+        OutputView.printMove();
+        return false;
     }
 
 }
