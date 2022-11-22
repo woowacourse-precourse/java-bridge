@@ -36,4 +36,11 @@ public enum Direction {
                 .findAny()
                 .orElseThrow(InvalidDirectionFormatException::new);
     }
+
+    public static Direction convertDirection(String string) {
+        return Arrays.stream(Direction.values())
+                .filter(direction -> direction.getDirectionInitial().equals(string))
+                .findAny()
+                .orElseThrow(InvalidDirectionFormatException::new);
+    }
 }
