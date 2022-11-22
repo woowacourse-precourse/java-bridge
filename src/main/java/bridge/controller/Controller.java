@@ -81,14 +81,8 @@ public class Controller {
     }
 
     public void retry() {
-        try {
             out.printMessage(INPUT_RETRY_MESSAGE);
             game.retry(input.readGameCommand());
-        } catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            retry();
-        }
-
     }
     public void success() {
         game.success();

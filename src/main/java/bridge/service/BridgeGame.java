@@ -109,10 +109,15 @@ public class BridgeGame {
     }
 
     public void retry(String retry) {
-        if (isQuit(Retry.of(retry).getAnswer())) {
-            return;
+        try {
+            if (isQuit(Retry.of(retry).getAnswer())) {
+                return;
+            }
+            isRetry(retry);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            retry(retry);
         }
-        isRetry(retry);
     }
 
     private void isRetry(String retry) {

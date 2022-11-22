@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.model.entity.BridgeSize;
 import bridge.model.entity.Move;
+import bridge.model.entity.Retry;
 import bridge.util.BridgeMaker;
 import bridge.util.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Console;
@@ -25,21 +26,36 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public List<String> readBridgeSize() {
+        try {
             return maker.makeBridge(of(input()).getBridgeSize());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        try {
             return Move.of(input()).getMove();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return input();
+        try {
+            return Retry.of(input()).getAnswer();
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     public String input() {
