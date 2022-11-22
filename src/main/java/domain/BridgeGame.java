@@ -20,6 +20,13 @@ public class BridgeGame {
     public BridgeGame(List<String> bridge){
         this.bridge = bridge;
     }
+    public List<String> getUpperLine(){
+        return upperLine;
+    }
+
+    public List<String> getLowerLine(){
+        return lowerLine;
+    }
 
 
     public void markCorrect(String userInput){
@@ -56,14 +63,6 @@ public class BridgeGame {
     public void refresh(){
         upperLine.clear();
         lowerLine.clear();
-    }
-
-    public List<String> getUpperLine(){
-        return upperLine;
-    }
-
-    public List<String> getLowerLine(){
-        return lowerLine;
     }
 
     public boolean move(int index,String userInput) {

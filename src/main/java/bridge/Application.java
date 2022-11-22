@@ -27,18 +27,16 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        int gameCount = 0;
+        int gameCount = 1;
         boolean restart = true;
         boolean game = true;
 
         while (restart){
 
-            gameCount++;
-            game = true;
+
             int index = 0;
 
             while (game && bridgeGame.getLowerLine().size() != bridge.size()){
-
                 game = bridgeGame.move(index, inputView.readMoving());
                 index++;
                 outputView.printMap(bridgeGame.getUpperLine(),bridgeGame.getLowerLine());
@@ -50,8 +48,9 @@ public class Application {
             }
 
             restart = bridgeGame.retry(inputView.readGameCommand());
+            gameCount++;
+            game = true;
             bridgeGame.refresh();
-
 
         }
 
