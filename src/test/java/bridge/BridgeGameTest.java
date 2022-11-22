@@ -14,7 +14,8 @@ class BridgeGameTest extends FunctionNsTest {
 
     @BeforeEach
     protected void initBridge() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1, 0));
+        BridgeNumberGenerator numberGenerator = new ApplicationTest
+                .TestNumberGenerator(newArrayList(1, 0, 1, 0));
         bridgeGame = new BridgeGame(numberGenerator, 4);
     }
 

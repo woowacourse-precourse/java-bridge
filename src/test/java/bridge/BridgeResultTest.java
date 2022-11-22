@@ -97,7 +97,8 @@ class BridgeResultTest {
 
             assertThat(bridgeResult.getResult(4))
                     .contains("최종 게임 결과" + System.lineSeparator()
-                            + "[ O |   | O |   ]" + System.lineSeparator() + "[   | O |   | O ]" + System.lineSeparator()
+                            + "[ O |   | O |   ]" + System.lineSeparator()
+                            + "[   | O |   | O ]" + System.lineSeparator()
                             + System.lineSeparator()
                             + "게임 성공 여부: 성공" + System.lineSeparator()
                             + "총 시도한 횟수: 1");
@@ -113,7 +114,8 @@ class BridgeResultTest {
 
             assertThat(bridgeResult.getResult(4))
                     .contains("최종 게임 결과" + System.lineSeparator()
-                            + "[ O | X ]" + System.lineSeparator() + "[   |   ]" + System.lineSeparator()
+                            + "[ O | X ]" + System.lineSeparator()
+                            + "[   |   ]" + System.lineSeparator()
                             + System.lineSeparator()
                             + "게임 성공 여부: 실패" + System.lineSeparator()
                             + "총 시도한 횟수: 1");
@@ -133,7 +135,8 @@ class BridgeResultTest {
 
             assertThat(bridgeResult.getResult(4))
                     .contains("최종 게임 결과" + System.lineSeparator()
-                            + "[ O |   | O |   ]" + System.lineSeparator() + "[   | O |   | O ]" + System.lineSeparator()
+                            + "[ O |   | O |   ]" + System.lineSeparator()
+                            + "[   | O |   | O ]" + System.lineSeparator()
                             + System.lineSeparator()
                             + "게임 성공 여부: 성공" + System.lineSeparator()
                             + "총 시도한 횟수: 2");

@@ -34,7 +34,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalArgumentException {
+    public String readMoving() {
         while (true) {
             try {
                 System.out.println(INPUT_BRIDGE_MOVE);
@@ -97,13 +97,13 @@ public class InputView {
                 return;
             }
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("R 또는 Q만 입력할수 있습니다.");
     }
 
     private void validBridgeSize(int bridgeSize) {
         if (bridgeSize < BridgeLengthSetting.MIN_LENGTH.getLength()
                 || bridgeSize > BridgeLengthSetting.MAX_LENGTH.getLength()) {
-            throw new NoSuchElementException();
+            throw new IllegalArgumentException("3 ~ 20 까지의 수만 입력할수 있습니다.");
         }
     }
 
@@ -114,6 +114,6 @@ public class InputView {
                 return;
             }
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("U 또는 D 만 입력할수 있습니다.");
     }
 }
