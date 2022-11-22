@@ -1,12 +1,5 @@
 package bridge;
 
-/**
- * 제공된 InputView 클래스를 활용해 구현해야 한다.
- * InputView의 패키지는 변경할 수 있다.
- * InputView의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
- * 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
- */
-
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -63,7 +56,7 @@ public class InputView {
         return command;
     }
 
-    private void readGameCommandCheck(String command) throws IllegalArgumentException{
+    private void readGameCommandCheck(String command) throws IllegalArgumentException {
         if (!command.equals("R") && !command.equals("Q"))
             throw new IllegalArgumentException("[ERROR] R(재시작) 또는 Q(종료)를 입력해주세요.");
     }
