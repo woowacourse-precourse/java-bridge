@@ -30,13 +30,15 @@ public class BridgeGameController {
     }
 
     private void makeBride() {
+        ov.gameStart();
         bridgeGame.makeBridge(iv.readBridgeSize());
     }
 
     private void gamePlay() {
         do {
             bridgeGame.move(iv.readMoving());
-            bridgeGame.setMap(ov.printMap(bridgeGame.getBridge(), bridgeGame.getMarks()));
+            bridgeGame.makeMap(bridgeGame.getBridge(), bridgeGame.getMarks());
+            ov.printMap(bridgeGame.getMap());
             if (quit()) {
                 break;
             }
