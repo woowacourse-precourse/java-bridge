@@ -24,7 +24,6 @@ public class GameController {
 
     public void run() {
         Bridge bridge = createBridge();
-        System.out.println(bridge.getBridge());
         Player player = new Player();
         BridgeGame bridgeGame = new BridgeGame(bridge, player);
         crossABridge(bridge, player, bridgeGame);

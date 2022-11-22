@@ -4,7 +4,6 @@ import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
 import bridge.domain.Result;
-import bridge.view.OutputView;
 
 public class BridgeGame {
 
