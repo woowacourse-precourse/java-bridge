@@ -1,22 +1,23 @@
 package bridge.rule;
 
 import bridge.domain.Bridge;
-import bridge.util.Constant;
-import bridge.util.Validator;
+import static bridge.util.Constant.*;
+import static bridge.util.Validator.*;
+
 import bridge.view.InputView;
 
 public class EndRule {
 
     public static String isComplete(Bridge bridge) {
         if (bridge.isLastStep()) {
-            return Constant.COMPLETE;
+            return COMPLETE;
         }
-        return Constant.FAIL;
+        return FAIL;
     }
 
     public static boolean selectQuit() {
         String command = InputView.readGameCommand();
-        Validator.validateGameCommandInput(command);
+        validateGameCommandInput(command);
         if (EndRule.isQuit(command)) {
             return true;
         }
@@ -24,7 +25,7 @@ public class EndRule {
     }
 
     public static boolean isQuit(String command) {
-        return command.equals(Constant.QUIT);
+        return command.equals(QUIT);
     }
 
 }
