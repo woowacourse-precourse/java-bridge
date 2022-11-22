@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.model.constant.BridgeSpace;
 import java.util.ArrayList;
 import java.util.List;
 

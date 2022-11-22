@@ -1,9 +1,12 @@
 package bridge.view;
 
-import bridge.model.BridgeConstant;
 import bridge.model.BridgeGame;
-import bridge.model.BridgeMovable;
-import bridge.model.BridgeSpace;
+import bridge.model.constant.BridgeConstant;
+import bridge.model.constant.BridgeMovable;
+import bridge.model.constant.BridgeSpace;
+import bridge.view.constant.GameResult;
+import bridge.view.constant.Message;
+import bridge.view.constant.OutputViewConstant;
 import java.util.List;
 
 /**

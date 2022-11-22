@@ -1,10 +1,10 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
-import bridge.model.BridgeConstant;
 import bridge.model.BridgeGame;
-import bridge.model.BridgeMaker;
+import bridge.model.constant.BridgeConstant;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;

@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.view.constant;
 
 public enum GameResult {
 

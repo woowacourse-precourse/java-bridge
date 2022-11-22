@@ -1,7 +1,8 @@
 package bridge.view;
 
-import bridge.model.BridgeConstant;
-import bridge.model.BridgeSpace;
+import bridge.model.constant.BridgeConstant;
+import bridge.model.constant.BridgeSpace;
+import bridge.view.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

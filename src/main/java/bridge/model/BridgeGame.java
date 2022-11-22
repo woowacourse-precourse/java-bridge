@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.model.constant.BridgeConstant;
 import java.util.ArrayList;
 import java.util.List;
 

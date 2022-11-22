@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.constant;
 
 public abstract class BridgeConstant {
 
