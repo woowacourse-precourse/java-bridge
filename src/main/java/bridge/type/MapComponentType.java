@@ -7,22 +7,33 @@ import java.util.stream.Collectors;
 
 public enum MapComponentType {
 
-    DOWN("D"),
-    UP("U");
+    UP("U", 1),
+    DOWN("D", 0);
 
     private final String mapComponent;
+    private final int number;
 
-    MapComponentType(String mapComponent) {
+    MapComponentType(String mapComponent, int number) {
         this.mapComponent = mapComponent;
+        this.number = number;
     }
 
     public String getMapComponent() {
         return mapComponent;
     }
 
-    public static String getMapComponent(int number) {
-        return values()[number].mapComponent;
+    public int getNumber() {
+        return number;
     }
+
+    public static String getMapComponentByNumber(int number) {
+        return numberMap.get(number).getMapComponent();
+    }
+
+    private static final Map<Integer, MapComponentType> numberMap =
+            Arrays.stream(MapComponentType.values())
+            .collect(Collectors.toUnmodifiableMap(MapComponentType::getNumber, Function.identity()));
+
 
     public static boolean isBadMapComponent(String query) {
         return mapComponents.get(query) == null;
