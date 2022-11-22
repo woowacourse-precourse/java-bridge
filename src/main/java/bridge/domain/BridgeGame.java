@@ -4,8 +4,8 @@ package bridge.domain;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final String SUCCESS_MESSAGE = "\n\n게임 성공 여부: 성공\n";
-    private final String FAIL_MESSAGE = "\n\n게임 성공 여부: 실패\n";
+    private final String SUCCESS_MESSAGE = "\n게임 성공 여부: 성공\n";
+    private final String FAIL_MESSAGE = "\n게임 성공 여부: 실패\n";
     private final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
     private final int ZERO_COUNT = 0;
     private int tryCount;

@@ -7,7 +7,7 @@ public class CurrentBridgeMap {
     private static final String BLANK_BRIDGE = "   ";
     private static final String ANSWER_BRIDGE = " O ";
     private static final String WRONG_BRIDGE = " X ";
-    private static final String BRIDGE_STRUCTURE = "[%s]\n[%s]";
+    private static final String BRIDGE_STRUCTURE = "[%s]\n[%s]\n";
     private static final String SEPARATE_BRIDGE = "|";
     private static final String UPPER_CHECK = "U";
     private static final String LOWER_CHECK = "D";
