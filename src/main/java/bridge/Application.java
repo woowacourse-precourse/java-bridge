@@ -1,8 +1,34 @@
 package bridge;
 
 public class Application {
-
+    private static InputView iv;
+    private static int cnt = 1;
+    public static int choose(BridgeGame bg){
+        if(bg.move() == 0)//틀려서 끝남
+            if(iv.readGameCommand().equals("R")) {
+                bg.retry();
+                cnt++;
+                return 1;
+            } else return 0;
+        if(bg.curidx == bg.curbridge.size()) return 2;
+        return 1; //맞춤
+    }
+    public static int inloop(BridgeGame bg){
+        while(true){
+            int c = choose(bg);
+            if(c == 0) {return 1;}
+            else if(c == 2){return 0;}
+        }
+    }
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        try{
+            cnt = 1;
+            iv = new InputView();
+            BridgeGame bg = new BridgeGame(iv.readBridgeSize());
+            int flag = inloop(bg);
+            //최종 결과 출력
+            OutputView ov = new OutputView(bg.curidx,bg.curbridge,bg.curmov);
+            ov.printResult(flag,cnt);
+        } catch(Exception e) {System.out.println("[ERROR]");}
     }
 }
