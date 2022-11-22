@@ -24,10 +24,9 @@ public class BridgeGame {
     public void run() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        int size = inputView.readBridgeSize();
+        int size = inputBridgeSize();
         bridge = bridgeMaker.makeBridge(size);
 
         while (!move()) {
@@ -36,6 +35,20 @@ public class BridgeGame {
             }
         }
         outputView.printResult(successOrFail(result), tryCount, upResult, downResult);
+    }
+
+    private int inputBridgeSize() {
+        InputView inputView = new InputView();
+        int size;
+        while (true) {
+            try {
+                size = inputView.readBridgeSize();
+                break;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+        return size;
     }
 
     /**

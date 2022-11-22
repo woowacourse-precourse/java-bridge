@@ -17,9 +17,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize() throws IllegalArgumentException{
         System.out.println("다리의 길이를 입력해주세요.");
-        return Integer.parseInt(Console.readLine());
+        String size = Console.readLine();
+        BridgeSizeIntegerCheck(size);
+        BridgeSizeCheck(Integer.parseInt(size));
+        return Integer.parseInt(size);
     }
 
     /**
@@ -37,4 +40,18 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return Console.readLine();
     }
+
+    private void BridgeSizeCheck(int size) throws IllegalArgumentException{
+        if(size<3 || size>20 )
+            throw new IllegalArgumentException("[ERROR] 다리의 사이즈는 3이상 20이하입니다.");
+    }
+
+    private void BridgeSizeIntegerCheck(String size) throws IllegalArgumentException{
+        try {
+            Integer.parseInt(size);
+        }catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 다리의 사이즈는 정수입니다.");
+        }
+    }
 }
+
