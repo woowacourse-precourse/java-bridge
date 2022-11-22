@@ -20,35 +20,32 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridgeData) {
-        while(orderView.checkRestart){
+        while(OrderView.checkRestart){
             stepBridge(bridgeData);
             if(!exitLoop()) {break;}
         }
     }
 
     private boolean exitLoop() {
-        if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) {
-            return false;
-        }
-        return true;
+        return OrderView.checkAnswerIndex != 1 && OrderView.checkAnswerIndex != 2;
     }
 
     public void stepBridge(List<String> bridgeData) {
         String moveStep = "";
-        orderView.retryCount++;
+        OrderView.retryCount++;
         for(int index = 0 ; index < bridgeData.size(); index++) {
             if(index != 0) orderView.lineSkip();
             System.out.println(orderView.MOVE_STEP);
-            moveStep = inputView.readMoving();
+            moveStep = inputView.readGameCommand();
             bridgeGame.move(inputMoveStepHandler.checkValidator(moveStep), bridgeData.get(index), index);
-            if(orderView.checkAnswerIndex == 1 || orderView.checkAnswerIndex == 2) break;
+            if(OrderView.checkAnswerIndex == 1 || OrderView.checkAnswerIndex == 2) break;
             successBridge(index, bridgeData);
         }
     }
 
     private void successBridge(int index, List<String> bridgeData) {
-        if(index == bridgeData.size()-1 && orderView.checkAnswerIndex == 0) {
-            orderView.checkAnswerIndex = 2;
+        if(index == bridgeData.size()-1 && OrderView.checkAnswerIndex == 0) {
+            OrderView.checkAnswerIndex = 2;
             orderView.lineSkip();
             System.out.println(orderView.THE_GAME_RESULT);
             bridgeGame.extractBracket(bridgeGame.upSide,bridgeGame.downSide);

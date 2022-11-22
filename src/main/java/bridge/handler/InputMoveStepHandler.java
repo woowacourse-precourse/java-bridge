@@ -4,12 +4,9 @@ import bridge.view.OrderView;
 
 public class InputMoveStepHandler {
 
-    private String moveStep;
-
     public String checkValidator(String moveStep) {
         checkNonInput(moveStep);
         checkIsUpDown(moveStep);
-        this.moveStep = moveStep;
 
         return moveStep;
     }
@@ -28,6 +25,4 @@ public class InputMoveStepHandler {
             throw new IllegalArgumentException(orderView.ERROR_ORDER+" 다리 길이의 값이 입력되지 않았습니다.");
         }
     }
-    
-    
 }

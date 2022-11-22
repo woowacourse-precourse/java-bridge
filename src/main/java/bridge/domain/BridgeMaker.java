@@ -20,6 +20,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridgedata = new ArrayList<>();
+
         for(int i = 0; i < size ; i++){
             bridgedata.add(String.valueOf(bridgeNumberGenerator.generate()));
         }

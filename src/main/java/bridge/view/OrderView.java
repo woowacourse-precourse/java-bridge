@@ -29,7 +29,6 @@ public class OrderView {
     }
 
     public String continueOrExit() {
-      String pickRestart = inputView.readGameCommand();
-        return pickRestart;
+        return inputView.readGameCommand();
     }
 }
