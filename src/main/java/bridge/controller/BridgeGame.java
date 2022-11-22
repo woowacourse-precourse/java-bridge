@@ -10,7 +10,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
+    private static int bridgeSize;
     private static List<String> bridge;
 
     private final OutputView outputView;
@@ -27,7 +27,7 @@ public class BridgeGame {
 
     private List<String> generateBridge() {
         outputView.printBridgeSizeInputNotice();
-        int bridgeSize = inputView.readBridgeSize();
+        bridgeSize = inputView.readBridgeSize();
         return bridgeGenerateService.generateBridgeBySize(bridgeSize);
     }
 
