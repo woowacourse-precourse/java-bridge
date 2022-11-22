@@ -11,7 +11,6 @@ public class Application {
 
     public static void main(String[] args) {
         Bridge bridge = setBridge();
-        System.out.println(bridge.getFootholds().toString());
         play(bridge);
         outputView.printResult(bridge, bridgeGame.isClear(bridge));
     }
