@@ -9,9 +9,9 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private GameContext gameContext;
+    private final GameContext gameContext;
     private final Bridge bridge;
-    private PlayersMove playersMove;
+    private final PlayersMove playersMove;
     private int moveCount;
 
     public BridgeGame(Bridge bridge) {
