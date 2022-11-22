@@ -20,6 +20,7 @@ public class GameStatus {
     }
 
     public void resetGameStatus() {
+        this.tryCount += 1;
         this.topBridge = new ArrayList<>();
         this.bottomBridge = new ArrayList<>();
     }

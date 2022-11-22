@@ -16,7 +16,6 @@ public class BridgeGame {
     }
 
     public void retry(GameStatus gameStatus) {
-        gameStatus.tryCount += 1;
         gameStatus.resetGameStatus();
     }
 
