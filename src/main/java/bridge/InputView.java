@@ -18,7 +18,7 @@ public class InputView {
         int length_bridge;
         try {
             length_bridge = Integer.parseInt(input);
-        }catch (Exception e){
+        }catch (NumberFormatException  e){
             throw new IllegalArgumentException("[ERROR] 정수가 아닙니다.");
         }
         if (length_bridge<3 &&length_bridge>20){

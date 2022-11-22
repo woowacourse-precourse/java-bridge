@@ -65,6 +65,19 @@ public class BridgeValid {
         }
     }
 
+    public void totalResult() {
+        outputView.printResult(upBridge,downBridge);
+    }
+
+    public void ScoreCount() {
+        if (stack == bridge.getBridgeSize()) {
+            outputView.win(count);
+        }
+        if (upBridge.contains("X") || downBridge.contains("X")) {
+            outputView.fail(count);
+        }
+    }
+
 
 
     public void setNumber() {
