@@ -13,7 +13,7 @@ public class Bridge {
     }
 
     public boolean isSamePosition(int index, Position position) {
-        return isSame(bridge.get(index), position);
+        return Position.isSame(bridge.get(index), position);
     }
 
     public int size() {

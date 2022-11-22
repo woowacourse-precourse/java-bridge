@@ -25,10 +25,14 @@ public class GameController {
     }
 
     public void play() {
-        outputView.printStartGame();
+        printStartMessage();
         createBridge();
         attempt();
         printResult();
+    }
+
+    private void printStartMessage() {
+        outputView.printStartGame();
     }
 
     private void createBridge() {
@@ -43,7 +47,7 @@ public class GameController {
             handleSuccess();
             return;
         }
-        handleRetryAfterFail();
+        handleFail();
     }
 
     private SuccessAndFail moveUntilSuccessOrFail() {
@@ -67,11 +71,15 @@ public class GameController {
         bridgeGame.setSuccess();
     }
 
-    private void handleRetryAfterFail() {
+    private void handleFail() {
         if (isRetry(inputView.readGameCommand())) {
-            bridgeGame.retry();
-            attempt();
+            handleRetryAfterFail();
         }
+    }
+
+    private void handleRetryAfterFail() {
+        bridgeGame.retry();
+        attempt();
     }
 
     private void printResult() {

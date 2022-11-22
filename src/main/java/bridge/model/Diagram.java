@@ -15,8 +15,8 @@ public class Diagram {
     private List<String> downDiagram = new ArrayList<>();
 
     public void updateDiagrams(Position position, SurviveAndDie surviveAndDie) {
-        upDiagram.add(returnByPosition(Position.UP, position, getDisplay(surviveAndDie)));
-        downDiagram.add(returnByPosition(Position.DOWN, position, getDisplay(surviveAndDie)));
+        upDiagram.add(Position.returnByPosition(Position.UP, position, getDisplay(surviveAndDie)));
+        downDiagram.add(Position.returnByPosition(Position.DOWN, position, getDisplay(surviveAndDie)));
     }
 
     private String formatDiagram(List<String> diagram) {

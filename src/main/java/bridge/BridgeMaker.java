@@ -49,8 +49,17 @@ public class BridgeMaker {
     }
 
     public static void validateBridgeSizeRange(int size) {
-        if (size < MIN_BRIDGE_SIZE || size > MAX_BRIDGE_SIZE) {
+        if (isLessThanRange(size) || isGreaterThanRange(size)) {
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_RANGE);
         }
     }
+
+    private static boolean isLessThanRange(int size) {
+        return size < MIN_BRIDGE_SIZE;
+    }
+
+    private static boolean isGreaterThanRange(int size) {
+        return size > MAX_BRIDGE_SIZE;
+    }
+
 }
