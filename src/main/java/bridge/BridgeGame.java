@@ -18,6 +18,12 @@ public class BridgeGame {
     List<String> map;
     int rowIndex, columnIndex;
 
+    public BridgeGame(List<String> map) {
+        this.map = map;
+        rowIndex = 0;
+        columnIndex = -1;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -68,7 +74,7 @@ public class BridgeGame {
     }
 
     public boolean checkIfUserWin() {
-        if (columnIndex >= map.size()) {
+        if (columnIndex >= map.size()-1) {
             return true;
         }
         return false;
@@ -82,6 +88,6 @@ public class BridgeGame {
      */
     public void retry() {
         rowIndex = 0;
-        columnIndex = 0;
+        columnIndex = -1;
     }
 }
