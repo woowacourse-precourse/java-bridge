@@ -16,12 +16,10 @@ public class InputView {
     public int readBridgeSize() {
         boolean isDigit = false;
         String readLine = "";
-        while (true) {
+        while (isFinish(isDigit)) {
             System.out.println("다리의 길이를 입력해주세요.");
             readLine = Console.readLine();
             isDigit = validation.test(readLine, isDigit);
-
-            if (isDigit) break;
         }
         return Integer.parseInt(readLine);
     }
@@ -32,13 +30,10 @@ public class InputView {
     public String readMoving() {
         boolean isPattern = false;
         String position = "";
-        while (true) {
+        while (isFinish(isPattern)) {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             position = Console.readLine();
             isPattern = validation.test1(position, isPattern);
-            if (isPattern) {
-                break;
-            }
         }
         return position;
     }
@@ -49,14 +44,15 @@ public class InputView {
     public String readGameCommand() {
         boolean isPattern = false;
         String gameCommand = "";
-        while (true) {
+        while (isFinish(isPattern)) {
             System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             gameCommand = Console.readLine();
             isPattern = validation.test2(gameCommand, isPattern);
-            if (isPattern) {
-                break;
-            }
         }
         return gameCommand;
+    }
+
+    private boolean isFinish(boolean isBoolean) {
+        return !Boolean.TRUE.equals(isBoolean);
     }
 }
