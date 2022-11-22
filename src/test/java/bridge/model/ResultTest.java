@@ -1,6 +1,7 @@
 package bridge.model;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -22,5 +23,12 @@ public class ResultTest {
                 .replace("\n", "")
                 .replace(" ", "");
         assertThat(resultBridges).isEqualTo(ox);
+    }
+
+    @Test
+    @DisplayName("성공 여부를 false로 변경하면 실패를 반환한다.")
+    void getSuccessTest() {
+        result.setSuccessToFail();
+        assertThat(result.getSuccess()).isEqualTo("실패");
     }
 }
