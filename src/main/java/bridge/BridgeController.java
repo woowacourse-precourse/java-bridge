@@ -67,11 +67,13 @@ public class BridgeController {
     }
 
     private void printSuccessFinalResult(BridgeGame bridgeGame) {
+        outputView.printSuccess();
         outputView.printTotalTryCount(bridgeGame.getTryCount());
         outputView.printResult(bridgeGame.getResults());
     }
 
     private void printFailFinalResult(BridgeGame bridgeGame) {
+        outputView.printFail();
         outputView.printTotalTryCount(bridgeGame.getTryCount());
         outputView.printResult(bridgeGame.getResults());
     }
