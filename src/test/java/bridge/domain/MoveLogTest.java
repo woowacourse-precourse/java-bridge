@@ -19,4 +19,22 @@ class MoveLogTest {
         Assertions.assertThat(log.size()).isEqualTo(1);
     }
 
+    @DisplayName("경로 삭제가 잘 진행되는지 확인")
+    @Test
+    void checkMoveLogAfterReset() {
+        moveLog.updateMoveLog(BridgeType.UP, ResultType.BLANK.getShape());
+        moveLog.updateMoveLog(BridgeType.DOWN, ResultType.SUCCESS.getShape());
+        moveLog.updateMoveLog(BridgeType.UP, ResultType.BLANK.getShape());
+        moveLog.updateMoveLog(BridgeType.DOWN, ResultType.SUCCESS.getShape());
+        List<String> upLog = moveLog.getBridgeMoveLog().get(BridgeType.UP);
+        List<String> downLog = moveLog.getBridgeMoveLog().get(BridgeType.DOWN);
+        Assertions.assertThat(upLog.size()).isEqualTo(2);
+        Assertions.assertThat(downLog.size()).isEqualTo(2);
+        moveLog.clearMoveLog();
+        List<String> deletedUpLog = moveLog.getBridgeMoveLog().get(BridgeType.UP);
+        List<String> deletedDownLog = moveLog.getBridgeMoveLog().get(BridgeType.DOWN);
+        Assertions.assertThat(upLog.size()).isEqualTo(0);
+        Assertions.assertThat(downLog.size()).isEqualTo(0);
+    }
+
 }
