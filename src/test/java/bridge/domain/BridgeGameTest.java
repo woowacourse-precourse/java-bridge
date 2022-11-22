@@ -11,9 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
-    BridgeGame bridgeGame;
-    BridgeMaker bridgeMaker;
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
+    private BridgeGame bridgeGame;
+    private BridgeMaker bridgeMaker;
+    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
 
     @BeforeEach
     void setUp() {

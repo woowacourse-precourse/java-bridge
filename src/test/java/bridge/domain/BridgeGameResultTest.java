@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameResultTest {
-    BridgeGameResult bridgeGameResult;
+    private BridgeGameResult bridgeGameResult;
 
     @BeforeEach
     void setUp() {

@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeTest {
-    Bridge bridge;
+    private Bridge bridge;
 
     @BeforeEach
     void setBridge() {

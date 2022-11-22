@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
-    InputView inputView;
+    private InputView inputView;
 
     @BeforeEach
     void setInputView() {
