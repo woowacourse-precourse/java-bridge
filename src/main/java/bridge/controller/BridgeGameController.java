@@ -1,9 +1,12 @@
 package bridge.controller;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeStatusSaver;
 import bridge.domain.BridgeUpDownGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameController {
@@ -27,7 +30,10 @@ public class BridgeGameController {
     public static void executeBridgeGame() {
         //정보를 가진 다리를 생성하기
         bridgeUpDown = BridgeUpDownGenerator.generateUpDownInformation(bridgeLengthInt);
-        System.out.println(bridgeUpDown);
+        //다리 정보 저장할 클래스 생성
+        BridgeStatusSaver bridgeStatusSaver = new BridgeStatusSaver(new ArrayList<>(), bridgeUpDown);
+        BridgeGame bridgeGame = new BridgeGame(bridgeStatusSaver, numberOfGamePlay);
     }
 }
+
 

@@ -9,6 +9,14 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private BridgeStatusSaver bridgeStatusSaver;
+    private int numberOfGamePlay;
+
+    public BridgeGame(BridgeStatusSaver bridgeStatusSaver, int numberOfGamePlay) {
+        this.bridgeStatusSaver = bridgeStatusSaver;
+        this.numberOfGamePlay = numberOfGamePlay;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -24,5 +32,5 @@ public class BridgeGame {
      */
     public void retry() {
     }
-    
+
 }
