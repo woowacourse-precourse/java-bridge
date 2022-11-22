@@ -37,14 +37,14 @@ public class Bridge {
     }
 
     private String createBridgeBeforeLastIndex(int idx, String UorD){
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for(int i = 0; i < idx; i++){
             if(bridge.get(i).equals(UorD))
-                result += "O | ";
+                result.append("O | ");
             if(!bridge.get(i).equals(UorD))
-                result += "  | ";
+                result.append("  | ");
         }
-        return result;
+        return result.toString();
     }
 
     private String createBridgeAtLastIndex(int idx, boolean lastIdxResult, String UorD){

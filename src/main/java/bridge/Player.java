@@ -28,8 +28,7 @@ public class Player {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        return bridge;
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private int getSize(){
@@ -47,9 +46,7 @@ public class Player {
         }catch (IllegalArgumentException illegalArgumentException){
             return false;
         }
-        if(Integer.parseInt(size) < MIN_BRIDGE_LENGTH || Integer.parseInt(size) > MAX_BRIDGE_LENGTH)
-            return false;
-        return true;
+        return Integer.parseInt(size) >= MIN_BRIDGE_LENGTH && Integer.parseInt(size) <= MAX_BRIDGE_LENGTH;
     }
 
     public int getNextIdx() {
@@ -67,10 +64,7 @@ public class Player {
     }
 
     private boolean isValidSpot(String nextSpot) {
-        if(nextSpot.equals(UP) || nextSpot.equals(DOWN))
-            return true;
-
-        return false;
+        return nextSpot.equals(UP) || nextSpot.equals(DOWN);
     }
 
     public int getCurrentPosition() {
@@ -86,9 +80,7 @@ public class Player {
     }
 
     private boolean isValidCommand(String command) {
-        if(command.equals(RETRY) || command.equals(QUIT))
-            return true;
-        return false;
+        return command.equals(RETRY) || command.equals(QUIT);
     }
 
     public void currentPositionReset(){
