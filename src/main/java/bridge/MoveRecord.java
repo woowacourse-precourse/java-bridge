@@ -12,11 +12,13 @@ public class MoveRecord {
     public void moveUP(int index, boolean canMove) {
         up.set(index, Move.findMove(canMove).getNumber());
         down.makeIndex(index);
+        down.reset(index);
     }
 
     public void moveDOWN(int index, boolean canMove) {
         down.set(index, Move.findMove(canMove).getNumber());
         up.makeIndex(index);
+        up.reset(index);
     }
 
     public String getString() {

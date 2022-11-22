@@ -11,9 +11,13 @@ public class Branch {
         branch = new ArrayList<>();
     }
 
-    public void set(int index, int bool) {
+    public void set(int index, int canMove) {
         makeIndex(index);
-        branch.set(index, bool);
+        branch.set(index, canMove);
+    }
+
+    public void reset(int index) {
+        branch.set(index, Move.NONE.getNumber());
     }
 
     public void makeIndex(int index) {
