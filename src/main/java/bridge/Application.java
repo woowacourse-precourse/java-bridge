@@ -1,8 +1,12 @@
 package bridge;
 
+import bridge.mediator.ConcreteControllerMediator;
+import bridge.mediator.ViewMediator;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        ViewMediator concreteMediator = new ConcreteControllerMediator();
+        concreteMediator.start();
     }
 }
