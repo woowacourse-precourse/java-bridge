@@ -21,9 +21,9 @@ public class InputView {
 
     public int setBridgeSize() {
         String bridgeSize = readBridgeSize();
-        int bridge = 0;
+        int bridge;
         try {
-            bridge = checkException(bridgeSize);
+            bridge = checkBridgeSize(bridgeSize);
             return bridge;
         } catch (NullPointerException NPE) {
             System.out.println("[ERROR] 값을 입력해주세요");
@@ -35,7 +35,7 @@ public class InputView {
         return 0;
     }
 
-    public int checkException(String bridgeSize) {
+    public int checkBridgeSize(String bridgeSize) {
         if (exception.isEmpty(bridgeSize)) {
             throw new NullPointerException("NPE");
         }
