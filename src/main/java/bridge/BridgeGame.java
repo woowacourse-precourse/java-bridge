@@ -1,23 +1,72 @@
 package bridge;
 
+import static utils.Constant.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    static List<String> upstairsBridge = new ArrayList<>();
+    static List<String> downstairsBridge = new ArrayList<>();
+    static List<String> triedAnswers = new ArrayList<>();
+
+    public void getUpstairsBridge (String direction, List<String> bridge, int numberOfTrying) {
+        int eachBridge = numberOfTrying - 1;
+        if (Objects.equals(direction, DOWN)) {
+            upstairsBridge.add(eachBridge, SPACE_BRIDGE);
+        }
+        if (Objects.equals(direction, bridge.get(eachBridge)) && Objects.equals(direction, UP)) {
+            upstairsBridge.add(eachBridge, RIGHT);
+        }
+        if (!Objects.equals(direction, bridge.get(eachBridge)) && Objects.equals(direction, UP)) {
+            upstairsBridge.add(eachBridge, WRONG);
+        }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public void getDownstairsBridge (String direction, List<String> bridge, int numberOfTrying) {
+        int eachBridge = numberOfTrying - 1;
+
+        if (Objects.equals(direction, UP)) {
+            downstairsBridge.add(eachBridge, SPACE_BRIDGE);
+        }
+        if (Objects.equals(direction, bridge.get(eachBridge)) && Objects.equals(direction, DOWN)) {
+            downstairsBridge.add(eachBridge, RIGHT);
+        }
+        if (!Objects.equals(direction, bridge.get(eachBridge))&& Objects.equals(direction, DOWN)) {
+            downstairsBridge.add(eachBridge, WRONG);
+        }
+    }
+
+    public void move(String direction, List<String> bridge, int numberOfTrying) {
+        getUpstairsBridge(direction, bridge, numberOfTrying);
+        getDownstairsBridge(direction, bridge, numberOfTrying);
+    }
+
+    public static boolean retry(String command) {
+        return !Objects.equals(command, QUIT);
+    }
+
+    public static int getTriedAnswerCount(String direction) {
+        triedAnswers.add(direction);
+        return triedAnswers.size();
+    }
+
+    public static void returnToPreviousStatus(List<String> upstairsBridge, List<String> downstairsBridge) {
+        upstairsBridge.remove(upstairsBridge.size()-1);
+        downstairsBridge.remove(downstairsBridge.size()-1);
+        triedAnswers.remove(triedAnswers.size()-1);
+    }
+
+    public static boolean checkWrongAnswer(List<String> upstairsBridge, List<String> downstairsBridge) {
+        return !upstairsBridge.contains(WRONG) && !downstairsBridge.contains(WRONG) && upstairsBridge.size() != 0;
+    }
+
+    public static boolean getGameCompleteStatus(List<String> upstairsBridge, List<String> downstairsBridge, int size) {
+        return (checkWrongAnswer(upstairsBridge, downstairsBridge) && upstairsBridge.size() >= size);
     }
 }
