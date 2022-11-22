@@ -11,33 +11,34 @@ public class InputViewValidator {
     private static final String COMMAND_ERROR = ERROR + RESTART + " 또는 " + QUIT + "를 입력해주세요.";
     private static final String NUMBER_FORMAT_ERROR = ERROR + "숫자를 입력해주세요.";
 
-    public String checkCommand(String command) {
+    public static void checkCommand(String command) {
         if (isWrongCommand(command)) {
             throw new IllegalArgumentException(COMMAND_ERROR);
         }
-        return command;
     }
 
-    public String checkMoving(String moving) {
+    public static void checkMoving(String moving) {
         if (isWrongMoving(moving)) {
             throw new IllegalArgumentException(MOVING_ERROR);
         }
-        return moving;
     }
 
-    public int checkNumberFormat(String number) {
+    public static void checkNumberFormat(String number) {
         try {
-            return Integer.parseInt(number);
+            Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_ERROR);
         }
     }
 
-    private boolean isWrongCommand(String command) {
+    private static boolean isWrongCommand(String command) {
         return !(command.equals(RESTART) || command.equals(QUIT));
     }
 
-    private boolean isWrongMoving(String moving) {
+    private static boolean isWrongMoving(String moving) {
         return !(moving.equals(UP) || moving.equals(DOWN));
+    }
+
+    private InputViewValidator() {
     }
 }
