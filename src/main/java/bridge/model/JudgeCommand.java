@@ -1,6 +1,8 @@
 package bridge.model;
 
-import bridge.view.InputView;
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.InputView;
 import java.util.List;
 
 public class JudgeCommand {

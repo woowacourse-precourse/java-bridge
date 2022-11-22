@@ -4,11 +4,9 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
-import bridge.model.BridgeMaker;
 import bridge.model.GameStatus;
 import bridge.model.JudgeCommand;
 import bridge.model.PresentBridgeMaker;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

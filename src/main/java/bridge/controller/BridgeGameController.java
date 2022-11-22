@@ -1,12 +1,11 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.BridgeGame;
-import bridge.model.BridgeMaker;
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
 import bridge.model.GameStatus;
 import bridge.model.PresentBridgeMaker;
-import bridge.view.OutputView;
-import java.util.List;
+import bridge.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -22,7 +21,7 @@ public class BridgeGameController {
         this.gameStatus = new GameStatus();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.presentBridgeMaker = new PresentBridgeMaker();
-        this.bridgeGame = new bridge.model.BridgeGame(gameStatus, bridgeMaker,
+        this.bridgeGame = new BridgeGame(gameStatus, bridgeMaker,
             presentBridgeMaker);
     }
 

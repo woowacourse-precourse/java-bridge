@@ -1,9 +1,10 @@
-package bridge.model;
+package bridge;
 
 import bridge.enums.MoveResults;
 import bridge.enums.ReverseCommands;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.model.GameStatus;
+import bridge.model.JudgeCommand;
+import bridge.model.PresentBridgeMaker;
 import java.util.HashMap;
 import java.util.List;
 
