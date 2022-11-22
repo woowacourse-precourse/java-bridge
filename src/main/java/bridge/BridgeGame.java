@@ -37,7 +37,7 @@ public class BridgeGame {
     }
 
     public boolean canExecute(int currentBlock) {
-        return currentBlock >= bridge.size();
+        return currentBlock < bridge.size();
     }
 
 }
