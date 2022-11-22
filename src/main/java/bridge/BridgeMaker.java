@@ -12,13 +12,27 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        if (bridgeNumberGenerator instanceof BridgeNumberGenerator) {
+            makeBridgeByBridgeNumberGenerator(size);
+        }
+        return bridge;
+    }
+
+    public void makeBridgeByBridgeNumberGenerator(int size) {
         bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
             makeBridgeBlock(randomNumber);
         }
-        System.out.println(bridge);
+    }
+
+    public List<String> makeBridgeByBridgeRandomNumberGenerator(int size) {
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
+            makeBridgeBlock(randomNumber);
+        }
         return bridge;
     }
 
