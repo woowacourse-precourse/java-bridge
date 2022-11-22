@@ -1,10 +1,7 @@
 package bridge;
 
-import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameRepository;
-import bridge.domain.generator.BridgeMaker;
-import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.domain.vo.BridgeSize;
 import bridge.dto.GameResult;
 import bridge.dto.MoveResult;

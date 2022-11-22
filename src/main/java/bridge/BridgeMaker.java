@@ -1,4 +1,4 @@
-package bridge.domain.generator;
+package bridge;
 
 import static bridge.domain.vo.MoveCommand.MOVE_TO_LOWER_BLOCK;
 import static bridge.domain.vo.MoveCommand.MOVE_TO_UPPER_BLOCK;

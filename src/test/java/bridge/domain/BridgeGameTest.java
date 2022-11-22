@@ -2,7 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.generator.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.vo.BridgeSize;
 import bridge.domain.vo.MoveCommand;
 import bridge.domain.vo.RetryCommand;
