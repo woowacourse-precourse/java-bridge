@@ -22,11 +22,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> upBridge, List<String> downBridge) {
-        printInFormat(upBridge);
-        printInFormat(downBridge);
+        printBridgeInFormat(upBridge);
+        printBridgeInFormat(downBridge);
     }
 
-    public void printInFormat(List<String> ox) {
+    public void printBridgeInFormat(List<String> ox) {
         System.out.print(BRIDGE_OPEN);
         for (int i = 0; i < ox.size(); i++) {
             System.out.print(ox.get(i));
