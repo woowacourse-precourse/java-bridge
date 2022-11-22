@@ -25,24 +25,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public List<String> readBridgeSize() { // TODO: 입력값 유효성 검사를 어디서 할까???
-        try {
             return maker.makeBridge(of(input()).getBridgeSize());
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return readBridgeSize();
-        }
     } // TODO: 입력값 예외처리
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        try {
             return Move.of(input()).getMove();
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return readMoving();
-        }
     }
 
     /**

@@ -29,6 +29,7 @@ public class Controller {
 7. printResult()
      */
     public void startGame() { //다리 게임 시작
+        out.printMessage(START_MESSAGE);
         createBridge(); //다리 생성
         while(game.keepGoingGame()) { //사용자 문자가 "R"인가?
             moveBridge();   // 움직이기
@@ -46,17 +47,26 @@ public class Controller {
 
 
     public void createBridge() {
-        out.printMessage(START_MESSAGE);
-        out.printMessage(INPUT_BRIDGE_MESSAGE);
-        game.createBridge(input.readBridgeSize());
-        game.createBridgeMap();
-        game.createPlayer();
-        game.createCount();
+        try {
+            out.printMessage(INPUT_BRIDGE_MESSAGE);
+            game.createBridge(input.readBridgeSize());
+            game.createBridgeMap();
+            game.createPlayer();
+            game.createCount();
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            createBridge();
+        }
     }
 
     public void moveBridge() {
-        out.printMessage(INPUT_MOVE_MESSAGE);
-        game.move(input.readMoving());
+        try {
+            out.printMessage(INPUT_MOVE_MESSAGE);
+            game.move(input.readMoving());
+        }catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            moveBridge();
+        }
     }
 
     public void printState() { // TODO: Refactoring Service 계층에서 변환하여 전달해주자
@@ -64,8 +74,14 @@ public class Controller {
     }
 
     public void retry() {
-        out.printMessage(INPUT_RETRY_MESSAGE);
-        game.retry(input.readGameCommand());
+        try {
+            out.printMessage(INPUT_RETRY_MESSAGE);
+            game.retry(input.readGameCommand());
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            retry();
+        }
+
     }
     public void success() {
         game.success();
