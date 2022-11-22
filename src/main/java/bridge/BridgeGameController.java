@@ -43,5 +43,7 @@ public class BridgeGameController {
         outputView.printResult(this,bridgeGame,true);
         return true;
     }
-
+    public int getTryCount() {
+        return tryCount;
+    }
 }
