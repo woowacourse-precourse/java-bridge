@@ -42,7 +42,7 @@ public class BridgeGameController {
             String moveUpOrDown = choiceMove();
             boolean pass = bridgeGame.isPass(moveUpOrDown);
             printMap(bridgeGame.getLocation(), pass, moveUpOrDown);
-            runPassOrFailCase(pass, bridgeGame, user);
+            checkPassOrFailCase(pass, bridgeGame, user);
             isArriveByEnd(bridgeGame, user);
         }
         printResult(user);
@@ -64,7 +64,7 @@ public class BridgeGameController {
         }
     }
 
-    private void runPassOrFailCase(boolean pass, BridgeGame bridgeGame, User user) {
+    private void checkPassOrFailCase(boolean pass, BridgeGame bridgeGame, User user) {
         if (pass) {
             runPassCase(bridgeGame);
         }
