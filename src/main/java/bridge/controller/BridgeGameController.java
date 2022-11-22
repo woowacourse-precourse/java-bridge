@@ -38,19 +38,19 @@ public class BridgeGameController {
 
     private void progress() {
         while (bridgeGameService.success() && !bridgeGameService.isComplete()) {
-            moveAndPrint();
+            move();
+            OutputView.printMap(bridgeGameService.getBridge(), bridgeGameService.getResult());
         }
         if (!bridgeGameService.isComplete()) retry();
     }
 
-    private void moveAndPrint() {
+    private void move() {
         try {
             String command = getMovingCommand();
             bridgeGameService.startOneRound(command);
-            OutputView.printMap(bridgeGameService.getBridge(), bridgeGameService.getResult());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            moveAndPrint();
+            move();
         }
     }
 
