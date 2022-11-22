@@ -54,7 +54,14 @@ public class BridgeGame {
     }
 
     public ProcessCondition selectRetryOrQuit(String gameCommand) {
-        return GameStatus.getGameStatusByGameCommand(gameCommand);
+        try {
+            return GameStatus.getGameStatusByGameCommand(gameCommand);
+        } catch (InvalidInputException e) {
+            ExceptionHandler.handle(e);
+            return null;
+        } catch (Exception e) {
+            throw new CommonException(Error.FAIL, "재시작/종료 선택");
+        }
     }
 
     public ProcessCondition retry() {
