@@ -64,21 +64,30 @@ public class OutputView {
     private void parseDirection(String dir) {
         if (dir.equals(BridgeMoveCommand.MOVE_UP.command)) {
             upperBridge.add(BRIDGE_PASS);
+            lowerBridge.add(" ");
             return;
         }
         lowerBridge.add(BRIDGE_PASS);
+        upperBridge.add(" ");
     }
 
     private void parseLastDirection(String dir, BridgeGameStstus status) {
-        String passOrFail = BRIDGE_PASS;
-        if (status == BridgeGameStstus.FAIL) {
-            passOrFail = BRIDGE_FAIL;
-        }
+        String passOrFail = getPassOrFail(status);
+
         if (dir.equals(BridgeMoveCommand.MOVE_UP.command)) {
             upperBridge.add(passOrFail);
+            lowerBridge.add(" ");
             return;
         }
         lowerBridge.add(passOrFail);
+        upperBridge.add(" ");
+    }
+
+    private String getPassOrFail(BridgeGameStstus status){
+        if (status == BridgeGameStstus.FAIL) {
+            return BRIDGE_FAIL;
+        }
+        return BRIDGE_PASS;
     }
 
     private void completeBridgeMap() {
