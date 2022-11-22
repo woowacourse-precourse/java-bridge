@@ -19,7 +19,7 @@ public class playGame {
     BridgeException bridgeException = new BridgeException();
     boolean gameContinue = true;
     boolean gameCheck = true;
-    boolean playGame=true;
+    boolean playGame = true;
 
     BridgeGameResult bridgeGameResult;
 
@@ -30,20 +30,23 @@ public class playGame {
         }
         bridge.setBridge(bridgeMaker.makeBridge(bridgeGame.getBridgeSize()));
     }
+
     public void play() {
         setPlayGame();
         while (playGame) {
             bridgeGame.initializeUserMove();
-            gameContinue=true;
-            gameCheck=true;
-            playGame=gamePlay();
+            gameContinue = true;
+            gameCheck = true;
+            playGame = gamePlay();
         }
     }
+
     boolean keepGamePlay() {
         bridgeGameResult = new BridgeGameResult(bridge.getBridge(), bridgeGame.getMoveList());
         output.printMap(bridgeGameResult.getList());
         return checkResult();
     }
+
     boolean checkResult() {
         if (bridgeException.checkFail(bridgeGameResult.getList()) == true) {
             return false;
@@ -54,6 +57,7 @@ public class playGame {
         }
         return true;
     }
+
     boolean gamePlay() {
         while (gameCheck) {
             output.printSelectMove();
@@ -63,6 +67,7 @@ public class playGame {
         }
         return endGame();
     }
+
     boolean endGame() {
         if (gameContinue == true) {
             output.printReStart();
