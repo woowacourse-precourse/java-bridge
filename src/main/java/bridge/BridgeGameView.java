@@ -29,4 +29,15 @@ public class BridgeGameView {
         }
     }
 
+    public String readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 재시도 여부는 R 또는 Q로 입력해주세요.");
+            return readGameCommand();
+        }
+    }
+
 }
