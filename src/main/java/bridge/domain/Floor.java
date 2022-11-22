@@ -23,4 +23,5 @@ public class Floor {
         validateCommand(input);
         return this.command.equals(input);
     }
+    
 }

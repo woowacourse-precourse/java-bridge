@@ -5,6 +5,7 @@ import java.util.Arrays;
 import static bridge.utils.message.ErrorMessage.INVALID_INPUT_VALUE;
 
 public enum MoveCommand {
+
     COMMAND_UP("U", 1),
     COMMAND_DOWN("D", 0);
 
@@ -33,4 +34,5 @@ public enum MoveCommand {
     public boolean equals(String input) {
         return this.command.equals(input);
     }
+    
 }

@@ -3,6 +3,7 @@ package bridge.utils.command;
 import java.util.Arrays;
 
 public enum GameCommand {
+
     COMMAND_RESTART("R"),
     COMMAND_QUIT("Q");
 
@@ -24,4 +25,5 @@ public enum GameCommand {
     public boolean equals(String input) {
         return this.command.equals(input);
     }
+    
 }

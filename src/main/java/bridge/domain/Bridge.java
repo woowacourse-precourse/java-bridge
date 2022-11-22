@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bridge {
-    
+
     private final List<Floor> floors;
 
     public Bridge(List<String> floors) {
@@ -21,4 +21,5 @@ public class Bridge {
     public int size() {
         return floors.size();
     }
+
 }

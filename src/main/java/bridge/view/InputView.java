@@ -11,16 +11,10 @@ import java.util.regex.Pattern;
 import static bridge.utils.message.ErrorMessage.*;
 import static bridge.utils.message.GameMessage.*;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
     private static final String REGEX_NOT_NUMBER = "\\D";
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
         String input = Console.readLine();
@@ -50,9 +44,6 @@ public class InputView {
         return matcher.find();
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         System.out.println(INPUT_MOVE_COMMAND);
         String input = Console.readLine();
@@ -71,9 +62,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         System.out.println(INPUT_GAME_COMMAND);
         String input = Console.readLine();
@@ -92,4 +80,5 @@ public class InputView {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND.getMessage());
         }
     }
+
 }

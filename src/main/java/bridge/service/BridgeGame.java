@@ -13,6 +13,7 @@ import static bridge.utils.status.GameStatus.*;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    
     private final BridgeLogger logger;
     private GameStatus status = PLAYING;
     private int tryCount = 1;
@@ -69,4 +70,5 @@ public class BridgeGame {
     public String getResultMap() {
         return logger.toString();
     }
+
 }

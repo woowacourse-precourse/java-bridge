@@ -1,6 +1,7 @@
 package bridge.utils.status;
 
 public enum GameStatus {
+
     WIN("성공"),
     LOSE("실패"),
     PLAYING("진행중");
@@ -19,4 +20,5 @@ public enum GameStatus {
     public String toString() {
         return this.getMessage();
     }
+    
 }

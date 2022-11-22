@@ -67,5 +67,4 @@ public class GameController {
         return LOSE.equals(bridgeGame.getStatus());
     }
 
-
 }

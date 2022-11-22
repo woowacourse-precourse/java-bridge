@@ -5,6 +5,7 @@ import bridge.utils.command.MoveCommand;
 import static bridge.utils.message.ErrorMessage.INVALID_MOVING_COMMAND;
 
 public class User {
+    
     private int step = 0;
     private boolean live = true;
 
@@ -35,4 +36,5 @@ public class User {
     public boolean isLive() {
         return this.live;
     }
+
 }
