@@ -7,6 +7,8 @@ import java.util.Map;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     private final Player player;
     private Bridge bridge;
@@ -63,8 +65,8 @@ public class BridgeGame {
 
     public Map<String, String> lastBridgeMap(int currentPosition, boolean result){
         Map<String, String> ret = new HashMap<>();
-        ret.put("U", bridge.getUpLineResult(currentPosition, result));
-        ret.put("D", bridge.getDownLineResult(currentPosition, result));
+        ret.put(UP, bridge.getUpLineResult(currentPosition, result));
+        ret.put(DOWN, bridge.getDownLineResult(currentPosition, result));
         return ret;
     }
 }

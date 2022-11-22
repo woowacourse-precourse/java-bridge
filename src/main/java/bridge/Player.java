@@ -4,6 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 public class Player {
+    private static final String BRIDGE_LENGTH_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String DIRECTION_ERROR_MESSAGE = "[ERROR] 이동할 칸은 U 또는 D여야 합니다.";
+    private static final String COMMAND_ERROR_MESSAGE = "[ERROR] 재시도를 위해서는 R 그리고 종료를 위해서는 Q를 입력하여야 합니다.";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+    private static final int MIN_BRIDGE_LENGTH = 3;
+    private static final int MAX_BRIDGE_LENGTH = 20;
+
 
     private int currentPosition = -1;
     public boolean success = false;
@@ -25,7 +35,7 @@ public class Player {
     private int getSize(){
         String size = inputView.readBridgeSize();
         if(!isValidateSize(size)){
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(BRIDGE_LENGTH_ERROR_MESSAGE);
         }
 
         return Integer.parseInt(size);
@@ -37,7 +47,7 @@ public class Player {
         }catch (IllegalArgumentException illegalArgumentException){
             return false;
         }
-        if(Integer.parseInt(size) < 3 || Integer.parseInt(size) > 20)
+        if(Integer.parseInt(size) < MIN_BRIDGE_LENGTH || Integer.parseInt(size) > MAX_BRIDGE_LENGTH)
             return false;
         return true;
     }
@@ -50,14 +60,14 @@ public class Player {
     public String getNextSpot(){
         String nextSpot = inputView.readMoving();
         if(!isValidSpot(nextSpot)){
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.");
+            throw new IllegalArgumentException(DIRECTION_ERROR_MESSAGE);
         }
 
         return nextSpot;
     }
 
     private boolean isValidSpot(String nextSpot) {
-        if(nextSpot.equals("U") || nextSpot.equals("D"))
+        if(nextSpot.equals(UP) || nextSpot.equals(DOWN))
             return true;
 
         return false;
@@ -70,13 +80,13 @@ public class Player {
     public boolean retry() {
         String command = inputView.readGameCommand();
         if(!isValidCommand(command)){
-            throw new IllegalArgumentException("[ERROR] 재시도를 위해서는 R 그리고 종료를 위해서는 Q를 입력하여야 합니다.");
+            throw new IllegalArgumentException(COMMAND_ERROR_MESSAGE);
         }
-        return command.equals("R");
+        return command.equals(RETRY);
     }
 
     private boolean isValidCommand(String command) {
-        if(command.equals("R") || command.equals("Q"))
+        if(command.equals(RETRY) || command.equals(QUIT))
             return true;
         return false;
     }

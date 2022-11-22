@@ -7,6 +7,9 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    private static final String GENERATOR_ERROR = "[ERROR] 랜덤 생성기가 제대로 작동하지 않습니다.";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -29,11 +32,11 @@ public class BridgeMaker {
     public String createRandomNumber(){
         int randomNumber = bridgeNumberGenerator.generate();
         if(randomNumber == 1){
-            return "U";
+            return UP;
         }
         if(randomNumber == 0){
-            return "D";
+            return DOWN;
         }
-        throw new IllegalArgumentException("[ERROR] 랜덤 생성기가 제대로 작동하지 않습니다.");
+        throw new IllegalArgumentException(GENERATOR_ERROR);
     }
 }

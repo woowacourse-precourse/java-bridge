@@ -3,14 +3,13 @@ package bridge;
 import java.util.List;
 
 public class Bridge {
+    private static final String UP = "U";
+    private static final String DOWN = "D";
     private final List<String> bridge;
     private final OutputView outputView = new OutputView();
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
-        for(String i : bridge){
-            System.out.print(i + " ");
-        }
     }
 
     public boolean isCorrectSpot(int checkIdx, String spot){
@@ -23,16 +22,16 @@ public class Bridge {
 
     public String getUpLineResult(int idx, boolean lastIdxResult){
         String result = "";
-        result += createBridgeBeforeLastIndex(idx, "U");
-        result += createBridgeAtLastIndex(idx, lastIdxResult, "U");
+        result += createBridgeBeforeLastIndex(idx, UP);
+        result += createBridgeAtLastIndex(idx, lastIdxResult, UP);
 
         return result;
     }
 
     public String getDownLineResult(int idx, boolean lastIdxResult){
         String result = "";
-        result += createBridgeBeforeLastIndex(idx, "D");
-        result += createBridgeAtLastIndex(idx, lastIdxResult, "D");
+        result += createBridgeBeforeLastIndex(idx, DOWN);
+        result += createBridgeAtLastIndex(idx, lastIdxResult, DOWN);
 
         return result;
     }
