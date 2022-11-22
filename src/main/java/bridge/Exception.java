@@ -3,12 +3,28 @@ package bridge;
 
 public class Exception {
 
-    public static int lengthrangeException(int input) {
-        if (input > 20 || input < 3) {
+    public static int validateBridgeSize(String input) {
+        if (validateInputtype(input) || validateInputrange(input)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
-        return input;
+        return Integer.parseInt(input);
     }
+
+    private static boolean validateInputtype(String input) {
+        if (input.matches("^[a-zA-Z]*$")) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean validateInputrange(String input) {
+        int bridgeSize = Integer.parseInt(input);
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            return true;
+        }
+        return false;
+    }
+
 
     public static String validateMoving(String input) {
         if (input.matches("[^UD]")) {
