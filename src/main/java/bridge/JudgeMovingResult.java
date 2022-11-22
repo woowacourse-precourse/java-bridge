@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class JudgeMovingResult {
 
     private final String POSSIBLE = "O";
@@ -10,5 +13,15 @@ public class JudgeMovingResult {
             return POSSIBLE;
         }
         return IMPOSSIBLE;
+    }
+
+    public Map<String, String> recordMoving(String moving, String result) {
+        Map<String, String> movingRecord = new LinkedHashMap<>();
+
+        for (BridgeDirection direction : BridgeDirection.values()) {
+            movingRecord.put(direction.getDirection(), " ");
+        }
+        movingRecord.replace(moving, result);
+        return movingRecord;
     }
 }
