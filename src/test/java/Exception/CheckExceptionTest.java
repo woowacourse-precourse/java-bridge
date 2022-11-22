@@ -26,4 +26,12 @@ class CheckExceptionTest {
 
     }
 
+    @DisplayName("이동할 칸을 입력했을 때 대문자 D와 U가 아니면 예외 발생")
+    @ValueSource(strings = {"d", "u", "1"})
+    @ParameterizedTest
+    void inputMovingByInvaidValue(String movig) {
+        assertThatThrownBy(() -> CheckException.movingException(movig))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
