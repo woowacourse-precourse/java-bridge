@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import static bridge.constant.MessageConstant.MESSAGE_OUTPUT_START;
 

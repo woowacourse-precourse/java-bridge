@@ -1,4 +1,4 @@
-package bridge;
+package bridge.vallidation;
 
 import java.util.Objects;
 

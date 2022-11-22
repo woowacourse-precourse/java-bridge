@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.vallidation.InputViewValidation;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.constant.MessageConstant.*;
