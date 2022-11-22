@@ -60,4 +60,10 @@ public class Result {
     public int getCurrent() {
         return results[0].size();
     }
+
+    public void clear() {
+        for (List<String> result : results) {
+            result.clear();
+        }
+    }
 }
