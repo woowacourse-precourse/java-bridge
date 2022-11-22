@@ -11,9 +11,7 @@ public class BridgeGame {
     private static int totalTrial = 1;
     private static Direction direction;
     public static boolean valueError = false;
-    private final List<String> moveCandidate = Arrays.asList("U", "D");
-    private final List<String> decisionCandidate = Arrays.asList("R", "Q");
-    private final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
+    private final String RETRY = "R";
     private final String QUIT = "Q";
     private static final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
     public void move(String input) {
@@ -33,6 +31,7 @@ public class BridgeGame {
     }
 
     public void retry(Bridge bridge, String command) {
+        valueError = false;
         try {
             checkCommandValidity(command);
         } catch (IllegalArgumentException e) {
@@ -45,7 +44,8 @@ public class BridgeGame {
     }
 
     private void checkCommandValidity(String word) {
-        if (!decisionCandidate.contains(word)) {
+        if (!word.equals(RETRY)
+                && !word.equals(QUIT)) {
             valueError = true;
             throw new IllegalArgumentException(ERROR_INVALID_INPUT);
         }
