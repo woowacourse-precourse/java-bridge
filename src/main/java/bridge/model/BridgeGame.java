@@ -38,7 +38,7 @@ public class BridgeGame {
     }
 
     public boolean failCheck(){
-        return result.contains(List.of(Bridgelocation.UPX, Bridgelocation.DOWNX));
+        return result.contains(Bridgelocation.UPX.getBridge()) || result.contains(Bridgelocation.DOWNX.getBridge());
     }
 
 
