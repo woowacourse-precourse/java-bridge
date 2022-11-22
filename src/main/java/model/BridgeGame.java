@@ -1,7 +1,5 @@
 package model;
 
-import view.InputView;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +7,9 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private static final String BRIDGE_CHECK = "U";
+    private static final String GAME_RETRY = "R";
 
     private HashMap<Integer, Boolean> upBridge = new HashMap<>();
     private HashMap<Integer, Boolean> downBridge = new HashMap<>();
@@ -20,22 +21,25 @@ public class BridgeGame {
      */
     public Boolean move(List<String> crossAble, int turn, String move) {
         Boolean matchResult = crossAble.get(turn).equals(move);
-        store(matchResult, move, turn);
+        if(move.equals(BRIDGE_CHECK)){
+            upBridgeStore(matchResult, turn);
+            return matchResult;
+        }
+        downBridgeStore(matchResult, turn);
         return matchResult;
     }
 
-    public void store(Boolean match, String move, int turn) {
-        if (move.equals("U")) {
-            upBridge.put(turn, match);
-            if(!downBridge.containsKey(turn)){
-                downBridge.put(turn, null);
-            }
+    private void upBridgeStore(Boolean match, int turn) {
+        upBridge.put(turn, match);
+        if (!downBridge.containsKey(turn)) {
+            downBridge.put(turn, null);
         }
-        if (move.equals("D")) {
-            downBridge.put(turn, match);
-            if(!upBridge.containsKey(turn)){
-                upBridge.put(turn, null);
-            }
+    }
+
+    private void downBridgeStore(Boolean match, int turn) {
+        downBridge.put(turn, match);
+        if (!upBridge.containsKey(turn)) {
+            upBridge.put(turn, null);
         }
     }
 
@@ -53,6 +57,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Boolean retry(String gameCommand) {
-        return gameCommand.equals("R");
+        return gameCommand.equals(GAME_RETRY);
     }
 }
