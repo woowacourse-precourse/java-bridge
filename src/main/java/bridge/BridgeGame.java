@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.GameCommand;
+import bridge.constant.GameResult;
 import bridge.constant.Move;
 import bridge.data.MoveResult;
 import bridge.exception.GameExceptionHandler;
@@ -79,16 +81,23 @@ public class BridgeGame {
     }
 
     public int runAttempt(List<String> bridge, List<MoveResult> moveResults) {
-        int count = -1;
+        int correctMoveCount = -1;
         boolean isCorrectMove = true;
-        while (isCorrectMove && ++count < bridge.size()) {
-            String correctMove = bridge.get(count);
+        while (isCorrectMove && ++correctMoveCount < bridge.size()) {
+            String correctMove = bridge.get(correctMoveCount);
             isCorrectMove = isUserMoveCorrect(correctMove, move());
             updateMoveResults(moveResults, correctMove, isCorrectMove);
             resultDemonstrator.printCurrentResult(moveResults);
         }
 
-        return count;
+        return correctMoveCount;
+    }
+
+    public GameResult getFinalResultOrNull(int correctMoveCount, List<String> bridge) {
+        if (correctMoveCount == bridge.size()) {
+            return GameResult.SUCCESS;
+        }
+        return null;
     }
 
     public boolean isUserMoveCorrect(String correctMove, String userMove) {
