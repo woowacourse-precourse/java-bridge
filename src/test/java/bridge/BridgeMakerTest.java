@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.domain.BridgeMaker;
 import bridge.utils.BridgeRandomNumberGenerator;
