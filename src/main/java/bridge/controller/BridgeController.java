@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.model.Bridge;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
@@ -15,7 +16,8 @@ public class BridgeController {
     public static List<List<String>> upAndDown = new ArrayList<>();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    private static final BridgeGame bridgeGame = new BridgeGame();
+    private static BridgeGame bridgeGame = new BridgeGame();
+    public static int inputSize;
     private static List<String> bridges;
     private static Boolean trueOrFalse = true;
     private static int attempts = 0;
@@ -23,9 +25,13 @@ public class BridgeController {
     private static List<String> upFloor = new ArrayList<>();
     private static List<String> downFloor = new ArrayList<>();
 
+//    public BridgeController() {
+//        this.bridgeGame = new BridgeGame(bridges);
+//    }
+
     public void init() {
 
-        int inputSize = getBridgeSize();
+        inputSize = getBridgeSize();
         bridges = makeRandomBridges(inputSize);
 
         while (trueOrFalse) {
@@ -68,7 +74,7 @@ public class BridgeController {
 
     private int startGame(int inputSize, int lengthOfBridge) {
         while (lengthOfBridge < inputSize) {
-            String inputMoving = inputView.readMoving();
+            String inputMoving = getInputMoving();
             lengthOfBridge = bridgeGame.move(bridges, lengthOfBridge, inputMoving);
 
             List<String> toStringBridges = new ArrayList<>();
@@ -77,6 +83,16 @@ public class BridgeController {
             lengthOfBridge++;
         }
         return lengthOfBridge;
+    }
+
+    private String getInputMoving() {
+
+        String inputMoving = inputView.readMoving();
+
+        if (!inputMoving.equals("U") && !inputMoving.equals("D")) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_MOVING_COMMAND.getExceptionMessage());
+        }
+        return inputMoving;
     }
 
     private static void addforBridges(List<String> toStringBridges) {
@@ -95,8 +111,8 @@ public class BridgeController {
     }
 
     private static String getSuccessOrFail() {
-        String startOrEnd = inputView.readGameCommand();
-        return bridgeGame.retry(startOrEnd);
+        String restartOrEnd = inputView.readGameCommand();
+        return bridgeGame.retry(restartOrEnd);
     }
 
     private boolean getFalse() {

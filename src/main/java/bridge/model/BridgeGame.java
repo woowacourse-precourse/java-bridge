@@ -6,8 +6,14 @@ import static bridge.controller.BridgeController.upAndDown;
 
 public class BridgeGame {
 
-    public int move(List<String> bridges, int count, String inputMoving) {
+    private final UserInput userInput;
 
+    public BridgeGame() {
+        this.userInput = new UserInput();
+    }
+
+    public int move(List<String> bridges, int count, String inputMoving) {
+        userInput.validateInputMoving(inputMoving);
         if (inputMoving.equals("U") && bridges.get(count).equals("U")) {
             isUAndU();
             return count;
@@ -62,8 +68,9 @@ public class BridgeGame {
         upAndDown.get(1).add("|");
     }
 
-    public String retry(String startOrEnd) {
-        if (startOrEnd.equals("Q")) {
+    public String retry(String restartOrEnd) {
+        userInput.validateRestartOrEnd(restartOrEnd);
+        if (restartOrEnd.equals("Q")) {
             return "실패";
         }
         return "";
