@@ -1,5 +1,7 @@
 package bridge.validator;
 
+import bridge.common.exception.InvalidBridgeSizeException;
+
 public class BridgeSizeValidator {
 	public static void validate(final String input) {
 		validateNullOrEmpty(input);
@@ -16,8 +18,8 @@ public class BridgeSizeValidator {
 	}
 
 	private static void validateRange(final int bridgeSize) {
-		if(bridgeSize < 3 || bridgeSize > 20) {
-			//throw new InvalidBridgeSizeException();
+		if (bridgeSize < 3 || bridgeSize > 20) {
+			throw new InvalidBridgeSizeException();
 		}
 	}
 }

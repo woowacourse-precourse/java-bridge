@@ -11,7 +11,7 @@ public class BridgeController {
 		BridgeGame bridgeGame = initializeBridgeGame();
 		playBridgeGame(bridgeGame);
 		printFinalMap();
-
+		printPlayedInfo(bridgeGame);
 	}
 
 	private void printBridgeGameStart() {
@@ -75,5 +75,12 @@ public class BridgeController {
 	private void printFinalMap() {
 		OutputView.printFinalGameResult();
 		OutputView.printMap(BridgeGameResult.getMoveCount());
+	}
+
+	private void printPlayedInfo(BridgeGame bridgeGame) {
+		String whetherGameSuccess = bridgeGame.getFinalGameStatus();
+		int totalTryCount = bridgeGame.getTotalTryCount();
+
+		OutputView.printResult(whetherGameSuccess, totalTryCount);
 	}
 }

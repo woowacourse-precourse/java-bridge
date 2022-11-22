@@ -11,7 +11,8 @@ public class OutputView {
 	private static final String INPUT_MOVING_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요." + " 위: U, 아래: D";
 	private static final String WHETHER_RESTART_OR_NOT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 	private static final String FINAL_GAME_RESULT = "최종 게임 결과";
-
+	private static final String GAME_SUCCESS_OR_FAIL_MESSAGE = "게임 성공 여부: ";
+	private static final String TOTAL_COUNT_MESSAGE = "총 시도한 횟수: ";
 	private static final String BLANK = "\n";
 
 	public static void printBridgeGameStart() {
@@ -89,6 +90,16 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printResult() {
+	public static void printResult(final String whetherGameSuccess, final int totalTryCount) {
+		printSuccessOrNot(whetherGameSuccess);
+		printTotalTryCount(totalTryCount);
+	}
+
+	private static void printSuccessOrNot(String whetherGameSuccess) {
+		System.out.println(GAME_SUCCESS_OR_FAIL_MESSAGE + whetherGameSuccess);
+	}
+
+	private static void printTotalTryCount(int totalTryCount) {
+		System.out.println(TOTAL_COUNT_MESSAGE + totalTryCount);
 	}
 }

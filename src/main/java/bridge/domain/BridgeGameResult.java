@@ -51,4 +51,30 @@ public class BridgeGameResult {
 		return downGameResult.get(index);
 	}
 
+	public static boolean isGameProcessing() {
+		return bridgeGameStatus == BridgeGameStatus.GAME_PROCESSING;
+	}
+
+	public static boolean isGameFailed() {
+		return bridgeGameStatus == BridgeGameStatus.GAME_FAILED;
+	}
+
+	public static boolean isGameEnd() {
+		return bridgeGameStatus == BridgeGameStatus.GAME_SUCCESS || bridgeGameStatus == BridgeGameStatus.GAME_FAILED;
+	}
+
+	public static void resetResult() {
+		upGameResult.clear();
+		downGameResult.clear();
+		moveCount = 0;
+		successfulMoveCount = 0;
+	}
+
+	public static void changeGameStatusToProcessing() {
+		bridgeGameStatus = BridgeGameStatus.GAME_PROCESSING;
+	}
+
+	public static String getFinalGameStatus() {
+		return bridgeGameStatus.getStatus();
+	}
 }
