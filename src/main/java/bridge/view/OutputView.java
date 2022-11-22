@@ -25,39 +25,18 @@ public class OutputView {
      */
     public void printMap(Bridge bridge) {
         makeUpDownList(bridge);
-        System.out.println(String.join("",upList)); // 위 다리
-        System.out.println(String.join("",downList)); // 아래 다리
+        System.out.println("[ " + String.join(" | ",upList) + " ]");
+        System.out.print("[ " + String.join(" | ",downList) + " ]");
         System.out.println();
+
     }
 
     private void makeUpDownList(Bridge bridge) {
         upList = new ArrayList<>();
         downList = new ArrayList<>();
-        addSign("[ ");
-        appendBridgeInfo(bridge.getBridgeSpaces().get(0)); // 처음꺼는 무조건 필요 !
-        for (int idx= 1; idx < bridge.getBridgeSpaces().size(); idx++) {
-            if (bridge.getBridgeSpaces().get(idx).getMyMoved() == Moved.NOTYET) break;
-            addSign(" | ");
-            appendBridgeInfo(bridge.getBridgeSpaces().get(idx));
-        }
-        addSign(" ]");
+        bridge.getMapfromBridge(upList,downList);
     }
 
-    private void addSign(String s) {
-        upList.add(s);
-        downList.add(s);
-    }
-
-    private void appendBridgeInfo(BridgeSpace bridgeSpace) {
-        if ((bridgeSpace.getUpOrDown().equals("U") && bridgeSpace.getMyMoved() == Moved.CAN)
-                || (bridgeSpace.getUpOrDown().equals("D") && bridgeSpace.getMyMoved() == Moved.CANT) ) {
-            upList.add(bridgeSpace.getMyMoved().getoOrX());
-            downList.add(" ");
-            return;
-        }
-        upList.add(" ");
-        downList.add(bridgeSpace.getMyMoved().getoOrX());
-    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

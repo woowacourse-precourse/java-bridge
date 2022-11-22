@@ -20,4 +20,19 @@ public class Bridge {
         return bridgeSpaces;
     }
 
+    public void getMapfromBridge(List<String> upList, List<String> downList) {
+        bridgeSpaces.forEach(space -> {
+            if ((space.getMyMoved() == Moved.NOTYET)) {
+                return;
+            }
+            if ((space.getUpOrDown().equals("U") && space.getMyMoved() == Moved.CAN) || (space.getUpOrDown().equals("D") && space.getMyMoved() == Moved.CANT)) {
+                upList.add(space.getMyMoved().getoOrX());
+                downList.add(" ");
+                return;
+            }
+            upList.add(" ");
+            downList.add(space.getMyMoved().getoOrX());
+        });
+    }
+
 }
