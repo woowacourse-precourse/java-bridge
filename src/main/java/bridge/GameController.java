@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.View.InputView;
+import bridge.View.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,14 +38,6 @@ public class GameController {
     }
 
 
-    public String RetryorExit() {
-        String position = inputView().readMoving();
-        if (BridgeGame().move(position, Bridge(), count).equals("call")) {
-            return BridgeGame().retry(inputView().readGameCommand());
-        }
-        return "End";
-    }
-
     public void total_print() {
         if (BridgeGame.game_status.equals("End")) {
             outputView().printResult(round_count, "실패");
@@ -52,7 +47,7 @@ public class GameController {
         }
     }
 
-    public String movecheck() {
+    public String retrycheck() {
         String get = BridgeGame().retry(inputView().readGameCommand());
         if (get.equals("playing")) {
             count = 0;
@@ -71,7 +66,7 @@ public class GameController {
         while (BridgeGame.game_status.equals("playing") && Bridge().size() != count) {
             String position = inputView().readMoving();
             if (BridgeGame().move(position, Bridge(), count).equals("call")) {
-                if (movecheck().equals("continue")) {
+                if (retrycheck().equals("continue")) {
                     continue;
                 }
             }

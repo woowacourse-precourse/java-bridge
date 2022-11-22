@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class BridgeGame {
     public static String game_status = "playing";
-    private boolean status;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -16,31 +15,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String inputPosition, List<String> bridge, int count) {
-        status = inputPosition.equals(bridge.get(count));
-        if (inputPosition.equals("U")) {
-            if(inputPosition.equals(bridge.get(count))) {
-                Positions.set_positions("O", " ");
-                return "pass";
-            }
-            if (!inputPosition.equals(bridge.get(count))) {
-                Positions.set_positions("X", " ");
-                game_status = "END";
-                return "call";
-            }
-        }
-        if (inputPosition.equals("D")) {
-            if (inputPosition.equals(bridge.get(count))) {
-                Positions.set_positions(" ", "O");
-                return "pass";
-            }
-            if (!inputPosition.equals(bridge.get(count))) {
-                Positions.set_positions(" ", "X");
-                game_status = "END";
-                return "call";
-            }
-        }
-        return "pass";
+        boolean status = inputPosition.equals(bridge.get(count));
+        return checkUPorDOWN(inputPosition, status);
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -60,19 +38,36 @@ public class BridgeGame {
         return "playing";
     }
 
-    private void setPositions(String position, boolean status) {
-        if (status && position.equals("U")) {
+    public String checkUPorDOWN(String position, boolean status) {
+        if (position.equals("U")) return set_upposition(position, status);
+        if (position.equals("D")) return set_downposition(position, status);
+        return "pass";
+    }
+
+    public String set_upposition(String position, boolean status) {
+        if (status) {
             Positions.set_positions("O", " ");
+            return "pass";
         }
-        if (!status && position.equals("U")) {
+        if (!status) {
             Positions.set_positions("X", " ");
+            game_status = "END";
+            return "call";
         }
-        if (status && position.equals("D")) {
+        return "pass";
+    }
+
+    public String set_downposition(String position, boolean status) {
+        if (status) {
             Positions.set_positions(" ", "O");
+            return "pass";
         }
-        if (!status && position.equals("D")) {
+        if (!status) {
             Positions.set_positions(" ", "X");
+            game_status = "END";
+            return "call";
         }
+        return "pass";
     }
 }
 

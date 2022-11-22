@@ -1,4 +1,6 @@
-package bridge;
+package bridge.View;
+
+import bridge.Positions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
