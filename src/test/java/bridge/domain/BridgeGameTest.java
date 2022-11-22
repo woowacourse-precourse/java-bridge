@@ -45,4 +45,13 @@ class BridgeGameTest {
         bridgeGame.retry();
         assertThat(bridgeGame.isFinished()).isFalse();
     }
+
+    @Test
+    void 시도_횟수를_알_수_있다() {
+        BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER, LOWER));
+        bridgeGame.retry();
+        bridgeGame.retry();
+
+        assertThat(bridgeGame.getTrialCount()).isEqualTo(3);
+    }
 }

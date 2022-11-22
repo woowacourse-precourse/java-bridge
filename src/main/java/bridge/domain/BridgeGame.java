@@ -7,10 +7,12 @@ import bridge.constant.Direction;
 import bridge.dto.TrialResult;
 
 public class BridgeGame {
+    private static final int INITIAL_TRIAL_COUNT = 1;
 
     private final Bridge bridge;
     private Player player;
     private final List<TrialResult> trialResults = new ArrayList<>();
+    private int trialCount = INITIAL_TRIAL_COUNT;
 
     private BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -35,6 +37,7 @@ public class BridgeGame {
     public void retry() {
         player = new Player(bridge);
         trialResults.clear();
+        trialCount += 1;
     }
 
     public boolean isFinished() {
@@ -43,5 +46,9 @@ public class BridgeGame {
 
     public List<TrialResult> getTrialResults() {
         return new ArrayList<>(trialResults);
+    }
+
+    public int getTrialCount() {
+        return trialCount;
     }
 }
