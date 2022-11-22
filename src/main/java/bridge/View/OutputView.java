@@ -15,6 +15,7 @@ public class OutputView {
     public void printMap(List<Boolean> matchResult,List<String> bridge) {
         printBridge(matchResult, bridge, UP);
         printBridge(matchResult, bridge, DOWN);
+        System.out.println(" ");
     }
 
     public void printBridge(List<Boolean> matchResult,List<String> bridge,String way) {
