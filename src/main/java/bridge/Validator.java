@@ -5,7 +5,24 @@ import bridge.constant.Message;
 import bridge.constant.Token;
 
 public class Validator {
-    public static void isIntegerValue(String input) {
+    public static int validateBridgeSize(String userInput) {
+        isIntegerValue(userInput);
+        int size = Integer.parseInt(userInput);
+        isInRangeValue(size);
+        return size;
+    }
+
+    public static String validateMoving(String userInput) {
+        isMovingCommand(userInput);
+        return userInput;
+    }
+
+    public static String validateGameCommand(String userInput) {
+        isGameCommand(userInput);
+        return userInput;
+    }
+
+    private static void isIntegerValue(String input) {
         try {
             Integer.valueOf(input);
         } catch (NumberFormatException e) {
@@ -13,7 +30,7 @@ public class Validator {
         }
     }
 
-    public static void isInRangeValue(int value) {
+    private static void isInRangeValue(int value) {
         final int max = BridgeSize.MAX.getValue();
         final int min = BridgeSize.MIN.getValue();
         if (value < min || value > max) {
@@ -21,7 +38,7 @@ public class Validator {
         }
     }
 
-    public static void isMovingCommand(String input) {
+    private static void isMovingCommand(String input) {
         for (String mark : Token.getMovingMark()) {
             if (input.equals(mark)) {
                 return;
@@ -30,7 +47,7 @@ public class Validator {
         throw new IllegalArgumentException(Message.ERROR_MOVING_COMMAND.getMessage());
     }
 
-    public static void isGameCommand(String input) {
+    private static void isGameCommand(String input) {
         for (String mark : Token.getRetryMark()) {
             if (input.equals(mark)) {
                 return;

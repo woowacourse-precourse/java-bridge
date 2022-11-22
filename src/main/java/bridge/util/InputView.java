@@ -14,14 +14,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String userInput = readLine();
-        return validateBridgeSize(userInput);
-    }
-
-    private int validateBridgeSize(String userInput) {
-        Validator.isIntegerValue(userInput);
-        int size = Integer.parseInt(userInput);
-        Validator.isInRangeValue(size);
-        return size;
+        return Validator.validateBridgeSize(userInput);
     }
 
     /**
@@ -29,12 +22,7 @@ public class InputView {
      */
     public String readMoving() {
         String userInput = readLine();
-        return validateMoving(userInput);
-    }
-
-    private String validateMoving(String userInput) {
-        Validator.isMovingCommand(userInput);
-        return userInput;
+        return Validator.validateMoving(userInput);
     }
 
     /**
@@ -42,11 +30,6 @@ public class InputView {
      */
     public String readGameCommand() {
         String userInput = readLine();
-        return validateGameCommand(userInput);
-    }
-
-    private String validateGameCommand(String userInput) {
-        Validator.isGameCommand(userInput);
-        return userInput;
+        return Validator.validateGameCommand(userInput);
     }
 }
