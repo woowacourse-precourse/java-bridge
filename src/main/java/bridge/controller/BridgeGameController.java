@@ -52,11 +52,7 @@ public class BridgeGameController {
             String gameCommand = inputView.readGameCommand();
 
             if (quit(gameCommand)) return true;
-
-            if (gameCommand.equals("R")) {
-                bridgeGame.retry();
-                trialCnt++;
-            }
+            retry(gameCommand);
         }
 
         return false;
@@ -70,5 +66,12 @@ public class BridgeGameController {
         }
 
         return false;
+    }
+
+    private void retry(String gameCommand) {
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry();
+            trialCnt++;
+        }
     }
 }
