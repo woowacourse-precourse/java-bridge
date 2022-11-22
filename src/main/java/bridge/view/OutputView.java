@@ -51,17 +51,15 @@ public class OutputView {
         System.out.println(totalMapBuilder.toString());
     }
 
-    private String generateTileMap(Tile baseTile, BridgeGame bridgeGame, Player player) {
+    private StringBuilder generateTileMap(Tile baseTile, BridgeGame bridgeGame, Player player) {
         StringBuilder mapBuilder = new StringBuilder(BRIDGE_START_SIGN);
-        int position = 0;
-        while (player.isPassedPosition(position)) {
+        for(int position = 0; player.isPassedPosition(position); position++){
             Tile passedTile = player.getPassedTileLogOf(position);
-            mapBuilder.append(baseTile.toMapString(passedTile, bridgeGame.checkBridgeTileAt(position++, passedTile)));
+            mapBuilder.append(baseTile.toMapString(passedTile, bridgeGame.checkBridgeTileAt(position, passedTile)));
             mapBuilder.append(BRIDGE_DIVIDE_SIGN);
         }
-        mapBuilder.replace(mapBuilder.length() - 1, mapBuilder.length(), BRIDGE_END_SIGN);
 
-        return mapBuilder.toString();
+        return mapBuilder.replace(mapBuilder.length() - 1, mapBuilder.length(), BRIDGE_END_SIGN);
     }
 
     /**
