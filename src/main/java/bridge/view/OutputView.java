@@ -1,8 +1,6 @@
 package bridge.view;
 
-import bridge.Player;
-
-import java.util.List;
+import bridge.domain.Player;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

@@ -1,4 +1,8 @@
-package bridge;
+package bridge.service;
+
+import bridge.domain.Bridge;
+import bridge.BridgeMaker;
+import bridge.domain.Player;
 
 public class BridgeServiceImpl implements BridgeService{
     private final BridgeMaker bridgeMaker;

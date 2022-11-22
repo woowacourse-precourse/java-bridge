@@ -1,6 +1,6 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
+import bridge.constant.BlockNumber;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

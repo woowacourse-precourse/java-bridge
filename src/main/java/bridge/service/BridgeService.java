@@ -1,4 +1,7 @@
-package bridge;
+package bridge.service;
+
+import bridge.domain.Bridge;
+import bridge.domain.Player;
 
 public interface BridgeService {
     Bridge buildBridge(int size);

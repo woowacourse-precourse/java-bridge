@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.controller.BridgeController;
+import bridge.service.BridgeService;
+import bridge.service.BridgeServiceImpl;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

@@ -1,6 +1,7 @@
-package bridge;
+package bridge.domain;
 
-import org.assertj.core.api.Assertions;
+import bridge.domain.Bridge;
+import bridge.domain.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
