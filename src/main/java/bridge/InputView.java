@@ -46,4 +46,9 @@ public class InputView {
         exception.notNatural(input);
         exception.checkBridgeSize(input);
     }
+
+    public void movingInput(String moving) {
+        exception.checkAlphabet(moving);
+        exception.checkMoveInput(moving);
+    }
 }
