@@ -25,4 +25,8 @@ public class BridgeGameState {
     public void move(BridgePosition moving) {
         currentState.add(moving.getPosition());
     }
+
+    public void clearCurrent() {
+        currentState.clear();
+    }
 }

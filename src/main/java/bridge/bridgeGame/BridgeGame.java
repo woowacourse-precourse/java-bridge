@@ -7,7 +7,7 @@ import bridge.bridge.BridgePosition;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private BridgeGameState bridgeGameState;
-    private final Integer tryCount = 1;
+    private Integer tryCount = 1;
 
     public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -23,5 +23,10 @@ public class BridgeGame {
 
     public void move(BridgePosition bridgePosition) {
         bridgeGameState.move(bridgePosition);
+    }
+
+    public void retry() {
+        bridgeGameState.clearCurrent();
+        tryCount++;
     }
 }
