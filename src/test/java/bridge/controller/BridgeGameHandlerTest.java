@@ -1,7 +1,9 @@
 package bridge.controller;
 
 import bridge.core.BridgeGame;
+import bridge.core.GameStatusOperator;
 import bridge.core.exception.Error;
+import bridge.domain.Bridge;
 import bridge.type.GameStatus;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.*;
@@ -9,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -31,7 +34,7 @@ class BridgeGameHandlerTest {
 
         @DisplayName("다리 길이에 대한 잘못된 입력이 주어질 경우 예외가 발생한다.")
         @ParameterizedTest
-        @MethodSource("providePlayerInputForInvalidBridgeLength")
+        @MethodSource("providePlayerInput")
         void inputInvalidBridgeLength(String playerInput, String errorMessage) {
             assertSimpleTest(() -> {
                 runException(playerInput);
@@ -39,7 +42,7 @@ class BridgeGameHandlerTest {
             });
         }
 
-        private Stream<Arguments> providePlayerInputForInvalidBridgeLength() {
+        private Stream<Arguments> providePlayerInput() {
             return Stream.of(
                     Arguments.of("a", Error.NON_NUMERIC_ERROR.getMessage()),
                     Arguments.of("@", Error.NON_NUMERIC_ERROR.getMessage()),
@@ -67,7 +70,7 @@ class BridgeGameHandlerTest {
 
         @DisplayName("이동할 칸을 잘못 입력할 경우 예외가 발생한다.")
         @ParameterizedTest
-        @MethodSource("providePlayerInputForInvalidBridgeBlock")
+        @MethodSource("providePlayerInput")
         void inputInvalidBridgeBlock(String bridgeLength, String selectBlock) {
             assertSimpleTest(() -> {
                 runException(bridgeLength, selectBlock);
@@ -75,7 +78,7 @@ class BridgeGameHandlerTest {
             });
         }
 
-        private Stream<Arguments> providePlayerInputForInvalidBridgeBlock() {
+        private Stream<Arguments> providePlayerInput() {
             return Stream.of(
                     Arguments.of("3", "u"),
                     Arguments.of("3", "up"),
@@ -86,5 +89,48 @@ class BridgeGameHandlerTest {
                     Arguments.of("3", "@")
             );
         }
+    }
+
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @DisplayName("재시작/종료 입력 테스트")
+    class InputRetryOrQuitTest extends NsTest {
+
+        Bridge bridge;
+        GameStatusOperator gameStatusOperator;
+        BridgeGame bridgeGame;
+        BridgeGameHandler bridgeGameHandler;
+
+        @Override
+        protected void runMain() {
+            bridge = new Bridge(List.of("U", "D", "U", "D"));
+            gameStatusOperator = GameStatusOperator.initGameStatusOperator();
+            bridgeGame = new BridgeGame(bridge, gameStatusOperator);
+            bridgeGameHandler = new BridgeGameHandler();
+            bridgeGameHandler.executeGame(GameStatus.START, bridgeGame);
+        }
+
+        @DisplayName("재시작/종료를 잘못 입력할 경우 예외가 발생한다.")
+        @ParameterizedTest
+        @MethodSource("providePlayerInput")
+        void inputInvalidRetryOrQuit(String selectBlock, String gameCommand) {
+            assertSimpleTest(() -> {
+                runException(selectBlock, gameCommand);
+                assertThat(output()).contains(Error.GAME_COMMAND_ERROR.getMessage());
+            });
+        }
+
+        private Stream<Arguments> providePlayerInput() {
+            return Stream.of(
+                    Arguments.of("D", "r"),
+                    Arguments.of("D", "q"),
+                    Arguments.of("D", "retry"),
+                    Arguments.of("D", " "),
+                    Arguments.of("D", "\n"),
+                    Arguments.of("D", "3"),
+                    Arguments.of("D", "$")
+            );
+        }
+
     }
 }
