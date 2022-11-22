@@ -45,7 +45,7 @@ public class BridgeGame {
     }
 
     public boolean checkRetry(String RetryInput){
-        return RetryInput.equals("R");
+        return "R".equals(RetryInput);
     }
     public boolean checkArrival(){return judgement.checkArrival(movingRecord,bridge);}
     public boolean checkPlay(String movingDirection){
@@ -54,7 +54,7 @@ public class BridgeGame {
         if (checkArrival()) return false;
         return judgement.checkSameDirection(movingRecord,movingDirection,bridge);
     }
-    public boolean checkSucess(){return judgement.checkSuccess(movingRecord,bridge);}
+    public boolean checkSuccess(){return judgement.checkSuccess(movingRecord,bridge);}
 
     public void printResult() {
         movingRecord.printResult(bridge,judgement.checkSuccess(movingRecord,bridge));

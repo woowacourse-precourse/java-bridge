@@ -5,6 +5,7 @@ import static bridge.View.InputView.*;
 
 import bridge.Service.BridgeGame;
 import bridge.View.InputView;
+import java.awt.desktop.SystemEventListener;
 
 public class BridgeGameController {
 
@@ -32,8 +33,10 @@ public class BridgeGameController {
     }
     public void playGame() {
         if (bridgeGame.checkPlay(InputView.readMoving()))
-            playGame();
-        if (bridgeGame.checkSucess())
+        {    playGame();
+            return;
+        }
+        if (bridgeGame.checkSuccess())
             return;
         if (bridgeGame.checkRetry(InputView.readGameCommand()))
             retryGame();
