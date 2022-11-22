@@ -82,8 +82,6 @@ public class GameController {
       move(bridge, bridgeGame.retry(tryNumber));
     } else if (restart.equals(STOP)) {
       outputView.printResult(false, tryNumber,  moveResult.getCrossResult());
-    } else {
-      throw new IllegalArgumentException("[ERROR] (재시도: R, 종료: Q) 잘못된 입력입니다.");
     }
   }
 

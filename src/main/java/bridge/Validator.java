@@ -14,6 +14,12 @@ public class Validator {
     }
   }
 
+  public static void validateGameCommand(String input) {
+    if (!Objects.equals(input, "R") && !Objects.equals(input, "Q")) {
+      throw new IllegalArgumentException("[ERROR] (재시도: R, 종료: Q) 두 문자로만 입력 가능합니다.");
+    }
+  }
+
   public static void sizeBetween(String input) {
     int inputNum = Integer.parseInt(input);
     if (inputNum < 3 || inputNum > 20) {
