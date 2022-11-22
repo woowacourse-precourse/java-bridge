@@ -4,7 +4,7 @@ import bridge.view.OrderView;
 
 public class InputBridgeLengthHandler {
 
-    public String checkException(String bridgeLength){
+    public String checkValidator(String bridgeLength){
         checkNonInput(bridgeLength);
         checkIsNumber(bridgeLength);
         checkInRange(bridgeLength);

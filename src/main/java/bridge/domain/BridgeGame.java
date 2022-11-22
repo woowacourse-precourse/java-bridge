@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.controller.BridgeController;
+import bridge.handler.InputRestartHandler;
 import bridge.view.OrderView;
 import bridge.view.OutputView;
 
@@ -12,6 +13,7 @@ import java.util.List;
  */
 public class BridgeGame {
     OrderView orderView = new OrderView();
+    InputRestartHandler inputRestartHandler = new InputRestartHandler();
     public List<String> upSide = new ArrayList<>();
     public List<String> downSide = new ArrayList<>();
     /**
@@ -48,8 +50,7 @@ public class BridgeGame {
             OrderView.checkAnswerIndex = 1;
             System.out.println();
             System.out.println(orderView.EXIT_OR_CONTINUE);
-            checkRestart = orderView.continueOrExit();
-            checkRestartOrQuit(checkRestart);
+            checkRestartOrQuit(inputRestartHandler.checkValidator(orderView.continueOrExit()));
         }
     }
 

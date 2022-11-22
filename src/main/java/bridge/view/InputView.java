@@ -18,7 +18,7 @@ public class InputView {
         System.out.println(orderView.START_ORDER);
         orderView.lineSkip();
         System.out.println(orderView.INPUT_BRIDGE_LENGTH);
-        String bridgeLength = inputBridgeLengthHandler.checkException(Console.readLine());
+        String bridgeLength = inputBridgeLengthHandler.checkValidator(Console.readLine());
         orderView.lineSkip();
 
         return bridgeLength;
