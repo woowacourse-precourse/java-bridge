@@ -31,11 +31,13 @@ public class BridgeGameController {
     }
 
     public List<String> createBridge() {
+        outputView.printChoiceBridgeSize();
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
     public void moveBridge(BridgeGame bridgeGame, User user) {
         while (!user.isGameOver()) {
+            outputView.printChoiceUpOrDown();
             String moveUpOrDown = inputView.readMoving();
             boolean pass = bridgeGame.isPass(moveUpOrDown);
             outputView.printMap(bridgeGame.getLocation(), pass, moveUpOrDown);
@@ -56,6 +58,7 @@ public class BridgeGameController {
             bridgeGame.move();
         }
         if (!pass) {
+            outputView.printChoiceRetry();
             String gameCommand = inputView.readGameCommand();
             runFailCase(bridgeGame, user, gameCommand);
         }
