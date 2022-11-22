@@ -1,5 +1,9 @@
 package bridge;
 
+import static bridge.domain.enums.Move.D;
+import static bridge.domain.enums.Move.U;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +22,19 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>(size);
+        for (int count = 0; count < size; count++) {
+            String value = getValue(bridgeNumberGenerator.generate());
+            bridge.add(value);
+        }
+
+        return bridge;
+    }
+
+    private String getValue(int number) {
+        if (number == 1) {
+            return U.name();
+        }
+        return D.name();
     }
 }
