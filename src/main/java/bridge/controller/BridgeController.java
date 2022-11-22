@@ -53,4 +53,12 @@ public class BridgeController {
         bridgeGame.move();
         editBuilder(bridgeGame);
     }
+
+    private void wrongCase(String moveInput, BridgeGame bridgeGame, User user) {
+        wrongPrintMap(moveInput);
+        printBuilder();
+        outputView.printRestartOrDoneQuestion();
+        String retryInput = inputView.readGameCommand();
+        gameRetry(retryInput, bridgeGame, user);
+    }
 }
