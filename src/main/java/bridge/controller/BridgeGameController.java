@@ -19,10 +19,9 @@ public class BridgeGameController {
         int bridgeSize = inputBridgeSize();
         initializeBridgeGameByBridgeSize(bridgeSize);
 
-        while (true) {
-            if (inputMoving(bridgeSize) == GameCommand.QUIT) {
-                break;
-            }
+        while (inputMoving(bridgeSize) != GameCommand.QUIT) {
+            bridgeGame.retry();
+            totalNumberOfAttempts++;
         }
 
         gameQuit();
@@ -35,12 +34,7 @@ public class BridgeGameController {
             printMap(bridgeGame.getRounds());
 
             if (bridgeGame.isCurrentRoundResultFailure()) {
-                if (isGameRetry(readGameCommand())) {
-                    bridgeGame.retry();
-                    totalNumberOfAttempts++;
-                    return GameCommand.RETRY;
-                }
-                return GameCommand.QUIT;
+                return validGameCommand(readGameCommand());
             }
         }
         return GameCommand.QUIT;
@@ -60,11 +54,6 @@ public class BridgeGameController {
 
     public void initializeBridgeGameByBridgeSize(int size) {
         bridgeGame = new BridgeGame(size);
-    }
-
-    public boolean isGameRetry(String gameCommand) {
-        validGameCommand(gameCommand);
-        return gameCommand.equals(GameCommand.RETRY.getExpression());
     }
 
 }
