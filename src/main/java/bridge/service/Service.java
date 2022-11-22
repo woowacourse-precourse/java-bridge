@@ -34,7 +34,7 @@ public class Service {
     }
 
     public List<String> getFinalResult() {
-        return record.getFinalResultToString();
+        return game.getFinalResult();
     }
 
     public void resetForRetry() {

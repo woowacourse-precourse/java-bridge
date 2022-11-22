@@ -27,6 +27,12 @@ public class BridgeGame {
         return result.getGameState();
     }
 
+    public List<String> getFinalResult() {
+        String trialCount = user.getTrial();
+        String winningResult = result.getWinningResult();
+        return List.of(winningResult, trialCount);
+    }
+
     public void retry() {
         user.move();
     }
