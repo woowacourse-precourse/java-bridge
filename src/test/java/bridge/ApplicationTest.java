@@ -52,10 +52,10 @@ class ApplicationTest extends NsTest {
     @Test
     void 입력_오류_후_게임재개_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("a", "4", "U", "d","D", "D","r","R","U","D","U","D");
+            run("a", "4", "U", "d", "D", "D", "r", "R", "U", "D", "U", "D");
             assertThat(output()).contains(ERROR_MESSAGE);
         }, 1, 0, 1, 0);
-            assertThat(output()).contains(
+        assertThat(output()).contains(
                 "최종 게임 결과",
                 "[ O |   | O |   ]",
                 "[   | O |   | O ]",
