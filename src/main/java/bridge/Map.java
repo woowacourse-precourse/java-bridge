@@ -24,7 +24,7 @@ public class Map {
     }
 
     public void print() {
-
+        outputView.printMap(upSide, downSide, this);
     }
 
     public String format(List<String> row) {
