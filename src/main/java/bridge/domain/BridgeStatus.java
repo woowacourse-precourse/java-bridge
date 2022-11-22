@@ -16,6 +16,11 @@ public class BridgeStatus {
         this.downBridgeBlocks = new ArrayList<>();
     }
 
+    public void init() {
+        upBridgeBlocks.clear();
+        downBridgeBlocks.clear();
+    }
+
     public void update(Direction direction, PlayerStatus status) {
         BridgeBlock block = getBlockByStatus(status);
         if(direction == UP) {
@@ -44,6 +49,6 @@ public class BridgeStatus {
     @Override
     public String toString() {
         return upBridgeBlocks.toString().replaceAll(COMMA, DELIMITER) + ENTER +
-                downBridgeBlocks.toString().replaceAll(COMMA, DELIMITER);
+                downBridgeBlocks.toString().replaceAll(COMMA, DELIMITER) + ENTER;
     }
 }

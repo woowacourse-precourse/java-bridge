@@ -45,6 +45,7 @@ public class BridgeGame {
     public boolean retry(String command) {
         if(command.equals(RETRY)) {
             player.init();
+            bridgeStatus.init();
             return true;
         }
         return false;
