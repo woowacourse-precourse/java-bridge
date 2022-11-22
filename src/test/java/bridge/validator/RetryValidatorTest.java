@@ -3,12 +3,18 @@ package bridge.validator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RetryValidatorTest {
-    RetryValidator validator = new RetryValidator();
+    RetryValidator validator;
+
+    @BeforeEach
+    void setUp() {
+        validator = new RetryValidator();
+    }
 
     @DisplayName("입력 값이 Q나 R이면 정상 작동 한다.")
     @ValueSource(strings = {"Q", "R"})

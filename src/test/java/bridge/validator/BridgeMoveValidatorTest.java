@@ -3,12 +3,18 @@ package bridge.validator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeMoveValidatorTest {
-    BridgeMoveValidator validator = new BridgeMoveValidator();
+    BridgeMoveValidator validator;
+
+    @BeforeEach
+    void setUp() {
+        validator = new BridgeMoveValidator();
+    }
 
     @DisplayName("입력 값이 U나 D면 정상 작동 한다.")
     @ValueSource(strings = {"U", "D"})
