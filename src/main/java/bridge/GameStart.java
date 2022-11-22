@@ -58,7 +58,7 @@ public class GameStart {
                 boolean isMove = bridgeGame.move(bridge, countOfMove, moveBlock);
                 outputView.printMap(bridge, countOfMove, isMove);
                 if (!isMove) {
-                    isRestart = readRestart();
+                    isRestart = inputRestart();
                     break;
                 }
             }
@@ -69,10 +69,13 @@ public class GameStart {
         return isSuccess;
     }
 
-    private boolean readRestart() {
-        String restart = inputView.readGameCommand();
-        outputView.printRestartMessage();
-        boolean isSuccess = bridgeGame.retry(restart);
-        return isSuccess;
+    private boolean inputRestart() {
+        String restart = "";
+        do {
+            outputView.printRestartMessage();
+            restart = inputView.readGameCommand();
+        } while (restart.equals(""));
+        boolean isRestart = bridgeGame.retry(restart);
+        return isRestart;
     }
 }
