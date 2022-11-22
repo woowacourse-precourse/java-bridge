@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static bridge.InputView.readGameCommand;
-import static bridge.InputView.readMoving;
+import static bridge.InputView.*;
 import static bridge.OutputView.*;
 import static bridge.PrintMessage.*;
 
@@ -16,6 +15,8 @@ public class BridgeGame {
     private String upBridge = "";
     private String downBridge = "";
     private List<String> bridges = new ArrayList<>();
+    private Integer count = 1;
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -105,8 +106,8 @@ public class BridgeGame {
         printChooseRetryGameMessage();
         String retryGameInput = readGameCommand();
         if (retryGameInput.equals(QUIT)) {
-            printResult(bridges, false);
-            printGameFail();
+            printResult(bridges, false, false);
+            printTotalTryCountMessage(count);
             return true;
         }
 
@@ -126,8 +127,21 @@ public class BridgeGame {
                 return false;
             }
         }
-        printResult(bridges, true);
-        printGameSuccess();
+        printResult(bridges, true, true);
+        printTotalTryCountMessage(count);
         return true;
     }
+
+    public void playGame(BridgeGame bridgeGame) {
+        int bridgeSize = readBridgeSize();
+
+        List<String> randomBridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+
+        if (!bridgeGame.initGame(bridgeSize, bridgeGame, randomBridge)) {
+            while (!bridgeGame.retry(bridgeSize, randomBridge)) {
+                count += 1;
+            }
+        }
+    }
+
 }

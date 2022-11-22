@@ -47,18 +47,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> bridges, boolean isEntered) {
+    public static void printResult(List<String> bridges, boolean isEntered, boolean isSuccess) {
         printFinalGameResultMessage(isEntered);
         printMap(bridges);
+        printGameSuccess(isSuccess);
     }
 
-    public static void printGameSuccess() {
+    public static void printGameSuccess(boolean isSuccess) {
         System.out.print(ENTER);
-        System.out.println(GAME_SUCCESS_MESSAGE + SUCCESS_MESSAGE);
+        if (isSuccess) System.out.println(GAME_SUCCESS_MESSAGE + SUCCESS_MESSAGE);
+        if (!isSuccess) System.out.println(GAME_SUCCESS_MESSAGE + FAIL_MESSAGE);
     }
 
-    public static void printGameFail() {
-        System.out.print(ENTER);
-        System.out.println(GAME_SUCCESS_MESSAGE + FAIL_MESSAGE);
+    public static void printTotalTryCountMessage(int count) {
+        System.out.println(TOTAL_TRY_COUNT_MESSAGE + count);
     }
 }
