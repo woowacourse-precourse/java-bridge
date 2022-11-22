@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.utils.Converter;
+
 public class User {
     private int moveCount;
     private int trial;
@@ -17,8 +19,8 @@ public class User {
         return moveCount;
     }
 
-    public int getTrial() {
-        return trial;
+    public String getTrial() {
+        return Converter.toStringFromInt(trial);
     }
 
     public void retry() {
