@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.enums.Number;
+import bridge.enums.Position;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +22,29 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        for (int order = Number.FIRST.getMessage(); order < size; order++) {
+            int bridgeNumber = bridgeNumberGenerator.generate();
+            bridge = addBridgeUpPosition(bridgeNumber, bridge);
+            bridge = addBridgeDownPosition(bridgeNumber, bridge);
+        }
+
+        return bridge;
+    }
+
+    public List<String> addBridgeUpPosition(int bridgeNumber, List<String> bridge) {
+        if (bridgeNumber == 1) {
+            bridge.add(Position.UP.getMessage());
+        }
+
+        return bridge;
+    }
+
+    public List<String> addBridgeDownPosition(int bridgeNumber, List<String> bridge) {
+        if (bridgeNumber == 0) {
+            bridge.add(Position.DOWN.getMessage());
+        }
+
+        return bridge;
     }
 }
