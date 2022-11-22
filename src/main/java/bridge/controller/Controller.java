@@ -82,7 +82,7 @@ public class Controller {
     }
 
     private void finishGame() {
-        System.out.println(Message.GAME_RESULT_MESSAGE);
+        System.out.println(Message.GAME_RESULT_MESSAGE.getMessage());
         outputView.printMap(player.getChoices(), bridge.compareTo(player.getChoices()));
 
         boolean isSuccess = isCorrectChoice() && bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
