@@ -64,6 +64,15 @@ class BridgeGameTest {
   }
 
   @Test
+  void 게임을_정상적으로_수행하지못하면_False를_반환한다(){
+    bridgeGame.move(BridgeArea.U);
+    bridgeGame.move(BridgeArea.U);
+    bridgeGame.move(BridgeArea.U);
+    boolean gameResult = bridgeGame.isClear();
+    assertThat(gameResult).isFalse();
+  }
+
+  @Test
   void 게임재시작시_게임카운트가증가하고_유저기록이리셋된다(){
     int currentCount = gameState.getTryCount();
     bridgeGame.move(BridgeArea.U);
