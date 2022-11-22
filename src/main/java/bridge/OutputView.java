@@ -32,7 +32,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int tryNumber) {
+    public void printResult(int tryNumber, List<String> currentPath, List<String> answerPath) {
+        System.out.println("최종 게임 결과");
+        printMap(currentPath, answerPath);
+        System.out.println();
 
+        boolean ok = true;
+        for (int i = 0; i < currentPath.size(); i++) {
+            if (currentPath.get(i).equals(answerPath.get(i)))
+                continue;
+            ok = false;
+        }
+
+        System.out.printf("게임 성공 여부: %s\n", ok ? "성공" : "실패");
+        System.out.printf("총 시도한 횟수: %d\n", tryNumber);
     }
 }

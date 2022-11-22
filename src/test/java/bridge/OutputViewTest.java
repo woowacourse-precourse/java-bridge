@@ -18,6 +18,18 @@ class OutputViewTest {
         outputView.printMap(Arrays.asList("U","U","D"), Arrays.asList("U", "D", "D"));
     }
 
+    @Test
+    @DisplayName("print_result_fail_test")
+    void print_result_fail_test(){
+        outputView.printResult(3,Arrays.asList("U","U","D"), Arrays.asList("U", "D", "D"));
+    }
+
+    @Test
+    @DisplayName("print_result_success_test")
+    void print_result_success_test(){
+        outputView.printResult(3,Arrays.asList("U","U","D"), Arrays.asList("U", "U", "D"));
+    }
+
 
 
 
