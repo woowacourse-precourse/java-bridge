@@ -2,7 +2,9 @@ package bridge.controlloer;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeRecord;
 import bridge.domain.Command;
 import bridge.domain.Result;
 import bridge.view.InputView;
@@ -11,10 +13,9 @@ import java.util.List;
 
 public class BridgeGameController {
     private final BridgeGame bridgeGame;
-    private final BridgeMaker bridgeMaker;
+    private BridgeRecord bridgeRecord;
     private InputView inputView;
     private OutputView outputView;
-    private final List<String> bridge;
     private int attempts;
 
     public BridgeGameController() {
@@ -23,9 +24,9 @@ public class BridgeGameController {
 
         outputView.printStart();
         final int bridgeSize = readBridgeSize();
-        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        Bridge.setBridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize));
         this.bridgeGame = new BridgeGame();
+        this.bridgeRecord = new BridgeRecord();
         this.attempts = 1;
     }
 
@@ -62,15 +63,23 @@ public class BridgeGameController {
     public void play() {
         Result result = Result.SUCCESS;
         while (Result.SUCCESS.equals(result)) {
-            result = bridgeGame.move(bridge, readMoving());
-            if (!result.equals(Result.ARRIVED)) {
-                outputView.printMap(bridgeGame.getBridgeResult(), result);
-            }
+            result = playOneGame();
             if (result.equals(Result.FAIL)) {
                 result = retryOrEnd();
             }
         }
         end(result);
+    }
+
+    private Result playOneGame() {
+        Result resultOfEachGame = Result.SUCCESS;
+        for (int indexOfBridge = 0; resultOfEachGame.equals(Result.SUCCESS); indexOfBridge++) {
+            Command command = readMoving();
+            resultOfEachGame = bridgeGame.move(indexOfBridge, command);
+            bridgeRecord.update(command);
+            outputView.printMap(bridgeRecord.getBridgeRecord(), resultOfEachGame);
+        }
+        return resultOfEachGame;
     }
 
     private Result retryOrEnd() {
@@ -91,6 +100,6 @@ public class BridgeGameController {
     }
 
     private void end(Result result) {
-        outputView.printResult(bridgeGame.getBridgeResult(), attempts, result);
+        outputView.printResult(bridgeRecord.getBridgeRecord(), attempts, result);
     }
 }
