@@ -38,9 +38,6 @@ public class BridgeGame {
             playerCommand.clear();
             status = "진행중";
         }
-        if (gameCommand.equals("Q")){
-            status = "실패";
-        }
     }
 
     public String calculateStatus(){
@@ -54,10 +51,10 @@ public class BridgeGame {
     }
 
     public boolean keepGoing(){
-        if(status.equals("성공")||status.equals("실패")){
-            return false;
+        if(status.equals("진행중")){
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static int getNumberOfTry() {
