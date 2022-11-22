@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.mediator.Mediator;
 import bridge.dto.BridgeStatusDto;
+import bridge.mediator.ViewMediator;
 
 import java.util.HashMap;
 
@@ -10,9 +10,9 @@ public class ViewFaçade {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
 
-    private Mediator mediator;
+    private ViewMediator mediator;
 
-    public ViewFaçade(Mediator mediator) {
+    public ViewFaçade(ViewMediator mediator) {
         this.mediator = mediator;
     }
 

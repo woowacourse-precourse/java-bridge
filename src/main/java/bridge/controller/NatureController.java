@@ -1,7 +1,8 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
-import bridge.mediator.Mediator;
+import bridge.BridgeGameImp;
+import bridge.mediator.ControllerMediator;
 import bridge.dto.BridgeStatusDto;
 
 import java.util.HashMap;
@@ -9,11 +10,11 @@ import java.util.function.Function;
 
 public class NatureController implements Controller {
 
-    private BridgeGame bridgeGame;
-    private Mediator mediator;
-    private Function<Integer, BridgeGame> function;
+    private BridgeGameImp bridgeGame;
+    private ControllerMediator mediator;
+    private Function<Integer, BridgeGameImp> function;
 
-    public NatureController(Function<Integer, BridgeGame> function,Mediator mediator) {
+    public NatureController(Function<Integer, BridgeGameImp> function, ControllerMediator mediator) {
         this.mediator=mediator;
         this.function = function;
     }

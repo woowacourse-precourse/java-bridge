@@ -1,13 +1,15 @@
 package bridge;
 
-import bridge.mediator.ConcreteMediator;
+import bridge.mediator.ConcreteControllerMediator;
+import bridge.mediator.ControllerMediator;
+import bridge.mediator.ViewMediator;
 import bridge.view.ErrorView;
 
 public class Application {
 
     public static void main(String[] args) {
         try {
-            ConcreteMediator concreteMediator = new ConcreteMediator();
+            ViewMediator concreteMediator = new ConcreteControllerMediator();
             concreteMediator.start();
         } catch (IllegalArgumentException e) {
             new ErrorView().printErrorMessage(e.getMessage());

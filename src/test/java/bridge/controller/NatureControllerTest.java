@@ -4,8 +4,7 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.dto.BridgeStatusDto;
 import bridge.generator.BridgeNumberGenerator;
-import bridge.generator.BridgeRandomNumberGenerator;
-import bridge.mediator.Mediator;
+import bridge.mediator.ControllerMediator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,14 +15,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 class NatureControllerTest {
 
 
     @Test
     void generateBridge() {
-        Controller controller = new NatureController(i -> createBridgeGame(i, new ArrayList<>()), new MockMediator());
+        Controller controller = new NatureController(i -> createBridgeGame(i, new ArrayList<>()), new MockControllerMediator());
         Runnable runnable = controller.generateBridge(3);
         try {
             runnable.run();
@@ -108,7 +106,7 @@ class NatureControllerTest {
     }
 
     private static NatureController createController(ArrayList<String> footPoints) {
-        NatureController controller = new NatureController(i -> createBridgeGame(i, footPoints), new MockMediator());
+        NatureController controller = new NatureController(i -> createBridgeGame(i, footPoints), new MockControllerMediator());
         return controller;
     }
 
@@ -117,38 +115,17 @@ class NatureControllerTest {
         return new BridgeGame(bridgeMaker.makeBridge(integer), footPoints);
     }
 
-    static class MockMediator implements Mediator {
-
-        int count = 1;
-
-        @Override
-        public void start() {
-        }
-
-        @Override
-        public void generateBridge(int i) {
-
-        }
+    static class MockControllerMediator implements ControllerMediator {
 
         @Override
         public void moveBridge() {
             throw new RuntimeException("moveBridge");
         }
 
-        @Override
-        public Runnable moveBridge(String s, HashMap<String, String> map) {
-
-            return null;
-        }
 
         @Override
         public void replay() {
             throw new RuntimeException("replay");
-        }
-
-        @Override
-        public void replay(String readGameCommand) {
-
         }
 
         @Override

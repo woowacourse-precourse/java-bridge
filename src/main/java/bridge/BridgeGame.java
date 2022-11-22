@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.domain.UserCharacters;
 import bridge.dto.BridgeStatusDto;
-import bridge.dto.SuccessOrFailureDto;
 import bridge.reader.SuccessReader;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-public class BridgeGame {
+public class BridgeGame implements BridgeGameImp {
 
     private final UserCharacters userCharacters;
     private final List<String> bridge;
@@ -30,6 +29,7 @@ public class BridgeGame {
      *
      * @return
      */
+    @Override
     public BridgeStatusDto move(String direction) {
         userCharacters.move(direction);
 
@@ -44,39 +44,46 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    @Override
     public boolean retry(String command) {
         validateCommand(command);
 
-        if (command.equals("R")) {
+        if (isReplay(command)) {
             count++;
             return true;
         }
         return false;
     }
 
+    private static boolean isReplay(String command) {
+        return command.equals("R");
+    }
+
     public BridgeStatusDto makeSuccessBridgeStatusDto() {
-        SuccessOrFailureDto successDto = userCharacters.createSuccessDto();
-        return new BridgeStatusDto(successDto, count);
+        return new BridgeStatusDto(userCharacters.createSuccessDto(), count);
     }
 
+    @Override
     public BridgeStatusDto makeFailBridgeStatusDto() {
-        SuccessOrFailureDto failDto = userCharacters.createFailDto();
-        return new BridgeStatusDto(failDto, count);
+        return new BridgeStatusDto(userCharacters.createFailDto(), count);
     }
 
+    @Override
     public boolean isUnitSuccess() {
         return successReader.isUnitSuccess(userCharacters, bridge);
     }
 
+    @Override
     public boolean isOverallSuccess() {
         return successReader.isOverallSuccess(userCharacters, bridge);
     }
 
+    @Override
     public void clearFootprints() {
         userCharacters.clearFootprints();
     }
 
     private void validateCommand(String command) {
-        if (!command.equals("Q") && !command.equals("R")) throw new IllegalArgumentException("U나 D를 입력해주십시오");
+        if (!command.equals("Q") && !isReplay(command)) throw new IllegalArgumentException("U나 D를 입력해주십시오");
     }
 }
