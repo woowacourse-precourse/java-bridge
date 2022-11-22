@@ -17,61 +17,72 @@ public class playGame {
     Bridge bridge = new Bridge();
     BridgeGame bridgeGame = new BridgeGame();
     BridgeException bridgeException = new BridgeException();
+    boolean gameContinue = true;
+    boolean gameCheck = true;
+    boolean playGame=true;
 
-    public void play() {
+    BridgeGameResult bridgeGameResult;
+
+    public void setPlayGame() {
         output.printStart();
         output.printInputBridgeSize();
-
-        while(bridgeGame.setBridgeSize(input.inputBridgeSize())){
+        while (bridgeGame.setBridgeSize(input.inputBridgeSize())) {
         }
-
         bridge.setBridge(bridgeMaker.makeBridge(bridgeGame.getBridgeSize()));
-        while (true) {
+    }
+    public void play() {
+        setPlayGame();
+        while (playGame) {
             bridgeGame.initializeUserMove();
-            if (gamePlay() == false) {
-                break;
-            }
+            gameContinue=true;
+            gameCheck=true;
+            playGame=gamePlay();
         }
     }
-
-    boolean gamePlay() {
-        boolean gameContinue = true;
-        BridgeGameResult bridgeGameResult;
-
-        while (true) {
-            output.printSelectMove();
-
-            while(bridgeGame.move(input.inputUserMoving())){
-            }
-
-            bridgeGameResult = new BridgeGameResult(bridge.getBridge(), bridgeGame.getMoveList());
-            output.printMap(bridgeGameResult.getList());
-            if (bridgeException.checkFail(bridgeGameResult.getList()) == true) {
-                break;
-            }
-            if (bridgeException.checkSuccess(bridgeGameResult.getList()) == bridgeGame.getBridgeSize()) {
-                gameContinue = false;
-                break;
-            }
+    boolean keepGamePlay() {
+        bridgeGameResult = new BridgeGameResult(bridge.getBridge(), bridgeGame.getMoveList());
+        output.printMap(bridgeGameResult.getList());
+        return checkResult();
+    }
+    boolean checkResult() {
+        if (bridgeException.checkFail(bridgeGameResult.getList()) == true) {
+            return false;
         }
-
+        if (bridgeException.checkSuccess(bridgeGameResult.getList()) == bridgeGame.getBridgeSize()) {
+            gameContinue = false;
+            return false;
+        }
+        return true;
+    }
+    boolean gamePlay() {
+        while (gameCheck) {
+            output.printSelectMove();
+            while (bridgeGame.move(input.inputUserMoving())) {
+            }
+            gameCheck = keepGamePlay();
+        }
+        return endGame();
+    }
+    boolean endGame() {
         if (gameContinue == true) {
             output.printReStart();
-            while(bridgeGame.retry(input.inputReGame())){
+            while (bridgeGame.retry(input.inputReGame())) {
             }
-            if (bridgeGame.getRetry().equals("R")) {
-                bridge.checkTryNumber();
-                return true;
-            }
-            if (bridgeGame.getRetry().equals("Q")) {
-                output.printResult(bridgeGameResult.getList(), bridge.getTryNumber(), gameContinue);
-                return false;
-            }
+            return endGameCheck();
         }
-
         output.printResult(bridgeGameResult.getList(), bridge.getTryNumber(), gameContinue);
-
         return false;
     }
+
+    boolean endGameCheck() {
+        System.out.println(bridgeGame.getRetry());
+        if (bridgeGame.getRetry().equals("R")) {
+            bridge.checkTryNumber();
+            return true;
+        }
+        output.printResult(bridgeGameResult.getList(), bridge.getTryNumber(), gameContinue);
+        return false;
+    }
+
 
 }
