@@ -2,7 +2,7 @@ package bridge.domain;
 
 public class ValidCheck {
     public static boolean isBlank(String str) {
-        return str.length()==0;
+        return str.isBlank();
     }
     public static boolean isString_in_0to9(String str) {
         return str.matches("[0-9.]+");

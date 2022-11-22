@@ -18,7 +18,7 @@ public class InputView {
         try {
             outputView.bridgeSizeMessage();
             return readBridgeSize();
-        } catch (IllegalArgumentException | IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askBridgeSize();
         }
@@ -27,9 +27,9 @@ public class InputView {
     public int readBridgeSize() {
         String size_str = readLine();
         if (ValidCheck.isBlank(size_str))
-            throw new IllegalStateException(Exceptions.Blank.getMessage());
+            throw new IllegalArgumentException(Exceptions.Blank.getMessage());
         if (!ValidCheck.isString_in_0to9(size_str))
-            throw new IllegalStateException(Exceptions.NotInteger.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotInteger.getMessage());
         int size = Integer.parseInt(size_str);
         if (!ValidCheck.isRange_3to20(size))
             throw new IllegalArgumentException(Exceptions.NotInRange.getMessage());
@@ -43,7 +43,7 @@ public class InputView {
         try {
             outputView.moveMessage();//move message 출력
             return readMoving();
-        } catch (IllegalArgumentException | IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askMoving();
         }
@@ -52,11 +52,11 @@ public class InputView {
     public String readMoving() {
         String command = readLine();
         if (ValidCheck.isBlank(command))
-            throw new IllegalStateException(Exceptions.Blank.getMessage());
+            throw new IllegalArgumentException(Exceptions.Blank.getMessage());
         if (!ValidCheck.isUorD(command))
             throw new IllegalArgumentException(Exceptions.NotUorD.getMessage());
         if (!ValidCheck.isLength1(command))
-            throw new IllegalStateException(Exceptions.NotCorrectSize.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotCorrectSize.getMessage());
         return command;
     }
 
@@ -67,7 +67,7 @@ public class InputView {
         try {
             outputView.restartMessage();
             return readGameCommand();
-        } catch (IllegalArgumentException | IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askRestart();
         }
@@ -76,11 +76,11 @@ public class InputView {
     public String readGameCommand() {
         String command = readLine();
         if (ValidCheck.isBlank(command))
-            throw new IllegalStateException(Exceptions.Blank.getMessage());
+            throw new IllegalArgumentException(Exceptions.Blank.getMessage());
         if (!ValidCheck.isRorQ(command))
             throw new IllegalArgumentException(Exceptions.NotRorQ.getMessage());
         if (!ValidCheck.isLength1(command))
-            throw new IllegalStateException(Exceptions.NotCorrectSize.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotCorrectSize.getMessage());
         return command;
     }
 
