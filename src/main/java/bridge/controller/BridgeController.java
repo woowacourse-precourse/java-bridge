@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeMatcher;
+import bridge.domain.GameResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -13,6 +14,14 @@ public class BridgeController {
     public void startGame() {
         List<String> bridge = generateBridge();
         BridgeMatcher bridgeMatcher = makeBridgeMatcher();
+        OutputView outputView = makeResultBridge();
+    }
+
+    private OutputView makeResultBridge() {
+        String upBridge = "";
+        String downBridge = "";
+        GameResult gameResult = new GameResult(upBridge, downBridge);
+        return new OutputView(gameResult);
     }
 
     private BridgeMatcher makeBridgeMatcher() {
