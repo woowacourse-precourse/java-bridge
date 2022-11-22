@@ -1,10 +1,10 @@
 package bridge.domain;
 
-import bridge.Instances.InputValidationType;
+import bridge.Instances.InputType;
 
 import java.util.List;
 
-import static bridge.Instances.InputValidationType.*;
+import static bridge.Instances.InputType.*;
 import static bridge.Instances.Setting.*;
 
 public class Validation {
@@ -43,7 +43,7 @@ public class Validation {
         }
     }
 
-    public static void validateInput(InputValidationType type, String input) {
+    public static void validateInput(InputType type, String input) {
         if (type.equals(BRIDGE_SIZE)) {
             isNumber(input);
             inRange(input);

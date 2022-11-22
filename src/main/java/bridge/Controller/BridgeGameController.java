@@ -1,9 +1,11 @@
 package bridge.Controller;
 
 import bridge.Instances.EndType;
+import bridge.Instances.InputType;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 import bridge.domain.BridgeGame;
+import bridge.domain.Validation;
 
 import java.util.List;
 
@@ -76,16 +78,35 @@ public class BridgeGameController {
         } while (retry);
     }
 
+    private static String readInput(InputType type) {
+        String input;
+        while (true) {
+            try {
+                input = readAndValidateInput(type);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return input;
+        }
+    }
+
+    private static String readAndValidateInput(InputType type) {
+        String input = inputView.read(type);
+        Validation.validateInput(type, input);
+        return input;
+    }
+
     public static String getMoving() {
-        return inputView.readMoving();
+        return readInput(InputType.MOVING);
     }
 
     public static int getBridgeSize() {
-        return inputView.readBridgeSize();
+        return Integer.parseInt(readInput(InputType.BRIDGE_SIZE));
     }
 
     public static String getGameCommand() {
-        return inputView.readGameCommand();
+        return readInput(InputType.GAME_COMMAND);
     }
 
     public static void printMoveResult(List<String> bridge, int position, boolean correct) {

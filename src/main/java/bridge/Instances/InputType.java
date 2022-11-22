@@ -1,5 +1,5 @@
 package bridge.Instances;
 
-public enum InputValidationType {
+public enum InputType {
     BRIDGE_SIZE, MOVING, GAME_COMMAND
 }
