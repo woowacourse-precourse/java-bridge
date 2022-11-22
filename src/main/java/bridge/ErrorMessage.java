@@ -19,4 +19,5 @@ public class ErrorMessage {
         System.out.println("[ERROR] 잘못된 입력입니다. R 또는 Q를 입력하세요.");
         throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. R 또는 Q를 입력하세요.");
     }
+    
 }
