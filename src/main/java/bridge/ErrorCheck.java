@@ -23,6 +23,7 @@ public class ErrorCheck {
         if(str.equals("R")||str.equals("Q")){
             return;
         }
+
         ErrorMessage.isAnswerRorQCheckErrorMessage();
     }
 }
