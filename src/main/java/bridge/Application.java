@@ -1,8 +1,7 @@
 package bridge;
 
-import bridge.domain.*;
-import bridge.domain.view.InputView;
-import bridge.domain.view.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import static bridge.Constants.*;
 

@@ -1,6 +1,6 @@
-package bridge.domain.view;
+package bridge.view;
 
-import bridge.domain.BridgeSize;
+import bridge.BridgeSize;
 
 import static bridge.Constants.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;

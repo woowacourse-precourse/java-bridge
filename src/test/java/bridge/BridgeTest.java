@@ -1,5 +1,6 @@
-package bridge.domain;
+package bridge;
 
+import bridge.Bridge;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

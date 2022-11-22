@@ -1,5 +1,9 @@
-package bridge.domain;
+package bridge;
 
+import bridge.Bridge;
+import bridge.BridgeGame;
+import bridge.Map;
+import bridge.PlayerBridge;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
