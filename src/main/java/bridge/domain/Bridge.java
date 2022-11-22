@@ -17,7 +17,6 @@ public class Bridge {
         this.structure = structure.stream().map(each ->
                         FootrestLocation.findByUserInput(each))
                 .collect(Collectors.toList());
-        System.out.println("bridge is " + structure); //TODO 마지막에 해당 문장 삭제. 테스트의 편의를 위해서 존재함
     }
 
     public boolean canMove(int order, FootrestLocation footrestLocation) {
