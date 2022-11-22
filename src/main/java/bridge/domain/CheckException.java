@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.view.ErrorMessage;
+import bridge.view.GameSign;
 
 public class CheckException {
     private final int MAX_BRIDGE_SIZE = 20;
@@ -20,7 +21,7 @@ public class CheckException {
 
     public boolean checkInputMoving(String moving) {
         try {
-            if (!moving.equals("U") && !moving.equals("D")) {
+            if (!moving.equals(GameSign.UP_MOVING.getMessage()) && !moving.equals(GameSign.DOWN_MOVING.getMessage())) {
                 throw new IllegalArgumentException();
             }
             return true;
@@ -32,7 +33,7 @@ public class CheckException {
 
     public boolean checkInputRetryChoice(String retryChoice) {
         try {
-            if (!retryChoice.equals("R") && !retryChoice.equals("Q")) {
+            if (!retryChoice.equals(GameSign.RETRY.getMessage()) && !retryChoice.equals(GameSign.QUIT.getMessage())) {
                 throw new IllegalArgumentException();
             }
             return true;
