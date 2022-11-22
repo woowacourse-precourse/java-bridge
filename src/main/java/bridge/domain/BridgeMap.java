@@ -1,4 +1,4 @@
-package bridge.io;
+package bridge.domain;
 
 import bridge.Util;
 import bridge.enums.BridgeFrame;

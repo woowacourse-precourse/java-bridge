@@ -2,6 +2,7 @@ package bridge.io;
 
 import bridge.domain.BridgeGameCheck;
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMap;
 import bridge.enums.Constant;
 import bridge.enums.Message;
 
