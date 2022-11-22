@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.exception.IllegalNumberRangeException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -16,6 +17,7 @@ public class InputView {
         validateBridgeSizeInputLength(input);
         int bridgeSize = getBridgeSize(input);
         validateSizeLimit(bridgeSize);
+
         return bridgeSize;
     }
 
@@ -27,7 +29,7 @@ public class InputView {
 
     private void validateSizeLimit(int bridgeSize) {
         if(bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException("validateSizeLimit");
+            throw new IllegalNumberRangeException("범위를 벗어난 입력입니다. ", bridgeSize);
         }
     }
 
