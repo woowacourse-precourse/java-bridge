@@ -22,7 +22,7 @@ class ValidationTest {
     @ParameterizedTest
     @CsvSource(value = {"NULL", "''", "a", "-1", "2", "21"},
             nullValues = "NULL")
-    void 입력값_테스트(String input) {
+    void 다리의_길이_예외_입력값_테스트(String input) {
         assertThatThrownBy(() -> {
             validation.validBridgeSize(input);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -33,7 +33,7 @@ class ValidationTest {
     @DisplayName("3이상 20이하의 값이 입력될 때 정상적으로 기능하는지 테스트한다.")
     @ParameterizedTest
     @ValueSource(strings = {"3","20"})
-    void 경계_안쪽값_테스트(String value) {
+    void 다리의_길이_경계값_테스트(String value) {
         assertThatNoException().isThrownBy(() -> {
             validation.validBridgeSize(value);
         });
