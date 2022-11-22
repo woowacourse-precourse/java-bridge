@@ -20,7 +20,9 @@ public class Application {
                 System.out.println(MESSAGE_RESTART);
                 InputView inputView = new InputView();
                 flag = bridgeGame.retry(inputView.readGameCommand());
+                continue;
             }
+            flag = gameResult.flag;
         }
         OutputView outputView = new OutputView();
         outputView.printResult(count, gameResult);

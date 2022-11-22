@@ -41,11 +41,11 @@ class LogicUnitTest extends NsTest {
     void 기능_Application_playGame() {
         List<String> bridge = newArrayList("U", "D", "D");
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        System.setIn(new ByteArrayInputStream("U\nD\nU".getBytes()));
+        System.setIn(new ByteArrayInputStream("U\nD\nD".getBytes()));
         Application application = new Application();
         MoveResult playResult = application.playGame(bridgeGame);
-        assertThat(playResult.flag).isEqualTo(MOVERESULT_FLAG_INVALID);
-        assertThat(playResult.nowBridge.toString()).isEqualTo("[U, D, U]");
+        assertThat(playResult.flag).isEqualTo(MOVERESULT_FLAG_FULL);
+        assertThat(playResult.nowBridge.toString()).isEqualTo("[U, D, D]");
     }
 
     @Test
