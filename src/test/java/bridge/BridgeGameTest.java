@@ -29,7 +29,7 @@ class BridgeGameTest {
         List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "D", "U", "U", "U");
         List<String> opposite = Arrays.asList("D", "U", "D", "U", "D", "U", "D", "D", "D");
 
-        for(int i=0;i<bridge.size();i++) {
+        for (int i = 0; i < bridge.size(); i++) {
             assertThat(bridgeGame.move(opposite.get(i), bridge)).isEqualTo(false);
         }
     }
@@ -37,7 +37,7 @@ class BridgeGameTest {
     @DisplayName("재시도")
     @Test
     void 재시도() {
-        List<String> userRoute = new ArrayList<>(Arrays.asList("U","D","D"));
+        List<String> userRoute = new ArrayList<>(Arrays.asList("U", "D", "D"));
         assertThat(userRoute.size()).isEqualTo(3);
 
         bridgeGame.retry(userRoute);
@@ -50,13 +50,13 @@ class BridgeGameTest {
     void 재시도_후_움직임() {
         List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "D", "U", "U", "U");
 
-        for(int i=0;i<5;i++) {
+        for (int i = 0; i < 5; i++) {
             assertThat(bridgeGame.move(bridge.get(i), bridge)).isEqualTo(true);
         }
 
         assertThat(bridgeGame.move("U", bridge)).isEqualTo(false);
 
-        List<String> userRoute = new ArrayList<>(Arrays.asList("U","D","D"));
+        List<String> userRoute = new ArrayList<>(Arrays.asList("U", "D", "D"));
         bridgeGame.retry(userRoute);
 
         assertThat(userRoute.size()).isEqualTo(0);

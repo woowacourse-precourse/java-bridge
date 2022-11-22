@@ -18,8 +18,8 @@ class OutputViewTest extends NsTest {
     @DisplayName("printMap_실패")
     @Test
     void printMap_실패() {
-        List<String> userRoute = Arrays.asList("U","D","U","D","U","D");
-        List<String> bridge = Arrays.asList("U","D","U","D","U","U");
+        List<String> userRoute = Arrays.asList("U", "D", "U", "D", "U", "D");
+        List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "U");
 
         outputView.printMap(userRoute, bridge);
 
@@ -37,8 +37,8 @@ class OutputViewTest extends NsTest {
     @DisplayName("printMap_성공")
     @Test
     void printMap_성공() {
-        List<String> userRoute = Arrays.asList("U","D","U","D","U","U");
-        List<String> bridge = Arrays.asList("U","D","U","D","U","U");
+        List<String> userRoute = Arrays.asList("U", "D", "U", "D", "U", "U");
+        List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "U");
 
         outputView.printMap(userRoute, bridge);
 
@@ -57,8 +57,8 @@ class OutputViewTest extends NsTest {
     @Test
     void printResult_실패() {
         int trial = 1234;
-        List<String> userRoute = Arrays.asList("U","D","U","D","U","D");
-        List<String> bridge = Arrays.asList("U","D","U","D","U","U");
+        List<String> userRoute = Arrays.asList("U", "D", "U", "D", "U", "D");
+        List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "U");
 
         outputView.printResult(trial, userRoute, bridge);
 
@@ -80,8 +80,8 @@ class OutputViewTest extends NsTest {
     @Test
     void printResult_성공() {
         int trial = 1234;
-        List<String> userRoute = Arrays.asList("U","D","U","D","U","U");
-        List<String> bridge = Arrays.asList("U","D","U","D","U","U");
+        List<String> userRoute = Arrays.asList("U", "D", "U", "D", "U", "U");
+        List<String> bridge = Arrays.asList("U", "D", "U", "D", "U", "U");
 
         outputView.printMap(userRoute, bridge);
 
