@@ -28,7 +28,7 @@ public class BridgeController {
             OutputView.printCount(continue_game, count_try);
         }
         catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
