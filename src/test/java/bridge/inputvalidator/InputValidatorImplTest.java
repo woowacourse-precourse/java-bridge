@@ -1,4 +1,4 @@
-package bridge;
+package bridge.inputvalidator;
 
 import bridge.util.inputvalidator.InputValidator;
 import bridge.util.inputvalidator.InputValidatorImpl;
