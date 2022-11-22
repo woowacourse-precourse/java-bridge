@@ -72,4 +72,17 @@ public class BridgeGameTest {
         assertTrue(upperBridge.get(0).equals(IMPOSSIBLE));
     }
 
+    @DisplayName("플레이어 아래쪽 다리 이동 성공 후 경로가 올바른지 테스트")
+    @Test
+    void 플레이어_아래쪽_다리_이동_성공_경로() {
+        Bridge bridge =  new Bridge(List.of("D","D","U"));
+        String position = "D";
+        bridgeGame.move(playerId, bridge, position);
+
+        PathTravel pathTravel = bridgeGame.getPathTravel(playerId);
+        List<String> lowerBridge = pathTravel.getLowerBridge();
+
+        assertTrue(lowerBridge.get(0).equals(POSSIBLE));
+    }
+
 }
