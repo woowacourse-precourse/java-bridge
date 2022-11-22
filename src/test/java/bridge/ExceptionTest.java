@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BridgeTest extends NsTest {
+public class ExceptionTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
