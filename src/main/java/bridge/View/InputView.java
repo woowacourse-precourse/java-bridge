@@ -42,7 +42,7 @@ public class InputView {
         String Replay = Console.readLine();
         checkRetryValidate(Replay);
         System.out.println(Constant.Select_Replay());
-        System.out.println(Replay);
+        System.out.printf(Replay);
         return Replay;
     }
 
