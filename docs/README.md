@@ -66,6 +66,12 @@
   - [x] R, Q버튼 분류 기능 - inputRetryCommand()
   - [x] 테스트 코드를 추가했습니다.(ExceptionBasketTest)
 
--[x] 랜덤된 값을 범위 만큼 할당하는 클래스 - BridgeRandomNumberGenerator
+-[x] 랜덤된 값을 범위 만큼 할당하는 클래스 - class BridgeRandomNumberGenerator
   - [x] 범위 내로 랜덤된 값을 내 뱉음 - generate()
   - [x] 테스트 코드를 추가했습니다.(ExceptionBasketTest)
+
+-[x] 예외 메시지를 담은 예외를 반환하는 기능 - enum OutputExceptionMessage
+  - [x] 예외를 반환하는 기능 - getException()
+
+-[x] 게임 안내문을 출력하는 기능 - enum OutputGameMessage
+  - [x] 메시지를 출력하는 기능 - printMessage()
