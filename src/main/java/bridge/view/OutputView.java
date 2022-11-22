@@ -36,7 +36,7 @@ public class OutputView {
      */
     public void printMap(BridgeGame bridgeGame) {
         for (MovingCommand command : MovingCommand.values()){
-            printMessage(bridgeGame.getBridgeStringOf(command.getCommand()));
+            printMessage(bridgeGame.getBridgeLaneOf(command.getCommand()));
         }
     }
 
@@ -47,7 +47,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         printMessage(gameResultMessage);
         for (MovingCommand command: MovingCommand.values()){
-            printMessage(bridgeGame.getResultStringOf(command.getCommand()));
+            printMessage(bridgeGame.getResultLaneOf(command.getCommand()));
         }
         printMessage(String.format(whetherSuccessMessage, bridgeGame.getGameResult()));
         printMessage(String.format(numberOfTrialMessage, bridgeGame.getNumberOfTrials()));
