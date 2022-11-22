@@ -11,8 +11,8 @@ public class Bridge {
     }
 
     public String compare(List<String> move) {
-//        return move.get(move.size() - 1).equals(bridgePosition.get(move.size() - 1));
-        boolean comparison = move.get(move.size() - 1).equals(bridgePosition.get(move.size() - 1));
+        int compareIndex = getCompareIndex(move);
+        boolean comparison = move.get(compareIndex).equals(bridgePosition.get(compareIndex));
         return getSign(comparison);
     }
 
@@ -23,5 +23,9 @@ public class Bridge {
 
     public boolean compareLength(List<String> user) {
         return bridgePosition.size() == user.size();
+    }
+
+    public int getCompareIndex(List<String> move) {
+        return move.size() - 1;
     }
 }
