@@ -14,6 +14,7 @@ public class InputView {
      */
     public String readBridgeSize() {
         String bridgeSize = Console.readLine();
+        checker.checkValidate(bridgeSize);
         return bridgeSize;
     }
 
