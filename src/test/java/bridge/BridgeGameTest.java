@@ -1,20 +1,15 @@
 package bridge;
 
 import bridge.domain.BridgeJudge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
 import bridge.dto.BridgeRouteDto;
 import bridge.dto.ResultDto;
 import bridge.service.BridgeGame;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
