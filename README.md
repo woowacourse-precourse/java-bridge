@@ -291,3 +291,25 @@ int number = bridgeNumberGenerator.generate();
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+## 구현 기능 목록
+* BridgeMaker Class
+    - 랜덤으로 0 또는 1을 생성해 0인 경우 "D", 1인 경우 "U"을 List에 더해 정답을 만든다.
+* BridgeGame Class
+    - 게임 진행을 위해 한 칸의 다리를 건너는 메소드를 구현한다.
+    - 다리를 한 칸 건널 때마다 윗줄 아랫줄 출력을 위한 출력용 List에 O 또는 X 표시를 추가하는 메소드를 구현한다.
+    - 다리를 한 칸 건너는 메소드를 이용해 다리를 여러칸 건너는 메소드를 구현한다.
+    - 게임이 끝났을 때 재시작 여부를 묻는 메소드를 구현한다.
+*  InputView Class
+    - 사용자로부터 다리 길이를 입력 받는 메소드를 구현한다.
+    - 사용자로부터 어떤 다리를 건널지 입력 받는 메소드를 구현한다.
+    - 사용자로부터 게임 재시작 여부를 묻는 메소드를 구현한다.
+*  OutputView Class
+    - 게임 시작 메세지를 출력한다.
+    - BridgeGame에서 입력 받은 출력용 List를 입력 받아 게임 진행 상황을 출력한다.
+    - 최종 게임 결과를 출력한다.
+   
+
+
+
