@@ -31,7 +31,7 @@ public class BridgeMaker {
             String moving = convertNumber(bridgeNumberGenerator.generate());
             bridge.add(moving);
         });
-        System.out.println(bridge);
+
         return bridge;
     }
 

@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.controller.BridgeController;
+import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
 
@@ -11,5 +12,7 @@ public class Application {
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
+
+
     }
 }

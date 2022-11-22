@@ -8,7 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class BridgeMakerTest {
+class BridgeMakerTest  {
 
     @Test
     void 사이즈_확인_테스트() {
