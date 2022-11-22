@@ -10,15 +10,16 @@ import java.util.List;
 
 public class BridgeGameService {
     private static final String RESTART_GAME = "R";
-    private static final String END_GAME = "Q";
     private static final String GAME_FAIL = "실패";
     private static final String GAME_SUCCESS = "성공";
-    static InputView input = new InputView();
-    static OutputView output = new OutputView();
-    static int bridgeSize;
-    static List<String> crossByBridge;
-    static Bridge bridge;
-    static BridgeGame bridgeGame;
+    private static final String CAN_NOT_MOVING = "X";
+    private static final int START_BRIDGE_INDEX = 0;
+    private static List<String> crossByBridge;
+    private static Bridge bridge;
+    private static BridgeGame bridgeGame;
+    private InputView input = new InputView();
+    private OutputView output = new OutputView();
+    private int bridgeSize;
 
     public BridgeGameService() {
     }
@@ -32,23 +33,23 @@ public class BridgeGameService {
         output.printStartBridgeGame();
         bridge = new Bridge();
         bridgeGame = new BridgeGame(bridge);
-        output.printEnterBridgeLength(); // 다리의 길이를 입력해주세요.
+        output.printEnterBridgeSize();
     }
 
     public void playBridgeGame() {
-        bridgeGame = new BridgeGame(new ArrayList<>(), bridgeGame.getTotalGame(), bridge); // 게임 시작
+        bridgeGame = new BridgeGame(new ArrayList<>(), bridgeGame.getTotalGame(), bridge);
         moveCrossBridge();
-        if (checkRestartCondition(bridgeGame.getMovingCount())) { // 게임 재시작
+        if (checkRestartCondition(bridgeGame.getMovingCount())) {
             return;
         }
-        output.printResult(GAME_SUCCESS, bridgeGame.getTotalGame(), bridge.getLastBridge()); // 최종 결과 입력(게임 성공, 게임횟수)
+        output.printResult(GAME_SUCCESS, bridgeGame.getTotalGame(), bridge.getLastBridge());
     }
 
     private void moveCrossBridge() {
-        int moveIndex = 0;
+        int moveIndex = START_BRIDGE_INDEX;
         boolean movingResult = true;
         while (moveIndex < bridgeSize && movingResult) {
-            output.printSelectMoveDirection(); // 이동할 칸을 선택해주세요.
+            output.printSelectMoveDirection();
             String movingInput = input.readMoving();
             movingResult = bridgeGame.move(crossByBridge.get(moveIndex), movingInput);
             bridgeGame.setMovingResult(crossByBridge.get(moveIndex++), movingInput);
@@ -57,7 +58,7 @@ public class BridgeGameService {
     }
 
     private boolean checkRestartCondition(int movingCount) {
-        if (movingCount != crossByBridge.size() || bridgeGame.getLastMoving().equals("X")) {
+        if (movingCount != crossByBridge.size() || bridgeGame.getLastMoving().equals(CAN_NOT_MOVING)) {
             bridgeGame = new BridgeGame(new ArrayList<>(), bridgeGame.getTotalGame(), bridge);
             selectGameRestart();
             return true;
@@ -66,14 +67,14 @@ public class BridgeGameService {
     }
 
     private void selectGameRestart() {
-        output.printEnterGameCommand(); // 게임을 다시 시작할지 입력하세요.
-        String gameCommand = input.readGameCommand(); // 게임 재시도 여부 입력
+        output.printEnterGameCommand();
+        String gameCommand = input.readGameCommand();
 
-        if (gameCommand.equals(RESTART_GAME)) { // 재시작
+        if (gameCommand.equals(RESTART_GAME)) {
             bridgeGame.retry();
             playBridgeGame();
             return;
-        } // 게임 실패지만 종료
-        output.printResult(GAME_FAIL, bridgeGame.getTotalGame(), bridge.getLastBridge()); // 최종 결과 입력(게임 실패, 게임횟수)
+        }
+        output.printResult(GAME_FAIL, bridgeGame.getTotalGame(), bridge.getLastBridge());
     }
 }

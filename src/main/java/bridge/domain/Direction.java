@@ -27,8 +27,4 @@ public enum Direction {
     public String getMovingDirection() {
         return movingDirection;
     }
-
-    public int getMovingNumber() {
-        return movingNumber;
-    }
 }

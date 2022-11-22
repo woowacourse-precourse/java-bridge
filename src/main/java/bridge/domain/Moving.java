@@ -4,6 +4,7 @@ import bridge.exception.BridgeError;
 import bridge.exception.ErrorException;
 
 public class Moving {
+    private final static int MOVING_INPUT_SIZE = 1;
     private final String movingInput;
 
     public Moving(String movingInput) {
@@ -21,7 +22,7 @@ public class Moving {
     }
 
     private boolean isNotOneCharacter() {
-        return movingInput.length() != 1;
+        return movingInput.length() != MOVING_INPUT_SIZE;
     }
 
     private boolean checkInvalidMoving() {

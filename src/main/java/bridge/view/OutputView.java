@@ -4,6 +4,10 @@ import bridge.domain.Bridge;
 
 public class OutputView {
     private static final int LAST_CHARACTER = 1;
+    private static final char MIDDLE_PARTITION_BRIDGE = '|';
+    private static final String FIRST_PARTITION_BRIDGE = "[";
+    private static final String LAST_PARTITION_BRIDGE = "]\n";
+
     static StringBuilder upStringBuilder;
     static StringBuilder downStringBuilder;
 
@@ -22,8 +26,8 @@ public class OutputView {
         for (int crossPoint = 0; crossPoint < crossBridgeSize; crossPoint++) {
             upStringBuilder.append(bridge.getUpBridge().get(crossPoint));
             downStringBuilder.append(bridge.getDownBridge().get(crossPoint));
-            upStringBuilder.append('|');
-            downStringBuilder.append('|');
+            upStringBuilder.append(MIDDLE_PARTITION_BRIDGE);
+            downStringBuilder.append(MIDDLE_PARTITION_BRIDGE);
         }
     }
 
@@ -31,16 +35,16 @@ public class OutputView {
         upStringBuilder = new StringBuilder();
         downStringBuilder = new StringBuilder();
 
-        upStringBuilder.append("[");
-        downStringBuilder.append("[");
+        upStringBuilder.append(FIRST_PARTITION_BRIDGE);
+        downStringBuilder.append(FIRST_PARTITION_BRIDGE);
     }
 
     private void finishStringBuilder() {
         upStringBuilder.setLength(upStringBuilder.length() - LAST_CHARACTER);
-        upStringBuilder.append("]\n");
+        upStringBuilder.append(LAST_PARTITION_BRIDGE);
 
         downStringBuilder.setLength(downStringBuilder.length() - LAST_CHARACTER);
-        downStringBuilder.append("]\n");
+        downStringBuilder.append(LAST_PARTITION_BRIDGE);
     }
 
     public void printResult(String gameResult, int gameTryCount, String lastMapResult) {
@@ -67,7 +71,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printEnterBridgeLength() {
+    public void printEnterBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
 

@@ -5,6 +5,8 @@ import java.util.List;
 public class BridgeGame {
     private static final String CAN_MOVING = "O";
     private static final String CAN_NOT_MOVING = "X";
+    private static final int INIT_FIRST_GAME = 1;
+    private static final int INIT_MOVING_COUNT = 0;
 
     private final Bridge bridge;
     private List<String> movements;
@@ -13,19 +15,19 @@ public class BridgeGame {
     private String lastMoving;
 
     public BridgeGame(Bridge bridge) {
-        this.totalGame = 1;
+        this.totalGame = INIT_FIRST_GAME;
         this.bridge = bridge;
     }
 
     public BridgeGame(List<String> movements, int totalGame, Bridge bridge) {
         this.movements = movements;
-        this.movingCount = 0;
+        this.movingCount = INIT_MOVING_COUNT;
         this.totalGame = totalGame;
         this.bridge = bridge;
     }
 
     public boolean move(String crossDirection, String movingInput) {
-        movements.add(movingInput); // 리스트에 이동 입력 정보 넣기
+        movements.add(movingInput);
         addMovingCount();
 
         if (checkCanMoving(crossDirection, movingInput)) {
@@ -59,7 +61,7 @@ public class BridgeGame {
     }
 
     private void initMovingCount() {
-        this.movingCount = 0;
+        this.movingCount = INIT_MOVING_COUNT;
     }
 
     private void addGameCount() {

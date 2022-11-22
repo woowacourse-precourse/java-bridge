@@ -9,6 +9,7 @@ public class InputView {
     private static final int BRIDGE_SIZE = 1;
     private static final int MOVING = 2;
     private static final int GAME_COMMAND = 3;
+    private static final String RE_ENTER_MESSAGE = " 다시 입력해주세요.\n";
     private String input;
 
     public String readBridgeSize() {
@@ -46,7 +47,7 @@ public class InputView {
             input = Console.readLine();
             checkInputObject(methodType, input);
         } catch (IllegalArgumentException e) {
-            System.out.print(e.getMessage() + " 다시 입력해주세요.\n");
+            System.out.print(e.getMessage() + RE_ENTER_MESSAGE);
             input = checkInputMethod(methodType);
         }
         return input;
