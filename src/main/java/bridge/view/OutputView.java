@@ -1,49 +1,45 @@
 package bridge.view;
 
 import bridge.domain.direction.Direction;
-import bridge.domain.pedestrian.Pedestrian;
-import bridge.domain.referee.Judgement;
+import bridge.domain.game.Round;
+import bridge.domain.movingrecord.MovingRecord;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public void printMap(Pedestrian pedestrian) {
-        List<String> upPath = makeBridgeGraphic(pedestrian, "U");
-        List<String> downPath = makeBridgeGraphic(pedestrian, "D");
-
-        System.out.printf((OutputMessage.BRIDGE_EDGE.getMessage()), String.join(OutputMessage.DELIMITER.getMessage(), upPath));
-        System.out.printf((OutputMessage.BRIDGE_EDGE.getMessage()), String.join(OutputMessage.DELIMITER.getMessage(), downPath));
+    public void printMap(MovingRecord movingRecord) {
+        printSideMap(movingRecord, new Direction(Direction.UPWARD_DIRECTION));
+        printSideMap(movingRecord, new Direction(Direction.DOWNWARD_DIRECTION));
     }
 
-    private List<String> makeBridgeGraphic(Pedestrian pedestrian, String answer) {
-        return pedestrian.readRecord()
-                .map(record -> makeAnswerMessage(record, answer))
+    private void printSideMap(MovingRecord movingRecord, Direction side) {
+        List<String> bridgeMap = makeBridgeGraphic(movingRecord.makeBridgeSketches(side));
+        System.out.printf((OutputMessage.BRIDGE_EDGE.getMessage()), String.join(OutputMessage.DELIMITER.getMessage(), bridgeMap));
+    }
+
+    private List<String> makeBridgeGraphic(List<Integer> bridgeSketches) {
+        return bridgeSketches.stream()
+                .map(this::makeAnswerMessage)
                 .collect(Collectors.toList());
     }
 
-    private String makeAnswerMessage(Map.Entry<Judgement, Direction> record, String answer) {
-        Direction direction = record.getValue();
-        Judgement judgement = record.getKey();
-
-        if (direction.equals(new Direction(answer)) && judgement.isTrue()) {
+    private String makeAnswerMessage(int number) {
+        if (number == MovingRecord.CORRECT_DIRECTION) {
             return OutputMessage.CORRECT_ANSWER.getMessage();
         }
-        if (direction.equals(new Direction(answer)) && judgement.isFalse()) {
+        if (number == MovingRecord.INCORRECT_DIRECTION) {
             return OutputMessage.INCORRECT_ANSWER.getMessage();
         }
         return OutputMessage.BLANK.getMessage();
     }
 
-    public void printResultTitle() {
+    public void printResult(MovingRecord movingRecord, boolean success, Round round) {
         System.out.print(OutputMessage.RESULT_TITLE.getMessage());
-    }
-
-    public void printResult(boolean success, int count) {
+        printMap(movingRecord);
         System.out.printf(OutputMessage.RESULT_CONTENT.getMessage(), makeResultMessage(success));
-        System.out.printf(OutputMessage.NUMBER_OF_ATTEMPT.getMessage(), count);
+        System.out.printf(OutputMessage.NUMBER_OF_ATTEMPT.getMessage(), round.getGameRound());
     }
 
     public void printStart() {
@@ -51,7 +47,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(String error) {
-        System.out.println(error);
+        System.out.print(error);
     }
 
     private String makeResultMessage(boolean success) {
