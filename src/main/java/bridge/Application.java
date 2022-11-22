@@ -17,7 +17,7 @@ public class Application {
             if(!bridgeGame.result && !gameRetry(bridgeGame)) //이동실패시 재시작 여부에 따라
                 break;
         }
-        output.printResult(bridgeGame.board, bridgeGame.step, bridgeGame.result, bridgeGame.retryNum); //게임 결과 출력
+        output.printResult(bridgeGame); //게임 결과 출력
     }
 
     public static BridgeGame getBridgeGame(){
