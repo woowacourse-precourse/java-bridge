@@ -12,7 +12,8 @@ public class OutputView {
     PrintView printView = new PrintView();
     BridgeGame bridgeGame = new BridgeGame();
     InputView inputView = new InputView();
-    InputMoveStepHandler inputMoveStepHandler = new InputMoveStepHandler();
+    private String moveStep;
+    InputMoveStepHandler inputMoveStepHandler = new InputMoveStepHandler(moveStep);
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.

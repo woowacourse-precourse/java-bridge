@@ -15,7 +15,8 @@ public class BridgeGame {
     public static int checkAnswerIndex = 0;
     public static int retryCount = 0;
     PrintView printView = new PrintView();
-    InputRestartHandler inputRestartHandler = new InputRestartHandler();
+    private String restart;
+    InputRestartHandler inputRestartHandler = new InputRestartHandler(restart);
     public List<String> upSide = new ArrayList<>();
     public List<String> downSide = new ArrayList<>();
     /**
@@ -48,7 +49,7 @@ public class BridgeGame {
         System.out.print(downSide);
         printView.lineSkip();
         if (upSide.contains("X") || downSide.contains("X")) {
-            PrintView.checkAnswerIndex = 1;
+            checkAnswerIndex = 1;
             System.out.println();
             System.out.println(printView.EXIT_OR_CONTINUE);
             checkRestartOrQuit(inputRestartHandler.checkValidator(printView.continueOrExit()));
@@ -65,7 +66,7 @@ public class BridgeGame {
             printFailOrSuccessCase();
         }
         if(checkRestart.equals("R")){
-            PrintView.checkAnswerIndex = 0;
+            checkAnswerIndex = 0;
             upSide.clear();
             downSide.clear();
             outputView.stepBridge(BridgeController.bridgeData);
@@ -73,25 +74,25 @@ public class BridgeGame {
     }
 
     public void printFailOrSuccessCase() {
-        if(PrintView.checkAnswerIndex == 1){
+        if(checkAnswerIndex == 1){
             System.out.println();
             System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.FAIL);
-            System.out.println(printView.TOTAL_COUNT+" "+ printView.retryCount);
+            System.out.println(printView.TOTAL_COUNT+" "+ retryCount);
         }
-        if(PrintView.checkAnswerIndex == 2){
+        if(checkAnswerIndex == 2){
             System.out.println();
             System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.SUCCESS);
-            System.out.println(printView.TOTAL_COUNT+" "+ printView.retryCount);
+            System.out.println(printView.TOTAL_COUNT+" "+ retryCount);
         }
     }
 
     private void restResult(List<String> upSideList, List<String> downSideList) {
         String checkRestart = "";
         extractBracket(upSideList, downSideList);
-        if(PrintView.checkAnswerIndex == 1) restContainsX();
+        if(checkAnswerIndex == 1) restContainsX();
         printView.lineSkip();
         if(!checkRestResult(upSide, downSide)){
-            PrintView.checkAnswerIndex = 1;
+            checkAnswerIndex = 1;
             System.out.println();
             System.out.println(printView.EXIT_OR_CONTINUE);
             checkRestart = printView.continueOrExit();
@@ -126,21 +127,21 @@ public class BridgeGame {
 
     private void restContainsX(){
         // 빼야함
-        PrintView.checkAnswerIndex = 1;
+        checkAnswerIndex = 1;
         BridgeController bridgeController = new BridgeController();
         OutputView outputView =new OutputView();
         String pickrestart = "";
         System.out.println(printView.EXIT_OR_CONTINUE);
         pickrestart = retry();
         if(pickrestart.equals("Q")){
-            PrintView.checkAnswerIndex = 1;
+            checkAnswerIndex = 1;
             System.out.println(printView.THE_GAME_RESULT);
             extractBracket(upSide,downSide);
             printView.lineSkip();
             printFailOrSuccessCase();
         }
         if(pickrestart.equals("R")){
-            PrintView.checkAnswerIndex = 0;
+            checkAnswerIndex = 0;
             upSide.clear();
             downSide.clear();
             outputView.stepBridge(BridgeController.bridgeData);

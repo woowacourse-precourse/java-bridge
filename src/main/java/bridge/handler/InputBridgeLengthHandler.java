@@ -3,12 +3,18 @@ package bridge.handler;
 import bridge.view.PrintView;
 
 public class InputBridgeLengthHandler {
+    private String bridgeLength;
+
+    public InputBridgeLengthHandler(String bridgeLength) {
+        this.bridgeLength = bridgeLength;
+    }
 
     public String checkValidator(String bridgeLength){
         checkNonInput(bridgeLength);
         checkIsNumber(bridgeLength);
         checkInRange(bridgeLength);
         checkOverRange(bridgeLength);
+        this.bridgeLength = bridgeLength;
 
         return bridgeLength;
     }
