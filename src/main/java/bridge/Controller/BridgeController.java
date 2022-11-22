@@ -20,12 +20,12 @@ public class BridgeController {
 
     public void run() {
         BridgeGame game = new_BridgeGame();
-
         while (!continue_game.contains(Quit)) {
             if (result_print == 0) break;
             String moving = MovingCheck(InputView.readMoving());
             if (result_print == 0) break;
             continue_game = OutputView.printMap(game.move(moving), moving);
+            if (result_print == 0) break;
             Gaming(game);
         }
         if (result_print == 1)
