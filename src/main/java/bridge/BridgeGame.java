@@ -3,7 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.Application.move_Status;
+import static bridge.Application.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -44,36 +44,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(List<String> bridge, OutputView OV, InputView IV, BridgeNumberGenerator BNG, BridgeMaker BM, BridgeGame BG) {
 
         move_Status = true;
-        List<String> bridge;
         int num = 0;
-        String currentMoving;
-        List<String> result = new ArrayList<>();
+        trial_Number++;
 
-        OutputView OV = new OutputView();
-        OV.startGuidance();
-        InputView IV = new InputView();
-        BridgeNumberGenerator BNG = new BridgeRandomNumberGenerator();
-        BridgeMaker BM = new BridgeMaker(BNG);
-        bridge = BM.makeBridge(IV.readBridgeSize());
-        BridgeGame BG = new BridgeGame();
-        System.out.println(bridge);
-
-        while(move_Status && num <bridge.size()) {
-            OV.moveGuidance();
-            currentMoving = IV.readMoving();
-            List<String> movement = BG.move(bridge.get(num), currentMoving);
-            result.add(movement.get(0));
-            result.add(movement.get(1));
-            OV.printMap(result, num);
-            num++;
-        }
-        if (!move_Status) {
-            OV.restartGuidance();
-            String gameCommand = IV.readGameCommand();
-            if(gameCommand.equals("R")) retry();
-        }
+        repeatMoving(num, bridge, IV, BG);
+        restart(OV, IV, BG, bridge, BNG, BM);
     }
 }

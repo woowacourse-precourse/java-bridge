@@ -32,7 +32,15 @@ public class InputView {
         if (input.length() < 1 || input.length() > 2) {
             exceptionOccured_Bridge();
         }
+        exceptionNotNumber_Bridge(input);
         exceptionStatusCheck_Bridge(input);
+    }
+
+    public void exceptionNotNumber_Bridge(String input){
+        for(int i=0; i<input.length(); i++) {
+            if ((int) input.charAt(i) < 48) exceptionOccured_Bridge();
+            if ((int) input.charAt(i) > 57) exceptionOccured_Bridge();
+        }
     }
 
     public void exceptionStatusCheck_Bridge(String input){
