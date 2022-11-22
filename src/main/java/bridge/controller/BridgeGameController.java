@@ -13,20 +13,39 @@ public class BridgeGameController {
     private static final String QUIT_GAME_COMMAND = "Q";
 
     InputView inputView = new InputView();
-    BridgeGame bridgeGame = new BridgeGame();
+    private BridgeGame bridgeGame;
     private int bridgeSize;
-    private int userPosition = 0;
-    private int userTryCount = 1;
+    private boolean success = false;
 
     public void run() {
-        try {
-            this.bridgeSize = setBridgeSize();
-            bridgeGame.setGame(bridgeSize);
-            controlGame();
-            System.out.println("trycount:" + userTryCount);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        init();
+        while (true) {
+            if (!startRound()) {
+                break;
+            }
         }
+    }
+
+    private void init() {
+        this.bridgeSize = setBridgeSize();
+        bridgeGame = new BridgeGame(bridgeSize);
+    }
+
+    private boolean startRound() {
+        boolean isMove = bridgeGame.determineMove(setMoving());
+        if (isMove) {
+            return !isSucess();
+        }
+        boolean isRetry = bridgeGame.determineRetry(setRetry());
+        if (isRetry) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isSucess() {
+        success = true;
+        return bridgeGame.isEndPosition(bridgeSize);
     }
 
     private int setBridgeSize() {
@@ -41,48 +60,24 @@ public class BridgeGameController {
         }
     }
 
-    private void controlGame() {
-        while (true) {
-            if (!startRound()) {
-                return;
-            }
-            if (userPosition == bridgeSize) {
-                return;
-            }
-        }
-    }
-
-    private boolean startRound() {
-        if (!setMoving()) {
-            if (!setRetry()) {
-                return false;
-            }
-            userTryCount ++;
-            userPosition = 0;
-            return true;
-        }
-        userPosition++;
-        return true;
-    }
-
-    private boolean setMoving() {
+    private String setMoving() {
         while (true) {
             try {
                 String moveCommand = inputView.readMoving();
                 validateMovingCommand(moveCommand);
-                return bridgeGame.move(moveCommand);
+                return moveCommand;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }
         }
     }
 
-    private boolean setRetry() {
+    private String setRetry() {
         while (true) {
             try {
                 String retryCommand = inputView.readGameCommand();
                 validateRetryCommand(retryCommand);
-                return bridgeGame.retry(retryCommand);
+                return retryCommand;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }
