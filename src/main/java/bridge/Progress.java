@@ -54,4 +54,7 @@ public class Progress {
         return false;
     }
 
+    public void printResult(int count) {
+        outputView.printResult(count, bridgeGame.inputHistory(), bridgeGame.isSuccess());
+    }
 }
