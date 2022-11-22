@@ -25,14 +25,24 @@ public class MainController {
 
     private void mainGame(Bridge bridge, BridgeGame game) {
         for(int count = 0; count < bridge.size(); count++) {
-            game.move(count, input.readMoving());
-            output.printMap(game);
+            moving(game, count);
             if(game.isWrong()) {
-                if(!game.retry(input.readGameCommand())){ break; }
-                game.plusGameCount();
-                count = RESET;
+                if(!game.retry(input.readGameCommand())){
+                    break;
+                }
+                count = retrySetting(game);
             }
         }
+    }
+
+    private int retrySetting(BridgeGame game) {
+        game.plusGameCount();
+        return RESET;
+    }
+
+    private void moving(BridgeGame game, int count) {
+        game.move(count, input.readMoving());
+        output.printMap(game);
     }
 
 }
