@@ -2,7 +2,6 @@ package bridge.controller;
 
 import bridge.Constants;
 import bridge.view.InputView;
-
 import java.util.Arrays;
 import java.util.List;
 
