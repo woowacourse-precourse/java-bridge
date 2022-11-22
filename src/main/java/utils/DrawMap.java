@@ -12,7 +12,7 @@ public class DrawMap {
     private List<String> bridge;
     private List<String> playerInput;
     private List<String> upperLog = new ArrayList<>();
-    private List<String> downLog = new ArrayList<>();
+    private List<String> lowerLog = new ArrayList<>();
 
     public DrawMap(List<String> bridge, List<String> playerInput) {
         this.upperSideOfMap = new StringBuilder();
@@ -21,4 +21,37 @@ public class DrawMap {
         this.playerInput = playerInput;
     }
 
+    /**
+     * 다리의 위쪽 부분 결과를 저장하는 메서드
+     */
+    public void setUpperLog() {
+        for (int i = 0; i < playerInput.size(); i++) {
+            String currentInput = playerInput.get(i);
+            if (currentInput.equals(bridge.get(i)) && currentInput.equals("U")) {
+                upperLog.add("O");
+                continue;
+            } else if (!currentInput.equals(bridge.get(i)) && currentInput.equals("U")) {
+                upperLog.add("X");
+                continue;
+            }
+            upperLog.add(" ");
+        }
+    }
+
+    /**
+     * 다리의 아래쪽 부분 결과를 저장하는 메서드
+     */
+    public void setLowerLog() {
+        for (int i = 0; i < playerInput.size(); i++) {
+            String currentInput = playerInput.get(i);
+            if (currentInput.equals(bridge.get(i)) && currentInput.equals("D")) {
+                lowerLog.add("O");
+                continue;
+            } else if (!currentInput.equals(bridge.get(i)) && currentInput.equals("D")) {
+                lowerLog.add("X");
+                continue;
+            }
+            lowerLog.add(" ");
+        }
+    }
 }
