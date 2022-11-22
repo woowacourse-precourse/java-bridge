@@ -4,6 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeMap;
 import bridge.type.BridgeGameCommandType;
 import bridge.type.BridgeSideType;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -64,7 +65,11 @@ public class BridgeGame {
     }
 
     public void createAndRegisterBridge(int bridgeSize) {
-        bridge.registerBridge(bridge.createBridge(bridgeSize));
+        registerBridge(bridge.createBridge(bridgeSize));
+    }
+
+    public void registerBridge(List<String> bridges) {
+        bridge.registerBridge(bridges);
     }
 
     private void addBridgeMap(String bridgeSide) {
