@@ -18,26 +18,23 @@ public class BridgeGameController {
     }
 
     public void run() {
+        ov.gameStart();
         makeBridge();
         playGame();
         printResult();
     }
 
     private void makeBridge() {
-        ov.gameStart();
-        while(true) {
-            try {
-                bridgeGame.makeBridge(iv.readBridgeSize());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        retryTask(() -> {
+            bridgeGame.makeBridge(iv.readBridgeSize());
+        });
     }
 
     private void playGame() {
         do {
-            validateReadMoving();
+            retryTask(() -> {
+                bridgeGame.move(iv.readMoving());
+            });
             bridgeGame.makeMap(bridgeGame.getBridge(), bridgeGame.getMarks());
             ov.printMap(bridgeGame.getMap());
             if (quit()) {
@@ -47,7 +44,7 @@ public class BridgeGameController {
     }
 
     private void validateReadMoving() {
-        while(true) {
+        while (true) {
             try {
                 bridgeGame.move(iv.readMoving());
                 break;
@@ -59,7 +56,9 @@ public class BridgeGameController {
 
     private boolean quit() {
         if (bridgeGame.isDiscord()) {
-            validateReadCommand();
+            retryTask(() -> {
+                bridgeGame.retry(iv.readGameCommand());
+            });
             if (!bridgeGame.isRetryGame()) {
                 return true;
             }
@@ -68,20 +67,22 @@ public class BridgeGameController {
         return false;
     }
 
-    private void validateReadCommand() {
-        while(true) {
+    private void printResult() {
+        ov.printResult(bridgeGame.getMap(), bridgeGame.getResultOfGame(), bridgeGame.getGameCount());
+    }
+
+    private static void retryTask(Task task) {
+        while (true) {
             try {
-                bridgeGame.retry(iv.readGameCommand());
-                break;
+                task.run();
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private void printResult() {
-        ov.printResult(bridgeGame.getMap(), bridgeGame.getResultOfGame(), bridgeGame.getGameCount());
+    interface Task {
+        void run();
     }
-
-
 }
