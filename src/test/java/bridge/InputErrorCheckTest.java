@@ -1,0 +1,43 @@
+package bridge;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static bridge.domain.InputErrorCheck.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+public class InputErrorCheckTest {
+
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @DisplayName("다리 사이즈 입력 시 형식에 맞지 않는 값 예외 처리 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"asd","one","i"," ","\n","-1","1","22"})
+    void BridgeSizeIsOutOfFormat(String input){
+        assertThatThrownBy(()->
+                readBridgeSizeErrorCheck(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("사용자가 이동할 칸 입력 시 형식에 맞지 않는 값 예외 처리 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"u","d","U123","456U","asd","1","move"," ","\n"})
+    void MovingIsOutOfFormat(String input){
+        assertThatThrownBy(()->
+                readMovingErrorCheck(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("게임 재시작/종료 커맨드 입력 시 형식에 맞지 않는 값 예외 처리 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"r","q","R1","Q2","RQ","QR","123"," ","\n"})
+    void GameCommandIsOutOfFormat(String input){
+        assertThatThrownBy(()->
+                readGameCommandErrorCheck(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+}
