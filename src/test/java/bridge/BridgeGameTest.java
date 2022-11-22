@@ -24,7 +24,6 @@ public class BridgeGameTest extends NsTest {
     OutputView outputView;
     BridgeNumberGenerator numberGenerator;
     BridgeMaker bridgeMaker;
-    List<String> bridge;
     BridgeGame bridgeGame;
 
     @BeforeEach
@@ -34,15 +33,17 @@ public class BridgeGameTest extends NsTest {
         numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         bridgeGame = new BridgeGame(inputView, outputView, numberGenerator);
         bridgeMaker = new BridgeMaker(numberGenerator);
-        bridge = bridgeMaker.makeBridge(3);
     }
 
     @Test
     @DisplayName("clear at once")
     void clearAtOnce() {
-        String[] inputs = { "U", "D", "D" };
+        String[] inputs = { "3", "U", "D", "D" };
         setInputs(inputs);
-        assertThat(bridgeGame.play(3, bridge, new ArrayList<>())).isTrue();
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        bridgeGame.start();
+        assertThat(outputStream.toString()).contains("성공");
         assertThat(bridgeGame.getTryCount()).isEqualTo(1);
     }
 
