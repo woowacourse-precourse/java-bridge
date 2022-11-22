@@ -4,7 +4,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 
 import bridge.controller.BridgeController;
-import bridge.generator.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.validator.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;

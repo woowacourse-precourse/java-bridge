@@ -1,4 +1,4 @@
-package bridge.generator;
+package bridge.domain;
 
 public enum UpDown {
     UP(1, "U"),

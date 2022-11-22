@@ -5,7 +5,7 @@ import bridge.Exception.QuitGameException;
 import bridge.Exception.SuccessGameException;
 import bridge.domain.BridgeGame;
 import bridge.domain.StageResult;
-import bridge.generator.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.validator.Unit;
 import bridge.view.InputView;
 import bridge.view.Messages;
