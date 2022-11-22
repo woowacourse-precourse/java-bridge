@@ -29,6 +29,7 @@ public class Application {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
+        view.printStartGame();
         int size = view.readBridgeSize();
         return bridgeMaker.makeBridge(size);
     }
