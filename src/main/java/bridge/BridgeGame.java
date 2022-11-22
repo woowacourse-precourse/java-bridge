@@ -81,4 +81,8 @@ public class BridgeGame {
         }
         return play(bridgeSize, bridge, moves);
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }
