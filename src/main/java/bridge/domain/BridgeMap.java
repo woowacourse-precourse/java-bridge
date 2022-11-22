@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.utils.MapType;
 import bridge.utils.Stairs;
