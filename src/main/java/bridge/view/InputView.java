@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.enumeration.ErrorMessage;
 import bridge.enumeration.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
@@ -8,7 +9,6 @@ import java.util.regex.Pattern;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    // TODO: Error메시지 Enum으로 출력
 
     public int readBridgeSize() {
         String inputBridgeSize = Console.readLine();
@@ -18,7 +18,8 @@ public class InputView {
 
     private void validBridgeSize(String inputBridgeSize) {
         if (!Pattern.matches("^[0-9]*$", inputBridgeSize)) {
-            throw new IllegalArgumentException();
+            System.out.println(ErrorMessage.NOT_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getErrorMessage());
         }
     }
 
@@ -34,10 +35,12 @@ public class InputView {
     private void validMoving(String inputMoving) {
         if (!inputMoving.contains(GameCommand.UP.getCommand()) && !inputMoving.contains(
             GameCommand.DOWN.getCommand())) {
-            throw new IllegalArgumentException();
+            System.out.println(ErrorMessage.NOT_U_OR_D.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_U_OR_D.getErrorMessage());
         }
         if (inputMoving.length() != 1) {
-            throw new IllegalArgumentException();
+            System.out.println(ErrorMessage.INPUT_OUT_OF_RANGE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_OUT_OF_RANGE.getErrorMessage());
         }
     }
 
@@ -53,10 +56,12 @@ public class InputView {
     private void validGameCommand(String inputGameCommand) {
         if (!inputGameCommand.contains(GameCommand.RESTART.getCommand())
             && !inputGameCommand.contains(GameCommand.QUIT.getCommand())) {
-            throw new IllegalArgumentException();
+            System.out.println(ErrorMessage.NOT_R_OR_Q.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_R_OR_Q.getErrorMessage());
         }
         if (inputGameCommand.length() != 1) {
-            throw new IllegalArgumentException();
+            System.out.println(ErrorMessage.INPUT_OUT_OF_RANGE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_OUT_OF_RANGE.getErrorMessage());
         }
     }
 }
