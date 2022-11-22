@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 /**
  * PLAYING : 게임을 진행 하는중

@@ -1,8 +1,11 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.BridgeGame;
+import bridge.domain.Status;
 
 import java.util.List;
 
-import static constants.Constants.*;
+import static bridge.constants.Constants.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

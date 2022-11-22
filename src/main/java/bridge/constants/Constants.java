@@ -1,4 +1,4 @@
-package constants;
+package bridge.constants;
 
 public final class Constants {
     public static final int BRIDGE_SETTING_MOVED_UP = 1;

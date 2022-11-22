@@ -1,7 +1,8 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.Status;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,8 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static constants.Constants.GAME_FAILED_MESSAGE;
-import static constants.Constants.GAME_SUCCESS_MESSAGE;
+import static bridge.constants.Constants.GAME_FAILED_MESSAGE;
+import static bridge.constants.Constants.GAME_SUCCESS_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputViewTest {
