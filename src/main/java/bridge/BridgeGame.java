@@ -3,15 +3,12 @@ package bridge;
 import java.util.List;
 
 public class BridgeGame {
-    private Bridge bridge;
-
-    private final int bridgeSize;
+    private final Bridge bridge;
 
     private int attemptCount;
 
     public BridgeGame(BridgeMaker bridgeMaker, int bridgeSize) {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        this.bridgeSize = bridgeSize;
         this.attemptCount = 1;
     }
 
