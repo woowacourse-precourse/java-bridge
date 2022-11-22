@@ -27,6 +27,7 @@ public class ExceptionHandlerTest {
 
     @DisplayName("다리 선택 입력 테스트 - 예외")
     @ValueSource(strings = {"", " ", "1", "d", "u"})
+    @ParameterizedTest
     void checkMovingTest_Exception(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> ExceptionHandler.checkMoving(input));
