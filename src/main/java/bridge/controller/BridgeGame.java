@@ -22,6 +22,12 @@ public class BridgeGame {
         this.retry = new Retry();
     }
 
+    public BridgeGame(Bridge bridge, BridgeResult bridgeResult, Retry retry) {
+        this.bridge = bridge;
+        this.bridgeResult = bridgeResult;
+        this.retry = retry;
+    }
+
     public void make(String size) {
         this.bridge = new Bridge(size);
     }
