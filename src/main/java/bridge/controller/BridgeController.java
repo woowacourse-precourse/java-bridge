@@ -19,17 +19,10 @@ public class BridgeController {
 
     public void run() {
         outputView.printStartMessage();
+
         List<String> bridge = generateBridge();
         BridgeGame bridgeGame = new BridgeGame(bridge);
-
-        boolean gameEnd = false;
-        GameResult result = new GameResult();
-
-        while (!gameEnd) {
-            result = playGame(bridge, bridgeGame, result);
-            gameEnd = isGameEnd(result);
-            resetGame(bridgeGame, gameEnd);
-        }
+        GameResult result = playGames(bridge, bridgeGame);
 
         outputView.printResult(result, bridge, bridgeGame.getTryNumber());
     }
@@ -37,6 +30,17 @@ public class BridgeController {
     private List<String> generateBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
+    }
+
+    private GameResult playGames(List<String> bridge, BridgeGame bridgeGame) {
+        GameResult result = new GameResult();
+        boolean gameEnd = false;
+        while (!gameEnd) {
+            result = playGame(bridge, bridgeGame, result);
+            gameEnd = isGameEnd(result);
+            resetGame(bridgeGame, gameEnd);
+        }
+        return result;
     }
 
     private GameResult playGame(List<String> bridge, BridgeGame bridgeGame, GameResult result) {
