@@ -36,4 +36,11 @@ public class BridgeVisited {
         }
         return true;
     }
+
+    public BridgeGameResult result(final Bridge bridge) {
+        if (!isEnd(bridge)) {
+            return BridgeGameResult.FAIL;
+        }
+        return BridgeGameResult.checkResult(isAllStepCorrect(bridge));
+    }
 }
