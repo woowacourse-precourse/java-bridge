@@ -26,6 +26,7 @@ public class InputView {
     public String readMoving() {
         InputForm.INPUT_USER_MOVE.printMessage();
         String inputMove = Console.readLine();
+        System.out.println(inputMove);
         ExceptionHandler.checkUorD(inputMove);
         return inputMove;
     }
@@ -34,6 +35,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        InputForm.INPUT_RESTART.printMessage();
+        String inputRestart = Console.readLine();
+        System.out.println(inputRestart);
+        ExceptionHandler.checkRorQ(inputRestart);
+        return inputRestart;
     }
 }
