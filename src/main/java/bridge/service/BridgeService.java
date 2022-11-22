@@ -105,9 +105,6 @@ public class BridgeService {
             if(input.equals("R")){
                 tryCount++;
                 BridgeGame.retry();
-                BridgeController.makeBridge();
-                BridgeController.initMoveRow();
-                BridgeController.compareMove();
             }
             else if(input.equals("Q")){
                 OutputView.printResult(presentMoveBridge);

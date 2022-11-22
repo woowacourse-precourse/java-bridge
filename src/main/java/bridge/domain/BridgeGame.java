@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.controller.BridgeController;
 import bridge.service.BridgeService;
 
 import java.util.List;
@@ -59,5 +60,8 @@ public class BridgeGame {
     public static void retry() {
         answerCount = 0;
         BridgeService.resetBridge();
+        BridgeController.makeBridge();
+        BridgeController.initMoveRow();
+        BridgeController.compareMove();
     }
 }
