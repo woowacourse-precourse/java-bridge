@@ -27,6 +27,7 @@ public class BridgeMaker {
             else if (number == 1)
                 bridge.add("U");
         }
+        System.out.println("bridge: " + bridge.toString());
         return bridge;
     }
 }
