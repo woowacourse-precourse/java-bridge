@@ -13,7 +13,7 @@ public enum GameStatus implements ProcessCondition {
         this.statusSymbol = statusSymbol;
     }
 
-    public static GameStatus getGameStatus(String statusSymbol) {
+    public static GameStatus getGameStatusByGameCommand(String statusSymbol) {
         if (statusSymbol.equals(START.statusSymbol)) return START;
         if (statusSymbol.equals(ONGOING.statusSymbol)) return ONGOING;
         if (statusSymbol.equals(RESTART.statusSymbol)) return RESTART;
