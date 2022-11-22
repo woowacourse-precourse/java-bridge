@@ -25,6 +25,15 @@
       3. [x] 다시 시도할지 여부에 대한 입력 검증.
    2. [x] inputView의 메서드 같은 경우는 static으로 만드는 것이 좋을 것 같다. 
    3. [x] input 받은 값의 return 타입은 enum에 저장되어 있는 값으로 하는 것이 좋을 것 같다.
-2. [ ] outputView 구현
+2. [ ] bridgeGame 구현.
+   1. [x] move 메서드 구현.
+      1. ENUM 값의 value를 업데이트 함으로써 전역적인 index값을 관리한다.
+      2. ENUM 타입의 결과를 반환함으로써 게임 상태를 체크한다.
+   2. [x] retry 메서드 구현.
+      1. 전역 index 값을 초기화 시키면서 게임을 초기화 시킨다.
+3. [] GameRunner 구현.
+   1. [ ] 게임 실행 루프를 제작한다.
+   2. [ ] 각 단계별로의 상태에 따라 메서드를 실행시킨다.
+4. [ ] outputView 구현.
    1. [ ] printMap 메서드의 경우 생성한 bridge의 값과 index를 파라미터로 받아서 출력한다.
    2. [ ] printResult 메서드의 경우 printing하는 메서드를 제사용해서 작성한다. 
