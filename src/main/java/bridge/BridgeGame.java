@@ -25,12 +25,11 @@ public class BridgeGame {
             if (!isPass)
                 break;
         }
-        if (inputView.readGameCommand().equals("Q")) {
-            outputView.printResult(total_round, success());
-            return;
+        if (!isPass && inputView.readGameCommand().equals("R")) {
+            retry();
+            run();
         }
-        retry();
-        run();
+        outputView.printResult(total_round, success());
     }
 
     /**
