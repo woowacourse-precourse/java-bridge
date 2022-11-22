@@ -37,6 +37,32 @@ public class BridgeController {
             if (bridgeGame.isOver()) {
                 break;
             }
+            bridgeGame.retry();
+        }
+    }
+
+    private boolean checkOverCondition() {
+        if (bridgeGame.checkFinalStep()) {
+            return true;
+        }
+        return askQuit();
+    }
+
+    private boolean askQuit() {
+        while (true) {
+            try {
+                String command = inputView.readGameCommand();
+                validateCommand(command);
+                return command.equals("Q");
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private void validateCommand(String command) {
+        if (!COMMAND_INPUT.contains(command)) {
+            throw new IllegalArgumentException("R또는 Q만 입력할 수 있습니다.");
         }
     }
 
