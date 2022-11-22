@@ -45,4 +45,12 @@ public class BridgeGame {
     public void increaseGameAttemptCount() {
         gameAttempt.plusAttempt();
     }
+
+    // 게임 성공여부 나타내는 기능
+    public String checkGameSuccess(String userInput, List<String> bridge) {
+        if(round.getRound() == bridge.size() && userInput.equals(bridge.get(round.getRound()-1))) {
+            return SUCCESS;
+        }
+        return FAIL;
+    }
 }
