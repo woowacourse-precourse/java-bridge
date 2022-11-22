@@ -5,6 +5,7 @@ import bridge.domain.BridgeGame;
 import bridge.domain.GameStatus;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
+import bridge.validator.InputValidator;
 
 public class BridgeGameController {
     InputView input;
@@ -20,12 +21,17 @@ public class BridgeGameController {
 
     public void startNewGame() {
         output.printStartMessage();
-
-        System.out.println("다리의 길이를 입력해주세요.");
-        int size = input.readBridgeSize();
-
-        this.bridge = new Bridge(size);
-        this.game = new BridgeGame(bridge);
+        int size;
+        while (true) {
+            try {
+                System.out.println("다리의 길이를 입력해주세요.");
+                size = input.readBridgeSize();
+                this.bridge = new Bridge(size);
+                this.game = new BridgeGame(bridge);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void playGame() {
