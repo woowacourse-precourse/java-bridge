@@ -17,10 +17,11 @@ public class InputView {
      */
     public int readBridgeSize() {
 
-        int bridgeLength;
+        int bridgeLength = 0;
         do {
             System.out.println(readBridgeSizeComment);
             String bridgeLengthInput = Console.readLine();
+            if (!isInteger(bridgeLengthInput)) continue;
             bridgeLength = Integer.parseInt(bridgeLengthInput);
         } while (!isCorrectRange(bridgeLength));
         System.out.println();
@@ -34,8 +35,24 @@ public class InputView {
             }
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         } catch (IllegalArgumentException e) {
-            return false;
+            return errorCase(e);
         }
+    }
+
+    private boolean isInteger(String bridgeLengthInput) {
+        try {
+            if (!bridgeLengthInput.chars().allMatch(Character::isDigit)) {
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            return errorCase(e);
+        }
+    }
+
+    private boolean errorCase(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        return false;
     }
 
     /**
