@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BridgeGameHistoryTest {
 
@@ -38,5 +39,12 @@ class BridgeGameHistoryTest {
     @DisplayName("다리 게임 라운드 수를 불러오는 것에 성공한다.")
     void whenGetBridgeGameRoundThenSuccessTest() {
         assertThat(bridgeGameHistory.getBridgeGameRound()).isGreaterThanOrEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("비어있는 다리 게임 결과를 불러오는 것에 실패하여 예외처리 한다.")
+    void whenGetGameResultEmptyThenExceptionTest() {
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> bridgeGameHistory.getGameResult());
     }
 }
