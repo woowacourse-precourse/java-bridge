@@ -42,6 +42,10 @@ public class BridgeGame {
         bridgeService.save(bridge);
     }
 
+    public String printMap() {
+        return movedBridgeService.printMap();
+    }
+
     public void reset() {
         resetMovedBridge();
         resetGameStatus();
