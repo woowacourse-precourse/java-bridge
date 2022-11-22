@@ -22,6 +22,10 @@ public class BridgeGame {
         return bridge;
     }
 
+    public Cross getCross() {
+        return cross;
+    }
+
     public int move() {
         int index;
         for (index = 0; index < bridge.getBridgeSize(); index++) {
@@ -59,9 +63,5 @@ public class BridgeGame {
             return;
         }
         GameController.setQuit();
-    }
-
-    public Cross getCross() {
-        return cross;
     }
 }
