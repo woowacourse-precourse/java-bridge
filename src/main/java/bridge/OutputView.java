@@ -4,6 +4,10 @@ public class OutputView {
     static StringBuilder upper = new StringBuilder();
     static StringBuilder lower = new StringBuilder();
 
+    final static String goodMove = "O ";
+    final static String badMove = "X ";
+    final static String noMove = "  ";
+
     public void printMap(String curStep, boolean death) {
         if (curStep.equals("U")) curPathUpdate_Up(death);
         if (curStep.equals("D")) curPathUpdate_Down(death);
@@ -17,25 +21,25 @@ public class OutputView {
 
     public void curPathUpdate_Up(boolean death) {
         if (death) {
-            lower.append("X ");
-            upper.append("  ");
+            lower.append(badMove);
+            upper.append(noMove);
         }
 
         if (!death) {
-            upper.append("O ");
-            lower.append("  ");
+            upper.append(goodMove);
+            lower.append(noMove);
         }
     }
 
     public void curPathUpdate_Down(boolean death) {
         if (death) {
-            upper.append("X ");
-            lower.append("  ");
+            upper.append(badMove);
+            lower.append(noMove);
         }
 
         if (!death) {
-            lower.append("O ");
-            upper.append("  ");
+            lower.append(goodMove);
+            upper.append(noMove);
         }
     }
 
