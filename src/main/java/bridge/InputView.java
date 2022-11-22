@@ -51,4 +51,9 @@ public class InputView {
         exception.checkAlphabet(moving);
         exception.checkMoveInput(moving);
     }
+
+    public void retryInput(String retry) {
+        exception.checkAlphabet(retry);
+        exception.checkRetryInput(retry);
+    }
 }
