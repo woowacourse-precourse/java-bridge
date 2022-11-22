@@ -49,8 +49,9 @@ public class BridgeGame {
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param direction 이동 방향
+     * @return 이동 결과. 이동 결과가 "O"이면 true, "X"이면 false 이다.
      */
     public boolean move(String direction) {
         int index = getUpperBridge().size();
@@ -65,8 +66,9 @@ public class BridgeGame {
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param command 사용자 커맨드 입력
+     * @return retry 여부. 재시작일 경우 true, 종료일 경우 false 이다.
      */
     public boolean retry(String command) {
         String restartCommand = RESTART_COMMAND.toString();
@@ -78,6 +80,11 @@ public class BridgeGame {
         return false;
     }
 
+    /**
+     * 게임 결과를 판단할 때 사용하는 메서드
+     *
+     * @return 성공 여부. 게임이 성공이면 true, 실패면 false 이다.
+     */
     public boolean gameWin() {
         final Bridge lowerBridge = getLowerBridge();
         final Bridge upperBridge = getUpperBridge();
@@ -86,6 +93,11 @@ public class BridgeGame {
                 lowerBridge.notContains(BRIDGE_IMPASSABLE_ELEMENT.toString()));
     }
 
+    /**
+     * 판단이 끝난 게임 결과를 얻을 때 사용하는 메서드
+     *
+     * @return 성공 또는 실패.
+     */
     public String getGameResult() {
         if (gameWin()) {
             return SUCCESS.toString();

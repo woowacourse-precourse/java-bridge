@@ -19,8 +19,9 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param lowerBridge 두개의 다리 중 아래.
+     * @param upperBridge 두개의 다리 중 위.
      */
     public void printMap(Bridge upperBridge, Bridge lowerBridge) {
         System.out.println(upperBridge);
@@ -29,8 +30,10 @@ public class OutputView {
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param outputBridge 위, 아래 두개의 다리.
+     * @param gameResult   성공 또는 실패.
+     * @param tryCount     게임 시도 횟수.
      */
     public void printResult(List<Bridge> outputBridge, String gameResult, int tryCount) {
         Bridge lowerBridge = outputBridge.get(DOWNWARD_DIRECTION.getValue());
@@ -40,18 +43,30 @@ public class OutputView {
         System.out.println(resultFormat);
     }
 
+    /**
+     * 게임의 시작을 알리는 메시지를 형식에 맞춰 출력한다.
+     */
     public void printStartMessage() {
         System.out.println(GAME_START_MESSAGE);
     }
 
+    /**
+     * 다리의 길이를 입력받는 메시지를 형식에 맞춰 출력한다.
+     */
     public void printReceiveSizeMessage() {
         System.out.println(RECEIVE_BRIDGE_SIZE_MESSAGE);
     }
 
+    /**
+     * 플레이어의 이동방향을 입력받는 메시지를 형식에 맞춰 출력한다.
+     */
     public void printReceiveMovingDirectionMessage() {
         System.out.println(RECEIVE_MOVING_DIRECTION_MESSAGE);
     }
 
+    /**
+     * 게임의 재시작 여부를 입력받는 메시지를 형식에 맞춰 출력한다.
+     */
     public void printReceiveGameCommandMessage() {
         System.out.println(RECEIVE_GAME_COMMAND_MESSAGE);
     }

@@ -1,5 +1,8 @@
 package bridge.enums;
 
+/**
+ * 다리를 출력할 때 필요한 요소이다.
+ */
 public enum BridgeElement {
     BRIDGE_STARTING_ELEMENT("["),
     BRIDGE_ENDING_ELEMENT("]"),

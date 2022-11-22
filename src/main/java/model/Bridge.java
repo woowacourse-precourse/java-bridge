@@ -36,6 +36,9 @@ public class Bridge {
         bridge.clear();
     }
 
+    /**
+     * @return 현재 다리가 보유한 상태를 형식에 맞춘 문자열
+     */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

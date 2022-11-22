@@ -1,5 +1,8 @@
 package bridge.enums;
 
+/**
+ * 사용자의 입력방향을 나타낸다.
+ */
 public enum Direction {
     DOWNWARD_DIRECTION(0, "D"),
     UPWARD_DIRECTION(1, "U"),

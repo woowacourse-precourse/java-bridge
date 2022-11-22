@@ -1,5 +1,8 @@
 package bridge.enums;
 
+/**
+ * 게임 진행 과정에서 출력할 메시지를 나타낸다.
+ */
 public enum GameMessages {
     GAME_START_MESSAGE("다리 건너기 게임을 시작합니다.\n"),
     RECEIVE_BRIDGE_SIZE_MESSAGE("다리의 길이를 입력해주세요."),

@@ -11,6 +11,9 @@ import static bridge.enums.Regex.MOVING_DIRECTION_REGEX;
 
 import java.util.regex.Pattern;
 
+/**
+ * 사용자의 입력을 검증하는 역할을 한다.
+ */
 public class InputValidator {
 
     public InputValidator() {

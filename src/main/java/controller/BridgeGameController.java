@@ -8,6 +8,9 @@ import model.BridgeGame;
 import view.InputView;
 import view.OutputView;
 
+/**
+ * 게임의 진행을 관리하는 클래스.
+ */
 public class BridgeGameController {
 
     private final InputView inputView;
