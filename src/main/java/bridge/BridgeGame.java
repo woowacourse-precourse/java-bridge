@@ -41,6 +41,10 @@ public class BridgeGame {
         return false;
     }
 
+    public List<Result> getResults() {
+        return results;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
