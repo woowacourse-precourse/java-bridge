@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameControllerTest extends NsTest {
 
-    @DisplayName("움직임이 잘 적용되는지 확인: 짧은 경우")
+    @DisplayName("움직임이 잘 적용되는지 확인: case 1")
     @Test
     void testShortNormalCase() {
         assertRandomNumberInRangeTest(() -> {
@@ -25,7 +25,7 @@ public class GameControllerTest extends NsTest {
         }, 1, 0, 1);
     }
 
-    @DisplayName("움직임이 잘 적용되는지 확인: 긴 경우")
+    @DisplayName("움직임이 잘 적용되는지 확인: case 2")
     @Test
     void testLongNormalCase() {
         assertRandomNumberInRangeTest(() -> {
