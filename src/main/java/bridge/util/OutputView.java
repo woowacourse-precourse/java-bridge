@@ -1,6 +1,7 @@
 package bridge.util;
 
 import bridge.BridgeGame;
+import bridge.model.GameEnd;
 import bridge.move.BridgeMove;
 
 /**
@@ -17,12 +18,19 @@ public class OutputView {
     private final BridgeGame game = new BridgeGame();
     private StringBuilder resultMap=new StringBuilder();
 
-    public void printMap(String move_result,int index,int last_index) {
+    private void printMap(String move_result,int index) {
         StringBuilder move_map = game.move(move_result, index);
         System.out.println(move_map+"\n");
         resultMap=move_map;
     }
 
+    public String printMapByStringBuilder(String bridge_move_result, int index){
+        printMap(bridge_move_result, index);
+        if (bridge_move_result.contains("X")) {
+            return GameEnd.FAIL.toString();
+        }
+        return GameEnd.SUCCESS.toString();
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

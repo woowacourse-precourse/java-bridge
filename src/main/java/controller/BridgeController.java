@@ -40,10 +40,11 @@ public class BridgeController {
 	}
 
 	private void crossingTheBridge(){
+		System.out.println(bridge_list);
 		for (int index=0;index<bridge_list.size();index++){
 			String bridge_move_result = compareMove.compareInputAndIndex(bridgeMoveOutputAndInput(),
 																	bridge_list.get(index));
-			printMapByStringBuilder(bridge_move_result,index);
+			RESULT_CONDITION = outputView.printMapByStringBuilder(bridge_move_result, index);
 			if(RESULT_CONDITION.equals("FAIL")){
 				break;
 			}
@@ -77,13 +78,6 @@ public class BridgeController {
 	private String bridgeMoveOutputAndInput(){
 		outputView.printMove();
 		return inputView.readMoving();
-	}
-
-	private void printMapByStringBuilder(String bridge_move_result, int index) {
-		outputView.printMap(bridge_move_result, index, bridge_list.size());
-		if (bridge_move_result.contains("X")) {
-			RESULT_CONDITION = GameEnd.FAIL.toString();
-		}
 	}
 
 	private int tryCountReturn(){
