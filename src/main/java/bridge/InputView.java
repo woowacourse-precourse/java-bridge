@@ -21,6 +21,26 @@ public class InputView {
             }
         }
     }
+
+    public boolean checkInputSizeString(String inputSize){
+        if(isNumeric(inputSize) && checkRange(Integer.parseInt(inputSize))) {return true;}
+        return false;
+    }
+    public boolean checkRange(int input){
+        if(3 <= input && input <= 20){ return true;}
+        throw new IllegalArgumentException("[ERROR] 입력값은 3이상 20이하의 숫자여야 합니다.");
+    }
+
+    public boolean isNumeric(String s){
+        try{
+            Double.parseDouble(s);
+            return true;
+        }
+        catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR]입력값은 3이상 20이하의 숫자여야 합니다.");
+        }
+    }
+
     public int readBridgeSize() {
         return 0;
     }
