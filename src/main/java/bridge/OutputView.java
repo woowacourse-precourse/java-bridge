@@ -7,8 +7,6 @@ import java.util.List;
  */
 public class OutputView {
 
-    public static int failCheck = 0; // 게임 실패 시 1
-
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -40,9 +38,7 @@ public class OutputView {
             if(userMoving.get(turn).equals(bridge.get(turn))){
                 System.out.print(" O");
             }
-            if (!userMoving.get(turn).equals(bridge.get(turn))) {
-                System.out.print(" X");
-            }
+            BridgeGame.failMove(bridge, userMoving, turn);
         }
         if (userMoving.get(turn).equals("D")) {
             System.out.print(" ");
@@ -53,9 +49,7 @@ public class OutputView {
             if(userMoving.get(turn).equals(bridge.get(turn))){
                 System.out.print(" O");
             }
-            if (!userMoving.get(turn).equals(bridge.get(turn))) {
-                System.out.print(" X");
-            }
+            BridgeGame.failMove(bridge, userMoving, turn);
         }
         if (userMoving.get(turn).equals("U")) {
             System.out.print(" ");
@@ -75,14 +69,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(int success, int playCount) {
+    public static void printResult(List<String> bridge, List<String> userMoving, int failCheck, int playCount) {
         System.out.println("최종 게임 결과");
-        if (success == 0) {
-            System.out.println("게임 성공 여부: 실패");
-        }
-        if (success == 1) {
-            System.out.println("게임 성공 여부: 성공");
-        }
+        printMap(bridge, userMoving);
+        printGameResult(failCheck);
         System.out.println("총 시도한 횟수: " + playCount);
     }
+
+    public static void printGameResult(int failCheck) {
+        if (failCheck == 1) {
+            System.out.println("게임 성공 여부: 실패");
+        }
+        if (failCheck == 2) {
+            System.out.println("게임 성공 여부: 성공");
+        }
+    }
+
 }

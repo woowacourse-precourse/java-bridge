@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -68,7 +69,8 @@ public class InputView {
 
     public static String inputGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String restart = Console.readLine();
-        return restart;
+        String gameCommand = Console.readLine();
+        return gameCommand;
     }
+
 }
