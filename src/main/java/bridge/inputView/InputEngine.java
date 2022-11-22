@@ -13,21 +13,21 @@ public class InputEngine {
     private static final int BRIDGE_MIN_SIZE = 3;
     private static final int BRIDGE_MAX_SIZE = 20;
 
-    public static int readBridgeSize() {
+    static int readBridgeSize() {
         final int command = Integer.parseInt(readLine());
         validateElseThrow(BRIDGE_MIN_SIZE <= command && command <= BRIDGE_MAX_SIZE,
                 IllegalReadBridgeSizeException::new);
         return command;
     }
 
-    public static String readMoving() {
+    static String readMoving() {
         final String command = readLine();
         validateElseThrow(command.length() == SIZE, IllegalReadMovingException::new);
         validateElseThrow(command, Arrays.asList("U", "D"), IllegalReadMovingException::new);
         return command;
     }
 
-    public static String readGameCommand() {
+    static String readGameCommand() {
         final String command = readLine();
         validateElseThrow(command.length() == SIZE, IllegalReadGameCommandException::new);
         validateElseThrow(command, Arrays.asList("R", "Q"), IllegalReadGameCommandException::new);
