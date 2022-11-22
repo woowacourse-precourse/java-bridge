@@ -74,6 +74,31 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1, 1);
     }
 
+    @Test
+    void 기능_테스트_포기() {
+        assertRandomNumberInRangeTest(() -> {
+            run("ㄱ", "+3", "4", "UD", "U", "RR", "R", "D", "U", "U", "D", "Q ", "Q");
+            assertThat(output()).contains(
+                    "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.",
+                    "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.",
+                    "[ERROR] U나 D를 입력해주시기 바랍니다.",
+                    "[ X ]",
+                    "[   ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "[ERROR] R이나 Q를 입력해주시기 바랍니다.",
+                    "최종 게임 결과",
+                    "[   | O | O |   ]",
+                    "[ O |   |   | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[   | O | O |   ]");
+            int downSideIndex = output().indexOf("[ O |   |   | X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 0, 1, 1, 1, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
