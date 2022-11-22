@@ -7,6 +7,7 @@ import bridge.domain.vo.BridgeGameResult;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.domain.BridgeGame.RETRY_COUNT;
 import static bridge.view.InputView.*;
 import static bridge.view.OutputView.*;
 
@@ -22,13 +23,18 @@ public class BridgeController {
 
     public void start() {
         try {
-            printStartMessage();
+            init();
             List<String> bridge = createBridge();
             List<BridgeGameResult> bridgeGameResults = play(bridge);
             printResult(bridgeGameResults, bridge.size());
         } catch (IllegalArgumentException error) {
             printErrorMessage(error.getMessage());
         }
+    }
+
+    private void init() {
+        printStartMessage();
+        RETRY_COUNT = 1;
     }
 
     private List<BridgeGameResult> play(List<String> bridge) {
