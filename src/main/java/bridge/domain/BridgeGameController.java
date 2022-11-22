@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeMaker;
 import bridge.command.BridgeSizeCommand;
 import bridge.command.ReadMovingCommand;
+import bridge.command.RetryCommand;
 import bridge.dto.BridgeGameResultDto;
 import bridge.dto.PlayLogDto;
 import bridge.view.InputView;
@@ -125,7 +126,8 @@ public final class BridgeGameController {
         if (isGameCleared(bridgeGame)) {
             return ControllerCommand.QUIT;
         }
-        return ControllerCommand.from(inputView.readGameCommand());
+        final RetryCommand retryCommand = inputView.readGameCommand();
+        return ControllerCommand.from(retryCommand.getRetry());
     }
 
     private boolean isGameCleared(final BridgeGame bridgeGame) {

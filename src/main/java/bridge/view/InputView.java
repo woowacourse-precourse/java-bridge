@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.command.BridgeSizeCommand;
 import bridge.command.ReadMovingCommand;
+import bridge.command.RetryCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Pattern;
@@ -37,7 +38,7 @@ public final class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return Console.readLine();
+    public RetryCommand readGameCommand() {
+        return new RetryCommand(Console.readLine());
     }
 }
