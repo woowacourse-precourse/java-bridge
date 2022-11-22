@@ -29,13 +29,13 @@ public class BridgeGame {
     }
 
     private void checkUpDownValidity(String userInput) {
-        if (!"UD".contains(userInput) || userInput.length() != ONE) {
+        if (!Sentence.UP_AND_DOWN.getValue().contains(userInput) || userInput.length() != ONE) {
             throw new IllegalArgumentException(Sentence.INPUT_NOT_U_OR_D.getValue());
         }
     }
 
     private void checkRetryValidity(String userInput) {
-        if (!"RQ".contains(userInput) || userInput.length() != ONE) {
+        if (!Sentence.RETRY_AND_QUIT.getValue().contains(userInput) || userInput.length() != ONE) {
             throw new IllegalArgumentException(Sentence.INPUT_NOT_R_OR_Q.getValue());
         }
     }

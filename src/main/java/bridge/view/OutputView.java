@@ -3,7 +3,7 @@ package bridge.view;
 public class OutputView {
 
     public void printMap(String output) {
-        System.out.println(output);
+        System.out.println(output + "\n");
     }
 
     public void printResult(String output) {
