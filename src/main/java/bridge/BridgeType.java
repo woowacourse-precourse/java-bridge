@@ -14,7 +14,7 @@ public enum BridgeType {
 
     static BridgeType of(String bridgeType) {
         return Arrays.stream(values())
-                .filter((v) -> bridgeType.equals(v))
+                .filter((v) -> bridgeType.equals(v.label))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당하는 bridgeType이 존재하지 않습니다."));
     }

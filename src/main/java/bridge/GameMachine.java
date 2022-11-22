@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.List;
 import view.InputView;
+import view.OutputView;
 
 
 public class GameMachine {
@@ -18,6 +19,7 @@ public class GameMachine {
     }
 
     private void play(List<BridgeType> bridge) {
+        System.out.println(bridge);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         for (int location = 0; location <= bridge.size(); location++) {
             BridgeType userInput = BridgeType.of(ui.readMoving());
@@ -25,7 +27,7 @@ public class GameMachine {
                 System.out.println("FAIL");
                 return;
             }
-            System.out.println("pass");
+            System.out.println("PASS");
         }
 
     }
