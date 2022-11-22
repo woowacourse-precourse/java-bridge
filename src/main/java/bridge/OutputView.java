@@ -73,4 +73,12 @@ public class OutputView {
     public void printTotalTryCount(int totalTryCount) {
         System.out.println(TOTAL_TRY_COUNT_MESSAGE.getMessage() + totalTryCount);
     }
+
+    public void printSuccess() {
+        System.out.println(GAME_SUCCESS_MESSAGE);
+    }
+
+    public void printFail() {
+        System.out.println(GAME_FAIL_MESSAGE);
+    }
 }
