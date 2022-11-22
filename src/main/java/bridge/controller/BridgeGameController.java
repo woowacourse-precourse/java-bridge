@@ -38,7 +38,7 @@ public class BridgeGameController {
     public boolean crossingBridge(String sign) {
         if (!bridgeGame.getBridgeGameResult().getComparison(sign)) {
             String gameCommand = inputView.readGameCommand();
-            if (gameCommand.equals("R")) {
+            if (gameCommand.equals(GameCommand.RESTART.getCommand())) {
                 bridgeGame.retry();
                 return true;
             }
