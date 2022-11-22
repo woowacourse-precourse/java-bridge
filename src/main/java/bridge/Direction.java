@@ -39,12 +39,12 @@ public enum Direction {
      * @param number
      * @return Direction
      */
-    static public String getDirection(int number) {
+    static public Direction getDirection(int number) {
         if (number == 1) {
-            return UP.getValue();
+            return UP;
         }
         if (number == 0) {
-            return DOWN.getValue();
+            return DOWN;
         }
         throw new IllegalArgumentException(invalidNumberMessage);
     }
