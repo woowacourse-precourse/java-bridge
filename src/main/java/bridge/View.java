@@ -2,7 +2,7 @@ package bridge;
 
 import java.util.List;
 
-public class View {
+public class View{
 
 	InputView inputView = new InputView();
 	OutputView outputView = new OutputView();
@@ -12,7 +12,14 @@ public class View {
 	}
 
 	public int readBridgeSize() {
-		return inputView.readBridgeSize();
+		int bridgeSize;
+		try {
+			bridgeSize = inputView.readBridgeSize();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			bridgeSize = readBridgeSize();
+		}
+		return bridgeSize;
 	}
 
 	public String readMoving() {
