@@ -8,15 +8,15 @@ public class BridgeGame {
     private List<String> bridge;
     private List<Round> rounds;
 
-    public BridgeGame(int size) {
-        validBridgeLength(size);
-        setBridge(size);
+    public BridgeGame(int bridgeSize) {
+        validBridgeLength(bridgeSize);
+        setBridge(bridgeSize);
         this.rounds = new ArrayList<>();
     }
 
-    public void setBridge(int size) {
+    public void setBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = bridgeMaker.makeBridge(size);
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     /**
