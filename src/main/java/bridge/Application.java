@@ -5,7 +5,6 @@ import bridge.model.BridgeSize;
 import bridge.model.Direction;
 import bridge.model.GameCommand;
 import bridge.model.GameMap;
-import bridge.model.MoveResult;
 import bridge.model.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -17,19 +16,17 @@ public class Application {
     public static void main(String[] args) {
         outputView.printGameStart();
 
-        GameMap gameMap = new GameMap();
-        BridgeGame bridgeGame = new BridgeGame(createBridge(), new Player(), gameMap);
+        BridgeGame bridgeGame = new BridgeGame(createBridge(), new Player(), new GameMap());
         while (!bridgeGame.quit()) {
-            playGame(bridgeGame, gameMap);
+            playGame(bridgeGame);
         }
         GameResult gameResult = bridgeGame.gameResult();
-        outputView.printResult(gameResult, gameMap);
+        outputView.printResult(bridgeGame.getGameMap(), gameResult);
     }
 
-    private static void playGame(BridgeGame bridgeGame, GameMap gameMap) {
-        MoveResult moveResult = bridgeGame.move(inputDirection());
-        gameMap.draw(moveResult);
-        outputView.printMap(gameMap);
+    private static void playGame(BridgeGame bridgeGame) {
+        bridgeGame.move(inputDirection());
+        outputView.printMap(bridgeGame.getGameMap());
         if (bridgeGame.end()) {
             bridgeGame.retry(inputGameCommand());
         }
@@ -37,8 +34,7 @@ public class Application {
 
     private static BridgeSize inputBridgeSize() {
         try {
-            String size = inputView.readBridgeSize();
-            return new BridgeSize(size);
+            return new BridgeSize(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputBridgeSize();

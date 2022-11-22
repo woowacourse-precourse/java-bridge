@@ -30,10 +30,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MoveResult move(Direction direction) {
+    public void move(Direction direction) {
         MoveResult moveResult = player.move(bridge, direction);
         changeStatusByMoveResult(moveResult);
-        return moveResult;
+        gameMap.draw(moveResult);
     }
 
     private void changeStatusByMoveResult(MoveResult moveResult) {
@@ -83,5 +83,9 @@ public class BridgeGame {
 
     private boolean complete() {
         return status.complete();
+    }
+
+    public String getGameMap() {
+        return gameMap.toString();
     }
 }
