@@ -1,11 +1,11 @@
 package bridge.Exception;
 
+import bridge.domain.DirectionType;
+
 public class Exception {
     private static final String regExp = "^[0-9]+$";
     private static final int MIN = 3;
     private static final int MAX = 20;
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
 
@@ -26,7 +26,9 @@ public class Exception {
 
     public static void validateIsValidMoving(String input) {
         ErrorMessage errorMessage = ErrorMessage.NOT_VALID_MOVING;
-        if (input.equals(UP) || input.equals(DOWN)){
+        DirectionType up = DirectionType.UP;
+        DirectionType down = DirectionType.DOWN;
+        if (input.equals(up.getInitial()) || input.equals(down.getInitial())){
             return;
         }
         throw new IllegalArgumentException(errorMessage.getMessage());
