@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
+
     private ArrayList<String> upBridge;
     private ArrayList<String> downBridge;
     private int size;
