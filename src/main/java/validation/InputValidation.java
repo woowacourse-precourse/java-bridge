@@ -5,7 +5,7 @@ import java.util.List;
 public class InputValidation {
     public void validateBridgeSize(String input) {
         if (!input.matches("^[1-9]+[0-9]*$")) {
-            throw new IllegalArgumentException(String.valueOf(ErrorMessage.INVALID_BRIDGE_SIZE));
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE.getMessage());
         }
     }
 
@@ -14,7 +14,7 @@ public class InputValidation {
         List<String> orders = List.of("U", "D");
 
         if (!orders.contains(input)) {
-            throw new IllegalArgumentException(String.valueOf(ErrorMessage.INVALID_MOVING_ORDER));
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MOVING_ORDER.getMessage());
         }
     }
 
@@ -23,7 +23,7 @@ public class InputValidation {
         List<String> commands = List.of("R", "Q");
 
         if (!commands.contains(input)) {
-            throw new IllegalArgumentException(String.valueOf(ErrorMessage.INVALID_GAME_COMMAND));
+            throw new IllegalArgumentException(ErrorMessage.INVALID_GAME_COMMAND.getMessage());
         }
     }
 
