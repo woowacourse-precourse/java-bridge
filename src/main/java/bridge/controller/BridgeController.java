@@ -43,7 +43,7 @@ public class BridgeController {
             if (moveBridge(userResult ,bridge.getBridgeLength())) {
                 break;
             }
-            gameSuccess = bridgeGame.retry(inputView.readGameRetryCommand());
+            gameSuccess = repeatUntilRightInputRetry();
         }while(gameSuccess);
         return gameSuccess;
     }
@@ -52,11 +52,35 @@ public class BridgeController {
         boolean success = true;
 
         for (int i=0; i<bridgeLength; i++) {
-            success = bridgeGame.move(userResult, inputView.readMoving(), makedBridge.get(i));
+            success = repeatUntilRightInputBridge(userResult, i);
             outputView.printMap(userResult);
             if (!success) {
                 return success;
             }
+        }
+        return success;
+    }
+
+    private boolean repeatUntilRightInputBridge(UserResult userResult, int index) {
+        boolean success = true;
+
+        try {
+            success = bridgeGame.move(userResult, inputView.readMoving(), makedBridge.get(index));
+        }catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            success = repeatUntilRightInputBridge(userResult, index);
+        }
+        return success;
+    }
+
+    private boolean repeatUntilRightInputRetry() {
+        boolean success = true;
+
+        try {
+            success = bridgeGame.retry(inputView.readGameRetryCommand());
+        }catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            success = repeatUntilRightInputRetry();
         }
         return success;
     }
