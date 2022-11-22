@@ -11,6 +11,12 @@ public class Application {
         bridgeGame.setGame();
         bridgeGame.make();
         bridgeGame.move();
-        bridgeGame.check();
+
+        while (bridgeGame.check()) {
+            bridgeGame.move();
+        }
+        if (!bridgeGame.check()) {
+            bridgeGame.retry();
+        };
     }
 }
