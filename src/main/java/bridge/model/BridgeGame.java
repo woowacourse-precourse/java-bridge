@@ -13,7 +13,6 @@ public class BridgeGame {
     private static final int INIT_LOCATION = -1;
     private static final int INIT_RETRY_COUNT = 1;
     private static final int COUNT_NUM = 1;
-    private static final int INDEX_PLUS = 1;
     private static final BridgeComparator bridgeComparator = new BridgeComparator();
     private final List<String> bridge;
     private BridgeMap bridgeMap;
@@ -52,7 +51,7 @@ public class BridgeGame {
      */
     public void move(String moving) {
         countLocation();
-        String expression = BridgeComparator.compareBridge(bridge, moving, location);
+        String expression = bridgeComparator.compareBridge(bridge, moving, location);
         bridgeMap.makeBridgeMap(location, moving, expression);
     }
 
@@ -62,7 +61,7 @@ public class BridgeGame {
 
 
     public boolean checkEndPoint() {
-        if (bridge.size() == location + INDEX_PLUS) {
+        if (bridgeComparator.isEndPoint(bridge, location)) {
             return true;
         }
         return false;
@@ -84,7 +83,7 @@ public class BridgeGame {
     }
 
     public boolean isFail() {
-        return BridgeComparator.isExpressionX(location, bridgeMap.getBridgeMap());
+        return bridgeComparator.isExpressionX(location, bridgeMap.getBridgeMap());
     }
 
     public void countRetry() {
