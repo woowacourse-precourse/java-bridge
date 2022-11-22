@@ -30,7 +30,7 @@ public class BridgeMaker {
                 bridge.add("U");
             }
         }
-        System.out.println(bridge);정
+        System.out.println(bridge);
         return bridge;
     }
 
