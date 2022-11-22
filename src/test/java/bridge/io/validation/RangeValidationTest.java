@@ -19,4 +19,12 @@ class RangeValidationTest {
       .hasMessageContaining(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.NOT_IN_RANGE.getMessage());
   }
 
+  @ParameterizedTest
+  @ValueSource(strings = {"3", "4", "19", "20"})
+  void 입력값이_3에서_20사이의_숫자라면_정상적으로_작동하는가(String input) {
+    RangeValidation rangeValidation = new RangeValidation(new NullValidation());
+    assertThatCode(() -> rangeValidation.validate(input))
+      .doesNotThrowAnyException();
+  }
+
 }
