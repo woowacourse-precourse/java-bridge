@@ -5,7 +5,8 @@ import bridge.support.ResultSignResolver;
 import bridge.view.sign.FirstBridgeSignStrategy;
 import bridge.view.sign.SecondBridgeSignStrategy;
 
-import static bridge.view.sign.ResultSign.*;
+import static bridge.view.sign.ResultSign.CLOSE_BRACKET;
+import static bridge.view.sign.ResultSign.OPEN_BRACKET;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -21,7 +22,8 @@ public class OutputView {
     private static final String FAIL_MESSAGE = "실패";
     private static final String SUCCESS_MESSAGE = "성공";
 
-    private OutputView() {}
+    private OutputView() {
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -63,7 +65,7 @@ public class OutputView {
     public static void printResult(Result result) {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(result);
-        if(result.hasWrong()) {
+        if (result.hasWrong()) {
             System.out.println(GAME_IS_SUCCEED_MESSAGE + FAIL_MESSAGE);
             System.out.println(TOTAL_TRY_COUNT + result.getTryCount());
             return;

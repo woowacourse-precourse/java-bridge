@@ -45,7 +45,7 @@ public class FirstBridgeSignStrategy implements SignStrategy {
 
     @Override
     public void appendSeparatorIsNotLast(int index, int size) {
-        if(index < size - 1) {
+        if (index < size - 1) {
             sb.append(SEPARATOR.getSign());
         }
     }

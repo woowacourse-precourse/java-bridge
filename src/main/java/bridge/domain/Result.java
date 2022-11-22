@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.MoveDirection;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,10 +7,9 @@ import java.util.List;
 public class Result {
     private static final String UP_SIGN = "U";
     private static final String DOWN_SIGN = "D";
-
-    private int tryCount;
     private final List<MoveDirection> directions;
     private final List<Boolean> isAnswers;
+    private int tryCount;
 
     public Result() {
         directions = new ArrayList<>();
