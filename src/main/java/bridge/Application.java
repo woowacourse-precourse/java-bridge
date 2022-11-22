@@ -30,7 +30,7 @@ public class Application {
             gameStatus = "성공";
             playGame();
         } while(retryOrQuit());
-        outputView.printResult(upBridgeResult, downBridgeResult, gameStatus, cnt);
+        printTotalResult();
     }
 
     public static void startMakingBridge() {
@@ -90,6 +90,11 @@ public class Application {
             outputView.printCrossResult(upBridgeResult, downBridgeResult);
         } while (location < bridgeSize && gameStatus.equals("성공"));
         return location;
+    }
+
+    public static void printTotalResult(){
+        outputView.printResult(upBridgeResult, downBridgeResult);
+        outputView.printGameResult(gameStatus, cnt);
     }
 
 }
