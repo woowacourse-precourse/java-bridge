@@ -15,6 +15,8 @@ public class Controller {
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
 
+    private InputController inputController;
+    private InputView inputView;
     private Bridge bridge;
     private OutputView outputView;
     private List<String> choices;
@@ -25,6 +27,8 @@ public class Controller {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridgeGame = new BridgeGame();
+        inputView = new InputView();
+        inputController = new InputController(inputView);
     }
 
     public void game() throws IllegalArgumentException{
@@ -39,7 +43,7 @@ public class Controller {
     }
 
     private int makeBridgeObject() {
-        int size = InputController.setBridgeSize();
+        int size = inputController.setBridgeSize();
         List<String> bridgeRoads = bridgeMaker.makeBridge(size);
         bridge = new Bridge(bridgeRoads);
 
@@ -60,7 +64,7 @@ public class Controller {
             String choice = makeChoice(i);
             if (!(bridgeGame.move(bridge, choice, i))) {
                 choices.clear();
-                return bridgeGame.retry(InputController.setGameCommand());
+                return bridgeGame.retry(inputController.setGameCommand());
             }
             retry = gamePass(i, size);
         }
@@ -68,7 +72,7 @@ public class Controller {
     }
 
     private String makeChoice(int i) {
-        String choice = InputController.setMoveChoice();
+        String choice = inputController.setMoveChoice();
         choices.add(choice);
         outputView.printMap(i, choices);
 
