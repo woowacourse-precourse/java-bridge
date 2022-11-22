@@ -2,10 +2,8 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 import bridge.ApplicationTest.TestNumberGenerator;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
@@ -15,7 +13,7 @@ class BridgeGameTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3));
         bridgeGame.move("U");
-        assertThat(bridgeGame.isMovable).isTrue();
+        assertThat(bridgeGame.isCorrect).isTrue();
     }
 
     @Test
@@ -24,7 +22,7 @@ class BridgeGameTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(3));
         bridgeGame.move("D");
-        assertThat(bridgeGame.isMovable).isFalse();
+        assertThat(bridgeGame.isCorrect).isFalse();
     }
 
 }

@@ -15,14 +15,14 @@ public class OutputView {
     }
 
     private boolean isOnGoing(BridgeGame bridgeGame){
-        return (0 < bridgeGame.bridgeIndex && bridgeGame.bridgeIndex < bridgeGame.bridge.size());
+        return (1 < bridgeGame.bridgeIndex && bridgeGame.bridgeIndex < bridgeGame.bridge.size());
     }
 
     private void makeUpperBridge(BridgeGame bridgeGame) {
-        if (isUp(bridgeGame) && bridgeGame.isMovable) {
+        if (isUp(bridgeGame) && bridgeGame.isCorrect) {
             upperBridge += CAN_MOVE.getMessage();
         }
-        if (isUp(bridgeGame) && !bridgeGame.isMovable) {
+        if (isUp(bridgeGame) && !bridgeGame.isCorrect) {
             upperBridge += CANNOT_MOVE.getMessage();
         }
         if (isDown(bridgeGame)) {
@@ -31,10 +31,10 @@ public class OutputView {
     }
 
     private void makeLowerBridge(BridgeGame bridgeGame) {
-        if (isDown(bridgeGame) && bridgeGame.isMovable) {
+        if (isDown(bridgeGame) && bridgeGame.isCorrect) {
             lowerBridge += CAN_MOVE.getMessage();
         }
-        if (isDown(bridgeGame) && !bridgeGame.isMovable) {
+        if (isDown(bridgeGame) && !bridgeGame.isCorrect) {
             lowerBridge += CANNOT_MOVE.getMessage();
         }
         if (isUp(bridgeGame)) {
@@ -60,12 +60,12 @@ public class OutputView {
         lowerBridge = lowerBridge.substring(0, lowerBridge.length() - 4);
     }
 
-    public void drawMap(BridgeGame bridgeGame, Boolean isMovable) {
-        if (isMovable) {
-            makeBridgeMap(bridgeGame);
-        }
-        if (!isMovable) {
+    public void drawMap(BridgeGame bridgeGame, Boolean isRetry) {
+        if (isRetry) {
             removeRecentBridge();
+        }
+        if (!isRetry) {
+            makeBridgeMap(bridgeGame);
         }
     }
 
@@ -82,10 +82,10 @@ public class OutputView {
     }
 
     public void printSuccessOrFail(BridgeGame bridgeGame) {
-        if (bridgeGame.getIsMovable()){
+        if (bridgeGame.getIsCorrect()){
             System.out.println(NEW_LINE.getMessage() + String.format(SUCCESS_OR_FAIL.getMessage(), SUCCESS.getMessage()));
         }
-        if (!bridgeGame.getIsMovable()) {
+        if (!bridgeGame.getIsCorrect()) {
             System.out.println(NEW_LINE.getMessage() + String.format(SUCCESS_OR_FAIL.getMessage(), FAIL.getMessage()));
         }
     }
