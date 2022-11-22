@@ -25,19 +25,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean gameResult, int attemptNumber) {
+    	System.out.println(FINAL_GAME_RESULT_MESSAGE);
+    	
+    	if(gameResult == true) System.out.println(GAME_SUCCESS_MEESAGE);
+    	if(gameResult == false) System.out.println(GAME_FAILURE_MEESAGE);
+    	System.out.println(NUMBER_OF_ATTEMPTS_MESSAGE + attemptNumber);
     }
     
     public void printStart() {
+    	System.out.println(START_MESSAGE);
     }
     
     public void printBridgeSize() {
+    	System.out.println(BRIDGE_SIZE_MESSAGE);
     }
     
     public void printMoving() {
+    	System.out.println(MOVING_MESSAGE);
     }
     
     public void printGameCommand() {
+    	System.out.println(GAME_COMMAND_MESSAGE);
     }
     
     public void lowerBridge () {
