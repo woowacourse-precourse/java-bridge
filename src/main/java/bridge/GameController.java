@@ -45,4 +45,17 @@ public class GameController {
         moving = inputView.readMoving();
         return moving;
     }
+    public boolean isRetry() {
+        String gameCommand;
+        outputView.printGameCommand();
+        gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals(GameCommand.RESTART.getGameCommand())) {
+            return true;
+        }
+        if (gameCommand.equals(GameCommand.END.getGameCommand())) {
+            return false;
+        }
+        // TODO: 예외처리
+        return false;
+    }
 }
