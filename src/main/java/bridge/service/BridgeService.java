@@ -9,7 +9,7 @@ import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.view.Message.*;
+import static bridge.service.Validator.*;
 
 public class BridgeService {
     private static int inputSize;
@@ -130,31 +130,4 @@ public class BridgeService {
         tryCount();
     }
 
-    public static String checkRetryQuit(String input) {
-        if (input.equals("R") || input.equals("Q")) {
-            return input;
-        }
-        throw new IllegalArgumentException(ERROR_NOT_RETRY_QUIT);
-    }
-
-    public static Character checkUpDown(String input) {
-        if (input.equals("U") || input.equals("D")) {
-            return input.charAt(0);
-        }
-        throw new IllegalArgumentException(ERROR_NOT_UP_DOWN);
-    }
-
-    public static int checkInteger(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_NOT_INTEGER);
-        }
-    }
-
-    public static void checkRange(int input) {
-        if (input < 3 || input > 21) {
-            throw new IllegalArgumentException(ERROR_OVER_RANGE);
-        }
-    }
 }
