@@ -28,7 +28,6 @@ public class BridgeMaker {
             if(randomNumber == 0) { randomNumberTrans = "D"; }
             gameBridge.add(randomNumberTrans);
         }
-
         return gameBridge;
     }
 }

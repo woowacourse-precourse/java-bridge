@@ -29,6 +29,10 @@ public class Application {
 
         // 6.다리 검사
         List<String> gameBridgeCheck = BridgeGame.check(gameBridgeMoving,gameBridge);
+
+        // 7.다리 상황
+        OutputView gameOutputView = new OutputView();
+        gameOutputView.printMap(gameBridgeCheck);
     }
 }
 
