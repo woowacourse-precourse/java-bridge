@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -8,8 +9,18 @@ import java.util.List;
 public class BridgeGame {
 
     List<String> bridge;
-    public BridgeGame(List<String> bridge){
-        this.bridge = bridge;
+    List<String> trace;
+    int rerun = 1;
+    public BridgeGame(){}
+
+    public void run(){
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        int bridgeSize = InputView.readBridgeSize();
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        String repeat = "";
+        boolean result = move(bridgeSize);
+        result = retry(bridgeSize);
+        OutputView.printResult(trace, result, rerun);
     }
 
     /**
@@ -17,7 +28,23 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String updown, int step) {
+    public boolean move(int bridgeSize) {
+        trace = new ArrayList<>(bridgeSize);
+        String updown;
+        for (int step = 0; step < bridgeSize; step++) {
+            updown = InputView.readMoving();
+            trace.add(updown);
+            if(moveCheck(updown, step)){
+                OutputView.printMap(trace, false);
+                return false;
+            }
+            OutputView.printMap(trace, true);
+        }
+        return true;
+    }
+
+
+    public boolean moveCheck(String updown, int step) {
         if (updown.equals(bridge.get(step)))
             return true;
         return false;
@@ -28,12 +55,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-    }
-    public int getBridgeSize(){
-        return bridge.size();
-    }
-    public List<String> getBridge(){
-        return bridge;
+    public boolean retry(int bridgeSize) {
+        String repeat = "";
+        boolean result = false;
+        while ((repeat = InputView.readGameCommand()).equals("R")){
+            rerun++;
+            result = move(bridgeSize);
+            if (result)
+                break;
+        }
+        return result;
     }
 }

@@ -32,7 +32,6 @@ public class InputView {
             System.out.println(e.getMessage());
             bridgeLength = readBridgeSize();
         }
-
         return bridgeLength;
     }
 
@@ -40,14 +39,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     static public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = "";
         try {
             input = Console.readLine();
             checkLetter(input, "U", "D");
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            readMoving(); //Recursively execute to scan new input
+            input = readMoving(); //Recursively execute to scan new input
         }
         return input;
     }
@@ -56,13 +55,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     static public String readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = "";
         try {
             input = Console.readLine();
             checkLetter(input, "R", "Q");
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            readGameCommand(); //Recursively execute to scan new input
+            input = readGameCommand(); //Recursively execute to scan new input
         }
         return input;
     }

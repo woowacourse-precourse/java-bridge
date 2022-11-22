@@ -8,55 +8,45 @@ import java.util.List;
  */
 public class OutputView {
     static final int UP = 0;
-    static final int DOWN = 0;
+    static final int DOWN = 1;
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     static public void printMap(List<String> trace, boolean result) {
-        List<String> updown = new ArrayList<>(2);
-        updown = addStr(updown, "[");
+        printLine(trace, result, checkUpDown(UP));
+        printLine(trace, result, checkUpDown(DOWN));
+    }
+
+    static public void printLine(List<String> trace, boolean result, String ud){
+        System.out.print("[");
         int size = trace.size();
         for (int i = 0; i < size - 1; i++) {
-            updown = addTrace(trace.get(i), updown, true);
-            updown = addStr(updown, "|");
+            if (trace.get(i).equals(ud)) {
+                System.out.print(" O |");
+                continue;
+            }
+            System.out.print("   |");
         }
-        updown = addTrace(trace.get(size - 1), updown, result);
-        updown = addStr(updown, "]");
-        System.out.println(updown);
+        printLastStep(trace, result, ud);
     }
 
-    static public List<String> addTrace(String trace, List<String> updown, boolean success){
-        List<String> temp = new ArrayList<>();
-        String OX = " O ";
-        if (!success)
-            OX = " X ";
-        if(trace.equals("U")) {
-            temp = addUp(updown, OX);
+    static public void printLastStep(List<String> trace, boolean result, String ud){
+        String lastStep = " O ]";
+        if (!result)
+            lastStep = " X ]";
+        if (trace.get(trace.size() - 1).equals(ud)){
+            System.out.println(lastStep);
+            return;
         }
-        if(trace.equals("D"))
-            temp = addStr(updown, OX);
-        return temp;
+        System.out.println("   ]");
     }
 
-    static public List<String> addStr(List<String> updown, String str){
-        updown.get(UP).concat(str);
-        updown.get(DOWN).concat(str);
-        return updown;
-    }
-
-    static public List<String> addUp(List<String> updown, String OX){
-        List<String> temp = new ArrayList<>();
-        temp.add(updown.get(UP).concat(OX));
-        temp.add(updown.get(DOWN));
-        return temp;
-    }
-    static public List<String> addDown(List<String> updown, String OX){
-        List<String> temp = new ArrayList<>();
-        temp.add(updown.get(UP));
-        temp.add(updown.get(DOWN).concat(OX));
-        return temp;
+    static public String checkUpDown(int updown){
+        if (updown == UP)
+            return "U";
+        return "D";
     }
 
 
@@ -65,6 +55,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    static public void printResult(List<String> trace, boolean result, int rerun) {
+        System.out.println("\n최종 게임 결과");
+        printMap(trace, result);
+        System.out.print("\n게임 성공 여부: ");
+        if (result)
+            System.out.println("성공");
+        if (!result)
+            System.out.println("실패");
+        System.out.println("총 시도한 횟수: " + rerun);
     }
 }
