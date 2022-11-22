@@ -27,7 +27,7 @@ class MoveTest extends NsTest {
         assertSimpleTest(
                 () -> {
                     run("DDDD", "D");
-                    assertThat(output()).contains(ERROR_MESSAGE, CustomException.OUT_OF_COMMAND_RANGE);
+                    assertThat(output()).contains(ERROR_MESSAGE, CustomException.OUT_OF_MOVE_RANGE);
                 }
         );
     }

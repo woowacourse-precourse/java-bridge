@@ -75,7 +75,7 @@ public class InputView {
     }
 
     private String validMoving(String input) {
-        validateCommandLength(input);
+        validateMoveLength(input);
         validateMovingCommand(input);
         return input;
     }
@@ -119,11 +119,8 @@ public class InputView {
     }
 
     private void validateNumberRange(String input) {
-        if (input.length() > 2) {
-            CustomException.NotNumberRangeException();
-        } else if (input.length() == 1 && input.charAt(0) <= '2') {
-            CustomException.NotNumberRangeException();
-        } else if (input.length() == 2 && input.charAt(0) > '2') {
+        int number = inputToInteger(input);
+        if (number < 3 || number > 20) {
             CustomException.NotNumberRangeException();
         }
     }
@@ -131,6 +128,11 @@ public class InputView {
     private void validateCommandLength(String input) {
         if (input.length() != 1) {
             CustomException.CommandLengthException();
+        }
+    }
+    private void validateMoveLength(String input) {
+        if (input.length() != 1) {
+            CustomException.MoveLengthException();
         }
     }
 
