@@ -18,7 +18,7 @@ public class BridgeGame {
             bridgeshape.remove(0);
             return selectMove;
         }
-        return "종료";
+        return "END";
     }
 
     /**

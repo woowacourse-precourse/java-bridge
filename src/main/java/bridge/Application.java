@@ -2,6 +2,7 @@ package bridge;
 
 
 import java.util.List;
+import java.util.Objects;
 
 public class Application {
 
@@ -15,8 +16,15 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridgeshape =  bridgeMaker.makeBridge(bridgeSize);
 
-        String selectMove = InputView.readMoving();
-        System.out.println(BridgeGame.move(selectMove, bridgeshape));
-
+        int i = 0;
+        while (i < bridgeSize) {
+            String selectMove = InputView.readMoving();
+            String aliveOrDie = BridgeGame.move(selectMove, bridgeshape);
+            System.out.println(aliveOrDie);
+            if (Objects.equals(aliveOrDie, "END")){
+                break;
+            }
+            i++;
+        }
     }
 }
