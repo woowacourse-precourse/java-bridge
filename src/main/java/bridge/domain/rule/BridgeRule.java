@@ -28,4 +28,10 @@ public class BridgeRule {
 			throw new IllegalArgumentException("[ERROR] 재시도 R, 종료 Q를 입력해야 합니다.");
 		}
 	}
+	public void isMoveCommand(String input){
+		boolean isMove = input.equals(UP) || input.equals(DOWN);
+		if(!isMove){
+			throw new IllegalArgumentException("[ERROR] 위 U, 아래 D를 입력해야 합니다.");
+		}
+	}
 }
