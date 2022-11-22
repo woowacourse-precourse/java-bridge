@@ -18,7 +18,6 @@ public class OutputView {
     public static final String GAME_FINAL_RESULT = "최종 게임 결과";
     public static final String GAME_SUCCESS = "성공";
     public static final String GAME_FAIL = "실패";
-
     public static final String GAME_SUCCESS_CHECK = "\n게임 성공 여부: %s";
     public static final String GAME_TOTAL_TRY = "총 시도한 횟수: %d";
 

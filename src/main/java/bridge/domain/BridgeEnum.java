@@ -53,7 +53,7 @@ public enum BridgeEnum {
 
     public String getStateLocation(String location) {
         if (this.bridgeStringType.equals(location)) {
-            if(this.correctLocation){
+            if (this.correctLocation) {
                 return "O";
             }
             return "X";
