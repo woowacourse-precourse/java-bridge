@@ -1,7 +1,5 @@
 package bridge.constant;
 
-import bridge.BridgeGame;
-
 public enum BridgeSize {
     MAX(20),
     MIN(3);

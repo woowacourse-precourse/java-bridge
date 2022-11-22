@@ -1,7 +1,6 @@
 package bridge.constant;
 
 import java.util.List;
-import java.util.Queue;
 
 public enum Token {
     UP("U"),

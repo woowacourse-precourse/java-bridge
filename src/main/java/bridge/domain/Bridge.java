@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.BridgeInfo;
-import bridge.constant.Token;
 
 import java.util.ArrayList;
 import java.util.List;
