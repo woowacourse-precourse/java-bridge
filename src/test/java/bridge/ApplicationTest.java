@@ -47,6 +47,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 이동할_칸_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("5", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
