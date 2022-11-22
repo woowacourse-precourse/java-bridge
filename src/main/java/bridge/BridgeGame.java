@@ -53,17 +53,17 @@ public class BridgeGame {
     public String toString() {
         StringBuilder ret = new StringBuilder();
 
-        String upPart = toStringEachPart(Key.UP);
-        String downPart = toStringEachPart(Key.DOWN);
+        String upSide = toStringEachSide(Key.UP);
+        String downSide = toStringEachSide(Key.DOWN);
 
-        ret.append(upPart);
-        ret.append(downPart);
+        ret.append(upSide);
+        ret.append(downSide);
 
         return ret.toString();
     }
 
 
-    private String toStringEachPart(Key key) {
+    private String toStringEachSide(Key key) {
         StringBuilder ret = new StringBuilder("[");
 
         ret.append(getSuccessOrWhitespace(key));
