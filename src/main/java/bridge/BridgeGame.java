@@ -6,12 +6,14 @@ public class BridgeGame {
     private final OutputView outputView;
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private final BridgeMaker bridgeMaker;
+    private final GameEndChecker gameEndChecker;
 
     public BridgeGame() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(this.bridgeRandomNumberGenerator);
+        this.gameEndChecker = new GameEndChecker();
     }
 
     public void play() {
