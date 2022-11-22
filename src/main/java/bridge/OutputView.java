@@ -11,7 +11,7 @@ public class OutputView {
         for(int idx=0; idx<gameBridgeCheck.size(); idx++) {
             System.out.print(gameBridgeCheck.get(idx));
             if(idx == gameBridgeCheck.size()-1) {
-                System.out.print(" ]");
+                System.out.println(" ]");
                 return;
             }
             System.out.print(" | ");
