@@ -6,6 +6,7 @@ import bridge.validator.MovingValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+    private final OutputView outputView = OutputView.getInstance();
 
     private InputView() {}
 
@@ -18,14 +19,35 @@ public class InputView {
     }
 
     public int readBridgeSize() {
-        return BridgeSizeValidator.validate(Console.readLine());
+        outputView.inputBridgeSize();
+        String input = Console.readLine();
+        try {
+            return BridgeSizeValidator.validate(input);
+        } catch (IllegalArgumentException e) {
+            ExceptionView.print(e.getMessage());
+        }
+        return readBridgeSize();
     }
 
     public String readMoving() {
-        return MovingValidator.validate(Console.readLine());
+        outputView.inputMoving();
+        String input = Console.readLine();
+        try {
+            return MovingValidator.validate(input);
+        } catch (IllegalArgumentException e) {
+            ExceptionView.print(e.getMessage());
+        }
+        return readMoving();
     }
 
     public Retry readGameCommand() {
-        return Retry.of(Console.readLine());
+        outputView.inputRetry();
+        String input = Console.readLine();
+        try {
+            return Retry.of(input);
+        } catch (IllegalArgumentException e) {
+            ExceptionView.print(e.getMessage());
+        }
+        return readGameCommand();
     }
 }

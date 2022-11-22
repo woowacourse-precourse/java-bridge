@@ -35,16 +35,11 @@ public class GameController {
         do {
             initializeGame(bridge);
             move(bridge.getBridgeSize());
-            retryGame();
+            bridgeGame.retry();
             if (bridgeGame.isMovable) {
                 return;
             }
         } while (inputView.readGameCommand().isRetry());
-    }
-
-    private void retryGame() {
-        outputView.printRetry();
-        bridgeGame.retry();
     }
 
     private void initializeGame(Bridge bridge) {
@@ -53,7 +48,6 @@ public class GameController {
 
     private void move(int size) {
         do {
-            outputView.printMoving();
             player.addMoving(inputView.readMoving());
             outputView.printMap(bridgeGame.move());
         } while (bridgeGame.isMovable && !player.isFull(size));
