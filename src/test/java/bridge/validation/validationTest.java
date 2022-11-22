@@ -1,5 +1,6 @@
-package bridge.view;
+package bridge.validation;
 
+import bridge.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class InputViewTest {
+public class validationTest {
     private final static InputView inputView = new InputView();
 
     @DisplayName("다리 크기 입력 테스트")
