@@ -32,7 +32,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() throws IllegalArgumentException{
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.printf("이동할 칸을 선택해주세요. (위: %s, 아래: %s)\n"
+                , Direction.UP.getIcon()
+                , Direction.DOWN.getIcon()
+        );
         String movingIcon = Console.readLine();
         Direction.valueOfIcon(movingIcon);
         return movingIcon;
