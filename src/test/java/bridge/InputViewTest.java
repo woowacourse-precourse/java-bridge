@@ -56,6 +56,24 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("재시도 여부의 입력이 정상인 경우 (R,Q)")
+    @Test
+    void goodCommandInput() {
+        boolean isGood = inputView.validateCommand("R");
+        assertThat(isGood).isEqualTo(true);
+        isGood = inputView.validateCommand("Q");
+        assertThat(isGood).isEqualTo(true);
+    }
+    @DisplayName("재시도 여부의 입력이 잘못된 경우")
+    @Test
+    void wrongCommandInput() {
+        assertThatThrownBy(() -> inputView.validateCommand("1"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> inputView.validateCommand("ABCD"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 
