@@ -17,8 +17,6 @@ public class BridgeGame {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String nextMove = Console.readLine();
         if(ErrorCheck.isValidUpOrDown(nextMove));
-        System.out.println("nextMove : " + nextMove);
-
         return nextMove;
     }
 
@@ -32,7 +30,6 @@ public class BridgeGame {
             retryAnswerIsQuit(gameCnt);
             return END_GAME;
         }
-        System.out.println("BridgeGame BRIDGE_LENGTH : " + BRIDGE_LENGTH);
         return BRIDGE_LENGTH;
     }
 

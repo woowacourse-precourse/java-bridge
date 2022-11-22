@@ -32,9 +32,6 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String retry = Console.readLine();
         ErrorCheck.isValidRetryOrQuit(retry);
-        System.out.println("나의 선택은 : " + retry);
-        System.out.println("InputView BRIDGE_LENGTH : " + BRIDGE_LENGTH);
-
         return BridgeGame.retry(gameCnt, retry, BRIDGE_LENGTH);
     }
 }
