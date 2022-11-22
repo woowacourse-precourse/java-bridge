@@ -20,6 +20,7 @@ public class OutputView {
     public void printMap(HashMap<String, String> bridgeMap) {
         System.out.println(bridgeMap.get("U"));
         System.out.println(bridgeMap.get("D"));
+        System.out.println();
     }
 
     /**
@@ -28,9 +29,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean success, MyBridge myBridge, int tryCnt) {
+        System.out.println();
         System.out.println("최종 게임 결과");
         BridgeShape.makeLines(myBridge);
-        System.out.println();
         System.out.println(String.format(SUCCESS, successToString(success)));
         System.out.println(String.format(TRY_CNT, tryCnt));
     }
@@ -42,6 +43,7 @@ public class OutputView {
 
     public void printStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 
     public void printInputSize() {
