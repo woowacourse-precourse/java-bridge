@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.ErrorMessages;
 import java.util.List;
 
 public class Bridge {
@@ -15,7 +16,7 @@ public class Bridge {
 
 	private void validateLength(int length) {
 		if (length < MIN_LENGTH || length > MAX_LENGTH) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(ErrorMessages.INVALID_BRIDGE_LENGTH);
 		}
 	}
 
@@ -26,7 +27,7 @@ public class Bridge {
 
 	private void validatePosition(int position) {
 		if (position < 0 || position >= value.size()) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(ErrorMessages.INVALID_POSITION);
 		}
 	}
 

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.Constants;
+import bridge.ErrorMessages;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 
@@ -28,7 +29,7 @@ public class InputView {
     private void validateNumber(String input) {
         final String ONLY_NUMBER_REGEX = "^[0-9]+$";
         if (!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT_NUMBER);
         }
     }
 
@@ -44,7 +45,7 @@ public class InputView {
 
     private void validateMoving(String input) {
         if (!(input.equals(Constants.UP) || input.equals(Constants.DOWN))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT_MOVING);
         }
     }
 
@@ -60,7 +61,7 @@ public class InputView {
 
     private void validateGameCommand(String input) {
         if (!(input.equals(Constants.RETRY) || input.equals(Constants.QUIT))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT_GAME_COMMAND);
         }
     }
 }

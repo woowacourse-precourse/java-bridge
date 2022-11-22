@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.ErrorMessages;
+
 public class Player {
 
 	private PlayerStatus playerStatus;
@@ -17,7 +19,7 @@ public class Player {
 
 	private void validateAlive() {
 		if (isDead()) {
-			throw new IllegalStateException();
+			throw new IllegalStateException(ErrorMessages.DEAD_MAN_NO_WALK);
 		}
 	}
 
