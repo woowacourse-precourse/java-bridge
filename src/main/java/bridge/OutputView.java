@@ -48,4 +48,8 @@ public class OutputView {
     public void printRestartOrQuit() {
         System.out.println(RESTART_OR_QUIT_MESSAGE);
     }
+
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
+    }
 }
