@@ -31,13 +31,13 @@ class BridgeTest {
     }
 
     @DisplayName("현재까지의 입력 값이 다리와 동일한지 확인 - 정답인 경우")
-    @MethodSource("generateTruePlayerChoices")
+    @MethodSource("generateTruePlayerMoves")
     @ParameterizedTest
-    void checkIsAllEqualSoFarIsTrue(List<String> playerChoices) {
-        assertThat(bridge.isAllEqualSoFar(playerChoices)).isTrue();
+    void checkIsAllEqualSoFarIsTrue(List<String> playerMoves) {
+        assertThat(bridge.isAllEqualSoFar(playerMoves)).isTrue();
     }
 
-    static Stream<Arguments> generateTruePlayerChoices() {
+    static Stream<Arguments> generateTruePlayerMoves() {
         return Stream.of(
                 Arguments.of(List.of("D")),
                 Arguments.of(Arrays.asList("D", "U")),
@@ -47,13 +47,13 @@ class BridgeTest {
     }
 
     @DisplayName("현재까지의 입력 값이 다리와 동일한지 확인 - 오답인 경우")
-    @MethodSource("generateFalsePlayerChoices")
+    @MethodSource("generateFalsePlayerMoves")
     @ParameterizedTest
-    void checkIsAllEqualSoFarIsFalse(List<String> playerChoices) {
-        assertThat(bridge.isAllEqualSoFar(playerChoices)).isFalse();
+    void checkIsAllEqualSoFarIsFalse(List<String> playerMoves) {
+        assertThat(bridge.isAllEqualSoFar(playerMoves)).isFalse();
     }
 
-    static Stream<Arguments> generateFalsePlayerChoices() {
+    static Stream<Arguments> generateFalsePlayerMoves() {
         return Stream.of(
                 Arguments.of(List.of("U")),
                 Arguments.of(Arrays.asList("D", "D")),
@@ -65,14 +65,14 @@ class BridgeTest {
     @DisplayName("최종 사용자 입력 값과 다리가 동일한지 확인 - 정답인 경우")
     @Test
     void checkIsEqualIsTrue() {
-        List<String> playerChoices = Arrays.asList("D", "U", "U", "D");
-        assertThat(bridge.isAllEqualSoFar(playerChoices)).isTrue();
+        List<String> playerMoves = Arrays.asList("D", "U", "U", "D");
+        assertThat(bridge.isAllEqualSoFar(playerMoves)).isTrue();
     }
 
     @DisplayName("최종 사용자 입력 값과 다리가 동일한지 확인 - 오답인 경우")
     @Test
     void checkIsEqualIsFalse() {
-        List<String> playerChoices = Arrays.asList("D", "U", "U", "U");
-        assertThat(bridge.isAllEqualSoFar(playerChoices)).isFalse();
+        List<String> playerMoves = Arrays.asList("D", "U", "U", "U");
+        assertThat(bridge.isAllEqualSoFar(playerMoves)).isFalse();
     }
 }

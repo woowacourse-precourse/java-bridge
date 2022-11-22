@@ -20,18 +20,18 @@ public class CurrentBridgeMap {
         lowerBridgeMap = new ArrayList<>();
     }
 
-    public String getCurrentBridgeMap(String playerChoice, Boolean equalAnswer) {
-        updateUpperBridgeMap(playerChoice, equalAnswer);
-        updateLowerBridgeMap(playerChoice, equalAnswer);
+    public String getCurrentBridgeMap(String playerMove, Boolean equalAnswer) {
+        updateUpperBridgeMap(playerMove, equalAnswer);
+        updateLowerBridgeMap(playerMove, equalAnswer);
         return getBridgeMap();
     }
 
-    private void updateUpperBridgeMap(String playerChoice, Boolean equalAnswer) {
-        if (playerChoice.equals(UPPER_CHECK) && equalAnswer) {
+    private void updateUpperBridgeMap(String playerMove, Boolean equalAnswer) {
+        if (playerMove.equals(UPPER_CHECK) && equalAnswer) {
             upperBridgeMap.add(ANSWER_BRIDGE);
             return;
         }
-        if (playerChoice.equals(UPPER_CHECK)) {
+        if (playerMove.equals(UPPER_CHECK)) {
             upperBridgeMap.add(WRONG_BRIDGE);
             return;
         }
@@ -39,12 +39,12 @@ public class CurrentBridgeMap {
         upperBridgeMap.add(BLANK_BRIDGE);
     }
 
-    private void updateLowerBridgeMap(String playerChoice, Boolean equalAnswer) {
-        if (playerChoice.equals(LOWER_CHECK) && equalAnswer) {
+    private void updateLowerBridgeMap(String playerMove, Boolean equalAnswer) {
+        if (playerMove.equals(LOWER_CHECK) && equalAnswer) {
             lowerBridgeMap.add(ANSWER_BRIDGE);
             return;
         }
-        if (playerChoice.equals(LOWER_CHECK)) {
+        if (playerMove.equals(LOWER_CHECK)) {
             lowerBridgeMap.add(WRONG_BRIDGE);
             return;
         }

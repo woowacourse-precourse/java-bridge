@@ -19,7 +19,7 @@ public class Bridge {
                 .allMatch(index -> bridge.get(index).equals(movement.get(index)));
     }
 
-    public boolean isEqual(List<String> playerChoices) {
-        return playerChoices.equals(bridge);
+    public boolean isEqual(List<String> playerMoves) {
+        return playerMoves.equals(bridge);
     }
 }
