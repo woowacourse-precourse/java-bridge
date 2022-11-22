@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
+import bridge.view.MapGenerator;
 import bridge.view.OutputView;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class BridgeGameController {
     private static final String RETRY_COMMAND = "R";
 
     private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private OutputView outputView = new OutputView(new MapGenerator());
     private BridgeGame bridgeGame = new BridgeGame();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     
