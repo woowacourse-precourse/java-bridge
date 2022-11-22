@@ -23,15 +23,17 @@ public class BridgeGame {
         this.numberOfTrials = 1;
         this.moveRecord = new char[2][this.lastStep + 1];
     }
+
     public void moveForward(MoveResult moveResult, String move) {
-        if(bridgeIndex >= lastStep) {
+        if (bridgeIndex >= lastStep) {
             throw new IllegalStateException(ExceptionMessage.CANNOT_MOVE_FURTHER.getMessage());
         }
         recordCurrentMove(moveResult, move);
-        if(moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) {
+        if (moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) {
             bridgeIndex++;
         }
     }
+
     public void retry() {
         if (isSuccess()) {
             throw new IllegalStateException(ExceptionMessage.GAME_ALREADY_SUCCESS.getMessage());
@@ -49,6 +51,7 @@ public class BridgeGame {
     public char[][] getCurrentBridge(MoveResult moveResult) {
         return this.moveRecord;
     }
+
     private void recordCurrentMove(MoveResult moveResult, String move) {
         int userMoveAsInt = moveToInt(move);
         int userNotMoveAsInt = notMoveToInt(move);
@@ -56,12 +59,14 @@ public class BridgeGame {
         this.moveRecord[userMoveAsInt][bridgeIndex + 1] = markOX;
         this.moveRecord[userNotMoveAsInt][bridgeIndex + 1] = ' ';
     }
+
     public MoveResult isCorrectMove(String move) {
         boolean isPossibleMove = this.bridge.isPossibleMove(this.bridgeIndex + 1, move);
-        if(isPossibleMove && this.bridgeIndex + 1 == this.lastStep) return MoveResult.CORRECT_AND_LAST;
-        if(isPossibleMove) return MoveResult.CORRECT;
+        if (isPossibleMove && this.bridgeIndex + 1 == this.lastStep) return MoveResult.CORRECT_AND_LAST;
+        if (isPossibleMove) return MoveResult.CORRECT;
         return MoveResult.WRONG;
     }
+
     private int moveToInt(String move) {
         if (move.equals("U")) return 0;
         return 1;
@@ -71,6 +76,7 @@ public class BridgeGame {
         if (move.equals("U")) return 1;
         return 0;
     }
+
     public int getNumberOfTrials() {
         return numberOfTrials;
     }
@@ -82,6 +88,7 @@ public class BridgeGame {
     public int getLastStep() {
         return lastStep;
     }
+
     public char[][] getMoveRecord() {
         return moveRecord;
     }

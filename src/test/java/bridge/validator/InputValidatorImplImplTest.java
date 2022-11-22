@@ -1,5 +1,6 @@
 package bridge.validator;
 
+import bridge.gameComponent.InputValidator;
 import bridge.gameComponent.InputValidatorImpl;
 import org.junit.jupiter.api.Test;
 
@@ -7,14 +8,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 public class InputValidatorImplImplTest {
-    InputValidatorImpl inputValidatorImpl = new InputValidatorImpl();
+    InputValidator inputValidator = new InputValidatorImpl();
     @Test
     void validateBridgeSizeTest_3_미만인_경우() {
         //given
         int size = 2;
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateBridgeSize(size);
+            inputValidator.validateBridgeSize(size);
         });
         //then
         assertThat(throwable)
@@ -26,7 +27,7 @@ public class InputValidatorImplImplTest {
         int size = 21;
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateBridgeSize(size);
+            inputValidator.validateBridgeSize(size);
         });
         //then
         assertThat(throwable)
@@ -38,7 +39,7 @@ public class InputValidatorImplImplTest {
         int size = 10;
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateBridgeSize(size);
+            inputValidator.validateBridgeSize(size);
         });
         //then
         assertThat(throwable)
@@ -50,7 +51,7 @@ public class InputValidatorImplImplTest {
         String retryQuit = "Test";
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateRetry(retryQuit);
+            inputValidator.validateRetry(retryQuit);
         });
         //then
         assertThat(throwable)
@@ -62,7 +63,7 @@ public class InputValidatorImplImplTest {
         String retryQuit = "";
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateRetry(retryQuit);
+            inputValidator.validateRetry(retryQuit);
         });
         //then
         assertThat(throwable)
@@ -74,7 +75,7 @@ public class InputValidatorImplImplTest {
         String retryQuit = "R";
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateRetry(retryQuit);
+            inputValidator.validateRetry(retryQuit);
         });
         //then
         assertThat(throwable)
@@ -86,7 +87,7 @@ public class InputValidatorImplImplTest {
         String retryQuit = "Q";
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateRetry(retryQuit);
+            inputValidator.validateRetry(retryQuit);
         });
         //then
         assertThat(throwable)
@@ -99,7 +100,7 @@ public class InputValidatorImplImplTest {
         String move = "Test";
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateMove(move);
+            inputValidator.validateMove(move);
         });
         //then
         assertThat(throwable)
@@ -111,7 +112,7 @@ public class InputValidatorImplImplTest {
         String move = "";
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateMove(move);
+            inputValidator.validateMove(move);
         });
         //then
         assertThat(throwable)
@@ -123,7 +124,7 @@ public class InputValidatorImplImplTest {
         String move = "U";
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateMove(move);
+            inputValidator.validateMove(move);
         });
         //then
         assertThat(throwable)
@@ -135,7 +136,7 @@ public class InputValidatorImplImplTest {
         String move = "D";
         //when
         Throwable throwable = catchThrowable(() -> {
-            inputValidatorImpl.validateMove(move);
+            inputValidator.validateMove(move);
         });
         //then
         assertThat(throwable)

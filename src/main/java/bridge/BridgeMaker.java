@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.exception.ExceptionMessage;
 import bridge.gameComponent.Bridge;
+import bridge.util.UserInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +33,11 @@ public class BridgeMaker {
     private String generateUorD() {
         int randNum = bridgeNumberGenerator.generate();
         if (randNum == 0) {
-            return "D";
+            return UserInput.DOWN.getInputValue();
         }
         if (randNum == 1) {
-            return "U";
+            return UserInput.UP.getInputValue();
         }
         throw new IllegalArgumentException(ExceptionMessage.NOT_VALID_RANDOM_NUMBER_GENERATED.getMessage());
-    }
-
-    public Bridge generateBridge(int size) {
-        return Bridge.of(makeBridge(size));
     }
 }

@@ -25,7 +25,7 @@ public class BridgeGameTest {
     @Test
     void 브릿지게임_정상_생성() {
         //given
-        Bridge bridge = Bridge.of(List.of("U","D"));
+        Bridge bridge = new Bridge(List.of("U","D"));
         //when
         BridgeGame bridgeGame = new BridgeGame(bridge);
         //then
@@ -35,7 +35,7 @@ public class BridgeGameTest {
     @Test
     void move테스트_다리길이를_초과한_경우() {
         //given
-        Bridge bridge = Bridge.of(List.of("U"));
+        Bridge bridge = new Bridge(List.of("U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         bridgeGame.moveForward(MoveResult.CORRECT, "U");
         //when
@@ -49,7 +49,7 @@ public class BridgeGameTest {
     @Test
     void 정상_move테스트() {
         //given
-        Bridge bridge = Bridge.of(List.of("U","D"));
+        Bridge bridge = new Bridge(List.of("U","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
         bridgeGame.moveForward(MoveResult.CORRECT, "U");
@@ -61,7 +61,7 @@ public class BridgeGameTest {
     @Test
     void retryTest_게임_성공_예외() {
         //given
-        Bridge bridge = Bridge.of(List.of("U"));
+        Bridge bridge = new Bridge(List.of("U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         bridgeGame.moveForward(MoveResult.CORRECT, "U");
         //when
@@ -76,7 +76,7 @@ public class BridgeGameTest {
     @Test
     void retryTest_정상() {
         //given
-        Bridge bridge = Bridge.of(List.of("U","D"));
+        Bridge bridge = new Bridge(List.of("U","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         bridgeGame.moveForward(MoveResult.WRONG,"D");
         //when
@@ -91,7 +91,7 @@ public class BridgeGameTest {
     @Test
     void isSuccess_true_테스트() {
         //given
-        Bridge bridge = Bridge.of(List.of("U"));
+        Bridge bridge = new Bridge(List.of("U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         bridgeGame.moveForward(MoveResult.CORRECT, "U");
         //when
@@ -103,7 +103,7 @@ public class BridgeGameTest {
     @Test
     void isSuccess_false_테스트() {
         //given
-        Bridge bridge = Bridge.of(List.of("U"));
+        Bridge bridge = new Bridge(List.of("U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
         boolean isSuccess = bridgeGame.isSuccess();
@@ -115,7 +115,7 @@ public class BridgeGameTest {
     @Test
     void recordMapTest() {
         //given
-        Bridge bridge = Bridge.of(List.of("U","D","D"));
+        Bridge bridge = new Bridge(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         MoveResult moveResult1 = MoveResult.CORRECT;
         MoveResult moveResult2 = MoveResult.WRONG;
@@ -131,7 +131,7 @@ public class BridgeGameTest {
     @Test
     void recordMapTest_최초실패() {
         //given
-        Bridge bridge = Bridge.of(List.of("U","D","D"));
+        Bridge bridge = new Bridge(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         MoveResult moveResult = MoveResult.WRONG;
         //when
@@ -146,7 +146,7 @@ public class BridgeGameTest {
     @Test
     void isPossibleMoveTest_불가능한_경우() {
         //given
-        Bridge bridge = Bridge.of(List.of("U","D","D"));
+        Bridge bridge = new Bridge(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String userMove = "D";
         //when
@@ -158,7 +158,7 @@ public class BridgeGameTest {
     @Test
     void isPossibleMoveTest_가능한_경우() {
         //given
-        Bridge bridge = Bridge.of(List.of("U","D","D"));
+        Bridge bridge = new Bridge(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String userMove = "U";
         //when

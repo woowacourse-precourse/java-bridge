@@ -50,7 +50,7 @@ public class GameManager {
     // 다리 생성
     private void setBridge() {
         int bridgeSize = inputView.readBridgeSize();
-        Bridge bridge = bridgeMaker.generateBridge(bridgeSize);
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         bridgeGame = new BridgeGame(bridge);
     }
 

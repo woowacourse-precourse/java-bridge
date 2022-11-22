@@ -24,7 +24,7 @@
 - [x] 움직일 수 있는 칸인지 평가하기 Bridge#isPossibleMove(int index, String upDown)
   - 예외. index가 0미만 또는 다리 크기 이상인 경우
   - 예외. upDonw이 "D" 또는 "U"가 아닌 경우
-- [x] 생성된 List로 Bride객체 생성하기 Bridge#of(List<String> bridge)
+- [x] 생성된 List로 Bride객체 생성하기 Bridge#Bridge(List<String> bridge)
   - 예외. U와 D로만 이뤄진 리스트가 아닌 경우 예외 발생
         
 ### 다리 생성기 BrideMaker

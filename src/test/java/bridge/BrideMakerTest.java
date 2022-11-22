@@ -18,7 +18,7 @@ public class BrideMakerTest {
         int bridgeSize = 3;
         //when
         Throwable throwable = catchThrowable(() -> {
-            Bridge bridge = bridgeMaker.generateBridge(bridgeSize);
+            Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         });
         assertThat(throwable)
                 .isInstanceOf(IllegalArgumentException.class);
@@ -30,7 +30,7 @@ public class BrideMakerTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         int bridgeSize = 3;
         //when
-        Bridge bridge = bridgeMaker.generateBridge(bridgeSize);
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         //then
         assertThat(bridge.getBridge()).containsExactly("U", "D", "D");
     }
