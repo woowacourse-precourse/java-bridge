@@ -1,12 +1,14 @@
 package bridge;
 
+import bridge.BridgeDraw;
+import game.BridgeGame;
+import game.BridgeGameController;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import view.InputView;
 import view.Valid;
 
 import javax.swing.text.View;
@@ -32,7 +34,7 @@ public class FunctionTest {
     }
 
     @Nested
-    class GenerateBridge {
+    class BridgeGenerate {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         @ParameterizedTest
@@ -40,6 +42,14 @@ public class FunctionTest {
         @ValueSource(ints = {3, 9, 15})
         void isBridgeLengthSame(int length) {
             Assertions.assertThat(bridgeMaker.makeBridge(length).size()).isEqualTo(length);
+        }
+
+        @ParameterizedTest
+        @DisplayName("정답 다리가 U, D만 가지는지 확인")
+        @ValueSource(ints = {0,1,2,3,4})
+        void isBridgeHasOnlyUAndD(int index) {
+            List<String> answerBridge = bridgeMaker.makeBridge(5);
+            Assertions.assertThat(Arrays.asList("U", "D").contains(answerBridge.get(index))).isEqualTo(true);
         }
     }
 
@@ -66,6 +76,51 @@ public class FunctionTest {
                     Valid.isEnterFinishValid(finish))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 입력시 Q, R 중 하나를 입력해주세요.");
+        }
+    }
+
+    @Nested
+    class BridgeDraw {
+        bridge.BridgeDraw bridgeDraw = new bridge.BridgeDraw();
+        @Test
+        @DisplayName("사용자의 입력과 정답이 일치할 때 O 표시")
+        void isSameWithResult() {
+            List<String> answer = new ArrayList<>(Arrays.asList(" O "));
+            bridgeDraw.saveSuccessMoving("U");
+            Assertions.assertThat(bridgeDraw.getUpMap()).isEqualTo(answer);
+        }
+
+        @Test
+        @DisplayName("사용자의 입력과 정답이 다를 때 X 표시")
+        void isDifferentWithResult() {
+            List<String> answer = new ArrayList<>(Arrays.asList(" X "));
+
+            bridgeDraw.saveFailMoving("D");
+            Assertions.assertThat(bridgeDraw.getDownMap()).isEqualTo(answer);
+        }
+    }
+
+    @Nested
+    class BridgeGameMethod {
+        int size = 4;
+        BridgeGame bridgeGame = new BridgeGame(4);
+        @Test
+        @DisplayName("재시작이 잘 적용되는지 확인")
+        void CountRestart() {
+            for(int i = 0; i < 5; i++) {
+                bridgeGame.retry();
+            }
+            Assertions.assertThat(bridgeGame.getCountRestart()).isEqualTo(6);
+            Assertions.assertThat(bridgeGame.getBridgeCursor()).isEqualTo(0);
+        }
+
+        @Test
+        @DisplayName("정답 다리의 마지막 인덱스까지 잘 움직이나 확인")
+        void moveCursor() {
+            for(int i = 0; i < 5; i++) {
+                bridgeGame.move();
+            }
+            Assertions.assertThat(bridgeGame.getBridgeCursor()).isEqualTo(3);
         }
     }
 }
