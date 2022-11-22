@@ -13,7 +13,7 @@ public class BridgeGameController {
     private final BridgeMaker bridgeMaker;
     private Bridge bridge;
     private BridgeGame bridgeGame;
-    boolean isGameOver;
+    private boolean isGameOver;
 
     public BridgeGameController() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
