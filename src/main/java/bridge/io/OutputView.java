@@ -1,5 +1,6 @@
-package bridge;
+package bridge.io;
 
+import bridge.BridgeChecker;
 import bridge.enums.GameResult;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 public enum BlockExpression {
     Same("O"),
