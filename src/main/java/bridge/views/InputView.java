@@ -11,7 +11,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String strBridgeSize = readLine();
         return Integer.parseInt(strBridgeSize);

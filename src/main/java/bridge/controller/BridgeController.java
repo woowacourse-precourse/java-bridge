@@ -12,16 +12,20 @@ import java.util.List;
 
 public class BridgeController {
 
+    private static final int BRIDGE_SIZE = ;
     public static int I = 0;
-    public static int BRIDGE_SIZE = InputView.readBridgeSize();
+    
     public static BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
 
     public static BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-    public static List<String> resultBridge = bridgeMaker.makeBridge(BRIDGE_SIZE);
+    public List<String> resultBridge = bridgeMaker.makeBridge(BRIDGE_SIZE);
 
 
 
     public void printMapGenerator() {
+        InputView inputView = new InputView();
+        int BRIDGE_SIZE = inputView.readBridgeSize();
+        
         for(int i=0; i<BRIDGE_SIZE; i++) {
             OutputView.printMap();
         }
@@ -34,6 +38,8 @@ public class BridgeController {
 
 
     public boolean playerStatus() {
+
+        List<String> resultBridge = bridgeMaker.makeBridge(BRIDGE_SIZE);
 
         return BridgeJudgment.judgmentMoving(resultBridge, intCount());
     }
