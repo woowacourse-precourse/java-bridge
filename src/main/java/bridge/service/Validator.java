@@ -31,7 +31,7 @@ public class Validator {
     }
 
     public static void checkRange(int input) {
-        if (input < 3 || input > 21) {
+        if (input < 3 || input > 20) {
             throw new IllegalArgumentException(ERROR_OVER_RANGE);
         }
     }
