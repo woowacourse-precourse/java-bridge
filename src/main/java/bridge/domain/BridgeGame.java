@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.constants.BlockSymbol;
 import bridge.domain.constants.Command;
 import bridge.domain.constants.ErrorMessage;
 import bridge.domain.constants.GameState;
@@ -15,28 +16,32 @@ public class BridgeGame {
     private List<String> bridge = new ArrayList<>();
     private Integer trialCount = 1;
     private GameState gameState = GameState.RUNNING;
-    private List<String> upperBlock = new ArrayList<>();
-    private List<String> lowerBlock = new ArrayList<>();
+    private BridgeProgress progress = new BridgeProgress();
 
+    /**
+     *
+     * @param moveCommand 주어진 이동 커맨드
+     * 주어진 커맨드에 따른 이동을 구현한다.
+     */
     public void move(String moveCommand) {
         validateMoveCommand(moveCommand);
         if (isMovable(moveCommand)) {
-            drawMap(moveCommand, "O");
+            updateProgress(moveCommand, BlockSymbol.CORRECT.getSymbol());
             if (isClear()){
                 gameState = GameState.CLEAR;
             }
             return;
         }
-        drawMap(moveCommand, "X");
+        updateProgress(moveCommand, BlockSymbol.WRONG.getSymbol());
         gameState = GameState.PAUSE;
     }
 
     private Boolean isMovable(String moveCommand){
-        return bridge.get(upperBlock.size()).equals(moveCommand);
+        return bridge.get(progress.size()).equals(moveCommand);
     }
 
     private Boolean isClear(){
-        if (upperBlock.size() == bridge.size()){
+        if (progress.size() == bridge.size()){
             return true;
         }
         return false;
@@ -51,8 +56,7 @@ public class BridgeGame {
     public void retry(String retrialCommand) {
         validateRetrialCommand(retrialCommand);
         if (retrialCommand.equals(Command.RETRY.getCommand())) {
-            this.upperBlock = new ArrayList<>();
-            this.lowerBlock = new ArrayList<>();
+            progress = new BridgeProgress();
             trialCount += 1;
             gameState = GameState.RUNNING;
             return;
@@ -82,23 +86,13 @@ public class BridgeGame {
         return bridge;
     }
 
-    public List<String> getUpperBlock() {
-        return upperBlock;
-    }
-
-    public List<String> getLowerBlock() {
-        return lowerBlock;
-    }
-
-    private void drawMap(String moveCommand, String symbol){
+    private void updateProgress(String moveCommand, String symbol){
         if (moveCommand.equals(Command.MOVE_UP.getCommand())){
-            upperBlock.add(symbol);
-            lowerBlock.add(" ");
+            progress.put(symbol, BlockSymbol.BLANK.getSymbol());
             return;
         }
         if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
-            upperBlock.add(" ");
-            lowerBlock.add(symbol);
+            progress.put(BlockSymbol.BLANK.getSymbol(), symbol);
             return;
         }
     }
