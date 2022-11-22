@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
 import bridge.CrossResult;
 import bridge.UpNumberGenerator;
 import org.junit.jupiter.api.Test;

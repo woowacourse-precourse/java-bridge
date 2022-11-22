@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeKey;
+import bridge.BridgeMaker;
 import bridge.CrossResult;
 
 import java.util.ArrayList;

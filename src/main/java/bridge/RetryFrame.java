@@ -1,6 +1,8 @@
 package bridge;
 
 import bridge.domain.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class RetryFrame {
 

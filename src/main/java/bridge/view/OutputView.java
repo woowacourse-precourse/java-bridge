@@ -1,6 +1,7 @@
-package bridge;
+package bridge.view;
 
 
+import bridge.CrossResult;
 import bridge.domain.MoveResults;
 
 import java.util.List;

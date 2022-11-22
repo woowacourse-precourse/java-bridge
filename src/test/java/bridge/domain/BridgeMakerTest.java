@@ -2,7 +2,7 @@ package bridge.domain;
 
 import bridge.DownNumberGenerator;
 import bridge.UpNumberGenerator;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
