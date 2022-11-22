@@ -99,7 +99,7 @@ public class OutputView {
     }
 
     public void isMismatch(String upOrDown, String submitted, String answer) {
-        if (submitted.equals(UP) && !submitted.equals(answer)) {
+        if (submitted.equals(upOrDown) && !submitted.equals(answer)) {
             System.out.print(Brackets.MISMATCH.getSymbol());
         }
     }

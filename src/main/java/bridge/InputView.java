@@ -10,24 +10,41 @@ import java.util.List;
  */
 public class InputView {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String FORMAT_MESSAGE = "입력값은 숫자여야합니다.";
     PrintCommand printCommand = new PrintCommand();
     Validator validate = new Validator();
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeLength;
-        printCommand.getBridgeLength();
-        try {
-            bridgeLength = Integer.valueOf(Console.readLine());
-        } catch (NumberFormatException error) {
-//            throw new IllegalArgumentException(ERROR_MESSAGE);
-            System.out.println(ERROR_MESSAGE);
-            bridgeLength=0;
+        int bridgeLength=0;
+        while(true){
+            printCommand.getBridgeLength();
+            bridgeLength=getInput();
+            if(bridgeLength!=0){
+                break;
+            }
         }
-//        validate.bridgeLengthRange(bridgeLength);
         return bridgeLength;
     }
+
+    public int getInput(){
+        int bridgeLength;
+        try{
+            bridgeLength = Integer.valueOf(Console.readLine());
+        }catch (NumberFormatException e){
+            System.out.println(ERROR_MESSAGE+FORMAT_MESSAGE);
+            try {
+                throw new IllegalArgumentException(ERROR_MESSAGE + FORMAT_MESSAGE);
+            }
+            catch (IllegalArgumentException error){
+                return 0;
+            }
+        }
+            bridgeLength=validate.bridgeLengthRange(bridgeLength);
+        return bridgeLength;
+    }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
