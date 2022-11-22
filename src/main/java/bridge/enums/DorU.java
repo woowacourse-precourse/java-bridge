@@ -17,5 +17,12 @@ public enum DorU {
         return name;
     }
 
+    public static String numberConvertUpAndDown(int object) {
+        if (object == DOWN.number) {
+            return DOWN.name;
+        }
+        return UP.name;
+    }
+
 }
 
