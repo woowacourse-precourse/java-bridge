@@ -1,4 +1,4 @@
-package bridge;
+package bridge.bridge;
 
 import java.util.NoSuchElementException;
 
