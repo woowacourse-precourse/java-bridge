@@ -34,6 +34,12 @@ public class BridgeGame {
         player.retry();
     }
 
+    public boolean isEnd() {
+        int bridgeSize = bridge.getBridgeSize();
+        int movingPosition = player.getMovingPosition();
+        return bridgeSize == movingPosition;
+    }
+
     private String getMovingResult(String moving) {
         int movingPosition = player.getMovingPosition();
         String movingBridgeShape = bridge.getBridgeShapeByPosition(movingPosition);
