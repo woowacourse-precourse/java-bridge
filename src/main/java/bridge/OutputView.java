@@ -29,8 +29,7 @@ public class OutputView {
     public boolean printMap(int idx, List<String> bridge, String nextMove) {
         boolean canNextMove = CheckNextMove(idx, bridge, nextMove);
         nextMoving(nextMove, canNextMove);
-        printUpBridge();
-        printDownBridge();
+        printBridge();
         return SUCCESS_OR_FAIL;
     }
 
@@ -39,6 +38,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    public void printBridge() {
+        printUpBridge();
+        printDownBridge();
+    }
     public void printResult(int gameCnt, int CURRENT_LOCATION, boolean successOrFail) {
         if(CURRENT_LOCATION==0 && successOrFail) bridgeGame.retryAnswerIsSuccess(gameCnt);
     }
