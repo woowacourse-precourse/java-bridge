@@ -1,14 +1,9 @@
 package bridge.controller;
 
-import bridge.constant.GameCommand;
-import bridge.constant.MoveCommand;
-import bridge.constant.MoveSign;
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeGameResults;
-import bridge.domain.BridgeSizeValidator;
+import bridge.constant.*;
+import bridge.domain.*;
 import bridge.service.BridgeGameService;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.*;
 
 public class BridgeGameController {
 
