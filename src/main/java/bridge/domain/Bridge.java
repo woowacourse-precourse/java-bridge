@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.view.ExceptionView;
 import java.util.List;
 
 public class Bridge {
@@ -13,9 +14,17 @@ public class Bridge {
     private List<String> bridge;
 
     public Bridge(int size) {
+        validate(size);
         this.size = size;
         this.bridge = buildBridge();
         System.out.println(bridge);
+    }
+
+    private void validate(int size) {
+        if (size < MIN_SIZE || size > MAX_SIZE) {
+            ExceptionView.bridgeRangeError();
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<String> buildBridge() {

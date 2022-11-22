@@ -2,7 +2,6 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.view.ExceptionView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,14 +16,19 @@ public class BridgeController {
         try {
             outputView.printRequestBridgeSize();
             return inputView.readBridgeSize();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printError();
             return requestBridgeSize();
         }
     }
 
     public void setGame(int size) {
-        bridge = new Bridge(size);
+        try {
+            bridge = new Bridge(size);
+        } catch (IllegalArgumentException e) {
+            outputView.printError();
+            setGame(requestBridgeSize());
+        }
         bridgeGame = new BridgeGame(bridge);
     }
 
@@ -32,7 +36,7 @@ public class BridgeController {
         try {
             outputView.printRequestMove();
             return inputView.readMoving();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printError();
             return requestMovingPoint();
         }
@@ -42,7 +46,7 @@ public class BridgeController {
         try {
             outputView.printRequestGameCommand();
             return inputView.readGameCommand();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printError();
             return requestRetry();
         }
@@ -54,9 +58,9 @@ public class BridgeController {
         return bridgeGame.checkPassable();
     }
 
-    public void bridgeGame(){
+    public void bridgeGame() {
         while (bridgeRound()) {
-            if(bridgeGame.gameComplete()){
+            if (bridgeGame.gameComplete()) {
                 break;
             }
         }
@@ -69,7 +73,7 @@ public class BridgeController {
         } while (isGameOver());
     }
 
-    public boolean isGameOver(){
+    public boolean isGameOver() {
         return !bridgeGame.gameComplete() && requestRetry();
     }
 

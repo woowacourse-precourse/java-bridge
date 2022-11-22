@@ -1,9 +1,5 @@
 package bridge.view;
 
-import static bridge.domain.Bridge.MAX_SIZE;
-import static bridge.domain.Bridge.MIN_SIZE;
-
-import bridge.domain.Command;
 import bridge.util.Utils;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -17,10 +13,6 @@ public class InputView {
      */
     public int readBridgeSize() {
         int size = Utils.inputToNumber(Console.readLine());
-        if (size < MIN_SIZE || size > MAX_SIZE) {
-            ExceptionView.bridgeRangeError();
-            throw new IllegalArgumentException();
-        }
         return size;
     }
 
