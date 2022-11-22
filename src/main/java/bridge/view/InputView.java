@@ -60,7 +60,8 @@ public class InputView {
      */
     public void readMoving() {
         while (true) {
-            gameStatistics.getCheckRoad().add(bridgeGame.move(enterMoveDirection(), gameStatistics.getAnswerRoad(), bridgeGame.getPlayer()));
+            gameStatistics.getCheckRoad().add(bridgeGame.move(enterMoveDirection(),
+                    gameStatistics.getAnswerRoad(), bridgeGame.getPlayer()));
             boolean roundResult = bridge.buildBridge();
             outputView.printMap();
             if (isGameFinished(roundResult)) break;
