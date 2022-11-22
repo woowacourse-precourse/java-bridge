@@ -1,6 +1,9 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
+import bridge.domain.Moving;
+import bridge.domain.Result;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -23,7 +26,7 @@ public class BridgeGame {
     private static final OutputView outputView = new OutputView();
     private static final InputView inputView = new InputView();
     private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    List<String> bridge;
+//    List<String> bridge;
     List<List<String>> results = new ArrayList<>();
     private int count = 0;
     boolean isRight = true;
@@ -31,41 +34,40 @@ public class BridgeGame {
     boolean keepGoing = true;
     private int tryCount = 0;
 
-    public void start(){
-            outputView.printStartMessage();
-            int size = inputView.readBridgeSize();
-            bridge = bridgeMaker.makeBridge(size);
-//        System.out.println(bridge);
-            judgeGame();
-            while (keepGoing) {
-                retry();
-            }
-        outputView.printResult(results,gameResult,tryCount);
+    private Bridge bridge;
+    private Moving moving;
+    private Result result;
+
+    public BridgeGame(Bridge bridge, Moving moving, Result result){
+        this.bridge = bridge;
+        this.moving = moving;
+        this.result = result;
     }
 
-    private void judgeGame() {
-        tryCount++;
-        while (isRight && count<bridge.size()){
-            String moving = inputView.readMoving();
-            move(bridge,moving,count);
-            count++;
-            outputView.printMap(results);
-        }
-        judgeResult();
-    }
+//    public void start(){
+//        judgeGame();
+//        while(keepGoing){
+//            retry();
+//        }
+//        outputView.printResult(results,gameResult,tryCount);
+//    }
+
+//    private void judgeGame() {
+//        tryCount++;
+//        while (isRight && count<bridge.size()){
+//            String moving = inputView.readMoving();
+//            move(bridge,moving);
+//            count++;
+//            outputView.printMap(results);
+//        }
+//        judgeResult();
+//    }
     private void initVariable(){
-        up.clear();
-        down.clear();
         count = 0;
         isRight = true;
     }
-    private void judgeResult(){
-        if(isRight) {
-            gameResult = "성공";
-            keepGoing = false;
-        }
-        if(!isRight)
-            gameResult = "실패";
+    public void judgeResult(){
+        result.judgeResult(moving.isRight());
     }
 
     /**
@@ -73,17 +75,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(List<String> bridge, String moving, int count) {
-        checkUp(bridge,moving,count);
-        checkDown(bridge,moving,count);
-        togetherUpDown();
-        if(up.contains("X") || down.contains("X"))
-            isRight = false;
-    }
-    private void togetherUpDown(){
-        results.clear();
-        results.add(up);
-        results.add(down);
+    public void move(Bridge bridge, String inputMoving) {
+        moving.checkRight(inputMoving, bridge.getBridge().get(moving.getCount()));
+        moving.checkUp(inputMoving);
+        moving.checkDown(inputMoving);
+        moving.plusCount();
+//        if(moving.getUp().contains("X") || moving.getDown().contains("X"))
+//            return false;
     }
 
     /**
@@ -91,36 +89,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        String restart = inputView.readGameCommand();
-        if(restart.equals("R")){
-            initVariable();
-            judgeGame();
-        }
-        if(restart.equals("Q"))
-            keepGoing = false;
+    public boolean retry(String restart) {
+        result.checkKeeping(restart);
+        moving.setRight(true);
+        if(!result.isKeeping())
+            moving.setRight(false);
+        return result.isKeeping();
     }
-
-    public void checkUp(List<String> bridge, String moving, int count){
-        if(bridge.get(count).equals(moving) && moving.equals("U")) {
-            up.add("O");
-            down.add(" ");
-        }
-        if(!bridge.get(count).equals(moving) && moving.equals("U")){
-            up.add("X");
-            down.add(" ");
-        }
-    }
-    public void checkDown(List<String> bridge, String moving, int count){
-        if(bridge.get(count).equals(moving) && moving.equals("D")) {
-            down.add("O");
-            up.add(" ");
-        }
-        if(!bridge.get(count).equals(moving) && moving.equals("D")) {
-            down.add("X");
-            up.add(" ");
-        }
-    }
-
 
 }
