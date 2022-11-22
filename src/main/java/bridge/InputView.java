@@ -1,15 +1,10 @@
 package bridge;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     private static final String REGEX = "^[0-9]*$";
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
         int Size;
@@ -18,7 +13,7 @@ public class InputView {
         } catch(NumberFormatException e){
             throw new IllegalArgumentException(Constant.Length_Restrict());
         }
-        System.out.println(Constant.Game_Start());
+        System.out.println(Constant.Start_Game);
         return Size;
     }
 
@@ -28,9 +23,6 @@ public class InputView {
             throw new IllegalArgumentException(Constant.Length_Restrict());
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         String move = Console.readLine();
         checkMoveValidate(move);        
@@ -44,9 +36,6 @@ public class InputView {
             throw new IllegalArgumentException(Constant.Move_Restrict());
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         String Replay = Console.readLine();
         checkRetryValidate(Replay);
