@@ -15,7 +15,7 @@ public class Controller {
         try {
             outputView.printStartGame();
             setUp(requestBridgeSize());
-            boolean moveSuccess = singleRound();
+            retryProcess();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -60,6 +60,19 @@ public class Controller {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return requestRetryCommand();
+        }
+    }
+
+    private void retryProcess() {
+        while (!bridgeGame.isEnd()) {
+            if (singleRound()) {
+                continue;
+            }
+            if (requestRetryCommand()) {
+                bridgeGame.retry();
+                userMap.buildUserMap(bridgeGame.getBridge());
+            }
+            break; //TODO isEnd()지만 실패인 경우 처리
         }
     }
 }
