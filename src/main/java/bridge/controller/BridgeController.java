@@ -74,8 +74,8 @@ public class BridgeController {
 
     private void setInitialBridge(List<String> bridges) {
         count++;
-        classConfig.outputView().setUpBridge();
-        classConfig.outputView().setDownBridge();
+        classConfig.bridge().setUpBridge();
+        classConfig.bridge().setDownBridge();
         playGame(bridges);
     }
 
