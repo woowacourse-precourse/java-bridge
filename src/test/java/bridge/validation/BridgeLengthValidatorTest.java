@@ -1,11 +1,10 @@
-package bridge.validator;
+package bridge.validation;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.constants.ValidatorMessage;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,7 +14,7 @@ class BridgeLengthValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1.1", "안", "aaa"})
     void createNotNaturalNumber(String input) {
-        assertThatThrownBy(() ->BridgeLengthValidator.validateNaturalNumber(input))
+        assertThatThrownBy(() -> BridgeLengthValidator.validateNaturalNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ValidatorMessage.BRIDGE_LENGTH_MESSAGE.toString());
 
@@ -25,16 +24,19 @@ class BridgeLengthValidatorTest {
     @ParameterizedTest()
     @ValueSource(strings = {"-1", "0", "21"})
     void createNumberOutOfRange(String input) {
-        assertThatThrownBy(() ->BridgeLengthValidator.validateRange(input))
+        assertThatThrownBy(() -> BridgeLengthValidator.validateRange(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ValidatorMessage.BRIDGE_LENGTH_MESSAGE.toString());
 
     }
 
-    @DisplayName("2,100,000,000번 이하의 시도라면 예외가 발생하지 않는다.")
-    @Test
-    void asd() {
-        assertThatCode(() -> TryCountValidator.validateTryCount(2000))
+    @DisplayName("3 이상 20 이하의 자연수라면 예외를 발생시키지 않는다.")
+    @ParameterizedTest()
+    @ValueSource(strings = {"3", "5", "20"})
+    void createNormalInput(String input) {
+        assertThatCode(() -> BridgeLengthValidator.validateNaturalNumber(input))
+                .doesNotThrowAnyException();
+        assertThatCode(() -> BridgeLengthValidator.validateRange(input))
                 .doesNotThrowAnyException();
     }
 }
