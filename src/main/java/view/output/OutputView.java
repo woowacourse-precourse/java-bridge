@@ -10,12 +10,12 @@ public class OutputView {
         System.out.println(bridge);
     }
 
-    public void printResult() {
+    public void printEndMessage() {
         OutputMessage.END_MESSAGE.print();
     }
 
-    public void printStatistic(int recursiveCount, String result) {
+    public void printResult(int tryCount, String result) {
         OutputMessage.SUCCESS_OR_FAIL.print(); System.out.print(result);
-        OutputMessage.TOTAL_NUMBER.print(); System.out.print(recursiveCount);
+        OutputMessage.TOTAL_NUMBER.print(); System.out.print(tryCount);
     }
 }

@@ -74,8 +74,8 @@ public class BridgeGameController {
     }
 
     public void sendResult(ResultState resultState) {
-        outputView.printResult();
+        outputView.printEndMessage();
         outputView.printMap(bridgeDrawer.combineBridge());
-        outputView.printStatistic(bridgeGame.getCount(), resultState.getState());
+        outputView.printResult(bridgeGame.getCount(), resultState.getState());
     }
 }
