@@ -6,7 +6,7 @@ public enum MovingDirection {
 
     private final String direction;
 
-    private MovingDirection(String direction) {
+    MovingDirection(String direction) {
         this.direction = direction;
     }
 
