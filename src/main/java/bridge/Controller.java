@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.game.BridgeGame;
 import bridge.game.BridgeMaker;
+import bridge.game.BridgeNumberGenerator;
+import bridge.game.BridgeRandomNumberGenerator;
 import bridge.status.GameResult;
 import bridge.status.PassOrNot;
 import bridge.view.InputView;
@@ -91,7 +93,7 @@ public class Controller {
     }
 
     private void gameSuccess(int i, PassOrNot result) {
-        if (result == PASS && i == bridgeSize -1) { // [종료 - 성공]
+        if (result == PASS && i == bridgeSize - 1) { // [종료 - 성공]
             gameResult = SUCCESS;
             staticView.gameResultMsg();
             outputView.printResult();
