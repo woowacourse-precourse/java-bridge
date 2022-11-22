@@ -66,6 +66,16 @@ public class BridgeGameController {
         }
     }
 
+    private boolean isRetrying() {
+        while (true) {
+            try {
+                return bridgeGame.retry(inputView.readGameCommand());
+            } catch (IllegalArgumentException e) {
+                outputView.print(e.getMessage());
+            }
+        }
+    }
+
     private void judge(boolean canMove) {
         if (canMove) {
             succeed();

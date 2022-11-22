@@ -15,13 +15,7 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        while (true) {
-            try {
-                return validator.checkCommand(input());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return input();
     }
 
     private String input() {
