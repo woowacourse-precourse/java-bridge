@@ -20,7 +20,7 @@ public class BridgeValidateTest {
     @DisplayName("다리 길이 입력에 숫자가 아닌 입력이 들어오면 오류가 발생한다.")
     @Test
     void 다리_길이_숫자여부_테스트(){
-        assertThatThrownBy(() -> new InputView().validateisDigit("abc"))
+        assertThatThrownBy(() -> new InputView().validateIsDigit("abc"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +35,7 @@ public class BridgeValidateTest {
     @DisplayName("입력에 공백이 들어오면 오류가 발생한다.")
     @Test
     void 공백_입력_테스트() {
-        assertThatThrownBy(() -> new InputView().validateisEmpty(""))
+        assertThatThrownBy(() -> new InputView().validateIsEmpty(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
