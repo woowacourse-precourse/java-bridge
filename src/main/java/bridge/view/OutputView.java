@@ -51,9 +51,19 @@ public class OutputView {
         printInfo(OutputPharses.START_MSG.getMsg());
         printInfo(OutputPharses.EMPTY_LINE.getMsg());
     }
+
+    /**
+     * 기본 메세지 출력용 함수
+     * @param msg
+     */
     public void printInfo(String msg) {
         System.out.println(msg);
     }
+
+    /**
+     * 다리 출력용 Map의 규격을 만들기 위한 함수
+     * @return
+     */
     public StringJoiner getLineJoiner() {
         return new StringJoiner(" | ", "[ ", " ]");
     }

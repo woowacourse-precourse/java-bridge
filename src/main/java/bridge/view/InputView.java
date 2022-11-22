@@ -8,10 +8,14 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final OutputView outputView = new OutputView();
+    private final OutputView outputView;
     private int bridgeSize;
     private String playerMove;
     private String gameCommand;
+
+    public InputView(OutputView outputView) {
+        this.outputView = outputView;
+    }
 
     /**
      * 입력받는 다리의 사이즈 확인 후 예외 발생 시 다시 입력 받는 함수

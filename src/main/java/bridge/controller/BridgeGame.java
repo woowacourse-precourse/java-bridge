@@ -12,20 +12,22 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
 
     private final BridgeService bridgeService;
     private Player player;
     private Bridge bridge;
 
-    private int totalGameCount;
+    private int totalGameCount; // 총 진행 횟수
     private boolean isRoundOver; // 매 플레이어 진행 라운드
     private boolean isGameOver; // 전체 게임
     private boolean isSuccess; // 게임 성공
 
-    public BridgeGame(BridgeService bridgeService) {
+    public BridgeGame(BridgeService bridgeService, InputView inputView, OutputView outputView) {
         this.bridgeService = bridgeService;
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     /**
@@ -90,7 +92,6 @@ public class BridgeGame {
         outputView.printGameStartInfo();
         inputView.readBridgeSize();
         int bridgeSize = inputView.getBridgeSize();
-        //setBridgeSize();
         setBridge(bridgeSize);
     }
 

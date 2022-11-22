@@ -2,13 +2,17 @@ package bridge;
 
 import bridge.controller.BridgeGame;
 import bridge.service.BridgeService;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         BridgeService bridgeService = getBridgeService();
-        BridgeGame bridgeGame = new BridgeGame(bridgeService);
+        OutputView outputView = new OutputView();
+        InputView inputView = new InputView(outputView);
+        BridgeGame bridgeGame = new BridgeGame(bridgeService, inputView, outputView);
 
         bridgeGame.startGame();
     }
