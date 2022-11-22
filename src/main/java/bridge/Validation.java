@@ -19,7 +19,7 @@ public class Validation {
 
     public static void validateMoveTo(String position) {
         if (!(position.equals("U") || position.equals("D"))) {
-            throw new IllegalArgumentException("[ERROR] : 이동할 칸은 위(U) 또는 아래(D) 이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] : 이동할 다리는 위(U) 또는 아래(D) 이어야 합니다.");
         }
     }
 
