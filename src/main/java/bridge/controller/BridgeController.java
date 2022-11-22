@@ -23,7 +23,7 @@ public class BridgeController {
 
     public void setGame(int size) {
         bridge = new Bridge(size);
-        bridgeGame = new BridgeGame();
+        bridgeGame = new BridgeGame(bridge);
     }
 
     public String requestMovingPoint() {
@@ -46,7 +46,7 @@ public class BridgeController {
 
     public boolean bridgeRound() {
         String movePlace = requestMovingPoint();
-        boolean passable = bridgeGame.move(movePlace, bridge);
+        boolean passable = bridgeGame.move(movePlace);
 
         return !bridgeGame.getComplete() && passable;
     }
