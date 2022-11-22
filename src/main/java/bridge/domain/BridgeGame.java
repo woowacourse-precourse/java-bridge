@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.code.BridgeMap;
 import bridge.code.GameStatus;
 import java.util.List;
