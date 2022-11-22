@@ -1,6 +1,8 @@
 package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.NoSuchElementException;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -35,8 +37,12 @@ public class InputView {
         System.out.println(RESTART_GAME);
         try{
             return Console.readLine();
-        }catch(Exception e){
+        } catch (NoSuchElementException e){
+            System.out.println("[ERROR] 입력 값이 없어 종료합니다.");
             return "Q";
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] R(재시작)과 q(종료) 중 하나의 문자를 입력할 수 있습니다.");
+            return readGameCommand();
         }
     }
 }
