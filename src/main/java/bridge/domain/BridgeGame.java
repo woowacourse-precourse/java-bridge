@@ -1,10 +1,10 @@
 package bridge.domain;
 
+import static bridge.rule.MovingOption.isDownside;
+import static bridge.rule.MovingOption.isUpside;
+
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     private final Player player;
@@ -26,22 +26,11 @@ public class BridgeGame {
     }
 
     public void move(String moving) {
-        if (moving.equals("U")) {
-            if (bridge.get(location).equals(moving)) {
-                player.correctUpsideBridge(location);
-            }
-            if (!(bridge.get(location).equals(moving))) {
-                player.wrongUpsideBridge(location);
-            }
+        if (isUpside(moving)) {
+            checkUpsideBridge(moving);
         }
-
-        if (moving.equals("D")) {
-            if (bridge.get(location).equals(moving)) {
-                player.correctDownsideBridge(location);
-            }
-            if (!(bridge.get(location).equals(moving))) {
-                player.wrongDownsideBridge(location);
-            }
+        if (isDownside(moving)) {
+            checkDownsideBridge(moving);
         }
         increaseLocation();
     }
@@ -68,11 +57,29 @@ public class BridgeGame {
         location++;
     }
 
-    private void initLocation(){
+    private void initLocation() {
         location = 0;
     }
 
-    private void initTryCount(){
+    private void initTryCount() {
         tryCount = 1;
+    }
+
+    private void checkUpsideBridge(String moving) {
+        if (bridge.get(location).equals(moving)) {
+            player.correctUpsideBridge(location);
+        }
+        if (!(bridge.get(location).equals(moving))) {
+            player.wrongUpsideBridge(location);
+        }
+    }
+
+    private void checkDownsideBridge(String moving) {
+        if (bridge.get(location).equals(moving)) {
+            player.correctDownsideBridge(location);
+        }
+        if (!(bridge.get(location).equals(moving))) {
+            player.wrongDownsideBridge(location);
+        }
     }
 }
