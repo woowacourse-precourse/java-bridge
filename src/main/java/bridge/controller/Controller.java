@@ -1,7 +1,5 @@
 package bridge.controller;
 
-import bridge.view.ViewFaçade;
-
 import java.util.HashMap;
 
 public interface Controller {

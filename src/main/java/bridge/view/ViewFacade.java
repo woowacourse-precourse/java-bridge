@@ -5,14 +5,14 @@ import bridge.mediator.ViewMediator;
 
 import java.util.HashMap;
 
-public class ViewFaçade {
+public class ViewFacade {
 
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
 
     private ViewMediator mediator;
 
-    public ViewFaçade(ViewMediator mediator) {
+    public ViewFacade(ViewMediator mediator) {
         this.mediator = mediator;
     }
 

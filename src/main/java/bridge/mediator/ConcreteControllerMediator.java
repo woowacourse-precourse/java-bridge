@@ -4,18 +4,18 @@ import bridge.ControllerFactory;
 import bridge.controller.Controller;
 import bridge.dto.BridgeStatusDto;
 import bridge.view.ErrorView;
-import bridge.view.ViewFaçade;
+import bridge.view.ViewFacade;
 
 import java.util.HashMap;
 
 public class ConcreteControllerMediator implements ControllerMediator, ViewMediator {
     private Controller controller = ControllerFactory.makeController(this);
-    private ViewFaçade viewFaçade = new ViewFaçade(this);
+    private ViewFacade viewFacade = new ViewFacade(this);
 
     @Override
     public void start() {
         try {
-            viewFaçade.start();
+            viewFacade.start();
         } catch (IllegalArgumentException e) {
             new ErrorView().printErrorMessage(e.getMessage());
             start();
@@ -31,7 +31,7 @@ public class ConcreteControllerMediator implements ControllerMediator, ViewMedia
     @Override
     public void moveBridge() {
         try {
-            Runnable runnable = viewFaçade.moveBride();
+            Runnable runnable = viewFacade.moveBride();
             runnable.run();
         } catch (IllegalArgumentException e) {
             new ErrorView().printErrorMessage(e.getMessage());
@@ -47,7 +47,7 @@ public class ConcreteControllerMediator implements ControllerMediator, ViewMedia
     @Override
     public void replay() {
         try {
-            viewFaçade.reply();
+            viewFacade.reply();
         } catch (IllegalArgumentException e) {
             new ErrorView().printErrorMessage(e.getMessage());
             replay();
@@ -64,7 +64,7 @@ public class ConcreteControllerMediator implements ControllerMediator, ViewMedia
 
     @Override
     public void end(BridgeStatusDto bridgeStatusDto) {
-        viewFaçade.end(bridgeStatusDto);
+        viewFacade.end(bridgeStatusDto);
     }
 
 }
