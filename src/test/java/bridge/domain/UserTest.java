@@ -11,10 +11,9 @@ class UserTest {
     private User user;
 
     @BeforeEach
-    void beforeEach(){
+    void beforeEach() {
         user = new User();
     }
-
 
     @DisplayName("시도 횟수 getter 테스트")
     @Test
