@@ -51,14 +51,14 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    private void setImpassable(List<String> upperBridge, List<String> loserBridge) {
+    private void setImpassable(List<String> upperBridge, List<String> lowerBridge) {
         int size = upperBridge.size();
 
         if (upperBridge.get(size - 1).equals("O")) { // upper 가 마지막 O
             upperBridge.set(size - 1, "X");
             return;
         }
-        loserBridge.set(size - 1, "X");
+        lowerBridge.set(size - 1, "X");
     }
 
     private void setBridge(List<String> bridge, List<String> mark, String which) {
