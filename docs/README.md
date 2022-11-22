@@ -21,7 +21,7 @@
 
 # 클래스 분리
 ## Controller
-- Application
+- BridgeController
 
 ## Model
 - BridgeGame

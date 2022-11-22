@@ -1,16 +1,16 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.Bridge;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.Player;
+import bridge.model.Bridge;
 import bridge.model.constant.Message;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
 
-public class Application {
+public class BridgeController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -20,7 +20,7 @@ public class Application {
     private final Bridge bridge;
     private boolean playing = true;
 
-    public Application() {
+    public BridgeController() {
         System.out.println(Message.START_MESSAGE);
         bridge = makeBridge();
     }
@@ -79,7 +79,7 @@ public class Application {
 
     private void checkApproachLast() {
         boolean isApproachLast = bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
-        
+
         if (playing && isApproachLast) {
             playing = false;
         }
@@ -91,10 +91,5 @@ public class Application {
 
         boolean isSuccess = isCorrectChoice() && bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
         outputView.printResult(isSuccess, player.getTryCount());
-    }
-
-    public static void main(String[] args) {
-        Application application = new Application();
-        application.run();
     }
 }
