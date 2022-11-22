@@ -37,4 +37,18 @@ class BridgeGameStateTest {
         // then
         assertThat(currentSize).isEqualTo(3);
     }
+
+    @Test
+    public void moveTest() throws Exception {
+        // given
+        List<String> finalState = new ArrayList<>(Arrays.asList("U", "D", "U", "D", "D"));
+        BridgeGameState bridgeGameState = new BridgeGameState(finalState);
+        bridgeGameState.move(BridgePosition.BRIDGE_UP);
+
+        // when
+        String currentAt = bridgeGameState.getCurrentAt(0);
+
+        // then
+        assertThat(currentAt).isEqualTo("U");
+    }
 }
