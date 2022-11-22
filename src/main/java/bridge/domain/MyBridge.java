@@ -6,16 +6,16 @@ import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.validate.Validator.validateMove;
+import static bridge.validate.Validator.validateRetry;
+
 public class MyBridge {
 
     private List<String> inputList;
     private List<String> answerBridge;
 
-    private static InputView inputView = new InputView();
-    private static OutputView outputView = new OutputView();
-
-    public MyBridge(List<String> answerBridge) {
-        this.inputList = new ArrayList<>();
+    public MyBridge(List<String> answerBridge, List<String> inputList) {
+        this.inputList = inputList;
         this.answerBridge = answerBridge;
     }
     
@@ -35,7 +35,7 @@ public class MyBridge {
     }
 
     public void inputAlphabet() {
-        String input = inputView.readMoving();
+        String input = InputView.readMoving();
         addInputList(input);
         try{validateMove(input);}
         catch(IllegalArgumentException e) {
@@ -45,11 +45,7 @@ public class MyBridge {
         }
     }
     
-    private void validateMove(String input) {
-        if (!input.equals("D") && !input.equals("U")) {
-            throw new IllegalArgumentException("[ERROR] D와 U만 입력하실 수 있습니다.");
-        }
-    }
+
     private void addInputList(String alphabet) {
         inputList.add(alphabet);
     }
@@ -71,11 +67,11 @@ public class MyBridge {
     }
 
     public void exitGame(boolean success, int tryCnt) {
-        outputView.printResult(success, this, tryCnt);
+        OutputView.printResult(success, this, tryCnt);
 
     }
     public boolean reGame() {
-        String input = inputView.readGameCommand();
+        String input = InputView.readGameCommand();
         boolean retry = false;
         try{
             retry = validateRetry(input);
@@ -86,14 +82,6 @@ public class MyBridge {
         return retry;
     }
 
-    private boolean validateRetry(String input) {
-        if (!input.equals("Q") && !input.equals("R")) {
-            throw new IllegalArgumentException("[ERROR] Q와 D만 입력하실 수 있습니다.");
-        }
-        if (input.equals("R")) {
-            return true;
-        }
-        return false;
-    }
+
 
 }

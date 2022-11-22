@@ -12,7 +12,6 @@ public enum BridgeShape {
     START("["),
     END("]");
     private final String type;
-    private static OutputView outputView = new OutputView();
     BridgeShape(String type) {
         this.type = type;
     }
@@ -21,7 +20,7 @@ public enum BridgeShape {
         HashMap<String, String> bridgeMap = new HashMap<String, String>();
         bridgeMap.put("U", makeLine(myBridge,"U"));
         bridgeMap.put("D", makeLine(myBridge, "D"));
-        outputView.printMap(bridgeMap);
+        OutputView.printMap(bridgeMap);
     }
 
     private static String makeLine(MyBridge myBridge, String target) {

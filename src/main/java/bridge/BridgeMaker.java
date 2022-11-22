@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static bridge.validate.Validator.validateSizeRange;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private static InputView inputView = new InputView();
-    private static OutputView outputView = new OutputView();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -33,9 +33,9 @@ public class BridgeMaker {
     }
 
     public List<String> inputBridgeSize() {
-        int size = inputView.readBridgeSize();
+        int size = InputView.readBridgeSize();
         try {
-            checkSizeRange(size);
+            validateSizeRange(size);
         }catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBridgeSize();
@@ -43,11 +43,7 @@ public class BridgeMaker {
         return makeBridge(size);
     }
 
-    private void checkSizeRange(int size) {
-        if (size <3 || size>20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
-    }
+
 
     private List<String> changeToStringBridge(List<Integer> bridgeNumberList) {
         return bridgeNumberList.stream()
