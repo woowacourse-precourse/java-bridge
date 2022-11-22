@@ -3,7 +3,7 @@ package bridge.model;
 public enum GameCommandFlag {
     RETRY("R"),
     QUIT("Q"),
-    NOTHING("");
+    NOTHING(" ");
 
     private final String gameCommand;
 
