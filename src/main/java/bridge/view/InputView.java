@@ -61,7 +61,7 @@ public class InputView {
             try {
                 return inputMethod.get();
             } catch (IllegalArgumentException exception) {
-                System.out.println(Message.ERROR_PREFIX.getValue() + exception);
+                System.out.println(Message.ERROR_PREFIX.getValue() + exception.getMessage());
             }
         }
     }
