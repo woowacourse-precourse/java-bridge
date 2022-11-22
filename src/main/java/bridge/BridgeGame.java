@@ -54,7 +54,7 @@ public class BridgeGame {
             return true;
         return false;
     }
-    
+
     public void retry() {
         user.increaseTryCount();
         isSuccess = true;
