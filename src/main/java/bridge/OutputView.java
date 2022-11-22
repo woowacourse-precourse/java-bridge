@@ -15,13 +15,33 @@ public class OutputView {
     }
 
     public void printMap() {
+        for (int i = 0; i < printUpRoadRecord().size(); i++)
+            System.out.print(printUpRoadRecord().get(i));
+        for (int i = 0; i < printDownRoadRecord().size(); i++)
+            System.out.print(printDownRoadRecord().get(i));
+    }
+    public List<String> printUpRoadRecord() {
+        recordUpTable = new ArrayList<>();
+        recordUpTable.add("[");
+        for (int i = 0; i < trialMap_up.size(); i++) {
+            if (i > 0) recordUpTable.add("|");
+            recordUpTable.add(trialMap_up.get(i));
+        }
+        recordUpTable.add("]\n");
+
+        return recordUpTable;
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+
+    public List<String> printDownRoadRecord() {
+        recordDownTable = new ArrayList<>();
+        recordDownTable.add("[");
+        for (int i = 0; i < trialMap_down.size(); i++) {
+            if (i > 0) recordDownTable.add("|");
+            recordDownTable.add(trialMap_down.get(i));
+        }
+        recordDownTable.add("]\n");
+
+        return recordDownTable;
     }
 }
