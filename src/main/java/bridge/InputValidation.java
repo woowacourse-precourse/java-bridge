@@ -24,13 +24,13 @@ public class InputValidation {
     }
 
     public static void validateReadMoving(String moving) {
-        if (moving != "U" && moving != "D") {
+        if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException(INVALID_MOVING_ERROR.getMessage());
         }
     }
 
     public static void validateReadGameCommand(String gameCommand) {
-        if (gameCommand != "R" && gameCommand != "Q") {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND_ERROR.getMessage());
         }
     }
