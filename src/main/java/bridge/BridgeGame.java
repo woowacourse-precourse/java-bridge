@@ -23,6 +23,27 @@ public class BridgeGame {
     }
 
     /**
+     * 한 번 이동할 때마다 실행되는 전체 메서드
+     *
+     * @param playerInput
+     */
+    private void trial(List<String> playerInput) {
+        int score = 0;
+        for (int i = 0; i < newBridge.size(); i++) {
+            playerInput = move(playerInput);
+            score = calculateScore(playerInput);
+            if (score == newBridge.size()) {
+                outputView.printResult("성공", gameTrialCount);
+                return;
+            }
+            if (score != playerInput.size()) {
+                break;
+            }
+        }
+        retry();
+    }
+
+    /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
