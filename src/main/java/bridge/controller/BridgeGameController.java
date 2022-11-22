@@ -2,11 +2,11 @@ package bridge.controller;
 
 import java.util.List;
 
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.number.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.InputView;
+import bridge.OutputView;
 
 public class BridgeGameController {
 	

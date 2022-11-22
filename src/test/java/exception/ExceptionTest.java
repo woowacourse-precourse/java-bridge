@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import bridge.Application;
-import bridge.number.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 class ExceptionTest extends NsTest {
