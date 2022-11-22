@@ -36,7 +36,7 @@ public class InputView {
         outputView.printMove();
         String input;
         try{
-            input = Console.readLine().toUpperCase();
+            input = Console.readLine();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
@@ -51,7 +51,7 @@ public class InputView {
         outputView.printRetry();
         String input;
         try{
-            input = Console.readLine().toUpperCase();
+            input = Console.readLine();
             checkAlphabet(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -33,12 +33,20 @@ public class BridgeMaker {
     }
 
     public List<String> inputBridgeSize() {
-        outputView.printStart();
         int size = inputView.readBridgeSize();
+        try {
+            checkSizeRange(size);
+        }catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBridgeSize();
+        }
+        return makeBridge(size);
+    }
+
+    private void checkSizeRange(int size) {
         if (size <3 || size>20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
-        return makeBridge(size);
     }
 
     private List<String> changeToStringBridge(List<Integer> bridgeNumberList) {

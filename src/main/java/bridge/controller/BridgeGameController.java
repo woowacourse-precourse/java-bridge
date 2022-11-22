@@ -16,10 +16,10 @@ public class BridgeGameController {
 
     private final BridgeGame bridgeGame = new BridgeGame();
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
 
     public void start() {
+        outputView.printStart();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> answerBridge = bridgeMaker.inputBridgeSize();
         MyBridge myBridge = new MyBridge(answerBridge);

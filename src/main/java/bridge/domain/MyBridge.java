@@ -34,7 +34,6 @@ public class MyBridge {
         return inputList.size() == answerBridge.size();
     }
 
-    // 수정 필요
     public void inputAlphabet() {
         String input = inputView.readMoving();
         addInputList(input);
