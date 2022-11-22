@@ -15,7 +15,7 @@ public class Validator {
     }
 
     public static void checkValueOfReadBridgeMove(String value) {
-        if (!value.equals("U") && !value.equals("R"))
+        if (!value.equals("U") && !value.equals("D"))
             throw new IllegalArgumentException(ErrorMsgs.ERROR_BRIDGE_MOVE_TYPE);
     }
 }
