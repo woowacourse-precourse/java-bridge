@@ -1,14 +1,13 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import bridge.domain.InputView;
+import camp.nextstep.edu.missionutils.test.NsTest;
 
 public class UI_readMovingTest extends NsTest {
 
@@ -19,15 +18,14 @@ public class UI_readMovingTest extends NsTest {
 	@ParameterizedTest
 	@ValueSource(strings = { "F", "q", "R" })
 	public void bridgeShouldBeChoosenUOrD(String UorD) {
-		assertSimpleTest(() -> {
-			runException(UorD);
-			assertThat(output()).contains(ERROR_MESSAGE);
-		});
+		assertThatThrownBy(() -> inputView.readMovingExceptionCheck(UorD))
+    		.isInstanceOf(IllegalArgumentException.class)
+    		.hasMessageContaining(ERROR_MESSAGE);
 	}
 
 	@Override
 	protected void runMain() {
-		inputView.readMoving();
+		 Application.main(new String[]{});
 	}
 
 }
