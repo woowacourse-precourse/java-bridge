@@ -21,10 +21,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        Map<Integer, String> mapper = Map.of(
-                1, "U",
-                0, "D"
-        );
+        Map<Integer, String> mapper = Map.of(1, "U",0, "D");
         for (int i = 0; i < size; i++) {
             int generatedNumber = bridgeNumberGenerator.generate();
             bridge.add(mapper.get(generatedNumber));
