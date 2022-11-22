@@ -11,8 +11,6 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private static final int upperCompartmentNum = 1;
-    private static final int lowerCompartmentNum = 0;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -26,7 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for(int i=0; i<size; i++) {
-            if(bridgeNumberGenerator.generate()==upperCompartmentNum) {
+            if(bridgeNumberGenerator.generate()==MovingDirection.UPPER.getValue()) {
                 bridge.add(MovingDirection.UPPER.getDirection());
                 continue;
             }
