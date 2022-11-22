@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public void printFinalMap(List<List<String>> maps) {
-        System.out.println("최종 게임 결과");
+        System.out.println("\n최종 게임 결과");
         printMap(maps);
     }
 
