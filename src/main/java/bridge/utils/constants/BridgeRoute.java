@@ -8,11 +8,11 @@ public enum BridgeRoute {
     DOWN(0, "D");
 
     private final int routeCode;
-    private final String routh;
+    private final String route;
 
-    BridgeRoute(int routeCode, String routh){
+    BridgeRoute(int routeCode, String route){
         this.routeCode = routeCode;
-        this.routh = routh;
+        this.route = route;
     }
 
     public static Optional<BridgeRoute> getMatchRoute(int routeCode){
@@ -26,6 +26,6 @@ public enum BridgeRoute {
     }
 
     public String getRouth(){
-        return this.routh;
+        return this.route;
     }
 }
