@@ -5,7 +5,7 @@ import static bridge.Utils.Constant.GameCommand.RETRY;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.Bridge;
-import bridge.Domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.Utils.Constant.GameCommand;
 import bridge.View.TotalView;
 import java.util.List;

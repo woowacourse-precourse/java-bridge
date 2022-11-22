@@ -1,9 +1,8 @@
-package bridge.Domain;
+package bridge;
 
 import static bridge.Utils.Constant.Moving.DOWN;
 import static bridge.Utils.Constant.Moving.UP;
 
-import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
