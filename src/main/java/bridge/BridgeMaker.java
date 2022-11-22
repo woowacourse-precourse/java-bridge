@@ -21,14 +21,23 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
+        fillBridge(size, bridge);
+
+        return bridge;
+    }
+
+    /**
+     * 컴퓨터가 생성한 랜덤값으로 다리를 생성해주는 메서드
+     */
+    private void fillBridge(int size, List<String> bridge) {
         for(int i = 0; i < size; i++) {
             if(bridgeNumberGenerator.generate() == 0) {
                 bridge.add("D");
                 continue;
             }
+
             bridge.add("U");
         }
-
-        return bridge;
     }
+
 }
