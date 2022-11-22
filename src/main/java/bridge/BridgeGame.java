@@ -56,12 +56,12 @@ public class BridgeGame {
 
 
     public String uplineToString() {
-        return BridgeShape.START_LINE + String.join(BridgeShape.SEPERATOR, this.upline) + BridgeShape.END_LINE;
+        return BridgeShape.START_SYMBOL + String.join(BridgeShape.SEPERATOR, this.upline) + BridgeShape.END_SYMBOL;
 
     }
 
     public String downlineToString() {
-        return BridgeShape.START_LINE + String.join(BridgeShape.SEPERATOR, this.downline) + BridgeShape.END_LINE;
+        return BridgeShape.START_SYMBOL + String.join(BridgeShape.SEPERATOR, this.downline) + BridgeShape.END_SYMBOL;
     }
 
 
@@ -71,7 +71,7 @@ public class BridgeGame {
 
     private void drawLine(List<String> selectedLine, List<String> oppositeLine, String movementShape) {
         selectedLine.add(movementShape);
-        oppositeLine.add(BridgeShape.BLANK);
+        oppositeLine.add(BridgeShape.BLOCK);
     }
     private void addMovement(List<String> selectedLine, List<String> oppositeLine, boolean isCorrect) {
         this.bridgeIndex += 1;
