@@ -49,17 +49,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> upstairsBridge, List<String> downstairsBridge, int gameCount) {
+    public void printResult(List<String> upstairsBridge, List<String> downstairsBridge, int gameCount, BridgeGame bridgeGame) {
 
         System.out.println(ANNOUNCEMENT_GAME_RESULT);
 
         printMap(upstairsBridge, downstairsBridge);
-        getGameSuccess(upstairsBridge, downstairsBridge);
-        getGameCount(gameCount);
+        getGameSuccess(upstairsBridge, downstairsBridge, bridgeGame);
+        getGameCount(gameCount, upstairsBridge, downstairsBridge, bridgeGame);
     }
 
-    public void getGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge) {
-        BridgeGame bridgeGame = new BridgeGame();
+    public void getGameSuccess(List<String> upstairsBridge, List<String> downstairsBridge, BridgeGame bridgeGame) {
         if(bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
             System.out.println(GAME_RESULT + GAME_SUCCESS);
         };
@@ -68,8 +67,13 @@ public class OutputView {
         }
     }
 
-    public void getGameCount(int gameCount) {
-        System.out.println(NUMBER_OF_ATTEMPTS + gameCount);
+    public void getGameCount(int gameCount, List<String> upstairsBridge, List<String> downstairsBridge, BridgeGame bridgeGame) {
+        if(bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
+            System.out.println(NUMBER_OF_ATTEMPTS + gameCount);
+        }
+        if(!bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
+            System.out.println(NUMBER_OF_ATTEMPTS + (gameCount-1));
+        }
     }
 
     public void getRestartButton() {

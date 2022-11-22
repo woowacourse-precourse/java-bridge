@@ -12,8 +12,7 @@ public class Application {
 
         // TODO: 프로그램 구현
         int gameCount = 1;
-        OutputView outputView = new OutputView();
-        outputView.gameStart();
+        OutputView outputView = gameStart();
 
         InputView inputView = new InputView();
         int size = inputView.readBridgeSize();
@@ -23,33 +22,36 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(size);
 
         BridgeGame bridgeGame = new BridgeGame();
-
-        int numberOfTriedAnswers;
-        String command = null;
-        int a = 0;
+        
         boolean gameQuit = false;
+        gameCount = getAnswerProcess(gameCount, outputView, inputView, size, bridge, bridgeGame, gameQuit);
+
+        outputView.printResult(upstairsBridge, downstairsBridge, gameCount, bridgeGame);
+    }
+
+    private static OutputView gameStart() {
+        OutputView outputView = new OutputView();
+        outputView.gameStart();
+        return outputView;
+    }
+
+    private static int getAnswerProcess(int gameCount, OutputView outputView, InputView inputView, int size, List<String> bridge, BridgeGame bridgeGame, boolean gameQuit) {
+        int numberOfTriedAnswers;
+        String command;
         do {
             String direction = getMoveCommand(outputView, inputView);
-            System.out.println("정답개수11");
-            System.out.println(numberOfTriedAnswers = BridgeGame.getAnswerCount(direction));
+            numberOfTriedAnswers = BridgeGame.getAnswerCount(direction);
 
             getPrintMapAfterMove(outputView, bridge, bridgeGame, numberOfTriedAnswers, direction);
 
             if (!bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)) {
                 command = getContinueCommand(outputView, inputView, bridgeGame);
-                System.out.println("정답개수22");
-                System.out.println(numberOfTriedAnswers);
-                System.out.println("게임타운트11");
-                System.out.println(gameCount++);
-                gameQuit = getGameQuit(gameCount, outputView, bridgeGame, command);
+                gameCount++;
+                gameQuit = getGameQuit(gameCount, bridgeGame, command);
             }
         }
-        while (!bridgeGame.getGameCompleteStatus(upstairsBridge, downstairsBridge, size) &&
-                !gameQuit);
-//        while (!bridgeGame.checkWrongAnswer(upstairsBridge, downstairsBridge)
-//                || size > upstairsBridge.size());
-
-        outputView.printResult(upstairsBridge, downstairsBridge, gameCount);
+        while (!bridgeGame.getGameCompleteStatus(upstairsBridge, downstairsBridge, size) && !gameQuit);
+        return gameCount;
     }
 
     private static String getMoveCommand(OutputView outputView, InputView inputView) {
@@ -70,23 +72,23 @@ public class Application {
         outputView.printMap(upstairsBridge, downstairsBridge);
     }
 
-    private static boolean getGameQuit(int gameCount, OutputView outputView, BridgeGame bridgeGame, String command) {
+    private static boolean getGameQuit(int gameCount, BridgeGame bridgeGame, String command) {
         if (!bridgeGame.retry(command)) {
-            System.out.println(bridgeGame.retry(command));
-            System.out.println("게임타운트22");
-            System.out.println(gameCount = gameCount - 1);
-            outputView.printResult(upstairsBridge, downstairsBridge, gameCount);
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    private static int gameCountWhenQuit(int gameCount, BridgeGame bridgeGame, String command ) {
+        if (!bridgeGame.retry(command)) {
+            return gameCount - 1;
+        }
+        return gameCount;
     }
 
     private static void getGameRestart(BridgeGame bridgeGame, String command) {
         if (bridgeGame.retry(command)) {
-            System.out.println(upstairsBridge);
-            System.out.println(downstairsBridge);
             bridgeGame.returnToPreviousStatus(upstairsBridge, downstairsBridge);
-            System.out.println(upstairsBridge.size());
-            System.out.println(downstairsBridge);
         }
     }
 }
