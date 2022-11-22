@@ -17,14 +17,6 @@ public enum GameStatus {
         this.meaning = meaning;
     }
 
-    public static GameStatus decideByMoveResult(MoveResult moveResult) {
-        if (moveResult == MoveResult.SUCCESS) {
-            return PLAYING;
-        }
-
-        return DEATH;
-    }
-
     public static String decideGameResult(GameStatus gameStatus) {
         if (gameStatus == CLEAR || gameStatus == QUIT) {
             return gameStatus.meaning;
