@@ -10,14 +10,14 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public InputView inputView;
-    public OutputView outputView;
-    public BridgeMaker bridgeMaker;
+    private InputView inputView;
+    private OutputView outputView;
+    private BridgeMaker bridgeMaker;
 
-    public List<String> bridge = new ArrayList<>();
-    public List<String> userInput = new ArrayList<>();
-    public int userLocation = 0;
-    public int cnt = 1;
+    private List<String> bridge = new ArrayList<>();
+    private List<String> userInput = new ArrayList<>();
+    private int userLocation = 0;
+    private int cnt = 1;
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -72,5 +72,19 @@ public class BridgeGame {
         if (gameCommand.equals("Q")) {
             userLocation = bridge.size();
         }
+    }
+
+    /* test용 setter */
+
+    public void setBridge(List<String> bridge) {
+        this.bridge = bridge;
+    }
+
+    public void setUserInput(List<String> userInput) {
+        this.userInput = userInput;
+    }
+
+    public void setUserLocation(int userLocation) {
+        this.userLocation = userLocation;
     }
 }
