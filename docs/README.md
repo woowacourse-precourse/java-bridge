@@ -21,8 +21,6 @@ bridge
         ├ BridgeOfComputer.java
         ├ BridgeOfUser.java
         └ common
-            ├ BridgeNumberGenerator.java
-            ├ BridgeRandomNumberGenerator.java
             └ Side.java
     └ utils
         └ Validator.java
@@ -30,6 +28,8 @@ bridge
         ├ ConsoleView.java
         ├ InputView.java
         └ OutputView.java  
+    ├ BridgeNumberGenerator.java
+    ├ BridgeRandomNumberGenerator.java
     └ Application.java
 ```
 
