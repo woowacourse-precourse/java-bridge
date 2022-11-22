@@ -21,7 +21,7 @@ public class GameController {
     public void play(Integer countOfTry) {
         List<String> bridge = createBridge();
 
-        if (movePlayer(bridge, countOfTry)) {
+        if (canMovePlayer(bridge, countOfTry)) {
             end("성공", countOfTry);
         }
 
@@ -37,7 +37,7 @@ public class GameController {
         return bridgeMaker.makeBridge(size);
     }
 
-    private boolean movePlayer(List<String> bridge, Integer countOfTry) {
+    private boolean canMovePlayer(List<String> bridge, Integer countOfTry) {
         while (!canCrossBridge(bridge)) {
             String gameCommand = view.readGameCommand();
             if (!bridgeGame.retry(gameCommand)) {
