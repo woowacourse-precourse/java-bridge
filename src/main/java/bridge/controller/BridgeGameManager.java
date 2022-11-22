@@ -1,7 +1,13 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeConnector;
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Message;
 import bridge.constant.Status;
+import bridge.ioview.InputView;
+import bridge.ioview.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 

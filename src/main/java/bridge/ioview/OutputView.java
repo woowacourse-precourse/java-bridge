@@ -1,4 +1,4 @@
-package bridge;
+package bridge.ioview;
 
 import bridge.constant.Message;
 
