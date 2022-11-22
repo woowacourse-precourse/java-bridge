@@ -1,30 +1,63 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.domain.Constants;
+import bridge.domain.RoundResult;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private static final String RETRY_COMMAND = "R";
+    private final Bridge bridge;
+    private final BridgeMapMaker bridgeMapMaker;
 
-    private final InputView inputView = new InputView();
+    private RoundResult roundResult;
+    private String command;
+    private int round = 0;
+
+    public BridgeGame() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        this.bridge = new Bridge(bridgeMaker);
+        this.bridgeMapMaker = new BridgeMapMaker();
+    }
+
+    public void run() {
+        proceedRound();
+        OutputView.printResult();
+    }
+
+    private void proceedRound() {
+        while (!bridge.isArriveEnd(round) || bridge.isCorrectCell(command, round)) {
+            if (!move()) break;
+            round++;
+
+            if (round == bridge.getBridgeSize()) break;
+            bridgeMapMaker.renewBridgeMap(roundResult);
+        }
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-    }
+    public boolean move() {
+        command = InputView.readMoving();
+        roundResult = RoundResult.valueOf(command, bridge.getCorrectCell(round));
+        OutputView.printMap(bridgeMapMaker, roundResult);
 
-    private void isCorrectCell(String answer, String command) {
-        if (answer.equals(command)) {
-            return;
-        }
+        if (!roundResult.equals(RoundResult.SELECTED_UPPER_CASE_IF_CORRECT)
+                && !roundResult.equals(RoundResult.SELECTED_LOWER_CASE_IF_CORRECT)) return retry();
 
-        retry();
+        return true;
     }
 
     /**
@@ -32,11 +65,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private void retry() {
-        String command = inputView.readGameCommand();
+    private boolean retry() {
+        if (InputView.readGameCommand()
+                .equals(Constants.RETRY_COMMAND)) {
 
-        if (command.equals(RETRY_COMMAND)) {
-            move();
+            return move();
         }
+
+        return false;
     }
 }

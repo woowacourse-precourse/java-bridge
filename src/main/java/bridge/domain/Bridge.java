@@ -15,6 +15,14 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
+    public String getCorrectCell(int round) {
+        return bridge.get(round);
+    }
+
+    public int getBridgeSize() {
+        return size;
+    }
+
     public boolean isCorrectCell(String command, int round) {
         return command.equals(bridge.get(round));
     }
