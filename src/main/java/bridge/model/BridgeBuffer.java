@@ -4,13 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeBuffer {
-    public static final String START = "[";
-    public static final String CONTOUR = "|";
-    public static final String END = "]";
-    public static final String RIGHT = " O ";
-    public static final String WRONG = " X ";
-    public static final String BLANK = "   ";
+    private enum Element {
 
+        START("["),
+        CONTOUR("|"),
+        END("]"),
+        RIGHT(" O "),
+        WRONG(" X "),
+        BLANK("   ");
+
+        private final String letter;
+        Element(String letter) {
+            this.letter = letter;
+        }
+    }
     private List<List<String>> buffer;
 
     public BridgeBuffer(){
