@@ -1,0 +1,152 @@
+# 미션 - 다리 건너기
+
+## 미션 소개
+> 다리 건너기 게임이란?
+>
+> 다리 길이를 입력하면 해당 길이의 위아래 두 칸으로 이루어진 다리를 생성하고 그 다리를 끝까지 건너가는 게임이다.  
+> 이 때, 위아래 둘 중 하나의 칸만 건널 수 있으며 왼쪽에서 오른쪽으로 건너야 하며 다리를 건너다가 실패하면 게임을 재시작하거나 종료할 수 있다.  
+> 다리를 끝까지 건너면 반드시 게임이 종료되며 결국 생성된 다리의 정보를 모르는 사용자가 끊임없이 50%의 확률로 안전한 다리를 확보하며 끝까지 건너가는 게임이다.
+
+0. 예외 상황
+- 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 **그 부분부터 입력을 다시 받는다**
+    - 모든 예외는 명확한 유형을 갖고 처리한다.
+
+1. 게임 시작 문구와 함께 다리의 길이를 숫자로 입력받는다.
+```
+다리 건너기 게임을 시작합니다.
+
+다리의 길이를 입력해주세요.
+3
+```
+- 다리 길이는 3부터 20 사이의 숫자여야 한다.
+    - 숫자 이외의 값 입력시 예외 발생
+    - 3보다 작거나 20보다 큰 숫자 입력시 예외 발생
+
+2. 앞서 입력받은 숫자의 길이만큼 다리를 생성한다.
+- 위아래 두칸짜리 다리를 생성하는데, 무작위 값에 따라 0이면 아래 칸, 1이면 위 칸이 건널 수 있는 칸이 된다.
+- 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우는 D로 나타낸다(저장한다).
+
+3. 플레이어로부터 이동할 칸을 입력받는다.
+```
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+U
+[ O ]
+[   ]
+
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+U
+[ O | X ]
+[   |   ]
+```
+- U, D 이외의 값 입력시 예외 발생
+- U 입력 시 위 칸 선택, D 입력 시 아래 칸 선택
+- 생성한 다리와 비교하여 건널 수 있는 칸이었다면 O로 표시하고, 건널 수 없는 칸이었다면 X로 표시하여 출력한다.
+
+4. 다리를 건너다 실패한 경우 플레이어로부터 입력을 받아 게임을 재시작하거나 종료할 수 있다.
+```
+게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+R
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+U
+[ O ]
+[   ]
+
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+D
+[ O |   ]
+[   | O ]
+
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+D
+[ O |   |   ]
+[   | O | O ]
+```
+- R 혹은 Q 이외의 값 입력시 예외 발생
+- 재시작하는 경우, R을 입력하고 이미 생성한 다리를 재사용한다.
+
+```
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+U
+[ O | X ]
+[   |   ]
+
+게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+Q
+최종 게임 결과
+[ O | X ]
+[   |   ]
+```
+- 종료하는 경우, Q를 입력한다.
+- 최종 게임 결과로, 마지막으로 실패한 다리의 상태와 게임 성공 여부 및 총 시도한 횟수를 출력한다.
+    - 게임 성공 여부: 실패
+    - 시도한 횟수: 재시작 횟수
+
+5. 다리를 끝까지 건넌 경우, 게임은 종료된다.
+```
+최종 게임 결과
+[ O |   |   ]
+[   | O | O ]
+
+게임 성공 여부: 성공
+총 시도한 횟수: 2
+```
+- 최종 게임 결과(최종적으로 건넌 다리 상태)와 함께 게임 성공 여부 및 총 시도한 횟수를 출력한다.
+- 게임 성공 여부: 성공
+- 시도한 횟수: 재시작한 횟수 + 1(최초 실행)
+
+---
+## 🚀 기능 목록
+
+- [X] 게임 시작 문구를 출력한다. - OutputView#printGameStartMessage
+- [X] 다리의 길이를 입력받는다. - InputView#readBridgeSize
+  - [X] 다리의 길이가 숫자가 아니면 예외를 발생한다. - InputView#isDigit
+  - [X] 입력받은 길이가 3부터 20사이의 숫자인지 확인하고 아니면 예외를 발생한다. - InputView#validateBridgeSize
+- [X] 입력받은 길이만큼 다리를 생성한다. - BridgeMaker#makeBridge
+  - [X] 입력받은 길이만큼 0과 1 중 무작위 값을 생성한다. - BridgeRandomNumberGenerator#generate
+- [X] 플레이어로부터 이동할 칸을 입력받는다. - InputView#readMoving
+  - [X] U, D 이외의 값은 예외를 발생한다. - InputView#validateMoveCommand 
+- [X] 다리의 초기 상태를 저장한다. - BridgeGame#BridgeGame
+- [X] 플레이어로부터 입력받은 이동할 칸의 가능 여부를 판단한다. - BridgeGame#move
+  - [X] 다리에서 어느 칸의 값을 따져야하는 지 알기 위해 플레이어로부터 입력받은 이동 명령에 맞는 인덱스를 구한다. - BridgeGame#getIndex
+- [X] 이동 직후 다리의 상태를 출력한다. - OutputView#printMap
+- [X] 다리 건너기에 실패 시 사용자로부터 재시도 혹은 종료 입력을 받는다. - InputView#readGameCommand
+  - [X] R, Q 이외의 값은 예외를 발생한다. - InputView#validateGameCommand
+- [X] 사용자가 다리 건너기 실패 후 재시도 입력 시 재시작 - BridgeGame#retry
+  - [X] 이 때, 생성한 다리는 재사용하고 시도 횟수 증가한다.
+  - [X] 출력에 사용할 다리 상태는 초기화한다.
+- [X] 게임 종료 시 최종 게임 결과를 출력한다. - OutputView#printResult
+  - [X] 종료 직전까지 진행한 다리 상태를 출력한다. - OutputView#printMap
+  - [X] 게임 성공 여부를 구한다. - OutputView#getResult
+  - [X] 총 시도 횟수를 출력한다.
+
+---
+## 기능 요구 사항
+
+- [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+
+### 구현한 메서드 목록 / 파라미터 수 / 라인 수
+
+파라미터 수는 최대 3개, 라인 수는 최대 10줄이어야 한다. 
+- Application#main / 1 / 2
+- BridgeGameController#run / 0 / 10
+- BridgeGameController#startGame / 2 / 10
+- BridgeGameController#play / 2 / 10
+- BridgeGame#move / 2 / 8
+- BridgeGame#retry / 0 / 3
+- BridgeGame#makeBridgeMap / 1 / 9
+- BridgeGame#getIndex / 1 / 4
+- BridgeGame#getBridgeMap / 0 / 1
+- BridgeGame#getNumberOfTries / 0 / 1
+- BridgeGame#isSuccess / 0 / 1
+- BridgeMaker#makeBridge / 1 / 9
+- InputView#readBridgeSize / 0 / 10
+- InputView#readMoving / 0 / 9
+- InputView#readGameCommand / 0 / 9
+- InputView#isDigit / 1 / 3
+- InputView#validateBridgeSize / 1 / 3
+- InputView#validateMoveCommand / 1 / 4
+- InputView#validateGameCommand / 1 / 4
+- OutputView#printGameStartMessage / 0 / 2
+- OutputView#printMap / 2 / 6
+- OutputView#printResult / 2 / 7
+- OutputView#getResult / 1 / 4
