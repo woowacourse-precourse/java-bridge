@@ -21,7 +21,6 @@ public class BridgeController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     private BridgeGame initialize(int bridgeSize) {

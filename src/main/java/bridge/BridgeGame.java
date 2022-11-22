@@ -28,18 +28,30 @@ public class BridgeGame {
      */
     public boolean move(int index, String moving) {
         if (bridge.get(index).equals(moving)) {
-            if (bridge.get(index).equals(UP.getMoving())) {
-                results.add(UP_SUCCESS);
-                return true;
-            }
-            results.add(DOWN_SUCCESS);
+            return addSuccess(index);
+        }
+        return addFail(index);
+    }
+
+    private boolean addSuccess(int index) {
+        if (bridge.get(index).equals(UP.getMoving())) {
+            return addResult(UP_SUCCESS);
+        }
+        return addResult(DOWN_SUCCESS);
+    }
+
+    private boolean addFail(int index) {
+        if (bridge.get(index).equals(UP.getMoving())) {
+            return addResult(UP_FAIL);
+        }
+        return addResult(DOWN_FAIL);
+    }
+
+    private boolean addResult(Result result) {
+        results.add(result);
+        if (result == UP_SUCCESS || result == DOWN_SUCCESS) {
             return true;
         }
-        if (bridge.get(index).equals(UP.getMoving())) {
-            results.add(UP_FAIL);
-            return false;
-        }
-        results.add(DOWN_FAIL);
         return false;
     }
 
