@@ -29,21 +29,24 @@ public class OutputView {
 
     private String setUpResult(String bridge, String userInput) {
         String x = isSame(bridge, userInput);
-        if (userInput.equals("U"))
+        if (userInput.equals("U")) {
             return x;
+        }
         return " ";
     }
 
     private String setDownResult(String bridge, String userInput) {
         String x = isSame(bridge, userInput);
-        if (userInput.equals("D"))
+        if (userInput.equals("D")) {
             return x;
+        }
         return " ";
     }
 
     private String setPartition(int i, int size) {
-        if (i != size - 1)
+        if (i != size - 1) {
             return " | ";
+        }
         return "";
     }
 
@@ -64,8 +67,9 @@ public class OutputView {
         printMap(bridge, userInput);
 
         String gameResult = "실패";
-        if (userInput.equals(bridge))
+        if (userInput.equals(bridge)) {
             gameResult = "성공";
+        }
 
         System.out.println("게임 성공 여부: " + gameResult);
         System.out.println("총 시도한 횟수: " + Integer.toString(cnt));
