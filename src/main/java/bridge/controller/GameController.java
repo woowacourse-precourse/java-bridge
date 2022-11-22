@@ -14,12 +14,15 @@ public class GameController {
 
     public void run() {
         inputView.printStartMessage();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-
+        BridgeGame bridgeGame = setGame();
         play(bridgeGame);
         result(bridgeGame);
+    }
+
+    public BridgeGame setGame() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        return new BridgeGame(bridge);
     }
 
     public void play(BridgeGame bridgeGame) {
