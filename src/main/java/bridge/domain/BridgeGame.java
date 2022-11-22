@@ -44,6 +44,11 @@ public class BridgeGame {
         return player.getGameAttempts();
     }
 
+    public boolean isLastMovedFailure() {
+        String lastMovedResult = player.getLastMovedResult();
+        return lastMovedResult.equals(Result.FAILURE.getCharacter());
+    }
+
     private String getMovingResult(String moving) {
         int movingPosition = player.getMovingPosition();
         String movingBridgeShape = bridge.getBridgeShapeByPosition(movingPosition);
