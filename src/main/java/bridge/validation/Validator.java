@@ -1,8 +1,10 @@
 package bridge.validation;
 
 import bridge.constant.BridgeConstant;
+import bridge.constant.GameCommand;
 
 import static bridge.constant.BridgeConstant.*;
+import static bridge.constant.GameCommand.*;
 
 public class Validator {
 
@@ -31,7 +33,8 @@ public class Validator {
     }
 
     public String validateStep(String step) {
-        if (!step.equals("U") && !step.equals("D")) {
+        if (!step.equals(USER_STEP_FOR_UPPER_LAYER.getCommand()) &&
+                !step.equals(USER_STEP_FOR_LOWER_LAYER.getCommand())) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸으로 위: U, 아래: D를 입력해주세요.");
         }
 
@@ -39,7 +42,8 @@ public class Validator {
     }
 
     public String validateRetryCommand(String command) {
-        if (!command.equals("R") && !command.equals("Q")) {
+        if (!command.equals(COMMAND_FOR_RETRY.getCommand()) &&
+                !command.equals(COMMAND_FOR_QUIT.getCommand())) {
             throw new IllegalArgumentException("[ERROR] 게임 재시작 여부로 재시도: R, 종료: Q를 입력해주세요.");
         }
 
