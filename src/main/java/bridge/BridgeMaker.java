@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.Constants.CommandConstant;
 import bridge.Constants.ErrorMessageConstant;
-import bridge.util.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

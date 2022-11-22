@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.Constants.ErrorMessageConstant;
-import bridge.util.BridgeNumberGenerator;
-import bridge.util.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

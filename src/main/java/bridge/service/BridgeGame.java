@@ -3,8 +3,8 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.domain.BridgeGameService;
 import bridge.Constants.CommandConstant;
-import bridge.util.BridgeNumberGenerator;
-import bridge.util.BridgeRandomNumberGenerator;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
