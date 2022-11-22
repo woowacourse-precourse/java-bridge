@@ -10,6 +10,8 @@ public class Message {
     public static final String ERROR_MOVING = "U 또는 D를 입력해주세요.";
     public static final String ERROR_RETRY = "R 또는 Q를 입력해주세요.";
     public static final String GAME_RESULT_MESSAGE = "\n최종 게임 결과";
+    public static final String SUCCESS_OR_FAIL = "\n게임 성공 여부: ";
+    public static final String TOTAL_TRY_COUNT_IS = "총 시도한 횟수: ";
 
     public static final String CORRECT_LOG = " O |";
     public static final String FAIL_LOG = " X |";
@@ -23,6 +25,4 @@ public class Message {
     public static final String START_MAP = "[";
     public static final String END_MAP = "]";
     public static final String NEXT_LINE = "\n";
-    public static final String SUCCESS_OR_FAIL = "\n게임 성공 여부: ";
-    public static final String TOTAL_TRY_COUNT_IS = "총 시도한 횟수: ";
 }
