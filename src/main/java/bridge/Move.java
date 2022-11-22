@@ -14,7 +14,7 @@ public enum Move {
         this.location = location;
     }
 
-    public static Move createMove(String move){
+    public static Move createMove(String move) {
         isValidMoving(move);
         return Move.valueOf(move);
     }

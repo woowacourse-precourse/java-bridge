@@ -8,7 +8,7 @@ public class BridgeMap {
 
     private ArrayList<LinkedList<String>> map;
 
-    private BridgeMap(ArrayList<LinkedList<String>> map){
+    private BridgeMap(ArrayList<LinkedList<String>> map) {
         this.map = map;
     }
 
@@ -20,7 +20,7 @@ public class BridgeMap {
         return new BridgeMap(initializedMap);
     }
 
-    public void insertMove(String moveResult,int order) {
+    public void insertMove(String moveResult, int order) {
         for (LinkedList<String> target : map) {
             target.add(" ");
         }

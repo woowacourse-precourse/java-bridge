@@ -19,7 +19,7 @@ public class BridgeGame {
         this.answerChecker = answer.iterator();
     }
 
-    public BridgeMap getBridgeMap(){
+    public BridgeMap getBridgeMap() {
         return bridgeMap;
     }
 
@@ -31,7 +31,7 @@ public class BridgeGame {
     public boolean move(Move move) {
         String result = compareWithCurrentAnswer(move.getLocation());
         bridgeMap.insertMove(result, move.getOrder());
-        if (result.equals("X")){
+        if (result.equals("X")) {
             return false;
         }
         return true;
