@@ -10,16 +10,16 @@ public enum FailMenuCommandType {
     RETRY("R", "재시작"),
     QUIT("Q", "종료");
 
-    private final String command;
+    private final String input;
     private final String name;
 
-    FailMenuCommandType(String command, String name) {
-        this.command = command;
+    FailMenuCommandType(String input, String name) {
+        this.input = input;
         this.name = name;
     }
 
-    public String getCommand() {
-        return command;
+    public String getInput() {
+        return input;
     }
 
     public String getName() {
@@ -28,15 +28,15 @@ public enum FailMenuCommandType {
 
     public static String getDescription() {
         return Arrays.stream(values())
-                .map(value -> value.getName() + ": " + value.getCommand())
+                .map(value -> value.getName() + ": " + value.getInput())
                 .collect(Collectors.joining(", "));
     }
 
     private static final Map<String, FailMenuCommandType> commands =
             Arrays.stream(FailMenuCommandType.values())
-                    .collect(Collectors.toUnmodifiableMap(FailMenuCommandType::getCommand, Function.identity()));
+                    .collect(Collectors.toUnmodifiableMap(FailMenuCommandType::getInput, Function.identity()));
 
-    public static FailMenuCommandType find(String command) {
-        return commands.get(command);
+    public static FailMenuCommandType find(String input) {
+        return commands.get(input);
     }
 }
