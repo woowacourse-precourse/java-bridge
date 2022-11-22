@@ -20,6 +20,7 @@ public class Application {
         while (!bridgeGame.quit()) {
             playGame(bridgeGame);
         }
+
         GameResult gameResult = bridgeGame.gameResult();
         outputView.printResult(bridgeGame.getGameMap(), gameResult.getResult(), gameResult.getRetryCount());
     }

@@ -5,7 +5,7 @@ import bridge.model.Direction;
 import bridge.model.DrawType;
 import bridge.model.GameCommand;
 import bridge.model.GameMap;
-import bridge.model.GameStatus;
+import bridge.model.GameState;
 import bridge.model.Player;
 
 /**
@@ -15,13 +15,13 @@ public class BridgeGame {
     private final Bridge bridge;
     private final Player player;
     private final GameMap gameMap;
-    private GameStatus status;
+    private GameState state;
 
     public BridgeGame(Bridge bridge, Player player, GameMap gameMap) {
         this.bridge = bridge;
         this.player = player;
         this.gameMap = gameMap;
-        status = GameStatus.PLAYING;
+        setState(GameState.PLAYING);
     }
 
     /**
@@ -31,26 +31,26 @@ public class BridgeGame {
      */
     public void move(Direction direction) {
         player.move();
-        changeStatus(player.die(bridge, direction));
-        drawGameMap(player.die(bridge, direction), direction);
+        changeStateByPlayerLife(player.die(bridge, direction));
+        drawGameMapBySurvival(player.die(bridge, direction), direction);
     }
 
-    private void drawGameMap(boolean playerDie, Direction direction) {
+    private void changeStateByPlayerLife(boolean playerDie) {
+        if (playerDie) {
+            setState(GameState.FAIL);
+            return;
+        }
+        if (player.isBridgePassed(bridge)) {
+            setState(GameState.COMPLETE);
+        }
+    }
+
+    private void drawGameMapBySurvival(boolean playerDie, Direction direction) {
         if (playerDie) {
             gameMap.draw(direction, DrawType.FAIL);
             return;
         }
         gameMap.draw(direction, DrawType.SUCCESS);
-    }
-
-    private void changeStatus(boolean playerDie) {
-        if (playerDie) {
-            setStatus(GameStatus.FAIL);
-            return;
-        }
-        if (player.isBridgePassed(bridge)) {
-            setStatus(GameStatus.COMPLETE);
-        }
     }
 
     /**
@@ -60,35 +60,35 @@ public class BridgeGame {
      */
     public void retry(GameCommand command) {
         if (command == GameCommand.Q) {
-            setStatus(GameStatus.FAIL_QUIT);
+            setState(GameState.FAIL_QUIT);
             return;
         }
         initialize();
     }
 
-    private void initialize() {
-        player.initialize();
-        setStatus(GameStatus.PLAYING);
-        gameMap.initialize();
-    }
-
     public GameResult gameResult() {
-        return new GameResult(status == GameStatus.COMPLETE, player.getTryCount());
-    }
-
-    private void setStatus(GameStatus status) {
-        this.status = status;
+        return new GameResult(state == GameState.COMPLETE, player.getTryCount());
     }
 
     public boolean end() {
-        return status == GameStatus.FAIL;
+        return state == GameState.FAIL;
     }
 
     public boolean quit() {
-        return status == GameStatus.COMPLETE || status == GameStatus.FAIL_QUIT;
+        return state == GameState.COMPLETE || state == GameState.FAIL_QUIT;
     }
 
     public String getGameMap() {
         return gameMap.toString();
+    }
+
+    private void initialize() {
+        player.initialize();
+        gameMap.initialize();
+        setState(GameState.PLAYING);
+    }
+
+    private void setState(GameState state) {
+        this.state = state;
     }
 }
