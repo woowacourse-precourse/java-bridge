@@ -34,6 +34,7 @@ public class BridgeGame {
 
     public void move(String direction) {
         validateMoveDirection(direction);
+        bridgeRepository.saveProgress(direction);
     }
 
     private void validateMoveDirection(String direction) {
