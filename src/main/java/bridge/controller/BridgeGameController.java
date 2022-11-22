@@ -34,10 +34,8 @@ public class BridgeGameController {
 
     private void playBridgeGame(final BridgeGame bridgeGame) {
         GameCommand gameCommand = GameCommand.NOTHING;
-
         while (bridgeGame.isNotOver(gameCommand)) {
             String moveResult = moveResult(bridgeGame);
-
             if (moveResult.equals(MoveSign.MOVE_FAIL.getMessage())) {
                 gameCommand = inputView.gameCommand();
                 bridgeGame.retryOrQuit(gameCommand);
