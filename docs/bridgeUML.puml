@@ -40,9 +40,12 @@ class BridgeGame{
     - bridge
     - step
     - play
+    + history()
+    + step()
+    + play()
     + move()
     + retry()
-    + quit()
+    + buildBridge()
     + BridgeGame()
 }
 
@@ -85,6 +88,7 @@ class BridgeView{
     + readGameCommand()
     + printMap()
     + printResult()
+    + printErrorMessage()
 }
 
 class InputView{
@@ -103,6 +107,7 @@ class OutputView{
     - {static} BRIDGE_MESSAGE
     + printMap()
     + printResult()
+    + printErrorMessage()
     + getState()
     + getDirection()
     + updateMap()
@@ -118,7 +123,7 @@ class ExceptionHandler{
     + validBridgeSize()
     + validMoving()
     + validGameCommand()
-
+    + excParseInt()
 }
 
 
