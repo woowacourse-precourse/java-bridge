@@ -25,7 +25,7 @@ public class InputViewTest {
 
     @DisplayName("다리 길이 입력받는 테스트")
     @ParameterizedTest
-    @CsvSource({"3,3", "10,10", "20,30"})
+    @CsvSource({"3,3", "10,10", "20,20"})
     void readBridgeSizeTest(String input, int expectedSize) {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
@@ -43,4 +43,24 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("이동 위치 입력받는 테스트")
+    @ParameterizedTest
+    @CsvSource({"U,U", "D,D", "u,U", "d,D"})
+    void readMovingTest(String input, String expectedMoving) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+        String moving = inputView.readMoving();
+        assertThat(moving).isEqualTo(expectedMoving);
+    }
+
+    @DisplayName("이동 위치 입력받는 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"위", "아래", "A", "u1", "1d"})
+    void readMoveExceptionTest(String input) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+        assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    
 }
