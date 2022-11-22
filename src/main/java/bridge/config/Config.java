@@ -1,10 +1,11 @@
 package bridge.config;
 
 import bridge.BridgeMaker;
-import bridge.domain.BridgeState;
+import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.controller.BridgeGameController;
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeState;
 import bridge.domain.GameAttempt;
 import bridge.domain.Round;
 import bridge.view.InputView;
@@ -13,7 +14,7 @@ import bridge.view.View;
 
 public class Config {
 
-    private BridgeState bridgeNumberGenerator;
+    private BridgeNumberGenerator bridgeNumberGenerator;
     private BridgeMaker bridgeMaker;
     private Round round;
     private GameAttempt gameAttempt;
@@ -34,4 +35,5 @@ public class Config {
     public BridgeGameController setBridgeGameController() {
         return new BridgeGameController(view, bridgeGame, bridgeMaker);
     }
+
 }
