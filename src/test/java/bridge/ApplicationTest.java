@@ -45,7 +45,13 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
+    @Test
+    void 무빙_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3","u");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Override
     protected void runMain() {
         Application.main(new String[]{});
