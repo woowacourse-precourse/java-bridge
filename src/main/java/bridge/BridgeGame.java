@@ -11,6 +11,7 @@ public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
 
+    private List<String> answers;
     private StringJoiner upperBridge;
     private StringJoiner underBridge;
 
@@ -23,9 +24,12 @@ public class BridgeGame {
         this.outputView = outputView;
     }
 
-    public List<String> gameSet() {
-        int size = inputView.readBridgeSize();
-        return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+    public void init() {
+        setAnswers(new BridgeRandomNumberGenerator(), inputView.readBridgeSize());
+    }
+
+    public void setAnswers(BridgeNumberGenerator bridgeNumberGenerator, int size) {
+        answers = new BridgeMaker(bridgeNumberGenerator).makeBridge(size);
     }
 
     public void play(List<String> answers) {
