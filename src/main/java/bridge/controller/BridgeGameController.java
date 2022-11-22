@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
+import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 
@@ -19,20 +20,22 @@ public class BridgeGameController {
 
 
     public void bridgeGame(){
-        int bridgeLen = 0;
-        bridgeLen = readBridgeSize();
+        int bridgeLen = readBridgeSize();
 
-        bridgeLenRangeCheck(bridgeLen);
+        //bridgeLenRangeCheck(bridgeLen);
+
         bridges =  makeBridge(bridgeLen);
-
-
 
         for(int count = 0; count < bridgeLen; count++){
             String move = readMoving();
             moveCheck(move);
             inputMove.add(move);
-            resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
-            //System.out.println("result: " + resultFinal.toString());
+            try {
+                resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
+
+            }finally {
+                System.out.println("오류");
+            }
 
             if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen+1){
                 check++;
@@ -48,21 +51,4 @@ public class BridgeGameController {
 
     }
 
-    /*
-    public static int repeat(int bridgeLen){
-        for(int count = 0; count < bridgeLen; count++){
-            String move = readMoving();
-            moveCheck(move);
-            inputMove.add(move);
-            resultFinal = moveResult(bridgeLen, count, move, bridges, inputMove, startCount);
-
-            if(resultFinal.size() != 0 && Integer.parseInt(resultFinal.get(0)) == bridgeLen+1){
-                check++;
-                break;
-            }
-        }
-        return check;
-    }
-
-     */
 }
