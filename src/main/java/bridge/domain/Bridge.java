@@ -36,6 +36,10 @@ public class Bridge {
         return this.bridgeGameState = BridgeGameState.FAIL;
     }
 
+    public void init() {
+        positionOnBridge = 0;
+    }
+
     public String toString() {
         return BridgeOutputView.bridgePrint(this);
     }
