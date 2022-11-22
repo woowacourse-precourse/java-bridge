@@ -1,5 +1,7 @@
 package bridge.identifiers;
 
+import java.util.Objects;
+
 public enum GameRetry {
     RETRY("R"), QUIT("Q");
 
@@ -14,9 +16,9 @@ public enum GameRetry {
     }
 
     public static GameRetry parseRetry(String retryValue) {
-        if (retryValue == RETRY.asString)
+        if (Objects.equals(retryValue, RETRY.asString))
             return RETRY;
-        if (retryValue == QUIT.asString)
+        if (Objects.equals(retryValue, QUIT.asString))
             return QUIT;
         throw new IllegalArgumentException(
                 RETRY.asString + " 또는 " + QUIT.asString + " 을 입력해야 합니다."
