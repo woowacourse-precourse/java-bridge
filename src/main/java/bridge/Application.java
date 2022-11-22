@@ -4,11 +4,14 @@ import java.util.List;
 
 public class Application {
 
+    private static String QUIT_SIGN = "Q";
+
     public static void main(String[] args) {
         BridgeGame game = initGame();
-        boolean isContinue = true;
-        while (isContinue) {
-            isContinue = gameFlow(game);
+        while (true) {
+            if (!gameFlow(game)) {
+                break;
+            }
         }
     }
 
@@ -23,15 +26,22 @@ public class Application {
     private static boolean gameFlow(BridgeGame game) {
         String direction = InputView.readMovingUntilSuccess();
         boolean isAvailable = game.move(direction);
-        List<String> history = game.getCrossedBridge();
-        OutputView.printMap(history, isAvailable);
-        if (!isAvailable || game.mapSize() == history.size()) {
-            if (isAvailable || InputView.readGameCommandUntilSuccess().equals("Q")) {
-                OutputView.printResult(history, isAvailable, game.getTries());
-                return false;
-            }
-            game.retry();
+        OutputView.printMap(game.getCrossedBridge(), isAvailable);
+        if (isEnd(isAvailable, game.getCrossedBridge(), game)) {
+            OutputView.printResult(game.getCrossedBridge(), isAvailable, game.getTries());
+            return false;
         }
         return true;
+    }
+
+    private static boolean isEnd(boolean isAvailable, List<String> history, BridgeGame game) {
+        if (isAvailable && game.mapSize() != history.size()) {
+            return false;
+        }
+        if (isAvailable || InputView.readGameCommandUntilSuccess().equals(QUIT_SIGN)) {
+            return true;
+        }
+        game.retry();
+        return false;
     }
 }
