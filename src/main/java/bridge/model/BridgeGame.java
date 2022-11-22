@@ -2,6 +2,9 @@ package bridge.model;
 
 import bridge.utils.BridgeMaker;
 
+import static bridge.resources.ErrorMessage.*;
+import static bridge.resources.GameCommand.*;
+
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
@@ -13,15 +16,15 @@ public class BridgeGame {
         gameResult = GameResult.getInstance();
     }
 
-    public int createBridge(int size) {
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
-        bridge = new Bridges(bridgeMaker.makeBridge(size));
-        return size;
+    public int createBridge(String size) {
+        int bridgeSize = validationAsNumeric(size);
+        validationRange(bridgeSize);
+        bridge = new Bridges(bridgeMaker.makeBridge(bridgeSize));
+        return bridgeSize;
     }
 
     public String move(String moveSpace, int index) {
+        canMove(moveSpace);
         boolean canMove = bridge.judgeMovement(moveSpace, index);
         return gameResult.updateMoveResult(moveSpace, canMove);
     }
@@ -31,16 +34,31 @@ public class BridgeGame {
     }
 
     public void retry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (RESTART.isEqual(gameCommand)) {
             gameResult.reset();
+            return;
         }
-        if (gameCommand.equals("Q")) {
+        if (QUIT.isEqual(gameCommand)) {
             throw new IllegalStateException(getFinishResult());
         }
-        throw new IllegalArgumentException("[ERROR] 게임 커멘드 입력 오류입니다");
+        throw new IllegalArgumentException(COMMAND_ERROR);
     }
 
     public String getFinishResult() {
         return gameResult.toString();
+    }
+
+    private int validationAsNumeric(String size) {
+        try {
+            return Integer.parseInt(size);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(NUMERIC_ERROR);
+        }
+    }
+
+    private void validationRange(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException(RANGE_ERROR);
+        }
     }
 }
