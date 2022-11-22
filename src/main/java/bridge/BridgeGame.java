@@ -17,13 +17,13 @@ public class BridgeGame {
      */
     public List<Integer> move(List<String> bridge, List<Integer> position_map, String moving) {
         int position = position_map.indexOf(1);  //i 번째에 1의 값이 있으면 i번째 칸에 위치, 0이면 출발안함
-        System.out.println(position);
         if(moving.equals(bridge.get(position))) {
             position_map.set(position,0);
             position_map.set(position+1,1);
         }
         if(!moving.equals(bridge.get(position))) {
             position_map.set(position,0);
+            position_map.set(position+1,-1);
         }
         return position_map;
     }
@@ -35,6 +35,7 @@ public class BridgeGame {
      */
     public List<Integer> retry(List<Integer> position_map, String input) {
         if(input.equals("R")) {
+            position_map.set(position_map.indexOf(-1),0);
             position_map.set(0,1);
         }
         return position_map;
