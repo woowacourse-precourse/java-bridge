@@ -2,7 +2,7 @@ package bridge.model;
 
 import bridge.constant.Score;
 
-public class User {
+public class Move {
 
     private String moveDirection;
     private Score score;

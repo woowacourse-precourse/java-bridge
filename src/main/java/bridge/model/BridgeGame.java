@@ -11,11 +11,11 @@ import java.util.List;
 public class BridgeGame {
 
     private Bridge bridge;
-    private final User user;
+    private final Move move;
     private final Result result;
 
     public BridgeGame () {
-        user = new User();
+        move = new Move();
         result = new Result();
     }
 
@@ -29,14 +29,14 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moveDirection) {
-        user.setMoveDirection(moveDirection);
+        move.setMoveDirection(moveDirection);
     }
 
     public void judgeMove(String moveDirection) {
         bridge.addCurrentRoundNumber();
         Score score = bridge.judgeMove(moveDirection);
 
-        user.setScore(score);
+        move.setScore(score);
         result.updateBridgeRecord(score, moveDirection);
     }
 
@@ -58,7 +58,7 @@ public class BridgeGame {
     }
 
     public Boolean isFail() {
-        String moveDirection = user.getMoveDirection();
+        String moveDirection = move.getMoveDirection();
         Boolean isFail = bridge.isFail(moveDirection);
         if (isFail) {
             bridge.resetCurrentRoundNumber();
@@ -80,7 +80,7 @@ public class BridgeGame {
     }
 
     public String getScoreMessage() {
-        return user.getScoreMessage();
+        return move.getScoreMessage();
     }
 
     public int getTryCount() {
