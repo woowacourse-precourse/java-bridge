@@ -5,9 +5,11 @@ public class PlayerInputValidator {
     private static final String PRINT_BRIDGE_SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String PRINT_MOVE_ERROR = "[ERROR] 이동하기 위해서는 U 또는 D만 입력해야 합니다.";
     private static final String PRINT_RESTART_OR_END_ERROR = "[ERROR] 재시작 여부는 R 또는 Q만 입력해야 합니다.";
+    private static final int MIN_BRIDGE_LENGTH = 3;
+    private static final int MAX_BRIDGE_LENGTH = 20;
 
     public static void bridgeLengthValidator(int length) {
-        if (!(3 <= length && length <= 20)) {
+        if (!(MIN_BRIDGE_LENGTH <= length && length <= MAX_BRIDGE_LENGTH)) {
             throw new IllegalArgumentException(PRINT_BRIDGE_SIZE_ERROR);
         }
     }
