@@ -22,7 +22,7 @@ public class BridgeGame extends BridgeGameInit{
         return "S";
     }
 
-    private String checkGameResult(String gameResult) {
+    public String checkGameResult(String gameResult) {
         if (gameResult.equals("Q")) {
             return "F"; //실패
         }
