@@ -3,10 +3,18 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
+    private User user;
+
+    @BeforeEach
+    void beforeEach(){
+        user = new User();
+    }
+
 
     @DisplayName("시도 횟수 getter 테스트")
     @Test
@@ -15,7 +23,6 @@ class UserTest {
         int initialTryCount = 1;
 
         //when
-        User user = new User();
 
         //then
         assertThat(user.getTryCount()).isEqualTo(initialTryCount);
@@ -25,7 +32,6 @@ class UserTest {
     @Test
     public void increaseTryCountTest() {
         //given
-        User user = new User();
         int increaseTryCount = 2;
 
         //when
@@ -39,7 +45,6 @@ class UserTest {
     @Test
     public void isSuccessCompleteTest() {
         //given
-        User user = new User();
 
         //when
         user.finishWithWin();
@@ -52,7 +57,6 @@ class UserTest {
     @Test
     public void isGameOverTest() {
         //given
-        User user = new User();
 
         //when
         user.finishWithFail();
