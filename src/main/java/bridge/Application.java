@@ -1,7 +1,5 @@
 package bridge;
 
-import org.w3c.dom.stylesheets.LinkStyle;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,32 +9,32 @@ public class Application {
     static InputView inputView = new InputView();
     static OutputView outputView = new OutputView();
     static final boolean START = true;
+    static GameState state;
     public static void main(String[] args) {
         List<String> bridge;
         int bridgeSize;
-        boolean state = START;
-
-        while(state){ // retry
-            //사이즈 입력
-            bridgeSize = inputView.readBridgeSize();
-            // bridge를 만듦
-            bridge = bridgeMaker.makeBridge(bridgeSize);
-            // bridge를 이용한 게임 생성
-            BridgeGame bridgeGame = new BridgeGame(bridge);
-            // bridge move
-            boolean ingameState = true;
-            while(ingameState){//move
-                String direction = inputView.readMoving();
-                ingameState = bridgeGame.move(direction);
-//                outputView.printMap();
+        String direction;
+        bridgeSize = inputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        boolean playing = true;
+        outputView.gameStart();
+        while(playing){
+            direction = inputView.readMoving();
+            state = bridgeGame.play(direction);
+            outputView.printMap(direction, bridge,state);
+            if(state == GameState.WIN){
+                break;
             }
-//            outputView.printResult();
-
-            state = bridgeGame.retry();
-
-
+            //함수처리
+            if(state == GameState.FALL){
+                String retry = inputView.readRetry();
+                playing = bridgeGame.isRetry(retry);
+                if(playing == true){
+                    outputView.init();
+                }
+            }
         }
-
-
+        outputView.printResult(state,bridgeGame.retryStack);
     }
 }
