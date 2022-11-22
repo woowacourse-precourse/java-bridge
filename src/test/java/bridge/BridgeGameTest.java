@@ -3,6 +3,7 @@ package bridge;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,6 +53,22 @@ public class BridgeGameTest {
         boolean allCrossed = bridgeGame.isAllCrossed(bridge);
 
         Assertions.assertThat(allCrossed).isEqualTo(false);
+    }
+
+    @Test
+    void 건넌다리_초기화_작동_테스트() {
+        Bridge bridge = new Bridge(Arrays.asList("U", "D", "U", "D", "U"), Arrays.asList("U", "D", "U", "D", "D"));
+        bridgeGame.resetCrossed(bridge);
+
+        Assertions.assertThat(bridge.getCrossed().size()).isEqualTo(0);
+    }
+
+    @Test
+    void 재도전_횟수_증가_테스트() {
+        Bridge bridge = new Bridge(Arrays.asList("U", "D", "U", "D", "U"), Arrays.asList("U", "D", "U", "D", "D"));
+        bridgeGame.increaseTried(bridge);
+
+        Assertions.assertThat(bridge.getTried()).isEqualTo(2);
     }
 
 }
