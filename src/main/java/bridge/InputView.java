@@ -59,4 +59,27 @@ public class InputView {
             readBridgeSize();
         }
     }
+
+    private void movingNotNumberValidation(String upAndDown_in) {
+        if (!upAndDown_in.equals("U") && !upAndDown_in.equals("D")){
+            try {
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                System.out.println(MOVING_NOT_NUMBER_ERROR_NOTICE);
+                readMoving();
+            }
+        }
+        return;
+    }
+
+    private void gameCommandNumberValidation(String retryAndQuit_in) {
+        if (!retryAndQuit_in.equals("R") && !retryAndQuit_in.equals("Q"))
+            try {
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                System.out.println(GAME_COMMAND_NOT_NUMBER_ERROR_NOTICE);
+                readMoving();
+            }
+        return;
+    }
 }
