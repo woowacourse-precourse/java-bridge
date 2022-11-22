@@ -47,6 +47,17 @@ public class InputViewTest extends NsTest {
         );
     }
 
+    @DisplayName("R 또는 Q 의외에 이동할 칸을 입력받았을 경우")
+    @Test
+    void checkInputRetry() {
+        assertSimpleTest(
+                () -> {
+                    runException("K","45","U","D");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
 
 
 
