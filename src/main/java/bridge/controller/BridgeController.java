@@ -5,13 +5,19 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.PlayResult;
 import bridge.domain.Stage;
-import camp.nextstep.edu.missionutils.Console;
+import bridge.view.InputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class BridgeController {
 
     private BridgeGame game;
+
+    private final InputView inputView;
+
+    public BridgeController() {
+        inputView = new InputView();
+    }
 
     public void start() {
         // 다리 생성 테스트
@@ -25,9 +31,7 @@ public class BridgeController {
     }
 
     private void setUpBridge() {
-        System.out.println("크기 입력: ");
-        int bridgeSize = Integer.parseInt(Console.readLine());
-        game = new BridgeGame(buildBridge(bridgeSize));
+        game = new BridgeGame(buildBridge(inputView.readBridgeSize()));
     }
 
     private List<Stage> buildBridge(final int bridgeSize) {
@@ -50,9 +54,7 @@ public class BridgeController {
 
     private void playGame() {
         for (int round = 0; round < game.getStages(); round++) {
-            System.out.println("방향 입력: ");
-            String direction = Console.readLine();
-            PlayResult playResult = game.move(round, direction);
+            PlayResult playResult = game.move(round, inputView.readMoving());
 
             if (game.isOver()) {
                 break;
@@ -62,8 +64,8 @@ public class BridgeController {
     }
 
     private void askRestart() {
-        System.out.println("재시작 ?");
-        String commend = Console.readLine();
+        String commend = inputView.readGameCommand();
+
         if ("R".equals(commend)) {
             resetGame();
             play();
