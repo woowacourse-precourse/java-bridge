@@ -11,5 +11,12 @@ public class ExceptionCase {
         }
     }
 
+    public int validateBridgeSizeInRange(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            System.out.println("[ERROR] 다리 길이는 3-20 범위만 입력이 가능합니다.\n");
+            return new InputView().readBridgeSize();
+        }
+        return bridgeSize;
+    }
 
 }
