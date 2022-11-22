@@ -2,11 +2,11 @@ package bridge;
 
 public class BridgeUI {
     public void start() {
-        System.out.print("[");
+        System.out.print("[ ");
     }
 
     public void end() {
-        System.out.print("]");
+        System.out.print(" ]");
     }
 
     public void success() {
