@@ -41,11 +41,11 @@ public class OutputView {
     public void printResult(ViewStatus status) {
         System.out.println(Directive.FINAL_GAME_RESULT.getMessage());
         System.out.println(parsedGameResult);
-        printWinOrNot(status);
+        printWinOrLose(status);
         printCount();
     }
 
-    private void printWinOrNot(ViewStatus status) {
+    private void printWinOrLose(ViewStatus status) {
         System.out.print(Directive.WIN_OR_NOT.getMessage());
         if (status == ViewStatus.WIN) {
             System.out.println(SUCCESS);
