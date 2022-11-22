@@ -22,17 +22,21 @@ public class BridgeGame {
     }
 
     public void play() {
-        outputView.printStart();
-        outputView.printBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
-        Bridge bridge = bridgeGameController.createBridge(bridgeSize);
-
+        Bridge bridge = makeBridge();
         while (!gameStatus.getEnd()) {
+            // TODO: 로그 지우기
             System.out.println(bridge.getBridge());
             crossBridge(bridge);
         }
 
         outputView.printResult(gameStatus);
+    }
+
+    private Bridge makeBridge() {
+        outputView.printStart();
+        outputView.printBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
+        return bridgeGameController.createBridge(bridgeSize);
     }
 
     private void crossBridge(Bridge bridge) {
