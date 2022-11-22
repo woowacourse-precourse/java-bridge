@@ -76,8 +76,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<String> bridge, GAME_STATE gameState) {
+    public static void printResult(List<String> bridge, GAME_STATE gameState, int count) {
         System.out.println(GAME_MESSAGE.ENDING.getMessage());
         printMap(bridge, gameState);
+
+        System.out.printf(GAME_MESSAGE.ENDING_RESULT.getMessage(), gameState.getState(), count);
+
     }
 }

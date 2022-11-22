@@ -25,7 +25,7 @@ public class BridgeGame {
     }
 
     private boolean isFinished(String command, List<String> bridge) {
-        GAME_STATE.INDEX.setValue(index+1);
+        GAME_STATE.INDEX.setValue(index + 1);
         return (index == bridge.size() - 1) && (Objects.equals(bridge.get(index), command));
     }
 

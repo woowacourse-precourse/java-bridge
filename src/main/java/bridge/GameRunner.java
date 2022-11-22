@@ -27,16 +27,15 @@ public class GameRunner {
         GAME_STATE state = GAME_STATE.INITIALIZED;
         int tryNumber = 0;
         while (state != GAME_STATE.QUIT && state != GAME_STATE.SUCCESS) {
-            GAME_STATE.QUIT.setValue(tryNumber + 1);
+            GAME_STATE.QUIT.setValue(tryNumber++);
             state = inGame();
         }
-        OutputView.printResult(bridge, state);
+        OutputView.printResult(bridge, state, tryNumber);
     }
 
     // each game loop's inner loop
     private GAME_STATE inGame() {
         GAME_STATE state = GAME_STATE.IN_GAME;
-        System.out.println(bridge);
         while (state == GAME_STATE.IN_GAME) {
             OutputView.printSelectMessage();
             state = bridgeGame.move(InputView.readMoving(), this.bridge);
