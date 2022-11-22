@@ -52,7 +52,6 @@ public class OutputView {
             sj.add(path);
         }
         sb.insert(2, sj.toString());
-
         System.out.println(sb.toString());
     }
 

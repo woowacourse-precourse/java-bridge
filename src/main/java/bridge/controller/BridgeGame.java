@@ -26,23 +26,8 @@ public class BridgeGame {
         try {
             view.printMoveCommandMessage();
             String movePath = view.readMoving();
-
             MoveResult moveResult = domain.move(movePath);
-            if (moveResult == MoveResult.MOVE_FAIL) {
-                printBridge();
-                retryOrEnd();
-                return;
-            }
-            if (moveResult == MoveResult.MOVE_SUCCESS) {
-                printBridge();
-                move();
-                return;
-            }
-            if (moveResult == MoveResult.PASSED_BRIDGE) {
-                printBridge();
-                end();
-                return;
-            }
+            selectActAfterMove(moveResult);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             move();
@@ -53,14 +38,7 @@ public class BridgeGame {
         view.printRestartMassage();
         try {
             String command = view.readGameCommand();
-            if (command.equals("Q")) {
-                end();
-                return;
-            }
-            if (command.equals("R")) {
-                retry();
-                return;
-            }
+            selectActAfterGame(command);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             retryOrEnd();
@@ -78,6 +56,42 @@ public class BridgeGame {
     public void retry() {
         domain.initBridge();
         move();
+    }
+
+    private void selectActAfterGame(String command) {
+        if (command.equals("Q")) {
+            end();
+        }
+        if (command.equals("R")) {
+            retry();
+        }
+    }
+
+    private void selectActAfterMove(MoveResult moveResult) {
+        if (moveResult == MoveResult.MOVE_FAIL) {
+            actAfterMoveFail();
+        }
+        if (moveResult == MoveResult.MOVE_SUCCESS) {
+            actAfterMoveSuccess();
+        }
+        if (moveResult == MoveResult.PASSED_BRIDGE) {
+            actAfterPassedBridge();
+        }
+    }
+
+    private void actAfterPassedBridge() {
+        printBridge();
+        end();
+    }
+
+    private void actAfterMoveSuccess() {
+        printBridge();
+        move();
+    }
+
+    private void actAfterMoveFail() {
+        printBridge();
+        retryOrEnd();
     }
 
     private void makeBridge() {
