@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.BridgeGame;
 import bridge.MoveResponseDto;
 import bridge.RetryResponseDto;
 import bridge.domain.Bridge;

@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge;
 
 import bridge.domain.Command;
 import bridge.MoveResponseDto;

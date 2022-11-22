@@ -5,8 +5,6 @@ import bridge.domain.Player;
 import bridge.in.InputView;
 import bridge.output.MapViewDto;
 import bridge.output.OutputView;
-import bridge.service.BridgeGame;
-import bridge.service.BridgeMaker;
 
 public class BridgeGameController {
     private BridgeGame bridgeGame;

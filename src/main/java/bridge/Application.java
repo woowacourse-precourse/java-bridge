@@ -3,8 +3,6 @@ package bridge;
 import bridge.domain.Result;
 import bridge.in.InputView;
 import bridge.output.OutputView;
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeRandomNumberGenerator;
 
 public class Application {
 
