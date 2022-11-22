@@ -19,7 +19,7 @@ public class OutputView {
 
         for (int i = 0; i < curMap.size(); i++) {
 
-            if(i > 0){
+            if (i > 0) {
                 upperMap.append(" |");
                 lowerMap.append(" |");
             }
@@ -56,7 +56,7 @@ public class OutputView {
 
         boolean isSuccess = true;
         for (int i = 0; i < curMap.size(); i++) {
-            if(matchInputAndAnswer(curMap.get(i), answerMap.get(i))%2 == 1){
+            if (matchInputAndAnswer(curMap.get(i), answerMap.get(i)) % 2 == 1) {
                 isSuccess = false;
             }
         }

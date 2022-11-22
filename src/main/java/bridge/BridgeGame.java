@@ -57,7 +57,24 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(int turn) {
+
+        boolean moveAvailable = false;
+        try {
+            moveAvailable = getMove(turn);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] U 또는 R 만 입력해주세요.");
+            moveAvailable = getMove(turn);
+        }
+
+        return moveAvailable;
+    }
+
+    public boolean getMove(int turn) {
         String moving = inputView.readMoving();
+
+        if (!(moving.equals("U") || moving.equals("D"))) {
+            throw new IllegalArgumentException();
+        }
         this.curMap.add(moving);
         outputView.printMap(this.curMap, this.answerBridge);
 
@@ -86,7 +103,6 @@ public class BridgeGame {
             return true;
         } else if (retryCommand.equals("Q")) {
             return false;
-        } else
-            throw new IllegalArgumentException();
+        } else throw new IllegalArgumentException();
     }
 }

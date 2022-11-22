@@ -15,7 +15,7 @@ public class InputView {
         int size = -1;
         try {
             size = Integer.parseInt(Console.readLine());
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException();
         }
         if (size < 3 || size > 21) {
