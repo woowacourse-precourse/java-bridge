@@ -29,4 +29,18 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("이동할 칸 입력 중 U나 D가 아닌 경우, 에러 발생 테스트")
+    @Test
+    void checkMoveUpDownTest() {
+        assertThatThrownBy(() -> Validator.checkUpDown("UU"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다시 시도 여부 입력 중 R이나 Q가 아닌 경우, 에러 발생 테스트")
+    @Test
+    void checkRetryQuitTest() {
+        assertThatThrownBy(() -> Validator.checkRetryQuit("RR"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
