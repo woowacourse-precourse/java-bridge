@@ -2,6 +2,7 @@ package bridge.model;
 
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.InputUtil;
 import bridge.controller.InputController;
 
 import java.util.ArrayList;
@@ -11,10 +12,10 @@ public class AllBridge {
 
     private List<String> bridge = new ArrayList<>();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    InputController inputController = new InputController();
+    InputUtil inputUtil = new InputUtil();
 
     public AllBridge() {
-        bridge = bridgeMaker.makeBridge(inputController.getBridgeSize());
+        bridge = bridgeMaker.makeBridge(inputUtil.getBridgeSize());
     }
 
     public List<String> getBridge() {
