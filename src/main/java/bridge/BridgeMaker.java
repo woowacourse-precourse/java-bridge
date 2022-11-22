@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    /**
+     * 0-1 사이의 숫자를 생성할 generator
+     */
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -18,6 +22,18 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> result = new ArrayList<>();
+        for (int index = 0; index < size; index++){
+            result.add(makeRandomCell());
+        }
+        return result;
+    }
+
+    private String makeRandomCell(){
+        int generatedNumber = bridgeNumberGenerator.generate();
+        if (generatedNumber == 0){
+            return "D";
+        }
+        return "U";
     }
 }
