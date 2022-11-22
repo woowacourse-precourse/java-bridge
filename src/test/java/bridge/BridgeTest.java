@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
@@ -39,4 +42,24 @@ class BridgeTest {
         }
     }
 
+    @DisplayName("다리 초기화 확인")
+    @Test
+    void 다리_초기화(){
+        Bridge bridge = new Bridge("3");
+        List<String> testBridgeUnit = Arrays.asList(" "," "," ");
+        List<String> bridgeUnit = bridge.getBridgeMap().get("U");
+        Assertions.assertThat(testBridgeUnit).isEqualTo(bridgeUnit);
+        bridgeUnit = bridge.getBridgeMap().get("D");
+        Assertions.assertThat(testBridgeUnit).isEqualTo(bridgeUnit);
+    }
+
+    @DisplayName("다리 특정 자리 변경")
+    @Test
+    void bridgeUnit_change(){
+        Bridge bridge = new Bridge("3");
+        List<String> testBridgeUnit = Arrays.asList(" ","X","O");
+        bridge.changeBridgeMap(1,"U","X");
+        bridge.changeBridgeMap(2,"U","O");
+        Assertions.assertThat(testBridgeUnit).isEqualTo(bridge.getBridgeMap().get("U"));
+    }
 }
