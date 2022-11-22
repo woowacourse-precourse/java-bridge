@@ -27,6 +27,12 @@ public class InputView {
      */
     public String readMoving() {
         String moveUpOrDown = readLine();
+        try {
+            ExceptionCase.isInputUpOrDown(moveUpOrDown);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            moveUpOrDown = readMoving();
+        }
         return moveUpOrDown;
     }
 
