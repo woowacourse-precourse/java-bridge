@@ -17,4 +17,10 @@ public class BridgeGameController {
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
     }
+
+    private void createAnswerBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        bridgeGame.setAnswerBridge(bridge);
+    }
 }
