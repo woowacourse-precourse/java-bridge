@@ -20,17 +20,11 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> result = new ArrayList<>();
-
         for (int i=0; i<size; i++) {
             Integer number = bridgeNumberGenerator.generate();
-            if (number.equals(1)) {
-                result.add("U");
-            }
-            if (number.equals(0)) {
-                result.add("D");
-            }
+            if (number.equals(1)) { result.add("U"); }
+            if (number.equals(0)) { result.add("D"); }
         }
-
         return result;
     }
 }
