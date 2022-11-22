@@ -23,12 +23,15 @@ public class BridgeGameController {
 
     private void moveAndCheck(Bridge bridge) {
         for (int i = 0; i < bridge.getBridge().size(); i++) {
-            moveUser(bridge);
-            if (bridge.isFalseInResults()) {
-                String gameCommand = inputGameCommand();
-                i = whenR(bridge, i, gameCommand);
-                if (gameCommand.equals("Q")) {
-                    result(bridge, "실패");
+            moveUser(bridge); // 사용자 이동
+            if (bridge.isFalseInResults()) { // False가 발생했다면
+                String gameCommand = inputGameCommand(); // 게임 재시도 여부 입력받기
+                if (gameCommand.equals("R")) {
+                    bridgeGame.retry(bridge);
+                    i = -1;
+                }
+                if (gameCommand.equals("Q")) { // 게임 종료(Q)를 입력받았다면
+                    result(bridge, "실패"); // 최종 결과 출력하고
                     return;
                 }
             }
@@ -45,14 +48,6 @@ public class BridgeGameController {
     private String inputGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return inputView.receiveGameCommand();
-    }
-
-
-    private int whenR(Bridge bridge, int i, String gameCommand) {
-        if (gameCommand.equals("R")) {
-            i = bridgeGame.retry(bridge);
-        }
-        return i;
     }
 
     private void checkSuccess(Bridge bridge) {
