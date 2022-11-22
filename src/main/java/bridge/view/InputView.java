@@ -22,7 +22,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위 : U, 아래 : D)");
+
+        String input = Console.readLine();
+        validateMovingInput(input);
+
+        return input;
     }
 
     /**
@@ -30,6 +35,14 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void validateMovingInput(String input) {
+        if (input.length() != 1)
+            throw new IllegalArgumentException(InputError.INVALID_INPUT_SIZE.getMessage());
+
+        if (!GameCommand.UP.equals(input) && !GameCommand.DOWN.equals(input))
+            throw new IllegalArgumentException(InputError.INVALID_MOVING.getMessage());
     }
 
     private int parseToNumber(String input) {

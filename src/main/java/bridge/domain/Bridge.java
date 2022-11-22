@@ -21,4 +21,7 @@ public class Bridge {
         return bridge.get(index);
     }
 
+    public void moveNext(String moving) {
+        this.bridge.add(moving);
+    }
 }
