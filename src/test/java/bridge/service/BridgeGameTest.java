@@ -42,9 +42,9 @@ class BridgeGameTest {
     @DisplayName("재시도 하면 게임 상태는 초기화 되고, tryCount는 1 증가한다.")
     @Test
     public void retryToCrossTheBride() {
-        assertThat(gameStatus.tryCount).isEqualTo(1);
+        assertThat(gameStatus.getTryCount()).isEqualTo(1);
         gameStatus.resetGameStatus();
-        assertThat(gameStatus.tryCount).isEqualTo(2);
+        assertThat(gameStatus.getTryCount()).isEqualTo(2);
         assertThat(gameStatus.topBridge.size()).isEqualTo(0);
     }
 }

@@ -7,8 +7,8 @@ public class GameStatus {
 
     private static final String FAILURE = "실패";
 
-    public int tryCount;
-    public String gameResult;
+    private int tryCount;
+    private String gameResult;
     public List<String> topBridge;
     public List<String> bottomBridge;
 
@@ -23,5 +23,17 @@ public class GameStatus {
         this.tryCount += 1;
         this.topBridge = new ArrayList<>();
         this.bottomBridge = new ArrayList<>();
+    }
+
+    public int getTryCount() {
+        return this.tryCount;
+    }
+
+    public void setGameResult(String s) {
+        this.gameResult = s;
+    }
+
+    public String getGameResult() {
+        return this.gameResult;
     }
 }

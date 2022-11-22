@@ -49,7 +49,7 @@ public class BridgeGameController {
 
     private void ifGoThroughTheBridge() {
         if (copyBridge.getSize() == 0) {
-            gameStatus.gameResult = SUCCESS;
+            gameStatus.setGameResult(SUCCESS);
             isFinish = false;
         }
     }

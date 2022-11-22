@@ -18,8 +18,8 @@ public class OutputView {
     public void printResult(GameStatus gameStatus) {
         System.out.println(InGameMessage.FINAL_GAME_RESULT);
         printMap(gameStatus);
-        System.out.println(InGameMessage.WHETHER_GAME_IS_SUCCESSFUL + gameStatus.gameResult);
-        System.out.println(InGameMessage.TOTAL_TRY_COUNT + Integer.toString(gameStatus.tryCount));
+        System.out.println(InGameMessage.WHETHER_GAME_IS_SUCCESSFUL + gameStatus.getGameResult());
+        System.out.println(InGameMessage.TOTAL_TRY_COUNT + Integer.toString(gameStatus.getTryCount()));
     }
 
     public String bridgeToMap(List<String> bridge) {
