@@ -47,8 +47,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(Constants.RESTART_INFO);
-        String restartCommand = Console.readLine();
+        String restartCommand;
+        while (true) {
+            restartCommand = Console.readLine();
+            if (checkRestartCommand(restartCommand)){
+                break;
+            }
+        }
         return restartCommand;
     }
 
@@ -71,6 +76,18 @@ public class InputView {
             }
         }catch(IllegalArgumentException e){
             System.out.println(Constants.ERROR_COMMAND_INFO);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkRestartCommand(String command){
+        try{
+            if (!(command.equals("R") || command.equals("Q"))){
+                throw new IllegalArgumentException();
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println(Constants.ERROR_RESTRAT_COMMAND_INFO);
             return false;
         }
         return true;

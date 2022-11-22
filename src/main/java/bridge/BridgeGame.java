@@ -6,9 +6,11 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    static int gameStepCount;
-    static int bridgeSize;
-    static List<String>Bridge;
+    private int gameStepCount = 0;
+    private int bridgeSize = 0;
+    private final List<String>Bridge;
+    private boolean retry = false;
+
     BridgeGame(int bridgeSize, List<String> Bridge){
         this.bridgeSize = bridgeSize;
         this.Bridge = Bridge;
@@ -18,16 +20,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(InputView Input) {
+    public boolean move(InputView Input) {
         while(gameStepCount != bridgeSize){
             String movingCommand=Input.readMoving();
             System.out.println(movingCommand);
             OutputView Output = new OutputView();
             if(!Output.printMap(gameStepCount,movingCommand,Bridge)){
-                break;
+                return retry(Input);
             }
             gameStepCount++;
         }
+        return true;
     }
 
     /**
@@ -35,6 +38,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(InputView Input) {
+        System.out.println(Constants.RETRY_INFO);
+        String command =Input.readGameCommand();
+        if(command.equals("Q")){
+            return false;
+        }
+        return true;
     }
 }
