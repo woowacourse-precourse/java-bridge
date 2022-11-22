@@ -8,9 +8,6 @@ public class MoveResult {
     private final boolean currentMovingResult;
     private final String currentStep;
 
-    public void pringMoveResult(MoveResult moveResult){
-        System.out.println(moveResult.currentMovingResult+moveResult.currentStep);
-    }
     public MoveResult(boolean currentMovingResult, String currentStep){
         this.currentMovingResult = currentMovingResult;
         this.currentStep = currentStep;

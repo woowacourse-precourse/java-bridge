@@ -32,11 +32,6 @@ public class BridgeGame {
         MoveSpace moveSpace = InputController.getMoving();
         this.moveResults.add(this.bridge.createMoveResult(moveSpace));
 
-        for (int i = 0; i < this.moveResults.size(); i++) {
-            System.out.print(i);
-            this.moveResults.get(i).pringMoveResult(this.moveResults.get(i));
-        }
-
         System.out.println(this.moveResults);
     }
 

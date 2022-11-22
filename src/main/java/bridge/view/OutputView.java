@@ -22,7 +22,6 @@ public class OutputView {
     public static void printUpMap(List<MoveResult> moveResults){
         StringJoiner upResult = new StringJoiner(" | ", "[ ", " ]");
         for(int i = 0; i<moveResults.size(); i++){
-            moveResults.get(i).pringMoveResult(moveResults.get(i));
             upResult.add(createUpMap(moveResults.get(i)));
         }
 
@@ -33,7 +32,6 @@ public class OutputView {
     public static void printDownMap(List<MoveResult> moveResults){
         StringJoiner downResult = new StringJoiner(" | ", "[ ", " ]");
         for(int i = 0; i<moveResults.size(); i++){
-            moveResults.get(i).pringMoveResult(moveResults.get(i));
             downResult.add(createDownMap(moveResults.get(i)));
         }
 
