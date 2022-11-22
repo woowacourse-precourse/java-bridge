@@ -12,6 +12,7 @@ public class InputView {
         String bridgeSize = Console.readLine();
 
         validateUserInput.checkBridgeSizeRange(bridgeSize);
+        validateUserInput.checkBridgeSizeIsDigit(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
     public String readMoving() {
