@@ -1,4 +1,4 @@
-package bridge.contorller;
+package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
