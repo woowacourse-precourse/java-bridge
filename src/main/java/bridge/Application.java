@@ -93,7 +93,7 @@ public class Application {
     }
 
     private static void chooseGameContinue(boolean success) {
-        if (!success) {
+        if (success) {
             return;
         }
 

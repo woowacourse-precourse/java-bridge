@@ -14,8 +14,10 @@ public class InputView {
         String input = Console.readLine();
 
         Integer bridgeSize = bridgeSizeParseInt(input);
+        if (bridgeSize == null) {
+            return null;
+        }
         bridgeSize = validateSizeLimit(bridgeSize);
-
         return bridgeSize;
     }
 
