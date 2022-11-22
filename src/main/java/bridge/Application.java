@@ -26,17 +26,23 @@ public class Application {
     }
     private static void gameStart() {
         while(true) {
-            String direction = inputView.readMoving();
-            visited = bridgeGame.move(direction);
-            printUpBridge();
-            printDownBridge();
+            boolean keep = move();
             if(bridgeGame.isGameCompleted()){
                 break;
             }
-            if(!bridgeGame.isRightDirection(visited.size()-1,direction) && !retry()){
+            if(!keep && !retry()){
                 break;
             }
         }
+    }
+
+    private static boolean move() {
+        String direction = inputView.readMoving();
+        visited = bridgeGame.move(direction);
+        printUpBridge();
+        printDownBridge();
+
+        return bridgeGame.isRightDirection(visited.size()-1,direction);
     }
     private static void printDownBridge() {
         List<String> downString = new ArrayList<>();
