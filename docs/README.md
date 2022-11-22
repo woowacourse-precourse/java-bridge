@@ -18,6 +18,8 @@
 >      - 종료 `Finish`
 
 ### 동작 순서 기준 - 내부 기능 설계
+#### ❗ 사용자 입력값 오류시 `IllegalArgumentException`를 발생시키고, 
+#### ❗ "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 *다시* 받는다.
 >- 게임 시작 안내문 `Output`
 >- 다리 길이 입력 안내문 `Output`
 >> - 다리 길이 입력 `Input`
@@ -32,19 +34,19 @@
 * * *
 >>- 반복 `Repeat`
 >>>  - 이동 칸 입력 안내문 `Output`
->>>>  - 이동 칸 입력 `Input`  
->>>>> 입력받은 칸으로 이동 - `BridgeGame.move(input)`
->>>>>> 이동 결과 판별 - `BridgeGame.checkMoveResult(input,user)`  
->>> 
->>    - 건널 수 있다면 게임 성공 여부 판별 `BridgeGame` 
->>      - 성공시 게임 성공 안내문 `Output`  
->>      - 종료 `Finish`
->>    - 반복 `Repeat-Continue`
->>    - 건널 수 없다면 재시도 여부 입력 안내문 `Output`
->>    - 재시도 입력 `Input`
->>    - 재시도 판별 `BridgeGame` 
->>      - 반복 `Repeat-Continue`
->>      - 종료 `Finish`
+>>>  - 이동 칸 입력 `Input`  
+>>>> 입력받은 칸으로 이동 - `BridgeGame.move(input)`
+>>>>> 이동 결과 판별 - `BridgeGame.checkMoveResult(input,user)`  
+>>>>>    - 건널 수 있다면 게임 성공 여부 판별 `BridgeGame`
+>>>>>>    - 성공시 게임 성공 안내문 `Output`
+>>>>>>      - 종료 `Finish`
+>>>>>    - 건널 수 없다면 재시도 여부 입력 안내문 `Output`
+>>>>>    - 재시도 입력 `Input`
+>>>>>>    - 재시도 판별 `BridgeGame`
+>>>>>>      - 반복 혹은 종료 `Repeat-Continue` `Finish` `Application`
+>> - 반복 `Repeat-Continue`
+>
+>> - 종료 `Finish` `Application`
 
 
 <details><summary><strong>기능 요구 사항</strong></summary>
