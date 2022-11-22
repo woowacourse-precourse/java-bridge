@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     public void printRequestMoveDirectionMessage(){
-        System.out.print(REQUEST_MOVE_DIRECTION_MESSAGE);
+        System.out.println(REQUEST_MOVE_DIRECTION_MESSAGE);
     }
 
     public void printInValidMoveDirectionErrorMessage(){
@@ -64,6 +64,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(GAME_RESULT_MAP_MESSAGE);
         printMap(bridgeGame);
+        System.out.println();
         bridgeGame.printFinalResult();
     }
 }

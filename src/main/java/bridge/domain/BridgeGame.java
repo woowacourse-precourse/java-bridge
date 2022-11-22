@@ -4,15 +4,16 @@ import java.util.*;
 
 import static bridge.domain.ConstantMessage.GAME_RESULT_SUCCESS_OR_FAIL_MESSAGE;
 import static bridge.domain.ConstantMessage.GAME_RETRY_COUNT_MESSAGE;
-
+import static bridge.domain.SuccessOrFail.성공;
+import static bridge.domain.SuccessOrFail.실패;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private int bridgeLength;
-    private boolean isPlayerMoveSuccess;
-    private boolean isSuccessGame;
+
+    private SuccessOrFail isPlayerMoveSuccess;
+    private SuccessOrFail isSuccessGame;
     private int bridgeIdx;
     private int tryCount;
     private List<String> bridge;
@@ -29,10 +30,10 @@ public class BridgeGame {
     public void move(String moveDirection , int bridgeIdx) {
         playerMoveRecord.add(moveDirection);
         if(bridge.get(bridgeIdx).equals(moveDirection)) {
-            isPlayerMoveSuccess = true;
+            isPlayerMoveSuccess = 성공;
             return;
         }
-        isPlayerMoveSuccess = false;
+        isPlayerMoveSuccess = 실패;
     }
 
     public void makePrintResult(){
@@ -156,7 +157,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameRetryCommand) {
-        if(gameRetryCommand.equals(GameRetry.R.command)){
+        if(gameRetryCommand.equals(GameRetryCommand.R.command)){
             initializePlayerMoveRecord();
             return true;
         }
@@ -164,10 +165,16 @@ public class BridgeGame {
     }
 
     public void gameSuccess(){
-        this.isSuccessGame = true;
+        this.isSuccessGame = 성공;
     }
 
-    public boolean isMoveSuccess(){
+    public boolean isFinish(){
+        if(bridgeIdx < bridge.size())
+            return false;
+        return true;
+    }
+
+    public SuccessOrFail isMoveSuccess(){
         return isPlayerMoveSuccess;
     }
 
@@ -178,7 +185,7 @@ public class BridgeGame {
         this.printPlayerMoveUp = new StringBuilder();
         this.printPlayerMoveDown = new StringBuilder();
         this.tryCount = 1;
-        this.isSuccessGame = false;
+        this.isSuccessGame = 실패;
         bridgeIdx = 0;
     }
 
@@ -195,24 +202,11 @@ public class BridgeGame {
         this.playerMoveWhetherAnswer = new ArrayList<>();
     }
 
-    public void setBridgeLength(int bridgeLength) {
-        this.bridgeLength = bridgeLength;
-    }
-
-    public int getBridgeLength() {
-        return bridgeLength;
-    }
-
-    public int getBridgeSize(){
-        return bridge.size();
-    }
-
     public int getBridgeIdx() {
         return bridgeIdx;
     }
 
-    public BridgeGame(int bridgeLength, int tryCount) {
-        this.bridgeLength = bridgeLength;
+    public BridgeGame( int tryCount) {
         this.tryCount = tryCount;
     }
 

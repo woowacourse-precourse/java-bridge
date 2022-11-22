@@ -2,13 +2,14 @@ package bridge.service;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
-import bridge.domain.GameRetry;
+import bridge.domain.SuccessOrFail;
+import static bridge.domain.SuccessOrFail.실패;
 
 import java.util.*;
 public class BridgeService {
 
     static final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    static final BridgeGame bridgeGame = new BridgeGame(0,0);
+    static final BridgeGame bridgeGame = new BridgeGame(0);
     static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     static final InputValidation inputValidation = new InputValidation();
     static final InputView inputView = new InputView();
@@ -16,20 +17,19 @@ public class BridgeService {
     
     public void bridgeGameStart(){
         outputView.printGameStartMessage();
-        inputBridgeLength();
-        makeBridge();
+        int bridgeLength = inputBridgeLength();
+        makeBridge(bridgeLength);
         TryPlayerMove();
     }
 
-    public void inputBridgeLength(){
+    public int inputBridgeLength(){
         while(true){
             outputView.printRequestBridgeLengthMessage();
             String bridgeLength = inputView.readBridgeSize();
             if(!isValidBridgeLengthInput(bridgeLength))
                 continue;
 
-            bridgeGame.setBridgeLength(Integer.parseInt(bridgeLength));
-            return;
+            return Integer.parseInt(bridgeLength);
         }
     }
 
@@ -45,14 +45,14 @@ public class BridgeService {
         return true;
     }
 
-    public void makeBridge(){
-        List<String> bridge = bridgeMaker.makeBridge(bridgeGame.getBridgeLength());
+    public void makeBridge(int bridgeLength){
+        List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
         bridgeGame.initializeBridgeGame(bridge);
     }
 
     public void TryPlayerMove(){
         boolean doRetry = true;
-        while(bridgeGame.getBridgeIdx() < bridgeGame.getBridgeSize()){
+        while(!bridgeGame.isFinish()){
             if(!inputPlayerMoveDirection())
                 continue;
             outputView.printMap(bridgeGame);
@@ -64,7 +64,7 @@ public class BridgeService {
     }
 
     private boolean isDoRetry(boolean doRetry) {
-        if(!bridgeGame.isMoveSuccess())
+        if(bridgeGame.isMoveSuccess().equals(실패))
             doRetry = bridgeGame.retry(inputGameRetryCommand());
         if(!doRetry)
             outputView.printResult(bridgeGame);
