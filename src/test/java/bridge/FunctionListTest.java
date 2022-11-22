@@ -2,7 +2,6 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import bridge.model.BridgeGame;
@@ -43,7 +42,9 @@ public class FunctionListTest {
     @Test
     public void moveFail() {
         assertEquals(bridgeGame.move(BridgePattern.MOVE_DOWN), GameCondition.FAILURE);
-        assertEquals(progress.getProgress().get(BridgePattern.MOVE_DOWN), new ArrayList<>() {{ add("X");}});
+        assertEquals(progress.getProgress().get(BridgePattern.MOVE_DOWN), new ArrayList<>() {{
+            add("X");
+        }});
     }
 
     @DisplayName("retry 메소드 테스트 케이스")
@@ -124,5 +125,16 @@ public class FunctionListTest {
         assertThatThrownBy(() -> Command.searchCommand(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
-
+    /**
+     * Progress 클래스에 대한 테스트
+     */
+    @DisplayName("진행 상황을 성공적으로 갱신시키는 케이스")
+    @ParameterizedTest
+    @ValueSource(strings = "O")
+    public void updateSuccess(String input) {
+        progress.updateProgress(BridgePattern.MOVE_UP, input);
+        assertEquals(progress.getProgress().get(BridgePattern.MOVE_UP), new ArrayList<>() {{
+            add("O");
+        }});
+    }
 }
