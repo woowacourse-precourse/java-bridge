@@ -6,6 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
     @Test
-    void name() {
+    void create() {
     }
 }
