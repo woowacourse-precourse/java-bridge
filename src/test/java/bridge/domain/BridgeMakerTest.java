@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

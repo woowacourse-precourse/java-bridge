@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
