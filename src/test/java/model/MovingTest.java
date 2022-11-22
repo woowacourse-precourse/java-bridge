@@ -1,7 +1,5 @@
-package bridge;
+package model;
 
-import model.Bridge;
-import model.Moving;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
